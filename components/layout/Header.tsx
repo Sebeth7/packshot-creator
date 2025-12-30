@@ -1,13 +1,22 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 export default function Header() {
   const t = useTranslations('common');
+  const locale = useLocale();
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Construire l'URL pour changer de langue (FR ↔ EN)
+  const otherLocale = locale === 'fr' ? 'en' : 'fr';
+  const otherLocalePath = locale === 'fr'
+    ? `/en${pathname}`
+    : pathname.replace(/^\/[a-z]{2}/, '');
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
@@ -40,8 +49,8 @@ export default function Header() {
 
           {/* CTA + Language */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href="/en" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise">
-              EN
+            <Link href={otherLocalePath} className="text-sm font-body text-neutral-dark hover:text-primary-turquoise">
+              {otherLocale.toUpperCase()}
             </Link>
             <Button asChild className="bg-primary-turquoise hover:bg-primary-dark text-white">
               <Link href="/contact">
@@ -75,6 +84,9 @@ export default function Header() {
             </Link>
             <Link href="/about" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
               {t('nav.about')}
+            </Link>
+            <Link href={otherLocalePath} className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+              {otherLocale.toUpperCase()}
             </Link>
             <Button asChild className="w-full bg-primary-turquoise hover:bg-primary-dark text-white mt-4">
               <Link href="/contact">
