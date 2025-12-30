@@ -57,9 +57,57 @@
         "category": "Innovations"
       },
       "cta": "Consulter notre blog"
+    },
+    "tailorMade": {
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Optimisez votre catalogue produit avec des visuels professionnels prêts pour la vente en ligne."
+      },
+      "digital": {
+        "title": "Digital Asset Management",
+        "description": "Gérez et organisez efficacement vos ressources visuelles pour une diffusion multi-canal."
+      },
+      "quality": {
+        "title": "Contrôle qualité",
+        "description": "Assurez une cohérence visuelle parfaite grâce à des processus automatisés et standardisés."
+      },
+      "studio": {
+        "title": "Studio photo intégré",
+        "description": "Créez votre propre studio de production avec nos solutions clés en main."
+      },
+      "creative": {
+        "title": "Créativité",
+        "description": "Libérez votre potentiel créatif avec des outils professionnels intuitifs."
+      },
+      "manufacturers": {
+        "title": "Fabricants",
+        "description": "Produisez des visuels techniques et marketing pour vos gammes de produits."
+      }
     }
   },
   "common": {
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "nav": {
+      "productPhotography": "Photographie Produit",
+      "workflowManagement": "Gestion du Workflow",
+      "resources": "Ressources",
+      "about": "À propos",
+      "receiveOffer": "Recevoir une offre"
+    },
+    "footer": {
+      "tagline": "Solutions professionnelles de photographie de produits automatisée pour l'e-commerce et la communication visuelle.",
+      "industries": "Industries",
+      "fashion": "Mode & Textile",
+      "food": "Alimentaire",
+      "hightech": "High-Tech",
+      "products": "Produits",
+      "alphaShotProG2": "Alphashot Pro G2",
+      "alphaShotMicro": "Alphashot Micro V2",
+      "fashionStudio": "Fashion Studio",
+      "resources": "Ressources",
+      "support": "Support",
+      "blog": "Blog",
+      "rights": "Tous droits réservés."
+    }
   }
 }

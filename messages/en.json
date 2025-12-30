@@ -57,9 +57,57 @@
         "category": "Innovations"
       },
       "cta": "Visit our blog"
+    },
+    "tailorMade": {
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Optimize your product catalog with professional visuals ready for online sales."
+      },
+      "digital": {
+        "title": "Digital Asset Management",
+        "description": "Efficiently manage and organize your visual assets for multi-channel distribution."
+      },
+      "quality": {
+        "title": "Quality Control",
+        "description": "Ensure perfect visual consistency through automated and standardized processes."
+      },
+      "studio": {
+        "title": "Integrated photo studio",
+        "description": "Create your own production studio with our turnkey solutions."
+      },
+      "creative": {
+        "title": "Creativity",
+        "description": "Unlock your creative potential with intuitive professional tools."
+      },
+      "manufacturers": {
+        "title": "Manufacturers",
+        "description": "Produce technical and marketing visuals for your product ranges."
+      }
     }
   },
   "common": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "nav": {
+      "productPhotography": "Product Photography",
+      "workflowManagement": "Workflow Management",
+      "resources": "Resources",
+      "about": "About",
+      "receiveOffer": "Get an offer"
+    },
+    "footer": {
+      "tagline": "Professional automated product photography solutions for e-commerce and visual communication.",
+      "industries": "Industries",
+      "fashion": "Fashion & Textile",
+      "food": "Food & Beverage",
+      "hightech": "High-Tech",
+      "products": "Products",
+      "alphaShotProG2": "Alphashot Pro G2",
+      "alphaShotMicro": "Alphashot Micro V2",
+      "fashionStudio": "Fashion Studio",
+      "resources": "Resources",
+      "support": "Support",
+      "blog": "Blog",
+      "rights": "All rights reserved."
+    }
   }
 }

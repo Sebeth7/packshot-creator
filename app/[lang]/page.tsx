@@ -1,7 +1,11 @@
 import { getTranslations } from 'next-intl/server';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import IntroSection from '@/components/sections/IntroSection';
 import ProductShowcase from '@/components/sections/ProductShowcase';
+import TailorMadeSection from '@/components/sections/TailorMadeSection';
+import ClientLogos from '@/components/sections/ClientLogos';
 import CTABox from '@/components/sections/CTABox';
 import BlogGrid from '@/components/sections/BlogGrid';
 
@@ -56,81 +60,91 @@ export default function HomePage() {
   ];
 
   return (
-    <main>
-      {/* Hero Section */}
-      <Hero
-        titleKey="hero.title"
-        subtitleKey="hero.subtitle"
-        ctaKey="hero.cta"
-        ctaHref="/contact"
-        images={heroImages}
-      />
+    <>
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <Hero
+          titleKey="hero.title"
+          subtitleKey="hero.subtitle"
+          ctaKey="hero.cta"
+          ctaHref="/contact"
+          images={heroImages}
+        />
 
-      {/* Intro Section */}
-      <IntroSection
-        headingKey="intro.heading"
-        text1Key="intro.text1"
-        text2Key="intro.text2"
-        ctaKey="intro.cta"
-        ctaHref="/contact"
-        bgColor="white"
-      />
+        {/* Intro Section */}
+        <IntroSection
+          headingKey="intro.heading"
+          text1Key="intro.text1"
+          text2Key="intro.text2"
+          ctaKey="intro.cta"
+          ctaHref="/contact"
+          bgColor="white"
+        />
 
-      {/* Orbitvu Section */}
-      <ProductShowcase
-        brandKey="orbitvu.brand"
-        headingKey="orbitvu.heading"
-        descriptionKey="orbitvu.description"
-        featuresKeys={[
-          'orbitvu.feature1',
-          'orbitvu.feature2',
-          'orbitvu.feature3',
-          'orbitvu.feature4'
-        ]}
-        ctaKey="orbitvu.cta"
-        ctaHref="/studio-photo"
-        imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif"
-        imageAlt="Solution automatisée pour la photo"
-        imagePosition="left"
-        bgColor="light-gray"
-      />
+        {/* Orbitvu Section */}
+        <ProductShowcase
+          brandKey="orbitvu.brand"
+          headingKey="orbitvu.heading"
+          descriptionKey="orbitvu.description"
+          featuresKeys={[
+            'orbitvu.feature1',
+            'orbitvu.feature2',
+            'orbitvu.feature3',
+            'orbitvu.feature4'
+          ]}
+          ctaKey="orbitvu.cta"
+          ctaHref="/studio-photo"
+          imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif"
+          imageAlt="Solution automatisée pour la photo"
+          imagePosition="left"
+          bgColor="light-gray"
+        />
 
-      {/* ShotFlow Section */}
-      <ProductShowcase
-        brandKey="shotflow.brand"
-        headingKey="shotflow.heading"
-        descriptionKey="shotflow.description"
-        featuresKeys={[
-          'shotflow.feature1',
-          'shotflow.feature2',
-          'shotflow.feature3',
-          'shotflow.feature4'
-        ]}
-        ctaKey="shotflow.cta"
-        ctaHref="/shotflow"
-        imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/669a1f84b6606c529cbb61da_shotflow%201.webp"
-        imageAlt="ShotFlow partenaire technologique e-commerce"
-        imagePosition="right"
-        bgColor="white"
-      />
+        {/* ShotFlow Section */}
+        <ProductShowcase
+          brandKey="shotflow.brand"
+          headingKey="shotflow.heading"
+          descriptionKey="shotflow.description"
+          featuresKeys={[
+            'shotflow.feature1',
+            'shotflow.feature2',
+            'shotflow.feature3',
+            'shotflow.feature4'
+          ]}
+          ctaKey="shotflow.cta"
+          ctaHref="/shotflow"
+          imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/669a1f84b6606c529cbb61da_shotflow%201.webp"
+          imageAlt="ShotFlow partenaire technologique e-commerce"
+          imagePosition="right"
+          bgColor="white"
+        />
 
-      {/* Alphashot CTA Box */}
-      <CTABox
-        headingKey="alphashot.heading"
-        descriptionKey="alphashot.description"
-        ctaKey="alphashot.cta"
-        ctaHref="/contact"
-        bgColor="light-gray"
-      />
+        {/* Tailor-Made Section */}
+        <TailorMadeSection />
 
-      {/* Blog Section */}
-      <BlogGrid
-        headingKey="blog.heading"
-        descriptionKey="blog.description"
-        posts={blogPosts}
-        ctaKey="blog.cta"
-        ctaHref="/blog"
-      />
-    </main>
+        {/* Client Logos */}
+        <ClientLogos />
+
+        {/* Alphashot CTA Box */}
+        <CTABox
+          headingKey="alphashot.heading"
+          descriptionKey="alphashot.description"
+          ctaKey="alphashot.cta"
+          ctaHref="/contact"
+          bgColor="light-gray"
+        />
+
+        {/* Blog Section */}
+        <BlogGrid
+          headingKey="blog.heading"
+          descriptionKey="blog.description"
+          posts={blogPosts}
+          ctaKey="blog.cta"
+          ctaHref="/blog"
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
