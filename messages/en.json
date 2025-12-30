@@ -2,13 +2,60 @@
   "home": {
     "meta": {
       "title": "PackshotCreator: Product Photography Solutions & Workflow",
-      "description": "Exclusive Orbitvu distributor France & Switzerland — 20 years expertise in luxury photography"
+      "description": "PackshotCreator helps you automate your product photography while optimizing workflow and creativity for a smooth and efficient production process."
     },
     "hero": {
-      "title": "PackshotCreator",
-      "subtitle": "Product Photography Solutions & Workflow",
-      "description": "Exclusive Orbitvu distributor France & Switzerland — 20 years expertise in luxury photography",
-      "cta": "Discover our solutions"
+      "title": "Reinvent your product photography process with PackshotCreator",
+      "subtitle": "Simplify the creation of content for your products, reduce costs, optimize your workflow, and find the perfect photo studio among our 20 shooting systems.",
+      "cta": "Contact us"
+    },
+    "intro": {
+      "heading": "The range of photo studios that combines speed and inspiration",
+      "text1": "With over 20 years of expertise, PackshotCreator has redefined visual content creation. Our partnerships with Orbitvu and ShotFlow have enriched our range to meet the highest demands.",
+      "text2": "A complete range of photo studios to adapt to every need. Software-driven automation provides speed and fluidity throughout the visual creation process.",
+      "cta": "Contact an expert"
+    },
+    "orbitvu": {
+      "brand": "Orbitvu",
+      "heading": "Automated solutions for product photography",
+      "description": "Orbitvu's advanced technologies enable the production of ready-to-publish visuals online in just 3 seconds, significantly reducing time-to-market.",
+      "feature1": "Packshots in an instant",
+      "feature2": "Versatile solutions",
+      "feature3": "Maximum productivity",
+      "feature4": "From multi-angle capture to 3D",
+      "cta": "Discover our automated studios"
+    },
+    "shotflow": {
+      "brand": "ShotFlow",
+      "heading": "Mastery of the workflow management",
+      "description": "ShotFlow is the reference tool that allows you to master all stages of visual content creation, giving each department of the company the means to act or transform the production process.",
+      "feature1": "Cloud management",
+      "feature2": "Automated process",
+      "feature3": "Real-time collaboration",
+      "feature4": "E-commerce integration",
+      "cta": "Discover ShotFlow"
+    },
+    "alphashot": {
+      "heading": "Automation, AI: test Alphashot Pro G2",
+      "description": "The Alphashot Pro G2 simplifies your shoots with AI and automation. Capture images, videos and 360° animations in seconds, with optimized lighting and no technical skills required.",
+      "cta": "Book a demo"
+    },
+    "blog": {
+      "heading": "News and Tutorials",
+      "description": "Don't miss the latest news in automated product photography. Our blog is the essential reference for industry trends and technological advances.",
+      "post1": {
+        "title": "How AI and virtual lighting transform packshot",
+        "category": "Innovations"
+      },
+      "post2": {
+        "title": "Recover your PackshotCreator or Ortery software",
+        "category": "Products"
+      },
+      "post3": {
+        "title": "5 simultaneous cameras for realistic 3D animation",
+        "category": "Innovations"
+      },
+      "cta": "Visit our blog"
     }
   },
   "common": {

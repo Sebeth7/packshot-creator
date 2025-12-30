@@ -1,5 +1,9 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import Hero from '@/components/sections/Hero';
+import IntroSection from '@/components/sections/IntroSection';
+import ProductShowcase from '@/components/sections/ProductShowcase';
+import CTABox from '@/components/sections/CTABox';
+import BlogGrid from '@/components/sections/BlogGrid';
 
 export async function generateMetadata({
   params
@@ -16,68 +20,117 @@ export async function generateMetadata({
 }
 
 export default function HomePage() {
-  const t = useTranslations('home.hero');
+  // Images extraites de Webflow
+  const heroImages = [
+    {
+      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/672256fe5fe5600d4a325798_Main_page_hero_range%202.avif',
+      alt: 'Gamme 2025 de studios photos automatisés Orbitvu'
+    }
+  ];
+
+  const blogPosts = [
+    {
+      titleKey: 'blog.post1.title',
+      categoryKey: 'blog.post1.category',
+      date: '24/6/2025',
+      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/685ab83168d9ec4a5b93ebac_1N2A9137.avif',
+      imageAlt: "Comment l'IA et les lumières virtuelles révolutionnent le packshot ?",
+      slug: '/blog/ia-lumieres-virtuelles'
+    },
+    {
+      titleKey: 'blog.post2.title',
+      categoryKey: 'blog.post2.category',
+      date: '6/5/2025',
+      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/681a148a2f962e366b1271b4_software.avif',
+      imageAlt: 'Vous avez perdu votre logiciel PackshotCreator ou Ortery ?',
+      slug: '/blog/recuperer-logiciel'
+    },
+    {
+      titleKey: 'blog.post3.title',
+      categoryKey: 'blog.post3.category',
+      date: '28/3/2025',
+      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67b73285dfb98b34edde70c6_6788c6593c7472b6ff4f1484_AlpahshotXL_multi_camera_ring_pour_3D.avif',
+      imageAlt: '5 appareils photo en simultané pour de l\'animation 3D réaliste',
+      slug: '/blog/5-appareils-photo-3d'
+    }
+  ];
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-bg-warm-white">
-      <div className="text-center max-w-4xl px-4">
-        <h1 className="font-heading text-6xl text-heading-dark mb-4">
-          {t('title')}
-        </h1>
-        <p className="text-xl text-text-dark mb-2 font-medium">
-          {t('subtitle')}
-        </p>
-        <p className="text-lg text-text-dark mb-8">
-          {t('description')}
-        </p>
+    <main>
+      {/* Hero Section */}
+      <Hero
+        titleKey="hero.title"
+        subtitleKey="hero.subtitle"
+        ctaKey="hero.cta"
+        ctaHref="/contact"
+        images={heroImages}
+      />
 
-        <div className="mt-12">
-          <h2 className="font-heading text-2xl text-heading-dark mb-6">
-            Palette Orbitvu — Migration en cours...
-          </h2>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 bg-primary-coral rounded-lg shadow-lg mb-2"></div>
-              <span className="text-sm font-medium">Primary Coral</span>
-              <span className="text-xs text-text-dark/70">#EC3655</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 bg-secondary-teal rounded-lg shadow-lg mb-2"></div>
-              <span className="text-sm font-medium">Secondary Teal</span>
-              <span className="text-xs text-text-dark/70">#24A1B4</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 bg-bg-light-gray rounded-lg shadow-lg mb-2 border border-text-dark/10"></div>
-              <span className="text-sm font-medium">BG Light Gray</span>
-              <span className="text-xs text-text-dark/70">#F8FAFB</span>
-            </div>
-          </div>
-        </div>
+      {/* Intro Section */}
+      <IntroSection
+        headingKey="intro.heading"
+        text1Key="intro.text1"
+        text2Key="intro.text2"
+        ctaKey="intro.cta"
+        ctaHref="/contact"
+        bgColor="white"
+      />
 
-        <div className="mt-12 space-y-4">
-          <div>
-            <h3 className="font-heading text-xl text-heading-dark">
-              Font Cairo (Headings)
-            </h3>
-          </div>
-          <div>
-            <p className="font-body text-base">
-              Font Roboto (Body) — Regular 400
-            </p>
-          </div>
-          <div>
-            <p className="font-body text-base font-medium">
-              Font Roboto (Body) — Medium 500
-            </p>
-          </div>
-        </div>
+      {/* Orbitvu Section */}
+      <ProductShowcase
+        brandKey="orbitvu.brand"
+        headingKey="orbitvu.heading"
+        descriptionKey="orbitvu.description"
+        featuresKeys={[
+          'orbitvu.feature1',
+          'orbitvu.feature2',
+          'orbitvu.feature3',
+          'orbitvu.feature4'
+        ]}
+        ctaKey="orbitvu.cta"
+        ctaHref="/studio-photo"
+        imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif"
+        imageAlt="Solution automatisée pour la photo"
+        imagePosition="left"
+        bgColor="light-gray"
+      />
 
-        <div className="mt-12">
-          <button className="px-8 py-3 bg-primary-coral text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
-            {t('cta')}
-          </button>
-        </div>
-      </div>
+      {/* ShotFlow Section */}
+      <ProductShowcase
+        brandKey="shotflow.brand"
+        headingKey="shotflow.heading"
+        descriptionKey="shotflow.description"
+        featuresKeys={[
+          'shotflow.feature1',
+          'shotflow.feature2',
+          'shotflow.feature3',
+          'shotflow.feature4'
+        ]}
+        ctaKey="shotflow.cta"
+        ctaHref="/shotflow"
+        imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/669a1f84b6606c529cbb61da_shotflow%201.webp"
+        imageAlt="ShotFlow partenaire technologique e-commerce"
+        imagePosition="right"
+        bgColor="white"
+      />
+
+      {/* Alphashot CTA Box */}
+      <CTABox
+        headingKey="alphashot.heading"
+        descriptionKey="alphashot.description"
+        ctaKey="alphashot.cta"
+        ctaHref="/contact"
+        bgColor="light-gray"
+      />
+
+      {/* Blog Section */}
+      <BlogGrid
+        headingKey="blog.heading"
+        descriptionKey="blog.description"
+        posts={blogPosts}
+        ctaKey="blog.cta"
+        ctaHref="/blog"
+      />
     </main>
   );
 }

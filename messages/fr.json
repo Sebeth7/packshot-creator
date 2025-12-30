@@ -2,13 +2,60 @@
   "home": {
     "meta": {
       "title": "PackshotCreator : Solutions Photo Produit & Workflow",
-      "description": "Distributeur exclusif Orbitvu France & Suisse — 20 ans d'expertise photo luxe"
+      "description": "PackshotCreator vous permet d'automatiser votre photographie produit tout en optimisant workflow et créativité pour une production fluide et efficace."
     },
     "hero": {
-      "title": "PackshotCreator",
-      "subtitle": "Solutions Photo Produit & Workflow",
-      "description": "Distributeur exclusif Orbitvu France & Suisse — 20 ans d'expertise photo luxe",
-      "cta": "Découvrir nos solutions"
+      "title": "Réinventez votre processus de photographie de produits avec PackshotCreator",
+      "subtitle": "Simplifiez la création de contenu pour vos produits, réduisez vos coûts, optimisez votre workflow et trouvez le studio photo idéal parmi nos 20 systèmes de prise de vue.",
+      "cta": "Nous contacter"
+    },
+    "intro": {
+      "heading": "La gamme de studios photo qui allie rapidité et inspiration",
+      "text1": "Avec plus de 20 ans d'expertise, PackshotCreator a redéfini la création de contenu visuel. Nos partenariats avec Orbitvu et ShotFlow ont permis d'enrichir notre gamme pour répondre aux exigences les plus élevées.",
+      "text2": "Une gamme complète de studios photo pour s'adapter à chaque besoin. L'automatisation pilotée par logiciel offre un gain de rapidité et de fluidité tout au long du processus de création visuelle.",
+      "cta": "Contacter un expert"
+    },
+    "orbitvu": {
+      "brand": "Orbitvu",
+      "heading": "Solutions automatisées pour la photographie de produits",
+      "description": "Les technologies avancées d'Orbitvu permettent de produire des visuels prêts à être publiés en ligne en seulement 3 secondes, réduisant ainsi considérablement les délais de mise sur le marché.",
+      "feature1": "Des packshots en un instant",
+      "feature2": "Des solutions polyvalentes",
+      "feature3": "Une productivité maximale",
+      "feature4": "De la capture multi-angles à la 3D",
+      "cta": "Découvrez nos studios automatisés"
+    },
+    "shotflow": {
+      "brand": "ShotFlow",
+      "heading": "Maîtrise de la gestion du flux de travail",
+      "description": "ShotFlow est l'outil référence qui permet de maîtriser toutes les étapes de création de contenu visuel, donnant à chaque service de l'entreprise les moyens d'agir ou transformer le processus de production.",
+      "feature1": "Gestion du cloud",
+      "feature2": "Processus automatisé",
+      "feature3": "Collaboration en temps réel",
+      "feature4": "Intégration e-commerce",
+      "cta": "Découvrir ShotFlow"
+    },
+    "alphashot": {
+      "heading": "Automatisation, IA : testez Alphashot Pro G2",
+      "description": "L'Alphashot Pro G2 simplifie vos prises de vue grâce à l'IA et à l'automatisation. Capturez des images, vidéos et animations 360° en quelques secondes, avec un éclairage optimisé et sans compétences techniques requises.",
+      "cta": "Réserver une démo"
+    },
+    "blog": {
+      "heading": "Actualités et Tutoriels",
+      "description": "Ne manquez pas les toutes dernières nouveautés en matière de photographie automatisée de produits. Notre blog est la référence incontournable pour les tendances de l'industrie et les avancées technologiques.",
+      "post1": {
+        "title": "Comment l'IA et l'éclairage virtuel transforment le packshot",
+        "category": "Innovations"
+      },
+      "post2": {
+        "title": "Récupérer votre logiciel PackshotCreator ou Ortery",
+        "category": "Produits"
+      },
+      "post3": {
+        "title": "5 appareils photo en simultané pour de l'animation 3D",
+        "category": "Innovations"
+      },
+      "cta": "Consulter notre blog"
     }
   },
   "common": {
