@@ -31,20 +31,20 @@ export default function IntroSection({
   return (
     <section className={`${bgClasses[bgColor]} py-20 px-4`}>
       <div className="max-w-5xl mx-auto">
-        {/* Heading avec underline rouge */}
+        {/* Heading avec underline turquoise */}
         <div className="text-center mb-12">
-          <h2 className="font-heading text-4xl lg:text-5xl text-heading-dark mb-4">
+          <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4">
             {t(headingKey)}
           </h2>
-          <div className="w-24 h-1 bg-primary-coral mx-auto"></div>
+          <div className="w-24 h-1 bg-primary-turquoise mx-auto"></div>
         </div>
 
         {/* Textes en 2 colonnes */}
         <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <p className="text-lg text-text-dark leading-relaxed">
+          <p className="text-lg text-neutral-medium leading-relaxed">
             {t(text1Key)}
           </p>
-          <p className="text-lg text-text-dark leading-relaxed">
+          <p className="text-lg text-neutral-medium leading-relaxed">
             {t(text2Key)}
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function IntroSection({
             <Button
               asChild
               variant="outline"
-              className="border-2 border-primary-coral text-primary-coral hover:bg-primary-coral hover:text-white px-8 py-6 text-lg"
+              className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-6 text-lg"
             >
               <a href={ctaHref}>
                 {t(ctaKey)}

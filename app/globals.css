@@ -10,6 +10,20 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-cairo);
   --font-body: var(--font-roboto);
+
+  /* Palette Turquoise (design_system_final.md) */
+  --color-primary-turquoise: var(--primary-turquoise);
+  --color-primary-dark: var(--primary-dark);
+  --color-neutral-dark: var(--neutral-dark);
+  --color-neutral-medium: var(--neutral-medium);
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-lighter: var(--neutral-lighter);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-success: var(--accent-success);
+  --color-accent-alert: var(--accent-alert);
+  --color-white: var(--white);
+
+  /* Anciennes couleurs (backwards compatibility) */
   --color-primary-coral: var(--primary-coral);
   --color-secondary-teal: var(--secondary-teal);
   --color-text-dark: var(--text-dark);
@@ -58,7 +72,19 @@
 :root {
   --radius: 0.625rem;
 
-  /* Palette Orbitvu */
+  /* Palette design_system_final.md (Turquoise) */
+  --primary-turquoise: #00BCD4;
+  --primary-dark: #0097A7;
+  --neutral-dark: #263238;
+  --neutral-medium: #546E7A;
+  --neutral-light: #ECEFF1;
+  --neutral-lighter: #F5F7F8;
+  --accent-gold: #FFB300;
+  --accent-success: #00C853;
+  --accent-alert: #FF6F00;
+  --white: #FFFFFF;
+
+  /* Anciennes couleurs (backwards compatibility) */
   --primary-coral: #EC3655;
   --secondary-teal: #24A1B4;
   --text-dark: #0D171A;

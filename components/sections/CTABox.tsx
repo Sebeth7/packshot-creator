@@ -19,15 +19,15 @@ export default function CTABox({
   const t = useTranslations('home');
 
   const bgClasses = {
-    'coral': 'bg-primary-coral text-white',
-    'teal': 'bg-secondary-teal text-white',
-    'light-gray': 'bg-bg-light-gray text-heading-dark'
+    'coral': 'bg-primary-turquoise text-white',
+    'teal': 'bg-primary-turquoise text-white',
+    'light-gray': 'bg-neutral-light text-neutral-dark'
   };
 
   const buttonClasses = {
-    'coral': 'bg-white text-primary-coral hover:bg-white/90',
-    'teal': 'bg-white text-secondary-teal hover:bg-white/90',
-    'light-gray': 'bg-primary-coral text-white hover:bg-primary-coral/90'
+    'coral': 'bg-white text-primary-turquoise hover:bg-white/90',
+    'teal': 'bg-white text-primary-turquoise hover:bg-white/90',
+    'light-gray': 'bg-primary-turquoise text-white hover:bg-primary-dark'
   };
 
   return (

@@ -34,11 +34,11 @@ export default function BlogGrid({
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="font-heading text-4xl lg:text-5xl text-heading-dark mb-4">
+          <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4">
             {t(headingKey)}
           </h2>
-          <div className="w-24 h-1 bg-primary-coral mx-auto mb-6"></div>
-          <p className="text-lg text-text-dark max-w-3xl mx-auto">
+          <div className="w-24 h-1 bg-primary-turquoise mx-auto mb-6"></div>
+          <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
             {t(descriptionKey)}
           </p>
         </div>
@@ -62,14 +62,14 @@ export default function BlogGrid({
                 <div className="p-6 space-y-3">
                   {/* Catégorie + Date */}
                   <div className="flex items-center gap-3 text-sm">
-                    <span className="text-secondary-teal font-medium">
+                    <span className="text-primary-turquoise font-medium">
                       {t(post.categoryKey)}
                     </span>
-                    <span className="text-text-dark/60">{post.date}</span>
+                    <span className="text-neutral-medium/60">{post.date}</span>
                   </div>
 
                   {/* Titre */}
-                  <h3 className="font-heading text-xl text-heading-dark hover:text-primary-coral transition-colors">
+                  <h3 className="font-heading text-xl text-neutral-dark hover:text-primary-turquoise transition-colors">
                     {t(post.titleKey)}
                   </h3>
                 </div>
@@ -83,7 +83,7 @@ export default function BlogGrid({
           <Button
             asChild
             variant="outline"
-            className="border-2 border-primary-coral text-primary-coral hover:bg-primary-coral hover:text-white px-8 py-4"
+            className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-4"
           >
             <a href={ctaHref}>
               {t(ctaKey)}

@@ -55,17 +55,17 @@ export default function ProductShowcase({
           <div className={`space-y-6 ${!isImageLeft ? 'lg:col-start-1' : ''}`}>
             {/* Brand badge */}
             <div className="inline-block">
-              <span className="text-sm font-heading font-bold text-text-dark uppercase tracking-wider">
+              <span className="text-sm font-heading font-bold text-neutral-dark uppercase tracking-wider">
                 {t(brandKey)}
               </span>
             </div>
 
             {/* Heading avec underline */}
             <div>
-              <h2 className="font-heading text-4xl lg:text-5xl text-heading-dark mb-4 leading-tight">
+              <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4 leading-tight">
                 {t(headingKey)}
               </h2>
-              <div className="w-16 h-1 bg-primary-coral"></div>
+              <div className="w-16 h-1 bg-primary-turquoise"></div>
             </div>
 
             {/* CTA */}
@@ -73,7 +73,7 @@ export default function ProductShowcase({
               <Button
                 asChild
                 variant="outline"
-                className="border-2 border-primary-coral text-primary-coral hover:bg-primary-coral hover:text-white px-8 py-4"
+                className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-4"
               >
                 <a href={ctaHref}>
                   {t(ctaKey)}
@@ -82,7 +82,7 @@ export default function ProductShowcase({
             </div>
 
             {/* Description */}
-            <p className="text-lg text-text-dark leading-relaxed">
+            <p className="text-lg text-neutral-medium leading-relaxed">
               {t(descriptionKey)}
             </p>
 
@@ -90,8 +90,8 @@ export default function ProductShowcase({
             <div className="pt-4 space-y-3">
               {featuresKeys.map((featureKey, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-secondary-teal rounded-full mt-2 flex-shrink-0" />
-                  <p className="text-base text-text-dark font-medium">
+                  <div className="w-2 h-2 bg-primary-turquoise rounded-full mt-2 flex-shrink-0" />
+                  <p className="text-base text-neutral-medium font-medium">
                     {t(featureKey)}
                   </p>
                 </div>
