@@ -1,0 +1,48 @@
+{
+  "migrated": [],
+  "lastUpdated": "2025-12-30",
+  "notes": "Mettre à jour après chaque migration de page. Ce fichier sert de documentation, la liste réelle est dans index.js",
+  "missions": {
+    "mission0": {
+      "status": "en_cours",
+      "routes": []
+    },
+    "mission1": {
+      "status": "complete",
+      "routes": [],
+      "notes": "Pages 404 réparées avec redirections 301"
+    },
+    "mission2": {
+      "status": "pending",
+      "routes": [
+        "/",
+        "/en",
+        "/en/blog/how-to-choose-best-lens-for-product-photography",
+        "/en/guide/which-equipment-to-choose-for-jewelry-photo",
+        "/blog/quel-format-d-image-pour-le-web"
+      ]
+    },
+    "mission3": {
+      "status": "pending",
+      "routes": [
+        "/de",
+        "/guide/quel-equipement-choisir-pour-photo-bijoux",
+        "/es/guide/que-equipo-elegir-para-foto-joyas",
+        "/industrie/bijoux",
+        "/en/photo-studio/alphashot-360"
+      ]
+    },
+    "mission4": {
+      "status": "pending",
+      "routes": [
+        "/studio-photo/alphashot-g2",
+        "/contact",
+        "/en/contact"
+      ]
+    },
+    "mission5": {
+      "status": "pending",
+      "routes": "bulk_636_pages"
+    }
+  }
+}

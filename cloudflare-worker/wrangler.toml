@@ -1,0 +1,8 @@
+name = "packshot-router"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+WEBFLOW_ORIGIN = "https://packshot-creator.webflow.io"
+# À mettre à jour après déploiement Vercel
+NEXTJS_ORIGIN = "https://packshot-creator.vercel.app"

@@ -1,0 +1,17 @@
+{
+  "home": {
+    "meta": {
+      "title": "PackshotCreator : Solutions Photo Produit & Workflow",
+      "description": "Distributeur exclusif Orbitvu France & Suisse — 20 ans d'expertise photo luxe"
+    },
+    "hero": {
+      "title": "PackshotCreator",
+      "subtitle": "Solutions Photo Produit & Workflow",
+      "description": "Distributeur exclusif Orbitvu France & Suisse — 20 ans d'expertise photo luxe",
+      "cta": "Découvrir nos solutions"
+    }
+  },
+  "common": {
+    "loading": "Chargement..."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "home": {
+    "meta": {
+      "title": "PackshotCreator: Produktfotografie-Lösungen & Workflow",
+      "description": "Exklusiver Orbitvu-Händler Frankreich & Schweiz — 20 Jahre Erfahrung in Luxusfotografie"
+    },
+    "hero": {
+      "title": "PackshotCreator",
+      "subtitle": "Produktfotografie-Lösungen & Workflow",
+      "description": "Exklusiver Orbitvu-Händler Frankreich & Schweiz — 20 Jahre Erfahrung in Luxusfotografie",
+      "cta": "Unsere Lösungen entdecken"
+    }
+  },
+  "common": {
+    "loading": "Laden..."
+  }
+}
