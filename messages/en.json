@@ -105,9 +105,150 @@
       "alphaShotMicro": "Alphashot Micro V2",
       "fashionStudio": "Fashion Studio",
       "resources": "Resources",
+      "about": "About",
       "support": "Support",
       "blog": "Blog",
       "rights": "All rights reserved."
+    }
+  },
+  "iaPhotoProduit": {
+    "meta": {
+      "title": "Product Photo AI 2026 | BlendAI - Packshots to Lifestyle in 1 Click",
+      "description": "Specialized packshot artificial intelligence. Lifestyle Generator, Background Generator, AI Retouching. Compatible with Orbitvu studios. Free trial.",
+      "keywords": "product photo ai, blendai, packshot ai, lifestyle generator",
+      "ogDescription": "Multiply your product visuals in 1 click with specialized packshot AI."
+    },
+    "hero": {
+      "title": "Product Photo AI: Multiply Your Visuals in 1 Click",
+      "subtitle": "Specialized packshot artificial intelligence. No pure generation, integration of your real photo.",
+      "ctaPrimary": "Try BlendAI for free",
+      "ctaSecondary": "Read the 2026 AI guide"
+    },
+    "manifeste": {
+      "heading": "AI doesn't replace photography, it extends it",
+      "subtitle": "Our hybrid approach guarantees consistency and professional quality",
+      "principle1": {
+        "title": "Real photo = BASE",
+        "description": "High-quality Orbitvu studio packshot as foundation"
+      },
+      "principle2": {
+        "title": "AI = MULTIPLICATION",
+        "description": "Automatic variations: lifestyle, backgrounds, variations"
+      },
+      "principle3": {
+        "title": "Guaranteed consistency",
+        "description": "No pure generation, integration of your real photo"
+      }
+    },
+    "features": {
+      "heading": "4 Powerful AI Features",
+      "subtitle": "Specialized tools to transform your packshots",
+      "lifestyle": {
+        "name": "Lifestyle Generator",
+        "description": "Transform your packshots into realistic lifestyle scenes"
+      },
+      "background": {
+        "name": "Background Generator",
+        "description": "Generate professional backgrounds adapted to your product"
+      },
+      "retouche": {
+        "name": "AI Photo Retouching",
+        "description": "Automatic defect removal, color adjustment"
+      },
+      "batch": {
+        "name": "Batch Processing",
+        "description": "Process thousands of photos in minutes"
+      }
+    },
+    "casUsage": {
+      "heading": "Before/After Use Cases",
+      "subtitle": "Discover the power of BlendAI in action"
+    },
+    "compatible": {
+      "heading": "Compatible with Your Studio",
+      "subtitle": "All our Orbitvu studios are AI Ready",
+      "feature1": "Automatic high-quality export",
+      "feature2": "Preserved metadata",
+      "feature3": "BlendAI workflow compatible",
+      "offer": "Studio + 6 months BlendAI included"
+    },
+    "comparatifs": {
+      "heading": "BlendAI vs Competition",
+      "subtitle": "Discover why BlendAI is different",
+      "cta": "Read the 2026 product photo AI guide"
+    },
+    "finalCta": {
+      "test": {
+        "heading": "Ready to multiply your product visuals?",
+        "description": "Test BlendAI for free and discover how AI can transform your visual production.",
+        "cta": "Try BlendAI for free"
+      },
+      "demo": {
+        "heading": "Studio + AI: The complete offer",
+        "description": "Book a demo to discover our hybrid Hardware + AI solution.",
+        "cta": "Book an AI + Studio demo"
+      }
+    }
+  },
+  "studiosHardware": {
+    "meta": {
+      "title": "Orbitvu Automated Photo Studios | Official Distributor FR & CH",
+      "description": "Orbitvu automated photo studios. Exclusive distributor France & Switzerland. Free ROI calculator. 20 years luxury photography expertise. Financing available.",
+      "keywords": "automated photo studio, orbitvu france, automatic product photography, photo studio roi"
+    },
+    "hero": {
+      "title": "Orbitvu Automated Photo Studios: Visual Excellence & Guaranteed ROI",
+      "subtitle": "Exclusive distributor France & Switzerland. 20 years luxury photography expertise. Free ROI calculator.",
+      "ctaPrimary": "Calculate my ROI",
+      "ctaSecondary": "Find my machine"
+    },
+    "threePillars": {
+      "heading": "Our HYBRID Approach",
+      "subtitle": "Precision hardware + Specialized AI + Certified training",
+      "capture": {
+        "title": "CAPTURE",
+        "description": "Orbitvu automated photo studios for professional packshots",
+        "badge": "Hardware"
+      },
+      "creation": {
+        "title": "CREATION",
+        "description": "BlendAI product photo AI to optimize and transform your visuals",
+        "badge": "AI"
+      },
+      "formation": {
+        "title": "TRAINING",
+        "description": "Qualiopi Academy to master your tools and maximize your ROI",
+        "badge": "Qualiopi"
+      }
+    },
+    "products": {
+      "heading": "Our Photo Studios",
+      "subtitle": "Choose the studio that fits your needs",
+      "ctaText": "Learn more",
+      "viewAll": "View all studios"
+    },
+    "roiCalculator": {
+      "heading": "Calculate Your ROI in 2 Minutes",
+      "subtitle": "Find out how many months it will take to pay back your investment"
+    },
+    "machineSelection": {
+      "heading": "Find Your Ideal Machine",
+      "subtitle": "Answer 4 simple questions for a personalized recommendation"
+    },
+    "sectors": {
+      "heading": "12 Industries Served"
+    },
+    "finalCta": {
+      "demo": {
+        "heading": "Ready to revolutionize your photo production?",
+        "description": "Book a free demo with our experts and discover how our studios can transform your workflow.",
+        "cta": "Book a free demo"
+      },
+      "guide": {
+        "heading": "2026 Buying Guide",
+        "description": "Download our complete guide to choose the automated photo studio adapted to your business.",
+        "cta": "Download the guide"
+      }
     }
   }
 }

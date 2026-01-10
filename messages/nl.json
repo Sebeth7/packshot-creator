@@ -13,5 +13,145 @@
   },
   "common": {
     "loading": "Laden..."
+  },
+  "iaPhotoProduit": {
+    "meta": {
+      "title": "AI Productfoto 2026 | BlendAI - Packshots naar Lifestyle in 1 Klik",
+      "description": "Gespecialiseerde packshot kunstmatige intelligentie. Lifestyle Generator, Background Generator, AI Retoucheren. Compatibel met Orbitvu studio's. Gratis proefversie.",
+      "keywords": "ai productfoto, blendai, packshot ai, lifestyle generator",
+      "ogDescription": "Vermenigvuldig uw productvisualisaties in 1 klik met gespecialiseerde packshot AI."
+    },
+    "hero": {
+      "title": "AI Productfoto: Vermenigvuldig Uw Visuals in 1 Klik",
+      "subtitle": "Gespecialiseerde packshot kunstmatige intelligentie. Geen pure generatie, integratie van uw echte foto.",
+      "ctaPrimary": "BlendAI gratis proberen",
+      "ctaSecondary": "Lees de AI-gids 2026"
+    },
+    "manifeste": {
+      "heading": "AI vervangt fotografie niet, het breidt het uit",
+      "subtitle": "Onze hybride aanpak garandeert consistentie en professionele kwaliteit",
+      "principle1": {
+        "title": "Echte foto = BASIS",
+        "description": "Hoogwaardige Orbitvu studio packshot als fundament"
+      },
+      "principle2": {
+        "title": "AI = VERMENIGVULDIGING",
+        "description": "Automatische variaties: lifestyle, achtergronden, variaties"
+      },
+      "principle3": {
+        "title": "Gegarandeerde consistentie",
+        "description": "Geen pure generatie, integratie van uw echte foto"
+      }
+    },
+    "features": {
+      "heading": "4 Krachtige AI-functies",
+      "subtitle": "Gespecialiseerde tools om uw packshots te transformeren",
+      "lifestyle": {
+        "name": "Lifestyle Generator",
+        "description": "Transformeer uw packshots in realistische lifestyle-scènes"
+      },
+      "background": {
+        "name": "Background Generator",
+        "description": "Genereer professionele achtergronden aangepast aan uw product"
+      },
+      "retouche": {
+        "name": "AI Foto Retoucheren",
+        "description": "Automatische defectverwijdering, kleurcorrectie"
+      },
+      "batch": {
+        "name": "Batch Processing",
+        "description": "Verwerk duizenden foto's in minuten"
+      }
+    },
+    "casUsage": {
+      "heading": "Voor/Na Gebruiksvoorbeelden",
+      "subtitle": "Ontdek de kracht van BlendAI in actie"
+    },
+    "compatible": {
+      "heading": "Compatibel met Uw Studio",
+      "subtitle": "Al onze Orbitvu studio's zijn AI Ready",
+      "feature1": "Automatische export van hoge kwaliteit",
+      "feature2": "Bewaarde metadata",
+      "feature3": "BlendAI workflow compatibel",
+      "offer": "Studio + 6 maanden BlendAI inbegrepen"
+    },
+    "comparatifs": {
+      "heading": "BlendAI vs Concurrentie",
+      "subtitle": "Ontdek waarom BlendAI anders is",
+      "cta": "Lees de AI productfoto-gids 2026"
+    },
+    "finalCta": {
+      "test": {
+        "heading": "Klaar om uw productvisualisaties te vermenigvuldigen?",
+        "description": "Test BlendAI gratis en ontdek hoe AI uw visuele productie kan transformeren.",
+        "cta": "BlendAI gratis proberen"
+      },
+      "demo": {
+        "heading": "Studio + AI: Het complete aanbod",
+        "description": "Boek een demo om onze hybride Hardware + AI-oplossing te ontdekken.",
+        "cta": "Boek een AI + Studio demo"
+      }
+    }
+  },
+  "studiosHardware": {
+    "meta": {
+      "title": "Orbitvu Geautomatiseerde Fotostudio's | Officiële Distributeur FR & CH",
+      "description": "Orbitvu geautomatiseerde fotostudio's. Exclusieve distributeur Frankrijk & Zwitserland. Gratis ROI-calculator. 20 jaar expertise in luxe fotografie.",
+      "keywords": "geautomatiseerde fotostudio, orbitvu frankrijk, automatische productfotografie, fotostudio roi"
+    },
+    "hero": {
+      "title": "Orbitvu Geautomatiseerde Fotostudio's: Visuele Excellentie & Gegarandeerde ROI",
+      "subtitle": "Exclusieve distributeur Frankrijk & Zwitserland. 20 jaar expertise in luxe fotografie. Gratis ROI-calculator.",
+      "ctaPrimary": "Bereken mijn ROI",
+      "ctaSecondary": "Vind mijn machine"
+    },
+    "threePillars": {
+      "heading": "Onze HYBRIDE Aanpak",
+      "subtitle": "Precisie hardware + Gespecialiseerde AI + Gecertificeerde training",
+      "capture": {
+        "title": "OPNAME",
+        "description": "Orbitvu geautomatiseerde fotostudio's voor professionele packshots",
+        "badge": "Hardware"
+      },
+      "creation": {
+        "title": "CREATIE",
+        "description": "BlendAI productfoto AI om uw visuals te optimaliseren",
+        "badge": "AI"
+      },
+      "formation": {
+        "title": "TRAINING",
+        "description": "Qualiopi Academy om uw ROI te maximaliseren",
+        "badge": "Qualiopi"
+      }
+    },
+    "products": {
+      "heading": "Onze Fotostudio's",
+      "subtitle": "Kies de studio die bij uw behoeften past",
+      "ctaText": "Meer informatie",
+      "viewAll": "Bekijk alle studio's"
+    },
+    "roiCalculator": {
+      "heading": "Bereken uw ROI in 2 Minuten",
+      "subtitle": "Ontdek in hoeveel maanden uw investering zich terugbetaalt"
+    },
+    "machineSelection": {
+      "heading": "Vind uw Ideale Machine",
+      "subtitle": "Beantwoord 4 eenvoudige vragen voor een persoonlijke aanbeveling"
+    },
+    "sectors": {
+      "heading": "12 Bediende Sectoren"
+    },
+    "finalCta": {
+      "demo": {
+        "heading": "Klaar om uw fotoproductie te revolutioneren?",
+        "description": "Boek een gratis demo met onze experts.",
+        "cta": "Boek een gratis demo"
+      },
+      "guide": {
+        "heading": "Aankoopgids 2026",
+        "description": "Download onze complete gids.",
+        "cta": "Download de gids"
+      }
+    }
   }
 }

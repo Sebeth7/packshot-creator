@@ -13,5 +13,145 @@
   },
   "common": {
     "loading": "Laden..."
+  },
+  "iaPhotoProduit": {
+    "meta": {
+      "title": "Produktfoto-KI 2026 | BlendAI - Packshots zu Lifestyle in 1 Klick",
+      "description": "Spezialisierte Packshot-KI. Lifestyle Generator, Background Generator, KI-Retusche. Kompatibel mit Orbitvu-Studios. Kostenlose Testversion.",
+      "keywords": "produktfoto ki, blendai, packshot ki, lifestyle generator",
+      "ogDescription": "Vervielfachen Sie Ihre Produktvisualisierungen in 1 Klick mit spezialisierter Packshot-KI."
+    },
+    "hero": {
+      "title": "Produktfoto-KI: Vervielfachen Sie Ihre Visuals in 1 Klick",
+      "subtitle": "Spezialisierte Packshot-KI. Keine reine Generierung, Integration Ihres echten Fotos.",
+      "ctaPrimary": "BlendAI kostenlos testen",
+      "ctaSecondary": "KI-Leitfaden 2026 lesen"
+    },
+    "manifeste": {
+      "heading": "KI ersetzt nicht die Fotografie, sie erweitert sie",
+      "subtitle": "Unser hybrider Ansatz garantiert Konsistenz und professionelle Qualität",
+      "principle1": {
+        "title": "Echtes Foto = BASIS",
+        "description": "Hochwertige Orbitvu-Studio-Packshots als Grundlage"
+      },
+      "principle2": {
+        "title": "KI = MULTIPLIKATION",
+        "description": "Automatische Variationen: Lifestyle, Hintergründe, Variationen"
+      },
+      "principle3": {
+        "title": "Garantierte Konsistenz",
+        "description": "Keine reine Generierung, Integration Ihres echten Fotos"
+      }
+    },
+    "features": {
+      "heading": "4 Leistungsstarke KI-Funktionen",
+      "subtitle": "Spezialisierte Tools zur Transformation Ihrer Packshots",
+      "lifestyle": {
+        "name": "Lifestyle Generator",
+        "description": "Verwandeln Sie Ihre Packshots in realistische Lifestyle-Szenen"
+      },
+      "background": {
+        "name": "Background Generator",
+        "description": "Generieren Sie professionelle Hintergründe für Ihr Produkt"
+      },
+      "retouche": {
+        "name": "KI-Fotoretusche",
+        "description": "Automatische Fehlerentfernung, Farbanpassung"
+      },
+      "batch": {
+        "name": "Batch-Verarbeitung",
+        "description": "Verarbeiten Sie Tausende von Fotos in Minuten"
+      }
+    },
+    "casUsage": {
+      "heading": "Vorher/Nachher Anwendungsfälle",
+      "subtitle": "Entdecken Sie die Kraft von BlendAI in Aktion"
+    },
+    "compatible": {
+      "heading": "Kompatibel mit Ihrem Studio",
+      "subtitle": "Alle unsere Orbitvu-Studios sind KI-ready",
+      "feature1": "Automatischer Export in hoher Qualität",
+      "feature2": "Erhaltene Metadaten",
+      "feature3": "BlendAI-Workflow kompatibel",
+      "offer": "Studio + 6 Monate BlendAI inklusive"
+    },
+    "comparatifs": {
+      "heading": "BlendAI vs Konkurrenz",
+      "subtitle": "Entdecken Sie, warum BlendAI anders ist",
+      "cta": "KI-Produktfoto-Leitfaden 2026 lesen"
+    },
+    "finalCta": {
+      "test": {
+        "heading": "Bereit, Ihre Produktvisualisierungen zu vervielfachen?",
+        "description": "Testen Sie BlendAI kostenlos und entdecken Sie, wie KI Ihre visuelle Produktion transformieren kann.",
+        "cta": "BlendAI kostenlos testen"
+      },
+      "demo": {
+        "heading": "Studio + KI: Das komplette Angebot",
+        "description": "Buchen Sie eine Demo, um unsere hybride Hardware + KI-Lösung zu entdecken.",
+        "cta": "KI + Studio Demo buchen"
+      }
+    }
+  },
+  "studiosHardware": {
+    "meta": {
+      "title": "Orbitvu Automatisierte Fotostudios | Offizieller Händler FR & CH",
+      "description": "Orbitvu automatisierte Fotostudios. Exklusiver Händler Frankreich & Schweiz. Kostenloser ROI-Rechner. 20 Jahre Luxusfotografie-Expertise.",
+      "keywords": "automatisiertes fotostudio, orbitvu frankreich, automatische produktfotografie, fotostudio roi"
+    },
+    "hero": {
+      "title": "Orbitvu Automatisierte Fotostudios: Visuelle Exzellenz & Garantierter ROI",
+      "subtitle": "Exklusiver Händler Frankreich & Schweiz. 20 Jahre Luxusfotografie-Expertise. Kostenloser ROI-Rechner.",
+      "ctaPrimary": "ROI berechnen",
+      "ctaSecondary": "Meine Maschine finden"
+    },
+    "threePillars": {
+      "heading": "Unser HYBRID-Ansatz",
+      "subtitle": "Präzisionshardware + Spezialisierte KI + Zertifizierte Schulung",
+      "capture": {
+        "title": "AUFNAHME",
+        "description": "Orbitvu automatisierte Fotostudios für professionelle Packshots",
+        "badge": "Hardware"
+      },
+      "creation": {
+        "title": "ERSTELLUNG",
+        "description": "BlendAI Produktfoto-KI zur Optimierung Ihrer Visuals",
+        "badge": "KI"
+      },
+      "formation": {
+        "title": "SCHULUNG",
+        "description": "Qualiopi Academy für maximalen ROI",
+        "badge": "Qualiopi"
+      }
+    },
+    "products": {
+      "heading": "Unsere Fotostudios",
+      "subtitle": "Wählen Sie das Studio für Ihre Bedürfnisse",
+      "ctaText": "Mehr erfahren",
+      "viewAll": "Alle Studios ansehen"
+    },
+    "roiCalculator": {
+      "heading": "Berechnen Sie Ihren ROI in 2 Minuten",
+      "subtitle": "Finden Sie heraus, wie viele Monate es dauert, bis sich Ihre Investition amortisiert"
+    },
+    "machineSelection": {
+      "heading": "Finden Sie Ihre ideale Maschine",
+      "subtitle": "Beantworten Sie 4 einfache Fragen für eine personalisierte Empfehlung"
+    },
+    "sectors": {
+      "heading": "12 Bediente Branchen"
+    },
+    "finalCta": {
+      "demo": {
+        "heading": "Bereit, Ihre Fotoproduktion zu revolutionieren?",
+        "description": "Buchen Sie eine kostenlose Demo mit unseren Experten.",
+        "cta": "Kostenlose Demo buchen"
+      },
+      "guide": {
+        "heading": "Kaufratgeber 2026",
+        "description": "Laden Sie unseren kompletten Leitfaden herunter.",
+        "cta": "Leitfaden herunterladen"
+      }
+    }
   }
 }

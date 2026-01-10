@@ -6,7 +6,8 @@ interface CTABoxProps {
   descriptionKey: string;
   ctaKey: string;
   ctaHref: string;
-  bgColor?: 'coral' | 'teal' | 'light-gray';
+  bgColor?: 'coral' | 'teal' | 'light-gray' | 'white';
+  namespace?: string;
 }
 
 export default function CTABox({
@@ -14,20 +15,23 @@ export default function CTABox({
   descriptionKey,
   ctaKey,
   ctaHref,
-  bgColor = 'light-gray'
+  bgColor = 'light-gray',
+  namespace = 'home'
 }: CTABoxProps) {
-  const t = useTranslations('home');
+  const t = useTranslations(namespace);
 
   const bgClasses = {
     'coral': 'bg-primary-turquoise text-white',
     'teal': 'bg-primary-turquoise text-white',
-    'light-gray': 'bg-neutral-light text-neutral-dark'
+    'light-gray': 'bg-neutral-light text-neutral-dark',
+    'white': 'bg-white text-neutral-dark'
   };
 
   const buttonClasses = {
     'coral': 'bg-white text-primary-turquoise hover:bg-white/90',
     'teal': 'bg-white text-primary-turquoise hover:bg-white/90',
-    'light-gray': 'bg-primary-turquoise text-white hover:bg-primary-dark'
+    'light-gray': 'bg-primary-turquoise text-white hover:bg-primary-dark',
+    'white': 'bg-primary-turquoise text-white hover:bg-primary-dark'
   };
 
   return (

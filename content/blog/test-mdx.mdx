@@ -1,0 +1,70 @@
+---
+title: "Test MDX Configuration"
+description: "Fichier de test pour valider la configuration MDX et Tailwind Typography"
+author: "Session 2"
+date: "2026-01-10"
+category: "Test"
+keywords:
+  - test
+  - mdx
+  - configuration
+readingTime: 2
+image: "/test-image.jpg"
+---
+
+import { Callout } from '@/components/blog/Callout';
+import { ComparisonTable } from '@/components/blog/ComparisonTable';
+
+# Test MDX
+
+Ceci est un **test** de la configuration MDX avec _Tailwind Typography_.
+
+## Section H2
+
+Voici un paragraphe de test pour vérifier que le rendu fonctionne correctement avec la classe `prose`.
+
+### Sous-section H3
+
+Liste à puces :
+- Item 1
+- Item 2
+- Item 3
+
+Liste numérotée :
+1. Premier élément
+2. Deuxième élément
+3. Troisième élément
+
+## Test des composants personnalisés
+
+<Callout type="info" title="Information">
+  Ceci est un callout de type **info** pour tester le composant.
+</Callout>
+
+<Callout type="success" title="Succès">
+  Configuration MDX fonctionnelle !
+</Callout>
+
+## Test du tableau comparatif
+
+<ComparisonTable
+  headers={['Option A', 'Option B', 'Option C']}
+  rows={[
+    { label: 'Prix', values: ['10€', '20€', '30€'] },
+    { label: 'Fonctionnalités', values: ['✅ Basic', '✅ Pro', '✅ Premium'] },
+    { label: 'Support', values: ['Email', 'Email + Chat', '24/7'] },
+  ]}
+/>
+
+## Code
+
+```javascript
+const test = "MDX fonctionne !";
+console.log(test);
+```
+
+> Ceci est une citation de test pour vérifier le style des blockquotes.
+
+## Conclusion
+
+Si vous voyez cette page correctement stylée, la configuration MDX est opérationnelle ! ✅

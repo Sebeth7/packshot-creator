@@ -105,9 +105,150 @@
       "alphaShotMicro": "Alphashot Micro V2",
       "fashionStudio": "Fashion Studio",
       "resources": "Ressources",
+      "about": "À propos",
       "support": "Support",
       "blog": "Blog",
       "rights": "Tous droits réservés."
+    }
+  },
+  "iaPhotoProduit": {
+    "meta": {
+      "title": "IA Photo Produit 2026 | BlendAI - Packshots vers Lifestyle en 1 Clic",
+      "description": "Intelligence artificielle spécialisée packshot. Lifestyle Generator, Background Generator, Retouche IA. Compatible studios Orbitvu. Essai gratuit.",
+      "keywords": "ia photo produit, blendai, ia packshot, lifestyle generator",
+      "ogDescription": "Multipliez vos visuels produit en 1 clic avec l'IA spécialisée packshot."
+    },
+    "hero": {
+      "title": "IA Photo Produit : Multipliez Vos Visuels en 1 Clic",
+      "subtitle": "Intelligence artificielle spécialisée packshot. Pas de génération pure, intégration de votre photo réelle.",
+      "ctaPrimary": "Essayer BlendAI gratuitement",
+      "ctaSecondary": "Lire le guide IA 2026"
+    },
+    "manifeste": {
+      "heading": "L'IA ne remplace pas la photo, elle la prolonge",
+      "subtitle": "Notre approche hybride garantit cohérence et qualité professionnelle",
+      "principle1": {
+        "title": "Photo réelle = BASE",
+        "description": "Packshot studio Orbitvu de haute qualité comme fondation"
+      },
+      "principle2": {
+        "title": "IA = MULTIPLICATION",
+        "description": "Déclinaisons automatiques : lifestyle, backgrounds, variations"
+      },
+      "principle3": {
+        "title": "Cohérence garantie",
+        "description": "Pas de génération pure, intégration de votre photo réelle"
+      }
+    },
+    "features": {
+      "heading": "4 Fonctionnalités IA Puissantes",
+      "subtitle": "Des outils spécialisés pour transformer vos packshots",
+      "lifestyle": {
+        "name": "Lifestyle Generator",
+        "description": "Transformez vos packshots en mises en scène lifestyle réalistes"
+      },
+      "background": {
+        "name": "Background Generator",
+        "description": "Générez des arrière-plans professionnels adaptés à votre produit"
+      },
+      "retouche": {
+        "name": "Retouche Photo IA",
+        "description": "Suppression automatique des défauts, ajustement couleurs"
+      },
+      "batch": {
+        "name": "Batch Processing",
+        "description": "Traitez des milliers de photos en quelques minutes"
+      }
+    },
+    "casUsage": {
+      "heading": "Cas d'Usage Avant/Après",
+      "subtitle": "Découvrez la puissance de BlendAI en action"
+    },
+    "compatible": {
+      "heading": "Compatible avec Votre Studio",
+      "subtitle": "Tous nos studios Orbitvu sont IA Ready",
+      "feature1": "Export haute qualité automatique",
+      "feature2": "Métadonnées préservées",
+      "feature3": "Compatible workflow BlendAI",
+      "offer": "Studio + 6 mois BlendAI offerts"
+    },
+    "comparatifs": {
+      "heading": "BlendAI vs Concurrence",
+      "subtitle": "Découvrez pourquoi BlendAI est différent",
+      "cta": "Lire le guide IA photo produit 2026"
+    },
+    "finalCta": {
+      "test": {
+        "heading": "Prêt à multiplier vos visuels produit ?",
+        "description": "Testez BlendAI gratuitement et découvrez comment l'IA peut transformer votre production visuelle.",
+        "cta": "Tester BlendAI gratuitement"
+      },
+      "demo": {
+        "heading": "Studio + IA : L'offre complète",
+        "description": "Réservez une démo pour découvrir notre solution hybride Hardware + IA.",
+        "cta": "Réserver une démo IA + Studio"
+      }
+    }
+  },
+  "studiosHardware": {
+    "meta": {
+      "title": "Studios Photo Automatisés Orbitvu | Distributeur Officiel FR & CH",
+      "description": "Studios photo automatisés Orbitvu. Distributeur exclusif France & Suisse. Calculateur ROI gratuit. 20 ans d'expertise photo luxe. Financement possible.",
+      "keywords": "studio photo automatisé, orbitvu france, photo produit automatique, roi studio photo"
+    },
+    "hero": {
+      "title": "Studios Photo Automatisés Orbitvu : Excellence Visuelle & ROI Garanti",
+      "subtitle": "Distributeur exclusif France & Suisse. 20 ans d'expertise photo luxe. Calculateur ROI gratuit.",
+      "ctaPrimary": "Calculer mon ROI",
+      "ctaSecondary": "Trouver ma machine"
+    },
+    "threePillars": {
+      "heading": "Notre Approche HYBRIDE",
+      "subtitle": "Hardware de précision + IA spécialisée + Formation certifiée",
+      "capture": {
+        "title": "CAPTURE",
+        "description": "Studios photo automatisés Orbitvu pour des packshots professionnels",
+        "badge": "Hardware"
+      },
+      "creation": {
+        "title": "CRÉATION",
+        "description": "IA photo produit BlendAI pour optimiser et transformer vos visuels",
+        "badge": "IA"
+      },
+      "formation": {
+        "title": "FORMATION",
+        "description": "Academy Qualiopi pour maîtriser vos outils et maximiser votre ROI",
+        "badge": "Qualiopi"
+      }
+    },
+    "products": {
+      "heading": "Nos Studios Photo",
+      "subtitle": "Choisissez le studio adapté à vos besoins",
+      "ctaText": "En savoir plus",
+      "viewAll": "Voir tous les studios"
+    },
+    "roiCalculator": {
+      "heading": "Calculez Votre ROI en 2 Minutes",
+      "subtitle": "Découvrez en combien de mois votre investissement sera rentabilisé"
+    },
+    "machineSelection": {
+      "heading": "Trouvez Votre Machine Idéale",
+      "subtitle": "Répondez à 4 questions simples pour une recommandation personnalisée"
+    },
+    "sectors": {
+      "heading": "12 Secteurs Servis"
+    },
+    "finalCta": {
+      "demo": {
+        "heading": "Prêt à révolutionner votre production photo ?",
+        "description": "Réservez une démo gratuite avec nos experts et découvrez comment nos studios peuvent transformer votre workflow.",
+        "cta": "Réserver une démo gratuite"
+      },
+      "guide": {
+        "heading": "Guide d'Achat 2026",
+        "description": "Téléchargez notre guide complet pour choisir le studio photo automatisé adapté à votre activité.",
+        "cta": "Télécharger le guide"
+      }
     }
   }
 }
