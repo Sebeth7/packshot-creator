@@ -119,8 +119,11 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
     machine.maintenanceAnnuelle +
     machine.consommablesAnnuels;
 
-  // 3. Coût opérateur machine (1 seul suffit)
-  const coutOperateurMachine = CONSTANTES.salaireMensuelCoutEmployeur * 12;
+  // 3. Coût opérateur machine (proportionnel au temps nécessaire)
+  // Avec la machine, l'opérateur travaille seulement le temps pour produire les photos
+  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
+  const pourcentageTempsMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1);
+  const coutOperateurMachine = CONSTANTES.salaireMensuelCoutEmployeur * 12 * pourcentageTempsMachine;
 
   // 4. Coût total avec machine
   const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
