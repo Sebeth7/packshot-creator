@@ -58,7 +58,14 @@
       },
       "cta": "Consulter notre blog"
     },
-    "tailorMade": {
+    "formation": {
+    "meta": {
+      "title": "Formation Photo Produit & IA",
+      "suffix": "PackshotCreator Academy",
+      "description": "Formations certifiées Qualiopi pour maîtriser la photo packshot et l'IA générative appliquée au visuel produit"
+    }
+  },
+  "tailorMade": {
       "ecommerce": {
         "title": "E-commerce",
         "description": "Optimisez votre catalogue produit avec des visuels professionnels prêts pour la vente en ligne."

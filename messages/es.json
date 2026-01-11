@@ -153,5 +153,12 @@
         "cta": "Descargar la guía"
       }
     }
+  },
+  "formation": {
+    "meta": {
+      "title": "Formación Fotografía de Producto & IA",
+      "suffix": "PackshotCreator Academy",
+      "description": "Formación certificada Qualiopi para dominar la fotografía packshot y la IA generativa aplicada a visuales de producto"
+    }
   }
 }

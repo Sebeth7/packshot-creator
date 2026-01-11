@@ -58,7 +58,14 @@
       },
       "cta": "Visit our blog"
     },
-    "tailorMade": {
+    "formation": {
+    "meta": {
+      "title": "Product Photography & AI Training",
+      "suffix": "PackshotCreator Academy",
+      "description": "Qualiopi certified training to master packshot photography and generative AI for product visuals"
+    }
+  },
+  "tailorMade": {
       "ecommerce": {
         "title": "E-commerce",
         "description": "Optimize your product catalog with professional visuals ready for online sales."

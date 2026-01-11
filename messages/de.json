@@ -153,5 +153,12 @@
         "cta": "Leitfaden herunterladen"
       }
     }
+  },
+  "formation": {
+    "meta": {
+      "title": "Produktfotografie & KI Schulung",
+      "suffix": "PackshotCreator Academy",
+      "description": "Qualiopi-zertifizierte Schulung zur Beherrschung der Packshot-Fotografie und generativen KI für Produktvisuals"
+    }
   }
 }

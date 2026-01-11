@@ -153,5 +153,12 @@
         "cta": "Download de gids"
       }
     }
+  },
+  "formation": {
+    "meta": {
+      "title": "Productfotografie & AI Training",
+      "suffix": "PackshotCreator Academy",
+      "description": "Qualiopi-gecertificeerde training om packshot-fotografie en generatieve AI voor productbeelden onder de knie te krijgen"
+    }
   }
 }
