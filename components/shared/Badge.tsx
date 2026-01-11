@@ -18,7 +18,7 @@ const variantStyles = {
   default: 'bg-neutral-medium text-white',
 };
 
-export default function Badge({
+export function Badge({
   variant = 'default',
   icon,
   children,
@@ -37,6 +37,8 @@ export default function Badge({
     </span>
   );
 }
+
+export default Badge;
 
 // Export pre-configured badges
 export function BadgeDistributor({ children }: { children: ReactNode }) {
@@ -74,10 +76,17 @@ export function BadgeIAReady({ children }: { children: ReactNode }) {
   );
 }
 
-export function BadgeQualiopi({ children }: { children: ReactNode }) {
+export function BadgeQualiopi({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <Badge
       variant="green"
+      className={className}
       icon={
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
