@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import { getLocalArticle } from '@/lib/blog';
+import { getWebflowArticle } from '@/lib/webflow';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { Callout } from '@/components/blog/Callout';
 import { ComparisonTable } from '@/components/blog/ComparisonTable';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import { Link } from '@/i18n/routing';
 
 export async function generateMetadata({
   params
@@ -13,55 +15,47 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
 
-  const filePath = path.join(process.cwd(), 'content/blog', `${slug}.mdx`);
-
-  if (!fs.existsSync(filePath)) {
+  // Try MDX first
+  const mdxArticle = await getLocalArticle(slug);
+  if (mdxArticle) {
     return {
-      title: 'Article',
-      description: '',
+      title: mdxArticle.title,
+      description: mdxArticle.description,
+      openGraph: {
+        title: mdxArticle.title,
+        description: mdxArticle.description,
+        images: mdxArticle.image ? [mdxArticle.image] : [],
+        type: 'article',
+      },
     };
   }
 
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  const { data } = matter(fileContent);
+  // Fallback to Webflow
+  const webflowArticle = await getWebflowArticle(slug);
+  if (webflowArticle) {
+    return {
+      title: webflowArticle.title,
+      description: webflowArticle.description,
+      openGraph: {
+        title: webflowArticle.title,
+        description: webflowArticle.description,
+        images: webflowArticle.image ? [webflowArticle.image] : [],
+        type: 'article',
+      },
+    };
+  }
 
   return {
-    title: data.title || 'Article',
-    description: data.description || '',
-    keywords: data.keywords?.join(', ') || '',
-    openGraph: {
-      title: data.title || 'Article',
-      description: data.description || '',
-      images: data.image ? [data.image] : [],
-      type: 'article',
-      publishedTime: data.date,
-      authors: data.author ? [data.author] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: data.title || 'Article',
-      description: data.description || '',
-      images: data.image ? [data.image] : [],
-    },
+    title: 'Article non trouvé',
   };
 }
 
 export default async function BlogArticlePage({
-  params,
+  params
 }: {
   params: Promise<{ lang: string; slug: string }>;
 }) {
   const { lang, slug } = await params;
-
-  const filePath = path.join(process.cwd(), 'content/blog', `${slug}.mdx`);
-
-  // Vérifier si le fichier existe
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
-
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  const { data, content } = matter(fileContent);
 
   // Composants personnalisés pour MDX
   const components = {
@@ -69,73 +63,154 @@ export default async function BlogArticlePage({
     ComparisonTable,
   };
 
-  return (
-    <div className="min-h-screen bg-neutral-lighter">
-      {/* Header */}
-      <header className="bg-white border-b border-neutral-light">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
-            <a href={`/${lang}`} className="hover:text-primary-turquoise transition-colors">
-              Accueil
-            </a>
-            <span>/</span>
-            <a href={`/${lang}/blog`} className="hover:text-primary-turquoise transition-colors">
-              Blog
-            </a>
-            <span>/</span>
-            <span className="text-neutral-dark">{data.category || 'Article'}</span>
-          </div>
+  // 1. Check for local MDX article
+  const mdxArticle = await getLocalArticle(slug);
 
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
-            {data.title}
-          </h1>
+  if (mdxArticle) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-neutral-lighter">
+          {/* Header */}
+          <header className="bg-white border-b border-neutral-light">
+            <div className="max-w-4xl mx-auto px-4 py-8">
+              <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
+                <Link href="/" className="hover:text-primary-turquoise transition-colors">
+                  Accueil
+                </Link>
+                <span>/</span>
+                <Link href="/blog" className="hover:text-primary-turquoise transition-colors">
+                  Blog
+                </Link>
+                <span>/</span>
+                <span className="text-neutral-dark">{mdxArticle.category || 'Article'}</span>
+              </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-medium">
-            <div className="flex items-center gap-2">
-              <span>Par {data.author || 'Auteur'}</span>
+              <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
+                {mdxArticle.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-medium">
+                <time dateTime={mdxArticle.date}>
+                  {new Date(mdxArticle.date).toLocaleDateString(lang)}
+                </time>
+              </div>
+
+              {mdxArticle.image && (
+                <img
+                  src={mdxArticle.image}
+                  alt={mdxArticle.title}
+                  className="w-full rounded-lg mt-6 shadow-md"
+                />
+              )}
             </div>
-            <span>•</span>
-            <time dateTime={data.date}>{data.date}</time>
-            {data.readingTime && (
-              <>
-                <span>•</span>
-                <span>{data.readingTime} min de lecture</span>
-              </>
-            )}
-          </div>
+          </header>
 
-          {data.image && (
-            <img
-              src={data.image}
-              alt={data.title}
-              className="w-full rounded-lg mt-6 shadow-md"
-            />
-          )}
+          {/* Article Content */}
+          <main className="max-w-4xl mx-auto px-4 py-12">
+            <article className="prose prose-lg max-w-none bg-white rounded-lg shadow-sm p-8 md:p-12">
+              <MDXRemote source={mdxArticle.content} components={components} />
+            </article>
+
+            {/* CTA Section */}
+            <div className="mt-12 bg-primary-turquoise text-white rounded-lg p-8 text-center">
+              <h2 className="font-heading text-2xl font-bold mb-4">
+                Prêt à automatiser votre production photo ?
+              </h2>
+              <p className="mb-6 text-lg">
+                Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-white text-primary-turquoise font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+              >
+                Réserver une démo
+              </Link>
+            </div>
+          </main>
         </div>
-      </header>
+        <Footer />
+      </>
+    );
+  }
 
-      {/* Article Content */}
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <article className="prose prose-lg max-w-none bg-white rounded-lg shadow-sm p-8 md:p-12">
-          <MDXRemote source={content} components={components} />
-        </article>
+  // 2. Fallback to Webflow article
+  const webflowArticle = await getWebflowArticle(slug);
 
-        {/* CTA Section */}
-        <div className="mt-12 bg-primary-turquoise text-white rounded-lg p-8 text-center">
-          <h2 className="font-heading text-2xl font-bold mb-4">
-            Prêt à automatiser votre production photo ?
-          </h2>
-          <p className="mb-6 text-lg">
-            Découvrez nos solutions de studios photo automatisés et d&apos;IA photo produit.
-          </p>
-          <a
-            href={`/${lang}/contact`}
-            className="inline-block bg-white text-primary-turquoise font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
-          >
-            Réserver une démo
-          </a>
+  if (webflowArticle) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-neutral-lighter">
+          {/* Header */}
+          <header className="bg-white border-b border-neutral-light">
+            <div className="max-w-4xl mx-auto px-4 py-8">
+              <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
+                <Link href="/" className="hover:text-primary-turquoise transition-colors">
+                  Accueil
+                </Link>
+                <span>/</span>
+                <Link href="/blog" className="hover:text-primary-turquoise transition-colors">
+                  Blog
+                </Link>
+                <span>/</span>
+                <span className="text-neutral-dark">{webflowArticle.category || 'Article'}</span>
+              </div>
+
+              <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
+                {webflowArticle.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-medium">
+                <time dateTime={webflowArticle.date}>
+                  {new Date(webflowArticle.date).toLocaleDateString(lang)}
+                </time>
+                <span className="text-xs bg-neutral-light px-2 py-1 rounded">
+                  Archive Webflow
+                </span>
+              </div>
+
+              {webflowArticle.image && (
+                <img
+                  src={webflowArticle.image}
+                  alt={webflowArticle.title}
+                  className="w-full rounded-lg mt-6 shadow-md"
+                />
+              )}
+            </div>
+          </header>
+
+          {/* Article Content */}
+          <main className="max-w-4xl mx-auto px-4 py-12">
+            <article className="prose prose-lg max-w-none bg-white rounded-lg shadow-sm p-8 md:p-12">
+              {/* Render Webflow HTML content */}
+              <div
+                dangerouslySetInnerHTML={{ __html: webflowArticle.content || '' }}
+              />
+            </article>
+
+            {/* CTA Section */}
+            <div className="mt-12 bg-primary-turquoise text-white rounded-lg p-8 text-center">
+              <h2 className="font-heading text-2xl font-bold mb-4">
+                Prêt à automatiser votre production photo ?
+              </h2>
+              <p className="mb-6 text-lg">
+                Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-white text-primary-turquoise font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+              >
+                Réserver une démo
+              </Link>
+            </div>
+          </main>
         </div>
-      </main>
-    </div>
-  );
+        <Footer />
+      </>
+    );
+  }
+
+  // 3. Article not found
+  notFound();
 }

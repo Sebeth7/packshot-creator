@@ -1,13 +1,10 @@
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
-import IntroSection from '@/components/sections/IntroSection';
-import ProductShowcase from '@/components/sections/ProductShowcase';
-import TailorMadeSection from '@/components/sections/TailorMadeSection';
+import ThreePillarsSection from '@/components/sections/ThreePillarsSection';
 import ClientLogos from '@/components/sections/ClientLogos';
-import CTABox from '@/components/sections/CTABox';
-import BlogGrid from '@/components/sections/BlogGrid';
+import { getAllArticles } from '@/lib/blog';
 
 export async function generateMetadata({
   params
@@ -19,130 +16,160 @@ export async function generateMetadata({
 
   return {
     title: t('title'),
-    description: t('description')
+    description: t('description'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+    },
   };
 }
 
-export default function HomePage() {
-  // Images extraites de Webflow
-  const heroImages = [
-    {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/672256fe5fe5600d4a325798_Main_page_hero_range%202.avif',
-      alt: 'Gamme 2025 de studios photos automatisés Orbitvu'
-    }
-  ];
+export default async function HomePage({
+  params
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
 
-  const blogPosts = [
-    {
-      titleKey: 'blog.post1.title',
-      categoryKey: 'blog.post1.category',
-      date: '24/6/2025',
-      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/685ab83168d9ec4a5b93ebac_1N2A9137.avif',
-      imageAlt: "Comment l'IA et les lumières virtuelles révolutionnent le packshot ?",
-      slug: '/blog/ia-lumieres-virtuelles'
-    },
-    {
-      titleKey: 'blog.post2.title',
-      categoryKey: 'blog.post2.category',
-      date: '6/5/2025',
-      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/681a148a2f962e366b1271b4_software.avif',
-      imageAlt: 'Vous avez perdu votre logiciel PackshotCreator ou Ortery ?',
-      slug: '/blog/recuperer-logiciel'
-    },
-    {
-      titleKey: 'blog.post3.title',
-      categoryKey: 'blog.post3.category',
-      date: '28/3/2025',
-      imageSrc: 'https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67b73285dfb98b34edde70c6_6788c6593c7472b6ff4f1484_AlpahshotXL_multi_camera_ring_pour_3D.avif',
-      imageAlt: '5 appareils photo en simultané pour de l\'animation 3D réaliste',
-      slug: '/blog/5-appareils-photo-3d'
-    }
-  ];
+  // Fetch 8 derniers articles (MDX + Webflow)
+  const articles = await getAllArticles(8);
 
   return (
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <Hero
-          titleKey="hero.title"
-          subtitleKey="hero.subtitle"
-          ctaKey="hero.cta"
-          ctaHref="/contact"
-          images={heroImages}
-        />
+        {/* SECTION 1 : Hero 3 Piliers */}
+        <ThreePillarsSection variant="homepage" />
 
-        {/* Intro Section */}
-        <IntroSection
-          headingKey="intro.heading"
-          text1Key="intro.text1"
-          text2Key="intro.text2"
-          ctaKey="intro.cta"
-          ctaHref="/contact"
-          bgColor="white"
-        />
+        {/* SECTION 2 : Approche Hybride */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-dark mb-4">
+                L'Approche Hybride PackshotCreator
+              </h2>
+              <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
+                Ni tout hardware, ni tout IA. La combinaison intelligente des deux avec l'expertise humaine.
+              </p>
+            </div>
 
-        {/* Orbitvu Section */}
-        <ProductShowcase
-          brandKey="orbitvu.brand"
-          headingKey="orbitvu.heading"
-          descriptionKey="orbitvu.description"
-          featuresKeys={[
-            'orbitvu.feature1',
-            'orbitvu.feature2',
-            'orbitvu.feature3',
-            'orbitvu.feature4'
-          ]}
-          ctaKey="orbitvu.cta"
-          ctaHref="/studio-photo"
-          imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif"
-          imageAlt="Solution automatisée pour la photo"
-          imagePosition="left"
-          bgColor="light-gray"
-        />
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary-turquoise/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">📸</span>
+                </div>
+                <h3 className="font-heading text-xl font-bold mb-2">Base Parfaite</h3>
+                <p className="text-neutral-medium text-sm">
+                  Studios automatisés Orbitvu pour des packshots d'une qualité irréprochable
+                </p>
+              </div>
 
-        {/* ShotFlow Section */}
-        <ProductShowcase
-          brandKey="shotflow.brand"
-          headingKey="shotflow.heading"
-          descriptionKey="shotflow.description"
-          featuresKeys={[
-            'shotflow.feature1',
-            'shotflow.feature2',
-            'shotflow.feature3',
-            'shotflow.feature4'
-          ]}
-          ctaKey="shotflow.cta"
-          ctaHref="/shotflow"
-          imageSrc="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/669a1f84b6606c529cbb61da_shotflow%201.webp"
-          imageAlt="ShotFlow partenaire technologique e-commerce"
-          imagePosition="right"
-          bgColor="white"
-        />
+              {/* Card 2 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🤖</span>
+                </div>
+                <h3 className="font-heading text-xl font-bold mb-2">Multiplication IA</h3>
+                <p className="text-neutral-medium text-sm">
+                  BlendAI transforme vos packshots en centaines de visuels lifestyle, vidéos, 3D
+                </p>
+              </div>
 
-        {/* Tailor-Made Section */}
-        <TailorMadeSection />
+              {/* Card 3 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🎓</span>
+                </div>
+                <h3 className="font-heading text-xl font-bold mb-2">Autonomie Totale</h3>
+                <p className="text-neutral-medium text-sm">
+                  Formations certifiées pour maîtriser hardware + IA. Financement OPCO possible.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* Client Logos */}
+        {/* SECTION 3 : Références Clients */}
         <ClientLogos />
 
-        {/* Alphashot CTA Box */}
-        <CTABox
-          headingKey="alphashot.heading"
-          descriptionKey="alphashot.description"
-          ctaKey="alphashot.cta"
-          ctaHref="/contact"
-          bgColor="light-gray"
-        />
+        {/* SECTION 4 : Blog Grid */}
+        <section className="py-16 bg-neutral-lighter">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-4">
+                Derniers Articles
+              </h2>
+              <p className="text-neutral-medium">
+                Guides, comparatifs et actualités photo produit
+              </p>
+            </div>
 
-        {/* Blog Section */}
-        <BlogGrid
-          headingKey="blog.heading"
-          descriptionKey="blog.description"
-          posts={blogPosts}
-          ctaKey="blog.cta"
-          ctaHref="/blog"
-        />
+            <div className="grid md:grid-cols-3 gap-8">
+              {articles.map(article => (
+                <Link
+                  key={article.slug}
+                  href={`/blog/${article.slug}`}
+                  className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {article.image && (
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+                  <div className="p-6">
+                    {/* Badge source (optionnel, pour debug) */}
+                    {article.source === 'webflow' && (
+                      <span className="text-xs text-neutral-medium mb-2 block">
+                        Archive Webflow
+                      </span>
+                    )}
+
+                    <h3 className="font-heading text-lg font-bold text-neutral-dark mb-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-neutral-medium line-clamp-3">
+                      {article.description}
+                    </p>
+                    <div className="mt-4 text-sm text-primary-turquoise font-medium">
+                      Lire l'article →
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-8">
+              <Link
+                href="/blog"
+                className="inline-block text-primary-turquoise font-medium hover:underline"
+              >
+                Voir tous les articles →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5 : CTA Final */}
+        <section className="py-16 bg-primary-turquoise text-white">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+              Prêt à transformer votre production visuelle ?
+            </h2>
+            <p className="text-lg mb-8 opacity-90">
+              Découvrez nos solutions lors d'une démo personnalisée
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-white text-primary-turquoise font-medium px-8 py-4 rounded-lg hover:bg-neutral-lighter transition-colors"
+            >
+              Demander une démo gratuite
+            </Link>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

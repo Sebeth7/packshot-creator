@@ -1,7 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { Badge, BadgeQualiopi } from '@/components/shared/Badge';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 interface Formation {
   _id: string;
@@ -35,13 +37,56 @@ async function getFormations(): Promise<Formation[]> {
   );
 }
 
+// Composant Card Formation
+function FormationCard({ formation, lang }: { formation: Formation; lang: string }) {
+  return (
+    <Link
+      href={`/academy/${formation.slug.current}`}
+      className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+    >
+      <div className="flex gap-2 mb-3">
+        {formation.eligible_opco && <BadgeQualiopi>OPCO</BadgeQualiopi>}
+        <Badge variant={formation.categorie === 'ia' ? 'purple' : 'default'}>
+          Niveau {formation.niveau}
+        </Badge>
+      </div>
+
+      <h3 className="font-heading text-xl font-bold text-neutral-dark mb-2">
+        {formation.titre}
+      </h3>
+
+      <p className="text-sm text-neutral-medium mb-4 line-clamp-3">
+        {formation.description_courte}
+      </p>
+
+      <div className="space-y-2 mb-4">
+        <div className="text-sm text-neutral-medium">
+          Durée : <strong>{formation.duree_heures}h</strong>
+        </div>
+        {formation.prix_blended && (
+          <div className="text-sm text-neutral-medium">
+            Blended : <strong className="text-primary-turquoise">{formation.prix_blended}€ HT</strong>
+          </div>
+        )}
+        <div className="text-sm text-neutral-medium">
+          Présentiel : <strong>{formation.prix_presentiel}€ HT</strong>
+        </div>
+      </div>
+
+      <div className="text-primary-turquoise font-medium text-sm">
+        En savoir plus →
+      </div>
+    </Link>
+  );
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const t = await getTranslations({ locale: lang, namespace: 'formation' });
+  const t = await getTranslations({ locale: lang, namespace: 'formation.meta' });
 
   return {
-    title: `Formation Photo Produit & IA | ${t('meta.suffix')}`,
-    description: t('meta.description'),
+    title: t('title'),
+    description: t('description'),
   };
 }
 
@@ -50,183 +95,276 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
   const formations = await getFormations();
   const t = await getTranslations({ locale: lang, namespace: 'formation' });
 
-  const formationsIA = formations.filter((f) => f.categorie === 'ia');
   const formationsPackshot = formations.filter((f) => f.categorie === 'packshot');
+  const formationsIA = formations.filter((f) => f.categorie === 'ia');
 
   return (
-    <div className="min-h-screen bg-neutral-lighter">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-turquoise to-primary-dark text-white py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-4 mb-6">
-            <BadgeQualiopi className="text-white border-white">Certifié Qualiopi</BadgeQualiopi>
-            <Badge variant="default" className="bg-white/20 text-white border-white/40">
-              Financement OPCO 100%
-            </Badge>
-          </div>
-
-          <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
-            Packshot-Creator Academy
-          </h1>
-
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mb-8">
-            Formations certifiées pour maîtriser la photo packshot professionnelle et l'IA générative appliquée au
-            visuel produit
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-2xl">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <div className="text-3xl font-bold mb-1">3 Niveaux</div>
-              <div className="text-sm text-white/80">Fondation → Maîtrise → Expert</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <div className="text-3xl font-bold mb-1">2 Formats</div>
-              <div className="text-sm text-white/80">Blended Learning ou Présentiel</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <div className="text-3xl font-bold mb-1">100% OPCO</div>
-              <div className="text-sm text-white/80">Prise en charge complète possible</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Formations IA Photo Produit */}
-      {formationsIA.length > 0 && (
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="flex items-center gap-3 mb-8">
-              <h2 className="font-heading text-4xl font-bold text-neutral-dark">IA Photo Produit</h2>
-              <Badge variant="purple">BlendAI</Badge>
+    <>
+      <Header />
+      <main>
+        {/* SECTION 1 : Hero Academy */}
+        <section className="bg-gradient-to-br from-green-50 to-white py-16">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="flex gap-3 mb-4">
+              <BadgeQualiopi>Certifié Qualiopi</BadgeQualiopi>
+              <Badge variant="green">Financement OPCO</Badge>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {formationsIA.map((formation) => (
-                <Link
-                  key={formation._id}
-                  href={`/${lang}/academy/${formation.slug.current}`}
-                  className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-neutral-light hover:border-primary-turquoise"
-                >
-                  <div className="p-6">
-                    {/* Badges */}
-                    <div className="flex gap-2 mb-4">
-                      <Badge variant="purple" className="text-xs">
-                        Niveau {formation.niveau}
-                      </Badge>
-                      {formation.eligible_opco && (
-                        <Badge variant="green" className="text-xs">
-                          OPCO
-                        </Badge>
-                      )}
-                    </div>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
+              {t('hero.title')}
+            </h1>
 
-                    {/* Titre */}
-                    <h3 className="font-heading text-xl font-bold text-neutral-dark mb-3 group-hover:text-primary-turquoise transition-colors">
-                      {formation.titre}
-                    </h3>
+            <p className="text-xl text-neutral-medium mb-6 max-w-3xl">
+              {t('hero.subtitle')}
+            </p>
 
-                    {/* Description */}
-                    <p className="text-sm text-neutral-medium mb-4 line-clamp-3">{formation.description_courte}</p>
-
-                    {/* Infos */}
-                    <div className="flex items-center justify-between text-sm border-t border-neutral-light pt-4">
-                      <div>
-                        <div className="text-neutral-medium">Durée</div>
-                        <div className="font-bold text-neutral-dark">{formation.duree_heures}h</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-neutral-medium">À partir de</div>
-                        <div className="font-bold text-primary-turquoise">
-                          {formation.prix_blended || formation.prix_presentiel}€ HT
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+            <div className="flex gap-4">
+              <a
+                href="#formations"
+                className="inline-block bg-[#00C853] hover:bg-[#00A844] text-white font-medium px-8 py-3 rounded-lg"
+              >
+                {t('hero.cta_formations')}
+              </a>
+              <a
+                href="#qualiopi"
+                className="inline-block bg-white border-2 border-neutral-light hover:border-[#00C853] text-neutral-dark font-medium px-8 py-3 rounded-lg"
+              >
+                {t('hero.cta_opco')}
+              </a>
             </div>
           </div>
         </section>
-      )}
 
-      {/* Formations Packshot */}
-      {formationsPackshot.length > 0 && (
+        {/* SECTION 2 : Qualiopi/OPCO */}
+        <section id="qualiopi" className="py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Colonne Qualiopi */}
+              <div>
+                <h2 className="font-heading text-2xl font-bold text-neutral-dark mb-4">
+                  🏆 {t('qualiopi.heading')}
+                </h2>
+                <p className="text-neutral-medium mb-4">
+                  {t('qualiopi.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-medium">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('qualiopi.feature1')}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('qualiopi.feature2')}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('qualiopi.feature3')}</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Colonne OPCO */}
+              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
+                <h2 className="font-heading text-2xl font-bold text-green-800 mb-4">
+                  💶 {t('opco.heading')}
+                </h2>
+                <p className="text-green-700 mb-4">
+                  <strong>{t('opco.description')}</strong>
+                </p>
+                <div className="space-y-3 text-sm text-green-700">
+                  <div>
+                    <strong>Pour les salariés :</strong> {t('opco.salaries')}
+                  </div>
+                  <div>
+                    <strong>Pour les indépendants :</strong> {t('opco.independants')}
+                  </div>
+                </div>
+                <Link
+                  href="/blog/financement-formation-opco-guide"
+                  className="inline-block mt-4 text-green-800 font-medium underline"
+                >
+                  {t('opco.cta')} →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3 : Catalogue Formations */}
+        <section id="formations" className="py-16 bg-neutral-lighter">
+          <div className="max-w-6xl mx-auto px-4">
+            {/* Formations Packshot */}
+            <div className="mb-16" id="formations-packshot">
+              <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-2">
+                📸 {t('catalogue.packshot_heading')}
+              </h2>
+              <p className="text-neutral-medium mb-8">
+                {t('catalogue.packshot_subtitle')}
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {formationsPackshot.map(formation => (
+                  <FormationCard key={formation._id} formation={formation} lang={lang} />
+                ))}
+              </div>
+            </div>
+
+            {/* Formations IA */}
+            <div id="formations-ia">
+              <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-2">
+                🤖 {t('catalogue.ia_heading')}
+              </h2>
+              <p className="text-neutral-medium mb-8">
+                {t('catalogue.ia_subtitle')}
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {formationsIA.map(formation => (
+                  <FormationCard key={formation._id} formation={formation} lang={lang} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4 : Profil Formateur */}
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="flex items-center gap-3 mb-8">
-              <h2 className="font-heading text-4xl font-bold text-neutral-dark">Packshot Photo Produit</h2>
-              <Badge variant="default">Orbitvu</Badge>
-            </div>
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-8 text-center">
+              {t('formateur.heading')}
+            </h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {formationsPackshot.map((formation) => (
-                <Link
-                  key={formation._id}
-                  href={`/${lang}/academy/${formation.slug.current}`}
-                  className="group bg-neutral-lighter rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-neutral-light hover:border-primary-turquoise"
-                >
-                  <div className="p-6">
-                    {/* Badges */}
-                    <div className="flex gap-2 mb-4">
-                      <Badge variant="default" className="text-xs">
-                        Niveau {formation.niveau}
-                      </Badge>
-                      {formation.eligible_opco && (
-                        <Badge variant="green" className="text-xs">
-                          OPCO
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Titre */}
-                    <h3 className="font-heading text-xl font-bold text-neutral-dark mb-3 group-hover:text-primary-turquoise transition-colors">
-                      {formation.titre}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-neutral-medium mb-4 line-clamp-3">{formation.description_courte}</p>
-
-                    {/* Infos */}
-                    <div className="flex items-center justify-between text-sm border-t border-neutral-light pt-4">
-                      <div>
-                        <div className="text-neutral-medium">Durée</div>
-                        <div className="font-bold text-neutral-dark">{formation.duree_heures}h</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-neutral-medium">Prix</div>
-                        <div className="font-bold text-primary-turquoise">{formation.prix_presentiel}€ HT</div>
-                      </div>
-                    </div>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Photo - PLACEHOLDER TEMPORAIRE */}
+              <div>
+                {/* TODO: Remplacer par /images/sebastien-jourdan-formateur.jpg quand disponible */}
+                <div className="w-full aspect-square bg-gradient-to-br from-primary-turquoise to-primary-dark rounded-lg flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">👨‍🏫</div>
+                    <p className="text-sm opacity-80">Photo à venir</p>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </div>
+
+              {/* Bio */}
+              <div>
+                <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-2">
+                  {t('formateur.name')}
+                </h3>
+                <p className="text-primary-turquoise font-medium mb-4">
+                  {t('formateur.title')}
+                </p>
+
+                <div className="space-y-3 text-neutral-medium">
+                  <p>
+                    {t('formateur.bio1')}
+                  </p>
+                  <p>
+                    {t('formateur.bio2')}
+                  </p>
+                  <p>
+                    {t('formateur.bio3')}
+                  </p>
+                </div>
+
+                <div className="mt-6 space-y-2 text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('formateur.cert1')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('formateur.cert2')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00C853]">✓</span>
+                    <span>{t('formateur.cert3')}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-      )}
 
-      {/* Section Qualiopi */}
-      <section id="qualiopi" className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <BadgeQualiopi className="mx-auto mb-6 text-lg">Organisme de Formation Certifié Qualiopi</BadgeQualiopi>
+        {/* SECTION 5 : Calendrier Google Calendar */}
+        <section className="py-16 bg-neutral-lighter">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-4">
+                📅 {t('calendrier.heading')}
+              </h2>
+              <p className="text-neutral-medium">
+                {t('calendrier.subtitle')}
+              </p>
+            </div>
 
-          <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-4">
-            Financement OPCO à 100% possible
-          </h2>
+            {/* Google Calendar Appointment Scheduling */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <iframe
+                src="https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID?gv=true"
+                style={{ border: 0, width: '100%', height: '600px' }}
+                title="Calendrier des formations"
+              />
+            </div>
 
-          <p className="text-lg text-neutral-medium mb-8">
-            Toutes nos formations sont certifiées Qualiopi et éligibles au financement par votre OPCO. Contactez-nous
-            pour étudier votre prise en charge.
-          </p>
+            <p className="text-center text-sm text-neutral-medium mt-4">
+              {t('calendrier.contact')} <Link href="/contact" className="text-primary-turquoise underline">Contactez-nous</Link>
+            </p>
+          </div>
+        </section>
 
-          <Link
-            href={`/${lang}/contact`}
-            className="inline-block bg-primary-turquoise hover:bg-primary-dark text-white font-medium px-8 py-4 rounded-lg transition-colors"
-          >
-            Demander une prise en charge OPCO
-          </Link>
-        </div>
-      </section>
-    </div>
+        {/* SECTION 6 : FAQ */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-8 text-center">
+              {t('faq.heading')}
+            </h2>
+
+            <div className="space-y-6">
+              {/* FAQ Item 1 */}
+              <details className="bg-neutral-lighter rounded-lg p-6">
+                <summary className="font-bold text-neutral-dark cursor-pointer">
+                  {t('faq.q1.question')}
+                </summary>
+                <p className="mt-3 text-neutral-medium text-sm">
+                  {t('faq.q1.answer')}
+                </p>
+              </details>
+
+              {/* FAQ Item 2 */}
+              <details className="bg-neutral-lighter rounded-lg p-6">
+                <summary className="font-bold text-neutral-dark cursor-pointer">
+                  {t('faq.q2.question')}
+                </summary>
+                <p className="mt-3 text-neutral-medium text-sm">
+                  {t('faq.q2.answer')}
+                </p>
+              </details>
+
+              {/* FAQ Item 3 */}
+              <details className="bg-neutral-lighter rounded-lg p-6">
+                <summary className="font-bold text-neutral-dark cursor-pointer">
+                  {t('faq.q3.question')}
+                </summary>
+                <p className="mt-3 text-neutral-medium text-sm">
+                  {t('faq.q3.answer')}
+                </p>
+              </details>
+
+              {/* FAQ Item 4 */}
+              <details className="bg-neutral-lighter rounded-lg p-6">
+                <summary className="font-bold text-neutral-dark cursor-pointer">
+                  {t('faq.q4.question')}
+                </summary>
+                <p className="mt-3 text-neutral-medium text-sm">
+                  {t('faq.q4.answer')}
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

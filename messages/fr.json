@@ -1,8 +1,27 @@
 {
   "home": {
     "meta": {
-      "title": "PackshotCreator : Solutions Photo Produit & Workflow",
-      "description": "PackshotCreator vous permet d'automatiser votre photographie produit tout en optimisant workflow et créativité pour une production fluide et efficace."
+      "title": "PackshotCreator | Studios Photo, IA & Formation Certifiée",
+      "description": "Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi. L'approche hybride pour votre production visuelle."
+    },
+    "threePillars": {
+      "heading": "Excellence Visuelle Produit",
+      "subtitle": "L'approche complète : Hardware Premium, IA Spécialisée, Formation Certifiée",
+      "capture": {
+        "badge": "Hardware",
+        "title": "CAPTURE",
+        "description": "Studios photo automatisés Orbitvu pour des packshots professionnels"
+      },
+      "creation": {
+        "badge": "IA",
+        "title": "CRÉATION",
+        "description": "IA photo produit BlendAI pour optimiser et transformer vos visuels"
+      },
+      "formation": {
+        "badge": "Qualiopi",
+        "title": "FORMATION",
+        "description": "Academy Qualiopi pour maîtriser vos outils et maximiser votre ROI"
+      }
     },
     "hero": {
       "badge": "⭐ Distributeur exclusif Orbitvu France & Suisse",
@@ -63,6 +82,75 @@
       "title": "Formation Photo Produit & IA",
       "suffix": "PackshotCreator Academy",
       "description": "Formations certifiées Qualiopi pour maîtriser la photo packshot et l'IA générative appliquée au visuel produit"
+    }
+  }
+  },
+  "formation": {
+    "meta": {
+      "title": "Academy | Formations Packshot & IA Certifiées Qualiopi",
+      "suffix": "PackshotCreator Academy",
+      "description": "Formations professionnelles photo produit certifiées Qualiopi. Packshot avec studios Orbitvu, IA avec BlendAI. Financement OPCO 100% possible."
+    },
+    "hero": {
+      "title": "PackshotCreator Academy",
+      "subtitle": "Formations certifiées Packshot & IA Photo Produit. Financement OPCO jusqu'à 100%.",
+      "cta_formations": "Voir les formations",
+      "cta_opco": "Financement OPCO"
+    },
+    "qualiopi": {
+      "heading": "Certification Qualiopi",
+      "description": "PackshotCreator Academy est certifié Qualiopi depuis 2023, garantissant la qualité de nos formations et l'éligibilité au financement OPCO.",
+      "feature1": "Formateur expert (20 ans photo luxe)",
+      "feature2": "Pédagogie éprouvée (500+ stagiaires)",
+      "feature3": "Suivi post-formation (30-60 jours)"
+    },
+    "opco": {
+      "heading": "Financement OPCO",
+      "description": "Prise en charge jusqu'à 100% de vos formations professionnelles par votre OPCO (Opérateur de Compétences).",
+      "salaries": "Pour les salariés : Votre entreprise peut demander le financement à son OPCO.",
+      "independants": "Pour les indépendants : Selon votre OPCO (FIFPL, AGEFICE, etc.).",
+      "cta": "En savoir plus sur le financement OPCO"
+    },
+    "catalogue": {
+      "packshot_heading": "Formations Packshot Photo Produit",
+      "packshot_subtitle": "Maîtrisez la photographie packshot professionnelle avec nos studios Orbitvu",
+      "ia_heading": "Formations IA Photo Produit",
+      "ia_subtitle": "Exploitez la puissance de BlendAI pour multiplier vos visuels"
+    },
+    "formateur": {
+      "heading": "Votre Formateur",
+      "name": "Sébastien Jourdan",
+      "title": "Expert Photo Produit & IA | Fondateur PackshotCreator",
+      "bio1": "20 ans d'expérience en photographie produit pour les plus grandes marques de luxe (Cartier, Rolex, Van Cleef & Arpels).",
+      "bio2": "Pionnier de l'automatisation photo avec les studios Orbitvu dès 2008, puis de l'IA photo produit avec BlendAI en 2024.",
+      "bio3": "500+ professionnels formés au workflow hybride Hardware + IA.",
+      "cert1": "Certifié Qualiopi (organisme de formation)",
+      "cert2": "Distributeur exclusif Orbitvu France & Suisse",
+      "cert3": "Co-fondateur BlendAI Studio"
+    },
+    "calendrier": {
+      "heading": "Calendrier & Inscription",
+      "subtitle": "Consultez les prochaines sessions et inscrivez-vous en ligne",
+      "contact": "Besoin d'aide ? Contactez-nous"
+    },
+    "faq": {
+      "heading": "Questions Fréquentes",
+      "q1": {
+        "question": "Comment fonctionne le financement OPCO ?",
+        "answer": "Votre entreprise (ou vous-même si indépendant) contacte son OPCO pour demander la prise en charge. PackshotCreator fournit le devis et le programme détaillé. L'OPCO peut financer jusqu'à 100% du coût de la formation."
+      },
+      "q2": {
+        "question": "Quelle différence entre Blended et Présentiel ?",
+        "answer": "Blended : 50% e-learning (vidéos à votre rythme) + 50% présentiel/visio (pratique intensive). Prix réduit de 24-27%. Présentiel : 100% en salle avec le formateur. Plus d'interactions, coaching 1:1, déjeuners inclus."
+      },
+      "q3": {
+        "question": "Faut-il déjà avoir un studio Orbitvu pour suivre les formations Packshot ?",
+        "answer": "Non, les formations se déroulent dans notre showroom Lyon équipé de tous les studios (Alphashot, Station M, etc.). Vous pouvez ensuite décider d'acquérir votre propre matériel."
+      },
+      "q4": {
+        "question": "Les formations IA nécessitent-elles un abonnement BlendAI ?",
+        "answer": "Un accès BlendAI est inclus pendant la formation et 30 jours après. Ensuite, vous pouvez souscrire à un abonnement (à partir de 75€/mois) si vous souhaitez continuer."
+      }
     }
   },
   "tailorMade": {

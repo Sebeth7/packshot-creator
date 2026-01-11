@@ -3,8 +3,16 @@ import { Link } from '@/i18n/routing';
 import Badge from '@/components/shared/Badge';
 import { Camera, Sparkles, GraduationCap } from 'lucide-react';
 
-export default function ThreePillarsSection() {
-  const t = useTranslations('studiosHardware.threePillars');
+export default function ThreePillarsSection({
+  variant = 'studios'
+}: {
+  variant?: 'homepage' | 'studios'
+}) {
+  const namespace = variant === 'homepage'
+    ? 'home.threePillars'
+    : 'studiosHardware.threePillars';
+
+  const t = useTranslations(namespace);
 
   const pillars = [
     {
