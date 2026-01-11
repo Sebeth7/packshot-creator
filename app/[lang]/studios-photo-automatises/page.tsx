@@ -6,7 +6,8 @@ import Hero from '@/components/sections/Hero';
 import ThreePillarsSection from '@/components/sections/ThreePillarsSection';
 import ProductGrid, { Product } from '@/components/shared/ProductGrid';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
-import { ROICalculator, MachineSelectionTool } from '@/components/shared/EmbedFrame';
+import { MachineSelectionTool } from '@/components/shared/EmbedFrame';
+import { ROICalculator } from '@/components/calculators/ROICalculator';
 import ClientLogos from '@/components/sections/ClientLogos';
 import CTABox from '@/components/sections/CTABox';
 import { BadgeDistributor } from '@/components/shared/Badge';
@@ -152,7 +153,7 @@ export default async function StudiosPhotoAutomatisesPage({
               {t('roiCalculator.subtitle')}
             </p>
 
-            <ROICalculator className="shadow-2xl" />
+            <ROICalculator className="shadow-2xl" locale={lang as 'fr' | 'en'} />
           </div>
         </section>
 

@@ -316,7 +316,72 @@
     },
     "roiCalculator": {
       "heading": "Calculate Your ROI in 2 Minutes",
-      "subtitle": "Find out how many months it will take to pay back your investment"
+      "subtitle": "Find out how many months it will take to pay back your investment",
+      "step1": {
+        "title": "Current situation",
+        "operators": {
+          "label": "How many people work on your visual production?",
+          "sublabel": "Including packshot + lifestyle + retouching",
+          "tooltip": "Count all involved collaborators, even part-time",
+          "unit": "person(s)"
+        },
+        "timePercentage": {
+          "label": "What percentage of their time is dedicated to visual production?",
+          "sublabel": "Weighted average if multiple operators",
+          "tooltip": "Real time: shooting + retouching + management (excluding breaks, admin)"
+        },
+        "externalProvider": {
+          "label": "Do you use an external provider?",
+          "budgetLabel": "Average monthly external provider budget",
+          "tooltip": "Average amount billed per month"
+        },
+        "dailyCapacity": {
+          "label": "How many finalized photos do you produce per day?",
+          "sublabel": "Per operator, including shooting + complete retouching",
+          "tooltip": "Photos 100% ready to be published online",
+          "unit": "photos/day/operator"
+        }
+      },
+      "step2": {
+        "title": "Production goals",
+        "annualVolume": {
+          "label": "How many product photos do you need to produce per year?",
+          "sublabel": "Total goal: existing + new + renewal",
+          "tooltip": "Count ALL produced visuals",
+          "unit": "photos/year"
+        },
+        "equipmentBudget": {
+          "label": "Current annual budget for photo equipment and software?",
+          "sublabel": "Equipment, lighting, licenses, space (optional)",
+          "tooltip": "Equipment depreciation + licenses + dedicated space rent",
+          "placeholder": "€7,500 (suggested value)"
+        },
+        "productionSplit": {
+          "label": "Your production split",
+          "sublabel": "White background packshot vs Lifestyle/staged",
+          "packshot": "White background packshots",
+          "lifestyle": "Lifestyle / Staged"
+        },
+        "productSize": {
+          "label": "What is the main size of your products?",
+          "sublabel": "To recommend the right studio",
+          "small": "Small (< 30 cm)",
+          "smallExamples": "Jewelry, watches, cosmetics",
+          "medium": "Medium (30-60 cm)",
+          "mediumExamples": "Shoes, bags, electronics",
+          "large": "Large (60-150 cm)",
+          "largeExamples": "Small furniture, sports equipment",
+          "veryLarge": "Very large (> 150 cm)",
+          "veryLargeExamples": "Furniture, bikes, large equipment"
+        }
+      },
+      "calculating": "Calculating your ROI...",
+      "navigation": {
+        "back": "Back",
+        "next": "Next",
+        "calculate": "Calculate my ROI",
+        "restart": "Start over"
+      }
     },
     "machineSelection": {
       "heading": "Find Your Ideal Machine",

@@ -316,7 +316,72 @@
     },
     "roiCalculator": {
       "heading": "Calculez Votre ROI en 2 Minutes",
-      "subtitle": "Découvrez en combien de mois votre investissement sera rentabilisé"
+      "subtitle": "Découvrez en combien de mois votre investissement sera rentabilisé",
+      "step1": {
+        "title": "Situation actuelle",
+        "operators": {
+          "label": "Combien de personnes travaillent sur la production de vos visuels ?",
+          "sublabel": "Inclus packshot + lifestyle + retouches",
+          "tooltip": "Comptez tous les collaborateurs impliqués, même partiellement",
+          "unit": "personne(s)"
+        },
+        "timePercentage": {
+          "label": "Quel pourcentage de leur temps est consacré à la production visuelle ?",
+          "sublabel": "Moyenne pondérée si plusieurs opérateurs",
+          "tooltip": "Temps réel : shooting + retouches + gestion (hors pauses, admin)"
+        },
+        "externalProvider": {
+          "label": "Faites-vous appel à un prestataire externe ?",
+          "budgetLabel": "Budget mensuel moyen prestataire externe",
+          "tooltip": "Montant moyen facturé par mois"
+        },
+        "dailyCapacity": {
+          "label": "Combien de photos finalisées produisez-vous par jour ?",
+          "sublabel": "Par opérateur, prises de vues + retouches complètes",
+          "tooltip": "Photos 100% prêtes à être mises en ligne",
+          "unit": "photos/jour/opérateur"
+        }
+      },
+      "step2": {
+        "title": "Objectifs de production",
+        "annualVolume": {
+          "label": "Combien de photos produit devez-vous réaliser par an ?",
+          "sublabel": "Objectif total : existant + nouveautés + renouvellement",
+          "tooltip": "Comptez TOUS les visuels produits",
+          "unit": "photos/an"
+        },
+        "equipmentBudget": {
+          "label": "Budget annuel actuel pour l'équipement photo et logiciels ?",
+          "sublabel": "Matériel, éclairage, licences, espace (optionnel)",
+          "tooltip": "Amortissement matériel + licences + loyer espace dédié",
+          "placeholder": "7 500€ (valeur suggérée)"
+        },
+        "productionSplit": {
+          "label": "Répartition de votre production",
+          "sublabel": "Packshot fond blanc vs Lifestyle/mises en scène",
+          "packshot": "Packshots fond blanc",
+          "lifestyle": "Lifestyle / Mises en scène"
+        },
+        "productSize": {
+          "label": "Quelle est la taille principale de vos produits ?",
+          "sublabel": "Pour recommander le studio adapté",
+          "small": "Petit (< 30 cm)",
+          "smallExamples": "Bijoux, montres, cosmétiques",
+          "medium": "Moyen (30-60 cm)",
+          "mediumExamples": "Chaussures, sacs, électronique",
+          "large": "Grand (60-150 cm)",
+          "largeExamples": "Petit mobilier, équipement sportif",
+          "veryLarge": "Très grand (> 150 cm)",
+          "veryLargeExamples": "Mobilier, vélos, grands équipements"
+        }
+      },
+      "calculating": "Calcul de votre ROI en cours...",
+      "navigation": {
+        "back": "Retour",
+        "next": "Suivant",
+        "calculate": "Calculer mon ROI",
+        "restart": "Recommencer"
+      }
     },
     "machineSelection": {
       "heading": "Trouvez Votre Machine Idéale",
