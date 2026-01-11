@@ -8,8 +8,8 @@ export const routing = defineRouting({
   // Langue par défaut (français)
   defaultLocale: 'fr',
 
-  // Préfixe de locale: 'as-needed' signifie que /fr n'aura pas de préfixe
-  localePrefix: 'as-needed'
+  // Préfixe de locale: 'always' signifie que toutes les URLs auront un préfixe (/fr/, /en/, etc.)
+  localePrefix: 'always'
 });
 
 // Navigation helpers légèrement typés

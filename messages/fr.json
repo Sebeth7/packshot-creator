@@ -76,14 +76,7 @@
         "category": "Innovations"
       },
       "cta": "Consulter notre blog"
-    },
-    "formation": {
-    "meta": {
-      "title": "Formation Photo Produit & IA",
-      "suffix": "PackshotCreator Academy",
-      "description": "Formations certifiées Qualiopi pour maîtriser la photo packshot et l'IA générative appliquée au visuel produit"
     }
-  }
   },
   "formation": {
     "meta": {
@@ -154,30 +147,29 @@
     }
   },
   "tailorMade": {
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Optimisez votre catalogue produit avec des visuels professionnels prêts pour la vente en ligne."
-      },
-      "digital": {
-        "title": "Digital Asset Management",
-        "description": "Gérez et organisez efficacement vos ressources visuelles pour une diffusion multi-canal."
-      },
-      "quality": {
-        "title": "Contrôle qualité",
-        "description": "Assurez une cohérence visuelle parfaite grâce à des processus automatisés et standardisés."
-      },
-      "studio": {
-        "title": "Studio photo intégré",
-        "description": "Créez votre propre studio de production avec nos solutions clés en main."
-      },
-      "creative": {
-        "title": "Créativité",
-        "description": "Libérez votre potentiel créatif avec des outils professionnels intuitifs."
-      },
-      "manufacturers": {
-        "title": "Fabricants",
-        "description": "Produisez des visuels techniques et marketing pour vos gammes de produits."
-      }
+    "ecommerce": {
+      "title": "E-commerce",
+      "description": "Optimisez votre catalogue produit avec des visuels professionnels prêts pour la vente en ligne."
+    },
+    "digital": {
+      "title": "Digital Asset Management",
+      "description": "Gérez et organisez efficacement vos ressources visuelles pour une diffusion multi-canal."
+    },
+    "quality": {
+      "title": "Contrôle qualité",
+      "description": "Assurez une cohérence visuelle parfaite grâce à des processus automatisés et standardisés."
+    },
+    "studio": {
+      "title": "Studio photo intégré",
+      "description": "Créez votre propre studio de production avec nos solutions clés en main."
+    },
+    "creative": {
+      "title": "Créativité",
+      "description": "Libérez votre potentiel créatif avec des outils professionnels intuitifs."
+    },
+    "manufacturers": {
+      "title": "Fabricants",
+      "description": "Produisez des visuels techniques et marketing pour vos gammes de produits."
     }
   },
   "common": {

@@ -76,14 +76,7 @@
         "category": "Innovations"
       },
       "cta": "Visit our blog"
-    },
-    "formation": {
-    "meta": {
-      "title": "Product Photography & AI Training",
-      "suffix": "PackshotCreator Academy",
-      "description": "Qualiopi certified training to master packshot photography and generative AI for product visuals"
     }
-  }
   },
   "formation": {
     "meta": {
@@ -154,30 +147,29 @@
     }
   },
   "tailorMade": {
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Optimize your product catalog with professional visuals ready for online sales."
-      },
-      "digital": {
-        "title": "Digital Asset Management",
-        "description": "Efficiently manage and organize your visual assets for multi-channel distribution."
-      },
-      "quality": {
-        "title": "Quality Control",
-        "description": "Ensure perfect visual consistency through automated and standardized processes."
-      },
-      "studio": {
-        "title": "Integrated photo studio",
-        "description": "Create your own production studio with our turnkey solutions."
-      },
-      "creative": {
-        "title": "Creativity",
-        "description": "Unlock your creative potential with intuitive professional tools."
-      },
-      "manufacturers": {
-        "title": "Manufacturers",
-        "description": "Produce technical and marketing visuals for your product ranges."
-      }
+    "ecommerce": {
+      "title": "E-commerce",
+      "description": "Optimize your product catalog with professional visuals ready for online sales."
+    },
+    "digital": {
+      "title": "Digital Asset Management",
+      "description": "Efficiently manage and organize your visual assets for multi-channel distribution."
+    },
+    "quality": {
+      "title": "Quality Control",
+      "description": "Ensure perfect visual consistency through automated and standardized processes."
+    },
+    "studio": {
+      "title": "Integrated photo studio",
+      "description": "Create your own production studio with our turnkey solutions."
+    },
+    "creative": {
+      "title": "Creativity",
+      "description": "Unlock your creative potential with intuitive professional tools."
+    },
+    "manufacturers": {
+      "title": "Manufacturers",
+      "description": "Produce technical and marketing visuals for your product ranges."
     }
   },
   "common": {
