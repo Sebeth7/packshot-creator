@@ -29,17 +29,17 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link href="/product-photography" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
-              {t('nav.productPhotography')}
+            <Link href="/studios-photo-automatises" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+              Capture
             </Link>
-            <Link href="/workflow-management" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
-              {t('nav.workflowManagement')}
+            <Link href="/ia-photo-produit" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+              Création
             </Link>
-            <Link href="/resources" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
-              {t('nav.resources')}
+            <Link href="/academy" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+              Formation
             </Link>
-            <Link href="/about" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
-              {t('nav.about')}
+            <Link href="/blog" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+              Blog
             </Link>
           </nav>
 
@@ -69,17 +69,17 @@ export default function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden pt-4 pb-2 space-y-2">
-            <Link href="/product-photography" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
-              {t('nav.productPhotography')}
+            <Link href="/studios-photo-automatises" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+              Capture
             </Link>
-            <Link href="/workflow-management" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
-              {t('nav.workflowManagement')}
+            <Link href="/ia-photo-produit" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+              Création
             </Link>
-            <Link href="/resources" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
-              {t('nav.resources')}
+            <Link href="/academy" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+              Formation
             </Link>
-            <Link href="/about" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
-              {t('nav.about')}
+            <Link href="/blog" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+              Blog
             </Link>
             <Link href={pathname} locale={otherLocale} className="block py-2 text-neutral-dark hover:text-primary-turquoise">
               {otherLocale.toUpperCase()}
