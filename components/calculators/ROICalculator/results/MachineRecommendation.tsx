@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { formatEuro } from '../lib/calculations';
 import type { Machine } from '../lib/types';
 
 interface MachineRecommendationProps {
@@ -72,10 +71,6 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-            <div>
-              <span className="text-neutral-medium">{t.price}</span>
-              <p className="font-bold text-neutral-dark">{formatEuro(machine.prix)} HT</p>
-            </div>
             <div>
               <span className="text-neutral-medium">{t.capacity}</span>
               <p className="font-bold text-neutral-dark">{machine.capaciteJour} {t.photosPerDay}</p>

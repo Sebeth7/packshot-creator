@@ -54,7 +54,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       icon: Clock,
       label: t.today,
       description: t.todayDesc,
-      value: formatEuro(results.machine.prix),
+      value: '',
       position: 0,
       color: 'bg-primary-turquoise',
       textColor: 'text-primary-turquoise',
