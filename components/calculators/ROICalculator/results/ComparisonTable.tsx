@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { Check, X, ArrowRight } from 'lucide-react';
-import { formatEuro, formatHeures } from '../lib/calculations';
+import { formatHeures } from '../lib/calculations';
 import type { CalculationResults } from '../lib/types';
 
 interface ComparisonTableProps {
@@ -12,36 +12,30 @@ interface ComparisonTableProps {
 
 const LABELS = {
   fr: {
-    title: 'Comparaison Avant / Après',
+    title: 'Gains de Temps & Production',
     metric: 'Métrique',
     current: 'Actuellement',
     withOrbitvu: 'Avec Orbitvu',
     difference: 'Différence',
-    annualCost: 'Coût annuel total',
-    costPerPhoto: 'Coût par photo',
     timePerPhoto: 'Temps par photo',
     productionDays: 'Jours de production',
     annualCapacity: 'Capacité annuelle',
     photos: 'photos',
     days: 'jours',
-    saved: 'économisés',
     faster: 'plus rapide',
     less: 'en moins',
   },
   en: {
-    title: 'Before / After Comparison',
+    title: 'Time & Production Gains',
     metric: 'Metric',
     current: 'Currently',
     withOrbitvu: 'With Orbitvu',
     difference: 'Difference',
-    annualCost: 'Total annual cost',
-    costPerPhoto: 'Cost per photo',
     timePerPhoto: 'Time per photo',
     productionDays: 'Production days',
     annualCapacity: 'Annual capacity',
     photos: 'photos',
     days: 'days',
-    saved: 'saved',
     faster: 'faster',
     less: 'less',
   },
@@ -51,20 +45,6 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
   const t = LABELS[locale];
 
   const rows = [
-    {
-      label: t.annualCost,
-      current: formatEuro(results.coutTotalActuel),
-      orbitvu: formatEuro(results.coutTotalMachine),
-      diff: `-${formatEuro(results.economieAnnuelle)}`,
-      isPositive: results.economieAnnuelle > 0,
-    },
-    {
-      label: t.costPerPhoto,
-      current: formatEuro(results.coutParPhotoActuel),
-      orbitvu: formatEuro(results.coutParPhotoMachine),
-      diff: `-${Math.round(results.economieParPhotoPourcent)}%`,
-      isPositive: results.economieParPhoto > 0,
-    },
     {
       label: t.timePerPhoto,
       current: formatHeures(results.tempsParPhotoHeures),
