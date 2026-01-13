@@ -301,17 +301,19 @@ export default function MachineComparator({
   const criteria = userInputsToSelectionCriteria(inputs);
   const eligibleMachines = getTopMachinesForComparison(criteria, 4);
 
-  // Calculer le ROI pour chaque machine
-  const machinesWithROI = eligibleMachines.map(eligibility => {
-    // Créer des inputs modifiés avec cette machine
-    // (On recalcule le ROI en forçant cette machine)
-    const machineInputs = { ...inputs };
-    const roiResults = calculateROIForMachine(machineInputs, eligibility.machine.id);
-    return {
-      eligibility,
-      roiResults,
-    };
-  });
+  // Calculer le ROI pour chaque machine et filtrer les non-rentables
+  const machinesWithROI = eligibleMachines
+    .map(eligibility => {
+      // Créer des inputs modifiés avec cette machine
+      // (On recalcule le ROI en forçant cette machine)
+      const machineInputs = { ...inputs };
+      const roiResults = calculateROIForMachine(machineInputs, eligibility.machine.id);
+      return {
+        eligibility,
+        roiResults,
+      };
+    })
+    .filter(({ roiResults }) => roiResults.isRentable); // Ne garder que les machines rentables
 
   if (machinesWithROI.length === 0) {
     return null;

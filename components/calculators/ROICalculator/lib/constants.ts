@@ -35,7 +35,7 @@ export const TAILLE_LABELS: Record<ProductSizeCategory, { fr: string; en: string
 
 // Valeurs par défaut pour le formulaire
 export const DEFAULT_VALUES: Partial<UserInputs> = {
-  nbOperateurs: 2,
+  nbOperateurs: 1,
   pourcentageTemps: 80,
   utiliseSolutionExterne: false,
   capaciteJournaliere: 30,

@@ -30,7 +30,7 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
   const t = LABELS[locale];
 
-  const value = watch('nbOperateurs') || 2;
+  const value = watch('nbOperateurs') || 1;
 
   return (
     <div className="space-y-4">

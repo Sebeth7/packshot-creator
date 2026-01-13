@@ -1,6 +1,8 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Download, Loader2 } from 'lucide-react';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
 import MachineComparator from '../results/MachineComparator';
@@ -21,13 +23,46 @@ interface Step3ResultsProps {
   locale: 'fr' | 'en';
 }
 
+const LABELS = {
+  fr: {
+    downloadPDF: 'Télécharger le PDF',
+    downloading: 'Génération...',
+  },
+  en: {
+    downloadPDF: 'Download PDF',
+    downloading: 'Generating...',
+  },
+};
+
 export default function Step3Results({ results, inputs, locale }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const t = LABELS[locale];
 
   // Track completion au montage
   useEffect(() => {
     trackCalculatorCompleted(results);
   }, [results]);
+
+  // Téléchargement direct du PDF (bouton temporaire)
+  const handleDownloadPDF = async () => {
+    setIsDownloading(true);
+    trackCTAClick('pdf_download', results);
+
+    try {
+      const pdfBlob = await generatePDF(contentRef, results, locale);
+      const url = URL.createObjectURL(pdfBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `ROI-Analysis-${results.machine.nom.replace(/\s+/g, '-')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   const handleSendPDF = async (email: string) => {
     trackCTAClick('email_capture', results);
@@ -53,6 +88,28 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
         <>
           {/* Métriques héro */}
           <HeroMetrics results={results} locale={locale} />
+
+          {/* Bouton téléchargement PDF (temporaire) */}
+          <div className="flex justify-end mb-6">
+            <Button
+              onClick={handleDownloadPDF}
+              disabled={isDownloading}
+              variant="outline"
+              className="gap-2"
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  {t.downloading}
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" />
+                  {t.downloadPDF}
+                </>
+              )}
+            </Button>
+          </div>
 
           {/* Machine recommandée */}
           <MachineRecommendation machine={results.machine} locale={locale} />
