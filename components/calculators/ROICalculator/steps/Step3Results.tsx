@@ -50,7 +50,17 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
     trackCTAClick('pdf_download', results);
 
     try {
+      console.log('PDF Generation - Starting...', { contentRef: contentRef.current });
+
+      if (!contentRef.current) {
+        console.error('PDF Generation - Content ref is null');
+        alert('Erreur: Contenu non trouvé');
+        return;
+      }
+
       const pdfBlob = await generatePDF(contentRef, results, locale);
+      console.log('PDF Generation - Blob created:', pdfBlob.size, 'bytes');
+
       const url = URL.createObjectURL(pdfBlob);
       const link = document.createElement('a');
       link.href = url;
@@ -59,6 +69,11 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
+
+      console.log('PDF Generation - Download triggered');
+    } catch (error) {
+      console.error('PDF Generation - Error:', error);
+      alert(`Erreur lors de la génération du PDF: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
     } finally {
       setIsDownloading(false);
     }
