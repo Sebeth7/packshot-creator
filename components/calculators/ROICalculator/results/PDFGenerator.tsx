@@ -1,57 +1,9 @@
 'use client';
 
 import { useRef, useCallback } from 'react';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
 import type { CalculationResults } from '../lib/types';
-
-/**
- * Remplace les couleurs lab() non supportées par des fallbacks RGB
- * Appliqué uniquement sur le clone pour le PDF, pas sur le site
- */
-function sanitizeColorsForPDF(clone: Document) {
-  // 1. Supprimer/modifier les stylesheets qui contiennent lab()
-  const styleSheets = clone.querySelectorAll('style');
-  styleSheets.forEach((style) => {
-    if (style.textContent) {
-      // Remplacer toutes les couleurs modernes non supportées par html2canvas
-      style.textContent = style.textContent
-        .replace(/lab\([^)]+\)/g, '#666666')
-        .replace(/oklab\([^)]+\)/g, '#666666')
-        .replace(/oklch\([^)]+\)/g, '#666666')
-        .replace(/lch\([^)]+\)/g, '#666666');
-    }
-  });
-
-  // 2. Ajouter une feuille de style de reset pour forcer des couleurs simples
-  const resetStyle = clone.createElement('style');
-  resetStyle.textContent = `
-    * {
-      --background: 255 255 255 !important;
-      --foreground: 26 26 26 !important;
-      --primary: 0 188 212 !important;
-      --muted: 245 245 245 !important;
-      --border: 229 229 229 !important;
-    }
-  `;
-  clone.head.appendChild(resetStyle);
-
-  // 3. Forcer les couleurs sur tous les éléments
-  const allElements = clone.querySelectorAll('*');
-  allElements.forEach((el) => {
-    const element = el as HTMLElement;
-    const style = element.getAttribute('style') || '';
-
-    // Si le style inline contient des couleurs modernes, les remplacer
-    if (style.match(/(?:ok)?l(?:ab|ch)\(/)) {
-      element.setAttribute('style', style
-        .replace(/lab\([^)]+\)/g, '#666666')
-        .replace(/oklab\([^)]+\)/g, '#666666')
-        .replace(/oklch\([^)]+\)/g, '#666666')
-        .replace(/lch\([^)]+\)/g, '#666666'));
-    }
-  });
-}
 
 /**
  * Génère un PDF à partir du contenu HTML des résultats
@@ -64,15 +16,12 @@ export async function generatePDF(
   const content = contentRef.current;
   if (!content) throw new Error('Content not found');
 
-  // Capturer le contenu HTML avec sanitization des couleurs
+  // Capturer le contenu HTML (html2canvas-pro supporte oklab/oklch)
   const canvas = await html2canvas(content, {
     scale: 2,
     useCORS: true,
     logging: false,
     backgroundColor: '#ffffff',
-    onclone: (clonedDoc) => {
-      sanitizeColorsForPDF(clonedDoc);
-    },
   });
 
   const imgData = canvas.toDataURL('image/png');
