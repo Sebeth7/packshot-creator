@@ -12,11 +12,16 @@ import {
  */
 export function recommanderMachine(inputs: UserInputs): Machine {
   // Essayer d'abord le nouvel algorithme multi-critères
-  const criteria = userInputsToSelectionCriteria(inputs);
-  const recommendation = recommendMachineAdvanced(criteria);
+  try {
+    const criteria = userInputsToSelectionCriteria(inputs);
+    const recommendation = recommendMachineAdvanced(criteria);
 
-  if (recommendation) {
-    return recommendation.machine;
+    if (recommendation && recommendation.machine) {
+      return recommendation.machine;
+    }
+  } catch (e) {
+    // En cas d'erreur, on utilise le fallback
+    console.warn('Machine selector error, using fallback:', e);
   }
 
   // Fallback sur l'ancienne logique si le nouveau sélecteur échoue

@@ -2,7 +2,8 @@ import { z } from 'zod';
 
 export const step1Schema = z.object({
   nbOperateurs: z.number()
-    .min(0.5, 'Minimum 0.5 opérateur')
+    .int('Nombre entier requis')
+    .min(1, 'Minimum 1 opérateur')
     .max(20, 'Maximum 20 opérateurs'),
   pourcentageTemps: z.number()
     .min(10, 'Minimum 10%')
