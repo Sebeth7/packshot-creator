@@ -13,9 +13,13 @@ function sanitizeColorsForPDF(clone: Document) {
   // 1. Supprimer/modifier les stylesheets qui contiennent lab()
   const styleSheets = clone.querySelectorAll('style');
   styleSheets.forEach((style) => {
-    if (style.textContent && style.textContent.includes('lab(')) {
-      // Remplacer toutes les occurrences de lab(...) par des couleurs neutres
-      style.textContent = style.textContent.replace(/lab\([^)]+\)/g, '#666666');
+    if (style.textContent) {
+      // Remplacer toutes les couleurs modernes non supportées par html2canvas
+      style.textContent = style.textContent
+        .replace(/lab\([^)]+\)/g, '#666666')
+        .replace(/oklab\([^)]+\)/g, '#666666')
+        .replace(/oklch\([^)]+\)/g, '#666666')
+        .replace(/lch\([^)]+\)/g, '#666666');
     }
   });
 
@@ -38,9 +42,13 @@ function sanitizeColorsForPDF(clone: Document) {
     const element = el as HTMLElement;
     const style = element.getAttribute('style') || '';
 
-    // Si le style inline contient lab(), le remplacer
-    if (style.includes('lab(')) {
-      element.setAttribute('style', style.replace(/lab\([^)]+\)/g, '#666666'));
+    // Si le style inline contient des couleurs modernes, les remplacer
+    if (style.match(/(?:ok)?l(?:ab|ch)\(/)) {
+      element.setAttribute('style', style
+        .replace(/lab\([^)]+\)/g, '#666666')
+        .replace(/oklab\([^)]+\)/g, '#666666')
+        .replace(/oklch\([^)]+\)/g, '#666666')
+        .replace(/lch\([^)]+\)/g, '#666666'));
     }
   });
 }
