@@ -14,7 +14,7 @@ export function trackCalculatorCompleted(results: CalculationResults): void {
     event: 'calculator_completed',
     machine_recommended: results.machine.nom,
     machine_id: results.machine.id,
-    roi_3_years: Math.round(results.roi3ans),
+    roi_5_years: Math.round(results.roi5ans),
     break_even_months: results.breakEvenMois ? Math.round(results.breakEvenMois) : null,
     annual_savings: Math.round(results.economieAnnuelle),
     is_profitable: results.isRentable,
@@ -36,9 +36,9 @@ export function trackCTAClick(
   ctaType: 'demo' | 'product_page' | 'email_capture' | 'pdf_download' | 'study_request',
   results: CalculationResults
 ): void {
-  const roiRange = results.roi3ans > 300
+  const roiRange = results.roi5ans > 300
     ? 'exceptional'
-    : results.roi3ans > 100
+    : results.roi5ans > 100
       ? 'good'
       : 'moderate';
 
@@ -99,7 +99,7 @@ export function trackEmailCapture(email: string, results: CalculationResults): v
   const event: CalculatorEvent = {
     event: 'calculator_email_capture',
     machine_id: results.machine.id,
-    roi_range: results.roi3ans > 300 ? 'exceptional' : results.roi3ans > 100 ? 'good' : 'moderate',
+    roi_range: results.roi5ans > 300 ? 'exceptional' : results.roi5ans > 100 ? 'good' : 'moderate',
     // Ne pas logger l'email pour RGPD
   };
 
@@ -111,7 +111,7 @@ export function trackEmailCapture(email: string, results: CalculationResults): v
     machine: results.machine.nom,
     machineId: results.machine.id,
     machinePrix: results.machine.prix,
-    roi3ans: results.roi3ans,
+    roi5ans: results.roi5ans,
     economieAnnuelle: results.economieAnnuelle,
     breakEvenMois: results.breakEvenMois,
     isRentable: results.isRentable,

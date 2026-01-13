@@ -21,7 +21,7 @@ interface EvolutionChartProps {
 
 const LABELS = {
   fr: {
-    title: 'Évolution des Coûts sur 3 Ans',
+    title: 'Évolution des Coûts sur 5 Ans',
     current: 'Situation actuelle',
     orbitvu: 'Avec Orbitvu',
     breakeven: 'Break-even',
@@ -31,7 +31,7 @@ const LABELS = {
     savingsNote: ', chaque euro dépensé génère des économies pures.',
   },
   en: {
-    title: 'Cost Evolution Over 3 Years',
+    title: 'Cost Evolution Over 5 Years',
     current: 'Current situation',
     orbitvu: 'With Orbitvu',
     breakeven: 'Break-even',

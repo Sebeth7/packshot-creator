@@ -186,9 +186,9 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
   // 4. ROI année 1
   const roiAn1 = ((economieAnnuelle - machine.prix) / machine.prix) * 100;
 
-  // 5. ROI 3 ans
-  const economie3ans = (economieAnnuelle * 3) - machine.prix;
-  const roi3ans = (economie3ans / machine.prix) * 100;
+  // 5. ROI 5 ans (aligné sur la durée d'amortissement)
+  const economie5ans = (economieAnnuelle * 5) - machine.prix;
+  const roi5ans = (economie5ans / machine.prix) * 100;
 
   // 6. Économie par photo
   const economieParPhoto = coutParPhotoActuel - coutParPhotoMachine;
@@ -227,8 +227,8 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
     economieAnnuelle,
     breakEvenMois,
     roiAn1,
-    roi3ans,
-    economie3ans,
+    roi5ans,
+    economie5ans,
     economieParPhoto,
     economieParPhotoPourcent,
     joursEconomises,
@@ -266,7 +266,7 @@ export function formatHeures(heures: number): string {
 }
 
 /**
- * Génère les données pour le graphique d'évolution sur 3 ans
+ * Génère les données pour le graphique d'évolution sur 5 ans
  */
 export function generateChartData(results: CalculationResults): Array<{
   mois: number;
@@ -276,7 +276,7 @@ export function generateChartData(results: CalculationResults): Array<{
 }> {
   const data = [];
 
-  for (let mois = 0; mois <= 36; mois++) {
+  for (let mois = 0; mois <= 60; mois++) {
     const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
     const coutOrbituCumule = results.machine.prix + ((results.coutTotalMachine / 12) * mois);
 

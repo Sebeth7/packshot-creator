@@ -65,7 +65,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
         console.log('[Pipedrive Ready]', {
           email,
           machine: results.machine.nom,
-          roi3ans: results.roi3ans,
+          roi5ans: results.roi5ans,
           economieAnnuelle: results.economieAnnuelle,
         });
       }

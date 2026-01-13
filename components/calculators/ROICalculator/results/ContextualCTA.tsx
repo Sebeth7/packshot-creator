@@ -15,13 +15,13 @@ const LABELS = {
     exceptional: {
       badge: 'ROI Exceptionnel',
       title: 'Votre ROI est exceptionnel !',
-      description: 'Avec un retour sur investissement de {roi}% sur 3 ans, le {machine} est le choix optimal pour votre activité.',
+      description: 'Avec un retour sur investissement de {roi}% sur 5 ans, le {machine} est le choix optimal pour votre activité.',
       cta: 'Réserver ma démo gratuite',
     },
     good: {
       badge: 'Excellent ROI',
       title: 'Excellent retour sur investissement',
-      description: 'Un ROI de {roi}% sur 3 ans avec {savings} d\'économies annuelles. Passez à l\'étape suivante.',
+      description: 'Un ROI de {roi}% sur 5 ans avec {savings} d\'économies annuelles. Passez à l\'étape suivante.',
       cta: 'Demander une démonstration',
     },
     moderate: {
@@ -36,13 +36,13 @@ const LABELS = {
     exceptional: {
       badge: 'Exceptional ROI',
       title: 'Your ROI is exceptional!',
-      description: 'With a {roi}% return on investment over 3 years, the {machine} is the optimal choice for your business.',
+      description: 'With a {roi}% return on investment over 5 years, the {machine} is the optimal choice for your business.',
       cta: 'Book my free demo',
     },
     good: {
       badge: 'Excellent ROI',
       title: 'Excellent return on investment',
-      description: 'A {roi}% ROI over 3 years with {savings} in annual savings. Take the next step.',
+      description: 'A {roi}% ROI over 5 years with {savings} in annual savings. Take the next step.',
       cta: 'Request a demonstration',
     },
     moderate: {
@@ -59,11 +59,11 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
   const t = LABELS[locale];
 
   // Déterminer le niveau de ROI
-  const roiLevel = results.roi3ans > 300 ? 'exceptional' : results.roi3ans > 100 ? 'good' : 'moderate';
+  const roiLevel = results.roi5ans > 300 ? 'exceptional' : results.roi5ans > 100 ? 'good' : 'moderate';
   const content = t[roiLevel];
 
   const description = content.description
-    .replace('{roi}', Math.round(results.roi3ans).toString())
+    .replace('{roi}', Math.round(results.roi5ans).toString())
     .replace('{machine}', results.machine.nom)
     .replace('{savings}', formatEuro(results.economieAnnuelle));
 

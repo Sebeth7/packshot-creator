@@ -32,7 +32,7 @@ const LABELS = {
     limitations: 'Limitations',
     annualSavings: 'Économie annuelle',
     breakEven: 'Retour sur inv.',
-    roi3years: 'ROI 3 ans',
+    roi5years: 'ROI 5 ans',
     months: 'mois',
     selectMachine: 'Sélectionner',
     showDetails: 'Voir détails',
@@ -58,7 +58,7 @@ const LABELS = {
     limitations: 'Limitations',
     annualSavings: 'Annual savings',
     breakEven: 'Break-even',
-    roi3years: 'ROI 3 years',
+    roi5years: 'ROI 5 years',
     months: 'months',
     selectMachine: 'Select',
     showDetails: 'Show details',
@@ -170,9 +170,9 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
             </div>
           </div>
           <div>
-            <div className="text-xs text-neutral-medium">{t.roi3years}</div>
-            <div className={`font-bold ${roiResults.roi3ans > 0 ? 'text-green-600' : 'text-red-600'}`}>
-              {roiResults.roi3ans > 0 ? '+' : ''}{Math.round(roiResults.roi3ans)}%
+            <div className="text-xs text-neutral-medium">{t.roi5years}</div>
+            <div className={`font-bold ${roiResults.roi5ans > 0 ? 'text-green-600' : 'text-red-600'}`}>
+              {roiResults.roi5ans > 0 ? '+' : ''}{Math.round(roiResults.roi5ans)}%
             </div>
           </div>
         </div>
@@ -411,8 +411,8 @@ function calculateROIForMachine(inputs: UserInputs, machineId: string): Calculat
     breakEvenMois = machine.prix / economieMensuelle;
   }
   const roiAn1 = ((economieAnnuelle - machine.prix) / machine.prix) * 100;
-  const economie3ans = (economieAnnuelle * 3) - machine.prix;
-  const roi3ans = (economie3ans / machine.prix) * 100;
+  const economie5ans = (economieAnnuelle * 5) - machine.prix;
+  const roi5ans = (economie5ans / machine.prix) * 100;
   const economieParPhoto = coutParPhotoActuel - coutParPhotoMachine;
   const economieParPhotoPourcent = (economieParPhoto / Math.max(coutParPhotoActuel, 0.01)) * 100;
   const joursEconomises = joursProductionActuels - joursProductionMachine;
@@ -440,8 +440,8 @@ function calculateROIForMachine(inputs: UserInputs, machineId: string): Calculat
     economieAnnuelle,
     breakEvenMois,
     roiAn1,
-    roi3ans,
-    economie3ans,
+    roi5ans,
+    economie5ans,
     economieParPhoto,
     economieParPhotoPourcent,
     joursEconomises,

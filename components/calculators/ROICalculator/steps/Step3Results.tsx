@@ -136,7 +136,7 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
             locale={locale}
           />
 
-          {/* Graphique évolution 3 ans */}
+          {/* Graphique évolution */}
           <EvolutionChart results={results} locale={locale} />
 
           {/* Tableau comparatif */}

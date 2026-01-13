@@ -134,8 +134,8 @@ export interface CalculationResults {
   economieAnnuelle: number;
   breakEvenMois: number | null;      // null si pas rentable
   roiAn1: number;
-  roi3ans: number;
-  economie3ans: number;
+  roi5ans: number;
+  economie5ans: number;
   economieParPhoto: number;
   economieParPhotoPourcent: number;
   joursEconomises: number;

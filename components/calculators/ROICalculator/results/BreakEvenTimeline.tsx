@@ -19,8 +19,8 @@ const LABELS = {
     breakevenDesc: 'Investissement rentabilisé',
     year1: 'Année 1',
     year1Desc: 'Premiers bénéfices',
-    year3: 'Année 3',
-    year3Desc: 'Bénéfices cumulés',
+    year5: 'Année 5',
+    year5Desc: 'Bénéfices cumulés',
     month: 'Mois',
     months: 'mois',
   },
@@ -32,8 +32,8 @@ const LABELS = {
     breakevenDesc: 'Investment recovered',
     year1: 'Year 1',
     year1Desc: 'First benefits',
-    year3: 'Year 3',
-    year3Desc: 'Cumulated benefits',
+    year5: 'Year 5',
+    year5Desc: 'Cumulated benefits',
     month: 'Month',
     months: 'months',
   },
@@ -47,7 +47,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
   }
 
   const breakEvenMonths = Math.round(results.breakEvenMois);
-  const progressPercent = Math.min((breakEvenMonths / 36) * 100, 100);
+  const progressPercent = Math.min((breakEvenMonths / 60) * 100, 100);
 
   const milestones = [
     {
@@ -73,15 +73,15 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       label: t.year1,
       description: t.year1Desc,
       value: results.roiAn1 > 0 ? `+${formatEuro(results.economieAnnuelle - results.machine.prix)}` : '-',
-      position: (12 / 36) * 100,
+      position: (12 / 60) * 100,
       color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-medium',
       textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-neutral-medium',
     },
     {
       icon: Rocket,
-      label: t.year3,
-      description: t.year3Desc,
-      value: `+${formatEuro(results.economie3ans)}`,
+      label: t.year5,
+      description: t.year5Desc,
+      value: `+${formatEuro(results.economie5ans)}`,
       position: 100,
       color: 'bg-accent-success',
       textColor: 'text-accent-success',
@@ -143,9 +143,10 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       {/* Indicateur de mois */}
       <div className="mt-8 flex justify-between text-xs text-neutral-medium">
         <span>{t.month} 0</span>
-        <span>{t.month} 12</span>
-        <span>{t.month} 24</span>
-        <span>{t.month} 36</span>
+        <span>{t.month} 15</span>
+        <span>{t.month} 30</span>
+        <span>{t.month} 45</span>
+        <span>{t.month} 60</span>
       </div>
     </div>
   );
