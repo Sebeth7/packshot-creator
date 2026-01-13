@@ -10,40 +10,38 @@ import type { CalculationResults } from '../lib/types';
  * Appliqué uniquement sur le clone pour le PDF, pas sur le site
  */
 function sanitizeColorsForPDF(clone: Document) {
-  const allElements = clone.querySelectorAll('*');
+  // 1. Supprimer/modifier les stylesheets qui contiennent lab()
+  const styleSheets = clone.querySelectorAll('style');
+  styleSheets.forEach((style) => {
+    if (style.textContent && style.textContent.includes('lab(')) {
+      // Remplacer toutes les occurrences de lab(...) par des couleurs neutres
+      style.textContent = style.textContent.replace(/lab\([^)]+\)/g, '#666666');
+    }
+  });
 
+  // 2. Ajouter une feuille de style de reset pour forcer des couleurs simples
+  const resetStyle = clone.createElement('style');
+  resetStyle.textContent = `
+    * {
+      --background: 255 255 255 !important;
+      --foreground: 26 26 26 !important;
+      --primary: 0 188 212 !important;
+      --muted: 245 245 245 !important;
+      --border: 229 229 229 !important;
+    }
+  `;
+  clone.head.appendChild(resetStyle);
+
+  // 3. Forcer les couleurs sur tous les éléments
+  const allElements = clone.querySelectorAll('*');
   allElements.forEach((el) => {
     const element = el as HTMLElement;
-    const computedStyle = window.getComputedStyle(element);
+    const style = element.getAttribute('style') || '';
 
-    // Liste des propriétés de couleur à vérifier
-    const colorProps = [
-      'color',
-      'backgroundColor',
-      'borderColor',
-      'borderTopColor',
-      'borderRightColor',
-      'borderBottomColor',
-      'borderLeftColor',
-      'outlineColor',
-      'textDecorationColor',
-      'fill',
-      'stroke',
-    ];
-
-    colorProps.forEach((prop) => {
-      const value = computedStyle.getPropertyValue(prop);
-      if (value && value.includes('lab(')) {
-        // Remplacer lab() par une couleur neutre selon la propriété
-        if (prop === 'backgroundColor') {
-          element.style.backgroundColor = '#ffffff';
-        } else if (prop === 'color') {
-          element.style.color = '#1a1a1a';
-        } else {
-          element.style.setProperty(prop, '#cccccc');
-        }
-      }
-    });
+    // Si le style inline contient lab(), le remplacer
+    if (style.includes('lab(')) {
+      element.setAttribute('style', style.replace(/lab\([^)]+\)/g, '#666666'));
+    }
   });
 }
 
