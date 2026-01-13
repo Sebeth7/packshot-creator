@@ -144,17 +144,24 @@ function calculateContentScore(
 
 /**
  * Convertit ProductSizeCategory en dimensions approximatives
+ * Ces dimensions doivent correspondre aux capacités réelles des machines
+ * pour chaque catégorie (avec marge de sécurité)
  */
 function categoryToDimensions(category: ProductSizeCategory): Dimensions {
   switch (category) {
     case 'petit':
-      return { l: 25, w: 25, h: 25 };
+      // Machines: Alphashot Micro (18×15×16), Alphashot 360/G2 (30×30×30)
+      return { l: 20, w: 20, h: 20 };
     case 'moyen':
-      return { l: 50, w: 50, h: 50 };
+      // Machines: Alphashot Pro G2 (35×35×40), XL (50×30×70)
+      return { l: 35, w: 30, h: 40 };
     case 'grand':
-      return { l: 120, w: 80, h: 120 };
+      // Machines: Alphastudio Compact/XXL (100×70×190)
+      // Dimensions compatibles avec tri [80, 70, 60] vs machine [190, 100, 70]
+      return { l: 80, w: 60, h: 70 };
     case 'tres-grand':
-      return { l: 180, w: 100, h: 180 };
+      // Machines: Fashion Studio (200×100×200), E-Comm (300×300×200)
+      return { l: 150, w: 80, h: 150 };
   }
 }
 
