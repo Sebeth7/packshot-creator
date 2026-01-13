@@ -299,7 +299,7 @@ export default function MachineComparator({
 
   // Obtenir les machines éligibles
   const criteria = userInputsToSelectionCriteria(inputs);
-  const eligibleMachines = getTopMachinesForComparison(criteria, 4);
+  const eligibleMachines = getTopMachinesForComparison(criteria, 2);
 
   // Calculer le ROI pour chaque machine et filtrer les non-rentables
   const machinesWithROI = eligibleMachines
