@@ -6,6 +6,48 @@ import jsPDF from 'jspdf';
 import type { CalculationResults } from '../lib/types';
 
 /**
+ * Remplace les couleurs lab() non supportées par des fallbacks RGB
+ * Appliqué uniquement sur le clone pour le PDF, pas sur le site
+ */
+function sanitizeColorsForPDF(clone: Document) {
+  const allElements = clone.querySelectorAll('*');
+
+  allElements.forEach((el) => {
+    const element = el as HTMLElement;
+    const computedStyle = window.getComputedStyle(element);
+
+    // Liste des propriétés de couleur à vérifier
+    const colorProps = [
+      'color',
+      'backgroundColor',
+      'borderColor',
+      'borderTopColor',
+      'borderRightColor',
+      'borderBottomColor',
+      'borderLeftColor',
+      'outlineColor',
+      'textDecorationColor',
+      'fill',
+      'stroke',
+    ];
+
+    colorProps.forEach((prop) => {
+      const value = computedStyle.getPropertyValue(prop);
+      if (value && value.includes('lab(')) {
+        // Remplacer lab() par une couleur neutre selon la propriété
+        if (prop === 'backgroundColor') {
+          element.style.backgroundColor = '#ffffff';
+        } else if (prop === 'color') {
+          element.style.color = '#1a1a1a';
+        } else {
+          element.style.setProperty(prop, '#cccccc');
+        }
+      }
+    });
+  });
+}
+
+/**
  * Génère un PDF à partir du contenu HTML des résultats
  */
 export async function generatePDF(
@@ -16,12 +58,15 @@ export async function generatePDF(
   const content = contentRef.current;
   if (!content) throw new Error('Content not found');
 
-  // Capturer le contenu HTML
+  // Capturer le contenu HTML avec sanitization des couleurs
   const canvas = await html2canvas(content, {
     scale: 2,
     useCORS: true,
     logging: false,
     backgroundColor: '#ffffff',
+    onclone: (clonedDoc) => {
+      sanitizeColorsForPDF(clonedDoc);
+    },
   });
 
   const imgData = canvas.toDataURL('image/png');
