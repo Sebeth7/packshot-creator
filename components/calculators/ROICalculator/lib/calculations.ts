@@ -14,7 +14,8 @@ export function recommanderMachine(inputs: UserInputs): Machine {
   // Essayer d'abord le nouvel algorithme multi-critères
   try {
     const criteria = userInputsToSelectionCriteria(inputs);
-    const recommendation = recommendMachineAdvanced(criteria);
+    // Passer la catégorie de taille pour filtrer correctement
+    const recommendation = recommendMachineAdvanced(criteria, inputs.tailleProduitsCategory);
 
     if (recommendation && recommendation.machine) {
       return recommendation.machine;

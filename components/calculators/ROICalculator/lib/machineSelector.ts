@@ -292,8 +292,13 @@ export function evaluateMachine(
 /**
  * Sélectionne et classe les machines éligibles pour les critères donnés
  */
-export function selectEligibleMachines(criteria: SelectionCriteria): MachineEligibility[] {
-  const evaluations = MACHINES.map(machine => evaluateMachine(machine, criteria));
+export function selectEligibleMachines(criteria: SelectionCriteria, sizeCategory?: ProductSizeCategory): MachineEligibility[] {
+  // Filtrer d'abord par catégorie de taille si spécifiée
+  const machinesFiltered = sizeCategory
+    ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
+    : MACHINES;
+
+  const evaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria));
 
   // Filtrer les machines éligibles et trier par score décroissant
   return evaluations
@@ -305,19 +310,23 @@ export function selectEligibleMachines(criteria: SelectionCriteria): MachineElig
  * Recommande la meilleure machine pour les critères donnés
  * Fallback vers l'ancienne logique si aucune machine éligible
  */
-export function recommendMachine(criteria: SelectionCriteria): MachineEligibility | null {
-  const eligibleMachines = selectEligibleMachines(criteria);
+export function recommendMachine(criteria: SelectionCriteria, sizeCategory?: ProductSizeCategory): MachineEligibility | null {
+  const eligibleMachines = selectEligibleMachines(criteria, sizeCategory);
 
   if (eligibleMachines.length > 0) {
     return eligibleMachines[0];
   }
 
-  // Fallback : prendre la machine avec le meilleur score même si < 50
-  const allEvaluations = MACHINES.map(machine => evaluateMachine(machine, criteria))
+  // Fallback : prendre la machine avec le meilleur score parmi celles de la bonne catégorie
+  const machinesFiltered = sizeCategory
+    ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
+    : MACHINES;
+
+  const allEvaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria))
     .sort((a, b) => b.score - a.score);
 
   if (allEvaluations.length > 0 && allEvaluations[0].score > 0) {
-    return { ...allEvaluations[0], isEligible: true }; // Forcer l'éligibilité pour le fallback
+    return { ...allEvaluations[0], isEligible: true };
   }
 
   return null;
