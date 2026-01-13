@@ -159,6 +159,13 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
               onSendPDF={handleSendPDF}
             />
           </div>
+
+          {/* Disclaimer */}
+          <p className="mt-8 text-xs text-neutral-medium text-center">
+            {locale === 'fr'
+              ? 'Ces calculs sont réalisés de manière automatique et vous permettent d\'avoir un aperçu au plus juste de votre ROI. Nous vous recommandons de contacter notre équipe pour affiner la sélection de machine et les calculs ROI en fonction de vos besoins spécifiques.'
+              : 'These calculations are performed automatically and give you the most accurate overview of your ROI. We recommend contacting our team to refine the machine selection and ROI calculations based on your specific needs.'}
+          </p>
         </>
       ) : (
         <>

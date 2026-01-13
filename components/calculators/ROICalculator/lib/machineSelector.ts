@@ -293,10 +293,14 @@ export function evaluateMachine(
  * Sélectionne et classe les machines éligibles pour les critères donnés
  */
 export function selectEligibleMachines(criteria: SelectionCriteria, sizeCategory?: ProductSizeCategory): MachineEligibility[] {
+  // Exclure les machines spécialisées (à réintégrer quand les types de produits seront implémentés)
+  const excludedMachines = ['alphashot-xl-wine-v2'];
+
   // Filtrer d'abord par catégorie de taille si spécifiée
-  const machinesFiltered = sizeCategory
+  const machinesFiltered = (sizeCategory
     ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
-    : MACHINES;
+    : MACHINES
+  ).filter(m => !excludedMachines.includes(m.id));
 
   const evaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria));
 
