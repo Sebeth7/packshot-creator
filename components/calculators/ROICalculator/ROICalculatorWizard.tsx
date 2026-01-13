@@ -118,7 +118,11 @@ export default function ROICalculatorWizard({
           {currentStep === 1 && <Step1CurrentSituation locale={locale} />}
           {currentStep === 2 && <Step2ProductionGoals locale={locale} />}
           {currentStep === 3 && results && (
-            <Step3Results results={results} locale={locale} />
+            <Step3Results
+              results={results}
+              inputs={getValues() as UserInputs}
+              locale={locale}
+            />
           )}
 
           {/* Loading state */}

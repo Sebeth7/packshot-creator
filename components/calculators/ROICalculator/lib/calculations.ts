@@ -1,11 +1,32 @@
 import type { UserInputs, CalculationResults, Machine } from './types';
 import { CONSTANTES } from './constants';
 import { MACHINES } from './machines';
+import {
+  recommendMachine as recommendMachineAdvanced,
+  userInputsToSelectionCriteria,
+} from './machineSelector';
 
 /**
  * Recommande la machine optimale selon les inputs utilisateur
+ * Utilise le nouvel algorithme multi-critères avec fallback sur l'ancienne logique
  */
 export function recommanderMachine(inputs: UserInputs): Machine {
+  // Essayer d'abord le nouvel algorithme multi-critères
+  const criteria = userInputsToSelectionCriteria(inputs);
+  const recommendation = recommendMachineAdvanced(criteria);
+
+  if (recommendation) {
+    return recommendation.machine;
+  }
+
+  // Fallback sur l'ancienne logique si le nouveau sélecteur échoue
+  return fallbackRecommendation(inputs);
+}
+
+/**
+ * Ancienne logique de recommandation (fallback)
+ */
+function fallbackRecommendation(inputs: UserInputs): Machine {
   const { photosAnnuelles, repartition, tailleProduitsCategory } = inputs;
 
   // 1. Filtrer par taille de produits (critère principal)
@@ -120,7 +141,9 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
     machine.consommablesAnnuels;
 
   // 3. Coût opérateur machine (proportionnel au temps nécessaire)
-  // Avec la machine, l'opérateur travaille seulement le temps pour produire les photos
+  // HYPOTHÈSE CLÉ : Avec une machine Orbitvu, UN SEUL opérateur suffit (vs N opérateurs avant)
+  // L'automatisation permet de passer de N personnes à 1 personne sur la machine
+  // Ce coût est proportionnel au temps réellement nécessaire pour produire les photos
   const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
   const pourcentageTempsMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1);
   const coutOperateurMachine = CONSTANTES.salaireMensuelCoutEmployeur * 12 * pourcentageTempsMachine;
@@ -135,7 +158,10 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
   const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
 
   // 7. Temps par photo avec machine
-  const tempsParPhotoMachine = heuresTravailAnnuel / photosAnnuelles;
+  // Heures travaillées = 1 opérateur × pourcentage temps machine × heures annuelles standard
+  // Ceci reflète le temps réel passé par l'opérateur machine pour produire toutes les photos
+  const heuresAvecMachine = heuresTravailAnnuel * pourcentageTempsMachine;
+  const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
 
   // 8. Jours de production avec machine
   const joursProductionMachine = photosAnnuelles / machine.capaciteJour;

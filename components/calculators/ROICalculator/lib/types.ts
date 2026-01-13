@@ -24,19 +24,88 @@ export type ProductSizeCategory =
   | 'grand'      // 60-150cm (mobilier petit, équipement)
   | 'tres-grand'; // > 150cm (mobilier grand, vélos)
 
-// Machine Orbitvu
+// Type de contenu supporté
+export type ContentType = 'packshot' | '360' | 'video' | 'ghost-mannequin' | 'flat-lay' | 'lifestyle';
+
+// Niveau d'automatisation
+export type AutomationLevel = 'manual' | 'semi-auto' | 'full-auto';
+
+// Secteurs d'activité
+export type IndustrySector =
+  | 'jewelry'      // Bijouterie
+  | 'fashion'      // Mode/Vêtements
+  | 'footwear'     // Chaussures
+  | 'bags'         // Maroquinerie
+  | 'cosmetics'    // Cosmétiques
+  | 'electronics'  // Électronique
+  | 'furniture'    // Mobilier
+  | 'wine'         // Vins/Spiritueux
+  | 'cycling'      // Cycles/Vélos
+  | 'sports'       // Équipements sportifs
+  | 'appliances'   // Électroménager
+  | 'automotive'   // Automobile/Moto
+  | 'general';     // E-commerce général
+
+// Dimensions structurées
+export interface Dimensions {
+  l: number;  // Longueur en cm
+  w: number;  // Largeur en cm
+  h: number;  // Hauteur en cm
+}
+
+// Texte bilingue
+export interface BilingualText {
+  fr: string;
+  en: string;
+}
+
+// Machine Orbitvu (enrichie)
 export interface Machine {
   id: string;
   nom: string;
-  prix: number;                      // € HT
-  capaciteJour: number;              // photos/jour
-  tailleMax: string;
-  poidsMax: string;
+  prix: number;                           // € HT (utilisé pour calculs, non affiché)
+  capaciteJour: number;                   // photos/jour
+  tailleMax: string;                      // Description textuelle
+  poidsMax: string;                       // Description textuelle (peut être kg ou kg/m²)
   tailleCategories: ProductSizeCategory[]; // Catégories supportées
   useCases: string[];
-  maintenanceAnnuelle: number;       // € (6% du prix)
-  consommablesAnnuels: number;       // €
-  imageUrl?: string;                 // Placeholder si non disponible
+  maintenanceAnnuelle: number;            // € (0 selon specs actuelles)
+  consommablesAnnuels: number;            // €
+  imageUrl?: string;
+
+  // Nouveaux champs enrichis
+  dimensionsMax: Dimensions;              // Dimensions max produit en cm
+  poidsMaxKg: number;                     // Poids max en kg (0 si N/A ou charge/m²)
+  features: ContentType[];                // Types de contenu supportés
+  automationLevel: AutomationLevel;       // Niveau d'automatisation
+  idealSectors: IndustrySector[];         // Secteurs idéaux
+  volumeRange: { min: number; max: number }; // Photos/an recommandées
+  keyAdvantages: BilingualText[];         // Avantages clés
+  limitations: BilingualText[];           // Limitations
+  spaceRequired: string;                  // Espace requis (ex: "Bureau", "Sol", "Studio")
+  studioFootprint?: Dimensions;           // Dimensions du studio en cm
+}
+
+// Éligibilité machine (pour le sélecteur)
+export interface MachineEligibility {
+  machineId: string;
+  machine: Machine;
+  score: number;                          // 0-100
+  isEligible: boolean;
+  matchingCriteria: string[];
+  missingCriteria: string[];
+  keyAdvantages: BilingualText[];
+  limitations: BilingualText[];
+}
+
+// Critères de sélection utilisateur
+export interface SelectionCriteria {
+  productDimensions?: Dimensions;         // Dimensions du produit
+  productWeight?: number;                 // Poids en kg
+  annualVolume: number;                   // Volume annuel visé
+  contentTypes: ContentType[];            // Types de contenu souhaités
+  sectors?: IndustrySector[];             // Secteurs d'activité
+  automationPreference?: AutomationLevel; // Préférence automatisation
 }
 
 // Résultats des calculs

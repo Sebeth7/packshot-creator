@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
+import MachineComparator from '../results/MachineComparator';
 import EvolutionChart from '../results/EvolutionChart';
 import ComparisonTable from '../results/ComparisonTable';
 import BreakEvenTimeline from '../results/BreakEvenTimeline';
@@ -12,14 +13,15 @@ import NotProfitableCTA from '../results/NotProfitableCTA';
 import EmailCapture from '../results/EmailCapture';
 import { generatePDF } from '../results/PDFGenerator';
 import { trackCalculatorCompleted, trackCTAClick } from '../lib/analytics';
-import type { CalculationResults } from '../lib/types';
+import type { CalculationResults, UserInputs } from '../lib/types';
 
 interface Step3ResultsProps {
   results: CalculationResults;
+  inputs: UserInputs;
   locale: 'fr' | 'en';
 }
 
-export default function Step3Results({ results, locale }: Step3ResultsProps) {
+export default function Step3Results({ results, inputs, locale }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Track completion au montage
@@ -54,6 +56,13 @@ export default function Step3Results({ results, locale }: Step3ResultsProps) {
 
           {/* Machine recommandée */}
           <MachineRecommendation machine={results.machine} locale={locale} />
+
+          {/* Comparateur de machines */}
+          <MachineComparator
+            inputs={inputs}
+            currentResults={results}
+            locale={locale}
+          />
 
           {/* Graphique évolution 3 ans */}
           <EvolutionChart results={results} locale={locale} />
