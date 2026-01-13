@@ -259,6 +259,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
       {/* Actions */}
       <div className="p-4 border-t border-neutral-lighter flex items-center justify-between">
         <button
+          type="button"
           onClick={() => setExpanded(!expanded)}
           className="text-sm text-primary-turquoise hover:text-primary-dark flex items-center gap-1"
         >

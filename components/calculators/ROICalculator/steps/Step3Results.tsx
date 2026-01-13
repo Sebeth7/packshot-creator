@@ -102,10 +102,12 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
       {results.isRentable ? (
         <>
           {/* Métriques héro */}
-          <HeroMetrics results={results} locale={locale} />
+          <div data-pdf-section="hero">
+            <HeroMetrics results={results} locale={locale} />
+          </div>
 
-          {/* Bouton téléchargement PDF (temporaire) */}
-          <div className="flex justify-end mb-6">
+          {/* Bouton téléchargement PDF (temporaire) - exclu du PDF */}
+          <div className="flex justify-end mb-6" data-pdf-exclude>
             <Button
               onClick={handleDownloadPDF}
               disabled={isDownloading}
@@ -127,32 +129,46 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
           </div>
 
           {/* Machine recommandée */}
-          <MachineRecommendation machine={results.machine} locale={locale} />
+          <div data-pdf-section="machine">
+            <MachineRecommendation machine={results.machine} locale={locale} />
+          </div>
 
           {/* Comparateur de machines */}
-          <MachineComparator
-            inputs={inputs}
-            currentResults={results}
-            locale={locale}
-          />
+          <div data-pdf-section="comparator">
+            <MachineComparator
+              inputs={inputs}
+              currentResults={results}
+              locale={locale}
+            />
+          </div>
 
           {/* Graphique évolution */}
-          <EvolutionChart results={results} locale={locale} />
+          <div data-pdf-section="chart">
+            <EvolutionChart results={results} locale={locale} />
+          </div>
 
           {/* Tableau comparatif */}
-          <ComparisonTable results={results} locale={locale} />
+          <div data-pdf-section="table">
+            <ComparisonTable results={results} locale={locale} />
+          </div>
 
           {/* Timeline break-even */}
-          <BreakEvenTimeline results={results} locale={locale} />
+          <div data-pdf-section="timeline">
+            <BreakEvenTimeline results={results} locale={locale} />
+          </div>
 
           {/* Bénéfices additionnels */}
-          <AdditionalBenefits results={results} locale={locale} />
+          <div data-pdf-section="benefits">
+            <AdditionalBenefits results={results} locale={locale} />
+          </div>
 
-          {/* CTA contextuel */}
-          <ContextualCTA results={results} locale={locale} />
+          {/* CTA contextuel - exclu du PDF */}
+          <div data-pdf-exclude>
+            <ContextualCTA results={results} locale={locale} />
+          </div>
 
-          {/* Capture email */}
-          <div className="mt-8">
+          {/* Capture email - exclu du PDF */}
+          <div className="mt-8" data-pdf-exclude>
             <EmailCapture
               results={results}
               locale={locale}
@@ -161,11 +177,13 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
           </div>
 
           {/* Disclaimer */}
-          <p className="mt-8 text-xs text-neutral-medium text-center">
-            {locale === 'fr'
-              ? 'Ces calculs sont réalisés de manière automatique et vous permettent d\'avoir un aperçu au plus juste de votre ROI. Nous vous recommandons de contacter notre équipe pour affiner la sélection de machine et les calculs ROI en fonction de vos besoins spécifiques.'
-              : 'These calculations are performed automatically and give you the most accurate overview of your ROI. We recommend contacting our team to refine the machine selection and ROI calculations based on your specific needs.'}
-          </p>
+          <div data-pdf-section="disclaimer">
+            <p className="mt-8 text-xs text-neutral-medium text-center">
+              {locale === 'fr'
+                ? 'Ces calculs sont réalisés de manière automatique et vous permettent d\'avoir un aperçu au plus juste de votre ROI. Nous vous recommandons de contacter notre équipe pour affiner la sélection de machine et les calculs ROI en fonction de vos besoins spécifiques.'
+                : 'These calculations are performed automatically and give you the most accurate overview of your ROI. We recommend contacting our team to refine the machine selection and ROI calculations based on your specific needs.'}
+            </p>
+          </div>
         </>
       ) : (
         <>
