@@ -40,7 +40,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-360',
     nom: 'Alphashot 360',
-    prix: 15000,
+    prix: 12450,
     capaciteJour: 200,
     tailleMax: '30×30×30 cm',
     poidsMax: '3 kg',
@@ -215,8 +215,8 @@ export const MACHINES: Machine[] = [
   // ============================================
   {
     id: 'alphadesk',
-    nom: 'Alphadesk',
-    prix: 18000,
+    nom: 'Alphadesk v2',
+    prix: 17450,
     capaciteJour: 480,
     tailleMax: '85×70×5 cm',
     poidsMax: '10 kg',
@@ -244,8 +244,8 @@ export const MACHINES: Machine[] = [
   },
   {
     id: 'alphatable',
-    nom: 'Alphatable',
-    prix: 35000,
+    nom: 'Alphatable v2',
+    prix: 46450,
     capaciteJour: 500,
     tailleMax: '165×112×5 cm',
     poidsMax: '80 kg',
