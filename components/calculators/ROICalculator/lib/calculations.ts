@@ -11,8 +11,17 @@ import {
  * Utilise le nouvel algorithme multi-critères avec fallback sur l'ancienne logique
  */
 export function recommanderMachine(inputs: UserInputs): Machine {
-  // TEMPORAIRE: Utiliser uniquement le fallback jusqu'à ce que le nouveau sélecteur soit corrigé
-  // Le nouveau sélecteur ne priorise pas correctement par prix/capacité
+  // Convertir les inputs en critères de sélection
+  const criteria = userInputsToSelectionCriteria(inputs);
+
+  // Utiliser le nouveau sélecteur multi-critères (trié par prix croissant)
+  const recommendation = recommendMachineAdvanced(criteria, inputs.tailleProduitsCategory);
+
+  if (recommendation) {
+    return recommendation.machine;
+  }
+
+  // Fallback sur l'ancienne logique si aucune machine trouvée
   return fallbackRecommendation(inputs);
 }
 

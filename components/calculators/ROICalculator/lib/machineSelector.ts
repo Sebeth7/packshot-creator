@@ -300,10 +300,10 @@ export function selectEligibleMachines(criteria: SelectionCriteria, sizeCategory
 
   const evaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria));
 
-  // Filtrer les machines éligibles et trier par score décroissant
+  // Filtrer les machines éligibles et trier par prix croissant (puis par score si même prix)
   return evaluations
     .filter(e => e.isEligible)
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => a.machine.prix - b.machine.prix || b.score - a.score);
 }
 
 /**
@@ -317,13 +317,13 @@ export function recommendMachine(criteria: SelectionCriteria, sizeCategory?: Pro
     return eligibleMachines[0];
   }
 
-  // Fallback : prendre la machine avec le meilleur score parmi celles de la bonne catégorie
+  // Fallback : prendre la machine la moins chère parmi celles de la bonne catégorie
   const machinesFiltered = sizeCategory
     ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
     : MACHINES;
 
   const allEvaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria))
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => a.machine.prix - b.machine.prix || b.score - a.score);
 
   if (allEvaluations.length > 0 && allEvaluations[0].score > 0) {
     return { ...allEvaluations[0], isEligible: true };
