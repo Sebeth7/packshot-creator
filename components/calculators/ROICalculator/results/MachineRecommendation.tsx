@@ -62,7 +62,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
         {/* Infos */}
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-turquoise text-white">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-orbitvu text-white">
               {t.recommended}
             </span>
             <h3 className="text-xl md:text-2xl font-heading font-bold text-neutral-dark">
@@ -102,7 +102,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button className="bg-primary-turquoise hover:bg-primary-dark">
+            <Button className="bg-secondary-orbitvu hover:bg-primary-orbitvu">
               {t.bookDemo}
             </Button>
             <Button variant="outline">

@@ -36,7 +36,7 @@ export default function IntroSection({
           <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4">
             {t(headingKey)}
           </h2>
-          <div className="w-24 h-1 bg-primary-turquoise mx-auto"></div>
+          <div className="w-24 h-1 bg-secondary-orbitvu mx-auto"></div>
         </div>
 
         {/* Textes en 2 colonnes */}
@@ -55,7 +55,7 @@ export default function IntroSection({
             <Button
               asChild
               variant="outline"
-              className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-6 text-lg"
+              className="border-2 border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white px-8 py-6 text-lg"
             >
               <a href={ctaHref}>
                 {t(ctaKey)}

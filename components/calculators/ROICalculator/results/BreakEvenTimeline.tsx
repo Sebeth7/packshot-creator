@@ -56,8 +56,8 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       description: t.todayDesc,
       value: '',
       position: 0,
-      color: 'bg-primary-turquoise',
-      textColor: 'text-primary-turquoise',
+      color: 'bg-secondary-orbitvu',
+      textColor: 'text-secondary-orbitvu',
     },
     {
       icon: Check,
@@ -101,7 +101,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
 
         {/* Ligne de progression */}
         <div
-          className="absolute top-6 left-0 h-1 bg-gradient-to-r from-primary-turquoise via-accent-success to-accent-success rounded-full transition-all duration-1000"
+          className="absolute top-6 left-0 h-1 bg-gradient-to-r from-secondary-orbitvu via-accent-success to-accent-success rounded-full transition-all duration-1000"
           style={{ width: '100%' }}
         />
 

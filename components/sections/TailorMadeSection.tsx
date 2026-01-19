@@ -18,7 +18,7 @@ export default function TailorMadeSection() {
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-2">
-            A <span className="underline decoration-primary-turquoise decoration-2 underline-offset-8">tailor-made solution</span>
+            A <span className="underline decoration-secondary-orbitvu decoration-2 underline-offset-8">tailor-made solution</span>
           </h2>
         </div>
 
@@ -32,8 +32,8 @@ export default function TailorMadeSection() {
               >
                 <div className="flex items-start gap-4">
                   {/* Icon placeholder - you can add SVG icons here */}
-                  <div className="w-12 h-12 flex-shrink-0 bg-primary-turquoise/10 rounded-lg flex items-center justify-center">
-                    <div className="w-6 h-6 bg-primary-turquoise rounded"></div>
+                  <div className="w-12 h-12 flex-shrink-0 bg-secondary-orbitvu/10 rounded-lg flex items-center justify-center">
+                    <div className="w-6 h-6 bg-secondary-orbitvu rounded"></div>
                   </div>
                   <div>
                     <h3 className="font-heading font-semibold text-xl text-neutral-dark mb-2">

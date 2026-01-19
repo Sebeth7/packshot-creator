@@ -100,7 +100,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
     <div
       className={`bg-white rounded-xl border-2 transition-all ${
         isRecommended
-          ? 'border-primary-turquoise shadow-lg'
+          ? 'border-secondary-orbitvu shadow-lg'
           : isSelected
           ? 'border-primary-gold shadow-md'
           : 'border-neutral-light hover:border-neutral-medium'
@@ -112,7 +112,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               {isRecommended && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-primary-turquoise text-white">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-secondary-orbitvu text-white">
                   <Star className="w-3 h-3" />
                   {t.recommended}
                 </span>
@@ -261,7 +261,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="text-sm text-primary-turquoise hover:text-primary-dark flex items-center gap-1"
+          className="text-sm text-secondary-orbitvu hover:text-primary-orbitvu flex items-center gap-1"
         >
           {expanded ? (
             <>
@@ -280,7 +280,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
             size="sm"
             variant={isSelected ? 'outline' : 'default'}
             onClick={onSelect}
-            className={isSelected ? '' : 'bg-primary-turquoise hover:bg-primary-dark'}
+            className={isSelected ? '' : 'bg-secondary-orbitvu hover:bg-primary-orbitvu'}
           >
             {t.selectMachine}
           </Button>

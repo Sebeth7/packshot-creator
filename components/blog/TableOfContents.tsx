@@ -63,9 +63,9 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
           >
             <a
               href={`#${heading.id}`}
-              className={`text-sm transition-colors hover:text-primary-turquoise ${
+              className={`text-sm transition-colors hover:text-secondary-orbitvu ${
                 activeId === heading.id
-                  ? 'text-primary-turquoise font-medium'
+                  ? 'text-secondary-orbitvu font-medium'
                   : 'text-neutral-medium'
               }`}
             >

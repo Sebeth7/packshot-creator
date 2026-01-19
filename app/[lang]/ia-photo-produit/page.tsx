@@ -146,7 +146,7 @@ export default async function IAPhotoProduitPage({
         </section>
 
         {/* Section Compatible avec Votre Studio */}
-        <section className="py-20 bg-gradient-to-br from-primary-turquoise/5 to-purple-50">
+        <section className="py-20 bg-gradient-to-br from-secondary-orbitvu/5 to-purple-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
@@ -180,14 +180,14 @@ export default async function IAPhotoProduitPage({
             </div>
 
             {/* Cross-sell Offer */}
-            <div className="bg-gradient-to-r from-primary-turquoise to-purple-600 rounded-2xl p-8 text-center text-white">
+            <div className="bg-gradient-to-r from-secondary-orbitvu to-purple-600 rounded-2xl p-8 text-center text-white">
               <p className="text-2xl font-heading font-bold mb-4">
                 🎁 {t('compatible.offer')}
               </p>
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-primary-turquoise hover:bg-neutral-lighter"
+                className="bg-white text-secondary-orbitvu hover:bg-neutral-lighter"
               >
                 <Link href="/studios-photo-automatises">
                   Découvrir nos studios

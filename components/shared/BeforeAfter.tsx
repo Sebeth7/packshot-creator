@@ -71,7 +71,7 @@ export default function BeforeAfter({
       {/* Content */}
       <div className="p-6 space-y-3">
         {caseData.sector && (
-          <span className="text-xs font-heading font-semibold text-primary-turquoise uppercase tracking-wide">
+          <span className="text-xs font-heading font-semibold text-secondary-orbitvu uppercase tracking-wide">
             {caseData.sector}
           </span>
         )}

@@ -37,7 +37,7 @@ export default function BlogGrid({
           <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4">
             {t(headingKey)}
           </h2>
-          <div className="w-24 h-1 bg-primary-turquoise mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-secondary-orbitvu mx-auto mb-6"></div>
           <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
             {t(descriptionKey)}
           </p>
@@ -62,14 +62,14 @@ export default function BlogGrid({
                 <div className="p-6 space-y-3">
                   {/* Catégorie + Date */}
                   <div className="flex items-center gap-3 text-sm">
-                    <span className="text-primary-turquoise font-medium">
+                    <span className="text-secondary-orbitvu font-medium">
                       {t(post.categoryKey)}
                     </span>
                     <span className="text-neutral-medium/60">{post.date}</span>
                   </div>
 
                   {/* Titre */}
-                  <h3 className="font-heading text-xl text-neutral-dark hover:text-primary-turquoise transition-colors">
+                  <h3 className="font-heading text-xl text-neutral-dark hover:text-secondary-orbitvu transition-colors">
                     {t(post.titleKey)}
                   </h3>
                 </div>
@@ -83,7 +83,7 @@ export default function BlogGrid({
           <Button
             asChild
             variant="outline"
-            className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-4"
+            className="border-2 border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white px-8 py-4"
           >
             <a href={ctaHref}>
               {t(ctaKey)}

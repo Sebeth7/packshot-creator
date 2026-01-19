@@ -60,15 +60,15 @@ export default function QuestionProductSize({ locale }: QuestionProductSizeProps
                 htmlFor={`size-${size}`}
                 className={cn(
                   'flex flex-col p-4 rounded-lg border-2 cursor-pointer transition-all',
-                  'hover:border-primary-turquoise hover:bg-primary-turquoise/5',
+                  'hover:border-secondary-orbitvu hover:bg-secondary-orbitvu/5',
                   isSelected
-                    ? 'border-primary-turquoise bg-primary-turquoise/10'
+                    ? 'border-secondary-orbitvu bg-secondary-orbitvu/10'
                     : 'border-neutral-light bg-white'
                 )}
               >
                 <span className={cn(
                   'font-medium',
-                  isSelected ? 'text-primary-turquoise' : 'text-neutral-dark'
+                  isSelected ? 'text-secondary-orbitvu' : 'text-neutral-dark'
                 )}>
                   {locale === 'fr' ? label.fr : label.en}
                 </span>

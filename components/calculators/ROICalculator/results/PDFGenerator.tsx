@@ -29,7 +29,7 @@ export async function generatePDF(
 
   // Header
   const addHeader = () => {
-    pdf.setFillColor(0, 188, 212); // primary-turquoise
+    pdf.setFillColor(0, 188, 212); // secondary-orbitvu
     pdf.rect(0, 0, pdfWidth, 30, 'F');
     pdf.setTextColor(255, 255, 255);
     pdf.setFontSize(20);
@@ -209,7 +209,7 @@ async function generatePDFLegacy(
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
   // Header
-  pdf.setFillColor(0, 188, 212); // primary-turquoise
+  pdf.setFillColor(0, 188, 212); // secondary-orbitvu
   pdf.rect(0, 0, pdfWidth, 30, 'F');
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(20);

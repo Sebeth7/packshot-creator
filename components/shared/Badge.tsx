@@ -12,7 +12,7 @@ interface BadgeProps {
 
 const variantStyles = {
   gold: 'bg-accent-gold text-white',
-  turquoise: 'bg-primary-turquoise text-white',
+  turquoise: 'bg-secondary-orbitvu text-white',
   green: 'bg-green-600 text-white',
   purple: 'bg-purple-600 text-white',
   default: 'bg-neutral-medium text-white',

@@ -67,7 +67,7 @@ export default function ProductGrid({
             )}
 
             {showPrice && product.price && (
-              <p className="text-lg font-heading font-semibold text-primary-turquoise">
+              <p className="text-lg font-heading font-semibold text-secondary-orbitvu">
                 {product.price}
               </p>
             )}
@@ -75,7 +75,7 @@ export default function ProductGrid({
             <Button
               asChild
               variant="outline"
-              className="w-full border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white"
+              className="w-full border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white"
             >
               <Link href={`/studio-photo/${product.slug}`}>
                 {ctaText}

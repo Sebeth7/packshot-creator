@@ -121,6 +121,16 @@
       "cert2": "Distributeur exclusif Orbitvu France & Suisse",
       "cert3": "Co-fondateur BlendAI Studio"
     },
+    "formateur2": {
+      "name": "[Nom du formateur à définir]",
+      "title": "Expert Photo Produit & Workflow Automatisé",
+      "bio1": "Expérience confirmée en photographie produit et post-production pour le e-commerce.",
+      "bio2": "Spécialiste des workflows automatisés et de l'optimisation de production visuelle.",
+      "bio3": "Formateur certifié avec une pédagogie orientée pratique et résultats concrets.",
+      "cert1": "Certification professionnelle photo produit",
+      "cert2": "Expert studios automatisés Orbitvu",
+      "cert3": "Formateur certifié Qualiopi"
+    },
     "calendrier": {
       "heading": "Calendrier & Inscription",
       "subtitle": "Consultez les prochaines sessions et inscrivez-vous en ligne",

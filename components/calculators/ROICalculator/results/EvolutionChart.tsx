@@ -86,8 +86,8 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
                 <stop offset="95%" stopColor="#FF6F00" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorOrbitvu" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#00BCD4" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#00BCD4" stopOpacity={0} />
+                <stop offset="5%" stopColor="#24A1B4" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#24A1B4" stopOpacity={0} />
               </linearGradient>
             </defs>
 
@@ -144,7 +144,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               type="monotone"
               dataKey="orbitvu"
               name={t.orbitvu}
-              stroke="#00BCD4"
+              stroke="#24A1B4"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorOrbitvu)"

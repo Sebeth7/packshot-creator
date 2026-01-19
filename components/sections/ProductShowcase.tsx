@@ -65,7 +65,7 @@ export default function ProductShowcase({
               <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4 leading-tight">
                 {t(headingKey)}
               </h2>
-              <div className="w-16 h-1 bg-primary-turquoise"></div>
+              <div className="w-16 h-1 bg-secondary-orbitvu"></div>
             </div>
 
             {/* CTA */}
@@ -73,7 +73,7 @@ export default function ProductShowcase({
               <Button
                 asChild
                 variant="outline"
-                className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white px-8 py-4"
+                className="border-2 border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white px-8 py-4"
               >
                 <a href={ctaHref}>
                   {t(ctaKey)}
@@ -90,7 +90,7 @@ export default function ProductShowcase({
             <div className="pt-4 space-y-3">
               {featuresKeys.map((featureKey, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-turquoise rounded-full mt-2 flex-shrink-0" />
+                  <div className="w-2 h-2 bg-secondary-orbitvu rounded-full mt-2 flex-shrink-0" />
                   <p className="text-base text-neutral-medium font-medium">
                     {t(featureKey)}
                   </p>

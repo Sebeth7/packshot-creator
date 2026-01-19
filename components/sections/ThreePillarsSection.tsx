@@ -54,7 +54,7 @@ export default function ThreePillarsSection({
             <Link
               key={pillar.key}
               href={pillar.href}
-              className="group bg-neutral-lighter rounded-xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary-turquoise"
+              className="group bg-neutral-lighter rounded-xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-secondary-orbitvu"
             >
               {/* Icon */}
               <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -69,7 +69,7 @@ export default function ThreePillarsSection({
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-3 group-hover:text-primary-turquoise transition-colors">
+              <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-3 group-hover:text-secondary-orbitvu transition-colors">
                 {t(`${pillar.key}.title`)}
               </h3>
 
@@ -79,7 +79,7 @@ export default function ThreePillarsSection({
               </p>
 
               {/* Arrow indicator */}
-              <div className="mt-6 flex items-center text-primary-turquoise font-semibold group-hover:translate-x-2 transition-transform duration-300">
+              <div className="mt-6 flex items-center text-secondary-orbitvu font-semibold group-hover:translate-x-2 transition-transform duration-300">
                 <span className="mr-2">En savoir plus</span>
                 <svg
                   className="w-5 h-5"

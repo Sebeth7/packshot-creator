@@ -29,7 +29,7 @@ export default function WizardProgress({ steps, currentStep, locale }: WizardPro
                 className={cn(
                   'w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all',
                   isCompleted && 'bg-accent-success text-white',
-                  isCurrent && 'bg-primary-turquoise text-white',
+                  isCurrent && 'bg-secondary-orbitvu text-white',
                   !isCompleted && !isCurrent && 'bg-neutral-light text-neutral-medium'
                 )}
               >
@@ -42,7 +42,7 @@ export default function WizardProgress({ steps, currentStep, locale }: WizardPro
               <span
                 className={cn(
                   'text-xs mt-2 text-center max-w-[80px]',
-                  isCurrent ? 'text-primary-turquoise font-medium' : 'text-neutral-medium'
+                  isCurrent ? 'text-secondary-orbitvu font-medium' : 'text-neutral-medium'
                 )}
               >
                 {step.title}

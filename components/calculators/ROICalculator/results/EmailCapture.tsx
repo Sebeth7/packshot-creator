@@ -92,8 +92,8 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
   return (
     <div className="bg-neutral-lighter rounded-xl p-6">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-primary-turquoise/10 flex items-center justify-center flex-shrink-0">
-          <Mail className="w-5 h-5 text-primary-turquoise" />
+        <div className="w-10 h-10 rounded-lg bg-secondary-orbitvu/10 flex items-center justify-center flex-shrink-0">
+          <Mail className="w-5 h-5 text-secondary-orbitvu" />
         </div>
         <div>
           <h4 className="font-heading font-bold text-neutral-dark">
@@ -121,7 +121,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
         <Button
           type="submit"
           disabled={isLoading}
-          className="gap-2 bg-primary-turquoise hover:bg-primary-dark"
+          className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
         >
           <Download className="w-4 h-4" />
           {isLoading ? t.sending : t.submit}

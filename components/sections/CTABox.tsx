@@ -21,17 +21,17 @@ export default function CTABox({
   const t = useTranslations(namespace);
 
   const bgClasses = {
-    'coral': 'bg-primary-turquoise text-white',
-    'teal': 'bg-primary-turquoise text-white',
+    'coral': 'bg-secondary-orbitvu text-white',
+    'teal': 'bg-secondary-orbitvu text-white',
     'light-gray': 'bg-neutral-light text-neutral-dark',
     'white': 'bg-white text-neutral-dark'
   };
 
   const buttonClasses = {
-    'coral': 'bg-white text-primary-turquoise hover:bg-white/90',
-    'teal': 'bg-white text-primary-turquoise hover:bg-white/90',
-    'light-gray': 'bg-primary-turquoise text-white hover:bg-primary-dark',
-    'white': 'bg-primary-turquoise text-white hover:bg-primary-dark'
+    'coral': 'bg-white text-secondary-orbitvu hover:bg-white/90',
+    'teal': 'bg-white text-secondary-orbitvu hover:bg-white/90',
+    'light-gray': 'bg-secondary-orbitvu text-white hover:bg-primary-orbitvu',
+    'white': 'bg-secondary-orbitvu text-white hover:bg-primary-orbitvu'
   };
 
   return (

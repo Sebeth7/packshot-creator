@@ -49,7 +49,7 @@ export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumePro
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-neutral-medium hover:text-primary-turquoise">
+              <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -71,7 +71,7 @@ export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumePro
         />
         <div className="flex justify-between mt-2">
           <span className="text-sm text-neutral-medium">100</span>
-          <span className="text-lg font-bold text-primary-turquoise">
+          <span className="text-lg font-bold text-secondary-orbitvu">
             {formatNumber(value)} {t.unit}
           </span>
           <span className="text-sm text-neutral-medium">100 000</span>

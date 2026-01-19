@@ -836,7 +836,7 @@ export default function ROICalculatorWizard({
   return (
     <div className={cn('bg-white rounded-2xl shadow-xl overflow-hidden', className)}>
       {/* Header avec progression */}
-      <div className="bg-gradient-to-r from-primary-turquoise to-primary-dark px-6 py-4">
+      <div className="bg-gradient-to-r from-secondary-orbitvu to-primary-orbitvu px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-white font-heading font-bold text-lg">
             {STEPS[currentStep - 1].title[locale]}
@@ -860,7 +860,7 @@ export default function ROICalculatorWizard({
           {/* Loading state */}
           {isCalculating && (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary-turquoise border-t-transparent mb-4" />
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-secondary-orbitvu border-t-transparent mb-4" />
               <p className="text-neutral-medium">
                 {locale === 'fr' ? 'Calcul de votre ROI en cours...' : 'Calculating your ROI...'}
               </p>
@@ -888,7 +888,7 @@ export default function ROICalculatorWizard({
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="gap-2 bg-primary-turquoise hover:bg-primary-dark"
+                  className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
                 >
                   {currentStep === 2 ? (
                     <>
@@ -1203,8 +1203,8 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
       value: results.breakEvenMois
         ? `${Math.round(results.breakEvenMois)} ${t.months}`
         : '-',
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
       highlight: results.breakEvenMois && results.breakEvenMois < 18,
     },
     {
@@ -1229,14 +1229,14 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
       label: t.roi3,
       value: `+${Math.round(results.roi3ans)}%`,
       sublabel: `${formatEuro(results.economie3ans)} ${t.roi3Note}`,
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
       highlight: results.roi3ans > 200,
     },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-primary-turquoise/10 to-primary-turquoise/5 rounded-2xl p-6 md:p-8 mb-8">
+    <div className="bg-gradient-to-br from-secondary-orbitvu/10 to-secondary-orbitvu/5 rounded-2xl p-6 md:p-8 mb-8">
       <h2 className="text-2xl md:text-3xl font-heading font-bold text-neutral-dark mb-6 text-center">
         {locale === 'fr' ? 'Votre Analyse ROI Personnalisée' : 'Your Personalized ROI Analysis'}
       </h2>
@@ -1248,7 +1248,7 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
             className={cn(
               'rounded-xl p-4 transition-all',
               metric.bgColor,
-              metric.highlight && 'ring-2 ring-primary-turquoise ring-offset-2'
+              metric.highlight && 'ring-2 ring-secondary-orbitvu ring-offset-2'
             )}
           >
             <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3', metric.bgColor)}>
@@ -1311,7 +1311,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
         {/* Infos */}
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-turquoise text-white">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-orbitvu text-white">
               {locale === 'fr' ? 'Machine recommandée' : 'Recommended machine'}
             </span>
             <h3 className="text-xl md:text-2xl font-heading font-bold text-neutral-dark">
@@ -1355,7 +1355,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button className="bg-primary-turquoise hover:bg-primary-dark">
+            <Button className="bg-secondary-orbitvu hover:bg-primary-orbitvu">
               {locale === 'fr' ? 'Réserver une démo' : 'Book a demo'}
             </Button>
             <Button variant="outline">
@@ -1449,8 +1449,8 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
                 <stop offset="95%" stopColor="#FF6F00" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorOrbitvu" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#00BCD4" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#00BCD4" stopOpacity={0} />
+                <stop offset="5%" stopColor="#24A1B4" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#24A1B4" stopOpacity={0} />
               </linearGradient>
             </defs>
 
@@ -1507,7 +1507,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               type="monotone"
               dataKey="orbitvu"
               name={t.orbitvu}
-              stroke="#00BCD4"
+              stroke="#24A1B4"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorOrbitvu)"
@@ -1584,7 +1584,7 @@ export default function NotProfitableCTA({ locale }: NotProfitableCTAProps) {
         }
       </p>
 
-      <Button size="lg" className="gap-2 bg-primary-turquoise hover:bg-primary-dark">
+      <Button size="lg" className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu">
         <MessageCircle className="w-5 h-5" />
         {locale === 'fr' ? 'Demander une étude gratuite' : 'Request a free analysis'}
       </Button>
@@ -1685,8 +1685,8 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
   return (
     <div className="bg-neutral-lighter rounded-xl p-6">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-primary-turquoise/10 flex items-center justify-center flex-shrink-0">
-          <Mail className="w-5 h-5 text-primary-turquoise" />
+        <div className="w-10 h-10 rounded-lg bg-secondary-orbitvu/10 flex items-center justify-center flex-shrink-0">
+          <Mail className="w-5 h-5 text-secondary-orbitvu" />
         </div>
         <div>
           <h4 className="font-heading font-bold text-neutral-dark">
@@ -1720,7 +1720,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
         <Button
           type="submit"
           disabled={isLoading}
-          className="gap-2 bg-primary-turquoise hover:bg-primary-dark"
+          className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
         >
           <Download className="w-4 h-4" />
           {isLoading
@@ -1782,7 +1782,7 @@ export async function generatePDF(
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
   // Header
-  pdf.setFillColor(0, 188, 212); // primary-turquoise
+  pdf.setFillColor(0, 188, 212); // secondary-orbitvu
   pdf.rect(0, 0, pdfWidth, 30, 'F');
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(20);

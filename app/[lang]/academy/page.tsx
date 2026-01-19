@@ -65,7 +65,7 @@ function FormationCard({ formation, lang }: { formation: Formation; lang: string
         </div>
         {formation.prix_blended && (
           <div className="text-sm text-neutral-medium">
-            Blended : <strong className="text-primary-turquoise">{formation.prix_blended}€ HT</strong>
+            Blended : <strong className="text-secondary-orbitvu">{formation.prix_blended}€ HT</strong>
           </div>
         )}
         <div className="text-sm text-neutral-medium">
@@ -73,7 +73,7 @@ function FormationCard({ formation, lang }: { formation: Formation; lang: string
         </div>
       </div>
 
-      <div className="text-primary-turquoise font-medium text-sm">
+      <div className="text-secondary-orbitvu font-medium text-sm">
         En savoir plus →
       </div>
     </Link>
@@ -227,58 +227,98 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
           </div>
         </section>
 
-        {/* SECTION 4 : Profil Formateur */}
+        {/* SECTION 4 : Profil Formateurs */}
         <section className="py-16 bg-white">
-          <div className="max-w-5xl mx-auto px-4">
+          <div className="max-w-6xl mx-auto px-4">
             <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-8 text-center">
               {t('formateur.heading')}
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Photo - PLACEHOLDER TEMPORAIRE */}
-              <div>
-                {/* TODO: Remplacer par /images/sebastien-jourdan-formateur.jpg quand disponible */}
-                <div className="w-full aspect-square bg-gradient-to-br from-primary-turquoise to-primary-dark rounded-lg flex items-center justify-center text-white">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">👨‍🏫</div>
-                    <p className="text-sm opacity-80">Photo à venir</p>
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Formateur 1 : Sébastien */}
+              <div className="flex flex-col">
+                {/* Photo - PLACEHOLDER TEMPORAIRE */}
+                <div className="mb-6">
+                  <div className="w-full aspect-square bg-gradient-to-br from-secondary-orbitvu to-primary-orbitvu rounded-lg flex items-center justify-center text-white">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">👨‍🏫</div>
+                      <p className="text-sm opacity-80">Photo à venir</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bio Sébastien */}
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-2">
+                    {t('formateur.name')}
+                  </h3>
+                  <p className="text-secondary-orbitvu font-medium mb-4">
+                    {t('formateur.title')}
+                  </p>
+
+                  <div className="space-y-3 text-neutral-medium text-sm">
+                    <p>{t('formateur.bio1')}</p>
+                    <p>{t('formateur.bio2')}</p>
+                    <p>{t('formateur.bio3')}</p>
+                  </div>
+
+                  <div className="mt-6 space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur.cert1')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur.cert2')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur.cert3')}</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Bio */}
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-2">
-                  {t('formateur.name')}
-                </h3>
-                <p className="text-primary-turquoise font-medium mb-4">
-                  {t('formateur.title')}
-                </p>
-
-                <div className="space-y-3 text-neutral-medium">
-                  <p>
-                    {t('formateur.bio1')}
-                  </p>
-                  <p>
-                    {t('formateur.bio2')}
-                  </p>
-                  <p>
-                    {t('formateur.bio3')}
-                  </p>
+              {/* Formateur 2 : Stéphane */}
+              <div className="flex flex-col">
+                {/* Photo - PLACEHOLDER TEMPORAIRE */}
+                <div className="mb-6">
+                  <div className="w-full aspect-square bg-gradient-to-br from-accent-gold to-accent-alert rounded-lg flex items-center justify-center text-white">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">👨‍💼</div>
+                      <p className="text-sm opacity-80">Photo à venir</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-6 space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00C853]">✓</span>
-                    <span>{t('formateur.cert1')}</span>
+                {/* Bio Stéphane */}
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-2">
+                    {t('formateur2.name')}
+                  </h3>
+                  <p className="text-accent-gold font-medium mb-4">
+                    {t('formateur2.title')}
+                  </p>
+
+                  <div className="space-y-3 text-neutral-medium text-sm">
+                    <p>{t('formateur2.bio1')}</p>
+                    <p>{t('formateur2.bio2')}</p>
+                    <p>{t('formateur2.bio3')}</p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00C853]">✓</span>
-                    <span>{t('formateur.cert2')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00C853]">✓</span>
-                    <span>{t('formateur.cert3')}</span>
+
+                  <div className="mt-6 space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur2.cert1')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur2.cert2')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#00C853]">✓</span>
+                      <span>{t('formateur2.cert3')}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -299,16 +339,34 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
             </div>
 
             {/* Google Calendar Appointment Scheduling */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            {/* TODO: Remplacer par l'ID réel Google Calendar Appointments */}
+            {/* <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID?gv=true"
                 style={{ border: 0, width: '100%', height: '600px' }}
                 title="Calendrier des formations"
               />
+            </div> */}
+
+            {/* Message temporaire en attendant la configuration du calendrier */}
+            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <div className="text-6xl mb-4">📅</div>
+              <h3 className="font-heading text-xl font-bold text-neutral-dark mb-3">
+                Calendrier de réservation bientôt disponible
+              </h3>
+              <p className="text-neutral-medium mb-6">
+                Notre système de prise de rendez-vous en ligne sera disponible prochainement. En attendant, contactez-nous directement pour réserver votre session de formation.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-secondary-orbitvu text-white px-6 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors"
+              >
+                Nous contacter
+              </Link>
             </div>
 
             <p className="text-center text-sm text-neutral-medium mt-4">
-              {t('calendrier.contact')} <Link href="/contact" className="text-primary-turquoise underline">Contactez-nous</Link>
+              {t('calendrier.contact')} <Link href="/contact" className="text-secondary-orbitvu underline">Contactez-nous</Link>
             </p>
           </div>
         </section>

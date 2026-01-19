@@ -8,8 +8,8 @@ export default function IAManifesteSection() {
     {
       key: 'principle1',
       Icon: Camera,
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
     },
     {
       key: 'principle2',

@@ -26,8 +26,8 @@ interface HeroProps {
 const variantStyles = {
   hardware: {
     bg: 'bg-gradient-to-br from-neutral-lighter to-white',
-    accent: 'text-primary-turquoise',
-    ctaColor: 'bg-primary-turquoise hover:bg-primary-dark',
+    accent: 'text-secondary-orbitvu',
+    ctaColor: 'bg-secondary-orbitvu hover:bg-primary-orbitvu',
   },
   ia: {
     bg: 'bg-gradient-to-br from-purple-50 to-white',
@@ -41,8 +41,8 @@ const variantStyles = {
   },
   default: {
     bg: 'bg-neutral-lighter',
-    accent: 'text-primary-turquoise',
-    ctaColor: 'bg-primary-turquoise hover:bg-primary-dark',
+    accent: 'text-secondary-orbitvu',
+    ctaColor: 'bg-secondary-orbitvu hover:bg-primary-orbitvu',
   },
 };
 

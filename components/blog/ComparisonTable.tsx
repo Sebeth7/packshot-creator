@@ -14,7 +14,7 @@ export function ComparisonTable({ headers, rows, className = '' }: ComparisonTab
     <div className={`overflow-x-auto my-8 ${className}`}>
       <table className="min-w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
         <thead>
-          <tr className="bg-primary-turquoise text-white">
+          <tr className="bg-secondary-orbitvu text-white">
             <th className="px-6 py-4 text-left font-heading font-bold text-sm uppercase tracking-wide">
               {/* Première colonne vide pour les labels */}
             </th>

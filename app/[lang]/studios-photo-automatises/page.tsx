@@ -6,7 +6,6 @@ import Hero from '@/components/sections/Hero';
 import ThreePillarsSection from '@/components/sections/ThreePillarsSection';
 import ProductGrid, { Product } from '@/components/shared/ProductGrid';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
-import { MachineSelectionTool } from '@/components/shared/EmbedFrame';
 import { ROICalculator } from '@/components/calculators/ROICalculator';
 import ClientLogos from '@/components/sections/ClientLogos';
 import CTABox from '@/components/sections/CTABox';
@@ -91,7 +90,7 @@ export default async function StudiosPhotoAutomatisesPage({
           ctaKey="hero.ctaPrimary"
           ctaHref="/studios-photo-automatises#calculateur-roi"
           ctaSecondaryKey="hero.ctaSecondary"
-          ctaSecondaryHref="/studios-photo-automatises#outil-selection"
+          ctaSecondaryHref="/contact"
           badges={[
             <BadgeDistributor key="badge">
               Distributeur exclusif Orbitvu FR & CH
@@ -133,7 +132,7 @@ export default async function StudiosPhotoAutomatisesPage({
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-primary-turquoise text-primary-turquoise hover:bg-primary-turquoise hover:text-white"
+                className="border-2 border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white"
               >
                 <Link href="/studio-photo">
                   {t('products.viewAll')}
@@ -154,20 +153,6 @@ export default async function StudiosPhotoAutomatisesPage({
             </p>
 
             <ROICalculator className="shadow-2xl" locale={lang as 'fr' | 'en'} />
-          </div>
-        </section>
-
-        {/* Section Outil Sélection Machine */}
-        <section id="outil-selection" className="py-20 bg-neutral-lighter">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
-              {t('machineSelection.heading')}
-            </h2>
-            <p className="text-lg text-neutral-medium text-center mb-12">
-              {t('machineSelection.subtitle')}
-            </p>
-
-            <MachineSelectionTool className="shadow-2xl" />
           </div>
         </section>
 

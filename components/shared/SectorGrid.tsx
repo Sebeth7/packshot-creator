@@ -46,7 +46,7 @@ export default function SectorGrid({
         <Link
           key={sector.slug}
           href={`/industrie/${sector.slug}`}
-          className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-primary-turquoise"
+          className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-secondary-orbitvu"
         >
           <div className="flex flex-col items-center text-center space-y-3">
             {/* Icon */}
@@ -55,7 +55,7 @@ export default function SectorGrid({
             </div>
 
             {/* Name */}
-            <h3 className="text-base font-heading font-semibold text-neutral-dark group-hover:text-primary-turquoise transition-colors">
+            <h3 className="text-base font-heading font-semibold text-neutral-dark group-hover:text-secondary-orbitvu transition-colors">
               {sector.name}
             </h3>
 

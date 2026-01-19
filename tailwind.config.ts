@@ -15,32 +15,32 @@ const config: Config = {
             maxWidth: '65ch',
             color: 'var(--neutral-dark)',
             a: {
-              color: 'var(--primary-turquoise)',
+              color: 'var(--secondary-orbitvu)',
               '&:hover': {
-                color: 'var(--primary-dark)',
+                color: 'var(--primary-orbitvu)',
               },
             },
             h1: {
-              color: 'var(--neutral-dark)',
+              color: 'var(--heading-dark)',
               fontFamily: 'var(--font-cairo)',
             },
             h2: {
-              color: 'var(--neutral-dark)',
+              color: 'var(--heading-dark)',
               fontFamily: 'var(--font-cairo)',
             },
             h3: {
-              color: 'var(--neutral-dark)',
+              color: 'var(--heading-dark)',
               fontFamily: 'var(--font-cairo)',
             },
             h4: {
-              color: 'var(--neutral-dark)',
+              color: 'var(--heading-dark)',
               fontFamily: 'var(--font-cairo)',
             },
             code: {
-              color: 'var(--primary-dark)',
+              color: 'var(--secondary-orbitvu)',
             },
             blockquote: {
-              borderLeftColor: 'var(--primary-turquoise)',
+              borderLeftColor: 'var(--secondary-orbitvu)',
               color: 'var(--neutral-medium)',
             },
           },

@@ -50,8 +50,8 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
       value: results.breakEvenMois
         ? `${Math.round(results.breakEvenMois)} ${t.months}`
         : '-',
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
       highlight: results.breakEvenMois !== null && results.breakEvenMois < 18,
     },
     {
@@ -77,14 +77,14 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
       label: t.roi5,
       value: `+${Math.round(results.roi5ans)}%`,
       sublabel: `${formatEuro(results.economie5ans)} ${t.roi5Note}`,
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
       highlight: results.roi5ans > 200,
     },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-primary-turquoise/10 to-primary-turquoise/5 rounded-2xl p-6 md:p-8 mb-8">
+    <div className="bg-gradient-to-br from-secondary-orbitvu/10 to-secondary-orbitvu/5 rounded-2xl p-6 md:p-8 mb-8">
       <h2 className="text-2xl md:text-3xl font-heading font-bold text-neutral-dark mb-6 text-center">
         {t.title}
       </h2>
@@ -96,7 +96,7 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
             className={cn(
               'rounded-xl p-4 transition-all',
               metric.bgColor,
-              metric.highlight && 'ring-2 ring-primary-turquoise ring-offset-2'
+              metric.highlight && 'ring-2 ring-secondary-orbitvu ring-offset-2'
             )}
           >
             <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3', metric.bgColor)}>

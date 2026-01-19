@@ -57,8 +57,8 @@ export default function AdditionalBenefits({ results, locale }: AdditionalBenefi
       icon: Shield,
       title: t.consistency.title,
       description: t.consistency.description,
-      color: 'text-primary-turquoise',
-      bgColor: 'bg-primary-turquoise/10',
+      color: 'text-secondary-orbitvu',
+      bgColor: 'bg-secondary-orbitvu/10',
     },
     {
       icon: Zap,

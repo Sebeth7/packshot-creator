@@ -29,26 +29,26 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link href="/studios-photo-automatises" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+            <Link href="/studios-photo-automatises" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Capture
             </Link>
-            <Link href="/ia-photo-produit" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+            <Link href="/ia-photo-produit" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Création
             </Link>
-            <Link href="/academy" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+            <Link href="/academy" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Formation
             </Link>
-            <Link href="/blog" className="text-sm font-body text-neutral-dark hover:text-primary-turquoise transition-colors">
+            <Link href="/blog" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Blog
             </Link>
           </nav>
 
           {/* CTA + Language */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href={pathname} locale={otherLocale} className="text-sm font-body text-neutral-dark hover:text-primary-turquoise">
+            <Link href={pathname} locale={otherLocale} className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu">
               {otherLocale.toUpperCase()}
             </Link>
-            <Button asChild className="bg-primary-turquoise hover:bg-primary-dark text-white">
+            <Button asChild className="bg-secondary-orbitvu hover:bg-primary-orbitvu text-white">
               <Link href="/contact">
                 {t('nav.receiveOffer')}
               </Link>
@@ -69,22 +69,22 @@ export default function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden pt-4 pb-2 space-y-2">
-            <Link href="/studios-photo-automatises" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+            <Link href="/studios-photo-automatises" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Capture
             </Link>
-            <Link href="/ia-photo-produit" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+            <Link href="/ia-photo-produit" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Création
             </Link>
-            <Link href="/academy" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+            <Link href="/academy" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Formation
             </Link>
-            <Link href="/blog" className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+            <Link href="/blog" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Blog
             </Link>
-            <Link href={pathname} locale={otherLocale} className="block py-2 text-neutral-dark hover:text-primary-turquoise">
+            <Link href={pathname} locale={otherLocale} className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               {otherLocale.toUpperCase()}
             </Link>
-            <Button asChild className="w-full bg-primary-turquoise hover:bg-primary-dark text-white mt-4">
+            <Button asChild className="w-full bg-secondary-orbitvu hover:bg-primary-orbitvu text-white mt-4">
               <Link href="/contact">
                 {t('nav.receiveOffer')}
               </Link>

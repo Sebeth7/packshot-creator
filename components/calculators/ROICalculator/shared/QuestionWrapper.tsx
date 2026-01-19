@@ -35,7 +35,7 @@ export default function QuestionWrapper({
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button type="button" className="text-neutral-medium hover:text-primary-turquoise">
+                <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
                   <HelpCircle className="w-5 h-5" />
                 </button>
               </TooltipTrigger>

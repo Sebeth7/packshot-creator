@@ -59,7 +59,7 @@ export default function QuestionProductionSplit({ locale }: QuestionProductionSp
 
         <div className="flex justify-between mt-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-primary-turquoise">
+            <div className="text-2xl font-bold text-secondary-orbitvu">
               {repartition.packshot}%
             </div>
             <div className="text-sm text-neutral-medium">{t.packshot}</div>

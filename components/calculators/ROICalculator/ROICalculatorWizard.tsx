@@ -100,7 +100,7 @@ export default function ROICalculatorWizard({
   return (
     <div className={cn('bg-white rounded-2xl shadow-xl overflow-hidden', className)}>
       {/* Header avec progression */}
-      <div className="bg-gradient-to-r from-primary-turquoise to-primary-dark px-6 py-4">
+      <div className="bg-gradient-to-r from-secondary-orbitvu to-primary-orbitvu px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-white font-heading font-bold text-lg">
             {STEPS[currentStep - 1].title[locale]}
@@ -128,7 +128,7 @@ export default function ROICalculatorWizard({
           {/* Loading state */}
           {isCalculating && (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary-turquoise border-t-transparent mb-4" />
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-secondary-orbitvu border-t-transparent mb-4" />
               <p className="text-neutral-medium">
                 {locale === 'fr' ? 'Calcul de votre ROI en cours...' : 'Calculating your ROI...'}
               </p>
@@ -156,7 +156,7 @@ export default function ROICalculatorWizard({
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="gap-2 bg-primary-turquoise hover:bg-primary-dark"
+                  className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
                 >
                   {currentStep === 2 ? (
                     <>

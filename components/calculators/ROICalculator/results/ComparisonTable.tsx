@@ -87,7 +87,7 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
               <th className="text-center py-3 px-4">
                 <ArrowRight className="w-4 h-4 text-neutral-medium mx-auto" />
               </th>
-              <th className="text-center py-3 px-4 text-sm font-medium text-primary-turquoise">
+              <th className="text-center py-3 px-4 text-sm font-medium text-secondary-orbitvu">
                 {t.withOrbitvu}
               </th>
               <th className="text-center py-3 px-4 text-sm font-medium text-neutral-medium">
@@ -113,7 +113,7 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
                 <td className="py-4 px-4 text-center">
                   <ArrowRight className="w-4 h-4 text-neutral-light mx-auto" />
                 </td>
-                <td className="py-4 px-4 text-center text-sm font-bold text-primary-turquoise">
+                <td className="py-4 px-4 text-center text-sm font-bold text-secondary-orbitvu">
                   {row.orbitvu}
                 </td>
                 <td className="py-4 px-4 text-center">

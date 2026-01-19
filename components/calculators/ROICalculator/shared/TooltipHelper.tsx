@@ -12,7 +12,7 @@ export default function TooltipHelper({ content }: TooltipHelperProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button type="button" className="text-neutral-medium hover:text-primary-turquoise ml-2">
+          <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu ml-2">
             <HelpCircle className="w-4 h-4" />
           </button>
         </TooltipTrigger>

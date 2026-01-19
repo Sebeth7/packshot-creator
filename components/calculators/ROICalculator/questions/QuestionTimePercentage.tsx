@@ -42,7 +42,7 @@ export default function QuestionTimePercentage({ locale }: QuestionTimePercentag
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-neutral-medium hover:text-primary-turquoise">
+              <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -64,7 +64,7 @@ export default function QuestionTimePercentage({ locale }: QuestionTimePercentag
         />
         <div className="flex justify-between mt-2">
           <span className="text-sm text-neutral-medium">10%</span>
-          <span className="text-lg font-bold text-primary-turquoise">
+          <span className="text-lg font-bold text-secondary-orbitvu">
             {value}%
           </span>
           <span className="text-sm text-neutral-medium">100%</span>

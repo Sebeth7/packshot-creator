@@ -75,11 +75,11 @@ export default async function BlogArticlePage({
           <header className="bg-white border-b border-neutral-light">
             <div className="max-w-4xl mx-auto px-4 py-8">
               <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
-                <Link href="/" className="hover:text-primary-turquoise transition-colors">
+                <Link href="/" className="hover:text-secondary-orbitvu transition-colors">
                   Accueil
                 </Link>
                 <span>/</span>
-                <Link href="/blog" className="hover:text-primary-turquoise transition-colors">
+                <Link href="/blog" className="hover:text-secondary-orbitvu transition-colors">
                   Blog
                 </Link>
                 <span>/</span>
@@ -113,7 +113,7 @@ export default async function BlogArticlePage({
             </article>
 
             {/* CTA Section */}
-            <div className="mt-12 bg-primary-turquoise text-white rounded-lg p-8 text-center">
+            <div className="mt-12 bg-secondary-orbitvu text-white rounded-lg p-8 text-center">
               <h2 className="font-heading text-2xl font-bold mb-4">
                 Prêt à automatiser votre production photo ?
               </h2>
@@ -122,7 +122,7 @@ export default async function BlogArticlePage({
               </p>
               <Link
                 href="/contact"
-                className="inline-block bg-white text-primary-turquoise font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+                className="inline-block bg-white text-secondary-orbitvu font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
               >
                 Réserver une démo
               </Link>
@@ -146,11 +146,11 @@ export default async function BlogArticlePage({
           <header className="bg-white border-b border-neutral-light">
             <div className="max-w-4xl mx-auto px-4 py-8">
               <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
-                <Link href="/" className="hover:text-primary-turquoise transition-colors">
+                <Link href="/" className="hover:text-secondary-orbitvu transition-colors">
                   Accueil
                 </Link>
                 <span>/</span>
-                <Link href="/blog" className="hover:text-primary-turquoise transition-colors">
+                <Link href="/blog" className="hover:text-secondary-orbitvu transition-colors">
                   Blog
                 </Link>
                 <span>/</span>
@@ -190,7 +190,7 @@ export default async function BlogArticlePage({
             </article>
 
             {/* CTA Section */}
-            <div className="mt-12 bg-primary-turquoise text-white rounded-lg p-8 text-center">
+            <div className="mt-12 bg-secondary-orbitvu text-white rounded-lg p-8 text-center">
               <h2 className="font-heading text-2xl font-bold mb-4">
                 Prêt à automatiser votre production photo ?
               </h2>
@@ -199,7 +199,7 @@ export default async function BlogArticlePage({
               </p>
               <Link
                 href="/contact"
-                className="inline-block bg-white text-primary-turquoise font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+                className="inline-block bg-white text-secondary-orbitvu font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
               >
                 Réserver une démo
               </Link>

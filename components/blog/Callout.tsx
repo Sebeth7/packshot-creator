@@ -12,8 +12,8 @@ interface CalloutProps {
 const calloutStyles: Record<CalloutType, { bg: string; border: string; text: string; icon: string }> = {
   info: {
     bg: 'bg-blue-50',
-    border: 'border-l-4 border-primary-turquoise',
-    text: 'text-primary-dark',
+    border: 'border-l-4 border-secondary-orbitvu',
+    text: 'text-primary-orbitvu',
     icon: 'ℹ️',
   },
   warning: {

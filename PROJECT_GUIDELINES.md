@@ -4,20 +4,21 @@
 
 **PRIMARY DESIGN REFERENCE**: `design_system_final.md`
 
-### Color Palette (Turquoise)
-- **Primary Turquoise**: #00BCD4
-- **Primary Dark**: #0097A7
-- **Neutral Dark**: #263238
+### Color Palette (Orbitvu Official)
+- **Primary Orbitvu** (CTA): #EC3655 (Rouge/Rose)
+- **Secondary Orbitvu** (Liens, Accents): #24A1B4 (Turquoise)
+- **Text Dark** (Body): #0D171A
+- **Heading Dark**: #001D26
 - **Neutral Medium**: #546E7A
-- **Neutral Light**: #ECEFF1
-- **Neutral Lighter**: #F5F7F8
+- **BG Light Gray**: #F8FAFB
+- **BG Off-White**: #FBFBFB
 - **Accent Gold**: #FFB300
 - **Accent Success**: #00C853
 - **Accent Alert**: #FF6F00
 
 ### Typography
-- **Headings**: Poppins/Inter (font-heading)
-- **Body**: Inter (font-body)
+- **Headings** (H1, H2): Cairo, sans-serif (font-cairo)
+- **Body & H3**: Roboto, sans-serif (font-roboto)
 
 ## Migration Rules
 

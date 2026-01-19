@@ -68,7 +68,7 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
     .replace('{savings}', formatEuro(results.economieAnnuelle));
 
   const bgGradient = roiLevel === 'exceptional'
-    ? 'from-primary-turquoise to-primary-dark'
+    ? 'from-secondary-orbitvu to-primary-orbitvu'
     : roiLevel === 'good'
       ? 'from-accent-success to-green-600'
       : 'from-purple-500 to-purple-700';
@@ -94,7 +94,7 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
           <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
             <Button
               size="lg"
-              className="bg-white text-primary-dark hover:bg-white/90 gap-2"
+              className="bg-white text-primary-orbitvu hover:bg-white/90 gap-2"
             >
               <Calendar className="w-5 h-5" />
               {content.cta}

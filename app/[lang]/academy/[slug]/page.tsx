@@ -76,11 +76,11 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
         <div className="max-w-5xl mx-auto px-4 py-12">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-neutral-medium mb-6">
-            <Link href={`/${lang}`} className="hover:text-primary-turquoise transition-colors">
+            <Link href={`/${lang}`} className="hover:text-secondary-orbitvu transition-colors">
               Accueil
             </Link>
             <span>/</span>
-            <Link href={`/${lang}/academy`} className="hover:text-primary-turquoise transition-colors">
+            <Link href={`/${lang}/academy`} className="hover:text-secondary-orbitvu transition-colors">
               Formation
             </Link>
             <span>/</span>
@@ -109,7 +109,7 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
             {formation.prix_blended && (
               <div>
                 <div className="text-sm text-neutral-medium">Blended</div>
-                <div className="text-xl font-bold text-primary-turquoise">{formation.prix_blended}€ HT</div>
+                <div className="text-xl font-bold text-secondary-orbitvu">{formation.prix_blended}€ HT</div>
               </div>
             )}
             <div>
@@ -132,13 +132,13 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href={`/${lang}/contact`}
-              className="inline-block bg-primary-turquoise hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-block bg-secondary-orbitvu hover:bg-primary-orbitvu text-white font-medium px-8 py-3 rounded-lg transition-colors"
             >
               S'inscrire à cette formation
             </Link>
             <Link
               href={`/${lang}/academy`}
-              className="inline-block bg-white border-2 border-neutral-light hover:border-primary-turquoise text-neutral-dark font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-block bg-white border-2 border-neutral-light hover:border-secondary-orbitvu text-neutral-dark font-medium px-8 py-3 rounded-lg transition-colors"
             >
               ← Voir toutes les formations
             </Link>
@@ -156,7 +156,7 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
             <ul className="space-y-3">
               {formation.objectifs.map((obj, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-primary-turquoise mt-1 text-xl">✓</span>
+                  <span className="text-secondary-orbitvu mt-1 text-xl">✓</span>
                   <span className="text-neutral-dark">{obj}</span>
                 </li>
               ))}
@@ -170,7 +170,7 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
               <ul className="space-y-3">
                 {formation.livrables.map((livrable, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-primary-turquoise text-xl">📦</span>
+                    <span className="text-secondary-orbitvu text-xl">📦</span>
                     <span className="text-neutral-dark">{livrable}</span>
                   </li>
                 ))}
