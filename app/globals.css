@@ -12,8 +12,8 @@
   --font-body: var(--font-roboto);
 
   /* Palette Orbitvu (Design System Officiel) */
-  --color-primary: var(--primary-orbitvu);
-  --color-secondary: var(--secondary-orbitvu);
+  --color-primary-orbitvu: var(--primary-orbitvu);
+  --color-secondary-orbitvu: var(--secondary-orbitvu);
   --color-text-dark: var(--text-dark);
   --color-heading-dark: var(--heading-dark);
   --color-neutral-medium: var(--neutral-medium);
