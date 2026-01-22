@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import { generateChartData, formatEuro } from '../lib/calculations';
 import type { CalculationResults } from '../lib/types';
+import { CHART_COLORS } from '../lib/chartColors';
 
 interface EvolutionChartProps {
   results: CalculationResults;
@@ -82,27 +83,27 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
           <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorActuel" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FF6F00" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#FF6F00" stopOpacity={0} />
+                <stop offset="5%" stopColor={CHART_COLORS.current} stopOpacity={0.3} />
+                <stop offset="95%" stopColor={CHART_COLORS.current} stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorOrbitvu" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#24A1B4" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#24A1B4" stopOpacity={0} />
+                <stop offset="5%" stopColor={CHART_COLORS.orbitvu} stopOpacity={0.3} />
+                <stop offset="95%" stopColor={CHART_COLORS.orbitvu} stopOpacity={0} />
               </linearGradient>
             </defs>
 
-            <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
+            <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
 
             <XAxis
               dataKey="mois"
-              tick={{ fill: '#757575', fontSize: 12 }}
-              tickLine={{ stroke: '#E0E0E0' }}
+              tick={{ fill: CHART_COLORS.axis, fontSize: 12 }}
+              tickLine={{ stroke: CHART_COLORS.grid }}
             />
 
             <YAxis
               tickFormatter={(value) => `${(value / 1000).toFixed(0)}k€`}
-              tick={{ fill: '#757575', fontSize: 12 }}
-              tickLine={{ stroke: '#E0E0E0' }}
+              tick={{ fill: CHART_COLORS.axis, fontSize: 12 }}
+              tickLine={{ stroke: CHART_COLORS.grid }}
             />
 
             <Tooltip content={<CustomTooltip locale={locale} />} />
@@ -119,11 +120,11 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
             {results.breakEvenMois && (
               <ReferenceLine
                 x={Math.round(results.breakEvenMois)}
-                stroke="#00C853"
+                stroke={CHART_COLORS.breakEven}
                 strokeDasharray="5 5"
                 label={{
                   value: t.breakeven,
-                  fill: '#00C853',
+                  fill: CHART_COLORS.breakEven,
                   fontSize: 12,
                   position: 'top',
                 }}
@@ -134,7 +135,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               type="monotone"
               dataKey="actuel"
               name={t.current}
-              stroke="#FF6F00"
+              stroke={CHART_COLORS.current}
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorActuel)"
@@ -144,7 +145,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               type="monotone"
               dataKey="orbitvu"
               name={t.orbitvu}
-              stroke="#24A1B4"
+              stroke={CHART_COLORS.orbitvu}
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorOrbitvu)"
