@@ -159,6 +159,47 @@
       "title": "Formación Fotografía de Producto & IA",
       "suffix": "PackshotCreator Academy",
       "description": "Formación certificada Qualiopi para dominar la fotografía packshot y la IA generativa aplicada a visuales de producto"
+    },
+    "calendrier": {
+      "heading": "Calendario e Inscripción",
+      "subtitle": "Consulte las próximas sesiones e inscríbase en línea"
     }
+  },
+  "blog": {
+    "metaTitle": "Blog Fotografía de Producto | Guías y Comparativas | PackshotCreator",
+    "metaDescription": "Guías prácticas, comparativas de estudios fotográficos, IA fotografía de producto, formación. 20 años de experiencia en fotografía e-commerce.",
+    "heading": "Blog",
+    "subtitle": "Guías, comparativas y noticias de fotografía de producto",
+    "cta": "Leer artículo",
+    "noArticles": "No hay artículos disponibles en este momento.",
+    "ctaHeading": "¿Necesita ayuda con su proyecto fotográfico?",
+    "ctaDescription": "Nuestros expertos están aquí para ayudarle a elegir las soluciones adecuadas.",
+    "ctaContact": "Contáctenos",
+    "ctaFormation": "Descubra nuestras formaciones"
+  },
+  "contact": {
+    "metaTitle": "Contacto PackshotCreator | Demo Gratuita | Distribuidor Orbitvu FR/CH",
+    "metaDescription": "Contacto PackshotCreator: demo gratuita estudio fotográfico Orbitvu, presupuesto formación, soporte técnico. Showroom Lyon. Respuesta en 24-48h.",
+    "heading": "Contáctenos",
+    "subtitle": "Solicite una demo, presupuesto o información. Respondemos en 24-48h.",
+    "formTitle": "Su solicitud",
+    "formPlaceholder": "Formulario de contacto a integrar",
+    "formPlaceholderSubtitle": "Typeform, Tally o formulario personalizado",
+    "infoTitle": "Nuestros datos de contacto",
+    "phone": "Teléfono",
+    "phoneValue": "[A CONFIGURAR]",
+    "email": "Email",
+    "emailValue": "contact@packshot-creator.com",
+    "hours": "Horario",
+    "hoursValue": "Lun-Vie 9h-18h",
+    "showroomTitle": "Showroom Lyon",
+    "showroomAddress": "[DIRECCIÓN A CONFIGURAR], Lyon, Francia",
+    "faqTitle": "Preguntas frecuentes",
+    "faq1Question": "¿Cuál es el plazo de respuesta?",
+    "faq1Answer": "Respondemos en 24-48 horas hábiles.",
+    "faq2Question": "¿Ofrecen soporte técnico?",
+    "faq2Answer": "Sí, soporte técnico en francés incluido con nuestras soluciones.",
+    "faq3Question": "¿Puedo visitar el showroom?",
+    "faq3Answer": "Sí, con cita previa. Contáctenos para programar su visita y probar nuestros estudios."
   }
 }

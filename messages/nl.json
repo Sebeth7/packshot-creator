@@ -159,6 +159,47 @@
       "title": "Productfotografie & AI Training",
       "suffix": "PackshotCreator Academy",
       "description": "Qualiopi-gecertificeerde training om packshot-fotografie en generatieve AI voor productbeelden onder de knie te krijgen"
+    },
+    "calendrier": {
+      "heading": "Kalender & Inschrijving",
+      "subtitle": "Bekijk komende sessies en schrijf u online in"
     }
+  },
+  "blog": {
+    "metaTitle": "Productfotografie Blog | Gidsen & Vergelijkingen | PackshotCreator",
+    "metaDescription": "Praktische gidsen, fotostudio vergelijkingen, AI productfotografie, trainingen. 20 jaar e-commerce fotografie expertise.",
+    "heading": "Blog",
+    "subtitle": "Gidsen, vergelijkingen en productfotografie nieuws",
+    "cta": "Artikel lezen",
+    "noArticles": "Geen artikelen beschikbaar op dit moment.",
+    "ctaHeading": "Hulp nodig bij uw fotografie project?",
+    "ctaDescription": "Onze experts helpen u de juiste oplossingen te kiezen.",
+    "ctaContact": "Neem contact op",
+    "ctaFormation": "Ontdek onze trainingen"
+  },
+  "contact": {
+    "metaTitle": "Contact PackshotCreator | Gratis Demo | Orbitvu Distributeur FR/CH",
+    "metaDescription": "Contact PackshotCreator: gratis Orbitvu fotostudio demo, trainingsofferte, technische ondersteuning. Lyon showroom. Reactie binnen 24-48u.",
+    "heading": "Neem contact op",
+    "subtitle": "Vraag een demo, offerte of informatie aan. We antwoorden binnen 24-48u.",
+    "formTitle": "Uw aanvraag",
+    "formPlaceholder": "Contactformulier te integreren",
+    "formPlaceholderSubtitle": "Typeform, Tally of aangepast formulier",
+    "infoTitle": "Onze contactgegevens",
+    "phone": "Telefoon",
+    "phoneValue": "[TE CONFIGUREREN]",
+    "email": "E-mail",
+    "emailValue": "contact@packshot-creator.com",
+    "hours": "Openingstijden",
+    "hoursValue": "Ma-Vr 9u-18u",
+    "showroomTitle": "Lyon Showroom",
+    "showroomAddress": "[ADRES TE CONFIGUREREN], Lyon, Frankrijk",
+    "faqTitle": "Veelgestelde vragen",
+    "faq1Question": "Wat is de reactietijd?",
+    "faq1Answer": "We antwoorden binnen 24-48 werkuren.",
+    "faq2Question": "Bieden jullie technische ondersteuning?",
+    "faq2Answer": "Ja, Franse technische ondersteuning is inbegrepen bij onze oplossingen.",
+    "faq3Question": "Kan ik de showroom bezoeken?",
+    "faq3Answer": "Ja, op afspraak. Neem contact met ons op om uw bezoek te plannen en onze studio's te testen."
   }
 }

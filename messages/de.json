@@ -159,6 +159,47 @@
       "title": "Produktfotografie & KI Schulung",
       "suffix": "PackshotCreator Academy",
       "description": "Qualiopi-zertifizierte Schulung zur Beherrschung der Packshot-Fotografie und generativen KI für Produktvisuals"
+    },
+    "calendrier": {
+      "heading": "Kalender & Anmeldung",
+      "subtitle": "Überprüfen Sie kommende Sitzungen und melden Sie sich online an"
     }
+  },
+  "blog": {
+    "metaTitle": "Produktfotografie Blog | Leitfäden & Vergleiche | PackshotCreator",
+    "metaDescription": "Praktische Leitfäden, Fotostudio-Vergleiche, AI-Produktfotografie, Schulungen. 20 Jahre E-Commerce-Fotografie-Expertise.",
+    "heading": "Blog",
+    "subtitle": "Leitfäden, Vergleiche und Produktfotografie-Neuigkeiten",
+    "cta": "Artikel lesen",
+    "noArticles": "Derzeit sind keine Artikel verfügbar.",
+    "ctaHeading": "Brauchen Sie Hilfe bei Ihrem Fotoprojekt?",
+    "ctaDescription": "Unsere Experten helfen Ihnen bei der Auswahl der richtigen Lösungen.",
+    "ctaContact": "Kontaktieren Sie uns",
+    "ctaFormation": "Entdecken Sie unsere Schulungen"
+  },
+  "contact": {
+    "metaTitle": "Kontakt PackshotCreator | Kostenlose Demo | Orbitvu Distributor FR/CH",
+    "metaDescription": "Kontakt PackshotCreator: kostenlose Orbitvu Fotostudio-Demo, Schulungsangebot, technischer Support. Lyon Showroom. Antwort innerhalb von 24-48h.",
+    "heading": "Kontaktieren Sie uns",
+    "subtitle": "Fordern Sie eine Demo, ein Angebot oder Informationen an. Wir antworten innerhalb von 24-48h.",
+    "formTitle": "Ihre Anfrage",
+    "formPlaceholder": "Kontaktformular zu integrieren",
+    "formPlaceholderSubtitle": "Typeform, Tally oder benutzerdefiniertes Formular",
+    "infoTitle": "Unsere Kontaktinformationen",
+    "phone": "Telefon",
+    "phoneValue": "[ZU KONFIGURIEREN]",
+    "email": "E-Mail",
+    "emailValue": "contact@packshot-creator.com",
+    "hours": "Öffnungszeiten",
+    "hoursValue": "Mo-Fr 9-18 Uhr",
+    "showroomTitle": "Lyon Showroom",
+    "showroomAddress": "[ADRESSE ZU KONFIGURIEREN], Lyon, Frankreich",
+    "faqTitle": "Häufig gestellte Fragen",
+    "faq1Question": "Wie lange dauert die Antwortzeit?",
+    "faq1Answer": "Wir antworten innerhalb von 24-48 Geschäftsstunden.",
+    "faq2Question": "Bieten Sie technischen Support an?",
+    "faq2Answer": "Ja, französischer technischer Support ist in unseren Lösungen enthalten.",
+    "faq3Question": "Kann ich den Showroom besuchen?",
+    "faq3Answer": "Ja, nach Vereinbarung. Kontaktieren Sie uns, um Ihren Besuch zu planen und unsere Studios zu testen."
   }
 }

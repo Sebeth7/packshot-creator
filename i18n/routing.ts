@@ -2,8 +2,9 @@ import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 
 export const routing = defineRouting({
-  // Les 5 langues supportées
-  locales: ['fr', 'en', 'de', 'es', 'nl'],
+  // Scope projet : FR/EN uniquement
+  // DE/ES/NL redirectionnées vers https://blendai.studio
+  locales: ['fr', 'en'],
 
   // Langue par défaut (français)
   defaultLocale: 'fr',
