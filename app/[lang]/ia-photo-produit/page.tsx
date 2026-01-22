@@ -198,41 +198,71 @@ export default async function IAPhotoProduitPage({
           </div>
         </section>
 
-        {/* Section Comparatifs IA */}
+        {/* Section Ressources & Guides */}
         <section className="py-20 bg-white">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
-              {t('comparatifs.heading')}
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
+              Ressources & Guides IA Photo Produit
             </h2>
-            <p className="text-lg text-neutral-medium mb-8">
-              {t('comparatifs.subtitle')}
+            <p className="text-lg text-neutral-medium text-center mb-12 max-w-3xl mx-auto">
+              Découvrez nos comparatifs détaillés pour choisir la meilleure IA photo produit selon vos besoins.
             </p>
 
-            <div className="bg-neutral-lighter rounded-xl p-8 mb-8">
-              <p className="text-neutral-medium mb-6">
-                Articles de comparaison disponibles prochainement :
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <span className="text-neutral-dark font-semibold">
-                  BlendAI vs Photoroom
-                </span>
-                <span className="hidden sm:inline text-neutral-medium">•</span>
-                <span className="text-neutral-dark font-semibold">
-                  BlendAI vs Flair AI
-                </span>
-              </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Article 1 */}
+              <Link
+                href="/blog/blendai-vs-photoroom"
+                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="aspect-video bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center">
+                  <span className="text-white text-5xl">🤖</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-purple-600 transition-colors">
+                    BlendAI vs Photoroom
+                  </h3>
+                  <p className="text-neutral-medium text-sm mb-4">
+                    Comparatif complet : précision détourage, batch processing, intégration workflow. BlendAI pour pro, Photoroom pour TPE.
+                  </p>
+                  <span className="text-purple-600 font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
+                    Lire le comparatif →
+                  </span>
+                </div>
+              </Link>
+
+              {/* Article 2 */}
+              <Link
+                href="/blog/blendai-vs-flair"
+                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="aspect-video bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center">
+                  <span className="text-white text-5xl">✨</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-purple-600 transition-colors">
+                    BlendAI vs Flair.ai
+                  </h3>
+                  <p className="text-neutral-medium text-sm mb-4">
+                    Deux approches complémentaires : BlendAI pour catalogues e-commerce (fidélité produit), Flair pour campagnes marketing (créativité).
+                  </p>
+                  <span className="text-purple-600 font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
+                    Lire le comparatif →
+                  </span>
+                </div>
+              </Link>
             </div>
 
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white"
-            >
-              <Link href="/blog/ia-photo-produit-guide-2026">
-                {t('comparatifs.cta')}
-              </Link>
-            </Button>
+            <div className="text-center mt-12">
+              <Button
+                asChild
+                size="lg"
+                className="bg-purple-600 hover:bg-purple-700 text-white"
+              >
+                <Link href="/blog/ia-photo-produit-guide-2026">
+                  Guide Complet IA Photo Produit 2026 →
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 

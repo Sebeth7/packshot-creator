@@ -173,6 +173,83 @@ export default async function StudiosPhotoAutomatisesPage({
         {/* Section Références Clients */}
         <ClientLogos />
 
+        {/* Section Ressources & Guides */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
+              Ressources & Guides
+            </h2>
+            <p className="text-lg text-neutral-medium text-center mb-12 max-w-3xl mx-auto">
+              Approfondissez vos connaissances avec nos guides complets sur le ROI, l'achat et la comparaison des studios photo automatisés.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Article 1 */}
+              <Link
+                href="/blog/calculer-roi-studio-photo-guide"
+                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="aspect-video bg-gradient-to-br from-secondary-orbitvu to-primary-turquoise flex items-center justify-center">
+                  <span className="text-white text-5xl">💰</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
+                    Calculer le ROI de Votre Studio
+                  </h3>
+                  <p className="text-neutral-medium text-sm mb-4">
+                    Guide complet en 8 facteurs pour calculer le retour sur investissement de votre studio photo automatisé. Délai de retour 12-18 mois.
+                  </p>
+                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
+                    Lire le guide →
+                  </span>
+                </div>
+              </Link>
+
+              {/* Article 2 */}
+              <Link
+                href="/blog/guide-achat-studio-2026"
+                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="aspect-video bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center">
+                  <span className="text-white text-5xl">📘</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
+                    Guide d'Achat Complet 2026
+                  </h3>
+                  <p className="text-neutral-medium text-sm mb-4">
+                    7 critères de sélection, comparatif machines Orbitvu, processus d'achat étape par étape. Choisissez le bon studio.
+                  </p>
+                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
+                    Lire le guide →
+                  </span>
+                </div>
+              </Link>
+
+              {/* Article 3 */}
+              <Link
+                href="/blog/orbitvu-vs-concurrents"
+                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="aspect-video bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center">
+                  <span className="text-white text-5xl">⚖️</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
+                    Orbitvu vs Concurrents
+                  </h3>
+                  <p className="text-neutral-medium text-sm mb-4">
+                    Comparatif objectif Orbitvu vs StyleShoots vs Photomatics. Prix, qualité, support, IA Ready. Recommandation par profil.
+                  </p>
+                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
+                    Lire le comparatif →
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Section CTAs Finales */}
         <section className="py-20 bg-neutral-lighter">
           <div className="max-w-7xl mx-auto px-4">
