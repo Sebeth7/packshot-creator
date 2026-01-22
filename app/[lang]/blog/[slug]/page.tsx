@@ -7,6 +7,7 @@ import { ComparisonTable } from '@/components/blog/ComparisonTable';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
 
 export async function generateMetadata({
   params
@@ -75,11 +76,11 @@ export default async function BlogArticlePage({
           <header className="bg-white border-b border-neutral-light">
             <div className="max-w-4xl mx-auto px-4 py-8">
               <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
-                <Link href="/" className="hover:text-secondary-orbitvu transition-colors">
+                <Link href="/" className="hover:text-future-dusk-500 transition-colors">
                   Accueil
                 </Link>
                 <span>/</span>
-                <Link href="/blog" className="hover:text-secondary-orbitvu transition-colors">
+                <Link href="/blog" className="hover:text-future-dusk-500 transition-colors">
                   Blog
                 </Link>
                 <span>/</span>
@@ -113,19 +114,23 @@ export default async function BlogArticlePage({
             </article>
 
             {/* CTA Section */}
-            <div className="mt-12 bg-secondary-orbitvu text-white rounded-lg p-8 text-center">
+            <div className="mt-12 bg-future-dusk-500 text-white rounded-lg p-8 text-center">
               <h2 className="font-heading text-2xl font-bold mb-4">
                 Prêt à automatiser votre production photo ?
               </h2>
               <p className="mb-6 text-lg">
                 Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-white text-secondary-orbitvu font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+              <Button
+                asChild
+                variant="section"
+                size="lg"
+                className="text-neutral-dark font-semibold shadow-sm"
               >
-                Réserver une démo
-              </Link>
+                <Link href="/contact">
+                  Réserver une démo
+                </Link>
+              </Button>
             </div>
           </main>
         </div>
@@ -190,19 +195,23 @@ export default async function BlogArticlePage({
             </article>
 
             {/* CTA Section */}
-            <div className="mt-12 bg-secondary-orbitvu text-white rounded-lg p-8 text-center">
+            <div className="mt-12 bg-future-dusk-500 text-white rounded-lg p-8 text-center">
               <h2 className="font-heading text-2xl font-bold mb-4">
                 Prêt à automatiser votre production photo ?
               </h2>
               <p className="mb-6 text-lg">
                 Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-white text-secondary-orbitvu font-medium px-8 py-3 rounded-lg hover:bg-neutral-lighter transition-colors"
+              <Button
+                asChild
+                variant="section"
+                size="lg"
+                className="text-neutral-dark font-semibold shadow-sm"
               >
-                Réserver une démo
-              </Link>
+                <Link href="/contact">
+                  Réserver une démo
+                </Link>
+              </Button>
             </div>
           </main>
         </div>

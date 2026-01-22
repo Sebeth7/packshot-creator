@@ -21,6 +21,7 @@ interface HeroProps {
   }[];
   badges?: ReactNode[];
   namespace?: string;
+  useSectionColor?: boolean;
 }
 
 const variantStyles = {
@@ -30,14 +31,14 @@ const variantStyles = {
     ctaColor: 'bg-secondary-orbitvu hover:bg-primary-orbitvu',
   },
   ia: {
-    bg: 'bg-gradient-to-br from-purple-50 to-white',
-    accent: 'text-purple-600',
-    ctaColor: 'bg-purple-600 hover:bg-purple-700',
+    bg: 'bg-gradient-to-br from-very-peri-50 to-white',
+    accent: 'text-primary-orbitvu',
+    ctaColor: 'bg-primary-orbitvu hover:bg-very-peri-600',
   },
   formation: {
-    bg: 'bg-gradient-to-br from-green-50 to-white',
-    accent: 'text-green-600',
-    ctaColor: 'bg-green-600 hover:bg-green-700',
+    bg: 'bg-gradient-to-br from-primary-formation/10 to-white',
+    accent: 'text-primary-formation',
+    ctaColor: 'bg-primary-formation hover:bg-primary-formation/90',
   },
   default: {
     bg: 'bg-neutral-lighter',
@@ -57,6 +58,7 @@ export default function Hero({
   images = [],
   badges,
   namespace = 'home',
+  useSectionColor = false,
 }: HeroProps) {
   const t = useTranslations(namespace);
   const styles = variantStyles[variant];
@@ -87,7 +89,11 @@ export default function Hero({
             <Button
               asChild
               size="lg"
-              className={cn(styles.ctaColor, 'text-white px-8 py-6 text-lg')}
+              variant={useSectionColor ? 'section' : 'default'}
+              className={cn(
+                !useSectionColor && styles.ctaColor,
+                'text-white px-8 py-6 text-lg'
+              )}
             >
               <Link href={ctaHref}>
                 {t(ctaKey)}

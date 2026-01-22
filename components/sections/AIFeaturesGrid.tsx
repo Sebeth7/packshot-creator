@@ -40,7 +40,7 @@ export default function AIFeaturesGrid() {
   const t = useTranslations('iaPhotoProduit.features');
 
   return (
-    <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
+    <section className="py-20 bg-gradient-to-br from-very-peri-50 to-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
@@ -58,16 +58,16 @@ export default function AIFeaturesGrid() {
             <Link
               key={feature.key}
               href={feature.href}
-              className="group bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-600"
+              className="group bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary-orbitvu"
             >
               {/* Icon avec emoji */}
               <div className="mb-6 flex items-center gap-4">
                 <span className="text-5xl">{feature.icon}</span>
-                <feature.Icon className="w-10 h-10 text-purple-600 stroke-[1.5] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <feature.Icon className="w-10 h-10 text-primary-orbitvu stroke-[1.5] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               {/* Name */}
-              <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-3 group-hover:text-purple-600 transition-colors">
+              <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-3 group-hover:text-primary-orbitvu transition-colors">
                 {t(`${feature.key}.name`)}
               </h3>
 
@@ -77,7 +77,7 @@ export default function AIFeaturesGrid() {
               </p>
 
               {/* Arrow indicator */}
-              <div className="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+              <div className="flex items-center text-primary-orbitvu font-semibold group-hover:translate-x-2 transition-transform duration-300">
                 <span className="mr-2">Découvrir</span>
                 <svg
                   className="w-5 h-5"

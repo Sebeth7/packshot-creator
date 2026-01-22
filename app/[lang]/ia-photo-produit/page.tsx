@@ -121,6 +121,7 @@ export default async function IAPhotoProduitPage({
             </BadgeIAReady>
           ]}
           namespace="iaPhotoProduit"
+          useSectionColor={true}
         />
 
         {/* Section Manifeste IA */}
@@ -250,6 +251,7 @@ export default async function IAPhotoProduitPage({
                 ctaHref="/blendai"
                 bgColor="white"
                 namespace="iaPhotoProduit"
+                useSectionColor={true}
               />
 
               {/* CTA Demo IA + Studio */}
@@ -260,6 +262,7 @@ export default async function IAPhotoProduitPage({
                 ctaHref="/contact/demande-demo"
                 bgColor="white"
                 namespace="iaPhotoProduit"
+                useSectionColor={true}
               />
             </div>
           </div>

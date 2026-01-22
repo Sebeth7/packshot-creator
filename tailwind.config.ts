@@ -22,19 +22,19 @@ const config: Config = {
             },
             h1: {
               color: 'var(--heading-dark)',
-              fontFamily: 'var(--font-cairo)',
+              fontFamily: 'var(--font-inter)',
             },
             h2: {
               color: 'var(--heading-dark)',
-              fontFamily: 'var(--font-cairo)',
+              fontFamily: 'var(--font-inter)',
             },
             h3: {
               color: 'var(--heading-dark)',
-              fontFamily: 'var(--font-cairo)',
+              fontFamily: 'var(--font-inter)',
             },
             h4: {
               color: 'var(--heading-dark)',
-              fontFamily: 'var(--font-cairo)',
+              fontFamily: 'var(--font-inter)',
             },
             code: {
               color: 'var(--secondary-orbitvu)',

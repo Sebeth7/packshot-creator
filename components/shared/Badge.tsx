@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-export type BadgeVariant = 'gold' | 'turquoise' | 'red' | 'green' | 'purple' | 'default';
+export type BadgeVariant = 'gold' | 'turquoise' | 'red' | 'green' | 'purple' | 'blue' | 'default';
 
 interface BadgeProps {
   variant?: BadgeVariant;
@@ -13,9 +13,10 @@ interface BadgeProps {
 const variantStyles = {
   gold: 'bg-accent-gold text-white',
   turquoise: 'bg-secondary-orbitvu text-white',
-  red: 'bg-primary-orbitvu text-white',
-  green: 'bg-green-600 text-white',
-  purple: 'bg-purple-600 text-white',
+  red: 'bg-accent-coral text-white',
+  green: 'bg-accent-success text-white',
+  purple: 'bg-primary-orbitvu text-white',
+  blue: 'bg-accent-light-blue text-neutral-dark',
   default: 'bg-neutral-medium text-white',
 };
 

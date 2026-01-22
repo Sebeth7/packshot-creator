@@ -8,7 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-cairo);
+  --font-heading: var(--font-inter);
   --font-body: var(--font-roboto);
 
   /* Palette Orbitvu (Design System Officiel) */
@@ -24,6 +24,59 @@
   --color-accent-success: var(--accent-success);
   --color-accent-alert: var(--accent-alert);
   --color-white: var(--white);
+
+  /* Very Peri Palette */
+  --color-very-peri-0: var(--very-peri-0);
+  --color-very-peri-50: var(--very-peri-0-5);
+  --color-very-peri-100: var(--very-peri-1);
+  --color-very-peri-150: var(--very-peri-1-5);
+  --color-very-peri-200: var(--very-peri-2);
+  --color-very-peri-300: var(--very-peri-3);
+  --color-very-peri-400: var(--very-peri-4);
+  --color-very-peri-500: var(--very-peri-5);
+  --color-very-peri-600: var(--very-peri-6);
+  --color-very-peri-700: var(--very-peri-7);
+  --color-very-peri-800: var(--very-peri-8);
+  --color-very-peri-850: var(--very-peri-8-5);
+  --color-very-peri-900: var(--very-peri-9);
+  --color-very-peri-950: var(--very-peri-9-5);
+  --color-very-peri-1000: var(--very-peri-10);
+
+  /* Future Dusk Palette */
+  --color-future-dusk-0: var(--future-dusk-0);
+  --color-future-dusk-50: var(--future-dusk-0-5);
+  --color-future-dusk-100: var(--future-dusk-1);
+  --color-future-dusk-150: var(--future-dusk-1-5);
+  --color-future-dusk-200: var(--future-dusk-2);
+  --color-future-dusk-300: var(--future-dusk-3);
+  --color-future-dusk-400: var(--future-dusk-4);
+  --color-future-dusk-500: var(--future-dusk-5);
+  --color-future-dusk-600: var(--future-dusk-6);
+  --color-future-dusk-700: var(--future-dusk-7);
+  --color-future-dusk-800: var(--future-dusk-8);
+  --color-future-dusk-850: var(--future-dusk-8-5);
+  --color-future-dusk-900: var(--future-dusk-9);
+  --color-future-dusk-950: var(--future-dusk-9-5);
+  --color-future-dusk-1000: var(--future-dusk-10);
+
+  /* Accent Colors */
+  --color-accent-green: var(--accent-green);
+  --color-accent-lime: var(--accent-lime);
+  --color-accent-light-blue: var(--accent-light-blue);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-coral: var(--accent-coral);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-gray-light: var(--accent-gray-light);
+  --color-accent-gray-medium: var(--accent-gray-medium);
+
+  /* Section Primary Colors */
+  --color-primary-creation: var(--primary-creation);
+  --color-primary-formation: var(--primary-formation);
+  --color-primary-blog: var(--primary-blog);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -65,9 +118,9 @@
 :root {
   --radius: 0.625rem;
 
-  /* Palette Orbitvu - Design System Officiel */
-  --primary-orbitvu: #EC3655;      /* Rouge/Rose - CTA principale */
-  --secondary-orbitvu: #24A1B4;    /* Turquoise - Liens, accents */
+  /* Palette Orbitvu - Brandbook 2025 */
+  --primary-orbitvu: #6667AB;      /* Very Peri - CTA principale */
+  --secondary-orbitvu: #4c5578;    /* Future Dusk - Liens, accents */
   --text-dark: #0D171A;            /* Texte body (rgba(13, 23, 26, 0.8)) */
   --heading-dark: #001D26;         /* Titres (rgba(0, 29, 38, 0.78)) */
   --neutral-medium: #546E7A;       /* Texte secondaire */
@@ -78,6 +131,58 @@
   --accent-success: #00C853;       /* Vert - Succès */
   --accent-alert: #FF6F00;         /* Orange - Alerte */
   --white: #FFFFFF;
+
+  /* Very Peri Extended Palette (10 shades) */
+  --very-peri-0: #FFFFFF;
+  --very-peri-0-5: #F0F0F7;
+  --very-peri-1: #E0E1EE;
+  --very-peri-1-5: #D1D1E6;
+  --very-peri-2: #C2C2D0;
+  --very-peri-3: #A3A4CC;
+  --very-peri-4: #8585BC;
+  --very-peri-5: #6667AB;          /* BASE - Primary Orbitvu */
+  --very-peri-6: #5252B9;
+  --very-peri-7: #4D5EA7;
+  --very-peri-8: #292944;
+  --very-peri-8-5: #1F1F33;
+  --very-peri-9: #141522;
+  --very-peri-9-5: #0A0A11;
+  --very-peri-10: #000000;
+
+  /* Future Dusk Extended Palette (10 shades) */
+  --future-dusk-0: #F4F5F8;
+  --future-dusk-0-5: #E3E5EB;
+  --future-dusk-1: #D2D5DE;
+  --future-dusk-1-5: #C2C5D2;
+  --future-dusk-2: #B1B5C5;
+  --future-dusk-3: #8F95A8;
+  --future-dusk-4: #6E7592;
+  --future-dusk-5: #4c5578;        /* BASE - Secondary Orbitvu */
+  --future-dusk-6: #3D4460;
+  --future-dusk-7: #2E3348;
+  --future-dusk-8: #1E2230;
+  --future-dusk-8-5: #171A24;
+  --future-dusk-9: #0F1118;
+  --future-dusk-9-5: #08090C;
+  --future-dusk-10: #000000;
+
+  /* Accent Colors (11 colors) */
+  --accent-green: #27eb9f;
+  --accent-lime: #CBE857;
+  --accent-light-blue: #cdcdfd;
+  --accent-blue: #4a4aff;
+  --accent-orange: #ff7809;
+  --accent-yellow: #ffde05;
+  --accent-coral: #ff6f61;
+  --accent-pink: #ee68b2;
+  --accent-cyan: #62bbd3;
+  --accent-gray-light: #A0ABB6;
+  --accent-gray-medium: #A9AAAD;
+
+  /* Section Primary Colors */
+  --primary-creation: #ff7809;     /* Orange - Section Création */
+  --primary-formation: #cdcdfd;    /* Bleu clair - Section Formation */
+  --primary-blog: #CBE857;         /* Lime - Section Blog */
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

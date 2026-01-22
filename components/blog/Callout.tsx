@@ -11,27 +11,27 @@ interface CalloutProps {
 
 const calloutStyles: Record<CalloutType, { bg: string; border: string; text: string; icon: string }> = {
   info: {
-    bg: 'bg-blue-50',
-    border: 'border-l-4 border-secondary-orbitvu',
-    text: 'text-primary-orbitvu',
+    bg: 'bg-very-peri-50',
+    border: 'border-l-4 border-future-dusk-500',
+    text: 'text-future-dusk-700',
     icon: 'ℹ️',
   },
   warning: {
-    bg: 'bg-yellow-50',
-    border: 'border-l-4 border-accent-gold',
-    text: 'text-yellow-900',
+    bg: 'bg-accent-yellow/10',
+    border: 'border-l-4 border-accent-yellow',
+    text: 'text-accent-orange',
     icon: '⚠️',
   },
   success: {
-    bg: 'bg-green-50',
-    border: 'border-l-4 border-accent-success',
-    text: 'text-green-900',
+    bg: 'bg-accent-green/10',
+    border: 'border-l-4 border-accent-green',
+    text: 'text-accent-green',
     icon: '✅',
   },
   alert: {
-    bg: 'bg-red-50',
+    bg: 'bg-accent-alert/10',
     border: 'border-l-4 border-accent-alert',
-    text: 'text-red-900',
+    text: 'text-accent-alert',
     icon: '🔴',
   },
 };

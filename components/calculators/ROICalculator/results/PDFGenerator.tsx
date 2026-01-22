@@ -4,6 +4,7 @@ import { useRef, useCallback } from 'react';
 import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
 import type { CalculationResults } from '../lib/types';
+import { PDF_COLORS } from '../lib/chartColors';
 
 /**
  * Génère un PDF à partir du contenu HTML des résultats
@@ -29,9 +30,10 @@ export async function generatePDF(
 
   // Header
   const addHeader = () => {
-    pdf.setFillColor(0, 188, 212); // secondary-orbitvu
+    const headerColor = PDF_COLORS.header!;
+    pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
     pdf.rect(0, 0, pdfWidth, 30, 'F');
-    pdf.setTextColor(255, 255, 255);
+    pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
     pdf.setFontSize(20);
     pdf.text('PackshotCreator', 15, 15);
     pdf.setFontSize(12);
@@ -42,7 +44,7 @@ export async function generatePDF(
     );
 
     // Date
-    pdf.setTextColor(255, 255, 255);
+    pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
     pdf.setFontSize(10);
     const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
     pdf.text(date, pdfWidth - 35, 15);
@@ -50,7 +52,8 @@ export async function generatePDF(
 
   // Footer
   const addFooter = (pageNum: number, totalPages: number) => {
-    pdf.setTextColor(117, 117, 117); // neutral-medium
+    const textColor = PDF_COLORS.text!;
+    pdf.setTextColor(textColor.r, textColor.g, textColor.b);
     pdf.setFontSize(8);
     pdf.text(
       'www.packshotcreator.com | contact@packshotcreator.com',
@@ -209,9 +212,10 @@ async function generatePDFLegacy(
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
   // Header
-  pdf.setFillColor(0, 188, 212); // secondary-orbitvu
+  const headerColor = PDF_COLORS.header!;
+  pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
   pdf.rect(0, 0, pdfWidth, 30, 'F');
-  pdf.setTextColor(255, 255, 255);
+  pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
   pdf.setFontSize(20);
   pdf.text('PackshotCreator', 15, 15);
   pdf.setFontSize(12);
@@ -222,7 +226,7 @@ async function generatePDFLegacy(
   );
 
   // Date
-  pdf.setTextColor(255, 255, 255);
+  pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
   pdf.setFontSize(10);
   const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
   pdf.text(date, pdfWidth - 35, 15);
@@ -272,9 +276,10 @@ async function generatePDFLegacy(
 
   // Footer sur chaque page
   const pageCount = pdf.getNumberOfPages();
+  const textColor = PDF_COLORS.text!;
   for (let i = 1; i <= pageCount; i++) {
     pdf.setPage(i);
-    pdf.setTextColor(117, 117, 117); // neutral-medium
+    pdf.setTextColor(textColor.r, textColor.g, textColor.b);
     pdf.setFontSize(8);
     pdf.text(
       'www.packshotcreator.com | contact@packshotcreator.com',
