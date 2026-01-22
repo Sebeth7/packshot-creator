@@ -287,6 +287,43 @@
       }
     }
   },
+  "blog": {
+    "metaTitle": "Blog Photo Produit | Guides & Comparatifs | PackshotCreator",
+    "metaDescription": "Guides pratiques, comparatifs studios photo, IA photo produit, formations. Expertise photo e-commerce depuis 20 ans.",
+    "heading": "Blog",
+    "subtitle": "Guides, comparatifs et actualités photo produit e-commerce",
+    "cta": "Lire l'article",
+    "noArticles": "Aucun article disponible pour le moment.",
+    "ctaHeading": "Besoin d'aide pour votre projet photo ?",
+    "ctaDescription": "Nos experts sont là pour vous accompagner dans le choix de vos solutions.",
+    "ctaContact": "Nous contacter",
+    "ctaFormation": "Découvrir nos formations"
+  },
+  "contact": {
+    "metaTitle": "Contact PackshotCreator | Démo Gratuite | Distributeur Orbitvu FR/CH",
+    "metaDescription": "Contactez PackshotCreator : démo gratuite studios photo Orbitvu, devis formation, support technique. Showroom Lyon. Réponse sous 24-48h.",
+    "heading": "Contactez-nous",
+    "subtitle": "Demandez une démo, un devis ou des informations. Nous vous répondons sous 24-48h.",
+    "formTitle": "Votre demande",
+    "formPlaceholder": "Formulaire de contact à intégrer",
+    "formPlaceholderSubtitle": "Typeform, Tally ou formulaire personnalisé",
+    "infoTitle": "Nos coordonnées",
+    "phone": "Téléphone",
+    "phoneValue": "[À CONFIGURER]",
+    "email": "Email",
+    "emailValue": "contact@packshot-creator.com",
+    "hours": "Horaires",
+    "hoursValue": "Lun-Ven 9h-18h",
+    "showroomTitle": "Showroom Lyon",
+    "showroomAddress": "[ADRESSE À CONFIGURER], Lyon, France",
+    "faqTitle": "Questions fréquentes",
+    "faq1Question": "Quel délai de réponse ?",
+    "faq1Answer": "Nous vous répondons sous 24-48h ouvrées.",
+    "faq2Question": "Proposez-vous du support technique ?",
+    "faq2Answer": "Oui, support technique FR inclus avec nos solutions.",
+    "faq3Question": "Puis-je visiter le showroom ?",
+    "faq3Answer": "Oui, sur rendez-vous. Contactez-nous pour planifier votre visite et tester nos studios."
+  },
   "studiosHardware": {
     "meta": {
       "title": "Studios Photo Automatisés Orbitvu | Distributeur Officiel FR & CH",

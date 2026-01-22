@@ -287,6 +287,43 @@
       }
     }
   },
+  "blog": {
+    "metaTitle": "Product Photography Blog | Guides & Reviews | PackshotCreator",
+    "metaDescription": "Practical guides, photo studio comparisons, AI product photography, training. 20 years e-commerce photography expertise.",
+    "heading": "Blog",
+    "subtitle": "Guides, comparisons and product photography news",
+    "cta": "Read article",
+    "noArticles": "No articles available at the moment.",
+    "ctaHeading": "Need help with your photo project?",
+    "ctaDescription": "Our experts are here to help you choose the right solutions.",
+    "ctaContact": "Contact us",
+    "ctaFormation": "Discover our training"
+  },
+  "contact": {
+    "metaTitle": "Contact PackshotCreator | Free Demo | Orbitvu Distributor FR/CH",
+    "metaDescription": "Contact PackshotCreator: free Orbitvu photo studio demo, training quote, technical support. Lyon showroom. Response within 24-48h.",
+    "heading": "Contact us",
+    "subtitle": "Request a demo, quote or information. We respond within 24-48h.",
+    "formTitle": "Your request",
+    "formPlaceholder": "Contact form to be integrated",
+    "formPlaceholderSubtitle": "Typeform, Tally or custom form",
+    "infoTitle": "Our contact information",
+    "phone": "Phone",
+    "phoneValue": "[TO BE CONFIGURED]",
+    "email": "Email",
+    "emailValue": "contact@packshot-creator.com",
+    "hours": "Hours",
+    "hoursValue": "Mon-Fri 9am-6pm",
+    "showroomTitle": "Lyon Showroom",
+    "showroomAddress": "[ADDRESS TO BE CONFIGURED], Lyon, France",
+    "faqTitle": "Frequently asked questions",
+    "faq1Question": "What is the response time?",
+    "faq1Answer": "We respond within 24-48 business hours.",
+    "faq2Question": "Do you offer technical support?",
+    "faq2Answer": "Yes, French technical support is included with our solutions.",
+    "faq3Question": "Can I visit the showroom?",
+    "faq3Answer": "Yes, by appointment. Contact us to schedule your visit and test our studios."
+  },
   "studiosHardware": {
     "meta": {
       "title": "Orbitvu Automated Photo Studios | Official Distributor FR & CH",

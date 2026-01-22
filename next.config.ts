@@ -103,8 +103,31 @@ const nextConfig: NextConfig = {
         destination: 'https://blendai.studio',
         permanent: true,
       },
+
+      // CONTACT - Variantes URLs
+      {
+        source: '/fr/contact/demande-demo',
+        destination: '/fr/contact?subject=demo',
+        permanent: true,
+      },
+      {
+        source: '/en/contact/request-demo',
+        destination: '/en/contact?subject=demo',
+        permanent: true,
+      },
+      {
+        source: '/fr/contact/demande-devis-formation',
+        destination: '/fr/contact?subject=formation',
+        permanent: true,
+      },
+      {
+        source: '/en/contact/training-quote',
+        destination: '/en/contact?subject=training',
+        permanent: true,
+      },
     ];
   },
 };
+
 
 export default withNextIntl(withMDX(nextConfig));
