@@ -210,4 +210,52 @@ export const CHART_COLORS = {
 - 🔴 Page Formation : BUG CRITIQUE à corriger
 - 🟡 Page Blog : Manquante
 
-**Prochaine étape** : Corriger le bug de la page Formation en remplaçant le vert par le bleu clair.
+**Prochaine étape** : ~~Corriger le bug de la page Formation en remplaçant le vert par le bleu clair.~~ ✅ **FAIT**
+
+---
+
+## ✅ Corrections Appliquées (2026-01-22)
+
+### BUG CRITIQUE #1 - CORRIGÉ ✅
+
+**Commit**: `b3223dc` - "fix: Replace green with light blue Formation color (#cdcdfd) on Academy page"
+
+**Fichiers modifiés**:
+- `app/[lang]/academy/page.tsx` (36 lignes modifiées)
+- `components/shared/Badge.tsx` (3 lignes modifiées)
+
+**Changements effectués**:
+
+1. **Hero Section**
+   - ✅ Gradient : `from-green-50` → `from-blue-50`
+   - ✅ CTA principal : `bg-[#00C853]` → `bg-[#cdcdfd]`
+   - ✅ Texte CTA : `text-white` → `text-neutral-dark`
+   - ✅ Hover CTA : `hover:bg-[#00A844]` → `hover:bg-[#b5b5fd]`
+   - ✅ CTA secondaire hover : `hover:border-[#00C853]` → `hover:border-[#cdcdfd]`
+
+2. **Section Qualiopi**
+   - ✅ Checkmarks (×3) : `text-[#00C853]` → `text-[#cdcdfd]`
+
+3. **Box OPCO**
+   - ✅ Background : `bg-green-50` → `bg-blue-50`
+   - ✅ Bordure : `border-green-200` → `border-blue-200`
+   - ✅ Titre : `text-green-800` → `text-blue-800`
+   - ✅ Texte : `text-green-700` → `text-blue-700`
+   - ✅ Lien : `text-green-800` → `text-blue-800`
+
+4. **Formateurs (×2)**
+   - ✅ Checkmarks Sébastien (×3) : `text-[#00C853]` → `text-[#cdcdfd]`
+   - ✅ Checkmarks Formateur 2 (×3) : `text-[#00C853]` → `text-[#cdcdfd]`
+
+5. **Badge Component**
+   - ✅ Nouveau variant : `'blue'` ajouté au type `BadgeVariant`
+   - ✅ Style : `bg-accent-light-blue text-neutral-dark`
+   - ✅ Usage : Badge "Financement OPCO" → `variant="blue"`
+
+**Validation Visuelle (Screenshots)**:
+- ✅ Hero CTA bleu clair visible et lisible
+- ✅ Badge "Financement OPCO" bleu clair
+- ✅ Box OPCO avec fond/bordure/texte bleu
+- ✅ Tous les checkmarks en bleu clair
+
+**Résultat**: Page Formation maintenant conforme au Brandbook 2025 ✓
