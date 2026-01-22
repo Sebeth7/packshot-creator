@@ -26,9 +26,9 @@ export default function Footer() {
               {t('footer.industries')}
             </h3>
             <ul className="space-y-2 text-sm text-neutral-medium">
-              <li><Link href="/industries/fashion" className="hover:text-secondary-orbitvu">{t('footer.fashion')}</Link></li>
-              <li><Link href="/industries/food" className="hover:text-secondary-orbitvu">{t('footer.food')}</Link></li>
-              <li><Link href="/industries/hightech" className="hover:text-secondary-orbitvu">{t('footer.hightech')}</Link></li>
+              <li><Link href="/industries/fashion" className="hover:text-[#4c5578]">{t('footer.fashion')}</Link></li>
+              <li><Link href="/industries/food" className="hover:text-[#4c5578]">{t('footer.food')}</Link></li>
+              <li><Link href="/industries/hightech" className="hover:text-[#4c5578]">{t('footer.hightech')}</Link></li>
             </ul>
           </div>
 
@@ -38,9 +38,9 @@ export default function Footer() {
               {t('footer.products')}
             </h3>
             <ul className="space-y-2 text-sm text-neutral-medium">
-              <li><Link href="/products/alphashot-pro-g2" className="hover:text-secondary-orbitvu">{t('footer.alphaShotProG2')}</Link></li>
-              <li><Link href="/products/alphashot-micro-v2" className="hover:text-secondary-orbitvu">{t('footer.alphaShotMicro')}</Link></li>
-              <li><Link href="/products/fashion-studio" className="hover:text-secondary-orbitvu">{t('footer.fashionStudio')}</Link></li>
+              <li><Link href="/products/alphashot-pro-g2" className="hover:text-[#4c5578]">{t('footer.alphaShotProG2')}</Link></li>
+              <li><Link href="/products/alphashot-micro-v2" className="hover:text-[#4c5578]">{t('footer.alphaShotMicro')}</Link></li>
+              <li><Link href="/products/fashion-studio" className="hover:text-[#4c5578]">{t('footer.fashionStudio')}</Link></li>
             </ul>
           </div>
 
@@ -50,9 +50,9 @@ export default function Footer() {
               {t('footer.resources')}
             </h3>
             <ul className="space-y-2 text-sm text-neutral-medium">
-              <li><Link href="/about" className="hover:text-secondary-orbitvu">{t('footer.about')}</Link></li>
-              <li><Link href="/support" className="hover:text-secondary-orbitvu">{t('footer.support')}</Link></li>
-              <li><Link href="/blog" className="hover:text-secondary-orbitvu">{t('footer.blog')}</Link></li>
+              <li><Link href="/about" className="hover:text-[#4c5578]">{t('footer.about')}</Link></li>
+              <li><Link href="/support" className="hover:text-[#4c5578]">{t('footer.support')}</Link></li>
+              <li><Link href="/blog" className="hover:text-[#4c5578]">{t('footer.blog')}</Link></li>
             </ul>
           </div>
         </div>
