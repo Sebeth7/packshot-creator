@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Design System
+
+Ce projet utilise le **Brandbook 2025 Orbitvu officiel**.
+
+- Couleurs principales : Very Peri (#6667AB) + Future Dusk (#4c5578)
+- Font primaire : Inter
+- Voir `PROJECT_GUIDELINES.md` pour documentation complète
+- Voir `DESIGN_SYSTEM.md` pour documentation technique détaillée
+
 ## Getting Started
 
 First, run the development server:

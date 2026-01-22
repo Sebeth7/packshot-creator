@@ -4,28 +4,51 @@
 
 **PRIMARY DESIGN REFERENCE**: `design_system_final.md`
 
-## Brandbook 2025 - Migration Notes
+## 🎨 Brandbook 2025 - Design System
+
+### Migration Date
+**Janvier 2026** - Migration vers Brandbook 2025 officiel Orbitvu
 
 ### Couleurs Principales
-- **Primary Orbitvu**: `#6667AB` (Very Peri) - Remplace #EC3655
-- **Secondary Orbitvu**: `#4c5578` (Future Dusk) - Remplace #24A1B4
+| Couleur | Hex | Usage |
+|---------|-----|-------|
+| Very Peri | #6667AB | Couleur primaire brand, CTAs globaux |
+| Future Dusk | #4c5578 | Couleur secondaire, liens, accents |
+| Black | #000000 | Logo, texte principal |
+| White | #FFFFFF | Logo, texte sur fond foncé |
 
 ### Palettes Étendues
+- **Very Peri** : 15 nuances (0 à 10)
+- **Future Dusk** : 15 nuances (0 à 10)
 
-#### Very Peri Extended Palette (20 shades)
+#### Very Peri Extended Palette
 La couleur principale dispose de 15 nuances du blanc au noir pour une flexibilité maximale :
 - `--very-peri-0` à `--very-peri-10` (incluant demi-tons)
 - BASE: `--very-peri-5` (#6667AB)
 - Disponibles via classes Tailwind : `very-peri-{0|50|100|150|200|300|400|500|600|700|800|850|900|950|1000}`
 
-#### Future Dusk Extended Palette (20 shades)
+#### Future Dusk Extended Palette
 La couleur secondaire dispose également de 15 nuances :
 - `--future-dusk-0` à `--future-dusk-10` (incluant demi-tons)
 - BASE: `--future-dusk-5` (#4c5578)
 - Disponibles via classes Tailwind : `future-dusk-{0|50|100|150|200|300|400|500|600|700|800|850|900|950|1000}`
 
-#### Couleurs d'Accent (11 colors)
-Palette de couleurs pour highlights et variations :
+### Couleurs d'Accent (11 couleurs)
+| Nom | Hex | Usage |
+|-----|-----|-------|
+| Green | #27eb9f | Succès, validation |
+| Lime | #CBE857 | Blog CTAs |
+| Blue | #4a4aff | Tech, confiance |
+| Light Blue | #cdcdfd | Formation CTAs |
+| Orange | #ff7809 | Création CTAs, alertes |
+| Yellow | #ffde05 | Attention |
+| Coral | #ff6f61 | Alternative rouge |
+| Pink | #ee68b2 | Créativité, trends |
+| Cyan | #62bbd3 | Communication |
+| Gray Light | #A0ABB6 | Neutre |
+| Gray Medium | #A9AAAD | Neutre |
+
+Palette complète de couleurs pour highlights et variations :
 - `--accent-green`: #27eb9f
 - `--accent-lime`: #CBE857
 - `--accent-light-blue`: #cdcdfd
@@ -39,12 +62,25 @@ Palette de couleurs pour highlights et variations :
 - `--accent-gray-medium`: #A9AAAD
 
 ### Couleurs par Section
+| Section | Primaire (CTAs) | Secondaire (Liens) |
+|---------|----------------|-------------------|
+| Globale | Very Peri #6667AB | Future Dusk #4c5578 |
+| Création | Orange #ff7809 | Future Dusk #4c5578 |
+| Formation | Bleu clair #cdcdfd | Future Dusk #4c5578 |
+| Blog | Lime #CBE857 | Future Dusk #4c5578 |
+
 Pour identifier visuellement les différentes sections du site :
 - **Création**: Orange `#ff7809` (`--primary-creation`)
 - **Formation**: Bleu clair `#cdcdfd` (`--primary-formation`)
 - **Blog**: Lime `#CBE857` (`--primary-blog`)
 
 ### Typographie
+- **Police primaire** : Inter (remplace Cairo)
+- **Police secondaire** : Roboto (maintenue)
+- **Line-height** : 1.4 à 1.6 × font-size
+- **Poids disponibles** : Light, Regular, Bold, Extra Bold
+
+Détails techniques :
 - **Primary font (Headings)**: Inter - Remplace Cairo
   - Variable CSS : `--font-inter`
   - Poids utilisés : 700
@@ -52,6 +88,39 @@ Pour identifier visuellement les différentes sections du site :
 - **Secondary font (Body)**: Roboto (maintenu)
   - Variable CSS : `--font-roboto`
   - Poids utilisés : 400, 500
+
+### Règles d'Utilisation des Couleurs
+1. Logo : UNIQUEMENT noir ou blanc (jamais coloré)
+2. Couleurs secondaires : pour emphase (textes, headlines, éléments graphiques)
+3. Couleurs secondaires en fond : UNIQUEMENT si contextuellement assorties à l'image
+4. Contraste minimum : respecter WCAG AA (4.5:1)
+
+### Éléments Visuels Nouveaux
+- **Typographic Keywords** : grands mots-clés en arrière-plan (transparence réduite)
+- **Text Underlays** : barres colorées pour emphase
+- **Graphic Captions** : catégories de contenu (Knowledge, Case Study, etc.)
+
+### Classes Tailwind Principales
+```tsx
+// CTAs globaux
+<Button className="bg-primary-orbitvu hover:bg-primary-orbitvu/90">
+
+// CTAs sections spéciales
+<Button variant="section"> // Utilise couleur contextuelle
+
+// Liens
+<a className="text-secondary-orbitvu hover:text-primary-orbitvu">
+
+// Badges
+<Badge variant="red"> // Maintenant violet Very Peri
+<Badge className="bg-accent-lime"> // Lime
+```
+
+### Fichiers Modifiés
+- **app/globals.css** : variables CSS complètes
+- **tailwind.config.ts** : palette étendue
+- **components/** : 52 fichiers migrés
+- **Fonts** : Cairo → Inter
 
 ### Couleurs Legacy (maintenues pour compatibilité)
 - **Text Dark** (Body): #0D171A
