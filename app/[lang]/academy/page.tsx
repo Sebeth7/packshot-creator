@@ -103,11 +103,11 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
       <Header />
       <main>
         {/* SECTION 1 : Hero Academy */}
-        <section className="bg-gradient-to-br from-green-50 to-white py-16">
+        <section className="bg-gradient-to-br from-blue-50 to-white py-16">
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex gap-3 mb-4">
               <BadgeQualiopi>Certifié Qualiopi</BadgeQualiopi>
-              <Badge variant="green">Financement OPCO</Badge>
+              <Badge variant="blue">Financement OPCO</Badge>
             </div>
 
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
@@ -121,13 +121,13 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
             <div className="flex gap-4">
               <a
                 href="#formations"
-                className="inline-block bg-[#00C853] hover:bg-[#00A844] text-white font-medium px-8 py-3 rounded-lg"
+                className="inline-block bg-[#cdcdfd] hover:bg-[#b5b5fd] text-neutral-dark font-medium px-8 py-3 rounded-lg"
               >
                 {t('hero.cta_formations')}
               </a>
               <a
                 href="#qualiopi"
-                className="inline-block bg-white border-2 border-neutral-light hover:border-[#00C853] text-neutral-dark font-medium px-8 py-3 rounded-lg"
+                className="inline-block bg-white border-2 border-neutral-light hover:border-[#cdcdfd] text-neutral-dark font-medium px-8 py-3 rounded-lg"
               >
                 {t('hero.cta_opco')}
               </a>
@@ -149,29 +149,29 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                 </p>
                 <ul className="space-y-2 text-sm text-neutral-medium">
                   <li className="flex items-start gap-2">
-                    <span className="text-[#00C853]">✓</span>
+                    <span className="text-[#cdcdfd]">✓</span>
                     <span>{t('qualiopi.feature1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#00C853]">✓</span>
+                    <span className="text-[#cdcdfd]">✓</span>
                     <span>{t('qualiopi.feature2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#00C853]">✓</span>
+                    <span className="text-[#cdcdfd]">✓</span>
                     <span>{t('qualiopi.feature3')}</span>
                   </li>
                 </ul>
               </div>
 
               {/* Colonne OPCO */}
-              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
-                <h2 className="font-heading text-2xl font-bold text-green-800 mb-4">
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+                <h2 className="font-heading text-2xl font-bold text-blue-800 mb-4">
                   💶 {t('opco.heading')}
                 </h2>
-                <p className="text-green-700 mb-4">
+                <p className="text-blue-700 mb-4">
                   <strong>{t('opco.description')}</strong>
                 </p>
-                <div className="space-y-3 text-sm text-green-700">
+                <div className="space-y-3 text-sm text-blue-700">
                   <div>
                     <strong>Pour les salariés :</strong> {t('opco.salaries')}
                   </div>
@@ -181,7 +181,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                 </div>
                 <Link
                   href="/blog/financement-formation-opco-guide"
-                  className="inline-block mt-4 text-green-800 font-medium underline"
+                  className="inline-block mt-4 text-blue-800 font-medium underline"
                 >
                   {t('opco.cta')} →
                 </Link>
@@ -264,15 +264,15 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
 
                   <div className="mt-6 space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur.cert1')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur.cert2')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur.cert3')}</span>
                     </div>
                   </div>
@@ -308,15 +308,15 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
 
                   <div className="mt-6 space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur2.cert1')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur2.cert2')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[#00C853]">✓</span>
+                      <span className="text-[#cdcdfd]">✓</span>
                       <span>{t('formateur2.cert3')}</span>
                     </div>
                   </div>
