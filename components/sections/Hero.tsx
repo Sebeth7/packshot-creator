@@ -30,14 +30,14 @@ const variantStyles = {
     ctaColor: 'bg-secondary-orbitvu hover:bg-primary-orbitvu',
   },
   ia: {
-    bg: 'bg-gradient-to-br from-purple-50 to-white',
-    accent: 'text-purple-600',
-    ctaColor: 'bg-purple-600 hover:bg-purple-700',
+    bg: 'bg-gradient-to-br from-very-peri-50 to-white',
+    accent: 'text-primary-orbitvu',
+    ctaColor: 'bg-primary-orbitvu hover:bg-very-peri-600',
   },
   formation: {
-    bg: 'bg-gradient-to-br from-green-50 to-white',
-    accent: 'text-green-600',
-    ctaColor: 'bg-green-600 hover:bg-green-700',
+    bg: 'bg-gradient-to-br from-primary-formation/10 to-white',
+    accent: 'text-primary-formation',
+    ctaColor: 'bg-primary-formation hover:bg-primary-formation/90',
   },
   default: {
     bg: 'bg-neutral-lighter',

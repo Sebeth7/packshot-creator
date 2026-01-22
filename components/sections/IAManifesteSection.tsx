@@ -14,14 +14,14 @@ export default function IAManifesteSection() {
     {
       key: 'principle2',
       Icon: Sparkles,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-600/10',
+      color: 'text-primary-orbitvu',
+      bgColor: 'bg-primary-orbitvu/10',
     },
     {
       key: 'principle3',
       Icon: CheckCircle2,
-      color: 'text-green-600',
-      bgColor: 'bg-green-600/10',
+      color: 'text-accent-green',
+      bgColor: 'bg-accent-green/10',
     },
   ];
 

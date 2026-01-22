@@ -55,7 +55,7 @@ export default function BeforeAfter({
         {/* After */}
         <div className="relative h-64 md:h-80 bg-neutral-lighter overflow-hidden group">
           <div className="absolute top-4 left-4 z-10">
-            <span className="bg-purple-600 text-white text-xs font-heading font-semibold px-3 py-1 rounded-full">
+            <span className="bg-primary-orbitvu text-white text-xs font-heading font-semibold px-3 py-1 rounded-full">
               Après BlendAI
             </span>
           </div>
