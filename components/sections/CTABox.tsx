@@ -8,6 +8,7 @@ interface CTABoxProps {
   ctaHref: string;
   bgColor?: 'coral' | 'teal' | 'light-gray' | 'white';
   namespace?: string;
+  useSectionColor?: boolean;
 }
 
 export default function CTABox({
@@ -16,7 +17,8 @@ export default function CTABox({
   ctaKey,
   ctaHref,
   bgColor = 'light-gray',
-  namespace = 'home'
+  namespace = 'home',
+  useSectionColor = false,
 }: CTABoxProps) {
   const t = useTranslations(namespace);
 
@@ -48,7 +50,8 @@ export default function CTABox({
         <div className="pt-4">
           <Button
             asChild
-            className={`${buttonClasses[bgColor]} px-8 py-6 text-lg`}
+            variant={useSectionColor ? 'section' : 'default'}
+            className={`${!useSectionColor && buttonClasses[bgColor]} px-8 py-6 text-lg`}
           >
             <a href={ctaHref}>
               {t(ctaKey)}

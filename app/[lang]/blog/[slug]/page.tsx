@@ -7,6 +7,7 @@ import { ComparisonTable } from '@/components/blog/ComparisonTable';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
 
 export async function generateMetadata({
   params
@@ -120,12 +121,16 @@ export default async function BlogArticlePage({
               <p className="mb-6 text-lg">
                 Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-primary-blog text-neutral-dark font-semibold px-8 py-3 rounded-lg hover:bg-primary-blog/90 transition-colors shadow-sm"
+              <Button
+                asChild
+                variant="section"
+                size="lg"
+                className="text-neutral-dark font-semibold shadow-sm"
               >
-                Réserver une démo
-              </Link>
+                <Link href="/contact">
+                  Réserver une démo
+                </Link>
+              </Button>
             </div>
           </main>
         </div>
@@ -197,12 +202,16 @@ export default async function BlogArticlePage({
               <p className="mb-6 text-lg">
                 Découvrez nos solutions de studios photo automatisés et d'IA photo produit.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-primary-blog text-neutral-dark font-semibold px-8 py-3 rounded-lg hover:bg-primary-blog/90 transition-colors shadow-sm"
+              <Button
+                asChild
+                variant="section"
+                size="lg"
+                className="text-neutral-dark font-semibold shadow-sm"
               >
-                Réserver une démo
-              </Link>
+                <Link href="/contact">
+                  Réserver une démo
+                </Link>
+              </Button>
             </div>
           </main>
         </div>

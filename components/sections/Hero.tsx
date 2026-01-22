@@ -21,6 +21,7 @@ interface HeroProps {
   }[];
   badges?: ReactNode[];
   namespace?: string;
+  useSectionColor?: boolean;
 }
 
 const variantStyles = {
@@ -57,6 +58,7 @@ export default function Hero({
   images = [],
   badges,
   namespace = 'home',
+  useSectionColor = false,
 }: HeroProps) {
   const t = useTranslations(namespace);
   const styles = variantStyles[variant];
@@ -87,7 +89,11 @@ export default function Hero({
             <Button
               asChild
               size="lg"
-              className={cn(styles.ctaColor, 'text-white px-8 py-6 text-lg')}
+              variant={useSectionColor ? 'section' : 'default'}
+              className={cn(
+                !useSectionColor && styles.ctaColor,
+                'text-white px-8 py-6 text-lg'
+              )}
             >
               <Link href={ctaHref}>
                 {t(ctaKey)}

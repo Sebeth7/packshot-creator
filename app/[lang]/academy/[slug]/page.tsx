@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
 import { Badge, BadgeQualiopi } from '@/components/shared/Badge';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 interface Formation {
   titre: string;
@@ -130,18 +131,24 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
 
           {/* CTA */}
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href={`/${lang}/contact`}
-              className="inline-block bg-secondary-orbitvu hover:bg-primary-orbitvu text-white font-medium px-8 py-3 rounded-lg transition-colors"
+            <Button
+              asChild
+              variant="section"
+              size="lg"
             >
-              S'inscrire à cette formation
-            </Link>
-            <Link
-              href={`/${lang}/academy`}
-              className="inline-block bg-white border-2 border-neutral-light hover:border-secondary-orbitvu text-neutral-dark font-medium px-8 py-3 rounded-lg transition-colors"
+              <Link href={`/${lang}/contact`}>
+                S'inscrire à cette formation
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
             >
-              ← Voir toutes les formations
-            </Link>
+              <Link href={`/${lang}/academy`}>
+                ← Voir toutes les formations
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
