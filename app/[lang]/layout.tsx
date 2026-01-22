@@ -1,12 +1,12 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Cairo, Roboto } from 'next/font/google';
+import { Inter, Roboto } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 
-const cairo = Cairo({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-cairo',
+  variable: '--font-inter',
   weight: ['700'],
   display: 'swap'
 });
@@ -41,7 +41,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={lang} className={`${cairo.variable} ${roboto.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${roboto.variable}`}>
       <body className="font-body text-text-dark antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
