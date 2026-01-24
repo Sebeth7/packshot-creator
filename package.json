@@ -1,12 +1,14 @@
 {
   "name": "packshot-creator",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate:blog": "node scripts/migrate-mdx-to-sanity.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
