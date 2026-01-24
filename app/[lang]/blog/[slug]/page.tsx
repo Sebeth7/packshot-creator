@@ -1,13 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getLocalArticle } from '@/lib/blog';
 import { getWebflowArticle } from '@/lib/webflow';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Callout } from '@/components/blog/Callout';
-import { ComparisonTable } from '@/components/blog/ComparisonTable';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
+import { getSanityBlogPost, urlFor } from '@/lib/sanity-blog';
+import { PortableText } from '@portabletext/react';
+import { portableTextComponents } from '@/components/blog/PortableTextComponents';
 
 export async function generateMetadata({
   params
@@ -16,18 +15,28 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
 
-  // Try MDX first
-  const mdxArticle = await getLocalArticle(slug);
-  if (mdxArticle) {
+  // Try Sanity first
+  const sanityPost = await getSanityBlogPost(slug);
+  if (sanityPost) {
+    const seoTitle = sanityPost.seo?.seoTitle || sanityPost.title;
+    const seoDescription = sanityPost.seo?.seoDescription || sanityPost.description;
+
     return {
-      title: mdxArticle.title,
-      description: mdxArticle.description,
+      title: seoTitle,
+      description: seoDescription,
+      keywords: sanityPost.keywords?.join(', '),
       openGraph: {
-        title: mdxArticle.title,
-        description: mdxArticle.description,
-        images: mdxArticle.image ? [mdxArticle.image] : [],
+        title: seoTitle,
+        description: seoDescription,
+        images: sanityPost.image ? [urlFor(sanityPost.image).width(1200).height(630).url()] : [],
         type: 'article',
+        publishedTime: sanityPost.date,
+        authors: [sanityPost.author]
       },
+      robots: {
+        index: !sanityPost.seo?.noIndex,
+        follow: !sanityPost.seo?.noIndex
+      }
     };
   }
 
@@ -58,16 +67,14 @@ export default async function BlogArticlePage({
 }) {
   const { lang, slug } = await params;
 
-  // Composants personnalisés pour MDX
-  const components = {
-    Callout,
-    ComparisonTable,
-  };
+  // 1. Check for Sanity article first
+  const sanityPost = await getSanityBlogPost(slug);
 
-  // 1. Check for local MDX article
-  const mdxArticle = await getLocalArticle(slug);
+  if (sanityPost) {
+    const imageUrl = sanityPost.image
+      ? urlFor(sanityPost.image).width(1200).height(600).url()
+      : null;
 
-  if (mdxArticle) {
     return (
       <>
         <Header />
@@ -84,23 +91,27 @@ export default async function BlogArticlePage({
                   Blog
                 </Link>
                 <span>/</span>
-                <span className="text-neutral-dark">{mdxArticle.category || 'Article'}</span>
+                <span className="text-neutral-dark">{sanityPost.category || 'Article'}</span>
               </div>
 
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
-                {mdxArticle.title}
+                {sanityPost.title}
               </h1>
 
               <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-medium">
-                <time dateTime={mdxArticle.date}>
-                  {new Date(mdxArticle.date).toLocaleDateString(lang)}
+                <time dateTime={sanityPost.date}>
+                  {new Date(sanityPost.date).toLocaleDateString(lang)}
                 </time>
+                <span>•</span>
+                <span>{sanityPost.author}</span>
+                <span>•</span>
+                <span>{sanityPost.readingTime} min de lecture</span>
               </div>
 
-              {mdxArticle.image && (
+              {imageUrl && (
                 <img
-                  src={mdxArticle.image}
-                  alt={mdxArticle.title}
+                  src={imageUrl}
+                  alt={sanityPost.image?.alt || sanityPost.title}
                   className="w-full rounded-lg mt-6 shadow-md"
                 />
               )}
@@ -110,7 +121,10 @@ export default async function BlogArticlePage({
           {/* Article Content */}
           <main className="max-w-4xl mx-auto px-4 py-12">
             <article className="prose prose-lg max-w-none bg-white rounded-lg shadow-sm p-8 md:p-12">
-              <MDXRemote source={mdxArticle.content} components={components} />
+              <PortableText
+                value={sanityPost.content}
+                components={portableTextComponents}
+              />
             </article>
 
             {/* CTA Section */}
@@ -151,11 +165,11 @@ export default async function BlogArticlePage({
           <header className="bg-white border-b border-neutral-light">
             <div className="max-w-4xl mx-auto px-4 py-8">
               <div className="flex items-center gap-2 text-sm text-neutral-medium mb-4">
-                <Link href="/" className="hover:text-secondary-orbitvu transition-colors">
+                <Link href="/" className="hover:text-future-dusk-500 transition-colors">
                   Accueil
                 </Link>
                 <span>/</span>
-                <Link href="/blog" className="hover:text-secondary-orbitvu transition-colors">
+                <Link href="/blog" className="hover:text-future-dusk-500 transition-colors">
                   Blog
                 </Link>
                 <span>/</span>

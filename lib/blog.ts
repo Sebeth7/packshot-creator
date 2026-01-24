@@ -1,80 +1,53 @@
 // lib/blog.ts
 
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import { getWebflowArticles } from './webflow';
+import { getSanityBlogPosts, urlFor } from './sanity-blog';
 
-export interface MDXArticle {
+export interface SanityArticle {
+  _id: string;
   slug: string;
   title: string;
   description: string;
+  author: string;
   date: string;
-  image?: string;
   category?: string;
-  content: string; // MDX content
-  source: 'mdx';
+  keywords?: string[];
+  readingTime: number;
+  image?: string;
+  content: string; // Empty for listing
+  source: 'sanity';
 }
 
-/**
- * Get all local MDX articles
- */
-export async function getLocalMDXArticles(limit?: number): Promise<MDXArticle[]> {
-  const blogDir = path.join(process.cwd(), 'content/blog');
-
-  // Check if directory exists
-  if (!fs.existsSync(blogDir)) {
-    return [];
-  }
-
-  const files = fs.readdirSync(blogDir).filter(file => file.endsWith('.mdx'));
-
-  const articles = files.map(file => {
-    const filePath = path.join(blogDir, file);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContent);
-
-    return {
-      slug: data.slug || file.replace('.mdx', ''),
-      title: data.title,
-      description: data.description,
-      date: data.date,
-      image: data.image,
-      category: data.category,
-      content,
-      source: 'mdx' as const,
-    };
-  });
-
-  // Sort by date (most recent first)
-  const sorted = articles.sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
-  return limit ? sorted.slice(0, limit) : sorted;
-}
+export type Article = SanityArticle | import('./webflow').WebflowArticle;
 
 /**
- * Get single MDX article by slug
- */
-export async function getLocalArticle(slug: string): Promise<MDXArticle | null> {
-  const articles = await getLocalMDXArticles();
-  return articles.find(article => article.slug === slug) || null;
-}
-
-export type Article = MDXArticle | import('./webflow').WebflowArticle;
-
-/**
- * Get all articles (MDX + Webflow merged)
+ * Get all articles (Sanity + Webflow merged)
  */
 export async function getAllArticles(limit = 8): Promise<Article[]> {
-  const [mdxArticles, webflowArticles] = await Promise.all([
-    getLocalMDXArticles(),
+  // Fetch from both sources in parallel
+  const [sanityPosts, webflowArticles] = await Promise.all([
+    getSanityBlogPosts(),
     getWebflowArticles(),
   ]);
 
-  // Merge and sort by date
-  const allArticles = [...mdxArticles, ...webflowArticles].sort(
+  // Convert Sanity posts to common Article format
+  const sanityArticles: SanityArticle[] = sanityPosts.map(post => ({
+    _id: post._id,
+    slug: post.slug.current,
+    title: post.title,
+    description: post.description,
+    author: post.author,
+    date: post.date,
+    category: post.category,
+    keywords: post.keywords,
+    readingTime: post.readingTime,
+    image: post.image ? urlFor(post.image).width(800).height(400).url() : undefined,
+    source: 'sanity' as const,
+    content: '', // Not needed for listing
+  }));
+
+  // Merge and sort by date (most recent first)
+  const allArticles = [...sanityArticles, ...webflowArticles].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
