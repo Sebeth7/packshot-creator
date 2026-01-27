@@ -219,7 +219,6 @@ const formations = [
     categorie: 'packshot',
     niveau: 1,
     format: 'presentiel',
-    prix_blended: null,
     prix_presentiel: 850,
     duree_heures: 7,
     description_courte:
@@ -628,7 +627,6 @@ const formations = [
     categorie: 'packshot',
     niveau: 2,
     format: 'presentiel',
-    prix_blended: null,
     prix_presentiel: 1500,
     duree_heures: 14,
     description_courte:
@@ -736,7 +734,6 @@ const formations = [
     categorie: 'packshot',
     niveau: 3,
     format: 'presentiel',
-    prix_blended: null,
     prix_presentiel: 1800,
     duree_heures: 14,
     description_courte:
@@ -829,7 +826,6 @@ const formations = [
     niveau: 1,
     format: 'blended',
     prix_blended: 450,
-    prix_presentiel: null,
     duree_heures: 4,
     description_courte:
       'Formation 100% e-learning à votre rythme + 2 calls 1:1 personnalisés. Idéal profils autonomes et petits budgets.',
@@ -947,7 +943,7 @@ async function createFormations() {
 
   for (const [index, formation] of formations.entries()) {
     try {
-      const result = await client.create(formation);
+      const result = await client.create(formation as any);
       console.log(`✅ Formation ${index + 1}/6 créée : "${formation.titre}"`);
       console.log(`   ID: ${result._id}`);
       console.log(`   Slug: ${formation.slug.current}\n`);

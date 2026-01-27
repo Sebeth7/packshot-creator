@@ -337,7 +337,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot + 3 visuels lifestyle IA (porté, ambiance spa, zoom texture). Conversion e-commerce +40%.',
       },
-    },
+    ],
     cta: {
       titre: 'Sublimez vos cosmétiques',
       description: 'Devis packshot beauté + démo lifestyle luxe IA.',
@@ -399,7 +399,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot mannequin invisible + 2 visuels portés IA lifestyle. Délais -75%. Taux retour -15% (visualisation portée améliorée).',
       },
-    },
+    ],
     cta: {
       titre: 'Optimisez vos visuels mode',
       description: 'Devis packshot textile + démo mannequins IA.',
@@ -523,7 +523,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot automatisé 360° + nomenclature intégrée. Catalogue complet photographié en 3 semaines (vs 6 mois manuellement).',
       },
-    },
+    ],
     cta: {
       titre: 'Automatisez vos catalogues techniques',
       description: 'Devis packshot industriel pour gros volumes.',
@@ -584,7 +584,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot + 360° automatisés. Catalogue complet en 6 semaines. Ventes e-commerce +60% (visibilité pièces améliorée).',
       },
-    },
+    ],
     cta: {
       titre: 'Automatisez vos catalogues pièces auto',
       description: 'Devis packshot automobile gros volumes.',
@@ -646,7 +646,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot + 2 visuels ambiances IA enfants. Conversion e-commerce +45% (visualisation usage améliorée).',
       },
-    },
+    ],
     cta: {
       titre: 'Optimisez vos visuels jouets',
       description: 'Devis packshot + démo lifestyle enfants IA.',
@@ -709,7 +709,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot + 3 visuels lifestyle IA (montagne, forêt, ultra-trail). Engagement Instagram +180%.',
       },
-    },
+    ],
     cta: {
       titre: 'Sublimez vos équipements outdoor',
       description: 'Devis packshot sport + démo lifestyle aventure IA.',
@@ -771,7 +771,7 @@ export const secteurs: Secteur[] = [
         description:
           'Packshot conforme + nomenclatures intégrées. Catalogue certifié CE en 4 semaines. Validation réglementaire simplifiée.',
       },
-    },
+    ],
     cta: {
       titre: 'Catalogues médicaux conformes',
       description: 'Devis packshot médical précision + conformité.',
