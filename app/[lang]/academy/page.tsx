@@ -190,6 +190,162 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
           </div>
         </section>
 
+        {/* SECTION 2.5 : OPCO Pédagogique Détaillée */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-dark mb-4">
+                💶 Financement OPCO : Formation Prise en Charge à 100%
+              </h2>
+              <p className="text-xl text-neutral-medium max-w-3xl mx-auto">
+                Toutes nos formations sont éligibles au financement OPCO. Vous ne payez rien, votre OPCO prend en charge la totalité des frais de formation.
+              </p>
+            </div>
+
+            {/* Qu'est-ce qu'un OPCO */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+              <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-4 flex items-center gap-3">
+                <span className="text-3xl">ℹ️</span>
+                Qu'est-ce qu'un OPCO ?
+              </h3>
+              <p className="text-neutral-medium mb-4">
+                Les <strong>OPCO (Opérateurs de Compétences)</strong> sont des organismes agréés par l'État qui collectent les contributions des entreprises pour financer la formation professionnelle de leurs salariés et dirigeants.
+              </p>
+              <p className="text-neutral-medium">
+                <strong>Bonne nouvelle :</strong> Toute entreprise cotisant à un OPCO peut faire financer nos formations à <strong className="text-blue-600">100% sans avance de frais</strong>.
+              </p>
+            </div>
+
+            {/* Éligibilité par profil */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              {/* Salariés */}
+              <div className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-500">
+                <h3 className="font-heading text-xl font-bold text-neutral-dark mb-4 flex items-center gap-2">
+                  <span className="text-2xl">👔</span>
+                  Pour les Salariés
+                </h3>
+                <ul className="space-y-3 text-sm text-neutral-medium">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 font-bold">✓</span>
+                    <span><strong>Plan de développement des compétences :</strong> Demandez à votre employeur de monter le dossier OPCO. Financement 100% par l'entreprise via son OPCO.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 font-bold">✓</span>
+                    <span><strong>Mobilisation CPF :</strong> Complément possible avec vos heures CPF si budget OPCO insuffisant (rare).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 font-bold">✓</span>
+                    <span><strong>Démarche simple :</strong> Nous vous fournissons tous les documents (devis, programme détaillé, certification Qualiopi).</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Indépendants / Dirigeants */}
+              <div className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-indigo-500">
+                <h3 className="font-heading text-xl font-bold text-neutral-dark mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🚀</span>
+                  Pour les Indépendants & Dirigeants
+                </h3>
+                <ul className="space-y-3 text-sm text-neutral-medium">
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-500 font-bold">✓</span>
+                    <span><strong>AGEFICE</strong> (commerçants, dirigeants non-salariés) : Jusqu'à 2 000€/an de prise en charge formations.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-500 font-bold">✓</span>
+                    <span><strong>FIFPL</strong> (professions libérales) : Prise en charge formations éligibles selon activité.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-500 font-bold">✓</span>
+                    <span><strong>FAFCEA</strong> (artisans) : Formations prises en charge sous conditions d'éligibilité.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Avantages OPCO */}
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-xl p-8 text-white mb-8">
+              <h3 className="font-heading text-2xl font-bold mb-6 text-center">
+                🎁 Avantages du Financement OPCO
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-4xl mb-3">💰</div>
+                  <h4 className="font-bold mb-2">Prise en Charge 100%</h4>
+                  <p className="text-sm opacity-90">Aucun frais à votre charge. L'OPCO règle directement la formation.</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl mb-3">📄</div>
+                  <h4 className="font-bold mb-2">Démarche Simplifiée</h4>
+                  <p className="text-sm opacity-90">Nous fournissons tous les documents nécessaires pour votre dossier OPCO.</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl mb-3">⚡</div>
+                  <h4 className="font-bold mb-2">Validation Rapide</h4>
+                  <p className="text-sm opacity-90">Certification Qualiopi = validation OPCO accélérée (2-4 semaines).</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Process OPCO */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-6 text-center">
+                📋 Comment Obtenir Votre Financement OPCO en 4 Étapes
+              </h3>
+              <div className="grid md:grid-cols-4 gap-6">
+                {/* Étape 1 */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                    1
+                  </div>
+                  <h4 className="font-bold text-neutral-dark mb-2">Contactez-nous</h4>
+                  <p className="text-sm text-neutral-medium">Demandez un devis personnalisé pour la formation souhaitée.</p>
+                </div>
+
+                {/* Étape 2 */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                    2
+                  </div>
+                  <h4 className="font-bold text-neutral-dark mb-2">Recevez les documents</h4>
+                  <p className="text-sm text-neutral-medium">Devis + programme détaillé + attestation Qualiopi fournis sous 48h.</p>
+                </div>
+
+                {/* Étape 3 */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                    3
+                  </div>
+                  <h4 className="font-bold text-neutral-dark mb-2">Déposez votre dossier</h4>
+                  <p className="text-sm text-neutral-medium">Transmettez les documents à votre OPCO (ou votre employeur s'en charge).</p>
+                </div>
+
+                {/* Étape 4 */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                    ✓
+                  </div>
+                  <h4 className="font-bold text-neutral-dark mb-2">Validation OPCO</h4>
+                  <p className="text-sm text-neutral-medium">Accord OPCO sous 2-4 semaines. Vous pouvez démarrer la formation !</p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <Link
+                href="/contact"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+              >
+                📞 Demander un Devis OPCO Gratuit
+              </Link>
+              <p className="text-sm text-neutral-medium mt-4">
+                Besoin d'aide pour monter votre dossier ? <Link href="/blog/financement-formation-opco-guide" className="text-blue-600 underline font-medium">Consultez notre guide OPCO complet →</Link>
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 3 : Catalogue Formations */}
         <section id="formations" className="py-16 bg-neutral-lighter">
           <div className="max-w-6xl mx-auto px-4">
