@@ -23,12 +23,15 @@ export default function Footer() {
           {/* Industries */}
           <div>
             <h3 className="font-heading font-semibold text-neutral-dark mb-4">
-              {t('footer.industries')}
+              Industries
             </h3>
             <ul className="space-y-2 text-sm text-neutral-medium">
-              <li><Link href="/industries/fashion" className="hover:text-[#4c5578]">{t('footer.fashion')}</Link></li>
-              <li><Link href="/industries/food" className="hover:text-[#4c5578]">{t('footer.food')}</Link></li>
-              <li><Link href="/industries/hightech" className="hover:text-[#4c5578]">{t('footer.hightech')}</Link></li>
+              <li><Link href="/industrie/chaussures" className="hover:text-[#4c5578]">Chaussures</Link></li>
+              <li><Link href="/industrie/bijoux-joaillerie" className="hover:text-[#4c5578]">Bijoux & Joaillerie</Link></li>
+              <li><Link href="/industrie/mobilier-decoration" className="hover:text-[#4c5578]">Mobilier & Décoration</Link></li>
+              <li><Link href="/industrie/food-alimentaire" className="hover:text-[#4c5578]">Food & Alimentaire</Link></li>
+              <li><Link href="/industrie/mode-textile" className="hover:text-[#4c5578]">Mode & Textile</Link></li>
+              <li><Link href="/industrie/electronique-hightech" className="hover:text-[#4c5578]">Électronique</Link></li>
             </ul>
           </div>
 

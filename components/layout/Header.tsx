@@ -35,6 +35,9 @@ export default function Header() {
             <Link href="/ia-photo-produit" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Création
             </Link>
+            <Link href="/industrie" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
+              Industries
+            </Link>
             <Link href="/academy" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
               Formation
             </Link>
@@ -74,6 +77,9 @@ export default function Header() {
             </Link>
             <Link href="/ia-photo-produit" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Création
+            </Link>
+            <Link href="/industrie" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
+              Industries
             </Link>
             <Link href="/academy" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
               Formation

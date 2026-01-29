@@ -72,18 +72,18 @@ export default function SectorGrid({
   );
 }
 
-// Export sectors data (12 secteurs principaux)
+// Export sectors data (12 secteurs principaux - alignés avec secteurs.ts)
 export const DEFAULT_SECTORS: Sector[] = [
-  { slug: 'agroalimentaire', name: 'Agroalimentaire', Icon: Wine },
-  { slug: 'meubles', name: 'Meubles', Icon: Armchair },
-  { slug: 'pieces-techniques', name: 'Pièces techniques', Icon: Wrench },
-  { slug: 'bijoux', name: 'Bijouterie', Icon: Gem },
   { slug: 'chaussures', name: 'Chaussures', Icon: Footprints },
-  { slug: 'mode-accessoires', name: 'Mode & Accessoires', Icon: Shirt },
-  { slug: 'cosmetique', name: 'Cosmétique', Icon: Sparkles },
-  { slug: 'high-tech', name: 'High-tech', Icon: Smartphone },
-  { slug: 'sport', name: 'Sport', Icon: Trophy },
-  { slug: 'automobile', name: 'Automobile', Icon: Car },
-  { slug: 'jouets', name: 'Jouets', Icon: Baby },
-  { slug: 'maroquinerie', name: 'Maroquinerie', Icon: ShoppingBag },
+  { slug: 'bijoux-joaillerie', name: 'Bijoux & Joaillerie', Icon: Gem },
+  { slug: 'mobilier-decoration', name: 'Mobilier & Décoration', Icon: Armchair },
+  { slug: 'food-alimentaire', name: 'Food & Alimentaire', Icon: Wine },
+  { slug: 'cosmetiques-beaute', name: 'Cosmétiques & Beauté', Icon: Sparkles },
+  { slug: 'mode-textile', name: 'Mode & Textile', Icon: Shirt },
+  { slug: 'electronique-hightech', name: 'Électronique & High-Tech', Icon: Smartphone },
+  { slug: 'pieces-techniques-industrie', name: 'Pièces Techniques', Icon: Wrench },
+  { slug: 'automobile-pieces-detachees', name: 'Automobile', Icon: Car },
+  { slug: 'jouets-puericulture', name: 'Jouets & Puériculture', Icon: Baby },
+  { slug: 'sport-outdoor', name: 'Sport & Outdoor', Icon: Trophy },
+  { slug: 'sante-medical', name: 'Santé & Médical', Icon: ShoppingBag },
 ];
