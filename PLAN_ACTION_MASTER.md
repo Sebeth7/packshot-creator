@@ -1,6 +1,7 @@
 # 🎯 PLAN D'ACTION MASTER - PackshotCreator Next.js
 
 **Date création :** 25 janvier 2026
+**Dernière mise à jour :** 29 janvier 2026 - Session préparation Phase 2
 **Objectif :** Migration Webflow → Next.js avec amélioration complète
 **Principe :** Augmenter sans casser (0 perte SEO, amélioration UX/performance)
 
@@ -67,21 +68,24 @@
 - Calculateur ROI complet (avec sélecteur machines intégré)
 - 17 redirections 301 configurées
 - Documentation complète (12 docs créées)
+- **✅ 12 pages industrie `/industrie/*` créées et accessibles (29/01/2026)**
+- **✅ Navigation industries complète (Header + Footer + SectorGrid) (29/01/2026)**
+- **✅ Page index `/industrie` créée (29/01/2026)**
 
 ### ❌ Manquant Critique
 
 **Contenu :**
 - 0/6 formations créées dans Sanity
-- 0/12 pages secteurs `/industrie/*`
+- ~~0/12 pages secteurs `/industrie/*`~~ ✅ **12/12 créées (29/01/2026)**
 - 3 pages légales manquantes
 - Page À propos manquante
 - 13 articles blog prioritaires
 
 **Fonctionnalités :**
-- Formulaires non migrés (Webflow → Next.js/Pipedrive)
-- Sélecteur machines non extrait (intégré dans ROI)
-- Section OPCO absente
-- Simulateur OPCO absent
+- Formulaires non migrés (Webflow → Next.js/Pipedrive) - **📋 Inventaire complet fait (29/01/2026)**
+- Sélecteur machines non extrait (intégré dans ROI) - **🔍 Audit complet fait (29/01/2026)**
+- Section OPCO absente - **📄 Specs complètes documentées (29/01/2026)**
+- Simulateur OPCO absent - **📄 Plan d'implémentation prêt (29/01/2026)**
 - LMS non configuré
 
 **SEO Technique :**
@@ -739,6 +743,84 @@ Task "Content Creation"
 
 ---
 
+## 📝 SESSION 29/01/2026 - PRÉPARATION PHASE 2
+
+### Objectif Session
+Créer les données et documents nécessaires pour l'implémentation de la Phase 2.
+
+### Livrables Complétés
+
+#### 1. ✅ Inventaire Formulaires Webflow
+**Document :** `Webflow_Forms_Inventory.md` (scratchpad)
+**Contenu :**
+- 3 formulaires identifiés et documentés :
+  - Formulaire contact principal (Pipedrive Form ID: bYWdVxnLz...)
+  - Formulaire modal rapide (Pipedrive Form ID: czNFO4ACCm...)
+  - Cookie Consent (RGPD)
+- Architecture Pipedrive WebForms analysée
+- 2 options migration Next.js proposées (embed vs custom)
+- Champs personnalisés à mapper identifiés
+- Actions de validation listées
+
+#### 2. ✅ Recherche Qualiopi-OPCO et Plan Simulateur
+**Document :** `OPCO_Qualiopi_Specs_Simulateur.md` (45KB, racine projet)
+**Contenu :**
+- Vue d'ensemble Qualiopi vs OPCO
+- Critères d'éligibilité complets (stagiaire, entreprise, formation)
+- Arbre de décision simulateur (4 étapes)
+- Pseudo-code JavaScript pour calcul éligibilité
+- Specs techniques complètes (TypeScript, Zod, API)
+- Les 11 OPCO détaillés avec plafonds 2026
+- **OPCO EP identifié comme cible prioritaire** (e-commerce)
+- Processus de demande complet (6 étapes)
+- 7 cas d'usage avec messages personnalisés
+- Actions prioritaires identifiées :
+  - Obtenir Qualiopi (3-6 mois, 1 500-3 000 €)
+  - Développer simulateur MVP (2-3 semaines)
+  - Service premium montage dossier OPCO (différenciateur)
+
+#### 3. ✅ Audit Sélecteur Machines ROI Calculator
+**Document :** Rapport complet (transcript agent a88b536)
+**Contenu :**
+- Localisation code : `components/calculators/ROICalculator/lib/machineSelector.ts`
+- 20 machines Orbitvu cataloguées (4 petites, 4 moyennes, 2 grands, 7 très grands, 2 flat-lay)
+- Algorithme scoring pondéré sur 100 points détaillé
+- Points à améliorer identifiés :
+  - Images machines toutes undefined
+  - Maintenance annuelle toutes à 0€
+  - Catégorie "très-grand" trop hétérogène
+  - Exclusion wine codée en dur
+- Plan complet pour version standalone :
+  - Extraction dans `components/machine-selector/`
+  - Composants modulaires (MachineCard, FilterBar, MachineList)
+  - Hook personnalisé `useMachineSelection()`
+  - Props API claire pour réutilisabilité
+  - Tests + Storybook
+
+#### 4. ✅ Fix Navigation Industries (bonus)
+- 12 pages industrie créées et rendues accessibles
+- Slugs alignés entre `SectorGrid.tsx`, `Footer.tsx` et `secteurs.ts`
+- Nouveau lien "Industries" ajouté au Header
+- Page index `/industrie` créée avec grille complète
+- Commit + Push effectués
+
+### Impact Phase 1
+**Phase 1 validée à 90%** :
+- ✅ 12 pages secteurs créées et accessibles
+- ⚠️ 6 formations à créer (reste à faire)
+- ⚠️ 3 pages légales à créer (reste à faire)
+- ⚠️ Page À propos à créer (reste à faire)
+- ⚠️ Section OPCO à créer (specs prêtes)
+
+### Préparation Phase 2
+**Phase 2 prête à démarrer** :
+- ✅ Données formulaires disponibles
+- ✅ Specs OPCO documentées
+- ✅ Audit sélecteur fait
+- 📄 Prompt session suivante créé
+
+---
+
 **Ce document est la référence unique pour toutes sessions futures. Chaque session doit :**
 1. Lire ce plan avant de démarrer
 2. Identifier sa phase
@@ -750,5 +832,5 @@ Task "Content Creation"
 
 ---
 
-**Version :** 1.0.0
-**Dernière mise à jour :** 25 janvier 2026
+**Version :** 1.1.0
+**Dernière mise à jour :** 29 janvier 2026 - Session préparation Phase 2
