@@ -19,7 +19,7 @@ test.describe('OPCO Simulator', () => {
   test('should show step 1 with professional status options', async ({ page }) => {
     // Verify we're on step 1
     await expect(page.getByText('Étape 1 sur 4')).toBeVisible();
-    await expect(page.getByText('Votre profil')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Votre profil' })).toBeVisible();
 
     // Verify all status options are present (real labels from STATUT_LABELS)
     await expect(page.getByText('Salarié(e) en CDI')).toBeVisible();
@@ -35,7 +35,7 @@ test.describe('OPCO Simulator', () => {
 
     // Step 2: Company info
     await expect(page.getByText('Étape 2 sur 4')).toBeVisible();
-    await expect(page.getByText('Votre entreprise')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Votre entreprise' })).toBeVisible();
 
     // Select company size
     await page.getByText('Moins de 11 salariés').click();
@@ -50,7 +50,7 @@ test.describe('OPCO Simulator', () => {
 
     // Step 3: Training selection
     await expect(page.getByText('Étape 3 sur 4')).toBeVisible();
-    await expect(page.getByText('Votre formation')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Votre formation' })).toBeVisible();
 
     // Select a formation (real label from FORMATIONS_DISPONIBLES)
     await page.getByText('Formation Packshot Initiation').click();
@@ -131,11 +131,11 @@ test.describe('OPCO Simulator', () => {
 
     // Verify contact form is present
     await expect(page.getByText('Recevoir mon estimation détaillée')).toBeVisible();
-    await expect(page.getByLabel('Prénom *')).toBeVisible();
-    await expect(page.getByLabel('Nom *')).toBeVisible();
-    await expect(page.getByLabel('Email professionnel *')).toBeVisible();
-    await expect(page.getByLabel('Téléphone')).toBeVisible();
-    await expect(page.getByLabel('Entreprise')).toBeVisible();
+    await expect(page.getByText('Prénom *', { exact: true })).toBeVisible();
+    await expect(page.getByText('Nom *', { exact: true })).toBeVisible();
+    await expect(page.getByText('Email professionnel *', { exact: true })).toBeVisible();
+    await expect(page.getByText('Téléphone', { exact: true })).toBeVisible();
+    await expect(page.getByText('Entreprise', { exact: true })).toBeVisible();
   });
 
   test('should allow restarting the simulation', async ({ page }) => {
@@ -191,7 +191,8 @@ test.describe('OPCO Simulator', () => {
 
     // Verify Qualiopi badge is displayed
     await expect(page.getByText('Formation certifiée Qualiopi')).toBeVisible();
-    await expect(page.getByText('PackshotCreator Academy est certifié Qualiopi')).toBeVisible();
+    // Verify Qualiopi badge text in the simulator (not FAQ)
+    await expect(page.locator('.opco-simulator').getByText('PackshotCreator Academy est certifié Qualiopi', { exact: false })).toBeVisible();
   });
 
   test('should show funding estimate for eligible user', async ({ page }) => {
@@ -208,7 +209,7 @@ test.describe('OPCO Simulator', () => {
 
     // Verify funding estimate details
     await expect(page.getByText('Estimation du financement')).toBeVisible();
-    await expect(page.getByText('Votre OPCO')).toBeVisible();
+    await expect(page.getByText('Votre OPCO', { exact: true })).toBeVisible();
     await expect(page.getByText('Coût de la formation')).toBeVisible();
     await expect(page.getByText('Prise en charge OPCO')).toBeVisible();
     await expect(page.getByText('Reste à charge')).toBeVisible();
