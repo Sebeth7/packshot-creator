@@ -63,8 +63,8 @@ export function Step2Entreprise({ data, onChange, locale }: Step2EntrepriseProps
                 className={`
                   p-3 rounded-lg border-2 text-center transition-all text-sm
                   ${isSelected
-                    ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                    : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                    ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                    : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                   }
                 `}
               >
@@ -104,8 +104,8 @@ export function Step2Entreprise({ data, onChange, locale }: Step2EntrepriseProps
                 className={`
                   p-3 rounded-lg border-2 text-left transition-all text-sm
                   ${isSelected
-                    ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                    : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                    ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                    : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                   }
                 `}
               >
@@ -140,8 +140,8 @@ export function Step2Entreprise({ data, onChange, locale }: Step2EntrepriseProps
                 className={`
                   px-4 py-2 rounded-lg border-2 transition-all
                   ${isSelected
-                    ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                    : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                    ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                    : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                   }
                 `}
               >

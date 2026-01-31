@@ -118,7 +118,13 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
               {t('hero.subtitle')}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/academy/simulateur-opco"
+                className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all"
+              >
+                Simuler mon Financement OPCO
+              </Link>
               <a
                 href="#formations"
                 className="inline-block bg-[#cdcdfd] hover:bg-[#b5b5fd] text-neutral-dark font-medium px-8 py-3 rounded-lg"
@@ -333,12 +339,20 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
 
             {/* CTA */}
             <div className="text-center mt-12">
-              <Link
-                href="/contact"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
-              >
-                📞 Demander un Devis OPCO Gratuit
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/academy/simulateur-opco"
+                  className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+                >
+                  ✅ Vérifier mon Éligibilité OPCO
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+                >
+                  📞 Demander un Devis OPCO
+                </Link>
+              </div>
               <p className="text-sm text-neutral-medium mt-4">
                 Besoin d'aide pour monter votre dossier ? <Link href="/blog/financement-formation-opco-guide" className="text-blue-600 underline font-medium">Consultez notre guide OPCO complet →</Link>
               </p>

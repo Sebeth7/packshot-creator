@@ -46,15 +46,15 @@ export function Step1Profil({ data, onChange, locale }: Step1ProfilProps) {
               className={`
                 p-4 rounded-xl border-2 text-left transition-all
                 ${isSelected
-                  ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                  : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                  ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                  : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                 }
               `}
             >
               <div className="flex items-center gap-3">
                 <div className={`
                   w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors
-                  ${isSelected ? 'border-brand-red bg-brand-red' : 'border-gray-300'}
+                  ${isSelected ? 'border-secondary-orbitvu bg-secondary-orbitvu' : 'border-gray-300'}
                 `}>
                   {isSelected && (
                     <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">

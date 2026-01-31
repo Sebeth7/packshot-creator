@@ -12,6 +12,7 @@ import CTABox from '@/components/sections/CTABox';
 import { BadgeDistributor } from '@/components/shared/Badge';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
+import { MachineSelector } from '@/components/machine-selector/MachineSelector';
 
 // Featured Products Data
 const FEATURED_PRODUCTS: Product[] = [
@@ -142,8 +143,32 @@ export default async function StudiosPhotoAutomatisesPage({
           </div>
         </section>
 
+        {/* Section Sélecteur de Machines */}
+        <section id="selecteur-machines" className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
+                {lang === 'fr' ? 'Trouvez la Machine Idéale' : 'Find Your Ideal Machine'}
+              </h2>
+              <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
+                {lang === 'fr'
+                  ? 'Explorez notre gamme complète de studios photo automatisés Orbitvu et trouvez celui qui correspond parfaitement à vos besoins de production.'
+                  : 'Explore our complete range of Orbitvu automated photo studios and find the one that perfectly matches your production needs.'}
+              </p>
+            </div>
+
+            <MachineSelector
+              mode="display"
+              showFilters={true}
+              showPrices={true}
+              locale={lang as 'fr' | 'en'}
+              className="bg-neutral-lighter rounded-2xl p-6 md:p-8"
+            />
+          </div>
+        </section>
+
         {/* Section Calculateur ROI */}
-        <section id="calculateur-roi" className="py-20 bg-white">
+        <section id="calculateur-roi" className="py-20 bg-neutral-lighter">
           <div className="max-w-5xl mx-auto px-4">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
               {t('roiCalculator.heading')}

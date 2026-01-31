@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-neutral-light py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Logo + Description */}
           <div>
             <img
@@ -44,6 +44,18 @@ export default function Footer() {
               <li><Link href="/products/alphashot-pro-g2" className="hover:text-[#4c5578]">{t('footer.alphaShotProG2')}</Link></li>
               <li><Link href="/products/alphashot-micro-v2" className="hover:text-[#4c5578]">{t('footer.alphaShotMicro')}</Link></li>
               <li><Link href="/products/fashion-studio" className="hover:text-[#4c5578]">{t('footer.fashionStudio')}</Link></li>
+            </ul>
+          </div>
+
+          {/* Outils */}
+          <div>
+            <h3 className="font-heading font-semibold text-neutral-dark mb-4">
+              Outils
+            </h3>
+            <ul className="space-y-2 text-sm text-neutral-medium">
+              <li><Link href="/academy/simulateur-opco" className="hover:text-[#4c5578]">Simulateur OPCO</Link></li>
+              <li><Link href="/studios-photo-automatises#selecteur-machines" className="hover:text-[#4c5578]">Sélecteur de Machines</Link></li>
+              <li><Link href="/studios-photo-automatises#calculateur-roi" className="hover:text-[#4c5578]">Calculateur ROI</Link></li>
             </ul>
           </div>
 

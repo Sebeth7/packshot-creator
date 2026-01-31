@@ -36,8 +36,8 @@ export function Step3Formation({ data, onChange, locale }: Step3FormationProps) 
               className={`
                 w-full p-4 rounded-xl border-2 text-left transition-all
                 ${isSelected
-                  ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                  : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                  ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                  : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                 }
               `}
             >
@@ -46,7 +46,7 @@ export function Step3Formation({ data, onChange, locale }: Step3FormationProps) 
                   <div className="flex items-center gap-3 mb-2">
                     <div className={`
                       w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors flex-shrink-0
-                      ${isSelected ? 'border-brand-red bg-brand-red' : 'border-gray-300'}
+                      ${isSelected ? 'border-secondary-orbitvu bg-secondary-orbitvu' : 'border-gray-300'}
                     `}>
                       {isSelected && (
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -81,7 +81,7 @@ export function Step3Formation({ data, onChange, locale }: Step3FormationProps) 
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <span className="text-lg font-bold text-brand-red">
+                  <span className="text-lg font-bold text-secondary-orbitvu">
                     {formatMontant(formation.prixHT)}
                   </span>
                   <span className="text-sm text-gray-500 block">HT</span>
@@ -114,8 +114,8 @@ export function Step3Formation({ data, onChange, locale }: Step3FormationProps) 
                   className={`
                     flex-1 px-4 py-3 rounded-lg border-2 transition-all
                     ${isSelected
-                      ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                      : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                      ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                      : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                     }
                   `}
                 >
@@ -159,8 +159,8 @@ export function Step3Formation({ data, onChange, locale }: Step3FormationProps) 
                   className={`
                     px-4 py-2 rounded-lg border-2 transition-all
                     ${isSelected
-                      ? 'border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20'
-                      : 'border-gray-200 hover:border-brand-red/50 hover:bg-gray-50'
+                      ? 'border-secondary-orbitvu bg-secondary-orbitvu/5 ring-2 ring-secondary-orbitvu/20'
+                      : 'border-gray-200 hover:border-secondary-orbitvu/50 hover:bg-gray-50'
                     }
                   `}
                 >

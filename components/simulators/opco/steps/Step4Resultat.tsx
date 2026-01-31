@@ -113,7 +113,7 @@ export function Step4Resultat({
                 {locale === 'fr' ? 'Reste à charge' : 'Remaining cost'}
               </span>
               <span className={`text-xl font-bold ${
-                (resultat.montantRestant || 0) === 0 ? 'text-green-600' : 'text-brand-red'
+                (resultat.montantRestant || 0) === 0 ? 'text-green-600' : 'text-secondary-orbitvu'
               }`}>
                 {formatMontant(resultat.montantRestant || 0)}
               </span>
@@ -152,7 +152,7 @@ export function Step4Resultat({
           <div className="space-y-4">
             {resultat.prochainesEtapes.map((etape, index) => (
               <div key={index} className="flex gap-4">
-                <div className="w-8 h-8 rounded-full bg-brand-red text-white flex items-center justify-center flex-shrink-0 font-semibold text-sm">
+                <div className="w-8 h-8 rounded-full bg-secondary-orbitvu text-white flex items-center justify-center flex-shrink-0 font-semibold text-sm">
                   {etape.numero}
                 </div>
                 <div className="flex-1">
@@ -205,7 +205,7 @@ export function Step4Resultat({
               type="text"
               value={coordonnees.prenom || ''}
               onChange={(e) => onCoordonneesChange({ ...coordonnees, prenom: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary-orbitvu/20 focus:border-secondary-orbitvu outline-none"
               required
             />
           </div>
@@ -217,7 +217,7 @@ export function Step4Resultat({
               type="text"
               value={coordonnees.nom || ''}
               onChange={(e) => onCoordonneesChange({ ...coordonnees, nom: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary-orbitvu/20 focus:border-secondary-orbitvu outline-none"
               required
             />
           </div>
@@ -229,7 +229,7 @@ export function Step4Resultat({
               type="email"
               value={coordonnees.email || ''}
               onChange={(e) => onCoordonneesChange({ ...coordonnees, email: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary-orbitvu/20 focus:border-secondary-orbitvu outline-none"
               required
             />
           </div>
@@ -241,7 +241,7 @@ export function Step4Resultat({
               type="tel"
               value={coordonnees.telephone || ''}
               onChange={(e) => onCoordonneesChange({ ...coordonnees, telephone: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary-orbitvu/20 focus:border-secondary-orbitvu outline-none"
             />
           </div>
           <div className="md:col-span-2">
@@ -252,7 +252,7 @@ export function Step4Resultat({
               type="text"
               value={coordonnees.entreprise || ''}
               onChange={(e) => onCoordonneesChange({ ...coordonnees, entreprise: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary-orbitvu/20 focus:border-secondary-orbitvu outline-none"
             />
           </div>
         </div>
@@ -261,7 +261,7 @@ export function Step4Resultat({
           <button
             onClick={onSubmit}
             disabled={!coordonnees.prenom || !coordonnees.nom || !coordonnees.email}
-            className="mt-6 w-full py-3 px-6 bg-brand-red text-white font-semibold rounded-lg hover:bg-brand-red/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-6 w-full py-3 px-6 bg-secondary-orbitvu text-white font-semibold rounded-lg hover:bg-secondary-orbitvu/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {locale === 'fr' ? 'Recevoir mon estimation' : 'Receive my estimate'}
           </button>
@@ -281,7 +281,7 @@ export function Step4Resultat({
             href={resultat.opco.siteWeb}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-brand-red hover:underline"
+            className="inline-flex items-center gap-2 text-secondary-orbitvu hover:underline"
           >
             {locale === 'fr' ? 'Visiter le site de' : 'Visit'} {resultat.opco.nom}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -121,7 +121,7 @@ export function OPCOSimulator({
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-brand-red transition-all duration-300"
+            className="h-full bg-secondary-orbitvu transition-all duration-300"
             style={{ width: `${(state.step / TOTAL_STEPS) * 100}%` }}
           />
         </div>
@@ -178,7 +178,7 @@ export function OPCOSimulator({
           <button
             onClick={nextStep}
             disabled={!canProceed()}
-            className="px-6 py-2.5 text-white bg-brand-red rounded-lg hover:bg-brand-red/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2.5 text-white bg-secondary-orbitvu rounded-lg hover:bg-secondary-orbitvu/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {state.step === 3
               ? (locale === 'fr' ? 'Voir mon résultat' : 'See my result')
@@ -198,7 +198,7 @@ export function OPCOSimulator({
               coordonnees: {},
               resultat: null,
             })}
-            className="text-brand-red hover:underline text-sm"
+            className="text-secondary-orbitvu hover:underline text-sm"
           >
             {locale === 'fr' ? 'Recommencer la simulation' : 'Restart simulation'}
           </button>
