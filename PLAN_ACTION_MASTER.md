@@ -1,7 +1,7 @@
 # 🎯 PLAN D'ACTION MASTER - PackshotCreator Next.js
 
 **Date création :** 25 janvier 2026
-**Dernière mise à jour :** 29 janvier 2026 - Phase 2 complétée
+**Dernière mise à jour :** 31 janvier 2026 - Phase 1 & 2 complétées
 **Objectif :** Migration Webflow → Next.js avec amélioration complète
 **Principe :** Augmenter sans casser (0 perte SEO, amélioration UX/performance)
 
@@ -136,11 +136,11 @@
 **Dépendances :** Aucune (phase de démarrage)
 
 **Validation :**
-- [ ] 6 formations visibles dans Sanity Studio
-- [ ] 12 pages `/industrie/[slug]` accessibles
-- [ ] 3 pages légales publiées
-- [ ] Page À propos publiée
-- [ ] Section OPCO visible sur page Academy
+- [x] 6 formations visibles dans Sanity Studio ✅ 31/01/2026
+- [x] 12 pages `/industrie/[slug]` accessibles ✅ 29/01/2026
+- [x] 3 pages légales publiées (Mentions, Confidentialité, CGU) ✅ 31/01/2026
+- [x] Page À propos publiée ✅ 29/01/2026
+- [x] Section OPCO visible sur page Academy ✅ 29/01/2026
 
 ---
 
@@ -837,8 +837,8 @@ Créer les données et documents nécessaires pour l'implémentation de la Phase
 
 ---
 
-**Version :** 1.2.0
-**Dernière mise à jour :** 29 janvier 2026 - ✅ Phase 2 TERMINÉE
+**Version :** 1.3.0
+**Dernière mise à jour :** 31 janvier 2026 - ✅ Phase 1 & Phase 2 TERMINÉES
 
 ---
 
