@@ -68,16 +68,6 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
 
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-secondary-orbitvu flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral-dark">{t('email')}</p>
-                      <p>{t('emailValue')}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-secondary-orbitvu flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
@@ -101,28 +91,17 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                   <span>{t('showroomAddress')}</span>
                 </p>
 
-                {/* Google Maps - Placeholder */}
-                <div className="w-full h-[300px] bg-neutral-lighter/30 rounded-lg border-2 border-dashed border-neutral-light flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <svg className="w-12 h-12 text-neutral-light mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                    </svg>
-                    <p className="text-sm text-neutral-medium font-medium">
-                      Google Maps à intégrer
-                    </p>
-                  </div>
-                </div>
-
-                {/* TODO: Remplacer par embed Google Maps réel
+                {/* Google Maps */}
                 <div className="w-full h-[300px] rounded-lg overflow-hidden shadow-md">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=[COORDINATES_À_CONFIGURER]"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.8876!2d5.0247!3d45.7133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4c1c1c1c1c1c1%3A0x0!2s22%20Rue%20des%20Fr%C3%A8res%20Lumi%C3%A8re%2C%2069720%20Saint-Bonnet-de-Mure!5e0!3m2!1sfr!2sfr!4v1706700000000!5m2!1sfr!2sfr"
                     className="w-full h-full border-0"
                     loading="lazy"
-                    title="Showroom PackshotCreator Lyon"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Showroom PackshotCreator Lyon - DELTAPARK"
+                    allowFullScreen
                   />
                 </div>
-                */}
               </div>
 
               {/* FAQ Contact */}
