@@ -870,26 +870,45 @@ Créer les données et documents nécessaires pour l'implémentation de la Phase
 
 ---
 
-## 🚀 PROCHAINE SESSION : PHASE 3
+## ⏸️ PHASE 3 : Intégrations externes (À FAIRE PLUS TARD)
 
-### Objectif Phase 3 : Intégrations externes (6-10h)
+### Décisions arrêtées (31/01/2026)
+- **LMS :** Thinkific Pro (99$/mois)
+- **Hébergement vidéos :** Vimeo Pro (~180€/an)
 
-**Livrables :**
-- Plateforme LMS configurée (Thinkific recommandé 99$/mois)
-- Intégration Pipedrive finalisée (tous formulaires)
+### Nature de la Phase 3
+**⚠️ Phase 3 = principalement CONFIGURATION EXTERNE, très peu de code**
 
-**Décisions à prendre AVANT de commencer :**
-1. Quelle plateforme LMS ? (Thinkific vs autre)
-2. Hébergement vidéos formations ? (Vimeo Pro vs YouTube unlisted vs Cloudinary)
+| Tâche | Type | Temps estimé |
+|-------|------|--------------|
+| Créer compte Thinkific Pro | Config externe | 10 min |
+| Créer compte Vimeo Pro | Config externe | 10 min |
+| Configurer domaine academy.packshot-creator.com | Config DNS | 30 min |
+| Uploader vidéos formations | Config externe | Variable |
+| Configurer restriction domaine Vimeo | Config externe | 5 min |
+| Créer les 6 cours dans Thinkific | Config externe | 2-3h |
+| Configurer certificats Thinkific | Config externe | 30 min |
+| Intégration Zapier → Pipedrive | Config externe | 1h |
+| **Ajouter CTAs "Accéder e-learning" sur site** | **Code Next.js** | **30 min** |
+| **Lien "Espace formation" dans navigation** | **Code Next.js** | **10 min** |
+
+**Total code Next.js : ~1h seulement**
+
+### Quand faire la Phase 3 ?
+À traiter quand les vidéos de formation seront prêtes à être uploadées.
+Peut être fait indépendamment des autres phases (4, 5, 6, 7).
 
 **Dépendances :**
-- ✅ Phase 1 terminée (formations créées dans Sanity)
-- ✅ Phase 2 terminée (formulaires fonctionnels)
+- ✅ Phase 1 terminée
+- ✅ Phase 2 terminée
+- ⏳ Vidéos de formation à produire (externe)
 
 **Validation Phase 3 :**
-- [ ] LMS accessible et configuré
-- [ ] Compte test créé et fonctionnel
-- [ ] Lien Sanity formations ↔ LMS établi
+- [ ] Compte Thinkific Pro créé
+- [ ] Compte Vimeo Pro créé
+- [ ] Domaine academy.packshot-creator.com configuré
+- [ ] 6 cours créés dans Thinkific
+- [ ] CTAs ajoutés sur site Next.js
 
 ---
 
