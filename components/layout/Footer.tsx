@@ -66,6 +66,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-neutral-medium">
               <li><Link href="/mentions-legales" className="hover:text-[#4c5578]">Mentions légales</Link></li>
+              <li><Link href="/cgu" className="hover:text-[#4c5578]">CGU</Link></li>
               <li><Link href="/confidentialite" className="hover:text-[#4c5578]">Confidentialité</Link></li>
               <li><Link href="/a-propos" className="hover:text-[#4c5578]">À propos</Link></li>
             </ul>
