@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
+import { PipedriveContactForm } from '@/components/forms';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -42,30 +43,8 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                 {t('formTitle')}
               </h2>
 
-              {/* OPTION A : Embed Typeform/Tally (RECOMMANDÉ) */}
-              <div className="w-full h-[600px] bg-neutral-lighter/30 rounded-lg border-2 border-dashed border-neutral-light flex items-center justify-center">
-                <div className="text-center p-8">
-                  <svg className="w-16 h-16 text-neutral-light mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <p className="text-neutral-medium font-medium mb-2">
-                    {t('formPlaceholder')}
-                  </p>
-                  <p className="text-sm text-neutral-medium/60">
-                    {t('formPlaceholderSubtitle')}
-                  </p>
-                </div>
-              </div>
-
-              {/* TODO: Remplacer par embed réel Typeform ou Tally
-              <div className="w-full h-[600px]">
-                <iframe
-                  src="[URL_TYPEFORM_À_CONFIGURER]"
-                  className="w-full h-full border-0 rounded-lg shadow-md"
-                  title={t('formTitle')}
-                />
-              </div>
-              */}
+              {/* Formulaire Pipedrive WebForms */}
+              <PipedriveContactForm locale={lang as 'fr' | 'en'} />
             </div>
 
             {/* Colonne droite : Coordonnées + Map (2/5) */}
