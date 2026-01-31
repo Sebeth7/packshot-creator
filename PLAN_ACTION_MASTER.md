@@ -842,6 +842,17 @@ Créer les données et documents nécessaires pour l'implémentation de la Phase
 
 ---
 
+## ✅ PHASE 1 COMPLÉTÉE (31/01/2026)
+
+### Contenu Livré
+- **6 formations Sanity** : 3 Packshot (Niv 1-3) + 3 IA (Niv 1-3), affichées sur /academy
+- **12 pages secteurs** : /industrie/[slug] toutes accessibles
+- **3 pages légales** : Mentions légales, Confidentialité, CGU (créée 31/01)
+- **Page À propos** : Timeline 20 ans, valeurs, chiffres clés
+- **Section OPCO pédagogique** : Très complète sur page Academy
+
+---
+
 ## ✅ PHASE 2 COMPLÉTÉE (29/01/2026)
 
 ### Composants Livrés
@@ -850,8 +861,53 @@ Créer les données et documents nécessaires pour l'implémentation de la Phase
 - **Formulaire Contact** : Intégration Pipedrive WebForms
 - **Tests E2E Playwright** : 15 tests OPCO OK, config exclue du build
 
-### Corrections Déploiement
-- Fix tsconfig.json : exclusion playwright.config.ts et e2e/
+### Corrections 31/01/2026
+- Fix couleur `brand-red` → `secondary-orbitvu` dans simulateur OPCO
+- CTA "Simuler mon Financement OPCO" ajouté en haut de page Academy
+- Sélecteur Machines intégré sur /studios-photo-automatises
+- Section "Outils" ajoutée au Footer
+- Page Contact : téléphone +33 (0)1 47 42 66 66, adresse showroom Lyon, Google Maps intégré
 
-### Note Tests E2E
-Les tests machine-selector (tri/filtre) ont des sélecteurs inversés - fonctionnalités OK, tests à corriger si besoin
+---
+
+## 🚀 PROCHAINE SESSION : PHASE 3
+
+### Objectif Phase 3 : Intégrations externes (6-10h)
+
+**Livrables :**
+- Plateforme LMS configurée (Thinkific recommandé 99$/mois)
+- Intégration Pipedrive finalisée (tous formulaires)
+
+**Décisions à prendre AVANT de commencer :**
+1. Quelle plateforme LMS ? (Thinkific vs autre)
+2. Hébergement vidéos formations ? (Vimeo Pro vs YouTube unlisted vs Cloudinary)
+
+**Dépendances :**
+- ✅ Phase 1 terminée (formations créées dans Sanity)
+- ✅ Phase 2 terminée (formulaires fonctionnels)
+
+**Validation Phase 3 :**
+- [ ] LMS accessible et configuré
+- [ ] Compte test créé et fonctionnel
+- [ ] Lien Sanity formations ↔ LMS établi
+
+---
+
+## 📋 ÉTAT ACTUEL DU SITE (31/01/2026)
+
+**URL de test :** https://sysnext.vercel.app
+
+### Pages fonctionnelles :
+- `/fr/academy` - Formations Packshot & IA affichées
+- `/fr/academy/simulateur-opco` - Simulateur OPCO fonctionnel
+- `/fr/studios-photo-automatises` - Sélecteur machines + Calculateur ROI
+- `/fr/contact` - Formulaire Pipedrive + Google Maps
+- `/fr/industrie` - 12 secteurs
+- `/fr/a-propos`, `/fr/mentions-legales`, `/fr/confidentialite`, `/fr/cgu`
+
+### Commits récents :
+- `22e4e64` docs: Mark Phase 1 as 100% complete
+- `73c4ad9` feat(legal): Add CGU page
+- `377b0d1` fix(contact): Update phone, address, Google Maps
+- `7878ccd` fix(contact): Integrate PipedriveContactForm
+- `a517b68` fix(phase-2): Integrate OPCO simulator CTA, machine selector
