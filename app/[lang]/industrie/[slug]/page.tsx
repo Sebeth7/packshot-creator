@@ -1,39 +1,36 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { secteurs } from '@/data/secteurs';
-import Link from 'next/link';
-import { CheckCircle, ArrowRight, Package, Sparkles } from 'lucide-react';
+import { CheckCircle, ArrowRight, Camera, Sparkles, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 
 interface PageProps {
-  params: Promise<{
-    slug: string;
-    lang: string;
-  }>;
+  params: Promise<{ slug: string; lang: string }>;
 }
 
 export async function generateStaticParams() {
-  return secteurs.map((secteur) => ({
-    slug: secteur.slug,
-  }));
+  return secteurs.map((secteur) => ({ slug: secteur.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, lang } = await params;
   const secteur = secteurs.find((s) => s.slug === slug);
-
-  if (!secteur) {
-    return {
-      title: 'Secteur non trouvé',
-    };
-  }
+  if (!secteur) return { title: 'Secteur non trouvé' };
 
   return {
     title: secteur.titre,
     description: secteur.description,
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/industrie/${slug}`,
+      languages: { fr: `/fr/industrie/${slug}`, en: `/en/industrie/${slug}` },
+    },
     openGraph: {
       title: secteur.titre,
       description: secteur.description,
-      type: 'website',
     },
   };
 }
@@ -41,48 +38,84 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SecteurPage({ params }: PageProps) {
   const { slug, lang } = await params;
   const secteur = secteurs.find((s) => s.slug === slug);
+  if (!secteur) notFound();
 
-  if (!secteur) {
-    notFound();
-  }
+  const isFr = lang === 'fr';
+  const heroImage = `/images/hero/hero-secteur-${slug.split('-')[0]}.avif`;
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: 'Industries', url: `https://packshot-creator.com/${lang}/industrie` },
+    { name: secteur.titre.split(':')[0].trim(), url: `https://packshot-creator.com/${lang}/industrie/${slug}` },
+  ];
+
+  const otherSectors = DEFAULT_SECTORS.filter((s) => s.slug !== slug).slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#FF6B35] via-[#FF8C42] to-[#FFA45B] py-20 md:py-32">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-        <div className="container relative mx-auto px-6">
-          <div className="mx-auto max-w-4xl text-center text-white">
-            <h1 className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-              {secteur.hero.titre}
-            </h1>
-            <p className="mb-4 text-xl font-semibold md:text-2xl">
-              {secteur.hero.sousTitre}
-            </p>
-            <p className="text-lg opacity-90 md:text-xl">{secteur.hero.description}</p>
+    <>
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Link
+                href="/industrie"
+                className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
+              >
+                <ChevronRight className="h-3.5 w-3.5 rotate-180" />
+                {isFr ? 'Toutes les industries' : 'All industries'}
+              </Link>
+              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+                {secteur.hero.titre}
+              </h1>
+              <p className="text-xl text-very-peri-200 font-medium mb-4">
+                {secteur.hero.sousTitre}
+              </p>
+              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
+                {secteur.hero.description}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
+                  <Link href="/contact">{isFr ? 'Demander un devis gratuit' : 'Get a free quote'}</Link>
+                </Button>
+                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <Link href="/academy">{isFr ? 'Découvrir nos formations' : 'Discover our training'}</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src={heroImage}
+                alt={secteur.hero.titre}
+                width={640}
+                height={480}
+                className="rounded-2xl shadow-2xl"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Problématiques */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-              {secteur.problematiques.titre}
-            </h2>
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {secteur.problematiques.titre}
+              </h2>
+            </div>
             <div className="space-y-4">
               {secteur.problematiques.items.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 rounded-lg border border-gray-200 bg-gray-50 p-6 transition-all hover:border-[#FF6B35] hover:shadow-md"
+                  className="flex items-start gap-4 bg-neutral-50 rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors"
                 >
-                  <div className="mt-1 flex-shrink-0">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FF6B35] text-sm font-bold text-white">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <p className="text-gray-700">{item}</p>
+                  <span className="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
+                    {index + 1}
+                  </span>
+                  <p className="text-future-dusk-600 leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>
@@ -91,58 +124,65 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* Solutions */}
-      <section className="bg-gray-50 py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl">
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {secteur.solutions.titre}
             </h2>
-            <div className="grid gap-8 md:grid-cols-2">
-              {secteur.solutions.items.map((solution, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all hover:shadow-xl"
-                >
-                  <div className="mb-4 flex items-center gap-3">
-                    {index === 0 ? (
-                      <Package className="h-8 w-8 text-[#FF6B35]" />
-                    ) : (
-                      <Sparkles className="h-8 w-8 text-[#FF6B35]" />
-                    )}
-                    <h3 className="text-2xl font-bold text-gray-900">{solution.titre}</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {secteur.solutions.items.map((solution, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+              >
+                <div className={`h-2 ${index === 0 ? 'bg-very-peri-500' : 'bg-amber-500'}`} />
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${
+                      index === 0 ? 'bg-very-peri-100 text-very-peri-700' : 'bg-amber-100 text-amber-700'
+                    }`}>
+                      {index === 0 ? <Camera className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+                    </span>
+                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                      {solution.titre}
+                    </h3>
                   </div>
-                  <p className="mb-6 text-gray-600">{solution.description}</p>
+                  <p className="text-future-dusk-500 mb-6">{solution.description}</p>
                   <ul className="space-y-3">
                     {solution.avantages.map((avantage, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600" />
-                        <span className="text-gray-700">{avantage}</span>
+                        <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                        <span className="text-sm text-future-dusk-600">{avantage}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Cas Clients (if exists) */}
+      {/* Cas Clients */}
       {secteur.casClients && secteur.casClients.length > 0 && (
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-4xl">
-              <h2 className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-                Cas Clients {secteur.titre.split(':')[0]}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+                {isFr ? 'Cas Clients' : 'Client Cases'} {secteur.titre.split(':')[0]}
               </h2>
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {secteur.casClients.map((cas, index) => (
                   <div
                     key={index}
-                    className="rounded-xl border-l-4 border-[#FF6B35] bg-gradient-to-r from-orange-50 to-white p-8 shadow-md"
+                    className="bg-gradient-to-r from-very-peri-50 to-white rounded-2xl p-8 border-l-4 border-very-peri-500"
                   >
-                    <h3 className="mb-4 text-xl font-bold text-gray-900">{cas.titre}</h3>
-                    <p className="text-gray-700">{cas.description}</p>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-3">
+                      {cas.titre}
+                    </h3>
+                    <p className="text-future-dusk-500 leading-relaxed">{cas.description}</p>
                   </div>
                 ))}
               </div>
@@ -151,56 +191,63 @@ export default async function SecteurPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-[#FF6B35] via-[#FF8C42] to-[#FFA45B] py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center text-white">
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl">{secteur.cta.titre}</h2>
-            <p className="mb-10 text-lg opacity-90 md:text-xl">{secteur.cta.description}</p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link
-                href={`/${lang}/contact`}
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-[#FF6B35] shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-              >
-                Demander un devis gratuit
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+            {secteur.cta.titre}
+          </h2>
+          <p className="text-lg text-very-peri-100 mb-8 max-w-2xl mx-auto">
+            {secteur.cta.description}
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
+              <Link href="/contact">
+                {isFr ? 'Demander un devis gratuit' : 'Get a free quote'} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                href={`/${lang}/academy`}
-                className="group inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all hover:bg-white hover:text-[#FF6B35]"
-              >
-                Découvrir nos formations
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
+              <Link href="/academy">
+                {isFr ? 'Découvrir nos formations' : 'Discover our training'}
               </Link>
-            </div>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Navigation vers autres secteurs */}
-      <section className="border-t border-gray-200 py-12">
-        <div className="container mx-auto px-6">
-          <h3 className="mb-8 text-center text-2xl font-bold text-gray-900">
-            Découvrez nos autres secteurs
+      {/* Other Sectors */}
+      <section className="py-16 bg-neutral-50 border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h3 className="text-2xl font-heading font-bold text-future-dusk-900 text-center mb-8">
+            {isFr ? 'Découvrez nos autres secteurs' : 'Discover our other sectors'}
           </h3>
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {secteurs
-              .filter((s) => s.slug !== slug)
-              .slice(0, 8)
-              .map((autreSecteur) => (
-                <Link
-                  key={autreSecteur.slug}
-                  href={`/${lang}/industrie/${autreSecteur.slug}`}
-                  className="group rounded-lg border border-gray-200 bg-white p-4 transition-all hover:border-[#FF6B35] hover:shadow-md"
-                >
-                  <h4 className="font-semibold text-gray-900 group-hover:text-[#FF6B35]">
-                    {autreSecteur.titre.split(':')[0]}
-                  </h4>
-                </Link>
-              ))}
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {otherSectors.map((other) => (
+              <Link
+                key={other.slug}
+                href={`/industrie/${other.slug}`}
+                className="group flex items-center gap-3 bg-white rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
+              >
+                <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-50 text-very-peri-600 shrink-0">
+                  <other.Icon className="h-4 w-4" />
+                </span>
+                <span className="text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-600 transition-colors">
+                  {other.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button asChild variant="outline" className="rounded-xl">
+              <Link href="/industrie">
+                {isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-    </div>
+
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+    </>
   );
 }

@@ -1,176 +1,139 @@
 import { Metadata } from 'next';
+import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-export const metadata: Metadata = {
-  title: 'Mentions Légales - PackshotCreator',
-  description:
-    'Mentions légales du site PackshotCreator : informations sur l\'éditeur, développeur, hébergeur et conditions d\'utilisation.',
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
 
-export default function MentionsLegalesPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  return {
+    title: isFr ? 'Mentions Légales | PackshotCreator' : 'Legal Notice | PackshotCreator',
+    description: isFr
+      ? 'Mentions légales du site PackshotCreator : éditeur, hébergeur, conditions d\'utilisation.'
+      : 'Legal notice for PackshotCreator website: publisher, host, terms of use.',
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/mentions-legales`,
+      languages: { fr: '/fr/mentions-legales', en: '/en/mentions-legales' },
+    },
+  };
+}
+
+export default async function MentionsLegalesPage({ params }: PageProps) {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: isFr ? 'Mentions légales' : 'Legal notice', url: `https://packshot-creator.com/${lang}/mentions-legales` },
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-              Mentions Légales
-            </h1>
-            <p className="text-lg text-gray-600">
-              Informations légales relatives au site www.packshot-creator.com
-            </p>
-          </div>
+      <section className="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h1 className="text-4xl sm:text-5xl font-heading font-bold mb-4">
+            {isFr ? 'Mentions Légales' : 'Legal Notice'}
+          </h1>
+          <p className="text-future-dusk-200">
+            {isFr
+              ? 'Informations légales relatives au site www.packshot-creator.com'
+              : 'Legal information about the website www.packshot-creator.com'}
+          </p>
         </div>
       </section>
 
-      {/* Contenu */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="prose prose-lg mx-auto max-w-4xl">
-            <p className="lead">
-              Les présentes conditions générales d'utilisation (dites « CGU ») ont pour objet
-              l'encadrement juridique des modalités de mise à disposition du site et des services
-              par SYSNEXT - PackshotCreator et de définir les conditions d'accès et d'utilisation
-              des services par « l'Utilisateur ».
+      {/* Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900">
+            <p className="text-xl text-future-dusk-700 leading-relaxed">
+              {isFr
+                ? 'Les présentes conditions générales d\'utilisation (dites "CGU") ont pour objet l\'encadrement juridique des modalités de mise à disposition du site et des services par SYSNEXT - PackshotCreator.'
+                : 'These general terms of use are intended to provide the legal framework for the provision of the site and services by SYSNEXT - PackshotCreator.'}
             </p>
-            <p>Les présentes CGU sont accessibles sur le site à la rubrique « CGU ».</p>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">Article 1 : Éditeur du site</h2>
-            <p>Le site www.packshot-creator.com est édité par :</p>
-            <div className="rounded-lg bg-gray-50 p-6">
-              <p className="mb-2">
-                <strong>Sysnext</strong>
-              </p>
-              <ul className="space-y-1 text-gray-700">
-                <li>
-                  <strong>Forme juridique :</strong> Société par Actions Simplifiée (SAS)
-                </li>
-                <li>
-                  <strong>Siège social :</strong> 6 rue Antonin Raynaud, 92300 Levallois-Perret,
-                  France
-                </li>
-                <li>
-                  <strong>Capital social :</strong> 500 000 €
-                </li>
-                <li>
-                  <strong>Immatriculation :</strong> RCS Nanterre 805 401 148
-                </li>
-                <li>
-                  <strong>Numéro de TVA intracommunautaire :</strong> FR95805401148
-                </li>
-                <li>
-                  <strong>Directeur de la publication :</strong> Laurent Wainberg, Président
-                </li>
-                <li>
-                  <strong>Contact :</strong> info[at]sysnext.com / +33 (0)1 47 42 66 66
-                </li>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 1 : Éditeur du site' : 'Article 1: Site Publisher'}</h2>
+            <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100 not-prose">
+              <p className="font-heading font-bold text-future-dusk-900 mb-3">Sysnext</p>
+              <ul className="space-y-1.5 text-sm text-future-dusk-600">
+                <li><strong>{isFr ? 'Forme juridique' : 'Legal form'}:</strong> SAS</li>
+                <li><strong>{isFr ? 'Siège social' : 'Headquarters'}:</strong> 6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
+                <li><strong>{isFr ? 'Capital social' : 'Share capital'}:</strong> 500 000 EUR</li>
+                <li><strong>{isFr ? 'Immatriculation' : 'Registration'}:</strong> RCS Nanterre 805 401 148</li>
+                <li><strong>TVA:</strong> FR95805401148</li>
+                <li><strong>{isFr ? 'Directeur de la publication' : 'Publication director'}:</strong> Laurent Wainberg, {isFr ? 'Président' : 'President'}</li>
+                <li><strong>Contact:</strong> info[at]sysnext.com / +33 (0)1 47 42 66 66</li>
               </ul>
             </div>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">
-              Article 2 : Développement et hébergement
-            </h2>
-            <div className="space-y-4">
-              <div className="rounded-lg bg-gray-50 p-6">
-                <p className="mb-2">
-                  <strong>Développement du site :</strong> Afalence
-                </p>
-                <p className="text-gray-700">
-                  <strong>Contact :</strong> alemeur[at]afalence.com
-                </p>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 2 : Développement et hébergement' : 'Article 2: Development and hosting'}</h2>
+            <div className="space-y-4 not-prose">
+              <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100">
+                <p className="font-heading font-bold text-future-dusk-900 mb-1">{isFr ? 'Développement' : 'Development'}: Afalence</p>
+                <p className="text-sm text-future-dusk-600">Contact: alemeur[at]afalence.com</p>
               </div>
-              <div className="rounded-lg bg-gray-50 p-6">
-                <p className="mb-2">
-                  <strong>Hébergement du site :</strong> Webflow, Inc.
-                </p>
-                <p className="text-gray-700">
-                  <strong>Adresse :</strong> 398 11th Street, 2nd Floor, San Francisco, CA 94103,
-                  États-Unis
-                </p>
-                <p className="text-gray-700">
-                  <strong>Contact :</strong> support[at]webflow.com
-                </p>
+              <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100">
+                <p className="font-heading font-bold text-future-dusk-900 mb-1">{isFr ? 'Hébergement' : 'Hosting'}: Vercel, Inc.</p>
+                <p className="text-sm text-future-dusk-600">340 S Lemon Ave #4133, Walnut, CA 91789, USA</p>
               </div>
             </div>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">
-              Article 3 : Collecte des données
-            </h2>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 3 : Collecte des données' : 'Article 3: Data collection'}</h2>
             <p>
-              Le site www.packshot-creator.com respecte votre vie privée et se conforme au
-              Règlement Général sur la Protection des Données (RGPD).
+              {isFr
+                ? 'Le site www.packshot-creator.com respecte votre vie privée et se conforme au RGPD.'
+                : 'The website www.packshot-creator.com respects your privacy and complies with GDPR.'}
             </p>
-            <ul className="space-y-2">
-              <li>
-                <strong>Collecte des données :</strong> Les informations recueillies via les
-                formulaires de contact sont utilisées uniquement dans le cadre de votre demande.
-                Elles ne seront pas partagées avec des tiers sans votre consentement.
-              </li>
-              <li>
-                <strong>Cookies :</strong> Ce site utilise des cookies pour améliorer votre
-                expérience utilisateur. Vous pouvez configurer vos préférences dans votre
-                navigateur.
-              </li>
+            <ul>
+              <li><strong>{isFr ? 'Collecte' : 'Collection'}:</strong> {isFr ? 'Les informations recueillies via les formulaires sont utilisées uniquement dans le cadre de votre demande.' : 'Information collected through forms is used solely for the purpose of your request.'}</li>
+              <li><strong>Cookies:</strong> {isFr ? 'Ce site utilise des cookies pour améliorer votre expérience.' : 'This site uses cookies to improve your experience.'}</li>
             </ul>
+
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 4 : Propriété intellectuelle' : 'Article 4: Intellectual property'}</h2>
             <p>
-              Pour toute demande relative à vos données personnelles, vous pouvez nous écrire à :
-              info[at]sysnext.com.
+              {isFr
+                ? 'Tous les éléments présents sur ce site sont la propriété exclusive de Sysnext, sauf mention contraire explicite. Toute reproduction est interdite sans autorisation écrite préalable.'
+                : 'All elements on this site are the exclusive property of Sysnext, unless explicitly stated otherwise. Any reproduction is prohibited without prior written authorization.'}
             </p>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">
-              Article 4 : Propriété intellectuelle
-            </h2>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 5 : Responsabilité' : 'Article 5: Liability'}</h2>
             <p>
-              Tous les éléments présents sur ce site (textes, images, graphismes, logos, vidéos,
-              icônes, logiciels, etc.) sont la propriété exclusive de Sysnext, sauf mention
-              contraire explicite. Toute reproduction, représentation, modification, publication ou
-              adaptation des éléments du site, quel que soit le moyen ou le procédé utilisé, est
-              interdite sans autorisation écrite préalable de Sysnext.
+              {isFr
+                ? 'Sysnext s\'efforce de fournir des informations précises et à jour. Toutefois, la société ne saurait être tenue responsable des erreurs ou omissions.'
+                : 'Sysnext strives to provide accurate and up-to-date information. However, the company cannot be held responsible for errors or omissions.'}
             </p>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">Article 5 : Responsabilité</h2>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 6 : Litiges' : 'Article 6: Disputes'}</h2>
             <p>
-              Sysnext s'efforce de fournir des informations précises et à jour sur son site.
-              Toutefois, la société ne saurait être tenue responsable des erreurs, omissions ou
-              d'une interruption de service. Les liens hypertextes présents sur le site peuvent
-              rediriger vers des sites externes.
-            </p>
-            <p>Sysnext décline toute responsabilité quant au contenu de ces sites tiers.</p>
-
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">
-              Article 6 : Conditions générales d'utilisation
-            </h2>
-            <p>
-              Des liens hypertextes peuvent être présents sur le site. L'Utilisateur est informé
-              qu'en cliquant sur ces liens, il sortira du site. Ce dernier n'a pas de contrôle sur
-              les pages web sur lesquelles aboutissent ces liens et ne saurait, en aucun cas, être
-              responsable de leur contenu.
+              {isFr
+                ? 'Les présentes mentions légales sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents de Nanterre.'
+                : 'These legal notices are governed by French law. Any dispute shall be submitted to the competent courts of Nanterre.'}
             </p>
 
-            <h2 className="mt-12 text-3xl font-bold text-gray-900">Article 7 : Litiges</h2>
-            <p>
-              Les présentes mentions légales sont régies par le droit français. Tout litige relatif
-              à l'utilisation du site www.packshot-creator.com sera soumis aux tribunaux compétents
-              de Nanterre.
-            </p>
-
-            {/* Footer CTA */}
-            <div className="mt-16 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#FFA45B] p-8 text-center text-white">
-              <h3 className="mb-4 text-2xl font-bold">Des questions ?</h3>
-              <p className="mb-6 opacity-90">
-                Pour toute question concernant ces mentions légales, n'hésitez pas à nous
-                contacter.
+            {/* CTA */}
+            <div className="mt-16 rounded-2xl bg-gradient-to-r from-very-peri-600 to-very-peri-700 p-8 text-center text-white not-prose">
+              <h3 className="text-2xl font-heading font-bold mb-4">{isFr ? 'Des questions ?' : 'Questions?'}</h3>
+              <p className="mb-6 text-very-peri-100">
+                {isFr ? 'Pour toute question concernant ces mentions légales.' : 'For any questions about these legal notices.'}
               </p>
-              <a
-                href="mailto:info@sysnext.com"
-                className="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-[#FF6B35] transition-all hover:scale-105"
-              >
-                Nous contacter
-              </a>
+              <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'Nous contacter' : 'Contact us'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
-    </div>
+
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+    </>
   );
 }

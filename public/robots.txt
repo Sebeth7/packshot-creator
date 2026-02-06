@@ -1,0 +1,45 @@
+# PackshotCreator - robots.txt
+# Crawlers IA autorisés (AEO)
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# Crawlers SEO
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Bloquer répertoires techniques
+User-agent: *
+Disallow: /api/
+Disallow: /_next/
+Disallow: /studio/
+
+# Sitemap
+Sitemap: https://packshot-creator.com/sitemap.xml

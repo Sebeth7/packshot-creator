@@ -24,10 +24,11 @@
       }
     },
     "hero": {
-      "badge": "⭐ Exclusive Orbitvu Distributor France & Switzerland",
+      "badge": "Exclusive Orbitvu Distributor France & Switzerland",
       "title": "Reinvent your product photography process with PackshotCreator",
       "subtitle": "Simplify the creation of content for your products, reduce costs, optimize your workflow, and find the perfect photo studio among our 20 shooting systems.",
-      "cta": "Contact us"
+      "cta": "Request a free demo",
+      "ctaSecondary": "Explore our studios"
     },
     "intro": {
       "heading": "The range of photo studios that combines speed and inspiration",
@@ -75,7 +76,98 @@
         "title": "5 simultaneous cameras for realistic 3D animation",
         "category": "Innovations"
       },
-      "cta": "Visit our blog"
+      "cta": "Visit our blog",
+      "readArticle": "Read article",
+      "viewAll": "View all articles"
+    },
+    "clientLogos": {
+      "heading": "Trusted by leading brands"
+    },
+    "stats": {
+      "years": "20+",
+      "yearsLabel": "years of expertise",
+      "clients": "500+",
+      "clientsLabel": "companies equipped",
+      "sectors": "12",
+      "sectorsLabel": "industries served",
+      "machines": "20",
+      "machinesLabel": "studio models"
+    },
+    "hybrid": {
+      "heading": "The PackshotCreator Hybrid Approach",
+      "subtitle": "Not all hardware, not all AI. The intelligent combination of both, powered by human expertise.",
+      "capture": {
+        "title": "Perfect Foundation",
+        "description": "Orbitvu automated studios capture flawless packshots in seconds. White backgrounds, multi-angle, 360° and video — fully automated."
+      },
+      "ia": {
+        "title": "AI Multiplication",
+        "description": "BlendAI transforms each packshot into dozens of lifestyle visuals and creative variations. Your real photo always remains the foundation."
+      },
+      "formation": {
+        "title": "Complete Autonomy",
+        "description": "Qualiopi-certified training to master the full Hardware + AI workflow. Up to 100% OPCO funding available."
+      }
+    },
+    "spotlight": {
+      "badge": "Best-seller",
+      "heading": "Alphashot Pro G2: Built-in AI & Automation",
+      "description": "Our best-selling photo studio. Capture packshots, videos and 360° animations in seconds with built-in AI and optimized LED lighting.",
+      "feature1": "Packshot in 3 seconds",
+      "feature2": "Built-in BlendAI",
+      "feature3": "Automatic LED lighting",
+      "feature4": "Multi-channel export",
+      "cta": "Book a demo"
+    },
+    "industries": {
+      "heading": "12 Industries of Excellence",
+      "subtitle": "Product photography solutions tailored to every industry.",
+      "chaussures": "Footwear",
+      "bijoux": "Jewelry & Watches",
+      "mobilier": "Furniture & Decor",
+      "food": "Food & Beverage",
+      "cosmetiques": "Cosmetics & Beauty",
+      "mode": "Fashion & Textile",
+      "hightech": "Electronics & High-Tech",
+      "pieces": "Technical Parts",
+      "vins": "Wines & Spirits",
+      "optique": "Optics & Eyewear",
+      "sport": "Sports & Outdoor",
+      "art": "Art & Antiques",
+      "cta": "Explore all industries"
+    },
+    "faq": {
+      "heading": "Frequently Asked Questions",
+      "q1": {
+        "question": "What is a packshot and why is it essential for e-commerce?",
+        "answer": "A packshot is a professional product photograph on a white background, standardized for online sales. It's the first visual contact between your product and the customer. Quality packshots increase conversion rates by an average of 30% and reduce product returns."
+      },
+      "q2": {
+        "question": "How does an Orbitvu automated photo studio work?",
+        "answer": "Orbitvu studios automate the entire process: positioning, calibrated LED lighting, multi-angle and 360° capture, automatic background removal and export. An operator with no photography skills can produce professional packshots in 3 seconds per image."
+      },
+      "q3": {
+        "question": "What is BlendAI and how does AI improve product photography?",
+        "answer": "BlendAI is our specialized packshot artificial intelligence solution. From your real photos, AI generates lifestyle scenes, contextual backgrounds and creative variations. Unlike pure generative AI, BlendAI preserves the visual integrity of your product."
+      },
+      "q4": {
+        "question": "How quickly does an automated studio pay for itself?",
+        "answer": "Average ROI is achieved between 6 and 12 months depending on your production volume. Companies producing over 1,000 visuals per year see a return on investment from the 4th month. Use our ROI calculator for a personalized estimate."
+      },
+      "q5": {
+        "question": "Are your training programs eligible for OPCO funding?",
+        "answer": "Yes, PackshotCreator Academy has been Qualiopi certified since 2023. All our packshot and AI training programs are eligible for OPCO funding, with coverage up to 100%. We guide you through the administrative process."
+      },
+      "q6": {
+        "question": "What's the difference between PackshotCreator and a traditional photographer?",
+        "answer": "PackshotCreator offers a hybrid approach: Orbitvu automated hardware + BlendAI specialized AI + certified training. Our solutions deliver 10x higher productivity, consistent quality and 80% lower cost per image compared to traditional photography."
+      }
+    },
+    "finalCta": {
+      "heading": "Ready to transform your visual production?",
+      "subtitle": "Discover our solutions during a personalized demo with a PackshotCreator expert.",
+      "ctaPrimary": "Request a free demo",
+      "ctaSecondary": "Calculate my ROI"
     }
   },
   "formation": {
@@ -185,27 +277,57 @@
   "common": {
     "loading": "Loading...",
     "nav": {
-      "productPhotography": "Product Photography",
-      "workflowManagement": "Workflow Management",
-      "resources": "Resources",
+      "solutions": "Solutions",
+      "studios": "Automated Photo Studios",
+      "studiosDesc": "Machines and photo cells for perfect packshots",
+      "aiSoftware": "AI & Software",
+      "aiSoftwareDesc": "AI retouching, clipping and automated post-production",
+      "industries": "Industries",
+      "academy": "Academy",
+      "formationsPackshot": "Packshot Training",
+      "formationsPackshotDesc": "Master professional product photography",
+      "formationsIA": "AI Training",
+      "formationsIADesc": "Integrate AI into your visual workflow",
+      "simulateurOPCO": "Funding Simulator",
+      "simulateurOPCODesc": "Estimate funding for your training program",
+      "calendrier": "Calendar",
+      "calendrierDesc": "Upcoming training sessions available",
+      "blog": "Blog",
       "about": "About",
-      "receiveOffer": "Get an offer"
+      "contact": "Contact",
+      "receiveOffer": "Request a demo",
+      "menu": "Menu",
+      "close": "Close"
     },
     "footer": {
       "tagline": "Professional automated product photography solutions for e-commerce and visual communication.",
+      "solutions": "Solutions",
+      "studios": "Photo Studios",
+      "aiSoftware": "AI & Software",
+      "machineSelector": "Machine Selector",
       "industries": "Industries",
-      "fashion": "Fashion & Textile",
+      "shoes": "Shoes",
+      "jewelry": "Jewelry & Watchmaking",
+      "furniture": "Furniture & Decoration",
       "food": "Food & Beverage",
-      "hightech": "High-Tech",
-      "products": "Products",
-      "alphaShotProG2": "Alphashot Pro G2",
-      "alphaShotMicro": "Alphashot Micro V2",
-      "fashionStudio": "Fashion Studio",
-      "resources": "Resources",
+      "fashion": "Fashion & Textile",
+      "electronics": "Electronics & High-Tech",
+      "allIndustries": "All industries",
+      "academy": "Academy",
+      "formationsPackshot": "Packshot Training",
+      "formationsIA": "AI Training",
+      "simulateurOPCO": "Funding Simulator",
+      "calendrier": "Calendar",
+      "company": "Company",
       "about": "About",
-      "support": "Support",
+      "contact": "Contact",
       "blog": "Blog",
-      "rights": "All rights reserved."
+      "legal": "Legal",
+      "legalNotice": "Legal notice",
+      "terms": "Terms of use",
+      "privacy": "Privacy policy",
+      "rights": "All rights reserved.",
+      "madeWith": "Made with passion in France"
     }
   },
   "iaPhotoProduit": {
@@ -321,6 +443,65 @@
     "faq2Answer": "Yes, French technical support is included with our solutions.",
     "faq3Question": "Can I visit the showroom?",
     "faq3Answer": "Yes, by appointment. Contact us to schedule your visit and test our studios."
+  },
+  "academyHub": {
+    "meta": {
+      "title": "PackshotCreator Academy | Qualiopi-Certified Packshot & AI Training",
+      "description": "Qualiopi-certified training: professional product photography and applied AI. OPCO funding available. Inter and intra-company sessions.",
+      "keywords": "product photo training, ai training, qualiopi, opco, packshot"
+    },
+    "hero": {
+      "title": "Academy: Qualiopi-Certified Packshot & AI Training",
+      "subtitle": "Upskill with our certified training programs. OPCO funding up to 100%. Inter and intra-company sessions.",
+      "ctaPrimary": "View training programs",
+      "ctaSecondary": "Simulate my OPCO funding"
+    },
+    "qualiopi": {
+      "heading": "Qualiopi Certified",
+      "description": "Our training organization is Qualiopi certified, a state-recognized quality guarantee. Your training can be funded by your OPCO.",
+      "benefit1": "OPCO funding up to 100%",
+      "benefit2": "Expert field trainers",
+      "benefit3": "Post-training follow-up included",
+      "benefit4": "Skills certification"
+    },
+    "formations": {
+      "heading": "Our Training Programs",
+      "subtitle": "Courses adapted to your level and objectives",
+      "packshot": {
+        "title": "Professional Packshot Training",
+        "description": "Master product photography on automated Orbitvu studio. From shooting to retouching.",
+        "duration": "2 days (14h)",
+        "level": "All levels",
+        "cta": "View program"
+      },
+      "ia": {
+        "title": "AI Product Photo Training",
+        "description": "Integrate artificial intelligence into your visual workflow. BlendAI, AI retouching, automation.",
+        "duration": "1 day (7h)",
+        "level": "Intermediate",
+        "cta": "View program"
+      }
+    },
+    "tools": {
+      "heading": "Tools & Resources",
+      "subtitle": "Prepare and plan your training",
+      "simulator": {
+        "title": "OPCO Simulator",
+        "description": "Estimate the amount your OPCO will cover for your training in a few clicks.",
+        "cta": "Simulate my funding"
+      },
+      "calendar": {
+        "title": "Session Calendar",
+        "description": "Check upcoming training dates and book your spot.",
+        "cta": "View calendar"
+      }
+    },
+    "finalCta": {
+      "heading": "Ready to upskill?",
+      "description": "Contact us for a custom program or register for the next session.",
+      "ctaPrimary": "Contact us",
+      "ctaSecondary": "Simulate my funding"
+    }
   },
   "studiosHardware": {
     "meta": {

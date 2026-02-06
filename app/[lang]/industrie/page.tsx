@@ -1,229 +1,254 @@
 import { getTranslations } from 'next-intl/server';
-import type { Metadata } from 'next';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
+import { Link } from '@/i18n/routing';
+import Image from 'next/image';
+import { Metadata } from 'next';
+import { Factory, Zap, TrendingUp, Target, Camera, Sparkles, Send, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
-import CTABox from '@/components/sections/CTABox';
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-
   return {
-    title: 'Solutions Photo Produit par Industrie | Studios Automatisés & IA',
-    description:
-      'Solutions packshot et IA photo produit adaptées à votre industrie : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique et plus. Studios Orbitvu + BlendAI.',
-    keywords: 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, chaussures, bijoux, mobilier, food, cosmétiques',
-    openGraph: {
-      title: 'Solutions Photo Produit par Industrie',
-      description:
-        'Solutions packshot et IA adaptées à chaque industrie : studios automatisés Orbitvu + BlendAI lifestyle.',
-      images: ['/og-image-industries.jpg'],
+    title: lang === 'fr'
+      ? 'Solutions Photo Produit par Industrie | Studios Automatisés & IA'
+      : 'Product Photography Solutions by Industry | Automated Studios & AI',
+    description: lang === 'fr'
+      ? 'Solutions packshot et IA photo produit adaptées à votre industrie : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique et plus. Studios Orbitvu + BlendAI.'
+      : 'Packshot and AI product photography solutions for your industry: shoes, jewelry, furniture, food, cosmetics, fashion, electronics and more. Orbitvu Studios + BlendAI.',
+    keywords: lang === 'fr'
+      ? 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, chaussures, bijoux, mobilier, food, cosmétiques'
+      : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, shoes, jewelry, furniture, food, cosmetics',
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/industrie`,
+      languages: { fr: '/fr/industrie', en: '/en/industrie' },
     },
   };
 }
 
-export default async function IndustriesPage({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function IndustriesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: 'Industries', url: `https://packshot-creator.com/${lang}/industrie` },
+  ];
+
+  const benefits = [
+    {
+      icon: <Zap className="h-6 w-6" />,
+      title: isFr ? 'Production Accélérée' : 'Accelerated Production',
+      description: isFr
+        ? '50-300 produits/jour en studio automatisé. 100-500 visuels lifestyle/jour via IA. Délais réduits de 70-90%.'
+        : '50-300 products/day in automated studio. 100-500 lifestyle visuals/day via AI. Timelines reduced by 70-90%.',
+      color: 'bg-amber-100 text-amber-700',
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      title: isFr ? 'ROI Rapide' : 'Fast ROI',
+      description: isFr
+        ? 'Retour sur investissement 12-18 mois. Réduction coûts photo 60-85%. Idéal pour catalogues 100 à 5000+ références.'
+        : 'Return on investment 12-18 months. Photo cost reduction 60-85%. Ideal for catalogs with 100 to 5000+ references.',
+      color: 'bg-emerald-100 text-emerald-700',
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: isFr ? 'Cohérence Absolue' : 'Absolute Consistency',
+      description: isFr
+        ? 'Même qualité sur tout le catalogue. Éclairage, angles et ambiances identiques. Renforce l\'identité de marque.'
+        : 'Same quality across the entire catalog. Identical lighting, angles and ambiances. Strengthens brand identity.',
+      color: 'bg-very-peri-100 text-very-peri-700',
+    },
+  ];
+
+  const workflowSteps = [
+    {
+      icon: <Camera className="h-6 w-6" />,
+      title: isFr ? 'Capture Packshot Automatisée' : 'Automated Packshot Capture',
+      description: isFr
+        ? 'Studios Orbitvu : packshot fond blanc haute résolution, 360° optionnel, détourage automatique.'
+        : 'Orbitvu Studios: high-resolution white background packshot, optional 360°, automatic clipping.',
+      color: 'bg-very-peri-600',
+    },
+    {
+      icon: <Sparkles className="h-6 w-6" />,
+      title: isFr ? 'Génération Lifestyle IA' : 'AI Lifestyle Generation',
+      description: isFr
+        ? 'BlendAI : transformez packshots en visuels lifestyle. Personnalisation ADN marque. Production série rapide.'
+        : 'BlendAI: transform packshots into lifestyle visuals. Brand DNA customization. Fast series production.',
+      color: 'bg-amber-500',
+    },
+    {
+      icon: <Send className="h-6 w-6" />,
+      title: isFr ? 'Diffusion Multi-Canal' : 'Multi-Channel Distribution',
+      description: isFr
+        ? 'Export formats optimisés e-commerce, marketplaces, réseaux sociaux, print.'
+        : 'Export formats optimized for e-commerce, marketplaces, social media, print.',
+      color: 'bg-emerald-600',
+    },
+  ];
 
   return (
     <>
-      <Header />
-      <main>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-secondary-orbitvu via-primary-orbitvu to-primary-turquoise text-white py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl lg:text-5xl font-heading font-bold mb-6">
-                Solutions Photo Produit par Industrie
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+                <Factory className="h-4 w-4" />
+                {isFr ? '12 secteurs couverts' : '12 sectors covered'}
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+                {isFr
+                  ? 'Solutions Photo Produit par Industrie'
+                  : 'Product Photography Solutions by Industry'}
               </h1>
-              <p className="text-xl lg:text-2xl text-white/90 mb-8">
-                Studios photo automatisés Orbitvu et IA BlendAI adaptés aux spécificités de votre secteur
+              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
+                {isFr
+                  ? 'Chaque industrie a ses défis photo produit : reflets, matières, volumes, lifestyle. Découvrez nos solutions packshot et IA personnalisées.'
+                  : 'Every industry has its product photo challenges: reflections, materials, volumes, lifestyle. Discover our personalized packshot and AI solutions.'}
               </p>
-              <p className="text-lg text-white/80 max-w-3xl mx-auto">
-                Chaque industrie a ses défis photo produit : reflets, matières, volumes, lifestyle. Découvrez nos solutions packshot et IA personnalisées pour 12 secteurs clés.
-              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
+                  <Link href="/contact">{isFr ? 'Demander une démo' : 'Request a demo'}</Link>
+                </Button>
+                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <a href="#secteurs">{isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'}</a>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/hero/hero-industries.avif"
+                alt={isFr ? 'Solutions photo produit par industrie' : 'Product photo solutions by industry'}
+                width={640}
+                height={480}
+                className="rounded-2xl shadow-2xl"
+                priority
+              />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section 12 Industries */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
-                12 Secteurs d'Activité Couverts
-              </h2>
-              <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
-                De la chaussure à la joaillerie, du mobilier à l'électronique : solutions photo produit professionnelles pour tous les secteurs e-commerce.
-              </p>
-            </div>
-
-            <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
-          </div>
-        </section>
-
-        {/* Section Bénéfices Communs */}
-        <section className="py-20 bg-neutral-lighter">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-12 text-neutral-dark">
-              Avantages pour Toutes les Industries
+      {/* 12 Sectors Grid */}
+      <section id="secteurs" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {isFr ? '12 Secteurs d\'Activité Couverts' : '12 Industry Sectors Covered'}
             </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Avantage 1 */}
-              <div className="bg-white rounded-xl p-8 shadow-md">
-                <div className="text-4xl mb-4">⚡</div>
-                <h3 className="text-xl font-heading font-bold text-neutral-dark mb-3">
-                  Production Accélérée
-                </h3>
-                <p className="text-neutral-medium">
-                  Studios automatisés : 50-300 produits/jour. IA lifestyle : 100-500 visuels/jour. Délais réduits de 70-90% vs shootings manuels.
-                </p>
-              </div>
-
-              {/* Avantage 2 */}
-              <div className="bg-white rounded-xl p-8 shadow-md">
-                <div className="text-4xl mb-4">💰</div>
-                <h3 className="text-xl font-heading font-bold text-neutral-dark mb-3">
-                  ROI Rapide
-                </h3>
-                <p className="text-neutral-medium">
-                  Retour sur investissement 12-18 mois. Réduction coûts photo 60-85%. Idéal pour catalogues 100-5000+ références.
-                </p>
-              </div>
-
-              {/* Avantage 3 */}
-              <div className="bg-white rounded-xl p-8 shadow-md">
-                <div className="text-4xl mb-4">🎯</div>
-                <h3 className="text-xl font-heading font-bold text-neutral-dark mb-3">
-                  Cohérence Absolue
-                </h3>
-                <p className="text-neutral-medium">
-                  Même qualité d'image sur tout le catalogue. Éclairage, angles, ambiances identiques. Renforce identité de marque.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section Workflow Type */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
-              Workflow Type : Packshot + IA Lifestyle
-            </h2>
-            <p className="text-lg text-neutral-medium text-center mb-12 max-w-3xl mx-auto">
-              Le processus standard pour tous les secteurs : capture packshot haute qualité, puis génération lifestyle IA.
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {isFr
+                ? 'De la chaussure à la joaillerie, du mobilier à l\'électronique : solutions professionnelles pour tous les secteurs.'
+                : 'From shoes to jewelry, furniture to electronics: professional solutions for every sector.'}
             </p>
+          </div>
+          <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
+        </div>
+      </section>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Étape 1 */}
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-secondary-orbitvu text-white flex items-center justify-center font-bold text-lg">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2">
-                      Capture Packshot Automatisée
-                    </h3>
-                    <p className="text-neutral-medium">
-                      Studios Orbitvu : packshot fond blanc haute résolution, 360° optionnel, détourage automatique. Cohérence absolue sur tout le catalogue.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-turquoise text-white flex items-center justify-center font-bold text-lg">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2">
-                      Génération Lifestyle IA
-                    </h3>
-                    <p className="text-neutral-medium">
-                      BlendAI : transformez packshots en visuels lifestyle (portés, ambiances, contextes). Personnalisation ADN marque. Production série rapide.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-orbitvu text-white flex items-center justify-center font-bold text-lg">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2">
-                      Diffusion Multi-Canal
-                    </h3>
-                    <p className="text-neutral-medium">
-                      Export formats optimisés e-commerce, marketplaces, réseaux sociaux, print. Catalogues complets en quelques jours vs semaines/mois.
-                    </p>
-                  </div>
-                </div>
+      {/* Benefits */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {isFr ? 'Avantages pour Toutes les Industries' : 'Benefits for All Industries'}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} mb-4`}>
+                  {benefit.icon}
+                </span>
+                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-future-dusk-500 leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Visuel Placeholder */}
-              <div className="bg-gradient-to-br from-neutral-lighter to-neutral-light rounded-xl p-12 flex items-center justify-center aspect-square">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📸 ➡️ 🤖 ➡️ 🌐</div>
-                  <p className="text-neutral-medium font-semibold">
-                    Packshot → IA → Diffusion
-                  </p>
+      {/* Workflow */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {isFr ? 'Workflow : Packshot → IA → Diffusion' : 'Workflow: Packshot → AI → Distribution'}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {isFr
+                ? 'Le processus standard pour tous les secteurs : capture packshot haute qualité, puis génération lifestyle IA.'
+                : 'The standard process for all sectors: high-quality packshot capture, then AI lifestyle generation.'}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {workflowSteps.map((step, i) => (
+              <div key={step.title} className="relative text-center">
+                <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.color} text-white mx-auto mb-6`}>
+                  {step.icon}
                 </div>
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-bold text-future-dusk-300">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-future-dusk-500 leading-relaxed">
+                  {step.description}
+                </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 bg-gradient-to-br from-future-dusk-900 to-very-peri-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-future-dusk-800/50 rounded-2xl p-8">
+              <h3 className="text-2xl font-heading font-bold mb-4">
+                {isFr ? 'Votre secteur nécessite une solution spécifique ?' : 'Need a sector-specific solution?'}
+              </h3>
+              <p className="text-future-dusk-300 mb-6">
+                {isFr
+                  ? 'Contactez-nous pour une analyse personnalisée de vos besoins photo produit. Devis studios Orbitvu + formation BlendAI gratuite.'
+                  : 'Contact us for a personalized analysis of your product photo needs. Free Orbitvu studios + BlendAI training quote.'}
+              </p>
+              <Button asChild className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="bg-future-dusk-800/50 rounded-2xl p-8">
+              <h3 className="text-2xl font-heading font-bold mb-4">
+                {isFr ? 'Voir les solutions en action' : 'See solutions in action'}
+              </h3>
+              <p className="text-future-dusk-300 mb-6">
+                {isFr
+                  ? 'Réservez une démo personnalisée : tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur.'
+                  : 'Book a personalized demo: packshot tests with your products + AI lifestyle examples for your sector.'}
+              </p>
+              <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section CTA Finale */}
-        <section className="py-20 bg-neutral-lighter">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* CTA Contact */}
-              <div className="bg-white rounded-xl p-8 shadow-md">
-                <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-4">
-                  Votre Secteur Nécessite une Solution Spécifique ?
-                </h3>
-                <p className="text-neutral-medium mb-6">
-                  Contactez-nous pour une analyse personnalisée de vos besoins photo produit. Devis studios Orbitvu + formation BlendAI gratuite.
-                </p>
-                <a
-                  href="/contact"
-                  className="inline-block bg-secondary-orbitvu hover:bg-primary-orbitvu text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-                >
-                  Demander un Devis Personnalisé
-                </a>
-              </div>
-
-              {/* CTA Démo */}
-              <div className="bg-white rounded-xl p-8 shadow-md">
-                <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-4">
-                  Voir les Solutions en Action
-                </h3>
-                <p className="text-neutral-medium mb-6">
-                  Réservez une démo personnalisée : tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur.
-                </p>
-                <a
-                  href="/contact"
-                  className="inline-block bg-primary-turquoise hover:bg-secondary-orbitvu text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-                >
-                  Réserver une Démo
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
 }

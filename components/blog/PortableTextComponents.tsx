@@ -46,7 +46,7 @@ export const portableTextComponents: PortableTextComponents = {
 
     // Code block
     code: ({ value }) => (
-      <pre className="bg-neutral-dark text-white p-4 rounded-lg overflow-x-auto my-6">
+      <pre className="bg-future-dusk-900 text-white p-4 rounded-lg overflow-x-auto my-6">
         <code className={`language-${value.language || 'text'}`}>
           {value.code}
         </code>
@@ -56,32 +56,32 @@ export const portableTextComponents: PortableTextComponents = {
 
   block: {
     h1: ({ children }) => (
-      <h1 className="font-heading text-4xl font-bold text-neutral-dark mb-6 mt-8">
+      <h1 className="font-heading text-4xl font-bold text-future-dusk-900 mb-6 mt-8">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-4 mt-8">
+      <h2 className="font-heading text-3xl font-bold text-future-dusk-900 mb-4 mt-8">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="font-heading text-2xl font-bold text-neutral-dark mb-3 mt-6">
+      <h3 className="font-heading text-2xl font-bold text-future-dusk-900 mb-3 mt-6">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="font-heading text-xl font-bold text-neutral-dark mb-2 mt-4">
+      <h4 className="font-heading text-xl font-bold text-future-dusk-900 mb-2 mt-4">
         {children}
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-future-dusk-500 pl-4 italic my-6 text-neutral-medium">
+      <blockquote className="border-l-4 border-very-peri-500 pl-4 italic my-6 text-future-dusk-500">
         {children}
       </blockquote>
     ),
     normal: ({ children }) => (
-      <p className="mb-4 leading-relaxed text-neutral-dark">
+      <p className="mb-4 leading-relaxed text-future-dusk-600">
         {children}
       </p>
     )
@@ -91,7 +91,7 @@ export const portableTextComponents: PortableTextComponents = {
     strong: ({ children }) => <strong className="font-bold">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="bg-neutral-light px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-neutral-100 px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
@@ -102,7 +102,7 @@ export const portableTextComponents: PortableTextComponents = {
           href={value?.href}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-          className="text-future-dusk-500 hover:text-future-dusk-700 underline transition-colors"
+          className="text-very-peri-600 hover:text-very-peri-700 underline transition-colors"
         >
           {children}
         </a>
@@ -125,10 +125,10 @@ export const portableTextComponents: PortableTextComponents = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className="text-neutral-dark">{children}</li>
+      <li className="text-future-dusk-600">{children}</li>
     ),
     number: ({ children }) => (
-      <li className="text-neutral-dark">{children}</li>
+      <li className="text-future-dusk-600">{children}</li>
     )
   }
 };

@@ -13,7 +13,7 @@ import {
   Trophy,
   Car,
   Baby,
-  ShoppingBag,
+  HeartPulse,
 } from 'lucide-react';
 
 export interface Sector {
@@ -46,22 +46,17 @@ export default function SectorGrid({
         <Link
           key={sector.slug}
           href={`/industrie/${sector.slug}`}
-          className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-secondary-orbitvu"
+          className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-100 hover:border-very-peri-300"
         >
           <div className="flex flex-col items-center text-center space-y-3">
-            {/* Icon */}
-            <div className="group-hover:scale-110 transition-transform duration-300">
-              <sector.Icon className="w-10 h-10 text-neutral-dark stroke-[1.5]" />
-            </div>
-
-            {/* Name */}
-            <h3 className="text-base font-heading font-semibold text-neutral-dark group-hover:text-secondary-orbitvu transition-colors">
+            <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
+              <sector.Icon className="w-6 h-6" />
+            </span>
+            <h3 className="text-sm font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
               {sector.name}
             </h3>
-
-            {/* Description (optionnel) */}
             {sector.description && (
-              <p className="text-xs text-neutral-medium line-clamp-2">
+              <p className="text-xs text-future-dusk-400 line-clamp-2">
                 {sector.description}
               </p>
             )}
@@ -72,7 +67,6 @@ export default function SectorGrid({
   );
 }
 
-// Export sectors data (12 secteurs principaux - alignés avec secteurs.ts)
 export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'chaussures', name: 'Chaussures', Icon: Footprints },
   { slug: 'bijoux-joaillerie', name: 'Bijoux & Joaillerie', Icon: Gem },
@@ -85,5 +79,5 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'automobile-pieces-detachees', name: 'Automobile', Icon: Car },
   { slug: 'jouets-puericulture', name: 'Jouets & Puériculture', Icon: Baby },
   { slug: 'sport-outdoor', name: 'Sport & Outdoor', Icon: Trophy },
-  { slug: 'sante-medical', name: 'Santé & Médical', Icon: ShoppingBag },
+  { slug: 'sante-medical', name: 'Santé & Médical', Icon: HeartPulse },
 ];

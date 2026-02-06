@@ -1,235 +1,204 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
-import { Badge, BadgeQualiopi } from '@/components/shared/Badge';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import { Metadata } from 'next';
+import { CalendarDays, Award, Camera, Brain, ArrowRight, ChevronRight, Phone, Mail, Users, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const t = await getTranslations({ locale: lang, namespace: 'formation.meta' });
-
+  const isFr = lang === 'fr';
   return {
-    title: `Calendrier Formations 2026 - ${t('title')}`,
-    description: 'Consultez le calendrier des formations Orbitvu Academy 2026. Réservez votre session de formation packshot ou IA en ligne.',
+    title: isFr
+      ? 'Calendrier Formations 2026 | PackshotCreator Academy'
+      : 'Training Calendar 2026 | PackshotCreator Academy',
+    description: isFr
+      ? 'Consultez le calendrier des formations PackshotCreator Academy 2026. Réservez votre session packshot ou IA. Financement OPCO.'
+      : 'View the PackshotCreator Academy 2026 training calendar. Book your packshot or AI session. OPCO funding.',
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/academy/calendrier`,
+      languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier' },
+    },
   };
 }
 
 export default async function CalendrierPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const isFr = lang === 'fr';
   const t = await getTranslations({ locale: lang, namespace: 'formation' });
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
+    { name: isFr ? 'Calendrier' : 'Calendar', url: `https://packshot-creator.com/${lang}/academy/calendrier` },
+  ];
+
+  const faqs = [
+    { q: isFr ? 'Comment réserver ma session ?' : 'How to book my session?', a: isFr ? 'Sélectionnez la date qui vous convient et suivez les étapes de réservation. Confirmation par email immédiate.' : 'Select your preferred date and follow the booking steps. Instant email confirmation.' },
+    { q: isFr ? 'Puis-je annuler ou reporter ?' : 'Can I cancel or postpone?', a: isFr ? 'Oui, jusqu\'à 7 jours avant sans frais. Au-delà, frais de gestion de 30%.' : 'Yes, up to 7 days before at no charge. After that, 30% management fee.' },
+    { q: isFr ? 'Comment fonctionne le financement OPCO ?' : 'How does OPCO funding work?', a: isFr ? 'Nos formations sont certifiées Qualiopi et éligibles OPCO. Nous fournissons tous les documents nécessaires. Délai moyen : 2-3 semaines.' : 'Our trainings are Qualiopi certified and OPCO eligible. We provide all necessary documents. Average delay: 2-3 weeks.' },
+    { q: isFr ? 'Formations disponibles en distanciel ?' : 'Remote training available?', a: isFr ? 'Oui, nous proposons blended learning (mix présentiel/distanciel) et 100% distanciel selon les modules.' : 'Yes, we offer blended learning (mix in-person/remote) and 100% remote depending on modules.' },
+    { q: isFr ? 'Nombre de participants par session ?' : 'Participants per session?', a: isFr ? 'Maximum 8 participants par session pour un accompagnement personnalisé.' : 'Maximum 8 participants per session for personalized support.' },
+    { q: isFr ? 'Certification à l\'issue ?' : 'Certification on completion?', a: isFr ? 'Oui, attestation de formation certifiée Qualiopi précisant les compétences acquises.' : 'Yes, Qualiopi certified training certificate specifying acquired skills.' },
+  ];
 
   return (
     <>
-      <Header />
-      <main>
-        {/* SECTION 1 : Hero Calendrier */}
-        <section className="bg-gradient-to-br from-blue-50 to-white py-16">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="flex gap-3 mb-4">
-              <BadgeQualiopi>Certifié Qualiopi</BadgeQualiopi>
-              <Badge variant="blue">Financement OPCO</Badge>
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="max-w-4xl mx-auto text-center">
+            <Link href="/academy" className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors">
+              <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
+            </Link>
+            <div className="flex justify-center gap-3 mb-6">
+              <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
+                <Award className="h-4 w-4" /> Qualiopi
+              </span>
+              <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-3 py-1.5 rounded-full">
+                OPCO
+              </span>
             </div>
-
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
-              📅 Calendrier Formations 2026
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+              {isFr ? 'Calendrier Formations 2026' : 'Training Calendar 2026'}
             </h1>
-
-            <p className="text-xl text-neutral-medium mb-6 max-w-3xl">
-              Réservez votre session de formation en ligne. Choisissez parmi nos formations packshot Orbitvu
-              et IA générative BlendAI avec des sessions tout au long de l'année.
+            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
+              {isFr
+                ? 'Réservez votre session de formation. Choisissez parmi nos formations packshot Orbitvu et IA générative BlendAI.'
+                : 'Book your training session. Choose from our Orbitvu packshot and BlendAI generative AI training courses.'}
             </p>
-
-            <div className="flex gap-4">
-              <Link
-                href="/academy/formations-packshot"
-                className="inline-block bg-white border-2 border-neutral-light hover:border-[#cdcdfd] text-neutral-dark font-medium px-6 py-3 rounded-lg"
-              >
-                📸 Formations Packshot
-              </Link>
-              <Link
-                href="/academy/formations-ia"
-                className="inline-block bg-white border-2 border-neutral-light hover:border-[#cdcdfd] text-neutral-dark font-medium px-6 py-3 rounded-lg"
-              >
-                🤖 Formations IA
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2 : Google Calendar Embed */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-4">
-                {t('calendrier.heading')}
-              </h2>
-              <p className="text-neutral-medium">
-                {t('calendrier.subtitle')}
-              </p>
-            </div>
-
-            {/* Google Calendar Appointment Scheduling */}
-            {/* TODO: Remplacer par l'ID réel Google Calendar Appointments */}
-            {/* <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <iframe
-                src="https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID?gv=true"
-                style={{ border: 0, width: '100%', height: '600px' }}
-                title="Calendrier des formations"
-              />
-            </div> */}
-
-            {/* Message temporaire en attendant la configuration du calendrier */}
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-              <div className="text-6xl mb-4">📅</div>
-              <h3 className="font-heading text-xl font-bold text-neutral-dark mb-3">
-                Calendrier de réservation bientôt disponible
-              </h3>
-              <p className="text-neutral-medium mb-6">
-                Notre système de prise de rendez-vous en ligne sera disponible prochainement. En attendant, contactez-nous directement pour réserver votre session de formation.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-[#cdcdfd] hover:bg-[#b5b5fd] text-neutral-dark px-6 py-3 rounded-lg font-bold transition-colors"
-              >
-                Nous contacter
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3 : Date personnalisée */}
-        <section className="py-16 bg-neutral-lighter">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="bg-gradient-to-br from-[#cdcdfd]/20 to-white rounded-lg p-8 text-center">
-              <h2 className="font-heading text-2xl font-bold text-neutral-dark mb-4">
-                Besoin d'une date personnalisée ?
-              </h2>
-              <p className="text-neutral-medium mb-6">
-                Vous souhaitez organiser une formation intra-entreprise ou à une date spécifique ?
-                Nous pouvons adapter notre calendrier à vos besoins.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-block bg-[#cdcdfd] hover:bg-[#b5b5fd] text-neutral-dark font-medium px-8 py-3 rounded-lg"
-                >
-                  Demander un devis
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+                <Link href="/academy/formations-packshot">
+                  <Camera className="mr-2 h-4 w-4" /> {isFr ? 'Formations Packshot' : 'Packshot Training'}
                 </Link>
-                <a
-                  href="tel:+33123456789"
-                  className="inline-block bg-white border-2 border-neutral-light hover:border-[#cdcdfd] text-neutral-dark font-medium px-8 py-3 rounded-lg"
-                >
-                  📞 Nous appeler
-                </a>
+              </Button>
+              <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl">
+                <Link href="/academy/formations-ia">
+                  <Brain className="mr-2 h-4 w-4" /> {isFr ? 'Formations IA' : 'AI Training'}
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Calendar Placeholder */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('calendrier.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500">{t('calendrier.subtitle')}</p>
+          </div>
+          <div className="bg-neutral-50 rounded-2xl p-12 text-center border border-neutral-100">
+            <CalendarDays className="h-16 w-16 text-very-peri-400 mx-auto mb-6" />
+            <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+              {isFr ? 'Calendrier de réservation bientôt disponible' : 'Booking calendar coming soon'}
+            </h3>
+            <p className="text-future-dusk-500 mb-8 max-w-lg mx-auto">
+              {isFr
+                ? 'Notre système de prise de rendez-vous en ligne sera disponible prochainement. En attendant, contactez-nous pour réserver.'
+                : 'Our online booking system will be available soon. In the meantime, contact us to book.'}
+            </p>
+            <Button asChild size="lg" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl">
+              <Link href="/contact">
+                {isFr ? 'Nous contacter' : 'Contact us'} <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Custom Date */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="bg-gradient-to-r from-very-peri-50 to-very-peri-100/50 rounded-2xl p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                  {isFr ? 'Besoin d\'une date personnalisée ?' : 'Need a custom date?'}
+                </h2>
+                <p className="text-future-dusk-500 mb-6">
+                  {isFr
+                    ? 'Formation intra-entreprise ou date spécifique ? Nous adaptons notre calendrier à vos besoins.'
+                    : 'In-company training or specific date? We adapt our calendar to your needs.'}
+                </p>
+              </div>
+              <div className="space-y-4">
+                <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
+                  <Link href="/contact">
+                    <Mail className="mr-2 h-4 w-4" /> {isFr ? 'Demander un devis' : 'Request a quote'}
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-xl w-full">
+                  <a href="tel:+33320199090">
+                    <Phone className="mr-2 h-4 w-4" /> 03 20 19 90 90
+                  </a>
+                </Button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-very-peri-200">
+              <div className="text-center">
+                <Users className="h-5 w-5 text-very-peri-600 mx-auto mb-1" />
+                <p className="text-xs text-future-dusk-500">{isFr ? '8 participants max' : '8 participants max'}</p>
+              </div>
+              <div className="text-center">
+                <Clock className="h-5 w-5 text-very-peri-600 mx-auto mb-1" />
+                <p className="text-xs text-future-dusk-500">{isFr ? '1 à 3 jours' : '1 to 3 days'}</p>
+              </div>
+              <div className="text-center">
+                <Award className="h-5 w-5 text-very-peri-600 mx-auto mb-1" />
+                <p className="text-xs text-future-dusk-500">Qualiopi</p>
+              </div>
+              <div className="text-center">
+                <CalendarDays className="h-5 w-5 text-very-peri-600 mx-auto mb-1" />
+                <p className="text-xs text-future-dusk-500">{isFr ? 'Sur mesure' : 'Custom'}</p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* SECTION 4 : FAQ Inscription */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="font-heading text-3xl font-bold text-neutral-dark mb-8 text-center">
-              Questions fréquentes sur l'inscription
-            </h2>
-
-            <div className="space-y-6">
-              {/* FAQ Item 1 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Comment réserver ma session de formation ?
+      {/* FAQ */}
+      <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
+            {isFr ? 'Questions fréquentes sur l\'inscription' : 'Registration FAQ'}
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="bg-neutral-50 rounded-2xl p-6 group">
+                <summary className="font-heading font-bold text-future-dusk-900 cursor-pointer list-none flex items-center justify-between">
+                  {faq.q}
+                  <ChevronRight className="h-4 w-4 text-future-dusk-400 transition-transform group-open:rotate-90 shrink-0 ml-4" />
                 </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Sélectionnez la date qui vous convient dans le calendrier ci-dessus et suivez les étapes
-                  de réservation. Vous recevrez une confirmation immédiate par email avec tous les détails
-                  de votre session.
-                </p>
+                <p className="mt-4 text-sm text-future-dusk-500 leading-relaxed">{faq.a}</p>
               </details>
-
-              {/* FAQ Item 2 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Puis-je annuler ou reporter ma formation ?
-                </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Oui, vous pouvez annuler ou reporter votre formation jusqu'à 7 jours avant la date prévue
-                  sans frais. Au-delà, des frais de gestion de 30% peuvent s'appliquer. Contactez-nous dès
-                  que possible si vous avez un empêchement.
-                </p>
-              </details>
-
-              {/* FAQ Item 3 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Comment fonctionne le financement OPCO ?
-                </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Nos formations sont certifiées Qualiopi et éligibles au financement OPCO. Après votre
-                  réservation, nous vous fournirons tous les documents nécessaires (convention de formation,
-                  programme détaillé, devis) pour faire votre demande de prise en charge auprès de votre OPCO.
-                  Délai moyen de réponse : 2-3 semaines.
-                </p>
-              </details>
-
-              {/* FAQ Item 4 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Les formations sont-elles disponibles en distanciel ?
-                </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Oui, nous proposons des formations en format blended learning (mix présentiel/distanciel)
-                  et 100% distanciel selon les modules. Le format est indiqué sur chaque fiche formation.
-                  Les sessions distancielles sont animées en direct avec des exercices pratiques et un suivi
-                  personnalisé.
-                </p>
-              </details>
-
-              {/* FAQ Item 5 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Quel est le nombre de participants par session ?
-                </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Pour garantir une qualité d'apprentissage optimale, nos sessions sont limitées à 8 participants
-                  maximum. Cela permet un accompagnement personnalisé et des échanges riches entre les participants
-                  et le formateur.
-                </p>
-              </details>
-
-              {/* FAQ Item 6 */}
-              <details className="bg-neutral-lighter rounded-lg p-6">
-                <summary className="font-bold text-neutral-dark cursor-pointer">
-                  Vais-je recevoir une certification à l'issue de la formation ?
-                </summary>
-                <p className="mt-3 text-neutral-medium text-sm">
-                  Oui, vous recevrez une attestation de formation certifiée Qualiopi à l'issue de votre parcours.
-                  Cette attestation précise les compétences acquises et peut être valorisée auprès de votre employeur
-                  ou dans votre parcours professionnel.
-                </p>
-              </details>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* SECTION 5 : CTA Retour catalogue */}
-        <section className="py-16 bg-neutral-lighter">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="font-heading text-2xl font-bold text-neutral-dark mb-4">
-              Vous hésitez encore ?
-            </h2>
-            <p className="text-neutral-medium mb-8">
-              Consultez notre catalogue complet de formations pour découvrir tous nos programmes
-            </p>
-            <Link
-              href="/academy"
-              className="inline-block bg-[#cdcdfd] hover:bg-[#b5b5fd] text-neutral-dark font-medium px-8 py-4 rounded-lg text-lg"
-            >
-              📚 Voir toutes les formations
+      {/* CTA */}
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+            {isFr ? 'Vous hésitez encore ?' : 'Still undecided?'}
+          </h2>
+          <p className="text-future-dusk-500 mb-8">
+            {isFr ? 'Consultez notre catalogue complet de formations' : 'Browse our full training catalog'}
+          </p>
+          <Button asChild variant="outline" className="rounded-xl">
+            <Link href="/academy">
+              {isFr ? 'Voir toutes les formations' : 'View all training'} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+          </Button>
+        </div>
+      </section>
+
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
 }

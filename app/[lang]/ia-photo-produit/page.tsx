@@ -1,304 +1,235 @@
 import { getTranslations } from 'next-intl/server';
-import type { Metadata } from 'next';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
-import IAManifesteSection from '@/components/sections/IAManifesteSection';
-import AIFeaturesGrid from '@/components/sections/AIFeaturesGrid';
-import ClientLogos from '@/components/sections/ClientLogos';
-import CTABox from '@/components/sections/CTABox';
-import { BadgeIAReady } from '@/components/shared/Badge';
-import { BeforeAfterGrid, BeforeAfterCase } from '@/components/shared/BeforeAfter';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
+import { Metadata } from 'next';
+import { Sparkles, Wand2, ImageIcon, Paintbrush, Layers, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-// Before/After Cases Data (Placeholder images for P0)
-const BEFORE_AFTER_CASES: BeforeAfterCase[] = [
-  {
-    before: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Packshot studio bijou sur fond blanc',
-    },
-    after: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Bijou en mise en scène lifestyle BlendAI',
-    },
-    title: 'Bijou : Packshot → Lifestyle',
-    description: 'Transformation automatique en 30 secondes',
-    sector: 'Bijouterie',
-  },
-  {
-    before: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Packshot studio produit mode fond blanc',
-    },
-    after: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Produit mode en contexte lifestyle BlendAI',
-    },
-    title: 'Mode : Background Professionnel',
-    description: 'Génération arrière-plan adapté en 1 clic',
-    sector: 'Mode & Textile',
-  },
-  {
-    before: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Packshot studio cosmétique brut',
-    },
-    after: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Cosmétique retouché et optimisé BlendAI',
-    },
-    title: 'Cosmétique : Retouche IA',
-    description: 'Suppression défauts et optimisation couleurs',
-    sector: 'Cosmétique',
-  },
-  {
-    before: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'Packshot studio high-tech',
-    },
-    after: {
-      src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-      alt: 'High-tech en environnement lifestyle',
-    },
-    title: 'High-Tech : Contexte Lifestyle',
-    description: 'Mise en situation réaliste automatique',
-    sector: 'High-Tech',
-  },
+const FEATURES = [
+  { key: 'lifestyle', icon: <ImageIcon className="h-6 w-6" />, color: 'bg-pink-100 text-pink-700' },
+  { key: 'background', icon: <Wand2 className="h-6 w-6" />, color: 'bg-blue-100 text-blue-700' },
+  { key: 'retouche', icon: <Paintbrush className="h-6 w-6" />, color: 'bg-amber-100 text-amber-700' },
+  { key: 'batch', icon: <Layers className="h-6 w-6" />, color: 'bg-emerald-100 text-emerald-700' },
 ];
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const t = await getTranslations({
-    locale: lang,
-    namespace: 'iaPhotoProduit.meta'
-  });
-
+  const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit.meta' });
   return {
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
-    openGraph: {
-      title: t('title'),
-      description: t('ogDescription'),
-      images: ['/og-image-ia.jpg'],
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/ia-photo-produit`,
+      languages: { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit' },
     },
+    openGraph: { description: t('ogDescription') },
   };
 }
 
-export default async function IAPhotoProduitPage({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function IAPhotoProduitPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const t = await getTranslations({
-    locale: lang,
-    namespace: 'iaPhotoProduit'
-  });
+  const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: 'IA Photo Produit', url: `https://packshot-creator.com/${lang}/ia-photo-produit` },
+  ];
 
   return (
     <>
-      <Header />
-      <main>
-        {/* Hero Section */}
-        <Hero
-          variant="ia"
-          titleKey="hero.title"
-          subtitleKey="hero.subtitle"
-          ctaKey="hero.ctaPrimary"
-          ctaHref="/blendai"
-          ctaSecondaryKey="hero.ctaSecondary"
-          ctaSecondaryHref="/blog/ia-photo-produit-guide-2026"
-          badges={[
-            <BadgeIAReady key="badge">
-              IA Spécialisée Packshot
-            </BadgeIAReady>
-          ]}
-          namespace="iaPhotoProduit"
-          useSectionColor={true}
-        />
-
-        {/* Section Manifeste IA */}
-        <IAManifesteSection />
-
-        {/* Section 4 Fonctionnalités IA */}
-        <AIFeaturesGrid />
-
-        {/* Section Cas d'Usage Avant/Après */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
-                {t('casUsage.heading')}
-              </h2>
-              <p className="text-lg text-neutral-medium">
-                {t('casUsage.subtitle')}
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-very-peri-800 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-400 blur-[120px]" />
+          <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-400 blur-[150px]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-very-peri-500/20 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+                <Sparkles className="h-4 w-4" />
+                BlendAI Technology
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+                {t('hero.title')}
+              </h1>
+              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
+                {t('hero.subtitle')}
               </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
+                  <Link href="/contact">{t('hero.ctaPrimary')}</Link>
+                </Button>
+                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <Link href="/blog">{t('hero.ctaSecondary')}</Link>
+                </Button>
+              </div>
             </div>
-
-            <BeforeAfterGrid cases={BEFORE_AFTER_CASES} columns={2} />
+            <div className="relative">
+              <Image
+                src="/images/illustrations/pillar-ia.avif"
+                alt="IA Photo Produit BlendAI"
+                width={640}
+                height={480}
+                className="rounded-2xl shadow-2xl"
+                priority
+              />
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section Compatible avec Votre Studio */}
-        <section className="py-20 bg-gradient-to-br from-secondary-orbitvu/5 to-purple-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
+      {/* Manifeste */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('manifeste.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('manifeste.subtitle')}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {(['principle1', 'principle2', 'principle3'] as const).map((key, i) => (
+              <div key={key} className="relative bg-neutral-50 rounded-2xl p-8 text-center">
+                <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-very-peri-100 text-very-peri-700 text-xl font-bold mb-4">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                  {t(`manifeste.${key}.title`)}
+                </h3>
+                <p className="text-sm text-future-dusk-500 leading-relaxed">
+                  {t(`manifeste.${key}.description`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('features.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('features.subtitle')}
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-8">
+            {FEATURES.map((feat) => (
+              <div key={feat.key} className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} mb-4`}>
+                  {feat.icon}
+                </span>
+                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                  {t(`features.${feat.key}.name`)}
+                </h3>
+                <p className="text-future-dusk-500 leading-relaxed">
+                  {t(`features.${feat.key}.description`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Before/After Showcase */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('casUsage.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('casUsage.subtitle')}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-neutral-50 rounded-2xl overflow-hidden">
+              <div className="aspect-[4/3] relative">
+                <Image src="/images/demo/bouteille-vin.avif" alt="Packshot avant IA" fill className="object-contain p-6" />
+              </div>
+              <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Packshot Original</div>
+            </div>
+            <div className="bg-neutral-50 rounded-2xl overflow-hidden">
+              <div className="aspect-[4/3] relative">
+                <Image src="/images/illustrations/ia-feature-background-generator.avif" alt="Résultat après IA" fill className="object-cover" />
+              </div>
+              <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Lifestyle IA</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Compatible Studios */}
+      <section className="py-20 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
                 {t('compatible.heading')}
               </h2>
-              <p className="text-xl text-neutral-medium mb-8">
+              <p className="text-lg text-very-peri-100 mb-8">
                 {t('compatible.subtitle')}
               </p>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-                <div className="text-4xl mb-4">✓</div>
-                <h3 className="font-heading font-bold text-neutral-dark mb-2">
-                  {t('compatible.feature1')}
-                </h3>
-              </div>
-              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-                <div className="text-4xl mb-4">✓</div>
-                <h3 className="font-heading font-bold text-neutral-dark mb-2">
-                  {t('compatible.feature2')}
-                </h3>
-              </div>
-              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-                <div className="text-4xl mb-4">✓</div>
-                <h3 className="font-heading font-bold text-neutral-dark mb-2">
-                  {t('compatible.feature3')}
-                </h3>
-              </div>
-            </div>
-
-            {/* Cross-sell Offer */}
-            <div className="bg-gradient-to-r from-secondary-orbitvu to-purple-600 rounded-2xl p-8 text-center text-white">
-              <p className="text-2xl font-heading font-bold mb-4">
-                🎁 {t('compatible.offer')}
-              </p>
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-secondary-orbitvu hover:bg-neutral-lighter"
-              >
+              <ul className="space-y-3 mb-8">
+                {(['feature1', 'feature2', 'feature3', 'offer'] as const).map((key) => (
+                  <li key={key} className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-amber-300 shrink-0" />
+                    <span className="text-very-peri-50">{t(`compatible.${key}`)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
                 <Link href="/studios-photo-automatises">
-                  Découvrir nos studios
+                  {lang === 'fr' ? 'Découvrir nos studios' : 'Discover our studios'} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </div>
-        </section>
-
-        {/* Section Ressources & Guides */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
-              Ressources & Guides IA Photo Produit
-            </h2>
-            <p className="text-lg text-neutral-medium text-center mb-12 max-w-3xl mx-auto">
-              Découvrez nos comparatifs détaillés pour choisir la meilleure IA photo produit selon vos besoins.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Article 1 */}
-              <Link
-                href="/blog/blendai-vs-photoroom"
-                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-video bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center">
-                  <span className="text-white text-5xl">🤖</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-purple-600 transition-colors">
-                    BlendAI vs Photoroom
-                  </h3>
-                  <p className="text-neutral-medium text-sm mb-4">
-                    Comparatif complet : précision détourage, batch processing, intégration workflow. BlendAI pour pro, Photoroom pour TPE.
-                  </p>
-                  <span className="text-purple-600 font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
-                    Lire le comparatif →
-                  </span>
-                </div>
-              </Link>
-
-              {/* Article 2 */}
-              <Link
-                href="/blog/blendai-vs-flair"
-                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-video bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center">
-                  <span className="text-white text-5xl">✨</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-purple-600 transition-colors">
-                    BlendAI vs Flair.ai
-                  </h3>
-                  <p className="text-neutral-medium text-sm mb-4">
-                    Deux approches complémentaires : BlendAI pour catalogues e-commerce (fidélité produit), Flair pour campagnes marketing (créativité).
-                  </p>
-                  <span className="text-purple-600 font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
-                    Lire le comparatif →
-                  </span>
-                </div>
-              </Link>
+            <div className="relative">
+              <Image
+                src="/images/illustrations/ia-feature-integration.avif"
+                alt="Intégration studio IA"
+                width={560}
+                height={400}
+                className="rounded-2xl shadow-2xl"
+              />
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="text-center mt-12">
-              <Button
-                asChild
-                size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white"
-              >
-                <Link href="/blog/ia-photo-produit-guide-2026">
-                  Guide Complet IA Photo Produit 2026 →
-                </Link>
+      {/* Final CTA */}
+      <section className="py-20 bg-future-dusk-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-very-peri-700 to-very-peri-800 rounded-2xl p-8">
+              <Sparkles className="h-8 w-8 text-very-peri-300 mb-4" />
+              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.test.heading')}</h3>
+              <p className="text-very-peri-200 mb-6">{t('finalCta.test.description')}</p>
+              <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
+                <Link href="/contact">{t('finalCta.test.cta')}</Link>
+              </Button>
+            </div>
+            <div className="bg-future-dusk-800 rounded-2xl p-8">
+              <Wand2 className="h-8 w-8 text-amber-400 mb-4" />
+              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
+              <p className="text-future-dusk-300 mb-6">{t('finalCta.demo.description')}</p>
+              <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                <Link href="/contact">{t('finalCta.demo.cta')}</Link>
               </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section Références Clients */}
-        <ClientLogos />
-
-        {/* Section CTAs Finales */}
-        <section className="py-20 bg-neutral-lighter">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* CTA Test BlendAI */}
-              <CTABox
-                headingKey="finalCta.test.heading"
-                descriptionKey="finalCta.test.description"
-                ctaKey="finalCta.test.cta"
-                ctaHref="/blendai"
-                bgColor="white"
-                namespace="iaPhotoProduit"
-                useSectionColor={true}
-              />
-
-              {/* CTA Demo IA + Studio */}
-              <CTABox
-                headingKey="finalCta.demo.heading"
-                descriptionKey="finalCta.demo.description"
-                ctaKey="finalCta.demo.cta"
-                ctaHref="/contact/demande-demo"
-                bgColor="white"
-                namespace="iaPhotoProduit"
-                useSectionColor={true}
-              />
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
 }

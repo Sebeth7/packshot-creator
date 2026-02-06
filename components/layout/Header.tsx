@@ -2,102 +2,363 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
+import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+interface DropdownItem {
+  href: string;
+  labelKey: string;
+  descKey: string;
+  icon: React.ReactNode;
+}
+
+function NavDropdown({
+  label,
+  items,
+  t,
+}: {
+  label: string;
+  items: DropdownItem[];
+  t: (key: string) => string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        className="flex items-center gap-1 text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
+        {label}
+        <ChevronDown
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {open && (
+        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+          <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-2 min-w-[280px]">
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
+                onClick={() => setOpen(false)}
+              >
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
+                  {item.icon}
+                </span>
+                <div>
+                  <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
+                    {t(item.labelKey)}
+                  </span>
+                  <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
+                    {t(item.descKey)}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MobileNavSection({
+  label,
+  items,
+  t,
+  onClose,
+}: {
+  label: string;
+  items: DropdownItem[];
+  t: (key: string) => string;
+  onClose: () => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div>
+      <button
+        className="flex items-center justify-between w-full py-3 text-base font-medium text-future-dusk-800"
+        onClick={() => setExpanded(!expanded)}
+      >
+        {label}
+        <ChevronDown
+          className={`h-4 w-4 text-future-dusk-400 transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}
+        />
+      </button>
+      {expanded && (
+        <div className="pl-4 pb-2 space-y-1">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
+              onClick={onClose}
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
+                {item.icon}
+              </span>
+              {t(item.labelKey)}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Header() {
-  const t = useTranslations('common');
+  const t = useTranslations('common.nav');
   const locale = useLocale();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Construire l'URL pour changer de langue (FR ↔ EN)
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
+  const solutionItems: DropdownItem[] = [
+    {
+      href: '/studios-photo-automatises',
+      labelKey: 'studios',
+      descKey: 'studiosDesc',
+      icon: <Camera className="h-4 w-4" />,
+    },
+    {
+      href: '/ia-photo-produit',
+      labelKey: 'aiSoftware',
+      descKey: 'aiSoftwareDesc',
+      icon: <Sparkles className="h-4 w-4" />,
+    },
+  ];
+
+  const academyItems: DropdownItem[] = [
+    {
+      href: '/academy/formations-packshot',
+      labelKey: 'formationsPackshot',
+      descKey: 'formationsPackshotDesc',
+      icon: <GraduationCap className="h-4 w-4" />,
+    },
+    {
+      href: '/academy/formations-ia',
+      labelKey: 'formationsIA',
+      descKey: 'formationsIADesc',
+      icon: <Brain className="h-4 w-4" />,
+    },
+    {
+      href: '/academy/simulateur-opco',
+      labelKey: 'simulateurOPCO',
+      descKey: 'simulateurOPCODesc',
+      icon: <Calculator className="h-4 w-4" />,
+    },
+    {
+      href: '/academy/calendrier',
+      labelKey: 'calendrier',
+      descKey: 'calendrierDesc',
+      icon: <CalendarDays className="h-4 w-4" />,
+    },
+  ];
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-neutral-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <img
-              src="https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6682a557f105555299d5aec6_Logo-Packshot-Creator.svg"
-              alt="PackshotCreator Logo"
-              className="h-10 w-auto"
+            <Image
+              src="/images/logos/packshot-creator-logo.svg"
+              alt="PackshotCreator"
+              width={142}
+              height={33}
+              className="h-8 w-auto"
+              priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            <Link href="/studios-photo-automatises" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
-              Capture
+          <nav className="hidden lg:flex items-center gap-6" aria-label="Main navigation">
+            <NavDropdown
+              label={t('solutions')}
+              items={solutionItems}
+              t={t}
+            />
+
+            <Link
+              href="/industrie"
+              className="text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
+            >
+              {t('industries')}
             </Link>
-            <Link href="/ia-photo-produit" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
-              Création
+
+            <NavDropdown
+              label={t('academy')}
+              items={academyItems}
+              t={t}
+            />
+
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
+            >
+              {t('blog')}
             </Link>
-            <Link href="/industrie" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
-              Industries
-            </Link>
-            <Link href="/academy" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
-              Formation
-            </Link>
-            <Link href="/blog" className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu transition-colors">
-              Blog
+
+            <Link
+              href="/a-propos"
+              className="text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
+            >
+              {t('about')}
             </Link>
           </nav>
 
-          {/* CTA + Language */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Link href={pathname} locale={otherLocale} className="text-sm font-body text-neutral-dark hover:text-secondary-orbitvu">
+          {/* Right side: Lang + CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href={pathname}
+              locale={otherLocale}
+              className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
+            >
               {otherLocale.toUpperCase()}
             </Link>
-            <Button asChild className="bg-secondary-orbitvu hover:bg-primary-orbitvu text-white">
+            <Button asChild size="sm" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-lg shadow-sm">
               <Link href="/contact">
-                {t('nav.receiveOffer')}
+                {t('receiveOffer')}
               </Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          {/* Mobile: Lang + Burger */}
+          <div className="flex lg:hidden items-center gap-2">
+            <Link
+              href={pathname}
+              locale={otherLocale}
+              className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
+            >
+              {otherLocale.toUpperCase()}
+            </Link>
+            <button
+              className="flex items-center justify-center h-10 w-10 rounded-lg text-future-dusk-600 hover:bg-neutral-50 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? t('close') : t('menu')}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </button>
+          </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden pt-4 pb-2 space-y-2">
-            <Link href="/studios-photo-automatises" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              Capture
-            </Link>
-            <Link href="/ia-photo-produit" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              Création
-            </Link>
-            <Link href="/industrie" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              Industries
-            </Link>
-            <Link href="/academy" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              Formation
-            </Link>
-            <Link href="/blog" className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              Blog
-            </Link>
-            <Link href={pathname} locale={otherLocale} className="block py-2 text-neutral-dark hover:text-secondary-orbitvu">
-              {otherLocale.toUpperCase()}
-            </Link>
-            <Button asChild className="w-full bg-secondary-orbitvu hover:bg-primary-orbitvu text-white mt-4">
-              <Link href="/contact">
-                {t('nav.receiveOffer')}
-              </Link>
-            </Button>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-16 z-40">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* Menu panel */}
+          <div className="relative bg-white border-t border-neutral-100 max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+              <nav className="divide-y divide-neutral-100" aria-label="Mobile navigation">
+                {/* Solutions */}
+                <MobileNavSection
+                  label={t('solutions')}
+                  items={solutionItems}
+                  t={t}
+                  onClose={() => setMobileMenuOpen(false)}
+                />
+
+                {/* Industries */}
+                <Link
+                  href="/industrie"
+                  className="block py-3 text-base font-medium text-future-dusk-800 hover:text-very-peri-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('industries')}
+                </Link>
+
+                {/* Academy */}
+                <MobileNavSection
+                  label={t('academy')}
+                  items={academyItems}
+                  t={t}
+                  onClose={() => setMobileMenuOpen(false)}
+                />
+
+                {/* Blog */}
+                <Link
+                  href="/blog"
+                  className="block py-3 text-base font-medium text-future-dusk-800 hover:text-very-peri-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('blog')}
+                </Link>
+
+                {/* About */}
+                <Link
+                  href="/a-propos"
+                  className="block py-3 text-base font-medium text-future-dusk-800 hover:text-very-peri-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('about')}
+                </Link>
+              </nav>
+
+              {/* Mobile CTA */}
+              <div className="mt-6 pb-4">
+                <Button asChild className="w-full bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-lg">
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                    {t('receiveOffer')}
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

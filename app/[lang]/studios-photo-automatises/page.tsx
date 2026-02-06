@@ -1,308 +1,218 @@
 import { getTranslations } from 'next-intl/server';
-import type { Metadata } from 'next';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
-import ThreePillarsSection from '@/components/sections/ThreePillarsSection';
-import ProductGrid, { Product } from '@/components/shared/ProductGrid';
-import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
-import { ROICalculator } from '@/components/calculators/ROICalculator';
-import ClientLogos from '@/components/sections/ClientLogos';
-import CTABox from '@/components/sections/CTABox';
-import { BadgeDistributor } from '@/components/shared/Badge';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
+import { Metadata } from 'next';
+import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { MachineSelector } from '@/components/machine-selector/MachineSelector';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-// Featured Products Data
-const FEATURED_PRODUCTS: Product[] = [
-  {
-    slug: 'alphashot-g2',
-    name: 'AlphaShot G2',
-    description: 'Studio photo professionnel pour packshots haute qualité avec éclairage intelligent',
-    price: 'À partir de 15 000€',
-    image: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-    imageAlt: 'Studio photo Orbitvu AlphaShot G2 pour packshots professionnels',
-    isIAReady: true,
-  },
-  {
-    slug: 'alphashot-micro',
-    name: 'AlphaShot Micro',
-    description: 'Compact et puissant pour bijoux, montres et petits objets de luxe',
-    price: 'À partir de 8 000€',
-    image: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-    imageAlt: 'Studio photo Orbitvu AlphaShot Micro pour bijoux et petits objets',
-    isIAReady: true,
-  },
-  {
-    slug: 'alphashot-360',
-    name: 'AlphaShot 360',
-    description: 'Capture de vues 360° automatisées pour e-commerce et catalogues interactifs',
-    price: 'À partir de 20 000€',
-    image: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/6753228be9f6de0d751194e1_photo-studio-wine.avif',
-    imageAlt: 'Studio photo Orbitvu AlphaShot 360 pour vues 360 degrés',
-    isIAReady: true,
-  },
+const MACHINES = [
+  { slug: 'alphashot-pro-g2', image: '/images/machines/alphashot-pro-g2.avif', size: 'Moyen', badge: 'Best-seller' },
+  { slug: 'alphashot-xl', image: '/images/machines/alphashot-xl.avif', size: 'Grand', badge: null },
+  { slug: 'alphashot-360', image: '/images/machines/alphashot-360.avif', size: 'Moyen', badge: '360°' },
+  { slug: 'alphashot-micro-v2', image: '/images/machines/alphashot-micro-v2.avif', size: 'Petit', badge: 'Compact' },
+  { slug: 'fashion-studio', image: '/images/machines/fashion-studio.avif', size: 'Grand', badge: 'Mode' },
+  { slug: 'furniture-studio', image: '/images/machines/furniture-studio.avif', size: 'Très grand', badge: 'XXL' },
 ];
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const t = await getTranslations({
-    locale: lang,
-    namespace: 'studiosHardware.meta'
-  });
-
+  const t = await getTranslations({ locale: lang, namespace: 'studiosHardware.meta' });
   return {
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
-    openGraph: {
-      title: t('title'),
-      description: t('description'),
-      images: ['/og-image-hardware.jpg'],
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/studios-photo-automatises`,
+      languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises' },
     },
   };
 }
 
-export default async function StudiosPhotoAutomatisesPage({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function StudiosPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const t = await getTranslations({
-    locale: lang,
-    namespace: 'studiosHardware'
-  });
+  const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: t('hero.title').split(':')[0].trim(), url: `https://packshot-creator.com/${lang}/studios-photo-automatises` },
+  ];
 
   return (
     <>
-      <Header />
-      <main>
-        {/* Hero Section */}
-        <Hero
-          variant="hardware"
-          titleKey="hero.title"
-          subtitleKey="hero.subtitle"
-          ctaKey="hero.ctaPrimary"
-          ctaHref="/studios-photo-automatises#calculateur-roi"
-          ctaSecondaryKey="hero.ctaSecondary"
-          ctaSecondaryHref="/contact"
-          badges={[
-            <BadgeDistributor key="badge">
-              Distributeur exclusif Orbitvu FR & CH
-            </BadgeDistributor>
-          ]}
-          namespace="studiosHardware"
-          images={[
-            {
-              src: 'https://cdn.prod.website-files.com/6682a557f105555299d5aeae/672256fe5fe5600d4a325798_Main_page_hero_range%202.avif',
-              alt: 'Gamme studios photo automatisés Orbitvu 2025'
-            }
-          ]}
-        />
-
-        {/* Section Approche HYBRIDE */}
-        <ThreePillarsSection />
-
-        {/* Section Nos Studios Photo */}
-        <section className="py-20 bg-neutral-lighter">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
-                {t('products.heading')}
-              </h2>
-              <p className="text-lg text-neutral-medium">
-                {t('products.subtitle')}
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+                <Camera className="h-4 w-4" />
+                Orbitvu Official Partner
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+                {t('hero.title')}
+              </h1>
+              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
+                {t('hero.subtitle')}
               </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
+                  <Link href="/contact">{t('hero.ctaPrimary')}</Link>
+                </Button>
+                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <Link href="/studio-photo/selecteur-machines">{t('hero.ctaSecondary')}</Link>
+                </Button>
+              </div>
             </div>
+            <div className="relative">
+              <Image
+                src="/images/hero/hero-studios-wide.avif"
+                alt="Studios photo automatisés Orbitvu"
+                width={640}
+                height={480}
+                className="rounded-2xl shadow-2xl"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <ProductGrid
-              products={FEATURED_PRODUCTS}
-              columns={3}
-              showPrice={true}
-              ctaText={t('products.ctaText')}
-            />
+      {/* Three Pillars */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('threePillars.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('threePillars.subtitle')}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { key: 'capture', icon: <Camera className="h-6 w-6" />, image: '/images/illustrations/pillar-hardware.avif', color: 'bg-very-peri-100 text-very-peri-700' },
+              { key: 'creation', icon: <Sparkles className="h-6 w-6" />, image: '/images/illustrations/pillar-ia.avif', color: 'bg-amber-100 text-amber-700' },
+              { key: 'formation', icon: <GraduationCap className="h-6 w-6" />, image: '/images/illustrations/pillar-formation.avif', color: 'bg-emerald-100 text-emerald-700' },
+            ].map((pillar) => (
+              <div key={pillar.key} className="bg-neutral-50 rounded-2xl overflow-hidden group hover:shadow-lg transition-shadow">
+                <div className="aspect-[16/10] relative">
+                  <Image src={pillar.image} alt={t(`threePillars.${pillar.key}.title`)} fill className="object-cover" />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${pillar.color}`}>
+                      {pillar.icon}
+                    </span>
+                    <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${pillar.color}`}>
+                      {t(`threePillars.${pillar.key}.badge`)}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
+                    {t(`threePillars.${pillar.key}.title`)}
+                  </h3>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                    {t(`threePillars.${pillar.key}.description`)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="text-center mt-12">
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-2 border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white"
-              >
-                <Link href="/studio-photo">
-                  {t('products.viewAll')}
-                </Link>
+      {/* Product Grid */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('products.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('products.subtitle')}
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {MACHINES.map((machine) => (
+              <div key={machine.slug} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                <div className="aspect-[4/3] relative bg-neutral-100">
+                  <Image
+                    src={machine.image}
+                    alt={machine.slug.replace(/-/g, ' ')}
+                    fill
+                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {machine.badge && (
+                    <span className="absolute top-3 right-3 bg-very-peri-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                      {machine.badge}
+                    </span>
+                  )}
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 capitalize mb-1">
+                    {machine.slug.replace(/-/g, ' ')}
+                  </h3>
+                  <p className="text-sm text-future-dusk-400 mb-3">{machine.size}</p>
+                  <Link
+                    href={`/studio-photo/${machine.slug}`}
+                    className="inline-flex items-center gap-1 text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
+                  >
+                    {t('products.ctaText')} <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button asChild variant="outline" className="rounded-xl">
+              <Link href="/studio-photo/selecteur-machines">
+                {t('products.viewAll')} <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Teaser */}
+      <section className="py-20 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+            {t('roiCalculator.heading')}
+          </h2>
+          <p className="text-lg text-very-peri-100 max-w-2xl mx-auto mb-8">
+            {t('roiCalculator.subtitle')}
+          </p>
+          <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
+            <Link href="/studios-photo-automatises#calculateur-roi">
+              {t('hero.ctaPrimary')} <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 bg-future-dusk-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-future-dusk-800 rounded-2xl p-8">
+              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
+              <p className="text-future-dusk-300 mb-6">{t('finalCta.demo.description')}</p>
+              <Button asChild className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+                <Link href="/contact">{t('finalCta.demo.cta')}</Link>
+              </Button>
+            </div>
+            <div className="bg-future-dusk-800 rounded-2xl p-8">
+              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
+              <p className="text-future-dusk-300 mb-6">{t('finalCta.guide.description')}</p>
+              <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                <Link href="/blog">{t('finalCta.guide.cta')}</Link>
               </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section Sélecteur de Machines */}
-        <section id="selecteur-machines" className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
-                {lang === 'fr' ? 'Trouvez la Machine Idéale' : 'Find Your Ideal Machine'}
-              </h2>
-              <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
-                {lang === 'fr'
-                  ? 'Explorez notre gamme complète de studios photo automatisés Orbitvu et trouvez celui qui correspond parfaitement à vos besoins de production.'
-                  : 'Explore our complete range of Orbitvu automated photo studios and find the one that perfectly matches your production needs.'}
-              </p>
-            </div>
-
-            <MachineSelector
-              mode="display"
-              showFilters={true}
-              showPrices={true}
-              locale={lang as 'fr' | 'en'}
-              className="bg-neutral-lighter rounded-2xl p-6 md:p-8"
-            />
-          </div>
-        </section>
-
-        {/* Section Calculateur ROI */}
-        <section id="calculateur-roi" className="py-20 bg-neutral-lighter">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
-              {t('roiCalculator.heading')}
-            </h2>
-            <p className="text-lg text-neutral-medium text-center mb-12">
-              {t('roiCalculator.subtitle')}
-            </p>
-
-            <ROICalculator className="shadow-2xl" locale={lang as 'fr' | 'en'} />
-          </div>
-        </section>
-
-        {/* Section 12 Secteurs Servis */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-12 text-neutral-dark">
-              {t('sectors.heading')}
-            </h2>
-
-            <SectorGrid
-              sectors={DEFAULT_SECTORS}
-              columns={4}
-            />
-          </div>
-        </section>
-
-        {/* Section Références Clients */}
-        <ClientLogos />
-
-        {/* Section Ressources & Guides */}
-        <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-center mb-4 text-neutral-dark">
-              Ressources & Guides
-            </h2>
-            <p className="text-lg text-neutral-medium text-center mb-12 max-w-3xl mx-auto">
-              Approfondissez vos connaissances avec nos guides complets sur le ROI, l'achat et la comparaison des studios photo automatisés.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Article 1 */}
-              <Link
-                href="/blog/calculer-roi-studio-photo-guide"
-                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-video bg-gradient-to-br from-secondary-orbitvu to-primary-turquoise flex items-center justify-center">
-                  <span className="text-white text-5xl">💰</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
-                    Calculer le ROI de Votre Studio
-                  </h3>
-                  <p className="text-neutral-medium text-sm mb-4">
-                    Guide complet en 8 facteurs pour calculer le retour sur investissement de votre studio photo automatisé. Délai de retour 12-18 mois.
-                  </p>
-                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
-                    Lire le guide →
-                  </span>
-                </div>
-              </Link>
-
-              {/* Article 2 */}
-              <Link
-                href="/blog/guide-achat-studio-2026"
-                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-video bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center">
-                  <span className="text-white text-5xl">📘</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
-                    Guide d'Achat Complet 2026
-                  </h3>
-                  <p className="text-neutral-medium text-sm mb-4">
-                    7 critères de sélection, comparatif machines Orbitvu, processus d'achat étape par étape. Choisissez le bon studio.
-                  </p>
-                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
-                    Lire le guide →
-                  </span>
-                </div>
-              </Link>
-
-              {/* Article 3 */}
-              <Link
-                href="/blog/orbitvu-vs-concurrents"
-                className="group bg-neutral-lighter rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-video bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center">
-                  <span className="text-white text-5xl">⚖️</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2 group-hover:text-secondary-orbitvu transition-colors">
-                    Orbitvu vs Concurrents
-                  </h3>
-                  <p className="text-neutral-medium text-sm mb-4">
-                    Comparatif objectif Orbitvu vs StyleShoots vs Photomatics. Prix, qualité, support, IA Ready. Recommandation par profil.
-                  </p>
-                  <span className="text-secondary-orbitvu font-semibold text-sm group-hover:translate-x-2 inline-block transition-transform duration-300">
-                    Lire le comparatif →
-                  </span>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Section CTAs Finales */}
-        <section className="py-20 bg-neutral-lighter">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* CTA Demo */}
-              <CTABox
-                headingKey="finalCta.demo.heading"
-                descriptionKey="finalCta.demo.description"
-                ctaKey="finalCta.demo.cta"
-                ctaHref="/contact/demande-demo"
-                bgColor="white"
-                namespace="studiosHardware"
-              />
-
-              {/* CTA Guide */}
-              <CTABox
-                headingKey="finalCta.guide.heading"
-                descriptionKey="finalCta.guide.description"
-                ctaKey="finalCta.guide.cta"
-                ctaHref="/guide/guide-achat-2026"
-                bgColor="white"
-                namespace="studiosHardware"
-              />
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg-flatlay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d1fae5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-flatlay)"/>
+  <rect x="70" y="100" width="260" height="160" rx="8" fill="#6ee7b7"/>
+  <rect x="90" y="120" width="220" height="120" rx="4" fill="#34d399"/>
+  <line x1="200" y1="80" x2="200" y2="100" stroke="#059669" stroke-width="4"/>
+  <circle cx="200" cy="70" r="15" fill="#10b981"/>
+  <rect x="180" y="60" width="40" height="25" rx="4" fill="#047857"/>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="14" fill="#065f46" text-anchor="middle">Flat-lay Station</text>
+</svg>

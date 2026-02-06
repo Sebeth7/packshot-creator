@@ -1,332 +1,234 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { Shield, Lock, Eye, Users, FileText, Clock, Mail } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Shield } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-export const metadata: Metadata = {
-  title: 'Politique de Confidentialité - PackshotCreator',
-  description:
-    'Politique de confidentialité et protection des données personnelles de PackshotCreator. Conformité RGPD.',
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
 
-export default function ConfidentialitePage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  return {
+    title: isFr
+      ? 'Politique de Confidentialité | PackshotCreator'
+      : 'Privacy Policy | PackshotCreator',
+    description: isFr
+      ? 'Politique de confidentialité et protection des données personnelles de PackshotCreator. Conformité RGPD.'
+      : 'PackshotCreator privacy policy and personal data protection. GDPR compliance.',
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/confidentialite`,
+      languages: { fr: '/fr/confidentialite', en: '/en/confidentialite' },
+    },
+  };
+}
+
+export default async function ConfidentialitePage({ params }: PageProps) {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: isFr ? 'Confidentialité' : 'Privacy', url: `https://packshot-creator.com/${lang}/confidentialite` },
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-16">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-6 flex items-center gap-3">
-              <Shield className="h-12 w-12 text-blue-600" />
-              <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">
-                Politique de Confidentialité
-              </h1>
-            </div>
-            <p className="text-lg text-gray-600">
-              La société Sysnext accorde une grande importance à la protection de vos données
-              personnelles et s'engage à respecter la législation en vigueur, notamment le RGPD et
-              la loi française relative à l'informatique, aux fichiers et aux libertés.
-            </p>
+      <section className="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-very-peri-500/20 text-very-peri-300">
+              <Shield className="h-6 w-6" />
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold">
+              {isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
+            </h1>
           </div>
+          <p className="text-future-dusk-200">
+            {isFr
+              ? 'La société Sysnext accorde une grande importance à la protection de vos données personnelles et se conforme au RGPD.'
+              : 'Sysnext places great importance on the protection of your personal data and complies with GDPR.'}
+          </p>
         </div>
       </section>
 
-      {/* Contenu */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl space-y-12">
+      {/* Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="space-y-10">
+
             {/* Article 1 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <Users className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Article 1 : Responsable du traitement des données
-                </h2>
-              </div>
-              <div className="rounded-lg bg-gray-50 p-6">
-                <p className="mb-2">
-                  <strong>Le responsable du traitement est : Sysnext</strong>
-                </p>
-                <ul className="space-y-1 text-gray-700">
-                  <li>
-                    <strong>Adresse :</strong> 6 rue Antonin Raynaud, 92300 Levallois-Perret,
-                    France
-                  </li>
-                  <li>
-                    <strong>Contact :</strong> info[at]sysnext.com
-                  </li>
-                  <li>
-                    <strong>Téléphone :</strong> +33 (0)1 47 42 66 66
-                  </li>
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 1 : Responsable du traitement' : 'Article 1: Data controller'}
+              </h2>
+              <div className="rounded-xl bg-neutral-50 p-6 border border-neutral-100">
+                <p className="font-heading font-bold text-future-dusk-900 mb-3">Sysnext</p>
+                <ul className="space-y-1.5 text-sm text-future-dusk-600">
+                  <li><strong>SAS</strong> {isFr ? 'au capital de' : 'with capital of'} 500 000 EUR</li>
+                  <li>6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
+                  <li>RCS Nanterre 805 401 148</li>
+                  <li>Contact DPO: info@sysnext.com</li>
                 </ul>
               </div>
             </div>
 
             {/* Article 2 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <FileText className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">Article 2 : Données collectées</h2>
-              </div>
-              <p className="mb-4 text-gray-700">
-                Lors de votre navigation ou de l'utilisation de nos services, nous collectons les
-                données suivantes :
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 2 : Données collectées' : 'Article 2: Data collected'}
+              </h2>
+              <p className="text-future-dusk-600 mb-4">
+                {isFr
+                  ? 'Les données personnelles collectées sur le site sont :'
+                  : 'Personal data collected on the site includes:'}
               </p>
-              <div className="space-y-4">
-                <div className="rounded-lg bg-blue-50 p-4">
-                  <h3 className="mb-2 font-semibold text-gray-900">
-                    Données transmises directement :
-                  </h3>
-                  <p className="text-gray-700">
-                    Nom, prénom, adresse e-mail, numéro de téléphone, entreprise, et toute autre
-                    information saisie dans les formulaires de contact ou de demande.
-                  </p>
-                </div>
-                <div className="rounded-lg bg-blue-50 p-4">
-                  <h3 className="mb-2 font-semibold text-gray-900">
-                    Données collectées automatiquement :
-                  </h3>
-                  <p className="text-gray-700">
-                    Adresse IP, données de connexion, navigation sur le site (cookies, pages
-                    visitées, temps passé, etc.).
-                  </p>
-                </div>
+              <div className="space-y-3">
+                {[
+                  { titleFr: 'Formulaires de contact', titleEn: 'Contact forms', descFr: 'Nom, email, téléphone, entreprise, message', descEn: 'Name, email, phone, company, message' },
+                  { titleFr: 'Outils interactifs', titleEn: 'Interactive tools', descFr: 'Données saisies dans le calculateur ROI, simulateur OPCO, sélecteur machines', descEn: 'Data entered in ROI calculator, OPCO simulator, machine selector' },
+                  { titleFr: 'Navigation', titleEn: 'Navigation', descFr: 'Cookies analytiques, adresse IP (anonymisée)', descEn: 'Analytics cookies, IP address (anonymized)' },
+                ].map((item) => (
+                  <div key={item.titleFr} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
+                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{isFr ? item.titleFr : item.titleEn}</p>
+                    <p className="text-sm text-future-dusk-500">{isFr ? item.descFr : item.descEn}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* Article 3 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <Eye className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Article 3 : Finalité du traitement des données
-                </h2>
-              </div>
-              <p className="mb-4 text-gray-700">
-                Vos données personnelles sont collectées pour les finalités suivantes :
-              </p>
-              <ul className="space-y-2 text-gray-700">
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 3 : Finalités du traitement' : 'Article 3: Processing purposes'}
+              </h2>
+              <ul className="space-y-2 text-future-dusk-600">
                 <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Répondre à vos demandes via le formulaire de contact ;</span>
+                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                  {isFr ? 'Répondre à vos demandes de contact et de devis' : 'Responding to your contact and quote requests'}
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    Gérer vos inscriptions à nos newsletters et communications marketing ;
-                  </span>
+                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                  {isFr ? 'Fournir les résultats des outils interactifs' : 'Providing interactive tool results'}
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    Améliorer l'expérience utilisateur sur le site (via les cookies et outils
-                    d'analyse) ;
-                  </span>
+                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                  {isFr ? 'Gérer les inscriptions aux formations' : 'Managing training enrollments'}
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Respecter nos obligations légales et réglementaires.</span>
+                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                  {isFr ? 'Améliorer notre site et nos services' : 'Improving our website and services'}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                  {isFr ? 'Respecter nos obligations légales' : 'Complying with our legal obligations'}
                 </li>
               </ul>
             </div>
 
             {/* Article 4 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">Article 4 : Base légale</h2>
-              <p className="text-gray-700">Le traitement de vos données repose sur :</p>
-              <ul className="mt-4 space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    Votre consentement (pour les formulaires, newsletters, et cookies) ;
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    L'exécution d'un contrat (fourniture de services ou d'informations demandées) ;
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Nos obligations légales.</span>
-                </li>
-              </ul>
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 4 : Durée de conservation' : 'Article 4: Retention period'}
+              </h2>
+              <p className="text-future-dusk-600">
+                {isFr
+                  ? 'Les données personnelles sont conservées pendant une durée proportionnée à leur finalité : 3 ans pour les données prospects, durée de la relation contractuelle + 5 ans pour les clients, 13 mois pour les cookies.'
+                  : 'Personal data is retained for a period proportionate to its purpose: 3 years for prospect data, duration of the contractual relationship + 5 years for customers, 13 months for cookies.'}
+              </p>
             </div>
 
             {/* Article 5 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                Article 5 : Partage des données
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 5 : Vos droits' : 'Article 5: Your rights'}
               </h2>
-              <p className="mb-4 text-gray-700">
-                Vos données personnelles ne sont jamais vendues ou louées. Elles peuvent être
-                partagées avec :
+              <p className="text-future-dusk-600 mb-4">
+                {isFr
+                  ? 'Conformément au RGPD, vous disposez des droits suivants :'
+                  : 'In accordance with GDPR, you have the following rights:'}
               </p>
-              <div className="space-y-3">
-                <div className="rounded-lg bg-amber-50 p-4">
-                  <h3 className="mb-2 font-semibold text-gray-900">Prestataires de services :</h3>
-                  <p className="text-gray-700">
-                    Hébergeur Webflow, partenaires marketing ou techniques, pour la bonne exécution
-                    des services.
-                  </p>
-                </div>
-                <div className="rounded-lg bg-amber-50 p-4">
-                  <h3 className="mb-2 font-semibold text-gray-900">Autorités compétentes :</h3>
-                  <p className="text-gray-700">
-                    Dans le cadre d'une obligation légale ou d'un contentieux.
-                  </p>
-                </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {[
+                  { fr: 'Droit d\'accès', en: 'Right of access' },
+                  { fr: 'Droit de rectification', en: 'Right to rectification' },
+                  { fr: 'Droit à l\'effacement', en: 'Right to erasure' },
+                  { fr: 'Droit à la portabilité', en: 'Right to data portability' },
+                  { fr: 'Droit d\'opposition', en: 'Right to object' },
+                  { fr: 'Droit à la limitation du traitement', en: 'Right to restriction of processing' },
+                ].map((right) => (
+                  <div key={right.fr} className="rounded-xl bg-very-peri-50 p-3 text-sm font-medium text-very-peri-700">
+                    {isFr ? right.fr : right.en}
+                  </div>
+                ))}
               </div>
+              <p className="text-future-dusk-600 mt-4 text-sm">
+                {isFr
+                  ? 'Pour exercer vos droits : info@sysnext.com. Vous pouvez également adresser une réclamation à la CNIL.'
+                  : 'To exercise your rights: info@sysnext.com. You may also file a complaint with the CNIL.'}
+              </p>
             </div>
 
             {/* Article 6 */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <Clock className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Article 6 : Durée de conservation des données
-                </h2>
-              </div>
-              <p className="text-gray-700">Les données sont conservées :</p>
-              <ul className="mt-4 space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    Pour une durée maximale de <strong>3 ans</strong> après le dernier contact pour
-                    les données marketing ;
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>
-                    Pour la durée nécessaire à l'exécution du contrat ou au respect d'une
-                    obligation légale.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Article 7 : Vos droits */}
-            <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <Shield className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">Article 7 : Vos droits</h2>
-              </div>
-              <p className="mb-4 text-gray-700">
-                Conformément au RGPD, vous disposez des droits suivants :
-              </p>
-              <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-lg bg-white p-4">
-                  <h3 className="mb-1 font-semibold text-gray-900">Accès</h3>
-                  <p className="text-sm text-gray-600">
-                    Demander quelles données personnelles sont détenues
-                  </p>
-                </div>
-                <div className="rounded-lg bg-white p-4">
-                  <h3 className="mb-1 font-semibold text-gray-900">Rectification</h3>
-                  <p className="text-sm text-gray-600">
-                    Corriger vos données si elles sont inexactes
-                  </p>
-                </div>
-                <div className="rounded-lg bg-white p-4">
-                  <h3 className="mb-1 font-semibold text-gray-900">Effacement</h3>
-                  <p className="text-sm text-gray-600">Supprimer vos données dans certains cas</p>
-                </div>
-                <div className="rounded-lg bg-white p-4">
-                  <h3 className="mb-1 font-semibold text-gray-900">Opposition</h3>
-                  <p className="text-sm text-gray-600">
-                    Vous opposer au traitement pour des motifs légitimes
-                  </p>
-                </div>
-                <div className="rounded-lg bg-white p-4">
-                  <h3 className="mb-1 font-semibold text-gray-900">Portabilité</h3>
-                  <p className="text-sm text-gray-600">
-                    Obtenir vos données dans un format structuré
-                  </p>
-                </div>
-              </div>
-              <p className="mt-6 text-gray-700">
-                Pour exercer vos droits, contactez-nous à{' '}
-                <strong>info[at]sysnext.com</strong> en précisant l'objet de votre demande et en
-                justifiant de votre identité.
-              </p>
-            </div>
-
-            {/* Articles restants */}
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">Article 8 : Cookies</h2>
-              <p className="mb-3 text-gray-700">Le site utilise des cookies pour :</p>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Mesurer l'audience et analyser le trafic (Google Analytics ou équivalent)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Améliorer l'expérience utilisateur</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">•</span>
-                  <span>Proposer des contenus personnalisés</span>
-                </li>
-              </ul>
-              <p className="mt-4 text-gray-700">
-                Vous pouvez configurer votre navigateur pour bloquer les cookies ou modifier vos
-                préférences.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <div className="mb-4 flex items-center gap-3">
-                <Lock className="h-8 w-8 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">Article 9 : Sécurité</h2>
-              </div>
-              <p className="text-gray-700">
-                Nous mettons en œuvre toutes les mesures techniques et organisationnelles
-                nécessaires pour protéger vos données contre les accès non autorisés, la perte, ou
-                la modification.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                Article 10 : Modification de la politique de confidentialité
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 6 : Cookies' : 'Article 6: Cookies'}
               </h2>
-              <p className="text-gray-700">
-                Cette politique peut être mise à jour à tout moment pour refléter les changements
-                législatifs ou nos pratiques. Nous vous invitons à la consulter régulièrement.
+              <p className="text-future-dusk-600 mb-4">
+                {isFr
+                  ? 'Le site utilise des cookies pour améliorer votre expérience :'
+                  : 'The site uses cookies to improve your experience:'}
+              </p>
+              <div className="space-y-3">
+                {[
+                  { titleFr: 'Cookies essentiels', titleEn: 'Essential cookies', descFr: 'Nécessaires au fonctionnement du site (session, langue)', descEn: 'Required for site functionality (session, language)' },
+                  { titleFr: 'Cookies analytiques', titleEn: 'Analytics cookies', descFr: 'Mesure d\'audience anonymisée (avec consentement)', descEn: 'Anonymous audience measurement (with consent)' },
+                ].map((cookie) => (
+                  <div key={cookie.titleFr} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
+                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{isFr ? cookie.titleFr : cookie.titleEn}</p>
+                    <p className="text-sm text-future-dusk-500">{isFr ? cookie.descFr : cookie.descEn}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Article 7 */}
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {isFr ? 'Article 7 : Sécurité' : 'Article 7: Security'}
+              </h2>
+              <p className="text-future-dusk-600">
+                {isFr
+                  ? 'Sysnext met en oeuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction.'
+                  : 'Sysnext implements appropriate technical and organizational measures to protect your personal data against unauthorized access, modification, disclosure or destruction.'}
               </p>
             </div>
 
-            {/* Contact */}
-            <div className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-white shadow-lg">
-              <div className="mb-4 flex items-center gap-3">
-                <Mail className="h-8 w-8" />
-                <h2 className="text-2xl font-bold">Article 11 : Contact</h2>
-              </div>
-              <p className="mb-6 opacity-90">
-                Pour toute question ou réclamation relative à la gestion de vos données
-                personnelles, vous pouvez nous écrire à :
+            {/* CTA */}
+            <div className="rounded-2xl bg-gradient-to-r from-very-peri-600 to-very-peri-700 p-8 text-center text-white">
+              <h3 className="text-2xl font-heading font-bold mb-4">
+                {isFr ? 'Questions sur vos données ?' : 'Questions about your data?'}
+              </h3>
+              <p className="mb-6 text-very-peri-100">
+                {isFr
+                  ? 'Contactez notre équipe pour toute demande relative à vos données personnelles.'
+                  : 'Contact our team for any request regarding your personal data.'}
               </p>
-              <div className="space-y-2 text-sm">
-                <p>
-                  <strong>Email :</strong> info[at]sysnext.com
-                </p>
-                <p>
-                  <strong>Adresse :</strong> Sysnext, 6 rue Antonin Raynaud, 92300
-                  Levallois-Perret, France
-                </p>
-              </div>
-              <a
-                href="mailto:info@sysnext.com"
-                className="mt-6 inline-block rounded-lg bg-white px-8 py-3 font-semibold text-blue-600 transition-all hover:scale-105"
-              >
-                Nous contacter
-              </a>
+              <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'Nous contacter' : 'Contact us'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
-    </div>
+
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+    </>
   );
 }

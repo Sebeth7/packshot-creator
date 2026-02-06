@@ -17,7 +17,6 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    // Extraire tous les H2 et H3 de l'article
     const article = document.querySelector('article');
     if (!article) return;
 
@@ -28,7 +27,6 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
       level: parseInt(heading.tagName.substring(1)),
     }));
 
-    // Observer pour suivre le heading actif pendant le scroll
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,7 +40,6 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
 
     headingElements.forEach((heading) => observer.observe(heading));
 
-    // Mise à jour de l'état après configuration de l'observer
     queueMicrotask(() => setHeadings(headingData));
 
     return () => observer.disconnect();
@@ -51,8 +48,8 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
   if (headings.length === 0) return null;
 
   return (
-    <nav className={`border-l-2 border-neutral-light pl-4 ${className}`}>
-      <h2 className="text-sm font-bold text-neutral-dark mb-4 uppercase tracking-wide">
+    <nav className={`border-l-2 border-neutral-200 pl-4 ${className}`}>
+      <h2 className="text-sm font-bold text-future-dusk-900 mb-4 uppercase tracking-wide">
         Table des matières
       </h2>
       <ul className="space-y-2">
@@ -63,10 +60,10 @@ export function TableOfContents({ className = '' }: TableOfContentsProps) {
           >
             <a
               href={`#${heading.id}`}
-              className={`text-sm transition-colors hover:text-future-dusk-500 ${
+              className={`text-sm transition-colors hover:text-very-peri-600 ${
                 activeId === heading.id
-                  ? 'text-future-dusk-500 font-medium'
-                  : 'text-neutral-medium'
+                  ? 'text-very-peri-600 font-medium'
+                  : 'text-future-dusk-500'
               }`}
             >
               {heading.text}

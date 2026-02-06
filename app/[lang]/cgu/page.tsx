@@ -1,274 +1,188 @@
 import { Metadata } from 'next';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 
-export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation (CGU) - PackshotCreator',
-  description:
-    'Conditions générales d\'utilisation du site PackshotCreator : accès au site, propriété intellectuelle, responsabilités et obligations des utilisateurs.',
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
 
-export default function CGUPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  return {
+    title: isFr
+      ? 'Conditions Générales d\'Utilisation (CGU) | PackshotCreator'
+      : 'Terms of Use | PackshotCreator',
+    description: isFr
+      ? 'Conditions générales d\'utilisation du site PackshotCreator : accès, propriété intellectuelle, responsabilités.'
+      : 'Terms of use for the PackshotCreator website: access, intellectual property, responsibilities.',
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/cgu`,
+      languages: { fr: '/fr/cgu', en: '/en/cgu' },
+    },
+  };
+}
+
+export default async function CGUPage({ params }: PageProps) {
+  const { lang } = await params;
+  const isFr = lang === 'fr';
+
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: isFr ? 'CGU' : 'Terms', url: `https://packshot-creator.com/${lang}/cgu` },
+  ];
+
   return (
     <>
-      <Header />
-      <div className="min-h-screen bg-white">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
-          <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-4xl">
-              <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                Conditions Générales d'Utilisation
-              </h1>
-              <p className="text-lg text-gray-600">
-                Conditions régissant l'utilisation du site www.packshot-creator.com
-              </p>
-              <p className="mt-2 text-sm text-gray-500">
-                Dernière mise à jour : Janvier 2026
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h1 className="text-4xl sm:text-5xl font-heading font-bold mb-4">
+            {isFr ? 'Conditions Générales d\'Utilisation' : 'Terms of Use'}
+          </h1>
+          <p className="text-future-dusk-200">
+            {isFr
+              ? 'Conditions régissant l\'utilisation du site www.packshot-creator.com'
+              : 'Terms governing the use of the website www.packshot-creator.com'}
+          </p>
+          <p className="mt-2 text-sm text-future-dusk-300">
+            {isFr ? 'Dernière mise à jour : Janvier 2026' : 'Last updated: January 2026'}
+          </p>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900">
+            <p className="text-xl text-future-dusk-700 leading-relaxed">
+              {isFr
+                ? 'Les présentes conditions générales d\'utilisation (ci-après "CGU") ont pour objet de définir les modalités et conditions dans lesquelles SYSNEXT SAS, exploitant la marque PackshotCreator, met à disposition son site internet et ses services.'
+                : 'These general terms of use (hereinafter "Terms") define the terms and conditions under which SYSNEXT SAS, operating the PackshotCreator brand, makes its website and services available.'}
+            </p>
+
+            <div className="my-8 rounded-2xl bg-very-peri-50 p-6 border-l-4 border-very-peri-500 not-prose">
+              <p className="text-very-peri-800 font-medium text-sm">
+                {isFr
+                  ? 'En accédant et en utilisant ce site, vous acceptez sans réserve les présentes CGU. Si vous n\'acceptez pas ces conditions, veuillez ne pas utiliser ce site.'
+                  : 'By accessing and using this site, you accept these Terms without reservation. If you do not accept these conditions, please do not use this site.'}
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Contenu */}
-        <section className="py-16">
-          <div className="container mx-auto px-6">
-            <div className="prose prose-lg mx-auto max-w-4xl">
-              <p className="lead text-xl text-gray-700">
-                Les présentes conditions générales d'utilisation (ci-après « CGU ») ont pour objet de
-                définir les modalités et conditions dans lesquelles SYSNEXT SAS, exploitant la marque
-                PackshotCreator, met à disposition son site internet et ses services, ainsi que les
-                droits et obligations des utilisateurs.
-              </p>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 1 : Objet' : 'Article 1: Purpose'}</h2>
+            <p>
+              {isFr
+                ? 'Les présentes CGU régissent l\'utilisation du site www.packshot-creator.com et de l\'ensemble des services proposés par PackshotCreator, notamment :'
+                : 'These Terms govern the use of the website www.packshot-creator.com and all services offered by PackshotCreator, including:'}
+            </p>
+            <ul>
+              <li>{isFr ? 'La consultation des informations sur les produits et services' : 'Viewing product and service information'}</li>
+              <li>{isFr ? 'L\'utilisation des outils interactifs (calculateur ROI, simulateur OPCO, sélecteur de machines)' : 'Using interactive tools (ROI calculator, OPCO simulator, machine selector)'}</li>
+              <li>{isFr ? 'L\'inscription aux formations via PackshotCreator Academy' : 'Enrollment in training via PackshotCreator Academy'}</li>
+              <li>{isFr ? 'Les demandes de contact et de devis' : 'Contact and quote requests'}</li>
+              <li>{isFr ? 'L\'accès au blog et aux ressources documentaires' : 'Access to the blog and documentation resources'}</li>
+            </ul>
 
-              <div className="my-8 rounded-lg bg-blue-50 p-6 border-l-4 border-blue-500">
-                <p className="text-blue-800 font-medium">
-                  En accédant et en utilisant ce site, vous acceptez sans réserve les présentes CGU.
-                  Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser ce site.
-                </p>
-              </div>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 2 : Accès au site' : 'Article 2: Site access'}</h2>
+            <p>
+              {isFr
+                ? 'Le site est accessible gratuitement à tout utilisateur disposant d\'un accès internet. Tous les coûts liés à l\'accès sont à la charge de l\'utilisateur.'
+                : 'The site is freely accessible to any user with internet access. All costs related to access are the user\'s responsibility.'}
+            </p>
+            <p>
+              {isFr
+                ? 'SYSNEXT met en oeuvre tous les moyens raisonnables pour assurer un accès continu au site, mais ne saurait être tenu responsable des interruptions.'
+                : 'SYSNEXT uses all reasonable means to ensure continuous access to the site, but cannot be held responsible for interruptions.'}
+            </p>
 
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 1 : Objet
-              </h2>
-              <p>
-                Les présentes CGU régissent l'utilisation du site www.packshot-creator.com et de
-                l'ensemble des services proposés par PackshotCreator, notamment :
-              </p>
-              <ul className="space-y-2">
-                <li>La consultation des informations sur les produits et services</li>
-                <li>L'utilisation des outils interactifs (calculateur ROI, simulateur OPCO, sélecteur de machines)</li>
-                <li>L'inscription aux formations via PackshotCreator Academy</li>
-                <li>Les demandes de contact et de devis</li>
-                <li>L'accès au blog et aux ressources documentaires</li>
-              </ul>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 3 : Propriété intellectuelle' : 'Article 3: Intellectual property'}</h2>
+            <p>
+              {isFr
+                ? 'L\'ensemble des éléments figurant sur le site sont protégés par le Code de la propriété intellectuelle et sont la propriété exclusive de SYSNEXT ou de ses partenaires.'
+                : 'All elements on the site are protected by intellectual property law and are the exclusive property of SYSNEXT or its partners.'}
+            </p>
+            <p>
+              {isFr
+                ? 'Les marques PackshotCreator, Orbitvu, BlendAI et les logos associés sont des marques déposées.'
+                : 'The brands PackshotCreator, Orbitvu, BlendAI and associated logos are registered trademarks.'}
+            </p>
 
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 2 : Accès au site
-              </h2>
-              <p>
-                Le site est accessible gratuitement à tout utilisateur disposant d'un accès internet.
-                Tous les coûts liés à l'accès au site (matériel informatique, connexion internet, etc.)
-                sont à la charge de l'utilisateur.
-              </p>
-              <p>
-                SYSNEXT met en œuvre tous les moyens raisonnables pour assurer un accès continu au site.
-                Toutefois, l'accès peut être interrompu notamment pour des raisons de maintenance,
-                de mise à jour ou pour toute autre raison technique.
-              </p>
-              <p>
-                SYSNEXT ne saurait être tenu responsable des dommages résultant de l'indisponibilité
-                du site ou de dysfonctionnements techniques.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 3 : Propriété intellectuelle
-              </h2>
-              <p>
-                L'ensemble des éléments figurant sur le site PackshotCreator (textes, graphismes,
-                images, photographies, vidéos, logos, icônes, sons, logiciels, bases de données, etc.)
-                sont protégés par les dispositions du Code de la propriété intellectuelle et sont la
-                propriété exclusive de SYSNEXT ou de ses partenaires.
-              </p>
-              <p>
-                Toute reproduction, représentation, modification, publication, transmission ou
-                dénaturation, totale ou partielle, du site ou de son contenu, par quelque procédé
-                que ce soit et sur quelque support que ce soit, est interdite sans l'autorisation
-                écrite préalable de SYSNEXT.
-              </p>
-              <p>
-                Les marques PackshotCreator, Orbitvu, BlendAI et les logos associés sont des marques
-                déposées. Leur utilisation sans autorisation est strictement interdite.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 4 : Utilisation des outils interactifs
-              </h2>
-              <p>
-                Le site propose plusieurs outils interactifs à titre informatif :
-              </p>
-              <div className="space-y-4">
-                <div className="rounded-lg bg-gray-50 p-6">
-                  <h3 className="font-bold text-gray-900 mb-2">Calculateur de ROI</h3>
-                  <p className="text-gray-700">
-                    Les estimations fournies par le calculateur de retour sur investissement sont
-                    données à titre indicatif et ne constituent en aucun cas un engagement contractuel
-                    de la part de SYSNEXT.
-                  </p>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 4 : Outils interactifs' : 'Article 4: Interactive tools'}</h2>
+            <div className="space-y-4 not-prose">
+              {[
+                { titleFr: 'Calculateur de ROI', titleEn: 'ROI Calculator', descFr: 'Les estimations sont données à titre indicatif et ne constituent pas un engagement contractuel.', descEn: 'Estimates are provided for informational purposes and do not constitute a contractual commitment.' },
+                { titleFr: 'Simulateur d\'éligibilité OPCO', titleEn: 'OPCO Eligibility Simulator', descFr: 'L\'éligibilité définitive reste soumise à la validation de l\'OPCO concerné.', descEn: 'Final eligibility is subject to validation by the relevant OPCO.' },
+                { titleFr: 'Sélecteur de machines', titleEn: 'Machine Selector', descFr: 'Les recommandations sont basées sur les critères renseignés et constituent des suggestions.', descEn: 'Recommendations are based on the criteria provided and constitute suggestions.' },
+              ].map((tool) => (
+                <div key={tool.titleFr} className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100">
+                  <h3 className="font-heading font-bold text-future-dusk-900 mb-2">{isFr ? tool.titleFr : tool.titleEn}</h3>
+                  <p className="text-sm text-future-dusk-600">{isFr ? tool.descFr : tool.descEn}</p>
                 </div>
-                <div className="rounded-lg bg-gray-50 p-6">
-                  <h3 className="font-bold text-gray-900 mb-2">Simulateur d'éligibilité OPCO</h3>
-                  <p className="text-gray-700">
-                    Le simulateur fournit une estimation de l'éligibilité au financement OPCO basée
-                    sur les informations déclarées. L'éligibilité définitive reste soumise à la
-                    validation de l'OPCO concerné.
-                  </p>
-                </div>
-                <div className="rounded-lg bg-gray-50 p-6">
-                  <h3 className="font-bold text-gray-900 mb-2">Sélecteur de machines</h3>
-                  <p className="text-gray-700">
-                    Les recommandations de machines sont basées sur les critères renseignés et
-                    constituent des suggestions. Un conseiller PackshotCreator pourra affiner ces
-                    recommandations lors d'un échange personnalisé.
-                  </p>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 5 : Formations PackshotCreator Academy
-              </h2>
-              <p>
-                Les formations proposées par PackshotCreator Academy sont soumises à des conditions
-                générales de vente (CGV) spécifiques communiquées lors de l'inscription.
-              </p>
-              <p>
-                PackshotCreator Academy est un organisme de formation certifié Qualiopi, garantissant
-                la qualité des processus de formation et l'éligibilité au financement par les OPCO.
-              </p>
-              <ul className="space-y-2">
-                <li>
-                  <strong>Certification Qualiopi :</strong> Numéro de certification disponible sur demande
-                </li>
-                <li>
-                  <strong>Numéro de déclaration d'activité :</strong> Enregistré auprès de la DREETS
-                </li>
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 5 : Formations PackshotCreator Academy' : 'Article 5: PackshotCreator Academy Training'}</h2>
+            <p>
+              {isFr
+                ? 'Les formations proposées par PackshotCreator Academy sont soumises à des CGV spécifiques communiquées lors de l\'inscription. PackshotCreator Academy est certifié Qualiopi.'
+                : 'Training offered by PackshotCreator Academy is subject to specific terms communicated upon enrollment. PackshotCreator Academy is Qualiopi certified.'}
+            </p>
+
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 6 : Responsabilités de l\'utilisateur' : 'Article 6: User responsibilities'}</h2>
+            <p>{isFr ? 'L\'utilisateur s\'engage à :' : 'The user agrees to:'}</p>
+            <ul>
+              <li>{isFr ? 'Utiliser le site conformément à sa destination et aux présentes CGU' : 'Use the site in accordance with its purpose and these Terms'}</li>
+              <li>{isFr ? 'Ne pas tenter de porter atteinte au bon fonctionnement du site' : 'Not attempt to interfere with the proper functioning of the site'}</li>
+              <li>{isFr ? 'Fournir des informations exactes lors de l\'utilisation des formulaires' : 'Provide accurate information when using forms'}</li>
+              <li>{isFr ? 'Respecter les droits de propriété intellectuelle' : 'Respect intellectual property rights'}</li>
+            </ul>
+
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 7 : Protection des données' : 'Article 7: Data protection'}</h2>
+            <p>
+              {isFr
+                ? 'Le traitement des données personnelles est régi par notre '
+                : 'The processing of personal data is governed by our '}
+              <Link href="/confidentialite" className="text-very-peri-600 hover:underline">
+                {isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
+              </Link>.
+            </p>
+
+            <h2 className="mt-12 text-2xl font-bold">{isFr ? 'Article 8 : Droit applicable' : 'Article 8: Applicable law'}</h2>
+            <p>
+              {isFr
+                ? 'Les présentes CGU sont régies par le droit français. Tout litige sera soumis aux tribunaux de Nanterre.'
+                : 'These Terms are governed by French law. Any dispute shall be submitted to the courts of Nanterre.'}
+            </p>
+
+            <h2 className="mt-12 text-2xl font-bold">Contact</h2>
+            <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100 not-prose">
+              <ul className="space-y-1.5 text-sm text-future-dusk-600">
+                <li><strong>Email:</strong> info@sysnext.com</li>
+                <li><strong>{isFr ? 'Téléphone' : 'Phone'}:</strong> +33 (0)1 47 42 66 66</li>
+                <li><strong>{isFr ? 'Adresse' : 'Address'}:</strong> SYSNEXT - PackshotCreator, 6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
               </ul>
+            </div>
 
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 6 : Responsabilités de l'utilisateur
-              </h2>
-              <p>L'utilisateur s'engage à :</p>
-              <ul className="space-y-2">
-                <li>Utiliser le site conformément à sa destination et aux présentes CGU</li>
-                <li>Ne pas tenter de porter atteinte au bon fonctionnement du site</li>
-                <li>Fournir des informations exactes lors de l'utilisation des formulaires</li>
-                <li>Ne pas utiliser le site à des fins illicites ou contraires à l'ordre public</li>
-                <li>Respecter les droits de propriété intellectuelle de SYSNEXT et de ses partenaires</li>
-              </ul>
-              <p>
-                Tout comportement contraire aux présentes CGU pourra entraîner le refus d'accès au
-                site et aux services, sans préjudice des dommages et intérêts que SYSNEXT pourrait
-                réclamer.
+            {/* CTA */}
+            <div className="mt-16 rounded-2xl bg-gradient-to-r from-very-peri-600 to-very-peri-700 p-8 text-center text-white not-prose">
+              <h3 className="text-2xl font-heading font-bold mb-4">{isFr ? 'Des questions sur nos conditions ?' : 'Questions about our terms?'}</h3>
+              <p className="mb-6 text-very-peri-100">
+                {isFr ? 'Notre équipe est à votre disposition.' : 'Our team is at your disposal.'}
               </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 7 : Liens hypertextes
-              </h2>
-              <p>
-                Le site peut contenir des liens vers des sites tiers. Ces liens sont fournis à titre
-                informatif et SYSNEXT n'exerce aucun contrôle sur ces sites externes.
-              </p>
-              <p>
-                SYSNEXT décline toute responsabilité quant au contenu, aux produits, aux services ou
-                à tout autre élément disponible sur ou à partir de ces sites tiers.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 8 : Protection des données personnelles
-              </h2>
-              <p>
-                Le traitement des données personnelles collectées sur le site est régi par notre
-                Politique de Confidentialité, accessible à l'adresse{' '}
-                <a href="/confidentialite" className="text-secondary-orbitvu hover:underline">
-                  /confidentialite
-                </a>
-                .
-              </p>
-              <p>
-                Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez
-                de droits sur vos données personnelles (accès, rectification, suppression, etc.).
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 9 : Cookies
-              </h2>
-              <p>
-                Le site utilise des cookies pour améliorer l'expérience utilisateur et réaliser des
-                statistiques de fréquentation. L'utilisateur peut paramétrer son navigateur pour
-                refuser les cookies, ce qui peut toutefois limiter certaines fonctionnalités du site.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 10 : Modification des CGU
-              </h2>
-              <p>
-                SYSNEXT se réserve le droit de modifier les présentes CGU à tout moment. Les
-                modifications entrent en vigueur dès leur publication sur le site. L'utilisateur
-                est invité à consulter régulièrement cette page.
-              </p>
-              <p>
-                L'utilisation continue du site après publication de modifications vaut acceptation
-                des nouvelles CGU.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 11 : Droit applicable et juridiction
-              </h2>
-              <p>
-                Les présentes CGU sont régies par le droit français. Tout litige relatif à
-                l'interprétation ou à l'exécution des présentes sera soumis à la compétence
-                exclusive des tribunaux de Nanterre, sauf disposition légale impérative contraire.
-              </p>
-
-              <h2 className="mt-12 text-3xl font-bold text-gray-900">
-                Article 12 : Contact
-              </h2>
-              <p>
-                Pour toute question relative aux présentes CGU, vous pouvez nous contacter :
-              </p>
-              <div className="rounded-lg bg-gray-50 p-6">
-                <ul className="space-y-1 text-gray-700">
-                  <li>
-                    <strong>Email :</strong> info@sysnext.com
-                  </li>
-                  <li>
-                    <strong>Téléphone :</strong> +33 (0)1 47 42 66 66
-                  </li>
-                  <li>
-                    <strong>Adresse :</strong> SYSNEXT - PackshotCreator, 6 rue Antonin Raynaud,
-                    92300 Levallois-Perret, France
-                  </li>
-                </ul>
-              </div>
-
-              {/* Footer CTA */}
-              <div className="mt-16 rounded-xl bg-gradient-to-r from-secondary-orbitvu to-primary-orbitvu p-8 text-center text-white">
-                <h3 className="mb-4 text-2xl font-bold">Des questions sur nos conditions ?</h3>
-                <p className="mb-6 opacity-90">
-                  Notre équipe est à votre disposition pour répondre à toutes vos questions.
-                </p>
-                <a
-                  href="/contact"
-                  className="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-secondary-orbitvu transition-all hover:scale-105"
-                >
-                  Nous contacter
-                </a>
-              </div>
+              <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'Nous contacter' : 'Contact us'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
-        </section>
-      </div>
-      <Footer />
+        </div>
+      </section>
+
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
 }
