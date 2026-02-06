@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Info, AlertTriangle, CheckCircle, XCircle, type LucideIcon } from 'lucide-react';
 
 type CalloutType = 'info' | 'warning' | 'success' | 'alert';
 
@@ -9,41 +10,42 @@ interface CalloutProps {
   className?: string;
 }
 
-const calloutStyles: Record<CalloutType, { bg: string; border: string; text: string; icon: string }> = {
+const calloutStyles: Record<CalloutType, { bg: string; border: string; text: string; icon: LucideIcon }> = {
   info: {
     bg: 'bg-very-peri-50',
     border: 'border-l-4 border-future-dusk-500',
     text: 'text-future-dusk-700',
-    icon: 'ℹ️',
+    icon: Info,
   },
   warning: {
     bg: 'bg-accent-yellow/10',
     border: 'border-l-4 border-accent-yellow',
     text: 'text-accent-orange',
-    icon: '⚠️',
+    icon: AlertTriangle,
   },
   success: {
     bg: 'bg-accent-green/10',
     border: 'border-l-4 border-accent-green',
     text: 'text-accent-green',
-    icon: '✅',
+    icon: CheckCircle,
   },
   alert: {
     bg: 'bg-accent-alert/10',
     border: 'border-l-4 border-accent-alert',
     text: 'text-accent-alert',
-    icon: '🔴',
+    icon: XCircle,
   },
 };
 
 export function Callout({ type = 'info', title, children, className = '' }: CalloutProps) {
   const styles = calloutStyles[type];
+  const IconComponent = styles.icon;
 
   return (
     <div className={`${styles.bg} ${styles.border} p-4 rounded-r-lg my-6 ${className}`}>
       {title && (
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-lg">{styles.icon}</span>
+          <IconComponent className={`w-5 h-5 ${styles.text} shrink-0`} />
           <h4 className={`font-bold ${styles.text} text-base m-0`}>{title}</h4>
         </div>
       )}
