@@ -1,8 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import SchemaOrg, {
   organizationSchema,
   websiteSchema,
@@ -125,8 +123,6 @@ export default async function HomePage({
 
   return (
     <>
-      <Header />
-      <main>
         {/* ━━━ HERO ━━━ */}
         <section className="relative overflow-hidden bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
@@ -568,10 +564,6 @@ export default async function HomePage({
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
-
       {/* Schema.org JSON-LD (AEO) */}
       <SchemaOrg
         schema={[
