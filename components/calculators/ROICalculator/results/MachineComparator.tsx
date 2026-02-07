@@ -298,9 +298,9 @@ export default function MachineComparator({
 }: MachineComparatorProps) {
   const t = LABELS[locale];
 
-  // Obtenir les machines éligibles
+  // Obtenir les machines éligibles (filtrées par catégorie de taille)
   const criteria = userInputsToSelectionCriteria(inputs);
-  const eligibleMachines = getTopMachinesForComparison(criteria, 2);
+  const eligibleMachines = getTopMachinesForComparison(criteria, 2, inputs.tailleProduitsCategory);
 
   // Calculer le ROI pour chaque machine et filtrer les non-rentables
   const machinesWithROI = eligibleMachines

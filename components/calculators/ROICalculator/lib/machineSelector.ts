@@ -357,9 +357,10 @@ export function userInputsToSelectionCriteria(inputs: {
  */
 export function getTopMachinesForComparison(
   criteria: SelectionCriteria,
-  count: number = 4
+  count: number = 4,
+  sizeCategory?: ProductSizeCategory
 ): MachineEligibility[] {
-  const eligible = selectEligibleMachines(criteria);
+  const eligible = selectEligibleMachines(criteria, sizeCategory);
   return eligible.slice(0, count);
 }
 
