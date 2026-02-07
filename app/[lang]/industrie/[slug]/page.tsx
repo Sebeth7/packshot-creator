@@ -7,6 +7,7 @@ import { CheckCircle, ArrowRight, Camera, Sparkles, ChevronRight } from 'lucide-
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -57,7 +58,7 @@ export default async function SecteurPage({ params }: PageProps) {
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <Link
                 href="/industrie"
                 className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
@@ -82,8 +83,8 @@ export default async function SecteurPage({ params }: PageProps) {
                   <Link href="/academy">{isFr ? 'Découvrir nos formations' : 'Discover our training'}</Link>
                 </Button>
               </div>
-            </div>
-            <div className="relative">
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2} className="relative">
               <Image
                 src={heroImage}
                 alt={secteur.hero.titre}
@@ -92,7 +93,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 className="rounded-2xl shadow-2xl"
                 priority
               />
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -101,24 +102,25 @@ export default async function SecteurPage({ params }: PageProps) {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
                 {secteur.problematiques.titre}
               </h2>
-            </div>
-            <div className="space-y-4">
+            </FadeInView>
+            <StaggerContainer className="space-y-4">
               {secteur.problematiques.items.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 bg-neutral-50 rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors"
-                >
-                  <span className="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
-                    {index + 1}
-                  </span>
-                  <p className="text-future-dusk-600 leading-relaxed">{item}</p>
-                </div>
+                <StaggerItem key={index}>
+                  <div
+                    className="flex items-start gap-4 bg-neutral-50 rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors"
+                  >
+                    <span className="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
+                      {index + 1}
+                    </span>
+                    <p className="text-future-dusk-600 leading-relaxed">{item}</p>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
       </section>
@@ -126,42 +128,43 @@ export default async function SecteurPage({ params }: PageProps) {
       {/* Solutions */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {secteur.solutions.titre}
             </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
             {secteur.solutions.items.map((solution, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
-              >
-                <div className={`h-2 ${index === 0 ? 'bg-very-peri-500' : 'bg-amber-500'}`} />
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${
-                      index === 0 ? 'bg-very-peri-100 text-very-peri-700' : 'bg-amber-100 text-amber-700'
-                    }`}>
-                      {index === 0 ? <Camera className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
-                    </span>
-                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                      {solution.titre}
-                    </h3>
+              <StaggerItem key={index}>
+                <div
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+                >
+                  <div className={`h-2 ${index === 0 ? 'bg-very-peri-500' : 'bg-amber-500'}`} />
+                  <div className="p-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${
+                        index === 0 ? 'bg-very-peri-100 text-very-peri-700' : 'bg-amber-100 text-amber-700'
+                      }`}>
+                        {index === 0 ? <Camera className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+                      </span>
+                      <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                        {solution.titre}
+                      </h3>
+                    </div>
+                    <p className="text-future-dusk-500 mb-6">{solution.description}</p>
+                    <ul className="space-y-3">
+                      {solution.avantages.map((avantage, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                          <span className="text-sm text-future-dusk-600">{avantage}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="text-future-dusk-500 mb-6">{solution.description}</p>
-                  <ul className="space-y-3">
-                    {solution.avantages.map((avantage, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="text-sm text-future-dusk-600">{avantage}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -170,22 +173,25 @@ export default async function SecteurPage({ params }: PageProps) {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-                {isFr ? 'Cas Clients' : 'Client Cases'} {secteur.titre.split(':')[0]}
-              </h2>
-              <div className="space-y-6">
+              <FadeInView className="mb-12 text-center">
+                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                  {isFr ? 'Cas Clients' : 'Client Cases'} {secteur.titre.split(':')[0]}
+                </h2>
+              </FadeInView>
+              <StaggerContainer className="space-y-6">
                 {secteur.casClients.map((cas, index) => (
-                  <div
-                    key={index}
-                    className="bg-gradient-to-r from-very-peri-50 to-white rounded-2xl p-8 border-l-4 border-very-peri-500"
-                  >
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-3">
-                      {cas.titre}
-                    </h3>
-                    <p className="text-future-dusk-500 leading-relaxed">{cas.description}</p>
-                  </div>
+                  <StaggerItem key={index}>
+                    <div
+                      className="bg-gradient-to-r from-very-peri-50 to-white rounded-2xl p-8 border-l-4 border-very-peri-500"
+                    >
+                      <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-3">
+                        {cas.titre}
+                      </h3>
+                      <p className="text-future-dusk-500 leading-relaxed">{cas.description}</p>
+                    </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
           </div>
         </section>
@@ -193,7 +199,7 @@ export default async function SecteurPage({ params }: PageProps) {
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
             {secteur.cta.titre}
           </h2>
@@ -212,38 +218,41 @@ export default async function SecteurPage({ params }: PageProps) {
               </Link>
             </Button>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       {/* Other Sectors */}
       <section className="py-16 bg-neutral-50 border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h3 className="text-2xl font-heading font-bold text-future-dusk-900 text-center mb-8">
-            {isFr ? 'Découvrez nos autres secteurs' : 'Discover our other sectors'}
-          </h3>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <FadeInView className="text-center mb-8">
+            <h3 className="text-2xl font-heading font-bold text-future-dusk-900">
+              {isFr ? 'Découvrez nos autres secteurs' : 'Discover our other sectors'}
+            </h3>
+          </FadeInView>
+          <StaggerContainer className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {otherSectors.map((other) => (
-              <Link
-                key={other.slug}
-                href={`/industrie/${other.slug}`}
-                className="group flex items-center gap-3 bg-white rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
-              >
-                <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-50 text-very-peri-600 shrink-0">
-                  <other.Icon className="h-4 w-4" />
-                </span>
-                <span className="text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-600 transition-colors">
-                  {other.name}
-                </span>
-              </Link>
+              <StaggerItem key={other.slug}>
+                <Link
+                  href={`/industrie/${other.slug}`}
+                  className="group flex items-center gap-3 bg-white rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
+                >
+                  <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-50 text-very-peri-600 shrink-0">
+                    <other.Icon className="h-4 w-4" />
+                  </span>
+                  <span className="text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-600 transition-colors">
+                    {other.name}
+                  </span>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
-          <div className="text-center mt-8">
+          </StaggerContainer>
+          <FadeInView className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-xl">
               <Link href="/industrie">
                 {isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-          </div>
+          </FadeInView>
         </div>
       </section>
 

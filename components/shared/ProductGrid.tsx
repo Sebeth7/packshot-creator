@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { BadgeIAReady } from './Badge';
+import { StaggerContainer, StaggerItem } from '@/components/animations';
 
 export interface Product {
   slug: string;
@@ -33,10 +34,10 @@ export default function ProductGrid({
   };
 
   return (
-    <div className={`grid ${gridCols[columns]} gap-8`}>
+    <StaggerContainer className={`grid ${gridCols[columns]} gap-8`}>
       {products.map((product) => (
+        <StaggerItem key={product.slug}>
         <div
-          key={product.slug}
           className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
         >
           {/* Image */}
@@ -83,7 +84,8 @@ export default function ProductGrid({
             </Button>
           </div>
         </div>
+        </StaggerItem>
       ))}
-    </div>
+    </StaggerContainer>
   );
 }

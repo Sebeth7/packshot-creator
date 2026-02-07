@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing';
 import { Award, Calculator, FileCheck, CheckCircle, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { OPCOSimulator } from '@/components/simulators/opco';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export default function SimulateurOPCOPage() {
   const params = useParams();
@@ -74,7 +75,7 @@ export default function SimulateurOPCOPage() {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-emerald-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="max-w-4xl mx-auto text-center">
+          <FadeInView className="max-w-4xl mx-auto text-center">
             <Link href="/academy" className="inline-flex items-center gap-1.5 text-emerald-300 text-sm font-medium mb-6 hover:text-white transition-colors">
               <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
             </Link>
@@ -104,43 +105,49 @@ export default function SimulateurOPCOPage() {
                 <span className="text-future-dusk-300">{isFr ? 'semaines de délai' : 'weeks processing'}</span>
               </div>
             </div>
-          </div>
+          </FadeInView>
         </div>
       </section>
 
       {/* Simulator */}
       <section className="py-16 bg-neutral-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <FadeInView className="max-w-3xl mx-auto px-4 sm:px-6">
           <OPCOSimulator locale={lang as 'fr' | 'en'} onComplete={handleComplete} />
-        </div>
+        </FadeInView>
       </section>
 
       {/* How it works */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Comment fonctionne le financement OPCO ?' : 'How does OPCO funding work?'}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+              {isFr ? 'Comment fonctionne le financement OPCO ?' : 'How does OPCO funding work?'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {steps.map((step, i) => (
-              <div key={step.title} className="bg-neutral-50 rounded-2xl p-8">
-                <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${step.color} mb-4`}>
-                  {step.icon}
-                </span>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-future-dusk-500">{step.desc}</p>
-              </div>
+              <StaggerItem key={step.title}>
+                <div className="bg-neutral-50 rounded-2xl p-8">
+                  <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${step.color} mb-4`}>
+                    {step.icon}
+                  </span>
+                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-future-dusk-500">{step.desc}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
-            {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
-          </h2>
+          <FadeInView>
+            <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
+              {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+            </h2>
+          </FadeInView>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <details key={faq.q} className="bg-white rounded-2xl p-6 shadow-sm group">

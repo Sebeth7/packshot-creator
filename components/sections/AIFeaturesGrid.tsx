@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { Palette, Image, Sparkles, Zap } from 'lucide-react';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface AIFeature {
   key: string;
@@ -43,18 +44,19 @@ export default function AIFeaturesGrid() {
     <section className="py-20 bg-gradient-to-br from-very-peri-50 to-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
-        <div className="text-center mb-12">
+        <FadeInView className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
             {t('heading')}
           </h2>
           <p className="text-lg text-neutral-medium max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
-        </div>
+        </FadeInView>
 
         {/* Grid 2x2 */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {AI_FEATURES.map((feature) => (
+            <StaggerItem key={feature.key}>
             <Link
               key={feature.key}
               href={feature.href}
@@ -94,8 +96,9 @@ export default function AIFeaturesGrid() {
                 </svg>
               </div>
             </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

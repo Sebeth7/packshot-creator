@@ -6,6 +6,7 @@ import { Factory, Zap, TrendingUp, Target, Camera, Sparkles, Send, ArrowRight } 
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -95,7 +96,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <div className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
                 <Factory className="h-4 w-4" />
                 {isFr ? '12 secteurs couverts' : '12 sectors covered'}
@@ -118,17 +119,19 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                   <a href="#secteurs">{isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'}</a>
                 </Button>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/hero/hero-industries.avif"
-                alt={isFr ? 'Solutions photo produit par industrie' : 'Product photo solutions by industry'}
-                width={640}
-                height={480}
-                className="rounded-2xl shadow-2xl"
-                priority
-              />
-            </div>
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2}>
+              <div className="relative">
+                <Image
+                  src="/images/hero/hero-industries.avif"
+                  alt={isFr ? 'Solutions photo produit par industrie' : 'Product photo solutions by industry'}
+                  width={640}
+                  height={480}
+                  className="rounded-2xl shadow-2xl"
+                  priority
+                />
+              </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -136,7 +139,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       {/* 12 Sectors Grid */}
       <section id="secteurs" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {isFr ? '12 Secteurs d\'Activité Couverts' : '12 Industry Sectors Covered'}
             </h2>
@@ -145,7 +148,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                 ? 'De la chaussure à la joaillerie, du mobilier à l\'électronique : solutions professionnelles pour tous les secteurs.'
                 : 'From shoes to jewelry, furniture to electronics: professional solutions for every sector.'}
             </p>
-          </div>
+          </FadeInView>
           <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
         </div>
       </section>
@@ -153,33 +156,35 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       {/* Benefits */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {isFr ? 'Avantages pour Toutes les Industries' : 'Benefits for All Industries'}
             </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {benefits.map((benefit) => (
-              <div key={benefit.title} className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} mb-4`}>
-                  {benefit.icon}
-                </span>
-                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-future-dusk-500 leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
+              <StaggerItem key={benefit.title}>
+                <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} mb-4`}>
+                    {benefit.icon}
+                  </span>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Workflow */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {isFr ? 'Workflow : Packshot → IA → Diffusion' : 'Workflow: Packshot → AI → Distribution'}
             </h2>
@@ -188,63 +193,69 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                 ? 'Le processus standard pour tous les secteurs : capture packshot haute qualité, puis génération lifestyle IA.'
                 : 'The standard process for all sectors: high-quality packshot capture, then AI lifestyle generation.'}
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {workflowSteps.map((step, i) => (
-              <div key={step.title} className="relative text-center">
-                <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.color} text-white mx-auto mb-6`}>
-                  {step.icon}
+              <StaggerItem key={step.title}>
+                <div className="relative text-center">
+                  <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.color} text-white mx-auto mb-6`}>
+                    {step.icon}
+                  </div>
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-bold text-future-dusk-300">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-bold text-future-dusk-300">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-future-dusk-500 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-future-dusk-900 to-very-peri-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-future-dusk-800/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-heading font-bold mb-4">
-                {isFr ? 'Votre secteur nécessite une solution spécifique ?' : 'Need a sector-specific solution?'}
-              </h3>
-              <p className="text-future-dusk-300 mb-6">
-                {isFr
-                  ? 'Contactez-nous pour une analyse personnalisée de vos besoins photo produit. Devis studios Orbitvu + formation BlendAI gratuite.'
-                  : 'Contact us for a personalized analysis of your product photo needs. Free Orbitvu studios + BlendAI training quote.'}
-              </p>
-              <Button asChild className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
-                <Link href="/contact">
-                  {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-            <div className="bg-future-dusk-800/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-heading font-bold mb-4">
-                {isFr ? 'Voir les solutions en action' : 'See solutions in action'}
-              </h3>
-              <p className="text-future-dusk-300 mb-6">
-                {isFr
-                  ? 'Réservez une démo personnalisée : tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur.'
-                  : 'Book a personalized demo: packshot tests with your products + AI lifestyle examples for your sector.'}
-              </p>
-              <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                <Link href="/contact">
-                  {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerItem>
+              <div className="bg-future-dusk-800/50 rounded-2xl p-8">
+                <h3 className="text-2xl font-heading font-bold mb-4">
+                  {isFr ? 'Votre secteur nécessite une solution spécifique ?' : 'Need a sector-specific solution?'}
+                </h3>
+                <p className="text-future-dusk-300 mb-6">
+                  {isFr
+                    ? 'Contactez-nous pour une analyse personnalisée de vos besoins photo produit. Devis studios Orbitvu + formation BlendAI gratuite.'
+                    : 'Contact us for a personalized analysis of your product photo needs. Free Orbitvu studios + BlendAI training quote.'}
+                </p>
+                <Button asChild className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+                  <Link href="/contact">
+                    {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="bg-future-dusk-800/50 rounded-2xl p-8">
+                <h3 className="text-2xl font-heading font-bold mb-4">
+                  {isFr ? 'Voir les solutions en action' : 'See solutions in action'}
+                </h3>
+                <p className="text-future-dusk-300 mb-6">
+                  {isFr
+                    ? 'Réservez une démo personnalisée : tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur.'
+                    : 'Book a personalized demo: packshot tests with your products + AI lifestyle examples for your sector.'}
+                </p>
+                <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <Link href="/contact">
+                    {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 

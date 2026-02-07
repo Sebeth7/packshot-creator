@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import type { Machine, BilingualText } from '../lib/types';
 
@@ -74,18 +75,30 @@ export function MachineModal({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen || !machine) return null;
+  const shouldReduce = useReducedMotion();
 
   return (
+    <AnimatePresence>
+    {isOpen && machine && (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      />
 
       {/* Modal */}
-      <div
+      <motion.div
+        initial={shouldReduce ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
+        animate={shouldReduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+        exit={shouldReduce ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.25, ease: [0, 0, 0.2, 1] }}
         className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
@@ -287,7 +300,9 @@ export function MachineModal({
             </button>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
+    )}
+    </AnimatePresence>
   );
 }

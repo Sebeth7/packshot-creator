@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { CalendarDays, Award, Camera, Brain, ArrowRight, ChevronRight, Phone, Mail, Users, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -47,7 +48,7 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="max-w-4xl mx-auto text-center">
+          <FadeInView className="max-w-4xl mx-auto text-center">
             <Link href="/academy" className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors">
               <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
             </Link>
@@ -79,19 +80,19 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
                 </Link>
               </Button>
             </div>
-          </div>
+          </FadeInView>
         </div>
       </section>
 
       {/* Calendar Placeholder */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
+          <FadeInView className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('calendrier.heading')}
             </h2>
             <p className="text-lg text-future-dusk-500">{t('calendrier.subtitle')}</p>
-          </div>
+          </FadeInView>
           <div className="bg-neutral-50 rounded-2xl p-12 text-center border border-neutral-100">
             <CalendarDays className="h-16 w-16 text-very-peri-400 mx-auto mb-6" />
             <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
@@ -113,7 +114,7 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
 
       {/* Custom Date */}
       <section className="py-20 bg-neutral-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="bg-gradient-to-r from-very-peri-50 to-very-peri-100/50 rounded-2xl p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
@@ -158,15 +159,17 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
               </div>
             </div>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       {/* FAQ */}
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
-            {isFr ? 'Questions fréquentes sur l\'inscription' : 'Registration FAQ'}
-          </h2>
+          <FadeInView>
+            <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
+              {isFr ? 'Questions fréquentes sur l\'inscription' : 'Registration FAQ'}
+            </h2>
+          </FadeInView>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <details key={faq.q} className="bg-neutral-50 rounded-2xl p-6 group">
@@ -183,7 +186,7 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
 
       {/* CTA */}
       <section className="py-16 bg-neutral-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
             {isFr ? 'Vous hésitez encore ?' : 'Still undecided?'}
           </h2>
@@ -195,7 +198,7 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
               {isFr ? 'Voir toutes les formations' : 'View all training'} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-        </div>
+        </FadeInView>
       </section>
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />

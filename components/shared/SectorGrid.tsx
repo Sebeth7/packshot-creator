@@ -1,6 +1,7 @@
 import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
+import { StaggerContainer, StaggerItem } from '@/components/animations';
 import {
   Wine,
   Armchair,
@@ -41,8 +42,9 @@ export default function SectorGrid({
   };
 
   return (
-    <div className={cn(`grid ${gridCols[columns]} gap-6`, className)}>
+    <StaggerContainer stagger={0.06} className={cn(`grid ${gridCols[columns]} gap-6`, className)}>
       {sectors.map((sector) => (
+        <StaggerItem key={sector.slug}>
         <Link
           key={sector.slug}
           href={`/industrie/${sector.slug}`}
@@ -62,8 +64,9 @@ export default function SectorGrid({
             )}
           </div>
         </Link>
+        </StaggerItem>
       ))}
-    </div>
+    </StaggerContainer>
   );
 }
 

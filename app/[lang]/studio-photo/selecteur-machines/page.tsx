@@ -4,6 +4,7 @@ import { MachineSelector } from '@/components/machine-selector';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, ArrowRight, Phone, Mail } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -49,28 +50,32 @@ export default async function MachineSelectorPage({ params }: PageProps) {
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="max-w-3xl mx-auto text-center">
-            <Link
-              href="/studios-photo-automatises"
-              className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
-            >
-              <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-              {isFr ? 'Studios Photo' : 'Photo Studios'}
-            </Link>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-              {isFr ? 'Trouvez votre studio photo idéal' : 'Find your ideal photo studio'}
-            </h1>
-            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-              {isFr
-                ? 'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.'
-                : 'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.'}
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <FadeInView>
+              <Link
+                href="/studios-photo-automatises"
+                className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
+              >
+                <ChevronRight className="h-3.5 w-3.5 rotate-180" />
+                {isFr ? 'Studios Photo' : 'Photo Studios'}
+              </Link>
+              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
+                {isFr ? 'Trouvez votre studio photo idéal' : 'Find your ideal photo studio'}
+              </h1>
+              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
+                {isFr
+                  ? 'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.'
+                  : 'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.'}
+              </p>
+            </FadeInView>
+            <StaggerContainer className="flex flex-wrap justify-center gap-3" delay={0.3}>
               {categories.map((cat) => (
-                <span key={cat.label} className={`inline-flex items-center gap-2 ${cat.color} text-sm font-medium px-4 py-2 rounded-full`}>
-                  {cat.label}
-                </span>
+                <StaggerItem key={cat.label}>
+                  <span className={`inline-flex items-center gap-2 ${cat.color} text-sm font-medium px-4 py-2 rounded-full`}>
+                    {cat.label}
+                  </span>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
       </section>
@@ -78,12 +83,14 @@ export default async function MachineSelectorPage({ params }: PageProps) {
       {/* Machine Selector */}
       <section className="py-16 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
           <MachineSelector
             mode="display"
             showFilters={true}
             showPrices={false}
             locale={isFr ? 'fr' : 'en'}
           />
+          </FadeInView>
         </div>
       </section>
 
@@ -91,7 +98,7 @@ export default async function MachineSelectorPage({ params }: PageProps) {
       <section className="py-20 bg-white border-t border-neutral-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+            <FadeInView direction="left">
               <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-4">
                 {isFr ? 'Besoin d\'aide pour choisir ?' : 'Need help choosing?'}
               </h2>
@@ -100,7 +107,8 @@ export default async function MachineSelectorPage({ params }: PageProps) {
                   ? 'Nos experts sont là pour vous conseiller et vous aider à trouver la solution adaptée à vos besoins.'
                   : 'Our experts are here to advise you and help you find the solution suited to your needs.'}
               </p>
-            </div>
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2}>
             <div className="space-y-4">
               <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
                 <Link href="/contact">
@@ -118,6 +126,7 @@ export default async function MachineSelectorPage({ params }: PageProps) {
                 </Link>
               </Button>
             </div>
+            </FadeInView>
           </div>
         </div>
       </section>

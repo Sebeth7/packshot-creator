@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface BlogPost {
   titleKey: string;
@@ -33,7 +34,7 @@ export default function BlogGrid({
     <section className="bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <FadeInView className="text-center mb-12">
           <h2 className="font-heading text-4xl lg:text-5xl text-neutral-dark mb-4">
             {t(headingKey)}
           </h2>
@@ -41,12 +42,13 @@ export default function BlogGrid({
           <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
             {t(descriptionKey)}
           </p>
-        </div>
+        </FadeInView>
 
         {/* Grille d'articles */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {posts.map((post, idx) => (
-            <Card key={idx} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <StaggerItem key={idx}>
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <a href={post.slug} className="block">
                 {/* Image */}
                 <div className="relative h-48 w-full">
@@ -75,8 +77,9 @@ export default function BlogGrid({
                 </div>
               </a>
             </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* CTA */}
         <div className="text-center">

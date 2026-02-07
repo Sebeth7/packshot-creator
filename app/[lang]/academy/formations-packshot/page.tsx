@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { Camera, Zap, Target, TrendingUp, Award, Clock, GraduationCap, ArrowRight, Check, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const PACKSHOT_COURSES = [
   {
@@ -85,7 +86,7 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <Link href="/academy" className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors">
                 <ChevronRight className="h-3.5 w-3.5 rotate-180" />
                 Academy
@@ -114,8 +115,8 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
                   <Link href="/academy/calendrier">{isFr ? 'Calendrier' : 'Calendar'}</Link>
                 </Button>
               </div>
-            </div>
-            <div className="relative">
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2}>
               <Image
                 src="/images/illustrations/pillar-hardware.avif"
                 alt={isFr ? 'Formation studio photo Orbitvu' : 'Orbitvu photo studio training'}
@@ -124,7 +125,7 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
                 className="rounded-2xl shadow-2xl"
                 priority
               />
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -132,37 +133,42 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
       {/* Benefits */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+              {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {benefits.map((b) => (
-              <div key={b.title} className="text-center">
-                <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${b.color} mx-auto mb-4`}>
-                  {b.icon}
-                </span>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
-                <p className="text-sm text-future-dusk-500">{b.desc}</p>
-              </div>
+              <StaggerItem key={b.title}>
+                <div className="text-center">
+                  <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${b.color} mx-auto mb-4`}>
+                    {b.icon}
+                  </span>
+                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
+                  <p className="text-sm text-future-dusk-500">{b.desc}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Formations Catalogue */}
       <section id="formations" className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('catalogue.packshot_heading')}
             </h2>
             <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
               {t('catalogue.packshot_subtitle')}
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {PACKSHOT_COURSES.map((course) => (
-              <div key={course.key} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+              <StaggerItem key={course.key}>
+              <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
                 <div className={`h-2 ${course.color}`} />
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4">
@@ -194,50 +200,55 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
                   </Button>
                 </div>
               </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Qualiopi & OPCO */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-emerald-50 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <Award className="h-8 w-8 text-emerald-600" />
-                <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('qualiopi.heading')}</h3>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerItem>
+              <div className="bg-emerald-50 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <Award className="h-8 w-8 text-emerald-600" />
+                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('qualiopi.heading')}</h3>
+                </div>
+                <p className="text-future-dusk-600 mb-6">{t('qualiopi.description')}</p>
+                <ul className="space-y-3">
+                  {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
+                    <li key={key} className="flex items-center gap-3">
+                      <Check className="h-5 w-5 text-emerald-600 shrink-0" />
+                      <span className="text-sm text-future-dusk-600">{t(`qualiopi.${key}`)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="text-future-dusk-600 mb-6">{t('qualiopi.description')}</p>
-              <ul className="space-y-3">
-                {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
-                  <li key={key} className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-emerald-600 shrink-0" />
-                    <span className="text-sm text-future-dusk-600">{t(`qualiopi.${key}`)}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-very-peri-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
-              <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
-              <div className="space-y-4 text-sm text-future-dusk-600 mb-6">
-                <p><strong>{isFr ? 'Salariés :' : 'Employees:'}</strong> {t('opco.salaries')}</p>
-                <p><strong>{isFr ? 'Indépendants :' : 'Self-employed:'}</strong> {t('opco.independants')}</p>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="bg-very-peri-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
+                <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
+                <div className="space-y-4 text-sm text-future-dusk-600 mb-6">
+                  <p><strong>{isFr ? 'Salariés :' : 'Employees:'}</strong> {t('opco.salaries')}</p>
+                  <p><strong>{isFr ? 'Indépendants :' : 'Self-employed:'}</strong> {t('opco.independants')}</p>
+                </div>
+                <Button asChild variant="outline" className="rounded-xl">
+                  <Link href="/academy/simulateur-opco">
+                    {isFr ? 'Simuler mon financement' : 'Simulate my funding'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
-              <Button asChild variant="outline" className="rounded-xl">
-                <Link href="/academy/simulateur-opco">
-                  {isFr ? 'Simuler mon financement' : 'Simulate my funding'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
             {isFr ? 'Prêt à vous former ?' : 'Ready to train?'}
           </h2>
@@ -254,7 +265,7 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
               <Link href="/contact">{isFr ? 'Nous contacter' : 'Contact us'}</Link>
             </Button>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       <SchemaOrg schema={[

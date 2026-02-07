@@ -17,6 +17,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -127,7 +128,7 @@ export default async function HomePage({
         <section className="relative overflow-hidden bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="order-2 lg:order-1">
+              <FadeInView direction="left" className="order-2 lg:order-1">
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-accent-gold bg-accent-gold/10 px-4 py-2 rounded-full">
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -161,9 +162,9 @@ export default async function HomePage({
                     </Link>
                   </Button>
                 </div>
-              </div>
+              </FadeInView>
 
-              <div className="order-1 lg:order-2 relative">
+              <FadeInView direction="right" delay={0.2} className="order-1 lg:order-2 relative">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
                   <Image
                     src="/images/hero/hero-range-2025.avif"
@@ -179,7 +180,7 @@ export default async function HomePage({
                   className="absolute -inset-6 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
                   aria-hidden="true"
                 />
-              </div>
+              </FadeInView>
             </div>
           </div>
         </section>
@@ -213,17 +214,18 @@ export default async function HomePage({
         {/* ━━━ THREE PILLARS ━━━ */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
                 {t('threePillars.heading')}
               </h2>
               <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
                 {t('threePillars.subtitle')}
               </p>
-            </div>
+            </FadeInView>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <StaggerContainer className="grid md:grid-cols-3 gap-8">
               {PILLARS.map((pillar) => (
+                <StaggerItem key={pillar.key}>
                 <Link
                   key={pillar.key}
                   href={pillar.href}
@@ -256,45 +258,46 @@ export default async function HomePage({
                     </span>
                   </div>
                 </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* ━━━ KEY STATS ━━━ */}
         <section className="py-16 bg-gradient-to-r from-future-dusk-800 to-very-peri-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
+            <StaggerContainer stagger={0.15} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
               {STATS.map((stat) => (
-                <div key={stat}>
+                <StaggerItem key={stat}>
                   <p className="text-4xl lg:text-5xl font-heading font-bold text-white">
                     {t(`stats.${stat}`)}
                   </p>
                   <p className="mt-2 text-sm text-future-dusk-200 font-medium">
                     {t(`stats.${stat}Label`)}
                   </p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* ━━━ HYBRID APPROACH ━━━ */}
         <section className="py-20 bg-bg-light-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
                 {t('hybrid.heading')}
               </h2>
               <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
                 {t('hybrid.subtitle')}
               </p>
-            </div>
+            </FadeInView>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <StaggerContainer className="grid md:grid-cols-3 gap-8">
               {HYBRID_STEPS.map((step, idx) => (
+                <StaggerItem key={step.key}>
                 <div
-                  key={step.key}
                   className="relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="flex items-center gap-4 mb-6">
@@ -314,8 +317,9 @@ export default async function HomePage({
                     {t(`hybrid.${step.key}.description`)}
                   </p>
                 </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
@@ -323,7 +327,7 @@ export default async function HomePage({
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="relative rounded-2xl overflow-hidden bg-bg-off-white p-6 lg:p-10">
+              <FadeInView direction="left" className="relative rounded-2xl overflow-hidden bg-bg-off-white p-6 lg:p-10">
                 <Image
                   src="/images/machines/alphashot-pro-g2.avif"
                   alt="Alphashot Pro G2 — studio photo automatisé"
@@ -332,9 +336,9 @@ export default async function HomePage({
                   className="w-full h-auto object-contain"
                   loading="lazy"
                 />
-              </div>
+              </FadeInView>
 
-              <div>
+              <FadeInView direction="right" delay={0.15}>
                 <span className="inline-block text-xs font-bold uppercase tracking-wider text-accent-gold bg-accent-gold/10 px-3 py-1.5 rounded-full">
                   {t('spotlight.badge')}
                 </span>
@@ -367,7 +371,7 @@ export default async function HomePage({
                     <Link href="/contact">{t('spotlight.cta')}</Link>
                   </Button>
                 </div>
-              </div>
+              </FadeInView>
             </div>
           </div>
         </section>
@@ -375,17 +379,18 @@ export default async function HomePage({
         {/* ━━━ INDUSTRIES ━━━ */}
         <section className="py-20 bg-bg-light-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
                 {t('industries.heading')}
               </h2>
               <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
                 {t('industries.subtitle')}
               </p>
-            </div>
+            </FadeInView>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+            <StaggerContainer stagger={0.06} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {INDUSTRIES.map((industry) => (
+                <StaggerItem key={industry.key}>
                 <Link
                   key={industry.key}
                   href={industry.href}
@@ -403,10 +408,11 @@ export default async function HomePage({
                     {t(`industries.${industry.key}`)}
                   </span>
                 </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
 
-            <div className="text-center mt-12">
+            <FadeInView className="text-center mt-12">
               <Link
                 href="/industrie"
                 className="inline-flex items-center gap-2 text-primary-orbitvu font-semibold hover:text-very-peri-600 transition-colors"
@@ -414,25 +420,26 @@ export default async function HomePage({
                 {t('industries.cta')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
-            </div>
+            </FadeInView>
           </div>
         </section>
 
         {/* ━━━ BLOG ━━━ */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
                 {t('blog.heading')}
               </h2>
               <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
                 {t('blog.description')}
               </p>
-            </div>
+            </FadeInView>
 
             {articles.length > 0 ? (
-              <div className="grid md:grid-cols-3 gap-8">
+              <StaggerContainer className="grid md:grid-cols-3 gap-8">
                 {articles.map((article) => (
+                  <StaggerItem key={article.slug}>
                   <Link
                     key={article.slug}
                     href={`/blog/${article.slug}`}
@@ -476,8 +483,9 @@ export default async function HomePage({
                       </span>
                     </div>
                   </Link>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             ) : (
               <p className="text-center text-neutral-medium">
                 {t('blog.cta')}
@@ -499,14 +507,15 @@ export default async function HomePage({
         {/* ━━━ FAQ (AEO) ━━━ */}
         <section className="py-20 bg-bg-light-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
                 {t('faq.heading')}
               </h2>
-            </div>
+            </FadeInView>
 
-            <div className="max-w-3xl mx-auto space-y-3">
+            <StaggerContainer stagger={0.08} className="max-w-3xl mx-auto space-y-3">
               {faqItems.map((faq, i) => (
+                <StaggerItem key={i}>
                 <details
                   key={i}
                   className="group bg-white rounded-xl border border-future-dusk-0 overflow-hidden [&[open]]:shadow-sm"
@@ -521,8 +530,9 @@ export default async function HomePage({
                     {faq.answer}
                   </div>
                 </details>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
@@ -537,7 +547,7 @@ export default async function HomePage({
             }}
             aria-hidden="true"
           />
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white">
               {t('finalCta.heading')}
             </h2>
@@ -562,7 +572,7 @@ export default async function HomePage({
                 </Link>
               </Button>
             </div>
-          </div>
+          </FadeInView>
         </section>
       {/* Schema.org JSON-LD (AEO) */}
       <SchemaOrg

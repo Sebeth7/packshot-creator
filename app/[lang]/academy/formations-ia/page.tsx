@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { Brain, Sparkles, Rocket, Gem, BarChart3, Award, Clock, GraduationCap, ArrowRight, Check, ChevronRight, ImageIcon, Wand2, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const IA_COURSES = [
   {
@@ -92,7 +93,7 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-amber-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <Link href="/academy" className="inline-flex items-center gap-1.5 text-amber-300 text-sm font-medium mb-6 hover:text-white transition-colors">
                 <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
               </Link>
@@ -120,10 +121,10 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                   <Link href="/academy/calendrier">{isFr ? 'Calendrier' : 'Calendar'}</Link>
                 </Button>
               </div>
-            </div>
-            <div className="relative">
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2}>
               <Image src="/images/illustrations/pillar-ia.avif" alt="Formation IA BlendAI" width={640} height={480} className="rounded-2xl shadow-2xl" priority />
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -131,31 +132,36 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
       {/* Benefits */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Pourquoi se former à l\'IA générative ?' : 'Why train on generative AI?'}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+              {isFr ? 'Pourquoi se former à l\'IA générative ?' : 'Why train on generative AI?'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {benefits.map((b) => (
-              <div key={b.title} className="text-center">
-                <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${b.color} mx-auto mb-4`}>{b.icon}</span>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
-                <p className="text-sm text-future-dusk-500">{b.desc}</p>
-              </div>
+              <StaggerItem key={b.title}>
+                <div className="text-center">
+                  <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${b.color} mx-auto mb-4`}>{b.icon}</span>
+                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
+                  <p className="text-sm text-future-dusk-500">{b.desc}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Courses Catalogue */}
       <section id="formations" className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">{t('catalogue.ia_heading')}</h2>
             <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">{t('catalogue.ia_subtitle')}</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {IA_COURSES.map((course) => (
-              <div key={course.key} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+              <StaggerItem key={course.key}>
+              <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
                 <div className={`h-2 ${course.color}`} />
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4">
@@ -173,33 +179,39 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                   </Button>
                 </div>
               </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* What you'll learn */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Ce que vous apprendrez avec BlendAI' : 'What you\'ll learn with BlendAI'}
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+              {isFr ? 'Ce que vous apprendrez avec BlendAI' : 'What you\'ll learn with BlendAI'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid sm:grid-cols-2 gap-6">
             {LEARN_FEATURES.map((feat) => (
-              <div key={feat.titleFr} className="bg-amber-50 rounded-2xl p-6">
-                <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-100 text-amber-700 mb-3">{feat.icon}</span>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{isFr ? feat.titleFr : feat.titleEn}</h3>
-                <p className="text-sm text-future-dusk-500">{isFr ? feat.descFr : feat.descEn}</p>
-              </div>
+              <StaggerItem key={feat.titleFr}>
+                <div className="bg-amber-50 rounded-2xl p-6">
+                  <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-100 text-amber-700 mb-3">{feat.icon}</span>
+                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{isFr ? feat.titleFr : feat.titleEn}</h3>
+                  <p className="text-sm text-future-dusk-500">{isFr ? feat.descFr : feat.descEn}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Qualiopi & OPCO */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-8">
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerItem>
             <div className="bg-emerald-50 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Award className="h-8 w-8 text-emerald-600" />
@@ -212,6 +224,8 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                 ))}
               </ul>
             </div>
+            </StaggerItem>
+            <StaggerItem>
             <div className="bg-very-peri-50 rounded-2xl p-8">
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
               <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
@@ -223,13 +237,14 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                 <Link href="/academy/simulateur-opco">{isFr ? 'Simuler mon financement' : 'Simulate my funding'} <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-amber-500 to-amber-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
             {isFr ? 'Prêt à révolutionner votre création visuelle ?' : 'Ready to revolutionize your visual creation?'}
           </h2>
@@ -242,7 +257,7 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
               <Link href="/contact">{isFr ? 'Nous contacter' : 'Contact us'}</Link>
             </Button>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       <SchemaOrg schema={[

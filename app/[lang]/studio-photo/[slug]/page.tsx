@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, TrendingUp } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -98,6 +99,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeInView direction="left">
             <div>
               <Link
                 href="/studios-photo-automatises"
@@ -167,7 +169,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 </Button>
               </div>
             </div>
+            </FadeInView>
 
+            <FadeInView direction="right" delay={0.2}>
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-8">
                 <Image
@@ -180,6 +184,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 />
               </div>
             </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -187,6 +192,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       {/* IA Ready Banner */}
       {iaReady && (
         <section className="py-12 bg-gradient-to-r from-amber-50 to-very-peri-50">
+          <FadeInView>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="flex-shrink-0">
@@ -217,18 +223,22 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </Button>
             </div>
           </div>
+          </FadeInView>
         </section>
       )}
 
       {/* Key Advantages */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
             {isFr ? 'Avantages clés' : 'Key advantages'}
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {machine.keyAdvantages.map((advantage, index) => (
-              <div key={index} className="bg-neutral-50 rounded-2xl p-8 border border-neutral-100">
+              <StaggerItem key={index}>
+              <div className="bg-neutral-50 rounded-2xl p-8 border border-neutral-100">
                 <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-4">
                   <CheckCircle className="h-5 w-5" />
                 </span>
@@ -236,17 +246,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   {isFr ? advantage.fr : advantage.en}
                 </p>
               </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Technical Specifications */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <FadeInView>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
             {isFr ? 'Caractéristiques techniques' : 'Technical specifications'}
           </h2>
+          </FadeInView>
+          <FadeInView>
           <div className="bg-white rounded-2xl shadow-sm border border-neutral-100 p-8 md:p-10">
             <div className="grid md:grid-cols-2 gap-10">
               <div>
@@ -307,6 +321,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+          </FadeInView>
         </div>
       </section>
 
@@ -314,6 +329,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8">
+            <FadeInView direction="left">
             <div className="bg-emerald-50 rounded-2xl p-8">
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
                 {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
@@ -327,7 +343,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 ))}
               </ul>
             </div>
+            </FadeInView>
 
+            <FadeInView direction="right" delay={0.15}>
             <div className="bg-amber-50 rounded-2xl p-8">
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
                 {isFr ? 'Points d\'attention' : 'Points to consider'}
@@ -341,12 +359,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 ))}
               </ul>
             </div>
+            </FadeInView>
           </div>
         </div>
       </section>
 
       {/* ROI CTA */}
       <section className="py-20 bg-neutral-50">
+        <FadeInView>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-700 mx-auto mb-6">
             <TrendingUp className="h-7 w-7" />
@@ -365,22 +385,28 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </Link>
           </Button>
         </div>
+        </FadeInView>
       </section>
 
       {/* Training Recommendation */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <FadeInView>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
             {isFr ? 'Formation recommandée' : 'Recommended training'}
           </h2>
+          </FadeInView>
           <div className="grid md:grid-cols-2 gap-8 items-center bg-gradient-to-r from-very-peri-50 to-very-peri-100/50 rounded-2xl p-8 md:p-10">
+            <FadeInView direction="left">
             <div className="relative h-64 bg-gradient-to-br from-very-peri-500 to-very-peri-700 rounded-2xl flex items-center justify-center">
               <div className="text-center text-white">
                 <GraduationCap className="h-16 w-16 mx-auto mb-4 opacity-80" />
                 <p className="text-lg font-heading font-bold">PackshotCreator Academy</p>
               </div>
             </div>
+            </FadeInView>
 
+            <FadeInView direction="right" delay={0.15}>
             <div>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-700 text-sm font-medium px-3 py-1.5 rounded-full">
@@ -427,12 +453,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 </Button>
               </div>
             </div>
+            </FadeInView>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
+        <FadeInView>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
             {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
@@ -455,6 +483,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </Button>
           </div>
         </div>
+        </FadeInView>
       </section>
 
       <SchemaOrg schema={[

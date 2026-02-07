@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing';
 import { ArrowRight, Lightbulb, Zap, Award, Camera, Sparkles, Users, Factory, CalendarDays } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -65,7 +66,7 @@ export default async function AProposPage({ params }: PageProps) {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="max-w-4xl mx-auto text-center">
+          <FadeInView className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
               PackshotCreator
             </h1>
@@ -91,13 +92,13 @@ export default async function AProposPage({ params }: PageProps) {
                 </Link>
               </Button>
             </div>
-          </div>
+          </FadeInView>
         </div>
       </section>
 
       {/* Mission */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8 text-center">
             {isFr ? 'Notre Histoire' : 'Our Story'}
           </h2>
@@ -113,42 +114,48 @@ export default async function AProposPage({ params }: PageProps) {
                 : 'Teams and technologies, enriched by artificial intelligence, continuously evolve to offer solutions adapted to professionals and businesses.'}
             </p>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       {/* Values */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Nos Valeurs' : 'Our Values'}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
+              {isFr ? 'Nos Valeurs' : 'Our Values'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {values.map((v) => (
-              <div key={v.titleFr} className="bg-white rounded-2xl p-8 text-center shadow-sm border border-neutral-100">
-                <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${v.color} mx-auto mb-4`}>
-                  {v.icon}
-                </span>
-                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                  {isFr ? v.titleFr : v.titleEn}
-                </h3>
-                <p className="text-sm text-future-dusk-500">{isFr ? v.descFr : v.descEn}</p>
-              </div>
+              <StaggerItem key={v.titleFr}>
+                <div className="bg-white rounded-2xl p-8 text-center shadow-sm border border-neutral-100">
+                  <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${v.color} mx-auto mb-4`}>
+                    {v.icon}
+                  </span>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {isFr ? v.titleFr : v.titleEn}
+                  </h3>
+                  <p className="text-sm text-future-dusk-500">{isFr ? v.descFr : v.descEn}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Timeline */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4 text-center">
-            {isFr ? '20 Ans d\'Innovation (2004-2024)' : '20 Years of Innovation (2004-2024)'}
-          </h2>
-          <p className="text-lg text-future-dusk-500 text-center mb-16 max-w-2xl mx-auto">
-            {isFr
-              ? 'Une chronologie des innovations qui ont révolutionné la photo produit'
-              : 'A timeline of innovations that revolutionized product photography'}
-          </p>
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4 text-center">
+              {isFr ? '20 Ans d\'Innovation (2004-2024)' : '20 Years of Innovation (2004-2024)'}
+            </h2>
+            <p className="text-lg text-future-dusk-500 text-center mb-16 max-w-2xl mx-auto">
+              {isFr
+                ? 'Une chronologie des innovations qui ont révolutionné la photo produit'
+                : 'A timeline of innovations that revolutionized product photography'}
+            </p>
+          </FadeInView>
 
           <div className="relative">
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-very-peri-500 to-very-peri-300 md:left-1/2 md:-translate-x-px" />
@@ -184,23 +191,27 @@ export default async function AProposPage({ params }: PageProps) {
       {/* Stats */}
       <section className="py-20 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-12 text-center">
-            {isFr ? 'PackshotCreator en Chiffres' : 'PackshotCreator in Numbers'}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <FadeInView>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-12 text-center">
+              {isFr ? 'PackshotCreator en Chiffres' : 'PackshotCreator in Numbers'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
-              <div key={stat.value} className="text-center">
-                <div className="text-4xl sm:text-5xl font-heading font-bold text-very-peri-400 mb-2">{stat.value}</div>
-                <p className="text-future-dusk-200">{isFr ? stat.labelFr : stat.labelEn}</p>
-              </div>
+              <StaggerItem key={stat.value}>
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl font-heading font-bold text-very-peri-400 mb-2">{stat.value}</div>
+                  <p className="text-future-dusk-200">{isFr ? stat.labelFr : stat.labelEn}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
             {isFr ? 'Travaillons Ensemble' : 'Let\'s Work Together'}
           </h2>
@@ -221,7 +232,7 @@ export default async function AProposPage({ params }: PageProps) {
               </Link>
             </Button>
           </div>
-        </div>
+        </FadeInView>
       </section>
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { PipedriveContactForm } from '@/components/forms';
 import { Phone, Clock, MapPin, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView } from '@/components/animations';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -34,14 +35,14 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
-          <div className="max-w-3xl mx-auto text-center">
+          <FadeInView className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-4">
               {t('heading')}
             </h1>
             <p className="text-lg text-future-dusk-200 leading-relaxed">
               {t('subtitle')}
             </p>
-          </div>
+          </FadeInView>
         </div>
       </section>
 
@@ -50,15 +51,15 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Form Column (3/5) */}
-            <div className="lg:col-span-3">
+            <FadeInView direction="left" className="lg:col-span-3">
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mb-6">
                 {t('formTitle')}
               </h2>
               <PipedriveContactForm locale={lang as 'fr' | 'en'} />
-            </div>
+            </FadeInView>
 
             {/* Info Column (2/5) */}
-            <div className="lg:col-span-2 space-y-8">
+            <FadeInView direction="right" delay={0.2} className="lg:col-span-2 space-y-8">
               {/* Contact Info */}
               <div className="bg-gradient-to-br from-very-peri-50 to-very-peri-100/50 p-6 rounded-2xl">
                 <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-4">
@@ -122,7 +123,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                   ))}
                 </div>
               </div>
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>

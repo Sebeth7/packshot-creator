@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { Sparkles, Wand2, ImageIcon, Paintbrush, Layers, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const FEATURES = [
   { key: 'lifestyle', icon: <ImageIcon className="h-6 w-6" />, color: 'bg-pink-100 text-pink-700' },
@@ -47,7 +48,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <div className="inline-flex items-center gap-2 bg-very-peri-500/20 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
                 <Sparkles className="h-4 w-4" />
                 BlendAI Technology
@@ -66,8 +67,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   <Link href="/blog">{t('hero.ctaSecondary')}</Link>
                 </Button>
               </div>
-            </div>
-            <div className="relative">
+            </FadeInView>
+            <FadeInView direction="right" delay={0.2}>
               <Image
                 src="/images/illustrations/pillar-ia.avif"
                 alt="IA Photo Produit BlendAI"
@@ -76,7 +77,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 className="rounded-2xl shadow-2xl"
                 priority
               />
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -84,86 +85,94 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* Manifeste */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('manifeste.heading')}
             </h2>
             <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
               {t('manifeste.subtitle')}
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {(['principle1', 'principle2', 'principle3'] as const).map((key, i) => (
-              <div key={key} className="relative bg-neutral-50 rounded-2xl p-8 text-center">
-                <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-very-peri-100 text-very-peri-700 text-xl font-bold mb-4">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                  {t(`manifeste.${key}.title`)}
-                </h3>
-                <p className="text-sm text-future-dusk-500 leading-relaxed">
-                  {t(`manifeste.${key}.description`)}
-                </p>
-              </div>
+              <StaggerItem key={key}>
+                <div className="relative bg-neutral-50 rounded-2xl p-8 text-center">
+                  <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-very-peri-100 text-very-peri-700 text-xl font-bold mb-4">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {t(`manifeste.${key}.title`)}
+                  </h3>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                    {t(`manifeste.${key}.description`)}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Features */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('features.heading')}
             </h2>
             <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
               {t('features.subtitle')}
             </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-8">
+          </FadeInView>
+          <StaggerContainer className="grid sm:grid-cols-2 gap-8">
             {FEATURES.map((feat) => (
-              <div key={feat.key} className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} mb-4`}>
-                  {feat.icon}
-                </span>
-                <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                  {t(`features.${feat.key}.name`)}
-                </h3>
-                <p className="text-future-dusk-500 leading-relaxed">
-                  {t(`features.${feat.key}.description`)}
-                </p>
-              </div>
+              <StaggerItem key={feat.key}>
+                <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} mb-4`}>
+                    {feat.icon}
+                  </span>
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {t(`features.${feat.key}.name`)}
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed">
+                    {t(`features.${feat.key}.description`)}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Before/After Showcase */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <FadeInView className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('casUsage.heading')}
             </h2>
             <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
               {t('casUsage.subtitle')}
             </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-neutral-50 rounded-2xl overflow-hidden">
-              <div className="aspect-[4/3] relative">
-                <Image src="/images/demo/bouteille-vin.avif" alt="Packshot avant IA" fill className="object-contain p-6" />
+          </FadeInView>
+          <StaggerContainer stagger={0.2} className="grid md:grid-cols-2 gap-8">
+            <StaggerItem>
+              <div className="bg-neutral-50 rounded-2xl overflow-hidden">
+                <div className="aspect-[4/3] relative">
+                  <Image src="/images/demo/bouteille-vin.avif" alt="Packshot avant IA" fill className="object-contain p-6" />
+                </div>
+                <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Packshot Original</div>
               </div>
-              <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Packshot Original</div>
-            </div>
-            <div className="bg-neutral-50 rounded-2xl overflow-hidden">
-              <div className="aspect-[4/3] relative">
-                <Image src="/images/illustrations/ia-feature-background-generator.avif" alt="Résultat après IA" fill className="object-cover" />
+            </StaggerItem>
+            <StaggerItem>
+              <div className="bg-neutral-50 rounded-2xl overflow-hidden">
+                <div className="aspect-[4/3] relative">
+                  <Image src="/images/illustrations/ia-feature-background-generator.avif" alt="Résultat après IA" fill className="object-cover" />
+                </div>
+                <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Lifestyle IA</div>
               </div>
-              <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Lifestyle IA</div>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -171,7 +180,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       <section className="py-20 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <FadeInView direction="left">
               <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
                 {t('compatible.heading')}
               </h2>
@@ -191,8 +200,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   {lang === 'fr' ? 'Découvrir nos studios' : 'Discover our studios'} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
-            <div className="relative">
+            </FadeInView>
+            <FadeInView direction="right" delay={0.15}>
               <Image
                 src="/images/illustrations/ia-feature-integration.avif"
                 alt="Intégration studio IA"
@@ -200,7 +209,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 height={400}
                 className="rounded-2xl shadow-2xl"
               />
-            </div>
+            </FadeInView>
           </div>
         </div>
       </section>
@@ -208,24 +217,28 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* Final CTA */}
       <section className="py-20 bg-future-dusk-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-very-peri-700 to-very-peri-800 rounded-2xl p-8">
-              <Sparkles className="h-8 w-8 text-very-peri-300 mb-4" />
-              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.test.heading')}</h3>
-              <p className="text-very-peri-200 mb-6">{t('finalCta.test.description')}</p>
-              <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
-                <Link href="/contact">{t('finalCta.test.cta')}</Link>
-              </Button>
-            </div>
-            <div className="bg-future-dusk-800 rounded-2xl p-8">
-              <Wand2 className="h-8 w-8 text-amber-400 mb-4" />
-              <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
-              <p className="text-future-dusk-300 mb-6">{t('finalCta.demo.description')}</p>
-              <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                <Link href="/contact">{t('finalCta.demo.cta')}</Link>
-              </Button>
-            </div>
-          </div>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerItem>
+              <div className="bg-gradient-to-br from-very-peri-700 to-very-peri-800 rounded-2xl p-8">
+                <Sparkles className="h-8 w-8 text-very-peri-300 mb-4" />
+                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.test.heading')}</h3>
+                <p className="text-very-peri-200 mb-6">{t('finalCta.test.description')}</p>
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
+                  <Link href="/contact">{t('finalCta.test.cta')}</Link>
+                </Button>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="bg-future-dusk-800 rounded-2xl p-8">
+                <Wand2 className="h-8 w-8 text-amber-400 mb-4" />
+                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
+                <p className="text-future-dusk-300 mb-6">{t('finalCta.demo.description')}</p>
+                <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                  <Link href="/contact">{t('finalCta.demo.cta')}</Link>
+                </Button>
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 

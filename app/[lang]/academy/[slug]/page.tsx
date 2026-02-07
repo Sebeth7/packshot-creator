@@ -2,8 +2,11 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
 import { Badge, BadgeQualiopi } from '@/components/shared/Badge';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
+import { CheckCircle, Package, Euro, ChevronRight } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface Formation {
   titre: string;
@@ -54,171 +57,213 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   if (!formation) return { title: 'Formation introuvable' };
 
-  const t = await getTranslations({ locale: lang, namespace: 'formation' });
+  const isFr = lang === 'fr';
 
   return {
-    title: `${formation.titre} | ${t('meta.suffix')}`,
+    title: `${formation.titre} | PackshotCreator Academy`,
     description: formation.description_courte,
+    alternates: {
+      canonical: `https://packshot-creator.com/${lang}/academy/${slug}`,
+      languages: { fr: `/fr/academy/${slug}`, en: `/en/academy/${slug}` },
+    },
   };
 }
 
 export default async function FormationPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params;
   const formation = await getFormation(slug);
+  const isFr = lang === 'fr';
 
   if (!formation) notFound();
 
-  const t = await getTranslations({ locale: lang, namespace: 'formation' });
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
+    { name: formation.titre, url: `https://packshot-creator.com/${lang}/academy/${slug}` },
+  ];
 
   return (
-    <div className="min-h-screen bg-neutral-lighter">
+    <>
       {/* Hero Formation */}
-      <section className="bg-white border-b border-neutral-light">
-        <div className="max-w-5xl mx-auto px-4 py-12">
+      <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-neutral-medium mb-6">
-            <Link href={`/${lang}`} className="hover:text-secondary-orbitvu transition-colors">
-              Accueil
-            </Link>
-            <span>/</span>
-            <Link href={`/${lang}/academy`} className="hover:text-secondary-orbitvu transition-colors">
-              Formation
-            </Link>
-            <span>/</span>
-            <span className="text-neutral-dark">{formation.titre}</span>
-          </div>
+          <FadeInView>
+            <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
+              <Link href="/" className="hover:text-white transition-colors">
+                {isFr ? 'Accueil' : 'Home'}
+              </Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <Link href="/academy" className="hover:text-white transition-colors">
+                {isFr ? 'Formation' : 'Training'}
+              </Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <span className="text-white">{formation.titre}</span>
+            </div>
+          </FadeInView>
 
-          {/* Badges */}
-          <div className="flex flex-wrap gap-3 mb-4">
-            {formation.eligible_opco && <BadgeQualiopi>Financement OPCO</BadgeQualiopi>}
-            <Badge variant="turquoise">Niveau {formation.niveau}</Badge>
-            <Badge variant={formation.categorie === 'ia' ? 'purple' : 'default'}>
-              {formation.categorie === 'ia' ? 'IA Photo Produit' : 'Packshot'}
-            </Badge>
-          </div>
+          <FadeInView delay={0.1}>
+            {/* Badges */}
+            <div className="flex flex-wrap gap-3 mb-4">
+              {formation.eligible_opco && <BadgeQualiopi>Financement OPCO</BadgeQualiopi>}
+              <Badge variant="turquoise">Niveau {formation.niveau}</Badge>
+              <Badge variant={formation.categorie === 'ia' ? 'purple' : 'default'}>
+                {formation.categorie === 'ia' ? 'IA Photo Produit' : 'Packshot'}
+              </Badge>
+            </div>
 
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-neutral-dark mb-4">{formation.titre}</h1>
-
-          <p className="text-lg text-neutral-medium mb-6">{formation.description_courte}</p>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight mb-4">{formation.titre}</h1>
+            <p className="text-lg text-future-dusk-200 mb-8 max-w-3xl">{formation.description_courte}</p>
+          </FadeInView>
 
           {/* Infos clés */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div>
-              <div className="text-sm text-neutral-medium">Durée</div>
-              <div className="text-xl font-bold text-neutral-dark">{formation.duree_heures}h</div>
-            </div>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6" delay={0.2}>
+            <StaggerItem>
+              <div className="text-sm text-future-dusk-300">{isFr ? 'Durée' : 'Duration'}</div>
+              <div className="text-2xl font-bold">{formation.duree_heures}h</div>
+            </StaggerItem>
             {formation.prix_blended && (
-              <div>
-                <div className="text-sm text-neutral-medium">Blended</div>
-                <div className="text-xl font-bold text-secondary-orbitvu">{formation.prix_blended}€ HT</div>
-              </div>
+              <StaggerItem>
+                <div className="text-sm text-future-dusk-300">Blended</div>
+                <div className="text-2xl font-bold text-very-peri-300">{formation.prix_blended}€ HT</div>
+              </StaggerItem>
             )}
-            <div>
-              <div className="text-sm text-neutral-medium">Présentiel</div>
-              <div className="text-xl font-bold text-neutral-dark">{formation.prix_presentiel}€ HT</div>
-            </div>
-            <div>
-              <div className="text-sm text-neutral-medium">Format</div>
-              <div className="text-base font-medium text-neutral-dark">
+            <StaggerItem>
+              <div className="text-sm text-future-dusk-300">{isFr ? 'Présentiel' : 'In-person'}</div>
+              <div className="text-2xl font-bold">{formation.prix_presentiel}€ HT</div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="text-sm text-future-dusk-300">Format</div>
+              <div className="text-base font-medium">
                 {formation.format === 'both'
-                  ? 'Blended ou Présentiel'
+                  ? (isFr ? 'Blended ou Présentiel' : 'Blended or In-person')
                   : formation.format === 'blended'
                     ? 'Blended Learning'
-                    : 'Présentiel'}
+                    : (isFr ? 'Présentiel' : 'In-person')}
               </div>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
 
           {/* CTA */}
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button
-              asChild
-              variant="section"
-              size="lg"
-            >
-              <Link href={`/${lang}/contact`}>
-                S'inscrire à cette formation
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-            >
-              <Link href={`/${lang}/academy`}>
-                ← Voir toutes les formations
-              </Link>
-            </Button>
-          </div>
+          <FadeInView delay={0.4}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+                <Link href="/contact">
+                  {isFr ? 'S\'inscrire à cette formation' : 'Register for this training'}
+                </Link>
+              </Button>
+              <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                <Link href="/academy">
+                  {isFr ? 'Voir toutes les formations' : 'View all trainings'}
+                </Link>
+              </Button>
+            </div>
+          </FadeInView>
         </div>
       </section>
 
       {/* Contenu Formation */}
-      <div className="max-w-5xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
-        {/* Colonne principale */}
-        <div className="md:col-span-2 space-y-8">
-          {/* Objectifs */}
-          <section className="bg-white rounded-lg p-8 shadow-sm">
-            <h2 className="font-heading text-2xl font-bold text-neutral-dark mb-4">Objectifs pédagogiques</h2>
-            <ul className="space-y-3">
-              {formation.objectifs.map((obj, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="text-secondary-orbitvu mt-1 text-xl">✓</span>
-                  <span className="text-neutral-dark">{obj}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8">
+          {/* Colonne principale */}
+          <div className="md:col-span-2 space-y-8">
+            {/* Objectifs */}
+            <FadeInView>
+              <div className="bg-white rounded-2xl p-8 border border-neutral-100">
+                <h2 className="font-heading text-2xl font-bold text-future-dusk-900 mb-6">
+                  {isFr ? 'Objectifs pédagogiques' : 'Learning objectives'}
+                </h2>
+                <ul className="space-y-3">
+                  {formation.objectifs.map((obj, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-very-peri-500 mt-0.5 shrink-0" />
+                      <span className="text-future-dusk-600">{obj}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeInView>
 
-          {/* Livrables */}
-          {formation.livrables && formation.livrables.length > 0 && (
-            <section className="bg-white rounded-lg p-8 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-neutral-dark mb-4">Livrables garantis</h2>
-              <ul className="space-y-3">
-                {formation.livrables.map((livrable, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-secondary-orbitvu text-xl">📦</span>
-                    <span className="text-neutral-dark">{livrable}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-        </div>
-
-        {/* Sidebar */}
-        <div className="space-y-6">
-          {/* Public cible */}
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <h3 className="font-bold text-neutral-dark mb-3">Public cible</h3>
-            <p className="text-sm text-neutral-medium">{formation.public_cible}</p>
+            {/* Livrables */}
+            {formation.livrables && formation.livrables.length > 0 && (
+              <FadeInView delay={0.1}>
+                <div className="bg-white rounded-2xl p-8 border border-neutral-100">
+                  <h2 className="font-heading text-2xl font-bold text-future-dusk-900 mb-6">
+                    {isFr ? 'Livrables garantis' : 'Guaranteed deliverables'}
+                  </h2>
+                  <ul className="space-y-3">
+                    {formation.livrables.map((livrable, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Package className="h-5 w-5 text-amber-500 mt-0.5 shrink-0" />
+                        <span className="text-future-dusk-600">{livrable}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeInView>
+            )}
           </div>
 
-          {/* Prérequis */}
-          {formation.prerequis && (
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h3 className="font-bold text-neutral-dark mb-3">Prérequis</h3>
-              <p className="text-sm text-neutral-medium">{formation.prerequis}</p>
-            </div>
-          )}
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Public cible */}
+            <FadeInView direction="right">
+              <div className="bg-white rounded-2xl p-6 border border-neutral-100">
+                <h3 className="font-bold text-future-dusk-900 mb-3">
+                  {isFr ? 'Public cible' : 'Target audience'}
+                </h3>
+                <p className="text-sm text-future-dusk-500">{formation.public_cible}</p>
+              </div>
+            </FadeInView>
 
-          {/* OPCO */}
-          {formation.eligible_opco && (
-            <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
-              <h3 className="font-bold text-green-800 mb-2">💶 Financement OPCO</h3>
-              <p className="text-sm text-green-700 mb-3">
-                Cette formation est éligible au financement OPCO (prise en charge 100% possible).
-              </p>
-              <Link
-                href={`/${lang}/academy#qualiopi`}
-                className="text-sm text-green-800 font-medium underline inline-block hover:no-underline"
-              >
-                En savoir plus →
-              </Link>
-            </div>
-          )}
+            {/* Prérequis */}
+            {formation.prerequis && (
+              <FadeInView direction="right" delay={0.1}>
+                <div className="bg-white rounded-2xl p-6 border border-neutral-100">
+                  <h3 className="font-bold text-future-dusk-900 mb-3">
+                    {isFr ? 'Prérequis' : 'Prerequisites'}
+                  </h3>
+                  <p className="text-sm text-future-dusk-500">{formation.prerequis}</p>
+                </div>
+              </FadeInView>
+            )}
+
+            {/* OPCO */}
+            {formation.eligible_opco && (
+              <FadeInView direction="right" delay={0.2}>
+                <div className="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Euro className="h-5 w-5 text-emerald-600" />
+                    <h3 className="font-bold text-emerald-800">Financement OPCO</h3>
+                  </div>
+                  <p className="text-sm text-emerald-700 mb-3">
+                    {isFr
+                      ? 'Cette formation est éligible au financement OPCO (prise en charge 100% possible).'
+                      : 'This training is eligible for OPCO funding (100% coverage possible).'}
+                  </p>
+                  <Link
+                    href="/academy#qualiopi"
+                    className="text-sm text-emerald-800 font-medium underline inline-block hover:no-underline"
+                  >
+                    {isFr ? 'En savoir plus' : 'Learn more'} →
+                  </Link>
+                </div>
+              </FadeInView>
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <SchemaOrg schema={[
+        organizationSchema(),
+        breadcrumbSchema(breadcrumbs),
+        courseSchema({
+          name: formation.titre,
+          description: formation.description_courte,
+          provider: 'PackshotCreator Academy',
+          url: `https://packshot-creator.com/${lang}/academy/${slug}`,
+        }),
+      ]} />
+    </>
   );
 }

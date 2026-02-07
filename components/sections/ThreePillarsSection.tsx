@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Badge from '@/components/shared/Badge';
 import { Camera, Sparkles, GraduationCap } from 'lucide-react';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export default function ThreePillarsSection({
   variant = 'studios'
@@ -39,18 +40,19 @@ export default function ThreePillarsSection({
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
-        <div className="text-center mb-12">
+        <FadeInView className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral-dark mb-4">
             {t('heading')}
           </h2>
           <p className="text-lg text-neutral-medium max-w-3xl mx-auto">
             {t('subtitle')}
           </p>
-        </div>
+        </FadeInView>
 
         {/* Three Pillars Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <StaggerContainer className="grid md:grid-cols-3 gap-8">
           {pillars.map((pillar) => (
+            <StaggerItem key={pillar.key}>
             <Link
               key={pillar.key}
               href={pillar.href}
@@ -96,8 +98,9 @@ export default function ThreePillarsSection({
                 </svg>
               </div>
             </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

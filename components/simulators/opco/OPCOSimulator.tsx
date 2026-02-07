@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import type {
   OPCOSimulatorProps,
   SimulateurState,
@@ -38,6 +39,8 @@ export function OPCOSimulator({
     coordonnees: {},
     resultat: null,
   });
+  const dir = useRef(1);
+  const shouldReduce = useReducedMotion();
 
   // Navigation entre les étapes
   const goToStep = useCallback((step: number) => {
@@ -45,6 +48,7 @@ export function OPCOSimulator({
   }, []);
 
   const nextStep = useCallback(() => {
+    dir.current = 1;
     if (state.step < TOTAL_STEPS) {
       // Si on passe à l'étape 4, calculer le résultat
       if (state.step === 3) {
@@ -65,6 +69,7 @@ export function OPCOSimulator({
   }, [state.step, state.profil, state.formation, goToStep, locale]);
 
   const prevStep = useCallback(() => {
+    dir.current = -1;
     if (state.step > 1) {
       goToStep(state.step - 1);
     }
@@ -129,40 +134,50 @@ export function OPCOSimulator({
 
       {/* Step content */}
       <div className="p-6 md:p-8">
-        {state.step === 1 && (
-          <Step1Profil
-            data={state.profil}
-            onChange={updateProfil}
-            locale={locale}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={state.step}
+            initial={shouldReduce ? { opacity: 0 } : { opacity: 0, x: dir.current * 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={shouldReduce ? { opacity: 0 } : { opacity: 0, x: dir.current * -40 }}
+            transition={{ duration: 0.3, ease: [0, 0, 0.2, 1] }}
+          >
+            {state.step === 1 && (
+              <Step1Profil
+                data={state.profil}
+                onChange={updateProfil}
+                locale={locale}
+              />
+            )}
 
-        {state.step === 2 && (
-          <Step2Entreprise
-            data={state.profil}
-            onChange={updateProfil}
-            locale={locale}
-          />
-        )}
+            {state.step === 2 && (
+              <Step2Entreprise
+                data={state.profil}
+                onChange={updateProfil}
+                locale={locale}
+              />
+            )}
 
-        {state.step === 3 && (
-          <Step3Formation
-            data={state.formation}
-            onChange={updateFormation}
-            locale={locale}
-          />
-        )}
+            {state.step === 3 && (
+              <Step3Formation
+                data={state.formation}
+                onChange={updateFormation}
+                locale={locale}
+              />
+            )}
 
-        {state.step === 4 && state.resultat && (
-          <Step4Resultat
-            resultat={state.resultat}
-            formationId={state.formation.formationId}
-            locale={locale}
-            coordonnees={state.coordonnees}
-            onCoordonneesChange={updateCoordonnees}
-            onSubmit={handleSubmit}
-          />
-        )}
+            {state.step === 4 && state.resultat && (
+              <Step4Resultat
+                resultat={state.resultat}
+                formationId={state.formation.formationId}
+                locale={locale}
+                coordonnees={state.coordonnees}
+                onCoordonneesChange={updateCoordonnees}
+                onSubmit={handleSubmit}
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Navigation buttons */}
