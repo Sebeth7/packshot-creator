@@ -6,7 +6,7 @@ export const CONSTANTES = {
   heuresSemaine: 35,
   joursProduction: 230,               // 46 × 5 jours
   dureeAmortissement: 5,              // années
-  budgetEquipementDefaut: 7500,       // € si non renseigné
+  budgetEquipementDefaut: 3000,       // € si non renseigné
 } as const;
 
 // Labels pour les catégories de taille
@@ -37,13 +37,10 @@ export const TAILLE_LABELS: Record<ProductSizeCategory, { fr: string; en: string
 export const DEFAULT_VALUES: Partial<UserInputs> = {
   nbOperateurs: 1,
   pourcentageTemps: 80,
+  coutSalarialMensuel: 4000,
   utiliseSolutionExterne: false,
   capaciteJournaliere: 30,
   photosAnnuelles: 5000,
-  budgetEquipement: 7500,
-  repartition: {
-    packshot: 70,
-    lifestyle: 30,
-  },
+  budgetEquipement: 3000,
   tailleProduitsCategory: 'moyen',
 };

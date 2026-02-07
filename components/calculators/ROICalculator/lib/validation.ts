@@ -2,12 +2,15 @@ import { z } from 'zod';
 
 export const step1Schema = z.object({
   nbOperateurs: z.number()
-    .int('Nombre entier requis')
-    .min(1, 'Minimum 1 opérateur')
+    .min(0.5, 'Minimum 0.5')
     .max(20, 'Maximum 20 opérateurs'),
   pourcentageTemps: z.number()
     .min(10, 'Minimum 10%')
     .max(100, 'Maximum 100%'),
+  coutSalarialMensuel: z.number()
+    .min(1500, 'Minimum 1 500 €')
+    .max(15000, 'Maximum 15 000 €')
+    .optional(),
   utiliseSolutionExterne: z.boolean(),
   budgetMensuelExterne: z.number()
     .min(0)
@@ -26,12 +29,6 @@ export const step2Schema = z.object({
     .min(0)
     .max(50000)
     .optional(),
-  repartition: z.object({
-    packshot: z.number().min(0).max(100),
-    lifestyle: z.number().min(0).max(100),
-  }).refine(data => data.packshot + data.lifestyle === 100, {
-    message: 'Le total doit faire 100%',
-  }),
   tailleProduitsCategory: z.enum(['petit', 'moyen', 'grand', 'tres-grand']),
 });
 

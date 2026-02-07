@@ -54,6 +54,7 @@ export default function ROICalculatorWizard({
       isValid = await trigger([
         'nbOperateurs',
         'pourcentageTemps',
+        'coutSalarialMensuel',
         'utiliseSolutionExterne',
         'budgetMensuelExterne',
         'capaciteJournaliere',
@@ -62,7 +63,6 @@ export default function ROICalculatorWizard({
       isValid = await trigger([
         'photosAnnuelles',
         'budgetEquipement',
-        'repartition',
         'tailleProduitsCategory',
       ]);
 

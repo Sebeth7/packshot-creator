@@ -29,7 +29,7 @@ export function recommanderMachine(inputs: UserInputs): Machine {
  * Ancienne logique de recommandation (fallback)
  */
 function fallbackRecommendation(inputs: UserInputs): Machine {
-  const { photosAnnuelles, repartition, tailleProduitsCategory } = inputs;
+  const { photosAnnuelles, tailleProduitsCategory } = inputs;
 
   // 1. Filtrer par taille de produits (critère principal)
   const machinesCompatibles = MACHINES.filter(m =>
@@ -54,19 +54,7 @@ function fallbackRecommendation(inputs: UserInputs): Machine {
     ? machinesCapables
     : machinesCompatibles;
 
-  // 4. Pour les gros volumes lifestyle (>40%), privilégier les studios plus grands
-  if (repartition.lifestyle > 40 && photosAnnuelles > 10000) {
-    const studiosGrands = candidats.filter(m =>
-      m.id.includes('alphastudio') || m.id.includes('fashion')
-    );
-    if (studiosGrands.length > 0) {
-      // Prendre le moins cher des studios grands
-      return studiosGrands.reduce((a, b) => a.prix < b.prix ? a : b);
-    }
-  }
-
-  // 5. Choisir selon le volume
-  // Logique: pour un même volume, prendre la machine la plus adaptée rapport qualité/prix
+  // 4. Choisir selon le volume
   if (photosAnnuelles < 5000) {
     // Petit volume: machine la moins chère compatible
     return candidats.reduce((a, b) => a.prix < b.prix ? a : b);
@@ -86,13 +74,14 @@ function fallbackRecommendation(inputs: UserInputs): Machine {
 export function calculateROI(inputs: UserInputs): CalculationResults {
   // Valeurs par défaut si optionnelles non renseignées
   const budgetEquipement = inputs.budgetEquipement ?? CONSTANTES.budgetEquipementDefaut;
+  const coutSalarial = inputs.coutSalarialMensuel ?? CONSTANTES.salaireMensuelCoutEmployeur;
 
   // ===== SITUATION ACTUELLE =====
 
   // 1. Coût employeur annuel
   const coutEmployeurAnnuel =
     inputs.nbOperateurs *
-    CONSTANTES.salaireMensuelCoutEmployeur *
+    coutSalarial *
     12 *
     (inputs.pourcentageTemps / 100);
 
@@ -136,58 +125,76 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
   // 1. Machine recommandée
   const machine = recommanderMachine(inputs);
 
-  // 2. TCO annualisé (sur 5 ans)
+  // 2. TCO annualisé (sur 5 ans) - pour affichage coût annuel comptable
   const tcoAnnuel =
     (machine.prix / CONSTANTES.dureeAmortissement) +
     machine.maintenanceAnnuelle +
     machine.consommablesAnnuels;
 
-  // 3. Coût opérateur machine (proportionnel au temps nécessaire)
-  // HYPOTHÈSE CLÉ : Avec une machine Orbitvu, UN SEUL opérateur suffit (vs N opérateurs avant)
-  // L'automatisation permet de passer de N personnes à 1 personne sur la machine
-  // Ce coût est proportionnel au temps réellement nécessaire pour produire les photos
-  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
-  const pourcentageTempsMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1);
-  const coutOperateurMachine = CONSTANTES.salaireMensuelCoutEmployeur * 12 * pourcentageTempsMachine;
+  // 3. Coût opérationnel machine annuel (hors amortissement) - pour cash-flow
+  const coutOperationnelMachineAnnuel =
+    machine.maintenanceAnnuelle +
+    machine.consommablesAnnuels;
 
-  // 4. Coût total avec machine
-  const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
+  // 4. Coût opérateur machine
+  // Règles : N > 1 → ceil(N/2) opérateurs | N ≤ 1 → 1 opérateur, temps ÷ 3
+  let nbOperateursMachine: number;
+  let pourcentageTempsMachineEffectif: number;
 
-  // 5. Capacité annuelle avec machine
-  const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
-
-  // 6. Coût par photo avec machine
-  const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
-
-  // 7. Temps par photo avec machine
-  // Heures travaillées = 1 opérateur × pourcentage temps machine × heures annuelles standard
-  // Ceci reflète le temps réel passé par l'opérateur machine pour produire toutes les photos
-  const heuresAvecMachine = heuresTravailAnnuel * pourcentageTempsMachine;
-  const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
-
-  // 8. Jours de production avec machine
-  const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
-
-  // ===== COMPARAISON =====
-
-  // 1. Économie annuelle
-  const economieAnnuelle = coutTotalActuel - coutTotalMachine;
-
-  // 2. Flag rentabilité
-  const isRentable = economieAnnuelle > 0;
-
-  // 3. Break-even (null si pas rentable)
-  let breakEvenMois: number | null = null;
-  if (isRentable && economieAnnuelle > 0) {
-    const economieMensuelle = economieAnnuelle / 12;
-    breakEvenMois = machine.prix / economieMensuelle;
+  if (inputs.nbOperateurs > 1) {
+    nbOperateursMachine = Math.ceil(inputs.nbOperateurs / 2);
+    const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
+    pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
+  } else {
+    nbOperateursMachine = 1;
+    pourcentageTempsMachineEffectif = inputs.pourcentageTemps / 3;
   }
 
-  // 4. ROI année 1
-  const roiAn1 = ((economieAnnuelle - machine.prix) / machine.prix) * 100;
+  const coutOperateurMachine =
+    nbOperateursMachine *
+    coutSalarial *
+    12 *
+    (pourcentageTempsMachineEffectif / 100);
 
-  // 5. ROI 5 ans (aligné sur la durée d'amortissement)
-  const economie5ans = (economieAnnuelle * 5) - machine.prix;
+  // 5. Coût total avec machine (comptable, avec amortissement)
+  const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
+
+  // 6. Capacité annuelle avec machine
+  const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
+
+  // 7. Coût par photo avec machine (basé sur coût comptable annuel)
+  const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
+
+  // 8. Temps par photo avec machine
+  const heuresAvecMachine = heuresTravailAnnuel * nbOperateursMachine * (pourcentageTempsMachineEffectif / 100);
+  const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
+
+  // 9. Jours de production avec machine
+  const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
+
+  // ===== COMPARAISON (basée sur cash-flow réel, pas comptable) =====
+
+  // Économie opérationnelle annuelle (cash-flow : avant vs après, hors amortissement)
+  const coutOperationnelTotal = coutOperateurMachine + coutOperationnelMachineAnnuel;
+  const economieOperationnelle = coutTotalActuel - coutOperationnelTotal;
+
+  // 1. Économie annuelle (comptable, affichée comme référence)
+  const economieAnnuelle = coutTotalActuel - coutTotalMachine;
+
+  // 2. Flag rentabilité (basé sur cash-flow)
+  const isRentable = economieOperationnelle > machine.prix / CONSTANTES.dureeAmortissement;
+
+  // 3. Break-even en mois (cash-flow : quand les économies cumulées = investissement)
+  let breakEvenMois: number | null = null;
+  if (economieOperationnelle > 0) {
+    breakEvenMois = machine.prix / (economieOperationnelle / 12);
+  }
+
+  // 4. ROI année 1 (cash-flow : économies opérationnelles an 1 - investissement)
+  const roiAn1 = ((economieOperationnelle - machine.prix) / machine.prix) * 100;
+
+  // 5. ROI 5 ans (cash-flow sur durée d'amortissement)
+  const economie5ans = (economieOperationnelle * 5) - machine.prix;
   const roi5ans = (economie5ans / machine.prix) * 100;
 
   // 6. Économie par photo
@@ -267,6 +274,7 @@ export function formatHeures(heures: number): string {
 
 /**
  * Génère les données pour le graphique d'évolution sur 5 ans
+ * Utilise les coûts opérationnels (cash-flow) pour éviter le double comptage
  */
 export function generateChartData(results: CalculationResults): Array<{
   mois: number;
@@ -276,9 +284,15 @@ export function generateChartData(results: CalculationResults): Array<{
 }> {
   const data = [];
 
+  // Coût opérationnel mensuel avec machine (hors amortissement, car le prix est en mois 0)
+  const coutOperationnelMensuel =
+    (results.coutOperateurMachine +
+      results.machine.maintenanceAnnuelle +
+      results.machine.consommablesAnnuels) / 12;
+
   for (let mois = 0; mois <= 60; mois++) {
     const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
-    const coutOrbituCumule = results.machine.prix + ((results.coutTotalMachine / 12) * mois);
+    const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
 
     data.push({
       mois,

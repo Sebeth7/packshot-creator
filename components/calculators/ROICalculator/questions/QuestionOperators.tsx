@@ -59,15 +59,15 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
         <Slider
           value={[value]}
           onValueChange={(vals) => setValue('nbOperateurs', vals[0], { shouldValidate: true })}
-          min={1}
+          min={0.5}
           max={20}
-          step={1}
+          step={0.5}
           className="w-full"
         />
         <div className="flex justify-between mt-2">
-          <span className="text-sm text-future-dusk-500">1</span>
+          <span className="text-sm text-future-dusk-500">0.5</span>
           <span className="text-lg font-bold text-very-peri-600">
-            {value} {t.unit}
+            {value % 1 === 0 ? value : value.toFixed(1)} {value <= 1 ? (locale === 'fr' ? 'personne' : 'person') : t.unit}
           </span>
           <span className="text-sm text-future-dusk-500">20</span>
         </div>

@@ -343,15 +343,9 @@ export function recommendMachine(criteria: SelectionCriteria, sizeCategory?: Pro
 export function userInputsToSelectionCriteria(inputs: {
   photosAnnuelles: number;
   tailleProduitsCategory: ProductSizeCategory;
-  repartition: { packshot: number; lifestyle: number };
 }): SelectionCriteria {
-  // Déduire les types de contenu de la répartition
-  const contentTypes: ContentType[] = ['packshot'];
-  if (inputs.repartition.lifestyle > 20) {
-    contentTypes.push('lifestyle');
-  }
-  // Ajouter 360 par défaut car c'est commun
-  contentTypes.push('360');
+  // Types de contenu par défaut : packshot + 360 (les plus courants)
+  const contentTypes: ContentType[] = ['packshot', '360'];
 
   return {
     productDimensions: categoryToDimensions(inputs.tailleProduitsCategory),

@@ -7,32 +7,34 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
 
-interface QuestionEquipmentBudgetProps {
+interface QuestionSalaryCostProps {
   locale: 'fr' | 'en';
 }
 
 const LABELS = {
   fr: {
-    label: 'Budget annuel actuel pour l\'équipement photo et logiciels ?',
-    sublabel: 'Matériel, éclairage, licences, espace (optionnel)',
-    tooltip: 'Amortissement matériel + licences + loyer espace dédié',
-    placeholder: '3 000€ (valeur suggérée)',
-    unit: '€/an',
+    label: 'Coût mensuel moyen par opérateur (charges incluses)',
+    sublabel: 'Salaire brut × 1,7 environ. Inclut charges patronales, mutuelle, etc.',
+    tooltip: 'Coût total employeur mensuel : salaire brut + charges patronales (~42%) + mutuelle + prévoyance. En moyenne, multipliez le salaire brut par 1,7.',
+    placeholder: '4 000',
+    unit: '€/mois',
+    defaultNote: 'Si non renseigné, nous utiliserons 4 000€ comme estimation',
   },
   en: {
-    label: 'Current annual budget for photo equipment and software?',
-    sublabel: 'Equipment, lighting, licenses, space (optional)',
-    tooltip: 'Equipment depreciation + licenses + dedicated space rent',
-    placeholder: '€3,000 (suggested value)',
-    unit: '€/year',
+    label: 'Average monthly cost per operator (all charges included)',
+    sublabel: 'Gross salary × ~1.7. Includes employer contributions, insurance, etc.',
+    tooltip: 'Total employer cost per month: gross salary + employer contributions (~42%) + health insurance. On average, multiply gross salary by 1.7.',
+    placeholder: '4,000',
+    unit: '€/month',
+    defaultNote: 'If not provided, we will use €4,000 as an estimate',
   },
 };
 
-export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBudgetProps) {
+export default function QuestionSalaryCost({ locale }: QuestionSalaryCostProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
   const t = LABELS[locale];
 
-  const value = watch('budgetEquipement');
+  const value = watch('coutSalarialMensuel');
 
   return (
     <div className="space-y-4">
@@ -62,23 +64,20 @@ export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBud
           type="number"
           placeholder={t.placeholder}
           value={value || ''}
-          onChange={(e) => setValue('budgetEquipement', Number(e.target.value) || undefined, { shouldValidate: true })}
+          onChange={(e) => setValue('coutSalarialMensuel', Number(e.target.value) || undefined, { shouldValidate: true })}
           className="max-w-[200px]"
-          min={0}
-          max={50000}
+          min={1500}
+          max={15000}
         />
         <span className="text-future-dusk-500">{t.unit}</span>
       </div>
 
       <p className="text-xs text-future-dusk-500 italic">
-        {locale === 'fr'
-          ? 'Si non renseigné, nous utiliserons 3 000€ comme estimation'
-          : 'If not provided, we will use €3,000 as an estimate'
-        }
+        {t.defaultNote}
       </p>
 
-      {errors.budgetEquipement && (
-        <p className="text-sm text-red-500">{errors.budgetEquipement.message}</p>
+      {errors.coutSalarialMensuel && (
+        <p className="text-sm text-red-500">{errors.coutSalarialMensuel.message}</p>
       )}
     </div>
   );

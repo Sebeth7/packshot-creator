@@ -355,64 +355,73 @@ export default function MachineComparator({
 function calculateROIForMachine(inputs: UserInputs, machineId: string): CalculationResults {
   const machine = MACHINES.find((m: Machine) => m.id === machineId);
   if (!machine) {
-    // Fallback sur le calcul normal
     return calculateROI(inputs);
   }
 
-  // Recalculer avec cette machine spécifique
   const budgetEquipement = inputs.budgetEquipement ?? CONSTANTES.budgetEquipementDefaut;
+  const coutSalarial = inputs.coutSalarialMensuel ?? CONSTANTES.salaireMensuelCoutEmployeur;
   const photosAnnuelles = Math.max(inputs.photosAnnuelles, 1);
 
   // Situation actuelle
   const coutEmployeurAnnuel =
-    inputs.nbOperateurs *
-    CONSTANTES.salaireMensuelCoutEmployeur *
-    12 *
-    (inputs.pourcentageTemps / 100);
+    inputs.nbOperateurs * coutSalarial * 12 * (inputs.pourcentageTemps / 100);
   const coutEquipementAnnuel = budgetEquipement;
   const coutExterneAnnuel = inputs.utiliseSolutionExterne && inputs.budgetMensuelExterne
     ? inputs.budgetMensuelExterne * 12
     : 0;
   const coutTotalActuel = coutEmployeurAnnuel + coutEquipementAnnuel + coutExterneAnnuel;
   const capaciteAnnuelleActuelle =
-    inputs.capaciteJournaliere *
-    CONSTANTES.joursProduction *
-    inputs.nbOperateurs *
-    (inputs.pourcentageTemps / 100);
+    inputs.capaciteJournaliere * CONSTANTES.joursProduction *
+    inputs.nbOperateurs * (inputs.pourcentageTemps / 100);
   const coutParPhotoActuel = coutTotalActuel / photosAnnuelles;
   const heuresTravailAnnuel = CONSTANTES.heuresSemaine * CONSTANTES.nbSemainesTravail;
   const tempsParPhotoHeures =
-    (heuresTravailAnnuel * inputs.nbOperateurs * (inputs.pourcentageTemps / 100)) /
-    photosAnnuelles;
+    (heuresTravailAnnuel * inputs.nbOperateurs * (inputs.pourcentageTemps / 100)) / photosAnnuelles;
   const joursProductionActuels =
-    photosAnnuelles /
-    Math.max(inputs.capaciteJournaliere * inputs.nbOperateurs, 1);
+    photosAnnuelles / Math.max(inputs.capaciteJournaliere * inputs.nbOperateurs, 1);
 
   // Avec machine
   const tcoAnnuel =
     (machine.prix / CONSTANTES.dureeAmortissement) +
-    machine.maintenanceAnnuelle +
-    machine.consommablesAnnuels;
-  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
-  const pourcentageTempsMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1);
-  const coutOperateurMachine = CONSTANTES.salaireMensuelCoutEmployeur * 12 * pourcentageTempsMachine;
+    machine.maintenanceAnnuelle + machine.consommablesAnnuels;
+  const coutOperationnelMachineAnnuel =
+    machine.maintenanceAnnuelle + machine.consommablesAnnuels;
+
+  // Logique opérateurs : N > 1 → ceil(N/2) | N ≤ 1 → 1 opérateur, temps ÷ 3
+  let nbOperateursMachine: number;
+  let pourcentageTempsMachineEffectif: number;
+
+  if (inputs.nbOperateurs > 1) {
+    nbOperateursMachine = Math.ceil(inputs.nbOperateurs / 2);
+    const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
+    pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
+  } else {
+    nbOperateursMachine = 1;
+    pourcentageTempsMachineEffectif = inputs.pourcentageTemps / 3;
+  }
+
+  const coutOperateurMachine =
+    nbOperateursMachine * coutSalarial * 12 * (pourcentageTempsMachineEffectif / 100);
   const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
   const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
   const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
-  const heuresAvecMachine = heuresTravailAnnuel * pourcentageTempsMachine;
+  const heuresAvecMachine = heuresTravailAnnuel * nbOperateursMachine * (pourcentageTempsMachineEffectif / 100);
   const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
   const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
 
-  // Comparaison
+  // Comparaison (cash-flow)
+  const coutOperationnelTotal = coutOperateurMachine + coutOperationnelMachineAnnuel;
+  const economieOperationnelle = coutTotalActuel - coutOperationnelTotal;
   const economieAnnuelle = coutTotalActuel - coutTotalMachine;
-  const isRentable = economieAnnuelle > 0;
+  const isRentable = economieOperationnelle > machine.prix / CONSTANTES.dureeAmortissement;
+
   let breakEvenMois: number | null = null;
-  if (isRentable && economieAnnuelle > 0) {
-    const economieMensuelle = economieAnnuelle / 12;
-    breakEvenMois = machine.prix / economieMensuelle;
+  if (economieOperationnelle > 0) {
+    breakEvenMois = machine.prix / (economieOperationnelle / 12);
   }
-  const roiAn1 = ((economieAnnuelle - machine.prix) / machine.prix) * 100;
-  const economie5ans = (economieAnnuelle * 5) - machine.prix;
+
+  const roiAn1 = ((economieOperationnelle - machine.prix) / machine.prix) * 100;
+  const economie5ans = (economieOperationnelle * 5) - machine.prix;
   const roi5ans = (economie5ans / machine.prix) * 100;
   const economieParPhoto = coutParPhotoActuel - coutParPhotoMachine;
   const economieParPhotoPourcent = (economieParPhoto / Math.max(coutParPhotoActuel, 0.01)) * 100;

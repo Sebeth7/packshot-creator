@@ -3,17 +3,14 @@ export interface UserInputs {
   // Step 1 : Situation actuelle
   nbOperateurs: number;              // 0.5 - 20
   pourcentageTemps: number;          // 10 - 100 (%)
+  coutSalarialMensuel?: number;      // € coût total employeur/mois (défaut 4000)
   utiliseSolutionExterne: boolean;
   budgetMensuelExterne?: number;     // 0 - 50000 €/mois
   capaciteJournaliere: number;       // 5 - 300 photos/jour/opérateur
 
   // Step 2 : Objectifs
   photosAnnuelles: number;           // 100 - 100000
-  budgetEquipement?: number;         // 0 - 50000 €/an (optionnel, défaut 7500)
-  repartition: {
-    packshot: number;                // % (0-100)
-    lifestyle: number;               // % (0-100, calculé auto = 100 - packshot)
-  };
+  budgetEquipement?: number;         // 0 - 50000 €/an (optionnel, défaut 3000)
   tailleProduitsCategory: ProductSizeCategory;
 }
 
