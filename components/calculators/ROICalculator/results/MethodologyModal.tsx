@@ -23,7 +23,7 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Coût avec une machine Orbitvu',
-        body: 'Avec un studio automatisé, vous avez besoin de moins de personnel : si vous avez plusieurs opérateurs, on estime qu\'il en faut moitié moins. Si vous n\'avez qu\'un seul opérateur, il passe 3 fois moins de temps sur la photo. On ajoute ensuite les coûts de maintenance et de consommables de la machine.',
+        body: 'Un studio automatisé multiplie par 3 la productivité de chaque opérateur, ce qui libère du temps pour d\'autres tâches (retouche, mise en ligne, créativité). Le calcul prend en compte ce gain d\'efficacité, ainsi que les coûts de maintenance et consommables de la machine.',
       },
       {
         icon: Clock,
@@ -50,7 +50,7 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Cost with an Orbitvu machine',
-        body: 'With an automated studio, you need fewer staff: if you have multiple operators, we estimate half as many are needed. If you have a single operator, they spend 3 times less time on photography. We then add machine maintenance and consumables costs.',
+        body: 'An automated studio triples the productivity of each operator, freeing up time for other tasks (retouching, publishing, creative work). The calculation accounts for this efficiency gain, along with machine maintenance and consumables costs.',
       },
       {
         icon: Clock,

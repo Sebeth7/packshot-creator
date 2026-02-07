@@ -12,12 +12,15 @@ import { MACHINES } from './machines';
 /**
  * Algorithme de sélection multi-critères pour machines Orbitvu
  *
- * Critères de scoring :
- * - Dimensions produit (obligatoire) : 30 points
- * - Poids produit (obligatoire) : 20 points
- * - Volume annuel : 20 points
- * - Types de contenu : 15 points
- * - Secteur d'activité : 10 points
+ * Critères éliminatoires (binaire : ça rentre ou pas) :
+ * - Dimensions produit
+ * - Poids produit
+ *
+ * Critères de scoring (100 points) :
+ * - Poids produit (marge) : 25 points
+ * - Volume annuel : 30 points
+ * - Types de contenu : 25 points
+ * - Secteur d'activité : 15 points
  * - Niveau d'automatisation : 5 points
  */
 
@@ -26,11 +29,10 @@ import { MACHINES } from './machines';
 // ============================================
 
 const WEIGHTS = {
-  dimensions: 30,
-  weight: 20,
-  volume: 20,
-  contentTypes: 15,
-  sectors: 10,
+  weight: 25,
+  volume: 30,
+  contentTypes: 25,
+  sectors: 15,
   automation: 5,
 } as const;
 
@@ -180,7 +182,7 @@ export function evaluateMachine(
   const missingCriteria: string[] = [];
   let totalScore = 0;
 
-  // 1. DIMENSIONS (30 points) - Critère éliminatoire
+  // 1. DIMENSIONS - Critère binaire éliminatoire (ça rentre ou pas)
   const dimCheck = checkDimensionsFit(criteria.productDimensions, machine.dimensionsMax);
   if (!dimCheck.fits) {
     return {
@@ -194,13 +196,9 @@ export function evaluateMachine(
       limitations: machine.limitations,
     };
   }
-  const dimScore = (dimCheck.margin / 100) * WEIGHTS.dimensions;
-  totalScore += dimScore;
-  if (dimCheck.margin > 20) {
-    matchingCriteria.push('Dimensions adaptées');
-  }
+  matchingCriteria.push('Dimensions adaptées');
 
-  // 2. POIDS (20 points) - Critère éliminatoire
+  // 2. POIDS (25 points) - Critère éliminatoire + scoring marge
   const weightCheck = checkWeightFit(criteria.productWeight, machine.poidsMaxKg);
   if (!weightCheck.fits) {
     return {
@@ -220,7 +218,7 @@ export function evaluateMachine(
     matchingCriteria.push('Poids compatible');
   }
 
-  // 3. VOLUME ANNUEL (20 points)
+  // 3. VOLUME ANNUEL (30 points)
   const volumeScore = (calculateVolumeScore(criteria.annualVolume, machine.volumeRange) / 100) * WEIGHTS.volume;
   totalScore += volumeScore;
   if (criteria.annualVolume >= machine.volumeRange.min && criteria.annualVolume <= machine.volumeRange.max) {
@@ -231,7 +229,7 @@ export function evaluateMachine(
     missingCriteria.push('Volume supérieur à l\'idéal');
   }
 
-  // 4. TYPES DE CONTENU (15 points)
+  // 4. TYPES DE CONTENU (25 points)
   const contentResult = calculateContentScore(criteria.contentTypes, machine.features);
   const contentScore = (contentResult.score / 100) * WEIGHTS.contentTypes;
   totalScore += contentScore;
@@ -242,7 +240,7 @@ export function evaluateMachine(
     missingCriteria.push(`Ne supporte pas: ${contentResult.missing.join(', ')}`);
   }
 
-  // 5. SECTEURS D'ACTIVITÉ (10 points)
+  // 5. SECTEURS D'ACTIVITÉ (15 points)
   if (criteria.sectors && criteria.sectors.length > 0) {
     const matchingSectors = criteria.sectors.filter(s => machine.idealSectors.includes(s));
     const sectorScore = (matchingSectors.length / criteria.sectors.length) * WEIGHTS.sectors;
