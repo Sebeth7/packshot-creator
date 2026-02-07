@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion, useReducedMotion, useInView } from "framer-motion";
+import { useRef, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -13,7 +13,6 @@ interface FadeInViewProps {
   className?: string;
   once?: boolean;
   amount?: number;
-  as?: keyof typeof motion;
 }
 
 const offsets: Record<Direction, { x: number; y: number }> = {
@@ -32,22 +31,21 @@ export default function FadeInView({
   className,
   once = true,
   amount = 0.2,
-  as = "div",
 }: FadeInViewProps) {
   const shouldReduce = useReducedMotion();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once, amount });
   const offset = offsets[direction];
-
-  const Component = motion[as] as typeof motion.div;
 
   if (shouldReduce) {
     return <div className={className}>{children}</div>;
   }
 
   return (
-    <Component
+    <motion.div
+      ref={ref}
       initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, amount }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: offset.x, y: offset.y }}
       transition={{
         duration,
         delay,
@@ -56,6 +54,6 @@ export default function FadeInView({
       className={className}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 }
