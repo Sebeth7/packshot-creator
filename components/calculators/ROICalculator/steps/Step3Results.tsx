@@ -2,7 +2,8 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2 } from 'lucide-react';
+import { Download, Loader2, Info } from 'lucide-react';
+import MethodologyModal from '../results/MethodologyModal';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
 import MachineComparator from '../results/MachineComparator';
@@ -27,16 +28,19 @@ const LABELS = {
   fr: {
     downloadPDF: 'Télécharger le PDF',
     downloading: 'Génération...',
+    methodology: 'Méthode de calcul',
   },
   en: {
     downloadPDF: 'Download PDF',
     downloading: 'Generating...',
+    methodology: 'Calculation method',
   },
 };
 
 export default function Step3Results({ results, inputs, locale }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showMethodology, setShowMethodology] = useState(false);
   const t = LABELS[locale];
 
   // Track completion au montage
@@ -106,8 +110,17 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
             <HeroMetrics results={results} locale={locale} />
           </div>
 
-          {/* Bouton téléchargement PDF (temporaire) - exclu du PDF */}
-          <div className="flex justify-end mb-6" data-pdf-exclude>
+          {/* Boutons actions - exclu du PDF */}
+          <div className="flex justify-end gap-2 mb-6" data-pdf-exclude>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowMethodology(true)}
+              className="gap-2 text-future-dusk-600"
+            >
+              <Info className="w-4 h-4" />
+              {t.methodology}
+            </Button>
             <Button
               onClick={handleDownloadPDF}
               disabled={isDownloading}
@@ -200,6 +213,13 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
           </div>
         </>
       )}
+
+      {/* Modale méthodologie */}
+      <MethodologyModal
+        isOpen={showMethodology}
+        onClose={() => setShowMethodology(false)}
+        locale={locale}
+      />
     </div>
   );
 }
