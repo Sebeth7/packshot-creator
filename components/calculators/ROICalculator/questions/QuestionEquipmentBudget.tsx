@@ -38,15 +38,15 @@ export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBud
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <Label className="text-base font-medium text-neutral-dark">
+          <Label className="text-base font-medium text-future-dusk-900">
             {t.label}
           </Label>
-          <p className="text-sm text-neutral-medium mt-1">{t.sublabel}</p>
+          <p className="text-sm text-future-dusk-500 mt-1">{t.sublabel}</p>
         </div>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -67,10 +67,10 @@ export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBud
           min={0}
           max={50000}
         />
-        <span className="text-neutral-medium">{t.unit}</span>
+        <span className="text-future-dusk-500">{t.unit}</span>
       </div>
 
-      <p className="text-xs text-neutral-medium italic">
+      <p className="text-xs text-future-dusk-500 italic">
         {locale === 'fr'
           ? 'Si non renseigné, nous utiliserons 7 500€ comme estimation'
           : 'If not provided, we will use €7,500 as an estimate'

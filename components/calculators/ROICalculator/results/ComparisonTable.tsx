@@ -70,27 +70,27 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-8 overflow-hidden">
-      <h3 className="text-xl font-heading font-bold text-neutral-dark mb-6">
+      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-6">
         {t.title}
       </h3>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-neutral-light">
-              <th className="text-left py-3 px-4 text-sm font-medium text-neutral-medium">
+            <tr className="border-b border-neutral-200">
+              <th className="text-left py-3 px-4 text-sm font-medium text-future-dusk-500">
                 {t.metric}
               </th>
-              <th className="text-center py-3 px-4 text-sm font-medium text-neutral-medium">
+              <th className="text-center py-3 px-4 text-sm font-medium text-future-dusk-500">
                 {t.current}
               </th>
               <th className="text-center py-3 px-4">
-                <ArrowRight className="w-4 h-4 text-neutral-medium mx-auto" />
+                <ArrowRight className="w-4 h-4 text-future-dusk-500 mx-auto" />
               </th>
-              <th className="text-center py-3 px-4 text-sm font-medium text-secondary-orbitvu">
+              <th className="text-center py-3 px-4 text-sm font-medium text-very-peri-600">
                 {t.withOrbitvu}
               </th>
-              <th className="text-center py-3 px-4 text-sm font-medium text-neutral-medium">
+              <th className="text-center py-3 px-4 text-sm font-medium text-future-dusk-500">
                 {t.difference}
               </th>
             </tr>
@@ -100,20 +100,20 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
               <tr
                 key={index}
                 className={cn(
-                  'border-b border-neutral-lighter',
-                  index % 2 === 0 && 'bg-neutral-lighter/30'
+                  'border-b border-neutral-100',
+                  index % 2 === 0 && 'bg-neutral-50'
                 )}
               >
-                <td className="py-4 px-4 text-sm font-medium text-neutral-dark">
+                <td className="py-4 px-4 text-sm font-medium text-future-dusk-900">
                   {row.label}
                 </td>
-                <td className="py-4 px-4 text-center text-sm text-neutral-medium">
+                <td className="py-4 px-4 text-center text-sm text-future-dusk-500">
                   {row.current}
                 </td>
                 <td className="py-4 px-4 text-center">
-                  <ArrowRight className="w-4 h-4 text-neutral-light mx-auto" />
+                  <ArrowRight className="w-4 h-4 text-neutral-300 mx-auto" />
                 </td>
-                <td className="py-4 px-4 text-center text-sm font-bold text-secondary-orbitvu">
+                <td className="py-4 px-4 text-center text-sm font-bold text-very-peri-600">
                   {row.orbitvu}
                 </td>
                 <td className="py-4 px-4 text-center">
@@ -121,7 +121,7 @@ export default function ComparisonTable({ results, locale }: ComparisonTableProp
                     className={cn(
                       'inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium',
                       row.isPositive
-                        ? 'bg-accent-success/10 text-accent-success'
+                        ? 'bg-emerald-50 text-emerald-600'
                         : 'bg-red-100 text-red-600'
                     )}
                   >

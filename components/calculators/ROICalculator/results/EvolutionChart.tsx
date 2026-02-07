@@ -55,8 +55,8 @@ function CustomTooltip({ active, payload, label, locale }: CustomTooltipProps) {
 
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white p-3 rounded-lg shadow-lg border border-neutral-light">
-        <p className="font-bold text-neutral-dark mb-2">{t.month} {label}</p>
+      <div className="bg-white p-3 rounded-lg shadow-lg border border-neutral-200">
+        <p className="font-bold text-future-dusk-900 mb-2">{t.month} {label}</p>
         {payload.map((entry, index: number) => (
           <p key={index} style={{ color: entry.color }} className="text-sm">
             {entry.name}: {formatEuro(entry.value)}
@@ -74,7 +74,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-      <h3 className="text-xl font-heading font-bold text-neutral-dark mb-6">
+      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-6">
         {t.title}
       </h3>
 
@@ -112,7 +112,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               verticalAlign="top"
               height={36}
               formatter={(value) => (
-                <span className="text-sm text-neutral-dark">{value}</span>
+                <span className="text-sm text-future-dusk-900">{value}</span>
               )}
             />
 
@@ -156,8 +156,8 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
 
       {/* Légende explicative */}
       {results.breakEvenMois && (
-        <div className="mt-4 p-4 bg-accent-success/10 rounded-lg">
-          <p className="text-sm text-accent-success font-medium">
+        <div className="mt-4 p-4 bg-emerald-50 rounded-lg">
+          <p className="text-sm text-emerald-600 font-medium">
             {t.breakevenNote} {Math.round(results.breakEvenMois)}{t.savingsNote}
           </p>
         </div>

@@ -34,23 +34,23 @@ export default function NotProfitableCTA({ locale }: NotProfitableCTAProps) {
   const t = LABELS[locale];
 
   return (
-    <div className="bg-gradient-to-br from-neutral-lighter to-white rounded-2xl p-8 text-center border border-neutral-light">
+    <div className="bg-gradient-to-br from-neutral-100 to-white rounded-2xl p-8 text-center border border-neutral-200">
       <div className="text-5xl mb-4">🔍</div>
 
-      <h3 className="text-2xl font-heading font-bold text-neutral-dark mb-3">
+      <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
         {t.title}
       </h3>
 
-      <p className="text-lg text-neutral-medium mb-6 max-w-2xl mx-auto">
+      <p className="text-lg text-future-dusk-500 mb-6 max-w-2xl mx-auto">
         {t.description}
       </p>
 
-      <Button size="lg" className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu">
+      <Button size="lg" className="gap-2 bg-very-peri-500 hover:bg-very-peri-600">
         <MessageCircle className="w-5 h-5" />
         {t.cta}
       </Button>
 
-      <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-neutral-medium">
+      <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-future-dusk-500">
         {t.benefits.map((benefit, index) => (
           <div key={index} className="flex items-center gap-2">
             <span>✓</span>

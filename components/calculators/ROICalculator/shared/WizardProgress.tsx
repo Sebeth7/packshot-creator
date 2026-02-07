@@ -28,9 +28,9 @@ export default function WizardProgress({ steps, currentStep, locale }: WizardPro
               <div
                 className={cn(
                   'w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all',
-                  isCompleted && 'bg-accent-success text-white',
-                  isCurrent && 'bg-secondary-orbitvu text-white',
-                  !isCompleted && !isCurrent && 'bg-neutral-light text-neutral-medium'
+                  isCompleted && 'bg-emerald-500 text-white',
+                  isCurrent && 'bg-very-peri-500 text-white',
+                  !isCompleted && !isCurrent && 'bg-neutral-200 text-future-dusk-500'
                 )}
               >
                 {isCompleted ? (
@@ -42,7 +42,7 @@ export default function WizardProgress({ steps, currentStep, locale }: WizardPro
               <span
                 className={cn(
                   'text-xs mt-2 text-center max-w-[80px]',
-                  isCurrent ? 'text-secondary-orbitvu font-medium' : 'text-neutral-medium'
+                  isCurrent ? 'text-very-peri-600 font-medium' : 'text-future-dusk-500'
                 )}
               >
                 {step.title}
@@ -54,7 +54,7 @@ export default function WizardProgress({ steps, currentStep, locale }: WizardPro
               <div
                 className={cn(
                   'w-16 md:w-24 h-1 mx-2',
-                  currentStep > step.id ? 'bg-accent-success' : 'bg-neutral-light'
+                  currentStep > step.id ? 'bg-emerald-500' : 'bg-neutral-200'
                 )}
               />
             )}

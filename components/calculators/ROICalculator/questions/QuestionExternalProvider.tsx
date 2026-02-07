@@ -43,13 +43,13 @@ export default function QuestionExternalProvider({ locale }: QuestionExternalPro
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-2">
-        <Label className="text-base font-medium text-neutral-dark">
+        <Label className="text-base font-medium text-future-dusk-900">
           {t.label}
         </Label>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -82,7 +82,7 @@ export default function QuestionExternalProvider({ locale }: QuestionExternalPro
 
       {utiliseSolutionExterne && (
         <div className="pt-4 space-y-2">
-          <Label className="text-sm font-medium text-neutral-dark">
+          <Label className="text-sm font-medium text-future-dusk-900">
             {t.budgetLabel}
           </Label>
           <div className="flex items-center gap-2">
@@ -95,7 +95,7 @@ export default function QuestionExternalProvider({ locale }: QuestionExternalPro
               min={0}
               max={50000}
             />
-            <span className="text-neutral-medium">{t.unit}</span>
+            <span className="text-future-dusk-500">{t.unit}</span>
           </div>
           {errors.budgetMensuelExterne && (
             <p className="text-sm text-red-500">{errors.budgetMensuelExterne.message}</p>

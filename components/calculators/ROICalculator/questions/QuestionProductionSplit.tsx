@@ -41,10 +41,10 @@ export default function QuestionProductionSplit({ locale }: QuestionProductionSp
   return (
     <div className="space-y-4">
       <div>
-        <Label className="text-base font-medium text-neutral-dark">
+        <Label className="text-base font-medium text-future-dusk-900">
           {t.label}
         </Label>
-        <p className="text-sm text-neutral-medium mt-1">{t.sublabel}</p>
+        <p className="text-sm text-future-dusk-500 mt-1">{t.sublabel}</p>
       </div>
 
       <div className="pt-4">
@@ -59,16 +59,16 @@ export default function QuestionProductionSplit({ locale }: QuestionProductionSp
 
         <div className="flex justify-between mt-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-secondary-orbitvu">
+            <div className="text-2xl font-bold text-very-peri-600">
               {repartition.packshot}%
             </div>
-            <div className="text-sm text-neutral-medium">{t.packshot}</div>
+            <div className="text-sm text-future-dusk-500">{t.packshot}</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-accent-gold">
+            <div className="text-2xl font-bold text-amber-500">
               {repartition.lifestyle}%
             </div>
-            <div className="text-sm text-neutral-medium">{t.lifestyle}</div>
+            <div className="text-sm text-future-dusk-500">{t.lifestyle}</div>
           </div>
         </div>
       </div>

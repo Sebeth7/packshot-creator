@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -35,6 +36,8 @@ export default function ROICalculatorWizard({
   const [currentStep, setCurrentStep] = useState(1);
   const [results, setResults] = useState<CalculationResults | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
+  const direction = useRef(1);
+  const shouldReduce = useReducedMotion();
 
   const methods = useForm<FullFormData>({
     resolver: zodResolver(fullSchema),
@@ -78,11 +81,13 @@ export default function ROICalculatorWizard({
     }
 
     if (isValid) {
+      direction.current = 1;
       setCurrentStep(prev => Math.min(prev + 1, STEPS.length));
     }
   }, [currentStep, trigger, getValues]);
 
   const handleBack = useCallback(() => {
+    direction.current = -1;
     setCurrentStep(prev => Math.max(prev - 1, 1));
     if (currentStep === 3) {
       setResults(null);
@@ -100,7 +105,7 @@ export default function ROICalculatorWizard({
   return (
     <div className={cn('bg-white rounded-2xl shadow-xl overflow-hidden', className)}>
       {/* Header avec progression */}
-      <div className="bg-gradient-to-r from-secondary-orbitvu to-primary-orbitvu px-6 py-4">
+      <div className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-white font-heading font-bold text-lg">
             {STEPS[currentStep - 1].title[locale]}
@@ -115,21 +120,32 @@ export default function ROICalculatorWizard({
       {/* Contenu */}
       <FormProvider {...methods}>
         <form className="p-6 md:p-8">
-          {currentStep === 1 && <Step1CurrentSituation locale={locale} />}
-          {currentStep === 2 && <Step2ProductionGoals locale={locale} />}
-          {currentStep === 3 && results && (
-            <Step3Results
-              results={results}
-              inputs={getValues() as UserInputs}
-              locale={locale}
-            />
-          )}
+          <AnimatePresence mode="wait" custom={direction.current}>
+            <motion.div
+              key={currentStep}
+              custom={direction.current}
+              initial={shouldReduce ? { opacity: 0 } : { opacity: 0, x: direction.current * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={shouldReduce ? { opacity: 0 } : { opacity: 0, x: direction.current * -40 }}
+              transition={{ duration: 0.3, ease: [0, 0, 0.2, 1] }}
+            >
+              {currentStep === 1 && <Step1CurrentSituation locale={locale} />}
+              {currentStep === 2 && <Step2ProductionGoals locale={locale} />}
+              {currentStep === 3 && results && (
+                <Step3Results
+                  results={results}
+                  inputs={getValues() as UserInputs}
+                  locale={locale}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
 
           {/* Loading state */}
           {isCalculating && (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-secondary-orbitvu border-t-transparent mb-4" />
-              <p className="text-neutral-medium">
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-very-peri-500 border-t-transparent mb-4" />
+              <p className="text-future-dusk-500">
                 {locale === 'fr' ? 'Calcul de votre ROI en cours...' : 'Calculating your ROI...'}
               </p>
             </div>
@@ -137,7 +153,7 @@ export default function ROICalculatorWizard({
 
           {/* Navigation */}
           {!isCalculating && (
-            <div className="flex justify-between mt-8 pt-6 border-t border-neutral-light">
+            <div className="flex justify-between mt-8 pt-6 border-t border-neutral-200">
               {currentStep > 1 ? (
                 <Button
                   type="button"
@@ -156,7 +172,7 @@ export default function ROICalculatorWizard({
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
+                  className="gap-2 bg-very-peri-500 hover:bg-very-peri-600"
                 >
                   {currentStep === 2 ? (
                     <>

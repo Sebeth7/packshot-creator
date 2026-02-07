@@ -40,10 +40,10 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
   const t = LABELS[locale];
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-neutral-light">
+    <div className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-neutral-200">
       <div className="flex flex-col md:flex-row gap-6">
         {/* Image placeholder */}
-        <div className="flex-shrink-0 w-full md:w-48 h-48 bg-neutral-lighter rounded-lg overflow-hidden flex items-center justify-center">
+        <div className="flex-shrink-0 w-full md:w-48 h-48 bg-neutral-100 rounded-lg overflow-hidden flex items-center justify-center">
           {machine.imageUrl ? (
             <Image
               src={machine.imageUrl}
@@ -53,7 +53,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
               className="object-cover"
             />
           ) : (
-            <div className="text-neutral-medium text-sm text-center p-4">
+            <div className="text-future-dusk-500 text-sm text-center p-4">
               {t.imagePlaceholder}
             </div>
           )}
@@ -62,38 +62,38 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
         {/* Infos */}
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-orbitvu text-white">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-very-peri-500 text-white">
               {t.recommended}
             </span>
-            <h3 className="text-xl md:text-2xl font-heading font-bold text-neutral-dark">
+            <h3 className="text-xl md:text-2xl font-heading font-bold text-future-dusk-900">
               {machine.nom}
             </h3>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
             <div>
-              <span className="text-neutral-medium">{t.capacity}</span>
-              <p className="font-bold text-neutral-dark">{machine.capaciteJour} {t.photosPerDay}</p>
+              <span className="text-future-dusk-500">{t.capacity}</span>
+              <p className="font-bold text-future-dusk-900">{machine.capaciteJour} {t.photosPerDay}</p>
             </div>
             <div>
-              <span className="text-neutral-medium">{t.maxSize}</span>
-              <p className="font-bold text-neutral-dark">{machine.tailleMax}</p>
+              <span className="text-future-dusk-500">{t.maxSize}</span>
+              <p className="font-bold text-future-dusk-900">{machine.tailleMax}</p>
             </div>
             <div>
-              <span className="text-neutral-medium">{t.maxWeight}</span>
-              <p className="font-bold text-neutral-dark">{machine.poidsMax}</p>
+              <span className="text-future-dusk-500">{t.maxWeight}</span>
+              <p className="font-bold text-future-dusk-900">{machine.poidsMax}</p>
             </div>
           </div>
 
           <div className="mb-4">
-            <p className="text-sm text-neutral-medium font-medium mb-2">
+            <p className="text-sm text-future-dusk-500 font-medium mb-2">
               {t.useCases}
             </p>
             <div className="flex flex-wrap gap-2">
               {machine.useCases.map(useCase => (
                 <span
                   key={useCase}
-                  className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-neutral-lighter text-neutral-dark"
+                  className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-neutral-100 text-future-dusk-900"
                 >
                   {useCase}
                 </span>
@@ -102,7 +102,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button className="bg-secondary-orbitvu hover:bg-primary-orbitvu">
+            <Button className="bg-very-peri-500 hover:bg-very-peri-600">
               {t.bookDemo}
             </Button>
             <Button variant="outline">

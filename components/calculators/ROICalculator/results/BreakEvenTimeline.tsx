@@ -56,8 +56,8 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       description: t.todayDesc,
       value: '',
       position: 0,
-      color: 'bg-secondary-orbitvu',
-      textColor: 'text-secondary-orbitvu',
+      color: 'bg-very-peri-500',
+      textColor: 'text-very-peri-600',
     },
     {
       icon: Check,
@@ -65,8 +65,8 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       description: t.breakevenDesc,
       value: `${breakEvenMonths} ${t.months}`,
       position: progressPercent,
-      color: 'bg-accent-success',
-      textColor: 'text-accent-success',
+      color: 'bg-emerald-500',
+      textColor: 'text-emerald-600',
     },
     {
       icon: TrendingUp,
@@ -74,8 +74,8 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       description: t.year1Desc,
       value: results.roiAn1 > 0 ? `+${formatEuro(results.economieAnnuelle - results.machine.prix)}` : '-',
       position: (12 / 60) * 100,
-      color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-medium',
-      textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-neutral-medium',
+      color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-400',
+      textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-future-dusk-500',
     },
     {
       icon: Rocket,
@@ -83,25 +83,25 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       description: t.year5Desc,
       value: `+${formatEuro(results.economie5ans)}`,
       position: 100,
-      color: 'bg-accent-success',
-      textColor: 'text-accent-success',
+      color: 'bg-emerald-500',
+      textColor: 'text-emerald-600',
     },
   ];
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-      <h3 className="text-xl font-heading font-bold text-neutral-dark mb-8">
+      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-8">
         {t.title}
       </h3>
 
       {/* Timeline visuelle */}
       <div className="relative">
         {/* Ligne de base */}
-        <div className="absolute top-6 left-0 right-0 h-1 bg-neutral-lighter rounded-full" />
+        <div className="absolute top-6 left-0 right-0 h-1 bg-neutral-100 rounded-full" />
 
         {/* Ligne de progression */}
         <div
-          className="absolute top-6 left-0 h-1 bg-gradient-to-r from-secondary-orbitvu via-accent-success to-accent-success rounded-full transition-all duration-1000"
+          className="absolute top-6 left-0 h-1 bg-gradient-to-r from-very-peri-500 via-emerald-500 to-emerald-500 rounded-full transition-all duration-1000"
           style={{ width: '100%' }}
         />
 
@@ -128,7 +128,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
                 <p className={cn('text-sm font-bold', milestone.textColor)}>
                   {milestone.label}
                 </p>
-                <p className="text-xs text-neutral-medium mt-1">
+                <p className="text-xs text-future-dusk-500 mt-1">
                   {milestone.description}
                 </p>
                 <p className={cn('text-sm font-bold mt-1', milestone.textColor)}>
@@ -141,7 +141,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       </div>
 
       {/* Indicateur de mois */}
-      <div className="mt-8 flex justify-between text-xs text-neutral-medium">
+      <div className="mt-8 flex justify-between text-xs text-future-dusk-500">
         <span>{t.month} 0</span>
         <span>{t.month} 15</span>
         <span>{t.month} 30</span>

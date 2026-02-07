@@ -36,15 +36,15 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <Label className="text-base font-medium text-neutral-dark">
+          <Label className="text-base font-medium text-future-dusk-900">
             {t.label}
           </Label>
-          <p className="text-sm text-neutral-medium mt-1">{t.sublabel}</p>
+          <p className="text-sm text-future-dusk-500 mt-1">{t.sublabel}</p>
         </div>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -65,11 +65,11 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
           className="w-full"
         />
         <div className="flex justify-between mt-2">
-          <span className="text-sm text-neutral-medium">1</span>
-          <span className="text-lg font-bold text-secondary-orbitvu">
+          <span className="text-sm text-future-dusk-500">1</span>
+          <span className="text-lg font-bold text-very-peri-600">
             {value} {t.unit}
           </span>
-          <span className="text-sm text-neutral-medium">20</span>
+          <span className="text-sm text-future-dusk-500">20</span>
         </div>
       </div>
 

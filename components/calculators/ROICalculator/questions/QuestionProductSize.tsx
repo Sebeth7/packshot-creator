@@ -34,10 +34,10 @@ export default function QuestionProductSize({ locale }: QuestionProductSizeProps
   return (
     <div className="space-y-4">
       <div>
-        <Label className="text-base font-medium text-neutral-dark">
+        <Label className="text-base font-medium text-future-dusk-900">
           {t.label}
         </Label>
-        <p className="text-sm text-neutral-medium mt-1">{t.sublabel}</p>
+        <p className="text-sm text-future-dusk-500 mt-1">{t.sublabel}</p>
       </div>
 
       <RadioGroup
@@ -60,19 +60,19 @@ export default function QuestionProductSize({ locale }: QuestionProductSizeProps
                 htmlFor={`size-${size}`}
                 className={cn(
                   'flex flex-col p-4 rounded-lg border-2 cursor-pointer transition-all',
-                  'hover:border-secondary-orbitvu hover:bg-secondary-orbitvu/5',
+                  'hover:border-very-peri-500 hover:bg-very-peri-50',
                   isSelected
-                    ? 'border-secondary-orbitvu bg-secondary-orbitvu/10'
-                    : 'border-neutral-light bg-white'
+                    ? 'border-very-peri-500 bg-very-peri-100'
+                    : 'border-neutral-200 bg-white'
                 )}
               >
                 <span className={cn(
                   'font-medium',
-                  isSelected ? 'text-secondary-orbitvu' : 'text-neutral-dark'
+                  isSelected ? 'text-very-peri-600' : 'text-future-dusk-900'
                 )}>
                   {locale === 'fr' ? label.fr : label.en}
                 </span>
-                <span className="text-xs text-neutral-medium mt-1">
+                <span className="text-xs text-future-dusk-500 mt-1">
                   {label.examples}
                 </span>
               </Label>

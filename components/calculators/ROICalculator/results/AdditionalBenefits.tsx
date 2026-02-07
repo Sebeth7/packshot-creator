@@ -57,8 +57,8 @@ export default function AdditionalBenefits({ results, locale }: AdditionalBenefi
       icon: Shield,
       title: t.consistency.title,
       description: t.consistency.description,
-      color: 'text-secondary-orbitvu',
-      bgColor: 'bg-secondary-orbitvu/10',
+      color: 'text-very-peri-600',
+      bgColor: 'bg-very-peri-100',
     },
     {
       icon: Zap,
@@ -81,14 +81,14 @@ export default function AdditionalBenefits({ results, locale }: AdditionalBenefi
       icon: Users,
       title: t.autonomy.title,
       description: t.autonomy.description,
-      color: 'text-accent-success',
-      bgColor: 'bg-accent-success/10',
+      color: 'text-emerald-600',
+      bgColor: 'bg-emerald-50',
     },
   ];
 
   return (
     <div className="mb-8">
-      <h3 className="text-xl font-heading font-bold text-neutral-dark mb-6">
+      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-6">
         {t.title}
       </h3>
 
@@ -96,7 +96,7 @@ export default function AdditionalBenefits({ results, locale }: AdditionalBenefi
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-5 shadow-md border border-neutral-light hover:shadow-lg transition-shadow"
+            className="bg-white rounded-xl p-5 shadow-md border border-neutral-200 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-start gap-4">
               <div className={`w-10 h-10 rounded-lg ${benefit.bgColor} flex items-center justify-center flex-shrink-0`}>
@@ -106,7 +106,7 @@ export default function AdditionalBenefits({ results, locale }: AdditionalBenefi
                 <h4 className={`font-heading font-bold ${benefit.color} mb-1`}>
                   {benefit.title}
                 </h4>
-                <p className="text-sm text-neutral-medium">
+                <p className="text-sm text-future-dusk-500">
                   {benefit.description}
                 </p>
               </div>

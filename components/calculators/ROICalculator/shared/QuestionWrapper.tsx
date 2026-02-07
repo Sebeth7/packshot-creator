@@ -24,18 +24,18 @@ export default function QuestionWrapper({
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <Label className="text-base font-medium text-neutral-dark">
+          <Label className="text-base font-medium text-future-dusk-900">
             {label}
           </Label>
           {sublabel && (
-            <p className="text-sm text-neutral-medium mt-1">{sublabel}</p>
+            <p className="text-sm text-future-dusk-500 mt-1">{sublabel}</p>
           )}
         </div>
         {tooltip && (
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button type="button" className="text-neutral-medium hover:text-secondary-orbitvu">
+                <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
                   <HelpCircle className="w-5 h-5" />
                 </button>
               </TooltipTrigger>

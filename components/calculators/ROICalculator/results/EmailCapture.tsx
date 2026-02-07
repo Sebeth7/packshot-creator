@@ -78,11 +78,11 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
 
   if (isSent) {
     return (
-      <div className="bg-accent-success/10 rounded-xl p-6 text-center">
-        <div className="w-12 h-12 rounded-full bg-accent-success/20 flex items-center justify-center mx-auto mb-4">
-          <Check className="w-6 h-6 text-accent-success" />
+      <div className="bg-emerald-50 rounded-xl p-6 text-center">
+        <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
+          <Check className="w-6 h-6 text-emerald-600" />
         </div>
-        <p className="text-accent-success font-medium">
+        <p className="text-emerald-600 font-medium">
           {t.success}
         </p>
       </div>
@@ -90,16 +90,16 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
   }
 
   return (
-    <div className="bg-neutral-lighter rounded-xl p-6">
+    <div className="bg-neutral-100 rounded-xl p-6">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-secondary-orbitvu/10 flex items-center justify-center flex-shrink-0">
-          <Mail className="w-5 h-5 text-secondary-orbitvu" />
+        <div className="w-10 h-10 rounded-lg bg-very-peri-100 flex items-center justify-center flex-shrink-0">
+          <Mail className="w-5 h-5 text-very-peri-600" />
         </div>
         <div>
-          <h4 className="font-heading font-bold text-neutral-dark">
+          <h4 className="font-heading font-bold text-future-dusk-900">
             {t.title}
           </h4>
-          <p className="text-sm text-neutral-medium">
+          <p className="text-sm text-future-dusk-500">
             {t.subtitle}
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
         <Button
           type="submit"
           disabled={isLoading}
-          className="gap-2 bg-secondary-orbitvu hover:bg-primary-orbitvu"
+          className="gap-2 bg-very-peri-500 hover:bg-very-peri-600"
         >
           <Download className="w-4 h-4" />
           {isLoading ? t.sending : t.submit}

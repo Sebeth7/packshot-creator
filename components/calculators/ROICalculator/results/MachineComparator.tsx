@@ -100,35 +100,35 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
     <div
       className={`bg-white rounded-xl border-2 transition-all ${
         isRecommended
-          ? 'border-secondary-orbitvu shadow-lg'
+          ? 'border-very-peri-500 shadow-lg'
           : isSelected
-          ? 'border-primary-gold shadow-md'
-          : 'border-neutral-light hover:border-neutral-medium'
+          ? 'border-amber-500 shadow-md'
+          : 'border-neutral-200 hover:border-neutral-300'
       }`}
     >
       {/* Header */}
-      <div className="p-4 border-b border-neutral-lighter">
+      <div className="p-4 border-b border-neutral-100">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               {isRecommended && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-secondary-orbitvu text-white">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-very-peri-500 text-white">
                   <Star className="w-3 h-3" />
                   {t.recommended}
                 </span>
               )}
               {isSelected && !isRecommended && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-gold text-white">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500 text-white">
                   {t.currentSelected}
                 </span>
               )}
             </div>
-            <h4 className="font-heading font-bold text-lg text-neutral-dark">
+            <h4 className="font-heading font-bold text-lg text-future-dusk-900">
               {machine.nom}
             </h4>
           </div>
           <div className="text-right">
-            <div className="text-xs text-neutral-medium">{t.score}</div>
+            <div className="text-xs text-future-dusk-500">{t.score}</div>
             <div className={`text-2xl font-bold ${
               eligibility.score >= 70 ? 'text-green-600' :
               eligibility.score >= 50 ? 'text-yellow-600' : 'text-red-600'
@@ -141,28 +141,28 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
         {/* Specs rapides */}
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div>
-            <span className="text-neutral-medium text-xs">{t.capacity}</span>
+            <span className="text-future-dusk-500 text-xs">{t.capacity}</span>
             <p className="font-semibold">{machine.capaciteJour} {t.photosPerDay}</p>
           </div>
           <div>
-            <span className="text-neutral-medium text-xs">{t.automation}</span>
+            <span className="text-future-dusk-500 text-xs">{t.automation}</span>
             <p className="font-semibold">{automationLabel}</p>
           </div>
         </div>
       </div>
 
       {/* ROI Metrics */}
-      <div className="p-4 bg-neutral-lighter/50">
+      <div className="p-4 bg-neutral-50">
         <div className="grid grid-cols-3 gap-2 text-center">
           <div>
-            <div className="text-xs text-neutral-medium">{t.annualSavings}</div>
+            <div className="text-xs text-future-dusk-500">{t.annualSavings}</div>
             <div className={`font-bold ${roiResults.economieAnnuelle > 0 ? 'text-green-600' : 'text-red-600'}`}>
               {formatEuro(roiResults.economieAnnuelle)}
             </div>
           </div>
           <div>
-            <div className="text-xs text-neutral-medium">{t.breakEven}</div>
-            <div className="font-bold text-neutral-dark">
+            <div className="text-xs text-future-dusk-500">{t.breakEven}</div>
+            <div className="font-bold text-future-dusk-900">
               {roiResults.breakEvenMois
                 ? `${Math.round(roiResults.breakEvenMois)} ${t.months}`
                 : '—'
@@ -170,7 +170,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
             </div>
           </div>
           <div>
-            <div className="text-xs text-neutral-medium">{t.roi5years}</div>
+            <div className="text-xs text-future-dusk-500">{t.roi5years}</div>
             <div className={`font-bold ${roiResults.roi5ans > 0 ? 'text-green-600' : 'text-red-600'}`}>
               {roiResults.roi5ans > 0 ? '+' : ''}{Math.round(roiResults.roi5ans)}%
             </div>
@@ -180,18 +180,18 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
 
       {/* Détails expandables */}
       {expanded && (
-        <div className="p-4 border-t border-neutral-lighter">
+        <div className="p-4 border-t border-neutral-100">
           <div className="grid grid-cols-2 gap-4 text-sm mb-4">
             <div>
-              <span className="text-neutral-medium text-xs">{t.maxSize}</span>
+              <span className="text-future-dusk-500 text-xs">{t.maxSize}</span>
               <p className="font-medium">{machine.tailleMax}</p>
             </div>
             <div>
-              <span className="text-neutral-medium text-xs">{t.maxWeight}</span>
+              <span className="text-future-dusk-500 text-xs">{t.maxWeight}</span>
               <p className="font-medium">{machine.poidsMax}</p>
             </div>
             <div className="col-span-2">
-              <span className="text-neutral-medium text-xs">{t.space}</span>
+              <span className="text-future-dusk-500 text-xs">{t.space}</span>
               <p className="font-medium">{machine.spaceRequired}</p>
             </div>
           </div>
@@ -199,7 +199,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
           {/* Critères matching */}
           {eligibility.matchingCriteria.length > 0 && (
             <div className="mb-3">
-              <p className="text-xs font-medium text-neutral-medium mb-1">{t.matchingCriteria}</p>
+              <p className="text-xs font-medium text-future-dusk-500 mb-1">{t.matchingCriteria}</p>
               <div className="flex flex-wrap gap-1">
                 {eligibility.matchingCriteria.map((criteria, i) => (
                   <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-green-100 text-green-700">
@@ -214,7 +214,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
           {/* Critères manquants */}
           {eligibility.missingCriteria.length > 0 && (
             <div className="mb-3">
-              <p className="text-xs font-medium text-neutral-medium mb-1">{t.missingCriteria}</p>
+              <p className="text-xs font-medium text-future-dusk-500 mb-1">{t.missingCriteria}</p>
               <div className="flex flex-wrap gap-1">
                 {eligibility.missingCriteria.map((criteria, i) => (
                   <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-yellow-100 text-yellow-700">
@@ -228,10 +228,10 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
 
           {/* Avantages */}
           <div className="mb-3">
-            <p className="text-xs font-medium text-neutral-medium mb-1">{t.advantages}</p>
+            <p className="text-xs font-medium text-future-dusk-500 mb-1">{t.advantages}</p>
             <ul className="space-y-1">
               {machine.keyAdvantages.slice(0, 3).map((adv, i) => (
-                <li key={i} className="text-xs text-neutral-dark flex items-start gap-1">
+                <li key={i} className="text-xs text-future-dusk-900 flex items-start gap-1">
                   <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
                   {adv[locale]}
                 </li>
@@ -242,10 +242,10 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
           {/* Limitations */}
           {machine.limitations.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-neutral-medium mb-1">{t.limitations}</p>
+              <p className="text-xs font-medium text-future-dusk-500 mb-1">{t.limitations}</p>
               <ul className="space-y-1">
                 {machine.limitations.map((lim, i) => (
-                  <li key={i} className="text-xs text-neutral-dark flex items-start gap-1">
+                  <li key={i} className="text-xs text-future-dusk-900 flex items-start gap-1">
                     <XCircle className="w-3 h-3 text-yellow-500 mt-0.5 flex-shrink-0" />
                     {lim[locale]}
                   </li>
@@ -257,11 +257,11 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
       )}
 
       {/* Actions */}
-      <div className="p-4 border-t border-neutral-lighter flex items-center justify-between">
+      <div className="p-4 border-t border-neutral-100 flex items-center justify-between">
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="text-sm text-secondary-orbitvu hover:text-primary-orbitvu flex items-center gap-1"
+          className="text-sm text-very-peri-600 hover:text-very-peri-700 flex items-center gap-1"
         >
           {expanded ? (
             <>
@@ -280,7 +280,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
             size="sm"
             variant={isSelected ? 'outline' : 'default'}
             onClick={onSelect}
-            className={isSelected ? '' : 'bg-secondary-orbitvu hover:bg-primary-orbitvu'}
+            className={isSelected ? '' : 'bg-very-peri-500 hover:bg-very-peri-600'}
           >
             {t.selectMachine}
           </Button>
@@ -323,10 +323,10 @@ export default function MachineComparator({
   return (
     <div className="mb-8">
       <div className="mb-6">
-        <h3 className="text-xl font-heading font-bold text-neutral-dark mb-2">
+        <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
           {t.title}
         </h3>
-        <p className="text-neutral-medium">
+        <p className="text-future-dusk-500">
           {eligibleMachines.length > 0 ? t.subtitle : t.noEligibleMachines}
         </p>
       </div>
