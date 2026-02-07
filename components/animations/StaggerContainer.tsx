@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect, type ReactNode } from "react";
 
 interface StaggerContainerProps {
   children: ReactNode;
@@ -21,24 +21,23 @@ export default function StaggerContainer({
   amount = 0.2,
 }: StaggerContainerProps) {
   const shouldReduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, amount });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // SSR + pre-mount: render visible plain div (no opacity:0)
+  // SSR + pre-mount: render visible plain div (no opacity:0 inline styles)
   if (shouldReduce || !mounted) {
-    return <div ref={ref} className={className}>{children}</div>;
+    return <div className={className}>{children}</div>;
   }
 
+  // After mount: motion.div with whileInView (manages its own IntersectionObserver)
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once, amount }}
       variants={{
         hidden: { opacity: 0 },
         visible: {

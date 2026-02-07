@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -33,8 +33,6 @@ export default function FadeInView({
   amount = 0.2,
 }: FadeInViewProps) {
   const shouldReduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, amount });
   const [mounted, setMounted] = useState(false);
   const offset = offsets[direction];
 
@@ -42,16 +40,17 @@ export default function FadeInView({
     setMounted(true);
   }, []);
 
-  // SSR + pre-mount: render visible plain div (no opacity:0)
+  // SSR + pre-mount: render visible plain div (no opacity:0 inline styles)
   if (shouldReduce || !mounted) {
-    return <div ref={ref} className={className}>{children}</div>;
+    return <div className={className}>{children}</div>;
   }
 
+  // After mount: motion.div with whileInView (manages its own IntersectionObserver)
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: offset.x, y: offset.y }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once, amount }}
       transition={{
         duration,
         delay,
