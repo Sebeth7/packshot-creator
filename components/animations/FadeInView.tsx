@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -33,19 +33,25 @@ export default function FadeInView({
   amount = 0.2,
 }: FadeInViewProps) {
   const shouldReduce = useReducedMotion();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount });
+  const [mounted, setMounted] = useState(false);
   const offset = offsets[direction];
 
-  if (shouldReduce) {
-    return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // SSR + pre-mount: render visible plain div (no opacity:0)
+  if (shouldReduce || !mounted) {
+    return <div ref={ref} className={className}>{children}</div>;
   }
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: offset.x, y: offset.y }}
+      initial={false}
       transition={{
         duration,
         delay,

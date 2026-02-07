@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 
 interface StaggerContainerProps {
   children: ReactNode;
@@ -21,11 +21,17 @@ export default function StaggerContainer({
   amount = 0.2,
 }: StaggerContainerProps) {
   const shouldReduce = useReducedMotion();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount });
+  const [mounted, setMounted] = useState(false);
 
-  if (shouldReduce) {
-    return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // SSR + pre-mount: render visible plain div (no opacity:0)
+  if (shouldReduce || !mounted) {
+    return <div ref={ref} className={className}>{children}</div>;
   }
 
   return (
