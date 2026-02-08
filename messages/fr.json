@@ -618,5 +618,325 @@
         "cta": "Télécharger le guide"
       }
     }
+  },
+  "packshotBijoux": {
+    "meta": {
+      "title": "Packshot Bijoux | Photos Joaillerie Automatisées",
+      "description": "Studio photo automatisé pour bijoux et joaillerie. Rendu macro ultra-détaillé, photo 360° interactive, fond neutre sans retouche. 50 bijoux/heure."
+    },
+    "hero": {
+      "title": "Packshot Bijoux : Sublimez Vos Créations en Photo",
+      "subtitle": "Des photos de bijoux professionnelles avec un rendu macro exceptionnel, en toute autonomie.",
+      "cta": "Recevoir une offre"
+    },
+    "benefits": {
+      "heading": "Pourquoi choisir un studio automatisé pour vos bijoux ?",
+      "item1": {
+        "title": "Rendu macro ultra-détaillé",
+        "description": "Chaque facette, chaque reflet capturé avec une précision remarquable grâce au Super Focus."
+      },
+      "item2": {
+        "title": "Photo 360° interactive",
+        "description": "Offrez à vos clients une expérience immersive sur votre site e-commerce avec la rotation 360°."
+      },
+      "item3": {
+        "title": "Fond parfaitement neutre",
+        "description": "Détourage automatique IQ Mask : fond blanc professionnel sans aucune retouche manuelle."
+      },
+      "item4": {
+        "title": "50 bijoux photographiés par heure",
+        "description": "Automatisation complète du processus : positionnement, éclairage, capture et export en quelques secondes."
+      },
+      "item5": {
+        "title": "Compatible marketplaces",
+        "description": "Exports optimisés pour Amazon, Etsy, Shopify et toutes les plateformes e-commerce."
+      }
+    },
+    "stats": {
+      "stat1": { "value": "10x", "label": "plus rapide qu'un studio classique" },
+      "stat2": { "value": "100%", "label": "détourage automatique" },
+      "stat3": { "value": "-80%", "label": "de coûts par image" }
+    },
+    "machines": {
+      "heading": "Machines recommandées pour la bijouterie",
+      "subtitle": "Des studios conçus pour sublimer les petits objets précieux"
+    },
+    "faq": {
+      "heading": "Questions fréquentes sur la photo de bijoux",
+      "q1": {
+        "question": "Comment photographier des bijoux brillants sans reflets parasites ?",
+        "answer": "Les studios Orbitvu disposent d'un éclairage LED diffus et calibré qui élimine les reflets parasites. Le système IQ Mask assure un détourage parfait même sur les surfaces réfléchissantes comme l'or ou les pierres précieuses."
+      },
+      "q2": {
+        "question": "Quel fond utiliser pour la photo de bijoux ?",
+        "answer": "Le fond blanc est le standard e-commerce. Nos studios produisent un fond blanc pur automatiquement grâce au détourage IQ Mask. Vous pouvez aussi choisir un fond gris ou noir pour le luxe."
+      },
+      "q3": {
+        "question": "Combien coûte un studio photo pour bijoux ?",
+        "answer": "L'Alphashot Micro Pro v2, spécialisé bijoux et petits objets, est disponible à partir de 15 450 €. Le retour sur investissement est atteint en 4 à 8 mois pour les joailliers produisant plus de 1 000 visuels par an."
+      }
+    },
+    "cta": {
+      "heading": "Prêt à sublimer vos créations joaillières ?",
+      "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo bijoux.",
+      "ctaPrimary": "Demander une démo",
+      "ctaSecondary": "Calculer mon ROI"
+    }
+  },
+  "packshotMode": {
+    "meta": {
+      "title": "Packshot Mode | Photos Vêtements E-commerce Automatisées",
+      "description": "Studio photo automatisé pour la mode et le textile. Photos à plat, mannequin, ghost, 360°. Centaines de pièces par jour. Intégration catalogue e-commerce."
+    },
+    "hero": {
+      "title": "Packshot Mode : Photos E-commerce pour Textile et Vêtements",
+      "subtitle": "Production photo professionnelle à haute cadence pour le prêt-à-porter et la mode.",
+      "cta": "Recevoir une offre"
+    },
+    "benefits": {
+      "heading": "Pourquoi automatiser votre production photo mode ?",
+      "item1": {
+        "title": "Photos à plat ou sur mannequin",
+        "description": "Flat-lay avec l'Alphadesk ou photo portée avec les studios grand format. Toutes les techniques en un seul workflow."
+      },
+      "item2": {
+        "title": "Rendu fidèle des textures et couleurs",
+        "description": "Éclairage LED calibré pour une reproduction exacte des matières, teintes et détails textiles."
+      },
+      "item3": {
+        "title": "Photo 360° immersive",
+        "description": "Offrez une expérience client interactive avec la rotation 360° de vos vêtements et accessoires."
+      },
+      "item4": {
+        "title": "Volume : centaines de pièces par jour",
+        "description": "Production à haute cadence grâce à l'automatisation complète : capture, détourage, export simultanés."
+      },
+      "item5": {
+        "title": "Intégration catalogue e-commerce",
+        "description": "Export direct vers votre PIM, DAM ou plateforme e-commerce avec les bons formats et métadonnées."
+      }
+    },
+    "stats": {
+      "stat1": { "value": "500+", "label": "pièces photographiées par jour" },
+      "stat2": { "value": "3s", "label": "par packshot fond blanc" },
+      "stat3": { "value": "-80%", "label": "de coûts vs studio externe" }
+    },
+    "machines": {
+      "heading": "Machines recommandées pour la mode",
+      "subtitle": "Des studios adaptés au textile, de la chaussure au prêt-à-porter"
+    },
+    "faq": {
+      "heading": "Questions fréquentes sur la photo de mode",
+      "q1": {
+        "question": "Comment photographier des vêtements pour un site e-commerce ?",
+        "answer": "Trois techniques principales : la photo à plat (flat-lay) avec l'Alphadesk, la photo sur mannequin invisible (ghost) ou la photo portée sur modèle. Nos studios automatisent chaque technique avec un éclairage calibré et un détourage instantané."
+      },
+      "q2": {
+        "question": "Photo à plat vs mannequin : quelle méthode choisir ?",
+        "answer": "La photo à plat est idéale pour les t-shirts, pulls et accessoires. Le mannequin invisible (ghost) convient aux vestes, robes et chemises pour un rendu 3D. La photo portée sur modèle valorise la coupe et le tombé. La plupart des marques combinent les trois techniques."
+      },
+      "q3": {
+        "question": "Quel éclairage pour la photo de mode ?",
+        "answer": "L'éclairage LED diffus est essentiel pour reproduire fidèlement les couleurs et textures. Les studios Orbitvu intègrent un éclairage automatique qui s'adapte à chaque type de textile, éliminant les ombres et reflets indésirables."
+      }
+    },
+    "cta": {
+      "heading": "Prêt à accélérer votre production photo mode ?",
+      "description": "Découvrez nos solutions lors d'une démonstration avec un expert photo textile.",
+      "ctaPrimary": "Demander une démo",
+      "ctaSecondary": "Calculer mon ROI"
+    }
+  },
+  "packshotEcommerce": {
+    "meta": {
+      "title": "Packshot E-commerce | Photos Produit Pro en Volume",
+      "description": "Studio photo automatisé pour l'e-commerce. 500+ produits/jour, fond blanc Amazon-ready, photo 360° interactive. ROI en 4-8 mois. Réduction de 80% des coûts."
+    },
+    "hero": {
+      "title": "Packshot E-commerce : Photos Produit Professionnelles en Volume",
+      "subtitle": "Produisez des milliers de visuels produit de qualité studio, en interne, à une fraction du coût.",
+      "cta": "Recevoir une offre"
+    },
+    "benefits": {
+      "heading": "Pourquoi internaliser votre production photo e-commerce ?",
+      "item1": {
+        "title": "Production en volume : 500+ produits/jour",
+        "description": "Automatisation complète du workflow photo : positionnement, éclairage, capture, détourage et export en quelques secondes."
+      },
+      "item2": {
+        "title": "Fond blanc Amazon-ready",
+        "description": "Détourage automatique IQ Mask : visuels conformes aux exigences Amazon, Zalando, Cdiscount et toutes les marketplaces."
+      },
+      "item3": {
+        "title": "Photo 360° interactive",
+        "description": "Augmentez vos conversions avec des visuels 360° que vos clients peuvent faire pivoter sur votre site."
+      },
+      "item4": {
+        "title": "Réduction des coûts de 80%",
+        "description": "Passez de 5-15 € par photo en studio externe à moins de 1 € par image en interne avec un studio automatisé."
+      },
+      "item5": {
+        "title": "ROI mesurable",
+        "description": "Retour sur investissement en 4 à 8 mois. Utilisez notre calculateur ROI pour une estimation personnalisée."
+      }
+    },
+    "stats": {
+      "stat1": { "value": "500+", "label": "produits photographiés par jour" },
+      "stat2": { "value": "80%", "label": "de réduction des coûts" },
+      "stat3": { "value": "4-8", "label": "mois pour le retour sur investissement" }
+    },
+    "machines": {
+      "heading": "Machines recommandées pour l'e-commerce",
+      "subtitle": "Des studios polyvalents pour tous types de produits"
+    },
+    "faq": {
+      "heading": "Questions fréquentes sur la photo e-commerce",
+      "q1": {
+        "question": "Quel studio photo pour l'e-commerce en 2026 ?",
+        "answer": "Les studios automatisés Orbitvu sont la référence pour la photo e-commerce en volume. L'Alphashot 360 et l'Alphashot G2 couvrent la majorité des besoins avec packshot, 360° et vidéo intégrés. Pour les petits objets, l'Alphashot Micro Pro v2 offre un rendu macro exceptionnel."
+      },
+      "q2": {
+        "question": "Comment réduire les coûts de photo produit ?",
+        "answer": "L'internalisation avec un studio automatisé réduit le coût par image de 80% vs un studio externe. L'automatisation élimine le besoin de photographe spécialisé et de retoucheur. Un opérateur sans compétence photo produit des visuels professionnels en quelques secondes."
+      },
+      "q3": {
+        "question": "Quels formats d'image pour les marketplaces ?",
+        "answer": "Amazon exige un fond blanc pur (RGB 255,255,255), 1000px minimum, format JPEG. Nos studios exportent directement dans les formats requis par chaque marketplace : Amazon, Shopify, Zalando, Cdiscount. Le détourage IQ Mask garantit un fond blanc conforme."
+      }
+    },
+    "cta": {
+      "heading": "Prêt à booster votre production photo e-commerce ?",
+      "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo produit.",
+      "ctaPrimary": "Demander une démo",
+      "ctaSecondary": "Calculer mon ROI"
+    }
+  },
+  "packshotAmazon": {
+    "meta": {
+      "title": "Packshot Amazon | Photos Conformes Marketplace",
+      "description": "Studio photo automatise pour Amazon et marketplaces. Fond blanc pur RGB 255, detourage automatique, photo 360, traitement par lots. Conformite garantie."
+    },
+    "hero": {
+      "title": "Packshot Amazon : Photos Conformes aux Exigences Marketplace",
+      "subtitle": "Des photos produit conformes aux standards Amazon, generees automatiquement avec un studio Orbitvu.",
+      "cta": "Recevoir une offre"
+    },
+    "benefits": {
+      "heading": "Pourquoi un studio automatise pour vos photos Amazon ?",
+      "item1": {
+        "title": "Fond blanc pur garanti (RGB 255,255,255)",
+        "description": "Detourage automatique IQ Mask : fond blanc conforme Amazon des la capture, sans retouche manuelle."
+      },
+      "item2": {
+        "title": "Detourage automatique precis",
+        "description": "Chaque produit est automatiquement detoure avec une precision pixel-perfect pour un rendu professionnel."
+      },
+      "item3": {
+        "title": "Photo 360 pour fiches enrichies",
+        "description": "Ajoutez des vues 360 interactives a vos fiches Amazon A+ Content pour augmenter vos conversions."
+      },
+      "item4": {
+        "title": "Traitement par lots haute cadence",
+        "description": "Photographiez des centaines de produits par jour. Ideal pour les catalogues Amazon de grande taille."
+      },
+      "item5": {
+        "title": "Formats optimises marketplace",
+        "description": "Export JPEG/PNG aux dimensions exactes requises par Amazon, Cdiscount, Zalando et toutes les marketplaces."
+      }
+    },
+    "stats": {
+      "stat1": { "value": "100%", "label": "conforme aux exigences Amazon" },
+      "stat2": { "value": "500+", "label": "produits par jour" },
+      "stat3": { "value": "-80%", "label": "de couts par image" }
+    },
+    "machines": {
+      "heading": "Machines recommandees pour Amazon",
+      "subtitle": "Des studios compacts et performants pour la photo marketplace"
+    },
+    "faq": {
+      "heading": "Questions frequentes sur la photo Amazon",
+      "q1": {
+        "question": "Quelles sont les exigences photo Amazon en 2026 ?",
+        "answer": "Amazon exige un fond blanc pur (RGB 255,255,255), une resolution minimum de 1000x1000 pixels (2000px recommande), le format JPEG ou PNG, et le produit doit occuper au moins 85% du cadre. Nos studios produisent automatiquement des images conformes a toutes ces specifications."
+      },
+      "q2": {
+        "question": "Comment avoir un fond blanc pur pour Amazon ?",
+        "answer": "Le systeme IQ Mask des studios Orbitvu detoure automatiquement chaque produit et genere un fond blanc pur RGB 255,255,255. Aucune retouche Photoshop n'est necessaire. Le resultat est conforme Amazon des la capture."
+      },
+      "q3": {
+        "question": "Comment automatiser les photos produit pour une marketplace ?",
+        "answer": "Les studios Orbitvu automatisent tout le processus : positionnement, eclairage calibre, capture multi-angle, detourage et export. Un operateur sans competence photo produit des visuels conformes Amazon en quelques secondes par produit."
+      }
+    },
+    "cta": {
+      "heading": "Pret a optimiser vos visuels marketplace ?",
+      "description": "Decouvrez comment nos studios automatises produisent des photos Amazon-ready en volume.",
+      "ctaPrimary": "Demander une demo",
+      "ctaSecondary": "Calculer mon ROI"
+    }
+  },
+  "packshotIndustriel": {
+    "meta": {
+      "title": "Packshot Industriel | Documentation Visuelle de Precision",
+      "description": "Studio photo automatise pour l'industrie. Pieces mecaniques, surfaces metalliques, photo 360, integration PIM/DAM. Standardisation visuelle multi-references."
+    },
+    "hero": {
+      "title": "Packshot Industriel : Documentation Visuelle de Precision",
+      "subtitle": "Photographiez vos pieces techniques et equipements industriels avec une precision et une regularite absolues.",
+      "cta": "Recevoir une offre"
+    },
+    "benefits": {
+      "heading": "Pourquoi un studio automatise pour l'industrie ?",
+      "item1": {
+        "title": "Rendu des details mecaniques",
+        "description": "Eclairage calibre et macrophotographie pour capturer filetages, usinages, gravures et finitions de surface."
+      },
+      "item2": {
+        "title": "Photo 360 pour catalogues techniques",
+        "description": "Vues 360 interactives de vos pieces detachees pour faciliter l'identification et reduire les erreurs de commande."
+      },
+      "item3": {
+        "title": "Eclairage controle pour surfaces metalliques",
+        "description": "Gestion avancee des reflets sur acier, aluminium, laiton et autres metaux grace a l'eclairage polarise."
+      },
+      "item4": {
+        "title": "Standardisation visuelle multi-references",
+        "description": "Meme rendu, meme eclairage, meme angle sur l'ensemble de votre catalogue technique, quelle que soit la quantite."
+      },
+      "item5": {
+        "title": "Integration PIM/DAM",
+        "description": "Export automatique avec nomenclatures, codes produit et metadonnees pour integration directe dans vos systemes PIM/ERP."
+      }
+    },
+    "stats": {
+      "stat1": { "value": "150+", "label": "pieces photographiees par jour" },
+      "stat2": { "value": "100%", "label": "standardisation visuelle" },
+      "stat3": { "value": "-70%", "label": "de temps de documentation" }
+    },
+    "machines": {
+      "heading": "Machines recommandees pour l'industrie",
+      "subtitle": "Des studios robustes pour les pieces techniques et mecaniques"
+    },
+    "faq": {
+      "heading": "Questions frequentes sur la photo industrielle",
+      "q1": {
+        "question": "Comment photographier des pieces metalliques sans reflets ?",
+        "answer": "Les studios Orbitvu disposent d'un eclairage LED polarise qui controle les reflets sur les surfaces metalliques (acier, aluminium, laiton). Le systeme permet d'ajuster precisement l'angle et l'intensite lumineuse pour un rendu optimal."
+      },
+      "q2": {
+        "question": "Quel studio photo pour les pieces techniques ?",
+        "answer": "L'Alphashot XL v2 est ideal pour les pieces moyennes (jusqu'a 50cm), tandis que l'Alphashot Pro G2 offre 74 sources lumineuses pour un controle total sur les objets reflechissants. Les deux proposent la photo 360 et le detourage automatique."
+      },
+      "q3": {
+        "question": "Comment standardiser la photo produit industrielle ?",
+        "answer": "Les studios automatises garantissent le meme eclairage, le meme cadrage et le meme fond pour chaque reference. Un operateur sans competence photo produit des visuels identiques sur des milliers de pieces, assurant la coherence de votre catalogue technique."
+      }
+    },
+    "cta": {
+      "heading": "Pret a moderniser votre documentation visuelle ?",
+      "description": "Decouvrez comment nos studios automatises transforment la documentation technique de vos produits industriels.",
+      "ctaPrimary": "Demander une demo",
+      "ctaSecondary": "Calculer mon ROI"
+    }
   }
 }
