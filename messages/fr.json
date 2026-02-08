@@ -32,7 +32,7 @@
     },
     "intro": {
       "heading": "La gamme de studios photo qui allie rapidité et inspiration",
-      "text1": "Avec plus de 20 ans d'expertise, PackshotCreator a redéfini la création de contenu visuel. Nos partenariats avec Orbitvu et ShotFlow ont permis d'enrichir notre gamme pour répondre aux exigences les plus élevées.",
+      "text1": "Avec plus de 20 ans d'expertise, PackshotCreator a redéfini la création de contenu visuel. Notre partenariat avec Orbitvu a permis d'enrichir notre gamme pour répondre aux exigences les plus élevées.",
       "text2": "Une gamme complète de studios photo pour s'adapter à chaque besoin. L'automatisation pilotée par logiciel offre un gain de rapidité et de fluidité tout au long du processus de création visuelle.",
       "cta": "Contacter un expert"
     },
@@ -45,16 +45,6 @@
       "feature3": "Une productivité maximale",
       "feature4": "De la capture multi-angles à la 3D",
       "cta": "Découvrez nos studios automatisés"
-    },
-    "shotflow": {
-      "brand": "ShotFlow",
-      "heading": "Maîtrise de la gestion du flux de travail",
-      "description": "ShotFlow est l'outil référence qui permet de maîtriser toutes les étapes de création de contenu visuel, donnant à chaque service de l'entreprise les moyens d'agir ou transformer le processus de production.",
-      "feature1": "Gestion du cloud",
-      "feature2": "Processus automatisé",
-      "feature3": "Collaboration en temps réel",
-      "feature4": "Intégration e-commerce",
-      "cta": "Découvrir ShotFlow"
     },
     "alphashot": {
       "heading": "Automatisation, IA : testez Alphashot Pro G2",

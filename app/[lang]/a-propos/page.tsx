@@ -45,7 +45,7 @@ export default async function AProposPage({ params }: PageProps) {
     { year: '2014', titleFr: '3D accessible', titleEn: 'Accessible 3D', descFr: 'MaestroBot démocratisant la photogrammétrie', descEn: 'MaestroBot democratizing photogrammetry' },
     { year: '2018', titleFr: 'Lumière réinventée', titleEn: 'Reinvented lighting', descFr: 'Packshot Creator R3 Mark II', descEn: 'Packshot Creator R3 Mark II' },
     { year: '2023', titleFr: 'Alliance stratégique Orbitvu', titleEn: 'Orbitvu strategic alliance', descFr: '150 employés, 4000 m² de production', descEn: '150 employees, 4000 m² production' },
-    { year: '2024', titleFr: 'Intelligence artificielle', titleEn: 'Artificial intelligence', descFr: 'Alphashot Pro G2 et partenariat ShotFlow', descEn: 'Alphashot Pro G2 and ShotFlow partnership' },
+    { year: '2024', titleFr: 'Intelligence artificielle', titleEn: 'Artificial intelligence', descFr: 'Alphashot Pro G2 et innovations IA', descEn: 'Alphashot Pro G2 and AI innovations' },
   ];
 
   const values = [
