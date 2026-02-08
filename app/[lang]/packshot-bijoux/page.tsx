@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/components/templates/PackshotLandingTemplate';
-import { Wrench, RotateCw, Lightbulb, Repeat, Plug } from 'lucide-react';
+import { Gem, ScanSearch, RotateCw, Eraser, Zap, ShoppingBag } from 'lucide-react';
 
 const CONFIG: PackshotLandingConfig = {
-  namespace: 'packshotIndustriel',
-  slug: 'packshot-industriel',
-  heroIcon: Wrench,
-  heroBadge: { fr: 'Industrie & Technique', en: 'Industry & Technical' },
-  benefitIcons: [Wrench, RotateCw, Lightbulb, Repeat, Plug],
-  machineIds: ['alphashot-xl-v2', 'alphashot-pro-g2'],
+  namespace: 'packshotBijoux',
+  slug: 'packshot-bijoux',
+  heroIcon: Gem,
+  heroBadge: { fr: 'Bijoux & Joaillerie', en: 'Jewelry & Watchmaking' },
+  benefitIcons: [ScanSearch, RotateCw, Eraser, Zap, ShoppingBag],
+  machineIds: ['alphashot-micro-v2', 'alphashot-xl-v2'],
   faqCount: 3,
 };
 
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function PackshotIndustrielPage({ params }: PageProps) {
+export default async function PackshotBijouxPage({ params }: PageProps) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
 

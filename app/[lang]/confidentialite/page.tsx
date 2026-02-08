@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { getTranslations } from 'next-intl/server';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -10,15 +11,11 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
-  const isFr = lang === 'fr';
+  const t = await getTranslations({ locale: lang, namespace: 'privacy' });
 
   return {
-    title: isFr
-      ? 'Politique de Confidentialité | PackshotCreator'
-      : 'Privacy Policy | PackshotCreator',
-    description: isFr
-      ? 'Politique de confidentialité et protection des données personnelles de PackshotCreator. Conformité RGPD.'
-      : 'PackshotCreator privacy policy and personal data protection. GDPR compliance.',
+    title: t('meta.title'),
+    description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/confidentialite`,
       languages: { fr: '/fr/confidentialite', en: '/en/confidentialite' },
@@ -28,11 +25,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ConfidentialitePage({ params }: PageProps) {
   const { lang } = await params;
-  const isFr = lang === 'fr';
+  const t = await getTranslations({ locale: lang, namespace: 'privacy' });
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: isFr ? 'Confidentialité' : 'Privacy', url: `https://www.packshot-creator.com/${lang}/confidentialite` },
+    { name: t('breadcrumb'), url: `https://www.packshot-creator.com/${lang}/confidentialite` },
+  ];
+
+  const dataCollected = [
+    { key: 'contactForms', title: t('article2.contactForms.title'), description: t('article2.contactForms.description') },
+    { key: 'interactiveTools', title: t('article2.interactiveTools.title'), description: t('article2.interactiveTools.description') },
+    { key: 'navigation', title: t('article2.navigation.title'), description: t('article2.navigation.description') },
+  ];
+
+  const purposes = [
+    t('article3.purpose1'),
+    t('article3.purpose2'),
+    t('article3.purpose3'),
+    t('article3.purpose4'),
+    t('article3.purpose5'),
+  ];
+
+  const rights = [
+    t('article5.right1'),
+    t('article5.right2'),
+    t('article5.right3'),
+    t('article5.right4'),
+    t('article5.right5'),
+    t('article5.right6'),
+  ];
+
+  const cookies = [
+    { key: 'essential', title: t('article6.essential.title'), description: t('article6.essential.description') },
+    { key: 'analytics', title: t('article6.analytics.title'), description: t('article6.analytics.description') },
+    { key: 'marketing', title: t('article6.marketing.title'), description: t('article6.marketing.description') },
   ];
 
   return (
@@ -45,13 +71,11 @@ export default async function ConfidentialitePage({ params }: PageProps) {
               <Shield className="h-6 w-6" />
             </span>
             <h1 className="text-4xl sm:text-5xl font-heading font-bold">
-              {isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
+              {t('hero.title')}
             </h1>
           </div>
           <p className="text-future-dusk-200">
-            {isFr
-              ? 'La société Sysnext accorde une grande importance à la protection de vos données personnelles et se conforme au RGPD.'
-              : 'Sysnext places great importance on the protection of your personal data and complies with GDPR.'}
+            {t('hero.description')}
           </p>
         </div>
       </section>
@@ -64,15 +88,15 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             {/* Article 1 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 1 : Responsable du traitement' : 'Article 1: Data controller'}
+                {t('article1.heading')}
               </h2>
               <div className="rounded-xl bg-neutral-50 p-6 border border-neutral-100">
                 <p className="font-heading font-bold text-future-dusk-900 mb-3">Sysnext</p>
                 <ul className="space-y-1.5 text-sm text-future-dusk-600">
-                  <li><strong>SAS</strong> {isFr ? 'au capital de' : 'with capital of'} 500 000 EUR</li>
-                  <li>6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
-                  <li>RCS Nanterre 805 401 148</li>
-                  <li>Contact DPO: info@sysnext.com</li>
+                  <li><strong>SAS</strong> {t('article1.capitalLabel')} 500 000 EUR</li>
+                  <li>{t('article1.address')}</li>
+                  <li>{t('article1.rcs')}</li>
+                  <li>{t('article1.dpo')}</li>
                 </ul>
               </div>
             </div>
@@ -80,22 +104,16 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             {/* Article 2 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 2 : Données collectées' : 'Article 2: Data collected'}
+                {t('article2.heading')}
               </h2>
               <p className="text-future-dusk-600 mb-4">
-                {isFr
-                  ? 'Les données personnelles collectées sur le site sont :'
-                  : 'Personal data collected on the site includes:'}
+                {t('article2.intro')}
               </p>
               <div className="space-y-3">
-                {[
-                  { titleFr: 'Formulaires de contact', titleEn: 'Contact forms', descFr: 'Nom, email, téléphone, entreprise, message', descEn: 'Name, email, phone, company, message' },
-                  { titleFr: 'Outils interactifs', titleEn: 'Interactive tools', descFr: 'Données saisies dans le calculateur ROI, simulateur OPCO, sélecteur machines', descEn: 'Data entered in ROI calculator, OPCO simulator, machine selector' },
-                  { titleFr: 'Navigation', titleEn: 'Navigation', descFr: 'Cookies analytiques, adresse IP (anonymisée)', descEn: 'Analytics cookies, IP address (anonymized)' },
-                ].map((item) => (
-                  <div key={item.titleFr} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
-                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{isFr ? item.titleFr : item.titleEn}</p>
-                    <p className="text-sm text-future-dusk-500">{isFr ? item.descFr : item.descEn}</p>
+                {dataCollected.map((item) => (
+                  <div key={item.key} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
+                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{item.title}</p>
+                    <p className="text-sm text-future-dusk-500">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -104,129 +122,90 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             {/* Article 3 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 3 : Finalités du traitement' : 'Article 3: Processing purposes'}
+                {t('article3.heading')}
               </h2>
               <ul className="space-y-2 text-future-dusk-600">
-                <li className="flex items-start gap-2">
-                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
-                  {isFr ? 'Répondre à vos demandes de contact et de devis' : 'Responding to your contact and quote requests'}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
-                  {isFr ? 'Fournir les résultats des outils interactifs' : 'Providing interactive tool results'}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
-                  {isFr ? 'Gérer les inscriptions aux formations' : 'Managing training enrollments'}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
-                  {isFr ? 'Améliorer notre site et nos services' : 'Improving our website and services'}
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
-                  {isFr ? 'Respecter nos obligations légales' : 'Complying with our legal obligations'}
-                </li>
+                {purposes.map((purpose) => (
+                  <li key={purpose} className="flex items-start gap-2">
+                    <span className="text-very-peri-600 mt-1.5 shrink-0">-</span>
+                    {purpose}
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Article 4 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 4 : Durée de conservation' : 'Article 4: Retention period'}
+                {t('article4.heading')}
               </h2>
               <p className="text-future-dusk-600">
-                {isFr
-                  ? 'Les données personnelles sont conservées pendant une durée proportionnée à leur finalité : 3 ans pour les données prospects, durée de la relation contractuelle + 5 ans pour les clients, 13 mois pour les cookies.'
-                  : 'Personal data is retained for a period proportionate to its purpose: 3 years for prospect data, duration of the contractual relationship + 5 years for customers, 13 months for cookies.'}
+                {t('article4.content')}
               </p>
             </div>
 
             {/* Article 5 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 5 : Vos droits' : 'Article 5: Your rights'}
+                {t('article5.heading')}
               </h2>
               <p className="text-future-dusk-600 mb-4">
-                {isFr
-                  ? 'Conformément au RGPD, vous disposez des droits suivants :'
-                  : 'In accordance with GDPR, you have the following rights:'}
+                {t('article5.intro')}
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
-                {[
-                  { fr: 'Droit d\'accès', en: 'Right of access' },
-                  { fr: 'Droit de rectification', en: 'Right to rectification' },
-                  { fr: 'Droit à l\'effacement', en: 'Right to erasure' },
-                  { fr: 'Droit à la portabilité', en: 'Right to data portability' },
-                  { fr: 'Droit d\'opposition', en: 'Right to object' },
-                  { fr: 'Droit à la limitation du traitement', en: 'Right to restriction of processing' },
-                ].map((right) => (
-                  <div key={right.fr} className="rounded-xl bg-very-peri-50 p-3 text-sm font-medium text-very-peri-700">
-                    {isFr ? right.fr : right.en}
+                {rights.map((right) => (
+                  <div key={right} className="rounded-xl bg-very-peri-50 p-3 text-sm font-medium text-very-peri-700">
+                    {right}
                   </div>
                 ))}
               </div>
               <p className="text-future-dusk-600 mt-4 text-sm">
-                {isFr
-                  ? 'Pour exercer vos droits : info@sysnext.com. Vous pouvez également adresser une réclamation à la CNIL.'
-                  : 'To exercise your rights: info@sysnext.com. You may also file a complaint with the CNIL.'}
+                {t('article5.exerciseRights')}
               </p>
             </div>
 
             {/* Article 6 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 6 : Cookies' : 'Article 6: Cookies'}
+                {t('article6.heading')}
               </h2>
               <p className="text-future-dusk-600 mb-4">
-                {isFr
-                  ? 'Le site utilise des cookies pour améliorer votre expérience :'
-                  : 'The site uses cookies to improve your experience:'}
+                {t('article6.intro')}
               </p>
               <div className="space-y-3">
-                {[
-                  { titleFr: 'Cookies essentiels', titleEn: 'Essential cookies', descFr: 'Necessaires au fonctionnement du site (session, preferences de langue, consentement cookies). Toujours actifs.', descEn: 'Required for site functionality (session, language preferences, cookie consent). Always active.' },
-                  { titleFr: 'Cookies analytiques (Google Analytics 4)', titleEn: 'Analytics cookies (Google Analytics 4)', descFr: 'Mesure d\'audience anonymisee via Google Analytics (_ga, _ga_*). IP anonymisee. Duree : 13 mois max. Charges uniquement apres votre consentement.', descEn: 'Anonymous audience measurement via Google Analytics (_ga, _ga_*). Anonymized IP. Duration: 13 months max. Loaded only after your consent.' },
-                  { titleFr: 'Cookies marketing', titleEn: 'Marketing cookies', descFr: 'Aucun cookie marketing n\'est utilise actuellement sur ce site.', descEn: 'No marketing cookies are currently used on this site.' },
-                ].map((cookie) => (
-                  <div key={cookie.titleFr} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
-                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{isFr ? cookie.titleFr : cookie.titleEn}</p>
-                    <p className="text-sm text-future-dusk-500">{isFr ? cookie.descFr : cookie.descEn}</p>
+                {cookies.map((cookie) => (
+                  <div key={cookie.key} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
+                    <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{cookie.title}</p>
+                    <p className="text-sm text-future-dusk-500">{cookie.description}</p>
                   </div>
                 ))}
               </div>
               <p className="text-sm text-future-dusk-500 mt-4">
-                {isFr
-                  ? 'Vous pouvez modifier vos preferences a tout moment via le lien "Gerer les cookies" en bas de chaque page.'
-                  : 'You can change your preferences at any time via the "Manage cookies" link at the bottom of each page.'}
+                {t('article6.managePreferences')}
               </p>
             </div>
 
             {/* Article 7 */}
             <div className="rounded-2xl border border-neutral-100 bg-white p-8">
               <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Article 7 : Sécurité' : 'Article 7: Security'}
+                {t('article7.heading')}
               </h2>
               <p className="text-future-dusk-600">
-                {isFr
-                  ? 'Sysnext met en oeuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction.'
-                  : 'Sysnext implements appropriate technical and organizational measures to protect your personal data against unauthorized access, modification, disclosure or destruction.'}
+                {t('article7.content')}
               </p>
             </div>
 
             {/* CTA */}
             <div className="rounded-2xl bg-gradient-to-r from-very-peri-600 to-very-peri-700 p-8 text-center text-white">
               <h3 className="text-2xl font-heading font-bold mb-4">
-                {isFr ? 'Questions sur vos données ?' : 'Questions about your data?'}
+                {t('cta.heading')}
               </h3>
               <p className="mb-6 text-very-peri-100">
-                {isFr
-                  ? 'Contactez notre équipe pour toute demande relative à vos données personnelles.'
-                  : 'Contact our team for any request regarding your personal data.'}
+                {t('cta.description')}
               </p>
               <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl">
                 <Link href="/contact">
-                  {isFr ? 'Nous contacter' : 'Contact us'} <ArrowRight className="ml-2 h-4 w-4" />
+                  {t('cta.button')} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>

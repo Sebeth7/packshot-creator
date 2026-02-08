@@ -88,8 +88,9 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 alt="IA Photo Produit BlendAI"
                 width={640}
                 height={480}
-                className="rounded-2xl shadow-2xl"
+                className="w-full h-auto rounded-2xl shadow-2xl"
                 priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </FadeInView>
           </div>
@@ -221,7 +222,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 alt="Intégration studio IA"
                 width={560}
                 height={400}
-                className="rounded-2xl shadow-2xl"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </FadeInView>
           </div>

@@ -239,6 +239,7 @@
     }
   },
   "tailorMade": {
+    "heading": "A tailor-made solution",
     "ecommerce": {
       "title": "E-commerce",
       "description": "Optimize your product catalog with professional visuals ready for online sales."
@@ -651,7 +652,8 @@
     "hero": {
       "title": "Jewelry Packshot: Stunning Product Photos for Your Creations",
       "subtitle": "Professional jewelry photos with exceptional macro rendering, in complete autonomy.",
-      "cta": "Get a quote"
+      "cta": "Get a quote",
+      "ctaSecondary": "View studios"
     },
     "benefits": {
       "heading": "Why choose an automated studio for your jewelry?",
@@ -692,7 +694,8 @@
     },
     "machines": {
       "heading": "Recommended machines for jewelry",
-      "subtitle": "Studios designed to showcase precious small objects"
+      "subtitle": "Studios designed to showcase precious small objects",
+      "cta": "Request a quote"
     },
     "faq": {
       "heading": "Frequently asked questions about jewelry photography",
@@ -724,7 +727,8 @@
     "hero": {
       "title": "Fashion Packshot: E-commerce Photography for Clothing & Apparel",
       "subtitle": "High-throughput professional photo production for fashion and ready-to-wear.",
-      "cta": "Get a quote"
+      "cta": "Get a quote",
+      "ctaSecondary": "View studios"
     },
     "benefits": {
       "heading": "Why automate your fashion photo production?",
@@ -765,7 +769,8 @@
     },
     "machines": {
       "heading": "Recommended machines for fashion",
-      "subtitle": "Studios adapted for textiles, from footwear to ready-to-wear"
+      "subtitle": "Studios adapted for textiles, from footwear to ready-to-wear",
+      "cta": "Request a quote"
     },
     "faq": {
       "heading": "Frequently asked questions about fashion photography",
@@ -797,7 +802,8 @@
     "hero": {
       "title": "E-commerce Packshot: Professional Product Photos at Scale",
       "subtitle": "Produce thousands of studio-quality product visuals in-house, at a fraction of the cost.",
-      "cta": "Get a quote"
+      "cta": "Get a quote",
+      "ctaSecondary": "View studios"
     },
     "benefits": {
       "heading": "Why bring your e-commerce photo production in-house?",
@@ -838,7 +844,8 @@
     },
     "machines": {
       "heading": "Recommended machines for e-commerce",
-      "subtitle": "Versatile studios for all product types"
+      "subtitle": "Versatile studios for all product types",
+      "cta": "Request a quote"
     },
     "faq": {
       "heading": "Frequently asked questions about e-commerce photography",
@@ -1047,7 +1054,8 @@
     "hero": {
       "title": "Amazon Packshot: Product Photos That Meet Marketplace Standards",
       "subtitle": "Marketplace-compliant product photos generated automatically with an Orbitvu studio.",
-      "cta": "Get a quote"
+      "cta": "Get a quote",
+      "ctaSecondary": "View studios"
     },
     "benefits": {
       "heading": "Why an automated studio for your Amazon photos?",
@@ -1088,7 +1096,8 @@
     },
     "machines": {
       "heading": "Recommended machines for Amazon",
-      "subtitle": "Compact, high-performance studios for marketplace photography"
+      "subtitle": "Compact, high-performance studios for marketplace photography",
+      "cta": "Request a quote"
     },
     "faq": {
       "heading": "Frequently asked questions about Amazon photography",
@@ -1120,7 +1129,8 @@
     "hero": {
       "title": "Industrial Packshot: Precision Visual Documentation",
       "subtitle": "Photograph your technical parts and industrial equipment with absolute precision and consistency.",
-      "cta": "Get a quote"
+      "cta": "Get a quote",
+      "ctaSecondary": "View studios"
     },
     "benefits": {
       "heading": "Why an automated studio for industry?",
@@ -1161,7 +1171,8 @@
     },
     "machines": {
       "heading": "Recommended machines for industry",
-      "subtitle": "Robust studios for technical and mechanical parts"
+      "subtitle": "Robust studios for technical and mechanical parts",
+      "cta": "Request a quote"
     },
     "faq": {
       "heading": "Frequently asked questions about industrial photography",
@@ -1403,5 +1414,313 @@
     "analyticsDesc": "Google Analytics: anonymous audience measurement.",
     "marketing": "Marketing cookies",
     "marketingDesc": "No marketing cookies are currently used."
+  },
+  "about": {
+    "meta": {
+      "title": "About | PackshotCreator - Since 2004",
+      "description": "20 years of product photography innovation. PackshotCreator revolutionizes e-commerce photography with Orbitvu connected studios and generative AI."
+    },
+    "hero": {
+      "tagline": "\"Your needs are specific. Our studios are too.\"",
+      "description": "Since 2004, we have been revolutionizing product photography with the world's first connected studios. Today, we integrate AI to transform e-commerce.",
+      "ctaPrimary": "Contact us",
+      "ctaSecondary": "Our training"
+    },
+    "mission": {
+      "heading": "Our Story",
+      "p1": "Designed to transform product photography and optimize e-commerce workflows, PackshotCreator solutions set a global standard with the launch of the first connected studio.",
+      "p2": "Teams and technologies, enriched by artificial intelligence, continuously evolve to offer solutions adapted to professionals and businesses."
+    },
+    "values": {
+      "heading": "Our Values",
+      "innovation": {
+        "title": "Innovation",
+        "description": "20 years of continuous innovation, from the first connected studio to AI product photography"
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "Automated solutions that multiply e-commerce photo productivity by 10"
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "World quality standard, adopted by the largest e-commerce brands"
+      }
+    },
+    "timeline": {
+      "heading": "20 Years of Innovation (2004-2024)",
+      "subtitle": "A timeline of innovations that revolutionized product photography",
+      "y2004": {
+        "title": "First connected studio",
+        "description": "First software-controlled studio with connected mode"
+      },
+      "y2006": {
+        "title": "Synchronized 360° innovation",
+        "description": "World's first synchronized turntable"
+      },
+      "y2010": {
+        "title": "Multi-angle automation",
+        "description": "Packshot Spin range"
+      },
+      "y2012": {
+        "title": "Precision for luxury",
+        "description": "Packshot Macro R with dimmable light sources"
+      },
+      "y2013": {
+        "title": "Textile innovation",
+        "description": "Lumina Pad for flat-lay photography"
+      },
+      "y2014": {
+        "title": "Accessible 3D",
+        "description": "MaestroBot democratizing photogrammetry"
+      },
+      "y2018": {
+        "title": "Reinvented lighting",
+        "description": "Packshot Creator R3 Mark II"
+      },
+      "y2023": {
+        "title": "Orbitvu strategic alliance",
+        "description": "150 employees, 4000 m² production"
+      },
+      "y2024": {
+        "title": "Artificial intelligence",
+        "description": "Alphashot Pro G2 and AI innovations"
+      }
+    },
+    "stats": {
+      "heading": "PackshotCreator in Numbers",
+      "stat1": {
+        "label": "Years of innovation"
+      },
+      "stat2": {
+        "label": "Employees (Orbitvu Group)"
+      },
+      "stat3": {
+        "label": "Production area"
+      },
+      "stat4": {
+        "label": "Photo studios"
+      }
+    },
+    "cta": {
+      "heading": "Let's Work Together",
+      "description": "Discover how our solutions can transform your e-commerce visual production",
+      "ctaPrimary": "Contact us",
+      "ctaSecondary": "Our training"
+    },
+    "breadcrumb": "About"
+  },
+  "cgu": {
+    "meta": {
+      "title": "Terms of Use | PackshotCreator",
+      "description": "Terms of use for the PackshotCreator website: access, intellectual property, responsibilities."
+    },
+    "breadcrumb": "Terms",
+    "hero": {
+      "title": "Terms of Use",
+      "subtitle": "Terms governing the use of the website www.packshot-creator.com",
+      "lastUpdated": "Last updated: January 2026"
+    },
+    "intro": "These general terms of use (hereinafter \"Terms\") define the terms and conditions under which SYSNEXT SAS, operating the PackshotCreator brand, makes its website and services available.",
+    "notice": "By accessing and using this site, you accept these Terms without reservation. If you do not accept these conditions, please do not use this site.",
+    "article1": {
+      "title": "Article 1: Purpose",
+      "text": "These Terms govern the use of the website www.packshot-creator.com and all services offered by PackshotCreator, including:",
+      "item1": "Viewing product and service information",
+      "item2": "Using interactive tools (ROI calculator, OPCO simulator, machine selector)",
+      "item3": "Enrollment in training via PackshotCreator Academy",
+      "item4": "Contact and quote requests",
+      "item5": "Access to the blog and documentation resources"
+    },
+    "article2": {
+      "title": "Article 2: Site access",
+      "text1": "The site is freely accessible to any user with internet access. All costs related to access are the user's responsibility.",
+      "text2": "SYSNEXT uses all reasonable means to ensure continuous access to the site, but cannot be held responsible for interruptions."
+    },
+    "article3": {
+      "title": "Article 3: Intellectual property",
+      "text1": "All elements on the site are protected by intellectual property law and are the exclusive property of SYSNEXT or its partners.",
+      "text2": "The brands PackshotCreator, Orbitvu, BlendAI and associated logos are registered trademarks."
+    },
+    "article4": {
+      "title": "Article 4: Interactive tools",
+      "tools": {
+        "roi": {
+          "title": "ROI Calculator",
+          "description": "Estimates are provided for informational purposes and do not constitute a contractual commitment."
+        },
+        "opco": {
+          "title": "OPCO Eligibility Simulator",
+          "description": "Final eligibility is subject to validation by the relevant OPCO."
+        },
+        "selector": {
+          "title": "Machine Selector",
+          "description": "Recommendations are based on the criteria provided and constitute suggestions."
+        }
+      }
+    },
+    "article5": {
+      "title": "Article 5: PackshotCreator Academy Training",
+      "text": "Training offered by PackshotCreator Academy is subject to specific terms communicated upon enrollment. PackshotCreator Academy is Qualiopi certified."
+    },
+    "article6": {
+      "title": "Article 6: User responsibilities",
+      "text": "The user agrees to:",
+      "item1": "Use the site in accordance with its purpose and these Terms",
+      "item2": "Not attempt to interfere with the proper functioning of the site",
+      "item3": "Provide accurate information when using forms",
+      "item4": "Respect intellectual property rights"
+    },
+    "article7": {
+      "title": "Article 7: Data protection",
+      "text": "The processing of personal data is governed by our ",
+      "privacyLink": "Privacy Policy"
+    },
+    "article8": {
+      "title": "Article 8: Applicable law",
+      "text": "These Terms are governed by French law. Any dispute shall be submitted to the courts of Nanterre."
+    },
+    "contact": {
+      "title": "Contact",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "cta": {
+      "heading": "Questions about our terms?",
+      "description": "Our team is at your disposal.",
+      "button": "Contact us"
+    }
+  },
+  "legal": {
+    "meta": {
+      "title": "Legal Notice | PackshotCreator",
+      "description": "Legal notice for PackshotCreator website: publisher, host, terms of use."
+    },
+    "breadcrumb": "Legal notice",
+    "hero": {
+      "title": "Legal Notice",
+      "subtitle": "Legal information about the website www.packshot-creator.com"
+    },
+    "intro": "These general terms of use are intended to provide the legal framework for the provision of the site and services by SYSNEXT - PackshotCreator.",
+    "article1": {
+      "heading": "Article 1: Site Publisher",
+      "legalForm": "Legal form",
+      "headquarters": "Headquarters",
+      "shareCapital": "Share capital",
+      "registration": "Registration",
+      "publicationDirector": "Publication director",
+      "president": "President"
+    },
+    "article2": {
+      "heading": "Article 2: Development and hosting",
+      "development": "Development",
+      "hosting": "Hosting"
+    },
+    "article3": {
+      "heading": "Article 3: Data collection",
+      "description": "The website www.packshot-creator.com respects your privacy and complies with GDPR.",
+      "collection": "Collection",
+      "collectionDetail": "Information collected through forms is used solely for the purpose of your request.",
+      "cookiesDetail": "This site uses cookies to improve your experience."
+    },
+    "article4": {
+      "heading": "Article 4: Intellectual property",
+      "description": "All elements on this site are the exclusive property of Sysnext, unless explicitly stated otherwise. Any reproduction is prohibited without prior written authorization."
+    },
+    "article5": {
+      "heading": "Article 5: Liability",
+      "description": "Sysnext strives to provide accurate and up-to-date information. However, the company cannot be held responsible for errors or omissions."
+    },
+    "article6": {
+      "heading": "Article 6: Disputes",
+      "description": "These legal notices are governed by French law. Any dispute shall be submitted to the competent courts of Nanterre."
+    },
+    "cta": {
+      "heading": "Questions?",
+      "description": "For any questions about these legal notices.",
+      "button": "Contact us"
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy | PackshotCreator",
+      "description": "PackshotCreator privacy policy and personal data protection. GDPR compliance."
+    },
+    "breadcrumb": "Privacy",
+    "hero": {
+      "title": "Privacy Policy",
+      "description": "Sysnext places great importance on the protection of your personal data and complies with GDPR."
+    },
+    "article1": {
+      "heading": "Article 1: Data controller",
+      "capitalLabel": "with capital of",
+      "address": "6 rue Antonin Raynaud, 92300 Levallois-Perret, France",
+      "rcs": "RCS Nanterre 805 401 148",
+      "dpo": "Contact DPO: info@sysnext.com"
+    },
+    "article2": {
+      "heading": "Article 2: Data collected",
+      "intro": "Personal data collected on the site includes:",
+      "contactForms": {
+        "title": "Contact forms",
+        "description": "Name, email, phone, company, message"
+      },
+      "interactiveTools": {
+        "title": "Interactive tools",
+        "description": "Data entered in ROI calculator, OPCO simulator, machine selector"
+      },
+      "navigation": {
+        "title": "Navigation",
+        "description": "Analytics cookies, IP address (anonymized)"
+      }
+    },
+    "article3": {
+      "heading": "Article 3: Processing purposes",
+      "purpose1": "Responding to your contact and quote requests",
+      "purpose2": "Providing interactive tool results",
+      "purpose3": "Managing training enrollments",
+      "purpose4": "Improving our website and services",
+      "purpose5": "Complying with our legal obligations"
+    },
+    "article4": {
+      "heading": "Article 4: Retention period",
+      "content": "Personal data is retained for a period proportionate to its purpose: 3 years for prospect data, duration of the contractual relationship + 5 years for customers, 13 months for cookies."
+    },
+    "article5": {
+      "heading": "Article 5: Your rights",
+      "intro": "In accordance with GDPR, you have the following rights:",
+      "right1": "Right of access",
+      "right2": "Right to rectification",
+      "right3": "Right to erasure",
+      "right4": "Right to data portability",
+      "right5": "Right to object",
+      "right6": "Right to restriction of processing",
+      "exerciseRights": "To exercise your rights: info@sysnext.com. You may also file a complaint with the CNIL."
+    },
+    "article6": {
+      "heading": "Article 6: Cookies",
+      "intro": "The site uses cookies to improve your experience:",
+      "essential": {
+        "title": "Essential cookies",
+        "description": "Required for site functionality (session, language preferences, cookie consent). Always active."
+      },
+      "analytics": {
+        "title": "Analytics cookies (Google Analytics 4)",
+        "description": "Anonymous audience measurement via Google Analytics (_ga, _ga_*). Anonymized IP. Duration: 13 months max. Loaded only after your consent."
+      },
+      "marketing": {
+        "title": "Marketing cookies",
+        "description": "No marketing cookies are currently used on this site."
+      },
+      "managePreferences": "You can change your preferences at any time via the \"Manage cookies\" link at the bottom of each page."
+    },
+    "article7": {
+      "heading": "Article 7: Security",
+      "content": "Sysnext implements appropriate technical and organizational measures to protect your personal data against unauthorized access, modification, disclosure or destruction."
+    },
+    "cta": {
+      "heading": "Questions about your data?",
+      "description": "Contact our team for any request regarding your personal data.",
+      "button": "Contact us"
+    }
   }
 }

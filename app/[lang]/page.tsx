@@ -185,7 +185,7 @@ export default async function HomePage({
                   />
                 </div>
                 <div
-                  className="absolute -inset-6 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
+                  className="absolute inset-0 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
                   aria-hidden="true"
                 />
               </FadeInView>

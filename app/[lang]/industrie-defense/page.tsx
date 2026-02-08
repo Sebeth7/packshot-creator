@@ -288,7 +288,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                         {machine.nom}
                       </h3>
                       <p className="text-sm text-future-dusk-500 mb-4">
-                        {isFr ? `Jusqu'a ${machine.tailleMax}` : `Up to ${machine.tailleMax}`} &middot; {machine.capaciteJour} {isFr ? 'photos/jour' : 'photos/day'}
+                        {isFr ? `Jusqu'à ${machine.tailleMax}` : `Up to ${machine.tailleMax}`} &middot; {machine.capaciteJour} {isFr ? 'photos/jour' : 'photos/day'}
                       </p>
                       <ul className="space-y-2 mb-6 flex-grow">
                         {machine.keyAdvantages.slice(0, 3).map((adv, idx) => (
