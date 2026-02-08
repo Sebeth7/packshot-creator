@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'Solutions Photo Produit par Industrie | Studios Automatisés & IA'
       : 'Product Photography Solutions by Industry | Automated Studios & AI',
     description: lang === 'fr'
-      ? 'Solutions packshot et IA photo produit adaptées à votre industrie : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique et plus. Studios Orbitvu + BlendAI.'
-      : 'Packshot and AI product photography solutions for your industry: shoes, jewelry, furniture, food, cosmetics, fashion, electronics and more. Orbitvu Studios + BlendAI.',
+      ? 'Solutions packshot et IA photo produit par industrie : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique. Studios Orbitvu + BlendAI.'
+      : 'Packshot and AI product photography solutions by industry: shoes, jewelry, furniture, food, cosmetics, fashion, electronics. Orbitvu + BlendAI.',
     keywords: lang === 'fr'
       ? 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, chaussures, bijoux, mobilier, food, cosmétiques'
       : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, shoes, jewelry, furniture, food, cosmetics',

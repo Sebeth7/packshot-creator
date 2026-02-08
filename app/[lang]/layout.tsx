@@ -76,7 +76,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={lang} className={`${inter.variable} ${roboto.variable}`}>
-      <body className="font-body text-text-dark antialiased">
+      <body className="font-body text-text-dark antialiased overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main>{children}</main>

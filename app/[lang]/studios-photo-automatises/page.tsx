@@ -15,7 +15,7 @@ const ROICalculator = dynamic(
 
 const MACHINES = [
   { slug: 'alphashot-pro-g2', image: '/images/machines/alphashot-pro-g2.avif', size: 'Moyen', badge: 'Best-seller' },
-  { slug: 'alphashot-xl', image: '/images/machines/alphashot-xl.avif', size: 'Grand', badge: null },
+  { slug: 'alphashot-xl-v2', image: '/images/machines/alphashot-xl.avif', size: 'Grand', badge: null },
   { slug: 'alphashot-360', image: '/images/machines/alphashot-360.avif', size: 'Moyen', badge: '360°' },
   { slug: 'alphashot-micro-v2', image: '/images/machines/alphashot-micro-v2.avif', size: 'Petit', badge: 'Compact' },
   { slug: 'fashion-studio', image: '/images/machines/fashion-studio.avif', size: 'Grand', badge: 'Mode' },
