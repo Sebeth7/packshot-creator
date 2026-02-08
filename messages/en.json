@@ -317,7 +317,8 @@
       "terms": "Terms of use",
       "privacy": "Privacy policy",
       "rights": "All rights reserved.",
-      "madeWith": "Made with passion in France"
+      "madeWith": "Made with passion in France",
+      "manageCookies": "Manage cookies"
     }
   },
   "iaPhotoProduit": {
@@ -1387,5 +1388,20 @@
       "ctaPrimary": "Request a custom study",
       "ctaSecondary": "View studios"
     }
+  },
+  "cookies": {
+    "title": "Cookie settings",
+    "description": "This site uses cookies to measure its audience and improve your experience. Essential cookies are required for the site to function. Analytics cookies help us understand how you use the site.",
+    "close": "Close",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "customize": "Customize",
+    "saveChoices": "Save my choices",
+    "necessary": "Essential cookies",
+    "necessaryDesc": "Session, language preferences. Always active.",
+    "analytics": "Analytics cookies",
+    "analyticsDesc": "Google Analytics: anonymous audience measurement.",
+    "marketing": "Marketing cookies",
+    "marketingDesc": "No marketing cookies are currently used."
   }
 }

@@ -317,7 +317,8 @@
       "terms": "CGU",
       "privacy": "Confidentialité",
       "rights": "Tous droits réservés.",
-      "madeWith": "Conçu avec passion en France"
+      "madeWith": "Conçu avec passion en France",
+      "manageCookies": "Gérer les cookies"
     }
   },
   "iaPhotoProduit": {
@@ -1387,5 +1388,20 @@
       "ctaPrimary": "Demander une etude personnalisee",
       "ctaSecondary": "Voir les studios"
     }
+  },
+  "cookies": {
+    "title": "Gestion des cookies",
+    "description": "Ce site utilise des cookies pour mesurer son audience et ameliorer votre experience. Les cookies essentiels sont necessaires au fonctionnement du site. Les cookies analytiques nous aident a comprendre comment vous utilisez le site.",
+    "close": "Fermer",
+    "acceptAll": "Tout accepter",
+    "rejectAll": "Tout refuser",
+    "customize": "Personnaliser",
+    "saveChoices": "Enregistrer mes choix",
+    "necessary": "Cookies essentiels",
+    "necessaryDesc": "Session, preferences de langue. Toujours actifs.",
+    "analytics": "Cookies analytiques",
+    "analyticsDesc": "Google Analytics : mesure d'audience anonymisee.",
+    "marketing": "Cookies marketing",
+    "marketingDesc": "Aucun cookie marketing n'est utilise actuellement."
   }
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
@@ -175,6 +177,14 @@ export default function Footer() {
                 <Link href="/confidentialite" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('privacy')}
                 </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => window.dispatchEvent(new Event('open-cookie-banner'))}
+                  className="text-sm text-future-dusk-400 hover:text-white transition-colors"
+                >
+                  {t('manageCookies')}
+                </button>
               </li>
             </ul>
           </div>

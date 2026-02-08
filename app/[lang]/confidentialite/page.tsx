@@ -185,8 +185,9 @@ export default async function ConfidentialitePage({ params }: PageProps) {
               </p>
               <div className="space-y-3">
                 {[
-                  { titleFr: 'Cookies essentiels', titleEn: 'Essential cookies', descFr: 'Nécessaires au fonctionnement du site (session, langue)', descEn: 'Required for site functionality (session, language)' },
-                  { titleFr: 'Cookies analytiques', titleEn: 'Analytics cookies', descFr: 'Mesure d\'audience anonymisée (avec consentement)', descEn: 'Anonymous audience measurement (with consent)' },
+                  { titleFr: 'Cookies essentiels', titleEn: 'Essential cookies', descFr: 'Necessaires au fonctionnement du site (session, preferences de langue, consentement cookies). Toujours actifs.', descEn: 'Required for site functionality (session, language preferences, cookie consent). Always active.' },
+                  { titleFr: 'Cookies analytiques (Google Analytics 4)', titleEn: 'Analytics cookies (Google Analytics 4)', descFr: 'Mesure d\'audience anonymisee via Google Analytics (_ga, _ga_*). IP anonymisee. Duree : 13 mois max. Charges uniquement apres votre consentement.', descEn: 'Anonymous audience measurement via Google Analytics (_ga, _ga_*). Anonymized IP. Duration: 13 months max. Loaded only after your consent.' },
+                  { titleFr: 'Cookies marketing', titleEn: 'Marketing cookies', descFr: 'Aucun cookie marketing n\'est utilise actuellement sur ce site.', descEn: 'No marketing cookies are currently used on this site.' },
                 ].map((cookie) => (
                   <div key={cookie.titleFr} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
                     <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{isFr ? cookie.titleFr : cookie.titleEn}</p>
@@ -194,6 +195,11 @@ export default async function ConfidentialitePage({ params }: PageProps) {
                   </div>
                 ))}
               </div>
+              <p className="text-sm text-future-dusk-500 mt-4">
+                {isFr
+                  ? 'Vous pouvez modifier vos preferences a tout moment via le lien "Gerer les cookies" en bas de chaque page.'
+                  : 'You can change your preferences at any time via the "Manage cookies" link at the bottom of each page.'}
+              </p>
             </div>
 
             {/* Article 7 */}

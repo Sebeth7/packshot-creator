@@ -20,13 +20,9 @@ export function trackCalculatorCompleted(results: CalculationResults): void {
     is_profitable: results.isRentable,
   };
 
-  // Log pour debug (remplacer par gtag en prod)
-  console.log('[GA4 Event]', event);
-
-  // Prêt pour intégration:
-  // if (typeof window !== 'undefined' && window.gtag) {
-  //   window.gtag('event', event.event, event);
-  // }
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, event);
+  }
 }
 
 /**
@@ -49,12 +45,9 @@ export function trackCTAClick(
     roi_range: roiRange,
   };
 
-  console.log('[GA4 Event]', event);
-
-  // Prêt pour intégration:
-  // if (typeof window !== 'undefined' && window.gtag) {
-  //   window.gtag('event', event.event, event);
-  // }
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, event);
+  }
 }
 
 /**
@@ -67,12 +60,9 @@ export function trackStepChange(step: number, direction: 'forward' | 'back'): vo
     direction,
   };
 
-  console.log('[GA4 Event]', event);
-
-  // Prêt pour intégration:
-  // if (typeof window !== 'undefined' && window.gtag) {
-  //   window.gtag('event', event.event, event);
-  // }
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, event);
+  }
 }
 
 /**
@@ -84,12 +74,9 @@ export function trackCalculatorAbandonment(lastStep: number): void {
     last_step: lastStep,
   };
 
-  console.log('[GA4 Event]', event);
-
-  // Prêt pour intégration:
-  // if (typeof window !== 'undefined' && window.gtag) {
-  //   window.gtag('event', event.event, event);
-  // }
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, event);
+  }
 }
 
 /**
@@ -103,17 +90,7 @@ export function trackEmailCapture(email: string, results: CalculationResults): v
     // Ne pas logger l'email pour RGPD
   };
 
-  console.log('[GA4 Event]', event);
-
-  // Structure Pipedrive-ready
-  console.log('[Pipedrive Ready]', {
-    email,
-    machine: results.machine.nom,
-    machineId: results.machine.id,
-    machinePrix: results.machine.prix,
-    roi5ans: results.roi5ans,
-    economieAnnuelle: results.economieAnnuelle,
-    breakEvenMois: results.breakEvenMois,
-    isRentable: results.isRentable,
-  });
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event.event, event);
+  }
 }
