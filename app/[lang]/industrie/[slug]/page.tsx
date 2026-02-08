@@ -249,7 +249,7 @@ export default async function SecteurPage({ params }: PageProps) {
           <FadeInView className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-xl">
               <Link href="/industrie">
-                {isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
+                {isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </FadeInView>

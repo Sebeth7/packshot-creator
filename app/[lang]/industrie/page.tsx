@@ -99,7 +99,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             <FadeInView direction="left">
               <div className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
                 <Factory className="h-4 w-4" />
-                {isFr ? '12 secteurs couverts' : '12 sectors covered'}
+                {isFr ? '14 secteurs couverts' : '14 sectors covered'}
               </div>
               <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
                 {isFr
@@ -116,7 +116,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                   <Link href="/contact">{isFr ? 'Demander une démo' : 'Request a demo'}</Link>
                 </Button>
                 <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <a href="#secteurs">{isFr ? 'Voir les 12 secteurs' : 'View all 12 sectors'}</a>
+                  <a href="#secteurs">{isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'}</a>
                 </Button>
               </div>
             </FadeInView>

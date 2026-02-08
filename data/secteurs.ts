@@ -777,4 +777,153 @@ export const secteurs: Secteur[] = [
       description: 'Devis packshot médical précision + conformité.',
     },
   },
+
+  // 13. INDUSTRIE MANUFACTURIÈRE
+  {
+    slug: 'industrie-manufacturiere',
+    titre: 'Photo Produit Industrie Manufacturière : Packshot & Documentation',
+    description:
+      'Studios photo automatisés pour l\'industrie manufacturière. Documentation technique, catalogues pièces détachées, contrôle qualité visuel.',
+    hero: {
+      titre: 'Solutions Photo pour l\'Industrie Manufacturière',
+      sousTitre: 'Documentez vos produits et pièces avec précision',
+      description:
+        'Automatisez la documentation visuelle de vos produits manufacturés : pièces détachées, assemblages, contrôle qualité. Standardisation et intégration PIM/ERP.',
+    },
+    problematiques: {
+      titre: 'Défis Photo Industrie Manufacturière',
+      items: [
+        'Volume important de références à documenter (500-10 000+ pièces)',
+        'Nécessité de standardisation visuelle sur tout le catalogue technique',
+        'Surfaces métalliques et réflectives complexes (acier, alu, laiton)',
+        'Intégration avec les systèmes PIM/ERP existants',
+        'Besoin de traçabilité et cohérence sur les mises à jour catalogue',
+      ],
+    },
+    solutions: {
+      titre: 'Nos Solutions Industrie Manufacturière',
+      items: [
+        {
+          titre: 'Studios Automatisés Haute Cadence',
+          description:
+            'Productivité, régularité et intégration pour vos catalogues industriels',
+          avantages: [
+            'Productivité : 100-300 pièces photographiées par jour',
+            'Régularité absolue : même éclairage, même cadrage sur chaque référence',
+            'Intégration directe PIM/ERP via nomenclatures et codes produit',
+            'Multi-formats : de la petite pièce au sous-ensemble volumineux',
+            'Workflow automatisé : capture, détourage, export en quelques secondes',
+          ],
+        },
+        {
+          titre: 'Photo 360° & Documentation Technique',
+          description:
+            'Documentation complète pour catalogues et réduction des retours SAV',
+          avantages: [
+            'Rotations 360° interactives pour identification pièces sans ambiguïté',
+            'Réduction des retours SAV grâce à une meilleure visualisation',
+            'Macrophotographie pour détails techniques (filetages, usinages)',
+            'Export multi-formats : web, PDF catalogues, applications mobiles',
+          ],
+        },
+        {
+          titre: 'IA Retouche & Normalisation',
+          description:
+            'Détourage automatique et normalisation visuelle par IA',
+          avantages: [
+            'Détourage automatique IQ Mask pour fond blanc normalisé',
+            'Cohérence colorimétrique sur l\'ensemble du catalogue',
+            'Traitement par lots pour mises à jour catalogue rapides',
+            'Archivage structuré par référence, famille et catégorie produit',
+          ],
+        },
+      ],
+    },
+    casClients: [
+      {
+        titre: 'Fabricant équipements industriels 3000 références',
+        description:
+          'Catalogue complet photographié en 4 semaines (vs 4 mois manuellement). Intégration PIM automatisée. Erreurs de commande -40% grâce aux visuels 360°.',
+      },
+    ],
+    cta: {
+      titre: 'Optimisez votre documentation produit',
+      description:
+        'Devis personnalisé studio automatisé pour votre catalogue industriel.',
+    },
+  },
+
+  // 14. DÉFENSE & SÉCURITÉ
+  {
+    slug: 'defense-securite',
+    titre: 'Photo Produit Défense & Sécurité : Documentation Conforme',
+    description:
+      'Studios photo pour le secteur défense et sécurité. Documentation matériel conforme, traçabilité, workflow sécurisé sans cloud.',
+    hero: {
+      titre: 'Solutions Photo pour la Défense et la Sécurité',
+      sousTitre: 'Documentation visuelle conforme aux exigences du secteur',
+      description:
+        'Documentez vos matériels et équipements avec des studios photo sur site, des workflows sécurisés et une traçabilité complète.',
+    },
+    problematiques: {
+      titre: 'Défis Photo Défense & Sécurité',
+      items: [
+        'Exigences de traçabilité strictes sur chaque visuel produit',
+        'Matériels et équipements de haute précision nécessitant un rendu fidèle',
+        'Confidentialité des données visuelles (pas de transfert cloud)',
+        'Normes de documentation spécifiques au secteur défense',
+        'Besoin de studios sur site pour éviter la sortie de matériel sensible',
+      ],
+    },
+    solutions: {
+      titre: 'Nos Solutions Défense & Sécurité',
+      items: [
+        {
+          titre: 'Studios Sur Site',
+          description:
+            'Pas de sortie de matériel, confidentialité totale',
+          avantages: [
+            'Installation sur site client : aucun matériel ne quitte les locaux',
+            'Fonctionnement 100% hors ligne possible (air-gapped)',
+            'Studios compacts déployables en quelques heures',
+            'Maintenance et support sur site par nos techniciens certifiés',
+          ],
+        },
+        {
+          titre: 'Photo 360° Standardisée',
+          description:
+            'Documentation normalisée conforme aux exigences du secteur',
+          avantages: [
+            'Rotations 360° pour documentation complète des équipements',
+            'Standardisation visuelle conforme aux normes de documentation',
+            'Macrophotographie pour détails critiques (marquages, numéros de série)',
+            'Export formats conformes aux cahiers des charges institutionnels',
+          ],
+        },
+        {
+          titre: 'Workflow Sécurisé',
+          description:
+            'Données locales, pas de cloud, traçabilité complète',
+          avantages: [
+            'Stockage local uniquement : aucune donnée envoyée sur le cloud',
+            'Traçabilité complète : historique par lot, série et opérateur',
+            'Chiffrement des données visuelles au repos et en transit',
+            'Audit trail complet pour conformité réglementaire',
+          ],
+        },
+      ],
+    },
+    casClients: [
+      {
+        titre: 'Industriel défense 1500 équipements',
+        description:
+          'Studio déployé sur site sécurisé. Documentation complète en 6 semaines. Conformité 100% aux exigences de traçabilité. Zéro fuite de données.',
+      },
+    ],
+    cta: {
+      titre: 'Contactez-nous pour une solution adaptée',
+      description:
+        'Échangeons sur vos contraintes de confidentialité et de documentation pour un devis sur mesure.',
+    },
+  },
 ];

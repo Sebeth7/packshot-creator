@@ -15,6 +15,8 @@ import {
   Car,
   Baby,
   HeartPulse,
+  Factory,
+  Shield,
 } from 'lucide-react';
 
 export interface Sector {
@@ -83,4 +85,6 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'jouets-puericulture', name: 'Jouets & Puériculture', Icon: Baby },
   { slug: 'sport-outdoor', name: 'Sport & Outdoor', Icon: Trophy },
   { slug: 'sante-medical', name: 'Santé & Médical', Icon: HeartPulse },
+  { slug: 'industrie-manufacturiere', name: 'Industrie Manufacturière', Icon: Factory },
+  { slug: 'defense-securite', name: 'Défense & Sécurité', Icon: Shield },
 ];
