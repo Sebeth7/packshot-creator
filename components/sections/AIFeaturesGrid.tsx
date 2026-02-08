@@ -15,25 +15,25 @@ const AI_FEATURES: AIFeature[] = [
     key: 'lifestyle',
     icon: '🎨',
     Icon: Palette,
-    href: '/blendai#lifestyle',
+    href: '/ia-photo-produit',
   },
   {
     key: 'background',
     icon: '🖼️',
     Icon: Image,
-    href: '/blendai#background',
+    href: '/ia-photo-produit',
   },
   {
     key: 'retouche',
     icon: '✨',
     Icon: Sparkles,
-    href: '/blendai#retouche',
+    href: '/ia-photo-produit',
   },
   {
     key: 'batch',
     icon: '⚡',
     Icon: Zap,
-    href: '/blendai#batch',
+    href: '/ia-photo-produit',
   },
 ];
 
