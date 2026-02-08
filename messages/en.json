@@ -676,9 +676,18 @@
       }
     },
     "stats": {
-      "stat1": { "value": "10x", "label": "faster than traditional studio" },
-      "stat2": { "value": "100%", "label": "automatic background removal" },
-      "stat3": { "value": "-80%", "label": "cost per image" }
+      "stat1": {
+        "value": "10x",
+        "label": "faster than traditional studio"
+      },
+      "stat2": {
+        "value": "100%",
+        "label": "automatic background removal"
+      },
+      "stat3": {
+        "value": "-80%",
+        "label": "cost per image"
+      }
     },
     "machines": {
       "heading": "Recommended machines for jewelry",
@@ -740,9 +749,18 @@
       }
     },
     "stats": {
-      "stat1": { "value": "500+", "label": "pieces photographed per day" },
-      "stat2": { "value": "3s", "label": "per white background packshot" },
-      "stat3": { "value": "-80%", "label": "cost vs external studio" }
+      "stat1": {
+        "value": "500+",
+        "label": "pieces photographed per day"
+      },
+      "stat2": {
+        "value": "3s",
+        "label": "per white background packshot"
+      },
+      "stat3": {
+        "value": "-80%",
+        "label": "cost vs external studio"
+      }
     },
     "machines": {
       "heading": "Recommended machines for fashion",
@@ -804,9 +822,18 @@
       }
     },
     "stats": {
-      "stat1": { "value": "500+", "label": "products photographed per day" },
-      "stat2": { "value": "80%", "label": "cost reduction" },
-      "stat3": { "value": "4-8", "label": "months to return on investment" }
+      "stat1": {
+        "value": "500+",
+        "label": "products photographed per day"
+      },
+      "stat2": {
+        "value": "80%",
+        "label": "cost reduction"
+      },
+      "stat3": {
+        "value": "4-8",
+        "label": "months to return on investment"
+      }
     },
     "machines": {
       "heading": "Recommended machines for e-commerce",
@@ -893,12 +920,30 @@
     },
     "sectors": {
       "heading": "Solutions by sector",
-      "item1": { "name": "Fashion & textile", "href": "/industrie/mode-textile" },
-      "item2": { "name": "Jewelry & fine jewelry", "href": "/industrie/bijoux-joaillerie" },
-      "item3": { "name": "Cosmetics & beauty", "href": "/industrie/cosmetiques-beaute" },
-      "item4": { "name": "Food & beverage", "href": "/industrie/food-alimentaire" },
-      "item5": { "name": "Electronics & high-tech", "href": "/industrie/electronique-hightech" },
-      "item6": { "name": "Furniture & decor", "href": "/industrie/mobilier-decoration" }
+      "item1": {
+        "name": "Fashion & textile",
+        "href": "/industrie/mode-textile"
+      },
+      "item2": {
+        "name": "Jewelry & fine jewelry",
+        "href": "/industrie/bijoux-joaillerie"
+      },
+      "item3": {
+        "name": "Cosmetics & beauty",
+        "href": "/industrie/cosmetiques-beaute"
+      },
+      "item4": {
+        "name": "Food & beverage",
+        "href": "/industrie/food-alimentaire"
+      },
+      "item5": {
+        "name": "Electronics & high-tech",
+        "href": "/industrie/electronique-hightech"
+      },
+      "item6": {
+        "name": "Furniture & decor",
+        "href": "/industrie/mobilier-decoration"
+      }
     },
     "faq": {
       "heading": "Frequently asked questions",
@@ -1027,9 +1072,18 @@
       }
     },
     "stats": {
-      "stat1": { "value": "100%", "label": "Amazon requirements compliant" },
-      "stat2": { "value": "500+", "label": "products per day" },
-      "stat3": { "value": "-80%", "label": "cost per image" }
+      "stat1": {
+        "value": "100%",
+        "label": "Amazon requirements compliant"
+      },
+      "stat2": {
+        "value": "500+",
+        "label": "products per day"
+      },
+      "stat3": {
+        "value": "-80%",
+        "label": "cost per image"
+      }
     },
     "machines": {
       "heading": "Recommended machines for Amazon",
@@ -1091,9 +1145,18 @@
       }
     },
     "stats": {
-      "stat1": { "value": "150+", "label": "parts photographed per day" },
-      "stat2": { "value": "100%", "label": "visual standardization" },
-      "stat3": { "value": "-70%", "label": "documentation time reduction" }
+      "stat1": {
+        "value": "150+",
+        "label": "parts photographed per day"
+      },
+      "stat2": {
+        "value": "100%",
+        "label": "visual standardization"
+      },
+      "stat3": {
+        "value": "-70%",
+        "label": "documentation time reduction"
+      }
     },
     "machines": {
       "heading": "Recommended machines for industry",
@@ -1135,89 +1198,145 @@
     "painPoints": {
       "heading": "Why automate your visual documentation?",
       "subtitle": "Manual methods no longer meet industrial traceability and compliance requirements.",
-      "pain1.title": "Non-standardized documentation",
-      "pain1.desc": "Smartphone photos, variable lighting, random framing: impossible to audit, impossible to certify.",
-      "pain2.title": "Failing quality control",
-      "pain2.desc": "Inspector fatigue, 20-30% error rate in manual inspection, no usable photographic reference.",
-      "pain3.title": "Outdated catalogs",
-      "pain3.desc": "5 to 50 EUR per image when outsourced. Catalogs years behind the actual parts inventory.",
-      "pain4.title": "Photographer dependency",
-      "pain4.desc": "Know-how lost with every turnover. No formalized process, no repeatability."
+      "pain1": {
+        "title": "Non-standardized documentation",
+        "desc": "Smartphone photos, variable lighting, random framing: impossible to audit, impossible to certify."
+      },
+      "pain2": {
+        "title": "Failing quality control",
+        "desc": "Inspector fatigue, 20-30% error rate in manual inspection, no usable photographic reference."
+      },
+      "pain3": {
+        "title": "Outdated catalogs",
+        "desc": "5 to 50 EUR per image when outsourced. Catalogs years behind the actual parts inventory."
+      },
+      "pain4": {
+        "title": "Photographer dependency",
+        "desc": "Know-how lost with every turnover. No formalized process, no repeatability."
+      }
     },
     "technologies": {
       "heading": "8 Orbitvu technologies for industry",
       "subtitle": "A technology platform built for precision, repeatability and traceability requirements.",
-      "tech1.name": "Saved templates",
-      "tech1.desc": "Certifiable repeatability for AS9100 / ISO 13485 quality documentation.",
-      "tech2.name": "Motorized 360 rotation",
-      "tech2.desc": "Comprehensive parts documentation for catalogs and inspections.",
-      "tech3.name": "SuperFocus",
-      "tech3.desc": "Micro-component inspection, micro-defect and solder joint detection via focus stacking.",
-      "tech4.name": "IQ Mask",
-      "tech4.desc": "Standardized catalog visuals production without post-processing.",
-      "tech5.name": "Ghost Image",
-      "tech5.desc": "Before/after comparison, temporal degradation tracking of parts.",
-      "tech6.name": "74 individual LEDs",
-      "tech6.desc": "Certifiable lighting conditions for regulatory compliance.",
-      "tech7.name": "Automated export",
-      "tech7.desc": "Direct ERP/DAM/PIM integration with SKU/NSN naming.",
-      "tech8.name": "AI Photo Assistant",
-      "tech8.desc": "Usable by non-photographer operators on the production line."
+      "tech1": {
+        "name": "Saved templates",
+        "desc": "Certifiable repeatability for AS9100 / ISO 13485 quality documentation."
+      },
+      "tech2": {
+        "name": "Motorized 360 rotation",
+        "desc": "Comprehensive parts documentation for catalogs and inspections."
+      },
+      "tech3": {
+        "name": "SuperFocus",
+        "desc": "Micro-component inspection, micro-defect and solder joint detection via focus stacking."
+      },
+      "tech4": {
+        "name": "IQ Mask",
+        "desc": "Standardized catalog visuals production without post-processing."
+      },
+      "tech5": {
+        "name": "Ghost Image",
+        "desc": "Before/after comparison, temporal degradation tracking of parts."
+      },
+      "tech6": {
+        "name": "74 individual LEDs",
+        "desc": "Certifiable lighting conditions for regulatory compliance."
+      },
+      "tech7": {
+        "name": "Automated export",
+        "desc": "Direct ERP/DAM/PIM integration with SKU/NSN naming."
+      },
+      "tech8": {
+        "name": "AI Photo Assistant",
+        "desc": "Usable by non-photographer operators on the production line."
+      }
     },
     "segments": {
       "heading": "6 industrial segments addressed",
       "subtitle": "Solutions adapted to the standards and requirements of each sector.",
-      "seg1.name": "Aerospace & Space",
-      "seg1.norms": "AS9100 | Zero defect | Full traceability",
-      "seg1.useCase": "First Article Inspection (FAI), before/after MRO documentation, spare parts cataloging. USD 374 billion market, 7.8% annual growth.",
-      "seg1.argument": "Zero documentary defect -- AS9100 compliance made easy",
-      "seg2.name": "Land & Naval Defense",
-      "seg2.norms": "ITAR | CMMC | MIL-STD",
-      "seg2.useCase": "Parts inventory, anti-counterfeiting, wear tracking, before/after MRO documentation. 130,000+ vehicles in MRO programs.",
-      "seg2.argument": "Expertise stays in the machine -- turnover independence",
-      "seg3.name": "Automotive & Suppliers",
-      "seg3.norms": "IATF 16949",
-      "seg3.useCase": "Production line QC, aftermarket cataloging, supplier inspection. Global aftermarket: USD 500+ billion.",
-      "seg3.argument": "500+ parts/day, e-commerce publishing in 2 minutes",
-      "seg4.name": "Medical & Pharma",
-      "seg4.norms": "FDA | ISO 13485 | GMP",
-      "seg4.useCase": "Batch documentation, instrument cataloging, packaging inspection. Strict traceability requirements.",
-      "seg4.argument": "Bulletproof batch documentation, FDA audit-ready",
-      "seg5.name": "Electronics & Semiconductors",
-      "seg5.norms": "IPC | RoHS",
-      "seg5.useCase": "PCB inspection, obsolescent component documentation. Manual inspection error rate: 20-30%.",
-      "seg5.argument": "Solder micro-defect detection via focus stacking",
-      "seg6.name": "Military Logistics & Supply Chain",
-      "seg6.norms": "UID / IUID | NSN",
-      "seg6.useCase": "Anti-counterfeiting identification, UID/IUID stock documentation. USD 5.1 billion in unusable stock due to identification failures.",
-      "seg6.argument": "Every NSN illustrated, every condition documented"
+      "seg1": {
+        "name": "Aerospace & Space",
+        "norms": "AS9100 | Zero defect | Full traceability",
+        "useCase": "First Article Inspection (FAI), before/after MRO documentation, spare parts cataloging. USD 374 billion market, 7.8% annual growth.",
+        "argument": "Zero documentary defect -- AS9100 compliance made easy"
+      },
+      "seg2": {
+        "name": "Land & Naval Defense",
+        "norms": "ITAR | CMMC | MIL-STD",
+        "useCase": "Parts inventory, anti-counterfeiting, wear tracking, before/after MRO documentation. 130,000+ vehicles in MRO programs.",
+        "argument": "Expertise stays in the machine -- turnover independence"
+      },
+      "seg3": {
+        "name": "Automotive & Suppliers",
+        "norms": "IATF 16949",
+        "useCase": "Production line QC, aftermarket cataloging, supplier inspection. Global aftermarket: USD 500+ billion.",
+        "argument": "500+ parts/day, e-commerce publishing in 2 minutes"
+      },
+      "seg4": {
+        "name": "Medical & Pharma",
+        "norms": "FDA | ISO 13485 | GMP",
+        "useCase": "Batch documentation, instrument cataloging, packaging inspection. Strict traceability requirements.",
+        "argument": "Bulletproof batch documentation, FDA audit-ready"
+      },
+      "seg5": {
+        "name": "Electronics & Semiconductors",
+        "norms": "IPC | RoHS",
+        "useCase": "PCB inspection, obsolescent component documentation. Manual inspection error rate: 20-30%.",
+        "argument": "Solder micro-defect detection via focus stacking"
+      },
+      "seg6": {
+        "name": "Military Logistics & Supply Chain",
+        "norms": "UID / IUID | NSN",
+        "useCase": "Anti-counterfeiting identification, UID/IUID stock documentation. USD 5.1 billion in unusable stock due to identification failures.",
+        "argument": "Every NSN illustrated, every condition documented"
+      }
     },
     "stats": {
       "heading": "Measured results",
-      "stat1": { "value": "-90%", "label": "photo documentation cost" },
-      "stat2": { "value": "500+", "label": "parts photographed per day" },
-      "stat3": { "value": "1 EUR", "label": "per part vs 5-50 EUR outsourced" },
-      "stat4": { "value": "30 Bn", "label": "USD visual inspection market 2029" }
+      "stat1": {
+        "value": "-90%",
+        "label": "photo documentation cost"
+      },
+      "stat2": {
+        "value": "500+",
+        "label": "parts photographed per day"
+      },
+      "stat3": {
+        "value": "1 EUR",
+        "label": "per part vs 5-50 EUR outsourced"
+      },
+      "stat4": {
+        "value": "30 Bn",
+        "label": "USD visual inspection market 2029"
+      }
     },
     "useCases": {
       "heading": "Industrial use cases",
       "subtitle": "Concrete applications that transform your documentation processes.",
-      "uc1.title": "First Article Inspection (FAI)",
-      "uc1.desc": "Certifiable photographic documentation of every first article produced. Automated comparison with reference plans.",
-      "uc1.techs": "SuperFocus + Templates + 74 LEDs",
-      "uc1.result": "AS9100 compliance made easy, audit-ready",
-      "uc2.title": "Anti-counterfeiting inventory",
-      "uc2.desc": "High-definition photography of every part for visual identification and counterfeit detection in the defense supply chain.",
-      "uc2.techs": "360 Rotation + IQ Mask + NSN Export",
-      "uc2.result": "Every part identified, every counterfeit detected",
-      "uc3.title": "Automotive aftermarket cataloging",
-      "uc3.desc": "High-volume visual production for spare parts catalogs. Automatic naming by manufacturer reference.",
-      "uc3.techs": "Templates + IQ Mask + ERP Export",
-      "uc3.result": "500+ parts/day, publishing in 2 minutes",
-      "uc4.title": "Before/after MRO documentation",
-      "uc4.desc": "Visual tracking of part condition before and after maintenance. Complete photographic traceability for every intervention.",
-      "uc4.techs": "Ghost Image + Templates + DAM Export",
-      "uc4.result": "Full traceability, disputes reduced by 80%"
+      "uc1": {
+        "title": "First Article Inspection (FAI)",
+        "desc": "Certifiable photographic documentation of every first article produced. Automated comparison with reference plans.",
+        "techs": "SuperFocus + Templates + 74 LEDs",
+        "result": "AS9100 compliance made easy, audit-ready"
+      },
+      "uc2": {
+        "title": "Anti-counterfeiting inventory",
+        "desc": "High-definition photography of every part for visual identification and counterfeit detection in the defense supply chain.",
+        "techs": "360 Rotation + IQ Mask + NSN Export",
+        "result": "Every part identified, every counterfeit detected"
+      },
+      "uc3": {
+        "title": "Automotive aftermarket cataloging",
+        "desc": "High-volume visual production for spare parts catalogs. Automatic naming by manufacturer reference.",
+        "techs": "Templates + IQ Mask + ERP Export",
+        "result": "500+ parts/day, publishing in 2 minutes"
+      },
+      "uc4": {
+        "title": "Before/after MRO documentation",
+        "desc": "Visual tracking of part condition before and after maintenance. Complete photographic traceability for every intervention.",
+        "techs": "Ghost Image + Templates + DAM Export",
+        "result": "Full traceability, disputes reduced by 80%"
+      }
     },
     "machines": {
       "heading": "Recommended machines for industry",
