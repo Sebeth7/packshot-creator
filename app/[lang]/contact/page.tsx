@@ -1,7 +1,12 @@
 import { getTranslations } from 'next-intl/server';
+import dynamic from 'next/dynamic';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
-import { PipedriveContactForm } from '@/components/forms';
+
+const PipedriveContactForm = dynamic(
+  () => import('@/components/forms/PipedriveContactForm').then((mod) => mod.PipedriveContactForm),
+  { loading: () => <div className="h-64 bg-neutral-100 rounded-2xl animate-pulse" /> }
+);
 import { Phone, Clock, MapPin, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
@@ -14,8 +19,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/contact`,
+      canonical: `https://www.packshot-creator.com/${lang}/contact`,
       languages: { fr: '/fr/contact', en: '/en/contact' },
+    },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      type: 'website',
+      url: `https://www.packshot-creator.com/${lang}/contact`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Contact PackshotCreator' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }
@@ -26,8 +46,8 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Contact', url: `https://packshot-creator.com/${lang}/contact` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Contact', url: `https://www.packshot-creator.com/${lang}/contact` },
   ];
 
   return (

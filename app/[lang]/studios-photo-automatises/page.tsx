@@ -2,11 +2,16 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
-import { ROICalculator } from '@/components/calculators/ROICalculator';
+
+const ROICalculator = dynamic(
+  () => import('@/components/calculators/ROICalculator/ROICalculatorWizard'),
+  { loading: () => <div className="h-96 bg-neutral-100 rounded-2xl animate-pulse" /> }
+);
 
 const MACHINES = [
   { slug: 'alphashot-pro-g2', image: '/images/machines/alphashot-pro-g2.avif', size: 'Moyen', badge: 'Best-seller' },
@@ -25,8 +30,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('description'),
     keywords: t('keywords'),
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/studios-photo-automatises`,
+      canonical: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
       languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises' },
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+      url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Studios Photo Automatises Orbitvu' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }
@@ -36,8 +56,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
   const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: t('hero.title').split(':')[0].trim(), url: `https://packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
   ];
 
   return (

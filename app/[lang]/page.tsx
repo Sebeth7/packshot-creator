@@ -92,15 +92,23 @@ export async function generateMetadata({
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}`,
+      canonical: `https://www.packshot-creator.com/${lang}`,
       languages: { fr: '/fr', en: '/en' },
     },
     openGraph: {
       title: t('title'),
       description: t('description'),
       type: 'website',
-      url: `https://packshot-creator.com/${lang}`,
-      images: [{ url: 'https://packshot-creator.com/images/og/og-default.avif', width: 1200, height: 630 }],
+      url: `https://www.packshot-creator.com/${lang}`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'PackshotCreator' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }

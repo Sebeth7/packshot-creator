@@ -22,10 +22,24 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('description'),
     keywords: t('keywords'),
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/ia-photo-produit`,
+      canonical: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
       languages: { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit' },
     },
-    openGraph: { description: t('ogDescription') },
+    openGraph: {
+      title: t('title'),
+      description: t('ogDescription'),
+      type: 'website',
+      url: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'IA Photo Produit BlendAI' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('ogDescription'),
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
+    },
   };
 }
 
@@ -34,8 +48,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'IA Photo Produit', url: `https://packshot-creator.com/${lang}/ia-photo-produit` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'IA Photo Produit', url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
   ];
 
   return (

@@ -21,8 +21,28 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, chaussures, bijoux, mobilier, food, cosmétiques'
       : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, shoes, jewelry, furniture, food, cosmetics',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/industrie`,
+      canonical: `https://www.packshot-creator.com/${lang}/industrie`,
       languages: { fr: '/fr/industrie', en: '/en/industrie' },
+    },
+    openGraph: {
+      title: lang === 'fr'
+        ? 'Solutions Photo Produit par Industrie | Studios Automatises & IA'
+        : 'Product Photography Solutions by Industry | Automated Studios & AI',
+      description: lang === 'fr'
+        ? 'Solutions packshot et IA photo produit adaptees a votre industrie. Studios Orbitvu + BlendAI.'
+        : 'Packshot and AI product photography solutions for your industry. Orbitvu Studios + BlendAI.',
+      type: 'website',
+      url: `https://www.packshot-creator.com/${lang}/industrie`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Solutions par industrie' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: lang === 'fr'
+        ? 'Solutions Photo Produit par Industrie'
+        : 'Product Photography Solutions by Industry',
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }
@@ -32,8 +52,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Industries', url: `https://packshot-creator.com/${lang}/industrie` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Industries', url: `https://www.packshot-creator.com/${lang}/industrie` },
   ];
 
   const benefits = [

@@ -16,8 +16,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('description'),
     keywords: t('keywords'),
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/academy`,
+      canonical: `https://www.packshot-creator.com/${lang}/academy`,
       languages: { fr: '/fr/academy', en: '/en/academy' },
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+      url: `https://www.packshot-creator.com/${lang}/academy`,
+      siteName: 'PackshotCreator',
+      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'PackshotCreator Academy' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }
@@ -27,8 +42,8 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
   const t = await getTranslations({ locale: lang, namespace: 'academyHub' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://www.packshot-creator.com/${lang}/academy` },
   ];
 
   const academyFaqs = (['q1', 'q2', 'q3', 'q4', 'q5'] as const).map((key) => ({
