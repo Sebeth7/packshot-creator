@@ -1,13 +1,24 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { getWebflowArticle } from '@/lib/webflow';
 import { Link } from '@/i18n/routing';
-import { Button } from '@/components/ui/button';
 import { getSanityBlogPost, urlFor } from '@/lib/sanity-blog';
 import { PortableText } from '@portabletext/react';
-import { portableTextComponents } from '@/components/blog/PortableTextComponents';
-import { ArrowLeft, ArrowRight, Calendar, Clock, User } from 'lucide-react';
+import {
+  portableTextComponents,
+  TableOfContents,
+  ArticleCTA,
+  RelatedArticles,
+} from '@/components/blog';
+import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
+import {
+  processHtmlContent,
+  extractPortableTextHeadings,
+  calculateReadingTime,
+  type HeadingData,
+} from '@/lib/blog-utils';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -69,263 +80,206 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+// Prose classes for Webflow HTML content styling
+const articleProseClasses = [
+  'prose prose-lg max-w-none',
+  'prose-headings:font-heading prose-headings:text-future-dusk-900',
+  'prose-p:text-future-dusk-600 prose-p:leading-relaxed',
+  'prose-li:text-future-dusk-600',
+  'prose-strong:text-future-dusk-900',
+  'prose-a:text-very-peri-600 hover:prose-a:text-very-peri-700',
+  '[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24',
+  '[&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-future-dusk-800 [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:scroll-mt-24',
+  '[&_blockquote]:border-l-4 [&_blockquote]:border-very-peri-500 [&_blockquote]:italic [&_blockquote]:pl-4 [&_blockquote]:text-future-dusk-500',
+  '[&_:not(pre)>code]:bg-neutral-100 [&_:not(pre)>code]:rounded [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:text-sm',
+  '[&_img]:rounded-lg [&_img]:shadow-sm [&_img]:my-8',
+].join(' ');
+
 export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const isFr = lang === 'fr';
+  const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
 
-  // 1. Check for Sanity article first
+  // 1. Try Sanity first
   const sanityPost = await getSanityBlogPost(slug);
+  // 2. Fallback to Webflow
+  const webflowArticle = !sanityPost ? await getWebflowArticle(slug) : null;
+
+  if (!sanityPost && !webflowArticle) notFound();
+
+  // Normalize article data
+  let title: string;
+  let description: string;
+  let date: string;
+  let author: string | undefined;
+  let category: string | undefined;
+  let imageUrl: string | null;
+  let readingTime: number;
+  let headings: HeadingData[];
+  let contentElement: React.ReactNode;
+  let isWebflow = false;
 
   if (sanityPost) {
-    const imageUrl = sanityPost.image
+    title = sanityPost.title;
+    description = sanityPost.description;
+    date = sanityPost.date;
+    author = sanityPost.author;
+    category = sanityPost.category;
+    imageUrl = sanityPost.image
       ? urlFor(sanityPost.image).width(1200).height(600).url()
       : null;
+    readingTime = sanityPost.readingTime;
+    headings = extractPortableTextHeadings(sanityPost.content);
+    contentElement = (
+      <PortableText value={sanityPost.content} components={portableTextComponents} />
+    );
+  } else {
+    const wf = webflowArticle!;
+    const processed = processHtmlContent(wf.content || '');
+    title = wf.title;
+    description = wf.description;
+    date = wf.date;
+    category = wf.category;
+    imageUrl = wf.image || null;
+    readingTime = calculateReadingTime(processed.wordCount);
+    headings = processed.headings;
+    isWebflow = true;
+    contentElement = (
+      <div dangerouslySetInnerHTML={{ __html: processed.processedHtml }} />
+    );
+  }
 
-    const breadcrumbs = [
-      { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-      { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
-      { name: sanityPost.title, url: `https://www.packshot-creator.com/${lang}/blog/${slug}` },
-    ];
+  const breadcrumbs = [
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
+    { name: title, url: `https://www.packshot-creator.com/${lang}/blog/${slug}` },
+  ];
 
-    return (
-      <>
-        {/* Article Header */}
-        <FadeInView>
-          <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white py-12 lg:py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6">
-              {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
-                <Link href="/" className="hover:text-white transition-colors">
-                  {isFr ? 'Accueil' : 'Home'}
-                </Link>
-                <span>/</span>
-                <Link href="/blog" className="hover:text-white transition-colors">
-                  Blog
-                </Link>
-                <span>/</span>
-                <span className="text-very-peri-300">{sanityPost.category || 'Article'}</span>
-              </div>
+  const tocTitle = t('toc');
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6">
-                {sanityPost.title}
-              </h1>
+  return (
+    <>
+      {/* Article Header */}
+      <FadeInView>
+        <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white py-12 lg:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
+              <Link href="/" className="hover:text-white transition-colors">
+                {t('home')}
+              </Link>
+              <span>/</span>
+              <Link href="/blog" className="hover:text-white transition-colors">
+                Blog
+              </Link>
+              <span>/</span>
+              <span className="text-very-peri-300">{category || t('defaultCategory')}</span>
+            </div>
 
-              <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200">
-                <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={sanityPost.date}>
-                    {new Date(sanityPost.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6">
+              {title}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200">
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={date}>
+                  {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </span>
+              {author && (
                 <span className="inline-flex items-center gap-1.5">
                   <User className="h-4 w-4" />
-                  {sanityPost.author}
+                  {author}
                 </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" />
-                  {sanityPost.readingTime} min {isFr ? 'de lecture' : 'read'}
-                </span>
-              </div>
-            </div>
-          </section>
-
-          {/* Featured Image */}
-          {imageUrl && (
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
-              <img
-                src={imageUrl}
-                alt={sanityPost.image?.alt || sanityPost.title}
-                className="w-full rounded-2xl shadow-lg"
-              />
-            </div>
-          )}
-        </FadeInView>
-
-        {/* Article Content */}
-        <FadeInView delay={0.2}>
-          <section className="py-12 lg:py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6">
-              <article className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900 prose-a:text-very-peri-600 hover:prose-a:text-very-peri-700">
-                <PortableText
-                  value={sanityPost.content}
-                  components={portableTextComponents}
-                />
-              </article>
-
-              {/* Back to blog */}
-              <div className="mt-12 pt-8 border-t border-neutral-100">
-                <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
-                  <ArrowLeft className="h-4 w-4" />
-                  {isFr ? 'Retour au blog' : 'Back to blog'}
-                </Link>
-              </div>
-            </div>
-          </section>
-        </FadeInView>
-
-        {/* CTA */}
-        <FadeInView>
-          <section className="py-16 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
-                {isFr ? 'Prêt à automatiser votre production photo ?' : 'Ready to automate your photo production?'}
-              </h2>
-              <p className="text-lg text-very-peri-100 mb-8">
-                {isFr
-                  ? 'Découvrez nos solutions de studios photo automatisés et d\'IA photo produit.'
-                  : 'Discover our automated photo studio solutions and AI product photography.'}
-              </p>
-              <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-                <Link href="/contact">
-                  {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </section>
-        </FadeInView>
-
-        <SchemaOrg schema={[
-          organizationSchema(),
-          breadcrumbSchema(breadcrumbs),
-          articleSchema({
-            title: sanityPost.title,
-            description: sanityPost.description,
-            url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
-            image: imageUrl || undefined,
-            datePublished: sanityPost.date,
-            author: sanityPost.author,
-            category: sanityPost.category,
-          }),
-        ]} />
-      </>
-    );
-  }
-
-  // 2. Fallback to Webflow article
-  const webflowArticle = await getWebflowArticle(slug);
-
-  if (webflowArticle) {
-    const breadcrumbs = [
-      { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-      { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
-      { name: webflowArticle.title, url: `https://www.packshot-creator.com/${lang}/blog/${slug}` },
-    ];
-
-    return (
-      <>
-        {/* Article Header */}
-        <FadeInView>
-          <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white py-12 lg:py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6">
-              {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
-                <Link href="/" className="hover:text-white transition-colors">
-                  {isFr ? 'Accueil' : 'Home'}
-                </Link>
-                <span>/</span>
-                <Link href="/blog" className="hover:text-white transition-colors">
-                  Blog
-                </Link>
-                <span>/</span>
-                <span className="text-very-peri-300">{webflowArticle.category || 'Article'}</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6">
-                {webflowArticle.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200">
-                <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={webflowArticle.date}>
-                    {new Date(webflowArticle.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </span>
+              )}
+              <span className="inline-flex items-center gap-1.5">
+                <Clock className="h-4 w-4" />
+                {t('readingTime', { minutes: readingTime })}
+              </span>
+              {isWebflow && (
                 <span className="px-2 py-0.5 text-xs bg-future-dusk-700 rounded-full text-future-dusk-200">
-                  {isFr ? 'Archive Webflow' : 'Webflow Archive'}
+                  {t('webflowArchive')}
                 </span>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Image */}
+        {imageUrl && (
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full rounded-2xl shadow-lg"
+            />
+          </div>
+        )}
+      </FadeInView>
+
+      {/* Article Content with ToC sidebar */}
+      <FadeInView delay={0.2}>
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="lg:flex lg:gap-12">
+              {/* Main content */}
+              <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
+                {/* Mobile ToC */}
+                {headings.length > 0 && (
+                  <div className="lg:hidden mb-8">
+                    <TableOfContents headings={headings} title={tocTitle} collapsible />
+                  </div>
+                )}
+
+                <article className={articleProseClasses}>
+                  {contentElement}
+                </article>
+
+                {/* Back to blog */}
+                <div className="mt-12 pt-8 border-t border-neutral-100">
+                  <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
+                    <ArrowLeft className="h-4 w-4" />
+                    {t('backToBlog')}
+                  </Link>
+                </div>
               </div>
+
+              {/* Desktop ToC sidebar */}
+              {headings.length > 0 && (
+                <aside className="hidden lg:block w-64 shrink-0">
+                  <div className="sticky top-24">
+                    <TableOfContents headings={headings} title={tocTitle} />
+                  </div>
+                </aside>
+              )}
             </div>
-          </section>
+          </div>
+        </section>
+      </FadeInView>
 
-          {/* Featured Image */}
-          {webflowArticle.image && (
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
-              <img
-                src={webflowArticle.image}
-                alt={webflowArticle.title}
-                className="w-full rounded-2xl shadow-lg"
-              />
-            </div>
-          )}
-        </FadeInView>
+      {/* CTA */}
+      <ArticleCTA lang={lang} />
 
-        {/* Article Content */}
-        <FadeInView delay={0.2}>
-          <section className="py-12 lg:py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6">
-              <article className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900 prose-a:text-very-peri-600 hover:prose-a:text-very-peri-700">
-                <div
-                  dangerouslySetInnerHTML={{ __html: webflowArticle.content || '' }}
-                />
-              </article>
+      {/* Related Articles */}
+      <RelatedArticles currentSlug={slug} category={category} lang={lang} />
 
-              {/* Back to blog */}
-              <div className="mt-12 pt-8 border-t border-neutral-100">
-                <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
-                  <ArrowLeft className="h-4 w-4" />
-                  {isFr ? 'Retour au blog' : 'Back to blog'}
-                </Link>
-              </div>
-            </div>
-          </section>
-        </FadeInView>
-
-        {/* CTA */}
-        <FadeInView>
-          <section className="py-16 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
-                {isFr ? 'Prêt à automatiser votre production photo ?' : 'Ready to automate your photo production?'}
-              </h2>
-              <p className="text-lg text-very-peri-100 mb-8">
-                {isFr
-                  ? 'Découvrez nos solutions de studios photo automatisés et d\'IA photo produit.'
-                  : 'Discover our automated photo studio solutions and AI product photography.'}
-              </p>
-              <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-                <Link href="/contact">
-                  {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </section>
-        </FadeInView>
-
-        <SchemaOrg schema={[
-          organizationSchema(),
-          breadcrumbSchema(breadcrumbs),
-          articleSchema({
-            title: webflowArticle.title,
-            description: webflowArticle.description,
-            url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
-            image: webflowArticle.image,
-            datePublished: webflowArticle.date,
-            category: webflowArticle.category,
-          }),
-        ]} />
-      </>
-    );
-  }
-
-  // 3. Article not found
-  notFound();
+      <SchemaOrg schema={[
+        organizationSchema(),
+        breadcrumbSchema(breadcrumbs),
+        articleSchema({
+          title,
+          description,
+          url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
+          image: imageUrl || undefined,
+          datePublished: date,
+          author,
+          category,
+        }),
+      ]} />
+    </>
+  );
 }

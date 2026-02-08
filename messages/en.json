@@ -411,7 +411,24 @@
     "ctaHeading": "Need help with your photo project?",
     "ctaDescription": "Our experts are here to help you choose the right solutions.",
     "ctaContact": "Contact us",
-    "ctaFormation": "Discover our training"
+    "ctaFormation": "Discover our training",
+    "filterAll": "All",
+    "showMore": "Show more articles",
+    "latestArticle": "Featured article"
+  },
+  "blogArticle": {
+    "toc": "Table of Contents",
+    "readingTime": "{minutes} min read",
+    "backToBlog": "Back to blog",
+    "home": "Home",
+    "defaultCategory": "Article",
+    "webflowArchive": "Webflow Archive",
+    "ctaHeading": "Discover our solutions",
+    "ctaDescription": "Automate your photo production and calculate your return on investment.",
+    "ctaDemo": "Request a demo",
+    "ctaRoi": "Calculate my ROI",
+    "relatedHeading": "Related articles",
+    "readArticle": "Read article"
   },
   "contact": {
     "metaTitle": "Contact PackshotCreator | Free Demo | Orbitvu Distributor FR/CH",
@@ -1721,6 +1738,22 @@
       "heading": "Questions about your data?",
       "description": "Contact our team for any request regarding your personal data.",
       "button": "Contact us"
+    }
+  },
+  "media": {
+    "video": {
+      "play": "Play video: {title}"
+    },
+    "gallery": {
+      "enlarge": "Enlarge: {alt}",
+      "close": "Close",
+      "prev": "Previous image",
+      "next": "Next image"
+    },
+    "beforeAfter": {
+      "slider": "Before/after slider",
+      "before": "Before",
+      "after": "After"
     }
   }
 }

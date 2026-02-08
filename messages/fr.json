@@ -411,7 +411,24 @@
     "ctaHeading": "Besoin d'aide pour votre projet photo ?",
     "ctaDescription": "Nos experts sont là pour vous accompagner dans le choix de vos solutions.",
     "ctaContact": "Nous contacter",
-    "ctaFormation": "Découvrir nos formations"
+    "ctaFormation": "Découvrir nos formations",
+    "filterAll": "Tous",
+    "showMore": "Voir plus d'articles",
+    "latestArticle": "Article à la une"
+  },
+  "blogArticle": {
+    "toc": "Sommaire",
+    "readingTime": "{minutes} min de lecture",
+    "backToBlog": "Retour au blog",
+    "home": "Accueil",
+    "defaultCategory": "Article",
+    "webflowArchive": "Archive Webflow",
+    "ctaHeading": "Découvrez nos solutions",
+    "ctaDescription": "Automatisez votre production photo et calculez votre retour sur investissement.",
+    "ctaDemo": "Demander une démo",
+    "ctaRoi": "Calculer mon ROI",
+    "relatedHeading": "Articles similaires",
+    "readArticle": "Lire l'article"
   },
   "contact": {
     "metaTitle": "Contact PackshotCreator | Démo Gratuite | Distributeur Orbitvu FR/CH",
@@ -1721,6 +1738,22 @@
       "heading": "Questions sur vos données ?",
       "description": "Contactez notre équipe pour toute demande relative à vos données personnelles.",
       "button": "Nous contacter"
+    }
+  },
+  "media": {
+    "video": {
+      "play": "Lire la vidéo : {title}"
+    },
+    "gallery": {
+      "enlarge": "Agrandir : {alt}",
+      "close": "Fermer",
+      "prev": "Image précédente",
+      "next": "Image suivante"
+    },
+    "beforeAfter": {
+      "slider": "Curseur avant/après",
+      "before": "Avant",
+      "after": "Après"
     }
   }
 }

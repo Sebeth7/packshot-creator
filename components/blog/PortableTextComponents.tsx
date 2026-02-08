@@ -1,6 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { Callout } from './Callout';
 import { ComparisonTable } from './ComparisonTable';
+import { slugify, getBlockText } from '@/lib/blog-utils';
 
 export const portableTextComponents: PortableTextComponents = {
   types: {
@@ -60,18 +61,24 @@ export const portableTextComponents: PortableTextComponents = {
         {children}
       </h1>
     ),
-    h2: ({ children }) => (
-      <h2 className="font-heading text-3xl font-bold text-future-dusk-900 mb-4 mt-8">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="font-heading text-2xl font-bold text-future-dusk-900 mb-3 mt-6">
-        {children}
-      </h3>
-    ),
+    h2: ({ children, value }) => {
+      const id = slugify(getBlockText(value));
+      return (
+        <h2 id={id} className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
+          {children}
+        </h2>
+      );
+    },
+    h3: ({ children, value }) => {
+      const id = slugify(getBlockText(value));
+      return (
+        <h3 id={id} className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
+          {children}
+        </h3>
+      );
+    },
     h4: ({ children }) => (
-      <h4 className="font-heading text-xl font-bold text-future-dusk-900 mb-2 mt-4">
+      <h4 className="font-heading text-lg font-bold text-future-dusk-900 mb-2 mt-4">
         {children}
       </h4>
     ),
@@ -91,7 +98,7 @@ export const portableTextComponents: PortableTextComponents = {
     strong: ({ children }) => <strong className="font-bold">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="bg-neutral-100 px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-sm font-mono">
         {children}
       </code>
     ),
@@ -112,12 +119,12 @@ export const portableTextComponents: PortableTextComponents = {
 
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-4 space-y-2">
+      <ul className="list-disc pl-6 mb-4 space-y-2">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2">
+      <ol className="list-decimal pl-6 mb-4 space-y-2">
         {children}
       </ol>
     )

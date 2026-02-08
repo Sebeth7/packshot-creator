@@ -5,7 +5,8 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { FadeInView } from '@/components/animations';
+import { BlogGrid } from '@/components/blog/BlogGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -47,6 +48,10 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
     { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
   ];
 
+  const heroPost = posts[0];
+  const gridPosts = posts.slice(1);
+  const categories = [...new Set(posts.map((p) => p.category).filter(Boolean))] as string[];
+
   return (
     <>
       {/* Hero */}
@@ -64,77 +69,83 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
-      {/* Articles Grid */}
-      <section className="py-16 lg:py-20 bg-white">
+      {/* Hero Article Card */}
+      {heroPost && (
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+              <Link href={`/blog/${heroPost.slug}`} className="group block">
+                <div className="grid lg:grid-cols-2 gap-0 rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300">
+                  <div className="relative h-64 lg:h-80 bg-neutral-100 overflow-hidden">
+                    {heroPost.image ? (
+                      <Image
+                        src={heroPost.image}
+                        alt={heroPost.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-very-peri-50 to-future-dusk-100">
+                        <BookOpen className="h-16 w-16 text-very-peri-300" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-8 lg:p-10 flex flex-col justify-center space-y-4">
+                    <span className="text-xs font-bold uppercase tracking-wider text-very-peri-600">
+                      {t('latestArticle')}
+                    </span>
+                    <div className="flex items-center gap-3 text-sm">
+                      {heroPost.category && (
+                        <span className="px-3 py-1 rounded-full bg-very-peri-100 text-very-peri-700 font-medium text-xs uppercase tracking-wide">
+                          {heroPost.category}
+                        </span>
+                      )}
+                      <span className="text-future-dusk-400">
+                        {new Date(heroPost.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </div>
+                    <h2 className="font-heading text-2xl lg:text-3xl font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                      {heroPost.title}
+                    </h2>
+                    <p className="text-future-dusk-500 line-clamp-3">
+                      {heroPost.description}
+                    </p>
+                    <div className="pt-2">
+                      <span className="text-very-peri-600 font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                        {t('cta')}
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </FadeInView>
+          </div>
+        </section>
+      )}
+
+      {/* Articles Grid with filter */}
+      <section className="py-8 lg:py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {posts.length === 0 ? (
+          {gridPosts.length === 0 && !heroPost ? (
             <div className="text-center py-12">
               <p className="text-future-dusk-500 text-lg">{t('noArticles')}</p>
             </div>
           ) : (
-            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <StaggerItem key={post.slug}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 block"
-                  >
-                    {/* Image */}
-                    <div className="relative h-48 w-full bg-neutral-100 overflow-hidden">
-                      {post.image ? (
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-very-peri-50 to-future-dusk-100">
-                          <BookOpen className="h-12 w-12 text-very-peri-300" />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 space-y-3">
-                      {/* Category + Date */}
-                      <div className="flex items-center gap-3 text-sm">
-                        {post.category && (
-                          <span className="px-3 py-1 rounded-full bg-very-peri-100 text-very-peri-700 font-medium text-xs uppercase tracking-wide">
-                            {post.category}
-                          </span>
-                        )}
-                        <span className="text-future-dusk-400">
-                          {new Date(post.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h2 className="font-heading text-xl font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors line-clamp-2">
-                        {post.title}
-                      </h2>
-
-                      {/* Description */}
-                      <p className="text-future-dusk-500 text-sm line-clamp-3">
-                        {post.description}
-                      </p>
-
-                      {/* Read more */}
-                      <div className="pt-2">
-                        <span className="text-very-peri-600 font-medium text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                          {t('cta')}
-                          <ArrowRight className="h-4 w-4" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <BlogGrid
+              articles={gridPosts}
+              categories={categories}
+              lang={lang}
+              translations={{
+                all: t('filterAll'),
+                readArticle: t('cta'),
+                showMore: t('showMore'),
+              }}
+            />
           )}
         </div>
       </section>
