@@ -15,6 +15,9 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Clock,
+  TrendingUp,
+  Shield,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -56,6 +59,21 @@ const PILLARS = [
 ];
 
 const STATS = ['years', 'clients', 'sectors', 'machines'] as const;
+
+const GALLERY_ITEMS = [
+  { key: 'packshot' as const, image: '/images/gallery/packshot-fondBlanc.avif', span: 'col-span-2 row-span-2' },
+  { key: 'threeSixty' as const, image: '/images/gallery/360-product.avif', span: '' },
+  { key: 'fashion' as const, image: '/images/gallery/fashion-model.avif', span: '' },
+  { key: 'flatlay' as const, image: '/images/gallery/flatlay-composition.avif', span: '' },
+  { key: 'jewelry' as const, image: '/images/gallery/jewelry-macro.avif', span: '' },
+  { key: 'furniture' as const, image: '/images/gallery/furniture-large.avif', span: 'col-span-2' },
+] as const;
+
+const WHY_AUTOMATE = [
+  { key: 'noSkills' as const, Icon: Clock },
+  { key: 'scalability' as const, Icon: TrendingUp },
+  { key: 'knowHow' as const, Icon: Shield },
+] as const;
 
 const HYBRID_STEPS = [
   { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu' },
@@ -384,6 +402,78 @@ export default async function HomePage({
           </div>
         </section>
 
+        {/* ━━━ GALLERY (Section A) ━━━ */}
+        <section className="py-20 bg-bg-light-gray">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeInView className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
+                {t('gallery.heading')}
+              </h2>
+              <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
+                {t('gallery.subtitle')}
+              </p>
+            </FadeInView>
+
+            <StaggerContainer stagger={0.08} className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+              {GALLERY_ITEMS.map((item) => (
+                <StaggerItem key={item.key} className={item.span}>
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-neutral-100">
+                    <Image
+                      src={item.image}
+                      alt={t(`gallery.items.${item.key}`)}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="absolute bottom-4 left-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {t(`gallery.items.${item.key}`)}
+                    </span>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+
+        {/* ━━━ MID CTA (Section C) ━━━ */}
+        <section className="py-16 bg-gradient-to-r from-future-dusk-800 to-very-peri-800">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              <FadeInView direction="left">
+                <h2 className="text-2xl lg:text-3xl font-heading font-bold text-white leading-tight">
+                  {t('midCta.heading')}
+                </h2>
+              </FadeInView>
+              <FadeInView delay={0.1} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                <p className="text-future-dusk-200 text-sm mb-4">
+                  {t('midCta.option1.label')}
+                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg w-full"
+                >
+                  <Link href="/contact">{t('midCta.option1.cta')}</Link>
+                </Button>
+              </FadeInView>
+              <FadeInView delay={0.2} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                <p className="text-future-dusk-200 text-sm mb-4">
+                  {t('midCta.option2.label')}
+                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-transparent border border-white/40 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg w-full"
+                >
+                  <Link href="/studios-photo-automatises#calculateur-roi">{t('midCta.option2.cta')}</Link>
+                </Button>
+              </FadeInView>
+            </div>
+          </div>
+        </section>
+
         {/* ━━━ INDUSTRIES ━━━ */}
         <section className="py-20 bg-bg-light-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -432,8 +522,62 @@ export default async function HomePage({
           </div>
         </section>
 
-        {/* ━━━ BLOG ━━━ */}
+        {/* ━━━ WHY AUTOMATE (Section B) ━━━ */}
         <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeInView className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
+                {t('whyAutomate.heading')}
+              </h2>
+              <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
+                {t('whyAutomate.subtitle')}
+              </p>
+            </FadeInView>
+
+            <div className="space-y-16">
+              {WHY_AUTOMATE.map((item, idx) => (
+                <FadeInView key={item.key} direction={idx % 2 === 0 ? 'left' : 'right'}>
+                  <div className={`grid lg:grid-cols-2 gap-12 items-center ${idx % 2 !== 0 ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : ''}`}>
+                    <div>
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="w-14 h-14 rounded-xl bg-very-peri-100 flex items-center justify-center">
+                          <item.Icon className="w-7 h-7 text-very-peri-600" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-4xl font-heading font-bold text-very-peri-600">
+                            {t(`whyAutomate.${item.key}.stat`)}
+                          </span>
+                          <span className="text-sm text-neutral-medium">
+                            {t(`whyAutomate.${item.key}.statLabel`)}
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-heading font-bold text-heading-dark mb-4">
+                        {t(`whyAutomate.${item.key}.title`)}
+                      </h3>
+                      <p className="text-neutral-medium leading-relaxed text-lg">
+                        {t(`whyAutomate.${item.key}.description`)}
+                      </p>
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100">
+                      <Image
+                        src={`/images/why-automate/${item.key}.avif`}
+                        alt={t(`whyAutomate.${item.key}.title`)}
+                        fill
+                        className="object-cover"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
+                </FadeInView>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ━━━ BLOG ━━━ */}
+        <section className="py-20 bg-bg-light-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
@@ -513,7 +657,7 @@ export default async function HomePage({
         </section>
 
         {/* ━━━ FAQ (AEO) ━━━ */}
-        <section className="py-20 bg-bg-light-gray">
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInView className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">

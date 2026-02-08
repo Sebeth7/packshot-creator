@@ -153,6 +153,51 @@
         "answer": "PackshotCreator offers a hybrid approach: Orbitvu automated hardware + BlendAI specialized AI + certified training. Our solutions deliver 10x higher productivity, consistent quality and 80% lower cost per image compared to traditional photography."
       }
     },
+    "gallery": {
+      "heading": "Results That Speak for Themselves",
+      "subtitle": "Discover the quality of visuals produced by our automated Orbitvu studios.",
+      "items": {
+        "packshot": "White background packshot",
+        "threeSixty": "Interactive 360° view",
+        "fashion": "Live model photography",
+        "flatlay": "Flat-lay composition",
+        "jewelry": "Jewelry macro",
+        "furniture": "Large furniture"
+      }
+    },
+    "whyAutomate": {
+      "heading": "Why Automate Your Product Photography?",
+      "subtitle": "3 decisive advantages for your visual production.",
+      "noSkills": {
+        "title": "Pro results without photo skills",
+        "description": "Our automated studios handle lighting, framing and background removal. After just 1 hour of training, any operator produces packshots worthy of an expert photographer.",
+        "stat": "1h",
+        "statLabel": "to get started"
+      },
+      "scalability": {
+        "title": "Instant volume scaling",
+        "description": "Need to photograph 10,000 references? Software templates save your settings: position, lighting, post-production. Duplicate the workflow and scale up effortlessly.",
+        "stat": "10x",
+        "statLabel": "more productive"
+      },
+      "knowHow": {
+        "title": "Keep the know-how in-house",
+        "description": "No more dependency on external providers or freelance photographers. Your shooting parameters are saved in the software. Even if your operator changes, quality remains identical.",
+        "stat": "100%",
+        "statLabel": "reproducible"
+      }
+    },
+    "midCta": {
+      "heading": "Ready to optimize your photo production?",
+      "option1": {
+        "label": "Already know which studio fits you?",
+        "cta": "Get a quote"
+      },
+      "option2": {
+        "label": "Not sure which solution is best?",
+        "cta": "Calculate my ROI"
+      }
+    },
     "finalCta": {
       "heading": "Ready to transform your visual production?",
       "subtitle": "Discover our solutions during a personalized demo with a PackshotCreator expert.",
@@ -658,6 +703,90 @@
         "heading": "2026 Buying Guide",
         "description": "Download our complete guide to choose the automated photo studio adapted to your business.",
         "cta": "Download the guide"
+      }
+    },
+    "photoTypes": {
+      "heading": "A Studio For Every Photo Type",
+      "subtitle": "Packshot, 360°, fashion or flat-lay: solutions adapted to every need",
+      "still": {
+        "title": "White Background Packshot",
+        "description": "Product photos on white or transparent background, e-commerce ready. Automatic AI clipping, optimized lighting, consistency guaranteed across thousands of visuals.",
+        "stat1": "500+ photos/day",
+        "stat2": "White background in 1 click",
+        "stat3": "E-commerce, luxury, industry",
+        "cta": "Packshot studios"
+      },
+      "threeSixty": {
+        "title": "360° Photo & Video",
+        "description": "Interactive 360° views and spin videos for an immersive experience. Customers rotate the product as if they held it. Reduces returns by 25%.",
+        "stat1": "150+ products/day",
+        "stat2": "360° spin in 90 seconds",
+        "stat3": "E-commerce, electronics",
+        "cta": "360° studios"
+      },
+      "fashion": {
+        "title": "Fashion & Mannequin",
+        "description": "Large format studios for worn clothing, ghost mannequin and flat-lay. Professional fashion lighting, integrated e-commerce video.",
+        "stat1": "150+ outfits/day",
+        "stat2": "Video + photo combined",
+        "stat3": "Fashion, luxury, sports",
+        "cta": "Fashion studios"
+      },
+      "flatlay": {
+        "title": "Flat-Lay & Top-Down",
+        "description": "Top-down capture for flat clothing, accessories, creative compositions. Ideal for social media and catalogs.",
+        "stat1": "150 photos/hour",
+        "stat2": "Automatic framing",
+        "stat3": "Fashion, jewelry, textile",
+        "cta": "Flat-lay studios"
+      }
+    },
+    "trust": {
+      "heading": "Trusted by Leading Brands",
+      "subtitle": "Prestigious brands produce their visuals with our Orbitvu studios",
+      "stat1value": "500+",
+      "stat1label": "Equipped clients",
+      "stat2value": "20 years",
+      "stat2label": "Photography expertise",
+      "stat3value": "50+",
+      "stat3label": "Countries covered by Orbitvu",
+      "clientsNote": "Client logos to be added by PO"
+    },
+    "support": {
+      "heading": "Full Support From A to Z",
+      "subtitle": "Purchasing the studio is just the beginning. We support you every step of the way.",
+      "step1title": "Personalized consulting",
+      "step1description": "Our experts analyze your needs and recommend the ideal solution. Free on-site or remote demonstration.",
+      "step2title": "Installation & Certified training",
+      "step2description": "Delivery, installation and Qualiopi-certified training included. Your teams are operational from day one.",
+      "step3title": "Continuous support",
+      "step3description": "Dedicated hotline, preventive maintenance and software updates. We stay by your side to maximize your ROI."
+    },
+    "faqStudios": {
+      "heading": "Frequently Asked Questions About Studios",
+      "q1": {
+        "question": "Which studio should I choose for jewelry photography?",
+        "answer": "The Alphashot Micro Pro v2 is ideal for jewelry thanks to its optimized macro lighting and capture zone adapted to small objects. For watches and larger pieces, the Alphashot Pro G2 offers more flexibility."
+      },
+      "q2": {
+        "question": "Which studio for fashion photography?",
+        "answer": "The Fashion Studio Pro v2 is designed for worn clothing and ghost mannequin photography. For flat-lay, the Alphadesk v2 and Alphatable v2 are the references. All include e-commerce video."
+      },
+      "q3": {
+        "question": "Can all studios do 360° photography?",
+        "answer": "Most of our studios include a motorized turntable for 360° views. The Alphashot 360 is the specialist, but the Alphashot Pro and XL ranges also offer this feature."
+      },
+      "q4": {
+        "question": "Is the camera included with the studio?",
+        "answer": "Orbitvu studios are compatible with most DSLR and mirrorless cameras (Canon, Nikon, Sony). The camera is not included, but we advise you on the most suitable model for your use."
+      },
+      "q5": {
+        "question": "Can I rent a studio before buying?",
+        "answer": "We offer free on-site or remote demonstrations. Contact us to arrange a test with your own products and evaluate the concrete ROI before investing."
+      },
+      "q6": {
+        "question": "What is the delivery time?",
+        "answer": "Lead times vary depending on the model and availability. Generally, allow 2 to 4 weeks for delivery, installation and training. We manage the entire deployment."
       }
     }
   },

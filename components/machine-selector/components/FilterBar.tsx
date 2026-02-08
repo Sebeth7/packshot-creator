@@ -95,7 +95,7 @@ export function FilterBar({
     filters.searchQuery;
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+    <div className="bg-white rounded-xl border border-neutral-200 p-4 mb-6">
       {/* Barre de recherche et tri */}
       <div className="flex flex-col md:flex-row gap-4 mb-4">
         {/* Recherche */}
@@ -105,10 +105,10 @@ export function FilterBar({
             placeholder={locale === 'fr' ? 'Rechercher une machine...' : 'Search machines...'}
             value={filters.searchQuery || ''}
             onChange={(e) => onFilterChange('searchQuery', e.target.value || undefined)}
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none transition-all"
+            className="w-full pl-10 pr-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all"
           />
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-future-dusk-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -127,7 +127,7 @@ export function FilterBar({
           <select
             value={sortOption}
             onChange={(e) => onSortChange(e.target.value as SortOption)}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none transition-all bg-white"
+            className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white"
           >
             {Object.entries(SORT_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
@@ -145,7 +145,7 @@ export function FilterBar({
           <select
             value={filters.sizeCategory || ''}
             onChange={(e) => onFilterChange('sizeCategory', (e.target.value || undefined) as ProductSizeCategory | undefined)}
-            className="appearance-none px-4 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none transition-all bg-white text-sm"
+            className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
             <option value="">{locale === 'fr' ? 'Toutes les tailles' : 'All sizes'}</option>
             {Object.entries(SIZE_LABELS).map(([value, label]) => (
@@ -154,7 +154,7 @@ export function FilterBar({
               </option>
             ))}
           </select>
-          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -164,7 +164,7 @@ export function FilterBar({
           <select
             value={filters.automationLevel || ''}
             onChange={(e) => onFilterChange('automationLevel', (e.target.value || undefined) as AutomationLevel | undefined)}
-            className="appearance-none px-4 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red outline-none transition-all bg-white text-sm"
+            className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
             <option value="">{locale === 'fr' ? 'Automatisation' : 'Automation'}</option>
             {Object.entries(AUTOMATION_LABELS).map(([value, label]) => (
@@ -173,7 +173,7 @@ export function FilterBar({
               </option>
             ))}
           </select>
-          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -183,8 +183,8 @@ export function FilterBar({
           onClick={() => setShowAdvanced(!showAdvanced)}
           className={`px-4 py-2 border rounded-lg text-sm transition-all flex items-center gap-2 ${
             showAdvanced
-              ? 'border-brand-red text-brand-red bg-brand-red/5'
-              : 'border-gray-300 text-gray-700 hover:border-brand-red/50'
+              ? 'border-very-peri-500 text-very-peri-600 bg-very-peri-50'
+              : 'border-neutral-300 text-future-dusk-700 hover:border-very-peri-400'
           }`}
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -197,7 +197,7 @@ export function FilterBar({
         {hasActiveFilters && (
           <button
             onClick={onReset}
-            className="px-4 py-2 text-sm text-gray-600 hover:text-brand-red transition-colors flex items-center gap-1"
+            className="px-4 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600 transition-colors flex items-center gap-1"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -209,10 +209,10 @@ export function FilterBar({
 
       {/* Filtres avancés */}
       {showAdvanced && (
-        <div className="pt-4 border-t border-gray-200 space-y-4">
+        <div className="pt-4 border-t border-neutral-200 space-y-4">
           {/* Secteurs */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-future-dusk-700 mb-2">
               {locale === 'fr' ? 'Secteurs d\'activité' : 'Industries'}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -232,8 +232,8 @@ export function FilterBar({
                     }}
                     className={`px-3 py-1.5 text-xs rounded-full transition-all ${
                       isActive
-                        ? 'bg-brand-red text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-very-peri-600 text-white'
+                        : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
                     }`}
                   >
                     {locale === 'fr' ? label.fr : label.en}
@@ -245,7 +245,7 @@ export function FilterBar({
 
           {/* Fonctionnalités */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-future-dusk-700 mb-2">
               {locale === 'fr' ? 'Fonctionnalités requises' : 'Required features'}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -265,8 +265,8 @@ export function FilterBar({
                     }}
                     className={`px-3 py-1.5 text-xs rounded-full transition-all ${
                       isActive
-                        ? 'bg-brand-red text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-very-peri-600 text-white'
+                        : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
                     }`}
                   >
                     {locale === 'fr' ? label.fr : label.en}
@@ -279,14 +279,14 @@ export function FilterBar({
       )}
 
       {/* Compteur de résultats */}
-      <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-sm text-gray-600">
+      <div className="mt-4 pt-4 border-t border-neutral-200 flex items-center justify-between text-sm text-future-dusk-600">
         <span>
           {locale === 'fr'
             ? `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} sur ${totalMachines}`
             : `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} of ${totalMachines}`}
         </span>
         {hasActiveFilters && (
-          <span className="text-brand-red">
+          <span className="text-very-peri-600">
             {locale === 'fr' ? 'Filtres actifs' : 'Filters active'}
           </span>
         )}

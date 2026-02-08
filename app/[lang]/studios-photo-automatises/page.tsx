@@ -3,9 +3,9 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight } from 'lucide-react';
+import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight, RotateCcw, Shirt, Layout, Users, Truck, Headphones, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const ROICalculator = dynamic(
@@ -13,14 +13,10 @@ const ROICalculator = dynamic(
   { loading: () => <div className="h-96 bg-neutral-100 rounded-2xl animate-pulse" /> }
 );
 
-const MACHINES = [
-  { slug: 'alphashot-pro-g2', image: '/images/machines/alphashot-pro-g2.avif', size: 'Moyen', badge: 'Best-seller' },
-  { slug: 'alphashot-xl-v2', image: '/images/machines/alphashot-xl.avif', size: 'Grand', badge: null },
-  { slug: 'alphashot-360', image: '/images/machines/alphashot-360.avif', size: 'Moyen', badge: '360°' },
-  { slug: 'alphashot-micro-v2', image: '/images/machines/alphashot-micro-v2.avif', size: 'Petit', badge: 'Compact' },
-  { slug: 'fashion-studio', image: '/images/machines/fashion-studio.avif', size: 'Grand', badge: 'Mode' },
-  { slug: 'furniture-studio', image: '/images/machines/furniture-studio.avif', size: 'Très grand', badge: 'XXL' },
-];
+const MachineSelector = dynamic(
+  () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
+  { loading: () => <div className="h-96 bg-neutral-100 rounded-2xl animate-pulse" /> }
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -40,13 +36,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
       siteName: 'PackshotCreator',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Studios Photo Automatises Orbitvu' }],
+      images: [{ url: `https://www.packshot-creator.com/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['https://www.packshot-creator.com/og/default.jpg'],
     },
   };
 }
@@ -58,6 +53,24 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+  ];
+
+  const studioFaqs = (['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => ({
+    question: t(`faqStudios.${key}.question`),
+    answer: t(`faqStudios.${key}.answer`),
+  }));
+
+  const photoTypes = [
+    { key: 'still' as const, icon: <Camera className="h-6 w-6" />, color: 'bg-very-peri-100 text-very-peri-700', borderColor: 'border-very-peri-200' },
+    { key: 'threeSixty' as const, icon: <RotateCcw className="h-6 w-6" />, color: 'bg-amber-100 text-amber-700', borderColor: 'border-amber-200' },
+    { key: 'fashion' as const, icon: <Shirt className="h-6 w-6" />, color: 'bg-emerald-100 text-emerald-700', borderColor: 'border-emerald-200' },
+    { key: 'flatlay' as const, icon: <Layout className="h-6 w-6" />, color: 'bg-rose-100 text-rose-700', borderColor: 'border-rose-200' },
+  ];
+
+  const supportSteps = [
+    { key: 'step1' as const, icon: <Users className="h-6 w-6" />, number: '1' },
+    { key: 'step2' as const, icon: <Truck className="h-6 w-6" />, number: '2' },
+    { key: 'step3' as const, icon: <Headphones className="h-6 w-6" />, number: '3' },
   ];
 
   return (
@@ -79,10 +92,10 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="/contact">{t('hero.ctaPrimary')}</Link>
+                  <Link href="#calculateur-roi">{t('hero.ctaPrimary')}</Link>
                 </Button>
                 <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="/studio-photo/selecteur-machines">{t('hero.ctaSecondary')}</Link>
+                  <Link href="#studios">{t('hero.ctaSecondary')}</Link>
                 </Button>
               </div>
             </FadeInView>
@@ -90,7 +103,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               <div className="relative">
                 <Image
                   src="/images/hero/hero-studios-wide.avif"
-                  alt="Studios photo automatisés Orbitvu"
+                  alt="Studios photo automatises Orbitvu"
                   width={640}
                   height={480}
                   className="rounded-2xl shadow-2xl"
@@ -147,10 +160,57 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      {/* Product Grid */}
+      {/* Section B : Types de photo */}
       <section className="py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('photoTypes.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('photoTypes.subtitle')}
+            </p>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            {photoTypes.map((type) => (
+              <StaggerItem key={type.key}>
+                <div className={`bg-white rounded-2xl border ${type.borderColor} p-8 hover:shadow-lg transition-shadow`}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${type.color}`}>
+                      {type.icon}
+                    </span>
+                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                      {t(`photoTypes.${type.key}.title`)}
+                    </h3>
+                  </div>
+                  <p className="text-future-dusk-600 leading-relaxed mb-5">
+                    {t(`photoTypes.${type.key}.description`)}
+                  </p>
+                  <div className="space-y-2 mb-6">
+                    {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
+                      <div key={stat} className="flex items-center gap-2 text-sm">
+                        <Check className="h-4 w-4 text-very-peri-500 shrink-0" />
+                        <span className="font-medium text-future-dusk-800">{t(`photoTypes.${type.key}.${stat}`)}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    href="/studio-photo/selecteur-machines"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
+                  >
+                    {t(`photoTypes.${type.key}.cta`)} <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Section A : All Studios (MachineSelector) */}
+      <section id="studios" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
               {t('products.heading')}
             </h2>
@@ -158,51 +218,87 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               {t('products.subtitle')}
             </p>
           </FadeInView>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {MACHINES.map((machine) => (
-              <StaggerItem key={machine.slug}>
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-                  <div className="aspect-[4/3] relative bg-neutral-100">
-                    <Image
-                      src={machine.image}
-                      alt={machine.slug.replace(/-/g, ' ')}
-                      fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {machine.badge && (
-                      <span className="absolute top-3 right-3 bg-very-peri-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-                        {machine.badge}
-                      </span>
-                    )}
+          <FadeInView delay={0.2}>
+            <MachineSelector
+              mode="display"
+              showFilters={true}
+              showPrices={false}
+              locale={lang as 'fr' | 'en'}
+            />
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* Section C : Trust / Social Proof */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+              {t('trust.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              {t('trust.subtitle')}
+            </p>
+          </FadeInView>
+          <StaggerContainer className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mb-12">
+            {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
+              <StaggerItem key={stat}>
+                <div className="text-center">
+                  <div className="text-3xl sm:text-4xl font-heading font-bold text-very-peri-600 mb-1">
+                    {t(`trust.${stat}value`)}
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 capitalize mb-1">
-                      {machine.slug.replace(/-/g, ' ')}
-                    </h3>
-                    <p className="text-sm text-future-dusk-400 mb-3">{machine.size}</p>
-                    <Link
-                      href={`/studio-photo/${machine.slug}`}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
-                    >
-                      {t('products.ctaText')} <ChevronRight className="h-3.5 w-3.5" />
-                    </Link>
+                  <div className="text-sm text-future-dusk-500">
+                    {t(`trust.${stat}label`)}
                   </div>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <div className="text-center mt-12">
-            <Button asChild variant="outline" className="rounded-xl">
-              <Link href="/studio-photo/selecteur-machines">
-                {t('products.viewAll')} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+          {/* Placeholder logos - PO ajoutera les vrais logos */}
+          <FadeInView delay={0.3}>
+            <div className="bg-white rounded-2xl border border-neutral-100 p-8 text-center">
+              <p className="text-future-dusk-400 text-sm italic">{t('trust.clientsNote')}</p>
+            </div>
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* Section D : Accompagnement */}
+      <section className="py-20 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+              {t('support.heading')}
+            </h2>
+            <p className="text-lg text-future-dusk-200 max-w-2xl mx-auto">
+              {t('support.subtitle')}
+            </p>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
+            {supportSteps.map((step) => (
+              <StaggerItem key={step.key}>
+                <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-very-peri-500/20 text-very-peri-300">
+                      {step.icon}
+                    </span>
+                    <span className="text-3xl font-heading font-bold text-very-peri-400/50">{step.number}</span>
+                  </div>
+                  <h3 className="text-xl font-heading font-bold mb-3">
+                    {t(`support.${step.key}title`)}
+                  </h3>
+                  <p className="text-future-dusk-300 leading-relaxed">
+                    {t(`support.${step.key}description`)}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Calculateur ROI */}
-      <section id="calculateur-roi" className="py-20 bg-neutral-50">
+      <section id="calculateur-roi" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
@@ -215,6 +311,36 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           <FadeInView delay={0.2}>
             <ROICalculator locale={lang as 'fr' | 'en'} />
           </FadeInView>
+        </div>
+      </section>
+
+      {/* Section E : FAQ */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <FadeInView className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                {t('faqStudios.heading')}
+              </h2>
+            </FadeInView>
+            <StaggerContainer className="space-y-4">
+              {(['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => (
+                <StaggerItem key={key}>
+                  <details className="group bg-white rounded-xl border border-neutral-100 hover:border-very-peri-200 transition-colors">
+                    <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <h3 className="text-base font-semibold text-future-dusk-900 text-left">
+                        {t(`faqStudios.${key}.question`)}
+                      </h3>
+                      <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                    </summary>
+                    <div className="px-6 pb-6 pt-0">
+                      <p className="text-future-dusk-600 leading-relaxed">{t(`faqStudios.${key}.answer`)}</p>
+                    </div>
+                  </details>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -244,7 +370,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(studioFaqs)]} />
     </>
   );
 }

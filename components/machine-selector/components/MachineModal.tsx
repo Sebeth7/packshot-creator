@@ -104,11 +104,11 @@ export function MachineModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900">{machine.nom}</h2>
+        <div className="flex items-center justify-between p-6 border-b border-neutral-200">
+          <h2 className="text-2xl font-bold text-future-dusk-900">{machine.nom}</h2>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
+            className="p-2 text-future-dusk-400 hover:text-future-dusk-600 transition-colors rounded-lg hover:bg-neutral-100"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -120,7 +120,7 @@ export function MachineModal({
         <div className="overflow-y-auto max-h-[calc(90vh-180px)]">
           <div className="grid md:grid-cols-2 gap-6 p-6">
             {/* Image */}
-            <div className="relative aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden">
+            <div className="relative aspect-[4/3] bg-neutral-100 rounded-xl overflow-hidden">
               {!imageError && machine.imageUrl ? (
                 <Image
                   src={machine.imageUrl}
@@ -131,7 +131,7 @@ export function MachineModal({
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                  <div className="text-center text-gray-400">
+                  <div className="text-center text-future-dusk-400">
                     <svg className="w-20 h-20 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -147,41 +147,41 @@ export function MachineModal({
               {/* Prix */}
               {showPrice && (
                 <div className="text-3xl font-bold text-brand-red">
-                  {formatPrice(machine.prix)} <span className="text-base font-normal text-gray-500">HT</span>
+                  {formatPrice(machine.prix)} <span className="text-base font-normal text-future-dusk-500">HT</span>
                 </div>
               )}
 
               {/* Specs principales */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">
+                <div className="bg-neutral-50 rounded-lg p-3">
+                  <div className="text-xs text-future-dusk-500 mb-1">
                     {locale === 'fr' ? 'Taille max produit' : 'Max product size'}
                   </div>
-                  <div className="font-semibold text-gray-900">{machine.tailleMax}</div>
+                  <div className="font-semibold text-future-dusk-900">{machine.tailleMax}</div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">
+                <div className="bg-neutral-50 rounded-lg p-3">
+                  <div className="text-xs text-future-dusk-500 mb-1">
                     {locale === 'fr' ? 'Poids max' : 'Max weight'}
                   </div>
-                  <div className="font-semibold text-gray-900">{machine.poidsMax}</div>
+                  <div className="font-semibold text-future-dusk-900">{machine.poidsMax}</div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">
+                <div className="bg-neutral-50 rounded-lg p-3">
+                  <div className="text-xs text-future-dusk-500 mb-1">
                     {locale === 'fr' ? 'Capacité/jour' : 'Capacity/day'}
                   </div>
-                  <div className="font-semibold text-gray-900">{machine.capaciteJour} photos</div>
+                  <div className="font-semibold text-future-dusk-900">{machine.capaciteJour} photos</div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">
+                <div className="bg-neutral-50 rounded-lg p-3">
+                  <div className="text-xs text-future-dusk-500 mb-1">
                     {locale === 'fr' ? 'Espace requis' : 'Space required'}
                   </div>
-                  <div className="font-semibold text-gray-900">{machine.spaceRequired}</div>
+                  <div className="font-semibold text-future-dusk-900">{machine.spaceRequired}</div>
                 </div>
               </div>
 
               {/* Automatisation */}
               <div>
-                <div className="text-sm font-medium text-gray-700 mb-2">
+                <div className="text-sm font-medium text-future-dusk-700 mb-2">
                   {locale === 'fr' ? 'Niveau d\'automatisation' : 'Automation level'}
                 </div>
                 <div className="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-sm font-medium">
@@ -191,7 +191,7 @@ export function MachineModal({
 
               {/* Features */}
               <div>
-                <div className="text-sm font-medium text-gray-700 mb-2">
+                <div className="text-sm font-medium text-future-dusk-700 mb-2">
                   {locale === 'fr' ? 'Fonctionnalités' : 'Features'}
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -200,7 +200,7 @@ export function MachineModal({
                     return (
                       <span
                         key={feature}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-full"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-future-dusk-700 text-sm rounded-full"
                       >
                         <span>{label?.icon}</span>
                         <span>{label?.[locale]}</span>
@@ -212,14 +212,14 @@ export function MachineModal({
 
               {/* Use cases */}
               <div>
-                <div className="text-sm font-medium text-gray-700 mb-2">
+                <div className="text-sm font-medium text-future-dusk-700 mb-2">
                   {locale === 'fr' ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {machine.useCases.map((useCase, index) => (
                     <span
                       key={index}
-                      className="inline-block px-3 py-1 bg-brand-red/10 text-brand-red text-sm rounded-full"
+                      className="inline-block px-3 py-1 bg-very-peri-100 text-very-peri-700 text-sm rounded-full"
                     >
                       {useCase}
                     </span>
@@ -282,7 +282,7 @@ export function MachineModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex items-center justify-between p-6 border-t border-neutral-200 bg-neutral-50">
           <Link
             href={`/studio-photo/${machine.id}`}
             className="text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
@@ -292,7 +292,7 @@ export function MachineModal({
           <div className="flex items-center gap-3">
             <button
               onClick={onClose}
-              className="px-6 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+              className="px-6 py-2.5 text-future-dusk-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors font-medium"
             >
               {locale === 'fr' ? 'Fermer' : 'Close'}
             </button>
@@ -302,7 +302,7 @@ export function MachineModal({
                   onSelect(machine);
                   onClose();
                 }}
-                className="px-6 py-2.5 text-white bg-brand-red rounded-lg hover:bg-brand-red/90 transition-colors font-medium"
+                className="px-6 py-2.5 text-white bg-very-peri-600 rounded-lg hover:bg-very-peri-600/90 transition-colors font-medium"
               >
                 {locale === 'fr' ? 'Sélectionner cette machine' : 'Select this machine'}
               </button>
