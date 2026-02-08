@@ -31,9 +31,10 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(ARTICLES_PER_PAGE);
 
+  const validArticles = articles.filter((a) => a.slug);
   const filtered = activeCategory
-    ? articles.filter((a) => a.category === activeCategory)
-    : articles;
+    ? validArticles.filter((a) => a.category === activeCategory)
+    : validArticles;
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visible.length < filtered.length;
