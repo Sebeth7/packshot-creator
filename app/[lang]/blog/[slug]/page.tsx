@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps) {
       description: seoDescription,
       keywords: sanityPost.keywords?.join(', '),
       alternates: {
-        canonical: `https://packshot-creator.com/${lang}/blog/${slug}`,
+        canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages: { fr: `/fr/blog/${slug}`, en: `/en/blog/${slug}` },
       },
       openGraph: {
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps) {
       title: webflowArticle.title,
       description: webflowArticle.description,
       alternates: {
-        canonical: `https://packshot-creator.com/${lang}/blog/${slug}`,
+        canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages: { fr: `/fr/blog/${slug}`, en: `/en/blog/${slug}` },
       },
       openGraph: {
@@ -82,9 +82,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
       : null;
 
     const breadcrumbs = [
-      { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-      { name: 'Blog', url: `https://packshot-creator.com/${lang}/blog` },
-      { name: sanityPost.title, url: `https://packshot-creator.com/${lang}/blog/${slug}` },
+      { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+      { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
+      { name: sanityPost.title, url: `https://www.packshot-creator.com/${lang}/blog/${slug}` },
     ];
 
     return (
@@ -194,7 +194,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           articleSchema({
             title: sanityPost.title,
             description: sanityPost.description,
-            url: `https://packshot-creator.com/${lang}/blog/${slug}`,
+            url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
             image: imageUrl || undefined,
             datePublished: sanityPost.date,
             author: sanityPost.author,
@@ -210,9 +210,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
   if (webflowArticle) {
     const breadcrumbs = [
-      { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-      { name: 'Blog', url: `https://packshot-creator.com/${lang}/blog` },
-      { name: webflowArticle.title, url: `https://packshot-creator.com/${lang}/blog/${slug}` },
+      { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+      { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
+      { name: webflowArticle.title, url: `https://www.packshot-creator.com/${lang}/blog/${slug}` },
     ];
 
     return (
@@ -316,7 +316,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           articleSchema({
             title: webflowArticle.title,
             description: webflowArticle.description,
-            url: `https://packshot-creator.com/${lang}/blog/${slug}`,
+            url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
             image: webflowArticle.image,
             datePublished: webflowArticle.date,
             category: webflowArticle.category,

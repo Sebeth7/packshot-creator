@@ -23,8 +23,8 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'PackshotCreator',
-    url: 'https://packshot-creator.com',
-    logo: 'https://packshot-creator.com/images/logos/packshot-creator-logo.svg',
+    url: 'https://www.packshot-creator.com',
+    logo: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.svg',
     description: 'Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
     address: {
       '@type': 'PostalAddress',
@@ -53,7 +53,7 @@ export function websiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'PackshotCreator',
-    url: 'https://packshot-creator.com',
+    url: 'https://www.packshot-creator.com',
     inLanguage: ['fr', 'en'],
     publisher: {
       '@type': 'Organization',
@@ -143,7 +143,7 @@ export function articleSchema(article: {
       name: 'PackshotCreator',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://packshot-creator.com/images/logos/packshot-creator-logo.svg',
+        url: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.svg',
       },
     },
     articleSection: article.category,
@@ -169,7 +169,7 @@ export function courseSchema(course: {
     provider: {
       '@type': 'Organization',
       name: course.provider || 'PackshotCreator Academy',
-      sameAs: 'https://packshot-creator.com/fr/academy',
+      sameAs: 'https://www.packshot-creator.com/fr/academy',
     },
     url: course.url,
     hasCourseInstance: {

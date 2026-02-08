@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? 'Mentions légales du site PackshotCreator : éditeur, hébergeur, conditions d\'utilisation.'
       : 'Legal notice for PackshotCreator website: publisher, host, terms of use.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/mentions-legales`,
+      canonical: `https://www.packshot-creator.com/${lang}/mentions-legales`,
       languages: { fr: '/fr/mentions-legales', en: '/en/mentions-legales' },
     },
   };
@@ -29,8 +29,8 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'Mentions légales' : 'Legal notice', url: `https://packshot-creator.com/${lang}/mentions-legales` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'Mentions légales' : 'Legal notice', url: `https://www.packshot-creator.com/${lang}/mentions-legales` },
   ];
 
   return (

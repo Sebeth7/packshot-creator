@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? 'Conditions générales d\'utilisation du site PackshotCreator : accès, propriété intellectuelle, responsabilités.'
       : 'Terms of use for the PackshotCreator website: access, intellectual property, responsibilities.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/cgu`,
+      canonical: `https://www.packshot-creator.com/${lang}/cgu`,
       languages: { fr: '/fr/cgu', en: '/en/cgu' },
     },
   };
@@ -31,8 +31,8 @@ export default async function CGUPage({ params }: PageProps) {
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'CGU' : 'Terms', url: `https://packshot-creator.com/${lang}/cgu` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'CGU' : 'Terms', url: `https://www.packshot-creator.com/${lang}/cgu` },
   ];
 
   return (

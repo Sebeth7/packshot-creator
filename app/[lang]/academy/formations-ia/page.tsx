@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'Formations certifiées Qualiopi sur l\'IA générative appliquée au e-commerce. Maîtrisez BlendAI pour créer des visuels lifestyle. Financement OPCO.'
       : 'Qualiopi certified training on generative AI for e-commerce. Master BlendAI to create lifestyle visuals. OPCO funding.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/academy/formations-ia`,
+      canonical: `https://www.packshot-creator.com/${lang}/academy/formations-ia`,
       languages: { fr: '/fr/academy/formations-ia', en: '/en/academy/formations-ia' },
     },
   };
@@ -76,9 +76,9 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
   const t = await getTranslations({ locale: lang, namespace: 'formation' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
-    { name: isFr ? 'Formations IA' : 'AI Training', url: `https://packshot-creator.com/${lang}/academy/formations-ia` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://www.packshot-creator.com/${lang}/academy` },
+    { name: isFr ? 'Formations IA' : 'AI Training', url: `https://www.packshot-creator.com/${lang}/academy/formations-ia` },
   ];
 
   const benefits = [
@@ -263,7 +263,7 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
-        courseSchema({ name: 'Formations IA BlendAI', description: 'Formations certifiées Qualiopi sur l\'IA générative appliquée au e-commerce', url: `https://packshot-creator.com/${lang}/academy/formations-ia` }),
+        courseSchema({ name: 'Formations IA BlendAI', description: 'Formations certifiées Qualiopi sur l\'IA générative appliquée au e-commerce', url: `https://www.packshot-creator.com/${lang}/academy/formations-ia` }),
       ]} />
     </>
   );

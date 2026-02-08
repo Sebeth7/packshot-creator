@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? `${machine.nom} : studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`
       : `${machine.nom}: automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`,
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/studio-photo/${slug}`,
+      canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
       languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}` },
     },
   };
@@ -79,9 +79,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const iaReady = isIAReady(machine.id);
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://packshot-creator.com/${lang}/studios-photo-automatises` },
-    { name: machine.nom, url: `https://packshot-creator.com/${lang}/studio-photo/${slug}` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: machine.nom, url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}` },
   ];
 
   const featureLabels: Record<string, { fr: string; en: string }> = {
@@ -492,8 +492,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         productSchema({
           name: machine.nom,
           description: `${machine.nom}: ${machine.useCases.join(', ')}`,
-          image: `https://packshot-creator.com${machineImage}`,
-          url: `https://packshot-creator.com/${lang}/studio-photo/${slug}`,
+          image: `https://www.packshot-creator.com${machineImage}`,
+          url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
           brand: 'Orbitvu',
           category: isFr ? 'Studio Photo Automatisé' : 'Automated Photo Studio',
         }),

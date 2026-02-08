@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: secteur.titre,
     description: secteur.description,
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/industrie/${slug}`,
+      canonical: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
       languages: { fr: `/fr/industrie/${slug}`, en: `/en/industrie/${slug}` },
     },
     openGraph: {
@@ -45,9 +45,9 @@ export default async function SecteurPage({ params }: PageProps) {
   const heroImage = `/images/hero/hero-secteur-${slug.split('-')[0]}.avif`;
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Industries', url: `https://packshot-creator.com/${lang}/industrie` },
-    { name: secteur.titre.split(':')[0].trim(), url: `https://packshot-creator.com/${lang}/industrie/${slug}` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Industries', url: `https://www.packshot-creator.com/${lang}/industrie` },
+    { name: secteur.titre.split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/industrie/${slug}` },
   ];
 
   const otherSectors = DEFAULT_SECTORS.filter((s) => s.slug !== slug).slice(0, 8);

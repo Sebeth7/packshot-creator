@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? 'Trouvez le studio photo automatisé parfait pour vos besoins. Comparez 16+ studios Orbitvu par taille, fonctionnalités et secteur.'
       : 'Find the perfect automated photo studio for your needs. Compare 16+ Orbitvu studios by size, features and sector.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
+      canonical: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
       languages: { fr: '/fr/studio-photo/selecteur-machines', en: '/en/studio-photo/selecteur-machines' },
     },
   };
@@ -33,9 +33,9 @@ export default async function MachineSelectorPage({ params }: PageProps) {
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://packshot-creator.com/${lang}/studios-photo-automatises` },
-    { name: isFr ? 'Sélecteur' : 'Selector', url: `https://packshot-creator.com/${lang}/studio-photo/selecteur-machines` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: isFr ? 'Sélecteur' : 'Selector', url: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines` },
   ];
 
   const categories = [

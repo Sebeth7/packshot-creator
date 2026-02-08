@@ -42,4 +42,4 @@ Disallow: /_next/
 Disallow: /studio/
 
 # Sitemap
-Sitemap: https://packshot-creator.com/sitemap.xml
+Sitemap: https://www.packshot-creator.com/sitemap.xml

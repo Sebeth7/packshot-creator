@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? 'Politique de confidentialité et protection des données personnelles de PackshotCreator. Conformité RGPD.'
       : 'PackshotCreator privacy policy and personal data protection. GDPR compliance.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/confidentialite`,
+      canonical: `https://www.packshot-creator.com/${lang}/confidentialite`,
       languages: { fr: '/fr/confidentialite', en: '/en/confidentialite' },
     },
   };
@@ -31,8 +31,8 @@ export default async function ConfidentialitePage({ params }: PageProps) {
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'Confidentialité' : 'Privacy', url: `https://packshot-creator.com/${lang}/confidentialite` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'Confidentialité' : 'Privacy', url: `https://www.packshot-creator.com/${lang}/confidentialite` },
   ];
 
   return (

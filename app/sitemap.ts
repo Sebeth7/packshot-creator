@@ -2,13 +2,14 @@ import { MetadataRoute } from 'next';
 import { getWebflowGuides } from '@/lib/webflow-guides';
 import { getAllArticles } from '@/lib/blog';
 
-const BASE_URL = 'https://packshot-creator.com';
+const BASE_URL = 'https://www.packshot-creator.com';
 
 const SECTORS = [
   'chaussures', 'bijoux-joaillerie', 'mobilier-decoration', 'food-alimentaire',
   'cosmetiques-beaute', 'mode-textile', 'electronique-hightech',
   'pieces-techniques-industrie', 'automobile-pieces-detachees',
   'jouets-puericulture', 'sport-outdoor', 'sante-medical',
+  'industrie-manufacturiere', 'defense-securite',
 ];
 
 const MACHINES = [
@@ -53,6 +54,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Machine selector
     { path: '/fr/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Landing SEOs
+    { path: '/fr/packshot-amazon', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/packshot-amazon', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/packshot-industriel', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/packshot-industriel', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/packshot-e-commerce', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/packshot-e-commerce', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/packshot-bijoux', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/packshot-bijoux', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/packshot-mode', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/packshot-mode', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/besoins-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/besoins-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/questions-cles-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/questions-cles-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/fr/industrie-defense', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/industrie-defense', priority: 0.7, changeFrequency: 'monthly' as const },
     // Legal FR + EN
     { path: '/fr/mentions-legales', priority: 0.3, changeFrequency: 'yearly' as const },
     { path: '/en/mentions-legales', priority: 0.3, changeFrequency: 'yearly' as const },

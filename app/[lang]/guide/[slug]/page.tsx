@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: cleanTitle,
     description: guide.metaDescription,
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/guide/${slug}`,
+      canonical: `https://www.packshot-creator.com/${lang}/guide/${slug}`,
       languages: { fr: `/fr/guide/${slug}`, en: `/en/guide/${slug}` },
     },
     openGraph: {
       title: cleanTitle,
       description: guide.metaDescription,
-      url: `https://packshot-creator.com/${lang}/guide/${slug}`,
+      url: `https://www.packshot-creator.com/${lang}/guide/${slug}`,
       images: guide.mainImage ? [{ url: guide.mainImage, width: 1200, height: 630 }] : [],
       type: 'article',
     },
@@ -78,9 +78,9 @@ export default async function GuidePage({ params }: PageProps) {
   } : null;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Guides', url: `https://packshot-creator.com/${lang}/guide` },
-    { name: cleanTitle, url: `https://packshot-creator.com/${lang}/guide/${slug}` },
+    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Guides', url: `https://www.packshot-creator.com/${lang}/guide` },
+    { name: cleanTitle, url: `https://www.packshot-creator.com/${lang}/guide/${slug}` },
   ]);
 
   return (

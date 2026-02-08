@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/guide`,
+      canonical: `https://www.packshot-creator.com/${lang}/guide`,
       languages: { fr: '/fr/guide', en: '/en/guide' },
     },
     openGraph: {
       title,
       description,
-      url: `https://packshot-creator.com/${lang}/guide`,
+      url: `https://www.packshot-creator.com/${lang}/guide`,
       type: 'website',
     },
   };
@@ -40,8 +40,8 @@ export default async function GuidesPage({ params }: PageProps) {
   const guides = await getWebflowGuides();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Guides', url: `https://packshot-creator.com/${lang}/guide` },
+    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Guides', url: `https://www.packshot-creator.com/${lang}/guide` },
   ]);
 
   return (

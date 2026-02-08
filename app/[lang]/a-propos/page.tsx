@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? '20 ans d\'innovation en photographie produit. PackshotCreator révolutionne la photo e-commerce avec les studios connectés Orbitvu et l\'IA générative.'
       : '20 years of product photography innovation. PackshotCreator revolutionizes e-commerce photography with Orbitvu connected studios and generative AI.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/a-propos`,
+      canonical: `https://www.packshot-creator.com/${lang}/a-propos`,
       languages: { fr: '/fr/a-propos', en: '/en/a-propos' },
     },
   };
@@ -32,8 +32,8 @@ export default async function AProposPage({ params }: PageProps) {
   const isFr = lang === 'fr';
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: isFr ? 'A propos' : 'About', url: `https://packshot-creator.com/${lang}/a-propos` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: isFr ? 'A propos' : 'About', url: `https://www.packshot-creator.com/${lang}/a-propos` },
   ];
 
   const innovations = [

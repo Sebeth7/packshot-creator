@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: `${formation.titre} | PackshotCreator Academy`,
     description: formation.description_courte,
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/academy/${slug}`,
+      canonical: `https://www.packshot-creator.com/${lang}/academy/${slug}`,
       languages: { fr: `/fr/academy/${slug}`, en: `/en/academy/${slug}` },
     },
   };
@@ -77,9 +77,9 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
   if (!formation) notFound();
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
-    { name: formation.titre, url: `https://packshot-creator.com/${lang}/academy/${slug}` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://www.packshot-creator.com/${lang}/academy` },
+    { name: formation.titre, url: `https://www.packshot-creator.com/${lang}/academy/${slug}` },
   ];
 
   return (
@@ -261,7 +261,7 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
           name: formation.titre,
           description: formation.description_courte,
           provider: 'PackshotCreator Academy',
-          url: `https://packshot-creator.com/${lang}/academy/${slug}`,
+          url: `https://www.packshot-creator.com/${lang}/academy/${slug}`,
         }),
       ]} />
     </>

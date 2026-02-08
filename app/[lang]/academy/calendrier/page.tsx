@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'Consultez le calendrier des formations PackshotCreator Academy 2026. Réservez votre session packshot ou IA. Financement OPCO.'
       : 'View the PackshotCreator Academy 2026 training calendar. Book your packshot or AI session. OPCO funding.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/academy/calendrier`,
+      canonical: `https://www.packshot-creator.com/${lang}/academy/calendrier`,
       languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier' },
     },
   };
@@ -29,9 +29,9 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
   const t = await getTranslations({ locale: lang, namespace: 'formation' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
-    { name: isFr ? 'Calendrier' : 'Calendar', url: `https://packshot-creator.com/${lang}/academy/calendrier` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://www.packshot-creator.com/${lang}/academy` },
+    { name: isFr ? 'Calendrier' : 'Calendar', url: `https://www.packshot-creator.com/${lang}/academy/calendrier` },
   ];
 
   const faqs = [

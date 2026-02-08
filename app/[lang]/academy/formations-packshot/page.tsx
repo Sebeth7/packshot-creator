@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'Formations certifiées Qualiopi sur les studios photo automatisés Orbitvu. Maîtrisez la photographie packshot professionnelle. Financement OPCO jusqu\'à 100%.'
       : 'Qualiopi certified training on Orbitvu automated photo studios. Master professional packshot photography. OPCO funding up to 100%.',
     alternates: {
-      canonical: `https://packshot-creator.com/${lang}/academy/formations-packshot`,
+      canonical: `https://www.packshot-creator.com/${lang}/academy/formations-packshot`,
       languages: { fr: '/fr/academy/formations-packshot', en: '/en/academy/formations-packshot' },
     },
   };
@@ -69,9 +69,9 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
   const t = await getTranslations({ locale: lang, namespace: 'formation' });
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
-    { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
-    { name: isFr ? 'Formations Packshot' : 'Packshot Training', url: `https://packshot-creator.com/${lang}/academy/formations-packshot` },
+    { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
+    { name: 'Academy', url: `https://www.packshot-creator.com/${lang}/academy` },
+    { name: isFr ? 'Formations Packshot' : 'Packshot Training', url: `https://www.packshot-creator.com/${lang}/academy/formations-packshot` },
   ];
 
   const benefits = [
@@ -271,7 +271,7 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
-        courseSchema({ name: 'Formations Studios Photo Orbitvu', description: 'Formations certifiées Qualiopi sur les studios photo automatisés Orbitvu', url: `https://packshot-creator.com/${lang}/academy/formations-packshot` }),
+        courseSchema({ name: 'Formations Studios Photo Orbitvu', description: 'Formations certifiées Qualiopi sur les studios photo automatisés Orbitvu', url: `https://www.packshot-creator.com/${lang}/academy/formations-packshot` }),
       ]} />
     </>
   );
