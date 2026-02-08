@@ -491,6 +491,29 @@
       "description": "Contact us for a custom program or register for the next session.",
       "ctaPrimary": "Contact us",
       "ctaSecondary": "Simulate my funding"
+    },
+    "faq": {
+      "heading": "Frequently asked questions about our training",
+      "q1": {
+        "question": "Are PackshotCreator training programs certified?",
+        "answer": "Our training is delivered by a Qualiopi-certified organization, a state-recognized quality guarantee. You receive a skills certificate upon completion of each training program."
+      },
+      "q2": {
+        "question": "How can I fund my training through my OPCO?",
+        "answer": "As a Qualiopi-certified organization, our training programs are eligible for OPCO funding up to 100%. Use our OPCO simulator to estimate your coverage, then we assist you with the administrative process."
+      },
+      "q3": {
+        "question": "What product photography training programs do you offer?",
+        "answer": "We offer two tracks: Professional Packshot Training (2 days) to master product photography on automated Orbitvu studio, and AI Product Photo Training (1 day) to integrate BlendAI into your visual workflow."
+      },
+      "q4": {
+        "question": "Do the training programs include hands-on studio practice?",
+        "answer": "Yes, our training is primarily hands-on. Participants work directly on Orbitvu studios with their own products or provided samples, for immediate practical application."
+      },
+      "q5": {
+        "question": "Can training be taken remotely?",
+        "answer": "Our training programs are available in-person (inter or intra-company) and some theoretical modules can be taken remotely. Studio practice requires physical presence to handle the equipment."
+      }
     }
   },
   "studiosHardware": {
@@ -809,6 +832,165 @@
       "description": "Discover our solutions during a personalized demo with a product photography expert.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    }
+  },
+  "besoinsPhoto": {
+    "meta": {
+      "title": "Product Photography Needs | Find Your Packshot Solution",
+      "description": "Identify your product photography needs and find the right solution: automated studios, AI lifestyle, certified training. Complete PackshotCreator guide."
+    },
+    "hero": {
+      "title": "Find Your Product Photography Solution",
+      "subtitle": "Whatever your product photography needs, we have the solution. Automated studios, AI lifestyle, certified training.",
+      "cta": "Get a free callback"
+    },
+    "needs": {
+      "heading": "Identify your needs",
+      "subtitle": "Every business has different product photo needs. Find out which solution is right for you.",
+      "item1": {
+        "title": "White background e-commerce packshot",
+        "description": "Professional product photos on white background for your product pages and marketplaces.",
+        "point1": "Automatic pure white background cutout",
+        "point2": "Absolute consistency across the catalog",
+        "point3": "Compatible with Amazon, Shopify, WooCommerce"
+      },
+      "item2": {
+        "title": "Interactive 360 photography",
+        "description": "Interactive rotations to let your customers see the product from every angle.",
+        "point1": "Smooth and interactive 360 rotation",
+        "point2": "Direct integration on your website",
+        "point3": "Reduction in product returns"
+      },
+      "item3": {
+        "title": "High-volume catalogs",
+        "description": "You have hundreds or thousands of products to photograph quickly.",
+        "point1": "Automated batch processing",
+        "point2": "50 to 300 products per day",
+        "point3": "PIM/ERP integration available"
+      },
+      "item4": {
+        "title": "AI lifestyle visuals",
+        "description": "Transform your packshots into lifestyle visuals without traditional photo shoots.",
+        "point1": "Realistic AI-generated scenes",
+        "point2": "Brand-customized atmospheres",
+        "point3": "ROI: -80% vs traditional shoots"
+      }
+    },
+    "solution": {
+      "heading": "How it works",
+      "step1": {
+        "title": "Free assessment",
+        "description": "We analyze your needs, volumes, product types and constraints to identify the best solution."
+      },
+      "step2": {
+        "title": "Personalized demo",
+        "description": "We show you the studio adapted to your products live and you test with your own samples."
+      },
+      "step3": {
+        "title": "Installation & training",
+        "description": "On-site installation, Qualiopi-certified training and startup support included."
+      }
+    },
+    "sectors": {
+      "heading": "Solutions by sector",
+      "item1": { "name": "Fashion & textile", "href": "/industrie/mode-textile" },
+      "item2": { "name": "Jewelry & fine jewelry", "href": "/industrie/bijoux-joaillerie" },
+      "item3": { "name": "Cosmetics & beauty", "href": "/industrie/cosmetiques-beaute" },
+      "item4": { "name": "Food & beverage", "href": "/industrie/food-alimentaire" },
+      "item5": { "name": "Electronics & high-tech", "href": "/industrie/electronique-hightech" },
+      "item6": { "name": "Furniture & decor", "href": "/industrie/mobilier-decoration" }
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": {
+        "question": "How much does an automated photo studio cost?",
+        "answer": "The price depends on the model and the size of the products to be photographed. Our studios start from a few thousand euros. Contact us for a free personalized quote."
+      },
+      "q2": {
+        "question": "Do I need photography skills?",
+        "answer": "No, our studios are automated and require no photography skills. Plus, our Qualiopi-certified training makes you operational in 1 to 2 days."
+      },
+      "q3": {
+        "question": "How long to become operational?",
+        "answer": "Studio installation takes 1 to 2 days. With the included training, you are autonomous and productive from the first week."
+      }
+    },
+    "cta": {
+      "heading": "Ready to automate your product photography?",
+      "description": "Free assessment, personalized demo with your products, quote within 48 hours.",
+      "ctaPrimary": "Request a free assessment",
+      "ctaSecondary": "View studios"
+    }
+  },
+  "questionsCles": {
+    "meta": {
+      "title": "Key Product Photography Questions | Expert Guide",
+      "description": "The 9 essential questions to ask before investing in product photography. Expert guide from PackshotCreator: ROI, quality, volumes, AI."
+    },
+    "hero": {
+      "title": "Key Product Photography Questions",
+      "subtitle": "Everything you need to know before investing in a professional product photography solution.",
+      "cta": "Talk to an expert"
+    },
+    "categories": {
+      "heading": "3 pillars for the right choice",
+      "cat1": {
+        "title": "Quality & consistency",
+        "description": "How to guarantee professional and consistent visuals across your entire catalog."
+      },
+      "cat2": {
+        "title": "Productivity & volumes",
+        "description": "How many products to photograph per day and how to automate your workflow."
+      },
+      "cat3": {
+        "title": "ROI & profitability",
+        "description": "How to measure the return on investment of an automated photo studio."
+      }
+    },
+    "questions": {
+      "heading": "The 9 essential questions",
+      "q1": {
+        "question": "How many products do you need to photograph per year?",
+        "answer": "Annual volume determines the type of studio needed. Below 500 products/year, an AlphaShot may be sufficient. Beyond that, Viso or Alphashot XL studios offer rates of 100 to 300 products/day."
+      },
+      "q2": {
+        "question": "What image quality is required for your sales channels?",
+        "answer": "Marketplaces (Amazon, eBay) require specific images: pure white background RGB 255, minimum resolution, no watermark. An automated studio guarantees automatic compliance with these standards."
+      },
+      "q3": {
+        "question": "What is the current cost of your photo production?",
+        "answer": "Calculate the total cost: photographer, studio, retouching, coordination time. An automated studio reduces these costs by 60 to 80% with an average return on investment of 6 to 12 months."
+      },
+      "q4": {
+        "question": "Do you need interactive 360 photos?",
+        "answer": "360 photos increase conversion rate by 20 to 40% and reduce product returns. Orbitvu studios automatically capture smooth rotations in a single take."
+      },
+      "q5": {
+        "question": "What is the size of your products?",
+        "answer": "From jewelry to furniture, each size range has its optimal studio. AlphaShot covers small objects, Viso medium products, and large format studios furniture up to 3 meters."
+      },
+      "q6": {
+        "question": "Do you need lifestyle visuals in addition to packshots?",
+        "answer": "BlendAI transforms your white background packshots into realistic lifestyle visuals: interior atmospheres, urban contexts, product scenes. Production of 50 to 200 visuals/day without additional shooting."
+      },
+      "q7": {
+        "question": "Do your teams have photography skills?",
+        "answer": "Our studios are designed to be used without prior photography skills. Qualiopi-certified training (1 to 2 days) makes your team completely autonomous. OPCO funding available."
+      },
+      "q8": {
+        "question": "What is your production timeline?",
+        "answer": "Studio installation takes 1 to 2 days. With the included training, your team is operational from the first week. The first visuals are produced on the day of installation."
+      },
+      "q9": {
+        "question": "How to integrate visuals into your existing workflow?",
+        "answer": "Orbitvu studios integrate with major PIM, ERP and e-commerce platforms. Export is automated with nomenclatures, product codes and metadata directly linked to your systems."
+      }
+    },
+    "cta": {
+      "heading": "Questions? Let's talk.",
+      "description": "Our experts analyze your needs and recommend the optimal solution. Free and no-obligation assessment.",
+      "ctaPrimary": "Talk to an expert",
+      "ctaSecondary": "View studios"
     }
   },
   "packshotAmazon": {

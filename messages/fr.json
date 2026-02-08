@@ -491,6 +491,29 @@
       "description": "Contactez-nous pour un programme sur mesure ou inscrivez-vous à la prochaine session.",
       "ctaPrimary": "Nous contacter",
       "ctaSecondary": "Simuler mon financement"
+    },
+    "faq": {
+      "heading": "Questions fréquentes sur nos formations",
+      "q1": {
+        "question": "Les formations PackshotCreator sont-elles certifiantes ?",
+        "answer": "Nos formations sont dispensées par un organisme certifié Qualiopi, gage de qualité reconnu par l'État. Vous recevez une attestation de compétences à l'issue de chaque formation."
+      },
+      "q2": {
+        "question": "Comment financer ma formation via mon OPCO ?",
+        "answer": "En tant qu'organisme Qualiopi, nos formations sont éligibles au financement OPCO jusqu'à 100%. Utilisez notre simulateur OPCO pour estimer votre prise en charge, puis nous vous accompagnons dans les démarches administratives."
+      },
+      "q3": {
+        "question": "Quelles formations photo produit proposez-vous ?",
+        "answer": "Nous proposons deux parcours : la Formation Packshot Professionnel (2 jours) pour maîtriser la photo produit sur studio automatisé Orbitvu, et la Formation IA Photo Produit (1 jour) pour intégrer BlendAI dans votre workflow visuel."
+      },
+      "q4": {
+        "question": "Les formations incluent-elles de la pratique sur studio ?",
+        "answer": "Oui, nos formations sont majoritairement pratiques. Les participants travaillent directement sur les studios Orbitvu avec leurs propres produits ou des produits fournis, pour une mise en application immédiate."
+      },
+      "q5": {
+        "question": "Peut-on suivre les formations à distance ?",
+        "answer": "Nos formations sont disponibles en présentiel (inter ou intra-entreprise) et certains modules théoriques peuvent être suivis à distance. La pratique sur studio nécessite une présence physique pour manipuler les équipements."
+      }
     }
   },
   "studiosHardware": {
@@ -809,6 +832,165 @@
       "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo produit.",
       "ctaPrimary": "Demander une démo",
       "ctaSecondary": "Calculer mon ROI"
+    }
+  },
+  "besoinsPhoto": {
+    "meta": {
+      "title": "Besoins Photo Produit | Trouvez Votre Solution Packshot",
+      "description": "Identifiez vos besoins en photographie produit et trouvez la solution adaptee : studios automatises, IA lifestyle, formation. Guide complet PackshotCreator."
+    },
+    "hero": {
+      "title": "Trouvez Votre Solution Photo Produit",
+      "subtitle": "Quel que soit votre besoin en photographie produit, nous avons la solution. Studios automatises, IA lifestyle, formations certifiees.",
+      "cta": "Etre rappele gratuitement"
+    },
+    "needs": {
+      "heading": "Identifiez votre besoin",
+      "subtitle": "Chaque entreprise a des besoins differents en photo produit. Decouvrez quelle solution est faite pour vous.",
+      "item1": {
+        "title": "Packshot fond blanc e-commerce",
+        "description": "Photos produit professionnelles sur fond blanc pour vos fiches produit et marketplaces.",
+        "point1": "Detourage automatique fond blanc pur",
+        "point2": "Coherence absolue sur tout le catalogue",
+        "point3": "Compatible Amazon, Shopify, WooCommerce"
+      },
+      "item2": {
+        "title": "Photo 360 interactive",
+        "description": "Rotations interactives pour permettre a vos clients de voir le produit sous tous les angles.",
+        "point1": "Rotation 360 fluide et interactive",
+        "point2": "Integration directe sur votre site",
+        "point3": "Reduction des retours produit"
+      },
+      "item3": {
+        "title": "Catalogues gros volumes",
+        "description": "Vous avez des centaines ou milliers de produits a photographier rapidement.",
+        "point1": "Batch processing automatise",
+        "point2": "50 a 300 produits par jour",
+        "point3": "Integration PIM/ERP possible"
+      },
+      "item4": {
+        "title": "Visuels lifestyle IA",
+        "description": "Transformez vos packshots en visuels lifestyle sans shooting photo traditionnel.",
+        "point1": "Mises en scene realistes via IA",
+        "point2": "Ambiances personnalisees par marque",
+        "point3": "ROI : -80% vs shootings traditionnels"
+      }
+    },
+    "solution": {
+      "heading": "Comment ca marche ?",
+      "step1": {
+        "title": "Diagnostic gratuit",
+        "description": "Nous analysons vos besoins, volumes, types de produits et contraintes pour identifier la meilleure solution."
+      },
+      "step2": {
+        "title": "Demo personnalisee",
+        "description": "Nous vous montrons en live le studio adapte a vos produits et vous testez avec vos propres echantillons."
+      },
+      "step3": {
+        "title": "Installation & formation",
+        "description": "Installation sur site, formation certifiee Qualiopi et accompagnement au demarrage inclus."
+      }
+    },
+    "sectors": {
+      "heading": "Solutions par secteur",
+      "item1": { "name": "Mode & textile", "href": "/industrie/mode-textile" },
+      "item2": { "name": "Bijoux & joaillerie", "href": "/industrie/bijoux-joaillerie" },
+      "item3": { "name": "Cosmetiques & beaute", "href": "/industrie/cosmetiques-beaute" },
+      "item4": { "name": "Food & alimentaire", "href": "/industrie/food-alimentaire" },
+      "item5": { "name": "Electronique & high-tech", "href": "/industrie/electronique-hightech" },
+      "item6": { "name": "Mobilier & decoration", "href": "/industrie/mobilier-decoration" }
+    },
+    "faq": {
+      "heading": "Questions frequentes",
+      "q1": {
+        "question": "Combien coute un studio photo automatise ?",
+        "answer": "Le prix depend du modele et de la taille des produits a photographier. Nos studios commencent a partir de quelques milliers d'euros. Contactez-nous pour un devis personnalise gratuit."
+      },
+      "q2": {
+        "question": "Faut-il des competences en photographie ?",
+        "answer": "Non, nos studios sont automatises et ne necessitent pas de competences en photographie. De plus, nos formations certifiees Qualiopi vous rendent operationnel en 1 a 2 jours."
+      },
+      "q3": {
+        "question": "Combien de temps pour etre operationnel ?",
+        "answer": "L'installation du studio prend 1 a 2 jours. Avec la formation incluse, vous etes autonome et productif des la premiere semaine."
+      }
+    },
+    "cta": {
+      "heading": "Pret a automatiser votre photo produit ?",
+      "description": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h.",
+      "ctaPrimary": "Demander un diagnostic gratuit",
+      "ctaSecondary": "Voir les studios"
+    }
+  },
+  "questionsCles": {
+    "meta": {
+      "title": "Questions Cles Photographie Produit | Guide Expert",
+      "description": "Les 9 questions essentielles a se poser avant d'investir en photo produit. Guide expert PackshotCreator : ROI, qualite, volumes, IA."
+    },
+    "hero": {
+      "title": "Les Questions Cles de la Photo Produit",
+      "subtitle": "Tout ce que vous devez savoir avant d'investir dans une solution de photographie produit professionnelle.",
+      "cta": "Parler a un expert"
+    },
+    "categories": {
+      "heading": "3 piliers pour bien choisir",
+      "cat1": {
+        "title": "Qualite & coherence",
+        "description": "Comment garantir des visuels professionnels et homogenes sur tout votre catalogue."
+      },
+      "cat2": {
+        "title": "Productivite & volumes",
+        "description": "Combien de produits photographier par jour et comment automatiser votre workflow."
+      },
+      "cat3": {
+        "title": "ROI & rentabilite",
+        "description": "Comment mesurer le retour sur investissement d'un studio photo automatise."
+      }
+    },
+    "questions": {
+      "heading": "Les 9 questions essentielles",
+      "q1": {
+        "question": "Combien de produits avez-vous a photographier par an ?",
+        "answer": "Le volume annuel determine le type de studio necessaire. En dessous de 500 produits/an, un AlphaShot peut suffire. Au-dela, les studios Viso ou Alphashot XL offrent des cadences de 100 a 300 produits/jour."
+      },
+      "q2": {
+        "question": "Quelle qualite d'image est requise pour vos canaux de vente ?",
+        "answer": "Les marketplaces (Amazon, Cdiscount) exigent des images specifiques : fond blanc pur RGB 255, resolution minimum, pas de filigrane. Un studio automatise garantit la conformite automatique a ces standards."
+      },
+      "q3": {
+        "question": "Quel est le cout actuel de votre production photo ?",
+        "answer": "Calculez le cout total : photographe, studio, retouche, temps de coordination. Un studio automatise reduit ces couts de 60 a 80% avec un retour sur investissement moyen de 6 a 12 mois."
+      },
+      "q4": {
+        "question": "Avez-vous besoin de photos 360 interactives ?",
+        "answer": "Les photos 360 augmentent le taux de conversion de 20 a 40% et reduisent les retours produit. Les studios Orbitvu capturent automatiquement des rotations fluides en une seule prise."
+      },
+      "q5": {
+        "question": "Quelle est la taille de vos produits ?",
+        "answer": "Du bijou au meuble, chaque gamme de taille a son studio optimal. Les AlphaShot couvrent les petits objets, les Viso les produits moyens, et les studios grand format les meubles jusqu'a 3 metres."
+      },
+      "q6": {
+        "question": "Avez-vous besoin de visuels lifestyle en plus du packshot ?",
+        "answer": "BlendAI transforme vos packshots fond blanc en visuels lifestyle realistes : ambiances interieures, contextes urbains, mises en scene produit. Production de 50 a 200 visuels/jour sans shooting supplementaire."
+      },
+      "q7": {
+        "question": "Vos equipes ont-elles des competences en photographie ?",
+        "answer": "Nos studios sont concus pour etre utilises sans competences photo prealables. La formation certifiee Qualiopi (1 a 2 jours) rend votre equipe completement autonome. Financement OPCO possible."
+      },
+      "q8": {
+        "question": "Quel est votre delai de mise en production ?",
+        "answer": "L'installation d'un studio prend 1 a 2 jours. Avec la formation incluse, votre equipe est operationnelle des la premiere semaine. Les premiers visuels sont produits le jour meme de l'installation."
+      },
+      "q9": {
+        "question": "Comment integrer les visuels dans votre workflow existant ?",
+        "answer": "Les studios Orbitvu s'integrent avec les principaux PIM, ERP et plateformes e-commerce. L'export est automatise avec nomenclatures, codes produits et metadonnees directement lies a vos systemes."
+      }
+    },
+    "cta": {
+      "heading": "Des questions ? Parlons-en.",
+      "description": "Nos experts analysent vos besoins et vous recommandent la solution optimale. Diagnostic gratuit et sans engagement.",
+      "ctaPrimary": "Parler a un expert",
+      "ctaSecondary": "Voir les studios"
     }
   },
   "packshotAmazon": {

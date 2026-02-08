@@ -27,6 +27,7 @@ export interface Secteur {
     titre: string;
     description: string;
   };
+  faq?: { question: string; answer: string }[];
 }
 
 export const secteurs: Secteur[] = [
@@ -93,6 +94,12 @@ export const secteurs: Secteur[] = [
       description:
         'Devis personnalisé studio Orbitvu + formation BlendAI pour votre catalogue sneakers.',
     },
+    faq: [
+      { question: 'Combien de paires de chaussures peut-on photographier par jour ?', answer: 'Avec un studio Orbitvu automatisé, vous pouvez photographier 20 à 30 paires par heure en packshot fond blanc, soit 150 à 200 paires par jour avec les vues latérale, dessus et semelle.' },
+      { question: 'Comment gérer les reflets sur les chaussures vernies ou les sneakers brillantes ?', answer: 'Les studios Orbitvu intègrent un éclairage polarisé qui contrôle les reflets sur les matières brillantes (vernis, cuir laqué, semelles). Le réglage est automatique et reproductible.' },
+      { question: 'Peut-on créer des visuels lifestyle sneakers sans shooting photo ?', answer: 'Oui, BlendAI Studio transforme vos packshots fond blanc en visuels lifestyle réalistes : ambiances urbaines, skateparks, coffee shops. Production de 50 à 200 visuels en 1 à 2 heures.' },
+      { question: 'Le packshot 360° est-il adapté aux chaussures ?', answer: 'Absolument. La rotation 360° permet aux clients de voir la chaussure sous tous les angles (coutures, semelle, talon). C\'est un atout majeur pour réduire les retours e-commerce.' },
+    ],
   },
 
   // 2. BIJOUX / JOAILLERIE
@@ -156,6 +163,12 @@ export const secteurs: Secteur[] = [
       description:
         'Devis studio Orbitvu joaillerie + démo BlendAI lifestyle luxe gratuite.',
     },
+    faq: [
+      { question: 'Comment photographier les pierres précieuses avec leur brillance réelle ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé et le focus stacking automatique pour capturer les feux des pierres précieuses (diamants, saphirs, rubis) avec une netteté et une brillance fidèles.' },
+      { question: 'Qu\'est-ce que le focus stacking pour la photo bijoux ?', answer: 'Le focus stacking combine automatiquement plusieurs prises de vue à différentes profondeurs de champ pour obtenir une netteté absolue sur l\'ensemble du bijou 3D, des sertissages aux détails microscopiques.' },
+      { question: 'Peut-on créer des visuels portés bijoux sans mannequin ?', answer: 'Oui, BlendAI génère des visuels portés réalistes : bagues sur mains élégantes, colliers sur mannequins, dans des ambiances luxe (marbre, velours, écrin). Production de 20 à 50 visuels par heure.' },
+      { question: 'La photo packshot bijoux est-elle adaptée à la vente en ligne ?', answer: 'Les studios Orbitvu produisent des packshots HD fond blanc avec rotation 360° interactive, idéaux pour les fiches produit e-commerce joaillerie. Le détourage est automatique.' },
+    ],
   },
 
   // 3. MOBILIER / DÉCORATION
@@ -218,6 +231,12 @@ export const secteurs: Secteur[] = [
       titre: 'Optimisez vos visuels mobilier',
       description: 'Devis studio grand format + démo mises en scène IA.',
     },
+    faq: [
+      { question: 'Quelle taille maximale de meuble peut-on photographier ?', answer: 'Les studios Orbitvu grand format acceptent des meubles jusqu\'à 3 mètres avec des plateaux de 2x3m et une hauteur de 2,5m. Canapés, armoires, tables : tous les formats sont pris en charge.' },
+      { question: 'Peut-on montrer un meuble dans différents styles de décoration ?', answer: 'Oui, BlendAI place vos meubles dans des ambiances réalistes : scandinave, industriel, luxe, bohème, minimaliste. Vous pouvez générer plusieurs mises en scène par produit en quelques minutes.' },
+      { question: 'Combien de meubles peut-on photographier par jour ?', answer: 'En moyenne 15 à 25 meubles par jour en packshot fond blanc avec rotation 360°, contre 5 à 10 en shooting classique. Le workflow est entièrement automatisé.' },
+      { question: 'Les mises en scène IA sont-elles réalistes pour le mobilier ?', answer: 'BlendAI produit des visuels très réalistes avec gestion des ombres, des reflets et de la perspective. Les meubles sont intégrés naturellement dans des pièces (salon, chambre, bureau) avec un rendu photoréaliste.' },
+    ],
   },
 
   // 4. FOOD / ALIMENTAIRE
@@ -280,6 +299,12 @@ export const secteurs: Secteur[] = [
       titre: 'Sublimez vos produits alimentaires',
       description: 'Devis packshot food + démo styling culinaire IA.',
     },
+    faq: [
+      { question: 'Comment gérer les reflets sur les emballages plastiques alimentaires ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé qui contrôle les reflets sur les emballages plastiques, les films transparents et les bouteilles en verre. Le rendu est net et fidèle.' },
+      { question: 'Peut-on créer des visuels recettes sans food styling physique ?', answer: 'Oui, BlendAI génère des visuels food styling réalistes : vos produits intégrés dans des plats cuisinés, des dressages gastronomiques ou des ambiances culinaires (petit-déjeuner, brunch, apéro).' },
+      { question: 'Le packshot 360° fonctionne-t-il pour les produits alimentaires ?', answer: 'Oui, la rotation 360° est idéale pour les packagings alimentaires : elle permet de montrer les informations nutritionnelles, la liste des ingrédients et le design sur toutes les faces.' },
+      { question: 'Combien de produits alimentaires peut-on photographier par jour ?', answer: 'En moyenne 30 à 50 packagings par jour avec détourage automatique fond blanc. Le workflow est optimisé pour les gammes larges de produits alimentaires.' },
+    ],
   },
 
   // 5. COSMÉTIQUES / BEAUTÉ
@@ -342,6 +367,12 @@ export const secteurs: Secteur[] = [
       titre: 'Sublimez vos cosmétiques',
       description: 'Devis packshot beauté + démo lifestyle luxe IA.',
     },
+    faq: [
+      { question: 'Comment photographier des flacons transparents avec le liquide visible ?', answer: 'Les studios Orbitvu gèrent les transparences grâce à un éclairage spécifique qui rend les liquides visibles dans les flacons (sérums, parfums, huiles) tout en contrôlant les reflets du verre.' },
+      { question: 'Peut-on créer des visuels portés cosmétiques sans mannequin ?', answer: 'Oui, BlendAI génère des visuels portés réalistes : produits sur mains, visages de mannequins diversifiés, dans des ambiances spa et luxe. Production de 30 à 100 visuels lifestyle par jour.' },
+      { question: 'Comment rendre fidèlement les textures luxe des packagings ?', answer: 'Les studios Orbitvu capturent les textures nacrées, dorées et velours avec une fidélité colorimétrique absolue. L\'éclairage est calibré pour sublimer les finitions premium.' },
+      { question: 'Le détourage automatique fonctionne-t-il sur les produits cosmétiques ?', answer: 'Oui, le détourage automatique produit un fond blanc parfait même sur les flacons transparents ou les produits aux contours complexes (pots, tubes, sprays).' },
+    ],
   },
 
   // 6. MODE / TEXTILE
@@ -404,6 +435,12 @@ export const secteurs: Secteur[] = [
       titre: 'Optimisez vos visuels mode',
       description: 'Devis packshot textile + démo mannequins IA.',
     },
+    faq: [
+      { question: 'Qu\'est-ce que le mannequin invisible en photo mode ?', answer: 'Le mannequin invisible (ghost mannequin) est une technique où le vêtement est photographié sur un mannequin puis le mannequin est retiré numériquement, donnant un effet de volume 3D sans mannequin visible.' },
+      { question: 'Peut-on créer des visuels portés par des mannequins IA ?', answer: 'Oui, BlendAI génère des mannequins IA diversifiés (morphologies, ethnies, âges) portant vos vêtements dans des contextes lifestyle : rue urbaine, café, bureau, soirée. 100 à 300 visuels par jour.' },
+      { question: 'Combien de vêtements peut-on photographier en packshot par jour ?', answer: 'En packshot à plat ou mannequin invisible, vous pouvez photographier 50 à 100 vêtements par jour avec détourage automatique fond blanc et cohérence absolue sur toute la collection.' },
+      { question: 'Les visuels IA remplacent-ils les shootings mannequins physiques ?', answer: 'BlendAI réduit de 80% le besoin de shootings mannequins physiques. Les visuels portés IA sont utilisés pour les fiches produit e-commerce, les lookbooks et les réseaux sociaux.' },
+    ],
   },
 
   // 7. ÉLECTRONIQUE / HIGH-TECH
@@ -466,6 +503,12 @@ export const secteurs: Secteur[] = [
       titre: 'Optimisez vos visuels électronique',
       description: 'Devis packshot high-tech + démo lifestyle tech IA.',
     },
+    faq: [
+      { question: 'Comment éviter les reflets sur les écrans lors du packshot ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé qui élimine les reflets parasites sur les écrans de smartphones, tablettes et ordinateurs portables tout en conservant le rendu réaliste.' },
+      { question: 'Le packshot 360° est-il adapté aux petits produits électroniques ?', answer: 'Oui, les studios Orbitvu capturent des rotations 360° précises pour les écouteurs, montres connectées, smartphones et accessoires. Le macro permet de montrer ports USB, boutons et textures.' },
+      { question: 'Peut-on créer des visuels lifestyle tech sans shooting en bureau ?', answer: 'BlendAI place vos produits dans des ambiances réalistes : bureaux modernes, espaces coworking, home office, cafés. Production de 50 à 150 visuels lifestyle par jour.' },
+      { question: 'Comment gérer les packagings premium type Apple ?', answer: 'Les studios Orbitvu capturent fidèlement les finitions premium : textures aluminium brossé, boîtes de présentation luxe, accessoires. L\'éclairage est calibré pour les matériaux high-tech.' },
+    ],
   },
 
   // 8. PIÈCES TECHNIQUES / INDUSTRIE
@@ -528,6 +571,12 @@ export const secteurs: Secteur[] = [
       titre: 'Automatisez vos catalogues techniques',
       description: 'Devis packshot industriel pour gros volumes.',
     },
+    faq: [
+      { question: 'Peut-on photographier des pièces métalliques sans reflets parasites ?', answer: 'Les studios Orbitvu intègrent un éclairage polarisé qui contrôle les reflets sur l\'acier, l\'aluminium et le laiton. Le rendu est fidèle sans surexposition ni reflets parasites.' },
+      { question: 'Comment photographier des pièces très petites (filetages, usinages) ?', answer: 'La macrophotographie Orbitvu capture les détails microscopiques : filetages, usinages, gravures, poinçons. Le focus stacking assure une netteté absolue sur toute la profondeur de la pièce.' },
+      { question: 'Quel volume de pièces techniques peut-on traiter par jour ?', answer: 'En batch processing automatisé, 50 à 150 pièces par jour selon la taille, avec nomenclatures intégrées (codes produits, dimensions) et export multi-formats.' },
+      { question: 'L\'intégration avec notre ERP/PIM est-elle possible ?', answer: 'Oui, les studios Orbitvu s\'intègrent avec les systèmes PIM/ERP via export automatisé avec nomenclatures, codes produits et dimensions directement liés aux visuels.' },
+    ],
   },
 
   // 9. AUTOMOBILE (pièces détachées)
@@ -589,6 +638,12 @@ export const secteurs: Secteur[] = [
       titre: 'Automatisez vos catalogues pièces auto',
       description: 'Devis packshot automobile gros volumes.',
     },
+    faq: [
+      { question: 'Comment gérer un catalogue de plusieurs milliers de pièces auto ?', answer: 'Les studios Orbitvu en batch processing automatisé traitent 100 à 300 pièces par jour avec import des nomenclatures OEM, codes compatibilité et export direct vers vos plateformes e-commerce.' },
+      { question: 'Le 360° aide-t-il les garagistes à identifier les pièces ?', answer: 'Oui, la rotation 360° permet aux professionnels d\'identifier visuellement les pièces sous tous les angles sans ambiguïté, réduisant les erreurs de commande et les retours.' },
+      { question: 'Peut-on photographier des pièces de tailles très différentes ?', answer: 'Les studios Orbitvu couvrent tous les formats : des petits joints et connecteurs en macrophotographie aux grands éléments de carrosserie (pare-chocs, capots) sur plateaux grand format.' },
+      { question: 'Comment intégrer les photos dans notre boutique e-commerce auto ?', answer: 'L\'export est automatisé vers les marketplaces (eBay Motors, Amazon Auto) et vos plateformes e-commerce avec nomenclatures OEM, dimensions et compatibilités marque/modèle/année.' },
+    ],
   },
 
   // 10. JOUETS / PUÉRICULTURE
@@ -651,6 +706,12 @@ export const secteurs: Secteur[] = [
       titre: 'Optimisez vos visuels jouets',
       description: 'Devis packshot + démo lifestyle enfants IA.',
     },
+    faq: [
+      { question: 'Comment rendre fidèlement les couleurs vives des jouets ?', answer: 'Les studios Orbitvu sont calibrés colorimétriquement pour un rendu précis des couleurs vives. Les rouges, jaunes et bleus des jouets sont reproduits fidèlement sur les photos packshot.' },
+      { question: 'Peut-on photographier les jouets dans leur emballage ET déballés ?', answer: 'Oui, le workflow Orbitvu permet de capturer 2 visuels automatiques : le packaging complet et le produit déballé, avec détourage fond blanc pour les deux.' },
+      { question: 'Les visuels lifestyle IA évitent-ils les réglementations sur les photos d\'enfants ?', answer: 'Oui, BlendAI crée des ambiances ludiques (chambres enfants, aires de jeu) sans photographier de vrais enfants, ce qui évite les réglementations strictes sur l\'image des mineurs.' },
+      { question: 'Comment gérer les catalogues saisonniers importants (Noël, rentrée) ?', answer: 'Les studios Orbitvu traitent 80 à 150 jouets par jour. Un catalogue saisonnier de 200 à 500 jouets peut être photographié en 2 à 4 jours avec packshot + visuels lifestyle IA.' },
+    ],
   },
 
   // 11. SPORT / OUTDOOR
@@ -714,6 +775,12 @@ export const secteurs: Secteur[] = [
       titre: 'Sublimez vos équipements outdoor',
       description: 'Devis packshot sport + démo lifestyle aventure IA.',
     },
+    faq: [
+      { question: 'Peut-on créer des visuels outdoor (montagne, trail) sans shooting extérieur ?', answer: 'Oui, BlendAI génère des visuels lifestyle outdoor réalistes : montagnes, forêts, trails, neige, pluie. Vos équipements sont intégrés dans des contextes aventure sans quitter le studio.' },
+      { question: 'Comment capturer les détails techniques des vêtements sport ?', answer: 'Les studios Orbitvu capturent les détails techniques en haute résolution : coutures renforcées, zips étanches, membranes respirantes, textures des tissus techniques.' },
+      { question: 'Le packshot mannequin invisible fonctionne-t-il pour les vêtements sport ?', answer: 'Oui, le mannequin invisible valorise le volume des vestes, pantalons et polaires sport. Le rendu 3D est idéal pour les fiches produit e-commerce outdoor.' },
+      { question: 'Comment gérer les catalogues saisonniers ski/trail ?', answer: 'Les studios Orbitvu traitent 60 à 120 produits par jour. Un catalogue saisonnier de 200 à 400 SKUs peut être photographié en 2 à 4 jours avec packshot + visuels lifestyle aventure IA.' },
+    ],
   },
 
   // 12. SANTÉ / MÉDICAL
@@ -776,6 +843,12 @@ export const secteurs: Secteur[] = [
       titre: 'Catalogues médicaux conformes',
       description: 'Devis packshot médical précision + conformité.',
     },
+    faq: [
+      { question: 'Les photos packshot médical respectent-elles les normes CE/FDA ?', answer: 'Les studios Orbitvu produisent des visuels neutres, professionnels et conformes aux exigences de documentation réglementaire CE et FDA. Chaque visuel est traçable par lot et série.' },
+      { question: 'Peut-on photographier des dispositifs médicaux de toutes tailles ?', answer: 'Oui, de la seringue aux lits médicaux : macrophotographie pour les petits instruments chirurgicaux, studios grand format pour les équipements volumineux (IRM, fauteuils).' },
+      { question: 'Comment intégrer les photos dans nos catalogues professionnels santé ?', answer: 'L\'export est automatisé avec nomenclatures intégrées : codes CE, FDA, dimensions, matériaux. Les visuels sont directement exploitables pour catalogues PDF et e-commerce B2B.' },
+      { question: 'Quelle traçabilité pour les visuels de dispositifs médicaux ?', answer: 'Le workflow Orbitvu assure une traçabilité complète : historique par lot, série et opérateur. Chaque visuel est horodaté et lié à sa référence produit pour l\'audit réglementaire.' },
+    ],
   },
 
   // 13. INDUSTRIE MANUFACTURIÈRE
@@ -851,6 +924,12 @@ export const secteurs: Secteur[] = [
       description:
         'Devis personnalisé studio automatisé pour votre catalogue industriel.',
     },
+    faq: [
+      { question: 'Combien de pièces industrielles peut-on photographier par jour ?', answer: 'En production automatisée haute cadence, 100 à 300 pièces par jour avec détourage automatique, nomenclatures intégrées et export direct vers votre PIM/ERP.' },
+      { question: 'L\'intégration PIM/ERP est-elle native ?', answer: 'Oui, les studios Orbitvu s\'intègrent avec vos systèmes PIM et ERP via export automatisé des visuels avec codes produits, dimensions et métadonnées directement liés à vos nomenclatures.' },
+      { question: 'La photo 360° réduit-elle les retours SAV ?', answer: 'Les rotations 360° interactives permettent une identification sans ambiguïté des pièces, réduisant significativement les erreurs de commande et les retours SAV dans les catalogues B2B.' },
+      { question: 'Comment assurer la cohérence sur un catalogue de milliers de références ?', answer: 'Le studio automatisé garantit le même éclairage, le même cadrage et la même colorimétrie sur chaque référence. Le workflow standardisé élimine les variations entre opérateurs.' },
+    ],
   },
 
   // 14. DÉFENSE & SÉCURITÉ
@@ -925,5 +1004,11 @@ export const secteurs: Secteur[] = [
       description:
         'Échangeons sur vos contraintes de confidentialité et de documentation pour un devis sur mesure.',
     },
+    faq: [
+      { question: 'Le studio peut-il fonctionner entièrement hors ligne (air-gapped) ?', answer: 'Oui, les studios Orbitvu fonctionnent 100% hors ligne. Aucune donnée n\'est envoyée sur le cloud. Le stockage est local avec chiffrement des données visuelles au repos et en transit.' },
+      { question: 'Peut-on installer le studio directement sur un site sécurisé ?', answer: 'Oui, les studios sont compacts et déployables en quelques heures sur site client. Aucun matériel ne quitte les locaux. Maintenance et support sont assurés sur site par nos techniciens certifiés.' },
+      { question: 'Quelle traçabilité est assurée sur les visuels ?', answer: 'Traçabilité complète : historique par lot, série et opérateur, avec audit trail complet pour conformité réglementaire. Chaque visuel est horodaté et lié à sa référence matériel.' },
+      { question: 'Les visuels respectent-ils les normes de documentation défense ?', answer: 'Les studios produisent des visuels standardisés conformes aux cahiers des charges institutionnels. L\'export est disponible dans les formats requis par les donneurs d\'ordre du secteur.' },
+    ],
   },
 ];

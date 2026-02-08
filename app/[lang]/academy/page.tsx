@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { GraduationCap, Camera, Brain, Calculator, CalendarDays, ArrowRight, Check, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import { ChevronRight } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -29,6 +30,11 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
     { name: 'PackshotCreator', url: `https://packshot-creator.com/${lang}` },
     { name: 'Academy', url: `https://packshot-creator.com/${lang}/academy` },
   ];
+
+  const academyFaqs = (['q1', 'q2', 'q3', 'q4', 'q5'] as const).map((key) => ({
+    question: t(`faq.${key}.question`),
+    answer: t(`faq.${key}.answer`),
+  }));
 
   return (
     <>
@@ -232,6 +238,36 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <FadeInView className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                {t('faq.heading')}
+              </h2>
+            </FadeInView>
+            <StaggerContainer className="space-y-4">
+              {(['q1', 'q2', 'q3', 'q4', 'q5'] as const).map((key) => (
+                <StaggerItem key={key}>
+                  <details className="group bg-white rounded-xl border border-neutral-100 hover:border-emerald-200 transition-colors">
+                    <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <h3 className="text-base font-semibold text-future-dusk-900 text-left">
+                        {t(`faq.${key}.question`)}
+                      </h3>
+                      <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                    </summary>
+                    <div className="px-6 pb-6 pt-0">
+                      <p className="text-future-dusk-600 leading-relaxed">{t(`faq.${key}.answer`)}</p>
+                    </div>
+                  </details>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-future-dusk-900 to-emerald-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -254,7 +290,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(academyFaqs)]} />
     </>
   );
 }

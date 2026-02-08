@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { secteurs } from '@/data/secteurs';
 import { CheckCircle, ArrowRight, Camera, Sparkles, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
@@ -197,6 +197,38 @@ export default async function SecteurPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* FAQ */}
+      {secteur.faq && secteur.faq.length > 0 && (
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl mx-auto">
+              <FadeInView className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                  {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                </h2>
+              </FadeInView>
+              <StaggerContainer className="space-y-4">
+                {secteur.faq.map((item, index) => (
+                  <StaggerItem key={index}>
+                    <details className="group bg-neutral-50 rounded-xl border border-neutral-100 hover:border-very-peri-200 transition-colors">
+                      <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-base font-semibold text-future-dusk-900 text-left">
+                          {item.question}
+                        </h3>
+                        <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                      </summary>
+                      <div className="px-6 pb-6 pt-0">
+                        <p className="text-future-dusk-600 leading-relaxed">{item.answer}</p>
+                      </div>
+                    </details>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
         <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -256,7 +288,11 @@ export default async function SecteurPage({ params }: PageProps) {
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+      <SchemaOrg schema={[
+        organizationSchema(),
+        breadcrumbSchema(breadcrumbs),
+        ...(secteur.faq ? [faqSchema(secteur.faq)] : []),
+      ]} />
     </>
   );
 }
