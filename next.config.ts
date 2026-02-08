@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
       { source: '/cgu', destination: '/fr/cgu', statusCode: 301 },
       { source: '/ia-photo-produit', destination: '/fr/ia-photo-produit', statusCode: 301 },
       { source: '/studios-photo-automatises', destination: '/fr/studios-photo-automatises', statusCode: 301 },
-      { source: '/e-commerce', destination: '/fr/e-commerce', statusCode: 301 },
+      { source: '/e-commerce', destination: '/fr/blog', statusCode: 301 },
 
       // Routes dynamiques FR
       { source: '/blog', destination: '/fr/blog', statusCode: 301 },
@@ -64,7 +64,7 @@ const nextConfig: NextConfig = {
       { source: '/packshot-secteur-meuble', destination: '/fr/industrie/mobilier-decoration', statusCode: 301 },
       { source: '/packshot-secteur-mode-accessoires', destination: '/fr/industrie/mode-textile', statusCode: 301 },
       { source: '/packshot-secteur-pieces-techniques', destination: '/fr/industrie/pieces-techniques-industrie', statusCode: 301 },
-      { source: '/packshot-secteur-e-commerce', destination: '/fr/e-commerce', statusCode: 301 },
+      { source: '/packshot-secteur-e-commerce', destination: '/fr/blog', statusCode: 301 },
 
       // Hubs renommés
       { source: '/studio-photo', destination: '/fr/studios-photo-automatises', statusCode: 301 },
