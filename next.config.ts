@@ -75,8 +75,24 @@ const nextConfig: NextConfig = {
       { source: '/formation', destination: '/fr/academy', statusCode: 301 },
       { source: '/formations', destination: '/fr/academy', statusCode: 301 },
 
-      // Produits EN (ancien path /photo-studio/ → nouveau /studio-photo/)
+      // Produits EN - Corrections de slugs (Webflow → Next.js)
+      // Individuelles AVANT le catch-all car les slugs ont changé
+      { source: '/en/photo-studio/alphashot-micro', destination: '/en/studio-photo/alphashot-micro-v2', statusCode: 301 },
+      { source: '/en/photo-studio/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-v2', statusCode: 301 },
+      { source: '/en/photo-studio/alphastudio-compact', destination: '/en/studio-photo/alphastudio-compact-v2', statusCode: 301 },
+      { source: '/en/photo-studio/alphastudio-xxl', destination: '/en/studio-photo/alphastudio-xxl-v2', statusCode: 301 },
+      { source: '/en/photo-studio/e-comm-studio', destination: '/en/studio-photo/e-comm-studio-plus', statusCode: 301 },
+      { source: '/en/photo-studio/360-turntables', destination: '/en/studios-photo-automatises', statusCode: 301 },
+      // Catch-all pour les slugs inchangés (alphashot-360, alphashot-g2, etc.)
       { source: '/en/photo-studio/:slug', destination: '/en/studio-photo/:slug', statusCode: 301 },
+
+      // Aussi corriger les accès directs à /studio-photo/ avec anciens slugs
+      { source: '/en/studio-photo/alphashot-micro', destination: '/en/studio-photo/alphashot-micro-v2', statusCode: 301 },
+      { source: '/en/studio-photo/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-v2', statusCode: 301 },
+      { source: '/en/studio-photo/alphastudio-compact', destination: '/en/studio-photo/alphastudio-compact-v2', statusCode: 301 },
+      { source: '/en/studio-photo/alphastudio-xxl', destination: '/en/studio-photo/alphastudio-xxl-v2', statusCode: 301 },
+      { source: '/en/studio-photo/e-comm-studio', destination: '/en/studio-photo/e-comm-studio-plus', statusCode: 301 },
+      { source: '/en/studio-photo/360-turntables', destination: '/en/studios-photo-automatises', statusCode: 301 },
 
       // Contact variantes
       { source: '/fr/contact/demande-demo', destination: '/fr/contact?subject=demo', statusCode: 301 },
@@ -93,14 +109,46 @@ const nextConfig: NextConfig = {
       { source: '/accessoires/:slug', destination: '/fr/studios-photo-automatises', statusCode: 301 },
 
       // ============================================================
-      // BLOC 3 - Langues DE/ES/NL → blendai.studio
+      // BLOC 3 - Langues DE/ES/NL → /en
+      // Redirections individuelles (URLs >20 clics GSC 3 mois)
+      // placées AVANT les catch-all (Next.js évalue dans l'ordre)
       // ============================================================
-      { source: '/de', destination: 'https://blendai.studio', statusCode: 301 },
-      { source: '/de/:path*', destination: 'https://blendai.studio', statusCode: 301 },
-      { source: '/es', destination: 'https://blendai.studio', statusCode: 301 },
-      { source: '/es/:path*', destination: 'https://blendai.studio', statusCode: 301 },
-      { source: '/nl', destination: 'https://blendai.studio', statusCode: 301 },
-      { source: '/nl/:path*', destination: 'https://blendai.studio', statusCode: 301 },
+
+      // ES - Blog
+      { source: '/es/blog/como-elige-mejor-objectivo-foto-paquete', destination: '/en/blog/how-to-choose-best-lens-for-product-photography', statusCode: 301 },
+      { source: '/es/blog/aprender-fotografia-joyas-ecommerce', destination: '/en/blog/technique-photograph-jewelry-tutorial', statusCode: 301 },
+      { source: '/es/blog/8-pasos-para-fotografiar-joyas-profesionalmente', destination: '/en/blog/8-steps-to-professional-jewelry-photography', statusCode: 301 },
+
+      // ES - Guides
+      { source: '/es/guide/que-equipo-elegir-para-foto-joyas', destination: '/en/guide/which-equipment-to-choose-for-jewelry-photo', statusCode: 301 },
+      { source: '/es/guide/que-ajustes-para-fotografiar-joyas', destination: '/en/guide/what-settings-to-photograph-jewelry', statusCode: 301 },
+      { source: '/es/guide/como-fotografiar-gafas-para-e-commerce', destination: '/en/guide/how-to-photograph-glasses-for-e-commerce', statusCode: 301 },
+      { source: '/es/guide/como-posicionar-reloj-para-fotos-producto', destination: '/en/guide/how-to-position-watch-before-shooting-photo', statusCode: 301 },
+
+      // DE - Blog
+      { source: '/de/blog/welches-bildformat-ist-das-beste-fur-das-web', destination: '/en/blog/best-image-format-for-the-web', statusCode: 301 },
+      { source: '/de/blog/8-schritte-zur-professionellen-schmuckfotografie', destination: '/en/blog/8-steps-to-professional-jewelry-photography', statusCode: 301 },
+
+      // DE - Guides
+      { source: '/de/guide/welche-ausrustung-fur-schmuckfotografie-wahlen', destination: '/en/guide/which-equipment-to-choose-for-jewelry-photo', statusCode: 301 },
+      { source: '/de/guide/welche-einstellungen-zum-fotografieren-von-schmuck', destination: '/en/guide/what-settings-to-photograph-jewelry', statusCode: 301 },
+
+      // DE - Machines
+      { source: '/de/fotostudio/alphashot-g2', destination: '/en/studio-photo/alphashot-g2', statusCode: 301 },
+
+      // NL - Blog
+      { source: '/nl/blog/8-stappen-voor-professionele-sieradenfotografie', destination: '/en/blog/8-steps-to-professional-jewelry-photography', statusCode: 301 },
+
+      // NL - Guides
+      { source: '/nl/guide/welke-instellingen-om-sieraden-te-fotograferen', destination: '/en/guide/what-settings-to-photograph-jewelry', statusCode: 301 },
+
+      // Catch-all DE/ES/NL → /en
+      { source: '/de', destination: '/en', statusCode: 301 },
+      { source: '/de/:path*', destination: '/en', statusCode: 301 },
+      { source: '/es', destination: '/en', statusCode: 301 },
+      { source: '/es/:path*', destination: '/en', statusCode: 301 },
+      { source: '/nl', destination: '/en', statusCode: 301 },
+      { source: '/nl/:path*', destination: '/en', statusCode: 301 },
     ];
   },
 };
