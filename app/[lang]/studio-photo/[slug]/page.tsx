@@ -5,8 +5,8 @@ import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, TrendingUp } from 'lucide-react';
-import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema } from '@/components/seo/SchemaOrg';
+import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, TrendingUp, BarChart3, MessageCircleQuestion, ArrowLeftRight } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 // Map machine IDs to local image files
@@ -40,6 +40,14 @@ function getFormationLevel(machine: Machine): string {
 
 const isIAReady = (id: string) =>
   ['alphashot-g2', 'alphashot-micro-v2', 'alphashot-360', 'alphashot-pro-g2'].includes(id);
+
+function getSimilarMachines(machine: Machine): Machine[] {
+  return MACHINES.filter(
+    (m) =>
+      m.id !== machine.id &&
+      m.tailleCategories.some((cat) => machine.tailleCategories.includes(cat))
+  ).slice(0, 3);
+}
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -77,6 +85,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const isFr = lang === 'fr';
   const machineImage = getMachineImage(machine.id);
   const iaReady = isIAReady(machine.id);
+
+  const similarMachines = getSimilarMachines(machine);
+  const faqItems = machine.faqItems || [];
+  const keyStats = machine.keyStats || [];
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -227,6 +239,31 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* #A Key Stats */}
+      {keyStats.length > 0 && (
+        <section className="py-16 bg-white border-b border-neutral-100">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <StaggerContainer className="grid md:grid-cols-3 gap-8 text-center">
+              {keyStats.map((stat, index) => (
+                <StaggerItem key={index}>
+                <div>
+                  <div className="text-4xl sm:text-5xl font-heading font-bold text-very-peri-600 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm font-medium text-future-dusk-900 uppercase tracking-wide mb-1">
+                    {isFr ? stat.label.fr : stat.label.en}
+                  </div>
+                  <p className="text-sm text-future-dusk-500">
+                    {isFr ? stat.description.fr : stat.description.en}
+                  </p>
+                </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
+
       {/* Key Advantages */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -364,8 +401,90 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* #F Intermediate CTA */}
+      <section className="py-16 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
+        <FadeInView>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
+            {isFr
+              ? `Envie de voir le ${machine.nom} en action ?`
+              : `Want to see the ${machine.nom} in action?`}
+          </h2>
+          <p className="text-future-dusk-200 mb-6">
+            {isFr
+              ? 'Réservez une démonstration personnalisée dans nos showrooms de Paris ou Lausanne.'
+              : 'Book a personalized demo in our Paris or Lausanne showrooms.'}
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+              <Link href="/contact">
+                {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
+              <Link href="/contact">
+                {isFr ? 'Demander un devis' : 'Request a quote'}
+              </Link>
+            </Button>
+          </div>
+        </div>
+        </FadeInView>
+      </section>
+
+      {/* #D Similar Machines */}
+      {similarMachines.length > 0 && (
+        <section className="py-20 bg-neutral-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+            <div className="flex items-center justify-center gap-3 mb-12">
+              <ArrowLeftRight className="h-6 w-6 text-very-peri-600" />
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                {isFr ? 'Machines similaires' : 'Similar machines'}
+              </h2>
+            </div>
+            </FadeInView>
+            <StaggerContainer className="grid md:grid-cols-3 gap-8">
+              {similarMachines.map((similar) => (
+                <StaggerItem key={similar.id}>
+                <Link
+                  href={`/studio-photo/${similar.id}`}
+                  className="group block bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all"
+                >
+                  <div className="p-6">
+                    <div className="bg-neutral-50 rounded-xl p-4 mb-4 h-40 flex items-center justify-center">
+                      <Image
+                        src={getMachineImage(similar.id)}
+                        alt={similar.nom}
+                        width={200}
+                        height={150}
+                        className="object-contain max-h-32"
+                      />
+                    </div>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2 group-hover:text-very-peri-600 transition-colors">
+                      {similar.nom}
+                    </h3>
+                    <p className="text-sm text-future-dusk-500 mb-3 line-clamp-2">
+                      {similar.useCases.slice(0, 3).join(', ')}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs bg-very-peri-50 text-very-peri-700 px-2 py-1 rounded-full">
+                        {similar.capaciteJour} {isFr ? 'prod/jour' : 'prod/day'}
+                      </span>
+                      <span className="text-xs bg-neutral-100 text-future-dusk-600 px-2 py-1 rounded-full">
+                        {similar.tailleMax}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
+
       {/* ROI CTA */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-20 bg-white">
         <FadeInView>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-700 mx-auto mb-6">
@@ -458,6 +577,40 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* #C FAQ */}
+      {faqItems.length > 0 && (
+        <section className="py-20 bg-neutral-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+            <div className="flex items-center justify-center gap-3 mb-12">
+              <MessageCircleQuestion className="h-6 w-6 text-very-peri-600" />
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+              </h2>
+            </div>
+            </FadeInView>
+            <FadeInView>
+            <div className="space-y-4">
+              {faqItems.map((faq, index) => (
+                <details
+                  key={index}
+                  className="group bg-white rounded-2xl border border-neutral-100 overflow-hidden"
+                >
+                  <summary className="flex items-center justify-between cursor-pointer p-6 text-future-dusk-900 font-heading font-bold hover:text-very-peri-600 transition-colors">
+                    <span className="pr-4">{isFr ? faq.question.fr : faq.question.en}</span>
+                    <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                  </summary>
+                  <div className="px-6 pb-6 text-future-dusk-600 leading-relaxed">
+                    {isFr ? faq.answer.fr : faq.answer.en}
+                  </div>
+                </details>
+              ))}
+            </div>
+            </FadeInView>
+          </div>
+        </section>
+      )}
+
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
         <FadeInView>
@@ -497,6 +650,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           brand: 'Orbitvu',
           category: isFr ? 'Studio Photo Automatisé' : 'Automated Photo Studio',
         }),
+        ...(faqItems.length > 0
+          ? [faqSchema(faqItems.map((faq) => ({
+              question: isFr ? faq.question.fr : faq.question.en,
+              answer: isFr ? faq.answer.fr : faq.answer.en,
+            })))]
+          : []),
       ]} />
     </>
   );

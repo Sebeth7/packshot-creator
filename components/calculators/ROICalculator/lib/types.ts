@@ -56,6 +56,19 @@ export interface BilingualText {
   en: string;
 }
 
+// FAQ bilingue pour fiches machines
+export interface BilingualFaqItem {
+  question: BilingualText;
+  answer: BilingualText;
+}
+
+// Chiffre clé pour fiches machines
+export interface KeyStat {
+  value: string;
+  label: BilingualText;
+  description: BilingualText;
+}
+
 // Machine Orbitvu (enrichie)
 export interface Machine {
   id: string;
@@ -81,6 +94,8 @@ export interface Machine {
   limitations: BilingualText[];           // Limitations
   spaceRequired: string;                  // Espace requis (ex: "Bureau", "Sol", "Studio")
   studioFootprint?: Dimensions;           // Dimensions du studio en cm
+  faqItems?: BilingualFaqItem[];          // FAQ spécifiques à la machine
+  keyStats?: KeyStat[];                   // Chiffres clés (3 max)
 }
 
 // Éligibilité machine (pour le sélecteur)
