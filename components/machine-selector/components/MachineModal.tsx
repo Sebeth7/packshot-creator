@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
+import { Link } from '@/i18n/routing';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineModalProps {
@@ -281,24 +282,32 @@ export function MachineModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
-          <button
-            onClick={onClose}
-            className="px-6 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
+          <Link
+            href={`/studio-photo/${machine.id}`}
+            className="text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
           >
-            {locale === 'fr' ? 'Fermer' : 'Close'}
-          </button>
-          {onSelect && (
+            {locale === 'fr' ? 'Voir la fiche complète →' : 'View full details →'}
+          </Link>
+          <div className="flex items-center gap-3">
             <button
-              onClick={() => {
-                onSelect(machine);
-                onClose();
-              }}
-              className="px-6 py-2.5 text-white bg-brand-red rounded-lg hover:bg-brand-red/90 transition-colors font-medium"
+              onClick={onClose}
+              className="px-6 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
             >
-              {locale === 'fr' ? 'Sélectionner cette machine' : 'Select this machine'}
+              {locale === 'fr' ? 'Fermer' : 'Close'}
             </button>
-          )}
+            {onSelect && (
+              <button
+                onClick={() => {
+                  onSelect(machine);
+                  onClose();
+                }}
+                className="px-6 py-2.5 text-white bg-brand-red rounded-lg hover:bg-brand-red/90 transition-colors font-medium"
+              >
+                {locale === 'fr' ? 'Sélectionner cette machine' : 'Select this machine'}
+              </button>
+            )}
+          </div>
         </div>
       </motion.div>
     </div>

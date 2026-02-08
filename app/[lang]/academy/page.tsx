@@ -94,7 +94,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
       </section>
 
       {/* Qualiopi */}
-      <section className="py-20 bg-white">
+      <section id="qualiopi" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <div className="bg-gradient-to-r from-emerald-50 to-emerald-100/50 rounded-2xl p-8 md:p-12">
