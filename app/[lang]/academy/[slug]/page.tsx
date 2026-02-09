@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Package, Euro, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface Formation {
@@ -89,11 +90,13 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
   return (
     <>
       {/* Hero Formation */}
-      <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
-          {/* Breadcrumb */}
-          <FadeInView>
-            <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
+      <HeroSection
+        compact
+        align="left"
+        title={
+          <>
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-sm font-sans font-normal text-future-dusk-300 mb-6">
               <Link href="/" className="hover:text-white transition-colors">
                 {isFr ? 'Accueil' : 'Home'}
               </Link>
@@ -104,67 +107,61 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-white">{formation.titre}</span>
             </div>
-          </FadeInView>
-
-          <FadeInView delay={0.1}>
             {/* Badges */}
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="flex flex-wrap gap-3 mb-4 font-sans font-normal">
               {formation.eligible_opco && <BadgeQualiopi>Financement OPCO</BadgeQualiopi>}
               <Badge variant="turquoise">Niveau {formation.niveau}</Badge>
               <Badge variant={formation.categorie === 'ia' ? 'purple' : 'default'}>
                 {formation.categorie === 'ia' ? 'IA Photo Produit' : 'Packshot'}
               </Badge>
             </div>
-
-            <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight mb-4">{formation.titre}</h1>
-            <p className="text-lg text-future-dusk-200 mb-8 max-w-3xl">{formation.description_courte}</p>
-          </FadeInView>
-
-          {/* Infos clés */}
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6" delay={0.2}>
+            {formation.titre}
+          </>
+        }
+        subtitle={formation.description_courte}
+      >
+        {/* Infos clés */}
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8" delay={0.2}>
+          <StaggerItem>
+            <div className="text-sm text-future-dusk-300">{isFr ? 'Durée' : 'Duration'}</div>
+            <div className="text-2xl font-bold">{formation.duree_heures}h</div>
+          </StaggerItem>
+          {formation.prix_blended && (
             <StaggerItem>
-              <div className="text-sm text-future-dusk-300">{isFr ? 'Durée' : 'Duration'}</div>
-              <div className="text-2xl font-bold">{formation.duree_heures}h</div>
+              <div className="text-sm text-future-dusk-300">Blended</div>
+              <div className="text-2xl font-bold text-very-peri-300">{formation.prix_blended}€ HT</div>
             </StaggerItem>
-            {formation.prix_blended && (
-              <StaggerItem>
-                <div className="text-sm text-future-dusk-300">Blended</div>
-                <div className="text-2xl font-bold text-very-peri-300">{formation.prix_blended}€ HT</div>
-              </StaggerItem>
-            )}
-            <StaggerItem>
-              <div className="text-sm text-future-dusk-300">{isFr ? 'Présentiel' : 'In-person'}</div>
-              <div className="text-2xl font-bold">{formation.prix_presentiel}€ HT</div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="text-sm text-future-dusk-300">Format</div>
-              <div className="text-base font-medium">
-                {formation.format === 'both'
-                  ? (isFr ? 'Blended ou Présentiel' : 'Blended or In-person')
-                  : formation.format === 'blended'
-                    ? 'Blended Learning'
-                    : (isFr ? 'Présentiel' : 'In-person')}
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
-
-          {/* CTA */}
-          <FadeInView delay={0.4}>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
-                <Link href="/contact">
-                  {isFr ? 'S\'inscrire à cette formation' : 'Register for this training'}
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                <Link href="/academy">
-                  {isFr ? 'Voir toutes les formations' : 'View all trainings'}
-                </Link>
-              </Button>
+          )}
+          <StaggerItem>
+            <div className="text-sm text-future-dusk-300">{isFr ? 'Présentiel' : 'In-person'}</div>
+            <div className="text-2xl font-bold">{formation.prix_presentiel}€ HT</div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="text-sm text-future-dusk-300">Format</div>
+            <div className="text-base font-medium">
+              {formation.format === 'both'
+                ? (isFr ? 'Blended ou Présentiel' : 'Blended or In-person')
+                : formation.format === 'blended'
+                  ? 'Blended Learning'
+                  : (isFr ? 'Présentiel' : 'In-person')}
             </div>
-          </FadeInView>
+          </StaggerItem>
+        </StaggerContainer>
+
+        {/* CTA */}
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+            <Link href="/contact">
+              {isFr ? 'S\'inscrire à cette formation' : 'Register for this training'}
+            </Link>
+          </Button>
+          <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+            <Link href="/academy">
+              {isFr ? 'Voir toutes les formations' : 'View all trainings'}
+            </Link>
+          </Button>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Contenu Formation */}
       <section className="py-16 bg-neutral-50">

@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, TrendingUp, BarChart3, MessageCircleQuestion, ArrowLeftRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -114,98 +115,72 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   return (
     <>
       {/* Hero Product */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-            <div>
-              <Link
-                href="/studios-photo-automatises"
-                className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
-              >
-                <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                {isFr ? 'Tous les studios' : 'All studios'}
-              </Link>
+      <HeroSection
+        layout="split"
+        badge={{
+          icon: <ChevronRight className="h-3.5 w-3.5 rotate-180" />,
+          label: isFr ? 'Tous les studios' : 'All studios',
+          colorClass: 'text-very-peri-300',
+        }}
+        title={machine.nom}
+        subtitle={machine.useCases.join(' \u2022 ')}
+        ctas={[
+          { label: isFr ? 'Demander un devis' : 'Request a quote', href: '/contact', variant: 'primary' },
+          { label: isFr ? 'Demander une démo' : 'Request a demo', href: '/contact', variant: 'secondary' },
+        ]}
+        media={
+          <div className="bg-white rounded-2xl shadow-2xl p-8">
+            <Image
+              src={machineImage}
+              alt={`Studio photo ${machine.nom}`}
+              width={640}
+              height={480}
+              className="object-contain w-full h-auto"
+              priority
+            />
+          </div>
+        }
+      >
+        {/* Badges */}
+        <div className="flex flex-wrap gap-3 mt-4 -mb-2">
+          <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full">
+            <Camera className="h-4 w-4" /> Orbitvu
+          </span>
+          {iaReady && (
+            <span className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-medium px-3 py-1.5 rounded-full">
+              <Sparkles className="h-4 w-4" /> IA Ready
+            </span>
+          )}
+        </div>
 
-              <div className="flex flex-wrap gap-3 mb-6">
-                <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full">
-                  <Camera className="h-4 w-4" /> Orbitvu
-                </span>
-                {iaReady && (
-                  <span className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-medium px-3 py-1.5 rounded-full">
-                    <Sparkles className="h-4 w-4" /> IA Ready
-                  </span>
-                )}
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {machine.nom}
-              </h1>
-
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {machine.useCases.join(' \u2022 ')}
-              </p>
-
-              {/* Quick Specs */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-                    <Ruler className="h-3.5 w-3.5" /> {isFr ? 'Taille max' : 'Max size'}
-                  </div>
-                  <div className="font-bold text-white">{machine.tailleMax}</div>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-                    <Weight className="h-3.5 w-3.5" /> {isFr ? 'Poids max' : 'Max weight'}
-                  </div>
-                  <div className="font-bold text-white">{machine.poidsMax}</div>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-                    <Zap className="h-3.5 w-3.5" /> {isFr ? 'Capacité/jour' : 'Capacity/day'}
-                  </div>
-                  <div className="font-bold text-white">{machine.capaciteJour} {isFr ? 'produits' : 'products'}</div>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-                    <Monitor className="h-3.5 w-3.5" /> {isFr ? 'Espace requis' : 'Space required'}
-                  </div>
-                  <div className="font-bold text-white">{machine.spaceRequired}</div>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="/contact">
-                    {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="/contact">
-                    {isFr ? 'Demander une démo' : 'Request a demo'}
-                  </Link>
-                </Button>
-              </div>
+        {/* Quick Specs */}
+        <div className="grid grid-cols-2 gap-4 mt-8">
+          <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
+              <Ruler className="h-3.5 w-3.5" /> {isFr ? 'Taille max' : 'Max size'}
             </div>
-            </FadeInView>
-
-            <FadeInView direction="right" delay={0.2}>
-            <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8">
-                <Image
-                  src={machineImage}
-                  alt={`Studio photo ${machine.nom}`}
-                  width={640}
-                  height={480}
-                  className="object-contain w-full h-auto"
-                  priority
-                />
-              </div>
+            <div className="font-bold text-white">{machine.tailleMax}</div>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
+              <Weight className="h-3.5 w-3.5" /> {isFr ? 'Poids max' : 'Max weight'}
             </div>
-            </FadeInView>
+            <div className="font-bold text-white">{machine.poidsMax}</div>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
+              <Zap className="h-3.5 w-3.5" /> {isFr ? 'Capacité/jour' : 'Capacity/day'}
+            </div>
+            <div className="font-bold text-white">{machine.capaciteJour} {isFr ? 'produits' : 'products'}</div>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
+              <Monitor className="h-3.5 w-3.5" /> {isFr ? 'Espace requis' : 'Space required'}
+            </div>
+            <div className="font-bold text-white">{machine.spaceRequired}</div>
           </div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* IA Ready Banner */}
       {iaReady && (

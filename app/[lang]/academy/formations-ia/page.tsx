@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { Brain, Sparkles, Rocket, Gem, BarChart3, Award, Clock, GraduationCap, ArrowRight, Check, ChevronRight, ImageIcon, Wand2, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const IA_COURSES = [
@@ -96,44 +97,43 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-amber-900 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-              <Link href="/academy" className="inline-flex items-center gap-1.5 text-amber-300 text-sm font-medium mb-6 hover:text-white transition-colors">
-                <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
-              </Link>
-              <div className="flex items-center gap-3 mb-6">
-                <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
-                  <Award className="h-4 w-4" /> Qualiopi
-                </span>
-                <span className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-medium px-3 py-1.5 rounded-full">
-                  <Brain className="h-4 w-4" /> IA Générative
-                </span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {isFr ? 'Formations IA BlendAI' : 'BlendAI AI Training'}
-              </h1>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {isFr
-                  ? 'Maîtrisez l\'IA générative appliquée au e-commerce. Créez des visuels produits augmentés avec BlendAI et révolutionnez votre workflow. Formations certifiées avec financement OPCO.'
-                  : 'Master generative AI for e-commerce. Create augmented product visuals with BlendAI and revolutionize your workflow. Certified training with OPCO funding.'}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-lg shadow-amber-500/25">
-                  <a href="#formations">{isFr ? 'Voir les formations' : 'View training'}</a>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="/academy/calendrier">{isFr ? 'Calendrier' : 'Calendar'}</Link>
-                </Button>
-              </div>
-            </FadeInView>
-            <FadeInView direction="right" delay={0.2}>
-              <Image src="/images/illustrations/pillar-ia.avif" alt="Formation IA BlendAI" width={640} height={480} className="rounded-2xl shadow-2xl" priority />
-            </FadeInView>
-          </div>
+      <HeroSection
+        layout="split"
+        gradient="bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-amber-900"
+        title={
+          <>
+            <Link href="/academy" className="inline-flex items-center gap-1.5 text-amber-300 text-sm font-sans font-medium hover:text-white transition-colors">
+              <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
+            </Link>
+            <div className="flex items-center gap-3 mt-6">
+              <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-sans font-medium px-4 py-1.5 rounded-full">
+                <Award className="h-4 w-4" /> Qualiopi
+              </span>
+              <span className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-sans font-medium px-3 py-1.5 rounded-full">
+                <Brain className="h-4 w-4" /> IA Générative
+              </span>
+            </div>
+            <span className="block mt-6">{isFr ? 'Formations IA BlendAI' : 'BlendAI AI Training'}</span>
+          </>
+        }
+        subtitle={
+          isFr
+            ? 'Maîtrisez l\'IA générative appliquée au e-commerce. Créez des visuels produits augmentés avec BlendAI et révolutionnez votre workflow. Formations certifiées avec financement OPCO.'
+            : 'Master generative AI for e-commerce. Create augmented product visuals with BlendAI and revolutionize your workflow. Certified training with OPCO funding.'
+        }
+        media={
+          <Image src="/images/illustrations/pillar-ia.avif" alt="Formation IA BlendAI" width={640} height={480} className="rounded-2xl shadow-2xl" priority />
+        }
+      >
+        <div className="flex flex-wrap gap-4 mt-8">
+          <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-lg shadow-amber-500/25">
+            <a href="#formations">{isFr ? 'Voir les formations' : 'View training'}</a>
+          </Button>
+          <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+            <Link href="/academy/calendrier">{isFr ? 'Calendrier' : 'Calendar'}</Link>
+          </Button>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Benefits */}
       <section className="py-20 bg-white">

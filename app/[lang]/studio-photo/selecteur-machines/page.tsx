@@ -4,6 +4,7 @@ import { MachineSelector } from '@/components/machine-selector';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, ArrowRight, Phone, Mail } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 interface PageProps {
@@ -53,38 +54,36 @@ export default async function MachineSelectorPage({ params }: PageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <FadeInView>
-              <Link
-                href="/studios-photo-automatises"
-                className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
-              >
-                <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                {isFr ? 'Studios Photo' : 'Photo Studios'}
-              </Link>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {isFr ? 'Trouvez votre studio photo idéal' : 'Find your ideal photo studio'}
-              </h1>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-                {isFr
-                  ? 'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.'
-                  : 'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.'}
-              </p>
-            </FadeInView>
-            <StaggerContainer className="flex flex-wrap justify-center gap-3" delay={0.3}>
-              {categories.map((cat) => (
-                <StaggerItem key={cat.label}>
-                  <span className={`inline-flex items-center gap-2 ${cat.color} text-sm font-medium px-4 py-2 rounded-full`}>
-                    {cat.label}
-                  </span>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        title={
+          <>
+            <Link
+              href="/studios-photo-automatises"
+              className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium font-sans mb-6 hover:text-white transition-colors"
+            >
+              <ChevronRight className="h-3.5 w-3.5 rotate-180" />
+              {isFr ? 'Studios Photo' : 'Photo Studios'}
+            </Link>
+            <br />
+            {isFr ? 'Trouvez votre studio photo idéal' : 'Find your ideal photo studio'}
+          </>
+        }
+        subtitle={
+          isFr
+            ? 'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.'
+            : 'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.'
+        }
+      >
+        <StaggerContainer className="flex flex-wrap justify-center gap-3" delay={0.3}>
+          {categories.map((cat) => (
+            <StaggerItem key={cat.label}>
+              <span className={`inline-flex items-center gap-2 ${cat.color} text-sm font-medium px-4 py-2 rounded-full`}>
+                {cat.label}
+              </span>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </HeroSection>
 
       {/* Machine Selector */}
       <section className="py-16 bg-neutral-50">

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -113,48 +114,39 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-              <div className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-                <Factory className="h-4 w-4" />
-                {isFr ? '14 secteurs couverts' : '14 sectors covered'}
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {isFr
-                  ? 'Solutions Photo Produit par Industrie'
-                  : 'Product Photography Solutions by Industry'}
-              </h1>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {isFr
-                  ? 'Chaque industrie a ses défis photo produit : reflets, matières, volumes, lifestyle. Découvrez nos solutions packshot et IA personnalisées.'
-                  : 'Every industry has its product photo challenges: reflections, materials, volumes, lifestyle. Discover our personalized packshot and AI solutions.'}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="/contact">{isFr ? 'Demander une démo' : 'Request a demo'}</Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <a href="#secteurs">{isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'}</a>
-                </Button>
-              </div>
-            </FadeInView>
-            <FadeInView direction="right" delay={0.2}>
-              <div className="relative">
-                <Image
-                  src="/images/hero/hero-industries.avif"
-                  alt={isFr ? 'Solutions photo produit par industrie' : 'Product photo solutions by industry'}
-                  width={640}
-                  height={480}
-                  className="rounded-2xl shadow-2xl"
-                  priority
-                />
-              </div>
-            </FadeInView>
-          </div>
+      <HeroSection
+        layout="split"
+        badge={{
+          icon: <Factory className="h-4 w-4" />,
+          label: isFr ? '14 secteurs couverts' : '14 sectors covered',
+          colorClass: 'bg-very-peri-500/15 text-very-peri-300',
+        }}
+        title={isFr
+          ? 'Solutions Photo Produit par Industrie'
+          : 'Product Photography Solutions by Industry'}
+        subtitle={isFr
+          ? 'Chaque industrie a ses défis photo produit : reflets, matières, volumes, lifestyle. Découvrez nos solutions packshot et IA personnalisées.'
+          : 'Every industry has its product photo challenges: reflections, materials, volumes, lifestyle. Discover our personalized packshot and AI solutions.'}
+        media={
+          <Image
+            src="/images/hero/hero-industries.avif"
+            alt={isFr ? 'Solutions photo produit par industrie' : 'Product photo solutions by industry'}
+            width={640}
+            height={480}
+            className="rounded-2xl shadow-2xl"
+            priority
+          />
+        }
+      >
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
+            <Link href="/contact">{isFr ? 'Demander une démo' : 'Request a demo'}</Link>
+          </Button>
+          <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+            <a href="#secteurs">{isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'}</a>
+          </Button>
         </div>
-      </section>
+      </HeroSection>
 
       {/* 12 Sectors Grid */}
       <section id="secteurs" className="py-20 bg-white">

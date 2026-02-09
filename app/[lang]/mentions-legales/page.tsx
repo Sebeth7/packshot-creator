@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -39,16 +40,13 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <h1 className="text-4xl sm:text-5xl font-heading font-bold mb-4">
-            {t('hero.title')}
-          </h1>
-          <p className="text-future-dusk-200">
-            {t('hero.subtitle')}
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        align="left"
+        compact
+        gradient="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800"
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+      />
 
       {/* Content */}
       <section className="py-16 bg-white">

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { getTranslations } from 'next-intl/server';
+import { HeroSection } from '@/components/hero';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -68,21 +69,20 @@ export default async function ConfidentialitePage({ params }: PageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-4 mb-4">
+      <HeroSection
+        align="left"
+        compact
+        gradient="bg-gradient-to-br from-future-dusk-900 to-future-dusk-800"
+        title={
+          <span className="flex items-center gap-4">
             <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-very-peri-500/20 text-very-peri-300">
               <Shield className="h-6 w-6" />
             </span>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold">
-              {t('hero.title')}
-            </h1>
-          </div>
-          <p className="text-future-dusk-200">
-            {t('hero.description')}
-          </p>
-        </div>
-      </section>
+            {t('hero.title')}
+          </span>
+        }
+        subtitle={t('hero.description')}
+      />
 
       {/* Content */}
       <section className="py-16 bg-white">

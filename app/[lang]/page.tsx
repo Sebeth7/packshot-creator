@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -151,65 +152,58 @@ export default async function HomePage({
   return (
     <>
         {/* ━━━ HERO ━━━ */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <FadeInView direction="left" className="order-2 lg:order-1">
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-accent-gold bg-accent-gold/10 px-4 py-2 rounded-full">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  {t('hero.badge')}
-                </span>
-
-                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-heading font-bold text-white leading-[1.1] tracking-tight">
-                  {t('hero.title')}
-                </h1>
-
-                <p className="mt-6 text-lg lg:text-xl text-future-dusk-200 max-w-xl leading-relaxed">
-                  {t('hero.subtitle')}
-                </p>
-
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg shadow-lg shadow-very-peri-500/25"
-                  >
-                    <Link href="/contact">{t('hero.cta')}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg"
-                  >
-                    <Link href="/studios-photo-automatises">
-                      {t('hero.ctaSecondary')}
-                    </Link>
-                  </Button>
-                </div>
-              </FadeInView>
-
-              <FadeInView direction="right" delay={0.2} className="order-1 lg:order-2 relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-                  <Image
-                    src="/images/hero/hero-range-2025.avif"
-                    alt="Gamme complète studios photo automatisés Orbitvu 2025"
-                    width={720}
-                    height={520}
-                    className="w-full h-auto object-cover"
-                    priority
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div
-                  className="absolute inset-0 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
-                  aria-hidden="true"
+        <HeroSection
+          layout="split"
+          badge={{
+            icon: (
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ),
+            label: t('hero.badge'),
+            colorClass: 'text-accent-gold bg-accent-gold/10',
+          }}
+          title={t('hero.title')}
+          subtitle={t('hero.subtitle')}
+          media={
+            <>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <Image
+                  src="/images/hero/hero-range-2025.avif"
+                  alt="Gamme complète studios photo automatisés Orbitvu 2025"
+                  width={720}
+                  height={520}
+                  className="w-full h-auto object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-              </FadeInView>
-            </div>
+              </div>
+              <div
+                className="absolute inset-0 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
+                aria-hidden="true"
+              />
+            </>
+          }
+        >
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg shadow-lg shadow-very-peri-500/25"
+            >
+              <Link href="/contact">{t('hero.cta')}</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg"
+            >
+              <Link href="/studios-photo-automatises">
+                {t('hero.ctaSecondary')}
+              </Link>
+            </Button>
           </div>
-        </section>
+        </HeroSection>
 
         {/* ━━━ CLIENT LOGOS ━━━ */}
         <section className="py-10 bg-white border-b border-future-dusk-0">

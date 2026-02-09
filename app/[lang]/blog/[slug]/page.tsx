@@ -12,6 +12,7 @@ import {
 } from '@/components/blog';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import {
   processHtmlContent,
@@ -163,11 +164,13 @@ export default async function BlogArticlePage({ params }: PageProps) {
   return (
     <>
       {/* Article Header */}
-      <FadeInView>
-        <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white py-12 lg:py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <HeroSection
+        compact
+        align="left"
+        title={
+          <>
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm text-future-dusk-300 mb-6">
+            <div className="flex items-center gap-2 text-sm font-sans font-normal text-future-dusk-300 mb-6">
               <Link href="/" className="hover:text-white transition-colors">
                 {t('home')}
               </Link>
@@ -178,43 +181,42 @@ export default async function BlogArticlePage({ params }: PageProps) {
               <span>/</span>
               <span className="text-very-peri-300">{category || t('defaultCategory')}</span>
             </div>
+            {title}
+          </>
+        }
+      >
+        <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200 mt-2">
+          <span className="inline-flex items-center gap-1.5">
+            <Calendar className="h-4 w-4" />
+            <time dateTime={date}>
+              {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </span>
+          {author && (
+            <span className="inline-flex items-center gap-1.5">
+              <User className="h-4 w-4" />
+              {author}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1.5">
+            <Clock className="h-4 w-4" />
+            {t('readingTime', { minutes: readingTime })}
+          </span>
+          {isWebflow && (
+            <span className="px-2 py-0.5 text-xs bg-future-dusk-700 rounded-full text-future-dusk-200">
+              {t('webflowArchive')}
+            </span>
+          )}
+        </div>
+      </HeroSection>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6">
-              {title}
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200">
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar className="h-4 w-4" />
-                <time dateTime={date}>
-                  {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-              </span>
-              {author && (
-                <span className="inline-flex items-center gap-1.5">
-                  <User className="h-4 w-4" />
-                  {author}
-                </span>
-              )}
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" />
-                {t('readingTime', { minutes: readingTime })}
-              </span>
-              {isWebflow && (
-                <span className="px-2 py-0.5 text-xs bg-future-dusk-700 rounded-full text-future-dusk-200">
-                  {t('webflowArchive')}
-                </span>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Image */}
-        {imageUrl && (
+      {/* Featured Image */}
+      {imageUrl && (
+        <FadeInView>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
             <img
               src={imageUrl}
@@ -222,8 +224,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
               className="w-full rounded-2xl shadow-lg"
             />
           </div>
-        )}
-      </FadeInView>
+        </FadeInView>
+      )}
 
       {/* Article Content with ToC sidebar */}
       <FadeInView delay={0.2}>

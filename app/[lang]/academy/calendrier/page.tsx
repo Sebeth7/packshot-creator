@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { CalendarDays, Award, Camera, Brain, ArrowRight, ChevronRight, Phone, Mail, Users, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -52,43 +53,42 @@ export default async function CalendrierPage({ params }: { params: Promise<{ lan
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <FadeInView className="max-w-4xl mx-auto text-center">
-            <Link href="/academy" className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors">
+      <HeroSection
+        title={
+          <>
+            <Link href="/academy" className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-sans font-medium mb-6 hover:text-white transition-colors">
               <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
             </Link>
             <div className="flex justify-center gap-3 mb-6">
-              <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
+              <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-sans font-medium px-4 py-1.5 rounded-full">
                 <Award className="h-4 w-4" /> Qualiopi
               </span>
-              <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-sans font-medium px-3 py-1.5 rounded-full">
                 OPCO
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-              {isFr ? 'Calendrier Formations 2026' : 'Training Calendar 2026'}
-            </h1>
-            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-              {isFr
-                ? 'Réservez votre session de formation. Choisissez parmi nos formations packshot Orbitvu et IA générative BlendAI.'
-                : 'Book your training session. Choose from our Orbitvu packshot and BlendAI generative AI training courses.'}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
-                <Link href="/academy/formations-packshot">
-                  <Camera className="mr-2 h-4 w-4" /> {isFr ? 'Formations Packshot' : 'Packshot Training'}
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl">
-                <Link href="/academy/formations-ia">
-                  <Brain className="mr-2 h-4 w-4" /> {isFr ? 'Formations IA' : 'AI Training'}
-                </Link>
-              </Button>
-            </div>
-          </FadeInView>
+            {isFr ? 'Calendrier Formations 2026' : 'Training Calendar 2026'}
+          </>
+        }
+        subtitle={
+          isFr
+            ? 'Réservez votre session de formation. Choisissez parmi nos formations packshot Orbitvu et IA générative BlendAI.'
+            : 'Book your training session. Choose from our Orbitvu packshot and BlendAI generative AI training courses.'
+        }
+      >
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
+            <Link href="/academy/formations-packshot">
+              <Camera className="mr-2 h-4 w-4" /> {isFr ? 'Formations Packshot' : 'Packshot Training'}
+            </Link>
+          </Button>
+          <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl">
+            <Link href="/academy/formations-ia">
+              <Brain className="mr-2 h-4 w-4" /> {isFr ? 'Formations IA' : 'AI Training'}
+            </Link>
+          </Button>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Calendar Placeholder */}
       <section className="py-20 bg-white">

@@ -7,6 +7,7 @@ import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 const FEATURES = [
   { key: 'lifestyle', icon: <ImageIcon className="h-6 w-6" />, color: 'bg-pink-100 text-pink-700' },
@@ -56,47 +57,38 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-very-peri-800 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-400 blur-[120px]" />
-          <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-400 blur-[150px]" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-              <div className="inline-flex items-center gap-2 bg-very-peri-500/20 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-                <Sparkles className="h-4 w-4" />
-                BlendAI Technology
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {t('hero.title')}
-              </h1>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {t('hero.subtitle')}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="/contact">{t('hero.ctaPrimary')}</Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="/blog">{t('hero.ctaSecondary')}</Link>
-                </Button>
-              </div>
-            </FadeInView>
-            <FadeInView direction="right" delay={0.2}>
-              <Image
-                src="/images/illustrations/pillar-ia.avif"
-                alt="IA Photo Produit BlendAI"
-                width={640}
-                height={480}
-                className="w-full h-auto rounded-2xl shadow-2xl"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </FadeInView>
+      <HeroSection
+        layout="split"
+        gradient="bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-very-peri-800"
+        badge={{
+          icon: <Sparkles className="h-4 w-4" />,
+          label: 'BlendAI Technology',
+          colorClass: 'bg-very-peri-500/20 text-very-peri-300',
+        }}
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        ctas={[
+          { label: t('hero.ctaPrimary'), href: '/contact', variant: 'primary' },
+          { label: t('hero.ctaSecondary'), href: '/blog', variant: 'secondary' },
+        ]}
+        media={
+          <Image
+            src="/images/illustrations/pillar-ia.avif"
+            alt="IA Photo Produit BlendAI"
+            width={640}
+            height={480}
+            className="w-full h-auto rounded-2xl shadow-2xl"
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        }
+        backgroundVideo={
+          <div className="absolute inset-0 opacity-10 z-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-400 blur-[120px]" />
+            <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-400 blur-[150px]" />
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Manifeste */}
       <section className="py-20 bg-white">

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -56,48 +57,34 @@ export default async function SecteurPage({ params }: PageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-              <Link
-                href="/industrie"
-                className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium mb-6 hover:text-white transition-colors"
-              >
-                <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                {isFr ? 'Toutes les industries' : 'All industries'}
-              </Link>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {secteur.hero.titre}
-              </h1>
-              <p className="text-xl text-very-peri-200 font-medium mb-4">
-                {secteur.hero.sousTitre}
-              </p>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {secteur.hero.description}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="/contact">{isFr ? 'Demander un devis gratuit' : 'Get a free quote'}</Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="/academy">{isFr ? 'Découvrir nos formations' : 'Discover our training'}</Link>
-                </Button>
-              </div>
-            </FadeInView>
-            <FadeInView direction="right" delay={0.2} className="relative">
-              <Image
-                src={heroImage}
-                alt={secteur.hero.titre}
-                width={640}
-                height={480}
-                className="rounded-2xl shadow-2xl"
-                priority
-              />
-            </FadeInView>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        layout="split"
+        badge={{
+          icon: <ChevronRight className="h-3.5 w-3.5 rotate-180" />,
+          label: isFr ? 'Toutes les industries' : 'All industries',
+          colorClass: 'text-very-peri-300',
+        }}
+        title={secteur.hero.titre}
+        subtitle={secteur.hero.description}
+        ctas={[
+          { label: isFr ? 'Demander un devis gratuit' : 'Get a free quote', href: '/contact', variant: 'primary' },
+          { label: isFr ? 'Découvrir nos formations' : 'Discover our training', href: '/academy', variant: 'secondary' },
+        ]}
+        media={
+          <Image
+            src={heroImage}
+            alt={secteur.hero.titre}
+            width={640}
+            height={480}
+            className="rounded-2xl shadow-2xl"
+            priority
+          />
+        }
+      >
+        <p className="text-xl text-very-peri-200 font-medium mt-4">
+          {secteur.hero.sousTitre}
+        </p>
+      </HeroSection>
 
       {/* Problématiques */}
       <section className="py-20 bg-white">

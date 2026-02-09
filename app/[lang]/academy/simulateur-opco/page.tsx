@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing';
 import { Award, Calculator, FileCheck, CheckCircle, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { OPCOSimulator } from '@/components/simulators/opco';
+import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
 export default function SimulateurOPCOPage() {
@@ -73,41 +74,43 @@ export default function SimulateurOPCOPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-emerald-900 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <FadeInView className="max-w-4xl mx-auto text-center">
-            <Link href="/academy" className="inline-flex items-center gap-1.5 text-emerald-300 text-sm font-medium mb-6 hover:text-white transition-colors">
+      <HeroSection
+        gradient="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-emerald-900"
+        badge={{
+          icon: <Award className="h-4 w-4" />,
+          label: isFr ? 'Formations certifiées Qualiopi' : 'Qualiopi certified training',
+          colorClass: 'bg-emerald-500/15 text-emerald-300',
+        }}
+        title={
+          <>
+            <Link href="/academy" className="inline-flex items-center gap-1.5 text-emerald-300 text-sm font-sans font-medium mb-6 hover:text-white transition-colors">
               <ChevronRight className="h-3.5 w-3.5 rotate-180" /> Academy
             </Link>
-            <div className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              <Award className="h-4 w-4" />
-              {isFr ? 'Formations certifiées Qualiopi' : 'Qualiopi certified training'}
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-              {isFr ? 'Vérifiez votre éligibilité au financement OPCO' : 'Check your OPCO funding eligibility'}
-            </h1>
-            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-              {isFr
-                ? 'En 2 minutes, découvrez si votre formation peut être prise en charge à 100% par votre OPCO.'
-                : 'In 2 minutes, find out if your training can be 100% covered by your OPCO.'}
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-emerald-400 font-bold text-lg">100%</span>
-                <span className="text-future-dusk-300">{isFr ? 'finançable' : 'fundable'}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-very-peri-400 font-bold text-lg">11</span>
-                <span className="text-future-dusk-300">{isFr ? 'OPCO partenaires' : 'partner OPCOs'}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-amber-400 font-bold text-lg">2-4</span>
-                <span className="text-future-dusk-300">{isFr ? 'semaines de délai' : 'weeks processing'}</span>
-              </div>
-            </div>
-          </FadeInView>
+            <br />
+            {isFr ? 'Vérifiez votre éligibilité au financement OPCO' : 'Check your OPCO funding eligibility'}
+          </>
+        }
+        subtitle={
+          isFr
+            ? 'En 2 minutes, découvrez si votre formation peut être prise en charge à 100% par votre OPCO.'
+            : 'In 2 minutes, find out if your training can be 100% covered by your OPCO.'
+        }
+      >
+        <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+          <div className="flex items-center gap-2">
+            <span className="text-emerald-400 font-bold text-lg">100%</span>
+            <span className="text-future-dusk-300">{isFr ? 'finançable' : 'fundable'}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-very-peri-400 font-bold text-lg">11</span>
+            <span className="text-future-dusk-300">{isFr ? 'OPCO partenaires' : 'partner OPCOs'}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-amber-400 font-bold text-lg">2-4</span>
+            <span className="text-future-dusk-300">{isFr ? 'semaines de délai' : 'weeks processing'}</span>
+          </div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Simulator */}
       <section className="py-16 bg-neutral-50">

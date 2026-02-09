@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 import { BlogGrid } from '@/components/blog/BlogGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
@@ -55,19 +56,12 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <FadeInView>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-4">
-              {t('heading')}
-            </h1>
-            <div className="w-16 h-1 bg-very-peri-400 mx-auto mb-6 rounded-full" />
-            <p className="text-lg sm:text-xl text-future-dusk-200 max-w-3xl mx-auto">
-              {t('subtitle')}
-            </p>
-          </FadeInView>
-        </div>
-      </section>
+      <HeroSection
+        title={t('heading')}
+        subtitle={t('subtitle')}
+      >
+        <div className="w-16 h-1 bg-very-peri-400 mx-auto mb-6 rounded-full" />
+      </HeroSection>
 
       {/* Hero Article Card */}
       {heroPost && (

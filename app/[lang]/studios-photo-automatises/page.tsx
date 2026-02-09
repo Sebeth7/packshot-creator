@@ -7,6 +7,7 @@ import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight, RotateCcw, S
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 const ROICalculator = dynamic(
   () => import('@/components/calculators/ROICalculator/ROICalculatorWizard'),
@@ -76,44 +77,30 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeInView direction="left">
-              <div className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-                <Camera className="h-4 w-4" />
-                Orbitvu Official Partner
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-6">
-                {t('hero.title')}
-              </h1>
-              <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-xl">
-                {t('hero.subtitle')}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                  <Link href="#calculateur-roi">{t('hero.ctaPrimary')}</Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                  <Link href="#studios">{t('hero.ctaSecondary')}</Link>
-                </Button>
-              </div>
-            </FadeInView>
-            <FadeInView direction="right" delay={0.2}>
-              <div className="relative">
-                <Image
-                  src="/images/hero/hero-studios-wide.avif"
-                  alt="Studios photo automatises Orbitvu"
-                  width={640}
-                  height={480}
-                  className="rounded-2xl shadow-2xl"
-                  priority
-                />
-              </div>
-            </FadeInView>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        layout="split"
+        badge={{
+          icon: <Camera className="h-4 w-4" />,
+          label: 'Orbitvu Official Partner',
+          colorClass: 'bg-amber-500/15 text-amber-300',
+        }}
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        ctas={[
+          { label: t('hero.ctaPrimary'), href: '#calculateur-roi', variant: 'primary' },
+          { label: t('hero.ctaSecondary'), href: '#studios', variant: 'secondary' },
+        ]}
+        media={
+          <Image
+            src="/images/hero/hero-studios-wide.avif"
+            alt="Studios photo automatises Orbitvu"
+            width={640}
+            height={480}
+            className="rounded-2xl shadow-2xl"
+            priority
+          />
+        }
+      />
 
       {/* Three Pillars */}
       <section className="py-20 bg-white">

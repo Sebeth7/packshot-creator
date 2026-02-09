@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 import { getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
 import {
   TECHNOLOGIES,
@@ -68,32 +69,26 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
   return (
     <>
       {/* ===== 1. Hero Premium ===== */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <FadeInView className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm text-very-peri-200 mb-6">
-              <ShieldCheck className="h-4 w-4" />
-              {isFr ? 'Industrie & Defense' : 'Industry & Defense'}
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
-              {t('hero.title')}
-            </h1>
-            <p className="text-xl text-very-peri-200 font-medium mb-8 max-w-3xl mx-auto">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                <Link href="/contact?subject=industrie">{t('hero.ctaPrimary')}</Link>
-              </Button>
-              <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-                <a href="#technologies">
-                  {t('hero.ctaSecondary')} <ChevronDown className="ml-1 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-          </FadeInView>
+      <HeroSection
+        badge={{
+          icon: <ShieldCheck className="h-4 w-4" />,
+          label: isFr ? 'Industrie & Defense' : 'Industry & Defense',
+          colorClass: 'bg-white/10 text-very-peri-200',
+        }}
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        ctas={[
+          { label: t('hero.ctaPrimary'), href: '/contact?subject=industrie', variant: 'primary' },
+        ]}
+      >
+        <div className="mt-4 flex flex-wrap justify-center gap-4">
+          <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
+            <a href="#technologies">
+              {t('hero.ctaSecondary')} <ChevronDown className="ml-1 h-4 w-4" />
+            </a>
+          </Button>
         </div>
-      </section>
+      </HeroSection>
 
       {/* ===== 2. Points de douleur ===== */}
       <section className="py-20 bg-white">

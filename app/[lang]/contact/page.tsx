@@ -10,6 +10,7 @@ const PipedriveContactForm = dynamic(
 import { Phone, Clock, MapPin, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -53,18 +54,10 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
-          <FadeInView className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold leading-tight mb-4">
-              {t('heading')}
-            </h1>
-            <p className="text-lg text-future-dusk-200 leading-relaxed">
-              {t('subtitle')}
-            </p>
-          </FadeInView>
-        </div>
-      </section>
+      <HeroSection
+        title={t('heading')}
+        subtitle={t('subtitle')}
+      />
 
       {/* Content */}
       <section className="py-16 bg-white">

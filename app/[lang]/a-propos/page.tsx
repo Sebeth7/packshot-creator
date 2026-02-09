@@ -5,6 +5,7 @@ import { ArrowRight, Lightbulb, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -51,33 +52,18 @@ export default async function AProposPage({ params }: PageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
-          <FadeInView className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
-              PackshotCreator
-            </h1>
-            <p className="text-xl sm:text-2xl text-very-peri-200 font-medium mb-4">
-              {t('hero.tagline')}
-            </p>
-            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-              {t('hero.description')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25">
-                <Link href="/contact">
-                  {t('hero.ctaPrimary')} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-                <Link href="/academy">
-                  {t('hero.ctaSecondary')}
-                </Link>
-              </Button>
-            </div>
-          </FadeInView>
-        </div>
-      </section>
+      <HeroSection
+        title="PackshotCreator"
+        subtitle={t('hero.description')}
+        ctas={[
+          { label: t('hero.ctaPrimary'), href: '/contact', variant: 'primary' },
+          { label: t('hero.ctaSecondary'), href: '/academy', variant: 'secondary' },
+        ]}
+      >
+        <p className="text-xl sm:text-2xl text-very-peri-200 font-medium mb-4">
+          {t('hero.tagline')}
+        </p>
+      </HeroSection>
 
       {/* Mission */}
       <section className="py-20 bg-white">
