@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: secteur.titre,
       description: secteur.description,
+      images: [{ url: `/api/og?title=${encodeURIComponent(secteur.titre)}&type=page&lang=${lang}`, width: 1200, height: 630 }],
     },
   };
 }

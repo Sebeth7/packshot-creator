@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/mentions-legales`,
       languages: { fr: '/fr/mentions-legales', en: '/en/mentions-legales' },
     },
+    openGraph: {
+      title: t('title'),
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

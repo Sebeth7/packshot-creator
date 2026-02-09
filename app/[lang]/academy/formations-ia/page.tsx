@@ -67,6 +67,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-ia`,
       languages: { fr: '/fr/academy/formations-ia', en: '/en/academy/formations-ia' },
     },
+    openGraph: {
+      title: isFr
+        ? 'Formations IA BlendAI | IA Générative Photo Produit'
+        : 'BlendAI AI Training | Generative AI Product Photo',
+      images: [{ url: `/api/og?title=${encodeURIComponent(isFr ? 'Formations IA BlendAI' : 'BlendAI AI Training')}&type=formation&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

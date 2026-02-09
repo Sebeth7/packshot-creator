@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { Sparkles, Wand2, ImageIcon, Paintbrush, Layers, ArrowRight, Check } from 'lucide-react';
+import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -32,13 +33,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
       siteName: 'PackshotCreator',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'IA Photo Produit BlendAI' }],
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('ogDescription'),
-      images: ['https://www.packshot-creator.com/og/default.jpg'],
+      images: [`/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`],
     },
   };
 }
@@ -170,24 +171,46 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               {t('casUsage.subtitle')}
             </p>
           </FadeInView>
-          <StaggerContainer stagger={0.2} className="grid md:grid-cols-2 gap-8">
-            <StaggerItem>
-              <div className="bg-neutral-50 rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] relative">
-                  <Image src="/images/demo/bouteille-vin.avif" alt="Packshot avant IA" fill className="object-contain p-6" />
-                </div>
-                <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Packshot Original</div>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-neutral-50 rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] relative">
-                  <Image src="/images/illustrations/ia-feature-background-generator.avif" alt="Résultat après IA" fill className="object-cover" />
-                </div>
-                <div className="p-4 text-center text-sm font-medium text-future-dusk-600">Lifestyle IA</div>
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
+          <div className="grid md:grid-cols-2 gap-8">
+            <FadeInView delay={0.1}>
+              <BeforeAfterSlider
+                before={{
+                  src: '/images/before-after/ia-before-after-cosmetiques-1-before.avif',
+                  alt: lang === 'fr' ? 'Packshot cosmétique original' : 'Original cosmetic packshot',
+                  label: lang === 'fr' ? 'Avant' : 'Before',
+                }}
+                after={{
+                  src: '/images/before-after/ia-before-after-cosmetiques-1-after.avif',
+                  alt: lang === 'fr' ? 'Packshot cosmétique avec IA lifestyle' : 'Cosmetic packshot with AI lifestyle',
+                  label: lang === 'fr' ? 'Après IA' : 'After AI',
+                }}
+                width={800}
+                height={600}
+              />
+              <p className="mt-3 text-center text-sm font-medium text-future-dusk-600">
+                {lang === 'fr' ? 'Cosmétiques - Background lifestyle' : 'Cosmetics - Lifestyle background'}
+              </p>
+            </FadeInView>
+            <FadeInView delay={0.2}>
+              <BeforeAfterSlider
+                before={{
+                  src: '/images/before-after/ia-before-after-mode-1-before.avif',
+                  alt: lang === 'fr' ? 'Packshot mode original' : 'Original fashion packshot',
+                  label: lang === 'fr' ? 'Avant' : 'Before',
+                }}
+                after={{
+                  src: '/images/before-after/ia-before-after-mode-1-after.avif',
+                  alt: lang === 'fr' ? 'Packshot mode avec IA lifestyle' : 'Fashion packshot with AI lifestyle',
+                  label: lang === 'fr' ? 'Après IA' : 'After AI',
+                }}
+                width={800}
+                height={600}
+              />
+              <p className="mt-3 text-center text-sm font-medium text-future-dusk-600">
+                {lang === 'fr' ? 'Mode - Mise en scène IA' : 'Fashion - AI staging'}
+              </p>
+            </FadeInView>
+          </div>
         </div>
       </section>
 

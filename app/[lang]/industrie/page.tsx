@@ -35,14 +35,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `https://www.packshot-creator.com/${lang}/industrie`,
       siteName: 'PackshotCreator',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Solutions par industrie' }],
+      images: [{ url: `/api/og?title=${encodeURIComponent(lang === 'fr' ? 'Solutions Photo Produit par Industrie' : 'Product Photography Solutions by Industry')}&type=page&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: lang === 'fr'
         ? 'Solutions Photo Produit par Industrie'
         : 'Product Photography Solutions by Industry',
-      images: ['https://www.packshot-creator.com/og/default.jpg'],
+      images: [`/api/og?title=${encodeURIComponent(lang === 'fr' ? 'Solutions Photo Produit par Industrie' : 'Product Photography Solutions by Industry')}&type=page&lang=${lang}`],
     },
   };
 }

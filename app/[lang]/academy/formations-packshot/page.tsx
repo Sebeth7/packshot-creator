@@ -60,6 +60,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-packshot`,
       languages: { fr: '/fr/academy/formations-packshot', en: '/en/academy/formations-packshot' },
     },
+    openGraph: {
+      title: isFr
+        ? 'Formations Studios Photo Orbitvu | Certifiées Qualiopi'
+        : 'Orbitvu Photo Studio Training | Qualiopi Certified',
+      images: [{ url: `/api/og?title=${encodeURIComponent(isFr ? 'Formations Studios Photo Orbitvu' : 'Orbitvu Photo Studio Training')}&type=formation&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

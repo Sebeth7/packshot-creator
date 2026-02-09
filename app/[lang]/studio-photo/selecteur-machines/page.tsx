@@ -25,6 +25,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
       languages: { fr: '/fr/studio-photo/selecteur-machines', en: '/en/studio-photo/selecteur-machines' },
     },
+    openGraph: {
+      title: isFr
+        ? 'Sélecteur de Studios Photo | Trouvez votre Orbitvu idéal'
+        : 'Photo Studio Selector | Find your ideal Orbitvu',
+      images: [{ url: `/api/og?title=${encodeURIComponent(isFr ? 'Sélecteur de Studios Photo' : 'Photo Studio Selector')}&type=product&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

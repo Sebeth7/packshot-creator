@@ -66,6 +66,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/academy/${slug}`,
       languages: { fr: `/fr/academy/${slug}`, en: `/en/academy/${slug}` },
     },
+    openGraph: {
+      title: `${formation.titre} | PackshotCreator Academy`,
+      images: [{ url: `/api/og?title=${encodeURIComponent(formation.titre)}&type=formation&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

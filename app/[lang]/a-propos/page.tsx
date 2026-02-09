@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/a-propos`,
       languages: { fr: '/fr/a-propos', en: '/en/a-propos' },
     },
+    openGraph: {
+      title: t('meta.title'),
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

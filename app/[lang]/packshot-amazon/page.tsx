@@ -28,7 +28,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
       languages: { fr: `/fr/${CONFIG.slug}`, en: `/en/${CONFIG.slug}` },
     },
-    openGraph: { title: t('meta.title'), description: t('meta.description') },
+    openGraph: {
+      title: t('meta.title'),
+      description: t('meta.description'),
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

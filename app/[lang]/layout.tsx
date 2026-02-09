@@ -37,10 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       locale: isFr ? 'fr_FR' : 'en_US',
       type: 'website',
       images: [{
-        url: 'https://www.packshot-creator.com/og/default.jpg',
+        url: `/api/og?title=${encodeURIComponent(isFr ? 'PackshotCreator - Studios Photo Automatisés' : 'PackshotCreator - Automated Photo Studios')}&type=page&lang=${lang}`,
         width: 1200,
         height: 630,
-        alt: 'PackshotCreator - Automated Photo Studios',
       }],
     },
     twitter: {
@@ -49,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? 'Solutions de photographie produit automatisee.'
         : 'Automated product photography solutions.',
-      images: ['https://www.packshot-creator.com/og/default.jpg'],
+      images: [`/api/og?title=${encodeURIComponent(isFr ? 'PackshotCreator - Studios Photo Automatisés' : 'PackshotCreator - Automated Photo Studios')}&type=page&lang=${lang}`],
     },
   };
 }

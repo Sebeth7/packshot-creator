@@ -34,7 +34,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: cleanTitle,
       description: guide.metaDescription,
       url: `https://www.packshot-creator.com/${lang}/guide/${slug}`,
-      images: guide.mainImage ? [{ url: guide.mainImage, width: 1200, height: 630 }] : [],
+      images: guide.mainImage
+        ? [{ url: guide.mainImage, width: 1200, height: 630 }]
+        : [{ url: `/api/og?title=${encodeURIComponent(cleanTitle)}&type=page&lang=${lang}`, width: 1200, height: 630 }],
       type: 'article',
     },
   };

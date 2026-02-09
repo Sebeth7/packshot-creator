@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/cgu`,
       languages: { fr: '/fr/cgu', en: '/en/cgu' },
     },
+    openGraph: {
+      title: t('meta.title'),
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

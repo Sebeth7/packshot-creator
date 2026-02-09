@@ -44,7 +44,9 @@ export async function generateMetadata({ params }: PageProps) {
       openGraph: {
         title: seoTitle,
         description: seoDescription,
-        images: sanityPost.image ? [urlFor(sanityPost.image).width(1200).height(630).url()] : [],
+        images: sanityPost.image
+          ? [urlFor(sanityPost.image).width(1200).height(630).url()]
+          : [{ url: `/api/og?title=${encodeURIComponent(seoTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
         publishedTime: sanityPost.date,
         authors: [sanityPost.author],
@@ -69,7 +71,9 @@ export async function generateMetadata({ params }: PageProps) {
       openGraph: {
         title: webflowArticle.title,
         description: webflowArticle.description,
-        images: webflowArticle.image ? [webflowArticle.image] : [],
+        images: webflowArticle.image
+          ? [webflowArticle.image]
+          : [{ url: `/api/og?title=${encodeURIComponent(webflowArticle.title)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
       },
     };

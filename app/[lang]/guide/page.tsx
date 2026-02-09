@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `https://www.packshot-creator.com/${lang}/guide`,
       type: 'website',
+      images: [{ url: `/api/og?title=${encodeURIComponent(title)}&type=page&lang=${lang}`, width: 1200, height: 630 }],
     },
   };
 }

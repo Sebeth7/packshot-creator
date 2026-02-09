@@ -74,6 +74,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
       languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}` },
     },
+    openGraph: {
+      title: isFr
+        ? `${machine.nom} | Studio Photo Automatisé Orbitvu`
+        : `${machine.nom} | Automated Photo Studio Orbitvu`,
+      images: [{ url: `/api/og?title=${encodeURIComponent(machine.nom)}&type=product&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 

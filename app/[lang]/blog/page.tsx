@@ -26,13 +26,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `https://www.packshot-creator.com/${lang}/blog`,
       siteName: 'PackshotCreator',
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
-      images: [{ url: 'https://www.packshot-creator.com/og/default.jpg', width: 1200, height: 630, alt: 'Blog PackshotCreator' }],
+      images: [{ url: `/api/og?title=${encodeURIComponent(t('metaTitle'))}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('metaTitle'),
       description: t('metaDescription'),
-      images: ['https://www.packshot-creator.com/og/default.jpg'],
+      images: [`/api/og?title=${encodeURIComponent(t('metaTitle'))}&type=blog&lang=${lang}`],
     },
   };
 }

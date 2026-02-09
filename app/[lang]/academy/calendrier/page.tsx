@@ -20,6 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/academy/calendrier`,
       languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier' },
     },
+    openGraph: {
+      title: isFr
+        ? 'Calendrier Formations 2026 | PackshotCreator Academy'
+        : 'Training Calendar 2026 | PackshotCreator Academy',
+      images: [{ url: `/api/og?title=${encodeURIComponent(isFr ? 'Calendrier Formations 2026' : 'Training Calendar 2026')}&type=formation&lang=${lang}`, width: 1200, height: 630 }],
+    },
   };
 }
 
