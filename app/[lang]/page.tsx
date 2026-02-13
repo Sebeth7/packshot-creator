@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
-import { HeroSection } from '@/components/hero';
+import { HeroSection, HeroVideo } from '@/components/hero';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -154,6 +154,12 @@ export default async function HomePage({
         {/* ━━━ HERO ━━━ */}
         <HeroSection
           layout="split"
+          backgroundVideo={
+            <HeroVideo
+              src="/images/hero/hero-range-2025.mp4"
+              poster="/images/hero/hero-range-2025-poster.avif"
+            />
+          }
           badge={{
             icon: (
               <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
