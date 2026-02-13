@@ -153,7 +153,7 @@ export default async function HomePage({
     <>
         {/* ━━━ HERO ━━━ */}
         <HeroSection
-          layout="split"
+          layout="centered"
           backgroundVideo={
             <HeroVideo
               src="/images/hero/hero-range-2025.mp4"
@@ -171,25 +171,6 @@ export default async function HomePage({
           }}
           title={t('hero.title')}
           subtitle={t('hero.subtitle')}
-          media={
-            <>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-                <Image
-                  src="/images/hero/hero-range-2025.avif"
-                  alt="Gamme complète studios photo automatisés Orbitvu 2025"
-                  width={720}
-                  height={520}
-                  className="w-full h-auto object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <div
-                className="absolute inset-0 bg-very-peri-500/20 rounded-3xl blur-3xl -z-10"
-                aria-hidden="true"
-              />
-            </>
-          }
         >
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button
