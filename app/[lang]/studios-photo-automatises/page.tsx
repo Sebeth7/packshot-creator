@@ -78,7 +78,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
     <>
       {/* Hero */}
       <HeroSection
-        layout="split"
+        layout="centered"
+        backgroundImage="/images/hero/hero-studios-wide.avif"
         badge={{
           icon: <Camera className="h-4 w-4" />,
           label: 'Orbitvu Official Partner',
@@ -90,16 +91,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           { label: t('hero.ctaPrimary'), href: '#calculateur-roi', variant: 'primary' },
           { label: t('hero.ctaSecondary'), href: '#studios', variant: 'secondary' },
         ]}
-        media={
-          <Image
-            src="/images/hero/hero-studios-wide.avif"
-            alt="Studios photo automatises Orbitvu"
-            width={640}
-            height={480}
-            className="rounded-2xl shadow-2xl"
-            priority
-          />
-        }
       />
 
       {/* Three Pillars */}
