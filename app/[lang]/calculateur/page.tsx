@@ -58,15 +58,19 @@ interface CalculResult {
   // Coûts réels après avantages fiscaux
   leasingCoutReel: number;
   achatCoutReel: number;
+  // Taux réels après impôts
+  leasingTnaReel: number | null;
+  banqueTnaReel: number;
 }
 
 // ---- Génération PDF ----
 
-function generateComparatifPDF(r: CalculResult, clientName: string, systemName: string) {
+async function generateComparatifPDF(r: CalculResult, clientName: string, systemName: string) {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const W = 210;
   const margin = 15;
   const contentW = W - margin * 2;
+  const headerH = 36;
 
   // Couleurs
   const veryPeri = { r: 102, g: 103, b: 171 };
@@ -74,20 +78,41 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
   const veryPeriLight = { r: 245, g: 245, b: 250 };
   const borderGray = { r: 229, g: 231, b: 235 };
 
-  // ---- Header ----
-  doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
-  doc.rect(0, 0, W, 32, 'F');
+  // ---- Header avec image de fond ----
+  try {
+    const res = await fetch('/images/hero/hero-studios-wide.jpg');
+    const blob = await res.blob();
+    const base64 = await new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(blob);
+    });
+    // Image 2860×980 → ratio ~2.92:1. Header 210×36mm.
+    // On crop verticalement au centre : pleine largeur, hauteur proportionnelle
+    doc.addImage(base64, 'JPEG', 0, 0, W, headerH);
+  } catch {
+    // Fallback : bandeau violet si l'image ne charge pas
+    doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
+    doc.rect(0, 0, W, headerH, 'F');
+  }
+
+  // Overlay semi-transparent pour lisibilité du texte
+  doc.setFillColor(0, 0, 0);
+  doc.setGState(new (doc as any).GState({ opacity: 0.45 }));
+  doc.rect(0, 0, W, headerH, 'F');
+  doc.setGState(new (doc as any).GState({ opacity: 1 }));
+
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
-  doc.text('PackshotCreator', margin, 14);
+  doc.text('PackshotCreator', margin, 15);
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text('Comparatif des solutions de financement', margin, 22);
+  doc.text('Comparatif des solutions de financement', margin, 24);
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-  doc.text(dateStr, W - margin, 22, { align: 'right' });
+  doc.text(dateStr, W - margin, 24, { align: 'right' });
 
-  let y = 42;
+  let y = headerH + 8;
 
   // ---- Infos client & système ----
   doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
@@ -128,7 +153,15 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
     { label: 'Deductible des impots', leasing: '100% des loyers', banque: 'Non comptabilise', achat: 'Amortissement 5 ans' },
     { label: 'Impact sur l\'endettement', leasing: 'Aucun (hors bilan)', banque: 'Augmente la dette', achat: 'Aucun' },
     { label: 'Tresorerie preservee', leasing: 'Oui', banque: 'Partiellement', achat: 'Non' },
-    { label: 'Cout reel apres impots', leasing: `${fmt(r.leasingCoutReel)} €`, banque: `${fmt(r.banqueCoutTotal)} €`, achat: `${fmt(r.achatCoutReel)} €`, highlight: true },
+    {
+      label: 'Cout reel apres impots',
+      leasing: r.leasingTnaReel !== null
+        ? `${fmt(r.leasingCoutReel)} €\n* taux reel : ${r.leasingTnaReel.toFixed(2)}%`
+        : `${fmt(r.leasingCoutReel)} €`,
+      banque: `${fmt(r.banqueCoutTotal)} €\n* taux reel : ${r.banqueTnaReel.toFixed(2)}%`,
+      achat: `${fmt(r.achatCoutReel)} €`,
+      highlight: true,
+    },
   ];
 
   for (let i = 0; i < rows.length; i++) {
@@ -136,8 +169,9 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
     const isEven = i % 2 === 0;
 
     if (row.highlight) {
+      const highlightH = rowH + 6;
       doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
-      doc.rect(margin, y, contentW, rowH + 1, 'F');
+      doc.rect(margin, y, contentW, highlightH, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFont('helvetica', 'bold');
     } else {
@@ -159,7 +193,7 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
     doc.text(row.banque, colX[2] + colW[2] / 2, y + 6, { align: 'center' });
     doc.text(row.achat, colX[3] + colW[3] / 2, y + 6, { align: 'center' });
 
-    y += row.highlight ? rowH + 1 : rowH;
+    y += row.highlight ? rowH + 6 : rowH;
   }
 
   y += 8;
@@ -309,6 +343,13 @@ export default function CalculateurTauxPage() {
     const leasingCoutReel = totalPaye * (1 - IS_RATE);
     const achatCoutReel = pv * (1 - IS_RATE);
 
+    // Taux réels après impôts : recalcul du TNA avec le coût effectif des mensualités
+    // Leasing : chaque mensualité coûte réellement pmt × 0.75 (100% déductible)
+    const rReel = solveMonthlyRate(pv, pmt * (1 - IS_RATE), n);
+    const leasingTnaReel = rReel !== null && rReel > 0 ? rReel * 12 * 100 : null;
+    // Banque : pas d'avantage fiscal comptabilisé → taux inchangé
+    const banqueTnaReel = txBanque;
+
     setResult({
       pv, n, pmt,
       tauxMensuel: r * 100, tna, tae,
@@ -324,6 +365,8 @@ export default function CalculateurTauxPage() {
       banqueCoutTotal: apport + totalPayeBanque,
       leasingCoutReel,
       achatCoutReel,
+      leasingTnaReel,
+      banqueTnaReel,
     });
   }
 
@@ -485,8 +528,20 @@ export default function CalculateurTauxPage() {
                       {/* Dernière ligne — coût réel */}
                       <tr className="bg-very-peri-500">
                         <td className="py-3 pr-3 text-white font-bold text-xs rounded-bl-lg">Coût réel après impôts</td>
-                        <td className="py-3 px-3 text-right font-bold text-white text-sm">{fmt(result.leasingCoutReel)} €</td>
-                        <td className="py-3 px-3 text-right font-bold text-white text-sm">{fmt(result.banqueCoutTotal)} €</td>
+                        <td className="py-3 px-3 text-right font-bold text-white text-sm">
+                          {fmt(result.leasingCoutReel)} €
+                          {result.leasingTnaReel !== null && (
+                            <div className="text-xs font-normal text-white/80 mt-0.5">
+                              * taux réel : {result.leasingTnaReel.toFixed(2)}%
+                            </div>
+                          )}
+                        </td>
+                        <td className="py-3 px-3 text-right font-bold text-white text-sm">
+                          {fmt(result.banqueCoutTotal)} €
+                          <div className="text-xs font-normal text-white/80 mt-0.5">
+                            * taux réel : {result.banqueTnaReel.toFixed(2)}%
+                          </div>
+                        </td>
                         <td className="py-3 px-3 text-right font-bold text-white text-sm rounded-br-lg">{fmt(result.achatCoutReel)} €</td>
                       </tr>
                     </tbody>
@@ -499,6 +554,9 @@ export default function CalculateurTauxPage() {
                   Coût réel = montant effectivement supporté après déduction fiscale (IS {IS_RATE * 100}%).
                   Leasing : 100% déductible → coût × {(1 - IS_RATE) * 100}%. Achat : amortissement sur 5 ans → prix × {(1 - IS_RATE) * 100}%.
                   Prêt bancaire : avantages fiscaux non comptabilisés car négligeables.
+                </p>
+                <p className="text-xs text-future-dusk-400 mt-1">
+                  * Taux réel après impôts : taux annuel recalculé en tenant compte de la déductibilité fiscale des mensualités.
                 </p>
               </div>
 
