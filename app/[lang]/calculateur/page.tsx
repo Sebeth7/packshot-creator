@@ -125,7 +125,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   }
   doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
-  const systemLabel = systemName.trim() || 'Equipement';
+  const systemLabel = systemName.trim() || 'Équipement';
   doc.text(`${systemLabel} : ${fmt(r.pv)} € HT — Durée : ${r.n} mois`, margin, y);
   y += 10;
 
@@ -142,22 +142,22 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   doc.setFont('helvetica', 'bold');
   doc.text('', colX[0] + 2, y + 6);
   doc.text('Leasing', colX[1] + colW[1] / 2, y + 6, { align: 'center' });
-  doc.text('Pret bancaire *', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
+  doc.text('Prêt bancaire *', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
   doc.text('Achat direct', colX[3] + colW[3] / 2, y + 6, { align: 'center' });
   y += rowH;
 
   const rows: Array<{ label: string; leasing: string; banque: string; achat: string; highlight?: boolean }> = [
-    { label: 'Depense immediate', leasing: '0 €', banque: `${fmt(r.banqueApport)} €`, achat: `${fmt(r.pv)} €` },
-    { label: 'Mensualite', leasing: `${fmt(r.pmt)} €/mois`, banque: `${fmt(r.banqueMensualite)} €/mois`, achat: 'Aucune' },
+    { label: 'Dépense immédiate', leasing: '0 €', banque: `${fmt(r.banqueApport)} €`, achat: `${fmt(r.pv)} €` },
+    { label: 'Mensualité', leasing: `${fmt(r.pmt)} €/mois`, banque: `${fmt(r.banqueMensualite)} €/mois`, achat: 'Aucune' },
     { label: 'Total des paiements', leasing: `${fmt(r.totalPaye)} €`, banque: `${fmt(r.banqueCoutTotal)} €`, achat: `${fmt(r.pv)} €` },
-    { label: 'Cout du financement', leasing: `${fmt(r.coutCredit)} €`, banque: `${fmt(r.banqueCoutCredit)} €`, achat: '0 €' },
-    { label: 'Deductible des impots', leasing: '100% des loyers', banque: 'Non comptabilise', achat: 'Amortissement 5 ans' },
+    { label: 'Coût du financement', leasing: `${fmt(r.coutCredit)} €`, banque: `${fmt(r.banqueCoutCredit)} €`, achat: '0 €' },
+    { label: 'Déductible des impôts', leasing: '100% des loyers', banque: 'Non comptabilisé', achat: 'Amortissement 5 ans' },
     { label: 'Impact sur l\'endettement', leasing: 'Aucun (hors bilan)', banque: 'Augmente la dette', achat: 'Aucun' },
-    { label: 'Tresorerie preservee', leasing: 'Oui', banque: 'Partiellement', achat: 'Non' },
+    { label: 'Trésorerie préservée', leasing: 'Oui', banque: 'Partiellement', achat: 'Non' },
     {
-      label: 'Cout reel apres impots',
-      leasing: `${fmt(r.leasingCoutReel)} €\n* surcout reel : +${r.leasingSurcoutAnnuel.toFixed(1)}%/an`,
-      banque: `${fmt(r.banqueCoutTotal)} €\n* surcout reel : +${r.banqueSurcoutAnnuel.toFixed(1)}%/an`,
+      label: 'Coût réel après impôts',
+      leasing: `${fmt(r.leasingCoutReel)} €\n* surcoût réel : +${r.leasingSurcoutAnnuel.toFixed(1)}%/an`,
+      banque: `${fmt(r.banqueCoutTotal)} €\n* surcoût réel : +${r.banqueSurcoutAnnuel.toFixed(1)}%/an`,
       achat: `${fmt(r.achatCoutReel)} €`,
       highlight: true,
     },
@@ -202,17 +202,17 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
   doc.text(
-    `* Pret bancaire : estimations basees sur des conditions moyennes constatees (taux et apport variables selon les etablissements).`,
+    `* Prêt bancaire : estimations basées sur des conditions moyennes constatées (taux et apport variables selon les établissements).`,
     margin, y, { maxWidth: contentW }
   );
   y += 5;
   doc.text(
-    `Cout reel : montant effectivement supporte apres deduction fiscale (IS a ${IS_RATE * 100}%).`,
+    `Coût réel : montant effectivement supporté après déduction fiscale (IS à ${IS_RATE * 100}%).`,
     margin, y
   );
   y += 4;
   doc.text(
-    `Leasing : ${fmt(r.totalPaye)} € x ${(1 - IS_RATE) * 100}% = ${fmt(r.leasingCoutReel)} € (100% deductible). Achat : ${fmt(r.pv)} € - ${fmt(r.pv * IS_RATE)} € d'economie d'IS via amortissement = ${fmt(r.achatCoutReel)} €.`,
+    `Leasing : ${fmt(r.totalPaye)} € x ${(1 - IS_RATE) * 100}% = ${fmt(r.leasingCoutReel)} € (100% déductible). Achat : ${fmt(r.pv)} € - ${fmt(r.pv * IS_RATE)} € d'économie d'IS via amortissement = ${fmt(r.achatCoutReel)} €.`,
     margin, y, { maxWidth: contentW }
   );
   y += 12;
@@ -221,7 +221,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
-  doc.text('Synthese par solution', margin, y);
+  doc.text('Synthèse par solution', margin, y);
   y += 7;
 
   doc.setFontSize(8);
@@ -232,30 +232,30 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
       title: 'Leasing',
       color: veryPeri,
       points: [
-        'Aucun apport, tresorerie intacte',
-        'Loyers 100% deductibles du resultat fiscal',
-        'N\'apparait pas dans l\'endettement bancaire',
-        'Flexibilite en fin de contrat (restitution, rachat ou renouvellement)',
+        'Aucun apport, trésorerie intacte',
+        'Loyers 100% déductibles du résultat fiscal',
+        'N\'apparaît pas dans l\'endettement bancaire',
+        'Flexibilité en fin de contrat (restitution, rachat ou renouvellement)',
       ],
     },
     {
-      title: 'Pret bancaire',
+      title: 'Prêt bancaire',
       color: futureDusk,
       points: [
-        'Vous devenez proprietaire du bien immediatement',
-        'Necessite un apport et un dossier bancaire',
+        'Vous devenez propriétaire du bien immédiatement',
+        'Nécessite un apport et un dossier bancaire',
         'Augmente l\'endettement au bilan',
-        'Avantages fiscaux limites (interets non comptabilises ici)',
+        'Avantages fiscaux limités (intérêts non comptabilisés ici)',
       ],
     },
     {
       title: 'Achat direct',
       color: { r: 100, g: 100, b: 100 },
       points: [
-        'Aucun cout de financement supplementaire',
-        'Amortissement deductible sur 5 ans',
-        'Sortie de tresorerie immediate importante',
-        'Propriete immediate du bien',
+        'Aucun coût de financement supplémentaire',
+        'Amortissement déductible sur 5 ans',
+        'Sortie de trésorerie immédiate importante',
+        'Propriété immédiate du bien',
       ],
     },
   ];
@@ -280,7 +280,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   doc.setTextColor(180, 180, 180);
   doc.setFont('helvetica', 'normal');
   doc.text('www.packshotcreator.com  |  contact@sysnext.com', W / 2, pageH - 8, { align: 'center' });
-  doc.text('Ce document est fourni a titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
+  doc.text('Ce document est fourni à titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
 
   const safeName = clientName.trim().replace(/\s+/g, '-') || 'Client';
   doc.save(`Comparatif-Financement-${safeName}-${fmt(r.pv)}EUR.pdf`);
