@@ -274,13 +274,142 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
     y += 3;
   }
 
-  // ---- Footer ----
+  // ---- Page 2 : Graphique d'évolution des coûts ----
+  doc.addPage();
   const pageH = 297;
-  doc.setFontSize(7);
-  doc.setTextColor(180, 180, 180);
+  y = 20;
+
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
+  doc.text('Évolution du coût réel dans le temps', margin, y);
+  y += 10;
+
+  // Dimensions du graphique
+  const chartX = margin + 12;
+  const chartY = y;
+  const chartW = contentW - 12;
+  const chartH = 120;
+  const dureeAnnees = r.n / 12;
+
+  // Calculer les données par mois
+  const months = r.n;
+  const leasingMonthlyReal = r.pmt * (1 - IS_RATE);
+  const maxVal = Math.max(
+    r.leasingCoutReel,
+    r.banqueCoutTotal,
+    r.achatCoutReel
+  ) * 1.1;
+
+  // Fonctions de conversion coordonnées → pixels PDF
+  const xAt = (month: number) => chartX + (month / months) * chartW;
+  const yAt = (val: number) => chartY + chartH - (val / maxVal) * chartH;
+
+  // Fond du graphique
+  doc.setFillColor(250, 250, 252);
+  doc.rect(chartX, chartY, chartW, chartH, 'F');
+
+  // Grille horizontale + labels Y
+  doc.setDrawColor(230, 230, 235);
+  doc.setFontSize(6);
   doc.setFont('helvetica', 'normal');
-  doc.text('www.packshotcreator.com  |  contact@sysnext.com', W / 2, pageH - 8, { align: 'center' });
-  doc.text('Ce document est fourni à titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
+  doc.setTextColor(160, 160, 170);
+  const gridSteps = 5;
+  for (let i = 0; i <= gridSteps; i++) {
+    const val = (maxVal / gridSteps) * i;
+    const gy = yAt(val);
+    doc.setLineDashPattern([1, 1], 0);
+    doc.line(chartX, gy, chartX + chartW, gy);
+    doc.text(`${fmt(val)} €`, chartX - 2, gy + 1, { align: 'right' });
+  }
+  doc.setLineDashPattern([], 0);
+
+  // Labels X (mois)
+  const xSteps = Math.min(months, 6);
+  for (let i = 0; i <= xSteps; i++) {
+    const month = Math.round((months / xSteps) * i);
+    const gx = xAt(month);
+    doc.text(`${month} mois`, gx, chartY + chartH + 4, { align: 'center' });
+  }
+
+  // Cadre du graphique
+  doc.setDrawColor(200, 200, 210);
+  doc.rect(chartX, chartY, chartW, chartH, 'S');
+
+  // --- Courbe 1 : Achat direct (ligne horizontale grise) ---
+  doc.setDrawColor(160, 160, 170);
+  doc.setLineWidth(0.5);
+  const achatY = yAt(r.achatCoutReel);
+  doc.setLineDashPattern([2, 2], 0);
+  doc.line(chartX, achatY, chartX + chartW, achatY);
+  doc.setLineDashPattern([], 0);
+
+  // --- Courbe 2 : Prêt bancaire (ligne Future Dusk) ---
+  doc.setDrawColor(futureDusk.r, futureDusk.g, futureDusk.b);
+  doc.setLineWidth(0.6);
+  let prevX = xAt(0);
+  let prevY = yAt(r.banqueApport);
+  for (let m = 1; m <= months; m++) {
+    const cumul = r.banqueApport + r.banqueMensualite * m;
+    const cx = xAt(m);
+    const cy = yAt(cumul);
+    doc.line(prevX, prevY, cx, cy);
+    prevX = cx;
+    prevY = cy;
+  }
+
+  // --- Courbe 3 : Leasing (ligne Very Peri, plus épaisse) ---
+  doc.setDrawColor(veryPeri.r, veryPeri.g, veryPeri.b);
+  doc.setLineWidth(0.8);
+  prevX = xAt(0);
+  prevY = yAt(0);
+  for (let m = 1; m <= months; m++) {
+    const cumul = leasingMonthlyReal * m;
+    const cx = xAt(m);
+    const cy = yAt(cumul);
+    doc.line(prevX, prevY, cx, cy);
+    prevX = cx;
+    prevY = cy;
+  }
+
+  doc.setLineWidth(0.2);
+
+  // ---- Légende ----
+  const legendY = chartY + chartH + 12;
+  const legendItems = [
+    { label: `Leasing (coût réel : ${fmt(r.leasingCoutReel)} €)`, color: veryPeri, dash: false },
+    { label: `Prêt bancaire (coût total : ${fmt(r.banqueCoutTotal)} €)`, color: futureDusk, dash: false },
+    { label: `Achat direct (coût réel : ${fmt(r.achatCoutReel)} €)`, color: { r: 160, g: 160, b: 170 }, dash: true },
+  ];
+
+  doc.setFontSize(7);
+  let lx = chartX;
+  for (const item of legendItems) {
+    // Ligne de couleur
+    doc.setDrawColor(item.color.r, item.color.g, item.color.b);
+    doc.setLineWidth(0.8);
+    if (item.dash) doc.setLineDashPattern([2, 2], 0);
+    doc.line(lx, legendY, lx + 8, legendY);
+    doc.setLineDashPattern([], 0);
+    doc.setLineWidth(0.2);
+    // Texte
+    doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
+    doc.setFont('helvetica', 'normal');
+    doc.text(item.label, lx + 10, legendY + 1);
+    lx += 62;
+  }
+
+  // ---- Footer (toutes les pages) ----
+  const totalPages = doc.getNumberOfPages();
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setFontSize(7);
+    doc.setTextColor(180, 180, 180);
+    doc.setFont('helvetica', 'normal');
+    doc.text('www.packshotcreator.com  |  contact@sysnext.com', W / 2, pageH - 8, { align: 'center' });
+    doc.text('Ce document est fourni à titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
+    doc.text(`${p} / ${totalPages}`, W - margin, pageH - 4, { align: 'right' });
+  }
 
   const safeName = clientName.trim().replace(/\s+/g, '-') || 'Client';
   doc.save(`Comparatif-Financement-${safeName}-${fmt(r.pv)}EUR.pdf`);
