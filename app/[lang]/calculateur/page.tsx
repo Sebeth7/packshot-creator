@@ -260,7 +260,7 @@ export default function CalculateurTauxPage() {
   const [nbMensualites, setNbMensualites] = useState('');
   const [tarifMensuel, setTarifMensuel] = useState('');
   const [tauxBanque, setTauxBanque] = useState('5');
-  const [apportBanque, setApportBanque] = useState('15');
+  const [apportBanque, setApportBanque] = useState('20');
   const [clientName, setClientName] = useState('');
   const [systemName, setSystemName] = useState('');
   const [result, setResult] = useState<CalculResult | null>(null);
@@ -388,7 +388,7 @@ export default function CalculateurTauxPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-future-dusk-900 mb-1">Apport exigé (%)</label>
-              <input type="text" inputMode="decimal" value={apportBanque} onChange={(e) => setApportBanque(e.target.value)} placeholder="15" className={inputCls} />
+              <input type="text" inputMode="decimal" value={apportBanque} onChange={(e) => setApportBanque(e.target.value)} placeholder="20" className={inputCls} />
             </div>
           </div>
 
@@ -498,7 +498,7 @@ export default function CalculateurTauxPage() {
                 <p className="text-xs text-future-dusk-400 mt-1">
                   Coût réel = montant effectivement supporté après déduction fiscale (IS {IS_RATE * 100}%).
                   Leasing : 100% déductible → coût × {(1 - IS_RATE) * 100}%. Achat : amortissement sur 5 ans → prix × {(1 - IS_RATE) * 100}%.
-                  Prêt bancaire : avantages fiscaux non comptabilisés.
+                  Prêt bancaire : avantages fiscaux non comptabilisés car négligeables.
                 </p>
               </div>
 
