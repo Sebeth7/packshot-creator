@@ -156,7 +156,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
     { label: 'Tresorerie preservee', leasing: 'Oui', banque: 'Partiellement', achat: 'Non' },
     {
       label: 'Cout reel apres impots',
-      leasing: `${fmt(r.leasingCoutReel)} €\n* surcout reel : ${r.leasingSurcoutAnnuel >= 0 ? '+' : ''}${r.leasingSurcoutAnnuel.toFixed(1)}%/an`,
+      leasing: `${fmt(r.leasingCoutReel)} €\n* surcout reel : +${r.leasingSurcoutAnnuel.toFixed(1)}%/an`,
       banque: `${fmt(r.banqueCoutTotal)} €\n* surcout reel : +${r.banqueSurcoutAnnuel.toFixed(1)}%/an`,
       achat: `${fmt(r.achatCoutReel)} €`,
       highlight: true,
@@ -342,11 +342,11 @@ export default function CalculateurTauxPage() {
     const leasingCoutReel = totalPaye * (1 - IS_RATE);
     const achatCoutReel = pv * (1 - IS_RATE);
 
-    // Surcoût annualisé après impôts vs achat direct
-    // = (coût réel - prix équipement) / prix / durée en années × 100
+    // Surcoût annualisé après impôts vs coût réel achat direct
+    // = (coût réel solution - coût réel achat direct) / coût réel achat direct / durée en années × 100
     const dureeAnnees = n / 12;
-    const leasingSurcoutAnnuel = ((leasingCoutReel - pv) / pv / dureeAnnees) * 100;
-    const banqueSurcoutAnnuel = ((apport + totalPayeBanque - pv) / pv / dureeAnnees) * 100;
+    const leasingSurcoutAnnuel = ((leasingCoutReel - achatCoutReel) / achatCoutReel / dureeAnnees) * 100;
+    const banqueSurcoutAnnuel = (((apport + totalPayeBanque) - achatCoutReel) / achatCoutReel / dureeAnnees) * 100;
 
     setResult({
       pv, n, pmt,
@@ -529,7 +529,7 @@ export default function CalculateurTauxPage() {
                         <td className="py-3 px-3 text-right font-bold text-white text-sm">
                           {fmt(result.leasingCoutReel)} €
                           <div className="text-xs font-normal text-white/80 mt-0.5">
-                            * surcoût réel : {result.leasingSurcoutAnnuel >= 0 ? '+' : ''}{result.leasingSurcoutAnnuel.toFixed(1)}%/an
+                            * surcoût réel : +{result.leasingSurcoutAnnuel.toFixed(1)}%/an
                           </div>
                         </td>
                         <td className="py-3 px-3 text-right font-bold text-white text-sm">
@@ -552,7 +552,7 @@ export default function CalculateurTauxPage() {
                   Prêt bancaire : avantages fiscaux non comptabilisés car négligeables.
                 </p>
                 <p className="text-xs text-future-dusk-400 mt-1">
-                  * Surcoût réel : écart annualisé entre le coût réel après impôts et le prix de l&apos;équipement. Un surcoût négatif signifie que la solution coûte moins cher que le prix d&apos;achat grâce aux déductions fiscales.
+                  * Surcoût réel : écart annualisé entre le coût réel de chaque solution et le coût réel de l&apos;achat direct après impôts.
                 </p>
               </div>
 
