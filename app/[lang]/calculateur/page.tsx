@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Copy, Check, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 
 /**
@@ -30,8 +30,9 @@ function computePmt(pv: number, annualRate: number, n: number): number {
   return pv * r / (1 - Math.pow(1 + r, -n));
 }
 
+/** Formatage nombre avec espace normal (pas insécable) pour compatibilité PDF */
 function fmt(n: number): string {
-  return n.toLocaleString('fr-FR', { maximumFractionDigits: 0 });
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 const IS_RATE = 0.25; // Taux d'impôt sur les sociétés
@@ -61,17 +62,17 @@ interface CalculResult {
 
 // ---- Génération PDF ----
 
-function generateComparatifPDF(r: CalculResult) {
+function generateComparatifPDF(r: CalculResult, clientName: string, systemName: string) {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const W = 210;
   const margin = 15;
   const contentW = W - margin * 2;
 
   // Couleurs
-  const veryPeri = { r: 102, g: 103, b: 171 };   // #6667AB
-  const futureDusk = { r: 76, g: 85, b: 120 };    // #4c5578
-  const veryPeriLight = { r: 245, g: 245, b: 250 }; // #f5f5fa
-  const borderGray = { r: 229, g: 231, b: 235 };  // #e5e7eb
+  const veryPeri = { r: 102, g: 103, b: 171 };
+  const futureDusk = { r: 76, g: 85, b: 120 };
+  const veryPeriLight = { r: 245, g: 245, b: 250 };
+  const borderGray = { r: 229, g: 231, b: 235 };
 
   // ---- Header ----
   doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
@@ -88,11 +89,18 @@ function generateComparatifPDF(r: CalculResult) {
 
   let y = 42;
 
-  // ---- Sous-titre ----
+  // ---- Infos client & système ----
   doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  if (clientName.trim()) {
+    doc.text(`Client : ${clientName.trim()}`, margin, y);
+    y += 6;
+  }
   doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
-  doc.text(`Équipement : ${fmt(r.pv)} € HT — Durée : ${r.n} mois`, margin, y);
+  const systemLabel = systemName.trim() || 'Equipement';
+  doc.text(`${systemLabel} : ${fmt(r.pv)} € HT — Durée : ${r.n} mois`, margin, y);
   y += 10;
 
   // ---- Tableau comparatif ----
@@ -108,61 +116,19 @@ function generateComparatifPDF(r: CalculResult) {
   doc.setFont('helvetica', 'bold');
   doc.text('', colX[0] + 2, y + 6);
   doc.text('Leasing', colX[1] + colW[1] / 2, y + 6, { align: 'center' });
-  doc.text('Prêt bancaire', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
+  doc.text('Pret bancaire', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
   doc.text('Achat direct', colX[3] + colW[3] / 2, y + 6, { align: 'center' });
   y += rowH;
 
-  // Données du tableau
   const rows: Array<{ label: string; leasing: string; banque: string; achat: string; highlight?: boolean }> = [
-    {
-      label: 'Dépense immédiate',
-      leasing: '0 €',
-      banque: `${fmt(r.banqueApport)} €`,
-      achat: `${fmt(r.pv)} €`,
-    },
-    {
-      label: 'Mensualité',
-      leasing: `${fmt(r.pmt)} €/mois`,
-      banque: `${fmt(r.banqueMensualite)} €/mois`,
-      achat: 'Aucune',
-    },
-    {
-      label: 'Total des paiements',
-      leasing: `${fmt(r.totalPaye)} €`,
-      banque: `${fmt(r.banqueCoutTotal)} €`,
-      achat: `${fmt(r.pv)} €`,
-    },
-    {
-      label: 'Coût du financement',
-      leasing: `${fmt(r.coutCredit)} €`,
-      banque: `${fmt(r.banqueCoutCredit)} €`,
-      achat: '0 €',
-    },
-    {
-      label: 'Déductible des impôts',
-      leasing: '100% des loyers',
-      banque: 'Non comptabilisé',
-      achat: 'Amortissement 5 ans',
-    },
-    {
-      label: 'Impact sur l\'endettement',
-      leasing: 'Aucun (hors bilan)',
-      banque: 'Augmente la dette',
-      achat: 'Aucun',
-    },
-    {
-      label: 'Trésorerie préservée',
-      leasing: 'Oui',
-      banque: 'Partiellement',
-      achat: 'Non',
-    },
-    {
-      label: 'Coût réel après impôts',
-      leasing: `${fmt(r.leasingCoutReel)} €`,
-      banque: `${fmt(r.banqueCoutTotal)} €`,
-      achat: `${fmt(r.achatCoutReel)} €`,
-      highlight: true,
-    },
+    { label: 'Depense immediate', leasing: '0 €', banque: `${fmt(r.banqueApport)} €`, achat: `${fmt(r.pv)} €` },
+    { label: 'Mensualite', leasing: `${fmt(r.pmt)} €/mois`, banque: `${fmt(r.banqueMensualite)} €/mois`, achat: 'Aucune' },
+    { label: 'Total des paiements', leasing: `${fmt(r.totalPaye)} €`, banque: `${fmt(r.banqueCoutTotal)} €`, achat: `${fmt(r.pv)} €` },
+    { label: 'Cout du financement', leasing: `${fmt(r.coutCredit)} €`, banque: `${fmt(r.banqueCoutCredit)} €`, achat: '0 €' },
+    { label: 'Deductible des impots', leasing: '100% des loyers', banque: 'Non comptabilise', achat: 'Amortissement 5 ans' },
+    { label: 'Impact sur l\'endettement', leasing: 'Aucun (hors bilan)', banque: 'Augmente la dette', achat: 'Aucun' },
+    { label: 'Tresorerie preservee', leasing: 'Oui', banque: 'Partiellement', achat: 'Non' },
+    { label: 'Cout reel apres impots', leasing: `${fmt(r.leasingCoutReel)} €`, banque: `${fmt(r.banqueCoutTotal)} €`, achat: `${fmt(r.achatCoutReel)} €`, highlight: true },
   ];
 
   for (let i = 0; i < rows.length; i++) {
@@ -170,7 +136,6 @@ function generateComparatifPDF(r: CalculResult) {
     const isEven = i % 2 === 0;
 
     if (row.highlight) {
-      // Dernière ligne — fond Very Peri, texte blanc
       doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
       doc.rect(margin, y, contentW, rowH + 1, 'F');
       doc.setTextColor(255, 255, 255);
@@ -180,7 +145,6 @@ function generateComparatifPDF(r: CalculResult) {
         doc.setFillColor(veryPeriLight.r, veryPeriLight.g, veryPeriLight.b);
         doc.rect(colX[1], y, colW[1], rowH, 'F');
       }
-      // Bordure basse
       doc.setDrawColor(borderGray.r, borderGray.g, borderGray.b);
       doc.line(margin, y + rowH, margin + contentW, y + rowH);
       doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
@@ -188,13 +152,9 @@ function generateComparatifPDF(r: CalculResult) {
     }
 
     doc.setFontSize(8);
-    if (row.highlight) {
-      doc.setFont('helvetica', 'bold');
-    }
+    if (row.highlight) doc.setFont('helvetica', 'bold');
 
-    // Label
     doc.text(row.label, colX[0] + 2, y + 6);
-    // Valeurs — centrées dans chaque colonne
     doc.text(row.leasing, colX[1] + colW[1] / 2, y + 6, { align: 'center' });
     doc.text(row.banque, colX[2] + colW[2] / 2, y + 6, { align: 'center' });
     doc.text(row.achat, colX[3] + colW[3] / 2, y + 6, { align: 'center' });
@@ -209,12 +169,12 @@ function generateComparatifPDF(r: CalculResult) {
   doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
   doc.text(
-    `Coût réel : montant effectivement supporté après déduction fiscale (IS à ${IS_RATE * 100}%).`,
+    `Cout reel : montant effectivement supporte apres deduction fiscale (IS a ${IS_RATE * 100}%).`,
     margin, y
   );
   y += 4;
   doc.text(
-    `Leasing : ${fmt(r.totalPaye)} € × ${(1 - IS_RATE) * 100}% = ${fmt(r.leasingCoutReel)} € (100% déductible). Achat : ${fmt(r.pv)} € − ${fmt(r.pv * IS_RATE)} € d'économie d'IS via amortissement = ${fmt(r.achatCoutReel)} €.`,
+    `Leasing : ${fmt(r.totalPaye)} € x ${(1 - IS_RATE) * 100}% = ${fmt(r.leasingCoutReel)} € (100% deductible). Achat : ${fmt(r.pv)} € - ${fmt(r.pv * IS_RATE)} € d'economie d'IS via amortissement = ${fmt(r.achatCoutReel)} €.`,
     margin, y, { maxWidth: contentW }
   );
   y += 12;
@@ -223,7 +183,7 @@ function generateComparatifPDF(r: CalculResult) {
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
-  doc.text('Synthèse par solution', margin, y);
+  doc.text('Synthese par solution', margin, y);
   y += 7;
 
   doc.setFontSize(8);
@@ -234,30 +194,30 @@ function generateComparatifPDF(r: CalculResult) {
       title: 'Leasing',
       color: veryPeri,
       points: [
-        'Aucun apport, trésorerie intacte',
-        'Loyers 100% déductibles du résultat fiscal',
-        'N\'apparaît pas dans l\'endettement bancaire',
-        'Flexibilité en fin de contrat (restitution, rachat ou renouvellement)',
+        'Aucun apport, tresorerie intacte',
+        'Loyers 100% deductibles du resultat fiscal',
+        'N\'apparait pas dans l\'endettement bancaire',
+        'Flexibilite en fin de contrat (restitution, rachat ou renouvellement)',
       ],
     },
     {
-      title: 'Prêt bancaire',
+      title: 'Pret bancaire',
       color: futureDusk,
       points: [
-        'Vous devenez propriétaire du bien immédiatement',
-        'Nécessite un apport et un dossier bancaire',
+        'Vous devenez proprietaire du bien immediatement',
+        'Necessite un apport et un dossier bancaire',
         'Augmente l\'endettement au bilan',
-        'Avantages fiscaux limités (intérêts non comptabilisés ici)',
+        'Avantages fiscaux limites (interets non comptabilises ici)',
       ],
     },
     {
       title: 'Achat direct',
       color: { r: 100, g: 100, b: 100 },
       points: [
-        'Aucun coût de financement supplémentaire',
-        'Amortissement déductible sur 5 ans',
-        'Sortie de trésorerie immédiate importante',
-        'Propriété immédiate du bien',
+        'Aucun cout de financement supplementaire',
+        'Amortissement deductible sur 5 ans',
+        'Sortie de tresorerie immediate importante',
+        'Propriete immediate du bien',
       ],
     },
   ];
@@ -270,7 +230,7 @@ function generateComparatifPDF(r: CalculResult) {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
     for (const point of section.points) {
-      doc.text(`•  ${point}`, margin + 3, y);
+      doc.text(`-  ${point}`, margin + 3, y);
       y += 4;
     }
     y += 3;
@@ -282,9 +242,10 @@ function generateComparatifPDF(r: CalculResult) {
   doc.setTextColor(180, 180, 180);
   doc.setFont('helvetica', 'normal');
   doc.text('www.packshotcreator.com  |  contact@packshotcreator.com', W / 2, pageH - 8, { align: 'center' });
-  doc.text('Ce document est fourni à titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
+  doc.text('Ce document est fourni a titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
 
-  doc.save(`Comparatif-Financement-${fmt(r.pv)}EUR.pdf`);
+  const safeName = clientName.trim().replace(/\s+/g, '-') || 'Client';
+  doc.save(`Comparatif-Financement-${safeName}-${fmt(r.pv)}EUR.pdf`);
 }
 
 // ---- Composant principal ----
@@ -295,9 +256,10 @@ export default function CalculateurTauxPage() {
   const [tarifMensuel, setTarifMensuel] = useState('');
   const [tauxBanque, setTauxBanque] = useState('5');
   const [apportBanque, setApportBanque] = useState('15');
+  const [clientName, setClientName] = useState('');
+  const [systemName, setSystemName] = useState('');
   const [result, setResult] = useState<CalculResult | null>(null);
   const [error, setError] = useState('');
-  const [copied, setCopied] = useState(false);
 
   function handleCalcul() {
     setError('');
@@ -333,21 +295,18 @@ export default function CalculateurTauxPage() {
     const tna = r * 12 * 100;
     const tae = (Math.pow(1 + r, 12) - 1) * 100;
 
-    // Comparatif banque
     const apport = pv * (apportPct / 100);
     const montantFinance = pv - apport;
     const mensualiteBanque = computePmt(montantFinance, txBanque, n);
     const totalPayeBanque = mensualiteBanque * n;
     const coutCreditBanque = totalPayeBanque - montantFinance;
 
-    // Coûts réels après avantages fiscaux
     const leasingCoutReel = totalPaye * (1 - IS_RATE);
     const achatCoutReel = pv * (1 - IS_RATE);
 
     setResult({
       pv, n, pmt,
-      tauxMensuel: r * 100,
-      tna, tae,
+      tauxMensuel: r * 100, tna, tae,
       totalPaye,
       coutCredit: totalPaye - pv,
       banqueTaux: txBanque,
@@ -363,54 +322,6 @@ export default function CalculateurTauxPage() {
     });
   }
 
-  function buildArgumentaire(): string {
-    if (!result) return '';
-    const dureeAnnees = result.n / 12;
-    const economieMensuelle = result.banqueMensualite - result.pmt;
-    const lines = [
-      `Bonjour,`,
-      ``,
-      `Suite à notre échange, voici le détail de notre offre de leasing sur ${result.n} mois (${dureeAnnees % 1 === 0 ? dureeAnnees.toFixed(0) : dureeAnnees.toFixed(1)} ans) pour un montant de ${fmt(result.pv)} € HT :`,
-      ``,
-      `--- VOTRE OFFRE LEASING PACKSHOTCREATOR ---`,
-      `- Mensualité : ${fmt(result.pmt)} € HT/mois`,
-      `- Aucun apport initial`,
-      `- ${result.n} mensualités tout compris`,
-      ``,
-    ];
-
-    if (economieMensuelle < 0) {
-      lines.push(
-        `--- POURQUOI LE LEASING EST AVANTAGEUX ---`,
-        ``,
-        `1. Mensualité plus faible : ${fmt(result.pmt)} €/mois vs ${fmt(result.banqueMensualite)} €/mois pour un prêt bancaire à ${result.banqueTaux}% (soit ${fmt(Math.abs(economieMensuelle))} €/mois d'économie)`,
-      );
-    } else {
-      lines.push(`--- POURQUOI LE LEASING EST AVANTAGEUX ---`, ``);
-    }
-
-    lines.push(
-      `${economieMensuelle < 0 ? '2' : '1'}. Zéro apport : pas de sortie de trésorerie initiale (un prêt bancaire nécessite ~${result.banqueApportPct}% d'apport, soit ${fmt(result.banqueApport)} €)`,
-      `${economieMensuelle < 0 ? '3' : '2'}. 100% déductible : les mensualités de leasing sont intégralement déductibles de votre résultat fiscal (un prêt ne permet de déduire que les intérêts)`,
-      `${economieMensuelle < 0 ? '4' : '3'}. Hors bilan : le leasing n'apparaît pas dans votre endettement bancaire, votre capacité d'emprunt reste intacte pour d'autres projets`,
-      `${economieMensuelle < 0 ? '5' : '4'}. Flexibilité : en fin de contrat, vous pouvez restituer, racheter ou renouveler votre équipement`,
-      `${economieMensuelle < 0 ? '6' : '5'}. Budget maîtrisé : une mensualité fixe et prévisible, sans surprise`,
-      ``,
-      `Je reste à votre disposition pour en discuter.`,
-      ``,
-      `Cordialement,`,
-    );
-
-    return lines.join('\n');
-  }
-
-  function handleCopy() {
-    navigator.clipboard.writeText(buildArgumentaire());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
-
-  // ---- Classes CSS réutilisées ----
   const inputCls = "w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-very-peri-500 focus:border-transparent";
   const thLeasing = "py-2 px-3 text-right text-very-peri-700 font-semibold bg-very-peri-50";
   const thOther = "py-2 px-3 text-right text-future-dusk-700 font-semibold";
@@ -426,12 +337,26 @@ export default function CalculateurTauxPage() {
           Calculateur de taux leasing
         </h1>
         <p className="text-sm text-future-dusk-600 mb-8">
-          Outil interne — Calcul du taux + comparatif financement + argumentaire commercial.
+          Outil interne — Calcul du taux + comparatif financement.
         </p>
 
         <div className="bg-white rounded-xl border border-neutral-200 p-6 space-y-5">
+          {/* --- Infos client --- */}
+          <h2 className="text-sm font-semibold text-future-dusk-900 uppercase tracking-wide">Informations</h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-future-dusk-900 mb-1">Nom du client</label>
+              <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Entreprise XYZ" className={inputCls} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-future-dusk-900 mb-1">Système devisé</label>
+              <input type="text" value={systemName} onChange={(e) => setSystemName(e.target.value)} placeholder="Orbitvu Alphashot XL" className={inputCls} />
+            </div>
+          </div>
+
           {/* --- Offre leasing --- */}
-          <h2 className="text-sm font-semibold text-future-dusk-900 uppercase tracking-wide">Offre leasing</h2>
+          <h2 className="text-sm font-semibold text-future-dusk-900 uppercase tracking-wide mt-6">Offre leasing</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
@@ -570,25 +495,11 @@ export default function CalculateurTauxPage() {
               </div>
 
               {/* Bouton PDF */}
-              <button onClick={() => generateComparatifPDF(result)}
+              <button onClick={() => generateComparatifPDF(result, clientName, systemName)}
                 className="w-full flex items-center justify-center gap-2 bg-future-dusk-500 hover:bg-future-dusk-600 text-white font-medium py-2.5 rounded-lg transition-colors text-sm cursor-pointer">
                 <Download className="w-4 h-4" />
                 Télécharger le comparatif en PDF
               </button>
-
-              {/* Argumentaire copiable */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-sm font-semibold text-future-dusk-900">Argumentaire commercial</h2>
-                  <button onClick={handleCopy}
-                    className="flex items-center gap-1.5 text-xs font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors cursor-pointer">
-                    {copied ? <><Check className="w-3.5 h-3.5" /> Copié</> : <><Copy className="w-3.5 h-3.5" /> Copier</>}
-                  </button>
-                </div>
-                <pre className="bg-neutral-50 border border-neutral-200 rounded-lg p-4 text-xs text-future-dusk-800 whitespace-pre-wrap font-sans leading-relaxed max-h-80 overflow-y-auto">
-                  {buildArgumentaire()}
-                </pre>
-              </div>
 
             </div>
           )}
