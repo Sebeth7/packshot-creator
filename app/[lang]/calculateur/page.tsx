@@ -116,7 +116,7 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
   doc.setFont('helvetica', 'bold');
   doc.text('', colX[0] + 2, y + 6);
   doc.text('Leasing', colX[1] + colW[1] / 2, y + 6, { align: 'center' });
-  doc.text('Pret bancaire', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
+  doc.text('Pret bancaire *', colX[2] + colW[2] / 2, y + 6, { align: 'center' });
   doc.text('Achat direct', colX[3] + colW[3] / 2, y + 6, { align: 'center' });
   y += rowH;
 
@@ -168,6 +168,11 @@ function generateComparatifPDF(r: CalculResult, clientName: string, systemName: 
   doc.setTextColor(futureDusk.r, futureDusk.g, futureDusk.b);
   doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
+  doc.text(
+    `* Pret bancaire : estimations basees sur des conditions moyennes constatees (taux et apport variables selon les etablissements).`,
+    margin, y, { maxWidth: contentW }
+  );
+  y += 5;
   doc.text(
     `Cout reel : montant effectivement supporte apres deduction fiscale (IS a ${IS_RATE * 100}%).`,
     margin, y
@@ -427,7 +432,7 @@ export default function CalculateurTauxPage() {
                       <tr className="border-b border-neutral-200">
                         <th className="text-left py-2 pr-4 text-future-dusk-600 font-medium"></th>
                         <th className={thLeasing}>Leasing</th>
-                        <th className={thOther}>Prêt bancaire</th>
+                        <th className={thOther}>Prêt bancaire *</th>
                         <th className={thOther}>Achat direct</th>
                       </tr>
                     </thead>
@@ -488,6 +493,9 @@ export default function CalculateurTauxPage() {
                   </table>
                 </div>
                 <p className="text-xs text-future-dusk-400 mt-2">
+                  * Prêt bancaire : estimations basées sur des conditions moyennes constatées (taux et apport variables selon les établissements).
+                </p>
+                <p className="text-xs text-future-dusk-400 mt-1">
                   Coût réel = montant effectivement supporté après déduction fiscale (IS {IS_RATE * 100}%).
                   Leasing : 100% déductible → coût × {(1 - IS_RATE) * 100}%. Achat : amortissement sur 5 ans → prix × {(1 - IS_RATE) * 100}%.
                   Prêt bancaire : avantages fiscaux non comptabilisés.
