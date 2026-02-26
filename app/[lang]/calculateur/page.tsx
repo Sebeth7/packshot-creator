@@ -70,7 +70,9 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   const W = 210;
   const margin = 15;
   const contentW = W - margin * 2;
-  const headerH = 36;
+  // Image hero : 2860×980 → ratio 2.918:1
+  const imgRatio = 2860 / 980;
+  const headerH = Math.round(W / imgRatio); // ~72mm, proportions respectées
 
   // Couleurs
   const veryPeri = { r: 102, g: 103, b: 171 };
@@ -78,7 +80,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   const veryPeriLight = { r: 245, g: 245, b: 250 };
   const borderGray = { r: 229, g: 231, b: 235 };
 
-  // ---- Header avec image de fond ----
+  // ---- Header avec image de fond (proportions respectées) ----
   try {
     const res = await fetch('/images/hero/hero-studios-wide.jpg');
     const blob = await res.blob();
@@ -87,30 +89,29 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
       reader.onloadend = () => resolve(reader.result as string);
       reader.readAsDataURL(blob);
     });
-    // Image 2860×980 → ratio ~2.92:1. Header 210×36mm.
-    // On crop verticalement au centre : pleine largeur, hauteur proportionnelle
     doc.addImage(base64, 'JPEG', 0, 0, W, headerH);
   } catch {
-    // Fallback : bandeau violet si l'image ne charge pas
     doc.setFillColor(veryPeri.r, veryPeri.g, veryPeri.b);
     doc.rect(0, 0, W, headerH, 'F');
   }
 
-  // Overlay semi-transparent pour lisibilité du texte
+  // Overlay sombre pour lisibilité du texte blanc
   doc.setFillColor(0, 0, 0);
   doc.setGState(new (doc as any).GState({ opacity: 0.45 }));
   doc.rect(0, 0, W, headerH, 'F');
   doc.setGState(new (doc as any).GState({ opacity: 1 }));
 
+  // Texte centré verticalement dans le header
+  const textY = headerH / 2;
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(18);
+  doc.setFontSize(22);
   doc.setFont('helvetica', 'bold');
-  doc.text('PackshotCreator', margin, 15);
-  doc.setFontSize(10);
+  doc.text('PackshotCreator', margin, textY - 6);
+  doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text('Comparatif des solutions de financement', margin, 24);
+  doc.text('Comparatif des solutions de financement', margin, textY + 4);
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-  doc.text(dateStr, W - margin, 24, { align: 'right' });
+  doc.text(dateStr, W - margin, textY + 4, { align: 'right' });
 
   let y = headerH + 8;
 
@@ -280,7 +281,7 @@ async function generateComparatifPDF(r: CalculResult, clientName: string, system
   doc.setFontSize(7);
   doc.setTextColor(180, 180, 180);
   doc.setFont('helvetica', 'normal');
-  doc.text('www.packshotcreator.com  |  contact@packshotcreator.com', W / 2, pageH - 8, { align: 'center' });
+  doc.text('www.packshotcreator.com  |  contact@sysnext.com', W / 2, pageH - 8, { align: 'center' });
   doc.text('Ce document est fourni a titre indicatif et ne constitue pas un conseil financier.', W / 2, pageH - 4, { align: 'center' });
 
   const safeName = clientName.trim().replace(/\s+/g, '-') || 'Client';
