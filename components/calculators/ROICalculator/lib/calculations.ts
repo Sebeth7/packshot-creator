@@ -123,27 +123,42 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
 
   // ===== SITUATION AVEC MACHINE =====
 
-  // 1. Machine recommandée (ou forcée si machineId spécifié)
-  const machine = forceMachineId
-    ? (MACHINES.find(m => m.id === forceMachineId) ?? recommanderMachine(inputs))
-    : recommanderMachine(inputs);
+  // Mode leasing ?
+  const isLeasing = inputs.leasingActif && inputs.leasingMachineId && inputs.leasingMensualite && inputs.leasingNbMois;
 
-  // 2. TCO annualisé (sur 5 ans) - pour affichage coût annuel comptable
-  const tcoAnnuel =
-    (machine.prix / CONSTANTES.dureeAmortissement) +
-    machine.maintenanceAnnuelle +
-    machine.consommablesAnnuels;
+  // 1. Machine (forcée par leasing, par forceMachineId, ou recommandée)
+  const machine = isLeasing
+    ? (MACHINES.find(m => m.id === inputs.leasingMachineId) ?? recommanderMachine(inputs))
+    : forceMachineId
+      ? (MACHINES.find(m => m.id === forceMachineId) ?? recommanderMachine(inputs))
+      : recommanderMachine(inputs);
 
-  // 3. Coût opérationnel machine annuel (hors amortissement) - pour cash-flow
-  const coutOperationnelMachineAnnuel =
-    machine.maintenanceAnnuelle +
-    machine.consommablesAnnuels;
+  // 2. Coûts machine selon mode achat ou leasing
+  const tauxIS = 0.25;
+  let tcoAnnuel: number;
+  let coutOperationnelMachineAnnuel: number;
+  let avantageFiscalAnnuel: number;
 
-  // 4. Coût opérateur machine
-  // La machine nécessite au minimum 1 opérateur.
-  // Pour N > 1 : on calcule le nombre d'opérateurs nécessaires selon les jours de production,
-  // mais on ne peut pas descendre en dessous de 1, et on plafonne à ceil(N/2) (la machine
-  // ne supprime jamais plus de la moitié du personnel existant).
+  if (isLeasing) {
+    const leasingAnnuel = inputs.leasingMensualite! * 12;
+    tcoAnnuel = leasingAnnuel; // En leasing, le TCO = loyers annuels
+    coutOperationnelMachineAnnuel = leasingAnnuel; // Tout est opérationnel (pas d'amortissement)
+    // Loyers 100% déductibles en charges d'exploitation
+    avantageFiscalAnnuel = leasingAnnuel * tauxIS;
+  } else {
+    tcoAnnuel =
+      (machine.prix / CONSTANTES.dureeAmortissement) +
+      machine.maintenanceAnnuelle +
+      machine.consommablesAnnuels;
+    coutOperationnelMachineAnnuel =
+      machine.maintenanceAnnuelle +
+      machine.consommablesAnnuels;
+    // Amortissement réduit le bénéfice imposable
+    const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
+    avantageFiscalAnnuel = amortissementAnnuel * tauxIS;
+  }
+
+  // 3. Coût opérateur machine
   const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
   const pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
 
@@ -151,9 +166,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   if (inputs.nbOperateurs <= 1) {
     nbOperateursMachine = 1;
   } else {
-    // Combien d'opérateurs à temps plein faudrait-il ?
     const operateursNecessaires = Math.ceil(joursNecessairesMachine / CONSTANTES.joursProduction);
-    // Au moins 1, et au plus ceil(N/2) du personnel actuel
     nbOperateursMachine = Math.max(1, Math.min(operateursNecessaires, Math.ceil(inputs.nbOperateurs / 2)));
   }
 
@@ -163,66 +176,85 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     12 *
     (pourcentageTempsMachineEffectif / 100);
 
-  // 5. Coût total avec machine (comptable, avec amortissement)
+  // 4. Coût total avec machine (comptable)
   const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
 
-  // 6. Capacité annuelle avec machine
+  // 5. Capacité annuelle avec machine
   const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
 
-  // 7. Coût par photo avec machine (basé sur coût comptable annuel)
+  // 6. Coût par photo avec machine
   const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
 
-  // 8. Temps par photo avec machine
+  // 7. Temps par photo avec machine
   const heuresAvecMachine = heuresTravailAnnuel * nbOperateursMachine * (pourcentageTempsMachineEffectif / 100);
   const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
 
-  // 9. Jours de production avec machine
+  // 8. Jours de production avec machine
   const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
 
-  // ===== COMPARAISON (basée sur cash-flow réel, pas comptable) =====
+  // ===== COMPARAISON =====
 
-  // Économie opérationnelle annuelle (cash-flow : avant vs après, hors amortissement)
+  // Économie opérationnelle annuelle
   const coutOperationnelTotal = coutOperateurMachine + coutOperationnelMachineAnnuel;
   const economieOperationnelle = coutTotalActuel - coutOperationnelTotal;
 
-  // Avantage fiscal : l'amortissement réduit le bénéfice imposable (IS à 25%)
-  const tauxIS = 0.25;
-  const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
-  const avantageFiscalAnnuel = amortissementAnnuel * tauxIS;
-
-  // 1. Économie annuelle (comptable, affichée comme référence)
+  // Économie annuelle comptable
   const economieAnnuelle = coutTotalActuel - coutTotalMachine;
 
-  // 2. Flag rentabilité (basé sur cash-flow incluant avantage fiscal)
+  // Économie totale incluant fiscal
   const economieAvecFiscal = economieOperationnelle + avantageFiscalAnnuel;
-  const isRentable = economieAvecFiscal > amortissementAnnuel;
 
-  // 3. Break-even en mois (cash-flow incluant avantage fiscal)
+  // Rentabilité et break-even
   let breakEvenMois: number | null = null;
-  if (economieAvecFiscal > 0) {
-    breakEvenMois = machine.prix / (economieAvecFiscal / 12);
+  let isRentable: boolean;
+
+  if (isLeasing) {
+    // En leasing : rentable si les économies opérationnelles + fiscales > loyers
+    isRentable = economieAvecFiscal > 0;
+    // Pas de break-even classique en leasing (pas d'investissement initial à rembourser)
+    // On indique le mois à partir duquel le cumul des économies nettes devient positif
+    if (economieAvecFiscal > 0) {
+      breakEvenMois = 1; // Rentable dès le premier mois
+    }
+  } else {
+    const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
+    isRentable = economieAvecFiscal > amortissementAnnuel;
+    if (economieAvecFiscal > 0) {
+      breakEvenMois = machine.prix / (economieAvecFiscal / 12);
+    }
   }
 
-  // 4. ROI année 1 (cash-flow : économies opérationnelles + fiscal an 1 - investissement)
-  const roiAn1 = ((economieAvecFiscal - machine.prix) / machine.prix) * 100;
+  // ROI
+  const coutTotalInvestissement = isLeasing
+    ? inputs.leasingMensualite! * inputs.leasingNbMois!
+    : machine.prix;
+  const dureeAnalyse = isLeasing
+    ? inputs.leasingNbMois! / 12
+    : CONSTANTES.dureeAmortissement;
 
-  // 5. ROI 5 ans (cash-flow sur durée d'amortissement, fiscal sur 5 ans uniquement)
-  const economie5ans = (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix;
-  const roi5ans = (economie5ans / machine.prix) * 100;
+  const roiAn1 = isLeasing
+    ? ((economieAvecFiscal - (inputs.leasingMensualite! * 12)) / Math.max(inputs.leasingMensualite! * 12, 1)) * 100
+    : ((economieAvecFiscal - machine.prix) / machine.prix) * 100;
 
-  // 6. Économie par photo
+  const economie5ans = isLeasing
+    ? (economieAvecFiscal * dureeAnalyse) - coutTotalInvestissement
+    : (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix;
+
+  const roi5ans = (economie5ans / Math.max(coutTotalInvestissement, 1)) * 100;
+
+  // Économie par photo
   const economieParPhoto = coutParPhotoActuel - coutParPhotoMachine;
   const economieParPhotoPourcent = (economieParPhoto / Math.max(coutParPhotoActuel, 0.01)) * 100;
 
-  // 7. Jours économisés
+  // Jours économisés
   const joursEconomises = joursProductionActuels - joursProductionMachine;
   const gainTempsPourcent = (joursEconomises / Math.max(joursProductionActuels, 1)) * 100;
 
-  // 8. Scalabilité
+  // Scalabilité
   const capaciteResiduelle = capaciteAnnuelleMachine - photosAnnuelles;
   const potentielCroissance = (capaciteResiduelle / photosAnnuelles) * 100;
 
-  // 9. Capacité insuffisante : le volume demandé dépasse la capacité max de la machine
+  // Capacité insuffisante
   const capaciteInsuffisante = photosAnnuelles > capaciteAnnuelleMachine;
 
   return {
@@ -264,6 +296,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     // Flags
     isRentable,
     capaciteInsuffisante,
+    isLeasing: !!isLeasing,
   };
 }
 
@@ -292,8 +325,9 @@ export function formatHeures(heures: number): string {
 }
 
 /**
- * Génère les données pour le graphique d'évolution sur 5 ans
- * Utilise les coûts opérationnels (cash-flow) pour éviter le double comptage
+ * Génère les données pour le graphique d'évolution
+ * Achat : 5 ans avec prix d'achat au mois 0
+ * Leasing : durée du contrat avec loyers mensuels (pas de saut au mois 0)
  */
 export function generateChartData(results: CalculationResults): Array<{
   mois: number;
@@ -302,25 +336,43 @@ export function generateChartData(results: CalculationResults): Array<{
   economie: number;
 }> {
   const data = [];
+  const dureeMois = results.isLeasing ? 60 : 60; // Toujours 60 mois pour comparabilité
 
-  // Coût opérationnel mensuel net avec machine (hors amortissement, avec avantage fiscal)
-  const coutOperationnelMensuel =
-    (results.coutOperateurMachine +
-      results.machine.maintenanceAnnuelle +
-      results.machine.consommablesAnnuels -
-      results.avantageFiscalAnnuel) / 12;
+  if (results.isLeasing) {
+    // Leasing : coût mensuel = loyer + opérateur - avantage fiscal (loyers 100% déductibles)
+    const coutMensuelLeasing =
+      (results.tcoAnnuel + results.coutOperateurMachine - results.avantageFiscalAnnuel) / 12;
 
-  for (let mois = 0; mois <= 60; mois++) {
-    const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
-    // Avantage fiscal s'applique uniquement pendant la durée d'amortissement (60 mois)
-    const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
+    for (let mois = 0; mois <= dureeMois; mois++) {
+      const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
+      const coutOrbituCumule = coutMensuelLeasing * mois; // Pas de saut au mois 0
 
-    data.push({
-      mois,
-      actuel: Math.round(coutActuelCumule),
-      orbitvu: Math.round(coutOrbituCumule),
-      economie: Math.round(coutActuelCumule - coutOrbituCumule),
-    });
+      data.push({
+        mois,
+        actuel: Math.round(coutActuelCumule),
+        orbitvu: Math.round(coutOrbituCumule),
+        economie: Math.round(coutActuelCumule - coutOrbituCumule),
+      });
+    }
+  } else {
+    // Achat : prix initial + coûts opérationnels mensuels
+    const coutOperationnelMensuel =
+      (results.coutOperateurMachine +
+        results.machine.maintenanceAnnuelle +
+        results.machine.consommablesAnnuels -
+        results.avantageFiscalAnnuel) / 12;
+
+    for (let mois = 0; mois <= dureeMois; mois++) {
+      const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
+      const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
+
+      data.push({
+        mois,
+        actuel: Math.round(coutActuelCumule),
+        orbitvu: Math.round(coutOrbituCumule),
+        economie: Math.round(coutActuelCumule - coutOrbituCumule),
+      });
+    }
   }
 
   return data;

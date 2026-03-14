@@ -13,6 +13,12 @@ export interface UserInputs {
   budgetEquipement?: number;         // 0 - 50000 €/an (optionnel, défaut 3000)
   tailleProduitsCategory: ProductSizeCategory;
   typesContenu: ContentType[];       // Types de contenu souhaités
+
+  // Leasing (optionnel)
+  leasingActif: boolean;
+  leasingMachineId?: string;         // ID de la machine en leasing
+  leasingMensualite?: number;        // € HT / mois
+  leasingNbMois?: number;            // 12 - 84 mois
 }
 
 // Catégories de taille produits
@@ -161,6 +167,7 @@ export interface CalculationResults {
   // Flags
   isRentable: boolean;
   capaciteInsuffisante: boolean;       // true si le volume dépasse la capacité max de la machine
+  isLeasing: boolean;                  // true si calcul en mode leasing
 }
 
 // État du wizard

@@ -44,4 +44,5 @@ export const DEFAULT_VALUES: Partial<UserInputs> = {
   budgetEquipement: 3000,
   tailleProduitsCategory: 'moyen',
   typesContenu: ['packshot'],
+  leasingActif: false,
 };

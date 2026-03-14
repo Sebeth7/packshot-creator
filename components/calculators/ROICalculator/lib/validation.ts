@@ -32,6 +32,10 @@ export const step2Schema = z.object({
   tailleProduitsCategory: z.enum(['petit', 'moyen', 'grand', 'tres-grand']),
   typesContenu: z.array(z.enum(['packshot', '360', 'video', 'ghost-mannequin', 'flat-lay', 'lifestyle']))
     .min(1, 'Sélectionnez au moins un type de contenu'),
+  leasingActif: z.boolean(),
+  leasingMachineId: z.string().optional(),
+  leasingMensualite: z.number().min(100).max(20000).optional(),
+  leasingNbMois: z.number().min(12).max(84).optional(),
 });
 
 export const fullSchema = step1Schema.merge(step2Schema);

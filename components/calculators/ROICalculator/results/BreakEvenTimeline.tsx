@@ -13,27 +13,37 @@ interface BreakEvenTimelineProps {
 const LABELS = {
   fr: {
     title: 'Votre Parcours ROI',
+    titleLeasing: 'Votre Parcours ROI en Leasing',
     today: "Aujourd'hui",
     todayDesc: 'Investissement initial',
+    todayDescLeasing: 'Début du leasing',
     breakeven: 'Break-even',
     breakevenDesc: 'Investissement rentabilisé',
+    breakevenDescLeasing: 'Rentable immédiatement',
     year1: 'Année 1',
     year1Desc: 'Premiers bénéfices',
+    year1DescLeasing: 'Bénéfice net année 1',
     year5: 'Année 5',
     year5Desc: 'Bénéfices cumulés',
+    year5DescLeasing: 'Bénéfices cumulés (fin contrat)',
     month: 'Mois',
     months: 'mois',
   },
   en: {
     title: 'Your ROI Journey',
+    titleLeasing: 'Your Leasing ROI Journey',
     today: 'Today',
     todayDesc: 'Initial investment',
+    todayDescLeasing: 'Lease start',
     breakeven: 'Break-even',
     breakevenDesc: 'Investment recovered',
+    breakevenDescLeasing: 'Profitable immediately',
     year1: 'Year 1',
     year1Desc: 'First benefits',
+    year1DescLeasing: 'Year 1 net benefit',
     year5: 'Year 5',
     year5Desc: 'Cumulated benefits',
+    year5DescLeasing: 'Cumulated benefits (end of contract)',
     month: 'Month',
     months: 'months',
   },
@@ -49,17 +59,19 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
   const breakEvenMonths = Math.round(results.breakEvenMois);
   const progressPercent = Math.min((breakEvenMonths / 60) * 100, 100);
 
+  const isLeasing = results.isLeasing;
+
   const milestones = [
     {
       icon: Clock,
       label: t.today,
-      description: t.todayDesc,
+      description: isLeasing ? t.todayDescLeasing : t.todayDesc,
       value: '',
       position: 0,
       color: 'bg-very-peri-500',
       textColor: 'text-very-peri-600',
     },
-    {
+    ...(isLeasing ? [] : [{
       icon: Check,
       label: t.breakeven,
       description: t.breakevenDesc,
@@ -67,20 +79,24 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       position: progressPercent,
       color: 'bg-emerald-500',
       textColor: 'text-emerald-600',
-    },
+    }]),
     {
       icon: TrendingUp,
       label: t.year1,
-      description: t.year1Desc,
-      value: results.roiAn1 > 0 ? `+${formatEuro(results.economieOperationnelle + results.avantageFiscalAnnuel - results.machine.prix)}` : '-',
+      description: isLeasing ? t.year1DescLeasing : t.year1Desc,
+      value: results.roiAn1 > 0
+        ? `+${formatEuro(isLeasing
+            ? results.economieAnnuelle + results.avantageFiscalAnnuel
+            : results.economieOperationnelle + results.avantageFiscalAnnuel - results.machine.prix)}`
+        : '-',
       position: (12 / 60) * 100,
       color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-400',
       textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-future-dusk-500',
     },
     {
       icon: Rocket,
-      label: t.year5,
-      description: t.year5Desc,
+      label: isLeasing ? t.year5DescLeasing : t.year5,
+      description: isLeasing ? t.year5DescLeasing : t.year5Desc,
       value: `+${formatEuro(results.economie5ans)}`,
       position: 100,
       color: 'bg-emerald-500',
@@ -91,7 +107,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
       <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-8">
-        {t.title}
+        {isLeasing ? t.titleLeasing : t.title}
       </h3>
 
       {/* Timeline visuelle */}

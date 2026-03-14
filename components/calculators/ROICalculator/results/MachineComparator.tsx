@@ -295,6 +295,11 @@ export default function MachineComparator({
 }: MachineComparatorProps) {
   const t = LABELS[locale];
 
+  // En mode leasing, ne pas afficher le comparateur (l'offre est spécifique à une machine)
+  if (inputs.leasingActif) {
+    return null;
+  }
+
   // Obtenir toutes les machines éligibles (filtrées par catégorie de taille)
   const criteria = userInputsToSelectionCriteria(inputs);
   const eligibleMachines = getTopMachinesForComparison(criteria, 0, inputs.tailleProduitsCategory);

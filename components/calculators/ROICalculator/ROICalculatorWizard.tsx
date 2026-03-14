@@ -61,12 +61,18 @@ export default function ROICalculatorWizard({
         'capaciteJournaliere',
       ]);
     } else if (currentStep === 2) {
-      isValid = await trigger([
+      const step2Fields: (keyof FullFormData)[] = [
         'photosAnnuelles',
         'budgetEquipement',
         'tailleProduitsCategory',
         'typesContenu',
-      ]);
+        'leasingActif',
+      ];
+      // Si leasing actif, valider aussi les champs leasing
+      if (getValues('leasingActif')) {
+        step2Fields.push('leasingMachineId', 'leasingMensualite', 'leasingNbMois');
+      }
+      isValid = await trigger(step2Fields);
 
       if (isValid) {
         // Calculer les résultats

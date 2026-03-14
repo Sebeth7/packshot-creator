@@ -13,27 +13,39 @@ interface HeroMetricsProps {
 const LABELS = {
   fr: {
     title: 'Votre Analyse ROI Personnalisée',
+    titleLeasing: 'Votre Analyse ROI en Leasing',
     breakeven: 'Machine rentabilisée en',
+    breakevenLeasing: 'Rentable dès',
     savings: 'Économie annuelle',
     savingsNote: "Dès l'année 2",
+    savingsNoteLeasing: 'Économie nette annuelle',
     perPhoto: 'Économie par photo',
     roi5: 'ROI sur 5 ans',
+    roiLeasing: 'ROI sur la durée du contrat',
     roi5Note: 'de bénéfices nets',
     months: 'mois',
+    month1: 'le 1er mois',
     savedPerPhoto: 'économisés/photo',
     taxNote: "Incl. avantage fiscal IS 25%",
+    taxNoteLeasing: "Loyers 100% déductibles (IS 25%)",
   },
   en: {
     title: 'Your Personalized ROI Analysis',
+    titleLeasing: 'Your Leasing ROI Analysis',
     breakeven: 'Machine pays for itself in',
+    breakevenLeasing: 'Profitable from',
     savings: 'Annual savings',
     savingsNote: 'From year 2',
+    savingsNoteLeasing: 'Net annual savings',
     perPhoto: 'Savings per photo',
     roi5: '5-year ROI',
+    roiLeasing: 'ROI over contract duration',
     roi5Note: 'net benefits',
     months: 'months',
+    month1: 'month 1',
     savedPerPhoto: 'saved/photo',
     taxNote: 'Incl. 25% corporate tax benefit',
+    taxNoteLeasing: 'Lease payments 100% deductible (25% CT)',
   },
 };
 
@@ -45,23 +57,28 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
     return null;
   }
 
+  const isLeasing = results.isLeasing;
+  const taxLabel = isLeasing ? t.taxNoteLeasing : t.taxNote;
+
   const metrics = [
     {
       icon: Clock,
-      label: t.breakeven,
-      value: results.breakEvenMois
-        ? `${Math.round(results.breakEvenMois)} ${t.months}`
-        : '-',
-      sublabel: t.taxNote,
+      label: isLeasing ? t.breakevenLeasing : t.breakeven,
+      value: isLeasing
+        ? t.month1
+        : results.breakEvenMois
+          ? `${Math.round(results.breakEvenMois)} ${t.months}`
+          : '-',
+      sublabel: taxLabel,
       color: 'text-very-peri-600',
       bgColor: 'bg-very-peri-100',
-      highlight: results.breakEvenMois !== null && results.breakEvenMois < 18,
+      highlight: isLeasing || (results.breakEvenMois !== null && results.breakEvenMois < 18),
     },
     {
       icon: PiggyBank,
       label: t.savings,
       value: formatEuro(results.economieAnnuelle + results.avantageFiscalAnnuel),
-      sublabel: `${t.savingsNote} — ${t.taxNote}`,
+      sublabel: `${isLeasing ? t.savingsNoteLeasing : t.savingsNote} — ${taxLabel}`,
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50',
       highlight: true,
@@ -77,9 +94,9 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
     },
     {
       icon: TrendingUp,
-      label: t.roi5,
+      label: isLeasing ? t.roiLeasing : t.roi5,
       value: `+${Math.round(results.roi5ans)}%`,
-      sublabel: `${formatEuro(results.economie5ans)} ${t.roi5Note} — ${t.taxNote}`,
+      sublabel: `${formatEuro(results.economie5ans)} ${t.roi5Note} — ${taxLabel}`,
       color: 'text-very-peri-600',
       bgColor: 'bg-very-peri-100',
       highlight: results.roi5ans > 200,
@@ -89,7 +106,7 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
   return (
     <div className="bg-gradient-to-br from-very-peri-100 to-very-peri-50 rounded-2xl p-6 md:p-8 mb-8">
       <h2 className="text-2xl md:text-3xl font-heading font-bold text-future-dusk-900 mb-6 text-center">
-        {t.title}
+        {isLeasing ? t.titleLeasing : t.title}
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
