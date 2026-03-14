@@ -105,7 +105,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
     trackCTAClick('email_capture', results);
 
     // Générer et télécharger le PDF côté client
-    const pdfBlob = await generatePDF(contentRef, results, locale);
+    const pdfBlob = await generatePDF(contentRef, results, locale, email);
     const url = URL.createObjectURL(pdfBlob);
     const link = document.createElement('a');
     link.href = url;

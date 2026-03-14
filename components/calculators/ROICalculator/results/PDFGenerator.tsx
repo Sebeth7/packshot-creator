@@ -13,7 +13,8 @@ import { PDF_COLORS } from '../lib/chartColors';
 export async function generatePDF(
   contentRef: React.RefObject<HTMLDivElement | null>,
   results: CalculationResults,
-  locale: 'fr' | 'en'
+  locale: 'fr' | 'en',
+  contactEmail?: string
 ): Promise<Blob> {
   const content = contentRef.current;
   if (!content) throw new Error('Content not found');
@@ -193,6 +194,29 @@ export async function generatePDF(
 
     currentY += height + 5; // 5mm de marge entre sections
   }
+
+  // CTA cliquable sur la dernière page
+  const ctaY = currentY + 5;
+  const ctaLabel = locale === 'fr' ? 'Être recontacté par l\'équipe PackshotCreator' : 'Get in touch with the PackshotCreator team';
+  const mailtoSubject = encodeURIComponent(locale === 'fr'
+    ? 'Calculateur ROI PackshotCreator - Demande de contact'
+    : 'PackshotCreator ROI Calculator - Contact request');
+  const mailtoBody = encodeURIComponent(locale === 'fr'
+    ? `Bonjour,\n\nJ'ai utilisé le calculateur ROI PackshotCreator et souhaite être recontacté.\n\nMachine recommandée : ${results.machine.nom}\n${contactEmail ? `Mon email : ${contactEmail}\n` : ''}\nCordialement`
+    : `Hello,\n\nI used the PackshotCreator ROI calculator and would like to be contacted.\n\nRecommended machine: ${results.machine.nom}\n${contactEmail ? `My email: ${contactEmail}\n` : ''}\nBest regards`);
+  const mailtoUrl = `mailto:sebastien.jourdan@sysnext.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+  // Bouton CTA
+  const ctaWidth = 120;
+  const ctaHeight = 12;
+  const ctaX = (pdfWidth - ctaWidth) / 2;
+  const headerColor = PDF_COLORS.header!;
+  pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
+  pdf.roundedRect(ctaX, ctaY, ctaWidth, ctaHeight, 3, 3, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(11);
+  pdf.text(ctaLabel, pdfWidth / 2, ctaY + 7.5, { align: 'center' });
+  pdf.link(ctaX, ctaY, ctaWidth, ctaHeight, { url: mailtoUrl });
 
   // Footer sur la dernière page
   addFooter(currentPage, pageCount);

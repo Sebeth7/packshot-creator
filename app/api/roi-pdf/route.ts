@@ -185,8 +185,8 @@ export async function POST(request: NextRequest) {
               <p>📈 ROI sur 5 ans : <strong>${calculatorData.roi5ans.toLocaleString('fr-FR')}%</strong></p>
               ${calculatorData.breakEvenMois ? `<p>⏱ Retour sur investissement en <strong>${calculatorData.breakEvenMois} mois</strong></p>` : ''}
             </div>
-            <p>Pour aller plus loin, notre équipe se tient à votre disposition pour une démonstration personnalisée.</p>
-            <a href="https://www.packshot-creator.com/fr/contact" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Demander une démo</a>
+            <p>Pour aller plus loin, notre équipe se tient à votre disposition.</p>
+            <a href="mailto:sebastien.jourdan@sysnext.com?subject=Calculateur%20ROI%20PackshotCreator%20-%20Demande%20de%20contact&body=Bonjour%2C%0A%0AJ%27ai%20utilis%C3%A9%20le%20calculateur%20ROI%20et%20souhaite%20%C3%AAtre%20recontact%C3%A9.%0A%0ACordialement" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Être recontacté</a>
             <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
           </div>
         </div>
@@ -206,8 +206,8 @@ export async function POST(request: NextRequest) {
               <p>📈 5-year ROI: <strong>${calculatorData.roi5ans.toLocaleString('en-US')}%</strong></p>
               ${calculatorData.breakEvenMois ? `<p>⏱ Break-even in <strong>${calculatorData.breakEvenMois} months</strong></p>` : ''}
             </div>
-            <p>To take the next step, our team is available for a personalized demonstration.</p>
-            <a href="https://www.packshot-creator.com/en/contact" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Request a demo</a>
+            <p>To take the next step, our team is at your disposal.</p>
+            <a href="mailto:sebastien.jourdan@sysnext.com?subject=PackshotCreator%20ROI%20Calculator%20-%20Contact%20request&body=Hello%2C%0A%0AI%20used%20the%20ROI%20calculator%20and%20would%20like%20to%20be%20contacted.%0A%0ABest%20regards" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Get in touch</a>
             <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
           </div>
         </div>
