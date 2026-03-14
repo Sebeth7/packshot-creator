@@ -391,17 +391,19 @@ function calculateROIForMachine(inputs: UserInputs, machineId: string): Calculat
   const coutOperationnelMachineAnnuel =
     machine.maintenanceAnnuelle + machine.consommablesAnnuels;
 
-  // Logique opérateurs : N > 1 → ceil(N/2) | N ≤ 1 → 1 opérateur, temps ÷ 3
+  // Temps basé sur les jours réellement nécessaires avec la capacité de la machine
   let nbOperateursMachine: number;
   let pourcentageTempsMachineEffectif: number;
 
+  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
+  const pourcentageTempsBaseMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
+
   if (inputs.nbOperateurs > 1) {
     nbOperateursMachine = Math.ceil(inputs.nbOperateurs / 2);
-    const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
-    pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
+    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
   } else {
     nbOperateursMachine = 1;
-    pourcentageTempsMachineEffectif = inputs.pourcentageTemps / 3;
+    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
   }
 
   const coutOperateurMachine =
