@@ -22,7 +22,7 @@ const LABELS = {
     maxWeight: 'Poids max',
     useCases: "Cas d'usage :",
     bookDemo: 'Être recontacté',
-    learnMore: 'En savoir plus',
+
     imagePlaceholder: 'Image bientôt disponible',
     photosPerDay: 'photos/jour',
     contactTitle: 'Être recontacté par notre équipe',
@@ -46,7 +46,7 @@ const LABELS = {
     maxWeight: 'Max weight',
     useCases: 'Use cases:',
     bookDemo: 'Get in touch',
-    learnMore: 'Learn more',
+
     imagePlaceholder: 'Image coming soon',
     photosPerDay: 'photos/day',
     contactTitle: 'Get in touch with our team',

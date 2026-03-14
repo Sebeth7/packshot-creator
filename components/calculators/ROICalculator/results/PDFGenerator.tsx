@@ -91,7 +91,7 @@ export async function generatePDF(
     pdf.setTextColor(textColor.r, textColor.g, textColor.b);
     pdf.setFontSize(8);
     pdf.text(
-      'www.packshotcreator.com | contact@packshotcreator.com',
+      'www.packshot-creator.com | contact@sysnext.com',
       pdfWidth / 2,
       pdfHeight - 10,
       { align: 'center' }
@@ -365,7 +365,7 @@ async function generatePDFLegacy(
     pdf.setTextColor(textColor.r, textColor.g, textColor.b);
     pdf.setFontSize(8);
     pdf.text(
-      'www.packshotcreator.com | contact@packshotcreator.com',
+      'www.packshot-creator.com | contact@sysnext.com',
       pdfWidth / 2,
       pdfHeight - 10,
       { align: 'center' }

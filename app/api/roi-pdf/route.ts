@@ -84,16 +84,22 @@ async function createPipedriveDeal(
   personId: number,
   calculatorData: ROIPDFRequest['calculatorData'],
   email: string,
-  apiToken: string
+  apiToken: string,
+  phone?: string,
+  company?: string
 ): Promise<number | null> {
   try {
     const mode = calculatorData.isLeasing ? 'Leasing' : 'Achat';
     const title = `ROI Calculator - ${calculatorData.machineNom} - ${email}`;
 
+    const contactLines = [`👤 Contact : ${email}`];
+    if (phone) contactLines.push(`📱 Téléphone : ${phone}`);
+    if (company) contactLines.push(`🏢 Société : ${company}`);
+
     const noteLines = [
       `📊 Résultats Calculateur ROI`,
       ``,
-      `👤 Contact : ${email}`,
+      ...contactLines,
       `📅 Date : ${new Date().toLocaleDateString('fr-FR')}`,
       ``,
       `--- INPUTS ---`,
@@ -245,6 +251,42 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // 1b. Send notification email to internal team when contact request is made
+    if (contactRequest) {
+      try {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('fr-FR');
+        const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+        const notifHtml = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #7C6BF0; padding: 20px; border-radius: 12px 12px 0 0;">
+              <h1 style="color: white; margin: 0; font-size: 20px;">Nouvelle demande de contact - Calculateur ROI</h1>
+            </div>
+            <div style="padding: 20px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
+              <p><strong>Machine recommandée :</strong> ${calculatorData.machineNom}</p>
+              <p><strong>Date/Heure :</strong> ${dateStr} à ${timeStr}</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;" />
+              <h3 style="margin-top: 0;">Coordonnées</h3>
+              ${email ? `<p><strong>Email :</strong> ${email}</p>` : ''}
+              ${phone ? `<p><strong>Téléphone :</strong> ${phone}</p>` : ''}
+              ${company ? `<p><strong>Société :</strong> ${company}</p>` : ''}
+              ${!email && !phone && !company ? '<p><em>Aucune coordonnée fournie</em></p>' : ''}
+            </div>
+          </div>
+        `;
+
+        await resend.emails.send({
+          from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
+          to: ['sebastien.jourdan@sysnext.com'],
+          subject: `[ROI Calculator] Nouvelle demande de contact - ${calculatorData.machineNom}`,
+          html: notifHtml,
+        });
+      } catch (notifError) {
+        console.error('Notification email error:', notifError);
+      }
+    }
+
     // 2. Create Pipedrive contact + deal
     let pipedriveResult = { personId: null as number | null, dealId: null as number | null };
     const contactIdentifier = email || phone || 'unknown';
@@ -252,7 +294,7 @@ export async function POST(request: NextRequest) {
     if (PIPEDRIVE_API_TOKEN) {
       const personId = await createPipedrivePerson(PIPEDRIVE_API_TOKEN, email, phone, company);
       if (personId) {
-        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN);
+        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN, phone, company);
         pipedriveResult = { personId, dealId };
       }
     }
