@@ -298,9 +298,9 @@ export default function MachineComparator({
 }: MachineComparatorProps) {
   const t = LABELS[locale];
 
-  // Obtenir les machines éligibles (filtrées par catégorie de taille)
+  // Obtenir toutes les machines éligibles (filtrées par catégorie de taille)
   const criteria = userInputsToSelectionCriteria(inputs);
-  const eligibleMachines = getTopMachinesForComparison(criteria, 2, inputs.tailleProduitsCategory);
+  const eligibleMachines = getTopMachinesForComparison(criteria, 0, inputs.tailleProduitsCategory);
 
   // Calculer le ROI pour chaque machine et filtrer les non-rentables
   const machinesWithROI = eligibleMachines
@@ -331,7 +331,10 @@ export default function MachineComparator({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className={`grid grid-cols-1 gap-4 ${
+        machinesWithROI.length === 2 ? 'md:grid-cols-2' :
+        machinesWithROI.length >= 3 ? 'md:grid-cols-2 lg:grid-cols-3' : ''
+      }`}>
         {machinesWithROI.map(({ eligibility, roiResults }, index) => (
           <MachineCard
             key={eligibility.machineId}

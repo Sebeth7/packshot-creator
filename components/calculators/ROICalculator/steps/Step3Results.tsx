@@ -22,6 +22,7 @@ interface Step3ResultsProps {
   results: CalculationResults;
   inputs: UserInputs;
   locale: 'fr' | 'en';
+  onSelectMachine?: (machineId: string) => void;
 }
 
 const LABELS = {
@@ -37,7 +38,7 @@ const LABELS = {
   },
 };
 
-export default function Step3Results({ results, inputs, locale }: Step3ResultsProps) {
+export default function Step3Results({ results, inputs, locale, onSelectMachine }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [showMethodology, setShowMethodology] = useState(false);
@@ -122,6 +123,7 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
               {t.methodology}
             </Button>
             <Button
+              type="button"
               onClick={handleDownloadPDF}
               disabled={isDownloading}
               variant="outline"
@@ -147,11 +149,12 @@ export default function Step3Results({ results, inputs, locale }: Step3ResultsPr
           </div>
 
           {/* Comparateur de machines */}
-          <div data-pdf-section="comparator">
+          <div data-pdf-exclude>
             <MachineComparator
               inputs={inputs}
               currentResults={results}
               locale={locale}
+              onSelectMachine={onSelectMachine}
             />
           </div>
 

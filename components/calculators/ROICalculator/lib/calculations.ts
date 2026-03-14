@@ -70,8 +70,9 @@ function fallbackRecommendation(inputs: UserInputs): Machine {
 
 /**
  * Calcule tous les métriques ROI
+ * Si forceMachineId est fourni, utilise cette machine au lieu de la recommandation automatique
  */
-export function calculateROI(inputs: UserInputs): CalculationResults {
+export function calculateROI(inputs: UserInputs, forceMachineId?: string): CalculationResults {
   // Valeurs par défaut si optionnelles non renseignées
   const budgetEquipement = inputs.budgetEquipement ?? CONSTANTES.budgetEquipementDefaut;
   const coutSalarial = inputs.coutSalarialMensuel ?? CONSTANTES.salaireMensuelCoutEmployeur;
@@ -122,8 +123,10 @@ export function calculateROI(inputs: UserInputs): CalculationResults {
 
   // ===== SITUATION AVEC MACHINE =====
 
-  // 1. Machine recommandée
-  const machine = recommanderMachine(inputs);
+  // 1. Machine recommandée (ou forcée si machineId spécifié)
+  const machine = forceMachineId
+    ? (MACHINES.find(m => m.id === forceMachineId) ?? recommanderMachine(inputs))
+    : recommanderMachine(inputs);
 
   // 2. TCO annualisé (sur 5 ans) - pour affichage coût annuel comptable
   const tcoAnnuel =

@@ -16,6 +16,7 @@ import Step3Results from './steps/Step3Results';
 import { fullSchema, type FullFormData } from './lib/validation';
 import { DEFAULT_VALUES } from './lib/constants';
 import { calculateROI } from './lib/calculations';
+import { MACHINES } from './lib/machines';
 import type { CalculationResults, UserInputs } from './lib/types';
 
 interface ROICalculatorWizardProps {
@@ -94,6 +95,16 @@ export default function ROICalculatorWizard({
     }
   }, [currentStep]);
 
+  const handleSelectMachine = useCallback((machineId: string) => {
+    const machine = MACHINES.find(m => m.id === machineId);
+    if (!machine || !results) return;
+
+    // Recalculer le ROI avec la machine sélectionnée en forçant la recommandation
+    const values = getValues() as UserInputs;
+    const newResults = calculateROI(values, machineId);
+    setResults(newResults);
+  }, [results, getValues]);
+
   const handleReset = useCallback(() => {
     methods.reset(DEFAULT_VALUES as FullFormData);
     setCurrentStep(1);
@@ -136,6 +147,7 @@ export default function ROICalculatorWizard({
                   results={results}
                   inputs={getValues() as UserInputs}
                   locale={locale}
+                  onSelectMachine={handleSelectMachine}
                 />
               )}
             </motion.div>

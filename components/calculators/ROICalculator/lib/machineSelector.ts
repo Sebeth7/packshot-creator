@@ -353,15 +353,16 @@ export function userInputsToSelectionCriteria(inputs: {
 }
 
 /**
- * Obtient les N meilleures machines pour comparaison
+ * Obtient les machines éligibles pour comparaison
+ * Si count est 0 ou non spécifié, retourne toutes les machines éligibles
  */
 export function getTopMachinesForComparison(
   criteria: SelectionCriteria,
-  count: number = 4,
+  count: number = 0,
   sizeCategory?: ProductSizeCategory
 ): MachineEligibility[] {
   const eligible = selectEligibleMachines(criteria, sizeCategory);
-  return eligible.slice(0, count);
+  return count > 0 ? eligible.slice(0, count) : eligible;
 }
 
 // ============================================
