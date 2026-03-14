@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, Info, AlertTriangle } from 'lucide-react';
+import { Info, AlertTriangle } from 'lucide-react';
 import MethodologyModal from '../results/MethodologyModal';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
@@ -28,8 +28,6 @@ interface Step3ResultsProps {
 
 const LABELS = {
   fr: {
-    downloadPDF: 'Télécharger le PDF',
-    downloading: 'Génération...',
     methodology: 'Méthode de calcul',
     capacityWarningTitle: 'Volume supérieur à la capacité de cette machine',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
@@ -41,8 +39,6 @@ const LABELS = {
     capacityWarningNote: 'Les résultats ci-dessous sont calculés à titre indicatif et ne reflètent pas une configuration de production réaliste.',
   },
   en: {
-    downloadPDF: 'Download PDF',
-    downloading: 'Generating...',
     methodology: 'Calculation method',
     capacityWarningTitle: 'Volume exceeds this machine\'s capacity',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
@@ -57,7 +53,6 @@ const LABELS = {
 
 export default function Step3Results({ results, inputs, locale, onSelectMachine }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [isDownloading, setIsDownloading] = useState(false);
   const [showMethodology, setShowMethodology] = useState(false);
   const t = LABELS[locale];
 
@@ -65,41 +60,6 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
   useEffect(() => {
     trackCalculatorCompleted(results);
   }, [results]);
-
-  // Téléchargement direct du PDF (bouton temporaire)
-  const handleDownloadPDF = async () => {
-    setIsDownloading(true);
-    trackCTAClick('pdf_download', results);
-
-    try {
-      console.log('PDF Generation - Starting...', { contentRef: contentRef.current });
-
-      if (!contentRef.current) {
-        console.error('PDF Generation - Content ref is null');
-        alert('Erreur: Contenu non trouvé');
-        return;
-      }
-
-      const pdfBlob = await generatePDF(contentRef, results, locale);
-      console.log('PDF Generation - Blob created:', pdfBlob.size, 'bytes');
-
-      const url = URL.createObjectURL(pdfBlob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `ROI-Analysis-${results.machine.nom.replace(/\s+/g, '-')}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      console.log('PDF Generation - Download triggered');
-    } catch (error) {
-      console.error('PDF Generation - Error:', error);
-      alert(`Erreur lors de la génération du PDF: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   const handleSendPDF = async (email: string) => {
     trackCTAClick('email_capture', results);
@@ -196,7 +156,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
             </div>
           )}
 
-          {/* Boutons actions - exclu du PDF */}
+          {/* Bouton méthodologie - exclu du PDF */}
           <div className="flex justify-end gap-2 mb-6" data-pdf-exclude>
             <Button
               type="button"
@@ -206,25 +166,6 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
             >
               <Info className="w-4 h-4" />
               {t.methodology}
-            </Button>
-            <Button
-              type="button"
-              onClick={handleDownloadPDF}
-              disabled={isDownloading}
-              variant="outline"
-              className="gap-2"
-            >
-              {isDownloading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  {t.downloading}
-                </>
-              ) : (
-                <>
-                  <Download className="w-4 h-4" />
-                  {t.downloadPDF}
-                </>
-              )}
             </Button>
           </div>
 

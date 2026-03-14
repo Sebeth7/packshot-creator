@@ -5,7 +5,10 @@ const PIPEDRIVE_PIPELINE_ID = 3;
 const PIPEDRIVE_STAGE_ID = 54; // "Calculs ROI"
 
 interface ROIPDFRequest {
-  email: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  contactRequest?: boolean;
   calculatorData: {
     // Inputs
     nbOperateurs: number;
@@ -32,28 +35,41 @@ interface ROIPDFRequest {
   locale: 'fr' | 'en';
 }
 
-async function createPipedrivePerson(email: string, apiToken: string): Promise<number | null> {
+async function createPipedrivePerson(
+  apiToken: string,
+  email?: string,
+  phone?: string,
+  company?: string
+): Promise<number | null> {
   try {
-    // Check if person already exists
-    const searchRes = await fetch(
-      `https://api.pipedrive.com/v1/persons/search?term=${encodeURIComponent(email)}&fields=email&limit=1&api_token=${apiToken}`
-    );
-    const searchData = await searchRes.json();
+    const searchTerm = email || phone || '';
+    const searchField = email ? 'email' : 'phone';
 
-    if (searchData.data?.items?.length > 0) {
-      return searchData.data.items[0].item.id;
+    // Check if person already exists
+    if (searchTerm) {
+      const searchRes = await fetch(
+        `https://api.pipedrive.com/v1/persons/search?term=${encodeURIComponent(searchTerm)}&fields=${searchField}&limit=1&api_token=${apiToken}`
+      );
+      const searchData = await searchRes.json();
+
+      if (searchData.data?.items?.length > 0) {
+        return searchData.data.items[0].item.id;
+      }
     }
 
     // Create new person
+    const personData: Record<string, unknown> = {
+      name: company || (email ? email.split('@')[0] : phone || 'Contact ROI Calculator'),
+    };
+    if (email) personData.email = [{ value: email, primary: true, label: 'work' }];
+    if (phone) personData.phone = [{ value: phone, primary: true, label: 'work' }];
+
     const res = await fetch(
       `https://api.pipedrive.com/v1/persons?api_token=${apiToken}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: email.split('@')[0],
-          email: [{ value: email, primary: true, label: 'work' }],
-        }),
+        body: JSON.stringify(personData),
       }
     );
     const data = await res.json();
@@ -154,94 +170,96 @@ export async function POST(request: NextRequest) {
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
 
     const body: ROIPDFRequest = await request.json();
-    const { email, calculatorData, locale } = body;
+    const { email, phone, company, contactRequest, calculatorData, locale } = body;
 
-    if (!email) {
+    if (!email && !phone) {
       return NextResponse.json(
-        { error: 'Email is required' },
+        { error: 'Email or phone is required' },
         { status: 400 }
       );
     }
 
-    // 1. Send email via Resend (sans pièce jointe PDF)
+    // 1. Send email via Resend (only if user provided an email and not a contact-only request)
+    let emailId: string | undefined;
 
-    const subject = locale === 'fr'
-      ? `Votre analyse ROI PackshotCreator - ${calculatorData.machineNom}`
-      : `Your PackshotCreator ROI Analysis - ${calculatorData.machineNom}`;
+    if (email && !contactRequest) {
+      const subject = locale === 'fr'
+        ? `Votre analyse ROI PackshotCreator - ${calculatorData.machineNom}`
+        : `Your PackshotCreator ROI Analysis - ${calculatorData.machineNom}`;
 
-    const htmlContent = locale === 'fr'
-      ? `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background-color: #7C6BF0; padding: 30px; border-radius: 12px 12px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">PackshotCreator</h1>
-            <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0;">Votre analyse ROI personnalisée</p>
-          </div>
-          <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
-            <p>Bonjour,</p>
-            <p>Vous trouverez en pièce jointe votre analyse ROI complète pour le studio <strong>${calculatorData.machineNom}</strong>.</p>
-            <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
-              <h3 style="margin-top: 0; color: #333;">Résumé</h3>
-              <p>💰 Économie annuelle estimée : <strong>${calculatorData.economieAnnuelle.toLocaleString('fr-FR')}€</strong></p>
-              <p>📈 ROI sur 5 ans : <strong>${calculatorData.roi5ans.toLocaleString('fr-FR')}%</strong></p>
-              ${calculatorData.breakEvenMois ? `<p>⏱ Retour sur investissement en <strong>${calculatorData.breakEvenMois} mois</strong></p>` : ''}
+      const htmlContent = locale === 'fr'
+        ? `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #7C6BF0; padding: 30px; border-radius: 12px 12px 0 0;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">PackshotCreator</h1>
+              <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0;">Votre analyse ROI personnalisée</p>
             </div>
-            <p>Pour aller plus loin, notre équipe se tient à votre disposition.</p>
-            <a href="mailto:sebastien.jourdan@sysnext.com?subject=Calculateur%20ROI%20PackshotCreator%20-%20Demande%20de%20contact&body=Bonjour%2C%0A%0AJ%27ai%20utilis%C3%A9%20le%20calculateur%20ROI%20et%20souhaite%20%C3%AAtre%20recontact%C3%A9.%0A%0ACordialement" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Être recontacté</a>
-            <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
-          </div>
-        </div>
-      `
-      : `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background-color: #7C6BF0; padding: 30px; border-radius: 12px 12px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">PackshotCreator</h1>
-            <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0;">Your personalized ROI analysis</p>
-          </div>
-          <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
-            <p>Hello,</p>
-            <p>Please find attached your complete ROI analysis for the <strong>${calculatorData.machineNom}</strong> studio.</p>
-            <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
-              <h3 style="margin-top: 0; color: #333;">Summary</h3>
-              <p>💰 Estimated annual savings: <strong>€${calculatorData.economieAnnuelle.toLocaleString('en-US')}</strong></p>
-              <p>📈 5-year ROI: <strong>${calculatorData.roi5ans.toLocaleString('en-US')}%</strong></p>
-              ${calculatorData.breakEvenMois ? `<p>⏱ Break-even in <strong>${calculatorData.breakEvenMois} months</strong></p>` : ''}
+            <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
+              <p>Bonjour,</p>
+              <p>Merci d'avoir utilisé notre calculateur ROI pour le studio <strong>${calculatorData.machineNom}</strong>.</p>
+              <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #333;">Résumé</h3>
+                <p>💰 Économie annuelle estimée : <strong>${calculatorData.economieAnnuelle.toLocaleString('fr-FR')}€</strong></p>
+                <p>📈 ROI sur 5 ans : <strong>${calculatorData.roi5ans.toLocaleString('fr-FR')}%</strong></p>
+                ${calculatorData.breakEvenMois ? `<p>⏱ Retour sur investissement en <strong>${calculatorData.breakEvenMois} mois</strong></p>` : ''}
+              </div>
+              <p>Pour aller plus loin, notre équipe se tient à votre disposition.</p>
+              <a href="mailto:sebastien.jourdan@sysnext.com?subject=Calculateur%20ROI%20PackshotCreator%20-%20Demande%20de%20contact&body=Bonjour%2C%0A%0AJ%27ai%20utilis%C3%A9%20le%20calculateur%20ROI%20et%20souhaite%20%C3%AAtre%20recontact%C3%A9.%0A%0ACordialement" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Être recontacté</a>
+              <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
             </div>
-            <p>To take the next step, our team is at your disposal.</p>
-            <a href="mailto:sebastien.jourdan@sysnext.com?subject=PackshotCreator%20ROI%20Calculator%20-%20Contact%20request&body=Hello%2C%0A%0AI%20used%20the%20ROI%20calculator%20and%20would%20like%20to%20be%20contacted.%0A%0ABest%20regards" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Get in touch</a>
-            <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
           </div>
-        </div>
-      `;
+        `
+        : `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #7C6BF0; padding: 30px; border-radius: 12px 12px 0 0;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">PackshotCreator</h1>
+              <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0;">Your personalized ROI analysis</p>
+            </div>
+            <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
+              <p>Hello,</p>
+              <p>Thank you for using our ROI calculator for the <strong>${calculatorData.machineNom}</strong> studio.</p>
+              <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #333;">Summary</h3>
+                <p>💰 Estimated annual savings: <strong>€${calculatorData.economieAnnuelle.toLocaleString('en-US')}</strong></p>
+                <p>📈 5-year ROI: <strong>${calculatorData.roi5ans.toLocaleString('en-US')}%</strong></p>
+                ${calculatorData.breakEvenMois ? `<p>⏱ Break-even in <strong>${calculatorData.breakEvenMois} months</strong></p>` : ''}
+              </div>
+              <p>To take the next step, our team is at your disposal.</p>
+              <a href="mailto:sebastien.jourdan@sysnext.com?subject=PackshotCreator%20ROI%20Calculator%20-%20Contact%20request&body=Hello%2C%0A%0AI%20used%20the%20ROI%20calculator%20and%20would%20like%20to%20be%20contacted.%0A%0ABest%20regards" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin-top: 10px;">Get in touch</a>
+              <p style="margin-top: 30px; color: #666; font-size: 12px;">PackshotCreator by Sysnext — www.packshot-creator.com</p>
+            </div>
+          </div>
+        `;
 
-    const emailResult = await resend.emails.send({
-      from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
-      to: [email],
-      subject,
-      html: htmlContent,
-    });
+      const emailResult = await resend.emails.send({
+        from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
+        to: [email],
+        subject,
+        html: htmlContent,
+      });
 
-    if (emailResult.error) {
-      console.error('Resend error:', emailResult.error);
-      return NextResponse.json(
-        { error: 'Failed to send email', details: emailResult.error.message },
-        { status: 500 }
-      );
+      if (emailResult.error) {
+        console.error('Resend error:', emailResult.error);
+      } else {
+        emailId = emailResult.data?.id;
+      }
     }
 
     // 2. Create Pipedrive contact + deal
     let pipedriveResult = { personId: null as number | null, dealId: null as number | null };
+    const contactIdentifier = email || phone || 'unknown';
 
     if (PIPEDRIVE_API_TOKEN) {
-      const personId = await createPipedrivePerson(email, PIPEDRIVE_API_TOKEN);
+      const personId = await createPipedrivePerson(PIPEDRIVE_API_TOKEN, email, phone, company);
       if (personId) {
-        const dealId = await createPipedriveDeal(personId, calculatorData, email, PIPEDRIVE_API_TOKEN);
+        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN);
         pipedriveResult = { personId, dealId };
       }
     }
 
     return NextResponse.json({
       success: true,
-      emailId: emailResult.data?.id,
+      emailId,
       pipedrive: pipedriveResult,
     });
   } catch (error) {
