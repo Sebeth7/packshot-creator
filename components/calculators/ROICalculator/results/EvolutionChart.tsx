@@ -11,9 +11,33 @@ import {
   Legend,
   ReferenceLine,
 } from 'recharts';
-import { generateChartData } from '../lib/calculations';
+import { generateChartData, formatEuro } from '../lib/calculations';
 import type { CalculationResults } from '../lib/types';
 import { CHART_COLORS } from '../lib/chartColors';
+
+interface LeasingTooltipProps {
+  active?: boolean;
+  payload?: Array<{ color: string; name: string; value: number }>;
+  label?: number;
+  locale: 'fr' | 'en';
+}
+
+function LeasingTooltip({ active, payload, label, locale }: LeasingTooltipProps) {
+  const t = LABELS[locale];
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-3 rounded-lg shadow-lg border border-neutral-200">
+        <p className="font-bold text-future-dusk-900 mb-2">{t.month} {label}</p>
+        {payload.map((entry, index: number) => (
+          <p key={index} style={{ color: entry.color }} className="text-sm">
+            {entry.name}: {formatEuro(entry.value)}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+}
 
 interface EvolutionChartProps {
   results: CalculationResults;
@@ -76,18 +100,22 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
             />
 
             <YAxis
-              tickCount={3}
-              tickFormatter={(value) => {
-                const k = Math.round(value / 1000);
-                // Arrondir à la dizaine de k€ la plus proche pour réduire la précision
-                const rounded = Math.round(k / 10) * 10;
-                return `~${rounded}k€`;
-              }}
+              tickCount={results.isLeasing ? undefined : 3}
+              tickFormatter={results.isLeasing
+                ? (value) => `${Math.round(value / 1000)}k€`
+                : (value) => {
+                    const rounded = Math.round(Math.round(value / 1000) / 10) * 10;
+                    return `~${rounded}k€`;
+                  }
+              }
               tick={{ fill: CHART_COLORS.axis, fontSize: 12 }}
               tickLine={{ stroke: CHART_COLORS.grid }}
             />
 
-            <Tooltip content={() => null} />
+            {results.isLeasing
+              ? <Tooltip content={<LeasingTooltip locale={locale} />} />
+              : <Tooltip content={() => null} />
+            }
 
             <Legend
               verticalAlign="top"
