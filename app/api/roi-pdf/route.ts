@@ -278,7 +278,7 @@ export async function POST(request: NextRequest) {
 
         await resend.emails.send({
           from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
-          to: ['sebastien.jourdan@sysnext.com'],
+          to: ['sebastien.jourdan@sysnext.com', 'stephane.gormand@sysnext.com'],
           subject: `[ROI Calculator] Nouvelle demande de contact - ${calculatorData.machineNom}`,
           html: notifHtml,
         });
