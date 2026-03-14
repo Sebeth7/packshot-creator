@@ -15,7 +15,7 @@ interface MachineRecommendationProps {
 
 const LABELS = {
   fr: {
-    recommended: 'Machine recommandée',
+    recommended: 'Modèle recommandé',
     price: 'Prix',
     capacity: 'Capacité',
     maxSize: 'Taille max',
@@ -39,7 +39,7 @@ const LABELS = {
     errorSending: "Erreur lors de l'envoi",
   },
   en: {
-    recommended: 'Recommended machine',
+    recommended: 'Recommended model',
     price: 'Price',
     capacity: 'Capacity',
     maxSize: 'Max size',
@@ -186,96 +186,99 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
             </div>
           </div>
 
-          {!showContactForm && !isSubmitted && (
-            <div className="flex flex-wrap gap-3">
-              <Button
-                type="button"
-                className="bg-very-peri-500 hover:bg-very-peri-600"
-                onClick={() => setShowContactForm(true)}
-              >
-                {t.bookDemo}
-              </Button>
-            </div>
-          )}
-
-          {/* Formulaire de contact inline */}
-          {showContactForm && !isSubmitted && (
-            <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="font-heading font-bold text-future-dusk-900 text-sm">
-                  {t.contactTitle}
-                </h4>
-                <button
+          {/* Bouton interactif - exclu du PDF */}
+          <div data-pdf-exclude>
+            {!showContactForm && !isSubmitted && (
+              <div className="flex flex-wrap gap-3">
+                <Button
                   type="button"
-                  onClick={() => setShowContactForm(false)}
-                  className="text-future-dusk-400 hover:text-future-dusk-600"
+                  className="bg-very-peri-500 hover:bg-very-peri-600"
+                  onClick={() => setShowContactForm(true)}
                 >
-                  <X className="w-4 h-4" />
-                </button>
+                  {t.bookDemo}
+                </Button>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
-                <div>
-                  <Label htmlFor="contact-email" className="text-xs text-future-dusk-500">{t.emailLabel}</Label>
-                  <Input
-                    id="contact-email"
-                    type="email"
-                    placeholder={t.emailPlaceholder}
-                    value={contactEmail}
-                    onChange={(e) => setContactEmail(e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="contact-phone" className="text-xs text-future-dusk-500">{t.phoneLabel}</Label>
-                  <Input
-                    id="contact-phone"
-                    type="tel"
-                    placeholder={t.phonePlaceholder}
-                    value={contactPhone}
-                    onChange={(e) => setContactPhone(e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="contact-company" className="text-xs text-future-dusk-500">{t.companyLabel}</Label>
-                  <Input
-                    id="contact-company"
-                    type="text"
-                    placeholder={t.companyPlaceholder}
-                    value={contactCompany}
-                    onChange={(e) => setContactCompany(e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-              {error && <p className="text-sm text-red-500 mb-2">{error}</p>}
-              <Button
-                type="button"
-                disabled={isSubmitting}
-                onClick={handleContactSubmit}
-                className="bg-very-peri-500 hover:bg-very-peri-600 gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t.sending}
-                  </>
-                ) : (
-                  t.send
-                )}
-              </Button>
-            </div>
-          )}
+            )}
 
-          {/* Confirmation */}
-          {isSubmitted && (
-            <div className="bg-emerald-50 rounded-lg p-4 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                <Check className="w-4 h-4 text-emerald-600" />
+            {/* Formulaire de contact inline */}
+            {showContactForm && !isSubmitted && (
+              <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-heading font-bold text-future-dusk-900 text-sm">
+                    {t.contactTitle}
+                  </h4>
+                  <button
+                    type="button"
+                    onClick={() => setShowContactForm(false)}
+                    className="text-future-dusk-400 hover:text-future-dusk-600"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                  <div>
+                    <Label htmlFor="contact-email" className="text-xs text-future-dusk-500">{t.emailLabel}</Label>
+                    <Input
+                      id="contact-email"
+                      type="email"
+                      placeholder={t.emailPlaceholder}
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="contact-phone" className="text-xs text-future-dusk-500">{t.phoneLabel}</Label>
+                    <Input
+                      id="contact-phone"
+                      type="tel"
+                      placeholder={t.phonePlaceholder}
+                      value={contactPhone}
+                      onChange={(e) => setContactPhone(e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="contact-company" className="text-xs text-future-dusk-500">{t.companyLabel}</Label>
+                    <Input
+                      id="contact-company"
+                      type="text"
+                      placeholder={t.companyPlaceholder}
+                      value={contactCompany}
+                      onChange={(e) => setContactCompany(e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                {error && <p className="text-sm text-red-500 mb-2">{error}</p>}
+                <Button
+                  type="button"
+                  disabled={isSubmitting}
+                  onClick={handleContactSubmit}
+                  className="bg-very-peri-500 hover:bg-very-peri-600 gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {t.sending}
+                    </>
+                  ) : (
+                    t.send
+                  )}
+                </Button>
               </div>
-              <p className="text-emerald-600 font-medium text-sm">{t.success}</p>
-            </div>
-          )}
+            )}
+
+            {/* Confirmation */}
+            {isSubmitted && (
+              <div className="bg-emerald-50 rounded-lg p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-emerald-600" />
+                </div>
+                <p className="text-emerald-600 font-medium text-sm">{t.success}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

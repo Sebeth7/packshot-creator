@@ -14,13 +14,13 @@ interface QuestionOperatorsProps {
 const LABELS = {
   fr: {
     label: 'Combien de personnes travaillent sur la production de vos visuels ?',
-    sublabel: 'Inclus packshot + lifestyle + retouches',
+    sublabel: 'Inclus packshot + retouches',
     tooltip: 'Comptez tous les collaborateurs impliqués, même partiellement',
     unit: 'personne(s)',
   },
   en: {
     label: 'How many people work on your visual production?',
-    sublabel: 'Including packshot + lifestyle + retouching',
+    sublabel: 'Including packshot + retouching',
     tooltip: 'Count all involved collaborators, even part-time',
     unit: 'person(s)',
   },

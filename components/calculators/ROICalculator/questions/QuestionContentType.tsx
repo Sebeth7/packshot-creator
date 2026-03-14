@@ -14,11 +14,11 @@ interface QuestionContentTypeProps {
 const LABELS = {
   fr: {
     label: 'Quels types de contenu souhaitez-vous produire ?',
-    sublabel: 'Sélectionnez un ou plusieurs types (influence la recommandation machine)',
+    sublabel: 'Sélectionnez un ou plusieurs types (influence la recommandation)',
   },
   en: {
     label: 'What types of content do you want to produce?',
-    sublabel: 'Select one or more types (influences machine recommendation)',
+    sublabel: 'Select one or more types (influences recommendation)',
   },
 };
 
@@ -28,7 +28,6 @@ const CONTENT_OPTIONS: { type: ContentType; icon: string }[] = [
   { type: 'video', icon: '🎬' },
   { type: 'flat-lay', icon: '👕' },
   { type: 'ghost-mannequin', icon: '👤' },
-  { type: 'lifestyle', icon: '✨' },
 ];
 
 export default function QuestionContentType({ locale }: QuestionContentTypeProps) {

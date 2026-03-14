@@ -14,8 +14,8 @@ export default function Step1CurrentSituation({ locale }: Step1CurrentSituationP
   return (
     <div className="space-y-8">
       <QuestionOperators locale={locale} />
-      <QuestionSalaryCost locale={locale} />
       <QuestionTimePercentage locale={locale} />
+      <QuestionSalaryCost locale={locale} />
       <QuestionExternalProvider locale={locale} />
       <QuestionDailyCapacity locale={locale} />
     </div>

@@ -48,7 +48,7 @@ const LABELS = {
   fr: {
     title: 'Évolution des Coûts sur 5 Ans',
     current: 'Situation actuelle',
-    orbitvu: 'Avec Orbitvu',
+    orbitvu: 'Avec PackshotCreator',
     breakeven: 'Break-even',
     month: 'Mois',
     cost: 'Coût cumulé',
@@ -58,7 +58,7 @@ const LABELS = {
   en: {
     title: 'Cost Evolution Over 5 Years',
     current: 'Current situation',
-    orbitvu: 'With Orbitvu',
+    orbitvu: 'With PackshotCreator',
     breakeven: 'Break-even',
     month: 'Month',
     cost: 'Cumulative cost',

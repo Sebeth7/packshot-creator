@@ -74,7 +74,7 @@ export async function generatePDF(
     pdf.text('PackshotCreator', 15, 18);
     pdf.setFontSize(12);
     pdf.text(
-      locale === 'fr' ? 'Analyse ROI - Studios Photo Orbitvu' : 'ROI Analysis - Orbitvu Photo Studios',
+      locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
       15,
       28
     );
@@ -202,8 +202,8 @@ export async function generatePDF(
     ? 'Calculateur ROI PackshotCreator - Demande de contact'
     : 'PackshotCreator ROI Calculator - Contact request');
   const mailtoBody = encodeURIComponent(locale === 'fr'
-    ? `Bonjour,\n\nJ'ai utilisé le calculateur ROI PackshotCreator et souhaite être recontacté.\n\nMachine recommandée : ${results.machine.nom}\n${contactEmail ? `Mon email : ${contactEmail}\n` : ''}\nCordialement`
-    : `Hello,\n\nI used the PackshotCreator ROI calculator and would like to be contacted.\n\nRecommended machine: ${results.machine.nom}\n${contactEmail ? `My email: ${contactEmail}\n` : ''}\nBest regards`);
+    ? `Bonjour,\n\nJ'ai utilisé le calculateur ROI PackshotCreator et souhaite être recontacté.\n\nModèle recommandé : ${results.machine.nom}\n${contactEmail ? `Mon email : ${contactEmail}\n` : ''}\nCordialement`
+    : `Hello,\n\nI used the PackshotCreator ROI calculator and would like to be contacted.\n\nRecommended model: ${results.machine.nom}\n${contactEmail ? `My email: ${contactEmail}\n` : ''}\nBest regards`);
   const mailtoUrl = `mailto:sebastien.jourdan@sysnext.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
   // Bouton CTA
@@ -304,7 +304,7 @@ async function generatePDFLegacy(
   pdf.text('PackshotCreator', 15, 18);
   pdf.setFontSize(12);
   pdf.text(
-    locale === 'fr' ? 'Analyse ROI - Studios Photo Orbitvu' : 'ROI Analysis - Orbitvu Photo Studios',
+    locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
     15,
     28
   );

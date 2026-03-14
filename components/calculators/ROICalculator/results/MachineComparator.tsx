@@ -16,8 +16,8 @@ interface MachineComparatorProps {
 
 const LABELS = {
   fr: {
-    title: 'Comparer les machines éligibles',
-    subtitle: 'Voici les machines qui correspondent à vos critères',
+    title: 'Comparer les modèles éligibles',
+    subtitle: 'Voici les modèles qui correspondent à vos critères',
     score: 'Score',
     recommended: 'Recommandée',
     capacity: 'Capacité',
@@ -37,13 +37,13 @@ const LABELS = {
     hideDetails: 'Masquer détails',
     matchingCriteria: 'Critères correspondants',
     missingCriteria: 'Points d\'attention',
-    noEligibleMachines: 'Aucune machine ne correspond exactement à vos critères. Voici les meilleures alternatives.',
+    noEligibleMachines: 'Aucun modèle ne correspond exactement à vos critères. Voici les meilleures alternatives.',
     vs: 'vs',
     currentSelected: 'Sélection actuelle',
   },
   en: {
-    title: 'Compare eligible machines',
-    subtitle: 'Here are the machines that match your criteria',
+    title: 'Compare eligible models',
+    subtitle: 'Here are the models that match your criteria',
     score: 'Score',
     recommended: 'Recommended',
     capacity: 'Capacity',
@@ -63,7 +63,7 @@ const LABELS = {
     hideDetails: 'Hide details',
     matchingCriteria: 'Matching criteria',
     missingCriteria: 'Attention points',
-    noEligibleMachines: 'No machine exactly matches your criteria. Here are the best alternatives.',
+    noEligibleMachines: 'No model exactly matches your criteria. Here are the best alternatives.',
     vs: 'vs',
     currentSelected: 'Current selection',
   },

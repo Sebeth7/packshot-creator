@@ -16,7 +16,7 @@ interface EmailCaptureProps {
 const LABELS = {
   fr: {
     title: 'Téléchargez votre analyse complète',
-    subtitle: 'PDF détaillé avec tous les calculs et la machine recommandée',
+    subtitle: 'PDF détaillé avec tous les calculs et le modèle recommandé',
     placeholder: 'votre@email.com',
     submit: 'Télécharger le PDF',
     sending: 'Téléchargement...',
@@ -26,7 +26,7 @@ const LABELS = {
   },
   en: {
     title: 'Download your complete analysis',
-    subtitle: 'Detailed PDF with all calculations and recommended machine',
+    subtitle: 'Detailed PDF with all calculations and recommended model',
     placeholder: 'your@email.com',
     submit: 'Download PDF',
     sending: 'Downloading...',
