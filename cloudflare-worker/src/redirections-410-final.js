@@ -10,7 +10,7 @@ async function handleRequest(request) {
   const NEXTJS_ORIGIN = 'https://sysnext.vercel.app'
   const MIGRATED_ROUTES = ['/calculateur-roi']
   
-  const isNextAsset = pathname.startsWith('/_next/') || pathname.startsWith('/images/')
+  const isNextAsset = pathname.startsWith('/_next/') || pathname.startsWith('/images/') || pathname.startsWith('/api/')
   const isMigrated = isNextAsset || MIGRATED_ROUTES.some(route =>
     pathname === route || pathname.startsWith(route + '/')
   )

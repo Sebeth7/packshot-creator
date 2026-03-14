@@ -6,7 +6,6 @@ const PIPEDRIVE_STAGE_ID = 54; // "Calculs ROI"
 
 interface ROIPDFRequest {
   email: string;
-  pdfBase64: string;
   calculatorData: {
     // Inputs
     nbOperateurs: number;
@@ -155,18 +154,16 @@ export async function POST(request: NextRequest) {
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
 
     const body: ROIPDFRequest = await request.json();
-    const { email, pdfBase64, calculatorData, locale } = body;
+    const { email, calculatorData, locale } = body;
 
-    if (!email || !pdfBase64) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'Email and PDF are required' },
+        { error: 'Email is required' },
         { status: 400 }
       );
     }
 
-    // 1. Send email with PDF via Resend
-    const pdfBuffer = Buffer.from(pdfBase64, 'base64');
-    const fileName = `ROI-Analysis-${calculatorData.machineNom.replace(/\s+/g, '-')}.pdf`;
+    // 1. Send email via Resend (sans pièce jointe PDF)
 
     const subject = locale === 'fr'
       ? `Votre analyse ROI PackshotCreator - ${calculatorData.machineNom}`
@@ -221,12 +218,6 @@ export async function POST(request: NextRequest) {
       to: [email],
       subject,
       html: htmlContent,
-      attachments: [
-        {
-          filename: fileName,
-          content: pdfBuffer,
-        },
-      ],
     });
 
     if (emailResult.error) {

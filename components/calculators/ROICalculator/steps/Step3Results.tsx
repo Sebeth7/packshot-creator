@@ -104,22 +104,23 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
   const handleSendPDF = async (email: string) => {
     trackCTAClick('email_capture', results);
 
-    // Générer le PDF côté client
+    // Générer et télécharger le PDF côté client
     const pdfBlob = await generatePDF(contentRef, results, locale);
+    const url = URL.createObjectURL(pdfBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ROI-Analysis-${results.machine.nom.replace(/\s+/g, '-')}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
-    // Convertir en base64 pour l'envoi API
-    const arrayBuffer = await pdfBlob.arrayBuffer();
-    const pdfBase64 = btoa(
-      new Uint8Array(arrayBuffer).reduce((data, byte) => data + String.fromCharCode(byte), '')
-    );
-
-    // Envoyer via API (email Resend + Pipedrive CRM)
-    const response = await fetch('/api/roi-pdf', {
+    // Envoyer les données en parallèle (email Resend + Pipedrive CRM, sans le PDF)
+    fetch('/api/roi-pdf', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
-        pdfBase64,
         calculatorData: {
           nbOperateurs: inputs.nbOperateurs,
           pourcentageTemps: inputs.pourcentageTemps,
@@ -142,12 +143,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
         },
         locale,
       }),
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.error || 'Erreur lors de l\'envoi');
-    }
+    }).catch((err) => console.error('API roi-pdf error:', err));
   };
 
   return (
