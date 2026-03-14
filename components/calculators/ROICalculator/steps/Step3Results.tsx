@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, Info } from 'lucide-react';
+import { Download, Loader2, Info, AlertTriangle } from 'lucide-react';
 import MethodologyModal from '../results/MethodologyModal';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
@@ -16,6 +16,7 @@ import NotProfitableCTA from '../results/NotProfitableCTA';
 import EmailCapture from '../results/EmailCapture';
 import { generatePDF } from '../results/PDFGenerator';
 import { trackCalculatorCompleted, trackCTAClick } from '../lib/analytics';
+import { formatEuro } from '../lib/calculations';
 import type { CalculationResults, UserInputs } from '../lib/types';
 
 interface Step3ResultsProps {
@@ -30,11 +31,27 @@ const LABELS = {
     downloadPDF: 'Télécharger le PDF',
     downloading: 'Génération...',
     methodology: 'Méthode de calcul',
+    capacityWarningTitle: 'Volume supérieur à la capacité de cette machine',
+    capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
+      `La ${machineName} peut produire jusqu'à ${capaciteMax.toLocaleString('fr-FR')} photos/an (${Math.round(capaciteMax / 230)} photos/jour × 230 jours). Votre besoin de ${demande.toLocaleString('fr-FR')} photos/an dépasse cette capacité.`,
+    capacityWarningSolutions: 'Solutions possibles :',
+    capacitySolution1: 'Ajouter un 2ème opérateur en relais (+50% de capacité effective)',
+    capacitySolution2: 'Opter pour une machine à plus forte capacité de production',
+    capacitySolution3: 'Contacter notre équipe pour une étude multi-machines personnalisée',
+    capacityWarningNote: 'Les résultats ci-dessous sont calculés à titre indicatif et ne reflètent pas une configuration de production réaliste.',
   },
   en: {
     downloadPDF: 'Download PDF',
     downloading: 'Generating...',
     methodology: 'Calculation method',
+    capacityWarningTitle: 'Volume exceeds this machine\'s capacity',
+    capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
+      `The ${machineName} can produce up to ${capaciteMax.toLocaleString('en-US')} photos/year (${Math.round(capaciteMax / 230)} photos/day × 230 days). Your need of ${demande.toLocaleString('en-US')} photos/year exceeds this capacity.`,
+    capacityWarningSolutions: 'Possible solutions:',
+    capacitySolution1: 'Add a 2nd operator in relay (+50% effective capacity)',
+    capacitySolution2: 'Choose a machine with higher production capacity',
+    capacitySolution3: 'Contact our team for a custom multi-machine study',
+    capacityWarningNote: 'The results below are calculated for reference only and do not reflect a realistic production setup.',
   },
 };
 
@@ -110,6 +127,47 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           <div data-pdf-section="hero">
             <HeroMetrics results={results} locale={locale} />
           </div>
+
+          {/* Alerte capacité insuffisante */}
+          {results.capaciteInsuffisante && (
+            <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5 mb-6" data-pdf-section="capacity-warning">
+              <div className="flex gap-3">
+                <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-heading font-bold text-amber-800 mb-2">
+                    {t.capacityWarningTitle}
+                  </h4>
+                  <p className="text-sm text-amber-700 mb-3">
+                    {t.capacityWarningBody(
+                      results.machine.nom,
+                      results.capaciteAnnuelleMachine,
+                      inputs.photosAnnuelles
+                    )}
+                  </p>
+                  <p className="text-sm font-medium text-amber-800 mb-2">
+                    {t.capacityWarningSolutions}
+                  </p>
+                  <ul className="text-sm text-amber-700 space-y-1 mb-3">
+                    <li className="flex gap-2">
+                      <span>1.</span>
+                      <span>{t.capacitySolution1}</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span>2.</span>
+                      <span>{t.capacitySolution2}</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span>3.</span>
+                      <span>{t.capacitySolution3}</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs text-amber-600 italic">
+                    {t.capacityWarningNote}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Boutons actions - exclu du PDF */}
           <div className="flex justify-end gap-2 mb-6" data-pdf-exclude>

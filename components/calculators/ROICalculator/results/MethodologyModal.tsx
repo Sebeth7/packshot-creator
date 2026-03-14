@@ -23,20 +23,20 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Coût avec une machine Orbitvu',
-        body: 'Un studio automatisé multiplie par 3 la productivité de chaque opérateur, ce qui libère du temps pour d\'autres tâches (retouche, mise en ligne, créativité). Le calcul prend en compte ce gain d\'efficacité, ainsi que les coûts de maintenance et consommables de la machine.',
+        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (photos/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes. Le calcul inclut également les consommables annuels de la machine.',
       },
       {
         icon: Clock,
         title: 'Retour sur investissement (break-even)',
-        body: 'Le break-even indique le mois à partir duquel vos économies cumulées dépassent le prix d\'achat de la machine. Chaque mois, la différence entre votre coût actuel et le coût opérationnel avec machine s\'accumule jusqu\'à couvrir l\'investissement initial.',
+        body: 'Le break-even indique le mois à partir duquel vos économies cumulées dépassent le prix d\'achat de la machine. Chaque mois, la différence entre votre coût actuel et le coût opérationnel avec machine s\'accumule jusqu\'à couvrir l\'investissement initial. Ce calcul intègre l\'avantage fiscal lié à l\'amortissement de la machine (Impôt sur les Sociétés au taux de 25%).',
       },
       {
         icon: Target,
         title: 'ROI sur 1 an et 5 ans',
-        body: 'Le ROI compare vos économies réelles (cash) au prix de la machine. Sur 1 an : économie opérationnelle annuelle moins le prix d\'achat, divisé par le prix d\'achat. Sur 5 ans : même logique sur la durée d\'amortissement complète.',
+        body: 'Le ROI compare vos économies réelles au prix de la machine. Il intègre : l\'économie opérationnelle (réduction du temps opérateur et suppression des coûts externes), ainsi que l\'avantage fiscal IS à 25% sur l\'amortissement de la machine (sur 5 ans). Sur 1 an : économies totales moins le prix d\'achat. Sur 5 ans : économies cumulées sur la durée d\'amortissement.',
       },
     ],
-    note: 'Ces calculs sont des estimations basées sur vos données. Contactez notre équipe pour une analyse personnalisée.',
+    note: 'Ces calculs sont des estimations basées sur vos données et un taux d\'IS de 25%. Contactez notre équipe pour une analyse personnalisée adaptée à votre situation fiscale.',
   },
   en: {
     title: 'How are your results calculated?',
@@ -50,20 +50,20 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Cost with an Orbitvu machine',
-        body: 'An automated studio triples the productivity of each operator, freeing up time for other tasks (retouching, publishing, creative work). The calculation accounts for this efficiency gain, along with machine maintenance and consumables costs.',
+        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (photos/day) relative to your annual volume. The more productive the machine, the less it ties up your teams. The calculation also includes the machine\'s annual consumables.',
       },
       {
         icon: Clock,
         title: 'Return on investment (break-even)',
-        body: 'The break-even point shows the month when your cumulative savings exceed the machine\'s purchase price. Each month, the difference between your current cost and the operational cost with the machine accumulates until it covers the initial investment.',
+        body: 'The break-even point shows the month when your cumulative savings exceed the machine\'s purchase price. Each month, the difference between your current cost and the operational cost with the machine accumulates until it covers the initial investment. This calculation includes the tax benefit from machine depreciation (Corporate Tax at 25%).',
       },
       {
         icon: Target,
         title: 'ROI over 1 year and 5 years',
-        body: 'ROI compares your actual cash savings to the machine price. Over 1 year: annual operational savings minus the purchase price, divided by the purchase price. Over 5 years: same logic over the full depreciation period.',
+        body: 'ROI compares your actual savings to the machine price. It includes: operational savings (reduced operator time and eliminated external costs), plus the 25% Corporate Tax benefit on machine depreciation (over 5 years). Over 1 year: total savings minus purchase price. Over 5 years: cumulative savings over the full depreciation period.',
       },
     ],
-    note: 'These calculations are estimates based on your data. Contact our team for a personalized analysis.',
+    note: 'These calculations are estimates based on your data and a 25% corporate tax rate. Contact our team for a personalized analysis adapted to your tax situation.',
   },
 };
 

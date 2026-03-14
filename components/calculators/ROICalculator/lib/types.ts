@@ -157,8 +157,9 @@ export interface CalculationResults {
   capaciteResiduelle: number;
   potentielCroissance: number;
 
-  // Flag rentabilité
+  // Flags
   isRentable: boolean;
+  capaciteInsuffisante: boolean;       // true si le volume dépasse la capacité max de la machine
 }
 
 // État du wizard

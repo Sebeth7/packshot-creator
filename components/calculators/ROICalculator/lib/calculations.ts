@@ -222,6 +222,9 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   const capaciteResiduelle = capaciteAnnuelleMachine - photosAnnuelles;
   const potentielCroissance = (capaciteResiduelle / photosAnnuelles) * 100;
 
+  // 9. Capacité insuffisante : le volume demandé dépasse la capacité max de la machine
+  const capaciteInsuffisante = photosAnnuelles > capaciteAnnuelleMachine;
+
   return {
     // Situation actuelle
     coutEmployeurAnnuel,
@@ -258,8 +261,9 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     capaciteResiduelle,
     potentielCroissance,
 
-    // Flag
+    // Flags
     isRentable,
+    capaciteInsuffisante,
   };
 }
 
