@@ -21,6 +21,7 @@ const LABELS = {
     roi5Note: 'de bénéfices nets',
     months: 'mois',
     savedPerPhoto: 'économisés/photo',
+    taxNote: "Incl. avantage fiscal IS 25%",
   },
   en: {
     title: 'Your Personalized ROI Analysis',
@@ -32,6 +33,7 @@ const LABELS = {
     roi5Note: 'net benefits',
     months: 'months',
     savedPerPhoto: 'saved/photo',
+    taxNote: 'Incl. 25% corporate tax benefit',
   },
 };
 
@@ -50,6 +52,7 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
       value: results.breakEvenMois
         ? `${Math.round(results.breakEvenMois)} ${t.months}`
         : '-',
+      sublabel: t.taxNote,
       color: 'text-very-peri-600',
       bgColor: 'bg-very-peri-100',
       highlight: results.breakEvenMois !== null && results.breakEvenMois < 18,
@@ -57,8 +60,8 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
     {
       icon: PiggyBank,
       label: t.savings,
-      value: formatEuro(results.economieAnnuelle),
-      sublabel: t.savingsNote,
+      value: formatEuro(results.economieAnnuelle + results.avantageFiscalAnnuel),
+      sublabel: `${t.savingsNote} (${t.taxNote.toLowerCase()})`,
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50',
       highlight: true,

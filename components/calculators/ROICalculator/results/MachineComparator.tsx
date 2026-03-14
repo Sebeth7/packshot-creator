@@ -3,11 +3,9 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle, ChevronDown, ChevronUp, Star } from 'lucide-react';
-import type { MachineEligibility, UserInputs, CalculationResults, Machine } from '../lib/types';
+import type { MachineEligibility, UserInputs, CalculationResults } from '../lib/types';
 import { calculateROI } from '../lib/calculations';
 import { getTopMachinesForComparison, userInputsToSelectionCriteria, AUTOMATION_LABELS } from '../lib/machineSelector';
-import { MACHINES } from '../lib/machines';
-import { CONSTANTES } from '../lib/constants';
 
 interface MachineComparatorProps {
   inputs: UserInputs;
@@ -305,16 +303,10 @@ export default function MachineComparator({
 
   // Calculer le ROI pour chaque machine et filtrer les non-rentables
   const machinesWithROI = eligibleMachines
-    .map(eligibility => {
-      // Créer des inputs modifiés avec cette machine
-      // (On recalcule le ROI en forçant cette machine)
-      const machineInputs = { ...inputs };
-      const roiResults = calculateROIForMachine(machineInputs, eligibility.machine.id);
-      return {
-        eligibility,
-        roiResults,
-      };
-    })
+    .map(eligibility => ({
+      eligibility,
+      roiResults: calculateROI(inputs, eligibility.machine.id),
+    }))
     .filter(({ roiResults }) => roiResults.isRentable); // Ne garder que les machines rentables
 
   if (machinesWithROI.length === 0) {
@@ -352,118 +344,3 @@ export default function MachineComparator({
   );
 }
 
-/**
- * Calcule le ROI pour une machine spécifique
- * (Utilise la fonction calculateROI existante mais force la machine)
- */
-function calculateROIForMachine(inputs: UserInputs, machineId: string): CalculationResults {
-  const machine = MACHINES.find((m: Machine) => m.id === machineId);
-  if (!machine) {
-    return calculateROI(inputs);
-  }
-
-  const budgetEquipement = inputs.budgetEquipement ?? CONSTANTES.budgetEquipementDefaut;
-  const coutSalarial = inputs.coutSalarialMensuel ?? CONSTANTES.salaireMensuelCoutEmployeur;
-  const photosAnnuelles = Math.max(inputs.photosAnnuelles, 1);
-
-  // Situation actuelle
-  const coutEmployeurAnnuel =
-    inputs.nbOperateurs * coutSalarial * 12 * (inputs.pourcentageTemps / 100);
-  const coutEquipementAnnuel = budgetEquipement;
-  const coutExterneAnnuel = inputs.utiliseSolutionExterne && inputs.budgetMensuelExterne
-    ? inputs.budgetMensuelExterne * 12
-    : 0;
-  const coutTotalActuel = coutEmployeurAnnuel + coutEquipementAnnuel + coutExterneAnnuel;
-  const capaciteAnnuelleActuelle =
-    inputs.capaciteJournaliere * CONSTANTES.joursProduction *
-    inputs.nbOperateurs * (inputs.pourcentageTemps / 100);
-  const coutParPhotoActuel = coutTotalActuel / photosAnnuelles;
-  const heuresTravailAnnuel = CONSTANTES.heuresSemaine * CONSTANTES.nbSemainesTravail;
-  const tempsParPhotoHeures =
-    (heuresTravailAnnuel * inputs.nbOperateurs * (inputs.pourcentageTemps / 100)) / photosAnnuelles;
-  const joursProductionActuels =
-    photosAnnuelles / Math.max(inputs.capaciteJournaliere * inputs.nbOperateurs, 1);
-
-  // Avec machine
-  const tcoAnnuel =
-    (machine.prix / CONSTANTES.dureeAmortissement) +
-    machine.maintenanceAnnuelle + machine.consommablesAnnuels;
-  const coutOperationnelMachineAnnuel =
-    machine.maintenanceAnnuelle + machine.consommablesAnnuels;
-
-  // Temps basé sur les jours réellement nécessaires avec la capacité de la machine
-  let nbOperateursMachine: number;
-  let pourcentageTempsMachineEffectif: number;
-
-  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
-  const pourcentageTempsBaseMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
-
-  if (inputs.nbOperateurs > 1) {
-    nbOperateursMachine = Math.ceil(inputs.nbOperateurs / 2);
-    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
-  } else {
-    nbOperateursMachine = 1;
-    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
-  }
-
-  const coutOperateurMachine =
-    nbOperateursMachine * coutSalarial * 12 * (pourcentageTempsMachineEffectif / 100);
-  const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
-  const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
-  const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
-  const heuresAvecMachine = heuresTravailAnnuel * nbOperateursMachine * (pourcentageTempsMachineEffectif / 100);
-  const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
-  const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
-
-  // Comparaison (cash-flow)
-  const coutOperationnelTotal = coutOperateurMachine + coutOperationnelMachineAnnuel;
-  const economieOperationnelle = coutTotalActuel - coutOperationnelTotal;
-  const economieAnnuelle = coutTotalActuel - coutTotalMachine;
-  const isRentable = economieOperationnelle > machine.prix / CONSTANTES.dureeAmortissement;
-
-  let breakEvenMois: number | null = null;
-  if (economieOperationnelle > 0) {
-    breakEvenMois = machine.prix / (economieOperationnelle / 12);
-  }
-
-  const roiAn1 = ((economieOperationnelle - machine.prix) / machine.prix) * 100;
-  const economie5ans = (economieOperationnelle * 5) - machine.prix;
-  const roi5ans = (economie5ans / machine.prix) * 100;
-  const economieParPhoto = coutParPhotoActuel - coutParPhotoMachine;
-  const economieParPhotoPourcent = (economieParPhoto / Math.max(coutParPhotoActuel, 0.01)) * 100;
-  const joursEconomises = joursProductionActuels - joursProductionMachine;
-  const gainTempsPourcent = (joursEconomises / Math.max(joursProductionActuels, 1)) * 100;
-  const capaciteResiduelle = capaciteAnnuelleMachine - photosAnnuelles;
-  const potentielCroissance = (capaciteResiduelle / photosAnnuelles) * 100;
-
-  return {
-    coutEmployeurAnnuel,
-    coutEquipementAnnuel,
-    coutExterneAnnuel,
-    coutTotalActuel,
-    coutParPhotoActuel,
-    tempsParPhotoHeures,
-    joursProductionActuels,
-    capaciteAnnuelleActuelle,
-    machine,
-    tcoAnnuel,
-    coutOperateurMachine,
-    coutTotalMachine,
-    coutParPhotoMachine,
-    tempsParPhotoMachine,
-    joursProductionMachine,
-    capaciteAnnuelleMachine,
-    economieAnnuelle,
-    breakEvenMois,
-    roiAn1,
-    roi5ans,
-    economie5ans,
-    economieParPhoto,
-    economieParPhotoPourcent,
-    joursEconomises,
-    gainTempsPourcent,
-    capaciteResiduelle,
-    potentielCroissance,
-    isRentable,
-  };
-}

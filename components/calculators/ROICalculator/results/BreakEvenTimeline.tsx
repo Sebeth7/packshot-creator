@@ -72,7 +72,7 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       icon: TrendingUp,
       label: t.year1,
       description: t.year1Desc,
-      value: results.roiAn1 > 0 ? `+${formatEuro(results.economieAnnuelle - results.machine.prix)}` : '-',
+      value: results.roiAn1 > 0 ? `+${formatEuro(results.economieOperationnelle + results.avantageFiscalAnnuel - results.machine.prix)}` : '-',
       position: (12 / 60) * 100,
       color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-400',
       textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-future-dusk-500',

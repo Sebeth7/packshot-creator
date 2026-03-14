@@ -140,20 +140,21 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     machine.consommablesAnnuels;
 
   // 4. Coût opérateur machine
-  // N > 1 → ceil(N/2) opérateurs | N ≤ 1 → 1 opérateur
-  // Temps basé sur les jours réellement nécessaires avec la capacité de la machine
-  let nbOperateursMachine: number;
-  let pourcentageTempsMachineEffectif: number;
-
+  // La machine nécessite au minimum 1 opérateur.
+  // Pour N > 1 : on calcule le nombre d'opérateurs nécessaires selon les jours de production,
+  // mais on ne peut pas descendre en dessous de 1, et on plafonne à ceil(N/2) (la machine
+  // ne supprime jamais plus de la moitié du personnel existant).
   const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
-  const pourcentageTempsBaseMachine = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
+  const pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
 
-  if (inputs.nbOperateurs > 1) {
-    nbOperateursMachine = Math.ceil(inputs.nbOperateurs / 2);
-    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
-  } else {
+  let nbOperateursMachine: number;
+  if (inputs.nbOperateurs <= 1) {
     nbOperateursMachine = 1;
-    pourcentageTempsMachineEffectif = pourcentageTempsBaseMachine;
+  } else {
+    // Combien d'opérateurs à temps plein faudrait-il ?
+    const operateursNecessaires = Math.ceil(joursNecessairesMachine / CONSTANTES.joursProduction);
+    // Au moins 1, et au plus ceil(N/2) du personnel actuel
+    nbOperateursMachine = Math.max(1, Math.min(operateursNecessaires, Math.ceil(inputs.nbOperateurs / 2)));
   }
 
   const coutOperateurMachine =
@@ -184,23 +185,29 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   const coutOperationnelTotal = coutOperateurMachine + coutOperationnelMachineAnnuel;
   const economieOperationnelle = coutTotalActuel - coutOperationnelTotal;
 
+  // Avantage fiscal : l'amortissement réduit le bénéfice imposable (IS à 25%)
+  const tauxIS = 0.25;
+  const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
+  const avantageFiscalAnnuel = amortissementAnnuel * tauxIS;
+
   // 1. Économie annuelle (comptable, affichée comme référence)
   const economieAnnuelle = coutTotalActuel - coutTotalMachine;
 
-  // 2. Flag rentabilité (basé sur cash-flow)
-  const isRentable = economieOperationnelle > machine.prix / CONSTANTES.dureeAmortissement;
+  // 2. Flag rentabilité (basé sur cash-flow incluant avantage fiscal)
+  const economieAvecFiscal = economieOperationnelle + avantageFiscalAnnuel;
+  const isRentable = economieAvecFiscal > amortissementAnnuel;
 
-  // 3. Break-even en mois (cash-flow : quand les économies cumulées = investissement)
+  // 3. Break-even en mois (cash-flow incluant avantage fiscal)
   let breakEvenMois: number | null = null;
-  if (economieOperationnelle > 0) {
-    breakEvenMois = machine.prix / (economieOperationnelle / 12);
+  if (economieAvecFiscal > 0) {
+    breakEvenMois = machine.prix / (economieAvecFiscal / 12);
   }
 
-  // 4. ROI année 1 (cash-flow : économies opérationnelles an 1 - investissement)
-  const roiAn1 = ((economieOperationnelle - machine.prix) / machine.prix) * 100;
+  // 4. ROI année 1 (cash-flow : économies opérationnelles + fiscal an 1 - investissement)
+  const roiAn1 = ((economieAvecFiscal - machine.prix) / machine.prix) * 100;
 
-  // 5. ROI 5 ans (cash-flow sur durée d'amortissement)
-  const economie5ans = (economieOperationnelle * 5) - machine.prix;
+  // 5. ROI 5 ans (cash-flow sur durée d'amortissement, fiscal sur 5 ans uniquement)
+  const economie5ans = (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix;
   const roi5ans = (economie5ans / machine.prix) * 100;
 
   // 6. Économie par photo
@@ -237,7 +244,9 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     capaciteAnnuelleMachine,
 
     // Comparaison
+    economieOperationnelle,
     economieAnnuelle,
+    avantageFiscalAnnuel,
     breakEvenMois,
     roiAn1,
     roi5ans,
@@ -290,14 +299,16 @@ export function generateChartData(results: CalculationResults): Array<{
 }> {
   const data = [];
 
-  // Coût opérationnel mensuel avec machine (hors amortissement, car le prix est en mois 0)
+  // Coût opérationnel mensuel net avec machine (hors amortissement, avec avantage fiscal)
   const coutOperationnelMensuel =
     (results.coutOperateurMachine +
       results.machine.maintenanceAnnuelle +
-      results.machine.consommablesAnnuels) / 12;
+      results.machine.consommablesAnnuels -
+      results.avantageFiscalAnnuel) / 12;
 
   for (let mois = 0; mois <= 60; mois++) {
     const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
+    // Avantage fiscal s'applique uniquement pendant la durée d'amortissement (60 mois)
     const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
 
     data.push({

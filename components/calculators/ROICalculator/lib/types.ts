@@ -143,7 +143,9 @@ export interface CalculationResults {
   capaciteAnnuelleMachine: number;
 
   // Comparaison
-  economieAnnuelle: number;
+  economieOperationnelle: number;    // Économie cash-flow annuelle (hors amortissement)
+  economieAnnuelle: number;          // Économie comptable annuelle (avec amortissement)
+  avantageFiscalAnnuel: number;      // Économie d'IS liée à l'amortissement (taux 25%)
   breakEvenMois: number | null;      // null si pas rentable
   roiAn1: number;
   roi5ans: number;
