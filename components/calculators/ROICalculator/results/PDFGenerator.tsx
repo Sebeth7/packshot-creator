@@ -28,26 +28,60 @@ export async function generatePDF(
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
+  // Charger l'image hero pour le header
+  let heroImageData: string | null = null;
+  try {
+    const heroResponse = await fetch('/images/hero/hero-studios-wide.jpg');
+    const heroBlob = await heroResponse.blob();
+    heroImageData = await new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(heroBlob);
+    });
+  } catch (e) {
+    console.error('Failed to load hero image for PDF:', e);
+  }
+
+  const HEADER_HEIGHT = 40;
+
   // Header
   const addHeader = () => {
-    const headerColor = PDF_COLORS.header!;
-    pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
-    pdf.rect(0, 0, pdfWidth, 30, 'F');
+    if (heroImageData) {
+      // Image hero en fond de header (couvre toute la largeur, cropped en hauteur)
+      const imgRatio = 1200 / 411; // ratio original de l'image
+      const imgWidthMm = pdfWidth;
+      const imgHeightMm = imgWidthMm / imgRatio;
+      // Centrer verticalement dans le header
+      const yOffset = (HEADER_HEIGHT - imgHeightMm) / 2;
+      pdf.addImage(heroImageData, 'JPEG', 0, Math.min(yOffset, 0), imgWidthMm, Math.max(imgHeightMm, HEADER_HEIGHT));
+
+      // Overlay semi-transparent pour la lisibilité du texte
+      pdf.setFillColor(0, 0, 0);
+      pdf.setGState(new (pdf as any).GState({ opacity: 0.4 }));
+      pdf.rect(0, 0, pdfWidth, HEADER_HEIGHT, 'F');
+      pdf.setGState(new (pdf as any).GState({ opacity: 1 }));
+    } else {
+      // Fallback: header bleu
+      const headerColor = PDF_COLORS.header!;
+      pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
+      pdf.rect(0, 0, pdfWidth, HEADER_HEIGHT, 'F');
+    }
+
+    // Texte par-dessus
     pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
-    pdf.setFontSize(20);
-    pdf.text('PackshotCreator', 15, 15);
+    pdf.setFontSize(22);
+    pdf.text('PackshotCreator', 15, 18);
     pdf.setFontSize(12);
     pdf.text(
       locale === 'fr' ? 'Analyse ROI - Studios Photo Orbitvu' : 'ROI Analysis - Orbitvu Photo Studios',
       15,
-      23
+      28
     );
 
     // Date
-    pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
     pdf.setFontSize(10);
     const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
-    pdf.text(date, pdfWidth - 35, 15);
+    pdf.text(date, pdfWidth - 35, 18);
   };
 
   // Footer
@@ -114,8 +148,8 @@ export async function generatePDF(
   });
 
   // Calculer le nombre total de pages pour les numéros
-  let currentY = 40; // Position après header
-  const availableFirstPage = pdfHeight - 40 - 20; // 40 header, 20 footer
+  let currentY = HEADER_HEIGHT + 5; // Position après header + marge
+  const availableFirstPage = pdfHeight - (HEADER_HEIGHT + 5) - 20; // header + marge, 20 footer
   const availableOtherPages = pdfHeight - 20 - 20; // 20 margin, 20 footer
 
   // Pré-calculer le nombre de pages nécessaires
@@ -123,10 +157,9 @@ export async function generatePDF(
   let pageCount = 1;
 
   for (const { height } of sectionCanvases) {
-    const availableHeight = pageCount === 1 ? availableFirstPage : availableOtherPages;
-    const remainingOnPage = (pageCount === 1 ? pdfHeight - 20 : pdfHeight - 20) - tempY;
+    const remainingOnPage = (pdfHeight - 20) - tempY;
 
-    if (height > remainingOnPage && tempY > (pageCount === 1 ? 40 : 20)) {
+    if (height > remainingOnPage && tempY > (pageCount === 1 ? HEADER_HEIGHT + 5 : 20)) {
       pageCount++;
       tempY = 20;
     }
@@ -135,7 +168,7 @@ export async function generatePDF(
 
   // Générer le PDF
   addHeader();
-  currentY = 40;
+  currentY = HEADER_HEIGHT + 5;
   let currentPage = 1;
 
   for (let i = 0; i < sectionCanvases.length; i++) {
@@ -143,7 +176,7 @@ export async function generatePDF(
     const remainingOnPage = pdfHeight - 20 - currentY; // 20mm pour footer
 
     // Si la section ne rentre pas et qu'on n'est pas au début de la page
-    if (height > remainingOnPage && currentY > (currentPage === 1 ? 40 : 20)) {
+    if (height > remainingOnPage && currentY > (currentPage === 1 ? HEADER_HEIGHT + 5 : 20)) {
       // Ajouter footer à la page courante
       addFooter(currentPage, pageCount);
 
@@ -211,31 +244,57 @@ async function generatePDFLegacy(
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
-  // Header
-  const headerColor = PDF_COLORS.header!;
-  pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
-  pdf.rect(0, 0, pdfWidth, 30, 'F');
+  // Header (legacy) — même image hero si disponible
+  const LEGACY_HEADER_HEIGHT = 40;
+  let legacyHeroImage: string | null = null;
+  try {
+    const heroRes = await fetch('/images/hero/hero-studios-wide.jpg');
+    const heroBlob = await heroRes.blob();
+    legacyHeroImage = await new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(heroBlob);
+    });
+  } catch (e) {
+    // fallback to colored header
+  }
+
+  if (legacyHeroImage) {
+    const imgRatio = 1200 / 411;
+    const imgW = pdfWidth;
+    const imgH = imgW / imgRatio;
+    const yOff = (LEGACY_HEADER_HEIGHT - imgH) / 2;
+    pdf.addImage(legacyHeroImage, 'JPEG', 0, Math.min(yOff, 0), imgW, Math.max(imgH, LEGACY_HEADER_HEIGHT));
+    pdf.setFillColor(0, 0, 0);
+    pdf.setGState(new (pdf as any).GState({ opacity: 0.4 }));
+    pdf.rect(0, 0, pdfWidth, LEGACY_HEADER_HEIGHT, 'F');
+    pdf.setGState(new (pdf as any).GState({ opacity: 1 }));
+  } else {
+    const headerColor = PDF_COLORS.header!;
+    pdf.setFillColor(headerColor.r, headerColor.g, headerColor.b);
+    pdf.rect(0, 0, pdfWidth, LEGACY_HEADER_HEIGHT, 'F');
+  }
+
   pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
-  pdf.setFontSize(20);
-  pdf.text('PackshotCreator', 15, 15);
+  pdf.setFontSize(22);
+  pdf.text('PackshotCreator', 15, 18);
   pdf.setFontSize(12);
   pdf.text(
     locale === 'fr' ? 'Analyse ROI - Studios Photo Orbitvu' : 'ROI Analysis - Orbitvu Photo Studios',
     15,
-    23
+    28
   );
 
   // Date
-  pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
   pdf.setFontSize(10);
   const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
-  pdf.text(date, pdfWidth - 35, 15);
+  pdf.text(date, pdfWidth - 35, 18);
 
   // Contenu capturé
   const imgWidth = pdfWidth - 20;
   const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-  let yOffset = 40;
+  let yOffset = LEGACY_HEADER_HEIGHT + 5;
   let remainingHeight = imgHeight;
   let sourceY = 0;
 
