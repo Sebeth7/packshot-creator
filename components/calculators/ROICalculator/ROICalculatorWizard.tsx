@@ -65,6 +65,7 @@ export default function ROICalculatorWizard({
         'photosAnnuelles',
         'budgetEquipement',
         'tailleProduitsCategory',
+        'typesContenu',
       ]);
 
       if (isValid) {

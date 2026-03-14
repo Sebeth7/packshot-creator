@@ -341,9 +341,11 @@ export function recommendMachine(criteria: SelectionCriteria, sizeCategory?: Pro
 export function userInputsToSelectionCriteria(inputs: {
   photosAnnuelles: number;
   tailleProduitsCategory: ProductSizeCategory;
+  typesContenu?: ContentType[];
 }): SelectionCriteria {
-  // Types de contenu par défaut : packshot + 360 (les plus courants)
-  const contentTypes: ContentType[] = ['packshot', '360'];
+  const contentTypes: ContentType[] = inputs.typesContenu && inputs.typesContenu.length > 0
+    ? inputs.typesContenu
+    : ['packshot'];
 
   return {
     productDimensions: categoryToDimensions(inputs.tailleProduitsCategory),

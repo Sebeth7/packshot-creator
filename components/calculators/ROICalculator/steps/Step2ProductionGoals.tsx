@@ -3,6 +3,7 @@
 import QuestionAnnualVolume from '../questions/QuestionAnnualVolume';
 import QuestionEquipmentBudget from '../questions/QuestionEquipmentBudget';
 import QuestionProductSize from '../questions/QuestionProductSize';
+import QuestionContentType from '../questions/QuestionContentType';
 
 interface Step2ProductionGoalsProps {
   locale: 'fr' | 'en';
@@ -14,6 +15,7 @@ export default function Step2ProductionGoals({ locale }: Step2ProductionGoalsPro
       <QuestionAnnualVolume locale={locale} />
       <QuestionEquipmentBudget locale={locale} />
       <QuestionProductSize locale={locale} />
+      <QuestionContentType locale={locale} />
     </div>
   );
 }

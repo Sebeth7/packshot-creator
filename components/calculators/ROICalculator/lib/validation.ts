@@ -30,6 +30,8 @@ export const step2Schema = z.object({
     .max(50000)
     .optional(),
   tailleProduitsCategory: z.enum(['petit', 'moyen', 'grand', 'tres-grand']),
+  typesContenu: z.array(z.enum(['packshot', '360', 'video', 'ghost-mannequin', 'flat-lay', 'lifestyle']))
+    .min(1, 'Sélectionnez au moins un type de contenu'),
 });
 
 export const fullSchema = step1Schema.merge(step2Schema);

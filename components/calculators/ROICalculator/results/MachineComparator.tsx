@@ -97,10 +97,8 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
   return (
     <div
       className={`bg-white rounded-xl border-2 transition-all ${
-        isRecommended
+        isSelected
           ? 'border-very-peri-500 shadow-lg'
-          : isSelected
-          ? 'border-amber-500 shadow-md'
           : 'border-neutral-200 hover:border-neutral-300'
       }`}
     >
@@ -109,15 +107,16 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              {isRecommended && (
+              {isSelected && (
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-very-peri-500 text-white">
                   <Star className="w-3 h-3" />
-                  {t.recommended}
+                  {t.currentSelected}
                 </span>
               )}
-              {isSelected && !isRecommended && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500 text-white">
-                  {t.currentSelected}
+              {isRecommended && !isSelected && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500 text-white">
+                  <Star className="w-3 h-3" />
+                  {t.recommended}
                 </span>
               )}
             </div>
@@ -273,13 +272,12 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
             </>
           )}
         </button>
-        {onSelect && !isRecommended && (
+        {onSelect && !isSelected && (
           <Button
             type="button"
             size="sm"
-            variant={isSelected ? 'outline' : 'default'}
             onClick={onSelect}
-            className={isSelected ? '' : 'bg-very-peri-500 hover:bg-very-peri-600'}
+            className="bg-very-peri-500 hover:bg-very-peri-600"
           >
             {t.selectMachine}
           </Button>

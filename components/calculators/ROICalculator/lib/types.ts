@@ -12,6 +12,7 @@ export interface UserInputs {
   photosAnnuelles: number;           // 100 - 100000
   budgetEquipement?: number;         // 0 - 50000 €/an (optionnel, défaut 3000)
   tailleProduitsCategory: ProductSizeCategory;
+  typesContenu: ContentType[];       // Types de contenu souhaités
 }
 
 // Catégories de taille produits

@@ -23,7 +23,7 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Coût avec une machine Orbitvu',
-        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (photos/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes. Le calcul inclut également les consommables annuels de la machine.',
+        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (photos/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes.',
       },
       {
         icon: Clock,
@@ -50,7 +50,7 @@ const CONTENT = {
       {
         icon: TrendingDown,
         title: 'Cost with an Orbitvu machine',
-        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (photos/day) relative to your annual volume. The more productive the machine, the less it ties up your teams. The calculation also includes the machine\'s annual consumables.',
+        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (photos/day) relative to your annual volume. The more productive the machine, the less it ties up your teams.',
       },
       {
         icon: Clock,
