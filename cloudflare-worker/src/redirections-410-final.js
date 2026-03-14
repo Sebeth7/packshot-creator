@@ -10,20 +10,26 @@ async function handleRequest(request) {
   const NEXTJS_ORIGIN = 'https://sysnext.vercel.app'
   const MIGRATED_ROUTES = ['/calculateur-roi']
   
-  const isNextAsset = pathname.startsWith('/_next/')
+  const isNextAsset = pathname.startsWith('/_next/') || pathname.startsWith('/images/')
   const isMigrated = isNextAsset || MIGRATED_ROUTES.some(route =>
     pathname === route || pathname.startsWith(route + '/')
   )
   
   if (isMigrated) {
     const targetUrl = new URL(pathname + url.search, NEXTJS_ORIGIN)
+    // Override Host header to avoid Vercel redirect
+    const headers = new Headers(request.headers)
+    headers.set('Host', 'sysnext.vercel.app')
     const proxyResponse = await fetch(targetUrl, {
       method: request.method,
-      headers: request.headers,
+      headers: headers,
       body: request.body,
+      redirect: 'follow',
     })
     const newResponse = new Response(proxyResponse.body, proxyResponse)
     newResponse.headers.set('X-Served-By', 'nextjs')
+    // Remove any redirect headers
+    newResponse.headers.delete('location')
     return newResponse
   }
   // === FIN PROXY NEXT.JS ===
