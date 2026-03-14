@@ -1,55 +1,12 @@
-// Routes migrées vers Next.js (à mettre à jour au fur et à mesure)
-const MIGRATED_ROUTES = [
-  // Page standalone calculateur ROI (pas de route [lang], directement à la racine)
-  '/calculateur-roi',
+// Worker packshot-router : proxy Next.js pour les routes migrées
+// IMPORTANT : Ce fichier est la config de référence.
+// Le Worker déployé sur Cloudflare est redirections-410 qui contient aussi
+// la logique 410. La section ci-dessous est intégrée dans le Worker déployé.
 
-  // Mission 0 : Setup (page test - décommenter après déploiement Vercel)
-  // '/',
-  // '/en',
-  // '/de',
-  // '/es',
-  // '/nl',
-  // Mission 1 : Pages 404 (redirections 301 gérées par Next.js)
-  // Mission 2 : TOP 5 pages (P1)
-  // Mission 3 : Pages 6-10 (P2)
-  // Mission 4 : Pages 11-13 (P3)
-  // Mission 5 : Bulk migration
+// Routes migrées vers Next.js (servies depuis Vercel)
+const MIGRATED_ROUTES = [
+  '/calculateur-roi',
 ];
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    const pathname = url.pathname;
-
-    // Assets Next.js : toujours servir depuis Vercel
-    // /_next/ = bundles JS/CSS, /images/ = images statiques Next.js, /api/ = API routes
-    const isNextAsset = pathname.startsWith('/_next/') || pathname.startsWith('/images/') || pathname.startsWith('/api/');
-
-    // Déterminer si la route est migrée vers Next.js
-    const isMigrated = isNextAsset || MIGRATED_ROUTES.some(route =>
-      pathname === route || pathname.startsWith(route + '/')
-    );
-
-    // Choisir l'origine appropriée
-    const origin = isMigrated ? env.NEXTJS_ORIGIN : env.WEBFLOW_ORIGIN;
-
-    // Construire l'URL cible
-    const targetUrl = new URL(pathname + url.search, origin);
-
-    // Effectuer la requête proxy
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-
-    // Créer une nouvelle réponse avec headers modifiés
-    const newResponse = new Response(response.body, response);
-
-    // Ajouter header pour debug (à retirer en production)
-    newResponse.headers.set('X-Served-By', isMigrated ? 'nextjs' : 'webflow');
-    newResponse.headers.set('X-Worker-Version', '1.0.0');
-
-    return newResponse;
-  },
-};
+// Origin Next.js (Vercel)
+const NEXTJS_ORIGIN = 'https://packshot-creator.vercel.app';
