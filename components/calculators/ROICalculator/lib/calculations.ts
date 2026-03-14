@@ -158,8 +158,14 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     avantageFiscalAnnuel = amortissementAnnuel * tauxIS;
   }
 
-  // 3. Coût opérateur machine
-  const joursNecessairesMachine = photosAnnuelles / machine.capaciteJour;
+  // 3. Capacité effective (plafonnée à 300/jour si flat-lay uniquement)
+  const isFlatLayOnly = inputs.typesContenu?.length === 1 && inputs.typesContenu[0] === 'flat-lay';
+  const capaciteJourEffective = isFlatLayOnly
+    ? Math.min(machine.capaciteJour, 300)
+    : machine.capaciteJour;
+
+  // 4. Coût opérateur machine
+  const joursNecessairesMachine = photosAnnuelles / capaciteJourEffective;
   const pourcentageTempsMachineEffectif = Math.min(joursNecessairesMachine / CONSTANTES.joursProduction, 1) * 100;
 
   let nbOperateursMachine: number;
@@ -180,7 +186,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   const coutTotalMachine = coutOperateurMachine + tcoAnnuel;
 
   // 5. Capacité annuelle avec machine
-  const capaciteAnnuelleMachine = machine.capaciteJour * CONSTANTES.joursProduction;
+  const capaciteAnnuelleMachine = capaciteJourEffective * CONSTANTES.joursProduction;
 
   // 6. Coût par photo avec machine
   const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
@@ -190,7 +196,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
 
   // 8. Jours de production avec machine
-  const joursProductionMachine = photosAnnuelles / machine.capaciteJour;
+  const joursProductionMachine = photosAnnuelles / capaciteJourEffective;
 
   // ===== COMPARAISON =====
 
