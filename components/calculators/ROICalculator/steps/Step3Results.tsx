@@ -236,10 +236,10 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
             <AdditionalBenefits results={results} locale={locale} />
           </div>
 
-          {/* CTA contextuel - exclu du PDF */}
-          <div data-pdf-exclude>
+          {/* CTA contextuel - masqué temporairement (boutons vers pages non disponibles) */}
+          {/* <div data-pdf-exclude>
             <ContextualCTA results={results} locale={locale} />
-          </div>
+          </div> */}
 
           {/* Capture email - exclu du PDF */}
           <div className="mt-8" data-pdf-exclude>
@@ -261,8 +261,8 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
         </>
       ) : (
         <>
-          {/* CTA non rentable - Option B */}
-          <NotProfitableCTA locale={locale} />
+          {/* CTA non rentable - masqué temporairement */}
+          {/* <NotProfitableCTA locale={locale} /> */}
 
           {/* Quand même proposer un contact */}
           <div className="mt-8">

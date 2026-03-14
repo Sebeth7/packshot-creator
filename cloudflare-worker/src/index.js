@@ -1,5 +1,8 @@
 // Routes migrées vers Next.js (à mettre à jour au fur et à mesure)
 const MIGRATED_ROUTES = [
+  // Page standalone calculateur ROI (pas de route [lang], directement à la racine)
+  '/calculateur-roi',
+
   // Mission 0 : Setup (page test - décommenter après déploiement Vercel)
   // '/',
   // '/en',
@@ -18,8 +21,12 @@ export default {
     const url = new URL(request.url);
     const pathname = url.pathname;
 
+    // Assets Next.js : toujours servir depuis Vercel
+    // /_next/ = bundles JS/CSS, /images/ = images statiques Next.js, /api/ = API routes
+    const isNextAsset = pathname.startsWith('/_next/') || pathname.startsWith('/images/') || pathname.startsWith('/api/');
+
     // Déterminer si la route est migrée vers Next.js
-    const isMigrated = MIGRATED_ROUTES.some(route =>
+    const isMigrated = isNextAsset || MIGRATED_ROUTES.some(route =>
       pathname === route || pathname.startsWith(route + '/')
     );
 
