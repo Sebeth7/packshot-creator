@@ -45,7 +45,7 @@ export default function NotProfitableCTA({ locale }: NotProfitableCTAProps) {
         {t.description}
       </p>
 
-      <Button size="lg" className="gap-2 bg-very-peri-500 hover:bg-very-peri-600">
+      <Button type="button" size="lg" className="gap-2 bg-very-peri-500 hover:bg-very-peri-600">
         <MessageCircle className="w-5 h-5" />
         {t.cta}
       </Button>

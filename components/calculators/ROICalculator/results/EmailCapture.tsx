@@ -44,9 +44,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
 
   const t = LABELS[locale];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     if (!email || !email.includes('@')) {
       setError(t.errorInvalid);
       return;
@@ -105,7 +103,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <div className="flex-1">
           <Label htmlFor="email" className="sr-only">Email</Label>
           <Input
@@ -114,19 +112,21 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
             placeholder={t.placeholder}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleSubmit(); } }}
             className="w-full"
           />
           {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
         </div>
         <Button
-          type="submit"
+          type="button"
           disabled={isLoading}
+          onClick={handleSubmit}
           className="gap-2 bg-very-peri-500 hover:bg-very-peri-600"
         >
           <Download className="w-4 h-4" />
           {isLoading ? t.sending : t.submit}
         </Button>
-      </form>
+      </div>
     </div>
   );
 }

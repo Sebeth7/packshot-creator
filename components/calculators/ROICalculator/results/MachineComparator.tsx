@@ -277,6 +277,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
         </button>
         {onSelect && !isRecommended && (
           <Button
+            type="button"
             size="sm"
             variant={isSelected ? 'outline' : 'default'}
             onClick={onSelect}

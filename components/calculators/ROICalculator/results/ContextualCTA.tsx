@@ -93,6 +93,7 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
             <Button
+              type="button"
               size="lg"
               className="bg-white text-very-peri-700 hover:bg-white/90 gap-2"
             >
@@ -100,6 +101,7 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
               {content.cta}
             </Button>
             <Button
+              type="button"
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white/10 gap-2"
