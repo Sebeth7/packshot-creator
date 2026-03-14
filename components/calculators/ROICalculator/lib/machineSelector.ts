@@ -347,8 +347,17 @@ export function userInputsToSelectionCriteria(inputs: {
     ? inputs.typesContenu
     : ['packshot'];
 
+  const baseDimensions = categoryToDimensions(inputs.tailleProduitsCategory);
+
+  // Si flat-lay est sélectionné, les produits sont posés à plat (épaisseur max ~5cm)
+  // On garde les dimensions L/W de la catégorie mais avec une hauteur plate
+  const isFlatLay = contentTypes.includes('flat-lay');
+  const productDimensions = isFlatLay
+    ? { l: baseDimensions.l, w: baseDimensions.w, h: 5 }
+    : baseDimensions;
+
   return {
-    productDimensions: categoryToDimensions(inputs.tailleProduitsCategory),
+    productDimensions,
     annualVolume: inputs.photosAnnuelles,
     contentTypes,
   };
