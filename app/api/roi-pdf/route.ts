@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
 const PIPEDRIVE_PIPELINE_ID = 3;
 const PIPEDRIVE_STAGE_ID = 54; // "Calculs ROI"
 
@@ -36,11 +33,11 @@ interface ROIPDFRequest {
   locale: 'fr' | 'en';
 }
 
-async function createPipedrivePerson(email: string): Promise<number | null> {
+async function createPipedrivePerson(email: string, apiToken: string): Promise<number | null> {
   try {
     // Check if person already exists
     const searchRes = await fetch(
-      `https://api.pipedrive.com/v1/persons/search?term=${encodeURIComponent(email)}&fields=email&limit=1&api_token=${PIPEDRIVE_API_TOKEN}`
+      `https://api.pipedrive.com/v1/persons/search?term=${encodeURIComponent(email)}&fields=email&limit=1&api_token=${apiToken}`
     );
     const searchData = await searchRes.json();
 
@@ -50,7 +47,7 @@ async function createPipedrivePerson(email: string): Promise<number | null> {
 
     // Create new person
     const res = await fetch(
-      `https://api.pipedrive.com/v1/persons?api_token=${PIPEDRIVE_API_TOKEN}`,
+      `https://api.pipedrive.com/v1/persons?api_token=${apiToken}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -71,7 +68,8 @@ async function createPipedrivePerson(email: string): Promise<number | null> {
 async function createPipedriveDeal(
   personId: number,
   calculatorData: ROIPDFRequest['calculatorData'],
-  email: string
+  email: string,
+  apiToken: string
 ): Promise<number | null> {
   try {
     const mode = calculatorData.isLeasing ? 'Leasing' : 'Achat';
@@ -113,7 +111,7 @@ async function createPipedriveDeal(
     );
 
     const res = await fetch(
-      `https://api.pipedrive.com/v1/deals?api_token=${PIPEDRIVE_API_TOKEN}`,
+      `https://api.pipedrive.com/v1/deals?api_token=${apiToken}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -131,7 +129,7 @@ async function createPipedriveDeal(
     if (dealId) {
       // Add note with all calculator data
       await fetch(
-        `https://api.pipedrive.com/v1/notes?api_token=${PIPEDRIVE_API_TOKEN}`,
+        `https://api.pipedrive.com/v1/notes?api_token=${apiToken}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -153,6 +151,9 @@ async function createPipedriveDeal(
 
 export async function POST(request: NextRequest) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
+
     const body: ROIPDFRequest = await request.json();
     const { email, pdfBase64, calculatorData, locale } = body;
 
@@ -240,9 +241,9 @@ export async function POST(request: NextRequest) {
     let pipedriveResult = { personId: null as number | null, dealId: null as number | null };
 
     if (PIPEDRIVE_API_TOKEN) {
-      const personId = await createPipedrivePerson(email);
+      const personId = await createPipedrivePerson(email, PIPEDRIVE_API_TOKEN);
       if (personId) {
-        const dealId = await createPipedriveDeal(personId, calculatorData, email);
+        const dealId = await createPipedriveDeal(personId, calculatorData, email, PIPEDRIVE_API_TOKEN);
         pipedriveResult = { personId, dealId };
       }
     }
