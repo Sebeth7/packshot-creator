@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Info, AlertTriangle } from 'lucide-react';
 import MethodologyModal from '../results/MethodologyModal';
@@ -108,6 +109,17 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
 
   return (
     <div ref={contentRef}>
+      {/* Logo en haut des résultats */}
+      <div className="flex justify-center mb-8" data-pdf-section="logo">
+        <Image
+          src="/images/logos/packshot-creator-logo.png"
+          alt="PackshotCreator"
+          width={220}
+          height={51}
+          className="h-12 w-auto"
+        />
+      </div>
+
       {results.isRentable ? (
         <>
           {/* Métriques héro */}
