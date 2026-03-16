@@ -110,7 +110,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
   return (
     <div ref={contentRef}>
       {/* Logo en haut des résultats */}
-      <div className="flex justify-center mb-8" data-pdf-section="logo">
+      <div className="flex justify-center py-4 mb-4" data-pdf-section="logo">
         <Image
           src="/images/logos/packshot-creator-logo.png"
           alt="PackshotCreator"

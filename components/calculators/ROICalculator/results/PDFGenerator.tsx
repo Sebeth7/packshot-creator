@@ -43,20 +43,6 @@ export async function generatePDF(
     console.error('Failed to load hero image for PDF:', e);
   }
 
-  // Charger le logo
-  let logoImageData: string | null = null;
-  try {
-    const logoResponse = await fetch('/images/logos/packshot-creator-logo.png');
-    const logoBlob = await logoResponse.blob();
-    logoImageData = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.readAsDataURL(logoBlob);
-    });
-  } catch (e) {
-    console.error('Failed to load logo for PDF:', e);
-  }
-
   const HEADER_HEIGHT = 40;
 
   // Header
@@ -82,17 +68,10 @@ export async function generatePDF(
       pdf.rect(0, 0, pdfWidth, HEADER_HEIGHT, 'F');
     }
 
-    // Logo + texte par-dessus
+    // Texte par-dessus
     pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
-    if (logoImageData) {
-      // Logo proportionnel (ratio ~4.3:1), hauteur ~10mm
-      const logoH = 10;
-      const logoW = logoH * 4.3;
-      pdf.addImage(logoImageData, 'PNG', 15, 8, logoW, logoH);
-    } else {
-      pdf.setFontSize(22);
-      pdf.text('PackshotCreator', 15, 18);
-    }
+    pdf.setFontSize(22);
+    pdf.text('PackshotCreator', 15, 18);
     pdf.setFontSize(12);
     pdf.text(
       locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
@@ -321,29 +300,8 @@ async function generatePDFLegacy(
   }
 
   pdf.setTextColor(PDF_COLORS.white.r, PDF_COLORS.white.g, PDF_COLORS.white.b);
-
-  // Logo dans le header legacy
-  let legacyLogoImage: string | null = null;
-  try {
-    const logoRes = await fetch('/images/logos/packshot-creator-logo.png');
-    const logoBl = await logoRes.blob();
-    legacyLogoImage = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.readAsDataURL(logoBl);
-    });
-  } catch (e) {
-    // fallback to text
-  }
-
-  if (legacyLogoImage) {
-    const logoH = 10;
-    const logoW = logoH * 4.3;
-    pdf.addImage(legacyLogoImage, 'PNG', 15, 8, logoW, logoH);
-  } else {
-    pdf.setFontSize(22);
-    pdf.text('PackshotCreator', 15, 18);
-  }
+  pdf.setFontSize(22);
+  pdf.text('PackshotCreator', 15, 18);
   pdf.setFontSize(12);
   pdf.text(
     locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
