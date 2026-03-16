@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/images/logos/packshot-creator-logo.svg"
+                src="/images/logos/packshot-creator-logo.png"
                 alt="PackshotCreator"
                 width={142}
                 height={33}

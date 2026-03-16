@@ -24,7 +24,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'PackshotCreator',
     url: 'https://www.packshot-creator.com',
-    logo: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.svg',
+    logo: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
     description: 'Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
     address: {
       '@type': 'PostalAddress',
@@ -143,7 +143,7 @@ export function articleSchema(article: {
       name: 'PackshotCreator',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.svg',
+        url: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
       },
     },
     articleSection: article.category,

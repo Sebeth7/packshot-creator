@@ -204,7 +204,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/logos/packshot-creator-logo.svg"
+              src="/images/logos/packshot-creator-logo.png"
               alt="PackshotCreator"
               width={142}
               height={33}
