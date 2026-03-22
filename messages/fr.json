@@ -312,7 +312,7 @@
     "nav": {
       "solutions": "Solutions",
       "studios": "Studios Photo Automatisés",
-      "studiosDesc": "Machines et cellules photo pour packshots parfaits",
+      "studiosDesc": "Systèmes photo automatisés pour packshots parfaits",
       "aiSoftware": "IA & Logiciels",
       "aiSoftwareDesc": "Retouche IA, détourage et post-production automatisés",
       "industries": "Industries",
@@ -330,7 +330,9 @@
       "contact": "Contact",
       "receiveOffer": "Demander une démo",
       "menu": "Menu",
-      "close": "Fermer"
+      "close": "Fermer",
+      "roiCalculator": "Calculateur ROI",
+      "roiCalculatorDesc": "Estimez votre retour sur investissement en 2 minutes"
     },
     "footer": {
       "tagline": "Solutions professionnelles de photographie de produits automatisée pour l'e-commerce et la communication visuelle.",
@@ -366,80 +368,156 @@
   },
   "iaPhotoProduit": {
     "meta": {
-      "title": "IA Photo Produit 2026 | BlendAI - Packshots vers Lifestyle en 1 Clic",
-      "description": "Logiciel IA packshot BlendAI : génération lifestyle, backgrounds, retouche automatique. Compatible studios Orbitvu. Essai gratuit.",
-      "keywords": "ia photo produit, blendai, ia packshot, lifestyle generator",
-      "ogDescription": "Multipliez vos visuels produit en 1 clic avec l'IA spécialisée packshot."
+      "title": "IA Photo Produit | BlendAI.studio - Packshot Pro vers Lifestyle en 1 Clic",
+      "description": "BlendAI.studio : IA photo produit qui part de votre packshot professionnel pour créer des déclinaisons lifestyle fidèles à 100%. Solution propriétaire PackshotCreator. Essai gratuit.",
+      "keywords": "ia photo produit, blendai, alternative photoroom, ia packshot, lifestyle generator, photo produit ia, blendai vs photoroom",
+      "ogDescription": "Décuplez vos visuels produit à partir d'un seul packshot professionnel. IA spécialisée, fidélité 100%, zéro hallucination."
     },
     "hero": {
-      "title": "IA Photo Produit : Multipliez Vos Visuels en 1 Clic",
-      "subtitle": "Intelligence artificielle spécialisée packshot. Pas de génération pure, intégration de votre photo réelle.",
-      "ctaPrimary": "Essayer BlendAI gratuitement",
-      "ctaSecondary": "Lire le guide IA 2026"
+      "title": "Vos produits, des déclinaisons infinies",
+      "subtitle": "BlendAI part de votre packshot professionnel pour créer des mises en scène lifestyle fidèles à 100%. Pas de photo inventée, pas d'approximation.",
+      "ctaPrimary": "Tester BlendAI gratuitement",
+      "ctaSecondary": "Voir les résultats"
     },
     "manifeste": {
       "heading": "L'IA ne remplace pas la photo, elle la prolonge",
-      "subtitle": "Notre approche hybride garantit cohérence et qualité professionnelle",
+      "subtitle": "La qualité de vos déclinaisons dépend de la qualité de votre photo d'origine. BlendAI garantit la fidélité de chaque visuel.",
       "principle1": {
-        "title": "Photo réelle = BASE",
-        "description": "Packshot studio Orbitvu de haute qualité comme fondation"
+        "title": "Packshot pro = la base",
+        "description": "Un packshot de qualité studio (idéalement Orbitvu) comme fondation. Éclairage calibré, détourage parfait, couleurs fidèles. C'est cette qualité que l'IA va multiplier."
       },
       "principle2": {
-        "title": "IA = MULTIPLICATION",
-        "description": "Déclinaisons automatiques : lifestyle, backgrounds, variations"
+        "title": "IA = multiplication",
+        "description": "À partir de ce packshot, BlendAI crée des mises en scène lifestyle, des arrière-plans contextuels, des variations créatives. Un produit, des dizaines de visuels."
       },
       "principle3": {
-        "title": "Cohérence garantie",
-        "description": "Pas de génération pure, intégration de votre photo réelle"
+        "title": "Fidélité 100% garantie",
+        "description": "L'IA ne touche jamais au produit. Elle crée le décor autour. Textures, couleurs, proportions : tout reste identique à la photo originale."
       }
     },
+    "whyBase": {
+      "heading": "Pourquoi la qualité de la photo d'origine change tout",
+      "pureIA": {
+        "label": "IA générative pure",
+        "examples": "Photoroom, Claid, Flair, Pebblely",
+        "description": "Génère le produit de zéro à partir d'une description ou d'une photo quelconque.",
+        "point1": "Rapide, aucun matériel requis",
+        "point2": "Approximations sur textures et couleurs",
+        "point3": "Hallucinations possibles sur les détails",
+        "point4": "Vérification humaine nécessaire à chaque visuel",
+        "verdict": "Adapté aux prototypes et au e-commerce basique"
+      },
+      "blendai": {
+        "label": "Packshot pro + IA",
+        "examples": "BlendAI.studio",
+        "description": "Part d'un packshot de qualité studio pour créer des déclinaisons fidèles.",
+        "point1": "Fidélité produit 100% — zéro hallucination",
+        "point2": "Textures, couleurs et proportions garanties",
+        "point3": "Conforme aux exigences luxe, cosmétiques, bijouterie",
+        "point4": "Retouche experte humaine incluse si nécessaire",
+        "verdict": "Conçu pour les fabricants et marques produisant >500 visuels/an"
+      }
+    },
+    "platform": {
+      "heading": "BlendAI.studio : notre plateforme, votre avantage",
+      "subtitle": "BlendAI.studio est la solution propriétaire de PackshotCreator. Pas un outil générique — une plateforme que nous développons et améliorons en continu.",
+      "feature1": {
+        "title": "Zéro complexité",
+        "description": "Upload, choix de style, génération. Pas de prompts, pas de compétences IA requises."
+      },
+      "feature2": {
+        "title": "100+ styles professionnels",
+        "description": "Bibliothèque de styles prêts à l'emploi. Créez vos propres styles et réutilisez-les à l'infini."
+      },
+      "feature3": {
+        "title": "Retouche experte incluse",
+        "description": "Pour les produits complexes (bijoux, lunettes, reflets), nos experts finalisent chaque visuel. Livraison 4K en 24-72h."
+      },
+      "feature4": {
+        "title": "Développement sur mesure",
+        "description": "Solution propriétaire = on développe les fonctions dont vous avez besoin. Workflows post-prod, traitements par lots, retouche auto, intégrations API spécifiques."
+      },
+      "pricing": "À partir de 75 €/mois — 3 crédits offerts pour tester",
+      "cta": "Découvrir BlendAI.studio"
+    },
     "features": {
-      "heading": "4 Fonctionnalités IA Puissantes",
-      "subtitle": "Des outils spécialisés pour transformer vos packshots",
+      "heading": "Ce que BlendAI fait pour vous",
+      "subtitle": "4 outils spécialisés pour transformer vos packshots",
       "lifestyle": {
-        "name": "Lifestyle Generator",
-        "description": "Transformez vos packshots en mises en scène lifestyle réalistes"
+        "name": "Mises en scène lifestyle",
+        "description": "Transformez vos packshots en visuels lifestyle contextualisés. Intérieur, extérieur, ambiance — le produit reste intact."
       },
       "background": {
-        "name": "Background Generator",
-        "description": "Générez des arrière-plans professionnels adaptés à votre produit"
+        "name": "Arrière-plans sur mesure",
+        "description": "Générez des fonds professionnels adaptés à votre marque et à chaque canal de diffusion."
       },
       "retouche": {
-        "name": "Retouche Photo IA",
-        "description": "Suppression automatique des défauts, ajustement couleurs"
+        "name": "Retouche IA + experte",
+        "description": "Corrections automatiques (couleurs, défauts) + retouche humaine pour les cas complexes. Garantie qualité."
       },
       "batch": {
-        "name": "Batch Processing",
-        "description": "Traitez des milliers de photos en quelques minutes"
+        "name": "Traitement par lots",
+        "description": "Appliquez un style à des milliers de produits en quelques minutes. Même rendu, même qualité, à l'échelle."
       }
     },
     "casUsage": {
-      "heading": "Cas d'Usage Avant/Après",
-      "subtitle": "Découvrez la puissance de BlendAI en action"
+      "heading": "Résultats concrets, secteur par secteur",
+      "subtitle": "Un packshot professionnel entre, des visuels prêts à publier sortent."
+    },
+    "socialProof": {
+      "heading": "Ils créent leurs visuels avec BlendAI",
+      "stat1": "100+",
+      "stat1Label": "marques utilisatrices",
+      "stat2": "5 000+",
+      "stat2Label": "visuels créés",
+      "stat3": "4.9/5",
+      "stat3Label": "satisfaction client",
+      "quote": "BlendAI a transformé notre production visuelle. On est passés de 2 visuels par produit à 10, sans effort supplémentaire.",
+      "quoteName": "Directeur e-commerce",
+      "quoteCompany": "Marque accessoires premium"
     },
     "compatible": {
-      "heading": "Compatible avec Votre Studio",
-      "subtitle": "Tous nos studios Orbitvu sont IA Ready",
+      "heading": "Compatible avec tous les systèmes Orbitvu",
+      "subtitle": "BlendAI s'intègre parfaitement dans votre workflow de production photo.",
       "feature1": "Export haute qualité automatique",
-      "feature2": "Métadonnées préservées",
-      "feature3": "Compatible workflow BlendAI",
-      "offer": "Studio + 6 mois BlendAI offerts"
+      "feature2": "Métadonnées produit préservées",
+      "feature3": "Workflow packshot → lifestyle intégré",
+      "offer": "Offre spéciale : système Orbitvu + 6 mois BlendAI offerts",
+      "cta": "Découvrir nos systèmes"
     },
-    "comparatifs": {
-      "heading": "BlendAI vs Concurrence",
-      "subtitle": "Découvrez pourquoi BlendAI est différent",
-      "cta": "Lire le guide IA photo produit 2026"
+    "faq": {
+      "heading": "Questions fréquentes sur l'IA photo produit",
+      "q1": {
+        "question": "Faut-il un système Orbitvu pour utiliser BlendAI ?",
+        "answer": "Non, BlendAI fonctionne avec n'importe quel packshot de qualité professionnelle. Mais l'intégration avec un système Orbitvu offre le meilleur workflow : capture → IA → diffusion, sans étape manuelle."
+      },
+      "q2": {
+        "question": "Quelle est la différence entre BlendAI et Photoroom ?",
+        "answer": "Photoroom et les outils d'IA générative pure créent des visuels à partir de zéro. BlendAI part de votre packshot professionnel et crée le décor autour, sans jamais modifier le produit. Résultat : fidélité 100%, zéro hallucination, conforme aux exigences des marques."
+      },
+      "q3": {
+        "question": "Combien de temps pour générer un visuel ?",
+        "answer": "Quelques secondes par image. En traitement par lots, BlendAI traite des centaines de produits en quelques minutes. La retouche experte (pour les cas complexes) est livrée en 24-72h."
+      },
+      "q4": {
+        "question": "Peut-on créer des styles personnalisés ?",
+        "answer": "Oui. Vous pouvez créer vos propres styles et les appliquer à tous vos produits. C'est un avantage majeur pour les marques qui veulent une identité visuelle cohérente."
+      },
+      "q5": {
+        "question": "BlendAI peut-il être adapté à nos besoins spécifiques ?",
+        "answer": "Oui. BlendAI.studio est notre solution propriétaire. Nous pouvons développer des fonctions sur mesure : workflows post-prod, traitements par lots personnalisés, intégrations API, retouche automatisée selon vos critères."
+      }
     },
     "finalCta": {
       "test": {
-        "heading": "Prêt à multiplier vos visuels produit ?",
-        "description": "Testez BlendAI gratuitement et découvrez comment l'IA peut transformer votre production visuelle.",
-        "cta": "Tester BlendAI gratuitement"
+        "heading": "Testez BlendAI gratuitement",
+        "description": "3 crédits offerts, sans engagement. Uploadez vos packshots et découvrez le résultat en quelques secondes.",
+        "cta": "Créer mon compte gratuit"
       },
       "demo": {
-        "heading": "Studio + IA : L'offre complète",
-        "description": "Réservez une démo pour découvrir notre solution hybride Hardware + IA.",
-        "cta": "Réserver une démo IA + Studio"
+        "heading": "Système + IA : la solution complète",
+        "description": "Réservez une démo pour voir comment un système Orbitvu + BlendAI transforme votre production photo.",
+        "cta": "Réserver une démo"
       }
     }
   },

@@ -1,10 +1,22 @@
 # PLAN DE PRODUCTION - PackshotCreator
 > Document vivant. Source de verite pour toutes les sessions Claude Code.
-> Derniere MAJ : 2026-03-22 (session 2)
+> Derniere MAJ : 2026-03-22 (session 3 prep)
 
 ## 0. RESUME SESSION 2 (22/03/2026)
-Chantier 1 TERMINE : Validation visuelle home (3 fixes : logos gap, tel nowrap, hybrid numbers), traduction EN complete (7 keys obsoletes supprimees, 3 nouvelles ajoutees : painPoints, socialProof, testimonials), Schema.org ajoute (AggregateRating, Product Alphashot, ItemList industries, LocalBusiness contact).
-Chantier 2 EN COURS : CRO quick wins pages secondaires.
+
+### Fait en session 2
+- Chantier 1 TERMINE : Home — validation visuelle (3 fixes), traduction EN complete, Schema.org (AggregateRating, Product, ItemList, LocalBusiness)
+- Chantier 2 CRO quick wins : Studios (vrais logos), IA (stats bar), Academy (badge OPCO), Contact (trust bar + schema)
+- Fondations transversales : page /[lang]/calculateur-roi integree, ajoutee au menu dropdown Solutions, /calculateur interne noindex
+- Page IA RESTRUCTUREE (10 sections) : hero, manifeste, "pourquoi la qualite de la base compte", BlendAI.studio plateforme, fonctionnalites, 4 before/after, preuve sociale, compatible systemes, FAQ 5 questions, CTA final. Schema SoftwareApplication. Traductions FR + EN.
+- Audits complets realises : Studios (6.5/10), IA (6.2/10→8.5 apres restructuration), Industrie hub (5/10 hub, 8/10 pages secteur)
+
+### A faire en session 3
+1. **Page /studios-photo-automatises** : restructuration complete (plan 5.1)
+2. **Page /industrie hub** : enrichissement (plan 5.3)
+3. **Terminologie** : "machines" → "systemes" dans toutes les pages modifiees
+4. **Home** : images manquantes (temoignages, pain points) — Seb fournira
+5. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget, MAJ comparatif
 
 ## 0.1 RESUME SESSION 1 (22/03/2026)
 Chantier 0 FAIT : XSS fix, error.tsx, loading.tsx x4, console.log cleanup, 4 redirects.
@@ -294,12 +306,139 @@ Actions : (1) 2-3 logos defense/industriels (2) Approfondir conformite "comment 
 
 ---
 
-## 5. DECISIONS PRISES
+## 5. PLANS DE RESTRUCTURATION (Session 2, a valider)
+
+> Objectif commun : UX parfaite pour la conversion, le visiteur trouve immediatement ce qu'il cherche et est convaincu de prendre RDV demo.
+> Terminologie : "systemes" (pas "machines"). BlendAI.studio = solution proprietaire customisable.
+> Concept IA : "Packshot pro + IA" (pas "hybride"). L'IA part d'un packshot de qualite studio (idealement Orbitvu). Pas de "photo reelle" generique (un tel portable ne suffit pas).
+
+### 5.1 Page /studios-photo-automatises — PLAN
+
+**Vocation** : Convaincre que les systemes Orbitvu sont LA solution pour internaliser sa production photo. Orienter le plus simplement possible vers le bon systeme. Convertir en demande de demo (si le prospect a le budget).
+
+**Flux propose (10 sections)** :
+
+| # | Section | Role | Heading propose |
+|---|---------|------|-----------------|
+| 1 | Hero | Accroche concrete, pas de jargon | "Produisez vos photos produit en interne. En 3 secondes." |
+| 2 | Social Proof rapide | Credibilite immediate | Barre logos clients (Chanel, Amazon, Bosch...) + "500+ entreprises equipees" |
+| 3 | 3 Piliers (garde) | Differenciation | "L'approche PackshotCreator : Photo studio + IA + Formation" |
+| 4 | Types de photo | Segmentation par besoin — IMAGES A FOURNIR PAR SEB | "Quel type de visuel produisez-vous ?" (packshot, 360, mode, flat-lay) |
+| 5 | Selecteur de systemes | Decouverte interactive, intro narrative | "Trouvez le systeme adapte a votre production" |
+| 6 | Accompagnement | Reduction du risque | "Un accompagnement de A a Z" (inchange + SLA 24h) |
+| 7 | Teaser Calculateur ROI | Renvoyer vers page dediee | "Calculez votre ROI en 2 minutes" — lien vers /calculateur-roi + apercu |
+| 8 | FAQ | Objections, reordonnee par intent | "Questions frequentes" (6 questions, pricing en Q2) |
+| 9 | CTA final | Double voie : demo ou guide | "Pret a voir nos systemes en action ?" — Demo 30min + Guide PDF |
+| 10 | Maillage | SEO interne | Liens vers /ia-photo-produit, /industrie/*, /academy |
+
+**Changements cles vs actuel** :
+- SUPPRIME : Section ROI Calculator embarquee (deplacee vers page dediee /calculateur-roi)
+- AJOUTE : Section 2 (social proof rapide), Section 7 (teaser calculateur), Section 10 (maillage)
+- MODIFIE : Hero reecrit (concret), Types de photo (avec images, Seb les fournira), Selecteur (intro narrative + terminologie "systemes")
+- GARDE : 3 Piliers, Accompagnement, FAQ (reordonnee), CTA final (clarifie)
+
+**Navigation** : Ajouter "Calculateur ROI" dans le dropdown Solutions du Header.
+
+**Terminologie** : Remplacer "machine(s)" par "systeme(s)" dans toute la page + traductions.
+
+---
+
+### 5.2 Page /ia-photo-produit — PLAN
+
+**Vocation** : Convaincre que BlendAI (IA sur packshot pro) bat les solutions IA generative pure (Photoroom, Claid, Flair) pour le B2B. Positionner BlendAI.studio comme solution proprietaire customisable.
+
+**Flux propose (10 sections)** :
+
+| # | Section | Role | Heading propose |
+|---|---------|------|-----------------|
+| 1 | Hero | Accroche differenciante | "IA Photo Produit : vos produits, des declinaisons infinies" |
+| 2 | Manifeste (garde) | Philosophie packshot pro + IA | "L'IA ne remplace pas la photo, elle la prolonge" (enrichi avec exemples concrets) |
+| 3 | Pourquoi la qualite de la base compte (NOUVEAU) | Explication packshot pro + IA vs IA generative | "Pourquoi la qualite de la photo d'origine change tout" — 2 colonnes |
+| 4 | BlendAI.studio (NOUVEAU) | Presenter la plateforme proprietaire | "BlendAI.studio : notre plateforme IA, votre avantage concurrentiel" |
+| 5 | 4 Fonctionnalites (garde) | Capacites de BlendAI | "Ce que BlendAI fait pour vous" |
+| 6 | Cas d'usage (enrichi) | Before/after multi-secteur | "Resultats concrets" — 4-6 secteurs (cosmetiques, mode, bijoux, deco, electronique) |
+| 7 | Preuve sociale (NOUVEAU) | Clients + chiffres sources | "100+ marques, 5000+ visuels crees" + quotes |
+| 8 | Compatible Studios (garde) | Pont vers offre hardware | "Compatible avec tous les systemes Orbitvu" |
+| 9 | FAQ + Comparatif | Objections + table comparative | "BlendAI vs les autres solutions IA" — table Photoroom/Claid/Flair |
+| 10 | CTA final (clarifie) | Double voie | "Tester BlendAI" (essai gratuit) vs "Demo Studio + IA" |
+
+**Section 3 — Pourquoi la qualite de la base compte (contenu cle)** :
+- Colonne gauche "IA generative pure (Photoroom, Claid, Flair)" : genere le produit de zero, approximations possibles (textures, couleurs, details), ok pour prototypes/basique
+- Colonne droite "Packshot pro + IA (BlendAI)" : part d'un packshot de qualite studio, l'IA ne touche pas au produit, elle cree le decor autour. Fidelite 100%, zero hallucination.
+- Message cle : "La qualite de votre photo de depart determine la qualite de toutes vos declinaisons. Un packshot professionnel Orbitvu = la meilleure base possible."
+
+**Section 4 — BlendAI.studio (contenu cle)** :
+- BlendAI.studio est la solution proprietaire de PackshotCreator
+- Plateforme SaaS : upload packshot pro → choix style → generation → export
+- 100+ styles professionnels, creation de styles personnalises
+- Retouche experte humaine incluse (24-72h, garantie 100%)
+- Zero prompts, zero complexite IA
+- **Customisable** : developpement de fonctions specifiques par client (workflows post-prod, traitements par lots, retouche auto, integration API)
+- Pricing transparent : a partir de 75€/mois, 3 credits gratuits pour tester
+
+**Section 9 — Table comparative** :
+| Critere | BlendAI (Packshot pro + IA) | Photoroom / Claid / Flair (IA generative) |
+|---------|----------------------------|-------------------------------------------|
+| Base | Packshot qualite studio | Pas de photo requise (generation pure) |
+| Fidelite produit | 100% garantie | ~80-85% (hallucinations possibles) |
+| Retouche humaine | Incluse (24-72h) | Non |
+| Styles personnalises | Oui, reutilisables a l'infini | Limites |
+| Dev sur mesure | Oui (solution proprietaire) | Non |
+| Cas ideal | B2B >500 photos/an, luxe, fidelite critique | Prototypes, e-commerce basique |
+
+**Schema.org a ajouter** : SoftwareApplication (BlendAI)
+
+---
+
+### 5.3 Page /industrie (hub) — PLAN
+
+**Vocation** : Hub de navigation vers les pages secteur. Doit donner envie de cliquer en montrant que PackshotCreator comprend les contraintes de chaque industrie.
+
+**Flux propose (7 sections)** :
+
+| # | Section | Role | Heading propose |
+|---|---------|------|-----------------|
+| 1 | Hero | Accroche sectorielle | "Votre secteur, notre expertise" (garde) |
+| 2 | Grille secteurs (enrichie) | Navigation avec contexte | Chaque tuile = icone + nom + 1 ligne description + lien |
+| 3 | Chiffres cles (garde) | Value props | "Production acceleree, ROI rapide, coherence garantie" |
+| 4 | Mini case studies (NOUVEAU) | Preuve cross-secteur | 3-4 resultats clients de secteurs differents |
+| 5 | Workflow (garde, compact) | Process universel | "Packshot → IA → Diffusion" |
+| 6 | FAQ transversale (NOUVEAU) | Objections communes | 4-5 questions tous secteurs + schema FAQPage |
+| 7 | CTA final (contextualise) | Conversion | "Quel est votre secteur ?" + Demo + Devis |
+
+**Changements cles** :
+- Grille : activer le champ `description` deja present dans SectorGrid mais non affiche
+- Corriger "12 secteurs" → "14 secteurs" (ou le vrai nombre)
+- Ajouter FAQ avec schema
+- Ajouter mini case studies (puiser dans /data/secteurs.ts qui a deja les cas clients)
+
+---
+
+### 5.4 Fondations transversales — PLAN
+
+| Action | Detail |
+|--------|--------|
+| Page /calculateur-roi | Integrer comme page i18n (/[lang]/calculateur-roi) au lieu de standalone. Garder exclusion middleware pour URL legacy. Mettre a jour Cloudflare si besoin. |
+| Navigation Header | Ajouter "Calculateur ROI" dans dropdown Solutions (avec icone Calculator) |
+| /calculateur (interne) | S'assurer qu'il n'apparait pas dans sitemap, pas de lien public, meta noindex |
+| Terminologie | "machine(s)" → "systeme(s)" dans toutes les pages modifiees + traductions |
+| Maillage inter-pages | Studios ↔ IA ↔ Industrie ↔ Academy — liens contextuels en fin de chaque page |
+
+---
+
+## 6. DECISIONS PRISES
 
 | Date | Decision | Raison |
 |------|----------|--------|
 | 2026-03-22 | Approche B : strategie d'abord, code ensuite | Eviter de refaire le travail sans vision SEO/GEO |
 | 2026-03-22 | Document vivant PLAN_PROD.md comme cerveau persistant | Transfert de contexte entre sessions |
+| 2026-03-22 | "systemes" pas "machines" | Terminologie commerciale PackshotCreator |
+| 2026-03-22 | "Packshot pro + IA" pas "hybride" | "Hybride" n'explique rien au client. Le message = qualite de la photo d'origine est critique, un tel ne suffit pas |
+| 2026-03-22 | BlendAI.studio = solution proprietaire customisable | Pas un outil generique. On peut developper des fonctions sur mesure par client (workflows, batch, retouche auto, API) |
+| 2026-03-22 | ROI Calculator dans page dediee /calculateur-roi | Sorti de la page Studios pour alleger. Accessible via menu dropdown Solutions |
+| 2026-03-22 | /calculateur = page interne uniquement | Ne doit JAMAIS apparaitre publiquement, noindex |
+| 2026-03-22 | Studios : objectif = convaincre + orienter vers le bon systeme + demo | Mais seulement si le prospect a le budget (sinon perte de temps en demos) |
+| 2026-03-22 | Images types de photo : Seb les fournira | Ne pas generer d'images placeholder pour les cartes types de photo (packshot, 360, mode, flat-lay) |
 | 2026-03-22 | Images IA ok pour concepts, vraies photos pour resultats | Credibilite (on vend des solutions photo) |
 
 ---

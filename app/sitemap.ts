@@ -51,6 +51,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/fr/academy/simulateur-opco', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/fr/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/en/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
+    // ROI Calculator
+    { path: '/fr/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/en/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     // Machine selector
     { path: '/fr/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },

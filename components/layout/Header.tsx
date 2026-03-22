@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu } from 'lucide-react';
+import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface DropdownItem {
@@ -155,6 +155,12 @@ export default function Header() {
       labelKey: 'aiSoftware',
       descKey: 'aiSoftwareDesc',
       icon: <Sparkles className="h-4 w-4" />,
+    },
+    {
+      href: '/calculateur-roi',
+      labelKey: 'roiCalculator',
+      descKey: 'roiCalculatorDesc',
+      icon: <TrendingUp className="h-4 w-4" />,
     },
   ];
 
