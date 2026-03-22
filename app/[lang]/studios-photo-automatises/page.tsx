@@ -3,7 +3,10 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown, RotateCcw, Shirt, Layout, Users, Truck, Headphones, Check, Calculator } from 'lucide-react';
+import {
+  Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown,
+  RotateCcw, Shirt, Layout, Users, Truck, Headphones, Check, Calculator,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -29,12 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises' },
     },
     openGraph: {
-      title: t('title'),
-      description: t('description'),
-      type: 'website',
+      title: t('title'), description: t('description'), type: 'website',
       url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-      siteName: 'PackshotCreator',
-      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      siteName: 'PackshotCreator', locale: lang === 'fr' ? 'fr_FR' : 'en_US',
       images: [{ url: `https://www.packshot-creator.com/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: { card: 'summary_large_image', title: t('title'), description: t('description') },
@@ -44,29 +44,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function StudiosPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
+  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: lang === 'fr' ? 'Studios Photo Automatisés' : 'Automated Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
   ];
 
   const studioFaqs = (['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => ({
     question: t(`faqStudios.${key}.question`),
     answer: t(`faqStudios.${key}.answer`),
   }));
-
-  const photoTypes = [
-    { key: 'still' as const, icon: <Camera className="h-6 w-6" />, color: 'bg-very-peri-100 text-very-peri-700', hoverBorder: 'hover:border-very-peri-300', accent: 'text-very-peri-600' },
-    { key: 'threeSixty' as const, icon: <RotateCcw className="h-6 w-6" />, color: 'bg-amber-100 text-amber-700', hoverBorder: 'hover:border-amber-300', accent: 'text-amber-600' },
-    { key: 'fashion' as const, icon: <Shirt className="h-6 w-6" />, color: 'bg-emerald-100 text-emerald-700', hoverBorder: 'hover:border-emerald-300', accent: 'text-emerald-600' },
-    { key: 'flatlay' as const, icon: <Layout className="h-6 w-6" />, color: 'bg-rose-100 text-rose-700', hoverBorder: 'hover:border-rose-300', accent: 'text-rose-600' },
-  ];
-
-  const supportSteps = [
-    { key: 'step1' as const, icon: <Users className="h-6 w-6" />, number: '01' },
-    { key: 'step2' as const, icon: <Truck className="h-6 w-6" />, number: '02' },
-    { key: 'step3' as const, icon: <Headphones className="h-6 w-6" />, number: '03' },
-  ];
 
   const clientLogos = [
     { name: 'Chanel', src: '/images/logos/client-chanel.svg', w: 225, h: 225 },
@@ -81,7 +69,10 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
 
   return (
     <>
-      {/* ━━━ 1. HERO ━━━ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1. HERO — Full-bleed immersive, big type
+          Design: Huge headline, cinematic background, minimal UI
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <HeroSection
         layout="centered"
         backgroundImage="/images/hero/hero-studios-wide.avif"
@@ -98,368 +89,436 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         ]}
       />
 
-      {/* ━━━ 2. SOCIAL PROOF — logos + stats ━━━ */}
-      <section className="py-12 bg-white border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-            <p className="text-center text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.15em] mb-8">
-              {t('socialProof.label')}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 lg:gap-x-10 mb-10">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. SOCIAL PROOF — Horizontal ribbon, oversized stats
+          Design: Stats dominate, logos are secondary. Numbers are the hero.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-16 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          {/* Giant stats */}
+          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-white/10 mb-12">
+            {([
+              { value: t('trust.stat1value'), label: t('trust.stat1label') },
+              { value: t('trust.stat2value'), label: t('trust.stat2label') },
+              { value: t('trust.stat3value'), label: t('trust.stat3label') },
+            ]).map((stat) => (
+              <StaggerItem key={stat.label}>
+                <div className="text-center px-8">
+                  <p className="text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                    {stat.value}
+                  </p>
+                  <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                    {stat.label}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          {/* Logo strip */}
+          <FadeInView delay={0.3}>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
               {clientLogos.map((logo) => (
-                <div key={logo.name} className="h-8 flex items-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} className="h-full w-auto max-w-[90px] object-contain" loading="eager" />
+                <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-70 transition-opacity duration-300">
+                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} className="h-full w-auto max-w-[80px] object-contain invert" loading="eager" />
                 </div>
               ))}
             </div>
           </FadeInView>
-          <div className="border-t border-neutral-100 pt-10">
-            <StaggerContainer stagger={0.1} className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
-              {([
-                { value: t('trust.stat1value'), label: t('trust.stat1label') },
-                { value: t('trust.stat2value'), label: t('trust.stat2label') },
-                { value: t('trust.stat3value'), label: t('trust.stat3label') },
-              ]).map((stat) => (
-                <StaggerItem key={stat.label}>
-                  <p className="text-4xl lg:text-5xl font-heading font-bold text-very-peri-600">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-sm text-future-dusk-400 font-medium">
-                    {stat.label}
-                  </p>
-                </StaggerItem>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. THREE PILLARS — Staggered cards, left-aligned heading
+          Design: Asymmetric. Heading left, cards offset. First card is large.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Left column: sticky heading */}
+            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Notre approche' : 'Our approach'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {t('threePillars.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 leading-relaxed">
+                {t('threePillars.subtitle')}
+              </p>
+            </ScrollReveal>
+
+            {/* Right column: stacked full-width cards */}
+            <div className="lg:col-span-8 space-y-8">
+              {[
+                { key: 'capture', icon: <Camera className="h-6 w-6" />, image: '/images/illustrations/pillar-hardware.avif', iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu', num: '01' },
+                { key: 'creation', icon: <Sparkles className="h-6 w-6" />, image: '/images/illustrations/pillar-ia.avif', iconBg: 'bg-primary-orbitvu/10', iconColor: 'text-primary-orbitvu', num: '02' },
+                { key: 'formation', icon: <GraduationCap className="h-6 w-6" />, image: '/images/illustrations/pillar-formation.avif', iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success', num: '03' },
+              ].map((pillar) => (
+                <ScrollReveal key={pillar.key} offset={40}>
+                  <SpringCard>
+                    <div className="group grid md:grid-cols-5 gap-0 bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300">
+                      {/* Image — 2/5 width */}
+                      <div className="md:col-span-2 aspect-[4/3] md:aspect-auto relative overflow-hidden">
+                        <Image src={pillar.image} alt={t(`threePillars.${pillar.key}.title`)} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                      </div>
+                      {/* Content — 3/5 width */}
+                      <div className="md:col-span-3 p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="flex items-center gap-4 mb-5">
+                          <div className={`w-12 h-12 rounded-xl ${pillar.iconBg} flex items-center justify-center`}>
+                            <span className={pillar.iconColor}>{pillar.icon}</span>
+                          </div>
+                          <span className="text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                            {pillar.num}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
+                          {t(`threePillars.${pillar.key}.title`)}
+                        </h3>
+                        <p className="text-future-dusk-500 leading-relaxed">
+                          {t(`threePillars.${pillar.key}.description`)}
+                        </p>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ━━━ 3. THREE PILLARS ━━━ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-                {t('threePillars.heading')}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-                {t('threePillars.subtitle')}
-              </p>
-            </div>
-          </ScrollReveal>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {[
-              { key: 'capture', icon: <Camera className="h-7 w-7" />, image: '/images/illustrations/pillar-hardware.avif', iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
-              { key: 'creation', icon: <Sparkles className="h-7 w-7" />, image: '/images/illustrations/pillar-ia.avif', iconBg: 'bg-primary-orbitvu/10', iconColor: 'text-primary-orbitvu' },
-              { key: 'formation', icon: <GraduationCap className="h-7 w-7" />, image: '/images/illustrations/pillar-formation.avif', iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
-            ].map((pillar, idx) => (
-              <StaggerItem key={pillar.key}>
-                <SpringCard className="h-full">
-                  <div className="relative bg-neutral-50 rounded-2xl overflow-hidden group border-2 border-transparent hover:border-very-peri-200 transition-colors duration-300 h-full">
-                    <div className="aspect-[16/10] relative overflow-hidden">
-                      <Image src={pillar.image} alt={t(`threePillars.${pillar.key}.title`)} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className={`w-14 h-14 rounded-xl ${pillar.iconBg} flex items-center justify-center flex-shrink-0`}>
-                          <span className={pillar.iconColor}>{pillar.icon}</span>
-                        </div>
-                        <span className="text-5xl font-heading font-bold text-very-peri-100 select-none">
-                          {String(idx + 1).padStart(2, '0')}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
-                        {t(`threePillars.${pillar.key}.title`)}
-                      </h3>
-                      <p className="text-sm text-future-dusk-500 leading-relaxed">
-                        {t(`threePillars.${pillar.key}.description`)}
-                      </p>
-                    </div>
-                  </div>
-                </SpringCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ━━━ 4. PHOTO TYPES ━━━ */}
-      <section className="py-24 relative overflow-hidden">
-        {/* Gradient mesh background */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. PHOTO TYPES — Bento grid, varied card sizes
+          Design: First card spans 2 rows (hero card), others are smaller.
+          Creates visual hierarchy instead of 4 identical boxes.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-neutral-50" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-very-peri-200/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-200/15 rounded-full blur-[100px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+            <div className="max-w-3xl mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Types de visuels' : 'Visual types'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('photoTypes.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              <p className="text-lg text-future-dusk-500">
                 {t('photoTypes.subtitle')}
               </p>
             </div>
           </ScrollReveal>
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
-            {photoTypes.map((type) => (
-              <StaggerItem key={type.key}>
-                <SpringCard className="h-full">
-                  <div className={`bg-white rounded-2xl border-2 border-transparent ${type.hoverBorder} p-8 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-lg`}>
-                    <div className="flex items-center gap-4 mb-5">
-                      <span className={`inline-flex items-center justify-center h-14 w-14 rounded-xl ${type.color}`}>
-                        {type.icon}
-                      </span>
-                      <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                        {t(`photoTypes.${type.key}.title`)}
-                      </h3>
-                    </div>
-                    <p className="text-future-dusk-600 leading-relaxed mb-5 flex-1">
-                      {t(`photoTypes.${type.key}.description`)}
-                    </p>
-                    <div className="space-y-2.5 mb-6">
-                      {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
-                        <div key={stat} className="flex items-center gap-2.5 text-sm">
-                          <div className="w-5 h-5 rounded-full bg-accent-success/10 flex items-center justify-center flex-shrink-0">
-                            <Check className="h-3 w-3 text-accent-success" />
-                          </div>
-                          <span className="font-medium text-future-dusk-800">{t(`photoTypes.${type.key}.${stat}`)}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Link
-                      href="/studio-photo/selecteur-machines"
-                      className={`inline-flex items-center gap-1.5 text-sm font-semibold ${type.accent} hover:opacity-80 transition-opacity group/link`}
-                    >
-                      {t(`photoTypes.${type.key}.cta`)}
-                      <ArrowRight className="h-3.5 w-3.5 group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
+
+          {/* Bento: first card is large (left), 3 smaller cards stacked (right) */}
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Hero card — Packshot */}
+            <ScrollReveal offset={30}>
+              <SpringCard className="h-full">
+                <div className="bg-white rounded-2xl border border-neutral-100 hover:border-very-peri-300 p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group">
+                  <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-very-peri-100 text-very-peri-700 mb-6">
+                    <Camera className="h-7 w-7" />
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
+                    {t('photoTypes.still.title')}
+                  </h3>
+                  <p className="text-future-dusk-600 leading-relaxed mb-6 text-lg flex-1">
+                    {t('photoTypes.still.description')}
+                  </p>
+                  <div className="grid grid-cols-3 gap-4 mb-8">
+                    {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
+                      <div key={stat} className="bg-very-peri-50 rounded-xl p-3 text-center">
+                        <span className="text-xs font-semibold text-very-peri-700">{t(`photoTypes.still.${stat}`)}</span>
+                      </div>
+                    ))}
                   </div>
-                </SpringCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                  <Link href="/studio-photo/selecteur-machines" className="inline-flex items-center gap-2 text-sm font-semibold text-very-peri-600 group-hover:text-very-peri-700">
+                    {t('photoTypes.still.cta')} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </SpringCard>
+            </ScrollReveal>
+
+            {/* 3 smaller cards stacked */}
+            <div className="space-y-6">
+              {([
+                { key: 'threeSixty' as const, icon: <RotateCcw className="h-5 w-5" />, color: 'bg-amber-100 text-amber-700', accent: 'text-amber-600', hoverBorder: 'hover:border-amber-300' },
+                { key: 'fashion' as const, icon: <Shirt className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', accent: 'text-emerald-600', hoverBorder: 'hover:border-emerald-300' },
+                { key: 'flatlay' as const, icon: <Layout className="h-5 w-5" />, color: 'bg-rose-100 text-rose-700', accent: 'text-rose-600', hoverBorder: 'hover:border-rose-300' },
+              ]).map((type) => (
+                <ScrollReveal key={type.key} offset={20}>
+                  <SpringCard hoverY={-3} hoverScale={1.005}>
+                    <div className={`bg-white rounded-2xl border border-neutral-100 ${type.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
+                      <div className="flex items-start gap-5">
+                        <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${type.color} flex-shrink-0 mt-1`}>
+                          {type.icon}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-4 mb-2">
+                            <h3 className="text-lg font-heading font-bold text-future-dusk-900">
+                              {t(`photoTypes.${type.key}.title`)}
+                            </h3>
+                            <Link href="/studio-photo/selecteur-machines" className={`${type.accent} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`}>
+                              <ArrowRight className="h-4 w-4" />
+                            </Link>
+                          </div>
+                          <p className="text-sm text-future-dusk-500 leading-relaxed mb-3">
+                            {t(`photoTypes.${type.key}.description`)}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
+                              <span key={stat} className="text-xs font-medium text-future-dusk-600 bg-neutral-50 px-2.5 py-1 rounded-lg">
+                                {t(`photoTypes.${type.key}.${stat}`)}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ━━━ 5. SYSTEM SELECTOR ━━━ */}
-      <section id="studios" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. SYSTEM SELECTOR — Full width, dark surround
+          Design: Selector component floats on white card above dark bg
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="studios" className="py-28 bg-future-dusk-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+            <div className="text-center mb-14">
+              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? '20 systèmes Orbitvu' : '20 Orbitvu systems'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
                 {t('products.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+              <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">
                 {t('products.subtitle')}
               </p>
             </div>
           </ScrollReveal>
           <FadeInView delay={0.2}>
-            <MachineSelector
-              mode="display"
-              showFilters={true}
-              showPrices={false}
-              locale={lang as 'fr' | 'en'}
-            />
+            <div className="bg-white rounded-3xl p-6 lg:p-10 shadow-2xl shadow-black/20">
+              <MachineSelector
+                mode="display"
+                showFilters={true}
+                showPrices={false}
+                locale={lang as 'fr' | 'en'}
+              />
+            </div>
           </FadeInView>
         </div>
       </section>
 
-      {/* ━━━ 6. ACCOMPANIMENT ━━━ */}
-      <section className="py-24 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-          aria-hidden="true"
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. ACCOMPANIMENT — Horizontal timeline, not 3 boxes
+          Design: Steps connected by a line, numbered, editorial feel
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 mb-4">
                 {t('support.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-200 max-w-2xl mx-auto">
+              <p className="text-lg text-future-dusk-500">
                 {t('support.subtitle')}
               </p>
             </div>
           </ScrollReveal>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {supportSteps.map((step) => (
-              <StaggerItem key={step.key}>
-                <SpringCard className="h-full" hoverY={-6}>
-                  <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300 h-full">
-                    <div className="flex items-center gap-4 mb-5">
-                      <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-very-peri-500/20 text-very-peri-300">
-                        {step.icon}
-                      </span>
-                      <span className="text-4xl font-heading font-bold text-white/10 select-none">{step.number}</span>
-                    </div>
-                    <h3 className="text-xl font-heading font-bold mb-3">
+
+          <div className="space-y-0">
+            {([
+              { key: 'step1' as const, icon: <Users className="h-6 w-6" />, num: '01' },
+              { key: 'step2' as const, icon: <Truck className="h-6 w-6" />, num: '02' },
+              { key: 'step3' as const, icon: <Headphones className="h-6 w-6" />, num: '03' },
+            ]).map((step, idx) => (
+              <ScrollReveal key={step.key} offset={30}>
+                <div className={`grid md:grid-cols-12 gap-8 items-center py-12 ${idx < 2 ? 'border-b border-neutral-100' : ''}`}>
+                  {/* Number — massive, decorative */}
+                  <div className="md:col-span-2 text-center md:text-right">
+                    <span className="text-8xl lg:text-9xl font-heading font-bold text-neutral-100 select-none leading-none">
+                      {step.num}
+                    </span>
+                  </div>
+                  {/* Icon */}
+                  <div className="md:col-span-1 flex justify-center">
+                    <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-600">
+                      {step.icon}
+                    </span>
+                  </div>
+                  {/* Content */}
+                  <div className="md:col-span-9">
+                    <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-2">
                       {t(`support.${step.key}title`)}
                     </h3>
-                    <p className="text-future-dusk-300 leading-relaxed">
+                    <p className="text-future-dusk-500 leading-relaxed max-w-2xl">
                       {t(`support.${step.key}description`)}
                     </p>
                   </div>
-                </SpringCard>
-              </StaggerItem>
+                </div>
+              </ScrollReveal>
             ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ━━━ 7. ROI TEASER ━━━ */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-very-peri-50 to-white" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-very-peri-200/20 rounded-full blur-[150px]" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative">
-          <ScrollReveal scale>
-            <div className="relative bg-white rounded-3xl border border-very-peri-100 p-8 sm:p-12 text-center overflow-hidden shadow-lg shadow-very-peri-500/5">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-very-peri-100 to-transparent rounded-bl-[100px]" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-very-peri-50 to-transparent rounded-tr-[60px]" />
-              <div className="relative">
-                <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-very-peri-100 text-very-peri-600 mb-6">
-                  <Calculator className="h-8 w-8" />
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
-                  {t('roiTeaser.heading')}
-                </h2>
-                <p className="text-future-dusk-500 max-w-xl mx-auto mb-8 leading-relaxed">
-                  {t('roiTeaser.subtitle')}
-                </p>
-                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25 px-8 h-12 text-base font-semibold">
-                  <Link href="/calculateur-roi">
-                    {t('roiTeaser.cta')} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <p className="mt-5 text-sm font-semibold text-very-peri-600">
-                  {t('roiTeaser.stat')}
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ━━━ 8. FAQ ━━━ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto">
-            <ScrollReveal>
-              <div className="text-center mb-12">
-                <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                  {t('faqStudios.heading')}
-                </TextReveal>
-              </div>
-            </ScrollReveal>
-            <StaggerContainer stagger={0.08} className="space-y-3">
-              {(['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => (
-                <StaggerItem key={key}>
-                  <details className="group bg-white rounded-xl border border-neutral-100 overflow-hidden [&[open]]:shadow-sm [&[open]]:border-very-peri-200 transition-all duration-200">
-                    <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                      <h3 className="text-base font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
-                        {t(`faqStudios.${key}.question`)}
-                      </h3>
-                      <ChevronDown className="h-5 w-5 text-future-dusk-400 shrink-0 group-open:rotate-180 transition-transform duration-200" />
-                    </summary>
-                    <div className="px-6 pb-6 -mt-1">
-                      <p className="text-future-dusk-500 leading-relaxed">{t(`faqStudios.${key}.answer`)}</p>
-                    </div>
-                  </details>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
           </div>
         </div>
       </section>
 
-      {/* ━━━ 9. FINAL CTA ━━━ */}
-      <section className="py-24 bg-gradient-to-br from-future-dusk-900 via-very-peri-800 to-future-dusk-800 text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-          aria-hidden="true"
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold">
-                {t('finalCta.heading')}
-              </TextReveal>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          7. ROI TEASER — Full-bleed gradient, floating card
+          Design: Dramatic gradient, centered floating card with depth
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-very-peri-600 via-very-peri-500 to-future-dusk-700" />
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal scale>
+            <div className="bg-white rounded-3xl p-10 sm:p-14 text-center shadow-2xl shadow-very-peri-900/20">
+              <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-very-peri-100 text-very-peri-600 mb-8">
+                <Calculator className="h-8 w-8" />
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('roiTeaser.heading')}
+              </h2>
+              <p className="text-future-dusk-500 max-w-xl mx-auto mb-8 text-lg leading-relaxed">
+                {t('roiTeaser.subtitle')}
+              </p>
+              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl shadow-lg shadow-very-peri-500/25 px-10 h-14 text-base font-semibold">
+                <Link href="/calculateur-roi">
+                  {t('roiTeaser.cta')} <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <p className="mt-6 text-sm font-semibold text-very-peri-600">
+                {t('roiTeaser.stat')}
+              </p>
             </div>
           </ScrollReveal>
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
-            <StaggerItem>
-              <SpringCard className="h-full" hoverY={-6}>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 h-full flex flex-col">
-                  <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
-                  <p className="text-future-dusk-200 mb-6 leading-relaxed flex-1">{t('finalCta.demo.description')}</p>
-                  <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-12 text-base shadow-lg shadow-black/10 w-fit">
-                    <Link href="/contact">{t('finalCta.demo.cta')}</Link>
-                  </Button>
-                </div>
-              </SpringCard>
-            </StaggerItem>
-            <StaggerItem>
-              <SpringCard className="h-full" hoverY={-6}>
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full flex flex-col">
-                  <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
-                  <p className="text-future-dusk-300 mb-6 leading-relaxed flex-1">{t('finalCta.guide.description')}</p>
-                  <Button asChild className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
-                    <Link href="/blog">{t('finalCta.guide.cta')}</Link>
-                  </Button>
-                </div>
-              </SpringCard>
-            </StaggerItem>
-          </StaggerContainer>
         </div>
       </section>
 
-      {/* ━━━ 10. CROSS-LINKS ━━━ */}
-      <section className="py-16 bg-neutral-50">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. FAQ — Two-column: heading left, accordion right
+          Design: Split layout, heading stays while user scrolls FAQs
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-10">
-            <h2 className="text-2xl font-heading font-bold text-future-dusk-900">
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Left: sticky heading */}
+            <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
+              <ScrollReveal>
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                  {t('faqStudios.heading')}
+                </TextReveal>
+                <p className="text-future-dusk-500 leading-relaxed">
+                  {isFr
+                    ? 'Tout ce que vous devez savoir avant d\'investir dans un studio automatisé.'
+                    : 'Everything you need to know before investing in an automated studio.'}
+                </p>
+              </ScrollReveal>
+            </div>
+
+            {/* Right: accordion */}
+            <div className="lg:col-span-8">
+              <StaggerContainer stagger={0.08} className="space-y-4">
+                {(['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => (
+                  <StaggerItem key={key}>
+                    <details className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
+                      <summary className="flex items-center justify-between gap-4 p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
+                          {t(`faqStudios.${key}.question`)}
+                        </h3>
+                        <ChevronDown className="h-5 w-5 text-future-dusk-400 shrink-0 group-open:rotate-180 transition-transform duration-300" />
+                      </summary>
+                      <div className="px-6 lg:px-8 pb-6 lg:pb-8 -mt-1">
+                        <p className="text-future-dusk-500 leading-relaxed">{t(`faqStudios.${key}.answer`)}</p>
+                      </div>
+                    </details>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          9. FINAL CTA — Asymmetric, demo card is dominant
+          Design: Demo card takes 60%, guide card 40%. Visual hierarchy.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
+              {t('finalCta.heading')}
+            </TextReveal>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-5 gap-8">
+            {/* Demo — 3/5 = dominant */}
+            <SpringCard className="lg:col-span-3" hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+                <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.demo.description')}</p>
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                  <Link href="/contact">{t('finalCta.demo.cta')}</Link>
+                </Button>
+              </div>
+            </SpringCard>
+            {/* Guide — 2/5 = secondary */}
+            <SpringCard className="lg:col-span-2" hoverY={-6}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10 h-full flex flex-col">
+                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
+                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">{t('finalCta.guide.description')}</p>
+                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                  <Link href="/blog">{t('finalCta.guide.cta')}</Link>
+                </Button>
+              </div>
+            </SpringCard>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          10. CROSS-LINKS — Minimal, editorial
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 bg-white border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="mb-12">
+            <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">
               {t('crossLinks.heading')}
-            </h2>
+            </span>
           </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
               { key: 'ia', href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" /> },
               { key: 'industrie', href: '/industrie', icon: <Layout className="h-5 w-5" /> },
               { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" /> },
             ].map((link) => (
-              <StaggerItem key={link.key}>
-                <SpringCard>
-                  <Link href={link.href} className="group block bg-white rounded-xl border-2 border-transparent p-6 hover:border-very-peri-200 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-100 text-very-peri-600 group-hover:bg-very-peri-200 transition-colors">
-                        {link.icon}
-                      </span>
-                      <h3 className="font-semibold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
-                        {t(`crossLinks.${link.key}.title`)}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-future-dusk-500 leading-relaxed">
-                      {t(`crossLinks.${link.key}.description`)}
-                    </p>
-                    <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-very-peri-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {lang === 'fr' ? 'Découvrir' : 'Discover'} <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </Link>
-                </SpringCard>
-              </StaggerItem>
+              <FadeInView key={link.key}>
+                <Link href={link.href} className="group block px-8 py-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-very-peri-500">{link.icon}</span>
+                    <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                      {t(`crossLinks.${link.key}.title`)}
+                    </h3>
+                    <ArrowRight className="h-4 w-4 text-future-dusk-300 group-hover:text-very-peri-500 group-hover:translate-x-1 transition-all ml-auto" />
+                  </div>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                    {t(`crossLinks.${link.key}.description`)}
+                  </p>
+                </Link>
+              </FadeInView>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
