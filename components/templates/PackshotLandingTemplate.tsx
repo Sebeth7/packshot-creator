@@ -71,7 +71,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
             {[1, 2, 3].map((i) => (
               <StaggerItem key={i}>
                 <div className="text-center px-8">
-                  <p className="text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
                     {t(`stats.stat${i}.value`)}
                   </p>
                   <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
@@ -88,7 +88,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           3. BENEFITS — Split 4/8, sticky heading, numbered cards
           Design: Asymmetric. Heading stays left, benefits scroll right.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white">
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             {/* Left column: sticky heading */}
@@ -106,12 +106,12 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               {benefitIcons.map((Icon, i) => (
                 <ScrollReveal key={i} offset={40}>
                   <SpringCard>
-                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-8 lg:p-10">
+                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-5 lg:p-10">
                       <div className="flex items-center gap-4 mb-5">
                         <div className="w-12 h-12 rounded-xl bg-very-peri-100 flex items-center justify-center">
                           <Icon className="h-6 w-6 text-very-peri-700" />
                         </div>
-                        <span className="text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                        <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                       </div>
@@ -134,7 +134,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           4. MACHINES — Dark bg, floating white card
           Design: Dark surround. Machine cards on white elevated surface.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -198,9 +198,9 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           5. FAQ — Two-column: heading left, accordion right
           Design: Split layout, heading stays while user scrolls FAQs.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-neutral-50">
+      <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -244,7 +244,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           6. FINAL CTA — Asymmetric 3/5 + 2/5
           Design: Demo card takes 3/5, guide card 2/5. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -255,7 +255,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Demo — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
                 <h3 className="text-3xl font-heading font-bold mb-4">
                   {t('cta.heading')}
                 </h3>

@@ -134,24 +134,34 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Asymmetric. Heading stays left, principles scroll right
           with ghost numbers and horizontal card layout.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white">
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Notre philosophie' : 'Our philosophy'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('manifeste.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500 leading-relaxed">
+              <p className="text-base lg:text-lg text-future-dusk-500 leading-relaxed mb-8">
                 {t('manifeste.subtitle')}
               </p>
+              <div className="hidden lg:block rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/illustrations/studio-ia-concept.avif"
+                  alt={isFr ? 'Studio photo automatisé avec écran IA lifestyle' : 'Automated photo studio with AI lifestyle screen'}
+                  width={600}
+                  height={338}
+                  className="w-full h-auto"
+                  sizes="(max-width: 1024px) 0px, 33vw"
+                />
+              </div>
             </ScrollReveal>
 
             {/* Right column: stacked principle cards */}
-            <div className="lg:col-span-8 space-y-8">
+            <div className="lg:col-span-8 space-y-6 lg:space-y-8">
               {([
                 { key: 'principle1' as const, icon: <Camera className="h-6 w-6" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu', num: '01' },
                 { key: 'principle2' as const, icon: <Sparkles className="h-6 w-6" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700', num: '02' },
@@ -159,12 +169,12 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               ]).map((principle) => (
                 <ScrollReveal key={principle.key} offset={40}>
                   <SpringCard>
-                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-8 lg:p-10">
+                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-6 lg:p-10">
                       <div className="flex items-center gap-4 mb-5">
                         <div className={`w-12 h-12 rounded-xl ${principle.iconBg} flex items-center justify-center`}>
                           <span className={principle.iconColor}>{principle.icon}</span>
                         </div>
-                        <span className="text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                        <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
                           {principle.num}
                         </span>
                       </div>
@@ -188,7 +198,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Recommended card is the hero (larger, elevated), pure IA
           card is secondary (smaller). Creates visual hierarchy.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 relative overflow-hidden">
+      <section className=" relative overflow-hidden">
         <div className="absolute inset-0 bg-neutral-50" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
@@ -209,7 +219,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {/* Hero card — Packshot pro + IA (3/5 = dominant) */}
             <ScrollReveal offset={30} className="lg:col-span-3">
               <SpringCard className="h-full">
-                <div className="bg-white rounded-2xl p-10 lg:p-12 border-2 border-very-peri-300 ring-1 ring-very-peri-100 h-full relative shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div className="bg-white rounded-2xl p-6 lg:p-12 border-2 border-very-peri-300 ring-1 ring-very-peri-100 h-full relative shadow-sm hover:shadow-xl transition-shadow duration-300">
                   <span className="absolute -top-3 left-8 bg-very-peri-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
                     {isFr ? 'Recommandé' : 'Recommended'}
                   </span>
@@ -277,7 +287,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Dark surround with gradient. Platform info on white
           floating card. Features as timeline steps inside.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-[#2d1b4e]/40 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -303,7 +313,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 {PLATFORM_FEATURES.map((feat, idx) => (
                   <div key={feat.key} className={`grid md:grid-cols-12 gap-6 items-center py-8 ${idx < PLATFORM_FEATURES.length - 1 ? 'border-b border-neutral-100' : ''}`}>
                     <div className="md:col-span-2 text-center md:text-right">
-                      <span className="text-7xl lg:text-8xl font-heading font-bold text-neutral-100 select-none leading-none">
+                      <span className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-neutral-100 select-none leading-none">
                         {feat.num}
                       </span>
                     </div>
@@ -342,7 +352,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: First card spans 2 rows (hero card), others are smaller.
           Creates visual hierarchy instead of 4 identical boxes.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-white relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -365,16 +375,27 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {/* Hero card — Lifestyle */}
             <ScrollReveal offset={30}>
               <SpringCard className="h-full">
-                <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group">
-                  <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${FEATURES[0].color} mb-6`}>
-                    {FEATURES[0].icon}
-                  </span>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
-                    {t(`features.${FEATURES[0].key}.name`)}
-                  </h3>
-                  <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
-                    {t(`features.${FEATURES[0].key}.description`)}
-                  </p>
+                <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group overflow-hidden">
+                  <div className="aspect-[16/10] relative">
+                    <Image
+                      src="/images/illustrations/ia-lifestyle-result.avif"
+                      alt={isFr ? 'Résultat lifestyle IA — mise en scène produit' : 'AI lifestyle result — product staging'}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="p-6 lg:p-8 flex flex-col flex-1">
+                    <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${FEATURES[0].color} mb-4`}>
+                      {FEATURES[0].icon}
+                    </span>
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-3">
+                      {t(`features.${FEATURES[0].key}.name`)}
+                    </h3>
+                    <p className="text-future-dusk-500 leading-relaxed flex-1">
+                      {t(`features.${FEATURES[0].key}.description`)}
+                    </p>
+                  </div>
                 </div>
               </SpringCard>
             </ScrollReveal>
@@ -412,7 +433,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Each slider reveals at different offsets. Floating
           sector badges. Subtle parallax on the grid.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="resultats" className="py-28 bg-neutral-50 relative overflow-hidden">
+      <section id="resultats" className="py-16 lg:py-28 bg-neutral-50 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-very-peri-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -475,7 +496,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
               <StaggerItem key={stat}>
                 <div className="text-center px-8">
-                  <p className="text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
                     {t(`socialProof.${stat}`)}
                   </p>
                   <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
@@ -508,7 +529,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           8. COMPATIBLE SYSTEMES ORBITVU — Split gradient, enhanced
           Design: Full gradient bg, split image + content. TextReveal title.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -556,9 +577,9 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Split layout, heading stays while user scrolls FAQs.
           Same pattern as Studios S8.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-neutral-50">
+      <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -603,7 +624,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Test BlendAI card takes 3/5, demo card 2/5.
           Visual hierarchy. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -614,7 +635,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Test BlendAI — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
                 <Sparkles className="h-8 w-8 text-very-peri-200 mb-6" />
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.test.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.test.description')}</p>

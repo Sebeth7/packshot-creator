@@ -238,7 +238,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           Design: Overline + TextReveal, left-aligned heading. SectorGrid
           component handles the actual sector cards.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="secteurs" className="py-28 bg-white">
+      <section id="secteurs" className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
@@ -266,7 +266,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           Design: Heading stays left, case study cards scroll right.
           Each card has a sector badge and result highlight.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-neutral-50">
+      <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             {/* Left column: sticky heading */}
@@ -289,7 +289,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               {caseStudies.map((cs) => (
                 <ScrollReveal key={cs.sector} offset={30}>
                   <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className={`rounded-2xl border ${cs.color} p-8 lg:p-10 transition-all duration-300`}>
+                    <div className={`rounded-2xl border ${cs.color} p-5 lg:p-10 transition-all duration-300`}>
                       <div className="flex items-start gap-4 mb-4">
                         <Quote className="h-6 w-6 text-future-dusk-300 shrink-0 mt-1" />
                         <div>
@@ -312,7 +312,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           Design: First benefit is the hero card (large, left),
           other two stack on the right. Creates visual hierarchy.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -378,7 +378,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           Design: Dark surround. Giant step numbers, horizontal rows,
           icon + content. Same energy as Studios S6.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-very-peri-800/20 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -399,13 +399,26 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             </div>
           </ScrollReveal>
 
+          <FadeInView delay={0.15} className="mb-16">
+            <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src="/images/illustrations/workflow-pipeline.avif"
+                alt={isFr ? 'Pipeline : capture studio → IA → diffusion multi-canal' : 'Pipeline: studio capture → AI → multi-channel distribution'}
+                width={1200}
+                height={675}
+                className="w-full h-auto"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </div>
+          </FadeInView>
+
           <div className="space-y-0">
             {workflowSteps.map((step, idx) => (
               <ScrollReveal key={step.num} offset={30}>
                 <div className={`grid md:grid-cols-12 gap-8 items-center py-12 ${idx < workflowSteps.length - 1 ? 'border-b border-white/10' : ''}`}>
                   {/* Number — massive, decorative */}
                   <div className="md:col-span-2 text-center md:text-right">
-                    <span className="text-8xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
+                    <span className="text-5xl md:text-8xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
                       {step.num}
                     </span>
                   </div>
@@ -435,9 +448,9 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           6. FAQ — Two-column: heading left, accordion right
           Design: Split layout, heading stays while user scrolls FAQs.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-neutral-50">
+      <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -481,7 +494,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           7. FINAL CTA — Asymmetric, demo card is dominant
           Design: Demo card takes 3/5, quote card 2/5. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -492,7 +505,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Demo — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
                 <h3 className="text-3xl font-heading font-bold mb-4">
                   {isFr ? 'Démo personnalisée' : 'Personalized demo'}
                 </h3>

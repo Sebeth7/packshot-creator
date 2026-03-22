@@ -248,7 +248,7 @@ export default async function HomePage({
           3. PAIN POINTS — ScrollReveal + SpringCard
           Design: Each card reveals with parallax. Spring hover.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-bg-light-gray">
+      <section className="py-16 lg:py-28 bg-bg-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -297,7 +297,7 @@ export default async function HomePage({
           Design: Asymmetric. Heading stays left, pillars scroll right
           with ghost numbers and image+text horizontal cards.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white">
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             {/* Left column: sticky heading */}
@@ -311,7 +311,7 @@ export default async function HomePage({
               <p className="text-lg text-neutral-medium leading-relaxed mb-8">
                 {t('hybrid.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <Button
                   asChild
                   size="lg"
@@ -327,6 +327,16 @@ export default async function HomePage({
                   <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
                 </Button>
               </div>
+              <div className="hidden lg:block rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/illustrations/studio-ia-concept.avif"
+                  alt={t('hybrid.heading')}
+                  width={600}
+                  height={338}
+                  className="w-full h-auto"
+                  sizes="33vw"
+                />
+              </div>
             </ScrollReveal>
 
             {/* Right column: stacked pillar cards */}
@@ -334,12 +344,12 @@ export default async function HomePage({
               {HYBRID_STEPS.map((step, idx) => (
                 <ScrollReveal key={step.key} offset={40}>
                   <SpringCard>
-                    <div className="group bg-bg-light-gray rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-8 lg:p-10">
+                    <div className="group bg-bg-light-gray rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-5 lg:p-10">
                       <div className="flex items-center gap-4 mb-5">
                         <div className={`w-12 h-12 rounded-xl ${step.bg} flex items-center justify-center`}>
                           <step.Icon className={`w-6 h-6 ${step.icon}`} strokeWidth={1.5} />
                         </div>
-                        <span className="text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                        <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
                           {String(idx + 1).padStart(2, '0')}
                         </span>
                       </div>
@@ -609,9 +619,9 @@ export default async function HomePage({
           10. FAQ — Two-column: heading left, accordion right
           Design: Split layout, heading stays while user scrolls FAQs.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-white">
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -653,7 +663,7 @@ export default async function HomePage({
           11. FINAL CTA — Asymmetric, demo card is dominant
           Design: Demo card takes 3/5, ROI card 2/5. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <ScrollReveal>
@@ -670,7 +680,7 @@ export default async function HomePage({
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Demo — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.subtitle')}</p>
                 <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
