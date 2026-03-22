@@ -1,21 +1,44 @@
 # PLAN DE PRODUCTION - PackshotCreator
 > Document vivant. Source de verite pour toutes les sessions Claude Code.
-> Derniere MAJ : 2026-03-22 (session 3)
+> Derniere MAJ : 2026-03-22 (session 3 complete)
 
 ## 0. RESUME SESSION 3 (22/03/2026)
 
-### Fait en session 3
-- **Page /studios-photo-automatises RESTRUCTUREE** (plan 5.1) : 10 sections (Hero reecrit "En 3 secondes", Social Proof bar, 3 Piliers sans "hybride", Types de photo, Selecteur systemes avec intro narrative, Accompagnement, Teaser ROI vers /calculateur-roi, FAQ reordonnee pricing-first, CTA final double voie, Maillage cross-links). ROI Calculator embarque supprime. Traductions FR + EN completes.
-- **Hub /industrie ENRICHI** (plan 5.3) : "12" → "14 secteurs" corrige, descriptions activees dans SectorGrid (14 secteurs avec 1 ligne chacun), 4 mini case studies cross-secteur (Chaussures, Cosmetiques, Industrie, Mode), FAQ transversale 5 questions + schema FAQPage, CTA contextualise "Quel est votre secteur ?", maillage cross-links ajoute.
-- **Terminologie "machines" → "systemes"** : remplacement dans toutes les traductions FR + EN (headings, descriptions, FAQ, support, selecteur, bio). "HYBRIDE" → "Photo studio + IA" dans home hero, section hybrid, bio Academy.
-- **Maillage inter-pages** : section cross-links ajoutee sur 3 pages (Studios, IA, Industrie) avec liens vers les 2 autres + Academy. Design unifie avec icones et hover effects.
+### Phase 1 : Contenu & Structure (fait)
+- **Page /studios-photo-automatises RESTRUCTUREE** (plan 5.1) : 10 sections, copy reecrit PAS/AIDA FR+EN, ROI Calculator embarque supprime (teaser vers /calculateur-roi), FAQ pricing-first, maillage cross-links
+- **Hub /industrie ENRICHI** (plan 5.3) : "12"→"14 secteurs", descriptions SectorGrid, 4 mini case studies, FAQ transversale 5Q + FAQPage schema, maillage cross-links
+- **Terminologie** : "machines"→"systemes" + "hybride"→"Photo studio + IA" dans toutes les traductions FR+EN
+- **Maillage** : cross-links sur Studios, IA, Industrie (3 pages x 3 liens)
+
+### Phase 2 : Infrastructure motion (fait)
+- **Lenis smooth scroll** installe globalement (layout.tsx)
+- **4 composants motion crees** dans components/animations/ :
+  - `TextReveal` : titre mot par mot avec stagger (whileInView)
+  - `ScrollReveal` : parallax Y + opacity lies au scroll (useScroll/useTransform)
+  - `SpringCard` : micro-interactions spring hover/tap (whileHover/whileTap)
+  - `SmoothScroll` : provider Lenis global
+- Tous respectent prefers-reduced-motion
+
+### Phase 3 : Redesign layout radical Studios (fait)
+Concept "Studio Light" — chaque section a un layout unique :
+- Section 2 Social Proof : **ruban sombre, stats 7xl blanc**, logos inverses
+- Section 3 Piliers : **split 4/8**, heading sticky gauche, cartes horizontales image+texte droite, ghost numbers 6xl
+- Section 4 Photo Types : **bento grid**, 1 hero card grande gauche + 3 compactes empilees droite
+- Section 5 Selecteur : **fond sombre**, selecteur sur carte blanche flottante shadow-2xl
+- Section 6 Accompagnement : **timeline editoriale**, numeros geants 9xl, lignes horizontales + separateurs
+- Section 7 ROI Teaser : **gradient violet plein**, carte blanche flottante shadow-2xl + dot pattern
+- Section 8 FAQ : **split layout**, heading sticky gauche, accordeon droite
+- Section 9 CTA Final : **asymetrique 3/5 + 2/5**, demo dominante gradient violet
+- Section 10 Cross-links : **style editorial**, separateurs verticaux, pas de cartes
 
 ### A faire en session 4
-1. **Home** : images manquantes (temoignages, pain points) — Seb fournira
-2. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget, MAJ comparatif
-3. **Pages secteur /packshot-***: CRO + terminologie
-4. **Academy** : enrichissement formations detail
-5. **SoftwareApplication schema** pour BlendAI (deja fait en S2 sur /ia-photo-produit)
+1. **PRIORITE : Appliquer le meme redesign layout sur /ia-photo-produit** — meme approche "Studio Light", chaque section unique, utiliser TextReveal/ScrollReveal/SpringCard
+2. **Appliquer le meme redesign sur /industrie hub** — adapter les layouts bento/split/timeline au contenu secteur
+3. **Appliquer sur la Home** — aligner sur le nouveau niveau (la Home est deja mieux que les autres mais certaines sections peuvent etre elevees)
+4. **Pages /packshot-*** (bijoux, mode, e-commerce, amazon, industriel) : CRO + terminologie "systemes" + layouts modernes
+5. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget
+6. **Academy** : enrichissement formations detail
+7. **Images** : Seb doit fournir (temoignages Home, types de photo Studios)
 
 ## 0.1 RESUME SESSION 2 (22/03/2026)
 
@@ -92,7 +115,7 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 ### Chantier 2 : Pages principales — conversion page par page
 | Page | CRO | Top probleme | Quick win | Copy | SEO | Images | Statut |
 |------|-----|-------------|-----------|------|-----|--------|--------|
-| /studios-photo-automatises | 7.5→9 | RESTRUCTURE S3 | 10 sections, copy rewrite, maillage | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — restructuration complete |
+| /studios-photo-automatises | 7.5→9 | REDESIGN LAYOUT S3 | Copy + structure + layout radical "Studio Light" | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — redesign complet (bento, split, timeline, asymetrique) |
 | /ia-photo-produit | 8 | Pas de stats/garanties | Ajouter "60% plus rapide" pres before/after | - | - | - | FAIT 22/03 S2 — barre 60%/10x/100% |
 | /studio-photo/[machines] | - | - | - | - | - | - | A FAIRE |
 | /academy (hub) | 7.5 | Pas de pricing visible | Montrer "From X€" ou "100% OPCO" | - | - | - | FAIT 22/03 S2 — badge OPCO 100% + Qualiopi |
