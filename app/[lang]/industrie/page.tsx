@@ -2,12 +2,18 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { Factory, Zap, TrendingUp, Target, Camera, Sparkles, Send, ArrowRight, ChevronRight, Quote, GraduationCap } from 'lucide-react';
+import {
+  Factory, Zap, TrendingUp, Target, Camera, Sparkles, Send,
+  ArrowRight, ChevronDown, Quote, GraduationCap, Layout,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import SectorGrid, { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -65,6 +71,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
         ? '50-300 produits/jour en studio automatisé. 100-500 visuels lifestyle/jour via IA. Délais réduits de 70-90%.'
         : '50-300 products/day in automated studio. 100-500 lifestyle visuals/day via AI. Timelines reduced by 70-90%.',
       color: 'bg-amber-100 text-amber-700',
+      hoverBorder: 'hover:border-amber-300',
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
@@ -73,6 +80,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
         ? 'Retour sur investissement 12-18 mois. Réduction coûts photo 60-85%. Idéal pour catalogues 100 à 5000+ références.'
         : 'Return on investment 12-18 months. Photo cost reduction 60-85%. Ideal for catalogs with 100 to 5000+ references.',
       color: 'bg-emerald-100 text-emerald-700',
+      hoverBorder: 'hover:border-emerald-300',
     },
     {
       icon: <Target className="h-6 w-6" />,
@@ -81,6 +89,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
         ? 'Même qualité sur tout le catalogue. Éclairage, angles et ambiances identiques. Renforce l\'identité de marque.'
         : 'Same quality across the entire catalog. Identical lighting, angles and ambiances. Strengthens brand identity.',
       color: 'bg-very-peri-100 text-very-peri-700',
+      hoverBorder: 'hover:border-very-peri-300',
     },
   ];
 
@@ -91,7 +100,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       description: isFr
         ? 'Systèmes Orbitvu : packshot fond blanc haute résolution, 360° optionnel, détourage automatique.'
         : 'Orbitvu systems: high-resolution white background packshot, optional 360°, automatic clipping.',
-      color: 'bg-very-peri-600',
+      num: '01',
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
@@ -99,7 +108,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       description: isFr
         ? 'BlendAI.studio : transformez packshots en visuels lifestyle. Personnalisation ADN marque. Production série rapide.'
         : 'BlendAI.studio: transform packshots into lifestyle visuals. Brand DNA customization. Fast series production.',
-      color: 'bg-amber-500',
+      num: '02',
     },
     {
       icon: <Send className="h-6 w-6" />,
@@ -107,7 +116,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       description: isFr
         ? 'Export formats optimisés e-commerce, marketplaces, réseaux sociaux, print.'
         : 'Export formats optimized for e-commerce, marketplaces, social media, print.',
-      color: 'bg-emerald-600',
+      num: '03',
     },
   ];
 
@@ -186,7 +195,10 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
   return (
     <>
-      {/* Hero */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1. HERO — Split layout, industry focus
+          Design: Big headline + industry image. Immersive gradient.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <HeroSection
         layout="split"
         badge={{
@@ -221,233 +233,336 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
         </div>
       </HeroSection>
 
-      {/* Sectors Grid */}
-      <section id="secteurs" className="py-20 bg-white">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. SECTORS GRID — TextReveal heading, enhanced wrapper
+          Design: Overline + TextReveal, left-aligned heading. SectorGrid
+          component handles the actual sector cards.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="secteurs" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {isFr ? '14 Secteurs d\'Activité Couverts' : '14 Industry Sectors Covered'}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {isFr
-                ? 'De la chaussure à la défense, du bijou à l\'industrie manufacturière : des solutions photo produit adaptées à chaque contrainte métier.'
-                : 'From footwear to defense, jewelry to manufacturing: product photo solutions tailored to every business constraint.'}
-            </p>
+          <ScrollReveal>
+            <div className="max-w-3xl mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Nos secteurs' : 'Our sectors'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                {isFr ? '14 Secteurs d\'Activité Couverts' : '14 Industry Sectors Covered'}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500">
+                {isFr
+                  ? 'De la chaussure à la défense, du bijou à l\'industrie manufacturière : des solutions photo produit adaptées à chaque contrainte métier.'
+                  : 'From footwear to defense, jewelry to manufacturing: product photo solutions tailored to every business constraint.'}
+              </p>
+            </div>
+          </ScrollReveal>
+          <FadeInView delay={0.15}>
+            <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
           </FadeInView>
-          <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
         </div>
       </section>
 
-      {/* Mini Case Studies */}
-      <section className="py-20 bg-neutral-50">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. CASE STUDIES — Split 4/8, sticky heading + stacked cards
+          Design: Heading stays left, case study cards scroll right.
+          Each card has a sector badge and result highlight.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {isFr ? 'Résultats concrets, tous secteurs' : 'Concrete results, all sectors'}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {isFr
-                ? 'Des entreprises de toutes tailles ont transformé leur production visuelle avec nos solutions.'
-                : 'Companies of all sizes have transformed their visual production with our solutions.'}
-            </p>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-2 gap-6">
-            {caseStudies.map((cs) => (
-              <StaggerItem key={cs.sector}>
-                <div className={`rounded-2xl border ${cs.color} p-6 sm:p-8`}>
-                  <div className="flex items-start gap-3 mb-3">
-                    <Quote className="h-5 w-5 text-future-dusk-300 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-future-dusk-400">{cs.sector}</span>
-                      <h3 className="text-base font-heading font-bold text-future-dusk-900 mt-1">{cs.client}</h3>
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Left column: sticky heading */}
+            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Cas concrets' : 'Case studies'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {isFr ? 'Résultats concrets, tous secteurs' : 'Concrete results, all sectors'}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 leading-relaxed">
+                {isFr
+                  ? 'Des entreprises de toutes tailles ont transformé leur production visuelle avec nos solutions.'
+                  : 'Companies of all sizes have transformed their visual production with our solutions.'}
+              </p>
+            </ScrollReveal>
+
+            {/* Right column: stacked case study cards */}
+            <div className="lg:col-span-8 space-y-6">
+              {caseStudies.map((cs) => (
+                <ScrollReveal key={cs.sector} offset={30}>
+                  <SpringCard hoverY={-3} hoverScale={1.005}>
+                    <div className={`rounded-2xl border ${cs.color} p-8 lg:p-10 transition-all duration-300`}>
+                      <div className="flex items-start gap-4 mb-4">
+                        <Quote className="h-6 w-6 text-future-dusk-300 shrink-0 mt-1" />
+                        <div>
+                          <span className="text-xs font-bold uppercase tracking-wider text-future-dusk-400">{cs.sector}</span>
+                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mt-1">{cs.client}</h3>
+                        </div>
+                      </div>
+                      <p className="text-future-dusk-700 font-semibold text-lg ml-10">{cs.result}</p>
                     </div>
-                  </div>
-                  <p className="text-future-dusk-600 font-medium ml-8">{cs.result}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {isFr ? 'Avantages pour toutes les industries' : 'Benefits for all industries'}
-            </h2>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit) => (
-              <StaggerItem key={benefit.title}>
-                <div className="bg-neutral-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                  <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} mb-4`}>
-                    {benefit.icon}
-                  </span>
-                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-future-dusk-500 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Workflow */}
-      <section className="py-20 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {isFr ? 'Packshot → IA → Diffusion' : 'Packshot → AI → Distribution'}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {isFr
-                ? 'Le processus standard pour tous les secteurs : capture packshot haute qualité, génération lifestyle IA, diffusion multi-canal.'
-                : 'The standard process for all sectors: high-quality packshot capture, AI lifestyle generation, multi-channel distribution.'}
-            </p>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {workflowSteps.map((step, i) => (
-              <StaggerItem key={step.title}>
-                <div className="relative text-center">
-                  <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.color} text-white mx-auto mb-6`}>
-                    {step.icon}
-                  </div>
-                  <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-xs font-bold text-future-dusk-300">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-future-dusk-500 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* FAQ Transversale */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <FadeInView className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
-              </h2>
-            </FadeInView>
-            <StaggerContainer className="space-y-4">
-              {faqs.map((faq, i) => (
-                <StaggerItem key={i}>
-                  <details className="group bg-neutral-50 rounded-xl border border-neutral-100 hover:border-very-peri-200 transition-colors">
-                    <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                      <h3 className="text-base font-semibold text-future-dusk-900 text-left">
-                        {faq.question}
-                      </h3>
-                      <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
-                    </summary>
-                    <div className="px-6 pb-6 pt-0">
-                      <p className="text-future-dusk-600 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  </details>
-                </StaggerItem>
+                  </SpringCard>
+                </ScrollReveal>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Cross-Links (Maillage) */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-10">
-            <h2 className="text-2xl font-heading font-bold text-future-dusk-900">
-              {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
-            </h2>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-6">
-            {[
-              { href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier. Packshot, 360°, vidéo.' : '20 Orbitvu systems from jewelry to furniture. Packshot, 360°, video.' },
-              { href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" />, title: isFr ? 'IA Photo Produit — BlendAI.studio' : 'Product Photo AI — BlendAI.studio', desc: isFr ? 'Transformez vos packshots en visuels lifestyle grâce à notre plateforme IA propriétaire.' : 'Transform your packshots into lifestyle visuals with our proprietary AI platform.' },
-              { href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA photo produit.' : 'Qualiopi training to master your system and product photo AI.' },
-            ].map((link) => (
-              <StaggerItem key={link.href}>
-                <Link href={link.href} className="group block bg-white rounded-xl border border-neutral-200 p-6 hover:border-very-peri-300 hover:shadow-md transition-all">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-100 text-very-peri-600 group-hover:bg-very-peri-200 transition-colors">
-                      {link.icon}
-                    </span>
-                    <h3 className="font-semibold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
-                      {link.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-future-dusk-500 leading-relaxed">{link.desc}</p>
-                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-very-peri-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {isFr ? 'Découvrir' : 'Discover'} <ArrowRight className="h-3.5 w-3.5" />
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. BENEFITS — Bento grid, hero card + 2 smaller
+          Design: First benefit is the hero card (large, left),
+          other two stack on the right. Creates visual hierarchy.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-200/10 rounded-full blur-[150px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="max-w-3xl mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Pourquoi automatiser' : 'Why automate'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                {isFr ? 'Avantages pour toutes les industries' : 'Benefits for all industries'}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Hero card — Production Accélérée */}
+            <ScrollReveal offset={30}>
+              <SpringCard className="h-full">
+                <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefits[0].hoverBorder} p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl`}>
+                  <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${benefits[0].color} mb-6`}>
+                    {benefits[0].icon}
                   </span>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
+                    {benefits[0].title}
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
+                    {benefits[0].description}
+                  </p>
+                </div>
+              </SpringCard>
+            </ScrollReveal>
+
+            {/* 2 smaller cards stacked */}
+            <div className="space-y-6">
+              {benefits.slice(1).map((benefit) => (
+                <ScrollReveal key={benefit.title} offset={20}>
+                  <SpringCard hoverY={-3} hoverScale={1.005}>
+                    <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefit.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
+                      <div className="flex items-start gap-5">
+                        <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} flex-shrink-0 mt-1`}>
+                          {benefit.icon}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
+                            {benefit.title}
+                          </h3>
+                          <p className="text-sm text-future-dusk-500 leading-relaxed">
+                            {benefit.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-future-dusk-900 to-very-peri-800 text-white">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. WORKFLOW — Dark bg, timeline editorial
+          Design: Dark surround. Giant step numbers, horizontal rows,
+          icon + content. Same energy as Studios S6.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-future-dusk-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-very-peri-800/20 to-future-dusk-900" />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Notre processus' : 'Our process'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+                {isFr ? 'Packshot → IA → Diffusion' : 'Packshot → AI → Distribution'}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">
+                {isFr
+                  ? 'Le processus standard pour tous les secteurs : capture packshot haute qualité, génération lifestyle IA, diffusion multi-canal.'
+                  : 'The standard process for all sectors: high-quality packshot capture, AI lifestyle generation, multi-channel distribution.'}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-0">
+            {workflowSteps.map((step, idx) => (
+              <ScrollReveal key={step.num} offset={30}>
+                <div className={`grid md:grid-cols-12 gap-8 items-center py-12 ${idx < workflowSteps.length - 1 ? 'border-b border-white/10' : ''}`}>
+                  {/* Number — massive, decorative */}
+                  <div className="md:col-span-2 text-center md:text-right">
+                    <span className="text-8xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
+                      {step.num}
+                    </span>
+                  </div>
+                  {/* Icon */}
+                  <div className="md:col-span-1 flex justify-center">
+                    <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-500/20 text-very-peri-300">
+                      {step.icon}
+                    </span>
+                  </div>
+                  {/* Content */}
+                  <div className="md:col-span-9">
+                    <h3 className="text-2xl font-heading font-bold text-white mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-future-dusk-300 leading-relaxed max-w-2xl">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. FAQ — Two-column: heading left, accordion right
+          Design: Split layout, heading stays while user scrolls FAQs.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold">
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Left: sticky heading */}
+            <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
+              <ScrollReveal>
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                  {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                </TextReveal>
+                <p className="text-future-dusk-500 leading-relaxed">
+                  {isFr
+                    ? 'Tout ce que vous devez savoir sur nos solutions par secteur.'
+                    : 'Everything you need to know about our industry solutions.'}
+                </p>
+              </ScrollReveal>
+            </div>
+
+            {/* Right: accordion */}
+            <div className="lg:col-span-8">
+              <StaggerContainer stagger={0.08} className="space-y-4">
+                {faqs.map((faq, i) => (
+                  <StaggerItem key={i}>
+                    <details className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
+                      <summary className="flex items-center justify-between gap-4 p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
+                          {faq.question}
+                        </h3>
+                        <ChevronDown className="h-5 w-5 text-future-dusk-400 shrink-0 group-open:rotate-180 transition-transform duration-300" />
+                      </summary>
+                      <div className="px-6 lg:px-8 pb-6 lg:pb-8 -mt-1">
+                        <p className="text-future-dusk-500 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </details>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          7. FINAL CTA — Asymmetric, demo card is dominant
+          Design: Demo card takes 3/5, quote card 2/5. Dot pattern bg.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
               {isFr ? 'Quel est votre secteur ?' : 'What is your industry?'}
-            </h2>
-            <p className="text-lg text-future-dusk-200 max-w-xl mx-auto mt-4">
-              {isFr
-                ? 'Chaque projet est unique. Nos experts analysent vos contraintes métier et vous recommandent la solution adaptée.'
-                : 'Every project is unique. Our experts analyze your business constraints and recommend the right solution.'}
-            </p>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
-            <StaggerItem>
-              <div className="bg-gradient-to-br from-very-peri-600 to-very-peri-700 rounded-2xl p-8">
-                <h3 className="text-2xl font-heading font-bold mb-4">
+            </TextReveal>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-5 gap-8">
+            {/* Demo — 3/5 = dominant */}
+            <SpringCard className="lg:col-span-3" hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+                <h3 className="text-3xl font-heading font-bold mb-4">
                   {isFr ? 'Démo personnalisée' : 'Personalized demo'}
                 </h3>
-                <p className="text-very-peri-100 mb-6">
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
                   {isFr
                     ? 'Tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur. 30 min, sans engagement.'
                     : 'Packshot tests with your products + AI lifestyle examples for your sector. 30 min, no commitment.'}
                 </p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold">
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
                   <Link href="/contact">
-                    {isFr ? 'Réserver ma démo' : 'Book my demo'} <ArrowRight className="ml-2 h-4 w-4" />
+                    {isFr ? 'Réserver ma démo' : 'Book my demo'} <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-future-dusk-800/50 rounded-2xl p-8">
+            </SpringCard>
+            {/* Quote — 2/5 = secondary */}
+            <SpringCard className="lg:col-span-2" hoverY={-6}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10 h-full flex flex-col">
                 <h3 className="text-2xl font-heading font-bold mb-4">
                   {isFr ? 'Devis sur mesure' : 'Custom quote'}
                 </h3>
-                <p className="text-future-dusk-300 mb-6">
+                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
                   {isFr
                     ? 'Analyse de vos besoins, recommandation système + IA, et devis détaillé. Réponse sous 24h.'
                     : 'Needs analysis, system + AI recommendation, and detailed quote. Response within 24h.'}
                 </p>
-                <Button asChild className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
+                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
                   <Link href="/contact">
                     {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </StaggerItem>
-          </StaggerContainer>
+            </SpringCard>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. CROSS-LINKS — Minimal, editorial
+          Design: Vertical dividers, no cards. Clean text hierarchy.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 bg-white border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="mb-12">
+            <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">
+              {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
+            </span>
+          </FadeInView>
+          <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
+            {[
+              { key: 'studios', href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier. Packshot, 360°, vidéo.' : '20 Orbitvu systems from jewelry to furniture. Packshot, 360°, video.' },
+              { key: 'ia', href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" />, title: isFr ? 'IA Photo Produit — BlendAI.studio' : 'Product Photo AI — BlendAI.studio', desc: isFr ? 'Transformez vos packshots en visuels lifestyle grâce à notre plateforme IA propriétaire.' : 'Transform your packshots into lifestyle visuals with our proprietary AI platform.' },
+              { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA photo produit.' : 'Qualiopi training to master your system and product photo AI.' },
+            ].map((link) => (
+              <FadeInView key={link.key}>
+                <Link href={link.href} className="group block px-8 py-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-very-peri-500">{link.icon}</span>
+                    <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                      {link.title}
+                    </h3>
+                    <ArrowRight className="h-4 w-4 text-future-dusk-300 group-hover:text-very-peri-500 group-hover:translate-x-1 transition-all ml-auto" />
+                  </div>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                    {link.desc}
+                  </p>
+                </Link>
+              </FadeInView>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,8 +1,57 @@
 # PLAN DE PRODUCTION - PackshotCreator
 > Document vivant. Source de verite pour toutes les sessions Claude Code.
-> Derniere MAJ : 2026-03-22 (session 3 complete)
+> Derniere MAJ : 2026-03-22 (session 4 en cours)
 
-## 0. RESUME SESSION 3 (22/03/2026)
+## 0. RESUME SESSION 4 (22/03/2026)
+
+### Phase 1 : Redesign "Studio Light" applique sur /ia-photo-produit (fait)
+Meme concept que Studios S3 — chaque section a un layout unique :
+- Section 2 Manifeste : **split 4/8**, heading sticky gauche, 3 cartes numerotees (ghost numbers 6xl) avec ScrollReveal+SpringCard droite
+- Section 3 Comparatif : **bento asymetrique 3/5+2/5**, carte recommandee hero (large, elevated, ring) gauche, carte IA pure secondaire droite
+- Section 4 BlendAI Platform : **fond sombre** gradient + dot pattern, carte blanche flottante shadow-2xl, features en timeline editoriale (numeros geants + icones)
+- Section 5 Fonctionnalites : **bento grid**, hero card (lifestyle) grande gauche + 3 compactes empilees droite
+- Section 6 Before/After : ScrollReveal stagger + SpringCard + cartes blanches avec bordure + badges secteur en pied
+- Section 7 Preuve Sociale : **ruban sombre**, stats geantes 7xl blanc, etoiles or, quote
+- Section 8 Compatible : **split gradient violet** + dot pattern, TextReveal titre, check items bg-white/10, SpringCard image
+- Section 9 FAQ : **split layout**, heading sticky gauche, accordeon ChevronDown droite
+- Section 10 CTA Final : **asymetrique 3/5+2/5**, test BlendAI dominant gradient, demo glassmorphism
+- Section 11 Cross-links : **style editorial**, separateurs verticaux, pas de cartes
+
+### Phase 2 : Redesign "Studio Light" applique sur /industrie hub (fait)
+- Section 2 Sectors : TextReveal heading left-aligned + overline, SectorGrid enhanced avec FadeInView
+- Section 3 Case Studies : **split 4/8**, heading sticky gauche, 4 cartes case study empilees droite avec SpringCard
+- Section 4 Benefits : **bento grid**, hero card (Production Acceleree) grande gauche + 2 compactes empilees droite
+- Section 5 Workflow : **fond sombre** gradient + dot pattern, timeline editoriale numeros geants 9xl, separateurs white/10
+- Section 6 FAQ : **split layout**, heading sticky gauche, accordeon ChevronDown droite
+- Section 7 CTA Final : **asymetrique 3/5+2/5**, demo dominante gradient, devis glassmorphism
+- Section 8 Cross-links : **style editorial**, separateurs verticaux
+
+### Phase 3 : Home rehaussee au standard "Studio Light" (fait)
+Sections modifiees (4 sur 11) :
+- Section 2 Social Proof : **ruban sombre** (bg-future-dusk-900), stats geantes 7xl blanc, gradient lateral, logos inverses opacity 30%→70%
+- Section 3 Pain Points : ajout ScrollReveal (stagger par carte) + SpringCard hover, border neutral-100
+- Section 4 Hybrid Approach : **split 4/8**, heading+CTAs sticky gauche, 3 cartes piliers numerotees ScrollReveal+SpringCard droite
+- Section 10 FAQ : **split layout** 4/8, heading sticky gauche avec overline, accordeon enhanced droite
+- Section 11 Final CTA : **asymetrique 3/5+2/5**, demo dominante gradient violet, ROI glassmorphism
+- Imports ajoutes : TextReveal, ScrollReveal, SpringCard
+
+### Phase 4 : Redesign "Studio Light" applique sur PackshotLandingTemplate (fait)
+Template unique impactant les 5 pages /packshot-* (bijoux, mode, e-commerce, amazon, industriel) :
+- Section 2 Stats : **ruban sombre**, stats geantes 7xl blanc, gradient lateral
+- Section 3 Benefits : **split 4/8**, heading sticky gauche, cartes numerotees ScrollReveal+SpringCard droite
+- Section 4 Machines : **fond sombre** gradient + dot pattern, carte blanche flottante shadow-2xl, machine cards SpringCard
+- Section 5 FAQ : **split layout** 4/8, heading sticky gauche, accordeon ChevronDown droite
+- Section 6 CTA Final : **asymetrique 3/5+2/5**, demo dominante gradient, guide glassmorphism
+- Section 7 Cross-links : **style editorial**, separateurs verticaux
+- Template: components/templates/PackshotLandingTemplate.tsx
+
+### A faire en session 5
+1. **Contenus GEO prioritaires** : article "Studio auto + IA vs IA generative pure", page "Quel budget pour un studio automatise ?"
+2. **Academy** : enrichissement formations detail
+3. **Images** : Seb doit fournir (temoignages Home, types de photo Studios)
+4. **SEO Quick Wins restants** (13/15) : +325-655 clics/an potentiels
+
+## 0.0 RESUME SESSION 3 (22/03/2026)
 
 ### Phase 1 : Contenu & Structure (fait)
 - **Page /studios-photo-automatises RESTRUCTUREE** (plan 5.1) : 10 sections, copy reecrit PAS/AIDA FR+EN, ROI Calculator embarque supprime (teaser vers /calculateur-roi), FAQ pricing-first, maillage cross-links
@@ -30,15 +79,6 @@ Concept "Studio Light" — chaque section a un layout unique :
 - Section 8 FAQ : **split layout**, heading sticky gauche, accordeon droite
 - Section 9 CTA Final : **asymetrique 3/5 + 2/5**, demo dominante gradient violet
 - Section 10 Cross-links : **style editorial**, separateurs verticaux, pas de cartes
-
-### A faire en session 4
-1. **PRIORITE : Appliquer le meme redesign layout sur /ia-photo-produit** — meme approche "Studio Light", chaque section unique, utiliser TextReveal/ScrollReveal/SpringCard
-2. **Appliquer le meme redesign sur /industrie hub** — adapter les layouts bento/split/timeline au contenu secteur
-3. **Appliquer sur la Home** — aligner sur le nouveau niveau (la Home est deja mieux que les autres mais certaines sections peuvent etre elevees)
-4. **Pages /packshot-*** (bijoux, mode, e-commerce, amazon, industriel) : CRO + terminologie "systemes" + layouts modernes
-5. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget
-6. **Academy** : enrichissement formations detail
-7. **Images** : Seb doit fournir (temoignages Home, types de photo Studios)
 
 ## 0.1 RESUME SESSION 2 (22/03/2026)
 
@@ -96,6 +136,7 @@ Skills installes : frontend-design, copywriting, page-cro, claude-seo (13), geo-
 | Schema.org (AggregateRating, Product, ItemList) | FAIT 22/03 S2 | Home: AggregateRating, Product Alphashot, ItemList industries. Contact: LocalBusiness |
 | Traduction EN (nouvelles cles) | FAIT 22/03 S2 | painPoints, socialProof, testimonials, hero/midCta/finalCta aligns. 7 cles obsoletes supprimees |
 | Validation visuelle + fixes design | FAIT 22/03 S2 | Logos gap, tel nowrap, hybrid numbers color |
+| Redesign "Studio Light" (4 sections) | FAIT 22/03 S4 | S2 ruban sombre 7xl, S3 ScrollReveal+SpringCard, S4 split 4/8 sticky, S10 split FAQ, S11 asymetrique 3/5+2/5 |
 | Images manquantes | A FAIRE | Inventaire a faire |
 
 **Structure validee (11 sections)** :
@@ -116,23 +157,23 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 | Page | CRO | Top probleme | Quick win | Copy | SEO | Images | Statut |
 |------|-----|-------------|-----------|------|-----|--------|--------|
 | /studios-photo-automatises | 7.5→9 | REDESIGN LAYOUT S3 | Copy + structure + layout radical "Studio Light" | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — redesign complet (bento, split, timeline, asymetrique) |
-| /ia-photo-produit | 8 | Pas de stats/garanties | Ajouter "60% plus rapide" pres before/after | - | - | - | FAIT 22/03 S2 — barre 60%/10x/100% |
+| /ia-photo-produit | 9 | REDESIGN LAYOUT S4 | Copy + structure + layout radical "Studio Light" | FAIT S2 | FAIT S2 | - | FAIT 22/03 S4 — redesign complet (split sticky, bento, dark platform, timeline, ruban stats, asymetrique) |
 | /studio-photo/[machines] | - | - | - | - | - | - | A FAIRE |
 | /academy (hub) | 7.5 | Pas de pricing visible | Montrer "From X€" ou "100% OPCO" | - | - | - | FAIT 22/03 S2 — badge OPCO 100% + Qualiopi |
 | /academy/formations-packshot | - | - | - | - | - | - | A FAIRE |
 | /academy/formations-ia | - | - | - | - | - | - | A FAIRE |
-| /industrie (hub) | 7→8.5 | ENRICHI S3 | Descriptions, case studies, FAQ, maillage | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — 14 secteurs, FAQ, case studies |
+| /industrie (hub) | 9 | REDESIGN LAYOUT S4 | Split sticky, bento, dark timeline, asymetrique | FAIT S3 | FAIT S3 | - | FAIT 22/03 S4 — redesign complet (split sticky case studies, bento benefits, dark timeline, asymetrique CTA) |
 | /industrie/[secteurs] x14 | - | - | - | - | - | - | A FAIRE |
 | /industrie-defense | 7.5 | Pas de logos/cas clients | Ajouter 2-3 logos defense | - | - | - | A FAIRE |
 | /contact | 8.5 | Form non qualifiant | Ajouter questions de tri | - | - | - | PARTIEL 22/03 S2 — trust bar + LocalBusiness schema |
 | /a-propos | 7 | Pas de story fondateur | Ajouter bio fondateur + equipe | - | - | - | A FAIRE |
 | /blog (hub) | - | - | - | - | - | - | A FAIRE |
 | /blendai | - | - | - | - | - | - | A FAIRE |
-| /packshot-amazon | - | - | - | - | - | - | A FAIRE |
-| /packshot-e-commerce | - | - | - | - | - | - | A FAIRE |
-| /packshot-bijoux | - | - | - | - | - | - | A FAIRE |
-| /packshot-mode | - | - | - | - | - | - | A FAIRE |
-| /packshot-industriel | - | - | - | - | - | - | A FAIRE |
+| /packshot-amazon | 8.5 | REDESIGN TEMPLATE S4 | Template "Studio Light" (ruban stats, split benefits, dark machines, split FAQ, asymetrique CTA, cross-links) | - | - | - | FAIT 22/03 S4 — via PackshotLandingTemplate |
+| /packshot-e-commerce | 8.5 | REDESIGN TEMPLATE S4 | idem | - | - | - | FAIT 22/03 S4 — via PackshotLandingTemplate |
+| /packshot-bijoux | 8.5 | REDESIGN TEMPLATE S4 | idem | - | - | - | FAIT 22/03 S4 — via PackshotLandingTemplate |
+| /packshot-mode | 8.5 | REDESIGN TEMPLATE S4 | idem | - | - | - | FAIT 22/03 S4 — via PackshotLandingTemplate |
+| /packshot-industriel | 8.5 | REDESIGN TEMPLATE S4 | idem | - | - | - | FAIT 22/03 S4 — via PackshotLandingTemplate |
 | /calculateur | - | - | - | - | - | - | A FAIRE |
 | /questions-cles | - | - | - | - | - | - | A FAIRE |
 | /besoins-photographie | - | - | - | - | - | - | A FAIRE |

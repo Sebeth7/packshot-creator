@@ -26,6 +26,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { HeroSection, HeroVideo } from '@/components/hero';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -196,81 +199,90 @@ export default async function HomePage({
         </p>
       </HeroSection>
 
-      {/* ━━━ 2. SOCIAL PROOF BAR (logos + stats) ━━━ */}
-      <section className="py-12 bg-white border-b border-future-dusk-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Logos */}
-          <p className="text-center text-xs font-semibold text-neutral-medium uppercase tracking-[0.15em] mb-8">
-            {t('socialProof.heading')}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10 mb-12">
-            {CLIENT_LOGOS.map((logo) => (
-              <div
-                key={logo.name}
-                className="h-9 flex items-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              >
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={logo.w}
-                  height={logo.h}
-                  className="h-full w-auto max-w-[100px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="border-t border-future-dusk-0 pt-10">
-            <StaggerContainer stagger={0.1} className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              {SOCIAL_PROOF_STATS.map((stat) => (
-                <StaggerItem key={stat.key}>
-                  <p className="text-4xl lg:text-5xl font-heading font-bold text-primary-orbitvu">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. SOCIAL PROOF — Dark ribbon, oversized stats
+          Design: Giant stats dominate. Logos secondary. Numbers are the hero.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-16 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          {/* Giant stats */}
+          <StaggerContainer stagger={0.1} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10 mb-12">
+            {SOCIAL_PROOF_STATS.map((stat) => (
+              <StaggerItem key={stat.key}>
+                <div className="text-center px-6">
+                  <p className="text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
                     {t(`socialProof.${stat.key}`)}
                   </p>
-                  <p className="mt-2 text-sm text-neutral-medium font-medium">
+                  <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
                     {t(`socialProof.${stat.labelKey}`)}
-                  </p>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━ 3. PAIN POINTS ━━━ */}
-      <section className="py-20 bg-bg-light-gray">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-              {t('painPoints.heading')}
-            </h2>
-          </FadeInView>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {PAIN_POINTS.map((point) => (
-              <StaggerItem key={point.key}>
-                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-                  <div className={`w-12 h-12 rounded-xl ${point.bg} flex items-center justify-center mb-6`}>
-                    <point.Icon className={`w-6 h-6 ${point.color}`} strokeWidth={1.5} />
-                  </div>
-                  <p className={`text-5xl font-heading font-bold ${point.color} mb-1`}>
-                    {t(`painPoints.${point.key}.stat`)}
-                  </p>
-                  <p className="text-sm text-neutral-medium mb-4">
-                    {t(`painPoints.${point.key}.statUnit`)}
-                  </p>
-                  <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
-                    {t(`painPoints.${point.key}.title`)}
-                  </h3>
-                  <p className="text-neutral-medium leading-relaxed flex-1">
-                    {t(`painPoints.${point.key}.description`)}
                   </p>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
+          {/* Logo strip */}
+          <FadeInView delay={0.3}>
+            <p className="text-center text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.15em] mb-6">
+              {t('socialProof.heading')}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+              {CLIENT_LOGOS.map((logo) => (
+                <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-70 transition-opacity duration-300">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={logo.w}
+                    height={logo.h}
+                    className="h-full w-auto max-w-[80px] object-contain invert"
+                    loading="eager"
+                  />
+                </div>
+              ))}
+            </div>
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. PAIN POINTS — ScrollReveal + SpringCard
+          Design: Each card reveals with parallax. Spring hover.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-bg-light-gray">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <TextReveal as="h2" className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
+                {t('painPoints.heading')}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {PAIN_POINTS.map((point, i) => (
+              <ScrollReveal key={point.key} offset={20 + i * 15}>
+                <SpringCard className="h-full">
+                  <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col border border-neutral-100">
+                    <div className={`w-12 h-12 rounded-xl ${point.bg} flex items-center justify-center mb-6`}>
+                      <point.Icon className={`w-6 h-6 ${point.color}`} strokeWidth={1.5} />
+                    </div>
+                    <p className={`text-5xl font-heading font-bold ${point.color} mb-1`}>
+                      {t(`painPoints.${point.key}.stat`)}
+                    </p>
+                    <p className="text-sm text-neutral-medium mb-4">
+                      {t(`painPoints.${point.key}.statUnit`)}
+                    </p>
+                    <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
+                      {t(`painPoints.${point.key}.title`)}
+                    </h3>
+                    <p className="text-neutral-medium leading-relaxed flex-1">
+                      {t(`painPoints.${point.key}.description`)}
+                    </p>
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+            ))}
+          </div>
 
           <FadeInView className="text-center mt-12">
             <p className="text-xl font-heading font-semibold text-heading-dark">
@@ -280,57 +292,69 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ━━━ 4. HYBRID APPROACH ━━━ */}
-      <section className="py-20 bg-white">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. HYBRID APPROACH — Split 4/8, sticky heading, numbered cards
+          Design: Asymmetric. Heading stays left, pillars scroll right
+          with ghost numbers and image+text horizontal cards.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-              {t('hybrid.heading')}
-            </h2>
-            <p className="mt-4 text-lg text-neutral-medium max-w-3xl mx-auto leading-relaxed">
-              {t('hybrid.subtitle')}
-            </p>
-          </FadeInView>
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Left column: sticky heading */}
+            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                {t('hybrid.heading').split(' ').slice(0, 2).join(' ')}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+                {t('hybrid.heading')}
+              </TextReveal>
+              <p className="text-lg text-neutral-medium leading-relaxed mb-8">
+                {t('hybrid.subtitle')}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-6 h-12 text-base font-semibold rounded-lg"
+                >
+                  <Link href="/studios-photo-automatises">{t('hybrid.cta')}</Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-transparent border border-very-peri-200 text-heading-dark hover:bg-very-peri-50 px-6 h-12 text-base rounded-lg"
+                >
+                  <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
+                </Button>
+              </div>
+            </ScrollReveal>
 
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {HYBRID_STEPS.map((step, idx) => (
-              <StaggerItem key={step.key}>
-                <div className="relative bg-bg-light-gray rounded-2xl p-8 hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-14 h-14 rounded-xl ${step.bg} flex items-center justify-center flex-shrink-0`}>
-                      <step.Icon className={`w-7 h-7 ${step.icon}`} strokeWidth={1.5} />
+            {/* Right column: stacked pillar cards */}
+            <div className="lg:col-span-8 space-y-8">
+              {HYBRID_STEPS.map((step, idx) => (
+                <ScrollReveal key={step.key} offset={40}>
+                  <SpringCard>
+                    <div className="group bg-bg-light-gray rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-8 lg:p-10">
+                      <div className="flex items-center gap-4 mb-5">
+                        <div className={`w-12 h-12 rounded-xl ${step.bg} flex items-center justify-center`}>
+                          <step.Icon className={`w-6 h-6 ${step.icon}`} strokeWidth={1.5} />
+                        </div>
+                        <span className="text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3">
+                        {t(`hybrid.${step.key}.title`)}
+                      </h3>
+                      <p className="text-neutral-medium leading-relaxed">
+                        {t(`hybrid.${step.key}.description`)}
+                      </p>
                     </div>
-                    <span className="text-5xl font-heading font-bold text-very-peri-150 select-none">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
-                    {t(`hybrid.${step.key}.title`)}
-                  </h3>
-                  <p className="text-neutral-medium leading-relaxed flex-1">
-                    {t(`hybrid.${step.key}.description`)}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeInView className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg"
-            >
-              <Link href="/studios-photo-automatises">{t('hybrid.cta')}</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              className="bg-transparent border border-very-peri-200 text-heading-dark hover:bg-very-peri-50 px-8 h-12 text-base rounded-lg"
-            >
-              <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
-            </Button>
-          </FadeInView>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -581,77 +605,91 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ━━━ 10. FAQ ━━━ */}
-      <section className="py-20 bg-white">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          10. FAQ — Two-column: heading left, accordion right
+          Design: Split layout, heading stays while user scrolls FAQs.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-              {t('faq.heading')}
-            </h2>
-          </FadeInView>
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Left: sticky heading */}
+            <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
+              <ScrollReveal>
+                <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">FAQ</span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-4">
+                  {t('faq.heading')}
+                </TextReveal>
+                <p className="text-neutral-medium leading-relaxed">
+                  {t('faq.heading')}
+                </p>
+              </ScrollReveal>
+            </div>
 
-          <StaggerContainer stagger={0.08} className="max-w-3xl mx-auto space-y-3">
-            {faqItems.map((faq, i) => (
-              <StaggerItem key={i}>
-                <details
-                  className="group bg-white rounded-xl border border-future-dusk-0 overflow-hidden [&[open]]:shadow-sm"
-                >
-                  <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                    <span className="text-heading-dark font-heading font-semibold leading-snug group-hover:text-primary-orbitvu transition-colors">
-                      {faq.question}
-                    </span>
-                    <ChevronDown className="w-5 h-5 text-neutral-medium flex-shrink-0 group-open:rotate-180 transition-transform duration-200" />
-                  </summary>
-                  <div className="px-6 pb-6 text-neutral-medium leading-relaxed -mt-1">
-                    {faq.answer}
-                  </div>
-                </details>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+            {/* Right: accordion */}
+            <div className="lg:col-span-8">
+              <StaggerContainer stagger={0.08} className="space-y-4">
+                {faqItems.map((faq, i) => (
+                  <StaggerItem key={i}>
+                    <details className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
+                      <summary className="flex items-center justify-between gap-4 p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-lg font-heading font-semibold text-heading-dark text-left leading-snug group-hover:text-primary-orbitvu transition-colors">
+                          {faq.question}
+                        </h3>
+                        <ChevronDown className="h-5 w-5 text-neutral-medium shrink-0 group-open:rotate-180 transition-transform duration-300" />
+                      </summary>
+                      <div className="px-6 lg:px-8 pb-6 lg:pb-8 -mt-1">
+                        <p className="text-neutral-medium leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </details>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ━━━ 11. FINAL CTA ━━━ */}
-      <section className="py-20 bg-gradient-to-br from-future-dusk-900 via-very-peri-800 to-future-dusk-800 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-          aria-hidden="true"
-        />
-        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white">
-            {t('finalCta.heading')}
-          </h2>
-          <p className="mt-4 text-lg text-future-dusk-200 max-w-2xl mx-auto leading-relaxed">
-            {t('finalCta.subtitle')}
-          </p>
-          <p className="mt-6 text-sm text-future-dusk-300 italic max-w-xl mx-auto">
-            {t('finalCta.microTestimonial')}
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg shadow-lg shadow-very-peri-500/25"
-            >
-              <Link href="/contact">{t('finalCta.ctaPrimary')}</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg"
-            >
-              <Link href="/calculateur">
-                {t('finalCta.ctaSecondary')}
-              </Link>
-            </Button>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          11. FINAL CTA — Asymmetric, demo card is dominant
+          Design: Demo card takes 3/5, ROI card 2/5. Dot pattern bg.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <ScrollReveal>
+            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-6">
+              {t('finalCta.heading')}
+            </TextReveal>
+            <p className="text-lg text-future-dusk-200 max-w-2xl mx-auto leading-relaxed text-center mb-4">
+              {t('finalCta.subtitle')}
+            </p>
+            <p className="text-sm text-future-dusk-300 italic max-w-xl mx-auto text-center mb-16">
+              {t('finalCta.microTestimonial')}
+            </p>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-5 gap-8">
+            {/* Demo — 3/5 = dominant */}
+            <SpringCard className="lg:col-span-3" hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-10 lg:p-14 h-full flex flex-col">
+                <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.heading')}</h3>
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.subtitle')}</p>
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                  <Link href="/contact">{t('finalCta.ctaPrimary')}</Link>
+                </Button>
+              </div>
+            </SpringCard>
+            {/* ROI — 2/5 = secondary */}
+            <SpringCard className="lg:col-span-2" hoverY={-6}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10 h-full flex flex-col">
+                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.ctaSecondary')}</h3>
+                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">{t('finalCta.subtitle')}</p>
+                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                  <Link href="/calculateur">{t('finalCta.ctaSecondary')}</Link>
+                </Button>
+              </div>
+            </SpringCard>
           </div>
-        </FadeInView>
+        </div>
       </section>
 
       {/* Schema.org JSON-LD (AEO) */}
