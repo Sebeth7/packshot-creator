@@ -45,11 +45,27 @@ Template unique impactant les 5 pages /packshot-* (bijoux, mode, e-commerce, ama
 - Section 7 Cross-links : **style editorial**, separateurs verticaux
 - Template: components/templates/PackshotLandingTemplate.tsx
 
-### A faire en session 5
-1. **Contenus GEO prioritaires** : article "Studio auto + IA vs IA generative pure", page "Quel budget pour un studio automatise ?"
-2. **Academy** : enrichissement formations detail
-3. **Images** : Seb doit fournir (temoignages Home, types de photo Studios)
-4. **SEO Quick Wins restants** (13/15) : +325-655 clics/an potentiels
+### Plan d'orchestration sessions specialisees
+Voir `sessions/00-ORCHESTRATION.md` pour le plan complet et les regles anti-collision.
+
+**Phase 1** (parallele) :
+- **S1** : Audit images complet (browser, READ-ONLY) → specs dans hero-assets-checklist.md
+- **S2** : Verification mobile responsive (browser, READ-ONLY) → rapport
+
+**Phase 2** (parallele, apres Phase 1) :
+- **S3** : SEO Quick Wins 13/15 (+325-655 clics/an)
+- **S4** : Contenu GEO (2 pages : "Studio+IA vs IA pure", "Budget studio")
+- **Seb** : Generation images Banana 2 (hors Claude, a partir du checklist)
+
+**Phase 3** (apres Phase 2) :
+- **S5** : Integration images dans le code
+
+**Phase 4** (parallele, apres Phase 3) :
+- **S6a** : Pages Academy, Blog, A propos
+- **S6b** : Pages produits /studio-photo/[slug], Contact, Defense
+
+**Phase 5** :
+- **S7** : Images batch 2 + polish final
 
 ## 0.0 RESUME SESSION 3 (22/03/2026)
 
