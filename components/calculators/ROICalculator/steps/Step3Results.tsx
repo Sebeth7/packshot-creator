@@ -104,7 +104,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
         },
         locale,
       }),
-    }).catch((err) => console.error('API roi-pdf error:', err));
+    }).catch(() => {/* Envoi silencieux — le PDF a déjà été téléchargé côté client */});
   };
 
   return (

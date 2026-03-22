@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { Clock, Wrench, Box, ArrowLeft, ChevronRight } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -153,7 +154,7 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <div
               className="prose prose-lg max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600 prose-a:hover:text-very-peri-700"
-              dangerouslySetInnerHTML={{ __html: guide.introText }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(guide.introText) }}
             />
           </div>
         </section>
@@ -194,7 +195,7 @@ export default async function GuidePage({ params }: PageProps) {
                     {step.content && (
                       <div
                         className="prose max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600"
-                        dangerouslySetInnerHTML={{ __html: step.content }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(step.content) }}
                       />
                     )}
 

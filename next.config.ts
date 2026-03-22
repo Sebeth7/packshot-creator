@@ -100,6 +100,20 @@ const nextConfig: NextConfig = {
       { source: '/fr/contact/demande-devis-formation', destination: '/fr/contact?subject=formation', statusCode: 301 },
       { source: '/en/contact/training-quote', destination: '/en/contact?subject=training', statusCode: 301 },
 
+      // ============================================================
+      // BLOC 2b - Pages supprimées / URLs restructurées
+      // ============================================================
+
+      // Produits (ancienne URL sans /fr/)
+      { source: '/produits', destination: '/fr/studio-photo/selecteur-machines', statusCode: 301 },
+
+      // Industrie bouteilles → food-alimentaire
+      { source: '/industrie/bouteilles', destination: '/fr/industrie/food-alimentaire', statusCode: 301 },
+
+      // Guide supprimé (n'existe pas dans le nouveau site)
+      { source: '/guide/modifier-couleur-produit-photo', destination: '/fr/blog', statusCode: 301 },
+      { source: '/en/guide/modifier-couleur-produit-photo', destination: '/en/blog', statusCode: 301 },
+
       // Webflow-specific paths
       { source: '/gestion-workflow-shotflow', destination: '/fr/ia-photo-produit', statusCode: 301 },
       { source: '/ancien-studio-photo', destination: '/fr/studios-photo-automatises', statusCode: 301 },

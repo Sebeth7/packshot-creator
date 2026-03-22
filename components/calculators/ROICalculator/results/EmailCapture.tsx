@@ -57,16 +57,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
       await onSendPDF(email);
       setIsSent(true);
 
-      // Track event (structure Pipedrive-ready)
-      if (typeof window !== 'undefined') {
-        // Prêt pour intégration Pipedrive
-        console.log('[Pipedrive Ready]', {
-          email,
-          machine: results.machine.nom,
-          roi5ans: results.roi5ans,
-          economieAnnuelle: results.economieAnnuelle,
-        });
-      }
+      // Track event (structure Pipedrive-ready — intégration à venir)
     } catch (err) {
       setError(t.errorSending);
     } finally {

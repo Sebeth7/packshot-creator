@@ -1,117 +1,146 @@
 {
   "home": {
     "meta": {
-      "title": "PackshotCreator | Studios Photo, IA & Formation | France",
-      "description": "Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations Qualiopi. Approche hybride pour votre production."
-    },
-    "threePillars": {
-      "heading": "Excellence Packshot & Photo Produit",
-      "subtitle": "L'approche complète : Hardware Premium, IA Spécialisée, Formation Certifiée",
-      "capture": {
-        "badge": "Hardware",
-        "title": "CAPTURE",
-        "description": "Studios photo automatisés Orbitvu pour des packshots professionnels"
-      },
-      "creation": {
-        "badge": "IA",
-        "title": "CRÉATION",
-        "description": "IA photo produit BlendAI pour optimiser et transformer vos visuels"
-      },
-      "formation": {
-        "badge": "Qualiopi",
-        "title": "FORMATION",
-        "description": "Academy Qualiopi pour maîtriser vos outils et maximiser votre ROI"
-      }
+      "title": "PackshotCreator | Packshot Professionnel en 3 Secondes | Studios Photo Automatisés",
+      "description": "Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations Qualiopi. 500+ entreprises équipées. Packshot en 3 secondes."
     },
     "hero": {
       "badge": "Distributeur exclusif Orbitvu France & Suisse",
-      "title": "Réinventez votre processus de photographie de produits avec PackshotCreator",
-      "subtitle": "Simplifiez la création de contenu pour vos produits, réduisez vos coûts, optimisez votre workflow et trouvez le studio photo idéal parmi nos 20 systèmes de prise de vue.",
+      "title": "Packshot professionnel en 3 secondes. Sans photographe.",
+      "subtitle": "Studios photo automatisés Orbitvu + IA BlendAI + Formation certifiée Qualiopi. L'approche hybride qui équipe Chanel, Amazon et 500+ entreprises en France et en Suisse.",
       "cta": "Demander une démo gratuite",
-      "ctaSecondary": "Découvrir nos studios"
+      "ctaSecondary": "Calculer mon ROI en 2 min",
+      "microStats": "ROI moyen : 6-12 mois | Réduction des coûts photo : 60-85%"
     },
-    "intro": {
-      "heading": "La gamme de studios photo qui allie rapidité et inspiration",
-      "text1": "Avec plus de 20 ans d'expertise, PackshotCreator a redéfini la création de contenu visuel. Notre partenariat avec Orbitvu a permis d'enrichir notre gamme pour répondre aux exigences les plus élevées.",
-      "text2": "Une gamme complète de studios photo pour s'adapter à chaque besoin. L'automatisation pilotée par logiciel offre un gain de rapidité et de fluidité tout au long du processus de création visuelle.",
-      "cta": "Contacter un expert"
+    "socialProof": {
+      "heading": "Ils produisent leurs packshots avec nous",
+      "stat1": "25",
+      "stat1Label": "ans d'expertise",
+      "stat2": "500+",
+      "stat2Label": "entreprises équipées",
+      "stat3": "3 sec",
+      "stat3Label": "par packshot",
+      "stat4": "60-85%",
+      "stat4Label": "de réduction des coûts"
     },
-    "orbitvu": {
-      "brand": "Orbitvu",
-      "heading": "Solutions automatisées pour la photographie de produits",
-      "description": "Les technologies avancées d'Orbitvu permettent de produire des visuels prêts à être publiés en ligne en seulement 3 secondes, réduisant ainsi considérablement les délais de mise sur le marché.",
-      "feature1": "Des packshots en un instant",
-      "feature2": "Des solutions polyvalentes",
-      "feature3": "Une productivité maximale",
-      "feature4": "De la capture multi-angles à la 3D",
-      "cta": "Découvrez nos studios automatisés"
-    },
-    "alphashot": {
-      "heading": "Automatisation, IA : testez Alphashot Pro G2",
-      "description": "L'Alphashot Pro G2 simplifie vos prises de vue grâce à l'IA et à l'automatisation. Capturez des images, vidéos et animations 360° en quelques secondes, avec un éclairage optimisé et sans compétences techniques requises.",
-      "cta": "Réserver une démo"
-    },
-    "blog": {
-      "heading": "Actualités et Tutoriels",
-      "description": "Ne manquez pas les toutes dernières nouveautés en matière de photographie automatisée de produits. Notre blog est la référence incontournable pour les tendances de l'industrie et les avancées technologiques.",
-      "post1": {
-        "title": "Comment l'IA et l'éclairage virtuel transforment le packshot",
-        "category": "Innovations"
+    "painPoints": {
+      "heading": "Votre production photo freine votre croissance ?",
+      "slow": {
+        "title": "Trop lent",
+        "stat": "30",
+        "statUnit": "photos/jour",
+        "description": "Votre photographe fait 30 photos par jour. Vos concurrents en font 300. Chaque jour de retard sur vos fiches produit, c'est du chiffre d'affaires perdu."
       },
-      "post2": {
-        "title": "Récupérer votre logiciel PackshotCreator ou Ortery",
-        "category": "Produits"
+      "expensive": {
+        "title": "Trop cher",
+        "stat": "15-50€",
+        "statUnit": "par image",
+        "description": "Le coût moyen d'un packshot en prestation externe : 15 à 50 € par image. À 5 000 produits, cela représente 75 000 à 250 000 € par an."
       },
-      "post3": {
-        "title": "5 appareils photo en simultané pour de l'animation 3D",
-        "category": "Innovations"
+      "dependent": {
+        "title": "Trop dépendant",
+        "stat": "100%",
+        "statUnit": "externalisé",
+        "description": "Quand votre photographe freelance est indisponible ou que votre prestataire prend 3 semaines, votre catalogue est bloqué. Le savoir-faire ne reste pas dans l'entreprise."
       },
-      "cta": "Consulter notre blog",
-      "readArticle": "Lire l'article",
-      "viewAll": "Voir tous les articles"
-    },
-    "clientLogos": {
-      "heading": "Ils nous font confiance"
-    },
-    "stats": {
-      "years": "20+",
-      "yearsLabel": "années d'expertise",
-      "clients": "500+",
-      "clientsLabel": "entreprises équipées",
-      "sectors": "12",
-      "sectorsLabel": "secteurs couverts",
-      "machines": "20",
-      "machinesLabel": "modèles de studios"
+      "bridge": "Il y a une autre manière de faire."
     },
     "hybrid": {
-      "heading": "L'Approche Hybride PackshotCreator",
-      "subtitle": "Ni tout hardware, ni tout IA. La combinaison intelligente des deux, portée par l'expertise humaine.",
+      "heading": "L'approche hybride qui change tout",
+      "subtitle": "Ni tout hardware, ni tout IA. La combinaison intelligente des deux, portée par 25 ans d'expertise en photographie produit.",
       "capture": {
-        "title": "Base Parfaite",
-        "description": "Les studios automatisés Orbitvu capturent des packshots d'une qualité irréprochable en quelques secondes. Fonds blancs, multi-angles, 360° et vidéos."
+        "title": "Capture parfaite",
+        "description": "Studios Orbitvu : packshot en 3 secondes, 360°, vidéo, détourage automatique et ombres réelles. La base irremplaçable par l'IA."
       },
       "ia": {
         "title": "Multiplication IA",
-        "description": "BlendAI transforme chaque packshot en dizaines de visuels lifestyle et variations créatives. Votre photo réelle reste toujours la base."
+        "description": "BlendAI transforme 1 packshot en 10+ visuels lifestyle. Fonds contextuels, mises en scène, variations créatives. Votre photo réelle reste toujours la base."
       },
       "formation": {
-        "title": "Autonomie Totale",
-        "description": "Formations certifiées Qualiopi pour maîtriser l'ensemble du workflow Hardware + IA. Financement OPCO jusqu'à 100%."
-      }
+        "title": "Autonomie totale",
+        "description": "Formations certifiées Qualiopi pour maîtriser le workflow complet Hardware + IA. Financement OPCO jusqu'à 100%. Le savoir-faire reste dans votre entreprise."
+      },
+      "cta": "Découvrir la gamme Orbitvu",
+      "ctaSecondary": "En savoir plus sur BlendAI"
+    },
+    "clientLogos": {
+      "heading": "Ils produisent leurs packshots avec nous"
     },
     "spotlight": {
       "badge": "Best-seller",
-      "heading": "Alphashot Pro G2 : IA et Automatisation Intégrées",
+      "heading": "Alphashot Pro G2 : votre studio photo complet en 1 m²",
       "description": "Notre studio photo le plus vendu. Capturez packshots, vidéos et animations 360° en quelques secondes grâce à l'IA embarquée et l'éclairage LED optimisé.",
       "feature1": "Packshot en 3 secondes",
       "feature2": "IA BlendAI intégrée",
       "feature3": "Éclairage LED automatique",
       "feature4": "Export multi-canal",
-      "cta": "Réserver une démo"
+      "cta": "Voir cette machine en démo",
+      "ctaSecondary": "Comparer les 20 modèles"
+    },
+    "gallery": {
+      "heading": "Des résultats qui parlent",
+      "subtitle": "Découvrez la qualité des visuels produits par nos studios automatisés Orbitvu.",
+      "items": {
+        "packshot": "Packshot fond blanc",
+        "threeSixty": "Vue 360° interactive",
+        "fashion": "Photo mode portée",
+        "flatlay": "Composition flat-lay",
+        "jewelry": "Macro bijouterie",
+        "furniture": "Mobilier grand format"
+      }
+    },
+    "testimonials": {
+      "heading": "Ce qu'en disent nos clients",
+      "t1": {
+        "stat": "65%",
+        "statLabel": "de réduction du temps de production",
+        "quote": "Nous sommes passés de 50 à 300 packshots par jour. La qualité est constante, quel que soit l'opérateur. PackshotCreator a transformé notre workflow.",
+        "name": "Directeur e-commerce",
+        "company": "Marque mode internationale",
+        "sector": "Mode & Textile"
+      },
+      "t2": {
+        "stat": "8 mois",
+        "statLabel": "pour atteindre le ROI",
+        "quote": "Le coût par image a été divisé par 5. En 8 mois, l'investissement était rentabilisé. Aujourd'hui, nous produisons 100% de nos visuels en interne.",
+        "name": "Responsable production",
+        "company": "Groupe retail européen",
+        "sector": "Grande Distribution"
+      },
+      "t3": {
+        "stat": "90%",
+        "statLabel": "de prises de vue internalisées",
+        "quote": "Plus besoin de photographe externe pour 90% de nos prises de vue. Le studio Orbitvu et BlendAI couvrent tous nos besoins, du packshot au lifestyle.",
+        "name": "Chef de projet digital",
+        "company": "Marque cosmétiques premium",
+        "sector": "Cosmétiques & Beauté"
+      }
+    },
+    "whyAutomate": {
+      "heading": "3 raisons de passer à l'automatisation",
+      "subtitle": "Des arguments concrets pour convaincre votre direction.",
+      "noSkills": {
+        "title": "Résultats pro sans compétences photo",
+        "description": "En 1 heure de formation, n'importe quel opérateur produit des packshots professionnels. L'éclairage, le cadrage et le détourage sont entièrement automatisés.",
+        "stat": "1h",
+        "statLabel": "de prise en main"
+      },
+      "scalability": {
+        "title": "Montée en volume instantanée",
+        "description": "Les templates logiciels enregistrent vos réglages. Dupliquez le workflow et passez de 30 à 300 packshots par jour sans effort supplémentaire.",
+        "stat": "10x",
+        "statLabel": "plus productif"
+      },
+      "knowHow": {
+        "title": "Le savoir-faire reste dans l'entreprise",
+        "description": "Vos paramètres de prise de vue sont sauvegardés dans le logiciel. Même si votre opérateur change, la qualité reste identique. Fini la dépendance aux prestataires.",
+        "stat": "100%",
+        "statLabel": "reproductible"
+      }
     },
     "industries": {
-      "heading": "12 Secteurs d'Excellence",
-      "subtitle": "Des solutions photo produit adaptées à chaque industrie.",
+      "heading": "Votre secteur, notre expertise",
+      "subtitle": "Des solutions photo produit adaptées à chaque contrainte métier : réflexions, transparences, grands formats, lots.",
       "chaussures": "Chaussures",
       "bijoux": "Bijoux & Joaillerie",
       "mobilier": "Mobilier & Déco",
@@ -127,81 +156,49 @@
       "cta": "Découvrir toutes les industries"
     },
     "faq": {
-      "heading": "Questions Fréquentes",
+      "heading": "Questions fréquentes sur la photographie produit automatisée",
       "q1": {
         "question": "Qu'est-ce qu'un packshot et pourquoi est-il essentiel pour le e-commerce ?",
-        "answer": "Un packshot est une photographie professionnelle de produit sur fond blanc, standardisée pour la vente en ligne. C'est le premier contact visuel entre votre produit et le client. Des packshots de qualité augmentent le taux de conversion de 30% en moyenne et réduisent les retours produit."
+        "answer": "Un packshot est une photographie professionnelle de produit sur fond blanc, standardisée pour la vente en ligne. C'est le premier contact visuel entre votre produit et le client. Des packshots de qualité augmentent le taux de conversion de 30% en moyenne et réduisent les retours produit de 22%."
       },
       "q2": {
-        "question": "Comment fonctionne un studio photo automatisé Orbitvu ?",
-        "answer": "Les studios Orbitvu automatisent l'ensemble du processus : positionnement, éclairage LED calibré, capture multi-angles et 360°, détourage automatique et export. Un opérateur sans compétence photo peut produire des packshots professionnels en 3 secondes par image."
+        "question": "Combien coûte un studio photo automatisé ?",
+        "answer": "L'investissement dans un studio photo automatisé Orbitvu varie selon le modèle et les besoins de production. Le retour sur investissement moyen est atteint entre 6 et 12 mois pour les entreprises produisant plus de 500 visuels par an. Les coûts par image sont réduits de 60 à 85% par rapport à la prestation externe. Contactez-nous pour un devis personnalisé adapté à votre volume."
       },
       "q3": {
-        "question": "Qu'est-ce que BlendAI et comment l'IA améliore la photo produit ?",
-        "answer": "BlendAI est notre solution d'intelligence artificielle spécialisée packshot. À partir de vos photos réelles, l'IA génère des mises en scène lifestyle, des arrière-plans contextuels et des variations créatives. Contrairement à l'IA générative pure, BlendAI préserve l'intégrité visuelle de votre produit."
+        "question": "Comment fonctionne un studio photo automatisé Orbitvu ?",
+        "answer": "Les studios Orbitvu automatisent l'ensemble du processus : positionnement, éclairage LED calibré, capture multi-angles et 360°, détourage automatique avec ombres réelles, et export direct. Un opérateur sans compétence photo produit des packshots professionnels en 3 secondes par image après seulement 1 heure de formation."
       },
       "q4": {
-        "question": "En combien de temps un studio automatisé est-il rentabilisé ?",
-        "answer": "Le ROI moyen est atteint entre 6 et 12 mois selon votre volume de production. Les entreprises produisant plus de 1 000 visuels par an constatent un retour sur investissement dès le 4ème mois. Utilisez notre calculateur ROI pour une estimation personnalisée."
+        "question": "Quelle différence entre un studio automatisé et un photographe traditionnel ?",
+        "answer": "Un studio automatisé produit 300 packshots par jour avec une qualité constante, contre 30 à 50 pour un photographe. Le coût par image est réduit de 80%. La reproductibilité est garantie : les réglages enregistrés assurent la même qualité pendant des années. Le savoir-faire reste dans l'entreprise, indépendamment du turnover."
       },
       "q5": {
-        "question": "Vos formations sont-elles éligibles au financement OPCO ?",
-        "answer": "Oui, PackshotCreator Academy est certifié Qualiopi depuis 2023. Toutes nos formations packshot et IA sont éligibles au financement OPCO, avec une prise en charge possible jusqu'à 100%. Nous vous accompagnons dans les démarches administratives."
+        "question": "En combien de temps un studio automatisé est-il rentabilisé ?",
+        "answer": "Le ROI moyen est atteint entre 6 et 12 mois selon votre volume de production. Les entreprises produisant plus de 1 000 visuels par an constatent un retour sur investissement dès le 4ème mois. Utilisez notre calculateur ROI pour une estimation personnalisée basée sur vos données réelles."
       },
       "q6": {
-        "question": "Quelle différence entre PackshotCreator et un photographe traditionnel ?",
-        "answer": "PackshotCreator propose une approche hybride : hardware automatisé Orbitvu + IA spécialisée BlendAI + formation certifiée. Nos solutions offrent une productivité 10x supérieure, une qualité constante et un coût par image réduit de 80% par rapport à la photographie traditionnelle."
-      }
-    },
-    "gallery": {
-      "heading": "Des Résultats Qui Parlent",
-      "subtitle": "Découvrez la qualité des visuels produits par nos studios automatisés Orbitvu.",
-      "items": {
-        "packshot": "Packshot fond blanc",
-        "threeSixty": "Vue 360° interactive",
-        "fashion": "Photo mode portée",
-        "flatlay": "Composition flat-lay",
-        "jewelry": "Macro bijouterie",
-        "furniture": "Mobilier grand format"
-      }
-    },
-    "whyAutomate": {
-      "heading": "Pourquoi Automatiser Votre Photo Produit ?",
-      "subtitle": "3 avantages décisifs pour votre production visuelle.",
-      "noSkills": {
-        "title": "Résultats pro sans compétences photo",
-        "description": "Nos studios automatisés prennent en charge l'éclairage, le cadrage et le détourage. En 1 heure de formation, n'importe quel opérateur produit des packshots dignes d'un photographe expert.",
-        "stat": "1h",
-        "statLabel": "de prise en main"
-      },
-      "scalability": {
-        "title": "Montée en volume instantanée",
-        "description": "Besoin de photographier 10 000 références ? Les templates logiciels enregistrent vos réglages : position, lumière, post-production. Dupliquez le workflow et passez à l'échelle sans effort.",
-        "stat": "10x",
-        "statLabel": "plus productif"
-      },
-      "knowHow": {
-        "title": "Le savoir-faire reste dans l'entreprise",
-        "description": "Fini la dépendance aux prestataires ou photographes freelance. Vos paramètres de prise de vue sont sauvegardés dans le logiciel. Même si votre opérateur change, la qualité reste identique.",
-        "stat": "100%",
-        "statLabel": "reproductible"
+        "question": "Vos formations sont-elles éligibles au financement OPCO ?",
+        "answer": "Oui, PackshotCreator Academy est certifié Qualiopi. Toutes nos formations packshot et IA photo produit sont éligibles au financement OPCO, avec une prise en charge possible jusqu'à 100%. Nous accompagnons chaque entreprise dans les démarches administratives auprès de son OPCO."
       }
     },
     "midCta": {
-      "heading": "Prêt à optimiser votre production photo ?",
+      "heading": "Prêt à passer à l'action ?",
       "option1": {
-        "label": "Vous savez quel studio vous convient ?",
-        "cta": "Demander un devis"
+        "label": "Vous savez ce qu'il vous faut",
+        "cta": "Demander un devis personnalisé"
       },
       "option2": {
-        "label": "Pas encore sûr de la solution idéale ?",
-        "cta": "Calculer mon ROI"
-      }
+        "label": "Vous explorez encore",
+        "cta": "Calculer mon ROI en 2 min"
+      },
+      "phone": "Ou appelez-nous directement : +33 4 78 90 76 76"
     },
     "finalCta": {
-      "heading": "Prêt à transformer votre production visuelle ?",
-      "subtitle": "Découvrez nos solutions lors d'une démo personnalisée avec un expert PackshotCreator.",
-      "ctaPrimary": "Demander une démo gratuite",
+      "heading": "Votre prochain packshot pourrait être prêt dans 3 secondes",
+      "subtitle": "Réservez une démo avec un expert PackshotCreator. 30 minutes pour voir nos studios en action.",
+      "microTestimonial": "\"PackshotCreator nous a fait gagner 65% de temps sur notre production photo.\" — Dir. e-commerce, marque internationale",
+      "ctaPrimary": "Réserver ma démo",
       "ctaSecondary": "Calculer mon ROI"
     }
   },

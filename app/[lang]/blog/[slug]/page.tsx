@@ -20,6 +20,7 @@ import {
   calculateReadingTime,
   type HeadingData,
 } from '@/lib/blog-utils';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -149,7 +150,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
     headings = processed.headings;
     isWebflow = true;
     contentElement = (
-      <div dangerouslySetInnerHTML={{ __html: processed.processedHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
     );
   }
 

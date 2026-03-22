@@ -13,8 +13,8 @@ export default function SimulateurOPCOPage() {
   const lang = (params.lang as string) || 'fr';
   const isFr = lang === 'fr';
 
-  const handleComplete = (resultat: unknown, coordonnees: unknown) => {
-    console.log('Simulation terminée:', { resultat, coordonnees });
+  const handleComplete = (_resultat: unknown, _coordonnees: unknown) => {
+    // Callback déclenché à la fin de la simulation OPCO
   };
 
   const steps = [
