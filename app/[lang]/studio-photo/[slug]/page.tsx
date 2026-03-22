@@ -420,7 +420,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <div className="flex items-center justify-center gap-3 mb-12">
               <ArrowLeftRight className="h-6 w-6 text-very-peri-600" />
               <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                {isFr ? 'Machines similaires' : 'Similar machines'}
+                {isFr ? 'Systèmes similaires' : 'Similar systems'}
               </h2>
             </div>
             </FadeInView>

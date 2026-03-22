@@ -7,7 +7,7 @@
     "hero": {
       "badge": "Distributeur exclusif Orbitvu France & Suisse",
       "title": "Packshot professionnel en 3 secondes. Sans photographe.",
-      "subtitle": "Studios photo automatisés Orbitvu + IA BlendAI + Formation certifiée Qualiopi. L'approche hybride qui équipe Chanel, Amazon et 500+ entreprises en France et en Suisse.",
+      "subtitle": "Studios photo automatisés Orbitvu + IA BlendAI + Formation certifiée Qualiopi. L'approche qui équipe Chanel, Amazon et 500+ entreprises en France et en Suisse.",
       "cta": "Demander une démo gratuite",
       "ctaSecondary": "Calculer mon ROI en 2 min",
       "microStats": "ROI moyen : 6-12 mois | Réduction des coûts photo : 60-85%"
@@ -46,7 +46,7 @@
       "bridge": "Il y a une autre manière de faire."
     },
     "hybrid": {
-      "heading": "L'approche hybride qui change tout",
+      "heading": "Photo studio + IA : l'approche qui change tout",
       "subtitle": "Ni tout hardware, ni tout IA. La combinaison intelligente des deux, portée par 25 ans d'expertise en photographie produit.",
       "capture": {
         "title": "Capture parfaite",
@@ -74,7 +74,7 @@
       "feature2": "IA BlendAI intégrée",
       "feature3": "Éclairage LED automatique",
       "feature4": "Export multi-canal",
-      "cta": "Voir cette machine en démo",
+      "cta": "Voir ce système en démo",
       "ctaSecondary": "Comparer les 20 modèles"
     },
     "gallery": {
@@ -240,7 +240,7 @@
       "title": "Expert Photo Produit & IA | Fondateur PackshotCreator",
       "bio1": "20 ans d'expérience en photographie produit pour les plus grandes marques de luxe (Cartier, Rolex, Van Cleef & Arpels).",
       "bio2": "Pionnier de l'automatisation photo avec les studios Orbitvu dès 2008, puis de l'IA photo produit avec BlendAI en 2024.",
-      "bio3": "500+ professionnels formés au workflow hybride Hardware + IA.",
+      "bio3": "500+ professionnels formés au workflow Photo studio + IA.",
       "cert1": "Certifié Qualiopi (organisme de formation)",
       "cert2": "Distributeur exclusif Orbitvu France & Suisse",
       "cert3": "Co-fondateur BlendAI Studio"
@@ -339,7 +339,7 @@
       "solutions": "Solutions",
       "studios": "Studios Photo",
       "aiSoftware": "IA & Logiciels",
-      "machineSelector": "Sélecteur de Machines",
+      "machineSelector": "Sélecteur de Systèmes",
       "industries": "Industries",
       "shoes": "Chaussures",
       "jewelry": "Bijoux & Joaillerie",
@@ -660,40 +660,161 @@
   },
   "studiosHardware": {
     "meta": {
-      "title": "Studios Photo Automatisés Orbitvu | Distributeur Officiel FR & CH",
-      "description": "Studios photo automatisés Orbitvu. Distributeur exclusif France & Suisse. Calculateur ROI gratuit. 20 ans d'expertise photo luxe. Financement possible.",
-      "keywords": "studio photo automatisé, orbitvu france, photo produit automatique, roi studio photo"
+      "title": "Studios Photo Automatisés Orbitvu | PackshotCreator — Distributeur France & Suisse",
+      "description": "Systèmes photo automatisés Orbitvu. 500+ photos/jour, ROI en 9 mois. Distributeur exclusif France & Suisse. 20 systèmes du bijou au mobilier. Démo gratuite.",
+      "keywords": "studio photo automatisé, orbitvu france, système photo produit, photo produit automatique, roi studio photo, packshot automatisé"
     },
     "hero": {
-      "title": "Studios Photo Automatisés Orbitvu : Excellence Visuelle & ROI Garanti",
-      "subtitle": "Distributeur exclusif France & Suisse. 20 ans d'expertise photo luxe. Calculateur ROI gratuit.",
-      "ctaPrimary": "Calculer mon ROI",
-      "ctaSecondary": "Trouver ma machine"
+      "badge": "Distributeur Officiel Orbitvu — France & Suisse",
+      "title": "Produisez vos photos produit en interne. En 3 secondes.",
+      "subtitle": "Les systèmes Orbitvu automatisent la prise de vue, le détourage et la retouche. Vos équipes produisent 500+ photos/jour, sans photographe externe. ROI moyen : 9 mois.",
+      "ctaPrimary": "Voir les systèmes",
+      "ctaSecondary": "Demander une démo"
+    },
+    "socialProof": {
+      "label": "500+ entreprises équipées en France et dans le monde"
     },
     "threePillars": {
-      "heading": "Notre Approche HYBRIDE",
-      "subtitle": "Hardware de précision + IA spécialisée + Formation certifiée",
+      "heading": "L'approche PackshotCreator",
+      "subtitle": "Photo studio de précision + IA spécialisée + Formation certifiée. Tout ce qu'il faut pour internaliser votre production visuelle.",
       "capture": {
-        "title": "CAPTURE",
-        "description": "Studios photo automatisés Orbitvu pour des packshots professionnels",
-        "badge": "Hardware"
+        "title": "Capture",
+        "description": "Systèmes photo Orbitvu : packshot, 360°, vidéo. Éclairage automatique, fond blanc en 1 clic, cohérence garantie sur des milliers de visuels.",
+        "badge": "Studio"
       },
       "creation": {
-        "title": "CRÉATION",
-        "description": "IA photo produit BlendAI pour optimiser et transformer vos visuels",
+        "title": "Création",
+        "description": "BlendAI.studio transforme vos packshots en visuels lifestyle, déclinés à l'infini. L'IA part d'une photo studio pro — zéro hallucination, fidélité 100%.",
         "badge": "IA"
       },
       "formation": {
-        "title": "FORMATION",
-        "description": "Academy Qualiopi pour maîtriser vos outils et maximiser votre ROI",
+        "title": "Formation",
+        "description": "Academy certifiée Qualiopi. Vos équipes maîtrisent le système en 2 jours. Financement OPCO possible à 100%.",
         "badge": "Qualiopi"
       }
     },
+    "photoTypes": {
+      "heading": "Quel type de visuel produisez-vous ?",
+      "subtitle": "Packshot, 360°, mode ou flat-lay — un système adapté à chaque besoin.",
+      "still": {
+        "title": "Packshot Fond Blanc",
+        "description": "Photos produit sur fond blanc, prêtes pour le e-commerce. Détourage automatique, éclairage optimisé, résultat identique du premier au millième visuel.",
+        "stat1": "500+ photos/jour",
+        "stat2": "Fond blanc en 1 clic",
+        "stat3": "E-commerce, luxe, industrie",
+        "cta": "Systèmes packshot"
+      },
+      "threeSixty": {
+        "title": "Photo & Vidéo 360°",
+        "description": "Vues interactives à 360° pour un rendu immersif. Le client tourne le produit comme s'il l'avait en main. Réduit les retours de 25%.",
+        "stat1": "150+ produits/jour",
+        "stat2": "Spin 360° en 90 secondes",
+        "stat3": "E-commerce, électronique",
+        "cta": "Systèmes 360°"
+      },
+      "fashion": {
+        "title": "Mode & Mannequin",
+        "description": "Grands formats pour vêtements portés, ghost mannequin et flat-lay. Éclairage mode professionnel, vidéo e-commerce intégrée.",
+        "stat1": "150+ tenues/jour",
+        "stat2": "Vidéo + photo combinées",
+        "stat3": "Mode, luxe, sport",
+        "cta": "Systèmes mode"
+      },
+      "flatlay": {
+        "title": "Flat-Lay & Vue de Dessus",
+        "description": "Capture en vue plongeante pour textiles à plat, accessoires, compositions créatives. Cadrage automatique, idéal pour réseaux sociaux et catalogues.",
+        "stat1": "150 photos/heure",
+        "stat2": "Cadrage automatique",
+        "stat3": "Mode, bijoux, textile",
+        "cta": "Systèmes flat-lay"
+      }
+    },
     "products": {
-      "heading": "Nos Studios Photo",
-      "subtitle": "Choisissez le studio adapté à vos besoins",
+      "heading": "Trouvez le système adapté à votre production",
+      "subtitle": "20 systèmes Orbitvu, du bijou au mobilier. Filtrez par taille de produit, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
       "ctaText": "En savoir plus",
-      "viewAll": "Voir tous les studios"
+      "viewAll": "Voir tous les systèmes"
+    },
+    "support": {
+      "heading": "Un accompagnement de A à Z",
+      "subtitle": "L'achat du système n'est que le début. Nous vous accompagnons à chaque étape.",
+      "step1title": "Conseil personnalisé",
+      "step1description": "Nos experts analysent vos besoins, vos volumes et vos contraintes. Démonstration gratuite sur site ou en visio avec vos propres produits.",
+      "step2title": "Installation & Formation certifiée",
+      "step2description": "Livraison, installation et formation Qualiopi incluses. Vos équipes sont opérationnelles dès le premier jour.",
+      "step3title": "Support continu",
+      "step3description": "Hotline dédiée, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour maximiser votre ROI."
+    },
+    "roiTeaser": {
+      "heading": "Quel est le vrai coût de votre production photo actuelle ?",
+      "subtitle": "Prestataire externe, temps mobilisé, allers-retours... Calculez votre ROI en 2 minutes et découvrez en combien de mois un système Orbitvu se rentabilise.",
+      "cta": "Calculer mon ROI",
+      "stat": "ROI moyen constaté : 9 mois"
+    },
+    "faqStudios": {
+      "heading": "Questions fréquentes",
+      "q1": {
+        "question": "Quel budget prévoir pour un studio photo automatisé ?",
+        "answer": "Nos systèmes Orbitvu vont de 12 000 € HT (Alphashot 360 pour petits objets) à 150 000 € HT (E-Comm Studio+ pour grands formats). Le budget dépend de la taille de vos produits et du volume de production. Le ROI moyen est de 9 mois. Contactez-nous pour un devis adapté à votre cas."
+      },
+      "q2": {
+        "question": "Comment choisir le bon système pour mes produits ?",
+        "answer": "Tout dépend de la taille de vos produits et du type de visuel souhaité (packshot, 360°, vidéo, flat-lay). Notre sélecteur ci-dessus vous guide en quelques clics. Pour une recommandation sur mesure, nos experts réalisent une démonstration gratuite avec vos propres produits."
+      },
+      "q3": {
+        "question": "Peut-on faire de la photo 360° avec tous les systèmes ?",
+        "answer": "La plupart de nos systèmes intègrent un plateau tournant motorisé pour les vues 360°. L'Alphashot 360 est le spécialiste du petit objet, mais les gammes Alphashot Pro, XL et Alphastudio offrent aussi cette fonctionnalité."
+      },
+      "q4": {
+        "question": "L'appareil photo est-il inclus ?",
+        "answer": "Les systèmes Orbitvu sont compatibles avec la majorité des reflex et hybrides du marché (Canon, Nikon, Sony). L'appareil n'est pas inclus, mais nous vous conseillons le modèle le plus adapté à votre usage."
+      },
+      "q5": {
+        "question": "Peut-on tester un système avant d'acheter ?",
+        "answer": "Oui. Nous organisons des démonstrations gratuites — sur site dans notre showroom de Villeurbanne, en visio, ou chez vous avec vos propres produits. C'est le meilleur moyen d'évaluer le ROI concret avant investissement."
+      },
+      "q6": {
+        "question": "Quel est le délai de livraison ?",
+        "answer": "Comptez 2 à 4 semaines entre la commande et la mise en production. Ce délai inclut la livraison, l'installation et la formation de vos équipes. Nous gérons l'intégralité du déploiement."
+      }
+    },
+    "finalCta": {
+      "heading": "Prêt à voir nos systèmes en action ?",
+      "demo": {
+        "heading": "Démo personnalisée — 30 min",
+        "description": "Nos experts vous montrent le système adapté à vos produits. Sur site, en visio, ou dans notre showroom de Villeurbanne.",
+        "cta": "Réserver ma démo"
+      },
+      "guide": {
+        "heading": "Guide d'achat 2026",
+        "description": "Comparatif des 20 systèmes Orbitvu, grille de choix par secteur et calculateur de ROI inclus.",
+        "cta": "Télécharger le guide"
+      }
+    },
+    "crossLinks": {
+      "heading": "Explorez nos solutions",
+      "ia": {
+        "title": "IA Photo Produit — BlendAI.studio",
+        "description": "Transformez vos packshots en visuels lifestyle grâce à notre plateforme IA propriétaire."
+      },
+      "industrie": {
+        "title": "Solutions par secteur",
+        "description": "E-commerce, luxe, mode, industrie... Découvrez nos solutions adaptées à votre métier."
+      },
+      "academy": {
+        "title": "Academy — Formations certifiées",
+        "description": "Formations Qualiopi pour maîtriser votre système et l'IA photo produit."
+      }
+    },
+    "trust": {
+      "heading": "Ils nous font confiance",
+      "subtitle": "Des marques prestigieuses produisent leurs visuels avec nos systèmes Orbitvu",
+      "stat1value": "500+",
+      "stat1label": "Clients équipés",
+      "stat2value": "20 ans",
+      "stat2label": "D'expertise photo",
+      "stat3value": "50+",
+      "stat3label": "Pays couverts par Orbitvu"
     },
     "roiCalculator": {
       "heading": "Calculez Votre ROI en 2 Minutes",
@@ -745,7 +866,7 @@
         },
         "productSize": {
           "label": "Quelle est la taille principale de vos produits ?",
-          "sublabel": "Pour recommander le studio adapté",
+          "sublabel": "Pour recommander le système adapté",
           "small": "Petit (< 30 cm)",
           "smallExamples": "Bijoux, montres, cosmétiques",
           "medium": "Moyen (30-60 cm)",
@@ -765,107 +886,11 @@
       }
     },
     "machineSelection": {
-      "heading": "Trouvez Votre Machine Idéale",
+      "heading": "Trouvez Votre Système Idéal",
       "subtitle": "Répondez à 4 questions simples pour une recommandation personnalisée"
     },
     "sectors": {
-      "heading": "12 Secteurs Servis"
-    },
-    "finalCta": {
-      "demo": {
-        "heading": "Prêt à révolutionner votre production photo ?",
-        "description": "Réservez une démo gratuite avec nos experts et découvrez comment nos studios peuvent transformer votre workflow.",
-        "cta": "Réserver une démo gratuite"
-      },
-      "guide": {
-        "heading": "Guide d'Achat 2026",
-        "description": "Téléchargez notre guide complet pour choisir le studio photo automatisé adapté à votre activité.",
-        "cta": "Télécharger le guide"
-      }
-    },
-    "photoTypes": {
-      "heading": "Un Studio Pour Chaque Type de Photo",
-      "subtitle": "Packshot, 360°, mode ou flat-lay : des solutions adaptées à chaque besoin",
-      "still": {
-        "title": "Packshot Fond Blanc",
-        "description": "Photos produit sur fond blanc ou transparent, prêtes pour le e-commerce. Détourage automatique par IA, éclairage optimisé, cohérence garantie sur des milliers de visuels.",
-        "stat1": "500+ photos/jour",
-        "stat2": "Fond blanc en 1 clic",
-        "stat3": "E-commerce, luxe, industrie",
-        "cta": "Studios packshot"
-      },
-      "threeSixty": {
-        "title": "Photo & Vidéo 360°",
-        "description": "Vues interactives à 360° et vidéos spin pour un rendu immersif. Le client tourne le produit comme s'il l'avait en main. Réduit les retours de 25%.",
-        "stat1": "150+ produits/jour",
-        "stat2": "Spin 360° en 90 secondes",
-        "stat3": "E-commerce, électronique",
-        "cta": "Studios 360°"
-      },
-      "fashion": {
-        "title": "Mode & Mannequin",
-        "description": "Studios grand format pour vêtements portés, ghost mannequin et flat-lay. Éclairage mode professionnel, vidéo e-commerce intégrée.",
-        "stat1": "150+ tenues/jour",
-        "stat2": "Vidéo + photo combinées",
-        "stat3": "Mode, luxe, sport",
-        "cta": "Studios mode"
-      },
-      "flatlay": {
-        "title": "Flat-Lay & Vue de Dessus",
-        "description": "Capture en vue plongeante pour vêtements à plat, accessoires, compositions créatives. Idéal pour les réseaux sociaux et catalogues.",
-        "stat1": "150 photos/heure",
-        "stat2": "Cadrage automatique",
-        "stat3": "Mode, bijoux, textile",
-        "cta": "Studios flat-lay"
-      }
-    },
-    "trust": {
-      "heading": "Ils Nous Font Confiance",
-      "subtitle": "Des marques prestigieuses produisent leurs visuels avec nos studios Orbitvu",
-      "stat1value": "500+",
-      "stat1label": "Clients équipés",
-      "stat2value": "20 ans",
-      "stat2label": "D'expertise photo",
-      "stat3value": "50+",
-      "stat3label": "Pays couverts par Orbitvu",
-      "clientsNote": "Logos clients à ajouter par le PO"
-    },
-    "support": {
-      "heading": "Un Accompagnement de A à Z",
-      "subtitle": "L'achat du studio n'est que le début. Nous vous accompagnons à chaque étape.",
-      "step1title": "Conseil personnalisé",
-      "step1description": "Nos experts analysent vos besoins et recommandent la solution idéale. Démonstration gratuite sur site ou en visio.",
-      "step2title": "Installation & Formation certifiée",
-      "step2description": "Livraison, installation et formation Qualiopi incluses. Vos équipes sont opérationnelles dès le premier jour.",
-      "step3title": "Support continu",
-      "step3description": "Hotline dédiée, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour maximiser votre ROI."
-    },
-    "faqStudios": {
-      "heading": "Questions Fréquentes sur les Studios",
-      "q1": {
-        "question": "Quel studio choisir pour photographier des bijoux ?",
-        "answer": "L'Alphashot Micro Pro v2 est idéal pour les bijoux grâce à son éclairage macro optimisé et sa zone de capture adaptée aux petits objets. Pour les montres et pièces plus grandes, l'Alphashot Pro G2 offre plus de flexibilité."
-      },
-      "q2": {
-        "question": "Quel studio pour la photographie de mode ?",
-        "answer": "Le Fashion Studio Pro v2 est conçu pour la photo de vêtements portés et le ghost mannequin. Pour le flat-lay, l'Alphadesk v2 et l'Alphatable v2 sont les références. Tous intègrent la vidéo e-commerce."
-      },
-      "q3": {
-        "question": "Peut-on faire de la photo 360° avec tous les studios ?",
-        "answer": "La plupart de nos studios intègrent un plateau tournant motorisé pour les vues 360°. L'Alphashot 360 est le spécialiste, mais les gammes Alphashot Pro et XL offrent aussi cette fonctionnalité."
-      },
-      "q4": {
-        "question": "L'appareil photo est-il inclus avec le studio ?",
-        "answer": "Les studios Orbitvu sont compatibles avec la majorité des reflex et hybrides du marché (Canon, Nikon, Sony). L'appareil photo n'est pas inclus, mais nous vous conseillons le modèle le plus adapté à votre usage."
-      },
-      "q5": {
-        "question": "Peut-on louer un studio avant d'acheter ?",
-        "answer": "Nous proposons des démonstrations gratuites sur site ou en visio. Contactez-nous pour organiser un test avec vos propres produits et évaluer le ROI concret avant investissement."
-      },
-      "q6": {
-        "question": "Quel est le délai de livraison ?",
-        "answer": "Les délais varient selon le modèle et la disponibilité. En général, comptez 2 à 4 semaines pour la livraison, l'installation et la formation. Nous gérons l'intégralité du déploiement."
-      }
+      "heading": "14 Secteurs Servis"
     }
   },
   "packshotBijoux": {
@@ -917,7 +942,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandées pour la bijouterie",
+      "heading": "Systèmes recommandés pour la bijouterie",
       "subtitle": "Des studios conçus pour sublimer les petits objets précieux",
       "cta": "Demander un devis"
     },
@@ -992,7 +1017,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandées pour la mode",
+      "heading": "Systèmes recommandés pour la mode",
       "subtitle": "Des studios adaptés au textile, de la chaussure au prêt-à-porter",
       "cta": "Demander un devis"
     },
@@ -1067,7 +1092,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandées pour l'e-commerce",
+      "heading": "Systèmes recommandés pour l'e-commerce",
       "subtitle": "Des studios polyvalents pour tous types de produits",
       "cta": "Demander un devis"
     },
@@ -1319,7 +1344,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandees pour Amazon",
+      "heading": "Systèmes recommandés pour Amazon",
       "subtitle": "Des studios compacts et performants pour la photo marketplace",
       "cta": "Demander un devis"
     },
@@ -1394,7 +1419,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandees pour l'industrie",
+      "heading": "Systèmes recommandés pour l'industrie",
       "subtitle": "Des studios robustes pour les pieces techniques et mecaniques",
       "cta": "Demander un devis"
     },
@@ -1500,7 +1525,7 @@
         "name": "Defense terrestre & navale",
         "norms": "ITAR | CMMC | MIL-STD",
         "useCase": "Inventaire de pieces, anti-contrefacon, suivi d'usure, documentation avant/apres MCO. 130 000+ vehicules dans les programmes MRO.",
-        "argument": "L'expertise reste dans la machine -- independence du turnover"
+        "argument": "L'expertise reste dans le système -- indépendance du turnover"
       },
       "seg3": {
         "name": "Automobile & Equipementiers",
@@ -1575,7 +1600,7 @@
       }
     },
     "machines": {
-      "heading": "Machines recommandees pour l'industrie",
+      "heading": "Systèmes recommandés pour l'industrie",
       "subtitle": "Des studios robustes, adaptes aux exigences de precision et de volume industriel."
     },
     "compliance": {
@@ -1750,7 +1775,7 @@
       "title": "Article 1 : Objet",
       "text": "Les présentes CGU régissent l'utilisation du site www.packshot-creator.com et de l'ensemble des services proposés par PackshotCreator, notamment :",
       "item1": "La consultation des informations sur les produits et services",
-      "item2": "L'utilisation des outils interactifs (calculateur ROI, simulateur OPCO, sélecteur de machines)",
+      "item2": "L'utilisation des outils interactifs (calculateur ROI, simulateur OPCO, sélecteur de systèmes)",
       "item3": "L'inscription aux formations via PackshotCreator Academy",
       "item4": "Les demandes de contact et de devis",
       "item5": "L'accès au blog et aux ressources documentaires"
@@ -1777,7 +1802,7 @@
           "description": "L'éligibilité définitive reste soumise à la validation de l'OPCO concerné."
         },
         "selector": {
-          "title": "Sélecteur de machines",
+          "title": "Sélecteur de systèmes",
           "description": "Les recommandations sont basées sur les critères renseignés et constituent des suggestions."
         }
       }
@@ -1890,7 +1915,7 @@
       },
       "interactiveTools": {
         "title": "Outils interactifs",
-        "description": "Données saisies dans le calculateur ROI, simulateur OPCO, sélecteur machines"
+        "description": "Données saisies dans le calculateur ROI, simulateur OPCO, sélecteur systèmes"
       },
       "navigation": {
         "title": "Navigation",

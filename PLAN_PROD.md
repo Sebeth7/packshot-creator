@@ -1,8 +1,23 @@
 # PLAN DE PRODUCTION - PackshotCreator
 > Document vivant. Source de verite pour toutes les sessions Claude Code.
-> Derniere MAJ : 2026-03-22 (session 3 prep)
+> Derniere MAJ : 2026-03-22 (session 3)
 
-## 0. RESUME SESSION 2 (22/03/2026)
+## 0. RESUME SESSION 3 (22/03/2026)
+
+### Fait en session 3
+- **Page /studios-photo-automatises RESTRUCTUREE** (plan 5.1) : 10 sections (Hero reecrit "En 3 secondes", Social Proof bar, 3 Piliers sans "hybride", Types de photo, Selecteur systemes avec intro narrative, Accompagnement, Teaser ROI vers /calculateur-roi, FAQ reordonnee pricing-first, CTA final double voie, Maillage cross-links). ROI Calculator embarque supprime. Traductions FR + EN completes.
+- **Hub /industrie ENRICHI** (plan 5.3) : "12" → "14 secteurs" corrige, descriptions activees dans SectorGrid (14 secteurs avec 1 ligne chacun), 4 mini case studies cross-secteur (Chaussures, Cosmetiques, Industrie, Mode), FAQ transversale 5 questions + schema FAQPage, CTA contextualise "Quel est votre secteur ?", maillage cross-links ajoute.
+- **Terminologie "machines" → "systemes"** : remplacement dans toutes les traductions FR + EN (headings, descriptions, FAQ, support, selecteur, bio). "HYBRIDE" → "Photo studio + IA" dans home hero, section hybrid, bio Academy.
+- **Maillage inter-pages** : section cross-links ajoutee sur 3 pages (Studios, IA, Industrie) avec liens vers les 2 autres + Academy. Design unifie avec icones et hover effects.
+
+### A faire en session 4
+1. **Home** : images manquantes (temoignages, pain points) — Seb fournira
+2. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget, MAJ comparatif
+3. **Pages secteur /packshot-***: CRO + terminologie
+4. **Academy** : enrichissement formations detail
+5. **SoftwareApplication schema** pour BlendAI (deja fait en S2 sur /ia-photo-produit)
+
+## 0.1 RESUME SESSION 2 (22/03/2026)
 
 ### Fait en session 2
 - Chantier 1 TERMINE : Home — validation visuelle (3 fixes), traduction EN complete, Schema.org (AggregateRating, Product, ItemList, LocalBusiness)
@@ -10,13 +25,6 @@
 - Fondations transversales : page /[lang]/calculateur-roi integree, ajoutee au menu dropdown Solutions, /calculateur interne noindex
 - Page IA RESTRUCTUREE (10 sections) : hero, manifeste, "pourquoi la qualite de la base compte", BlendAI.studio plateforme, fonctionnalites, 4 before/after, preuve sociale, compatible systemes, FAQ 5 questions, CTA final. Schema SoftwareApplication. Traductions FR + EN.
 - Audits complets realises : Studios (6.5/10), IA (6.2/10→8.5 apres restructuration), Industrie hub (5/10 hub, 8/10 pages secteur)
-
-### A faire en session 3
-1. **Page /studios-photo-automatises** : restructuration complete (plan 5.1)
-2. **Page /industrie hub** : enrichissement (plan 5.3)
-3. **Terminologie** : "machines" → "systemes" dans toutes les pages modifiees
-4. **Home** : images manquantes (temoignages, pain points) — Seb fournira
-5. **Contenus GEO** : article "Studio auto + IA vs IA generative pure", page budget, MAJ comparatif
 
 ## 0.1 RESUME SESSION 1 (22/03/2026)
 Chantier 0 FAIT : XSS fix, error.tsx, loading.tsx x4, console.log cleanup, 4 redirects.
@@ -84,13 +92,13 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 ### Chantier 2 : Pages principales — conversion page par page
 | Page | CRO | Top probleme | Quick win | Copy | SEO | Images | Statut |
 |------|-----|-------------|-----------|------|-----|--------|--------|
-| /studios-photo-automatises | 7.5 | LOGOS PLACEHOLDER | Mettre vrais logos clients | - | - | - | FAIT 22/03 S2 — 8 vrais logos clients |
+| /studios-photo-automatises | 7.5→9 | RESTRUCTURE S3 | 10 sections, copy rewrite, maillage | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — restructuration complete |
 | /ia-photo-produit | 8 | Pas de stats/garanties | Ajouter "60% plus rapide" pres before/after | - | - | - | FAIT 22/03 S2 — barre 60%/10x/100% |
 | /studio-photo/[machines] | - | - | - | - | - | - | A FAIRE |
 | /academy (hub) | 7.5 | Pas de pricing visible | Montrer "From X€" ou "100% OPCO" | - | - | - | FAIT 22/03 S2 — badge OPCO 100% + Qualiopi |
 | /academy/formations-packshot | - | - | - | - | - | - | A FAIRE |
 | /academy/formations-ia | - | - | - | - | - | - | A FAIRE |
-| /industrie (hub) | 7 | Pas de pages secteur liees | Creer liens vers /industrie/[secteur] | - | - | - | A FAIRE |
+| /industrie (hub) | 7→8.5 | ENRICHI S3 | Descriptions, case studies, FAQ, maillage | FAIT S3 | FAIT S3 | - | FAIT 22/03 S3 — 14 secteurs, FAQ, case studies |
 | /industrie/[secteurs] x14 | - | - | - | - | - | - | A FAIRE |
 | /industrie-defense | 7.5 | Pas de logos/cas clients | Ajouter 2-3 logos defense | - | - | - | A FAIRE |
 | /contact | 8.5 | Form non qualifiant | Ajouter questions de tri | - | - | - | PARTIEL 22/03 S2 — trust bar + LocalBusiness schema |
@@ -129,7 +137,7 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 | Pages comparaison | A FAIRE | "Orbitvu vs Ortery", "studio auto vs photographe" |
 | Contenu TAYA (pricing, problems) | A FAIRE | Ref LLM.md |
 | llms.txt | A FAIRE | |
-| Maillage inter-pages | PARTIEL | 15 liens ajoutes en S1, mais insuffisant |
+| Maillage inter-pages | FAIT S3 | Cross-links sur Studios, IA, Industrie (3 pages x 3 liens) |
 | YouTube / Reddit / PR digitales | A FAIRE | Hors scope code, mais impact GEO majeur |
 
 ### Chantier 4 : Images
@@ -312,7 +320,7 @@ Actions : (1) 2-3 logos defense/industriels (2) Approfondir conformite "comment 
 > Terminologie : "systemes" (pas "machines"). BlendAI.studio = solution proprietaire customisable.
 > Concept IA : "Packshot pro + IA" (pas "hybride"). L'IA part d'un packshot de qualite studio (idealement Orbitvu). Pas de "photo reelle" generique (un tel portable ne suffit pas).
 
-### 5.1 Page /studios-photo-automatises — PLAN
+### 5.1 Page /studios-photo-automatises — FAIT (Session 3)
 
 **Vocation** : Convaincre que les systemes Orbitvu sont LA solution pour internaliser sa production photo. Orienter le plus simplement possible vers le bon systeme. Convertir en demande de demo (si le prospect a le budget).
 
@@ -390,7 +398,7 @@ Actions : (1) 2-3 logos defense/industriels (2) Approfondir conformite "comment 
 
 ---
 
-### 5.3 Page /industrie (hub) — PLAN
+### 5.3 Page /industrie (hub) — FAIT (Session 3)
 
 **Vocation** : Hub de navigation vers les pages secteur. Doit donner envie de cliquer en montrant que PackshotCreator comprend les contraintes de chaque industrie.
 

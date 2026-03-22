@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import {
   Sparkles, Wand2, ImageIcon, Paintbrush, Layers,
   ArrowRight, Check, X, ExternalLink, Star,
-  Code2, Palette, UserCheck, Zap,
+  Code2, Palette, UserCheck, Zap, Camera, GraduationCap, Layout,
 } from 'lucide-react';
 import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
@@ -459,6 +459,41 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 </Button>
               </div>
             </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Cross-Links (Maillage) */}
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView className="text-center mb-10">
+            <h2 className="text-2xl font-heading font-bold text-future-dusk-900">
+              {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
+            </h2>
+          </FadeInView>
+          <StaggerContainer className="grid md:grid-cols-3 gap-6">
+            {[
+              { href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier. Packshot, 360°, vidéo.' : '20 Orbitvu systems from jewelry to furniture. Packshot, 360°, video.' },
+              { href: '/industrie', icon: <Layout className="h-5 w-5" />, title: isFr ? 'Solutions par secteur' : 'Solutions by industry', desc: isFr ? '14 secteurs couverts avec des solutions photo adaptées.' : '14 sectors covered with tailored photo solutions.' },
+              { href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA.' : 'Qualiopi training to master your system and AI.' },
+            ].map((link) => (
+              <StaggerItem key={link.href}>
+                <Link href={link.href} className="group block bg-white rounded-xl border border-neutral-200 p-6 hover:border-very-peri-300 hover:shadow-md transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-100 text-very-peri-600 group-hover:bg-very-peri-200 transition-colors">
+                      {link.icon}
+                    </span>
+                    <h3 className="font-semibold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                      {link.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-future-dusk-500 leading-relaxed">{link.desc}</p>
+                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-very-peri-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {isFr ? 'Découvrir' : 'Discover'} <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
         </div>
       </section>
