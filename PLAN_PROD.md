@@ -1,8 +1,12 @@
 # PLAN DE PRODUCTION - PackshotCreator
 > Document vivant. Source de verite pour toutes les sessions Claude Code.
-> Derniere MAJ : 2026-03-22 (session 1)
+> Derniere MAJ : 2026-03-22 (session 2)
 
-## 0. RESUME SESSION 1 (22/03/2026)
+## 0. RESUME SESSION 2 (22/03/2026)
+Chantier 1 TERMINE : Validation visuelle home (3 fixes : logos gap, tel nowrap, hybrid numbers), traduction EN complete (7 keys obsoletes supprimees, 3 nouvelles ajoutees : painPoints, socialProof, testimonials), Schema.org ajoute (AggregateRating, Product Alphashot, ItemList industries, LocalBusiness contact).
+Chantier 2 EN COURS : CRO quick wins pages secondaires.
+
+## 0.1 RESUME SESSION 1 (22/03/2026)
 Chantier 0 FAIT : XSS fix, error.tsx, loading.tsx x4, console.log cleanup, 4 redirects.
 Chantier 1 EN COURS : Home restructuree (13→11 sections), copy rewrite, build OK. Reste : validation visuelle, Schema.org, images, traduction EN.
 Chantiers 2-4 : audits realises (CRO, SEO, GEO), plan documente, pas encore d'implementation.
@@ -46,7 +50,9 @@ Skills installes : frontend-design, copywriting, page-cro, claude-seo (13), geo-
 | Plan nouveau deroulé (11 sections) | VALIDE 22/03 | Probleme → Solution → Preuve → Action |
 | Redaction copy fr.json | FAIT 22/03 | Toutes les 11 sections, nouvelles clés painPoints + testimonials + socialProof |
 | Restructuration page.tsx | FAIT 22/03 | 13 → 11 sections, build OK |
-| Schema.org (AggregateRating, Product, ItemList) | A FAIRE | Apres validation visuelle |
+| Schema.org (AggregateRating, Product, ItemList) | FAIT 22/03 S2 | Home: AggregateRating, Product Alphashot, ItemList industries. Contact: LocalBusiness |
+| Traduction EN (nouvelles cles) | FAIT 22/03 S2 | painPoints, socialProof, testimonials, hero/midCta/finalCta aligns. 7 cles obsoletes supprimees |
+| Validation visuelle + fixes design | FAIT 22/03 S2 | Logos gap, tel nowrap, hybrid numbers color |
 | Images manquantes | A FAIRE | Inventaire a faire |
 
 **Structure validee (11 sections)** :
@@ -66,16 +72,16 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 ### Chantier 2 : Pages principales — conversion page par page
 | Page | CRO | Top probleme | Quick win | Copy | SEO | Images | Statut |
 |------|-----|-------------|-----------|------|-----|--------|--------|
-| /studios-photo-automatises | 7.5 | LOGOS PLACEHOLDER | Mettre vrais logos clients | - | - | - | A FAIRE |
-| /ia-photo-produit | 8 | Pas de stats/garanties | Ajouter "60% plus rapide" pres before/after | - | - | - | A FAIRE |
+| /studios-photo-automatises | 7.5 | LOGOS PLACEHOLDER | Mettre vrais logos clients | - | - | - | FAIT 22/03 S2 — 8 vrais logos clients |
+| /ia-photo-produit | 8 | Pas de stats/garanties | Ajouter "60% plus rapide" pres before/after | - | - | - | FAIT 22/03 S2 — barre 60%/10x/100% |
 | /studio-photo/[machines] | - | - | - | - | - | - | A FAIRE |
-| /academy (hub) | 7.5 | Pas de pricing visible | Montrer "From X€" ou "100% OPCO" | - | - | - | A FAIRE |
+| /academy (hub) | 7.5 | Pas de pricing visible | Montrer "From X€" ou "100% OPCO" | - | - | - | FAIT 22/03 S2 — badge OPCO 100% + Qualiopi |
 | /academy/formations-packshot | - | - | - | - | - | - | A FAIRE |
 | /academy/formations-ia | - | - | - | - | - | - | A FAIRE |
 | /industrie (hub) | 7 | Pas de pages secteur liees | Creer liens vers /industrie/[secteur] | - | - | - | A FAIRE |
 | /industrie/[secteurs] x14 | - | - | - | - | - | - | A FAIRE |
 | /industrie-defense | 7.5 | Pas de logos/cas clients | Ajouter 2-3 logos defense | - | - | - | A FAIRE |
-| /contact | 8.5 | Form non qualifiant | Ajouter questions de tri | - | - | - | A FAIRE |
+| /contact | 8.5 | Form non qualifiant | Ajouter questions de tri | - | - | - | PARTIEL 22/03 S2 — trust bar + LocalBusiness schema |
 | /a-propos | 7 | Pas de story fondateur | Ajouter bio fondateur + equipe | - | - | - | A FAIRE |
 | /blog (hub) | - | - | - | - | - | - | A FAIRE |
 | /blendai | - | - | - | - | - | - | A FAIRE |
@@ -104,8 +110,8 @@ Supprime : 3 Piliers (absorbe), Blog (pas de job conversion)
 | Schema.org audit | FAIT | OK sauf AggregateRating, LocalBusiness, SoftwareApplication |
 | Quick Wins SEO restants (13/15) | A FAIRE | +325-655 clics/an potentiels |
 | Test reponses LLMs | EN COURS | Agent en arriere-plan |
-| Ajouter AggregateRating/Review | A FAIRE | CRITIQUE pour citations LLMs |
-| Ajouter LocalBusiness (contact) | A FAIRE | CRITIQUE pour geo-local |
+| Ajouter AggregateRating/Review | FAIT 22/03 S2 | Home: Org 4.8/127 + Product 4.9/45 |
+| Ajouter LocalBusiness (contact) | FAIT 22/03 S2 | Adresse Villeurbanne, tel, horaires |
 | Ajouter SoftwareApplication (BlendAI) | A FAIRE | |
 | Pages definitoires manquantes | A FAIRE | "packshot", "photo 360", "studio automatise" |
 | Pages comparaison | A FAIRE | "Orbitvu vs Ortery", "studio auto vs photographe" |
@@ -190,8 +196,8 @@ Source : /DOCS FINAUX/Phase 4 de plan action/livrables/Pages.csv & Requetes.csv
 | HowTo | 22 guides | OK |
 | Course | Academy | OK |
 | Breadcrumb | Toutes | OK |
-| **AggregateRating** | AUCUNE page | CRITIQUE pour LLMs |
-| **LocalBusiness** | AUCUNE page | CRITIQUE pour geo-local |
+| **AggregateRating** | Home (Org + Product) | FAIT 22/03 S2 |
+| **LocalBusiness** | Contact | FAIT 22/03 S2 |
 | **SoftwareApplication** | AUCUNE page | BlendAI non marquee |
 
 ### 3.4 Strategie LLM/GEO (deja documentee dans LLM.md)

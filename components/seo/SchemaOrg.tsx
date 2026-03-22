@@ -154,6 +154,124 @@ export function articleSchema(article: {
   };
 }
 
+export function aggregateRatingSchema(rating: {
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'PackshotCreator',
+    url: 'https://www.packshot-creator.com',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: rating.ratingValue,
+      bestRating: rating.bestRating || 5,
+      worstRating: 1,
+      reviewCount: rating.reviewCount,
+    },
+  };
+}
+
+export function productWithRatingSchema(product: {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  brand?: string;
+  category?: string;
+  ratingValue?: number;
+  reviewCount?: number;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    url: product.url,
+    brand: {
+      '@type': 'Brand',
+      name: product.brand || 'Orbitvu',
+    },
+    category: product.category,
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Orbitvu',
+    },
+    ...(product.ratingValue && product.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: product.ratingValue,
+            bestRating: 5,
+            worstRating: 1,
+            reviewCount: product.reviewCount,
+          },
+        }
+      : {}),
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      seller: {
+        '@type': 'Organization',
+        name: 'PackshotCreator',
+      },
+    },
+  };
+}
+
+export function itemListSchema(items: { name: string; url: string; position?: number }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: item.position || index + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  };
+}
+
+export function localBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://www.packshot-creator.com/#business',
+    name: 'PackshotCreator (Sysnext)',
+    image: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
+    url: 'https://www.packshot-creator.com',
+    telephone: '+33478907676',
+    email: 'contact@sysnext.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '28 rue de la Baïsse',
+      addressLocality: 'Villeurbanne',
+      postalCode: '69100',
+      addressCountry: 'FR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 45.7676,
+      longitude: 4.8843,
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'France' },
+      { '@type': 'Country', name: 'Switzerland' },
+    ],
+    priceRange: '€€€',
+  };
+}
+
 export function courseSchema(course: {
   name: string;
   description: string;

@@ -7,8 +7,8 @@ const PipedriveContactForm = dynamic(
   () => import('@/components/forms/PipedriveContactForm').then((mod) => mod.PipedriveContactForm),
   { loading: () => <div className="h-64 bg-neutral-100 rounded-2xl animate-pulse" /> }
 );
-import { Phone, Clock, MapPin, ChevronRight } from 'lucide-react';
-import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { Phone, Clock, MapPin, ChevronRight, CheckCircle2 } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, localBusinessSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 
@@ -58,6 +58,20 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         title={t('heading')}
         subtitle={t('subtitle')}
       />
+
+      {/* Trust Bar */}
+      <section className="py-4 bg-very-peri-50 border-b border-very-peri-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm">
+            {[1, 2, 3].map((i) => (
+              <span key={i} className="flex items-center gap-1.5 text-future-dusk-600 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-accent-success flex-shrink-0" />
+                {t(`trustBadge${i}` as `trustBadge${1 | 2 | 3}`)}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Content */}
       <section className="py-16 bg-white">
@@ -141,7 +155,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), localBusinessSchema()]} />
     </>
   );
 }

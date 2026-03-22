@@ -143,7 +143,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                   <p className="text-future-dusk-500 leading-relaxed mb-6">
                     {t('formations.packshot.description')}
                   </p>
-                  <div className="flex items-center gap-4 mb-6 text-sm">
+                  <div className="flex items-center gap-4 mb-4 text-sm">
                     <span className="inline-flex items-center gap-1.5 text-future-dusk-600">
                       <CalendarDays className="h-4 w-4 text-future-dusk-400" />
                       {t('formations.packshot.duration')}
@@ -152,6 +152,10 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                       <GraduationCap className="h-4 w-4 text-future-dusk-400" />
                       {t('formations.packshot.level')}
                     </span>
+                  </div>
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 mb-6 text-sm">
+                    <span className="font-semibold text-emerald-700">{lang === 'fr' ? 'Financement OPCO jusqu\'à 100%' : 'Up to 100% OPCO funding'}</span>
+                    <span className="text-emerald-600"> — {lang === 'fr' ? 'Certifié Qualiopi' : 'Qualiopi certified'}</span>
                   </div>
                   <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
                     <Link href="/academy/formations-packshot">
@@ -176,7 +180,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                   <p className="text-future-dusk-500 leading-relaxed mb-6">
                     {t('formations.ia.description')}
                   </p>
-                  <div className="flex items-center gap-4 mb-6 text-sm">
+                  <div className="flex items-center gap-4 mb-4 text-sm">
                     <span className="inline-flex items-center gap-1.5 text-future-dusk-600">
                       <CalendarDays className="h-4 w-4 text-future-dusk-400" />
                       {t('formations.ia.duration')}
@@ -185,6 +189,10 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                       <GraduationCap className="h-4 w-4 text-future-dusk-400" />
                       {t('formations.ia.level')}
                     </span>
+                  </div>
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 mb-6 text-sm">
+                    <span className="font-semibold text-emerald-700">{lang === 'fr' ? 'Financement OPCO jusqu\'à 100%' : 'Up to 100% OPCO funding'}</span>
+                    <span className="text-emerald-600"> — {lang === 'fr' ? 'Certifié Qualiopi' : 'Qualiopi certified'}</span>
                   </div>
                   <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-xl w-full">
                     <Link href="/academy/formations-ia">

@@ -232,10 +232,22 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               </StaggerItem>
             ))}
           </StaggerContainer>
-          {/* Placeholder logos - PO ajoutera les vrais logos */}
           <FadeInView delay={0.3}>
-            <div className="bg-white rounded-2xl border border-neutral-100 p-8 text-center">
-              <p className="text-future-dusk-400 text-sm italic">{t('trust.clientsNote')}</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10">
+              {[
+                { name: 'Chanel', src: '/images/logos/client-chanel.svg', w: 225, h: 225 },
+                { name: 'Amazon', src: '/images/logos/client-amazon.svg', w: 409, h: 123 },
+                { name: 'Bosch', src: '/images/logos/client-bosch.svg', w: 462, h: 109 },
+                { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.svg', w: 600, h: 66 },
+                { name: 'Valentino', src: '/images/logos/client-valentino.svg', w: 320, h: 157 },
+                { name: 'Sandro', src: '/images/logos/client-sandro.svg', w: 390, h: 100 },
+                { name: 'Seiko', src: '/images/logos/client-seiko.svg', w: 508, h: 99 },
+                { name: 'Würth', src: '/images/logos/client-wurth.svg', w: 485, h: 104 },
+              ].map((logo) => (
+                <div key={logo.name} className="h-8 flex items-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} className="h-full w-auto max-w-[90px] object-contain" loading="lazy" />
+                </div>
+              ))}
             </div>
           </FadeInView>
         </div>

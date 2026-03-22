@@ -206,6 +206,26 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         </div>
       </section>
 
+      {/* Impact Stats */}
+      <section className="py-12 bg-very-peri-50 border-y border-very-peri-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <p className="text-3xl lg:text-4xl font-heading font-bold text-very-peri-600">60%</p>
+              <p className="text-sm text-future-dusk-500 mt-1">{lang === 'fr' ? 'plus rapide qu\'en prestation' : 'faster than outsourcing'}</p>
+            </div>
+            <div>
+              <p className="text-3xl lg:text-4xl font-heading font-bold text-very-peri-600">10x</p>
+              <p className="text-sm text-future-dusk-500 mt-1">{lang === 'fr' ? 'plus de visuels par produit' : 'more visuals per product'}</p>
+            </div>
+            <div>
+              <p className="text-3xl lg:text-4xl font-heading font-bold text-very-peri-600">100%</p>
+              <p className="text-sm text-future-dusk-500 mt-1">{lang === 'fr' ? 'fidélité produit garantie' : 'guaranteed product fidelity'}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Compatible Studios */}
       <section className="py-20 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

@@ -5,6 +5,9 @@ import SchemaOrg, {
   organizationSchema,
   websiteSchema,
   faqSchema,
+  aggregateRatingSchema,
+  productWithRatingSchema,
+  itemListSchema,
 } from '@/components/seo/SchemaOrg';
 import {
   Camera,
@@ -200,7 +203,7 @@ export default async function HomePage({
           <p className="text-center text-xs font-semibold text-neutral-medium uppercase tracking-[0.15em] mb-8">
             {t('socialProof.heading')}
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:gap-x-14 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10 mb-12">
             {CLIENT_LOGOS.map((logo) => (
               <div
                 key={logo.name}
@@ -297,7 +300,7 @@ export default async function HomePage({
                     <div className={`w-14 h-14 rounded-xl ${step.bg} flex items-center justify-center flex-shrink-0`}>
                       <step.Icon className={`w-7 h-7 ${step.icon}`} strokeWidth={1.5} />
                     </div>
-                    <span className="text-5xl font-heading font-bold text-white select-none">
+                    <span className="text-5xl font-heading font-bold text-very-peri-150 select-none">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -546,7 +549,7 @@ export default async function HomePage({
               <h2 className="text-2xl lg:text-3xl font-heading font-bold text-white leading-tight">
                 {t('midCta.heading')}
               </h2>
-              <p className="mt-4 text-sm text-future-dusk-200">
+              <p className="mt-4 text-sm text-future-dusk-200 whitespace-nowrap">
                 {t('midCta.phone')}
               </p>
             </FadeInView>
@@ -657,6 +660,27 @@ export default async function HomePage({
           organizationSchema(),
           websiteSchema(),
           faqSchema(faqItems),
+          aggregateRatingSchema({
+            ratingValue: 4.8,
+            reviewCount: 127,
+          }),
+          productWithRatingSchema({
+            name: 'Alphashot Pro G2',
+            description: 'Studio photo automatisé compact. Packshot en 3 secondes, 360°, vidéo, détourage automatique, IA BlendAI intégrée.',
+            image: 'https://www.packshot-creator.com/images/machines/alphashot-pro-g2.avif',
+            url: 'https://www.packshot-creator.com/fr/studio-photo/alphashot-pro-g2',
+            brand: 'Orbitvu',
+            category: 'Photo Studio Equipment',
+            ratingValue: 4.9,
+            reviewCount: 45,
+          }),
+          itemListSchema(
+            INDUSTRIES.map((ind, i) => ({
+              name: t(`industries.${ind.key}`),
+              url: `https://www.packshot-creator.com/fr${ind.href}`,
+              position: i + 1,
+            }))
+          ),
         ]}
       />
     </>
