@@ -3,11 +3,14 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronRight, ChevronDown, RotateCcw, Shirt, Layout, Users, Truck, Headphones, Check, Calculator } from 'lucide-react';
+import { Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown, RotateCcw, Shirt, Layout, Users, Truck, Headphones, Check, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 
 const MachineSelector = dynamic(
   () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
@@ -34,11 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       locale: lang === 'fr' ? 'fr_FR' : 'en_US',
       images: [{ url: `https://www.packshot-creator.com/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630, alt: t('title') }],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: t('title'),
-      description: t('description'),
-    },
+    twitter: { card: 'summary_large_image', title: t('title'), description: t('description') },
   };
 }
 
@@ -82,7 +81,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
 
   return (
     <>
-      {/* 1. Hero */}
+      {/* ━━━ 1. HERO ━━━ */}
       <HeroSection
         layout="centered"
         backgroundImage="/images/hero/hero-studios-wide.avif"
@@ -99,7 +98,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         ]}
       />
 
-      {/* 2. Social Proof Bar — logos + stats */}
+      {/* ━━━ 2. SOCIAL PROOF — logos + stats ━━━ */}
       <section className="py-12 bg-white border-b border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
@@ -135,17 +134,19 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      {/* 3. Three Pillars */}
-      <section className="py-20 bg-white">
+      {/* ━━━ 3. THREE PILLARS ━━━ */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {t('threePillars.heading')}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {t('threePillars.subtitle')}
-            </p>
-          </FadeInView>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('threePillars.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t('threePillars.subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
           <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {[
               { key: 'capture', icon: <Camera className="h-7 w-7" />, image: '/images/illustrations/pillar-hardware.avif', iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
@@ -153,93 +154,108 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               { key: 'formation', icon: <GraduationCap className="h-7 w-7" />, image: '/images/illustrations/pillar-formation.avif', iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
             ].map((pillar, idx) => (
               <StaggerItem key={pillar.key}>
-                <div className="relative bg-neutral-50 rounded-2xl overflow-hidden group hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-very-peri-200">
-                  <div className="aspect-[16/10] relative overflow-hidden">
-                    <Image src={pillar.image} alt={t(`threePillars.${pillar.key}.title`)} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-14 h-14 rounded-xl ${pillar.iconBg} flex items-center justify-center flex-shrink-0`}>
-                        <span className={pillar.iconColor}>{pillar.icon}</span>
-                      </div>
-                      <span className="text-5xl font-heading font-bold text-very-peri-100 select-none">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
+                <SpringCard className="h-full">
+                  <div className="relative bg-neutral-50 rounded-2xl overflow-hidden group border-2 border-transparent hover:border-very-peri-200 transition-colors duration-300 h-full">
+                    <div className="aspect-[16/10] relative overflow-hidden">
+                      <Image src={pillar.image} alt={t(`threePillars.${pillar.key}.title`)} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
-                    <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
-                      {t(`threePillars.${pillar.key}.title`)}
-                    </h3>
-                    <p className="text-sm text-future-dusk-500 leading-relaxed">
-                      {t(`threePillars.${pillar.key}.description`)}
-                    </p>
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className={`w-14 h-14 rounded-xl ${pillar.iconBg} flex items-center justify-center flex-shrink-0`}>
+                          <span className={pillar.iconColor}>{pillar.icon}</span>
+                        </div>
+                        <span className="text-5xl font-heading font-bold text-very-peri-100 select-none">
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
+                        {t(`threePillars.${pillar.key}.title`)}
+                      </h3>
+                      <p className="text-sm text-future-dusk-500 leading-relaxed">
+                        {t(`threePillars.${pillar.key}.description`)}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </SpringCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* 4. Photo Types */}
-      <section className="py-20 bg-gradient-to-br from-neutral-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {t('photoTypes.heading')}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {t('photoTypes.subtitle')}
-            </p>
-          </FadeInView>
+      {/* ━━━ 4. PHOTO TYPES ━━━ */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Gradient mesh background */}
+        <div className="absolute inset-0 bg-neutral-50" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-very-peri-200/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-200/15 rounded-full blur-[100px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('photoTypes.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t('photoTypes.subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
           <StaggerContainer className="grid md:grid-cols-2 gap-8">
             {photoTypes.map((type) => (
               <StaggerItem key={type.key}>
-                <div className={`bg-white rounded-2xl border-2 border-transparent ${type.hoverBorder} p-8 hover:shadow-md transition-all duration-300 h-full flex flex-col`}>
-                  <div className="flex items-center gap-4 mb-5">
-                    <span className={`inline-flex items-center justify-center h-14 w-14 rounded-xl ${type.color}`}>
-                      {type.icon}
-                    </span>
-                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                      {t(`photoTypes.${type.key}.title`)}
-                    </h3>
-                  </div>
-                  <p className="text-future-dusk-600 leading-relaxed mb-5 flex-1">
-                    {t(`photoTypes.${type.key}.description`)}
-                  </p>
-                  <div className="space-y-2.5 mb-6">
-                    {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
-                      <div key={stat} className="flex items-center gap-2.5 text-sm">
-                        <div className="w-5 h-5 rounded-full bg-accent-success/10 flex items-center justify-center flex-shrink-0">
-                          <Check className="h-3 w-3 text-accent-success" />
+                <SpringCard className="h-full">
+                  <div className={`bg-white rounded-2xl border-2 border-transparent ${type.hoverBorder} p-8 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-lg`}>
+                    <div className="flex items-center gap-4 mb-5">
+                      <span className={`inline-flex items-center justify-center h-14 w-14 rounded-xl ${type.color}`}>
+                        {type.icon}
+                      </span>
+                      <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                        {t(`photoTypes.${type.key}.title`)}
+                      </h3>
+                    </div>
+                    <p className="text-future-dusk-600 leading-relaxed mb-5 flex-1">
+                      {t(`photoTypes.${type.key}.description`)}
+                    </p>
+                    <div className="space-y-2.5 mb-6">
+                      {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
+                        <div key={stat} className="flex items-center gap-2.5 text-sm">
+                          <div className="w-5 h-5 rounded-full bg-accent-success/10 flex items-center justify-center flex-shrink-0">
+                            <Check className="h-3 w-3 text-accent-success" />
+                          </div>
+                          <span className="font-medium text-future-dusk-800">{t(`photoTypes.${type.key}.${stat}`)}</span>
                         </div>
-                        <span className="font-medium text-future-dusk-800">{t(`photoTypes.${type.key}.${stat}`)}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    <Link
+                      href="/studio-photo/selecteur-machines"
+                      className={`inline-flex items-center gap-1.5 text-sm font-semibold ${type.accent} hover:opacity-80 transition-opacity group/link`}
+                    >
+                      {t(`photoTypes.${type.key}.cta`)}
+                      <ArrowRight className="h-3.5 w-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
-                  <Link
-                    href="/studio-photo/selecteur-machines"
-                    className={`inline-flex items-center gap-1 text-sm font-semibold ${type.accent} hover:opacity-80 transition-opacity`}
-                  >
-                    {t(`photoTypes.${type.key}.cta`)} <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
+                </SpringCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* 5. System Selector */}
-      <section id="studios" className="py-20 bg-white">
+      {/* ━━━ 5. SYSTEM SELECTOR ━━━ */}
+      <section id="studios" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {t('products.heading')}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {t('products.subtitle')}
-            </p>
-          </FadeInView>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('products.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t('products.subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
           <FadeInView delay={0.2}>
             <MachineSelector
               mode="display"
@@ -251,8 +267,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      {/* 6. Accompaniment */}
-      <section className="py-20 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white relative overflow-hidden">
+      {/* ━━━ 6. ACCOMPANIMENT ━━━ */}
+      <section className="py-24 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -262,42 +278,49 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           aria-hidden="true"
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
-              {t('support.heading')}
-            </h2>
-            <p className="text-lg text-future-dusk-200 max-w-2xl mx-auto">
-              {t('support.subtitle')}
-            </p>
-          </FadeInView>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+                {t('support.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-200 max-w-2xl mx-auto">
+                {t('support.subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
           <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {supportSteps.map((step) => (
               <StaggerItem key={step.key}>
-                <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300">
-                  <div className="flex items-center gap-4 mb-5">
-                    <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-very-peri-500/20 text-very-peri-300">
-                      {step.icon}
-                    </span>
-                    <span className="text-4xl font-heading font-bold text-white/10 select-none">{step.number}</span>
+                <SpringCard className="h-full" hoverY={-6}>
+                  <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300 h-full">
+                    <div className="flex items-center gap-4 mb-5">
+                      <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-very-peri-500/20 text-very-peri-300">
+                        {step.icon}
+                      </span>
+                      <span className="text-4xl font-heading font-bold text-white/10 select-none">{step.number}</span>
+                    </div>
+                    <h3 className="text-xl font-heading font-bold mb-3">
+                      {t(`support.${step.key}title`)}
+                    </h3>
+                    <p className="text-future-dusk-300 leading-relaxed">
+                      {t(`support.${step.key}description`)}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-heading font-bold mb-3">
-                    {t(`support.${step.key}title`)}
-                  </h3>
-                  <p className="text-future-dusk-300 leading-relaxed">
-                    {t(`support.${step.key}description`)}
-                  </p>
-                </div>
+                </SpringCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* 7. ROI Teaser */}
-      <section className="py-20 bg-gradient-to-br from-very-peri-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-            <div className="relative bg-white rounded-2xl border border-very-peri-100 p-8 sm:p-12 text-center overflow-hidden shadow-sm">
+      {/* ━━━ 7. ROI TEASER ━━━ */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-very-peri-50 to-white" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-very-peri-200/20 rounded-full blur-[150px]" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal scale>
+            <div className="relative bg-white rounded-3xl border border-very-peri-100 p-8 sm:p-12 text-center overflow-hidden shadow-lg shadow-very-peri-500/5">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-very-peri-100 to-transparent rounded-bl-[100px]" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-very-peri-50 to-transparent rounded-tr-[60px]" />
               <div className="relative">
@@ -320,23 +343,25 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                 </p>
               </div>
             </div>
-          </FadeInView>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* 8. FAQ */}
-      <section className="py-20 bg-white">
+      {/* ━━━ 8. FAQ ━━━ */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
-            <FadeInView className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                {t('faqStudios.heading')}
-              </h2>
-            </FadeInView>
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+                  {t('faqStudios.heading')}
+                </TextReveal>
+              </div>
+            </ScrollReveal>
             <StaggerContainer stagger={0.08} className="space-y-3">
               {(['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => (
                 <StaggerItem key={key}>
-                  <details className="group bg-white rounded-xl border border-neutral-100 overflow-hidden [&[open]]:shadow-sm [&[open]]:border-very-peri-200">
+                  <details className="group bg-white rounded-xl border border-neutral-100 overflow-hidden [&[open]]:shadow-sm [&[open]]:border-very-peri-200 transition-all duration-200">
                     <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                       <h3 className="text-base font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
                         {t(`faqStudios.${key}.question`)}
@@ -354,8 +379,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      {/* 9. Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-future-dusk-900 via-very-peri-800 to-future-dusk-800 text-white relative overflow-hidden">
+      {/* ━━━ 9. FINAL CTA ━━━ */}
+      <section className="py-24 bg-gradient-to-br from-future-dusk-900 via-very-peri-800 to-future-dusk-800 text-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -365,35 +390,41 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           aria-hidden="true"
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <FadeInView className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold">
-              {t('finalCta.heading')}
-            </h2>
-          </FadeInView>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold">
+                {t('finalCta.heading')}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
           <StaggerContainer className="grid md:grid-cols-2 gap-8">
             <StaggerItem>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-colors duration-300">
-                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
-                <p className="text-future-dusk-200 mb-6 leading-relaxed">{t('finalCta.demo.description')}</p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-12 text-base shadow-lg shadow-black/10">
-                  <Link href="/contact">{t('finalCta.demo.cta')}</Link>
-                </Button>
-              </div>
+              <SpringCard className="h-full" hoverY={-6}>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 h-full flex flex-col">
+                  <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
+                  <p className="text-future-dusk-200 mb-6 leading-relaxed flex-1">{t('finalCta.demo.description')}</p>
+                  <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-12 text-base shadow-lg shadow-black/10 w-fit">
+                    <Link href="/contact">{t('finalCta.demo.cta')}</Link>
+                  </Button>
+                </div>
+              </SpringCard>
             </StaggerItem>
             <StaggerItem>
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-colors duration-300">
-                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
-                <p className="text-future-dusk-300 mb-6 leading-relaxed">{t('finalCta.guide.description')}</p>
-                <Button asChild className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base">
-                  <Link href="/blog">{t('finalCta.guide.cta')}</Link>
-                </Button>
-              </div>
+              <SpringCard className="h-full" hoverY={-6}>
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full flex flex-col">
+                  <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
+                  <p className="text-future-dusk-300 mb-6 leading-relaxed flex-1">{t('finalCta.guide.description')}</p>
+                  <Button asChild className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                    <Link href="/blog">{t('finalCta.guide.cta')}</Link>
+                  </Button>
+                </div>
+              </SpringCard>
             </StaggerItem>
           </StaggerContainer>
         </div>
       </section>
 
-      {/* 10. Cross-Links */}
+      {/* ━━━ 10. CROSS-LINKS ━━━ */}
       <section className="py-16 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="text-center mb-10">
@@ -408,22 +439,24 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" /> },
             ].map((link) => (
               <StaggerItem key={link.key}>
-                <Link href={link.href} className="group block bg-white rounded-xl border-2 border-transparent p-6 hover:border-very-peri-200 hover:shadow-md transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-100 text-very-peri-600 group-hover:bg-very-peri-200 transition-colors">
-                      {link.icon}
+                <SpringCard>
+                  <Link href={link.href} className="group block bg-white rounded-xl border-2 border-transparent p-6 hover:border-very-peri-200 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-100 text-very-peri-600 group-hover:bg-very-peri-200 transition-colors">
+                        {link.icon}
+                      </span>
+                      <h3 className="font-semibold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                        {t(`crossLinks.${link.key}.title`)}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-future-dusk-500 leading-relaxed">
+                      {t(`crossLinks.${link.key}.description`)}
+                    </p>
+                    <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-very-peri-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {lang === 'fr' ? 'Découvrir' : 'Discover'} <ArrowRight className="h-3.5 w-3.5" />
                     </span>
-                    <h3 className="font-semibold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
-                      {t(`crossLinks.${link.key}.title`)}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-future-dusk-500 leading-relaxed">
-                    {t(`crossLinks.${link.key}.description`)}
-                  </p>
-                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-very-peri-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {lang === 'fr' ? 'Découvrir' : 'Discover'} <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </Link>
+                  </Link>
+                </SpringCard>
               </StaggerItem>
             ))}
           </StaggerContainer>

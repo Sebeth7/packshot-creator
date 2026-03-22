@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import CookieBanner from '@/components/cookies/CookieBanner';
+import { SmoothScroll } from '@/components/animations';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -79,6 +80,7 @@ export default async function LocaleLayout({
     <html lang={lang} className={`${inter.variable} ${roboto.variable}`}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
+          <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
           <Header />
           <main>{children}</main>
