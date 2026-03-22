@@ -1,0 +1,356 @@
+{
+  "fr": {
+    "blogPrestataire": {
+      "meta": {
+        "title": "Prestataire packshot vs studio interne : que choisir ?",
+        "description": "Comparatif objectif entre prestataire photo produit et studio packshot interne. Couts, delais, qualite : tous les criteres pour faire le bon choix.",
+        "keywords": "studio packshot professionnel France, prestataire photo produit, photographe packshot tarif, internaliser photo produit, studio photo automatise",
+        "ogDescription": "Prestataire ou studio interne ? Comparatif complet avec chiffres reels pour choisir la meilleure solution photo produit."
+      },
+      "hero": {
+        "badge": "Guide",
+        "title": "Prestataire packshot vs studio interne",
+        "subtitle": "Tous les criteres pour faire le bon choix selon votre volume, votre budget et vos ambitions."
+      },
+      "author": "PackshotCreator",
+      "category": "Guide",
+      "readingTime": "{minutes} min de lecture",
+      "date": "2026-03-22",
+      "breadcrumbHome": "Accueil",
+      "breadcrumbBlog": "Blog",
+      "intro": {
+        "heading": "PackshotCreator n'est pas un prestataire photo",
+        "p1": "On nous pose souvent la question : pouvez-vous photographier nos produits ? La reponse est non. PackshotCreator ne fait pas de prestation photo. Nous vendons des systemes de studios photo automatises Orbitvu et nous formons vos equipes a les utiliser.",
+        "p2": "Cette confusion est revelatrice. Elle montre que beaucoup d'entreprises n'ont pas encore pris conscience qu'une alternative existe entre \"tout externaliser\" et \"recruter un photographe\". Cet article vous aide a comparer ces deux approches avec des chiffres concrets.",
+        "p3": "Spoiler : les deux options ont leur place. Mais au-dela d'un certain volume, l'une devient nettement plus avantageuse."
+      },
+      "whenOutsource": {
+        "heading": "Quand le prestataire fait sens",
+        "p1": "Externaliser la photo produit reste une option parfaitement valable dans plusieurs situations. Si votre catalogue ne depasse pas 500 photos par an, si vous n'avez pas de budget d'investissement immediat, si votre besoin est ponctuel ou saisonnier, ou si vous manquez tout simplement de place pour installer un studio, le prestataire est la solution pragmatique.",
+        "p2": "Un prestataire competent vous livre des visuels professionnels sans que vous ayez a maitriser quoi que ce soit. Vous envoyez vos produits, vous recuperez des images conformes a vos specifications.",
+        "p3": "Cote tarifs, comptez entre 19 et 50 euros HT par photo packshot standard en France. Les forfaits existent : environ 149 euros HT pour 10 photos (comprenant une heure de shooting, une heure de preparation et deux heures de retouche). Pour les gros volumes de plus de 100 photos, certains prestataires descendent a 5 euros HT la photo.",
+        "prices": {
+          "standard": "19 a 50 EUR HT / photo",
+          "forfait": "149 EUR HT / 10 photos",
+          "volume": "A partir de 5 EUR HT / photo (> 100 photos)"
+        }
+      },
+      "whenInternalize": {
+        "heading": "Quand internaliser devient evident",
+        "p1": "Le point de bascule se situe generalement autour de 500 photos par an. Au-dela de ce seuil, le cout cumule de la prestation externe commence a depasser le cout total de possession d'un studio automatise.",
+        "p2": "Mais le volume n'est pas le seul critere. L'internalisation s'impose naturellement quand :",
+        "reasons": {
+          "r1": "Votre time-to-market est critique et chaque jour de delai vous coute des ventes",
+          "r2": "Vous avez besoin d'une coherence visuelle absolue entre tous vos produits",
+          "r3": "La photo produit est un savoir-faire strategique que vous voulez capitaliser en interne",
+          "r4": "Votre volume augmente et les couts prestataire grimpent proportionnellement"
+        },
+        "p3": "La regle est simple : quand le cout annuel de votre prestataire depasse le cout total de possession d'un studio (achat amorti sur 5 ans + consommables + temps operateur), il est temps de basculer."
+      },
+      "costComparison": {
+        "heading": "Comparatif des couts : trois scenarios reels",
+        "description": "Comparaison annuelle entre prestation externe et studio automatise Orbitvu, sur trois profils de volumes.",
+        "headerScenario": "Scenario",
+        "headerPhotos": "Photos/an",
+        "headerPrestataire": "Cout prestataire",
+        "headerStudio": "Cout studio (amorti)",
+        "headerEconomie": "Economie annuelle",
+        "scenario1": {
+          "label": "PME e-commerce",
+          "photos": "1 000",
+          "prestataire": "19 000 - 50 000 EUR",
+          "studio": "~3 000 EUR/an",
+          "economie": "16 000 - 47 000 EUR"
+        },
+        "scenario2": {
+          "label": "ETI multi-catalogues",
+          "photos": "5 000",
+          "prestataire": "75 000 - 250 000 EUR",
+          "studio": "~5 000 EUR/an",
+          "economie": "70 000 - 245 000 EUR"
+        },
+        "scenario3": {
+          "label": "Grand retailer",
+          "photos": "15 000",
+          "prestataire": "225 000 EUR+",
+          "studio": "~10 000 EUR/an",
+          "economie": "215 000 EUR+"
+        },
+        "footnote": "Couts studio : amortissement machine sur 5 ans + consommables + temps operateur valorise. Couts prestataire : fourchette 15-50 EUR/photo selon complexite."
+      },
+      "trapsPrestataire": {
+        "heading": "Les pieges de l'externalisation",
+        "p1": "Externaliser n'est pas sans risques, et ces risques augmentent avec le volume.",
+        "traps": {
+          "t1": {
+            "title": "Les delais",
+            "description": "Comptez en moyenne trois semaines entre l'envoi de vos produits et la reception des visuels. Pour un lancement produit, c'est une eternite."
+          },
+          "t2": {
+            "title": "L'incoherence visuelle",
+            "description": "D'un shooting a l'autre, les conditions changent. Eclairage different, photographe different, retouche differente. Votre catalogue perd en homogeneite."
+          },
+          "t3": {
+            "title": "La dependance",
+            "description": "Le savoir-faire est chez le prestataire, pas chez vous. S'il augmente ses tarifs, change de methode ou cesse son activite, vous repartez de zero."
+          },
+          "t4": {
+            "title": "Des couts proportionnels au volume",
+            "description": "Plus vous grandissez, plus vous payez. Le prestataire est un cout variable qui ne beneficie d'aucun effet d'echelle cote client."
+          }
+        }
+      },
+      "gainsInternal": {
+        "heading": "Ce qu'on gagne en internalisant",
+        "p1": "Un studio automatise Orbitvu ne necessite pas de photographe professionnel. Apres une heure de formation, n'importe quel collaborateur peut produire des packshots calibres et reproductibles.",
+        "gains": {
+          "g1": {
+            "title": "Controle total",
+            "description": "Eclairage, angle, fond, cadrage : vous definissez vos standards une fois, le systeme les reproduit a l'identique."
+          },
+          "g2": {
+            "title": "Rapidite",
+            "description": "3 secondes par packshot. Jusqu'a 300 photos par jour et par operateur, contre 30 avec un photographe traditionnel."
+          },
+          "g3": {
+            "title": "Qualite constante",
+            "description": "Les parametres sont memorises dans des templates. Le 10 000e packshot est identique au premier."
+          },
+          "g4": {
+            "title": "Independance",
+            "description": "Le savoir-faire reste dans votre entreprise. Vous ne dependez plus de personne."
+          },
+          "g5": {
+            "title": "Montee en volume instantanee",
+            "description": "Nouveau catalogue, collection saisonniere, urgence client : vous produisez quand vous en avez besoin, pas quand le prestataire est disponible."
+          },
+          "g6": {
+            "title": "Contenus enrichis",
+            "description": "Au-dela du simple packshot, un studio Orbitvu produit des vues 360, des videos et du contenu exploitable par l'IA (BlendAI)."
+          }
+        }
+      },
+      "faq": {
+        "heading": "Questions frequentes",
+        "q1": {
+          "question": "PackshotCreator est-il un prestataire photo ?",
+          "answer": "Non. PackshotCreator vend des systemes de studios photo automatises Orbitvu et forme vos equipes a les utiliser. Nous ne faisons pas de prestation de prise de vue."
+        },
+        "q2": {
+          "question": "Faut-il un photographe pour utiliser un studio Orbitvu ?",
+          "answer": "Non. Les studios Orbitvu sont concus pour etre utilises par n'importe quel collaborateur apres une heure de formation. L'eclairage, le cadrage et le detourage sont automatises."
+        },
+        "q3": {
+          "question": "Peut-on combiner prestataire et studio interne ?",
+          "answer": "Oui, c'est meme une strategie courante. Beaucoup d'entreprises internalisent le packshot standard (fond blanc, 360, video produit) et externalisent les shootings lifestyle ou les prises de vue avec mannequins."
+        },
+        "q4": {
+          "question": "Quel espace faut-il pour installer un studio ?",
+          "answer": "Cela depend du modele. L'Alphashot se pose sur un bureau (moins d'1 m carre). Un Alphastudio Compact demande 4-5 m carres. Un E-Comm Studio+ pour les gros volumes industriels necessite 40-50 m carres."
+        },
+        "q5": {
+          "question": "Comment convaincre ma direction d'investir dans un studio ?",
+          "answer": "Utilisez notre calculateur de ROI en ligne. Il compare votre situation actuelle (couts prestataire, temps passe, volume) avec le cout total de possession d'un studio Orbitvu. Les chiffres parlent d'eux-memes : la rentabilite se situe generalement entre 6 et 12 mois."
+        }
+      },
+      "cta": {
+        "heading": "Pret a comparer les chiffres ?",
+        "description": "Utilisez notre calculateur de ROI pour simuler votre economie annuelle, ou contactez notre equipe pour une demonstration personnalisee.",
+        "btnRoi": "Calculer mon ROI",
+        "btnContact": "Demander une demo"
+      },
+      "relatedLinks": {
+        "heading": "Pour aller plus loin",
+        "studios": {
+          "title": "Studios photo automatises",
+          "description": "Decouvrez la gamme complete des studios Orbitvu distribues par PackshotCreator."
+        },
+        "industrie": {
+          "title": "Solutions pour l'industrie",
+          "description": "Documentation technique, controle qualite, catalogues grands volumes : les cas d'usage industriels."
+        },
+        "contact": {
+          "title": "Contactez-nous",
+          "description": "Demonstration en showroom, devis personnalise, etude de votre flux photo actuel."
+        }
+      }
+    }
+  },
+  "en": {
+    "blogPrestataire": {
+      "meta": {
+        "title": "Outsource vs in-house product photography: how to choose?",
+        "description": "Objective comparison between outsourced product photography and an in-house packshot studio. Costs, turnaround, quality: every criterion to make the right call.",
+        "keywords": "professional packshot studio, product photography outsource, in-house photo studio, automated photo studio, product photography costs",
+        "ogDescription": "Outsource or bring it in-house? A complete comparison with real figures to choose the best product photography solution."
+      },
+      "hero": {
+        "badge": "Guide",
+        "title": "Outsource vs in-house product photography",
+        "subtitle": "Every criterion to make the right call based on your volume, budget, and ambitions."
+      },
+      "author": "PackshotCreator",
+      "category": "Guide",
+      "readingTime": "{minutes} min read",
+      "date": "2026-03-22",
+      "breadcrumbHome": "Home",
+      "breadcrumbBlog": "Blog",
+      "intro": {
+        "heading": "PackshotCreator is not a photo service provider",
+        "p1": "We get this question all the time: can you photograph our products? The answer is no. PackshotCreator does not offer photo services. We sell Orbitvu automated photo studio systems and train your teams to use them.",
+        "p2": "This confusion is telling. It shows that many businesses have not yet realised there is an alternative between \"outsource everything\" and \"hire a photographer\". This article helps you compare both approaches with concrete figures.",
+        "p3": "Spoiler: both options have their place. But beyond a certain volume, one becomes clearly more advantageous."
+      },
+      "whenOutsource": {
+        "heading": "When outsourcing makes sense",
+        "p1": "Outsourcing product photography remains a perfectly valid option in several situations. If your catalogue does not exceed 500 photos per year, if you have no immediate investment budget, if your need is occasional or seasonal, or if you simply lack the space for a studio, a service provider is the pragmatic solution.",
+        "p2": "A competent provider delivers professional visuals without requiring you to master anything. You send your products, you get back images that meet your specifications.",
+        "p3": "In terms of pricing, expect between 19 and 50 euros (excl. VAT) per standard packshot in France. Packages are available: around 149 euros for 10 photos (including one hour of shooting, one hour of preparation, and two hours of retouching). For large volumes over 100 photos, some providers go as low as 5 euros per photo.",
+        "prices": {
+          "standard": "EUR 19-50 excl. VAT / photo",
+          "forfait": "EUR 149 excl. VAT / 10 photos",
+          "volume": "From EUR 5 excl. VAT / photo (> 100 photos)"
+        }
+      },
+      "whenInternalize": {
+        "heading": "When bringing it in-house becomes obvious",
+        "p1": "The tipping point generally sits around 500 photos per year. Beyond that threshold, the cumulative cost of outsourcing starts to exceed the total cost of ownership of an automated studio.",
+        "p2": "But volume is not the only criterion. Bringing photography in-house becomes a natural choice when:",
+        "reasons": {
+          "r1": "Your time-to-market is critical and every day of delay costs you sales",
+          "r2": "You need absolute visual consistency across all your products",
+          "r3": "Product photography is a strategic skill you want to build internally",
+          "r4": "Your volume is growing and outsourcing costs are rising proportionally"
+        },
+        "p3": "The rule is simple: when the annual cost of your service provider exceeds the total cost of ownership of a studio (purchase amortised over 5 years + consumables + operator time), it is time to switch."
+      },
+      "costComparison": {
+        "heading": "Cost comparison: three real-world scenarios",
+        "description": "Annual comparison between outsourced photography and an automated Orbitvu studio, across three volume profiles.",
+        "headerScenario": "Scenario",
+        "headerPhotos": "Photos/year",
+        "headerPrestataire": "Outsourcing cost",
+        "headerStudio": "Studio cost (amortised)",
+        "headerEconomie": "Annual saving",
+        "scenario1": {
+          "label": "SME e-commerce",
+          "photos": "1,000",
+          "prestataire": "EUR 19,000 - 50,000",
+          "studio": "~EUR 3,000/year",
+          "economie": "EUR 16,000 - 47,000"
+        },
+        "scenario2": {
+          "label": "Mid-size multi-catalogue",
+          "photos": "5,000",
+          "prestataire": "EUR 75,000 - 250,000",
+          "studio": "~EUR 5,000/year",
+          "economie": "EUR 70,000 - 245,000"
+        },
+        "scenario3": {
+          "label": "Large retailer",
+          "photos": "15,000",
+          "prestataire": "EUR 225,000+",
+          "studio": "~EUR 10,000/year",
+          "economie": "EUR 215,000+"
+        },
+        "footnote": "Studio costs: machine amortised over 5 years + consumables + valued operator time. Outsourcing costs: EUR 15-50/photo range depending on complexity."
+      },
+      "trapsPrestataire": {
+        "heading": "The pitfalls of outsourcing",
+        "p1": "Outsourcing is not without risks, and those risks grow with volume.",
+        "traps": {
+          "t1": {
+            "title": "Lead times",
+            "description": "Count on an average of three weeks between sending your products and receiving the visuals. For a product launch, that is an eternity."
+          },
+          "t2": {
+            "title": "Visual inconsistency",
+            "description": "From one shoot to the next, conditions change. Different lighting, different photographer, different retouching. Your catalogue loses its coherence."
+          },
+          "t3": {
+            "title": "Dependency",
+            "description": "The expertise stays with the provider, not with you. If they raise prices, change methods, or close shop, you are back to square one."
+          },
+          "t4": {
+            "title": "Costs proportional to volume",
+            "description": "The more you grow, the more you pay. Outsourcing is a variable cost that offers no economies of scale on the client side."
+          }
+        }
+      },
+      "gainsInternal": {
+        "heading": "What you gain by bringing it in-house",
+        "p1": "An automated Orbitvu studio does not require a professional photographer. After one hour of training, any team member can produce calibrated, repeatable packshots.",
+        "gains": {
+          "g1": {
+            "title": "Total control",
+            "description": "Lighting, angle, background, framing: you define your standards once, and the system reproduces them identically."
+          },
+          "g2": {
+            "title": "Speed",
+            "description": "3 seconds per packshot. Up to 300 photos per day per operator, compared with 30 using a traditional photographer."
+          },
+          "g3": {
+            "title": "Consistent quality",
+            "description": "Settings are saved in templates. The 10,000th packshot is identical to the first."
+          },
+          "g4": {
+            "title": "Independence",
+            "description": "The expertise stays within your company. You no longer depend on anyone."
+          },
+          "g5": {
+            "title": "Instant scaling",
+            "description": "New catalogue, seasonal collection, client emergency: you produce when you need to, not when the provider is available."
+          },
+          "g6": {
+            "title": "Rich content",
+            "description": "Beyond simple packshots, an Orbitvu studio produces 360-degree views, videos, and AI-ready content (BlendAI)."
+          }
+        }
+      },
+      "faq": {
+        "heading": "Frequently asked questions",
+        "q1": {
+          "question": "Is PackshotCreator a photo service provider?",
+          "answer": "No. PackshotCreator sells Orbitvu automated photo studio systems and trains your teams to use them. We do not offer photography services."
+        },
+        "q2": {
+          "question": "Do I need a photographer to use an Orbitvu studio?",
+          "answer": "No. Orbitvu studios are designed to be operated by any team member after one hour of training. Lighting, framing, and background removal are automated."
+        },
+        "q3": {
+          "question": "Can I combine outsourcing and an in-house studio?",
+          "answer": "Yes, and it is a common strategy. Many businesses bring standard packshots in-house (white background, 360, product video) and outsource lifestyle shoots or model photography."
+        },
+        "q4": {
+          "question": "How much space do I need for a studio?",
+          "answer": "It depends on the model. The Alphashot sits on a desk (less than 1 square metre). An Alphastudio Compact requires 4-5 square metres. An E-Comm Studio+ for high-volume industrial use needs 40-50 square metres."
+        },
+        "q5": {
+          "question": "How do I convince my management to invest in a studio?",
+          "answer": "Use our online ROI calculator. It compares your current situation (outsourcing costs, time spent, volume) with the total cost of ownership of an Orbitvu studio. The numbers speak for themselves: payback typically falls between 6 and 12 months."
+        }
+      },
+      "cta": {
+        "heading": "Ready to compare the numbers?",
+        "description": "Use our ROI calculator to simulate your annual savings, or contact our team for a personalised demonstration.",
+        "btnRoi": "Calculate my ROI",
+        "btnContact": "Request a demo"
+      },
+      "relatedLinks": {
+        "heading": "Further reading",
+        "studios": {
+          "title": "Automated photo studios",
+          "description": "Discover the full range of Orbitvu studios distributed by PackshotCreator."
+        },
+        "industrie": {
+          "title": "Solutions for industry",
+          "description": "Technical documentation, quality control, high-volume catalogues: industrial use cases."
+        },
+        "contact": {
+          "title": "Contact us",
+          "description": "Showroom demonstration, custom quote, analysis of your current photo workflow."
+        }
+      }
+    }
+  }
+}

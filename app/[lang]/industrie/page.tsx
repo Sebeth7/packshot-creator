@@ -268,7 +268,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
@@ -289,7 +289,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               {caseStudies.map((cs) => (
                 <ScrollReveal key={cs.sector} offset={30}>
                   <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className={`rounded-2xl border ${cs.color} p-5 lg:p-10 transition-all duration-300`}>
+                    <div className={`rounded-2xl border ${cs.color} p-3 sm:p-5 lg:p-10 transition-all duration-300`}>
                       <div className="flex items-start gap-4 mb-4">
                         <Quote className="h-6 w-6 text-future-dusk-300 shrink-0 mt-1" />
                         <div>
@@ -327,11 +327,11 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">
             {/* Hero card — Production Accélérée */}
             <ScrollReveal offset={30}>
               <SpringCard className="h-full">
-                <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefits[0].hoverBorder} p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl`}>
+                <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefits[0].hoverBorder} p-5 sm:p-8 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl`}>
                   <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${benefits[0].color} mb-6`}>
                     {benefits[0].icon}
                   </span>
@@ -346,7 +346,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             </ScrollReveal>
 
             {/* 2 smaller cards stacked */}
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-6">
               {benefits.slice(1).map((benefit) => (
                 <ScrollReveal key={benefit.title} offset={20}>
                   <SpringCard hoverY={-3} hoverScale={1.005}>
@@ -404,10 +404,10 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
           <div className="space-y-0">
             {workflowSteps.map((step, idx) => (
               <ScrollReveal key={step.num} offset={30}>
-                <div className={`grid md:grid-cols-12 gap-8 items-center py-12 ${idx < workflowSteps.length - 1 ? 'border-b border-white/10' : ''}`}>
+                <div className={`grid md:grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-12 ${idx < workflowSteps.length - 1 ? 'border-b border-white/10' : ''}`}>
                   {/* Number — massive, decorative */}
                   <div className="md:col-span-2 text-center md:text-right">
-                    <span className="text-5xl md:text-8xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
+                    <span className="text-3xl sm:text-5xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
                       {step.num}
                     </span>
                   </div>
@@ -439,7 +439,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -461,7 +461,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                 {faqs.map((faq, i) => (
                   <StaggerItem key={i}>
                     <details className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
-                      <summary className="flex items-center justify-between gap-4 p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                      <summary className="flex items-center justify-between gap-4 p-4 sm:p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                         <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
                           {faq.question}
                         </h3>
@@ -491,7 +491,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               {isFr ? 'Quel est votre secteur ?' : 'What is your industry?'}
             </TextReveal>
           </ScrollReveal>
-          <div className="grid lg:grid-cols-5 gap-8">
+          <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
             {/* Demo — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
@@ -512,7 +512,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             </SpringCard>
             {/* Quote — 2/5 = secondary */}
             <SpringCard className="lg:col-span-2" hoverY={-6}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10 h-full flex flex-col">
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 h-full flex flex-col">
                 <h3 className="text-2xl font-heading font-bold mb-4">
                   {isFr ? 'Devis sur mesure' : 'Custom quote'}
                 </h3>
@@ -550,7 +550,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA photo produit.' : 'Qualiopi training to master your system and product photo AI.' },
             ].map((link) => (
               <FadeInView key={link.key}>
-                <Link href={link.href} className="group block px-8 py-6">
+                <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-very-peri-500">{link.icon}</span>
                     <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">

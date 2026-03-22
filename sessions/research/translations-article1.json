@@ -1,0 +1,324 @@
+{
+  "fr": {
+    "blogStudioIa": {
+      "meta": {
+        "title": "Studio photo + IA vs IA generative pure | Comparatif 2026",
+        "description": "Photo produit IA : faut-il choisir Photoroom ou un studio automatise ? Comparatif complet fidelite, 360, coherence catalogue et reglementation.",
+        "keywords": "photo produit IA, ia photo produit, alternative photoroom, studio photo automatise IA, comparatif photoroom blendai"
+      },
+      "hero": {
+        "badge": "Guide comparatif",
+        "title": "Studio automatise + IA vs IA generative pure : le vrai match",
+        "subtitle": "Photoroom, Claid, Flair... ou un studio Orbitvu couple a BlendAI ? Toutes les approches ne se valent pas. Voici les faits."
+      },
+      "breadcrumb": {
+        "blog": "Blog",
+        "article": "Studio IA vs IA generative"
+      },
+      "category": "Guide",
+      "readTime": "8 min de lecture",
+      "publishDate": "22 mars 2026",
+      "author": "PackshotCreator",
+      "intro": {
+        "heading": "Le marche de la photo produit bascule dans l'IA",
+        "body1": "Le constat est sans appel. En 2026, 34 millions d'images sont generees par l'IA chaque jour. Le marche de la photo produit assistee par l'intelligence artificielle est projete a 8,9 milliards de dollars d'ici 2034, avec une croissance annuelle de 15,7 %. Les outils se multiplient, les promesses s'empilent, et 76 % des PME ayant adopte l'IA photo declarent realiser plus de 80 % d'economies sur leurs visuels produit.",
+        "body2": "Mais derriere cette vague, deux philosophies s'affrontent. D'un cote, l'IA generative pure : Photoroom, Claid, Flair, Pebblely -- des outils qui generent ou transforment vos visuels a partir de rien (ou presque). De l'autre, l'approche hybride : un studio photo automatise capture le produit reel, puis l'IA augmente ces captures. Meme objectif -- des visuels produit professionnels, plus vite, moins cher -- mais des resultats profondement differents. Voyons pourquoi."
+      },
+      "marketOverview": {
+        "heading": "L'essor de l'IA generative pour la photo produit",
+        "body1": "Photoroom mene la danse avec plus de 300 millions de telechargements, une valorisation de 500 millions de dollars et un ARR de 94 millions fin 2024 (+89 % sur un an). Claid.ai revendique 200 millions d'images traitees pour 10 000 entreprises. Flair.ai attire 577 000 visiteurs mensuels. Pebblely comptabilise 25 millions d'images creees pour plus d'un million d'utilisateurs.",
+        "body2": "Les geants ne sont pas en reste. Google Product Studio est integre a Merchant Center, gratuit pour les marchands. Amazon propose la generation d'images directement dans sa plateforme publicitaire. Adobe Firefly s'enracine dans Photoshop. Le message est limpide : la photo produit par IA n'est plus une curiosite, c'est un standard en devenir.",
+        "body3": "Et les prix defient toute concurrence : de 0,02 a 0,10 dollar par image via API chez Photoroom, des abonnements a partir de 7,50 dollars par mois. Face a un cout moyen de 102 dollars par image en studio traditionnel, l'equation semble reglee. Sauf qu'elle ne l'est pas."
+      },
+      "aiPure": {
+        "heading": "Comment fonctionne l'IA generative pure -- et ou elle excelle",
+        "body1": "Le principe est simple. Vous uploadez une photo (meme mediocre) de votre produit. L'IA supprime le fond, ameliore l'eclairage, genere une scene lifestyle et vous exporte un visuel pret a publier. Le tout en quelques secondes, pour quelques centimes. Photoroom propose ses templates Amazon et Shopify, Claid.ai traite vos images en 2 a 3 secondes, Flair.ai permet de construire des scenes par glisser-deposer, Pebblely offre 40 themes predefinies.",
+        "body2": "Pour la suppression de fond, ces outils sont redoutables. Pour generer rapidement des visuels lifestyle destines aux reseaux sociaux ou aux publicites, ils font le travail. Pour des mannequins virtuels dans la mode, Photoroom et Flair proposent des resultats convaincants. Sur des catalogues de moins de 50 references, avec des produits simples (cosmetiques, accessoires), les resultats sont souvent suffisants.",
+        "limitesHeading": "Les limites documentees de l'IA generative pure",
+        "limites1": "Mais au-dela de ces cas d'usage, les problemes sont documentes et recurrents.",
+        "limites2title": "Distorsion du produit.",
+        "limites2": "L'IA ne connait pas votre produit. Elle devine a partir de donnees d'entrainement. Resultat : des boutons qui apparaissent, des proportions qui derivent, des details qui disparaissent. Flair.ai presente des problemes connus de distorsion sur les textes et les surfaces reflechissantes. Claid.ai peut ajouter des elements non intentionnels autour des produits.",
+        "limites3title": "Hallucinations visuelles.",
+        "limites3": "Les bijoux perdent leurs details fins, les emballages transparents generent des reflets aberrants, les textes deviennent illisibles, les textures tricotees se desagregeent. L'or ne brille pas, le verre ne reflete pas : les visuels IA restent souvent trop mats ou trop plastiques.",
+        "limites4title": "Derive visuelle du catalogue.",
+        "limites4": "Chaque generation est independante. L'IA n'a aucune memoire des visuels precedents. Sur un catalogue de 200 produits, vous obtenez 200 eclairages differents, 200 cadrages differents. Le catalogue ressemble a un patchwork. Or, une presentation de marque coherente augmente le chiffre d'affaires jusqu'a 33 %, et 75 % des consommateurs accordent davantage de confiance aux marques dont les visuels sont homogenes. Pebblely et Flair commencent a montrer leurs limites des 50 references.",
+        "limites5title": "Ni 360, ni video.",
+        "limites5": "Aucun des quatre outils principaux (Photoroom, Claid, Flair, Pebblely) ne propose de generation 360 ou de spin produit. Les approximations depuis une seule image restent des reconstructions, pas des vues reelles.",
+        "limites6title": "Risques juridiques croissants.",
+        "limites6": "La FTC interdit les representations trompeuses d'un produit (taille, couleur, caracteristiques). Amazon, Shopify et TikTok Shop tolerent les visuels IA mais sanctionnent les contenus trompeurs par le retrait de listing ou la suspension de compte. La Californie impose depuis janvier 2026 le labellisage des photos IA. Les images purement generees par IA ne beneficient pas de protection par le copyright. Cinq batailles juridiques majeures sont en cours en 2026."
+      },
+      "studioPlusIa": {
+        "heading": "L'approche Photo studio + IA : capturer le reel, augmenter par l'IA",
+        "body1": "L'approche hybride part d'un principe different. Le studio automatise (ici, un Orbitvu) capture le produit reel, tel qu'il est. Eclairage controle (74 sources LED virtuelles sur l'Alphashot Pro G2, CRI > 95), angle precis, plateau tournant motorise avec encodeur pour un positionnement au degre pres. Le resultat : un packshot parfaitement fidele, en 3 secondes, avec detourage automatique natif.",
+        "body2": "L'IA intervient ensuite, non pas pour generer le produit, mais pour l'augmenter. BlendAI.studio, la solution propriétaire de PackshotCreator, transforme un packshot studio en dizaines de variantes lifestyle. Le produit, lui, n'est jamais touche. Ses textures, ses couleurs, ses proportions restent identiques au millimetre. L'IA cree le decor autour, pas le produit lui-meme.",
+        "body3": "La difference fondamentale : zero hallucination. Le produit sur votre fiche n'est pas une approximation generee -- c'est une photographie. Tracable, auditable, fidele. Et le studio garantit nativement ce qu'aucun outil d'IA generative ne propose : la vue 360 interactive, la video produit, le ghost mannequin, le focus stacking pour les details microscopiques.",
+        "body4": "Cote coherence catalogue, un studio automatise produit par definition le meme rendu pour chaque produit. Meme eclairage, meme fond, meme cadrage. Plus de derive visuelle, meme sur des milliers de references. Le catalogue ne ressemble plus a un patchwork : il ressemble a une marque."
+      },
+      "comparison": {
+        "heading": "Tableau comparatif : IA generative pure vs Photo studio + IA",
+        "criteria": "Critere",
+        "aiPure": "IA Generative Pure",
+        "studioIa": "Photo Studio + IA",
+        "row1": {
+          "label": "Fidelite produit",
+          "ai": "Approximative -- distorsions possibles sur details, textes, reflets",
+          "studio": "Fidelite 100 % -- photographie du produit reel"
+        },
+        "row2": {
+          "label": "360 / Video",
+          "ai": "Non disponible nativement chez aucun acteur",
+          "studio": "Natif : spin 360, video HD, HTML5 interactif"
+        },
+        "row3": {
+          "label": "Coherence catalogue",
+          "ai": "Faible a moyenne -- derive visuelle des 50 references",
+          "studio": "Garantie -- meme setup, meme rendu sur tout le catalogue"
+        },
+        "row4": {
+          "label": "Cout par image",
+          "ai": "0,02 a 2 $ selon l'outil et le plan",
+          "studio": "0,50 a 3 EUR amorti (ROI en 6-12 mois)"
+        },
+        "row5": {
+          "label": "Scalabilite",
+          "ai": "Forte pour les visuels simples, limitee au-dela de 50 SKUs",
+          "studio": "200 a 300 packshots/jour, scalable en interne"
+        },
+        "row6": {
+          "label": "Secteurs reglementes",
+          "ai": "Non conforme -- aucune certification FDA, ITAR, ni tracabilite",
+          "studio": "Conforme -- photo reelle auditable, metadonnees preservees"
+        },
+        "row7": {
+          "label": "Tracabilite du visuel",
+          "ai": "Non auditable -- generation aleatoire",
+          "studio": "Photo source reelle, chaîne de production documentee"
+        }
+      },
+      "whoNeedsAiPure": {
+        "heading": "Pour qui l'IA generative pure est la bonne reponse",
+        "body1": "Soyons honnetes. Si vous vendez moins de 500 produits par an sur une marketplace, si vos visuels sont destines aux reseaux sociaux ou aux publicites Meta, si votre budget photo ne depasse pas quelques centaines d'euros par mois, et si vos produits ne relevent d'aucun secteur reglemente -- l'IA generative pure fait tres bien le travail.",
+        "body2": "Photoroom a 7,50 dollars par mois pour un revendeur Shopify qui photographie 30 articles par semaine ? C'est un choix rationnel. Pebblely pour generer rapidement 40 visuels lifestyle d'une nouvelle collection ? Pourquoi pas. Ces outils resolvent un vrai probleme pour un vrai segment de marche.",
+        "body3": "Ce n'est pas non plus une question de qualite absolue. Pour des prototypes, des visuels d'etude de marche, des presentations internes ou des tests A/B publicitaires, l'IA generative suffit et offre un avantage de vitesse imbattable."
+      },
+      "whoNeedsStudio": {
+        "heading": "Pour qui le studio + IA est indispensable",
+        "body1": "L'equation change des que l'un de ces criteres entre en jeu.",
+        "criteria1": "Volume.",
+        "criteria1detail": "Au-dela de 500 visuels par an, les limites de coherence de l'IA generative deviennent critiques. Un studio Orbitvu produit 200 a 300 packshots par jour. Le ROI demarre entre 6 et 12 mois, et le cout par image tombe entre 0,50 et 3 euros une fois l'investissement amorti.",
+        "criteria2": "Secteur B2B ou luxe.",
+        "criteria2detail": "Quand un acheteur professionnel commande des pieces techniques sur catalogue, il a besoin de voir le produit exact, pas une interpretation. Le luxe exige une fidelite que l'IA generative ne peut pas garantir : l'or doit briller comme de l'or, le cuir doit avoir le grain du cuir.",
+        "criteria3": "Reglementation.",
+        "criteria3detail": "Medical, defense, industrie : les visuels doivent etre tracables et verifiables. La FDA impose des normes de representation strictes pour les dispositifs medicaux. La defense exige la conformite ITAR/EAR. L'IA generative ne propose aucune certification.",
+        "criteria4": "360 et video.",
+        "criteria4detail": "Si vos fiches produit necessitent du 360 interactif, de la video, du ghost mannequin ou du focus stacking, seul un studio automatise avec turntable physique le permet.",
+        "criteria5": "Coherence de marque.",
+        "criteria5detail": "Si votre catalogue depasse 50 references et que l'homogeneite visuelle est un enjeu commercial, la derive visuelle de l'IA generative devient un risque reel pour votre image de marque.",
+        "body2": "L'investissement de depart est plus eleve (a partir de 12 450 euros pour un Alphashot 360, soit 344 euros par mois en leasing). Mais pour une PME e-commerce qui produit 5 000 photos par an, le break-even se situe typiquement entre 8 et 12 mois, avec une reduction des couts de 60 a 85 % par rapport a la prestation externe."
+      },
+      "faq": {
+        "heading": "Questions frequentes",
+        "q1": {
+          "question": "L'IA va-t-elle remplacer les studios photo ?",
+          "answer": "Non. L'IA generative excelle pour la suppression de fond, les scenes lifestyle et les tests rapides. Mais elle ne peut pas capturer un produit reel avec une fidelite au pixel, produire du 360 interactif ou garantir la coherence d'un catalogue de plusieurs centaines de references. L'approche la plus efficace en 2026 est hybride : un studio automatise pour la capture, l'IA pour augmenter les visuels."
+        },
+        "q2": {
+          "question": "Photoroom suffit-il pour un site e-commerce ?",
+          "answer": "Cela depend du contexte. Pour un revendeur avec moins de 500 photos par an, des produits simples et des exigences de fidelite limitees, Photoroom (7,50 a 82,50 $/mois) est une solution efficace et economique. Pour un catalogue B2B, du luxe, des secteurs reglementes ou des volumes superieurs a 500 visuels par an, les limites de coherence et de fidelite deviennent problematiques."
+        },
+        "q3": {
+          "question": "Qu'est-ce que BlendAI.studio ?",
+          "answer": "BlendAI.studio est la solution proprietaire de photo produit par IA developpee par PackshotCreator. Elle part d'un packshot professionnel (idealement Orbitvu) et genere des variantes lifestyle, des arrieres-plans et des retouches sans jamais toucher au produit lui-meme. Plus de 100 marques l'utilisent, avec une note de satisfaction de 4,9/5. A partir de 75 euros par mois."
+        },
+        "q4": {
+          "question": "Peut-on faire du 360 avec l'IA generative ?",
+          "answer": "Non, aucun outil d'IA generative (Photoroom, Claid, Flair, Pebblely) ne propose de generation 360 ou de spin produit natif. Certains outils specialises (FlexClip, DomoAI) generent des approximations a partir d'une seule image, mais ce sont des reconstructions, pas des vues multi-angles reelles. Seul un studio automatise avec turntable physique produit de vrais spins interactifs."
+        },
+        "q5": {
+          "question": "Quel budget pour demarrer avec un studio + IA ?",
+          "answer": "L'Alphashot 360 (entree de gamme) demarre a 12 450 euros HT, soit 344 euros par mois en leasing. Pour une PME qui externalise 2 000 photos a 20 euros, le studio economise plus de 37 000 euros par an. Le break-even se situe generalement entre 6 et 12 mois. BlendAI.studio est disponible a partir de 75 euros par mois, et un pack decouverte de 3 credits est offert."
+        },
+        "q6": {
+          "question": "Les visuels IA sont-ils legaux pour le e-commerce ?",
+          "answer": "Oui, mais avec des precautions croissantes. La FTC interdit les representations trompeuses. Amazon, Shopify et TikTok Shop sanctionnent les contenus visuels trompeurs. La Californie impose le labellisage des photos IA depuis janvier 2026. Les images purement generees par IA ne beneficient pas de protection copyright. Pour les secteurs reglementes (medical, defense), seules les photos reelles sont conformes."
+        }
+      },
+      "cta": {
+        "heading": "Trouvez l'approche qui correspond a votre activite",
+        "description": "Demandez une demonstration en live d'un studio Orbitvu couple a BlendAI. Nos experts vous aident a identifier la solution adaptee a vos volumes, vos produits et vos exigences.",
+        "ctaDemo": "Demander une demo",
+        "ctaBlendai": "Decouvrir BlendAI.studio"
+      },
+      "relatedLinks": {
+        "heading": "Approfondir le sujet",
+        "link1label": "IA Photo Produit : BlendAI.studio",
+        "link1description": "Decouvrez comment l'IA augmente vos packshots sans jamais toucher au produit.",
+        "link2label": "Studios Photo Automatises Orbitvu",
+        "link2description": "La gamme complete de studios photo automatises, du bureau a l'entrepot.",
+        "link3label": "Calculateur ROI",
+        "link3description": "Estimez vos economies avec un studio photo automatise."
+      }
+    }
+  },
+  "en": {
+    "blogStudioIa": {
+      "meta": {
+        "title": "Photo Studio + AI vs Pure Generative AI | 2026 Comparison",
+        "description": "AI product photography: should you choose Photoroom or an automated studio? Full comparison of fidelity, 360, catalog consistency and regulations.",
+        "keywords": "AI product photography, alternative to photoroom, automated photo studio AI, photoroom vs blendai comparison"
+      },
+      "hero": {
+        "badge": "Comparison Guide",
+        "title": "Automated Studio + AI vs Pure Generative AI: the real match",
+        "subtitle": "Photoroom, Claid, Flair... or an Orbitvu studio paired with BlendAI? Not all approaches are created equal. Here are the facts."
+      },
+      "breadcrumb": {
+        "blog": "Blog",
+        "article": "Studio AI vs Generative AI"
+      },
+      "category": "Guide",
+      "readTime": "8 min read",
+      "publishDate": "March 22, 2026",
+      "author": "PackshotCreator",
+      "intro": {
+        "heading": "Product photography is shifting to AI",
+        "body1": "The numbers speak for themselves. In 2026, 34 million images are generated by AI every single day. The AI-assisted product photography market is projected to reach $8.9 billion by 2034, growing at 15.7% annually. Tools are multiplying, promises are stacking up, and 76% of SMBs that have adopted AI photography report over 80% in savings on their product visuals.",
+        "body2": "But behind this wave, two philosophies are clashing. On one side, pure generative AI: Photoroom, Claid, Flair, Pebblely -- tools that generate or transform your visuals from scratch (or close to it). On the other, the hybrid approach: an automated photo studio captures the real product, then AI enhances those captures. Same goal -- professional product visuals, faster, cheaper -- but profoundly different results. Let's see why."
+      },
+      "marketOverview": {
+        "heading": "The rise of generative AI for product photography",
+        "body1": "Photoroom leads the charge with over 300 million downloads, a $500 million valuation and $94 million ARR by end of 2024 (+89% year-over-year). Claid.ai claims 200 million images processed for 10,000 businesses. Flair.ai attracts 577,000 monthly visitors. Pebblely counts 25 million images created for over a million users.",
+        "body2": "The tech giants are not sitting idle. Google Product Studio is integrated into Merchant Center, free for merchants. Amazon offers image generation directly within its advertising platform. Adobe Firefly is embedding itself into Photoshop. The message is clear: AI product photography is no longer a novelty -- it's becoming a standard.",
+        "body3": "And the prices defy all competition: $0.02 to $0.10 per image via Photoroom's API, subscriptions starting at $7.50 per month. Compared to an average of $102 per image in a traditional studio, the equation seems settled. Except it isn't."
+      },
+      "aiPure": {
+        "heading": "How pure generative AI works -- and where it excels",
+        "body1": "The principle is simple. You upload a photo (even a mediocre one) of your product. AI removes the background, improves the lighting, generates a lifestyle scene and exports a publish-ready visual. All in seconds, for pennies. Photoroom offers its Amazon and Shopify templates, Claid.ai processes your images in 2-3 seconds, Flair.ai lets you build scenes by drag-and-drop, Pebblely offers 40+ predefined themes.",
+        "body2": "For background removal, these tools are formidable. For quickly generating lifestyle visuals meant for social media or ads, they get the job done. For virtual mannequins in fashion, Photoroom and Flair deliver convincing results. On catalogs under 50 references with simple products (cosmetics, accessories), results are often good enough.",
+        "limitesHeading": "Documented limitations of pure generative AI",
+        "limites1": "But beyond these use cases, the problems are documented and recurring.",
+        "limites2title": "Product distortion.",
+        "limites2": "AI doesn't know your product. It guesses from training data. The result: buttons that appear out of nowhere, proportions that drift, details that vanish. Flair.ai has known distortion issues with text and reflective surfaces. Claid.ai can add unintended elements around products.",
+        "limites3title": "Visual hallucinations.",
+        "limites3": "Jewelry loses its fine details, transparent packaging generates aberrant reflections, text becomes illegible, knit textures fall apart. Gold doesn't glint, glass doesn't reflect: AI visuals often remain too matte or too plasticky.",
+        "limites4title": "Catalog visual drift.",
+        "limites4": "Each generation is independent. AI has no memory of previous outputs. On a 200-product catalog, you get 200 different lightings, 200 different framings. The catalog looks like a patchwork. Yet consistent brand presentation increases revenue by up to 33%, and 75% of consumers place more trust in brands whose visuals are uniform. Pebblely and Flair start showing limitations past 50 SKUs.",
+        "limites5title": "No 360, no video.",
+        "limites5": "None of the four main tools (Photoroom, Claid, Flair, Pebblely) offer 360 generation or product spin. Single-image approximations remain reconstructions, not real multi-angle views.",
+        "limites6title": "Growing legal risks.",
+        "limites6": "The FTC prohibits misrepresenting a product's quality, size, color or features. Amazon, Shopify and TikTok Shop tolerate AI visuals but penalize misleading content with listing removal or account suspension. California has required AI photo labeling since January 2026. Purely AI-generated images receive no copyright protection. Five major legal battles are underway in 2026."
+      },
+      "studioPlusIa": {
+        "heading": "Photo Studio + AI: capture reality, enhance with AI",
+        "body1": "The hybrid approach starts from a different principle. The automated studio (here, an Orbitvu) captures the real product, as it is. Controlled lighting (74 virtual LED sources on the Alphashot Pro G2, CRI > 95), precise angles, a motorized turntable with encoder for degree-precise positioning. The result: a perfectly faithful packshot in 3 seconds, with native automatic background removal.",
+        "body2": "AI then steps in -- not to generate the product, but to enhance it. BlendAI.studio, PackshotCreator's proprietary solution, transforms a studio packshot into dozens of lifestyle variants. The product itself is never touched. Its textures, colors and proportions remain identical to the millimeter. AI creates the backdrop, not the product.",
+        "body3": "The fundamental difference: zero hallucination. The product on your listing isn't a generated approximation -- it's a photograph. Traceable, auditable, faithful. And the studio natively guarantees what no generative AI tool offers: interactive 360 views, product video, ghost mannequin, focus stacking for microscopic details.",
+        "body4": "For catalog consistency, an automated studio by definition produces the same rendering for every product. Same lighting, same background, same framing. No more visual drift, even across thousands of references. Your catalog no longer looks like a patchwork -- it looks like a brand."
+      },
+      "comparison": {
+        "heading": "Comparison table: Pure Generative AI vs Photo Studio + AI",
+        "criteria": "Criteria",
+        "aiPure": "Pure Generative AI",
+        "studioIa": "Photo Studio + AI",
+        "row1": {
+          "label": "Product fidelity",
+          "ai": "Approximate -- possible distortion on details, text, reflections",
+          "studio": "100% fidelity -- photograph of the actual product"
+        },
+        "row2": {
+          "label": "360 / Video",
+          "ai": "Not natively available from any provider",
+          "studio": "Native: 360 spin, HD video, interactive HTML5"
+        },
+        "row3": {
+          "label": "Catalog consistency",
+          "ai": "Low to medium -- visual drift from 50 references",
+          "studio": "Guaranteed -- same setup, same rendering across entire catalog"
+        },
+        "row4": {
+          "label": "Cost per image",
+          "ai": "$0.02 to $2 depending on tool and plan",
+          "studio": "EUR 0.50 to 3 amortized (ROI in 6-12 months)"
+        },
+        "row5": {
+          "label": "Scalability",
+          "ai": "Strong for simple visuals, limited beyond 50 SKUs",
+          "studio": "200 to 300 packshots/day, internally scalable"
+        },
+        "row6": {
+          "label": "Regulated sectors",
+          "ai": "Non-compliant -- no FDA, ITAR certification or traceability",
+          "studio": "Compliant -- auditable real photographs, preserved metadata"
+        },
+        "row7": {
+          "label": "Visual traceability",
+          "ai": "Not auditable -- random generation",
+          "studio": "Real source photo, documented production chain"
+        }
+      },
+      "whoNeedsAiPure": {
+        "heading": "Who should use pure generative AI",
+        "body1": "Let's be honest. If you sell fewer than 500 products a year on a marketplace, if your visuals are meant for social media or Meta ads, if your photo budget doesn't exceed a few hundred dollars a month, and if your products aren't in a regulated sector -- pure generative AI does the job just fine.",
+        "body2": "Photoroom at $7.50 a month for a Shopify reseller photographing 30 items a week? That's a rational choice. Pebblely to quickly generate 40 lifestyle visuals for a new collection? Why not. These tools solve a real problem for a real market segment.",
+        "body3": "It's not about absolute quality either. For prototypes, market research visuals, internal presentations or ad A/B tests, generative AI is enough and offers an unbeatable speed advantage."
+      },
+      "whoNeedsStudio": {
+        "heading": "Who needs a studio + AI",
+        "body1": "The equation changes as soon as any of these criteria come into play.",
+        "criteria1": "Volume.",
+        "criteria1detail": "Beyond 500 visuals a year, the consistency limitations of generative AI become critical. An Orbitvu studio produces 200 to 300 packshots per day. ROI starts between 6 and 12 months, and the cost per image drops to EUR 0.50-3 once the investment is amortized.",
+        "criteria2": "B2B or luxury sector.",
+        "criteria2detail": "When a professional buyer orders technical parts from a catalog, they need to see the exact product, not an interpretation. Luxury demands fidelity that generative AI cannot guarantee: gold must glint like gold, leather must show the grain of leather.",
+        "criteria3": "Regulations.",
+        "criteria3detail": "Medical, defense, manufacturing: visuals must be traceable and verifiable. The FDA imposes strict representation standards for medical devices. Defense requires ITAR/EAR compliance. Generative AI offers no certification.",
+        "criteria4": "360 and video.",
+        "criteria4detail": "If your product pages need interactive 360, video, ghost mannequin or focus stacking, only an automated studio with a physical turntable makes it possible.",
+        "criteria5": "Brand consistency.",
+        "criteria5detail": "If your catalog exceeds 50 references and visual consistency is a commercial concern, generative AI's visual drift becomes a real risk to your brand image.",
+        "body2": "The upfront investment is higher (starting at EUR 12,450 for an Alphashot 360, or EUR 344/month on a lease). But for an e-commerce SMB producing 5,000 photos a year, break-even is typically 8-12 months, with a 60-85% cost reduction compared to outsourcing."
+      },
+      "faq": {
+        "heading": "Frequently asked questions",
+        "q1": {
+          "question": "Will AI replace photo studios?",
+          "answer": "No. Generative AI excels at background removal, lifestyle scenes and rapid testing. But it cannot capture a real product with pixel-level fidelity, produce interactive 360 views, or guarantee consistency across a catalog of hundreds of references. The most effective approach in 2026 is hybrid: an automated studio for capture, AI to enhance the visuals."
+        },
+        "q2": {
+          "question": "Is Photoroom enough for an e-commerce site?",
+          "answer": "It depends. For a reseller with fewer than 500 photos a year, simple products and limited fidelity requirements, Photoroom ($7.50-$82.50/month) is an efficient and affordable solution. For B2B catalogs, luxury goods, regulated sectors or volumes exceeding 500 visuals a year, consistency and fidelity limitations become problematic."
+        },
+        "q3": {
+          "question": "What is BlendAI.studio?",
+          "answer": "BlendAI.studio is PackshotCreator's proprietary AI product photography solution. It starts from a professional packshot (ideally from Orbitvu) and generates lifestyle variants, backgrounds and retouching without ever modifying the product itself. Over 100 brands use it, with a 4.9/5 satisfaction rating. From EUR 75 per month."
+        },
+        "q4": {
+          "question": "Can generative AI produce 360 views?",
+          "answer": "No, none of the major generative AI tools (Photoroom, Claid, Flair, Pebblely) offer native 360 generation or product spin. Some specialized tools (FlexClip, DomoAI) generate approximations from a single image, but these are reconstructions, not real multi-angle views. Only an automated studio with a physical turntable produces true interactive spins."
+        },
+        "q5": {
+          "question": "What budget to start with a studio + AI?",
+          "answer": "The Alphashot 360 (entry-level) starts at EUR 12,450, or EUR 344/month on a lease. For an SMB outsourcing 2,000 photos at EUR 20 each, the studio saves over EUR 37,000 per year. Break-even typically falls between 6 and 12 months. BlendAI.studio is available from EUR 75 per month, and a 3-credit discovery pack is offered free."
+        },
+        "q6": {
+          "question": "Are AI visuals legal for e-commerce?",
+          "answer": "Yes, but with growing caveats. The FTC prohibits misleading representations. Amazon, Shopify and TikTok Shop penalize misleading visual content. California has required AI photo labeling since January 2026. Purely AI-generated images receive no copyright protection. For regulated sectors (medical, defense), only real photographs are compliant."
+        }
+      },
+      "cta": {
+        "heading": "Find the approach that fits your business",
+        "description": "Request a live demonstration of an Orbitvu studio paired with BlendAI. Our experts help you identify the right solution for your volumes, products and requirements.",
+        "ctaDemo": "Request a demo",
+        "ctaBlendai": "Discover BlendAI.studio"
+      },
+      "relatedLinks": {
+        "heading": "Further reading",
+        "link1label": "AI Product Photography: BlendAI.studio",
+        "link1description": "Discover how AI enhances your packshots without ever touching the product.",
+        "link2label": "Orbitvu Automated Photo Studios",
+        "link2description": "The full range of automated photo studios, from desktop to warehouse.",
+        "link3label": "ROI Calculator",
+        "link3description": "Estimate your savings with an automated photo studio."
+      }
+    }
+  }
+}

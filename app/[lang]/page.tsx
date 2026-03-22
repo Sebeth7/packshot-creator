@@ -211,7 +211,7 @@ export default async function HomePage({
             {SOCIAL_PROOF_STATS.map((stat) => (
               <StaggerItem key={stat.key}>
                 <div className="text-center px-6">
-                  <p className="text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <p className="text-3xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
                     {t(`socialProof.${stat.key}`)}
                   </p>
                   <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
@@ -226,7 +226,7 @@ export default async function HomePage({
             <p className="text-center text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.15em] mb-6">
               {t('socialProof.heading')}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-10">
               {CLIENT_LOGOS.map((logo) => (
                 <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-70 transition-opacity duration-300">
                   <Image
@@ -234,7 +234,7 @@ export default async function HomePage({
                     alt={logo.name}
                     width={logo.w}
                     height={logo.h}
-                    className="h-full w-auto max-w-[80px] object-contain invert"
+                    className="h-full w-auto max-w-[60px] sm:max-w-[80px] object-contain invert"
                     loading="eager"
                   />
                 </div>
@@ -258,15 +258,15 @@ export default async function HomePage({
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {PAIN_POINTS.map((point, i) => (
               <ScrollReveal key={point.key} offset={20 + i * 15}>
                 <SpringCard className="h-full">
-                  <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col border border-neutral-100">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col border border-neutral-100">
                     <div className={`w-12 h-12 rounded-xl ${point.bg} flex items-center justify-center mb-6`}>
                       <point.Icon className={`w-6 h-6 ${point.color}`} strokeWidth={1.5} />
                     </div>
-                    <p className={`text-5xl font-heading font-bold ${point.color} mb-1`}>
+                    <p className={`text-4xl sm:text-5xl font-heading font-bold ${point.color} mb-1`}>
                       {t(`painPoints.${point.key}.stat`)}
                     </p>
                     <p className="text-sm text-neutral-medium mb-4">
@@ -299,13 +299,13 @@ export default async function HomePage({
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
                 {t('hybrid.heading').split(' ').slice(0, 2).join(' ')}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
                 {t('hybrid.heading')}
               </TextReveal>
               <p className="text-lg text-neutral-medium leading-relaxed mb-8">
@@ -362,8 +362,8 @@ export default async function HomePage({
       {/* ━━━ 5. PRODUCT SPOTLIGHT + MINI GALLERY ━━━ */}
       <section className="py-20 bg-bg-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            <FadeInView direction="left" className="relative rounded-2xl overflow-hidden bg-white p-6 lg:p-10 shadow-sm">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 xl:gap-16 items-start">
+            <FadeInView direction="left" className="relative rounded-2xl overflow-hidden bg-white p-4 sm:p-6 lg:p-10 shadow-sm">
               <Image
                 src="/images/machines/alphashot-pro-g2.avif"
                 alt="Alphashot Pro G2 — studio photo automatisé"
@@ -416,7 +416,7 @@ export default async function HomePage({
               </div>
 
               {/* Mini gallery */}
-              <div className="mt-10 grid grid-cols-3 gap-3">
+              <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 {MINI_GALLERY.map((item) => (
                   <div key={item.key} className="relative aspect-square rounded-xl overflow-hidden group bg-neutral-100">
                     <Image
@@ -448,10 +448,10 @@ export default async function HomePage({
             </h2>
           </FadeInView>
 
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
+          <StaggerContainer className="grid md:grid-cols-3 gap-4 md:gap-8">
             {TESTIMONIALS.map((testimonial) => (
               <StaggerItem key={testimonial.key}>
-                <div className="bg-bg-light-gray rounded-2xl p-8 h-full flex flex-col">
+                <div className="bg-bg-light-gray rounded-2xl p-5 sm:p-7 lg:p-8 h-full flex flex-col">
                   <p className="text-5xl font-heading font-bold text-primary-orbitvu">
                     {t(`testimonials.${testimonial.key}.stat`)}
                   </p>
@@ -569,7 +569,7 @@ export default async function HomePage({
       {/* ━━━ 9. MID CTA ━━━ */}
       <section className="py-16 bg-gradient-to-r from-future-dusk-800 to-very-peri-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8 items-center">
             <FadeInView direction="left">
               <h2 className="text-2xl lg:text-3xl font-heading font-bold text-white leading-tight">
                 {t('midCta.heading')}
@@ -612,7 +612,7 @@ export default async function HomePage({
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
@@ -668,7 +668,7 @@ export default async function HomePage({
               {t('finalCta.microTestimonial')}
             </p>
           </ScrollReveal>
-          <div className="grid lg:grid-cols-5 gap-8">
+          <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
             {/* Demo — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">

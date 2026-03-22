@@ -1,0 +1,486 @@
+{
+  "fr": {
+    "blogComparatif": {
+      "meta": {
+        "title": "Comparatif Orbitvu vs Ortery vs Styleshoots 2026",
+        "description": "Comparaison factuelle des 3 leaders du studio photo automatise : Orbitvu, Ortery et Styleshoots/Profoto. Prix, productivite, fonctionnalites et support en France.",
+        "keywords": "orbitvu vs ortery, meilleur studio photo automatise, comparatif studio photo, styleshoots vs orbitvu, studio photo e-commerce comparatif"
+      },
+      "hero": {
+        "badge": "Comparatif 2026",
+        "title": "Orbitvu vs Ortery vs Styleshoots : le comparatif complet",
+        "subtitle": "Trois fabricants, trois philosophies. Nous avons compare prix, productivite, logiciels et support pour vous aider a choisir le studio photo automatise adapte a vos besoins."
+      },
+      "breadcrumb": {
+        "home": "Accueil",
+        "blog": "Blog",
+        "category": "Comparatif"
+      },
+      "articleMeta": {
+        "date": "2026-03-22",
+        "author": "PackshotCreator",
+        "readingTime": "12 min de lecture",
+        "category": "Comparatif"
+      },
+      "intro": {
+        "heading": "Le marche des studios photo automatises en 2026",
+        "body1": "Le marche des studios photo automatises pour le e-commerce compte quatre a cinq acteurs majeurs a l'echelle mondiale. Parmi eux, trois se distinguent par leur presence en Europe et la maturite de leurs solutions : Orbitvu (Pologne), Ortery (Taiwan/USA) et Styleshoots, desormais integre au groupe Profoto (Suede).",
+        "body2": "Avant d'aller plus loin, un point de transparence s'impose : PackshotCreator est le distributeur exclusif d'Orbitvu en France et en Suisse francophone. Nous le disons d'emblee. Ce comparatif n'en reste pas moins factuel : les donnees proviennent des specifications officielles de chaque fabricant et d'une etude comparative independante publiee en 2023.",
+        "body3": "Notre objectif est simple : vous fournir les elements concrets pour comparer ces trois solutions et choisir celle qui correspond a votre activite, votre volume de production et votre budget."
+      },
+      "orbitvu": {
+        "heading": "Orbitvu : le generaliste complet",
+        "body1": "Fonde en 2010 a Cracovie (Pologne), Orbitvu est passe en 2022 sous le controle d'Abris Capital Partners, un fonds d'investissement centre-europeen. L'entreprise emploie plus de 150 personnes et dispose de 4 000 m2 d'installations de production en Europe.",
+        "body2": "La gamme actuelle comprend 16 systemes couvrant l'ensemble du spectre : de l'Alphashot Micro Pro v2 pour la bijouterie (produits de 18 cm max, 15 450 EUR HT) jusqu'au E-Comm Studio+ pour l'industrie (produits de 3 m, capacite 1 tonne, 150 000 EUR HT). Entre les deux, on trouve des solutions pour les chaussures, la mode, le flat-lay, le mobilier et meme les velos.",
+        "body3": "Le logiciel Orbitvu Station, inclus avec chaque machine, integre l'IA Photo Assistant qui detecte automatiquement la forme, la matiere et la brillance du produit pour proposer les reglages optimaux. Le detourage IQ Mask s'execute en moins d'une seconde. La plateforme cloud Orbitvu Sun permet l'hebergement et la diffusion de contenus 360 avec des codes d'integration de seulement 2 Ko.",
+        "body4": "En France, Orbitvu est distribue par PackshotCreator (societe Sysnext) qui assure la vente, l'installation, la formation et le support technique. L'etude comparative de 2023 mesure une productivite de 78 contenus visuels par jour avec Orbitvu.",
+        "priceRange": "De 12 450 a 150 000 EUR HT",
+        "founded": "Fonde en 2010 (Pologne)"
+      },
+      "ortery": {
+        "heading": "Ortery : la gamme la plus large",
+        "body1": "Fonde en 2002 a PanChiao (Taiwan) avec un bureau commercial a Irvine (Californie), Ortery est le doyen du marche. L'entreprise a ouvert son QG europeen a Capelle aan den IJssel (Rotterdam, Pays-Bas) en juillet 2023, avec un showroom de 289 m2.",
+        "body2": "Avec plus de 30 references produit, Ortery propose la gamme la plus etendue du marche. Elle va du simple plateau tournant PhotoCapture 360 a environ 1 300 USD (le point d'entree le plus accessible du marche) jusqu'aux systemes 3D multi-bras comme le 3D MultiArm 900, lance en 2026. On trouve egalement des solutions de flat-lay (ClothingPad, StylePad) et des studios fermes (3D PhotoBench, Infinity Studio).",
+        "body3": "Le logiciel Ortery Capture gere la camera, l'eclairage et le plateau. L'IA Background Removal fonctionne via le cloud et permet le detourage pendant la capture ou en post-production. La plateforme Ortery Cloud assure l'hebergement et l'integration e-commerce.",
+        "body4": "Ortery detient environ 20 % de part de marche mondiale (source : Global Growth Insights). Cependant, l'entreprise ne dispose pas de distributeur dedie en France : le support est assure depuis les Pays-Bas. L'etude comparative de 2023 mesure une productivite de 33 contenus visuels par jour avec Ortery.",
+        "priceRange": "De ~1 300 USD a plusieurs dizaines de milliers USD",
+        "founded": "Fonde en 2002 (Taiwan/USA)"
+      },
+      "styleshoots": {
+        "heading": "Styleshoots/Profoto : le specialiste mode",
+        "body1": "Fonde en 2011 a Haarlem (Pays-Bas), StyleShoots a ete acquis en avril 2022 par Profoto (Suede) pour 18 millions d'euros. Profoto, reference mondiale de l'eclairage photo professionnel, dispose de filiales a New York, Tokyo, Hambourg, Paris, Londres et en Scandinavie.",
+        "body2": "La gamme est deliberement restreinte a quatre machines ultra-specialisees pour la mode et le e-commerce fashion : le Live (cabine all-in-one pour photo et video on-model avec 3 axes motorises), le Vertical (mannequin fantome), l'Horizontal (flat-lay premium) et l'Eclipse (petit objet avec 360 et video cinematique). Toutes sont controlees exclusivement via iPad avec l'application ProStudio.",
+        "body3": "L'approche est radicalement differente : chaque machine est concue pour un usage precis. Le Live, le modele le plus complet, permet a un operateur et un mannequin de photographier 85 vetements en 6 heures. L'AutoAlpha assure le detourage automatique du fond et des supports.",
+        "body4": "Les prix ne sont pas communiques publiquement. L'estimation du secteur les situe a plusieurs dizaines de milliers de dollars par machine, avec le Live comme modele le plus onereux. En France, Profoto dispose d'une filiale a Paris qui assure la distribution et le support. Styleshoots ne propose pas de solution pour les gros objets (meubles, machines) ni de 3D multi-lignes.",
+        "priceRange": "Non communique (dizaines de milliers USD)",
+        "founded": "Fonde en 2011 (Pays-Bas, groupe Profoto)"
+      },
+      "comparison": {
+        "heading": "Tableau comparatif detaille",
+        "subheading": "Les donnees proviennent des specifications officielles de chaque fabricant et de l'etude comparative Orbitvu vs Ortery publiee en 2023.",
+        "criteria": {
+          "origin": "Pays d'origine",
+          "priceRange": "Gamme de prix",
+          "systemCount": "Nombre de systemes",
+          "maxSize": "Taille max produit",
+          "rotation360": "360 monoligne",
+          "multiline3d": "3D multi-lignes",
+          "video": "Video",
+          "autoClipping": "Detourage automatique",
+          "integratedAI": "IA integree",
+          "software": "Logiciel principal",
+          "franceSuuport": "Support France",
+          "easeOfUse": "Facilite d'utilisation",
+          "positioning": "Positionnement",
+          "productivity": "Productivite (etude 2023)",
+          "flatlay": "Flat-lay",
+          "onmodel": "On-model"
+        },
+        "orbitvu": {
+          "origin": "Pologne",
+          "priceRange": "12 450 - 150 000 EUR HT",
+          "systemCount": "16 systemes",
+          "maxSize": "300x300x200 cm (E-Comm Studio+), 1 000 kg",
+          "rotation360": "Oui (tous modeles)",
+          "multiline3d": "Oui (Compact, XXL)",
+          "video": "Oui",
+          "autoClipping": "IQ Mask (<1 sec, hardware)",
+          "integratedAI": "AI Photo Assistant (eclairage + camera)",
+          "software": "Orbitvu Station + Sun (cloud DAM)",
+          "franceSuuport": "PackshotCreator (Sysnext)",
+          "easeOfUse": "Elevee (interface intuitive)",
+          "positioning": "Generaliste multi-secteur",
+          "productivity": "78 contenus visuels/jour",
+          "flatlay": "Alphadesk, Alphatable",
+          "onmodel": "Alphastudio XXL, Fashion Studio"
+        },
+        "ortery": {
+          "origin": "Taiwan (bureau USA)",
+          "priceRange": "~1 300 - 30 000+ USD",
+          "systemCount": "30+ references",
+          "maxSize": "135 cm plateau, 150 kg (Infinity 4000)",
+          "rotation360": "Oui (modeles 360)",
+          "multiline3d": "Oui (MultiArm, PhotoArm)",
+          "video": "Oui",
+          "autoClipping": "AutoMask + IA cloud",
+          "integratedAI": "AI Background Removal (cloud)",
+          "software": "Ortery Capture + Cloud",
+          "franceSuuport": "Depuis les Pays-Bas (pas de support direct)",
+          "easeOfUse": "Bonne (~1h pour debuter)",
+          "positioning": "Generaliste e-commerce, DIY",
+          "productivity": "33 contenus visuels/jour",
+          "flatlay": "ClothingPad, StylePad",
+          "onmodel": "Non"
+        },
+        "styleshoots": {
+          "origin": "Pays-Bas (groupe suedois Profoto)",
+          "priceRange": "Non communique (dizaines de milliers USD)",
+          "systemCount": "4 machines",
+          "maxSize": "On-model (Live) / Petits objets (Eclipse)",
+          "rotation360": "Eclipse uniquement",
+          "multiline3d": "Non",
+          "video": "Oui (Live, Eclipse)",
+          "autoClipping": "AutoAlpha",
+          "integratedAI": "AI Focus (Eclipse)",
+          "software": "ProStudio App (iPad)",
+          "franceSuuport": "Profoto Paris",
+          "easeOfUse": "Tres elevee (controle iPad)",
+          "positioning": "Mode/Fashion principalement",
+          "productivity": "150+ photos/jour (mode uniquement)",
+          "flatlay": "Horizontal (dedie)",
+          "onmodel": "Live (dedie)"
+        }
+      },
+      "strengths": {
+        "heading": "Forces et faiblesses de chaque solution",
+        "orbitvu": {
+          "heading": "Orbitvu",
+          "strengths": "Forces",
+          "s1": "Gamme la plus complete en France (bijoux, chaussures, mode, mobilier, industrie)",
+          "s2": "Meilleure productivite mesuree : 78 contenus/jour (etude 2023)",
+          "s3": "IA Photo Assistant integree nativement dans le logiciel",
+          "s4": "Detourage IQ Mask en moins d'1 seconde (traitement hardware)",
+          "s5": "Support technique local complet via PackshotCreator",
+          "s6": "Cloud Orbitvu Sun avec embed ultra-leger (2 Ko)",
+          "weaknesses": "Faiblesses",
+          "w1": "Prix d'entree superieur a Ortery (~12 450 EUR vs ~1 300 USD)",
+          "w2": "Pas de solution portable (contrairement a PhotoRobot)",
+          "w3": "Gamme moins etendue en references qu'Ortery (16 vs 30+)"
+        },
+        "ortery": {
+          "heading": "Ortery",
+          "strengths": "Forces",
+          "s1": "Point d'entree le plus accessible du marche (~1 300 USD)",
+          "s2": "Gamme la plus large en nombre de references (30+ produits)",
+          "s3": "Logiciel avec IA cloud performante pour le detourage",
+          "s4": "20 % de part de marche mondiale",
+          "s5": "Showroom europeen a Rotterdam depuis 2023",
+          "weaknesses": "Faiblesses",
+          "w1": "Productivite inferieure : 33 contenus/jour vs 78 pour Orbitvu (etude 2023)",
+          "w2": "Temps de capture 3D plus long : 1 521 sec vs 369 sec pour Orbitvu",
+          "w3": "Logiciel juge moins intuitif que Orbitvu Station (etude 2023)",
+          "w4": "Pas de support direct en France (QG Pays-Bas)"
+        },
+        "styleshoots": {
+          "heading": "Styleshoots / Profoto",
+          "strengths": "Forces",
+          "s1": "Meilleure solution pour la photo on-model fashion",
+          "s2": "Facilite d'utilisation inegalee (controle iPad, zero complexite)",
+          "s3": "Impact mesurable : +12 % engagement, -30,5 % taux de rebond",
+          "s4": "Adosse a Profoto (reference mondiale eclairage, reseau mondial)",
+          "s5": "Presence en France via la filiale Profoto Paris",
+          "weaknesses": "Faiblesses",
+          "w1": "Gamme tres restreinte : 4 machines specialisees uniquement",
+          "w2": "Pas de solution pour les gros objets (mobilier, machines industrielles)",
+          "w3": "Pas de 3D multi-lignes (hemisphérique/spherique)",
+          "w4": "Prix tres eleve, non communique publiquement",
+          "w5": "Ecosysteme ferme (iPad/Apple obligatoire)"
+        }
+      },
+      "ourTake": {
+        "heading": "Pourquoi nous avons choisi Orbitvu",
+        "transparencyNote": "Avertissement de transparence : PackshotCreator est distributeur exclusif Orbitvu en France. Les arguments ci-dessous refletent notre conviction, fondee sur notre experience terrain et les donnees factuelles disponibles.",
+        "body1": "Apres avoir evalue l'ensemble des solutions du marche, nous avons choisi de distribuer Orbitvu pour le marche francais. Voici nos raisons :",
+        "reason1title": "Le meilleur rapport productivite/prix en France",
+        "reason1": "78 contenus visuels par jour contre 33 pour Ortery (etude comparative 2023). Rapporte au cout total de possession sur 5 ans, Orbitvu offre le cout par contenu le plus bas pour les volumes moyens a eleves.",
+        "reason2title": "Le logiciel le plus intuitif",
+        "reason2": "L'etude comparative de 2023 place Orbitvu Station en tete sur l'ergonomie et la facilite de prise en main. L'IA Photo Assistant supprime le besoin de competences photographiques pour obtenir un resultat professionnel.",
+        "reason3title": "La gamme la plus adaptee au marche francais",
+        "reason3": "16 systemes couvrant des bijoux de 18 cm aux meubles de 2,5 m. Le marche francais est diversifie (luxe, cosmetiques, mode, industrie, alimentaire) et necessite une gamme capable de repondre a tous les secteurs.",
+        "reason4title": "Un support local complet",
+        "reason4": "Vente, installation, formation certifiee Qualiopi et support technique en francais. Ni Ortery ni la plupart des autres fabricants n'offrent ce niveau de proximite en France.",
+        "fairness": "Cela dit, soyons honnetes : Ortery est un excellent choix si votre budget est tres serre (entree de gamme a ~1 300 USD), et Styleshoots/Profoto excelle pour les entreprises 100 % fashion qui ne photographient que des vetements portes. Le meilleur choix depend toujours de votre contexte specifique."
+      },
+      "faq": {
+        "heading": "Questions frequentes",
+        "q1": {
+          "question": "Etes-vous objectifs dans ce comparatif ?",
+          "answer": "Nous sommes distributeur Orbitvu en France, et nous le disons clairement. Les donnees presentees dans ce comparatif proviennent des specifications officielles de chaque fabricant et d'une etude comparative independante publiee en 2023. Nous avons deliberement inclus les faiblesses d'Orbitvu et les forces de ses concurrents."
+        },
+        "q2": {
+          "question": "Ortery est-il moins cher qu'Orbitvu ?",
+          "answer": "En entree de gamme, oui : le plateau tournant Ortery PhotoCapture 360 demarre a environ 1 300 USD, tandis que l'Alphashot 360 d'Orbitvu commence a 12 450 EUR. Cependant, pour des systemes de gamme comparable (studio ferme avec eclairage integre, 360 et 3D), les prix se rapprochent. Le TCO sur 5 ans depend aussi fortement de la productivite : a 78 vs 33 contenus/jour, le cout par contenu est en faveur d'Orbitvu."
+        },
+        "q3": {
+          "question": "Styleshoots est-il meilleur pour la mode ?",
+          "answer": "Pour le on-model fashion pur (photo et video de vetements portes par des mannequins vivants), le StyleShoots Live est effectivement la reference du marche. Mais Orbitvu couvre aussi la mode avec l'Alphastudio XXL et le Fashion Studio Pro, tout en offrant une polyvalence pour les autres secteurs (chaussures, accessoires, cosmetiques, mobilier). Si votre activite est exclusivement fashion, Styleshoots merite d'etre evalue. Si vous avez des besoins multisectoriels, Orbitvu sera plus adapte."
+        },
+        "q4": {
+          "question": "Quelle est la difference de productivite entre Orbitvu et Ortery ?",
+          "answer": "Selon l'etude comparative publiee en 2023, Orbitvu permet de produire 78 contenus visuels par jour contre 33 pour Ortery, soit un ecart de 2,4x. En 3D multi-lignes, l'ecart est encore plus marque : 369 secondes pour un set de 48 photos avec Orbitvu contre 1 521 secondes avec Ortery."
+        },
+        "q5": {
+          "question": "Qui assure le SAV en France pour chaque marque ?",
+          "answer": "Orbitvu : PackshotCreator (societe Sysnext), avec showroom, formation Qualiopi et support technique en francais. Styleshoots : Profoto Paris, filiale du groupe suedois. Ortery : support assure depuis le QG europeen aux Pays-Bas (Capelle aan den IJssel), pas de distributeur dedie en France."
+        },
+        "q6": {
+          "question": "Peut-on tester les solutions avant d'acheter ?",
+          "answer": "Oui. PackshotCreator propose des demonstrations gratuites dans son showroom ou a distance. Contactez-nous pour planifier un test avec vos propres produits et evaluer le resultat en conditions reelles."
+        }
+      },
+      "cta": {
+        "heading": "Comparez par vous-meme",
+        "description": "Vous hesitez entre plusieurs solutions ? Demandez une demonstration gratuite avec vos propres produits. Nous vous montrerons les resultats concrets en conditions reelles.",
+        "demoButton": "Demander une demo gratuite",
+        "rangeButton": "Voir toute la gamme Orbitvu"
+      },
+      "relatedLinks": {
+        "heading": "Pour aller plus loin",
+        "link1": {
+          "title": "Studios photo automatises Orbitvu",
+          "description": "Decouvrez les 16 systemes de la gamme Orbitvu distribues par PackshotCreator."
+        },
+        "link2": {
+          "title": "Alphashot Pro G2 : fiche produit",
+          "description": "Le studio photo IA best-seller d'Orbitvu. Packshot, 360 et video pour produits jusqu'a 35 cm."
+        },
+        "link3": {
+          "title": "Calculateur de ROI",
+          "description": "Estimez vos economies en internalisant la photo produit avec un studio automatise."
+        }
+      }
+    }
+  },
+  "en": {
+    "blogComparatif": {
+      "meta": {
+        "title": "Orbitvu vs Ortery vs Styleshoots 2026 Comparison",
+        "description": "Factual comparison of the 3 leading automated photo studio brands: Orbitvu, Ortery, and Styleshoots/Profoto. Pricing, productivity, features and support.",
+        "keywords": "orbitvu vs ortery, best automated photo studio, photo studio comparison, styleshoots vs orbitvu, e-commerce photo studio comparison"
+      },
+      "hero": {
+        "badge": "2026 Comparison",
+        "title": "Orbitvu vs Ortery vs Styleshoots: the complete comparison",
+        "subtitle": "Three manufacturers, three philosophies. We compared pricing, productivity, software and support to help you choose the right automated photo studio for your needs."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "blog": "Blog",
+        "category": "Comparison"
+      },
+      "articleMeta": {
+        "date": "2026-03-22",
+        "author": "PackshotCreator",
+        "readingTime": "12 min read",
+        "category": "Comparison"
+      },
+      "intro": {
+        "heading": "The automated photo studio market in 2026",
+        "body1": "The automated product photography market for e-commerce includes four to five major players worldwide. Among them, three stand out for their European presence and the maturity of their solutions: Orbitvu (Poland), Ortery (Taiwan/USA), and Styleshoots, now part of the Profoto group (Sweden).",
+        "body2": "Before going further, a point of transparency: PackshotCreator is the exclusive distributor of Orbitvu in France and French-speaking Switzerland. We state this upfront. This comparison nonetheless remains factual: all data comes from each manufacturer's official specifications and an independent comparative study published in 2023.",
+        "body3": "Our goal is simple: to provide you with concrete information to compare these three solutions and choose the one that matches your business, production volume, and budget."
+      },
+      "orbitvu": {
+        "heading": "Orbitvu: the complete all-rounder",
+        "body1": "Founded in 2010 in Krakow (Poland), Orbitvu came under the control of Abris Capital Partners, a Central European investment fund, in 2022. The company employs over 150 people and operates 4,000 m2 of production facilities in Europe.",
+        "body2": "The current range includes 16 systems covering the full spectrum: from the Alphashot Micro Pro v2 for jewelry (max 18 cm products, EUR 15,450 excl. VAT) to the E-Comm Studio+ for industrial use (3 m products, 1-tonne capacity, EUR 150,000 excl. VAT). In between, there are solutions for footwear, fashion, flat-lay, furniture, and even bicycles.",
+        "body3": "The Orbitvu Station software, included with every machine, features the AI Photo Assistant that automatically detects product shape, material, and reflectivity to suggest optimal settings. IQ Mask clipping executes in under one second. The Orbitvu Sun cloud platform enables hosting and delivery of 360 content with embed codes of just 2 KB.",
+        "body4": "In France, Orbitvu is distributed by PackshotCreator (Sysnext company), which handles sales, installation, training, and technical support. The 2023 comparative study measured a productivity of 78 visual contents per day with Orbitvu.",
+        "priceRange": "From EUR 12,450 to EUR 150,000 excl. VAT",
+        "founded": "Founded in 2010 (Poland)"
+      },
+      "ortery": {
+        "heading": "Ortery: the widest range",
+        "body1": "Founded in 2002 in PanChiao (Taiwan) with a commercial office in Irvine (California), Ortery is the oldest player on the market. The company opened its European HQ in Capelle aan den IJssel (Rotterdam, Netherlands) in July 2023, with a 289 m2 showroom.",
+        "body2": "With over 30 product references, Ortery offers the widest range on the market. It spans from the simple PhotoCapture 360 turntable at around USD 1,300 (the most affordable entry point on the market) to 3D multi-arm systems like the 3D MultiArm 900, launched in 2026. There are also flat-lay solutions (ClothingPad, StylePad) and enclosed studios (3D PhotoBench, Infinity Studio).",
+        "body3": "The Ortery Capture software manages camera, lighting, and turntable. The AI Background Removal works via the cloud, enabling clipping during capture or in post-production. The Ortery Cloud platform handles hosting and e-commerce integration.",
+        "body4": "Ortery holds approximately 20% global market share (source: Global Growth Insights). However, the company has no dedicated distributor in France: support is provided from the Netherlands. The 2023 comparative study measured a productivity of 33 visual contents per day with Ortery.",
+        "priceRange": "From ~USD 1,300 to tens of thousands USD",
+        "founded": "Founded in 2002 (Taiwan/USA)"
+      },
+      "styleshoots": {
+        "heading": "Styleshoots/Profoto: the fashion specialist",
+        "body1": "Founded in 2011 in Haarlem (Netherlands), StyleShoots was acquired in April 2022 by Profoto (Sweden) for EUR 18 million. Profoto, the world reference in professional photo lighting, has subsidiaries in New York, Tokyo, Hamburg, Paris, London, and Scandinavia.",
+        "body2": "The range is deliberately limited to four ultra-specialized machines for fashion and e-commerce: the Live (all-in-one booth for on-model photo and video with 3 motorized axes), the Vertical (ghost mannequin), the Horizontal (premium flat-lay), and the Eclipse (small objects with 360 and cinematic video). All are controlled exclusively via iPad with the ProStudio app.",
+        "body3": "The approach is radically different: each machine is designed for a specific purpose. The Live, the most complete model, allows one operator and one model to photograph 85 garments in 6 hours. AutoAlpha handles automatic background and support removal.",
+        "body4": "Prices are not publicly disclosed. Industry estimates place them at tens of thousands of dollars per machine, with the Live as the most expensive model. In France, Profoto has a Paris subsidiary that handles distribution and support. Styleshoots does not offer solutions for large objects (furniture, machinery) or multi-line 3D.",
+        "priceRange": "Not disclosed (tens of thousands USD)",
+        "founded": "Founded in 2011 (Netherlands, Profoto group)"
+      },
+      "comparison": {
+        "heading": "Detailed comparison table",
+        "subheading": "Data comes from each manufacturer's official specifications and the Orbitvu vs Ortery comparative study published in 2023.",
+        "criteria": {
+          "origin": "Country of origin",
+          "priceRange": "Price range",
+          "systemCount": "Number of systems",
+          "maxSize": "Max product size",
+          "rotation360": "360 single-row",
+          "multiline3d": "3D multi-row",
+          "video": "Video",
+          "autoClipping": "Auto clipping",
+          "integratedAI": "Integrated AI",
+          "software": "Main software",
+          "franceSuuport": "France support",
+          "easeOfUse": "Ease of use",
+          "positioning": "Market positioning",
+          "productivity": "Productivity (2023 study)",
+          "flatlay": "Flat-lay",
+          "onmodel": "On-model"
+        },
+        "orbitvu": {
+          "origin": "Poland",
+          "priceRange": "EUR 12,450 - 150,000 excl. VAT",
+          "systemCount": "16 systems",
+          "maxSize": "300x300x200 cm (E-Comm Studio+), 1,000 kg",
+          "rotation360": "Yes (all models)",
+          "multiline3d": "Yes (Compact, XXL)",
+          "video": "Yes",
+          "autoClipping": "IQ Mask (<1 sec, hardware)",
+          "integratedAI": "AI Photo Assistant (lighting + camera)",
+          "software": "Orbitvu Station + Sun (cloud DAM)",
+          "franceSuuport": "PackshotCreator (Sysnext)",
+          "easeOfUse": "High (intuitive interface)",
+          "positioning": "Multi-sector all-rounder",
+          "productivity": "78 visual contents/day",
+          "flatlay": "Alphadesk, Alphatable",
+          "onmodel": "Alphastudio XXL, Fashion Studio"
+        },
+        "ortery": {
+          "origin": "Taiwan (US office)",
+          "priceRange": "~USD 1,300 - 30,000+",
+          "systemCount": "30+ references",
+          "maxSize": "135 cm turntable, 150 kg (Infinity 4000)",
+          "rotation360": "Yes (360 models)",
+          "multiline3d": "Yes (MultiArm, PhotoArm)",
+          "video": "Yes",
+          "autoClipping": "AutoMask + cloud AI",
+          "integratedAI": "AI Background Removal (cloud)",
+          "software": "Ortery Capture + Cloud",
+          "franceSuuport": "From the Netherlands (no direct support)",
+          "easeOfUse": "Good (~1h to start)",
+          "positioning": "E-commerce generalist, DIY",
+          "productivity": "33 visual contents/day",
+          "flatlay": "ClothingPad, StylePad",
+          "onmodel": "No"
+        },
+        "styleshoots": {
+          "origin": "Netherlands (Swedish Profoto group)",
+          "priceRange": "Not disclosed (tens of thousands USD)",
+          "systemCount": "4 machines",
+          "maxSize": "On-model (Live) / Small objects (Eclipse)",
+          "rotation360": "Eclipse only",
+          "multiline3d": "No",
+          "video": "Yes (Live, Eclipse)",
+          "autoClipping": "AutoAlpha",
+          "integratedAI": "AI Focus (Eclipse)",
+          "software": "ProStudio App (iPad)",
+          "franceSuuport": "Profoto Paris",
+          "easeOfUse": "Very high (iPad control)",
+          "positioning": "Fashion/Mode primarily",
+          "productivity": "150+ photos/day (fashion only)",
+          "flatlay": "Horizontal (dedicated)",
+          "onmodel": "Live (dedicated)"
+        }
+      },
+      "strengths": {
+        "heading": "Strengths and weaknesses of each solution",
+        "orbitvu": {
+          "heading": "Orbitvu",
+          "strengths": "Strengths",
+          "s1": "Most complete range in France (jewelry, footwear, fashion, furniture, industrial)",
+          "s2": "Highest measured productivity: 78 contents/day (2023 study)",
+          "s3": "AI Photo Assistant natively integrated into software",
+          "s4": "IQ Mask clipping in under 1 second (hardware processing)",
+          "s5": "Full local technical support via PackshotCreator",
+          "s6": "Orbitvu Sun cloud with ultra-light embed (2 KB)",
+          "weaknesses": "Weaknesses",
+          "w1": "Higher entry price than Ortery (~EUR 12,450 vs ~USD 1,300)",
+          "w2": "No portable solution (unlike PhotoRobot)",
+          "w3": "Fewer product references than Ortery (16 vs 30+)"
+        },
+        "ortery": {
+          "heading": "Ortery",
+          "strengths": "Strengths",
+          "s1": "Most affordable entry point on the market (~USD 1,300)",
+          "s2": "Widest range by number of references (30+ products)",
+          "s3": "Software with performant cloud AI for clipping",
+          "s4": "20% global market share",
+          "s5": "European showroom in Rotterdam since 2023",
+          "weaknesses": "Weaknesses",
+          "w1": "Lower productivity: 33 contents/day vs 78 for Orbitvu (2023 study)",
+          "w2": "Longer 3D capture time: 1,521 sec vs 369 sec for Orbitvu",
+          "w3": "Software rated less intuitive than Orbitvu Station (2023 study)",
+          "w4": "No direct support in France (Netherlands HQ)"
+        },
+        "styleshoots": {
+          "heading": "Styleshoots / Profoto",
+          "strengths": "Strengths",
+          "s1": "Best solution for on-model fashion photography",
+          "s2": "Unmatched ease of use (iPad control, zero complexity)",
+          "s3": "Measurable impact: +12% engagement, -30.5% bounce rate",
+          "s4": "Backed by Profoto (world lighting reference, global network)",
+          "s5": "France presence via Profoto Paris subsidiary",
+          "weaknesses": "Weaknesses",
+          "w1": "Very limited range: 4 specialized machines only",
+          "w2": "No solution for large objects (furniture, industrial machinery)",
+          "w3": "No multi-row 3D (hemispheric/spherical)",
+          "w4": "Very high pricing, not publicly disclosed",
+          "w5": "Closed ecosystem (iPad/Apple required)"
+        }
+      },
+      "ourTake": {
+        "heading": "Why we chose Orbitvu",
+        "transparencyNote": "Transparency disclaimer: PackshotCreator is the exclusive Orbitvu distributor in France. The arguments below reflect our conviction, based on our field experience and available factual data.",
+        "body1": "After evaluating all solutions on the market, we chose to distribute Orbitvu for the French market. Here are our reasons:",
+        "reason1title": "Best productivity-to-price ratio in France",
+        "reason1": "78 visual contents per day versus 33 for Ortery (2023 comparative study). Relative to the 5-year total cost of ownership, Orbitvu offers the lowest cost per content for medium to high volumes.",
+        "reason2title": "The most intuitive software",
+        "reason2": "The 2023 comparative study ranks Orbitvu Station first in ergonomics and ease of adoption. The AI Photo Assistant eliminates the need for photography skills to achieve professional results.",
+        "reason3title": "The range best suited to the French market",
+        "reason3": "16 systems covering from 18 cm jewelry to 2.5 m furniture. The French market is diverse (luxury, cosmetics, fashion, industrial, food) and requires a range capable of serving all sectors.",
+        "reason4title": "Complete local support",
+        "reason4": "Sales, installation, Qualiopi-certified training, and technical support in French. Neither Ortery nor most other manufacturers offer this level of proximity in France.",
+        "fairness": "That said, let's be honest: Ortery is an excellent choice if your budget is very tight (entry-level at ~USD 1,300), and Styleshoots/Profoto excels for 100% fashion businesses that only photograph worn garments. The best choice always depends on your specific context."
+      },
+      "faq": {
+        "heading": "Frequently asked questions",
+        "q1": {
+          "question": "Are you objective in this comparison?",
+          "answer": "We are the Orbitvu distributor in France, and we state this clearly. The data presented in this comparison comes from each manufacturer's official specifications and an independent comparative study published in 2023. We deliberately included Orbitvu's weaknesses and its competitors' strengths."
+        },
+        "q2": {
+          "question": "Is Ortery cheaper than Orbitvu?",
+          "answer": "At entry level, yes: the Ortery PhotoCapture 360 turntable starts at around USD 1,300, while Orbitvu's Alphashot 360 starts at EUR 12,450. However, for comparable systems (enclosed studio with integrated lighting, 360 and 3D), prices converge. The 5-year TCO also depends heavily on productivity: at 78 vs 33 contents/day, the cost per content favors Orbitvu."
+        },
+        "q3": {
+          "question": "Is Styleshoots better for fashion?",
+          "answer": "For pure on-model fashion (photo and video of garments worn by live models), the StyleShoots Live is indeed the market reference. But Orbitvu also covers fashion with the Alphastudio XXL and Fashion Studio Pro, while offering versatility for other sectors (footwear, accessories, cosmetics, furniture). If your business is exclusively fashion, Styleshoots deserves evaluation. If you have multi-sector needs, Orbitvu will be more suitable."
+        },
+        "q4": {
+          "question": "What is the productivity difference between Orbitvu and Ortery?",
+          "answer": "According to the comparative study published in 2023, Orbitvu enables producing 78 visual contents per day versus 33 for Ortery, a 2.4x gap. In multi-row 3D, the gap is even more pronounced: 369 seconds for a set of 48 photos with Orbitvu versus 1,521 seconds with Ortery."
+        },
+        "q5": {
+          "question": "Who provides after-sales support in France for each brand?",
+          "answer": "Orbitvu: PackshotCreator (Sysnext company), with showroom, Qualiopi-certified training, and French-language technical support. Styleshoots: Profoto Paris, subsidiary of the Swedish group. Ortery: support from the European HQ in the Netherlands (Capelle aan den IJssel), no dedicated distributor in France."
+        },
+        "q6": {
+          "question": "Can you test the solutions before buying?",
+          "answer": "Yes. PackshotCreator offers free demonstrations in our showroom or remotely. Contact us to schedule a test with your own products and evaluate results in real conditions."
+        }
+      },
+      "cta": {
+        "heading": "Compare for yourself",
+        "description": "Deciding between solutions? Request a free demonstration with your own products. We'll show you concrete results in real conditions.",
+        "demoButton": "Request a free demo",
+        "rangeButton": "View the full Orbitvu range"
+      },
+      "relatedLinks": {
+        "heading": "Further reading",
+        "link1": {
+          "title": "Orbitvu automated photo studios",
+          "description": "Discover the 16 systems in the Orbitvu range distributed by PackshotCreator."
+        },
+        "link2": {
+          "title": "Alphashot Pro G2: product page",
+          "description": "Orbitvu's AI-powered best-selling photo studio. Packshot, 360 and video for products up to 35 cm."
+        },
+        "link3": {
+          "title": "ROI Calculator",
+          "description": "Estimate your savings by bringing product photography in-house with an automated studio."
+        }
+      }
+    }
+  }
+}

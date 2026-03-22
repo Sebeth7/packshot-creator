@@ -7,8 +7,8 @@ const PipedriveContactForm = dynamic(
   () => import('@/components/forms/PipedriveContactForm').then((mod) => mod.PipedriveContactForm),
   { loading: () => <div className="h-64 bg-neutral-100 rounded-2xl animate-pulse" /> }
 );
-import { Phone, Clock, MapPin, ChevronRight, CheckCircle2 } from 'lucide-react';
-import SchemaOrg, { organizationSchema, breadcrumbSchema, localBusinessSchema } from '@/components/seo/SchemaOrg';
+import { Phone, Clock, MapPin, ChevronRight, Shield, Users, Zap } from 'lucide-react';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, localBusinessSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 
@@ -44,12 +44,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ContactPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'contact' });
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: 'Contact', url: `https://www.packshot-creator.com/${lang}/contact` },
   ];
+
+  const faqs = ([1, 2, 3, 4, 5, 6] as const).map((n) => ({
+    question: t(`faq${n}Question`),
+    answer: t(`faq${n}Answer`),
+  }));
 
   return (
     <>
@@ -59,16 +63,29 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         subtitle={t('subtitle')}
       />
 
-      {/* Trust Bar */}
-      <section className="py-4 bg-very-peri-50 border-b border-very-peri-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm">
-            {[1, 2, 3].map((i) => (
-              <span key={i} className="flex items-center gap-1.5 text-future-dusk-600 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-accent-success flex-shrink-0" />
-                {t(`trustBadge${i}` as `trustBadge${1 | 2 | 3}`)}
-              </span>
-            ))}
+      {/* Trust Bar — Enhanced ribbon with stats */}
+      <section className="py-8 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 sm:divide-x sm:divide-white/10">
+            {([
+              { icon: Shield, value: t('trustStat1Value'), label: t('trustStat1Label') },
+              { icon: Users, value: t('trustStat2Value'), label: t('trustStat2Label') },
+              { icon: Zap, value: t('trustStat3Value'), label: t('trustStat3Label') },
+            ]).map((stat) => {
+              const Icon = stat.icon;
+              return (
+                <div key={stat.label} className="text-center px-4 sm:px-6">
+                  <Icon className="h-5 w-5 text-very-peri-400 mx-auto mb-2" />
+                  <p className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-xs text-future-dusk-300 font-medium uppercase tracking-wider">
+                    {stat.label}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -87,6 +104,12 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
 
             {/* Info Column (2/5) */}
             <FadeInView direction="right" delay={0.2} className="lg:col-span-2 space-y-8">
+              {/* Response badge */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center gap-3">
+                <Zap className="h-5 w-5 text-emerald-600 shrink-0" />
+                <p className="text-sm font-medium text-emerald-800">{t('responseBadge')}</p>
+              </div>
+
               {/* Contact Info */}
               <div className="bg-gradient-to-br from-very-peri-50 to-very-peri-100/50 p-6 rounded-2xl">
                 <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-4">
@@ -131,20 +154,20 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                 </div>
               </div>
 
-              {/* FAQ */}
+              {/* FAQ — Extended to 6 questions */}
               <div>
                 <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-4">
                   {t('faqTitle')}
                 </h3>
                 <div className="space-y-3">
-                  {([1, 2, 3] as const).map((n) => (
-                    <details key={n} className="group bg-neutral-50 border border-neutral-100 rounded-2xl p-4 hover:border-very-peri-200 transition-colors">
+                  {faqs.map((faq, idx) => (
+                    <details key={idx} className="group bg-neutral-50 border border-neutral-100 rounded-2xl p-4 hover:border-very-peri-200 transition-colors">
                       <summary className="cursor-pointer font-heading font-bold text-future-dusk-900 list-none flex items-center justify-between">
-                        <span>{t(`faq${n}Question`)}</span>
+                        <span>{faq.question}</span>
                         <ChevronRight className="h-4 w-4 text-future-dusk-400 transition-transform group-open:rotate-90 shrink-0 ml-3" />
                       </summary>
                       <p className="mt-3 text-sm text-future-dusk-500 leading-relaxed">
-                        {t(`faq${n}Answer`)}
+                        {faq.answer}
                       </p>
                     </details>
                   ))}
@@ -155,7 +178,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), localBusinessSchema()]} />
+      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), localBusinessSchema(), faqSchema(faqs)]} />
     </>
   );
 }

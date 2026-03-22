@@ -3,6 +3,21 @@
 import Script from 'next/script';
 import { useState, useEffect } from 'react';
 
+const REQUEST_TYPES = {
+  fr: [
+    { value: 'demo', label: 'Demande de démonstration' },
+    { value: 'quote', label: 'Demande de devis' },
+    { value: 'support', label: 'Support technique' },
+    { value: 'training', label: 'Formation / Academy' },
+  ],
+  en: [
+    { value: 'demo', label: 'Demo request' },
+    { value: 'quote', label: 'Quote request' },
+    { value: 'support', label: 'Technical support' },
+    { value: 'training', label: 'Training / Academy' },
+  ],
+};
+
 interface PipedriveContactFormProps {
   locale?: 'fr' | 'en';
   className?: string;
@@ -23,6 +38,7 @@ export function PipedriveContactForm({
 }: PipedriveContactFormProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [requestType, setRequestType] = useState('');
 
   // URL du formulaire Pipedrive (depuis l'inventaire Webflow)
   const PIPEDRIVE_FORM_URL =
@@ -98,6 +114,35 @@ export function PipedriveContactForm({
           </div>
         </div>
       )}
+
+      {/* Qualifying question — radio buttons */}
+      <fieldset className="mb-6 p-5 bg-very-peri-50/50 rounded-2xl border border-very-peri-100">
+        <legend className="text-sm font-heading font-bold text-future-dusk-900 mb-3">
+          {locale === 'fr' ? 'Quel est l\'objet de votre demande ?' : 'What is your request about?'}
+        </legend>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {REQUEST_TYPES[locale].map((type) => (
+            <label
+              key={type.value}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-colors text-sm ${
+                requestType === type.value
+                  ? 'bg-very-peri-100 text-very-peri-800 font-medium border border-very-peri-300'
+                  : 'bg-white text-future-dusk-600 border border-neutral-100 hover:border-very-peri-200'
+              }`}
+            >
+              <input
+                type="radio"
+                name="requestType"
+                value={type.value}
+                checked={requestType === type.value}
+                onChange={(e) => setRequestType(e.target.value)}
+                className="accent-very-peri-600"
+              />
+              {type.label}
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       {/* Conteneur du formulaire Pipedrive */}
       <div

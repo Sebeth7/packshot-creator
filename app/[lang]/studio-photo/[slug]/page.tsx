@@ -5,9 +5,12 @@ import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, TrendingUp, BarChart3, MessageCircleQuestion, ArrowLeftRight } from 'lucide-react';
+import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 
 // Map machine IDs to local image files
@@ -58,27 +61,49 @@ export function generateStaticParams() {
   return MACHINES.map((machine) => ({ slug: machine.id }));
 }
 
+// SEO overrides for specific product pages (keyword + CTR optimization)
+const seoOverrides: Record<string, { fr: { title: string; description: string }; en: { title: string; description: string } }> = {
+  'alphashot-360': {
+    fr: {
+      title: 'Photo 360 Produit | Alphashot 360 — Studio Automatisé Orbitvu',
+      description: 'Creez des photos 360 produit automatisees avec l\'Alphashot 360 Orbitvu. Rotation interactive, fond blanc, detourage automatique. Demandez une demo gratuite.',
+    },
+    en: {
+      title: '360 Product Photography | Alphashot 360 — Automated Orbitvu Studio',
+      description: 'Create automated 360 product photos with the Alphashot 360 by Orbitvu. Interactive rotation, white background, auto clipping. Request a free demo.',
+    },
+  },
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug, lang } = await params;
   const machine = getMachineById(slug);
   if (!machine) return { title: 'Product not found' };
 
   const isFr = lang === 'fr';
-  return {
-    title: isFr
+  const override = seoOverrides[slug];
+
+  const title = override
+    ? (isFr ? override.fr.title : override.en.title)
+    : isFr
       ? `${machine.nom} | Studio Photo Automatisé Orbitvu`
-      : `${machine.nom} | Automated Photo Studio Orbitvu`,
-    description: isFr
-      ? `${machine.nom} : studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`
-      : `${machine.nom}: automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`,
+      : `${machine.nom} | Automated Photo Studio Orbitvu`;
+
+  const description = override
+    ? (isFr ? override.fr.description : override.en.description)
+    : isFr
+      ? `${machine.nom} — Distributeur officiel Orbitvu. Studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`
+      : `${machine.nom} — Official Orbitvu distributor. Automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`;
+
+  return {
+    title,
+    description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
       languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}` },
     },
     openGraph: {
-      title: isFr
-        ? `${machine.nom} | Studio Photo Automatisé Orbitvu`
-        : `${machine.nom} | Automated Photo Studio Orbitvu`,
+      title,
       images: [{ url: `/api/og?title=${encodeURIComponent(machine.nom)}&type=product&lang=${lang}`, width: 1200, height: 630 }],
     },
   };
@@ -143,6 +168,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       >
         {/* Badges */}
         <div className="flex flex-wrap gap-3 mt-4 -mb-2">
+          <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
+            <Award className="h-4 w-4" /> {isFr ? 'Distributeur Exclusif Orbitvu France & Suisse' : 'Exclusive Orbitvu Distributor France & Switzerland'}
+          </span>
           <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full">
             <Camera className="h-4 w-4" /> Orbitvu
           </span>
@@ -220,24 +248,25 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* #A Key Stats */}
+      {/* #A Key Stats — Dark ribbon */}
       {keyStats.length > 0 && (
-        <section className="py-16 bg-white border-b border-neutral-100">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
-            <StaggerContainer className="grid md:grid-cols-3 gap-8 text-center">
+        <section className="py-16 bg-future-dusk-900 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
               {keyStats.map((stat, index) => (
                 <StaggerItem key={index}>
-                <div>
-                  <div className="text-4xl sm:text-5xl font-heading font-bold text-very-peri-600 mb-2">
-                    {stat.value}
+                  <div className="text-center px-4 sm:px-6 lg:px-8">
+                    <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                      {stat.value}
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-future-dusk-300 uppercase tracking-wider">
+                      {isFr ? stat.label.fr : stat.label.en}
+                    </p>
+                    <p className="mt-1 text-xs text-future-dusk-400">
+                      {isFr ? stat.description.fr : stat.description.en}
+                    </p>
                   </div>
-                  <div className="text-sm font-medium text-future-dusk-900 uppercase tracking-wide mb-1">
-                    {isFr ? stat.label.fr : stat.label.en}
-                  </div>
-                  <p className="text-sm text-future-dusk-500">
-                    {isFr ? stat.description.fr : stat.description.en}
-                  </p>
-                </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
@@ -245,144 +274,174 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Key Advantages */}
-      <section className="py-20 bg-white">
+      {/* Key Advantages — Split 4/8 sticky heading + ghost numbers */}
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Avantages clés' : 'Key advantages'}
-          </h2>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {machine.keyAdvantages.map((advantage, index) => (
-              <StaggerItem key={index}>
-              <div className="bg-neutral-50 rounded-2xl p-8 border border-neutral-100">
-                <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-4">
-                  <CheckCircle className="h-5 w-5" />
-                </span>
-                <p className="font-heading font-bold text-future-dusk-900">
-                  {isFr ? advantage.fr : advantage.en}
-                </p>
-              </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Pourquoi ce système' : 'Why this system'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {isFr ? 'Avantages clés' : 'Key advantages'}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 leading-relaxed">
+                {isFr
+                  ? `Découvrez ce qui fait du ${machine.nom} un choix de référence pour votre production.`
+                  : `Discover what makes the ${machine.nom} a reference choice for your production.`}
+              </p>
+            </ScrollReveal>
 
-      {/* Technical Specifications */}
-      <section className="py-20 bg-neutral-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Caractéristiques techniques' : 'Technical specifications'}
-          </h2>
-          </FadeInView>
-          <FadeInView>
-          <div className="bg-white rounded-2xl shadow-sm border border-neutral-100 p-8 md:p-10">
-            <div className="grid md:grid-cols-2 gap-10">
-              <div>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
-                  {isFr ? 'Dimensions & Capacités' : 'Dimensions & Capacity'}
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { label: isFr ? 'Taille produit max' : 'Max product size', value: machine.tailleMax },
-                    { label: isFr ? 'Poids max' : 'Max weight', value: machine.poidsMax },
-                    { label: isFr ? 'Capacité journalière' : 'Daily capacity', value: `${machine.capaciteJour} ${isFr ? 'produits' : 'products'}` },
-                    { label: isFr ? 'Espace requis' : 'Space required', value: machine.spaceRequired },
-                  ].map((spec) => (
-                    <div key={spec.label} className="flex justify-between py-3 border-b border-neutral-100">
-                      <span className="text-future-dusk-500">{spec.label}</span>
-                      <span className="font-medium text-future-dusk-900">{spec.value}</span>
-                    </div>
-                  ))}
-                  {machine.studioFootprint && (
-                    <div className="flex justify-between py-3 border-b border-neutral-100">
-                      <span className="text-future-dusk-500">{isFr ? 'Encombrement studio' : 'Studio footprint'}</span>
-                      <span className="font-medium text-future-dusk-900">
-                        {machine.studioFootprint.l}x{machine.studioFootprint.w}x{machine.studioFootprint.h} cm
+            <div className="lg:col-span-8 space-y-6">
+              {machine.keyAdvantages.map((advantage, index) => (
+                <ScrollReveal key={index} offset={40}>
+                  <SpringCard>
+                    <div className="bg-neutral-50 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 flex items-start gap-5">
+                      <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none shrink-0">
+                        {String(index + 1).padStart(2, '0')}
                       </span>
+                      <div>
+                        <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-3">
+                          <CheckCircle className="h-5 w-5" />
+                        </span>
+                        <p className="text-lg font-heading font-bold text-future-dusk-900">
+                          {isFr ? advantage.fr : advantage.en}
+                        </p>
+                      </div>
                     </div>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
-                  {isFr ? 'Fonctionnalités' : 'Features'}
-                </h3>
-                <div className="space-y-3 mb-8">
-                  {machine.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0" />
-                      <span className="text-future-dusk-700">
-                        {isFr ? featureLabels[feature]?.fr : featureLabels[feature]?.en}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-4">
-                  {isFr ? 'Secteurs idéaux' : 'Ideal sectors'}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {machine.idealSectors.map((sector) => (
-                    <span
-                      key={sector}
-                      className="bg-very-peri-50 text-very-peri-700 px-3 py-1.5 rounded-full text-sm font-medium capitalize"
-                    >
-                      {sector}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
-          </FadeInView>
         </div>
       </section>
 
-      {/* Use Cases & Limitations */}
-      <section className="py-20 bg-white">
+      {/* Technical Specifications — Dark bg + floating white card */}
+      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Fiche technique' : 'Technical sheet'}
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-white">
+                {isFr ? 'Caractéristiques techniques' : 'Technical specifications'}
+              </h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal offset={30}>
+            <SpringCard>
+              <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
+                <div className="grid md:grid-cols-2 gap-10">
+                  <div>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
+                      {isFr ? 'Dimensions & Capacités' : 'Dimensions & Capacity'}
+                    </h3>
+                    <div className="space-y-4">
+                      {[
+                        { label: isFr ? 'Taille produit max' : 'Max product size', value: machine.tailleMax },
+                        { label: isFr ? 'Poids max' : 'Max weight', value: machine.poidsMax },
+                        { label: isFr ? 'Capacité journalière' : 'Daily capacity', value: `${machine.capaciteJour} ${isFr ? 'produits' : 'products'}` },
+                        { label: isFr ? 'Espace requis' : 'Space required', value: machine.spaceRequired },
+                      ].map((spec) => (
+                        <div key={spec.label} className="flex justify-between py-3 border-b border-neutral-100">
+                          <span className="text-future-dusk-500">{spec.label}</span>
+                          <span className="font-medium text-future-dusk-900">{spec.value}</span>
+                        </div>
+                      ))}
+                      {machine.studioFootprint && (
+                        <div className="flex justify-between py-3 border-b border-neutral-100">
+                          <span className="text-future-dusk-500">{isFr ? 'Encombrement studio' : 'Studio footprint'}</span>
+                          <span className="font-medium text-future-dusk-900">
+                            {machine.studioFootprint.l}x{machine.studioFootprint.w}x{machine.studioFootprint.h} cm
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
+                      {isFr ? 'Fonctionnalités' : 'Features'}
+                    </h3>
+                    <div className="space-y-3 mb-8">
+                      {machine.features.map((feature) => (
+                        <div key={feature} className="flex items-center gap-3">
+                          <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0" />
+                          <span className="text-future-dusk-700">
+                            {isFr ? featureLabels[feature]?.fr : featureLabels[feature]?.en}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-4">
+                      {isFr ? 'Secteurs idéaux' : 'Ideal sectors'}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {machine.idealSectors.map((sector) => (
+                        <span
+                          key={sector}
+                          className="bg-very-peri-50 text-very-peri-700 px-3 py-1.5 rounded-full text-sm font-medium capitalize"
+                        >
+                          {sector}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SpringCard>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Use Cases & Limitations — with SpringCard */}
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8">
             <FadeInView direction="left">
-            <div className="bg-emerald-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
-                {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
-              </h3>
-              <ul className="space-y-3">
-                {machine.useCases.map((useCase, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="text-future-dusk-700">{useCase}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <SpringCard>
+                <div className="bg-emerald-50 rounded-2xl p-8 h-full">
+                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
+                    {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
+                  </h3>
+                  <ul className="space-y-3">
+                    {machine.useCases.map((useCase, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+                        <span className="text-future-dusk-700">{useCase}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </SpringCard>
             </FadeInView>
 
             <FadeInView direction="right" delay={0.15}>
-            <div className="bg-amber-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
-                {isFr ? 'Points d\'attention' : 'Points to consider'}
-              </h3>
-              <ul className="space-y-3">
-                {machine.limitations.map((limitation, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
-                    <span className="text-future-dusk-700">{isFr ? limitation.fr : limitation.en}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <SpringCard>
+                <div className="bg-amber-50 rounded-2xl p-8 h-full">
+                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
+                    {isFr ? 'Points d\'attention' : 'Points to consider'}
+                  </h3>
+                  <ul className="space-y-3">
+                    {machine.limitations.map((limitation, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+                        <span className="text-future-dusk-700">{isFr ? limitation.fr : limitation.en}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </SpringCard>
             </FadeInView>
           </div>
         </div>
       </section>
 
-      {/* #F Intermediate CTA */}
+      {/* #F Intermediate CTA + ROI */}
       <section className="py-16 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
         <FadeInView>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -391,10 +450,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               ? `Envie de voir le ${machine.nom} en action ?`
               : `Want to see the ${machine.nom} in action?`}
           </h2>
-          <p className="text-future-dusk-200 mb-6">
+          <p className="text-future-dusk-200 mb-8">
             {isFr
-              ? 'Réservez une démonstration personnalisée dans nos showrooms de Paris ou Lausanne.'
-              : 'Book a personalized demo in our Paris or Lausanne showrooms.'}
+              ? 'Réservez une démonstration personnalisée dans nos showrooms ou calculez votre retour sur investissement.'
+              : 'Book a personalized demo in our showrooms or calculate your return on investment.'}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
@@ -403,8 +462,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </Link>
             </Button>
             <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/contact">
-                {isFr ? 'Demander un devis' : 'Request a quote'}
+              <Link href="/studios-photo-automatises#calculateur-roi">
+                <BarChart3 className="mr-2 h-4 w-4" /> {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'}
               </Link>
             </Button>
           </div>
@@ -424,110 +483,66 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </h2>
             </div>
             </FadeInView>
-            <StaggerContainer className="grid md:grid-cols-3 gap-8">
-              {similarMachines.map((similar) => (
-                <StaggerItem key={similar.id}>
-                <Link
-                  href={`/studio-photo/${similar.id}`}
-                  className="group block bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all"
-                >
-                  <div className="p-6">
-                    <div className="bg-neutral-50 rounded-xl p-4 mb-4 h-40 flex items-center justify-center">
-                      <Image
-                        src={getMachineImage(similar.id)}
-                        alt={similar.nom}
-                        width={200}
-                        height={150}
-                        className="object-contain max-h-32"
-                      />
-                    </div>
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2 group-hover:text-very-peri-600 transition-colors">
-                      {similar.nom}
-                    </h3>
-                    <p className="text-sm text-future-dusk-500 mb-3 line-clamp-2">
-                      {similar.useCases.slice(0, 3).join(', ')}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="text-xs bg-very-peri-50 text-very-peri-700 px-2 py-1 rounded-full">
-                        {similar.capaciteJour} {isFr ? 'prod/jour' : 'prod/day'}
-                      </span>
-                      <span className="text-xs bg-neutral-100 text-future-dusk-600 px-2 py-1 rounded-full">
-                        {similar.tailleMax}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                </StaggerItem>
+            <div className="grid md:grid-cols-3 gap-8">
+              {similarMachines.map((similar, idx) => (
+                <ScrollReveal key={similar.id} offset={30}>
+                  <SpringCard>
+                    <Link
+                      href={`/studio-photo/${similar.id}`}
+                      className="group block bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all"
+                    >
+                      <div className="p-6">
+                        <div className="bg-neutral-50 rounded-xl p-4 mb-4 h-40 flex items-center justify-center">
+                          <Image
+                            src={getMachineImage(similar.id)}
+                            alt={similar.nom}
+                            width={200}
+                            height={150}
+                            className="object-contain max-h-32"
+                          />
+                        </div>
+                        <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2 group-hover:text-very-peri-600 transition-colors">
+                          {similar.nom}
+                        </h3>
+                        <p className="text-sm text-future-dusk-500 mb-3 line-clamp-2">
+                          {similar.useCases.slice(0, 3).join(', ')}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="text-xs bg-very-peri-50 text-very-peri-700 px-2 py-1 rounded-full">
+                            {similar.capaciteJour} {isFr ? 'prod/jour' : 'prod/day'}
+                          </span>
+                          <span className="text-xs bg-neutral-100 text-future-dusk-600 px-2 py-1 rounded-full">
+                            {similar.tailleMax}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </SpringCard>
+                </ScrollReveal>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </section>
       )}
 
-      {/* ROI CTA */}
-      <section className="py-20 bg-white">
-        <FadeInView>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-700 mx-auto mb-6">
-            <TrendingUp className="h-7 w-7" />
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-            {isFr ? 'Calculez votre retour sur investissement' : 'Calculate your return on investment'}
-          </h2>
-          <p className="text-lg text-future-dusk-500 mb-8 max-w-2xl mx-auto">
-            {isFr
-              ? `Découvrez combien vous pourriez économiser en automatisant votre production de packshots avec le ${machine.nom}.`
-              : `Find out how much you could save by automating your packshot production with the ${machine.nom}.`}
-          </p>
-          <Button asChild size="lg" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl">
-            <Link href="/studios-photo-automatises#calculateur-roi">
-              {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'} <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-        </FadeInView>
-      </section>
-
-      {/* Training Recommendation */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-            {isFr ? 'Formation recommandée' : 'Recommended training'}
-          </h2>
-          </FadeInView>
-          <div className="grid md:grid-cols-2 gap-8 items-center bg-gradient-to-r from-very-peri-50 to-very-peri-100/50 rounded-2xl p-8 md:p-10">
-            <FadeInView direction="left">
-            <div className="relative h-64 bg-gradient-to-br from-very-peri-500 to-very-peri-700 rounded-2xl flex items-center justify-center">
-              <div className="text-center text-white">
-                <GraduationCap className="h-16 w-16 mx-auto mb-4 opacity-80" />
-                <p className="text-lg font-heading font-bold">PackshotCreator Academy</p>
-              </div>
-            </div>
-            </FadeInView>
-
-            <FadeInView direction="right" delay={0.15}>
-            <div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-700 text-sm font-medium px-3 py-1.5 rounded-full">
-                  <Award className="h-3.5 w-3.5" /> Qualiopi
-                </span>
-                <span className="inline-flex items-center gap-2 bg-very-peri-500/10 text-very-peri-700 text-sm font-medium px-3 py-1.5 rounded-full">
-                  OPCO
-                </span>
-              </div>
-
-              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
+      {/* Training Recommendation — Inverted split: content left, gradient right */}
+      <section className="py-16 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            <FadeInView direction="left" className="lg:col-span-7">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                PackshotCreator Academy
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-3">
                 {isFr ? `Maîtrisez votre ${machine.nom}` : `Master your ${machine.nom}`}
-              </h3>
-
-              <p className="text-future-dusk-500 mb-6">
+              </h2>
+              <p className="text-lg text-future-dusk-500 mb-8">
                 {isFr
                   ? 'Formez-vous aux studios photo automatisés Orbitvu et maximisez votre productivité. Certifié Qualiopi, financement OPCO disponible.'
                   : 'Train on Orbitvu automated photo studios and maximize your productivity. Qualiopi certified, OPCO funding available.'}
               </p>
 
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-8">
                 {[
                   isFr ? 'Prise en main complète de votre studio' : 'Full studio onboarding',
                   isFr ? 'Optimisation des workflows de production' : 'Production workflow optimization',
@@ -552,71 +567,106 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   </Link>
                 </Button>
               </div>
-            </div>
+            </FadeInView>
+
+            <FadeInView direction="right" delay={0.15} className="lg:col-span-5">
+              <div className="relative bg-gradient-to-br from-very-peri-500 to-very-peri-700 rounded-2xl p-8 lg:p-10 text-white overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                <GraduationCap className="h-12 w-12 mb-6 opacity-80" />
+                <p className="text-xl font-heading font-bold mb-6">
+                  {isFr ? 'Certifications & Financement' : 'Certifications & Funding'}
+                </p>
+                <div className="space-y-4">
+                  <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3">
+                    <Award className="h-6 w-6 shrink-0" />
+                    <div>
+                      <p className="font-bold text-sm">Qualiopi</p>
+                      <p className="text-xs text-white/70">{isFr ? 'Certification qualité reconnue par l\'État' : 'State-recognized quality certification'}</p>
+                    </div>
+                  </div>
+                  <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3">
+                    <BarChart3 className="h-6 w-6 shrink-0" />
+                    <div>
+                      <p className="font-bold text-sm">OPCO</p>
+                      <p className="text-xs text-white/70">{isFr ? 'Financement jusqu\'à 100%' : 'Funding up to 100%'}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </FadeInView>
           </div>
         </div>
       </section>
 
-      {/* #C FAQ */}
+      {/* #C FAQ — Split: sticky heading left + accordion right */}
       {faqItems.length > 0 && (
-        <section className="py-20 bg-neutral-50">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
-            <FadeInView>
-            <div className="flex items-center justify-center gap-3 mb-12">
-              <MessageCircleQuestion className="h-6 w-6 text-very-peri-600" />
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
-              </h2>
+        <section className="py-16 lg:py-28 bg-neutral-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+              <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                  FAQ
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                  {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                </TextReveal>
+                <p className="text-lg text-future-dusk-500 leading-relaxed">
+                  {isFr
+                    ? `Tout ce que vous devez savoir sur le ${machine.nom}.`
+                    : `Everything you need to know about the ${machine.nom}.`}
+                </p>
+              </ScrollReveal>
+
+              <div className="lg:col-span-8 space-y-4">
+                {faqItems.map((faq, index) => (
+                  <ScrollReveal key={index} offset={20}>
+                    <details className="group bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:border-very-peri-200 transition-colors">
+                      <summary className="flex items-center justify-between cursor-pointer p-6 text-future-dusk-900 font-heading font-bold hover:text-very-peri-600 transition-colors">
+                        <span className="pr-4">{isFr ? faq.question.fr : faq.question.en}</span>
+                        <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                      </summary>
+                      <div className="px-6 pb-6 text-future-dusk-600 leading-relaxed">
+                        {isFr ? faq.answer.fr : faq.answer.en}
+                      </div>
+                    </details>
+                  </ScrollReveal>
+                ))}
+              </div>
             </div>
-            </FadeInView>
-            <FadeInView>
-            <div className="space-y-4">
-              {faqItems.map((faq, index) => (
-                <details
-                  key={index}
-                  className="group bg-white rounded-2xl border border-neutral-100 overflow-hidden"
-                >
-                  <summary className="flex items-center justify-between cursor-pointer p-6 text-future-dusk-900 font-heading font-bold hover:text-very-peri-600 transition-colors">
-                    <span className="pr-4">{isFr ? faq.question.fr : faq.question.en}</span>
-                    <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
-                  </summary>
-                  <div className="px-6 pb-6 text-future-dusk-600 leading-relaxed">
-                    {isFr ? faq.answer.fr : faq.answer.en}
-                  </div>
-                </details>
-              ))}
-            </div>
-            </FadeInView>
           </div>
         </section>
       )}
 
-      {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
+      {/* Final CTA — Asymmetric 3/5 + 2/5 */}
+      <section className="py-16 lg:py-28 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
         <FadeInView>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
-            {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
-          </h2>
-          <p className="text-lg text-very-peri-100 mb-8">
-            {isFr
-              ? `Testez le ${machine.nom} lors d'une démo personnalisée dans nos showrooms`
-              : `Try the ${machine.nom} during a personalized demo in our showrooms`}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-              <Link href="/contact">
-                {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/studios-photo-automatises">
-                {isFr ? 'Voir tous les studios' : 'View all studios'}
-              </Link>
-            </Button>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <div className="grid lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+              <div className="lg:col-span-3">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4 leading-tight">
+                  {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
+                </h2>
+                <p className="text-lg text-very-peri-100">
+                  {isFr
+                    ? `Testez le ${machine.nom} lors d'une démo personnalisée dans nos showrooms.`
+                    : `Try the ${machine.nom} during a personalized demo in our showrooms.`}
+                </p>
+              </div>
+              <div className="lg:col-span-2 flex flex-col gap-4">
+                <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg w-full justify-center">
+                  <Link href="/contact">
+                    {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl w-full justify-center">
+                  <Link href="/studios-photo-automatises">
+                    {isFr ? 'Voir tous les systèmes' : 'View all systems'}
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
         </FadeInView>
       </section>
 

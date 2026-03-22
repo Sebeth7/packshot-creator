@@ -136,7 +136,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16 items-start">
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
@@ -152,7 +152,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             </ScrollReveal>
 
             {/* Right column: stacked principle cards */}
-            <div className="lg:col-span-8 space-y-6 lg:space-y-8">
+            <div className="lg:col-span-8 space-y-4 lg:space-y-8">
               {([
                 { key: 'principle1' as const, icon: <Camera className="h-6 w-6" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu', num: '01' },
                 { key: 'principle2' as const, icon: <Sparkles className="h-6 w-6" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700', num: '02' },
@@ -160,12 +160,12 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               ]).map((principle) => (
                 <ScrollReveal key={principle.key} offset={40}>
                   <SpringCard>
-                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-6 lg:p-10">
+                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-4 sm:p-6 lg:p-10">
                       <div className="flex items-center gap-4 mb-5">
                         <div className={`w-12 h-12 rounded-xl ${principle.iconBg} flex items-center justify-center`}>
                           <span className={principle.iconColor}>{principle.icon}</span>
                         </div>
-                        <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                        <span className="text-2xl sm:text-3xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
                           {principle.num}
                         </span>
                       </div>
@@ -210,7 +210,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {/* Hero card — Packshot pro + IA (3/5 = dominant) */}
             <ScrollReveal offset={30} className="lg:col-span-3">
               <SpringCard className="h-full">
-                <div className="bg-white rounded-2xl p-6 lg:p-12 border-2 border-very-peri-300 ring-1 ring-very-peri-100 h-full relative shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-12 border-2 border-very-peri-300 ring-1 ring-very-peri-100 h-full relative shadow-sm hover:shadow-xl transition-shadow duration-300">
                   <span className="absolute -top-3 left-8 bg-very-peri-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
                     {isFr ? 'Recommandé' : 'Recommended'}
                   </span>
@@ -242,7 +242,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {/* Secondary card — IA générative pure (2/5) */}
             <ScrollReveal offset={50} className="lg:col-span-2">
               <SpringCard className="h-full" hoverY={-3} hoverScale={1.005}>
-                <div className="bg-white rounded-2xl p-8 border border-neutral-200 h-full">
+                <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 border border-neutral-200 h-full">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-neutral-100 text-neutral-500">
                       <Wand2 className="h-5 w-5" />
@@ -298,13 +298,13 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           </ScrollReveal>
 
           <FadeInView delay={0.2}>
-            <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl shadow-black/20">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-12 shadow-2xl shadow-black/20">
               {/* Timeline-style features inside the floating card */}
               <div className="space-y-0">
                 {PLATFORM_FEATURES.map((feat, idx) => (
                   <div key={feat.key} className={`grid md:grid-cols-12 gap-6 items-center py-8 ${idx < PLATFORM_FEATURES.length - 1 ? 'border-b border-neutral-100' : ''}`}>
                     <div className="md:col-span-2 text-center md:text-right">
-                      <span className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-neutral-100 select-none leading-none">
+                      <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-neutral-100 select-none leading-none">
                         {feat.num}
                       </span>
                     </div>
@@ -432,7 +432,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
             {BEFORE_AFTER_ITEMS.map((item, i) => (
               <ScrollReveal key={item.sector} offset={20 + i * 15}>
                 <SpringCard hoverY={-4}>
@@ -473,7 +473,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           {/* Giant stats */}
-          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-white/10 mb-14">
+          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-14">
             {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
               <StaggerItem key={stat}>
                 <div className="text-center px-8">
@@ -513,7 +513,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       <section className="py-16 lg:py-28 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             <ScrollReveal>
               <TextReveal as="h2" className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-[1.1]">
                 {t('compatible.heading')}
@@ -616,7 +616,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Test BlendAI — 3/5 = dominant */}
             <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-4 sm:p-6 lg:p-14 h-full flex flex-col">
                 <Sparkles className="h-8 w-8 text-very-peri-200 mb-6" />
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.test.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.test.description')}</p>
@@ -629,7 +629,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             </SpringCard>
             {/* Demo — 2/5 = secondary */}
             <SpringCard className="lg:col-span-2" hoverY={-6}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10 h-full flex flex-col">
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-6 lg:p-10 border border-white/10 h-full flex flex-col">
                 <Wand2 className="h-8 w-8 text-amber-400 mb-6" />
                 <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
                 <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">{t('finalCta.demo.description')}</p>
@@ -660,7 +660,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA.' : 'Qualiopi training to master your system and AI.' },
             ].map((link) => (
               <FadeInView key={link.key}>
-                <Link href={link.href} className="group block px-8 py-6">
+                <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-very-peri-500">{link.icon}</span>
                     <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">

@@ -1,0 +1,408 @@
+{
+  "fr": {
+    "blogBudget": {
+      "meta": {
+        "title": "Quel budget pour un studio photo automatise ?",
+        "description": "Fourchettes de prix des studios Orbitvu, cout par photo, ROI et financement. Guide transparent pour investir dans un studio photo automatise.",
+        "keywords": "studio photo automatique prix, studio photo produit prix, packshot prix, studio packshot budget, orbitvu prix"
+      },
+      "hero": {
+        "badge": "Guide Budget",
+        "title": "Quel budget pour un studio photo automatise ?",
+        "subtitle": "Fourchettes de prix, cout par photo et retour sur investissement : tout ce qu'il faut savoir avant d'investir."
+      },
+      "intro": {
+        "p1": "Combien coute un studio photo automatise ? La question est legitime, et nous allons y repondre avec la transparence que vous meritez. Pas de tarif cache, pas de surprise : voici les ordres de grandeur reels du marche, les facteurs qui influencent le prix, et surtout le calcul qui transforme cette depense en investissement rentable.",
+        "p2": "Chez PackshotCreator, nous distribuons la gamme Orbitvu depuis plus de 20 ans. Nous connaissons chaque machine, chaque cas d'usage, et nous avons accompagne plus de 500 entreprises dans leur passage a la photo automatisee. Voici ce que nous avons appris."
+      },
+      "factors": {
+        "heading": "Ce qui influence le prix d'un studio photo automatise",
+        "body": "Le budget d'un studio photo automatise depend de quatre facteurs principaux. Chacun d'entre eux oriente le choix de la machine et donc l'investissement final.",
+        "f1": "La taille de vos produits : un flacon de parfum et un canape ne se photographient pas dans le meme studio. Les machines compactes conviennent aux produits de moins de 40 cm, les grands formats accueillent des meubles jusqu'a 3 metres.",
+        "f2": "Le volume de production : 500 photos par an ou 50 000 ? Le volume quotidien conditionne le niveau d'automatisation necessaire et donc le positionnement dans la gamme.",
+        "f3": "Les types de visuels : packshot fond blanc, photo 360 interactive, video produit, flat-lay textile, ghost mannequin... Chaque format necessite des fonctionnalites specifiques.",
+        "f4": "Le niveau d'automatisation souhaite : d'un studio semi-automatique avec reglages manuels a un systeme full-auto avec intelligence artificielle, l'ecart de prix reflete le gain de temps au quotidien."
+      },
+      "ranges": {
+        "heading": "Les fourchettes de prix des studios Orbitvu",
+        "intro": "La gamme Orbitvu couvre tous les besoins, du studio de bureau au systeme industriel. Voici les trois grandes familles de prix, avec les modeles concernes et leurs capacites.",
+        "compact": {
+          "title": "Compact",
+          "price": "A partir de 12 450 EUR HT",
+          "description": "Studios de bureau pour produits de petite et moyenne taille (jusqu'a 40 cm). Ideal pour demarrer ou pour les volumes moderes.",
+          "l1": "Modeles : Alphashot 360, Alphashot G2, Alphashot Pro G2",
+          "l2": "Capacite : 200 a 250 packshots par jour",
+          "l3": "Fonctions : packshot, 360, video, detourage automatique"
+        },
+        "polyvalent": {
+          "title": "Polyvalent",
+          "badge": "Le plus demande",
+          "price": "De 18 950 a 46 450 EUR HT",
+          "description": "Studios multi-formats pour produits moyens a grands. Plusieurs types de visuels (packshot, flat-lay, 360, video) dans un seul systeme.",
+          "l1": "Modeles : Alphashot XL, Alphadesk, Alphastudio Compact",
+          "l2": "Capacite : 180 a 300 visuels par jour selon le modele",
+          "l3": "Fonctions : multi-camera, ghost mannequin, flat-lay textile"
+        },
+        "grandVolume": {
+          "title": "Grand volume",
+          "price": "De 56 450 a 150 000 EUR HT",
+          "description": "Solutions industrielles pour la mode portee, le mobilier et les tres grands volumes. Plateaux tournants haute capacite, eclairage professionnel surdimensionne.",
+          "l1": "Modeles : Fashion Studio, Furniture Studio, E-Comm Studio+",
+          "l2": "Capacite : 60 a 150 visuels par jour, produits jusqu'a 3 metres",
+          "l3": "Fonctions : mannequins vivants, lifestyle, plateau 1 tonne"
+        }
+      },
+      "costPerPhoto": {
+        "heading": "Combien coute reellement une photo produit ?",
+        "body": "Le prix d'un studio ne signifie rien s'il est deconnecte du cout reel par photo. C'est ce cout unitaire qui determine la rentabilite de l'investissement. Voici un comparatif base sur les prix constates en France.",
+        "table": {
+          "headerMethod": "Methode de production",
+          "headerCost": "Cout par photo",
+          "headerVolume": "Volume type",
+          "row1": {
+            "method": "Prestataire externe (petits volumes)",
+            "cost": "19 a 50 EUR",
+            "volume": "< 500 photos/an"
+          },
+          "row2": {
+            "method": "Prestataire externe (gros volumes)",
+            "cost": "5 a 15 EUR",
+            "volume": "> 1 000 photos/an"
+          },
+          "row3": {
+            "method": "Photographe interne sans automatisation",
+            "cost": "5 a 15 EUR",
+            "volume": "Variable"
+          },
+          "row4": {
+            "method": "Studio automatise Orbitvu (amorti)",
+            "cost": "0,50 a 3 EUR",
+            "volume": "> 2 000 photos/an"
+          }
+        },
+        "highlight": "Avec un studio automatise, le cout par photo est divise par 5 a 10 par rapport a la prestation externe."
+      },
+      "roi": {
+        "heading": "Retour sur investissement : les chiffres",
+        "body": "Un studio photo automatise n'est pas une depense, c'est un investissement dont le retour se mesure en mois, pas en annees. Nos clients constatent un seuil de rentabilite des 500 photos par an. Pour les gros volumes, le ROI est atteint des le quatrieme mois d'utilisation.",
+        "stat1": {
+          "value": "6-12 mois",
+          "label": "Retour sur investissement moyen"
+        },
+        "stat2": {
+          "value": "60-85%",
+          "label": "Reduction des couts photo"
+        },
+        "stat3": {
+          "value": "x10",
+          "label": "Gain de productivite"
+        },
+        "stat4": {
+          "value": "300/jour",
+          "label": "Packshots par operateur"
+        },
+        "conclusion": "Un operateur forme produit en moyenne 300 packshots par jour avec un studio Orbitvu, contre 30 sans automatisation. A 5 000 photos par an, les economies atteignent 60 a 85 % par rapport a la sous-traitance. Le calcul est vite fait.",
+        "ctaCalculator": "Calculer mon ROI personnalise"
+      },
+      "included": {
+        "heading": "Ce qui est inclus dans le prix",
+        "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complete, prete a produire des la livraison. Pas de surprise, pas de cout supplementaire a prevoir.",
+        "i1": {
+          "title": "Studio complet",
+          "description": "Caisson, eclairage LED, plateau tournant motorise, camera (selon configuration)."
+        },
+        "i2": {
+          "title": "Logiciel Orbitvu Station",
+          "description": "Capture, detourage automatique (IQ Mask), export multi-formats, mises a jour incluses."
+        },
+        "i3": {
+          "title": "Formation sur site",
+          "description": "Prise en main par un formateur certifie. Autonomie en 1 heure pour les operations courantes."
+        },
+        "i4": {
+          "title": "Installation et calibration",
+          "description": "Mise en service sur site par nos techniciens, calibration couleur et eclairage."
+        },
+        "i5": {
+          "title": "Support technique FR",
+          "description": "Equipe francophone basee en France, assistance par telephone et visioconference."
+        },
+        "i6": {
+          "title": "Maintenance : 0 EUR/an",
+          "description": "Aucun contrat de maintenance obligatoire. Consommables : 400 a 2 500 EUR/an selon le modele."
+        }
+      },
+      "financing": {
+        "heading": "Options de financement",
+        "body": "L'investissement dans un studio photo automatise peut etre lisse dans le temps. Plusieurs options existent pour adapter le financement a votre tresorerie.",
+        "f1": {
+          "title": "Leasing a partir de 344 EUR/mois",
+          "description": "Pour l'Alphashot Pro G2, notre modele le plus vendu. Mensualite fixe, budget maitrise."
+        },
+        "f2": {
+          "title": "Financement OPCO (jusqu'a 100 %)",
+          "description": "Nos formations sont certifiees Qualiopi. Le volet formation de votre investissement peut etre pris en charge integralement par votre OPCO."
+        },
+        "f3": {
+          "title": "Amortissement sur 5 ans",
+          "description": "Le studio est un actif amortissable sur 5 ans. L'amortissement reduit votre base imposable chaque annee."
+        },
+        "f4": {
+          "title": "Avantage fiscal (IS 25 %)",
+          "description": "L'amortissement du studio est deductible de l'impot sur les societes au taux de 25 %, reduisant le cout reel de l'investissement."
+        }
+      },
+      "faq": {
+        "heading": "Questions frequentes sur le budget",
+        "q1": {
+          "question": "Est-ce que vous publiez vos prix ?",
+          "answer": "Nous publions des fourchettes de prix pour vous donner un ordre de grandeur realiste. Le prix exact depend de la configuration choisie (camera, options, accessoires) et fait l'objet d'un devis personnalise apres analyse de vos besoins."
+        },
+        "q2": {
+          "question": "Quel est le studio le plus vendu ?",
+          "answer": "L'Alphashot Pro G2 est notre best-seller. C'est le premier studio photo dote d'intelligence artificielle au monde. Il convient a la majorite des produits de moins de 40 cm et demarre a 344 EUR par mois en leasing."
+        },
+        "q3": {
+          "question": "Le logiciel est-il inclus dans le prix ?",
+          "answer": "Oui. Orbitvu Station est inclus avec chaque studio, sans abonnement. Vous beneficiez du detourage automatique (IQ Mask), de l'export multi-formats et de toutes les mises a jour logicielles futures."
+        },
+        "q4": {
+          "question": "Peut-on financer la formation via OPCO ?",
+          "answer": "Oui. Notre Academy est certifiee Qualiopi, ce qui rend nos formations eligibles au financement par les OPCO. Selon votre branche professionnelle, la prise en charge peut atteindre 100 % du cout de la formation."
+        },
+        "q5": {
+          "question": "Quel retour sur investissement esperer ?",
+          "answer": "En moyenne, nos clients atteignent le seuil de rentabilite en 6 a 12 mois. Pour les entreprises qui produisent plus de 1 000 visuels par an, le ROI peut etre atteint des le 4e mois. Utilisez notre calculateur ROI en ligne pour une estimation personnalisee."
+        },
+        "q6": {
+          "question": "Y a-t-il des couts caches ?",
+          "answer": "Non. Il n'y a pas de contrat de maintenance obligatoire (0 EUR/an). Les seuls couts recurrents sont les consommables (fonds, accessoires de positionnement) : de 400 a 2 500 EUR par an selon le modele et l'utilisation."
+        }
+      },
+      "cta": {
+        "heading": "Pret a calculer votre investissement ?",
+        "description": "Utilisez notre calculateur ROI pour obtenir une estimation personnalisee en 2 minutes, ou contactez-nous pour un devis adapte a vos besoins.",
+        "btnCalculator": "Calculer mon ROI",
+        "btnContact": "Demander un devis"
+      },
+      "relatedLinks": {
+        "heading": "Pour aller plus loin",
+        "link1": {
+          "title": "Calculateur ROI",
+          "description": "Estimez vos economies en 2 minutes"
+        },
+        "link2": {
+          "title": "Studios photo automatises",
+          "description": "Decouvrez toute la gamme Orbitvu"
+        },
+        "link3": {
+          "title": "Nous contacter",
+          "description": "Devis personnalise sous 24h"
+        }
+      }
+    }
+  },
+  "en": {
+    "blogBudget": {
+      "meta": {
+        "title": "How much does an automated photo studio cost?",
+        "description": "Orbitvu studio price ranges, cost per photo, ROI and financing options. A transparent guide to investing in an automated product photography studio.",
+        "keywords": "automated photo studio price, product photography studio cost, packshot studio budget, orbitvu price, photo studio ROI"
+      },
+      "hero": {
+        "badge": "Budget Guide",
+        "title": "How much does an automated photo studio cost?",
+        "subtitle": "Price ranges, cost per photo, and return on investment: everything you need to know before investing."
+      },
+      "intro": {
+        "p1": "How much does an automated photo studio cost? It is a fair question, and we are going to answer it with the transparency you deserve. No hidden fees, no surprises: here are real market price ranges, the factors that influence pricing, and most importantly, the math that turns this expense into a profitable investment.",
+        "p2": "At PackshotCreator, we have been distributing the Orbitvu range for over 20 years. We know every machine, every use case, and we have helped more than 500 companies transition to automated photography. Here is what we have learned."
+      },
+      "factors": {
+        "heading": "What influences the price of an automated photo studio",
+        "body": "The budget for an automated photo studio depends on four main factors. Each of them determines the right machine and therefore the final investment.",
+        "f1": "The size of your products: a perfume bottle and a sofa do not require the same studio. Compact machines handle products up to 40 cm, while large-format systems accommodate furniture up to 3 meters.",
+        "f2": "Production volume: 500 photos per year or 50,000? Your daily volume determines the level of automation needed and therefore your position in the range.",
+        "f3": "Types of visuals: white-background packshot, interactive 360 view, product video, textile flat-lay, ghost mannequin... Each format requires specific capabilities.",
+        "f4": "Level of automation desired: from a semi-automatic studio with manual adjustments to a fully automated AI-powered system, the price difference reflects daily time savings."
+      },
+      "ranges": {
+        "heading": "Orbitvu studio price ranges",
+        "intro": "The Orbitvu range covers every need, from desktop studios to industrial systems. Here are the three main price families, with the relevant models and their capabilities.",
+        "compact": {
+          "title": "Compact",
+          "price": "Starting from EUR 12,450",
+          "description": "Desktop studios for small to medium-sized products (up to 40 cm). Ideal for getting started or for moderate volumes.",
+          "l1": "Models: Alphashot 360, Alphashot G2, Alphashot Pro G2",
+          "l2": "Capacity: 200 to 250 packshots per day",
+          "l3": "Features: packshot, 360, video, automatic background removal"
+        },
+        "polyvalent": {
+          "title": "Versatile",
+          "badge": "Most popular",
+          "price": "EUR 18,950 to 46,450",
+          "description": "Multi-format studios for medium to large products. Multiple visual types (packshot, flat-lay, 360, video) in a single system.",
+          "l1": "Models: Alphashot XL, Alphadesk, Alphastudio Compact",
+          "l2": "Capacity: 180 to 300 visuals per day depending on model",
+          "l3": "Features: multi-camera, ghost mannequin, textile flat-lay"
+        },
+        "grandVolume": {
+          "title": "High volume",
+          "price": "EUR 56,450 to 150,000",
+          "description": "Industrial solutions for fashion, furniture, and very high volumes. High-capacity turntables, professional oversized lighting.",
+          "l1": "Models: Fashion Studio, Furniture Studio, E-Comm Studio+",
+          "l2": "Capacity: 60 to 150 visuals per day, products up to 3 meters",
+          "l3": "Features: live mannequins, lifestyle, 1-tonne turntable"
+        }
+      },
+      "costPerPhoto": {
+        "heading": "What does a product photo really cost?",
+        "body": "A studio price means nothing if it is disconnected from the real cost per photo. It is this unit cost that determines the profitability of the investment. Here is a comparison based on prices observed in the market.",
+        "table": {
+          "headerMethod": "Production method",
+          "headerCost": "Cost per photo",
+          "headerVolume": "Typical volume",
+          "row1": {
+            "method": "External provider (small volumes)",
+            "cost": "EUR 19 to 50",
+            "volume": "< 500 photos/year"
+          },
+          "row2": {
+            "method": "External provider (high volumes)",
+            "cost": "EUR 5 to 15",
+            "volume": "> 1,000 photos/year"
+          },
+          "row3": {
+            "method": "In-house photographer without automation",
+            "cost": "EUR 5 to 15",
+            "volume": "Variable"
+          },
+          "row4": {
+            "method": "Orbitvu automated studio (amortized)",
+            "cost": "EUR 0.50 to 3",
+            "volume": "> 2,000 photos/year"
+          }
+        },
+        "highlight": "With an automated studio, the cost per photo is divided by 5 to 10 compared to external providers."
+      },
+      "roi": {
+        "heading": "Return on investment: the numbers",
+        "body": "An automated photo studio is not an expense, it is an investment whose return is measured in months, not years. Our clients reach break-even from as few as 500 photos per year. For high-volume users, ROI is achieved as early as the fourth month of use.",
+        "stat1": {
+          "value": "6-12 months",
+          "label": "Average return on investment"
+        },
+        "stat2": {
+          "value": "60-85%",
+          "label": "Photo cost reduction"
+        },
+        "stat3": {
+          "value": "x10",
+          "label": "Productivity gain"
+        },
+        "stat4": {
+          "value": "300/day",
+          "label": "Packshots per operator"
+        },
+        "conclusion": "A trained operator produces an average of 300 packshots per day with an Orbitvu studio, compared to 30 without automation. At 5,000 photos per year, savings reach 60 to 85% compared to outsourcing. The math speaks for itself.",
+        "ctaCalculator": "Calculate my personalized ROI"
+      },
+      "included": {
+        "heading": "What is included in the price",
+        "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. No surprises, no additional costs to plan for.",
+        "i1": {
+          "title": "Complete studio",
+          "description": "Enclosure, LED lighting, motorized turntable, camera (depending on configuration)."
+        },
+        "i2": {
+          "title": "Orbitvu Station software",
+          "description": "Capture, automatic background removal (IQ Mask), multi-format export, updates included."
+        },
+        "i3": {
+          "title": "On-site training",
+          "description": "Hands-on training by a certified trainer. Full autonomy in 1 hour for routine operations."
+        },
+        "i4": {
+          "title": "Installation and calibration",
+          "description": "On-site setup by our technicians, color and lighting calibration."
+        },
+        "i5": {
+          "title": "French-speaking technical support",
+          "description": "France-based team, support by phone and video conference."
+        },
+        "i6": {
+          "title": "Maintenance: EUR 0/year",
+          "description": "No mandatory maintenance contract. Consumables: EUR 400 to 2,500/year depending on model."
+        }
+      },
+      "financing": {
+        "heading": "Financing options",
+        "body": "Investing in an automated photo studio can be spread over time. Several options exist to adapt financing to your cash flow.",
+        "f1": {
+          "title": "Leasing from EUR 344/month",
+          "description": "For the Alphashot Pro G2, our best-selling model. Fixed monthly payment, controlled budget."
+        },
+        "f2": {
+          "title": "OPCO funding (up to 100%)",
+          "description": "Our training programs are Qualiopi-certified. The training component of your investment can be fully covered by your OPCO (French training fund)."
+        },
+        "f3": {
+          "title": "5-year depreciation",
+          "description": "The studio is a depreciable asset over 5 years. Depreciation reduces your tax base every year."
+        },
+        "f4": {
+          "title": "Tax advantage (25% corporate tax)",
+          "description": "Studio depreciation is deductible from corporate income tax at the 25% rate, reducing the real cost of the investment."
+        }
+      },
+      "faq": {
+        "heading": "Frequently asked questions about budget",
+        "q1": {
+          "question": "Do you publish your prices?",
+          "answer": "We publish price ranges to give you a realistic sense of scale. The exact price depends on your chosen configuration (camera, options, accessories) and is provided through a personalized quote after analyzing your needs."
+        },
+        "q2": {
+          "question": "What is your best-selling studio?",
+          "answer": "The Alphashot Pro G2 is our best-seller. It is the world's first AI-powered photo studio. It is suitable for most products under 40 cm and starts at EUR 344 per month on a lease."
+        },
+        "q3": {
+          "question": "Is the software included in the price?",
+          "answer": "Yes. Orbitvu Station is included with every studio, with no subscription. You get automatic background removal (IQ Mask), multi-format export, and all future software updates."
+        },
+        "q4": {
+          "question": "Can training be funded through OPCO?",
+          "answer": "Yes. Our Academy is Qualiopi-certified, making our training programs eligible for OPCO funding. Depending on your industry sector, coverage can reach 100% of the training cost."
+        },
+        "q5": {
+          "question": "What ROI can I expect?",
+          "answer": "On average, our clients reach break-even in 6 to 12 months. For companies producing more than 1,000 visuals per year, ROI can be achieved as early as the 4th month. Use our online ROI calculator for a personalized estimate."
+        },
+        "q6": {
+          "question": "Are there any hidden costs?",
+          "answer": "No. There is no mandatory maintenance contract (EUR 0/year). The only recurring costs are consumables (backgrounds, positioning accessories): EUR 400 to 2,500 per year depending on model and usage."
+        }
+      },
+      "cta": {
+        "heading": "Ready to calculate your investment?",
+        "description": "Use our ROI calculator for a personalized estimate in 2 minutes, or contact us for a quote tailored to your needs.",
+        "btnCalculator": "Calculate my ROI",
+        "btnContact": "Request a quote"
+      },
+      "relatedLinks": {
+        "heading": "Go further",
+        "link1": {
+          "title": "ROI Calculator",
+          "description": "Estimate your savings in 2 minutes"
+        },
+        "link2": {
+          "title": "Automated photo studios",
+          "description": "Discover the full Orbitvu range"
+        },
+        "link3": {
+          "title": "Contact us",
+          "description": "Personalized quote within 24h"
+        }
+      }
+    }
+  }
+}

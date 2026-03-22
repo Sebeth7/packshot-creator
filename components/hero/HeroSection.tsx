@@ -73,7 +73,7 @@ function SplitLayout({
   'badge' | 'title' | 'subtitle' | 'ctas' | 'media' | 'children'
 >) {
   return (
-    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 xl:gap-16 items-center">
       <FadeInView direction="left" className="order-2 lg:order-1">
         <BadgePill badge={badge} />
 

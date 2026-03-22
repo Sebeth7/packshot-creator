@@ -7,6 +7,9 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 
 const PACKSHOT_COURSES = [
   {
@@ -135,142 +138,216 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
         </div>
       </HeroSection>
 
-      {/* Benefits */}
-      <section className="py-20 bg-white">
+      {/* Benefits — Bento Grid */}
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView>
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-12 text-center">
-              {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
-            </h2>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
-            {benefits.map((b) => (
-              <StaggerItem key={b.title}>
-                <div className="text-center">
-                  <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${b.color} mx-auto mb-4`}>
-                    {b.icon}
+          <ScrollReveal>
+            <div className="max-w-3xl mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Pourquoi se former' : 'Why train'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Hero card — Productivité x10 (large, full height left) */}
+            <ScrollReveal offset={30}>
+              <SpringCard className="h-full">
+                <div className="bg-white rounded-2xl border border-neutral-100 hover:border-very-peri-300 p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl">
+                  <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-amber-100 text-amber-700 mb-6">
+                    {benefits[0].icon}
                   </span>
-                  <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
-                  <p className="text-sm text-future-dusk-500">{b.desc}</p>
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">{benefits[0].title}</h3>
+                  <p className="text-future-dusk-600 leading-relaxed text-lg flex-1">{benefits[0].desc}</p>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+              </SpringCard>
+            </ScrollReveal>
+
+            {/* 2 smaller cards stacked */}
+            <div className="space-y-6">
+              {benefits.slice(1).map((b) => (
+                <ScrollReveal key={b.title} offset={20}>
+                  <SpringCard hoverY={-3} hoverScale={1.005}>
+                    <div className="bg-white rounded-2xl border border-neutral-100 hover:border-very-peri-300 p-6 transition-all duration-300 shadow-sm hover:shadow-lg">
+                      <div className="flex items-start gap-5">
+                        <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${b.color} flex-shrink-0 mt-1`}>
+                          {b.icon}
+                        </span>
+                        <div>
+                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
+                          <p className="text-sm text-future-dusk-500 leading-relaxed">{b.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Formations Catalogue */}
-      <section id="formations" className="py-20 bg-neutral-50">
+      <section id="formations" className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
-              {t('catalogue.packshot_heading')}
-            </h2>
-            <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-              {t('catalogue.packshot_subtitle')}
-            </p>
-          </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('catalogue.packshot_heading')}
+              </h2>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t('catalogue.packshot_subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-3 gap-8">
             {PACKSHOT_COURSES.map((course) => (
-              <StaggerItem key={course.key}>
-              <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-                <div className={`h-2 ${course.color}`} />
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
-                      {course.level}
+              <ScrollReveal key={course.key} offset={30}>
+                <SpringCard>
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow relative">
+                    {/* Ghost number */}
+                    <span className="absolute top-4 right-4 text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
+                      {String(course.level).padStart(2, '0')}
                     </span>
-                    <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">OPCO</span>
-                  </div>
-                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
-                    {isFr ? course.titleFr : course.titleEn}
-                  </h3>
-                  <p className="text-sm text-future-dusk-500 leading-relaxed mb-6">
-                    {isFr ? course.descFr : course.descEn}
-                  </p>
-                  <div className="space-y-2 text-sm text-future-dusk-600 mb-6">
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-future-dusk-400" />
-                      {isFr ? course.durationFr : course.durationEn}
+                    <div className={`h-2 ${course.color}`} />
+                    <div className="p-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
+                          {course.level}
+                        </span>
+                        <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">OPCO</span>
+                      </div>
+                      <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                        {isFr ? course.titleFr : course.titleEn}
+                      </h3>
+                      <p className="text-sm text-future-dusk-500 leading-relaxed mb-6">
+                        {isFr ? course.descFr : course.descEn}
+                      </p>
+                      <div className="space-y-2 text-sm text-future-dusk-600 mb-6">
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4 text-future-dusk-400" />
+                          {isFr ? course.durationFr : course.durationEn}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <GraduationCap className="h-4 w-4 text-future-dusk-400" />
+                          {course.format}
+                        </div>
+                      </div>
+                      <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
+                        <Link href="/contact">
+                          {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <GraduationCap className="h-4 w-4 text-future-dusk-400" />
-                      {course.format}
-                    </div>
                   </div>
-                  <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
-                    <Link href="/contact">
-                      {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-              </StaggerItem>
+                </SpringCard>
+              </ScrollReveal>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
-      {/* Qualiopi & OPCO */}
-      <section className="py-20 bg-white">
+      {/* Qualiopi & OPCO — Split 4/8 */}
+      <section className="py-16 lg:py-28 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
-            <StaggerItem>
-              <div className="bg-emerald-50 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <Award className="h-8 w-8 text-emerald-600" />
-                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('qualiopi.heading')}</h3>
-                </div>
-                <p className="text-future-dusk-600 mb-6">{t('qualiopi.description')}</p>
-                <ul className="space-y-3">
-                  {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
-                    <li key={key} className="flex items-center gap-3">
-                      <Check className="h-5 w-5 text-emerald-600 shrink-0" />
-                      <span className="text-sm text-future-dusk-600">{t(`qualiopi.${key}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-very-peri-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
-                <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
-                <div className="space-y-4 text-sm text-future-dusk-600 mb-6">
-                  <p><strong>{isFr ? 'Salariés :' : 'Employees:'}</strong> {t('opco.salaries')}</p>
-                  <p><strong>{isFr ? 'Indépendants :' : 'Self-employed:'}</strong> {t('opco.independants')}</p>
-                </div>
-                <Button asChild variant="outline" className="rounded-xl">
-                  <Link href="/academy/simulateur-opco">
-                    {isFr ? 'Simuler mon financement' : 'Simulate my funding'} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            {/* Left: sticky heading */}
+            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
+              <span className="text-xs font-semibold text-emerald-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Financement' : 'Funding'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {isFr ? 'Formation financée, qualité certifiée' : 'Funded training, certified quality'}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 leading-relaxed">
+                {isFr ? 'Nos formations sont certifiées Qualiopi et éligibles au financement OPCO jusqu\'à 100%.' : 'Our training is Qualiopi certified and eligible for up to 100% OPCO funding.'}
+              </p>
+            </ScrollReveal>
+
+            {/* Right: stacked cards */}
+            <div className="lg:col-span-8 space-y-8">
+              {/* Qualiopi card */}
+              <ScrollReveal offset={30}>
+                <SpringCard>
+                  <div className="bg-emerald-50 rounded-2xl p-6 sm:p-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Award className="h-8 w-8 text-emerald-600" />
+                      <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('qualiopi.heading')}</h3>
+                    </div>
+                    <p className="text-future-dusk-600 mb-6">{t('qualiopi.description')}</p>
+                    <ul className="space-y-3">
+                      {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
+                        <li key={key} className="flex items-center gap-3">
+                          <Check className="h-5 w-5 text-emerald-600 shrink-0" />
+                          <span className="text-sm text-future-dusk-600">{t(`qualiopi.${key}`)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+              {/* OPCO card */}
+              <ScrollReveal offset={40}>
+                <SpringCard>
+                  <div className="bg-very-peri-50 rounded-2xl p-6 sm:p-10">
+                    <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
+                    <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
+                    <div className="space-y-4 text-sm text-future-dusk-600 mb-6">
+                      <p><strong>{isFr ? 'Salariés :' : 'Employees:'}</strong> {t('opco.salaries')}</p>
+                      <p><strong>{isFr ? 'Indépendants :' : 'Self-employed:'}</strong> {t('opco.independants')}</p>
+                    </div>
+                    <Button asChild variant="outline" className="rounded-xl">
+                      <Link href="/academy/simulateur-opco">
+                        {isFr ? 'Simuler mon financement' : 'Simulate my funding'} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA — Asymetrique 3/5 + 2/5 */}
+      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
+              {isFr ? 'Prêt à vous former ?' : 'Ready to train?'}
+            </TextReveal>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-5 gap-8">
+            {/* Dominant 3/5 - calendrier */}
+            <SpringCard className="lg:col-span-3" hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 sm:p-10 lg:p-14 h-full flex flex-col">
+                <h3 className="text-3xl font-heading font-bold mb-4">{isFr ? 'Consultez le calendrier' : 'Check the calendar'}</h3>
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
+                  {isFr ? 'Choisissez votre session de formation et rejoignez la prochaine promotion.' : 'Choose your training session and join the next class.'}
+                </p>
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                  <Link href="/academy/calendrier">{isFr ? 'Voir le calendrier' : 'View calendar'} <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
               </div>
-            </StaggerItem>
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
-        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
-            {isFr ? 'Prêt à vous former ?' : 'Ready to train?'}
-          </h2>
-          <p className="text-lg text-very-peri-100 mb-8">
-            {isFr ? 'Consultez notre calendrier pour choisir votre session de formation' : 'Check our calendar to choose your training session'}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-              <Link href="/academy/calendrier">
-                {isFr ? 'Voir le calendrier' : 'View calendar'} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/contact">{isFr ? 'Nous contacter' : 'Contact us'}</Link>
-            </Button>
+            </SpringCard>
+            {/* Secondary 2/5 - contact */}
+            <SpringCard className="lg:col-span-2" hoverY={-6}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-white/10 h-full flex flex-col">
+                <h3 className="text-2xl font-heading font-bold mb-4">{isFr ? 'Besoin de conseils ?' : 'Need advice?'}</h3>
+                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
+                  {isFr ? 'Notre équipe vous accompagne pour choisir la formation adaptée à vos besoins.' : 'Our team helps you choose the right training for your needs.'}
+                </p>
+                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                  <Link href="/contact">{isFr ? 'Nous contacter' : 'Contact us'}</Link>
+                </Button>
+              </div>
+            </SpringCard>
           </div>
-        </FadeInView>
+        </div>
       </section>
 
       <SchemaOrg schema={[

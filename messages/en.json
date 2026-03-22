@@ -571,7 +571,25 @@
     "faq3Answer": "Yes, by appointment. Contact us to schedule your visit and test our studios.",
     "trustBadge1": "Response within 24h",
     "trustBadge2": "500+ companies equipped",
-    "trustBadge3": "Free demo, no commitment"
+    "trustBadge3": "Free demo, no commitment",
+    "trustStat1Value": "25 yrs",
+    "trustStat1Label": "of product photo expertise",
+    "trustStat2Value": "500+",
+    "trustStat2Label": "companies equipped",
+    "trustStat3Value": "24h",
+    "trustStat3Label": "average response time",
+    "requestTypeLabel": "What is your request about?",
+    "requestTypeDemo": "Demo request",
+    "requestTypeQuote": "Quote request",
+    "requestTypeSupport": "Technical support",
+    "requestTypeTraining": "Training / Academy",
+    "responseBadge": "Guaranteed response within 24h",
+    "faq4Question": "What is your coverage area?",
+    "faq4Answer": "We cover all of France and French-speaking Switzerland. Our teams travel for installation and training. Remote support is also available.",
+    "faq5Question": "Do you offer online demos?",
+    "faq5Answer": "Yes, we offer video conference demos for initial discovery. For a complete evaluation, we recommend an in-showroom visit with your own products.",
+    "faq6Question": "Can training be funded through OPCO?",
+    "faq6Answer": "Yes, our training programs are Qualiopi-certified and eligible for OPCO funding up to 100%. We assist you with the administrative process."
   },
   "academyHub": {
     "meta": {
@@ -1445,11 +1463,11 @@
   "industrieDefense": {
     "meta": {
       "title": "Industrial & Defense Visual Documentation | PackshotCreator",
-      "description": "Automated photography solutions for industry and defense. AS9100, ISO 13485, MIL-STD compliant. 20 years of expertise. Request a study."
+      "description": "Automated photography solutions for industry and defense. Systems integrated into AS9100, ISO 13485, MIL-STD processes. 25 years of expertise. Request a study."
     },
     "hero": {
       "title": "Industrial & Defense Visual Documentation: Automated, Repeatable, Certifiable",
-      "subtitle": "AS9100, ISO 13485, MIL-STD compliant -- automate your photographic documentation with 20 years of precision photography expertise.",
+      "subtitle": "Our systems integrate into your AS9100, ISO 13485, MIL-STD certified processes. 25 years of precision photography expertise.",
       "ctaPrimary": "Request a custom study",
       "ctaSecondary": "View technologies"
     },
@@ -1601,8 +1619,8 @@
       "subtitle": "Robust studios adapted to industrial precision and volume requirements."
     },
     "compliance": {
-      "heading": "Industrial compliance and standards",
-      "subtitle": "Orbitvu solutions facilitate compliance through built-in repeatability and traceability.",
+      "heading": "Integration into your certified processes",
+      "subtitle": "Our systems integrate into your certified environments through built-in repeatability and traceability of Orbitvu technology.",
       "point1": "Saved templates: same capture conditions every time, certifiable repeatability.",
       "point2": "Automated export with SKU/NSN naming: complete traceability for every product visual.",
       "point3": "74 individually calibrated LEDs: documentable and reproducible lighting conditions.",
@@ -1983,6 +2001,781 @@
       "slider": "Before/after slider",
       "before": "Before",
       "after": "After"
+    }
+  },
+  "blogBudget": {
+    "meta": {
+      "title": "How much does an automated photo studio cost?",
+      "description": "Orbitvu studio price ranges, cost per photo, ROI and financing options. A transparent guide to investing in an automated product photography studio.",
+      "keywords": "automated photo studio price, product photography studio cost, packshot studio budget, orbitvu price, photo studio ROI"
+    },
+    "hero": {
+      "badge": "Budget Guide",
+      "title": "How much does an automated photo studio cost?",
+      "subtitle": "Price ranges, cost per photo, and return on investment: everything you need to know before investing."
+    },
+    "intro": {
+      "p1": "How much does an automated photo studio cost? It is a fair question, and we are going to answer it with the transparency you deserve. No hidden fees, no surprises: here are real market price ranges, the factors that influence pricing, and most importantly, the math that turns this expense into a profitable investment.",
+      "p2": "At PackshotCreator, we have been distributing the Orbitvu range for over 20 years. We know every machine, every use case, and we have helped more than 500 companies transition to automated photography. Here is what we have learned."
+    },
+    "factors": {
+      "heading": "What influences the price of an automated photo studio",
+      "body": "The budget for an automated photo studio depends on four main factors. Each of them determines the right machine and therefore the final investment.",
+      "f1": "The size of your products: a perfume bottle and a sofa do not require the same studio. Compact machines handle products up to 40 cm, while large-format systems accommodate furniture up to 3 meters.",
+      "f2": "Production volume: 500 photos per year or 50,000? Your daily volume determines the level of automation needed and therefore your position in the range.",
+      "f3": "Types of visuals: white-background packshot, interactive 360 view, product video, textile flat-lay, ghost mannequin... Each format requires specific capabilities.",
+      "f4": "Level of automation desired: from a semi-automatic studio with manual adjustments to a fully automated AI-powered system, the price difference reflects daily time savings."
+    },
+    "ranges": {
+      "heading": "Orbitvu studio price ranges",
+      "intro": "The Orbitvu range covers every need, from desktop studios to industrial systems. Here are the three main price families, with the relevant models and their capabilities.",
+      "compact": {
+        "title": "Compact",
+        "price": "Starting from EUR 12,450",
+        "description": "Desktop studios for small to medium-sized products (up to 40 cm). Ideal for getting started or for moderate volumes.",
+        "l1": "Models: Alphashot 360, Alphashot G2, Alphashot Pro G2",
+        "l2": "Capacity: 200 to 250 packshots per day",
+        "l3": "Features: packshot, 360, video, automatic background removal"
+      },
+      "polyvalent": {
+        "title": "Versatile",
+        "badge": "Most popular",
+        "price": "EUR 18,950 to 46,450",
+        "description": "Multi-format studios for medium to large products. Multiple visual types (packshot, flat-lay, 360, video) in a single system.",
+        "l1": "Models: Alphashot XL, Alphadesk, Alphastudio Compact",
+        "l2": "Capacity: 180 to 300 visuals per day depending on model",
+        "l3": "Features: multi-camera, ghost mannequin, textile flat-lay"
+      },
+      "grandVolume": {
+        "title": "High volume",
+        "price": "EUR 56,450 to 150,000",
+        "description": "Industrial solutions for fashion, furniture, and very high volumes. High-capacity turntables, professional oversized lighting.",
+        "l1": "Models: Fashion Studio, Furniture Studio, E-Comm Studio+",
+        "l2": "Capacity: 60 to 150 visuals per day, products up to 3 meters",
+        "l3": "Features: live mannequins, lifestyle, 1-tonne turntable"
+      }
+    },
+    "costPerPhoto": {
+      "heading": "What does a product photo really cost?",
+      "body": "A studio price means nothing if it is disconnected from the real cost per photo. It is this unit cost that determines the profitability of the investment. Here is a comparison based on prices observed in the market.",
+      "table": {
+        "headerMethod": "Production method",
+        "headerCost": "Cost per photo",
+        "headerVolume": "Typical volume",
+        "row1": {
+          "method": "External provider (small volumes)",
+          "cost": "EUR 19 to 50",
+          "volume": "< 500 photos/year"
+        },
+        "row2": {
+          "method": "External provider (high volumes)",
+          "cost": "EUR 5 to 15",
+          "volume": "> 1,000 photos/year"
+        },
+        "row3": {
+          "method": "In-house photographer without automation",
+          "cost": "EUR 5 to 15",
+          "volume": "Variable"
+        },
+        "row4": {
+          "method": "Orbitvu automated studio (amortized)",
+          "cost": "EUR 0.50 to 3",
+          "volume": "> 2,000 photos/year"
+        }
+      },
+      "highlight": "With an automated studio, the cost per photo is divided by 5 to 10 compared to external providers."
+    },
+    "roi": {
+      "heading": "Return on investment: the numbers",
+      "body": "An automated photo studio is not an expense, it is an investment whose return is measured in months, not years. Our clients reach break-even from as few as 500 photos per year. For high-volume users, ROI is achieved as early as the fourth month of use.",
+      "stat1": {
+        "value": "6-12 months",
+        "label": "Average return on investment"
+      },
+      "stat2": {
+        "value": "60-85%",
+        "label": "Photo cost reduction"
+      },
+      "stat3": {
+        "value": "x10",
+        "label": "Productivity gain"
+      },
+      "stat4": {
+        "value": "300/day",
+        "label": "Packshots per operator"
+      },
+      "conclusion": "A trained operator produces an average of 300 packshots per day with an Orbitvu studio, compared to 30 without automation. At 5,000 photos per year, savings reach 60 to 85% compared to outsourcing. The math speaks for itself.",
+      "ctaCalculator": "Calculate my personalized ROI"
+    },
+    "included": {
+      "heading": "What is included in the price",
+      "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. No surprises, no additional costs to plan for.",
+      "i1": {
+        "title": "Complete studio",
+        "description": "Enclosure, LED lighting, motorized turntable, camera (depending on configuration)."
+      },
+      "i2": {
+        "title": "Orbitvu Station software",
+        "description": "Capture, automatic background removal (IQ Mask), multi-format export, updates included."
+      },
+      "i3": {
+        "title": "On-site training",
+        "description": "Hands-on training by a certified trainer. Full autonomy in 1 hour for routine operations."
+      },
+      "i4": {
+        "title": "Installation and calibration",
+        "description": "On-site setup by our technicians, color and lighting calibration."
+      },
+      "i5": {
+        "title": "French-speaking technical support",
+        "description": "France-based team, support by phone and video conference."
+      },
+      "i6": {
+        "title": "Maintenance: EUR 0/year",
+        "description": "No mandatory maintenance contract. Consumables: EUR 400 to 2,500/year depending on model."
+      }
+    },
+    "financing": {
+      "heading": "Financing options",
+      "body": "Investing in an automated photo studio can be spread over time. Several options exist to adapt financing to your cash flow.",
+      "f1": {
+        "title": "Leasing from EUR 344/month",
+        "description": "For the Alphashot Pro G2, our best-selling model. Fixed monthly payment, controlled budget."
+      },
+      "f2": {
+        "title": "OPCO funding (up to 100%)",
+        "description": "Our training programs are Qualiopi-certified. The training component of your investment can be fully covered by your OPCO (French training fund)."
+      },
+      "f3": {
+        "title": "5-year depreciation",
+        "description": "The studio is a depreciable asset over 5 years. Depreciation reduces your tax base every year."
+      },
+      "f4": {
+        "title": "Tax advantage (25% corporate tax)",
+        "description": "Studio depreciation is deductible from corporate income tax at the 25% rate, reducing the real cost of the investment."
+      }
+    },
+    "faq": {
+      "heading": "Frequently asked questions about budget",
+      "q1": {
+        "question": "Do you publish your prices?",
+        "answer": "We publish price ranges to give you a realistic sense of scale. The exact price depends on your chosen configuration (camera, options, accessories) and is provided through a personalized quote after analyzing your needs."
+      },
+      "q2": {
+        "question": "What is your best-selling studio?",
+        "answer": "The Alphashot Pro G2 is our best-seller. It is the world's first AI-powered photo studio. It is suitable for most products under 40 cm and starts at EUR 344 per month on a lease."
+      },
+      "q3": {
+        "question": "Is the software included in the price?",
+        "answer": "Yes. Orbitvu Station is included with every studio, with no subscription. You get automatic background removal (IQ Mask), multi-format export, and all future software updates."
+      },
+      "q4": {
+        "question": "Can training be funded through OPCO?",
+        "answer": "Yes. Our Academy is Qualiopi-certified, making our training programs eligible for OPCO funding. Depending on your industry sector, coverage can reach 100% of the training cost."
+      },
+      "q5": {
+        "question": "What ROI can I expect?",
+        "answer": "On average, our clients reach break-even in 6 to 12 months. For companies producing more than 1,000 visuals per year, ROI can be achieved as early as the 4th month. Use our online ROI calculator for a personalized estimate."
+      },
+      "q6": {
+        "question": "Are there any hidden costs?",
+        "answer": "No. There is no mandatory maintenance contract (EUR 0/year). The only recurring costs are consumables (backgrounds, positioning accessories): EUR 400 to 2,500 per year depending on model and usage."
+      }
+    },
+    "cta": {
+      "heading": "Ready to calculate your investment?",
+      "description": "Use our ROI calculator for a personalized estimate in 2 minutes, or contact us for a quote tailored to your needs.",
+      "btnCalculator": "Calculate my ROI",
+      "btnContact": "Request a quote"
+    },
+    "relatedLinks": {
+      "heading": "Go further",
+      "link1": {
+        "title": "ROI Calculator",
+        "description": "Estimate your savings in 2 minutes"
+      },
+      "link2": {
+        "title": "Automated photo studios",
+        "description": "Discover the full Orbitvu range"
+      },
+      "link3": {
+        "title": "Contact us",
+        "description": "Personalized quote within 24h"
+      }
+    }
+  },
+  "blogStudioIa": {
+    "meta": {
+      "title": "Photo Studio + AI vs Pure Generative AI | 2026 Comparison",
+      "description": "AI product photography: should you choose Photoroom or an automated studio? Full comparison of fidelity, 360, catalog consistency and regulations.",
+      "keywords": "AI product photography, alternative to photoroom, automated photo studio AI, photoroom vs blendai comparison"
+    },
+    "hero": {
+      "badge": "Comparison Guide",
+      "title": "Automated Studio + AI vs Pure Generative AI: the real match",
+      "subtitle": "Photoroom, Claid, Flair... or an Orbitvu studio paired with BlendAI? Not all approaches are created equal. Here are the facts."
+    },
+    "breadcrumb": {
+      "blog": "Blog",
+      "article": "Studio AI vs Generative AI"
+    },
+    "category": "Guide",
+    "readTime": "8 min read",
+    "publishDate": "March 22, 2026",
+    "author": "PackshotCreator",
+    "intro": {
+      "heading": "Product photography is shifting to AI",
+      "body1": "The numbers speak for themselves. In 2026, 34 million images are generated by AI every single day. The AI-assisted product photography market is projected to reach $8.9 billion by 2034, growing at 15.7% annually. Tools are multiplying, promises are stacking up, and 76% of SMBs that have adopted AI photography report over 80% in savings on their product visuals.",
+      "body2": "But behind this wave, two philosophies are clashing. On one side, pure generative AI: Photoroom, Claid, Flair, Pebblely -- tools that generate or transform your visuals from scratch (or close to it). On the other, the hybrid approach: an automated photo studio captures the real product, then AI enhances those captures. Same goal -- professional product visuals, faster, cheaper -- but profoundly different results. Let's see why."
+    },
+    "marketOverview": {
+      "heading": "The rise of generative AI for product photography",
+      "body1": "Photoroom leads the charge with over 300 million downloads, a $500 million valuation and $94 million ARR by end of 2024 (+89% year-over-year). Claid.ai claims 200 million images processed for 10,000 businesses. Flair.ai attracts 577,000 monthly visitors. Pebblely counts 25 million images created for over a million users.",
+      "body2": "The tech giants are not sitting idle. Google Product Studio is integrated into Merchant Center, free for merchants. Amazon offers image generation directly within its advertising platform. Adobe Firefly is embedding itself into Photoshop. The message is clear: AI product photography is no longer a novelty -- it's becoming a standard.",
+      "body3": "And the prices defy all competition: $0.02 to $0.10 per image via Photoroom's API, subscriptions starting at $7.50 per month. Compared to an average of $102 per image in a traditional studio, the equation seems settled. Except it isn't."
+    },
+    "aiPure": {
+      "heading": "How pure generative AI works -- and where it excels",
+      "body1": "The principle is simple. You upload a photo (even a mediocre one) of your product. AI removes the background, improves the lighting, generates a lifestyle scene and exports a publish-ready visual. All in seconds, for pennies. Photoroom offers its Amazon and Shopify templates, Claid.ai processes your images in 2-3 seconds, Flair.ai lets you build scenes by drag-and-drop, Pebblely offers 40+ predefined themes.",
+      "body2": "For background removal, these tools are formidable. For quickly generating lifestyle visuals meant for social media or ads, they get the job done. For virtual mannequins in fashion, Photoroom and Flair deliver convincing results. On catalogs under 50 references with simple products (cosmetics, accessories), results are often good enough.",
+      "limitesHeading": "Documented limitations of pure generative AI",
+      "limites1": "But beyond these use cases, the problems are documented and recurring.",
+      "limites2title": "Product distortion.",
+      "limites2": "AI doesn't know your product. It guesses from training data. The result: buttons that appear out of nowhere, proportions that drift, details that vanish. Flair.ai has known distortion issues with text and reflective surfaces. Claid.ai can add unintended elements around products.",
+      "limites3title": "Visual hallucinations.",
+      "limites3": "Jewelry loses its fine details, transparent packaging generates aberrant reflections, text becomes illegible, knit textures fall apart. Gold doesn't glint, glass doesn't reflect: AI visuals often remain too matte or too plasticky.",
+      "limites4title": "Catalog visual drift.",
+      "limites4": "Each generation is independent. AI has no memory of previous outputs. On a 200-product catalog, you get 200 different lightings, 200 different framings. The catalog looks like a patchwork. Yet consistent brand presentation increases revenue by up to 33%, and 75% of consumers place more trust in brands whose visuals are uniform. Pebblely and Flair start showing limitations past 50 SKUs.",
+      "limites5title": "No 360, no video.",
+      "limites5": "None of the four main tools (Photoroom, Claid, Flair, Pebblely) offer 360 generation or product spin. Single-image approximations remain reconstructions, not real multi-angle views.",
+      "limites6title": "Growing legal risks.",
+      "limites6": "The FTC prohibits misrepresenting a product's quality, size, color or features. Amazon, Shopify and TikTok Shop tolerate AI visuals but penalize misleading content with listing removal or account suspension. California has required AI photo labeling since January 2026. Purely AI-generated images receive no copyright protection. Five major legal battles are underway in 2026."
+    },
+    "studioPlusIa": {
+      "heading": "Photo Studio + AI: capture reality, enhance with AI",
+      "body1": "The hybrid approach starts from a different principle. The automated studio (here, an Orbitvu) captures the real product, as it is. Controlled lighting (74 virtual LED sources on the Alphashot Pro G2, CRI > 95), precise angles, a motorized turntable with encoder for degree-precise positioning. The result: a perfectly faithful packshot in 3 seconds, with native automatic background removal.",
+      "body2": "AI then steps in -- not to generate the product, but to enhance it. BlendAI.studio, PackshotCreator's proprietary solution, transforms a studio packshot into dozens of lifestyle variants. The product itself is never touched. Its textures, colors and proportions remain identical to the millimeter. AI creates the backdrop, not the product.",
+      "body3": "The fundamental difference: zero hallucination. The product on your listing isn't a generated approximation -- it's a photograph. Traceable, auditable, faithful. And the studio natively guarantees what no generative AI tool offers: interactive 360 views, product video, ghost mannequin, focus stacking for microscopic details.",
+      "body4": "For catalog consistency, an automated studio by definition produces the same rendering for every product. Same lighting, same background, same framing. No more visual drift, even across thousands of references. Your catalog no longer looks like a patchwork -- it looks like a brand."
+    },
+    "comparison": {
+      "heading": "Comparison table: Pure Generative AI vs Photo Studio + AI",
+      "criteria": "Criteria",
+      "aiPure": "Pure Generative AI",
+      "studioIa": "Photo Studio + AI",
+      "row1": {
+        "label": "Product fidelity",
+        "ai": "Approximate -- possible distortion on details, text, reflections",
+        "studio": "100% fidelity -- photograph of the actual product"
+      },
+      "row2": {
+        "label": "360 / Video",
+        "ai": "Not natively available from any provider",
+        "studio": "Native: 360 spin, HD video, interactive HTML5"
+      },
+      "row3": {
+        "label": "Catalog consistency",
+        "ai": "Low to medium -- visual drift from 50 references",
+        "studio": "Guaranteed -- same setup, same rendering across entire catalog"
+      },
+      "row4": {
+        "label": "Cost per image",
+        "ai": "$0.02 to $2 depending on tool and plan",
+        "studio": "EUR 0.50 to 3 amortized (ROI in 6-12 months)"
+      },
+      "row5": {
+        "label": "Scalability",
+        "ai": "Strong for simple visuals, limited beyond 50 SKUs",
+        "studio": "200 to 300 packshots/day, internally scalable"
+      },
+      "row6": {
+        "label": "Regulated sectors",
+        "ai": "Non-compliant -- no FDA, ITAR certification or traceability",
+        "studio": "Compliant -- auditable real photographs, preserved metadata"
+      },
+      "row7": {
+        "label": "Visual traceability",
+        "ai": "Not auditable -- random generation",
+        "studio": "Real source photo, documented production chain"
+      }
+    },
+    "whoNeedsAiPure": {
+      "heading": "Who should use pure generative AI",
+      "body1": "Let's be honest. If you sell fewer than 500 products a year on a marketplace, if your visuals are meant for social media or Meta ads, if your photo budget doesn't exceed a few hundred dollars a month, and if your products aren't in a regulated sector -- pure generative AI does the job just fine.",
+      "body2": "Photoroom at $7.50 a month for a Shopify reseller photographing 30 items a week? That's a rational choice. Pebblely to quickly generate 40 lifestyle visuals for a new collection? Why not. These tools solve a real problem for a real market segment.",
+      "body3": "It's not about absolute quality either. For prototypes, market research visuals, internal presentations or ad A/B tests, generative AI is enough and offers an unbeatable speed advantage."
+    },
+    "whoNeedsStudio": {
+      "heading": "Who needs a studio + AI",
+      "body1": "The equation changes as soon as any of these criteria come into play.",
+      "criteria1": "Volume.",
+      "criteria1detail": "Beyond 500 visuals a year, the consistency limitations of generative AI become critical. An Orbitvu studio produces 200 to 300 packshots per day. ROI starts between 6 and 12 months, and the cost per image drops to EUR 0.50-3 once the investment is amortized.",
+      "criteria2": "B2B or luxury sector.",
+      "criteria2detail": "When a professional buyer orders technical parts from a catalog, they need to see the exact product, not an interpretation. Luxury demands fidelity that generative AI cannot guarantee: gold must glint like gold, leather must show the grain of leather.",
+      "criteria3": "Regulations.",
+      "criteria3detail": "Medical, defense, manufacturing: visuals must be traceable and verifiable. The FDA imposes strict representation standards for medical devices. Defense requires ITAR/EAR compliance. Generative AI offers no certification.",
+      "criteria4": "360 and video.",
+      "criteria4detail": "If your product pages need interactive 360, video, ghost mannequin or focus stacking, only an automated studio with a physical turntable makes it possible.",
+      "criteria5": "Brand consistency.",
+      "criteria5detail": "If your catalog exceeds 50 references and visual consistency is a commercial concern, generative AI's visual drift becomes a real risk to your brand image.",
+      "body2": "The upfront investment is higher (starting at EUR 12,450 for an Alphashot 360, or EUR 344/month on a lease). But for an e-commerce SMB producing 5,000 photos a year, break-even is typically 8-12 months, with a 60-85% cost reduction compared to outsourcing."
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": {
+        "question": "Will AI replace photo studios?",
+        "answer": "No. Generative AI excels at background removal, lifestyle scenes and rapid testing. But it cannot capture a real product with pixel-level fidelity, produce interactive 360 views, or guarantee consistency across a catalog of hundreds of references. The most effective approach in 2026 is hybrid: an automated studio for capture, AI to enhance the visuals."
+      },
+      "q2": {
+        "question": "Is Photoroom enough for an e-commerce site?",
+        "answer": "It depends. For a reseller with fewer than 500 photos a year, simple products and limited fidelity requirements, Photoroom ($7.50-$82.50/month) is an efficient and affordable solution. For B2B catalogs, luxury goods, regulated sectors or volumes exceeding 500 visuals a year, consistency and fidelity limitations become problematic."
+      },
+      "q3": {
+        "question": "What is BlendAI.studio?",
+        "answer": "BlendAI.studio is PackshotCreator's proprietary AI product photography solution. It starts from a professional packshot (ideally from Orbitvu) and generates lifestyle variants, backgrounds and retouching without ever modifying the product itself. Over 100 brands use it, with a 4.9/5 satisfaction rating. From EUR 75 per month."
+      },
+      "q4": {
+        "question": "Can generative AI produce 360 views?",
+        "answer": "No, none of the major generative AI tools (Photoroom, Claid, Flair, Pebblely) offer native 360 generation or product spin. Some specialized tools (FlexClip, DomoAI) generate approximations from a single image, but these are reconstructions, not real multi-angle views. Only an automated studio with a physical turntable produces true interactive spins."
+      },
+      "q5": {
+        "question": "What budget to start with a studio + AI?",
+        "answer": "The Alphashot 360 (entry-level) starts at EUR 12,450, or EUR 344/month on a lease. For an SMB outsourcing 2,000 photos at EUR 20 each, the studio saves over EUR 37,000 per year. Break-even typically falls between 6 and 12 months. BlendAI.studio is available from EUR 75 per month, and a 3-credit discovery pack is offered free."
+      },
+      "q6": {
+        "question": "Are AI visuals legal for e-commerce?",
+        "answer": "Yes, but with growing caveats. The FTC prohibits misleading representations. Amazon, Shopify and TikTok Shop penalize misleading visual content. California has required AI photo labeling since January 2026. Purely AI-generated images receive no copyright protection. For regulated sectors (medical, defense), only real photographs are compliant."
+      }
+    },
+    "cta": {
+      "heading": "Find the approach that fits your business",
+      "description": "Request a live demonstration of an Orbitvu studio paired with BlendAI. Our experts help you identify the right solution for your volumes, products and requirements.",
+      "ctaDemo": "Request a demo",
+      "ctaBlendai": "Discover BlendAI.studio"
+    },
+    "relatedLinks": {
+      "heading": "Further reading",
+      "link1label": "AI Product Photography: BlendAI.studio",
+      "link1description": "Discover how AI enhances your packshots without ever touching the product.",
+      "link2label": "Orbitvu Automated Photo Studios",
+      "link2description": "The full range of automated photo studios, from desktop to warehouse.",
+      "link3label": "ROI Calculator",
+      "link3description": "Estimate your savings with an automated photo studio."
+    }
+  },
+  "blogPrestataire": {
+    "meta": {
+      "title": "Outsource vs in-house product photography: how to choose?",
+      "description": "Objective comparison between outsourced product photography and an in-house packshot studio. Costs, turnaround, quality: every criterion to make the right call.",
+      "keywords": "professional packshot studio, product photography outsource, in-house photo studio, automated photo studio, product photography costs",
+      "ogDescription": "Outsource or bring it in-house? A complete comparison with real figures to choose the best product photography solution."
+    },
+    "hero": {
+      "badge": "Guide",
+      "title": "Outsource vs in-house product photography",
+      "subtitle": "Every criterion to make the right call based on your volume, budget, and ambitions."
+    },
+    "author": "PackshotCreator",
+    "category": "Guide",
+    "readingTime": "{minutes} min read",
+    "date": "2026-03-22",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "intro": {
+      "heading": "PackshotCreator is not a photo service provider",
+      "p1": "We get this question all the time: can you photograph our products? The answer is no. PackshotCreator does not offer photo services. We sell Orbitvu automated photo studio systems and train your teams to use them.",
+      "p2": "This confusion is telling. It shows that many businesses have not yet realised there is an alternative between \"outsource everything\" and \"hire a photographer\". This article helps you compare both approaches with concrete figures.",
+      "p3": "Spoiler: both options have their place. But beyond a certain volume, one becomes clearly more advantageous."
+    },
+    "whenOutsource": {
+      "heading": "When outsourcing makes sense",
+      "p1": "Outsourcing product photography remains a perfectly valid option in several situations. If your catalogue does not exceed 500 photos per year, if you have no immediate investment budget, if your need is occasional or seasonal, or if you simply lack the space for a studio, a service provider is the pragmatic solution.",
+      "p2": "A competent provider delivers professional visuals without requiring you to master anything. You send your products, you get back images that meet your specifications.",
+      "p3": "In terms of pricing, expect between 19 and 50 euros (excl. VAT) per standard packshot in France. Packages are available: around 149 euros for 10 photos (including one hour of shooting, one hour of preparation, and two hours of retouching). For large volumes over 100 photos, some providers go as low as 5 euros per photo.",
+      "prices": {
+        "standard": "EUR 19-50 excl. VAT / photo",
+        "forfait": "EUR 149 excl. VAT / 10 photos",
+        "volume": "From EUR 5 excl. VAT / photo (> 100 photos)"
+      }
+    },
+    "whenInternalize": {
+      "heading": "When bringing it in-house becomes obvious",
+      "p1": "The tipping point generally sits around 500 photos per year. Beyond that threshold, the cumulative cost of outsourcing starts to exceed the total cost of ownership of an automated studio.",
+      "p2": "But volume is not the only criterion. Bringing photography in-house becomes a natural choice when:",
+      "reasons": {
+        "r1": "Your time-to-market is critical and every day of delay costs you sales",
+        "r2": "You need absolute visual consistency across all your products",
+        "r3": "Product photography is a strategic skill you want to build internally",
+        "r4": "Your volume is growing and outsourcing costs are rising proportionally"
+      },
+      "p3": "The rule is simple: when the annual cost of your service provider exceeds the total cost of ownership of a studio (purchase amortised over 5 years + consumables + operator time), it is time to switch."
+    },
+    "costComparison": {
+      "heading": "Cost comparison: three real-world scenarios",
+      "description": "Annual comparison between outsourced photography and an automated Orbitvu studio, across three volume profiles.",
+      "headerScenario": "Scenario",
+      "headerPhotos": "Photos/year",
+      "headerPrestataire": "Outsourcing cost",
+      "headerStudio": "Studio cost (amortised)",
+      "headerEconomie": "Annual saving",
+      "scenario1": {
+        "label": "SME e-commerce",
+        "photos": "1,000",
+        "prestataire": "EUR 19,000 - 50,000",
+        "studio": "~EUR 3,000/year",
+        "economie": "EUR 16,000 - 47,000"
+      },
+      "scenario2": {
+        "label": "Mid-size multi-catalogue",
+        "photos": "5,000",
+        "prestataire": "EUR 75,000 - 250,000",
+        "studio": "~EUR 5,000/year",
+        "economie": "EUR 70,000 - 245,000"
+      },
+      "scenario3": {
+        "label": "Large retailer",
+        "photos": "15,000",
+        "prestataire": "EUR 225,000+",
+        "studio": "~EUR 10,000/year",
+        "economie": "EUR 215,000+"
+      },
+      "footnote": "Studio costs: machine amortised over 5 years + consumables + valued operator time. Outsourcing costs: EUR 15-50/photo range depending on complexity."
+    },
+    "trapsPrestataire": {
+      "heading": "The pitfalls of outsourcing",
+      "p1": "Outsourcing is not without risks, and those risks grow with volume.",
+      "traps": {
+        "t1": {
+          "title": "Lead times",
+          "description": "Count on an average of three weeks between sending your products and receiving the visuals. For a product launch, that is an eternity."
+        },
+        "t2": {
+          "title": "Visual inconsistency",
+          "description": "From one shoot to the next, conditions change. Different lighting, different photographer, different retouching. Your catalogue loses its coherence."
+        },
+        "t3": {
+          "title": "Dependency",
+          "description": "The expertise stays with the provider, not with you. If they raise prices, change methods, or close shop, you are back to square one."
+        },
+        "t4": {
+          "title": "Costs proportional to volume",
+          "description": "The more you grow, the more you pay. Outsourcing is a variable cost that offers no economies of scale on the client side."
+        }
+      }
+    },
+    "gainsInternal": {
+      "heading": "What you gain by bringing it in-house",
+      "p1": "An automated Orbitvu studio does not require a professional photographer. After one hour of training, any team member can produce calibrated, repeatable packshots.",
+      "gains": {
+        "g1": {
+          "title": "Total control",
+          "description": "Lighting, angle, background, framing: you define your standards once, and the system reproduces them identically."
+        },
+        "g2": {
+          "title": "Speed",
+          "description": "3 seconds per packshot. Up to 300 photos per day per operator, compared with 30 using a traditional photographer."
+        },
+        "g3": {
+          "title": "Consistent quality",
+          "description": "Settings are saved in templates. The 10,000th packshot is identical to the first."
+        },
+        "g4": {
+          "title": "Independence",
+          "description": "The expertise stays within your company. You no longer depend on anyone."
+        },
+        "g5": {
+          "title": "Instant scaling",
+          "description": "New catalogue, seasonal collection, client emergency: you produce when you need to, not when the provider is available."
+        },
+        "g6": {
+          "title": "Rich content",
+          "description": "Beyond simple packshots, an Orbitvu studio produces 360-degree views, videos, and AI-ready content (BlendAI)."
+        }
+      }
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": {
+        "question": "Is PackshotCreator a photo service provider?",
+        "answer": "No. PackshotCreator sells Orbitvu automated photo studio systems and trains your teams to use them. We do not offer photography services."
+      },
+      "q2": {
+        "question": "Do I need a photographer to use an Orbitvu studio?",
+        "answer": "No. Orbitvu studios are designed to be operated by any team member after one hour of training. Lighting, framing, and background removal are automated."
+      },
+      "q3": {
+        "question": "Can I combine outsourcing and an in-house studio?",
+        "answer": "Yes, and it is a common strategy. Many businesses bring standard packshots in-house (white background, 360, product video) and outsource lifestyle shoots or model photography."
+      },
+      "q4": {
+        "question": "How much space do I need for a studio?",
+        "answer": "It depends on the model. The Alphashot sits on a desk (less than 1 square metre). An Alphastudio Compact requires 4-5 square metres. An E-Comm Studio+ for high-volume industrial use needs 40-50 square metres."
+      },
+      "q5": {
+        "question": "How do I convince my management to invest in a studio?",
+        "answer": "Use our online ROI calculator. It compares your current situation (outsourcing costs, time spent, volume) with the total cost of ownership of an Orbitvu studio. The numbers speak for themselves: payback typically falls between 6 and 12 months."
+      }
+    },
+    "cta": {
+      "heading": "Ready to compare the numbers?",
+      "description": "Use our ROI calculator to simulate your annual savings, or contact our team for a personalised demonstration.",
+      "btnRoi": "Calculate my ROI",
+      "btnContact": "Request a demo"
+    },
+    "relatedLinks": {
+      "heading": "Further reading",
+      "studios": {
+        "title": "Automated photo studios",
+        "description": "Discover the full range of Orbitvu studios distributed by PackshotCreator."
+      },
+      "industrie": {
+        "title": "Solutions for industry",
+        "description": "Technical documentation, quality control, high-volume catalogues: industrial use cases."
+      },
+      "contact": {
+        "title": "Contact us",
+        "description": "Showroom demonstration, custom quote, analysis of your current photo workflow."
+      }
+    }
+  },
+  "blogComparatif": {
+    "meta": {
+      "title": "Orbitvu vs Ortery vs Styleshoots 2026 Comparison",
+      "description": "Factual comparison of the 3 leading automated photo studio brands: Orbitvu, Ortery, and Styleshoots/Profoto. Pricing, productivity, features and support.",
+      "keywords": "orbitvu vs ortery, best automated photo studio, photo studio comparison, styleshoots vs orbitvu, e-commerce photo studio comparison"
+    },
+    "hero": {
+      "badge": "2026 Comparison",
+      "title": "Orbitvu vs Ortery vs Styleshoots: the complete comparison",
+      "subtitle": "Three manufacturers, three philosophies. We compared pricing, productivity, software and support to help you choose the right automated photo studio for your needs."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "blog": "Blog",
+      "category": "Comparison"
+    },
+    "articleMeta": {
+      "date": "2026-03-22",
+      "author": "PackshotCreator",
+      "readingTime": "12 min read",
+      "category": "Comparison"
+    },
+    "intro": {
+      "heading": "The automated photo studio market in 2026",
+      "body1": "The automated product photography market for e-commerce includes four to five major players worldwide. Among them, three stand out for their European presence and the maturity of their solutions: Orbitvu (Poland), Ortery (Taiwan/USA), and Styleshoots, now part of the Profoto group (Sweden).",
+      "body2": "Before going further, a point of transparency: PackshotCreator is the exclusive distributor of Orbitvu in France and French-speaking Switzerland. We state this upfront. This comparison nonetheless remains factual: all data comes from each manufacturer's official specifications and an independent comparative study published in 2023.",
+      "body3": "Our goal is simple: to provide you with concrete information to compare these three solutions and choose the one that matches your business, production volume, and budget."
+    },
+    "orbitvu": {
+      "heading": "Orbitvu: the complete all-rounder",
+      "body1": "Founded in 2010 in Krakow (Poland), Orbitvu came under the control of Abris Capital Partners, a Central European investment fund, in 2022. The company employs over 150 people and operates 4,000 m2 of production facilities in Europe.",
+      "body2": "The current range includes 16 systems covering the full spectrum: from the Alphashot Micro Pro v2 for jewelry (max 18 cm products, EUR 15,450 excl. VAT) to the E-Comm Studio+ for industrial use (3 m products, 1-tonne capacity, EUR 150,000 excl. VAT). In between, there are solutions for footwear, fashion, flat-lay, furniture, and even bicycles.",
+      "body3": "The Orbitvu Station software, included with every machine, features the AI Photo Assistant that automatically detects product shape, material, and reflectivity to suggest optimal settings. IQ Mask clipping executes in under one second. The Orbitvu Sun cloud platform enables hosting and delivery of 360 content with embed codes of just 2 KB.",
+      "body4": "In France, Orbitvu is distributed by PackshotCreator (Sysnext company), which handles sales, installation, training, and technical support. The 2023 comparative study measured a productivity of 78 visual contents per day with Orbitvu.",
+      "priceRange": "From EUR 12,450 to EUR 150,000 excl. VAT",
+      "founded": "Founded in 2010 (Poland)"
+    },
+    "ortery": {
+      "heading": "Ortery: the widest range",
+      "body1": "Founded in 2002 in PanChiao (Taiwan) with a commercial office in Irvine (California), Ortery is the oldest player on the market. The company opened its European HQ in Capelle aan den IJssel (Rotterdam, Netherlands) in July 2023, with a 289 m2 showroom.",
+      "body2": "With over 30 product references, Ortery offers the widest range on the market. It spans from the simple PhotoCapture 360 turntable at around USD 1,300 (the most affordable entry point on the market) to 3D multi-arm systems like the 3D MultiArm 900, launched in 2026. There are also flat-lay solutions (ClothingPad, StylePad) and enclosed studios (3D PhotoBench, Infinity Studio).",
+      "body3": "The Ortery Capture software manages camera, lighting, and turntable. The AI Background Removal works via the cloud, enabling clipping during capture or in post-production. The Ortery Cloud platform handles hosting and e-commerce integration.",
+      "body4": "Ortery holds approximately 20% global market share (source: Global Growth Insights). However, the company has no dedicated distributor in France: support is provided from the Netherlands. The 2023 comparative study measured a productivity of 33 visual contents per day with Ortery.",
+      "priceRange": "From ~USD 1,300 to tens of thousands USD",
+      "founded": "Founded in 2002 (Taiwan/USA)"
+    },
+    "styleshoots": {
+      "heading": "Styleshoots/Profoto: the fashion specialist",
+      "body1": "Founded in 2011 in Haarlem (Netherlands), StyleShoots was acquired in April 2022 by Profoto (Sweden) for EUR 18 million. Profoto, the world reference in professional photo lighting, has subsidiaries in New York, Tokyo, Hamburg, Paris, London, and Scandinavia.",
+      "body2": "The range is deliberately limited to four ultra-specialized machines for fashion and e-commerce: the Live (all-in-one booth for on-model photo and video with 3 motorized axes), the Vertical (ghost mannequin), the Horizontal (premium flat-lay), and the Eclipse (small objects with 360 and cinematic video). All are controlled exclusively via iPad with the ProStudio app.",
+      "body3": "The approach is radically different: each machine is designed for a specific purpose. The Live, the most complete model, allows one operator and one model to photograph 85 garments in 6 hours. AutoAlpha handles automatic background and support removal.",
+      "body4": "Prices are not publicly disclosed. Industry estimates place them at tens of thousands of dollars per machine, with the Live as the most expensive model. In France, Profoto has a Paris subsidiary that handles distribution and support. Styleshoots does not offer solutions for large objects (furniture, machinery) or multi-line 3D.",
+      "priceRange": "Not disclosed (tens of thousands USD)",
+      "founded": "Founded in 2011 (Netherlands, Profoto group)"
+    },
+    "comparison": {
+      "heading": "Detailed comparison table",
+      "subheading": "Data comes from each manufacturer's official specifications and the Orbitvu vs Ortery comparative study published in 2023.",
+      "criteria": {
+        "origin": "Country of origin",
+        "priceRange": "Price range",
+        "systemCount": "Number of systems",
+        "maxSize": "Max product size",
+        "rotation360": "360 single-row",
+        "multiline3d": "3D multi-row",
+        "video": "Video",
+        "autoClipping": "Auto clipping",
+        "integratedAI": "Integrated AI",
+        "software": "Main software",
+        "franceSuuport": "France support",
+        "easeOfUse": "Ease of use",
+        "positioning": "Market positioning",
+        "productivity": "Productivity (2023 study)",
+        "flatlay": "Flat-lay",
+        "onmodel": "On-model"
+      },
+      "orbitvu": {
+        "origin": "Poland",
+        "priceRange": "EUR 12,450 - 150,000 excl. VAT",
+        "systemCount": "16 systems",
+        "maxSize": "300x300x200 cm (E-Comm Studio+), 1,000 kg",
+        "rotation360": "Yes (all models)",
+        "multiline3d": "Yes (Compact, XXL)",
+        "video": "Yes",
+        "autoClipping": "IQ Mask (<1 sec, hardware)",
+        "integratedAI": "AI Photo Assistant (lighting + camera)",
+        "software": "Orbitvu Station + Sun (cloud DAM)",
+        "franceSuuport": "PackshotCreator (Sysnext)",
+        "easeOfUse": "High (intuitive interface)",
+        "positioning": "Multi-sector all-rounder",
+        "productivity": "78 visual contents/day",
+        "flatlay": "Alphadesk, Alphatable",
+        "onmodel": "Alphastudio XXL, Fashion Studio"
+      },
+      "ortery": {
+        "origin": "Taiwan (US office)",
+        "priceRange": "~USD 1,300 - 30,000+",
+        "systemCount": "30+ references",
+        "maxSize": "135 cm turntable, 150 kg (Infinity 4000)",
+        "rotation360": "Yes (360 models)",
+        "multiline3d": "Yes (MultiArm, PhotoArm)",
+        "video": "Yes",
+        "autoClipping": "AutoMask + cloud AI",
+        "integratedAI": "AI Background Removal (cloud)",
+        "software": "Ortery Capture + Cloud",
+        "franceSuuport": "From the Netherlands (no direct support)",
+        "easeOfUse": "Good (~1h to start)",
+        "positioning": "E-commerce generalist, DIY",
+        "productivity": "33 visual contents/day",
+        "flatlay": "ClothingPad, StylePad",
+        "onmodel": "No"
+      },
+      "styleshoots": {
+        "origin": "Netherlands (Swedish Profoto group)",
+        "priceRange": "Not disclosed (tens of thousands USD)",
+        "systemCount": "4 machines",
+        "maxSize": "On-model (Live) / Small objects (Eclipse)",
+        "rotation360": "Eclipse only",
+        "multiline3d": "No",
+        "video": "Yes (Live, Eclipse)",
+        "autoClipping": "AutoAlpha",
+        "integratedAI": "AI Focus (Eclipse)",
+        "software": "ProStudio App (iPad)",
+        "franceSuuport": "Profoto Paris",
+        "easeOfUse": "Very high (iPad control)",
+        "positioning": "Fashion/Mode primarily",
+        "productivity": "150+ photos/day (fashion only)",
+        "flatlay": "Horizontal (dedicated)",
+        "onmodel": "Live (dedicated)"
+      }
+    },
+    "strengths": {
+      "heading": "Strengths and weaknesses of each solution",
+      "orbitvu": {
+        "heading": "Orbitvu",
+        "strengths": "Strengths",
+        "s1": "Most complete range in France (jewelry, footwear, fashion, furniture, industrial)",
+        "s2": "Highest measured productivity: 78 contents/day (2023 study)",
+        "s3": "AI Photo Assistant natively integrated into software",
+        "s4": "IQ Mask clipping in under 1 second (hardware processing)",
+        "s5": "Full local technical support via PackshotCreator",
+        "s6": "Orbitvu Sun cloud with ultra-light embed (2 KB)",
+        "weaknesses": "Weaknesses",
+        "w1": "Higher entry price than Ortery (~EUR 12,450 vs ~USD 1,300)",
+        "w2": "No portable solution (unlike PhotoRobot)",
+        "w3": "Fewer product references than Ortery (16 vs 30+)"
+      },
+      "ortery": {
+        "heading": "Ortery",
+        "strengths": "Strengths",
+        "s1": "Most affordable entry point on the market (~USD 1,300)",
+        "s2": "Widest range by number of references (30+ products)",
+        "s3": "Software with performant cloud AI for clipping",
+        "s4": "20% global market share",
+        "s5": "European showroom in Rotterdam since 2023",
+        "weaknesses": "Weaknesses",
+        "w1": "Lower productivity: 33 contents/day vs 78 for Orbitvu (2023 study)",
+        "w2": "Longer 3D capture time: 1,521 sec vs 369 sec for Orbitvu",
+        "w3": "Software rated less intuitive than Orbitvu Station (2023 study)",
+        "w4": "No direct support in France (Netherlands HQ)"
+      },
+      "styleshoots": {
+        "heading": "Styleshoots / Profoto",
+        "strengths": "Strengths",
+        "s1": "Best solution for on-model fashion photography",
+        "s2": "Unmatched ease of use (iPad control, zero complexity)",
+        "s3": "Measurable impact: +12% engagement, -30.5% bounce rate",
+        "s4": "Backed by Profoto (world lighting reference, global network)",
+        "s5": "France presence via Profoto Paris subsidiary",
+        "weaknesses": "Weaknesses",
+        "w1": "Very limited range: 4 specialized machines only",
+        "w2": "No solution for large objects (furniture, industrial machinery)",
+        "w3": "No multi-row 3D (hemispheric/spherical)",
+        "w4": "Very high pricing, not publicly disclosed",
+        "w5": "Closed ecosystem (iPad/Apple required)"
+      }
+    },
+    "ourTake": {
+      "heading": "Why we chose Orbitvu",
+      "transparencyNote": "Transparency disclaimer: PackshotCreator is the exclusive Orbitvu distributor in France. The arguments below reflect our conviction, based on our field experience and available factual data.",
+      "body1": "After evaluating all solutions on the market, we chose to distribute Orbitvu for the French market. Here are our reasons:",
+      "reason1title": "Best productivity-to-price ratio in France",
+      "reason1": "78 visual contents per day versus 33 for Ortery (2023 comparative study). Relative to the 5-year total cost of ownership, Orbitvu offers the lowest cost per content for medium to high volumes.",
+      "reason2title": "The most intuitive software",
+      "reason2": "The 2023 comparative study ranks Orbitvu Station first in ergonomics and ease of adoption. The AI Photo Assistant eliminates the need for photography skills to achieve professional results.",
+      "reason3title": "The range best suited to the French market",
+      "reason3": "16 systems covering from 18 cm jewelry to 2.5 m furniture. The French market is diverse (luxury, cosmetics, fashion, industrial, food) and requires a range capable of serving all sectors.",
+      "reason4title": "Complete local support",
+      "reason4": "Sales, installation, Qualiopi-certified training, and technical support in French. Neither Ortery nor most other manufacturers offer this level of proximity in France.",
+      "fairness": "That said, let's be honest: Ortery is an excellent choice if your budget is very tight (entry-level at ~USD 1,300), and Styleshoots/Profoto excels for 100% fashion businesses that only photograph worn garments. The best choice always depends on your specific context."
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": {
+        "question": "Are you objective in this comparison?",
+        "answer": "We are the Orbitvu distributor in France, and we state this clearly. The data presented in this comparison comes from each manufacturer's official specifications and an independent comparative study published in 2023. We deliberately included Orbitvu's weaknesses and its competitors' strengths."
+      },
+      "q2": {
+        "question": "Is Ortery cheaper than Orbitvu?",
+        "answer": "At entry level, yes: the Ortery PhotoCapture 360 turntable starts at around USD 1,300, while Orbitvu's Alphashot 360 starts at EUR 12,450. However, for comparable systems (enclosed studio with integrated lighting, 360 and 3D), prices converge. The 5-year TCO also depends heavily on productivity: at 78 vs 33 contents/day, the cost per content favors Orbitvu."
+      },
+      "q3": {
+        "question": "Is Styleshoots better for fashion?",
+        "answer": "For pure on-model fashion (photo and video of garments worn by live models), the StyleShoots Live is indeed the market reference. But Orbitvu also covers fashion with the Alphastudio XXL and Fashion Studio Pro, while offering versatility for other sectors (footwear, accessories, cosmetics, furniture). If your business is exclusively fashion, Styleshoots deserves evaluation. If you have multi-sector needs, Orbitvu will be more suitable."
+      },
+      "q4": {
+        "question": "What is the productivity difference between Orbitvu and Ortery?",
+        "answer": "According to the comparative study published in 2023, Orbitvu enables producing 78 visual contents per day versus 33 for Ortery, a 2.4x gap. In multi-row 3D, the gap is even more pronounced: 369 seconds for a set of 48 photos with Orbitvu versus 1,521 seconds with Ortery."
+      },
+      "q5": {
+        "question": "Who provides after-sales support in France for each brand?",
+        "answer": "Orbitvu: PackshotCreator (Sysnext company), with showroom, Qualiopi-certified training, and French-language technical support. Styleshoots: Profoto Paris, subsidiary of the Swedish group. Ortery: support from the European HQ in the Netherlands (Capelle aan den IJssel), no dedicated distributor in France."
+      },
+      "q6": {
+        "question": "Can you test the solutions before buying?",
+        "answer": "Yes. PackshotCreator offers free demonstrations in our showroom or remotely. Contact us to schedule a test with your own products and evaluate results in real conditions."
+      }
+    },
+    "cta": {
+      "heading": "Compare for yourself",
+      "description": "Deciding between solutions? Request a free demonstration with your own products. We'll show you concrete results in real conditions.",
+      "demoButton": "Request a free demo",
+      "rangeButton": "View the full Orbitvu range"
+    },
+    "relatedLinks": {
+      "heading": "Further reading",
+      "link1": {
+        "title": "Orbitvu automated photo studios",
+        "description": "Discover the 16 systems in the Orbitvu range distributed by PackshotCreator."
+      },
+      "link2": {
+        "title": "Alphashot Pro G2: product page",
+        "description": "Orbitvu's AI-powered best-selling photo studio. Packshot, 360 and video for products up to 35 cm."
+      },
+      "link3": {
+        "title": "ROI Calculator",
+        "description": "Estimate your savings by bringing product photography in-house with an automated studio."
+      }
     }
   }
 }
