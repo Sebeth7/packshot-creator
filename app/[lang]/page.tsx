@@ -327,16 +327,7 @@ export default async function HomePage({
                   <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
                 </Button>
               </div>
-              <div className="hidden lg:block rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/illustrations/studio-ia-concept.avif"
-                  alt={t('hybrid.heading')}
-                  width={600}
-                  height={338}
-                  className="w-full h-auto"
-                  sizes="33vw"
-                />
-              </div>
+              {/* Image placeholder — à remplacer par un visuel AVIF transparent */}
             </ScrollReveal>
 
             {/* Right column: stacked pillar cards */}

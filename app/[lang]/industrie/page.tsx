@@ -399,18 +399,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             </div>
           </ScrollReveal>
 
-          <FadeInView delay={0.15} className="mb-16">
-            <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10">
-              <Image
-                src="/images/illustrations/workflow-pipeline.avif"
-                alt={isFr ? 'Pipeline : capture studio → IA → diffusion multi-canal' : 'Pipeline: studio capture → AI → multi-channel distribution'}
-                width={1200}
-                height={675}
-                className="w-full h-auto"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
-            </div>
-          </FadeInView>
+          {/* Image placeholder — à remplacer par un visuel workflow pipeline */}
 
           <div className="space-y-0">
             {workflowSteps.map((step, idx) => (

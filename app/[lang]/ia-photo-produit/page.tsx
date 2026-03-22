@@ -148,16 +148,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               <p className="text-base lg:text-lg text-future-dusk-500 leading-relaxed mb-8">
                 {t('manifeste.subtitle')}
               </p>
-              <div className="hidden lg:block rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/illustrations/studio-ia-concept.avif"
-                  alt={isFr ? 'Studio photo automatisé avec écran IA lifestyle' : 'Automated photo studio with AI lifestyle screen'}
-                  width={600}
-                  height={338}
-                  className="w-full h-auto"
-                  sizes="(max-width: 1024px) 0px, 33vw"
-                />
-              </div>
+              {/* Image placeholder — à remplacer par un visuel AVIF transparent */}
             </ScrollReveal>
 
             {/* Right column: stacked principle cards */}
@@ -375,27 +366,17 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {/* Hero card — Lifestyle */}
             <ScrollReveal offset={30}>
               <SpringCard className="h-full">
-                <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group overflow-hidden">
-                  <div className="aspect-[16/10] relative">
-                    <Image
-                      src="/images/illustrations/ia-lifestyle-result.avif"
-                      alt={isFr ? 'Résultat lifestyle IA — mise en scène produit' : 'AI lifestyle result — product staging'}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div className="p-6 lg:p-8 flex flex-col flex-1">
-                    <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${FEATURES[0].color} mb-4`}>
-                      {FEATURES[0].icon}
-                    </span>
-                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-3">
-                      {t(`features.${FEATURES[0].key}.name`)}
-                    </h3>
-                    <p className="text-future-dusk-500 leading-relaxed flex-1">
-                      {t(`features.${FEATURES[0].key}.description`)}
-                    </p>
-                  </div>
+                <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 p-6 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group">
+                  {/* Image placeholder — à remplacer par un visuel lifestyle AVIF */}
+                  <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${FEATURES[0].color} mb-6`}>
+                    {FEATURES[0].icon}
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
+                    {t(`features.${FEATURES[0].key}.name`)}
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
+                    {t(`features.${FEATURES[0].key}.description`)}
+                  </p>
                 </div>
               </SpringCard>
             </ScrollReveal>
