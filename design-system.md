@@ -4,6 +4,11 @@
 > Il documente l'ADN visuel commun et les PRINCIPES de design.
 > Les patterns decrits ici sont des outils disponibles, PAS une checklist a appliquer partout.
 > Chaque page a sa propre structure et ses propres besoins.
+>
+> **Ce document est vivant.** Chaque session doit verifier que son contenu est correct
+> en le confrontant a l'observation visuelle de la Home et d'Apple. Si une regle est
+> incorrecte, incomplete ou obsolete, la session DOIT la corriger avant de travailler
+> sur sa page. Cela permet aux sessions suivantes de beneficier des observations.
 
 ---
 
@@ -239,7 +244,10 @@ Le gain cumulatif de ces 7 etapes transforme une section banale en section premi
 - Animations directionnelles variees (pas tout "up")
 - Rythme narratif des fonds (pas d'alternance mecanique)
 - FAQ = split sticky heading + accordion, fond `bg-future-dusk-0`
-- CTA final = asymetrique 3/5 + 2/5, fond `bg-black`, contenu DISTINCT entre les 2 cartes
+- CTA final = asymetrique 3/5 + 2/5, fond `bg-black`, contenu DISTINCT entre les 2 cartes :
+  - Carte principale (3/5) : gradient peri, heading specifique (ex: "Reservez votre demo"), description unique, CTA primaire
+  - Carte secondaire (2/5) : glassmorphism (bg-white/5 border-white/10), heading different (ex: "Calculez votre ROI"), description differente, CTA secondaire
+  - Ne JAMAIS mettre le meme titre/description dans les 2 cartes (c'etait le probleme avant la refonte Home)
 - Padding sections : `py-20 lg:py-32` (standard), `py-16 lg:py-24` (compact)
 - Responsive : toujours prefixer les grandes tailles (`text-4xl lg:text-6xl` jamais `text-6xl` seul)
 
