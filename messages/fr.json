@@ -24,7 +24,7 @@
       "stat4Label": "de réduction des coûts"
     },
     "painPoints": {
-      "label": "Le problème",
+      "label": "Vos défis",
       "heading": "Votre production photo freine votre croissance ?",
       "slow": {
         "title": "Production limitée",
@@ -39,10 +39,10 @@
         "description": "Retouche, post-production, temps opérateur... Le <bold>coût réel par image</bold> dépasse souvent les estimations, en interne comme en externe."
       },
       "dependent": {
-        "title": "Qualité inconsistante",
-        "stat": "100%",
-        "statUnit": "variable",
-        "description": "D'un shooting à l'autre, d'un opérateur à l'autre, la <bold>cohérence visuelle</bold> reste un défi. Le savoir-faire ne reste pas dans l'entreprise."
+        "title": "Qualité insuffisante",
+        "stat": "67%",
+        "statUnit": "influencés par la photo",
+        "description": "Système de prise de vue dépassé, éclairage non calibré, photographe non spécialisé... Vos visuels <bold>ne sont pas à la hauteur</bold> mais les améliorer coûte trop cher et prend trop de temps."
       },
       "bridge": "Il y a une autre manière de faire."
     },

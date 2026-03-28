@@ -19,9 +19,9 @@ import {
   Clock,
   TrendingUp,
   Shield,
-  AlertTriangle,
-  DollarSign,
-  Link2,
+  TrendingDown,
+  Receipt,
+  Focus,
   ImageIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -59,9 +59,9 @@ const SOCIAL_PROOF_STATS = [
 ] as const;
 
 const PAIN_POINTS = [
-  { key: 'slow' as const, Icon: AlertTriangle, color: 'text-red-500', bg: 'bg-red-500/10', border: 'border-red-500/20' },
-  { key: 'expensive' as const, Icon: DollarSign, color: 'text-orange-500', bg: 'bg-orange-500/10', border: 'border-orange-500/20' },
-  { key: 'dependent' as const, Icon: Link2, color: 'text-amber-500', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { key: 'slow' as const, Icon: TrendingDown, color: 'text-future-dusk-500', bg: 'bg-future-dusk-0', border: 'border-neutral-100' },
+  { key: 'expensive' as const, Icon: Receipt, color: 'text-future-dusk-500', bg: 'bg-future-dusk-0', border: 'border-neutral-100' },
+  { key: 'dependent' as const, Icon: Focus, color: 'text-future-dusk-500', bg: 'bg-future-dusk-0', border: 'border-neutral-100' },
 ] as const;
 
 const HYBRID_STEPS = [
@@ -259,28 +259,38 @@ export default async function HomePage({
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16 lg:mb-20">
-              <span className="text-xs font-semibold text-red-500 uppercase tracking-[0.2em] mb-4 block">
+          {/* Header — split: text left, illustration right */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-20">
+            <ScrollReveal>
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
                 {t('painPoints.label')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
                 {t('painPoints.heading')}
               </TextReveal>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+            <FadeInView direction="right">
+              <div className="w-full aspect-[3/2] bg-future-dusk-0 flex items-center justify-center border border-neutral-100 rounded-2xl">
+                <div className="text-center">
+                  <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                  <p className="text-xs text-neutral-300">Illustration production photo ~600x400</p>
+                </div>
+              </div>
+            </FadeInView>
+          </div>
 
+          {/* Cards — neutral, professional tone */}
           <div className="space-y-6">
             {PAIN_POINTS.map((point, i) => (
               <FadeInView key={point.key} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 0.1}>
                 <SpringCard>
-                  <div className={`flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 lg:gap-16 rounded-2xl p-6 sm:p-8 lg:p-10 border ${point.border} bg-neutral-50/50 hover:shadow-lg transition-shadow duration-300`}>
+                  <div className={`flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 lg:gap-16 rounded-2xl p-6 sm:p-8 lg:p-10 border ${point.border} bg-white hover:shadow-lg transition-shadow duration-300`}>
                     <div className="flex items-center gap-4 md:min-w-[200px] lg:min-w-[260px] shrink-0">
                       <div className={`w-12 h-12 rounded-xl ${point.bg} flex items-center justify-center`}>
                         <point.Icon className={`w-6 h-6 ${point.color}`} strokeWidth={1.5} />
                       </div>
                       <div>
-                        <p className={`text-4xl sm:text-5xl lg:text-6xl font-heading font-bold ${point.color} leading-none`}>
+                        <p className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-heading-dark leading-none">
                           {t(`painPoints.${point.key}.stat`)}
                         </p>
                         <p className="text-sm text-neutral-medium mt-1">
@@ -288,7 +298,7 @@ export default async function HomePage({
                         </p>
                       </div>
                     </div>
-                    <div className="md:border-l md:border-neutral-200 md:pl-10 lg:pl-16">
+                    <div className="md:border-l md:border-neutral-100 md:pl-10 lg:pl-16">
                       <h3 className="text-xl lg:text-2xl font-heading font-bold text-heading-dark mb-2">
                         {t(`painPoints.${point.key}.title`)}
                       </h3>

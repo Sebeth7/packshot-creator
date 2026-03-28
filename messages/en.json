@@ -161,7 +161,7 @@
       "stat4Label": "cost reduction"
     },
     "painPoints": {
-      "label": "The problem",
+      "label": "Your challenges",
       "heading": "Is your photo production slowing your growth?",
       "slow": {
         "title": "Limited production",
@@ -176,10 +176,10 @@
         "description": "Retouching, post-production, operator time... The <bold>real cost per image</bold> often exceeds estimates, both in-house and outsourced."
       },
       "dependent": {
-        "title": "Inconsistent quality",
-        "stat": "100%",
-        "statUnit": "variable",
-        "description": "From one shoot to another, from one operator to another, <bold>visual consistency</bold> remains a challenge. Know-how doesn't stay in the company."
+        "title": "Insufficient quality",
+        "stat": "67%",
+        "statUnit": "influenced by photos",
+        "description": "Outdated capture system, uncalibrated lighting, non-specialized photographer... Your visuals <bold>aren't up to standard</bold> but improving them costs too much and takes too long."
       },
       "bridge": "There's a better way."
     },
