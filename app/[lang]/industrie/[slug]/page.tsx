@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { secteurs } from '@/data/secteurs';
-import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
@@ -169,9 +169,28 @@ export default async function SecteurPage({ params }: PageProps) {
           {/* Featured solution — full width, dark bg */}
           <ScrollReveal>
             <SpringCard>
-              <div className="bg-future-dusk-900 rounded-2xl overflow-hidden mb-8">
+              <div className={`rounded-2xl overflow-hidden mb-8 ${
+                featuredSolution.type === 'ia'
+                  ? 'bg-gradient-to-br from-amber-900 to-amber-950'
+                  : 'bg-future-dusk-900'
+              }`}>
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    {/* Type badge */}
+                    {featuredSolution.type && (
+                      <div className="flex items-center gap-2 mb-5">
+                        {featuredSolution.type === 'hardware' ? (
+                          <Camera className="h-4 w-4 text-very-peri-400" />
+                        ) : (
+                          <Sparkles className="h-4 w-4 text-amber-400" />
+                        )}
+                        <span className={`text-xs font-semibold uppercase tracking-[0.15em] ${
+                          featuredSolution.type === 'hardware' ? 'text-very-peri-400' : 'text-amber-400'
+                        }`}>
+                          {featuredSolution.type === 'hardware' ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
+                        </span>
+                      </div>
+                    )}
                     <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-4">
                       {featuredSolution.titre}
                     </h3>
@@ -181,16 +200,18 @@ export default async function SecteurPage({ params }: PageProps) {
                     <ul className="space-y-3">
                       {featuredSolution.avantages.map((avantage, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="h-5 w-5 text-very-peri-400 shrink-0 mt-0.5" />
+                          <CheckCircle className={`h-5 w-5 shrink-0 mt-0.5 ${
+                            featuredSolution.type === 'ia' ? 'text-amber-400' : 'text-very-peri-400'
+                          }`} />
                           <span className="text-sm text-future-dusk-200">{avantage}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-future-dusk-800/50 flex items-center justify-center min-h-[280px] lg:min-h-0">
+                  <div className="bg-white/5 flex items-center justify-center min-h-[280px] lg:min-h-0">
                     <div className="text-center p-8">
-                      <ImageIcon className="w-10 h-10 text-future-dusk-600 mx-auto mb-2" strokeWidth={1} />
-                      <p className="text-xs text-future-dusk-600">{isFr ? 'Visuel solution' : 'Solution visual'} ~600x400</p>
+                      <ImageIcon className="w-10 h-10 text-white/15 mx-auto mb-2" strokeWidth={1} />
+                      <p className="text-xs text-white/15">{isFr ? 'Visuel solution' : 'Solution visual'} ~600x400</p>
                     </div>
                   </div>
                 </div>
@@ -205,9 +226,26 @@ export default async function SecteurPage({ params }: PageProps) {
                 <StaggerItem key={index}>
                   <SpringCard>
                     <div className={`rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full ${
+                      solution.type === 'ia' ? 'bg-amber-50' :
+                      solution.type === 'hardware' ? 'bg-very-peri-50' :
                       index % 2 === 0 ? 'bg-very-peri-50' : 'bg-future-dusk-0'
                     }`}>
                       <div className="p-8">
+                        {/* Type badge */}
+                        {solution.type && (
+                          <div className="flex items-center gap-2 mb-4">
+                            {solution.type === 'hardware' ? (
+                              <Camera className="h-3.5 w-3.5 text-very-peri-600" />
+                            ) : (
+                              <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+                            )}
+                            <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${
+                              solution.type === 'hardware' ? 'text-very-peri-600' : 'text-amber-600'
+                            }`}>
+                              {solution.type === 'hardware' ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
+                            </span>
+                          </div>
+                        )}
                         <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
                           {solution.titre}
                         </h3>
@@ -215,7 +253,9 @@ export default async function SecteurPage({ params }: PageProps) {
                         <ul className="space-y-3">
                           {solution.avantages.map((avantage, idx) => (
                             <li key={idx} className="flex items-start gap-3">
-                              <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                              <CheckCircle className={`h-5 w-5 shrink-0 mt-0.5 ${
+                                solution.type === 'ia' ? 'text-amber-500' : 'text-emerald-500'
+                              }`} />
                               <span className="text-sm text-future-dusk-600">{avantage}</span>
                             </li>
                           ))}

@@ -14,6 +14,7 @@ export interface Secteur {
   solutions: {
     titre: string;
     items: {
+      type?: 'hardware' | 'ia';
       titre: string;
       description: string;
       avantages: string[];
@@ -63,6 +64,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Packshot & IA',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Photo Automatisés Orbitvu',
           description:
             'Photographie packshot haute résolution avec cohérence absolue',
@@ -75,6 +77,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Studio - IA Lifestyle',
           description:
             'Transformez vos packshots en visuels lifestyle urbains, sport, street',
@@ -134,6 +137,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Bijoux',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Orbitvu Joaillerie',
           description: 'Packshot haute résolution avec focus stacking automatique',
           avantages: [
@@ -145,6 +149,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Lifestyle Luxe',
           description: 'Visuels portés et mises en scène haut de gamme via IA',
           avantages: [
@@ -203,6 +208,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Mobilier',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Grand Format Orbitvu',
           description: 'Packshot meubles jusqu\'à 3m avec éclairage 360°',
           avantages: [
@@ -214,6 +220,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Mises en Scène Intérieures',
           description: 'Placez vos meubles dans ambiances décoration réalistes',
           avantages: [
@@ -271,6 +278,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Food',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Alimentaire',
           description: 'Packshot produits emballés haute fidélité',
           avantages: [
@@ -282,6 +290,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Food Styling IA',
           description: 'Créez visuels recettes et dressages culinaires',
           avantages: [
@@ -353,6 +362,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Cosmétiques',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Beauté',
           description: 'Packshot haute fidélité flacons, pots, tubes',
           avantages: [
@@ -364,6 +374,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Lifestyle Beauté',
           description: 'Visuels portés et ambiances luxe via IA',
           avantages: [
@@ -421,6 +432,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Mode',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Textile',
           description: 'Packshot plat, mannequin invisible, 360°',
           avantages: [
@@ -432,6 +444,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Mannequins Lifestyle',
           description: 'Vêtements portés par mannequins IA réalistes',
           avantages: [
@@ -489,6 +502,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions High-Tech',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Électronique',
           description: 'Packshot haute résolution produits électroniques',
           avantages: [
@@ -500,6 +514,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Lifestyle Tech',
           description: 'Produits intégrés dans ambiances tech/bureau modernes',
           avantages: [
@@ -571,6 +586,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Pièces Techniques',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Industriel',
           description: 'Packshot haute résolution pièces techniques',
           avantages: [
@@ -583,6 +599,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'hardware',
           titre: 'Workflow Catalogues Industriels',
           description: 'Automatisation complète production visuels catalogues B2B',
           avantages: [
@@ -653,6 +670,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Pièces Auto',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Automobile',
           description: 'Packshot automatisé pièces détachées tous formats',
           avantages: [
@@ -664,6 +682,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'hardware',
           titre: 'Workflow Catalogues Pièces Auto',
           description: 'Intégration automatique ERP/e-commerce',
           avantages: [
@@ -734,6 +753,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Jouets',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Jouets',
           description: 'Packshot packagings et produits déballés',
           avantages: [
@@ -745,6 +765,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Lifestyle Enfants',
           description: 'Jouets intégrés dans ambiances ludiques',
           avantages: [
@@ -802,6 +823,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Sport',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Sport',
           description: 'Packshot haute résolution équipements techniques',
           avantages: [
@@ -813,6 +835,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI Lifestyle Aventure',
           description: 'Équipements en action via IA (montagnes, trails, sports)',
           avantages: [
@@ -871,6 +894,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Médical',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Packshot Médical',
           description: 'Packshot haute précision dispositifs médicaux',
           avantages: [
@@ -883,6 +907,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'hardware',
           titre: 'Workflow Catalogues Médicaux',
           description: 'Automatisation catalogues B2B professionnels santé',
           avantages: [
@@ -953,6 +978,7 @@ export const secteurs: Secteur[] = [
       titre: 'Nos Solutions Industrie Manufacturière',
       items: [
         {
+          type: 'hardware',
           titre: 'Studios Automatisés Haute Cadence',
           description:
             'Productivité, régularité et intégration pour vos catalogues industriels',
@@ -965,6 +991,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'hardware',
           titre: 'Photo 360° & Documentation Technique',
           description:
             'Documentation complète pour catalogues et réduction des retours SAV',
@@ -976,6 +1003,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'IA Retouche & Normalisation',
           description:
             'Détourage automatique et normalisation visuelle par IA',
@@ -1155,6 +1183,7 @@ export const secteurs: Secteur[] = [
       titre: 'Solutions packshot et IA pour la lunetterie',
       items: [
         {
+          type: 'hardware',
           titre: 'Studio Orbitvu — Packshot montures',
           description:
             'Éclairage LED anti-reflets optimisé pour les verres et surfaces métalliques. Packshot fond blanc, 360° et détourage automatique.',
@@ -1166,6 +1195,7 @@ export const secteurs: Secteur[] = [
           ],
         },
         {
+          type: 'ia',
           titre: 'BlendAI.studio — Visuels lifestyle optique',
           description:
             'Générez des visuels portés et des mises en scène lifestyle à partir de vos packshots, sans mannequin ni photographe.',
