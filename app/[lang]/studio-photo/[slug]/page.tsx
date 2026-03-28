@@ -264,28 +264,36 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Gallery — Example outputs */}
+      {/* Product Story — Apple-style: immersive narrative + bento gallery */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Headline — centered, Apple-style breathing */}
           <FadeInView>
-            <div className="text-center mb-12 lg:mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {machine.nom}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                {isFr ? 'Exemples de photos, 360° et vidéos' : 'Photo, 360° & video examples'}
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {isFr
+                  ? 'Studio photo IA pour la photographie de produits'
+                  : 'AI photo studio for product photography'}
               </TextReveal>
+              <p className="text-lg lg:text-xl text-future-dusk-500 leading-relaxed">
+                {isFr
+                  ? <>Le {machine.nom} est la première solution de photographie alimentée par l&apos;IA. Équipé de <strong className="text-future-dusk-900 font-semibold">lampes virtuelles</strong> et d&apos;un <strong className="text-future-dusk-900 font-semibold">assistant IA intelligent</strong>, il reproduit un studio professionnel dans un format compact.</>
+                  : <>The {machine.nom} is the first AI-powered photography solution. Equipped with <strong className="text-future-dusk-900 font-semibold">virtual lights</strong> and an <strong className="text-future-dusk-900 font-semibold">intelligent AI assistant</strong>, it replicates a professional studio in a compact format.</>}
+              </p>
             </div>
           </FadeInView>
 
-          {/* Bento grid — asymmetric layout */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {/* Large featured image */}
-            <ScrollReveal className="col-span-2 lg:col-span-2 row-span-2">
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-full group">
+          {/* Bento grid — Apple "Points forts" style */}
+          <div className="grid grid-cols-6 lg:grid-cols-12 gap-4 lg:gap-5">
+            {/* Large featured — packshot */}
+            <ScrollReveal className="col-span-6 lg:col-span-7">
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
-                  <ImageIcon className="h-12 w-12 mb-4 opacity-40" />
-                  <p className="text-sm font-medium text-center opacity-60">
+                  <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
+                  <p className="text-sm font-medium text-center opacity-50">
                     {isFr ? 'Photo packshot — fond blanc automatique' : 'Packshot photo — automatic white background'}
                   </p>
                 </div>
@@ -297,13 +305,32 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </ScrollReveal>
 
-            {/* Small grid items */}
-            <ScrollReveal offset={20}>
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-square group">
+            {/* Video — dark, dominant */}
+            <ScrollReveal offset={20} className="col-span-6 lg:col-span-5">
+              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group cursor-pointer">
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="h-16 w-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
+                    <Play className="h-7 w-7 text-white ml-1" />
+                  </div>
+                  <p className="mt-4 text-sm font-medium text-white/60">
+                    {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
+                  </p>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-very-peri-500/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    {isFr ? 'Vidéo démo' : 'Demo video'}
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* 360° interactive */}
+            <ScrollReveal offset={30} className="col-span-3 lg:col-span-4">
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                  <Eye className="h-8 w-8 mb-2 opacity-40" />
-                  <p className="text-xs font-medium text-center opacity-60">
-                    {isFr ? 'Animation 360° interactive' : 'Interactive 360° animation'}
+                  <Eye className="h-8 w-8 mb-2 opacity-30" />
+                  <p className="text-xs font-medium text-center opacity-50">
+                    {isFr ? 'Animation 360°' : '360° animation'}
                   </p>
                 </div>
                 <div className="absolute bottom-3 left-3">
@@ -314,11 +341,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal offset={40}>
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-square group">
+            {/* Reflective product */}
+            <ScrollReveal offset={40} className="col-span-3 lg:col-span-4">
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                  <ImageIcon className="h-8 w-8 mb-2 opacity-40" />
-                  <p className="text-xs font-medium text-center opacity-60">
+                  <ImageIcon className="h-8 w-8 mb-2 opacity-30" />
+                  <p className="text-xs font-medium text-center opacity-50">
                     {isFr ? 'Produit réfléchissant' : 'Reflective product'}
                   </p>
                 </div>
@@ -330,72 +358,20 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </ScrollReveal>
 
-            {/* Video placeholder */}
-            <ScrollReveal offset={30} className="col-span-2 lg:col-span-1">
-              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden aspect-video lg:aspect-square group cursor-pointer">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
-                  <div className="h-14 w-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 group-hover:bg-very-peri-500/80 transition-colors">
-                    <Play className="h-6 w-6 text-white ml-1" />
-                  </div>
-                  <p className="text-xs font-medium text-white/70 text-center">
-                    {isFr ? 'Vidéo de présentation' : 'Product video'}
-                  </p>
-                </div>
-                <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/15 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
-                    {isFr ? 'Vidéo' : 'Video'}
+            {/* Text card — Apple-style feature tile */}
+            <ScrollReveal offset={50} className="col-span-6 lg:col-span-4">
+              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-52 lg:h-64 p-6 lg:p-8 flex flex-col justify-end">
+                <p className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight mb-2">
+                  {machine.capaciteJour}
+                  <span className="text-very-peri-400 text-lg lg:text-xl font-medium block mt-1">
+                    {isFr ? 'produits/jour' : 'products/day'}
                   </span>
-                </div>
+                </p>
+                <p className="text-sm text-white/50">
+                  {isFr ? 'Détourage automatique sur le matériel, zéro post-production' : 'Hardware-based auto clipping, zero post-production'}
+                </p>
               </div>
             </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Description + Video — Split narrative */}
-      <section className="py-20 lg:py-32 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            <FadeInView direction="left" className="lg:col-span-6">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {machine.nom}
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                {isFr
-                  ? `Studio photo IA pour la photographie de produits`
-                  : `AI photo studio for product photography`}
-              </h2>
-              <div className="space-y-4 text-future-dusk-600 leading-relaxed">
-                <p>
-                  {isFr
-                    ? <>Le {machine.nom} est la première solution de photographie de produits alimentée par l&apos;IA qui reproduit les conditions d&apos;un <strong className="text-future-dusk-900 font-semibold">studio photo professionnel</strong> dans un format compact. Équipé de <strong className="text-future-dusk-900 font-semibold">lampes virtuelles</strong> et d&apos;un <strong className="text-future-dusk-900 font-semibold">assistant IA intelligent</strong>, ce système unique permet à tout utilisateur de créer rapidement du contenu visuel de haute qualité.</>
-                    : <>The {machine.nom} is the first AI-powered product photography solution that replicates <strong className="text-future-dusk-900 font-semibold">professional photo studio</strong> conditions in a compact format. Equipped with <strong className="text-future-dusk-900 font-semibold">virtual lights</strong> and an <strong className="text-future-dusk-900 font-semibold">intelligent AI assistant</strong>, this unique system enables any user to quickly create high-quality visual content.</>}
-                </p>
-                <p>
-                  {isFr
-                    ? <>Avec {machine.capaciteJour} produits par jour et un détourage automatique sur le matériel, le {machine.nom} élimine la post-production et accélère votre <strong className="text-future-dusk-900 font-semibold">mise en ligne e-commerce</strong>.</>
-                    : <>With {machine.capaciteJour} products per day and hardware-based automatic clipping, the {machine.nom} eliminates post-production and accelerates your <strong className="text-future-dusk-900 font-semibold">e-commerce publishing</strong>.</>}
-                </p>
-              </div>
-            </FadeInView>
-
-            <FadeInView direction="right" delay={0.15} className="lg:col-span-6">
-              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden aspect-video group cursor-pointer">
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
-                    <Play className="h-8 w-8 text-white ml-1" />
-                  </div>
-                  <p className="mt-4 text-sm font-medium text-white/70">
-                    {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
-                  </p>
-                </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-very-peri-500/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    {isFr ? 'Vidéo démo' : 'Demo video'}
-                  </span>
-                </div>
-              </div>
-            </FadeInView>
           </div>
         </div>
       </section>
