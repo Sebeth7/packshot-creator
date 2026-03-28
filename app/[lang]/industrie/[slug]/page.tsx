@@ -2,10 +2,12 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { secteurs } from '@/data/secteurs';
-import { CheckCircle, ArrowRight, ChevronRight, ImageIcon } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
+import { SECTOR_MACHINE_MAP } from '@/data/sector-machine-map';
+import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
@@ -57,6 +59,12 @@ export default async function SecteurPage({ params }: PageProps) {
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
+
+  /* Machines recommandées pour ce secteur */
+  const machineIds = SECTOR_MACHINE_MAP[slug] || [];
+  const recommendedMachines = machineIds
+    .map((id) => MACHINES.find((m) => m.id === id))
+    .filter(Boolean);
 
   return (
     <>
@@ -199,35 +207,89 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          CAS CLIENTS — fond very-peri-50, cartes premium
+          SYSTÈMES RECOMMANDÉS — fond future-dusk-900, cartes machines
           ═══════════════════════════════════════════════════════════ */}
-      {secteur.casClients && secteur.casClients.length > 0 && (
-        <section className="py-20 lg:py-32 bg-very-peri-50">
+      {recommendedMachines.length > 0 && (
+        <section className="py-20 lg:py-32 bg-future-dusk-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
-              <FadeInView direction="left" className="text-center mb-16">
-                <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'RÉSULTATS CLIENTS' : 'CLIENT RESULTS'}
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'NOS SYSTÈMES' : 'OUR SYSTEMS'}
                 </span>
-                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
-                  {isFr ? 'Résultats clients' : 'Client results'}
+                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white leading-[1.1] mb-6">
+                  {isFr ? 'Les systèmes adaptés à votre secteur' : 'Systems tailored to your sector'}
                 </TextReveal>
-              </FadeInView>
-              <StaggerContainer className="space-y-6">
-                {secteur.casClients.map((cas, index) => (
-                  <StaggerItem key={index}>
-                    <SpringCard>
-                      <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow">
-                        <h3 className="text-xl lg:text-2xl font-heading font-bold text-heading-dark mb-4">
-                          {cas.titre}
-                        </h3>
-                        <p className="text-neutral-medium leading-relaxed text-lg">{cas.description}</p>
-                      </div>
-                    </SpringCard>
+                <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto leading-relaxed">
+                  {isFr
+                    ? 'Studios photo automatisés Orbitvu sélectionnés pour répondre aux contraintes de votre métier.'
+                    : 'Automated Orbitvu photo studios selected to meet the constraints of your industry.'}
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <StaggerContainer className={`grid gap-6 ${
+              recommendedMachines.length === 1 ? 'md:grid-cols-1 max-w-md mx-auto' :
+              recommendedMachines.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' :
+              recommendedMachines.length <= 4 ? 'md:grid-cols-2 lg:grid-cols-4' :
+              'md:grid-cols-2 lg:grid-cols-3'
+            }`}>
+              {recommendedMachines.map((machine) => {
+                const sizeLabel = machine!.tailleCategories[0] === 'petit' ? (isFr ? 'Petit' : 'Small') :
+                  machine!.tailleCategories[0] === 'moyen' ? (isFr ? 'Moyen' : 'Medium') :
+                  machine!.tailleCategories[0] === 'grand' ? (isFr ? 'Grand' : 'Large') :
+                  (isFr ? 'Très grand' : 'Extra large');
+                const sizeColor = machine!.tailleCategories[0] === 'petit' ? 'bg-emerald-500/20 text-emerald-300' :
+                  machine!.tailleCategories[0] === 'moyen' ? 'bg-blue-500/20 text-blue-300' :
+                  machine!.tailleCategories[0] === 'grand' ? 'bg-amber-500/20 text-amber-300' :
+                  'bg-rose-500/20 text-rose-300';
+
+                return (
+                  <StaggerItem key={machine!.id}>
+                    <Link href={`/studio-photo/${machine!.id}`} className="group block h-full">
+                      <SpringCard>
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:border-very-peri-400/40 transition-all">
+                          {/* Image placeholder */}
+                          <div className="w-full h-[140px] bg-white/5 rounded-xl flex items-center justify-center mb-5">
+                            <Camera className="w-8 h-8 text-white/15" strokeWidth={1} />
+                          </div>
+
+                          {/* Size badge */}
+                          <span className={`inline-block text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-3 ${sizeColor}`}>
+                            {sizeLabel}
+                          </span>
+
+                          {/* Name */}
+                          <h3 className="text-lg font-heading font-bold text-white mb-1 group-hover:text-very-peri-300 transition-colors">
+                            {machine!.nom}
+                          </h3>
+
+                          {/* Size info */}
+                          <p className="text-sm text-future-dusk-400 mb-4">
+                            {isFr ? 'Jusqu\'à' : 'Up to'} {machine!.tailleMax}
+                          </p>
+
+                          {/* Arrow */}
+                          <div className="flex items-center text-very-peri-400 text-sm font-medium">
+                            {isFr ? 'Voir le détail' : 'View details'}
+                            <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </SpringCard>
+                    </Link>
                   </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
+                );
+              })}
+            </StaggerContainer>
+
+            {/* CTA comparer */}
+            <FadeInView className="text-center mt-10">
+              <Button asChild variant="outline" className="rounded-xl border-white/20 text-white hover:bg-white/10">
+                <Link href="/studio-photo/selecteur-machines">
+                  {isFr ? 'Comparer tous les modèles' : 'Compare all models'} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </FadeInView>
           </div>
         </section>
       )}
