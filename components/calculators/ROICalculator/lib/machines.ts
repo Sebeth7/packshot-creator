@@ -180,12 +180,33 @@ export const MACHINES: Machine[] = [
     idealSectors: ['cosmetics', 'electronics', 'general'],
     volumeRange: { min: 5000, max: 60000 },
     keyAdvantages: [
-      { fr: 'Premier studio photo IA au monde (détection auto des réglages)', en: 'World\'s first AI photo studio (auto settings detection)' },
-      { fr: 'Productivité extrême (250 produits/jour)', en: 'Extreme productivity (250 products/day)' },
-      { fr: '74 sources lumineuses pour objets complexes', en: '74 light sources for complex objects' },
+      {
+        fr: 'Premier studio photo IA au monde',
+        en: 'World\'s first AI photo studio',
+        description: {
+          fr: 'L\'assistant photo IA identifie automatiquement le produit et ajuste l\'éclairage du studio en conséquence, supprimant les réglages manuels et garantissant une qualité professionnelle constante.',
+          en: 'The AI photo assistant automatically identifies the product and adjusts the studio lighting accordingly, eliminating manual settings and ensuring consistent professional quality.',
+        },
+      },
+      {
+        fr: 'Productivité extrême : 250 produits/jour',
+        en: 'Extreme productivity: 250 products/day',
+        description: {
+          fr: 'Grâce à l\'automatisation complète et au détourage matériel intégré, un seul opérateur peut photographier jusqu\'à 250 produits par jour sans aucune compétence en photographie.',
+          en: 'Thanks to full automation and built-in hardware clipping, a single operator can photograph up to 250 products per day without any photography skills.',
+        },
+      },
+      {
+        fr: '74 sources lumineuses pour objets complexes',
+        en: '74 light sources for complex objects',
+        description: {
+          fr: 'Avec 74 panneaux lumineux contrôlables indépendamment, vous bénéficiez d\'une flexibilité inégalée pour créer la configuration d\'éclairage parfaite, même sur les objets réfléchissants et transparents.',
+          en: 'With 74 independently controllable light panels, you get unmatched flexibility to create the perfect lighting configuration, even on reflective and transparent objects.',
+        },
+      },
     ],
     limitations: [
-      { fr: 'Taille produit limitée (intermédiaire)', en: 'Limited product size (intermediate)' },
+      { fr: 'Taille produit limitée à 35×35×40 cm', en: 'Product size limited to 35×35×40 cm' },
     ],
     spaceRequired: 'Sol/Table robuste',
     studioFootprint: { l: 112, w: 71, h: 72 },

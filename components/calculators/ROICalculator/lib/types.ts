@@ -97,7 +97,7 @@ export interface Machine {
   automationLevel: AutomationLevel;       // Niveau d'automatisation
   idealSectors: IndustrySector[];         // Secteurs idéaux
   volumeRange: { min: number; max: number }; // Photos/an recommandées
-  keyAdvantages: BilingualText[];         // Avantages clés
+  keyAdvantages: (BilingualText & { description?: BilingualText })[];  // Avantages clés (avec description optionnelle)
   limitations: BilingualText[];           // Limitations
   spaceRequired: string;                  // Espace requis (ex: "Bureau", "Sol", "Studio")
   studioFootprint?: Dimensions;           // Dimensions du studio en cm

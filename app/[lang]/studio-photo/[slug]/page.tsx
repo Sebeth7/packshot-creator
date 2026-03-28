@@ -5,9 +5,9 @@ import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight } from 'lucide-react';
+import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon, Eye } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
@@ -137,6 +137,22 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
     lifestyle: { fr: 'Lifestyle', en: 'Lifestyle' },
   };
 
+  const sectorLabels: Record<string, { fr: string; en: string }> = {
+    jewelry: { fr: 'Bijouterie', en: 'Jewelry' },
+    cosmetics: { fr: 'Cosmétiques', en: 'Cosmetics' },
+    electronics: { fr: 'Électronique', en: 'Electronics' },
+    general: { fr: 'Général', en: 'General' },
+    footwear: { fr: 'Chaussures', en: 'Footwear' },
+    bags: { fr: 'Maroquinerie', en: 'Bags' },
+    wine: { fr: 'Vins & Spiritueux', en: 'Wine & Spirits' },
+    fashion: { fr: 'Mode', en: 'Fashion' },
+    furniture: { fr: 'Mobilier', en: 'Furniture' },
+    sports: { fr: 'Sport', en: 'Sports' },
+    cycling: { fr: 'Cycles', en: 'Cycling' },
+    appliances: { fr: 'Électroménager', en: 'Appliances' },
+    automotive: { fr: 'Automobile', en: 'Automotive' },
+  };
+
   return (
     <>
       {/* Hero Product */}
@@ -248,41 +264,186 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* Gallery — Example outputs */}
+      <section className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
+            <div className="text-center mb-12 lg:mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {machine.nom}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                {isFr ? 'Exemples de photos, 360° et vidéos' : 'Photo, 360° & video examples'}
+              </TextReveal>
+            </div>
+          </FadeInView>
+
+          {/* Bento grid — asymmetric layout */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            {/* Large featured image */}
+            <ScrollReveal className="col-span-2 lg:col-span-2 row-span-2">
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-full group">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
+                  <ImageIcon className="h-12 w-12 mb-4 opacity-40" />
+                  <p className="text-sm font-medium text-center opacity-60">
+                    {isFr ? 'Photo packshot — fond blanc automatique' : 'Packshot photo — automatic white background'}
+                  </p>
+                </div>
+                <div className="absolute bottom-4 left-4">
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
+                    Packshot
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Small grid items */}
+            <ScrollReveal offset={20}>
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-square group">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
+                  <Eye className="h-8 w-8 mb-2 opacity-40" />
+                  <p className="text-xs font-medium text-center opacity-60">
+                    {isFr ? 'Animation 360° interactive' : 'Interactive 360° animation'}
+                  </p>
+                </div>
+                <div className="absolute bottom-3 left-3">
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
+                    360°
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal offset={40}>
+              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden aspect-square group">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
+                  <ImageIcon className="h-8 w-8 mb-2 opacity-40" />
+                  <p className="text-xs font-medium text-center opacity-60">
+                    {isFr ? 'Produit réfléchissant' : 'Reflective product'}
+                  </p>
+                </div>
+                <div className="absolute bottom-3 left-3">
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
+                    {isFr ? 'Verre & métal' : 'Glass & metal'}
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Video placeholder */}
+            <ScrollReveal offset={30} className="col-span-2 lg:col-span-1">
+              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden aspect-video lg:aspect-square group cursor-pointer">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+                  <div className="h-14 w-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 group-hover:bg-very-peri-500/80 transition-colors">
+                    <Play className="h-6 w-6 text-white ml-1" />
+                  </div>
+                  <p className="text-xs font-medium text-white/70 text-center">
+                    {isFr ? 'Vidéo de présentation' : 'Product video'}
+                  </p>
+                </div>
+                <div className="absolute bottom-3 left-3">
+                  <span className="bg-white/15 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                    {isFr ? 'Vidéo' : 'Video'}
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Description + Video — Split narrative */}
+      <section className="py-20 lg:py-32 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            <FadeInView direction="left" className="lg:col-span-6">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {machine.nom}
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                {isFr
+                  ? `Studio photo IA pour la photographie de produits`
+                  : `AI photo studio for product photography`}
+              </h2>
+              <div className="space-y-4 text-future-dusk-600 leading-relaxed">
+                <p>
+                  {isFr
+                    ? <>Le {machine.nom} est la première solution de photographie de produits alimentée par l&apos;IA qui reproduit les conditions d&apos;un <strong className="text-future-dusk-900 font-semibold">studio photo professionnel</strong> dans un format compact. Équipé de <strong className="text-future-dusk-900 font-semibold">lampes virtuelles</strong> et d&apos;un <strong className="text-future-dusk-900 font-semibold">assistant IA intelligent</strong>, ce système unique permet à tout utilisateur de créer rapidement du contenu visuel de haute qualité.</>
+                    : <>The {machine.nom} is the first AI-powered product photography solution that replicates <strong className="text-future-dusk-900 font-semibold">professional photo studio</strong> conditions in a compact format. Equipped with <strong className="text-future-dusk-900 font-semibold">virtual lights</strong> and an <strong className="text-future-dusk-900 font-semibold">intelligent AI assistant</strong>, this unique system enables any user to quickly create high-quality visual content.</>}
+                </p>
+                <p>
+                  {isFr
+                    ? <>Avec {machine.capaciteJour} produits par jour et un détourage automatique sur le matériel, le {machine.nom} élimine la post-production et accélère votre <strong className="text-future-dusk-900 font-semibold">mise en ligne e-commerce</strong>.</>
+                    : <>With {machine.capaciteJour} products per day and hardware-based automatic clipping, the {machine.nom} eliminates post-production and accelerates your <strong className="text-future-dusk-900 font-semibold">e-commerce publishing</strong>.</>}
+                </p>
+              </div>
+            </FadeInView>
+
+            <FadeInView direction="right" delay={0.15} className="lg:col-span-6">
+              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden aspect-video group cursor-pointer">
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
+                    <Play className="h-8 w-8 text-white ml-1" />
+                  </div>
+                  <p className="mt-4 text-sm font-medium text-white/70">
+                    {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
+                  </p>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-very-peri-500/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    {isFr ? 'Vidéo démo' : 'Demo video'}
+                  </span>
+                </div>
+              </div>
+            </FadeInView>
+          </div>
+        </div>
+      </section>
+
       {/* #A Key Stats — Dark ribbon */}
       {keyStats.length > 0 && (
-        <section className="py-16 bg-future-dusk-900 text-white relative overflow-hidden">
+        <section className="py-20 lg:py-24 bg-future-dusk-900 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <FadeInView>
+              <p className="text-center text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-10">
+                {isFr ? 'En chiffres' : 'By the numbers'}
+              </p>
+            </FadeInView>
             <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
-              {keyStats.map((stat, index) => (
-                <StaggerItem key={index}>
-                  <div className="text-center px-4 sm:px-6 lg:px-8">
-                    <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-future-dusk-300 uppercase tracking-wider">
-                      {isFr ? stat.label.fr : stat.label.en}
-                    </p>
-                    <p className="mt-1 text-xs text-future-dusk-400">
-                      {isFr ? stat.description.fr : stat.description.en}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
+              {keyStats.map((stat, index) => {
+                const numericValue = parseInt(stat.value.replace(/[^0-9]/g, ''), 10);
+                const suffix = stat.value.replace(/[0-9]/g, '');
+                return (
+                  <StaggerItem key={index}>
+                    <div className="text-center px-4 sm:px-6 lg:px-8">
+                      <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                        <AnimatedCounter end={numericValue} suffix={suffix} duration={2} />
+                      </p>
+                      <p className="mt-2 text-sm font-medium text-future-dusk-300 uppercase tracking-wider">
+                        {isFr ? stat.label.fr : stat.label.en}
+                      </p>
+                      <p className="mt-1 text-xs text-future-dusk-400">
+                        {isFr ? stat.description.fr : stat.description.en}
+                      </p>
+                    </div>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           </div>
         </section>
       )}
 
       {/* Key Advantages — Split 4/8 sticky heading + ghost numbers */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Pourquoi ce système' : 'Why this system'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {isFr ? 'Avantages clés' : 'Key advantages'}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 leading-relaxed">
@@ -297,16 +458,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <ScrollReveal key={index} offset={40}>
                   <SpringCard>
                     <div className="bg-neutral-50 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 flex items-start gap-5">
-                      <span className="text-4xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none shrink-0">
+                      <span className="text-5xl lg:text-7xl font-heading font-bold text-neutral-100 select-none leading-none shrink-0">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                       <div>
                         <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-3">
                           <CheckCircle className="h-5 w-5" />
                         </span>
-                        <p className="text-lg font-heading font-bold text-future-dusk-900">
+                        <p className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
                           {isFr ? advantage.fr : advantage.en}
                         </p>
+                        {advantage.description && (
+                          <p className="text-sm text-future-dusk-500 leading-relaxed">
+                            {isFr ? advantage.description.fr : advantage.description.en}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </SpringCard>
@@ -318,15 +484,15 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       </section>
 
       {/* Technical Specifications — Dark bg + floating white card */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <div className="text-center mb-12">
+            <div className="text-center mb-14">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Fiche technique' : 'Technical sheet'}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-white">
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white">
                 {isFr ? 'Caractéristiques techniques' : 'Technical specifications'}
               </h2>
             </div>
@@ -384,9 +550,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       {machine.idealSectors.map((sector) => (
                         <span
                           key={sector}
-                          className="bg-very-peri-50 text-very-peri-700 px-3 py-1.5 rounded-full text-sm font-medium capitalize"
+                          className="bg-very-peri-50 text-very-peri-700 px-3 py-1.5 rounded-full text-sm font-medium"
                         >
-                          {sector}
+                          {isFr ? sectorLabels[sector]?.fr : sectorLabels[sector]?.en || sector}
                         </span>
                       ))}
                     </div>
@@ -399,15 +565,30 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       </section>
 
       {/* Use Cases & Limitations — with SpringCard */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
+            <div className="text-center mb-12 lg:mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Pour qui' : 'Who it\'s for'}
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900">
+                {isFr ? 'Cas d\'usage & limites' : 'Use cases & limits'}
+              </h2>
+            </div>
+          </FadeInView>
           <div className="grid md:grid-cols-2 gap-8">
             <FadeInView direction="left">
               <SpringCard>
                 <div className="bg-emerald-50 rounded-2xl p-8 h-full">
-                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
-                    {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-100 text-emerald-600">
+                      <CheckCircle className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                      {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
+                    </h3>
+                  </div>
                   <ul className="space-y-3">
                     {machine.useCases.map((useCase, index) => (
                       <li key={index} className="flex items-start gap-3">
@@ -423,9 +604,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <FadeInView direction="right" delay={0.15}>
               <SpringCard>
                 <div className="bg-amber-50 rounded-2xl p-8 h-full">
-                  <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
-                    {isFr ? 'Points d\'attention' : 'Points to consider'}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-100 text-amber-600">
+                      <AlertTriangle className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
+                      {isFr ? 'Points d\'attention' : 'Points to consider'}
+                    </h3>
+                  </div>
                   <ul className="space-y-3">
                     {machine.limitations.map((limitation, index) => (
                       <li key={index} className="flex items-start gap-3">
@@ -473,12 +659,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #D Similar Machines */}
       {similarMachines.length > 0 && (
-        <section className="py-20 bg-neutral-50">
+        <section className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
-            <div className="flex items-center justify-center gap-3 mb-12">
-              <ArrowLeftRight className="h-6 w-6 text-very-peri-600" />
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
+            <div className="text-center mb-12 lg:mb-16">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Comparer' : 'Compare'}
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900">
                 {isFr ? 'Systèmes similaires' : 'Similar systems'}
               </h2>
             </div>
@@ -600,7 +788,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #C FAQ — Split: sticky heading left + accordion right */}
       {faqItems.length > 0 && (
-        <section className="py-16 lg:py-28 bg-neutral-50">
+        <section className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
@@ -637,37 +825,67 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Final CTA — Asymmetric 3/5 + 2/5 */}
-      <section className="py-16 lg:py-28 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
-        <FadeInView>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-            <div className="grid lg:grid-cols-5 gap-8 lg:gap-16 items-center">
-              <div className="lg:col-span-3">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4 leading-tight">
-                  {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
-                </h2>
-                <p className="text-lg text-very-peri-100">
-                  {isFr
-                    ? `Testez le ${machine.nom} lors d'une démo personnalisée dans nos showrooms.`
-                    : `Try the ${machine.nom} during a personalized demo in our showrooms.`}
-                </p>
-              </div>
-              <div className="lg:col-span-2 flex flex-col gap-4">
-                <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg w-full justify-center">
-                  <Link href="/contact">
-                    {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl w-full justify-center">
-                  <Link href="/studios-photo-automatises">
-                    {isFr ? 'Voir tous les systèmes' : 'View all systems'}
-                  </Link>
-                </Button>
-              </div>
+      {/* Final CTA — ADN pattern: bg-black + 2 distinct cards */}
+      <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-very-peri-900/30 via-transparent to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <FadeInView>
+            <div className="text-center mb-12 lg:mb-16">
+              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Passez à l\'action' : 'Take action'}
+              </span>
+              <h2 className="text-4xl lg:text-6xl font-heading font-bold leading-[1.1]">
+                {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
+              </h2>
             </div>
+          </FadeInView>
+
+          <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+            {/* Card 1 — Gradient peri (3/5) */}
+            <FadeInView direction="left" className="lg:col-span-3">
+              <div className="relative bg-gradient-to-br from-very-peri-600 to-very-peri-700 rounded-2xl p-8 lg:p-10 overflow-hidden h-full">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
+                <div className="relative">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold mb-3">
+                    {isFr ? 'Demandez une démo personnalisée' : 'Request a personalized demo'}
+                  </h3>
+                  <p className="text-very-peri-100 mb-8 max-w-md">
+                    {isFr
+                      ? `Testez le ${machine.nom} dans nos showrooms et découvrez comment il peut transformer votre production photo.`
+                      : `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`}
+                  </p>
+                  <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
+                    <Link href="/contact">
+                      {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </FadeInView>
+
+            {/* Card 2 — Glassmorphism (2/5) */}
+            <FadeInView direction="right" delay={0.15} className="lg:col-span-2">
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-10 h-full flex flex-col justify-between">
+                <div>
+                  <BarChart3 className="h-10 w-10 text-very-peri-400 mb-4" />
+                  <h3 className="text-xl font-heading font-bold mb-3">
+                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                  </h3>
+                  <p className="text-white/60 text-sm mb-6">
+                    {isFr
+                      ? 'Découvrez en 2 minutes combien vous pourriez économiser avec un studio automatisé.'
+                      : 'Discover in 2 minutes how much you could save with an automated studio.'}
+                  </p>
+                </div>
+                <Button asChild size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl w-full justify-center">
+                  <Link href="/studios-photo-automatises#calculateur-roi">
+                    <BarChart3 className="mr-2 h-4 w-4" /> {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'}
+                  </Link>
+                </Button>
+              </div>
+            </FadeInView>
           </div>
-        </FadeInView>
+        </div>
       </section>
 
       <SchemaOrg schema={[
