@@ -323,15 +323,14 @@ export default async function HomePage({
       </section>
 
       {/* ━━━ BREATHER — Full-bleed visual break ━━━ */}
-      <ScrollReveal scale offset={40} className="relative w-full h-[280px] lg:h-[400px] bg-neutral-100 overflow-hidden">
-        {/* TODO: Replace with real image — hero-studios-wide.webp or lifestyle shot */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <ImageIcon className="w-12 h-12 text-neutral-300 mx-auto mb-3" strokeWidth={1} />
-            <p className="text-sm text-neutral-400 font-medium">Image immersive pleine largeur</p>
-            <p className="text-xs text-neutral-300 mt-1">~1400x400px — Studio en situation / Résultats packshot</p>
-          </div>
-        </div>
+      <ScrollReveal scale offset={40} className="relative w-full h-[280px] lg:h-[400px] bg-neutral-900 overflow-hidden">
+        <Image
+          src="/images/hero/hero-studios-wide.avif"
+          alt="Showroom PackshotCreator — gamme complète de studios photo automatisés Orbitvu"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
       </ScrollReveal>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
