@@ -15,18 +15,18 @@
     "hybrid": {
       "label": "Our approach",
       "heading": "Photo studio + AI: the approach that changes everything",
-      "subtitle": "Not all hardware, not all AI. The intelligent combination of both, backed by 25 years of product photography expertise.",
+      "subtitle": "Not all hardware, not all AI. The <bold>intelligent combination</bold> of both, backed by <bold>25 years of expertise</bold> in product photography.",
       "capture": {
         "title": "Perfect capture",
-        "description": "Orbitvu studios: packshot in 3 seconds, 360°, video, automatic background removal and real shadows. The irreplaceable foundation for AI."
+        "description": "Orbitvu studios: packshot in <bold>3 seconds</bold>, 360°, video, automatic background removal and real shadows. The <bold>irreplaceable foundation</bold> for AI."
       },
       "ia": {
         "title": "AI multiplication",
-        "description": "BlendAI transforms 1 packshot into 10+ lifestyle visuals. Contextual backgrounds, staged scenes, creative variations. Your real photo always remains the base."
+        "description": "BlendAI transforms <bold>1 packshot into 10+ visuals</bold>. Contextual backgrounds, staged scenes, creative variations. Your real photo <bold>always remains the base</bold>."
       },
       "formation": {
         "title": "Total autonomy",
-        "description": "Qualiopi certified training to master the complete Hardware + AI workflow. Up to 100% OPCO funding. The know-how stays in your company."
+        "description": "<bold>Qualiopi certified</bold> training to master the complete Hardware + AI workflow. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company."
       },
       "cta": "Discover the Orbitvu range",
       "ctaSecondary": "Learn more about BlendAI"
@@ -34,7 +34,7 @@
     "spotlight": {
       "badge": "Best-seller",
       "heading": "Alphashot Pro G2: your complete photo studio in 1 m²",
-      "description": "Our best-selling photo studio. Capture packshots, videos and 360° animations in seconds with built-in AI and optimized LED lighting.",
+      "description": "Our <bold>best-selling photo studio</bold>. Capture packshots, videos and 360° animations in <bold>seconds</bold> with built-in AI and optimized LED lighting.",
       "feature1": "Packshot in 3 seconds",
       "feature2": "Built-in BlendAI",
       "feature3": "Automatic LED lighting",
@@ -105,19 +105,19 @@
       "subtitle": "3 decisive advantages for your visual production.",
       "noSkills": {
         "title": "Pro results without photo skills",
-        "description": "Our automated studios handle lighting, framing and background removal. After just 1 hour of training, any operator produces packshots worthy of an expert photographer.",
+        "description": "Our automated studios handle lighting, framing and background removal. After just <bold>1 hour of training</bold>, any operator produces packshots worthy of an expert photographer.",
         "stat": "1h",
         "statLabel": "to get started"
       },
       "scalability": {
         "title": "Instant volume scaling",
-        "description": "Need to photograph 10,000 references? Software templates save your settings: position, lighting, post-production. Duplicate the workflow and scale up effortlessly.",
+        "description": "Need to photograph 10,000 references? Software templates save your settings. Duplicate the workflow and go from <bold>30 to 300 packshots per day</bold> effortlessly.",
         "stat": "10x",
         "statLabel": "more productive"
       },
       "knowHow": {
         "title": "Keep the know-how in-house",
-        "description": "No more dependency on external providers or freelance photographers. Your shooting parameters are saved in the software. Even if your operator changes, quality remains identical.",
+        "description": "No more dependency on external providers or freelance photographers. Your shooting parameters are saved in the software. Even if your operator changes, <bold>quality remains identical</bold>.",
         "stat": "100%",
         "statLabel": "reproducible"
       }
@@ -167,19 +167,19 @@
         "title": "Too slow",
         "stat": "30",
         "statUnit": "photos/day",
-        "description": "Your photographer takes 30 photos a day. Your competitors do 300. Every day of delay on your product listings is lost revenue."
+        "description": "Your photographer takes <bold>30 photos a day</bold>. Your competitors do <bold>300</bold>. Every day of delay on your product listings is <bold>lost revenue</bold>."
       },
       "expensive": {
         "title": "Too expensive",
         "stat": "15-50€",
         "statUnit": "per image",
-        "description": "The average cost of an outsourced packshot: €15 to €50 per image. At 5,000 products, that's €75,000 to €250,000 per year."
+        "description": "The average cost of an outsourced packshot: <bold>€15 to €50 per image</bold>. At 5,000 products, that's <bold>€75,000 to €250,000 per year</bold>."
       },
       "dependent": {
         "title": "Too dependent",
         "stat": "100%",
         "statUnit": "outsourced",
-        "description": "When your freelance photographer is unavailable or your agency takes 3 weeks, your catalog is blocked. The know-how doesn't stay in your company."
+        "description": "When your freelance photographer is unavailable or your agency takes <bold>3 weeks</bold>, your catalog is <bold>blocked</bold>. The know-how doesn't stay in your company."
       },
       "bridge": "There's a better way."
     },

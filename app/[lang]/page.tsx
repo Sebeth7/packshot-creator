@@ -22,6 +22,7 @@ import {
   AlertTriangle,
   DollarSign,
   Link2,
+  ImageIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -64,9 +65,9 @@ const PAIN_POINTS = [
 ] as const;
 
 const HYBRID_STEPS = [
-  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu' },
-  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu' },
-  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success' },
+  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action' },
+  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels' },
+  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation' },
 ];
 
 const GALLERY_ITEMS = [
@@ -292,7 +293,9 @@ export default async function HomePage({
                         {t(`painPoints.${point.key}.title`)}
                       </h3>
                       <p className="text-neutral-medium leading-relaxed max-w-2xl">
-                        {t(`painPoints.${point.key}.description`)}
+                        {t.rich(`painPoints.${point.key}.description`, {
+                          bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+                        })}
                       </p>
                     </div>
                   </div>
@@ -306,6 +309,18 @@ export default async function HomePage({
               {t('painPoints.bridge')}
             </p>
           </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━ BREATHER — Full-bleed visual break ━━━ */}
+      <section className="relative w-full h-[280px] lg:h-[400px] bg-neutral-100 overflow-hidden">
+        {/* TODO: Replace with real image — hero-studios-wide.webp or lifestyle shot */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <ImageIcon className="w-12 h-12 text-neutral-300 mx-auto mb-3" strokeWidth={1} />
+            <p className="text-sm text-neutral-400 font-medium">Image immersive pleine largeur</p>
+            <p className="text-xs text-neutral-300 mt-1">~1400x400px — Studio en situation / Résultats packshot</p>
+          </div>
         </div>
       </section>
 
@@ -324,7 +339,9 @@ export default async function HomePage({
                 {t('hybrid.heading')}
               </TextReveal>
               <p className="text-lg text-neutral-medium leading-relaxed mb-8">
-                {t('hybrid.subtitle')}
+                {t.rich('hybrid.subtitle', {
+                  bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+                })}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <Button
@@ -342,27 +359,47 @@ export default async function HomePage({
                   <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
                 </Button>
               </div>
+              {/* TODO: Replace with real product image — alphashot-360.avif or pillar-hardware.webp */}
+              <div className="hidden lg:block rounded-2xl bg-white border border-neutral-100 overflow-hidden aspect-[4/3]">
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <ImageIcon className="w-10 h-10 text-neutral-300 mx-auto mb-2" strokeWidth={1} />
+                    <p className="text-xs text-neutral-400">Image produit ~500x400</p>
+                  </div>
+                </div>
+              </div>
             </ScrollReveal>
 
             <div className="lg:col-span-8 space-y-6">
               {HYBRID_STEPS.map((step, idx) => (
                 <ScrollReveal key={step.key} offset={40}>
                   <SpringCard>
-                    <div className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-6 lg:p-10">
-                      <div className="flex items-center gap-4 mb-5">
-                        <div className={`w-12 h-12 rounded-xl ${step.bg} flex items-center justify-center`}>
-                          <step.Icon className={`w-6 h-6 ${step.icon}`} strokeWidth={1.5} />
+                    <div className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300">
+                      {/* TODO: Replace with real image per step */}
+                      <div className="w-full h-[160px] lg:h-[200px] bg-neutral-50 flex items-center justify-center border-b border-neutral-100">
+                        <div className="text-center">
+                          <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                          <p className="text-xs text-neutral-300">{step.placeholder}</p>
                         </div>
-                        <span className="text-5xl lg:text-7xl font-heading font-bold text-neutral-100 select-none leading-none">
-                          {String(idx + 1).padStart(2, '0')}
-                        </span>
                       </div>
-                      <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3">
-                        {t(`hybrid.${step.key}.title`)}
-                      </h3>
-                      <p className="text-neutral-medium leading-relaxed">
-                        {t(`hybrid.${step.key}.description`)}
-                      </p>
+                      <div className="p-6 lg:p-10">
+                        <div className="flex items-center gap-4 mb-5">
+                          <div className={`w-12 h-12 rounded-xl ${step.bg} flex items-center justify-center`}>
+                            <step.Icon className={`w-6 h-6 ${step.icon}`} strokeWidth={1.5} />
+                          </div>
+                          <span className="text-5xl lg:text-7xl font-heading font-bold text-neutral-100 select-none leading-none">
+                            {String(idx + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3">
+                          {t(`hybrid.${step.key}.title`)}
+                        </h3>
+                        <p className="text-neutral-medium leading-relaxed">
+                          {t.rich(`hybrid.${step.key}.description`, {
+                            bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+                          })}
+                        </p>
+                      </div>
                     </div>
                   </SpringCard>
                 </ScrollReveal>
@@ -397,7 +434,9 @@ export default async function HomePage({
                 {t('spotlight.heading')}
               </h2>
               <p className="mt-4 text-lg text-neutral-medium leading-relaxed">
-                {t('spotlight.description')}
+                {t.rich('spotlight.description', {
+                  bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+                })}
               </p>
 
               <ul className="mt-8 space-y-4">
@@ -547,6 +586,16 @@ export default async function HomePage({
             </p>
           </FadeInView>
 
+          {/* TODO: Replace with real visual — before/after packshot, or demo product */}
+          <FadeInView className="mb-14 max-w-3xl mx-auto">
+            <div className="w-full h-[200px] lg:h-[280px] rounded-2xl bg-white/80 border border-very-peri-200/50 flex items-center justify-center">
+              <div className="text-center">
+                <ImageIcon className="w-10 h-10 text-very-peri-300 mx-auto mb-2" strokeWidth={1} />
+                <p className="text-sm text-very-peri-400">Visuel résultats avant/après — ~800x280</p>
+              </div>
+            </div>
+          </FadeInView>
+
           <StaggerContainer stagger={0.12} className="grid md:grid-cols-3 gap-6 lg:gap-0 lg:divide-x lg:divide-very-peri-200">
             {WHY_AUTOMATE.map((item) => (
               <StaggerItem key={item.key}>
@@ -564,7 +613,9 @@ export default async function HomePage({
                     {t(`whyAutomate.${item.key}.title`)}
                   </h3>
                   <p className="text-neutral-medium leading-relaxed text-sm">
-                    {t(`whyAutomate.${item.key}.description`)}
+                    {t.rich(`whyAutomate.${item.key}.description`, {
+                      bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+                    })}
                   </p>
                 </div>
               </StaggerItem>
@@ -720,6 +771,13 @@ export default async function HomePage({
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-8 lg:p-14 h-full flex flex-col">
+                {/* TODO: Replace with real image — machine in situ or demo screenshot */}
+                <div className="w-full h-[140px] lg:h-[180px] rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-6">
+                  <div className="text-center">
+                    <ImageIcon className="w-8 h-8 text-white/30 mx-auto mb-1" strokeWidth={1} />
+                    <p className="text-xs text-white/30">Visuel démo ~500x180</p>
+                  </div>
+                </div>
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.card1.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.card1.description')}</p>
                 <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">

@@ -30,37 +30,37 @@
         "title": "Trop lent",
         "stat": "30",
         "statUnit": "photos/jour",
-        "description": "Votre photographe fait 30 photos par jour. Vos concurrents en font 300. Chaque jour de retard sur vos fiches produit, c'est du chiffre d'affaires perdu."
+        "description": "Votre photographe fait <bold>30 photos par jour</bold>. Vos concurrents en font <bold>300</bold>. Chaque jour de retard sur vos fiches produit, c'est du <bold>chiffre d'affaires perdu</bold>."
       },
       "expensive": {
         "title": "Trop cher",
         "stat": "15-50€",
         "statUnit": "par image",
-        "description": "Le coût moyen d'un packshot en prestation externe : 15 à 50 € par image. À 5 000 produits, cela représente 75 000 à 250 000 € par an."
+        "description": "Le coût moyen d'un packshot en prestation externe : <bold>15 à 50 € par image</bold>. À 5 000 produits, cela représente <bold>75 000 à 250 000 € par an</bold>."
       },
       "dependent": {
         "title": "Trop dépendant",
         "stat": "100%",
         "statUnit": "externalisé",
-        "description": "Quand votre photographe freelance est indisponible ou que votre prestataire prend 3 semaines, votre catalogue est bloqué. Le savoir-faire ne reste pas dans l'entreprise."
+        "description": "Quand votre photographe freelance est indisponible ou que votre prestataire prend <bold>3 semaines</bold>, votre catalogue est <bold>bloqué</bold>. Le savoir-faire ne reste pas dans l'entreprise."
       },
       "bridge": "Il y a une autre manière de faire."
     },
     "hybrid": {
       "label": "Notre approche",
       "heading": "Photo studio + IA : l'approche qui change tout",
-      "subtitle": "Ni tout hardware, ni tout IA. La combinaison intelligente des deux, portée par 25 ans d'expertise en photographie produit.",
+      "subtitle": "Ni tout hardware, ni tout IA. La <bold>combinaison intelligente</bold> des deux, portée par <bold>25 ans d'expertise</bold> en photographie produit.",
       "capture": {
         "title": "Capture parfaite",
-        "description": "Studios Orbitvu : packshot en 3 secondes, 360°, vidéo, détourage automatique et ombres réelles. La base irremplaçable par l'IA."
+        "description": "Studios Orbitvu : packshot en <bold>3 secondes</bold>, 360°, vidéo, détourage automatique et ombres réelles. La <bold>base irremplaçable</bold> par l'IA."
       },
       "ia": {
         "title": "Multiplication IA",
-        "description": "BlendAI transforme 1 packshot en 10+ visuels lifestyle. Fonds contextuels, mises en scène, variations créatives. Votre photo réelle reste toujours la base."
+        "description": "BlendAI transforme <bold>1 packshot en 10+ visuels</bold> lifestyle. Fonds contextuels, mises en scène, variations créatives. Votre photo réelle reste <bold>toujours la base</bold>."
       },
       "formation": {
         "title": "Autonomie totale",
-        "description": "Formations certifiées Qualiopi pour maîtriser le workflow complet Hardware + IA. Financement OPCO jusqu'à 100%. Le savoir-faire reste dans votre entreprise."
+        "description": "Formations <bold>certifiées Qualiopi</bold> pour maîtriser le workflow complet Hardware + IA. Financement <bold>OPCO jusqu'à 100%</bold>. Le savoir-faire reste dans votre entreprise."
       },
       "cta": "Découvrir la gamme Orbitvu",
       "ctaSecondary": "En savoir plus sur BlendAI"
@@ -71,7 +71,7 @@
     "spotlight": {
       "badge": "Best-seller",
       "heading": "Alphashot Pro G2 : votre studio photo complet en 1 m²",
-      "description": "Notre studio photo le plus vendu. Capturez packshots, vidéos et animations 360° en quelques secondes grâce à l'IA embarquée et l'éclairage LED optimisé.",
+      "description": "Notre <bold>studio photo le plus vendu</bold>. Capturez packshots, vidéos et animations 360° en <bold>quelques secondes</bold> grâce à l'IA embarquée et l'éclairage LED optimisé.",
       "feature1": "Packshot en 3 secondes",
       "feature2": "IA BlendAI intégrée",
       "feature3": "Éclairage LED automatique",
@@ -125,19 +125,19 @@
       "subtitle": "Des arguments concrets pour convaincre votre direction.",
       "noSkills": {
         "title": "Résultats pro sans compétences photo",
-        "description": "En 1 heure de formation, n'importe quel opérateur produit des packshots professionnels. L'éclairage, le cadrage et le détourage sont entièrement automatisés.",
+        "description": "En <bold>1 heure de formation</bold>, n'importe quel opérateur produit des packshots professionnels. L'éclairage, le cadrage et le détourage sont <bold>entièrement automatisés</bold>.",
         "stat": "1h",
         "statLabel": "de prise en main"
       },
       "scalability": {
         "title": "Montée en volume instantanée",
-        "description": "Les templates logiciels enregistrent vos réglages. Dupliquez le workflow et passez de 30 à 300 packshots par jour sans effort supplémentaire.",
+        "description": "Les templates logiciels enregistrent vos réglages. Dupliquez le workflow et passez de <bold>30 à 300 packshots par jour</bold> sans effort supplémentaire.",
         "stat": "10x",
         "statLabel": "plus productif"
       },
       "knowHow": {
         "title": "Le savoir-faire reste dans l'entreprise",
-        "description": "Vos paramètres de prise de vue sont sauvegardés dans le logiciel. Même si votre opérateur change, la qualité reste identique. Fini la dépendance aux prestataires.",
+        "description": "Vos paramètres de prise de vue sont sauvegardés dans le logiciel. Même si votre opérateur change, <bold>la qualité reste identique</bold>. Fini la dépendance aux prestataires.",
         "stat": "100%",
         "statLabel": "reproductible"
       }
