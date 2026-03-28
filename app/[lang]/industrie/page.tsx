@@ -214,11 +214,11 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
   const faqItems = faqs.map(f => ({ question: f.question, answer: f.answer }));
 
-  const renderBold = (text: string) => {
+  const renderBold = (text: string, onDark = false) => {
     const parts = text.split(/<bold>(.*?)<\/bold>/g);
     return parts.map((part, i) =>
       i % 2 === 1
-        ? <strong key={i} className="text-heading-dark font-semibold">{part}</strong>
+        ? <strong key={i} className={onDark ? 'text-white font-semibold' : 'text-heading-dark font-semibold'}>{part}</strong>
         : part
     );
   };
@@ -432,8 +432,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               </TextReveal>
               <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto leading-relaxed">
                 {isFr
-                  ? renderBold('Le processus standard pour <bold>tous les secteurs</bold> : capture packshot haute qualité, génération lifestyle IA, diffusion <bold>multi-canal</bold>.')
-                  : renderBold('The standard process for <bold>all sectors</bold>: high-quality packshot capture, AI lifestyle generation, <bold>multi-channel</bold> distribution.')}
+                  ? renderBold('Le processus standard pour <bold>tous les secteurs</bold> : capture packshot haute qualité, génération lifestyle IA, diffusion <bold>multi-canal</bold>.', true)
+                  : renderBold('The standard process for <bold>all sectors</bold>: high-quality packshot capture, AI lifestyle generation, <bold>multi-channel</bold> distribution.', true)}
               </p>
             </div>
           </ScrollReveal>
@@ -460,7 +460,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                       {step.title}
                     </h3>
                     <p className="text-future-dusk-300 leading-relaxed max-w-2xl">
-                      {renderBold(step.description)}
+                      {renderBold(step.description, true)}
                     </p>
                   </div>
                 </div>
