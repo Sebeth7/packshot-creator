@@ -226,21 +226,22 @@
     },
     "qualiopi": {
       "heading": "Qualiopi Certification",
-      "description": "PackshotCreator Academy has been Qualiopi certified since 2023, guaranteeing the quality of our training programs and eligibility for OPCO funding.",
+      "description": "<bold>PackshotCreator Academy</bold> has been Qualiopi certified since 2023, guaranteeing the quality of our training programs and eligibility for <bold>OPCO funding</bold>.",
       "feature1": "Expert trainer (20 years luxury photography)",
       "feature2": "Proven pedagogy (500+ trainees)",
       "feature3": "Post-training follow-up (30-60 days)"
     },
     "opco": {
       "heading": "OPCO Funding",
-      "description": "Up to 100% coverage of your professional training by your OPCO (Skills Operator).",
+      "description": "Up to <bold>100%</bold> coverage of your professional training by your OPCO (Skills Operator).",
       "salaries": "For employees: Your company can request funding from its OPCO.",
       "independants": "For self-employed: Depending on your OPCO (FIFPL, AGEFICE, etc.).",
       "cta": "Learn more about OPCO funding"
     },
     "catalogue": {
+      "label": "TRAINING PROGRAMS",
       "packshot_heading": "Packshot Product Photography Training",
-      "packshot_subtitle": "Master professional packshot photography with our Orbitvu studios",
+      "packshot_subtitle": "Master <bold>professional packshot photography</bold> with our Orbitvu studios",
       "ia_heading": "Product Photo AI Training",
       "ia_subtitle": "Harness the power of BlendAI to multiply your visuals"
     },
@@ -415,6 +416,7 @@
         "point2": "Texture and color approximations",
         "point3": "Possible hallucinations on details",
         "point4": "Human verification needed for every visual",
+        "point5": "Basic creative templates used by all your competitors",
         "verdict": "Suited for prototypes and basic e-commerce"
       },
       "blendai": {
@@ -425,6 +427,7 @@
         "point2": "Textures, colors and proportions guaranteed",
         "point3": "Meets luxury, cosmetics, jewelry requirements",
         "point4": "Expert human retouching included when needed",
+        "point5": "Complete control over your art direction",
         "verdict": "Built for manufacturers and brands producing >500 visuals/year"
       }
     },
@@ -452,10 +455,14 @@
     },
     "features": {
       "heading": "What BlendAI does for you",
-      "subtitle": "<bold>4 specialized tools</bold> to transform your packshots",
+      "subtitle": "<bold>5 specialized tools</bold> to transform your packshots",
       "lifestyle": {
         "name": "Lifestyle scenes",
         "description": "Transform your packshots into contextualized lifestyle visuals. Indoor, outdoor, ambiance — the <bold>product stays intact</bold>."
+      },
+      "mannequin": {
+        "name": "On-model product photos",
+        "description": "Showcase your products worn on realistic <bold>virtual mannequins</bold>. Fashion, accessories, eyewear — no photoshoot needed."
       },
       "background": {
         "name": "Custom backgrounds",

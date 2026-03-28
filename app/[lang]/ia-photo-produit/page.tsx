@@ -6,7 +6,7 @@ import {
   Sparkles, Wand2, ImageIcon, Paintbrush, Layers,
   ArrowRight, Check, X, ExternalLink, Star,
   Code2, Palette, UserCheck, Zap, Camera, GraduationCap, Layout,
-  ChevronDown,
+  ChevronDown, User,
 } from 'lucide-react';
 import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
@@ -19,8 +19,12 @@ import SpringCard from '@/components/animations/SpringCard';
 
 /* ──────── Static data ──────── */
 
-const FEATURES = [
+const HERO_FEATURES = [
   { key: 'lifestyle' as const, icon: <ImageIcon className="h-6 w-6" />, color: 'bg-pink-100 text-pink-700', hoverBorder: 'hover:border-pink-300' },
+  { key: 'mannequin' as const, icon: <User className="h-6 w-6" />, color: 'bg-violet-100 text-violet-700', hoverBorder: 'hover:border-violet-300' },
+];
+
+const SECONDARY_FEATURES = [
   { key: 'background' as const, icon: <Wand2 className="h-6 w-6" />, color: 'bg-blue-100 text-blue-700', hoverBorder: 'hover:border-blue-300' },
   { key: 'retouche' as const, icon: <Paintbrush className="h-6 w-6" />, color: 'bg-amber-100 text-amber-700', hoverBorder: 'hover:border-amber-300' },
   { key: 'batch' as const, icon: <Layers className="h-6 w-6" />, color: 'bg-emerald-100 text-emerald-700', hoverBorder: 'hover:border-emerald-300' },
@@ -223,7 +227,14 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   <span className="absolute -top-3 left-8 bg-very-peri-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
                     {isFr ? 'Recommandé' : 'Recommended'}
                   </span>
-                  <div className="flex items-center gap-4 mb-6 mt-2">
+                  {/* Image placeholder */}
+                  <div className="w-full h-[160px] bg-very-peri-50 flex items-center justify-center border border-very-peri-100 rounded-xl mb-6 mt-2">
+                    <div className="text-center">
+                      <ImageIcon className="w-8 h-8 text-very-peri-300 mx-auto mb-1" strokeWidth={1} />
+                      <p className="text-xs text-very-peri-300">Packshot pro + BlendAI result — ~600x160</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 mb-6">
                     <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-700">
                       <Sparkles className="h-6 w-6" />
                     </span>
@@ -234,7 +245,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   </div>
                   <p className="text-future-dusk-500 mb-6 leading-relaxed text-lg">{t.rich('whyBase.blendai.description', { bold: boldOrange })}</p>
                   <ul className="space-y-3 mb-8">
-                    {[1, 2, 3, 4].map((i) => (
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <li key={i} className="flex items-start gap-3">
                         <Check className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                         <span className="text-future-dusk-600">{t(`whyBase.blendai.point${i}`)}</span>
@@ -252,6 +263,13 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             <ScrollReveal offset={50} className="lg:col-span-2">
               <SpringCard className="h-full" hoverY={-3} hoverScale={1.005}>
                 <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 border border-neutral-200 h-full">
+                  {/* Image placeholder */}
+                  <div className="w-full h-[120px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl mb-5">
+                    <div className="text-center">
+                      <ImageIcon className="w-6 h-6 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                      <p className="text-[10px] text-neutral-300">Pure AI generated — ~400x120</p>
+                    </div>
+                  </div>
                   <div className="flex items-center gap-3 mb-5">
                     <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-neutral-100 text-neutral-500">
                       <Wand2 className="h-5 w-5" />
@@ -263,7 +281,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   </div>
                   <p className="text-sm text-future-dusk-500 mb-5">{t('whyBase.pureIA.description')}</p>
                   <ul className="space-y-2.5 mb-6">
-                    {[1, 2, 3, 4].map((i) => (
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm">
                         <span className={`mt-0.5 flex-shrink-0 ${i === 1 ? 'text-emerald-500' : 'text-orange-400'}`}>
                           {i === 1 ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
@@ -370,63 +388,59 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             </div>
           </ScrollReveal>
 
-          {/* Bento: first feature is hero card (left), 3 smaller stacked (right) */}
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* Hero card — Lifestyle */}
-            <ScrollReveal offset={30}>
-              <SpringCard className="h-full">
-                <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 p-6 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group">
-                  {/* Image placeholder */}
-                  <div className="w-full h-[180px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-6">
-                    <div className="text-center">
-                      <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                      <p className="text-xs text-neutral-300">Lifestyle scene — ~800x180</p>
+          {/* 2 hero cards side by side — Lifestyle + Mannequin */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-6">
+            {HERO_FEATURES.map((feat, idx) => (
+              <ScrollReveal key={feat.key} offset={20 + idx * 15}>
+                <SpringCard className="h-full">
+                  <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group`}>
+                    {/* Image placeholder */}
+                    <div className="w-full h-[200px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-6">
+                      <div className="text-center">
+                        <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                        <p className="text-xs text-neutral-300">
+                          {feat.key === 'lifestyle' ? 'Lifestyle scene — ~600x200' : 'On-model photo — ~600x200'}
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${feat.color} mb-6`}>
+                      {feat.icon}
+                    </span>
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
+                      {t(`features.${feat.key}.name`)}
+                    </h3>
+                    <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
+                      {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
+                    </p>
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* 3 smaller cards */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {SECONDARY_FEATURES.map((feat) => (
+              <ScrollReveal key={feat.key} offset={20}>
+                <SpringCard hoverY={-3} hoverScale={1.005}>
+                  <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group h-full`}>
+                    <div className="flex items-start gap-5">
+                      <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} flex-shrink-0 mt-1`}>
+                        {feat.icon}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
+                          {t(`features.${feat.key}.name`)}
+                        </h3>
+                        <p className="text-sm text-future-dusk-500 leading-relaxed">
+                          {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${FEATURES[0].color} mb-6`}>
-                    {FEATURES[0].icon}
-                  </span>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
-                    {t(`features.${FEATURES[0].key}.name`)}
-                  </h3>
-                  <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
-                    {t.rich(`features.${FEATURES[0].key}.description`, { bold: boldOrange })}
-                  </p>
-                </div>
-              </SpringCard>
-            </ScrollReveal>
-
-            {/* 3 smaller cards stacked */}
-            <div className="space-y-6">
-              {FEATURES.slice(1).map((feat) => (
-                <ScrollReveal key={feat.key} offset={20}>
-                  <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
-                      {/* Image placeholder */}
-                      <div className="w-full h-[100px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-4">
-                        <div className="text-center">
-                          <ImageIcon className="w-6 h-6 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                          <p className="text-[10px] text-neutral-300">Feature visual — ~400x100</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-5">
-                        <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} flex-shrink-0 mt-1`}>
-                          {feat.icon}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
-                            {t(`features.${feat.key}.name`)}
-                          </h3>
-                          <p className="text-sm text-future-dusk-500 leading-relaxed">
-                            {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </SpringCard>
-                </ScrollReveal>
-              ))}
-            </div>
+                </SpringCard>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -577,7 +591,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 {t.rich('compatible.subtitle', { bold: boldOrangeLight })}
               </p>
               <ul className="space-y-4 mb-10">
-                {(['feature1', 'feature2', 'feature3', 'offer'] as const).map((key) => (
+                {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
                   <li key={key} className="flex items-center gap-3">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-white/10">
                       <Check className="h-4 w-4 text-amber-300" />
