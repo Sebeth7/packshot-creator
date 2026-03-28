@@ -272,7 +272,7 @@ export default async function HomePage({
 
           <div className="space-y-6">
             {PAIN_POINTS.map((point, i) => (
-              <ScrollReveal key={point.key} offset={30 + i * 10}>
+              <FadeInView key={point.key} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 0.1}>
                 <SpringCard>
                   <div className={`flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 lg:gap-16 rounded-2xl p-6 sm:p-8 lg:p-10 border ${point.border} bg-neutral-50/50 hover:shadow-lg transition-shadow duration-300`}>
                     <div className="flex items-center gap-4 md:min-w-[200px] lg:min-w-[260px] shrink-0">
@@ -300,7 +300,7 @@ export default async function HomePage({
                     </div>
                   </div>
                 </SpringCard>
-              </ScrollReveal>
+              </FadeInView>
             ))}
           </div>
 
@@ -313,7 +313,7 @@ export default async function HomePage({
       </section>
 
       {/* ━━━ BREATHER — Full-bleed visual break ━━━ */}
-      <section className="relative w-full h-[280px] lg:h-[400px] bg-neutral-100 overflow-hidden">
+      <ScrollReveal scale offset={40} className="relative w-full h-[280px] lg:h-[400px] bg-neutral-100 overflow-hidden">
         {/* TODO: Replace with real image — hero-studios-wide.webp or lifestyle shot */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
@@ -322,7 +322,7 @@ export default async function HomePage({
             <p className="text-xs text-neutral-300 mt-1">~1400x400px — Studio en situation / Résultats packshot</p>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           4. HYBRID APPROACH — Split 4/8, sticky heading, numbered cards
@@ -359,6 +359,23 @@ export default async function HomePage({
                   <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
                 </Button>
               </div>
+
+              {/* Why Automate stats — merged from former standalone section */}
+              <div className="space-y-3 mb-8">
+                {WHY_AUTOMATE.map((item) => (
+                  <div key={item.key} className="flex items-center gap-3 bg-white rounded-xl p-3 border border-neutral-100">
+                    <div className="w-10 h-10 rounded-lg bg-very-peri-100 flex items-center justify-center shrink-0">
+                      <item.Icon className="w-5 h-5 text-very-peri-600" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <span className="text-lg font-heading font-bold text-gradient-peri">{t(`whyAutomate.${item.key}.stat`)}</span>
+                      <span className="text-sm text-neutral-medium ml-1.5">{t(`whyAutomate.${item.key}.statLabel`)}</span>
+                      <p className="text-xs text-neutral-medium leading-snug">{t(`whyAutomate.${item.key}.title`)}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               {/* TODO: Replace with real product image — alphashot-360.avif or pillar-hardware.webp */}
               <div className="hidden lg:block rounded-2xl bg-white border border-neutral-100 overflow-hidden aspect-[4/3]">
                 <div className="w-full h-full flex items-center justify-center">
@@ -372,7 +389,7 @@ export default async function HomePage({
 
             <div className="lg:col-span-8 space-y-6">
               {HYBRID_STEPS.map((step, idx) => (
-                <ScrollReveal key={step.key} offset={40}>
+                <FadeInView key={step.key} direction="right" delay={idx * 0.1}>
                   <SpringCard>
                     <div className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300">
                       {/* TODO: Replace with real image per step */}
@@ -402,7 +419,7 @@ export default async function HomePage({
                       </div>
                     </div>
                   </SpringCard>
-                </ScrollReveal>
+                </FadeInView>
               ))}
             </div>
           </div>
@@ -415,7 +432,7 @@ export default async function HomePage({
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <FadeInView direction="left" className="relative rounded-2xl overflow-hidden bg-bg-light-gray p-6 sm:p-8 lg:p-12">
+            <ScrollReveal scale className="relative rounded-2xl overflow-hidden bg-bg-light-gray p-6 sm:p-8 lg:p-12">
               <Image
                 src="/images/machines/alphashot-pro-g2.avif"
                 alt="Alphashot Pro G2 — studio photo automatisé"
@@ -424,7 +441,7 @@ export default async function HomePage({
                 className="w-full h-auto object-contain"
                 loading="lazy"
               />
-            </FadeInView>
+            </ScrollReveal>
 
             <FadeInView direction="right" delay={0.15}>
               <span className="inline-block text-xs font-bold uppercase tracking-wider text-accent-gold bg-accent-gold/10 px-3 py-1.5 rounded-full">
@@ -472,7 +489,7 @@ export default async function HomePage({
           </div>
 
           {/* Mini gallery — full width below */}
-          <FadeInView delay={0.3} className="mt-16">
+          <ScrollReveal scale className="mt-16">
             <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4">
               {MINI_GALLERY.map((item) => (
                 <div key={item.key} className="relative aspect-[4/3] rounded-xl overflow-hidden group bg-neutral-100">
@@ -491,7 +508,7 @@ export default async function HomePage({
                 </div>
               ))}
             </div>
-          </FadeInView>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -569,63 +586,7 @@ export default async function HomePage({
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          7. WHY AUTOMATE — Clean typography-driven stats row
-          No card backgrounds. Large stats, minimal text.
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-very-peri-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInView className="text-center mb-16 lg:mb-20">
-            <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-              {t('whyAutomate.label')}
-            </span>
-            <h2 className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
-              {t('whyAutomate.heading')}
-            </h2>
-            <p className="mt-6 text-lg text-neutral-medium max-w-2xl mx-auto leading-relaxed">
-              {t('whyAutomate.subtitle')}
-            </p>
-          </FadeInView>
-
-          {/* TODO: Replace with real visual — before/after packshot, or demo product */}
-          <FadeInView className="mb-14 max-w-3xl mx-auto">
-            <div className="w-full h-[200px] lg:h-[280px] rounded-2xl bg-white/80 border border-very-peri-200/50 flex items-center justify-center">
-              <div className="text-center">
-                <ImageIcon className="w-10 h-10 text-very-peri-300 mx-auto mb-2" strokeWidth={1} />
-                <p className="text-sm text-very-peri-400">Visuel résultats avant/après — ~800x280</p>
-              </div>
-            </div>
-          </FadeInView>
-
-          <StaggerContainer stagger={0.12} className="grid md:grid-cols-3 gap-6 lg:gap-0 lg:divide-x lg:divide-very-peri-200">
-            {WHY_AUTOMATE.map((item) => (
-              <StaggerItem key={item.key}>
-                <div className="text-center px-4 lg:px-10">
-                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-6 shadow-sm">
-                    <item.Icon className="w-7 h-7 text-very-peri-600" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-5xl lg:text-6xl font-heading font-bold text-gradient-peri leading-none mb-2">
-                    {t(`whyAutomate.${item.key}.stat`)}
-                  </p>
-                  <p className="text-sm text-neutral-medium mb-4">
-                    {t(`whyAutomate.${item.key}.statLabel`)}
-                  </p>
-                  <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
-                    {t(`whyAutomate.${item.key}.title`)}
-                  </h3>
-                  <p className="text-neutral-medium leading-relaxed text-sm">
-                    {t.rich(`whyAutomate.${item.key}.description`, {
-                      bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
-                    })}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          8. INDUSTRIES — Grid with improved spacing
+          7. INDUSTRIES — Grid with improved spacing
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -677,41 +638,7 @@ export default async function HomePage({
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          9. MID CTA — Simplified banner
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-10 lg:py-14 bg-gradient-to-r from-future-dusk-800 to-very-peri-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-2xl lg:text-3xl font-heading font-bold text-white leading-tight">
-                {t('midCta.heading')}
-              </h2>
-              <p className="mt-2 text-sm text-future-dusk-200">
-                {t('midCta.phone')}
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-future-dusk-800 hover:bg-very-peri-50 px-8 h-12 text-base font-semibold rounded-lg"
-              >
-                <Link href="/contact">{t('midCta.option1.cta')}</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-transparent border border-white/30 text-white hover:bg-white/10 px-8 h-12 text-base rounded-lg"
-              >
-                <Link href="/calculateur">{t('midCta.option2.cta')}</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          10. FAQ — Split sticky heading + accordion, tinted bg
+          8. FAQ — Split sticky heading + accordion, tinted bg
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
