@@ -123,7 +123,109 @@ Mettre en gras les 2-3 mots cles par paragraphe descriptif. L'oeil doit pouvoir 
 
 ---
 
-## 5. Patterns de reference (Home)
+## 5. Techniques de design premium (derivees de l'analyse Apple)
+
+Cette section documente les techniques concretes identifiees en analysant apple.com (Home, iPhone 17e, MacBook Pro) et en les adaptant a notre contexte B2B. C'est le coeur de l'intelligence design du site.
+
+### 5.1 Hierarchie visuelle de chaque section
+
+Apple utilise TOUJOURS la meme sequence dans chaque section. Nous l'appliquons aussi :
+
+```
+1. Label categorie (petit, uppercase, couleur accent)
+2. Titre display (grand, bold, dominant — text-4xl lg:text-6xl)
+3. Sous-titre ou description (taille moyenne, avec bold selectif sur 2-3 mots cles)
+4. Visuel / Image (domine l'espace, pas un accompagnement timide)
+5. CTA (si la section le justifie)
+```
+
+**Concretement dans le code :**
+```tsx
+<span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+  LABEL
+</span>
+<TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
+  {t('section.heading')}
+</TextReveal>
+<p className="mt-6 text-lg text-neutral-medium leading-relaxed">
+  {t.rich('section.description', {
+    bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
+  })}
+</p>
+```
+
+### 5.2 Quand une section a 3 items similaires — alternatives au grid 3 colonnes
+
+C'est le probleme le plus frequent. Voici les alternatives disponibles :
+
+| Alternative | Quand l'utiliser | Exemple Home |
+|---|---|---|
+| **Rows horizontales** (stat gauche + texte droite, full width) | Quand chaque item a un chiffre fort | Pain Points |
+| **Split sticky** (heading gauche sticky + items empiles droite) | Quand les items sont des etapes/piliers | Hybrid Approach |
+| **Asymetrique 7/5** (1 featured grand + 2 stacked petit) | Quand un item est plus important | Testimonials |
+| **Stats typography-driven** (stats geantes sans cartes, separees par des lignes) | Quand le chiffre EST le message | Why Automate (avant merge) |
+| **Grille 3 colonnes** (acceptable) | Quand aucune alternative ne convient ET que les sections voisines ont un layout different | — |
+
+**Regle** : la grille 3 colonnes n'est pas interdite, elle est interdite DEUX FOIS DE SUITE. Si la section precedente ou suivante est aussi en grille, il faut changer l'une des deux.
+
+### 5.3 Strategie d'images — Ou les images ajoutent le plus de valeur
+
+Apple a une image dans CHAQUE section. Nous devons avoir au minimum 3-4 visuels par page. Voici ou les placer en priorite :
+
+**Priorite haute :**
+- **Split layouts** : quand une section a du texte d'un cote, l'autre cote DOIT avoir un visuel (image produit, screenshot, illustration). Pas de split texte/texte.
+- **Colonne sticky** dans un layout split 4/8 : sous les CTAs, ajouter un visuel produit
+- **En haut des cartes** : quand des cartes contiennent des features/piliers, une image en haut de chaque carte enrichit enormement
+
+**Priorite moyenne :**
+- **Entre deux sections denses** : un visuel full-bleed ("breather") cree une pause. Max 1 par page. Pas obligatoire.
+- **Dans les cartes CTA** : la carte principale du Final CTA peut contenir un visuel produit
+
+**Tailles de reference (inspirees Apple) :**
+| Emplacement | Taille | Ratio |
+|---|---|---|
+| Image dans un split (cote texte) | ~600x500 | ~6:5 |
+| Image en haut de carte | ~800x200 | ~4:1 |
+| Image dans colonne sticky | ~500x400 | 4:3 |
+| Breather full-bleed | 100vw x 400px | ~3.5:1 |
+| Mini gallery | 33vw, aspect 4:3 | 4:3 |
+| Image dans carte CTA | ~500x180 | ~2.8:1 |
+
+**Si l'image n'est pas disponible**, utiliser un placeholder avec ImageIcon (voir section 7). C'est mieux qu'une zone vide.
+
+### 5.4 Sections "information" vs sections "emotion"
+
+Apple distingue nettement les sections qui informent et celles qui emouvent. Nous faisons pareil :
+
+**Sections information** (fond clair, texte dominant) :
+- Features, specs, FAQ, grilles d'industries, comparaisons
+- Fond : `bg-white` ou teinte (`bg-future-dusk-0`, `bg-very-peri-50`)
+- Animations : FadeInView directionnelles, StaggerContainer
+
+**Sections emotion** (fond sombre, visuels/stats dominants) :
+- Social proof, testimonials, final CTA, hero
+- Fond : `bg-black`, `bg-future-dusk-900`, gradients
+- Animations : AnimatedCounter, ScrollReveal scale, TextReveal
+
+**Chaque page devrait alterner** : au moins 1-2 sections emotion parmi les sections information.
+
+### 5.5 Comment elever une section mediocre
+
+Voici la marche a suivre face a une section "basique" :
+
+1. **Ajouter le label categorie** au-dessus du titre (+5% d'impact visuel)
+2. **Agrandir le titre** a `text-4xl lg:text-6xl` si trop petit (+10%)
+3. **Bold selectif** dans la description (+5%)
+4. **Verifier le fond** : est-il different des sections adjacentes ? Sinon, changer. (+10%)
+5. **Varier l'animation** : direction differente des sections voisines, ajouter scale-in sur les visuels (+5%)
+6. **Ajouter un visuel/placeholder** si la section est 100% texte (+20%)
+7. **Si 3 items en grille identique** et qu'une section voisine fait pareil → changer le layout (+15%)
+
+Le gain cumulatif de ces 7 etapes transforme une section banale en section premium.
+
+---
+
+## 6. Patterns ADN commun (Home comme reference)
 
 > Ces patterns montrent COMMENT la Home a ete construite.
 > Ils ne sont PAS a copier sur les autres pages.
@@ -149,27 +251,29 @@ Mettre en gras les 2-3 mots cles par paragraphe descriptif. L'oeil doit pouvoir 
 
 ---
 
-## 6. Images
+## 7. Images
+
+Voir section 5.3 pour la strategie complete (ou placer les images, tailles, priorites).
 
 ### Convention placeholder
-Quand une image manque, utiliser un placeholder visible :
-```html
-<div class="w-full h-[Xpx] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
-  <ImageIcon class="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-  <p class="text-xs text-neutral-300">Description + taille</p>
+Quand une image n'est pas encore disponible, ajouter un placeholder visible (import `ImageIcon` de lucide-react) :
+```tsx
+<div className="w-full h-[Xpx] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
+  <div className="text-center">
+    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+    <p className="text-xs text-neutral-300">Description + taille recommandee</p>
+  </div>
 </div>
 ```
 
-### Ou ajouter des images
-Regarder les pages Apple pour comprendre le dimensionnement :
-- Visuels produit dans les splits : ~600x500, ratio 6:5
-- Images en haut de cartes : ~800x200, ratio 4:1
-- Breather full-bleed : 100vw x 400px si la page le justifie
-- Gallery : aspect 4:3
+### Formats
+- Photos : AVIF (priorite) ou WebP
+- Icones/logos : SVG
+- Images transparentes : AVIF avec canal alpha
 
 ---
 
-## 7. Responsive
+## 8. Responsive
 
 - Padding sections : `py-20 lg:py-32` standard
 - Gaps : `gap-4 md:gap-8` ou `gap-6 lg:gap-16`
@@ -179,7 +283,7 @@ Regarder les pages Apple pour comprendre le dimensionnement :
 
 ---
 
-## 8. Terminologie obligatoire
+## 9. Terminologie obligatoire
 
 - "systemes" (jamais "machines")
 - "Photo studio + IA" (jamais "hybride" seul)
@@ -188,7 +292,7 @@ Regarder les pages Apple pour comprendre le dimensionnement :
 
 ---
 
-## 9. Anti-patterns
+## 10. Anti-patterns
 
 1. **Copier les sections de la Home** — Chaque page a sa propre structure. Ne PAS ajouter Pain Points, Breather, ou Social Proof si la page ne les a pas.
 2. **Inventer du contenu** — Ne JAMAIS creer de chiffres, textes, ou sections. Si du contenu manque, DEMANDER a l'utilisateur.
