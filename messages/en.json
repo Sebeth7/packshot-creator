@@ -759,28 +759,30 @@
     },
     "products": {
       "heading": "Find the right system for your production",
-      "subtitle": "20 Orbitvu systems, from jewelry to furniture. Filter by product size, content type or production volume to identify your solution in a few clicks.",
+      "subtitle": "<bold>20 Orbitvu systems</bold>, from jewelry to furniture. Filter by <bold>product size</bold>, content type or production volume to identify your solution in a few clicks.",
       "ctaText": "Learn more",
       "viewAll": "View all systems"
     },
     "support": {
+      "label": "SUPPORT",
       "heading": "Full support from A to Z",
       "subtitle": "Purchasing the system is just the beginning. We support you every step of the way.",
       "step1title": "Personalized consulting",
-      "step1description": "Our experts analyze your needs, volumes and constraints. Free on-site or remote demo with your own products.",
+      "step1description": "Our experts analyze your <bold>needs, volumes and constraints</bold>. <bold>Free</bold> on-site or remote demo with your own products.",
       "step2title": "Installation & Certified training",
-      "step2description": "Delivery, installation and Qualiopi-certified training included. Your teams are operational from day one.",
+      "step2description": "Delivery, installation and <bold>Qualiopi-certified training</bold> included. Your teams are operational <bold>from day one</bold>.",
       "step3title": "Continuous support",
-      "step3description": "Dedicated hotline, preventive maintenance and software updates. We stay by your side to maximize your ROI."
+      "step3description": "<bold>Dedicated hotline</bold>, preventive maintenance and software updates. We stay by your side to <bold>maximize your ROI</bold>."
     },
     "roiTeaser": {
       "heading": "What is the real cost of your current photo production?",
-      "subtitle": "External providers, time spent, back-and-forth... Calculate your ROI in 2 minutes and find out how many months until an Orbitvu system pays for itself.",
+      "subtitle": "External providers, time spent, back-and-forth... Calculate your <bold>ROI in 2 minutes</bold> and find out how many months until an <bold>Orbitvu system</bold> pays for itself.",
       "cta": "Calculate my ROI",
       "stat": "Average observed ROI: 9 months"
     },
     "faqStudios": {
       "heading": "Frequently asked questions",
+      "description": "Everything you need to know before investing in an <bold>automated studio</bold>.",
       "q1": {
         "question": "What budget should I plan for an automated photo studio?",
         "answer": "Our Orbitvu systems range from €12,000 (Alphashot 360 for small objects) to €150,000 (E-Comm Studio+ for large format). Budget depends on your product size and production volume. Average ROI is 9 months. Contact us for a quote tailored to your case."
@@ -834,12 +836,18 @@
         "description": "Qualiopi-certified training to master your system and product photo AI."
       }
     },
+    "orientation": {
+      "label": "OUR SYSTEMS",
+      "heading": "20 Orbitvu systems, from jewelry to furniture",
+      "description": "Identify the <bold>right system</bold> for your products, volume and goals. Compare specifications, filter by use case and find your solution in <bold>just a few clicks</bold>.",
+      "cta": "Explore the catalog"
+    },
     "trust": {
       "heading": "Trusted by leading brands",
       "subtitle": "Prestigious brands produce their visuals with our Orbitvu systems",
-      "stat1value": "500+",
+      "stat1value": "5,000+",
       "stat1label": "Equipped clients",
-      "stat2value": "20 years",
+      "stat2value": "25 years",
       "stat2label": "Photography expertise",
       "stat3value": "50+",
       "stat3label": "Countries covered by Orbitvu"

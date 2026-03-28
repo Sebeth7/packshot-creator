@@ -762,28 +762,30 @@
     },
     "products": {
       "heading": "Trouvez le système adapté à votre production",
-      "subtitle": "20 systèmes Orbitvu, du bijou au mobilier. Filtrez par taille de produit, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
+      "subtitle": "<bold>20 systèmes</bold> Orbitvu, du bijou au mobilier. Filtrez par <bold>taille de produit</bold>, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
       "ctaText": "En savoir plus",
       "viewAll": "Voir tous les systèmes"
     },
     "support": {
+      "label": "ACCOMPAGNEMENT",
       "heading": "Un accompagnement de A à Z",
       "subtitle": "L'achat du système n'est que le début. Nous vous accompagnons à chaque étape.",
       "step1title": "Conseil personnalisé",
-      "step1description": "Nos experts analysent vos besoins, vos volumes et vos contraintes. Démonstration gratuite sur site ou en visio avec vos propres produits.",
+      "step1description": "Nos experts analysent vos <bold>besoins, volumes et contraintes</bold>. Démonstration <bold>gratuite</bold> sur site ou en visio avec vos propres produits.",
       "step2title": "Installation & Formation certifiée",
-      "step2description": "Livraison, installation et formation Qualiopi incluses. Vos équipes sont opérationnelles dès le premier jour.",
+      "step2description": "Livraison, installation et <bold>formation Qualiopi</bold> incluses. Vos équipes sont opérationnelles <bold>dès le premier jour</bold>.",
       "step3title": "Support continu",
-      "step3description": "Hotline dédiée, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour maximiser votre ROI."
+      "step3description": "<bold>Hotline dédiée</bold>, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour <bold>maximiser votre ROI</bold>."
     },
     "roiTeaser": {
       "heading": "Quel est le vrai coût de votre production photo actuelle ?",
-      "subtitle": "Prestataire externe, temps mobilisé, allers-retours... Calculez votre ROI en 2 minutes et découvrez en combien de mois un système Orbitvu se rentabilise.",
+      "subtitle": "Prestataire externe, temps mobilisé, allers-retours... Calculez votre <bold>ROI en 2 minutes</bold> et découvrez en combien de mois un <bold>système Orbitvu</bold> se rentabilise.",
       "cta": "Calculer mon ROI",
       "stat": "ROI moyen constaté : 9 mois"
     },
     "faqStudios": {
       "heading": "Questions fréquentes",
+      "description": "Tout ce que vous devez savoir avant d'investir dans un <bold>studio automatisé</bold>.",
       "q1": {
         "question": "Quel budget prévoir pour un studio photo automatisé ?",
         "answer": "Nos systèmes Orbitvu vont de 12 000 € HT (Alphashot 360 pour petits objets) à 150 000 € HT (E-Comm Studio+ pour grands formats). Le budget dépend de la taille de vos produits et du volume de production. Le ROI moyen est de 9 mois. Contactez-nous pour un devis adapté à votre cas."
@@ -837,12 +839,18 @@
         "description": "Formations Qualiopi pour maîtriser votre système et l'IA photo produit."
       }
     },
+    "orientation": {
+      "label": "NOS SYSTÈMES",
+      "heading": "20 systèmes Orbitvu, du bijou au mobilier",
+      "description": "Identifiez le <bold>système adapté</bold> à vos produits, votre volume et vos objectifs. Comparez les caractéristiques, filtrez par usage et trouvez votre solution en <bold>quelques clics</bold>.",
+      "cta": "Explorer le catalogue"
+    },
     "trust": {
       "heading": "Ils nous font confiance",
       "subtitle": "Des marques prestigieuses produisent leurs visuels avec nos systèmes Orbitvu",
-      "stat1value": "500+",
+      "stat1value": "5 000+",
       "stat1label": "Clients équipés",
-      "stat2value": "20 ans",
+      "stat2value": "25 ans",
       "stat2label": "D'expertise photo",
       "stat3value": "50+",
       "stat3label": "Pays couverts par Orbitvu"
