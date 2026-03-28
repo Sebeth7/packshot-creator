@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, ArrowRight } from 'lucide-react';
 import { StaggerContainer, StaggerItem } from '@/components/animations';
 import {
   Wine,
@@ -40,28 +40,30 @@ export default function SectorGrid({
 }: SectorGridProps) {
   const gridCols = {
     3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
     6: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-6',
   };
 
   return (
-    <StaggerContainer stagger={0.06} className={cn(`grid ${gridCols[columns]} gap-6`, className)}>
+    <StaggerContainer stagger={0.05} className={cn(`grid ${gridCols[columns]} gap-4`, className)}>
       {sectors.map((sector) => (
         <StaggerItem key={sector.slug}>
         <Link
-          key={sector.slug}
           href={`/industrie/${sector.slug}`}
-          className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-100 hover:border-very-peri-300"
+          className="group flex items-start gap-4 bg-future-dusk-0 rounded-xl p-5 border border-transparent hover:border-very-peri-200 hover:bg-white hover:shadow-lg transition-all duration-300"
         >
-          <div className="flex flex-col items-center text-center space-y-3">
-            <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
-              <sector.Icon className="w-6 h-6" />
-            </span>
-            <h3 className="text-sm font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
-              {sector.name}
-            </h3>
+          <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors shrink-0 mt-0.5">
+            <sector.Icon className="w-5 h-5" />
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <h3 className="text-base font-heading font-bold text-heading-dark group-hover:text-very-peri-600 transition-colors">
+                {sector.name}
+              </h3>
+              <ArrowRight className="h-4 w-4 text-neutral-300 opacity-0 group-hover:opacity-100 group-hover:text-very-peri-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+            </div>
             {sector.description && (
-              <p className="text-xs text-future-dusk-400 line-clamp-2">
+              <p className="text-sm text-neutral-medium leading-relaxed">
                 {sector.description}
               </p>
             )}
