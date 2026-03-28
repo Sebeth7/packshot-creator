@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp } from 'lucide-react';
+import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface DropdownItem {
@@ -14,13 +14,18 @@ interface DropdownItem {
   icon: React.ReactNode;
 }
 
+interface DropdownSection {
+  titleKey?: string;
+  items: DropdownItem[];
+}
+
 function NavDropdown({
   label,
-  items,
+  sections,
   t,
 }: {
   label: string;
-  items: DropdownItem[];
+  sections: DropdownSection[];
   t: (key: string) => string;
 }) {
   const [open, setOpen] = useState(false);
@@ -63,25 +68,46 @@ function NavDropdown({
       {open && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
           <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-2 min-w-[280px]">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
-                onClick={() => setOpen(false)}
-              >
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
-                  {item.icon}
-                </span>
-                <div>
-                  <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
-                    {t(item.labelKey)}
+            {sections.map((section, sIdx) => (
+              <div key={sIdx}>
+                {sIdx > 0 && <div className="border-t border-neutral-100 my-2" />}
+                {section.titleKey && (
+                  <span className="block px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
+                    {t(section.titleKey)}
                   </span>
-                  <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
-                    {t(item.descKey)}
-                  </span>
-                </div>
-              </Link>
+                )}
+                {section.items.map((item) =>
+                  item.descKey ? (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
+                      onClick={() => setOpen(false)}
+                    >
+                      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
+                        {item.icon}
+                      </span>
+                      <div>
+                        <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
+                          {t(item.labelKey)}
+                        </span>
+                        <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
+                          {t(item.descKey)}
+                        </span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
+                      onClick={() => setOpen(false)}
+                    >
+                      {t(item.labelKey)}
+                    </Link>
+                  )
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -92,12 +118,12 @@ function NavDropdown({
 
 function MobileNavSection({
   label,
-  items,
+  sections,
   t,
   onClose,
 }: {
   label: string;
-  items: DropdownItem[];
+  sections: DropdownSection[];
   t: (key: string) => string;
   onClose: () => void;
 }) {
@@ -116,18 +142,28 @@ function MobileNavSection({
       </button>
       {expanded && (
         <div className="pl-4 pb-2 space-y-1">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
-              onClick={onClose}
-            >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
-                {item.icon}
-              </span>
-              {t(item.labelKey)}
-            </Link>
+          {sections.map((section, sIdx) => (
+            <div key={sIdx}>
+              {sIdx > 0 && <div className="border-t border-neutral-100 my-2" />}
+              {section.titleKey && (
+                <span className="block py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
+                  {t(section.titleKey)}
+                </span>
+              )}
+              {section.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
+                  onClick={onClose}
+                >
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
+                    {item.icon}
+                  </span>
+                  {t(item.labelKey)}
+                </Link>
+              ))}
+            </div>
           ))}
         </div>
       )}
@@ -143,51 +179,94 @@ export default function Header() {
 
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
-  const solutionItems: DropdownItem[] = [
+  const solutionSections: DropdownSection[] = [
     {
-      href: '/studios-photo-automatises',
-      labelKey: 'studios',
-      descKey: 'studiosDesc',
-      icon: <Camera className="h-4 w-4" />,
+      items: [
+        {
+          href: '/studios-photo-automatises',
+          labelKey: 'studios',
+          descKey: 'studiosDesc',
+          icon: <Camera className="h-4 w-4" />,
+        },
+        {
+          href: '/ia-photo-produit',
+          labelKey: 'aiSoftware',
+          descKey: 'aiSoftwareDesc',
+          icon: <Sparkles className="h-4 w-4" />,
+        },
+        {
+          href: '/calculateur-roi',
+          labelKey: 'roiCalculator',
+          descKey: 'roiCalculatorDesc',
+          icon: <TrendingUp className="h-4 w-4" />,
+        },
+      ],
     },
     {
-      href: '/ia-photo-produit',
-      labelKey: 'aiSoftware',
-      descKey: 'aiSoftwareDesc',
-      icon: <Sparkles className="h-4 w-4" />,
-    },
-    {
-      href: '/calculateur-roi',
-      labelKey: 'roiCalculator',
-      descKey: 'roiCalculatorDesc',
-      icon: <TrendingUp className="h-4 w-4" />,
+      titleKey: 'bySector',
+      items: [
+        {
+          href: '/industrie/lunetterie',
+          labelKey: 'lunetterie',
+          descKey: 'lunetterieDesc',
+          icon: <Glasses className="h-4 w-4" />,
+        },
+        {
+          href: '/industrie/food-alimentaire',
+          labelKey: 'food',
+          descKey: 'foodDesc',
+          icon: <Wine className="h-4 w-4" />,
+        },
+        {
+          href: '/industrie/sante-medical',
+          labelKey: 'santeMedical',
+          descKey: 'santeMedicalDesc',
+          icon: <HeartPulse className="h-4 w-4" />,
+        },
+        {
+          href: '/industrie/industrie-manufacturiere',
+          labelKey: 'industrieDefense',
+          descKey: 'industrieDefenseDesc',
+          icon: <Shield className="h-4 w-4" />,
+        },
+        {
+          href: '/industrie',
+          labelKey: 'allSectors',
+          descKey: '',
+          icon: <></>,
+        },
+      ],
     },
   ];
 
-  const academyItems: DropdownItem[] = [
+  const academySections: DropdownSection[] = [
     {
-      href: '/academy/formations-packshot',
-      labelKey: 'formationsPackshot',
-      descKey: 'formationsPackshotDesc',
-      icon: <GraduationCap className="h-4 w-4" />,
-    },
-    {
-      href: '/academy/formations-ia',
-      labelKey: 'formationsIA',
-      descKey: 'formationsIADesc',
-      icon: <Brain className="h-4 w-4" />,
-    },
-    {
-      href: '/academy/simulateur-opco',
-      labelKey: 'simulateurOPCO',
-      descKey: 'simulateurOPCODesc',
-      icon: <Calculator className="h-4 w-4" />,
-    },
-    {
-      href: '/academy/calendrier',
-      labelKey: 'calendrier',
-      descKey: 'calendrierDesc',
-      icon: <CalendarDays className="h-4 w-4" />,
+      items: [
+        {
+          href: '/academy/formations-packshot',
+          labelKey: 'formationsPackshot',
+          descKey: 'formationsPackshotDesc',
+          icon: <GraduationCap className="h-4 w-4" />,
+        },
+        {
+          href: '/academy/formations-ia',
+          labelKey: 'formationsIA',
+          descKey: 'formationsIADesc',
+          icon: <Brain className="h-4 w-4" />,
+        },
+        {
+          href: '/academy/simulateur-opco',
+          labelKey: 'simulateurOPCO',
+          descKey: 'simulateurOPCODesc',
+          icon: <Calculator className="h-4 w-4" />,
+        },
+        {
+          href: '/academy/calendrier',
+          labelKey: 'calendrier',
+          descKey: 'calendrierDesc',
+          icon: <CalendarDays className="h-4 w-4" />,
+        },
+      ],
     },
   ];
 
@@ -223,20 +302,13 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-6" aria-label="Main navigation">
             <NavDropdown
               label={t('solutions')}
-              items={solutionItems}
+              sections={solutionSections}
               t={t}
             />
 
-            <Link
-              href="/industrie"
-              className="text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
-            >
-              {t('industries')}
-            </Link>
-
             <NavDropdown
               label={t('academy')}
-              items={academyItems}
+              sections={academySections}
               t={t}
             />
 
@@ -309,27 +381,18 @@ export default function Header() {
           <div className="relative bg-white border-t border-neutral-100 max-h-[calc(100vh-4rem)] overflow-y-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
               <nav className="divide-y divide-neutral-100" aria-label="Mobile navigation">
-                {/* Solutions */}
+                {/* Solutions + Industries */}
                 <MobileNavSection
                   label={t('solutions')}
-                  items={solutionItems}
+                  sections={solutionSections}
                   t={t}
                   onClose={() => setMobileMenuOpen(false)}
                 />
 
-                {/* Industries */}
-                <Link
-                  href="/industrie"
-                  className="block py-3 text-base font-medium text-future-dusk-800 hover:text-very-peri-600"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {t('industries')}
-                </Link>
-
                 {/* Academy */}
                 <MobileNavSection
                   label={t('academy')}
-                  items={academyItems}
+                  sections={academySections}
                   t={t}
                   onClose={() => setMobileMenuOpen(false)}
                 />

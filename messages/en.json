@@ -344,7 +344,17 @@
       "menu": "Menu",
       "close": "Close",
       "roiCalculator": "ROI Calculator",
-      "roiCalculatorDesc": "Estimate your return on investment in 2 minutes"
+      "roiCalculatorDesc": "Estimate your return on investment in 2 minutes",
+      "bySector": "By sector",
+      "lunetterie": "Eyewear & Optics",
+      "lunetterieDesc": "Frame packshots, reflection control and AI-worn visuals",
+      "food": "Food & Beverage",
+      "foodDesc": "Packaging packshots and AI food styling",
+      "santeMedical": "Healthcare & Medical",
+      "santeMedicalDesc": "CE-compliant visuals, on-site secured studios",
+      "industrieDefense": "Industry & Defense",
+      "industrieDefenseDesc": "Mass cataloging, traceability and ISO compliance",
+      "allSectors": "All sectors →"
     },
     "footer": {
       "tagline": "Professional automated product photography solutions for e-commerce and visual communication.",

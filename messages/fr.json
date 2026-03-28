@@ -347,7 +347,17 @@
       "menu": "Menu",
       "close": "Fermer",
       "roiCalculator": "Calculateur ROI",
-      "roiCalculatorDesc": "Estimez votre retour sur investissement en 2 minutes"
+      "roiCalculatorDesc": "Estimez votre retour sur investissement en 2 minutes",
+      "bySector": "Par secteur",
+      "lunetterie": "Lunetterie & Optique",
+      "lunetterieDesc": "Packshot montures, gestion des reflets et visuels portés IA",
+      "food": "Food & Alimentaire",
+      "foodDesc": "Packshot packaging et food styling par IA",
+      "santeMedical": "Santé & Médical",
+      "santeMedicalDesc": "Visuels conformes CE, studios sur site sécurisé",
+      "industrieDefense": "Industrie & Défense",
+      "industrieDefenseDesc": "Catalogage massif, traçabilité et conformité ISO",
+      "allSectors": "Tous les secteurs →"
     },
     "footer": {
       "tagline": "Solutions professionnelles de photographie de produits automatisée pour l'e-commerce et la communication visuelle.",
