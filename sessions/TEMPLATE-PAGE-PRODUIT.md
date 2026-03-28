@@ -1,43 +1,50 @@
 # Template Page Produit — Guide Complet
 
-> Ce document est le template de reference pour modifier toutes les pages produit du site PackshotCreator.
-> Il a ete cree lors de la refonte de la page Alphashot Pro G2 (session du 28/03/2026).
-> Il s'inspire du design-system Apple, de notre Home redesignee, et de la page produit equivalente chez Orbitvu.
+> Ce document est le template de reference pour toutes les pages produit du site PackshotCreator.
+> Cree lors de la refonte de la page Alphashot Pro G2 (session du 28/03/2026).
+> Inspire du design-system Apple, de notre Home redesignee, et des pages produit Orbitvu.
+>
+> **IMPORTANT** : Toutes les pages produit partagent le MEME code source
+> (`app/[lang]/studio-photo/[slug]/page.tsx`). Le layout est commun — seules les DONNEES
+> changent par machine (dans `machines.ts`). Ce template documente ce layout commun et
+> explique comment enrichir les donnees pour chaque machine.
 
 ---
 
 ## 1. Architecture des sections (ordre definitif)
 
-Chaque page produit suit cette sequence de sections. L'ordre est FIXE et ne doit pas etre modifie.
-
 | # | Section | Fond | Layout | Obligatoire |
 |---|---------|------|--------|-------------|
 | 1 | Hero Product | `bg-future-dusk-900` (dark) | Split HeroSection | Oui |
-| 2 | IA Ready Banner | `bg-gradient-to-r from-amber-50 to-very-peri-50` | Horizontal icon+text+CTA | Si machine IA Ready |
-| 3 | **Product Story** | `bg-white` | Centre Apple + bento grid (7/5 + tiers) | Oui |
-| 4 | Key Stats Ribbon | `bg-future-dusk-900` (dark) | 3 colonnes AnimatedCounter | Si keyStats definis |
-| 5 | Avantages cles | `bg-white` | Featured dark full-width + 2-col grid | Oui |
-| 6 | **Specs & Use Cases** | `bg-future-dusk-900` (dark) | Split 7/5 (specs table + glassmorphism cards) | Oui |
-| 7 | Systemes similaires | `bg-neutral-50` | Grid 3 colonnes | Si machines similaires |
+| 2 | IA Ready Banner | `gradient amber→peri` | Horizontal icon+text+CTA | Si `isIAReady` |
+| 3 | **Product Story** | `bg-white` | Centre Apple + bento grid 2 rows | Oui |
+| 4 | Key Stats Ribbon | `bg-future-dusk-900` (dark) | 3 cols AnimatedCounter | Si `keyStats` |
+| 5 | Avantages cles | `bg-white` | Featured dark + 2-col grid | Oui |
+| 6 | **Specs & Use Cases** | `bg-future-dusk-900` (dark) | Split 7/5 (table + glassmorphism) | Oui |
+| 7 | Systemes similaires | `bg-neutral-50` | Grid 3 colonnes | Si similaires |
 | 8 | Formation Academy | `bg-white` | Split 7/5 + carte gradient | Oui |
-| 9 | FAQ | `bg-neutral-50` | Split 4/8 sticky + accordion | Si faqItems definis |
-| 10 | CTA Final (ADN) | `bg-black` | 2 cartes (gradient peri 3/5 + glassmorphism 2/5) | Oui |
+| 9 | FAQ | `bg-neutral-50` | Split sticky 4/8 + accordion | Si `faqItems` |
+| 10 | CTA Final (ADN) | `bg-black` | 2 cartes (peri 3/5 + glass 2/5) | Oui |
 
-### Rythme des fonds (alternance dark/light)
+### Rythme des fonds
 ```
-Hero (dark) → IA Ready (gradient) → Product Story (white) → Stats (dark) →
-Avantages (white) → Specs & Use Cases (dark) → Similaires (gray) →
-Formation (white) → FAQ (gray) → CTA Final (black)
+dark → gradient → white → dark → white → dark → gray → white → gray → black
 ```
-Jamais 2 fonds identiques consecutifs. 10 sections au lieu de 13 (fusions + suppression redondances).
+10 sections. Jamais 2 fonds identiques consecutifs. Aucun layout repete consecutivement.
+
+### Carte des layouts (variete)
+```
+SPLIT → HORIZONTAL → CENTRE+BENTO → CENTRE+3COL → FEATURED+GRID →
+SPLIT 7/5 → CENTRE+GRID → SPLIT 7/5 → SPLIT STICKY → CENTRE+2CARTES
+```
 
 ---
 
 ## 2. Checklist par section
 
 ### 2.1 Hero Product
-- Layout `split` via `HeroSection` component
-- Badge `< Tous les studios` en haut a gauche
+- Layout `split` via composant `HeroSection`
+- Badge retour `< Tous les studios` en haut
 - Titre = `machine.nom` (display auto par HeroSection)
 - Subtitle = `machine.useCases.join(' • ')`
 - Image produit dans cadre blanc `bg-white rounded-2xl shadow-2xl p-8`
@@ -51,104 +58,92 @@ Jamais 2 fonds identiques consecutifs. 10 sections au lieu de 13 (fusions + supp
 - Gradient `from-amber-50 to-very-peri-50`
 - Lien vers `/ia-photo-produit`
 
-### 2.3 Galerie de resultats (NOUVEAU)
-**Inspiration Orbitvu** : section "Exemples de photos, animations 360° et videos"
+### 2.3 Product Story (centre Apple + bento grid)
+Fusion de l'ancienne galerie + description. Une seule section avec 2 niveaux.
 
+**Niveau 1 — Heading centre Apple-style**
 - Label : `machine.nom` en uppercase tracking
-- Titre : `text-4xl lg:text-6xl` — "Exemples de photos, 360° et videos"
-- Layout bento grid asymetrique :
-  - 1 grande image (col-span-2 row-span-2, aspect-[4/3]) — packshot fond blanc
-  - 2 petites images carrees — 360° interactif + produit reflechissant
-  - 1 placeholder video (dark, avec bouton Play) — col-span-2 lg:col-span-1
-- Chaque cellule a un badge en bas a gauche indiquant le type (Packshot, 360°, Video, etc.)
-- **Images** : utiliser des placeholders avec icones tant que les vraies images ne sont pas disponibles
-- **Pour chaque machine** : adapter les labels des placeholders aux use cases specifiques
+- Titre : `text-4xl lg:text-6xl` — "Studio photo IA pour la photographie de produits"
+- Paragraphe descriptif centre avec bold selectif (`lampes virtuelles`, `assistant IA intelligent`)
+- Grande respiration (`mb-16 lg:mb-24`) entre heading et bento
 
-### 2.4 Description + Video (NOUVEAU)
-**Inspiration Orbitvu** : section split avec texte narratif + video
+**Niveau 2 — Bento grid en 2 rows**
+- Row 1 (grid 12 cols) : Packshot placeholder 7 cols (h-[420px]) + Video placeholder 5 cols (dark, Play button, badge "VIDEO DEMO")
+- Row 2 (grid 3 cols) : 360° placeholder + Produit reflechissant placeholder + Tuile texte (gradient peri, "Premier studio IA au monde", icone Sparkles)
+- Chaque cellule a un badge en bas a gauche (Packshot, 360°, Verre & metal, etc.)
+- **1 seul placeholder video** dans toute la page (ici dans la bento grid)
 
-- Label : `machine.nom`
-- Titre : `text-3xl sm:text-4xl lg:text-5xl` — adapte au produit
-- 2 paragraphes narratifs avec **bold selectif** sur les termes cles :
-  - Paragraphe 1 : description generale + differenciateurs (IA, eclairage, etc.)
-  - Paragraphe 2 : productivite + benefice e-commerce
-- Placeholder video en `aspect-video` avec bouton Play cercle + texte
-- **IMPORTANT** : Le texte doit etre adapte pour chaque machine en utilisant les donnees
-  de `machine.keyAdvantages`, `machine.faqItems`, et les specs
-- **Ne PAS copier-coller** le meme texte pour toutes les machines
+**Pour adapter par machine** : le texte narratif parle de "lampes virtuelles" et "assistant IA"
+— ok pour les Alphashot. Pour les grands studios, adapter le paragraphe.
 
-### 2.5 Key Stats Ribbon
+### 2.4 Key Stats Ribbon
 - Label categorie : "En chiffres" / "By the numbers"
-- **AnimatedCounter** sur chaque stat (PAS de texte statique)
-- Parsing : `parseInt(stat.value.replace(/[^0-9]/g, ''))` pour le nombre, le reste comme suffix
+- **AnimatedCounter** (PAS de texte statique) : parsing avec `parseInt(value.replace(/[^0-9]/g,''))` + suffix
 - Layout : 3 colonnes divisees par `md:divide-x md:divide-white/10`
-- Padding augmente : `py-20 lg:py-24`
+- Padding : `py-20 lg:py-24`
+- **Attention** : ne pas repeter les memes chiffres que la tuile bento (la tuile montre "Premier studio IA", pas un chiffre)
 
-### 2.6 Avantages cles
-- Label : "Pourquoi ce systeme"
-- Titre : `text-4xl lg:text-6xl` (display size)
-- Layout split sticky 4/8 — heading sticky a gauche, cartes a droite
-- **Ghost numbers** : `text-5xl lg:text-7xl text-neutral-100`
-- Chaque avantage a :
-  - Un titre (`text-lg font-heading font-bold`)
-  - **Une description** de 2-3 lignes (`text-sm text-future-dusk-500`) — via `advantage.description`
-- Si `advantage.description` n'existe pas, afficher seulement le titre (retrocompatible)
-- **Pour enrichir une machine** : ajouter `description: { fr: '...', en: '...' }` dans machines.ts
+### 2.5 Avantages cles (featured + 2-col grid)
+Layout a 2 niveaux — hierarchie visuelle forte.
 
-### 2.7 Caracteristiques techniques
-- Label : "Fiche technique"
-- Titre : `text-4xl lg:text-5xl` (augmente depuis text-3xl)
-- Fond dark + carte blanche flottante `shadow-2xl`
-- 2 colonnes : Dimensions & Capacites (gauche) + Fonctionnalites & Secteurs (droite)
-- **Secteurs traduits** via `sectorLabels` map — ne JAMAIS afficher en anglais brut
-- Fonctionnalites via `featureLabels` map
+**Heading centre** : label "Pourquoi ce systeme", titre display `text-4xl lg:text-6xl`
 
-### 2.8 Cas d'usage & Limites
-- **Label categorie** : "Pour qui"
-- **Titre de section** : `text-4xl lg:text-5xl` — "Cas d'usage & limites"
-- 2 cartes avec icones dans un cercle colore avant le titre
-- Carte verte (emerald-50) : use cases avec CheckCircle
-- Carte jaune (amber-50) : limitations avec AlertTriangle
-- Padding : `py-20 lg:py-32`
+**Avantage 1 — Featured full-width** :
+- Fond `bg-future-dusk-900` rounded-2xl, grid 2 cols
+- Ghost number `text-7xl lg:text-8xl text-white/5`
+- Titre `text-2xl lg:text-3xl` blanc + description `text-future-dusk-300`
+- Placeholder image a droite (bg-white/5, prêt pour une vraie image)
 
-### 2.9 CTA Intermediaire
-- Centré, dark gradient, 2 CTAs (Reserver demo + Calculer ROI)
-- Texte dynamique avec `machine.nom`
-- Pas de label (acceptable pour un CTA)
+**Avantages 2-3 — Grille 2 colonnes** :
+- Fonds differencies : `bg-very-peri-50 border-very-peri-100` vs `bg-neutral-50 border-neutral-100`
+- Ghost numbers `text-5xl lg:text-6xl`
+- Titre + description
 
-### 2.10 Systemes similaires
-- **Label categorie** : "Comparer"
-- **Titre** : `text-4xl lg:text-5xl` — "Systemes similaires"
-- Grid 3 colonnes avec SpringCard + ScrollReveal
+**Pour enrichir** : ajouter `description: { fr: '...', en: '...' }` dans `keyAdvantages` de chaque machine.
+Sans description, seul le titre s'affiche (retrocompatible).
+
+### 2.6 Specs & Use Cases (split 7/5 fusionné)
+Anciennement 3 sections separees (Specs + Use Cases + CTA inter). Maintenant 1 seule section dark.
+
+**Colonne gauche (7/12)** :
+- Label "Fiche technique", titre `text-4xl lg:text-5xl` blanc
+- Carte blanche `shadow-2xl` avec table de specs (tailleMax, poidsMax, capaciteJour, spaceRequired, studioFootprint)
+- Section "Fonctionnalites" en tags badges emerald (Packshot, Vue 360°, Video...)
+
+**Colonne droite (5/12)** — 3 cartes glassmorphism empilees :
+- Carte 1 `bg-white/10` : "Cas d'usage ideaux" avec CheckCircle emerald + liste use cases
+- Carte 2 `bg-white/10` : "Secteurs ideaux" avec tags `bg-very-peri-500/20`
+- Carte 3 `bg-amber-500/10` : "Points d'attention" avec AlertTriangle amber + limitations
+
+**Secteurs traduits** via `sectorLabels` map — ne JAMAIS afficher en anglais brut.
+
+### 2.7 Systemes similaires
+- Label : "Comparer", titre display `text-4xl lg:text-5xl`
+- Grid 3 colonnes, SpringCard + ScrollReveal
 - Chaque carte : image + nom + use cases + badges (prod/jour, taille max)
 - Padding : `py-20 lg:py-32`
 
-### 2.11 Formation Academy
+### 2.8 Formation Academy
 - Label : "PackshotCreator Academy"
 - Split 7/5 avec carte gradient peri a droite (Qualiopi + OPCO)
 - 3 bullet points formation + 2 CTAs (Voir formations + Calendrier)
 - Conforme au design-system — ne pas modifier
 
-### 2.12 FAQ
-- Label : "FAQ"
-- Split 4/8 sticky heading + accordion `<details>`
-- Titre : `text-4xl lg:text-5xl` — "Questions frequentes"
-- Pattern ADN respecte — ne pas modifier
+### 2.9 FAQ
+- Label : "FAQ", titre `text-4xl lg:text-5xl` — "Questions frequentes"
+- Split sticky 4/8 heading + accordion `<details>`
+- Padding : `py-20 lg:py-32`
 
-### 2.13 CTA Final (pattern ADN)
-- Fond : `bg-black` (PAS gradient peri)
-- Label categorie : "Passez a l'action"
-- Titre display : `text-4xl lg:text-6xl`
+### 2.10 CTA Final (pattern ADN)
+- Fond `bg-black` avec gradient radial subtil
+- Label : "Passez a l'action", titre display `text-4xl lg:text-6xl`
 - **2 cartes distinctes** :
-  - Carte 1 (3/5) : gradient peri, titre + description + CTA "Demander un devis"
-  - Carte 2 (2/5) : glassmorphism (`bg-white/5 backdrop-blur-sm border-white/10`), icone BarChart3, titre "Calculez votre ROI" + description + CTA outline
-- Gradient radial en arriere-plan pour subtilite
+  - Carte 1 (3/5) : gradient peri, titre + description + CTA blanc "Demander un devis"
+  - Carte 2 (2/5) : glassmorphism, icone BarChart3, "Calculez votre ROI" + CTA outline
 
 ---
 
 ## 3. Donnees a enrichir dans machines.ts
-
-Pour chaque machine a modifier, les champs suivants doivent etre mis a jour :
 
 ### 3.1 keyAdvantages — Ajouter des descriptions
 ```typescript
@@ -164,6 +159,7 @@ keyAdvantages: [
   // ...
 ],
 ```
+Le 1er avantage est le "featured" (full-width dark) — le plus important en premier.
 
 ### 3.2 Ou trouver le contenu pour enrichir
 1. **Page Orbitvu equivalente** (`orbitvu.fr/product/[machine-id]/`) — source primaire
@@ -192,52 +188,65 @@ keyAdvantages: [
 | `furniture-studio` | `/studio-photo/furniture-studio` | `orbitvu.fr/product/furniture-studio/` |
 | `e-comm-studio-plus` | `/studio-photo/e-comm-studio-plus` | `orbitvu.fr/product/e-comm-studio-plus/` |
 
+### 3.4 Machines deja enrichies
+- **alphashot-pro-g2** : descriptions avantages ✅, keyStats ✅, faqItems ✅
+
+### 3.5 Machines a enrichir (prochaines sessions)
+Toutes les autres machines n'ont PAS de `description` dans leurs `keyAdvantages`.
+La session doit :
+1. Aller sur la page Orbitvu equivalente
+2. Extraire les descriptions des avantages
+3. Les ajouter dans `machines.ts`
+4. Verifier visuellement que la page est conforme
+
 ---
 
-## 4. Methode de travail pour chaque page produit
+## 4. Methode de travail pour chaque prochaine session
 
-### Etape 1 — Analyser la page Orbitvu equivalente
+### Ce qui est DEJA FAIT (code commun, ne pas refaire)
+- Layout des 10 sections (page.tsx)
+- AnimatedCounter sur les stats
+- Secteurs traduits FR
+- CTA Final pattern ADN
+- Bento grid Product Story
+- Section fusionnee Specs & Use Cases
+- Labels categorie sur toutes les sections
+
+### Ce qu'il faut faire PAR MACHINE
+
+**Etape 1 — Analyser la page Orbitvu equivalente**
 1. Naviguer sur `orbitvu.fr/product/[machine-id]/`
-2. Noter : description narrative, features mises en avant, types de produits montres, video disponible
+2. Noter : description narrative, features, types de produits montres
 3. Identifier les differenciateurs specifiques a cette machine
 
-### Etape 2 — Verifier les donnees dans machines.ts
-1. `keyAdvantages` : ont-ils des descriptions ? Si non, les ajouter en s'inspirant d'Orbitvu + FAQ
-2. `limitations` : sont-elles claires et bien formulees ?
-3. `keyStats` : sont-ils definis ? Si non, les creer a partir des specs
-4. `faqItems` : sont-ils suffisants ? (minimum 3-4)
+**Etape 2 — Enrichir machines.ts**
+1. `keyAdvantages` : ajouter `description: { fr, en }` a chaque avantage
+2. `limitations` : preciser (ex: "Taille limitee" → "Taille limitee a 35x35x40 cm")
+3. `keyStats` : verifier qu'ils existent et sont pertinents
+4. `faqItems` : verifier qu'il y en a minimum 3-4
 
-### Etape 3 — Adapter les textes de la page
-Le template (`page.tsx`) est generique et s'adapte automatiquement aux donnees machine.
-Mais certains textes sont hardcodes et doivent etre verifies :
+**Etape 3 — Verifier le texte hardcode de Product Story**
+Le paragraphe narratif parle actuellement de "lampes virtuelles" et "assistant IA".
+C'est correct pour les Alphashot (IA Ready). Pour les machines sans IA :
+- Adapter le texte ou le rendre conditionnel
+- Ne PAS inventer — demander a l'utilisateur
 
-1. **Section Galerie** : les labels des placeholders doivent refleter les use cases de la machine
-   - Ex: pour Fashion Studio → "Vetement ghost mannequin" au lieu de "Produit reflechissant"
-2. **Section Description + Video** : le texte narratif est generique pour les petites machines.
-   Pour les grandes machines (Fashion Studio, Bike Studio), il faut adapter le paragraphe.
-   - Actuellement le texte parle de "lampes virtuelles" et "assistant IA" — ok pour les Alphashot
-   - Pour les studios XL/Fashion, adapter (ex: "plateau tournant motorise", "eclairage continu")
-3. **Section CTA Final** : le texte est generique et fonctionne pour toutes les machines
-
-### Etape 4 — Build et verification visuelle
-1. `npm run build` — zero erreur obligatoire
-2. Verifier la page dans Chrome — screenshot de chaque section
-3. Verifier l'alternance des fonds (jamais 2 identiques consecutifs)
-4. Verifier que les AnimatedCounter fonctionnent (scroll reveal)
+**Etape 4 — Build et verification visuelle**
+1. `npm run build` — zero erreur
+2. Verifier la page dans Chrome
+3. Verifier que les AnimatedCounter s'animent au scroll
 
 ---
 
-## 5. Composants et imports necessaires
+## 5. Composants et imports
 
 ```typescript
-// Imports obligatoires pour la page produit
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 
-// Icones Lucide utilisees
 import {
   CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera,
   Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap,
@@ -247,9 +256,9 @@ import {
 
 ---
 
-## 6. Maps de traduction
+## 6. Maps de traduction (dans page.tsx)
 
-### sectorLabels (dans la page)
+### sectorLabels
 ```typescript
 const sectorLabels: Record<string, { fr: string; en: string }> = {
   jewelry: { fr: 'Bijouterie', en: 'Jewelry' },
@@ -268,7 +277,7 @@ const sectorLabels: Record<string, { fr: string; en: string }> = {
 };
 ```
 
-### featureLabels (dans la page)
+### featureLabels
 ```typescript
 const featureLabels: Record<string, { fr: string; en: string }> = {
   packshot: { fr: 'Packshot', en: 'Packshot' },
@@ -282,7 +291,7 @@ const featureLabels: Record<string, { fr: string; en: string }> = {
 
 ---
 
-## 7. Regles strictes (rappel)
+## 7. Regles strictes
 
 - **Ne JAMAIS ajouter de sections** non listees dans ce template sans validation utilisateur
 - **Ne JAMAIS inventer de contenu** — utiliser les sources Orbitvu + FAQ + specs
@@ -297,25 +306,22 @@ const featureLabels: Record<string, { fr: string; en: string }> = {
 
 ---
 
-## 8. Comparaison structurelle avec Orbitvu (reference)
+## 8. Comparaison structurelle avec Orbitvu
 
-### Ce qu'Orbitvu fait et que nous faisons mieux
+### Ce que nous faisons mieux
 - **Stats animees** (AnimatedCounter) — Orbitvu n'en a pas
 - **FAQ structuree** (SEO + Schema.org) — Orbitvu n'en a pas
 - **Cross-selling** (systemes similaires) — Orbitvu n'en a pas
 - **Formation integree** (Academy + Qualiopi/OPCO) — Orbitvu n'a qu'un lien contact
 - **IA Ready banner** + lien BlendAI — differenciateur PackshotCreator
+- **Layout Apple-style** avec variete (featured, bento, split, sticky)
 
-### Ce qu'Orbitvu fait et que nous devons rattraper
-- **Galerie de resultats** — Orbitvu montre des exemples de photos produites (CRITIQUE)
-- **Video demo** — Orbitvu a une video sur chaque page produit (HAUT)
-- **Description narrative riche** — Orbitvu a des paragraphes avec bold selectif (FAIT)
-- **Features detaillees avec photos** — Orbitvu montre les composants en detail
-  → Pour nous : necessiterait des photos reelles, utiliser des placeholders en attendant
-- **Vue 360° interactive** du produit — Orbitvu l'a sur chaque page
-  → Pour nous : necessiterait une integration Orbitvu, hors scope actuel
+### Ce que nous devons rattraper (visuels)
+- **Galerie de resultats** — placeholders en place, besoin de VRAIES photos
+- **Video demo** — placeholder en place, besoin de la vraie video
+- **Vue 360° interactive** du produit — necessiterait une integration Orbitvu
 
-### Priorite des visuels a ajouter (par machine)
+### Priorite des visuels a ajouter par machine
 1. Photo hero avec produit visible a l'interieur du studio
 2. 3-4 exemples de photos produites par le studio
 3. Video de demonstration
