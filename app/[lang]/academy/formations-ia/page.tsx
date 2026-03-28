@@ -297,7 +297,7 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                       <Award className="h-8 w-8 text-emerald-600" />
                       <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('qualiopi.heading')}</h3>
                     </div>
-                    <p className="text-future-dusk-600 mb-6">{t('qualiopi.description')}</p>
+                    <p className="text-future-dusk-600 mb-6">{t.rich('qualiopi.description', { bold: (chunks) => <strong className="text-emerald-700 font-semibold">{chunks}</strong> })}</p>
                     <ul className="space-y-3">
                       {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
                         <li key={key} className="flex items-center gap-3"><Check className="h-5 w-5 text-emerald-600 shrink-0" /><span className="text-sm text-future-dusk-600">{t(`qualiopi.${key}`)}</span></li>
@@ -310,7 +310,7 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
                 <SpringCard>
                   <div className="bg-very-peri-50 rounded-2xl p-6 sm:p-10">
                     <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('opco.heading')}</h3>
-                    <p className="text-future-dusk-600 font-medium mb-6">{t('opco.description')}</p>
+                    <p className="text-future-dusk-600 font-medium mb-6">{t.rich('opco.description', { bold: (chunks) => <strong className="text-emerald-700 font-semibold">{chunks}</strong> })}</p>
                     <div className="space-y-4 text-sm text-future-dusk-600 mb-6">
                       <p><strong>{isFr ? 'Salariés :' : 'Employees:'}</strong> {t('opco.salaries')}</p>
                       <p><strong>{isFr ? 'Indépendants :' : 'Self-employed:'}</strong> {t('opco.independants')}</p>
