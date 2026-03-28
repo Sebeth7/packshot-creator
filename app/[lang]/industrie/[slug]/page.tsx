@@ -231,6 +231,74 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
+          CAS D'USAGE — fond very-peri-50, cartes processus industriels
+          ═══════════════════════════════════════════════════════════ */}
+      {secteur.useCases && secteur.useCases.length > 0 && (
+        <section className="py-20 lg:py-32 bg-very-peri-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView direction="left" className="text-center mb-16">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'CAS D\'USAGE' : 'USE CASES'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+                {isFr ? 'Applications concrètes' : 'Concrete applications'}
+              </TextReveal>
+              <p className="text-lg text-neutral-medium max-w-2xl mx-auto leading-relaxed">
+                {isFr
+                  ? 'Comment nos systèmes répondent aux processus spécifiques de votre secteur.'
+                  : 'How our systems address the specific processes of your sector.'}
+              </p>
+            </FadeInView>
+
+            <StaggerContainer className={`grid gap-6 ${
+              secteur.useCases.length <= 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' :
+              secteur.useCases.length === 3 ? 'md:grid-cols-3' :
+              'md:grid-cols-2'
+            }`}>
+              {secteur.useCases.map((uc, index) => (
+                <StaggerItem key={index}>
+                  <SpringCard>
+                    <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                      {/* Ghost number */}
+                      <span className="text-5xl font-heading font-bold text-very-peri-100 leading-none mb-4">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">
+                        {uc.titre}
+                      </h3>
+
+                      {/* Process description */}
+                      <p className="text-neutral-medium leading-relaxed mb-5 flex-1">
+                        {uc.processus}
+                      </p>
+
+                      {/* Orbitvu features tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {uc.fonctionsOrbitvu.map((fn, idx) => (
+                          <span key={idx} className="inline-block text-xs font-medium bg-very-peri-100 text-very-peri-700 px-3 py-1 rounded-full">
+                            {fn}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Value */}
+                      <div className="border-t border-neutral-100 pt-4">
+                        <p className="text-sm font-semibold text-heading-dark">
+                          {uc.valeur}
+                        </p>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════
           SYSTÈMES RECOMMANDÉS — fond future-dusk-900, cartes machines
           ═══════════════════════════════════════════════════════════ */}
       {recommendedMachines.length > 0 && (

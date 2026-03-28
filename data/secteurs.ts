@@ -23,6 +23,12 @@ export interface Secteur {
     titre: string;
     description: string;
   }[];
+  useCases?: {
+    titre: string;
+    processus: string;
+    fonctionsOrbitvu: string[];
+    valeur: string;
+  }[];
   cta: {
     titre: string;
     description: string;
@@ -295,6 +301,20 @@ export const secteurs: Secteur[] = [
           'Packshot + 2 visuels recettes IA/produit. Délais -85%. Engagement Instagram +120% grâce visuels food styling.',
       },
     ],
+    useCases: [
+      {
+        titre: 'Contrôle qualité emballages',
+        processus: 'Documentation standardisée des emballages pour les audits IFS, BRC et HACCP. Vérification visuelle de l\'étiquetage, de l\'intégrité des scellés et de la conformité packaging.',
+        fonctionsOrbitvu: ['Templates', 'Comparaison', 'Multi-export'],
+        valeur: 'Photos standardisées prêtes pour les audits de conformité',
+      },
+      {
+        titre: 'Standardisation multi-marchés',
+        processus: 'Produire des visuels identiques pour les mêmes produits déclinés sur plusieurs marchés, avec des packagings différents mais un cadrage et un éclairage constants.',
+        fonctionsOrbitvu: ['Templates', '74 LED', 'Export multi-format'],
+        valeur: 'Cohérence visuelle garantie sur tous les marchés',
+      },
+    ],
     cta: {
       titre: 'Sublimez vos produits alimentaires',
       description: 'Devis packshot food + démo styling culinaire IA.',
@@ -509,6 +529,20 @@ export const secteurs: Secteur[] = [
       { question: 'Peut-on créer des visuels lifestyle tech sans shooting en bureau ?', answer: 'BlendAI place vos produits dans des ambiances réalistes : bureaux modernes, espaces coworking, home office, cafés. Production de 50 à 150 visuels lifestyle par jour.' },
       { question: 'Comment gérer les packagings premium type Apple ?', answer: 'Les studios Orbitvu capturent fidèlement les finitions premium : textures aluminium brossé, boîtes de présentation luxe, accessoires. L\'éclairage est calibré pour les matériaux high-tech.' },
     ],
+    useCases: [
+      {
+        titre: 'Inspection visuelle PCB',
+        processus: 'Détection de micro-défauts de soudure sur cartes électroniques via focus stacking et éclairage rasant contrôlé. Remplacement de l\'inspection manuelle (taux d\'erreur 20-30%).',
+        fonctionsOrbitvu: ['SuperFocus', 'Éclairage rasant', '74 LED individuelles'],
+        valeur: 'Détection micro-défauts soudure, réduction du taux d\'erreur d\'inspection',
+      },
+      {
+        titre: 'Gestion obsolescence composants (DMSMS)',
+        processus: 'Créer une base de référence visuelle haute résolution des composants avant obsolescence pour identification future et recherche de pièces de remplacement.',
+        fonctionsOrbitvu: ['SuperFocus macro', '360°', 'Archivage', 'Auto-naming'],
+        valeur: 'Base de référence DMSMS, identification fiable des composants obsolescents',
+      },
+    ],
   },
 
   // 8. PIÈCES TECHNIQUES / INDUSTRIE
@@ -565,6 +599,20 @@ export const secteurs: Secteur[] = [
         titre: 'Fabricant pièces auto 2000 références',
         description:
           'Packshot automatisé 360° + nomenclature intégrée. Catalogue complet photographié en 3 semaines (vs 6 mois manuellement).',
+      },
+    ],
+    useCases: [
+      {
+        titre: 'Catalogue SAV équipements',
+        processus: 'Créer et maintenir un catalogue visuel de 50 000+ pièces détachées pour le service après-vente. Scan code-barres, capture automatique en vues standardisées, export vers ERP/PIM.',
+        fonctionsOrbitvu: ['360°', 'Auto-naming SKU', 'Multi-format', 'IQ Mask'],
+        valeur: 'Autonomie documentaire interne, catalogues toujours à jour',
+      },
+      {
+        titre: 'Documentation d\'assemblage',
+        processus: 'Photographier chaque étape d\'assemblage en multi-angles pour créer des manuels techniques visuels standardisés et reproductibles entre sites.',
+        fonctionsOrbitvu: ['Multi-angles', 'Templates', 'Annotations'],
+        valeur: 'Manuels techniques visuels standardisés multi-sites',
       },
     ],
     cta: {
@@ -634,6 +682,20 @@ export const secteurs: Secteur[] = [
           'Packshot + 360° automatisés. Catalogue complet en 6 semaines. Ventes e-commerce +60% (visibilité pièces améliorée).',
       },
     ],
+    useCases: [
+      {
+        titre: 'QC sortie de production',
+        processus: 'Contrôle qualité visuel en bout de ligne : comparaison automatique de chaque pièce avec l\'échantillon de référence (golden sample) pour détecter les défauts surface et peinture.',
+        fonctionsOrbitvu: ['Templates', 'Ghost Image', 'Éclairage contrôlé'],
+        valeur: 'Détection défauts automatisée, élimination de la variabilité humaine',
+      },
+      {
+        titre: 'Catalogage aftermarket e-commerce',
+        processus: 'Photographier 500+ pièces/jour en packshot + 360° avec export automatique vers les marketplaces et le catalogue e-commerce interne.',
+        fonctionsOrbitvu: ['360°', 'Multi-export', 'Auto-naming OEM', 'IQ Mask'],
+        valeur: 'Réduction de 70% du time-to-market vs sous-traitance photo',
+      },
+    ],
     cta: {
       titre: 'Automatisez vos catalogues pièces auto',
       description: 'Devis packshot automobile gros volumes.',
@@ -642,7 +704,7 @@ export const secteurs: Secteur[] = [
       { question: 'Comment gérer un catalogue de plusieurs milliers de pièces auto ?', answer: 'Les studios Orbitvu en batch processing automatisé traitent 100 à 300 pièces par jour avec import des nomenclatures OEM, codes compatibilité et export direct vers vos plateformes e-commerce.' },
       { question: 'Le 360° aide-t-il les garagistes à identifier les pièces ?', answer: 'Oui, la rotation 360° permet aux professionnels d\'identifier visuellement les pièces sous tous les angles sans ambiguïté, réduisant les erreurs de commande et les retours.' },
       { question: 'Peut-on photographier des pièces de tailles très différentes ?', answer: 'Les studios Orbitvu couvrent tous les formats : des petits joints et connecteurs en macrophotographie aux grands éléments de carrosserie (pare-chocs, capots) sur plateaux grand format.' },
-      { question: 'Comment intégrer les photos dans notre boutique e-commerce auto ?', answer: 'L\'export est automatisé vers les marketplaces (eBay Motors, Amazon Auto) et vos plateformes e-commerce avec nomenclatures OEM, dimensions et compatibilités marque/modèle/année.' },
+      { question: 'Comment le studio détecte-t-il les défauts en sortie de production ?', answer: 'Le workflow de comparaison superpose l\'image capturée avec le golden sample via Ghost Image. Les écarts de surface, couleur ou finition sont immédiatement visibles. Les templates garantissent des conditions d\'éclairage identiques à chaque contrôle.' },
     ],
   },
 
@@ -839,6 +901,20 @@ export const secteurs: Secteur[] = [
           'Packshot conforme + nomenclatures intégrées. Catalogue certifié CE en 4 semaines. Validation réglementaire simplifiée.',
       },
     ],
+    useCases: [
+      {
+        titre: 'Documentation de lot conforme',
+        processus: 'Intégrer des photos standardisées dans les dossiers de lot de chaque dispositif médical. Traçabilité visuelle complète pour les audits FDA et ANSM.',
+        fonctionsOrbitvu: ['Templates', 'Focus stacking', 'Horodatage', 'Export'],
+        valeur: 'Documentation de lot inattaquable, prête pour les audits réglementaires',
+      },
+      {
+        titre: 'Catalogage instruments chirurgicaux',
+        processus: 'Identifier visuellement chaque instrument avec précision via vues 360° et détourage automatique pour les systèmes de suivi de stérilisation et d\'inventaire.',
+        fonctionsOrbitvu: ['360°', 'IQ Mask', 'SuperFocus', 'Auto-naming'],
+        valeur: 'Identification visuelle précise, conformité ISO 13485',
+      },
+    ],
     cta: {
       titre: 'Catalogues médicaux conformes',
       description: 'Devis packshot médical précision + conformité.',
@@ -919,6 +995,26 @@ export const secteurs: Secteur[] = [
           'Catalogue complet photographié en 4 semaines (vs 4 mois manuellement). Intégration PIM automatisée. Erreurs de commande -40% grâce aux visuels 360°.',
       },
     ],
+    useCases: [
+      {
+        titre: 'Station QC visuelle en production',
+        processus: 'Intégrer une station de contrôle qualité photographique en bout de ligne de production. Comparaison automatique avec l\'échantillon de référence pour détecter les écarts visuels.',
+        fonctionsOrbitvu: ['Templates', 'Ghost Image', 'Éclairage contrôlé', 'Export QMS'],
+        valeur: 'Élimination de l\'erreur humaine en inspection visuelle',
+      },
+      {
+        titre: 'Catalogue SAV multi-sites',
+        processus: 'Standardiser la documentation visuelle de 50 000+ pièces détachées entre plusieurs usines avec les mêmes paramètres de capture, même éclairage, mêmes vues.',
+        fonctionsOrbitvu: ['Templates', '360°', 'Auto-naming', 'Intégration ERP'],
+        valeur: 'Cohérence visuelle entre sites, mises à jour continues du catalogue',
+      },
+      {
+        titre: 'Manuels techniques visuels',
+        processus: 'Créer des manuels d\'assemblage et de maintenance illustrés avec vues multi-angles standardisées de chaque sous-ensemble et pièce critique.',
+        fonctionsOrbitvu: ['Multi-angles', 'SuperFocus', '360° interactif'],
+        valeur: 'Formation accélérée des techniciens, documentation multi-sites',
+      },
+    ],
     cta: {
       titre: 'Optimisez votre documentation produit',
       description:
@@ -935,80 +1031,102 @@ export const secteurs: Secteur[] = [
   // 14. DÉFENSE & SÉCURITÉ
   {
     slug: 'defense-securite',
-    titre: 'Photo Produit Défense & Sécurité : Documentation Conforme',
+    titre: 'Documentation Visuelle Défense & Sécurité : Conforme, Traçable, Sécurisée',
     description:
-      'Studios photo pour le secteur défense et sécurité. Documentation matériel conforme, traçabilité, workflow sécurisé sans cloud.',
+      'Studios photo automatisés pour la défense et l\'industrie de sécurité. Documentation MRO, inventaire anti-contrefaçon, catalogage IUID/UID, workflow air-gapped sans cloud.',
     hero: {
-      titre: 'Solutions Photo pour la Défense et la Sécurité',
-      sousTitre: 'Documentation visuelle conforme aux exigences du secteur',
+      titre: 'Documentation Visuelle pour la Défense et la Sécurité',
+      sousTitre: 'MRO, inventaire, anti-contrefaçon, formation : au-delà du packshot',
       description:
-        'Documentez vos matériels et équipements avec des studios photo sur site, des workflows sécurisés et une traçabilité complète.',
+        'Studios photo sur site, workflows air-gapped et traçabilité complète pour la documentation de vos matériels, l\'inventaire de pièces détachées et le suivi de maintenance.',
     },
     problematiques: {
-      titre: 'Défis Photo Défense & Sécurité',
+      titre: 'Défis de la documentation visuelle en défense',
       items: [
-        'Exigences de traçabilité strictes sur chaque visuel produit',
-        'Matériels et équipements de haute précision nécessitant un rendu fidèle',
-        'Confidentialité des données visuelles (pas de transfert cloud)',
-        'Normes de documentation spécifiques au secteur défense',
-        'Besoin de studios sur site pour éviter la sortie de matériel sensible',
+        'Documentation photographique par smartphone non standardisée : angles, éclairages et opérateurs variables, inutilisable pour les audits',
+        'Impossibilité de prouver la conformité visuelle dans le temps sans référence photographique reproductible',
+        'Identification visuelle des pièces détachées peu fiable : contrefaçon et stock excédentaire non identifié',
+        'Confidentialité stricte : aucune donnée visuelle ne peut transiter par le cloud ou quitter le site',
+        'Manuels de maintenance textuels insuffisants pour la formation des nouveaux techniciens',
+        'Absence de traçabilité photographique dans les rapports de non-conformité (NCR)',
       ],
     },
     solutions: {
       titre: 'Nos Solutions Défense & Sécurité',
       items: [
         {
-          titre: 'Studios Sur Site',
+          titre: 'Documentation MRO standardisée',
           description:
-            'Pas de sortie de matériel, confidentialité totale',
+            'Capturez l\'état de chaque pièce avant et après intervention avec une répétabilité certifiable',
           avantages: [
-            'Installation sur site client : aucun matériel ne quitte les locaux',
-            'Fonctionnement 100% hors ligne possible (air-gapped)',
-            'Studios compacts déployables en quelques heures',
-            'Maintenance et support sur site par nos techniciens certifiés',
+            'Workflow avant/après : même éclairage, même angle, comparaison automatique via Ghost Image',
+            'Détection de dégradation temporelle par superposition d\'images horodatées',
+            'Rapports d\'intervention illustrés générés automatiquement',
+            'Intégration GMAO/CMMS (Maximo, SAP PM) pour traçabilité complète',
           ],
         },
         {
-          titre: 'Photo 360° Standardisée',
+          titre: 'Inventaire & anti-contrefaçon',
           description:
-            'Documentation normalisée conforme aux exigences du secteur',
+            'Identification visuelle fiable de chaque pièce pour vos catalogues et inventaires conformes',
           avantages: [
-            'Rotations 360° pour documentation complète des équipements',
-            'Standardisation visuelle conforme aux normes de documentation',
-            'Macrophotographie pour détails critiques (marquages, numéros de série)',
-            'Export formats conformes aux cahiers des charges institutionnels',
+            'Catalogage 360° avec nommage automatique SKU/NSN conforme NATO',
+            'Empreintes visuelles haute résolution via SuperFocus pour détection de contrefaçon',
+            'Documentation conforme IUID/UID et MIL-STD-130',
+            'Fonctionnement 100% hors ligne (air-gapped), stockage local chiffré',
           ],
         },
         {
-          titre: 'Workflow Sécurisé',
+          titre: 'Formation technique immersive',
           description:
-            'Données locales, pas de cloud, traçabilité complète',
+            'Créez des supports de formation interactifs sans immobiliser l\'équipement',
           avantages: [
-            'Stockage local uniquement : aucune donnée envoyée sur le cloud',
-            'Traçabilité complète : historique par lot, série et opérateur',
-            'Chiffrement des données visuelles au repos et en transit',
-            'Audit trail complet pour conformité réglementaire',
+            'Vues 360° interactives avec hotspots cliquables sur les détails critiques',
+            'Modèles 3D de pièces via photogrammétrie pour intégration AR/VR',
+            'Manuels techniques visuels standardisés multi-angles',
+            'Export compatible LMS et systèmes de formation existants',
           ],
         },
       ],
     },
-    casClients: [
+    useCases: [
       {
-        titre: 'Industriel défense 1500 équipements',
-        description:
-          'Studio déployé sur site sécurisé. Documentation complète en 6 semaines. Conformité 100% aux exigences de traçabilité. Zéro fuite de données.',
+        titre: 'Documentation MRO aéronautique',
+        processus: 'Capturer l\'état des pièces avant et après chaque intervention de maintenance sur aéronefs militaires. Créer une base de référence visuelle pour le suivi de dégradation.',
+        fonctionsOrbitvu: ['Ghost Image', '360°', 'Templates', 'Color Beautifier'],
+        valeur: 'Preuve de conformité reproductible pour audits AS9100 et MIL-STD',
+      },
+      {
+        titre: 'Inventaire pièces véhicules blindés',
+        processus: 'Photographier et cataloguer chaque pièce détachée avec identification standardisée pour les systèmes de gestion de stock défense.',
+        fonctionsOrbitvu: ['360°', 'Auto-naming SKU', 'DAM', 'SuperFocus'],
+        valeur: 'Identification visuelle fiable, réduction du stock excédentaire',
+      },
+      {
+        titre: 'Anti-contrefaçon supply chain',
+        processus: 'Créer des empreintes visuelles haute résolution de chaque pièce authentique pour détecter les contrefaçons dans la chaîne d\'approvisionnement.',
+        fonctionsOrbitvu: ['SuperFocus', 'Éclairage 74 LED', 'Templates', 'Archivage'],
+        valeur: 'Détection d\'anomalies de surface, base de référence anti-contrefaçon',
+      },
+      {
+        titre: 'Formation maintenance sans immobilisation',
+        processus: 'Générer des vues 360° interactives et des modèles 3D de pièces critiques pour former les techniciens sans immobiliser l\'équipement opérationnel.',
+        fonctionsOrbitvu: ['360° interactif', 'Photogrammétrie', 'SUN Cloud', 'Export AR/VR'],
+        valeur: 'Formation immersive, équipement reste opérationnel',
       },
     ],
     cta: {
-      titre: 'Contactez-nous pour une solution adaptée',
+      titre: 'Une solution adaptée à vos contraintes',
       description:
-        'Échangeons sur vos contraintes de confidentialité et de documentation pour un devis sur mesure.',
+        'Échangeons sur vos exigences de confidentialité, traçabilité et documentation pour concevoir un déploiement sur mesure.',
     },
     faq: [
-      { question: 'Le studio peut-il fonctionner entièrement hors ligne (air-gapped) ?', answer: 'Oui, les studios Orbitvu fonctionnent 100% hors ligne. Aucune donnée n\'est envoyée sur le cloud. Le stockage est local avec chiffrement des données visuelles au repos et en transit.' },
-      { question: 'Peut-on installer le studio directement sur un site sécurisé ?', answer: 'Oui, les studios sont compacts et déployables en quelques heures sur site client. Aucun matériel ne quitte les locaux. Maintenance et support sont assurés sur site par nos techniciens certifiés.' },
-      { question: 'Quelle traçabilité est assurée sur les visuels ?', answer: 'Traçabilité complète : historique par lot, série et opérateur, avec audit trail complet pour conformité réglementaire. Chaque visuel est horodaté et lié à sa référence matériel.' },
-      { question: 'Les visuels respectent-ils les normes de documentation défense ?', answer: 'Les studios produisent des visuels standardisés conformes aux cahiers des charges institutionnels. L\'export est disponible dans les formats requis par les donneurs d\'ordre du secteur.' },
+      { question: 'Le studio peut-il fonctionner entièrement hors ligne (air-gapped) ?', answer: 'Oui, les studios Orbitvu fonctionnent 100% hors ligne. Aucune donnée n\'est envoyée sur le cloud. Le stockage est local avec chiffrement des données visuelles au repos et en transit. C\'est le mode de fonctionnement standard pour les sites classifiés.' },
+      { question: 'Comment le système détecte-t-il la dégradation des pièces dans le temps ?', answer: 'La fonction Ghost Image superpose l\'image actuelle avec la photo de référence de la pièce. Combinée aux templates sauvegardés (même éclairage, même angle), elle permet une comparaison visuelle objective et horodatée, intervention après intervention.' },
+      { question: 'Le nommage des fichiers est-il compatible avec les systèmes NATO (NSN) ?', answer: 'Oui, l\'export automatisé permet un nommage conforme NSN (NATO Stock Number) ou IUID/UID selon vos référentiels. L\'intégration avec vos systèmes de gestion (SAP, Maximo, ERP) est directe via les formats d\'export multi-format.' },
+      { question: 'Peut-on créer des supports de formation AR/VR à partir des captures ?', answer: 'Oui, les sessions photogrammétrie permettent de générer des modèles 3D exportables aux formats gITF et USDZ pour intégration en réalité augmentée. Les vues 360° interactives avec hotspots sont également disponibles via Orbitvu SUN Cloud.' },
+      { question: 'Comment le système aide-t-il à lutter contre la contrefaçon ?', answer: 'Le SuperFocus (focus stacking) combiné aux 74 LED individuellement contrôlables crée des empreintes visuelles haute résolution de chaque pièce authentique. Ces références standardisées permettent de détecter les anomalies de surface caractéristiques des pièces contrefaites.' },
+      { question: 'Quel est le déploiement type sur un site sécurisé ?', answer: 'Les studios sont compacts et déployables en quelques heures sur site client. L\'installation inclut la configuration des templates métier, la formation des opérateurs et l\'intégration avec vos systèmes existants. Maintenance et support sont assurés sur site par nos techniciens.' },
     ],
   },
 
