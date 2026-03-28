@@ -13,6 +13,7 @@
       "microStats": "Average ROI: 6-12 months | Photo cost reduction: 60-85%"
     },
     "hybrid": {
+      "label": "Our approach",
       "heading": "Photo studio + AI: the approach that changes everything",
       "subtitle": "Not all hardware, not all AI. The intelligent combination of both, backed by 25 years of product photography expertise.",
       "capture": {
@@ -42,6 +43,7 @@
       "ctaSecondary": "Compare all 20 models"
     },
     "industries": {
+      "label": "Industries",
       "heading": "Your industry, our expertise",
       "subtitle": "Product photography solutions adapted to every business challenge: reflections, transparency, large formats, batches.",
       "chaussures": "Footwear",
@@ -98,6 +100,7 @@
       }
     },
     "whyAutomate": {
+      "label": "The decisive advantage",
       "heading": "Why Automate Your Product Photography?",
       "subtitle": "3 decisive advantages for your visual production.",
       "noSkills": {
@@ -136,7 +139,15 @@
       "subtitle": "Book a demo with a PackshotCreator expert. 30 minutes to see our studios in action.",
       "microTestimonial": "\"PackshotCreator helped us save 65% of time on our photo production.\" — E-commerce Dir., international brand",
       "ctaPrimary": "Book my demo",
-      "ctaSecondary": "Calculate my ROI"
+      "ctaSecondary": "Calculate my ROI",
+      "card1": {
+        "heading": "Book your demo",
+        "description": "30 minutes with an expert. See our studios in action on your own products."
+      },
+      "card2": {
+        "heading": "Calculate your ROI",
+        "description": "Estimate your savings in 2 minutes. Personalized and immediate results."
+      }
     },
     "socialProof": {
       "heading": "They produce their packshots with us",
@@ -150,6 +161,7 @@
       "stat4Label": "cost reduction"
     },
     "painPoints": {
+      "label": "The problem",
       "heading": "Is your photo production slowing your growth?",
       "slow": {
         "title": "Too slow",
@@ -172,6 +184,7 @@
       "bridge": "There's a better way."
     },
     "testimonials": {
+      "label": "Client results",
       "heading": "What our clients say",
       "t1": {
         "stat": "65%",

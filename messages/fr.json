@@ -24,6 +24,7 @@
       "stat4Label": "de réduction des coûts"
     },
     "painPoints": {
+      "label": "Le problème",
       "heading": "Votre production photo freine votre croissance ?",
       "slow": {
         "title": "Trop lent",
@@ -46,6 +47,7 @@
       "bridge": "Il y a une autre manière de faire."
     },
     "hybrid": {
+      "label": "Notre approche",
       "heading": "Photo studio + IA : l'approche qui change tout",
       "subtitle": "Ni tout hardware, ni tout IA. La combinaison intelligente des deux, portée par 25 ans d'expertise en photographie produit.",
       "capture": {
@@ -90,6 +92,7 @@
       }
     },
     "testimonials": {
+      "label": "Résultats clients",
       "heading": "Ce qu'en disent nos clients",
       "t1": {
         "stat": "65%",
@@ -117,6 +120,7 @@
       }
     },
     "whyAutomate": {
+      "label": "L'avantage décisif",
       "heading": "3 raisons de passer à l'automatisation",
       "subtitle": "Des arguments concrets pour convaincre votre direction.",
       "noSkills": {
@@ -139,6 +143,7 @@
       }
     },
     "industries": {
+      "label": "Secteurs d'activité",
       "heading": "Votre secteur, notre expertise",
       "subtitle": "Des solutions photo produit adaptées à chaque contrainte métier : réflexions, transparences, grands formats, lots.",
       "chaussures": "Chaussures",
@@ -199,7 +204,15 @@
       "subtitle": "Réservez une démo avec un expert PackshotCreator. 30 minutes pour voir nos studios en action.",
       "microTestimonial": "\"PackshotCreator nous a fait gagner 65% de temps sur notre production photo.\" — Dir. e-commerce, marque internationale",
       "ctaPrimary": "Réserver ma démo",
-      "ctaSecondary": "Calculer mon ROI"
+      "ctaSecondary": "Calculer mon ROI",
+      "card1": {
+        "heading": "Réservez votre démo",
+        "description": "30 minutes avec un expert. Voyez nos studios en action sur vos propres produits."
+      },
+      "card2": {
+        "heading": "Calculez votre ROI",
+        "description": "Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat."
+      }
     }
   },
   "formation": {

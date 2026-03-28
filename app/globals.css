@@ -259,3 +259,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Text Gradients ── */
+.text-gradient-peri {
+  background: linear-gradient(135deg, #8585BC 0%, #6667AB 50%, #5252B9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-dusk {
+  background: linear-gradient(135deg, #8F95A8 0%, #4c5578 50%, #2E3348 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
