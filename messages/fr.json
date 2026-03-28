@@ -705,58 +705,31 @@
     "socialProof": {
       "label": "500+ entreprises équipées en France et dans le monde"
     },
-    "painPoints": {
-      "label": "LE PROBLÈME",
-      "heading": "La production photo externe coûte plus cher que vous ne le pensez",
-      "slow": {
-        "stat": "7 jours",
-        "statUnit": "délai moyen constaté",
-        "title": "Des délais qui paralysent vos lancements",
-        "description": "Vos fiches produit restent vides <bold>pendant des semaines</bold>. Pendant ce temps, vos concurrents sont déjà en ligne avec <bold>des visuels à jour</bold>."
-      },
-      "expensive": {
-        "stat": "15-30 €",
-        "statUnit": "par photo en externe",
-        "title": "Un budget qui explose avec le volume",
-        "description": "Multipliez par <bold>500 photos par saison</bold>. Le budget prestataire devient impossible à justifier. Sans compter les <bold>allers-retours de validation</bold>."
-      },
-      "inconsistent": {
-        "stat": "0 %",
-        "statUnit": "de contrôle qualité",
-        "title": "Aucune maîtrise de la cohérence visuelle",
-        "description": "Chaque shooting est différent. Éclairage, cadrage, fond — <bold>rien ne matche</bold> d'une série à l'autre. Votre <bold>image de marque</bold> en souffre."
-      },
-      "bridge": "Et si vos équipes produisaient elles-mêmes — mieux, plus vite, pour moins cher ?"
-    },
     "threePillars": {
-      "label": "NOTRE APPROCHE",
       "heading": "L'approche PackshotCreator",
-      "subtitle": "Photo studio de précision + <bold>IA spécialisée</bold> + Formation certifiée. Tout ce qu'il faut pour <bold>internaliser votre production visuelle</bold>.",
-      "cta": "Demander une démo",
-      "ctaSecondary": "Voir les systèmes",
+      "subtitle": "Photo studio de précision + IA spécialisée + Formation certifiée. Tout ce qu'il faut pour internaliser votre production visuelle.",
       "capture": {
         "title": "Capture",
-        "description": "Systèmes photo Orbitvu : packshot, 360°, vidéo. <bold>Éclairage automatique</bold>, fond blanc en 1 clic, <bold>cohérence garantie</bold> sur des milliers de visuels.",
+        "description": "Systèmes photo Orbitvu : packshot, 360°, vidéo. Éclairage automatique, fond blanc en 1 clic, cohérence garantie sur des milliers de visuels.",
         "badge": "Studio"
       },
       "creation": {
         "title": "Création",
-        "description": "BlendAI.studio transforme vos packshots en <bold>visuels lifestyle</bold>, déclinés à l'infini. L'IA part d'une photo studio pro — <bold>zéro hallucination</bold>, fidélité 100%.",
+        "description": "BlendAI.studio transforme vos packshots en visuels lifestyle, déclinés à l'infini. L'IA part d'une photo studio pro — zéro hallucination, fidélité 100%.",
         "badge": "IA"
       },
       "formation": {
         "title": "Formation",
-        "description": "Academy <bold>certifiée Qualiopi</bold>. Vos équipes maîtrisent le système en <bold>2 jours</bold>. Financement OPCO possible à 100%.",
+        "description": "Academy certifiée Qualiopi. Vos équipes maîtrisent le système en 2 jours. Financement OPCO possible à 100%.",
         "badge": "Qualiopi"
       }
     },
     "photoTypes": {
-      "label": "TYPES DE VISUELS",
       "heading": "Quel type de visuel produisez-vous ?",
       "subtitle": "Packshot, 360°, mode ou flat-lay — un système adapté à chaque besoin.",
       "still": {
         "title": "Packshot Fond Blanc",
-        "description": "Photos produit sur fond blanc, prêtes pour le e-commerce. <bold>Détourage automatique</bold>, éclairage optimisé, résultat identique du <bold>premier au millième visuel</bold>.",
+        "description": "Photos produit sur fond blanc, prêtes pour le e-commerce. Détourage automatique, éclairage optimisé, résultat identique du premier au millième visuel.",
         "stat1": "500+ photos/jour",
         "stat2": "Fond blanc en 1 clic",
         "stat3": "E-commerce, luxe, industrie",
@@ -764,7 +737,7 @@
       },
       "threeSixty": {
         "title": "Photo & Vidéo 360°",
-        "description": "Vues interactives à 360° pour un rendu immersif. Le client tourne le produit comme s'il l'avait en main. <bold>Réduit les retours de 25%</bold>.",
+        "description": "Vues interactives à 360° pour un rendu immersif. Le client tourne le produit comme s'il l'avait en main. Réduit les retours de 25%.",
         "stat1": "150+ produits/jour",
         "stat2": "Spin 360° en 90 secondes",
         "stat3": "E-commerce, électronique",
@@ -772,7 +745,7 @@
       },
       "fashion": {
         "title": "Mode & Mannequin",
-        "description": "Grands formats pour vêtements portés, ghost mannequin et flat-lay. <bold>Éclairage mode professionnel</bold>, vidéo e-commerce intégrée.",
+        "description": "Grands formats pour vêtements portés, ghost mannequin et flat-lay. Éclairage mode professionnel, vidéo e-commerce intégrée.",
         "stat1": "150+ tenues/jour",
         "stat2": "Vidéo + photo combinées",
         "stat3": "Mode, luxe, sport",
@@ -780,7 +753,7 @@
       },
       "flatlay": {
         "title": "Flat-Lay & Vue de Dessus",
-        "description": "Capture en vue plongeante pour textiles à plat, accessoires, compositions créatives. <bold>Cadrage automatique</bold>, idéal pour réseaux sociaux et catalogues.",
+        "description": "Capture en vue plongeante pour textiles à plat, accessoires, compositions créatives. Cadrage automatique, idéal pour réseaux sociaux et catalogues.",
         "stat1": "150 photos/heure",
         "stat2": "Cadrage automatique",
         "stat3": "Mode, bijoux, textile",
@@ -788,33 +761,29 @@
       }
     },
     "products": {
-      "label": "20 SYSTÈMES ORBITVU",
       "heading": "Trouvez le système adapté à votre production",
       "subtitle": "20 systèmes Orbitvu, du bijou au mobilier. Filtrez par taille de produit, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
       "ctaText": "En savoir plus",
       "viewAll": "Voir tous les systèmes"
     },
     "support": {
-      "label": "ACCOMPAGNEMENT",
       "heading": "Un accompagnement de A à Z",
-      "subtitle": "L'achat du système n'est que le début. Nous vous <bold>accompagnons à chaque étape</bold>.",
+      "subtitle": "L'achat du système n'est que le début. Nous vous accompagnons à chaque étape.",
       "step1title": "Conseil personnalisé",
-      "step1description": "Nos experts analysent vos besoins, vos volumes et vos contraintes. <bold>Démonstration gratuite</bold> sur site ou en visio avec <bold>vos propres produits</bold>.",
+      "step1description": "Nos experts analysent vos besoins, vos volumes et vos contraintes. Démonstration gratuite sur site ou en visio avec vos propres produits.",
       "step2title": "Installation & Formation certifiée",
-      "step2description": "Livraison, installation et <bold>formation Qualiopi incluses</bold>. Vos équipes sont <bold>opérationnelles dès le premier jour</bold>.",
+      "step2description": "Livraison, installation et formation Qualiopi incluses. Vos équipes sont opérationnelles dès le premier jour.",
       "step3title": "Support continu",
-      "step3description": "<bold>Hotline dédiée</bold>, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour <bold>maximiser votre ROI</bold>."
+      "step3description": "Hotline dédiée, maintenance préventive et mises à jour logicielles. Nous restons à vos côtés pour maximiser votre ROI."
     },
     "roiTeaser": {
-      "label": "RETOUR SUR INVESTISSEMENT",
       "heading": "Quel est le vrai coût de votre production photo actuelle ?",
-      "subtitle": "Prestataire externe, temps mobilisé, allers-retours... <bold>Calculez votre ROI en 2 minutes</bold> et découvrez en combien de mois un système Orbitvu <bold>se rentabilise</bold>.",
+      "subtitle": "Prestataire externe, temps mobilisé, allers-retours... Calculez votre ROI en 2 minutes et découvrez en combien de mois un système Orbitvu se rentabilise.",
       "cta": "Calculer mon ROI",
       "stat": "ROI moyen constaté : 9 mois"
     },
     "faqStudios": {
       "heading": "Questions fréquentes",
-      "subtitle": "Tout ce que vous devez savoir avant d'investir dans un studio automatisé.",
       "q1": {
         "question": "Quel budget prévoir pour un studio photo automatisé ?",
         "answer": "Nos systèmes Orbitvu vont de 12 000 € HT (Alphashot 360 pour petits objets) à 150 000 € HT (E-Comm Studio+ pour grands formats). Le budget dépend de la taille de vos produits et du volume de production. Le ROI moyen est de 9 mois. Contactez-nous pour un devis adapté à votre cas."
@@ -844,7 +813,7 @@
       "heading": "Prêt à voir nos systèmes en action ?",
       "demo": {
         "heading": "Démo personnalisée — 30 min",
-        "description": "Nos experts vous montrent le <bold>système adapté à vos produits</bold>. Sur site, en visio, ou dans notre showroom de Villeurbanne.",
+        "description": "Nos experts vous montrent le système adapté à vos produits. Sur site, en visio, ou dans notre showroom de Villeurbanne.",
         "cta": "Réserver ma démo"
       },
       "guide": {
@@ -869,11 +838,14 @@
       }
     },
     "trust": {
+      "heading": "Ils nous font confiance",
+      "subtitle": "Des marques prestigieuses produisent leurs visuels avec nos systèmes Orbitvu",
+      "stat1value": "500+",
       "stat1label": "Clients équipés",
-      "stat2label": "Ans d'expertise",
-      "stat3label": "Par photo produit",
-      "stat4label": "Pays couverts",
-      "logosLabel": "500+ entreprises équipées en France et dans le monde"
+      "stat2value": "20 ans",
+      "stat2label": "D'expertise photo",
+      "stat3value": "50+",
+      "stat3label": "Pays couverts par Orbitvu"
     },
     "roiCalculator": {
       "heading": "Calculez Votre ROI en 2 Minutes",
