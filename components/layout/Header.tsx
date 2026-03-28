@@ -255,12 +255,6 @@ export default function Header() {
           icon: <Brain className="h-4 w-4" />,
         },
         {
-          href: '/academy/simulateur-opco',
-          labelKey: 'simulateurOPCO',
-          descKey: 'simulateurOPCODesc',
-          icon: <Calculator className="h-4 w-4" />,
-        },
-        {
           href: '/academy/calendrier',
           labelKey: 'calendrier',
           descKey: 'calendrierDesc',

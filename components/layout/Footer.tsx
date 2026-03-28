@@ -124,11 +124,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/academy/simulateur-opco" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                  {t('simulateurOPCO')}
-                </Link>
-              </li>
-              <li>
                 <Link href="/academy/calendrier" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('calendrier')}
                 </Link>
