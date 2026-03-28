@@ -355,16 +355,16 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </ScrollReveal>
 
             <ScrollReveal offset={50} className="col-span-2 lg:col-span-1">
-              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-52 lg:h-64 p-6 lg:p-8 flex flex-col justify-end">
-                <p className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight mb-2">
-                  {machine.capaciteJour}
-                  <span className="text-very-peri-400 text-lg lg:text-xl font-medium block mt-1">
-                    {isFr ? 'produits/jour' : 'products/day'}
-                  </span>
-                </p>
-                <p className="text-sm text-white/50">
-                  {isFr ? 'Détourage automatique, zéro post-production' : 'Auto clipping, zero post-production'}
-                </p>
+              <div className="relative bg-gradient-to-br from-very-peri-600 to-very-peri-700 rounded-2xl overflow-hidden h-52 lg:h-64 p-6 lg:p-8 flex flex-col justify-between">
+                <Sparkles className="h-8 w-8 text-white/40" />
+                <div>
+                  <p className="text-lg font-heading font-bold text-white leading-tight mb-1">
+                    {isFr ? 'Premier studio photo IA au monde' : 'World\'s first AI photo studio'}
+                  </p>
+                  <p className="text-sm text-white/60">
+                    {isFr ? 'Détection automatique des réglages' : 'Automatic settings detection'}
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -406,226 +406,166 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Key Advantages — Split 4/8 sticky heading + ghost numbers */}
-      <section className="py-20 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Pourquoi ce système' : 'Why this system'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                {isFr ? 'Avantages clés' : 'Key advantages'}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 leading-relaxed">
-                {isFr
-                  ? `Découvrez ce qui fait du ${machine.nom} un choix de référence pour votre production.`
-                  : `Discover what makes the ${machine.nom} a reference choice for your production.`}
-              </p>
-            </ScrollReveal>
-
-            <div className="lg:col-span-8 space-y-6">
-              {machine.keyAdvantages.map((advantage, index) => (
-                <ScrollReveal key={index} offset={40}>
-                  <SpringCard>
-                    <div className="bg-neutral-50 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 flex items-start gap-5">
-                      <span className="text-5xl lg:text-7xl font-heading font-bold text-neutral-100 select-none leading-none shrink-0">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div>
-                        <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-3">
-                          <CheckCircle className="h-5 w-5" />
-                        </span>
-                        <p className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
-                          {isFr ? advantage.fr : advantage.en}
-                        </p>
-                        {advantage.description && (
-                          <p className="text-sm text-future-dusk-500 leading-relaxed">
-                            {isFr ? advantage.description.fr : advantage.description.en}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </SpringCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Specifications — Dark bg + floating white card */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
-          <ScrollReveal>
-            <div className="text-center mb-14">
-              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Fiche technique' : 'Technical sheet'}
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white">
-                {isFr ? 'Caractéristiques techniques' : 'Technical specifications'}
-              </h2>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal offset={30}>
-            <SpringCard>
-              <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
-                <div className="grid md:grid-cols-2 gap-10">
-                  <div>
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
-                      {isFr ? 'Dimensions & Capacités' : 'Dimensions & Capacity'}
-                    </h3>
-                    <div className="space-y-4">
-                      {[
-                        { label: isFr ? 'Taille produit max' : 'Max product size', value: machine.tailleMax },
-                        { label: isFr ? 'Poids max' : 'Max weight', value: machine.poidsMax },
-                        { label: isFr ? 'Capacité journalière' : 'Daily capacity', value: `${machine.capaciteJour} ${isFr ? 'produits' : 'products'}` },
-                        { label: isFr ? 'Espace requis' : 'Space required', value: machine.spaceRequired },
-                      ].map((spec) => (
-                        <div key={spec.label} className="flex justify-between py-3 border-b border-neutral-100">
-                          <span className="text-future-dusk-500">{spec.label}</span>
-                          <span className="font-medium text-future-dusk-900">{spec.value}</span>
-                        </div>
-                      ))}
-                      {machine.studioFootprint && (
-                        <div className="flex justify-between py-3 border-b border-neutral-100">
-                          <span className="text-future-dusk-500">{isFr ? 'Encombrement studio' : 'Studio footprint'}</span>
-                          <span className="font-medium text-future-dusk-900">
-                            {machine.studioFootprint.l}x{machine.studioFootprint.w}x{machine.studioFootprint.h} cm
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-6">
-                      {isFr ? 'Fonctionnalités' : 'Features'}
-                    </h3>
-                    <div className="space-y-3 mb-8">
-                      {machine.features.map((feature) => (
-                        <div key={feature} className="flex items-center gap-3">
-                          <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0" />
-                          <span className="text-future-dusk-700">
-                            {isFr ? featureLabels[feature]?.fr : featureLabels[feature]?.en}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-4">
-                      {isFr ? 'Secteurs idéaux' : 'Ideal sectors'}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {machine.idealSectors.map((sector) => (
-                        <span
-                          key={sector}
-                          className="bg-very-peri-50 text-very-peri-700 px-3 py-1.5 rounded-full text-sm font-medium"
-                        >
-                          {isFr ? sectorLabels[sector]?.fr : sectorLabels[sector]?.en || sector}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SpringCard>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Use Cases & Limitations — with SpringCard */}
+      {/* Key Advantages — Featured first + 2-col grid */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
-            <div className="text-center mb-12 lg:mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Pour qui' : 'Who it\'s for'}
+                {isFr ? 'Pourquoi ce système' : 'Why this system'}
               </span>
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900">
-                {isFr ? 'Cas d\'usage & limites' : 'Use cases & limits'}
-              </h2>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                {isFr ? 'Avantages clés' : 'Key advantages'}
+              </TextReveal>
             </div>
           </FadeInView>
-          <div className="grid md:grid-cols-2 gap-8">
-            <FadeInView direction="left">
-              <SpringCard>
-                <div className="bg-emerald-50 rounded-2xl p-8 h-full">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-100 text-emerald-600">
-                      <CheckCircle className="h-5 w-5" />
-                    </span>
-                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                      {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
-                    </h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {machine.useCases.map((useCase, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
-                        <span className="text-future-dusk-700">{useCase}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </SpringCard>
-            </FadeInView>
 
-            <FadeInView direction="right" delay={0.15}>
-              <SpringCard>
-                <div className="bg-amber-50 rounded-2xl p-8 h-full">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-100 text-amber-600">
-                      <AlertTriangle className="h-5 w-5" />
-                    </span>
-                    <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                      {isFr ? 'Points d\'attention' : 'Points to consider'}
+          {/* Featured advantage — full width, dark bg */}
+          {machine.keyAdvantages[0] && (
+            <ScrollReveal>
+              <div className="bg-future-dusk-900 rounded-2xl p-8 lg:p-12 mb-5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-very-peri-500/10 rounded-full -translate-y-1/2 translate-x-1/3" />
+                <div className="relative grid lg:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <span className="text-7xl lg:text-8xl font-heading font-bold text-white/5 select-none leading-none block mb-4">01</span>
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-3">
+                      {isFr ? machine.keyAdvantages[0].fr : machine.keyAdvantages[0].en}
                     </h3>
+                    {machine.keyAdvantages[0].description && (
+                      <p className="text-future-dusk-300 leading-relaxed">
+                        {isFr ? machine.keyAdvantages[0].description.fr : machine.keyAdvantages[0].description.en}
+                      </p>
+                    )}
                   </div>
-                  <ul className="space-y-3">
-                    {machine.limitations.map((limitation, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
-                        <span className="text-future-dusk-700">{isFr ? limitation.fr : limitation.en}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="bg-white/5 rounded-xl h-48 lg:h-56 flex items-center justify-center">
+                    <ImageIcon className="h-10 w-10 text-white/20" />
+                  </div>
                 </div>
-              </SpringCard>
-            </FadeInView>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Secondary advantages — 2-col grid */}
+          <div className="grid md:grid-cols-2 gap-5">
+            {machine.keyAdvantages.slice(1).map((advantage, index) => (
+              <ScrollReveal key={index} offset={20 + index * 15}>
+                <SpringCard>
+                  <div className={`rounded-2xl p-6 lg:p-8 h-full ${index === 0 ? 'bg-very-peri-50 border border-very-peri-100' : 'bg-neutral-50 border border-neutral-100'}`}>
+                    <span className="text-5xl lg:text-6xl font-heading font-bold select-none leading-none block mb-4 ${index === 0 ? 'text-very-peri-100' : 'text-neutral-100'}">
+                      {String(index + 2).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
+                      {isFr ? advantage.fr : advantage.en}
+                    </h3>
+                    {advantage.description && (
+                      <p className="text-sm text-future-dusk-500 leading-relaxed">
+                        {isFr ? advantage.description.fr : advantage.description.en}
+                      </p>
+                    )}
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* #F Intermediate CTA + ROI */}
-      <section className="py-16 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white">
-        <FadeInView>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
-            {isFr
-              ? `Envie de voir le ${machine.nom} en action ?`
-              : `Want to see the ${machine.nom} in action?`}
-          </h2>
-          <p className="text-future-dusk-200 mb-8">
-            {isFr
-              ? 'Réservez une démonstration personnalisée dans nos showrooms ou calculez votre retour sur investissement.'
-              : 'Book a personalized demo in our showrooms or calculate your return on investment.'}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl">
-              <Link href="/contact">
-                {isFr ? 'Réserver une démo' : 'Book a demo'} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/studios-photo-automatises#calculateur-roi">
-                <BarChart3 className="mr-2 h-4 w-4" /> {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'}
-              </Link>
-            </Button>
+      {/* Specs & Use Cases — Merged split layout */}
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            {/* Left — Specs table */}
+            <FadeInView direction="left" className="lg:col-span-7">
+              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Fiche technique' : 'Technical sheet'}
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-10">
+                {isFr ? 'Caractéristiques' : 'Specifications'}
+              </h2>
+
+              <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
+                <div className="space-y-0">
+                  {[
+                    { label: isFr ? 'Taille produit max' : 'Max product size', value: machine.tailleMax },
+                    { label: isFr ? 'Poids max' : 'Max weight', value: machine.poidsMax },
+                    { label: isFr ? 'Capacité journalière' : 'Daily capacity', value: `${machine.capaciteJour} ${isFr ? 'produits' : 'products'}` },
+                    { label: isFr ? 'Espace requis' : 'Space required', value: machine.spaceRequired },
+                    ...(machine.studioFootprint ? [{ label: isFr ? 'Encombrement studio' : 'Studio footprint', value: `${machine.studioFootprint.l}x${machine.studioFootprint.w}x${machine.studioFootprint.h} cm` }] : []),
+                  ].map((spec) => (
+                    <div key={spec.label} className="flex justify-between py-3.5 border-b border-neutral-100 last:border-0">
+                      <span className="text-future-dusk-500">{spec.label}</span>
+                      <span className="font-medium text-future-dusk-900">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-neutral-100">
+                  <h4 className="text-sm font-semibold text-future-dusk-900 uppercase tracking-wider mb-3">
+                    {isFr ? 'Fonctionnalités' : 'Features'}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {machine.features.map((feature) => (
+                      <span key={feature} className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full text-sm font-medium">
+                        <CheckCircle className="h-3.5 w-3.5" />
+                        {isFr ? featureLabels[feature]?.fr : featureLabels[feature]?.en}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </FadeInView>
+
+            {/* Right — Use cases + Sectors + Limitations stacked */}
+            <FadeInView direction="right" delay={0.15} className="lg:col-span-5 space-y-5">
+              {/* Use cases */}
+              <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8">
+                <h3 className="text-lg font-heading font-bold text-white mb-5">
+                  {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
+                </h3>
+                <ul className="space-y-3">
+                  {machine.useCases.map((useCase, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="text-white/80">{useCase}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Sectors */}
+              <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8">
+                <h3 className="text-lg font-heading font-bold text-white mb-4">
+                  {isFr ? 'Secteurs idéaux' : 'Ideal sectors'}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {machine.idealSectors.map((sector) => (
+                    <span key={sector} className="bg-very-peri-500/20 text-very-peri-200 px-3 py-1.5 rounded-full text-sm font-medium">
+                      {isFr ? sectorLabels[sector]?.fr : sectorLabels[sector]?.en || sector}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Limitations */}
+              {machine.limitations.length > 0 && (
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 lg:p-8">
+                  <h3 className="text-lg font-heading font-bold text-amber-200 mb-4">
+                    {isFr ? 'Points d\'attention' : 'Points to consider'}
+                  </h3>
+                  <ul className="space-y-3">
+                    {machine.limitations.map((limitation, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <AlertTriangle className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
+                        <span className="text-amber-100/80">{isFr ? limitation.fr : limitation.en}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </FadeInView>
           </div>
         </div>
-        </FadeInView>
       </section>
 
       {/* #D Similar Machines */}
