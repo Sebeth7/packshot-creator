@@ -1,73 +1,105 @@
-# Session Design Autonome
+# Session Design — Guide methodologique
 
-> Ce template est concu pour des sessions autonomes.
-> La session lit le design-system.md, analyse la page, et implemente sans attendre de validation section par section.
+> Ce document explique la METHODE de travail, pas les regles design (qui sont dans design-system.md).
 
-## Prerequis
+## Regle d'or
 
-Avant de commencer, lire dans cet ordre :
-1. `design-system.md` — ADN design, patterns, couleurs, typographie, animations, anti-patterns
-2. `app/[lang]/page.tsx` — La Home refaite, reference d'implementation
-3. Le fichier de la page a travailler
+**Tu ameliores le DESIGN des sections existantes. Tu ne changes PAS la structure de la page.**
 
-## Mode operatoire
+- Ne PAS ajouter de nouvelles sections
+- Ne PAS supprimer de sections
+- Ne PAS inventer de contenu (chiffres, textes, paragraphes)
+- Ne PAS copier les sections de la Home
+- Si tu penses qu'une modification structurelle serait benefique, DEMANDE a l'utilisateur AVANT
 
-### Phase 1 — Audit (ne rien modifier)
-1. Lire le fichier source de la page
-2. Lire les traductions FR dans `messages/fr.json` (namespace de la page)
-3. Naviguer sur `https://sysnext.vercel.app/fr/[PAGE]`, scroller et capturer un GIF
-4. Produire un diagnostic : nombre de sections, layout de chaque, points forts/faibles
-5. Identifier les violations du design-system (grilles monotones, titres trop petits, pas de labels, pas de bold selectif, animations uniformes, sections redondantes)
+**Ton scope** : layout, typographie, couleurs de fond, animations, labels categorie, bold selectif, placeholders d'images, spacing. C'est deja enorme.
 
-### Phase 2 — Plan
-1. Pour chaque section : quel pattern du design-system s'applique
-2. Rythme des fonds (narrative, pas mecanique)
-3. Ou placer les images/placeholders
-4. Quels textes beneficient du bold selectif
-5. Quelles animations et directions choisir
-6. Sections a fusionner ou supprimer si redondantes
+---
 
-### Phase 3 — Implementation
-1. Modifier le fichier page.tsx
-2. Ajouter les nouvelles cles de traduction FR (labels, bold tags, card content distinct)
-3. Creer les equivalents EN
-4. `npm run build` — zero erreur obligatoire
-5. Commit + push
+## Phase 1 — Lecture (obligatoire, dans cet ordre)
 
-### Phase 4 — Verification
-Si la page est deployee, naviguer dessus dans Chrome et verifier le rendu.
+1. `design-system.md` — les principes design, les couleurs, la typo, les animations, les anti-patterns
+2. `app/[lang]/page.tsx` — la Home refaite, comme EXEMPLE d'implementation des principes (pas comme modele a copier)
+3. Le fichier de ta page — comprendre la structure existante, les sections, le contenu
+4. Les traductions FR de ta page dans `messages/fr.json` — comprendre le copy
 
-## Regles incontournables
+---
 
-- Lire `design-system.md` section 12 (anti-patterns) — ne JAMAIS faire ces choses
-- `type="button"` sur tout Button dans un form (sauf submit)
-- Responsive prefixes obligatoires (`text-4xl lg:text-6xl`, jamais `text-6xl` seul)
-- Traductions : toujours FR + EN
-- Ne JAMAIS lancer le dev server sans demander
-- Ne JAMAIS utiliser le CLI Vercel
-- Terminologie : "systemes" (pas "machines"), "Photo studio + IA", BlendAI.studio
+## Phase 2 — Audit visuel (obligatoire, ne PAS sauter)
 
-## Reference Apple (si besoin)
+1. Naviguer sur la page deployee dans Chrome : `https://sysnext.vercel.app/fr/[PAGE]`
+2. Scroller lentement du haut en bas
+3. Prendre des screenshots de chaque section
+4. **Produire un diagnostic ecrit** : pour CHAQUE section existante, noter :
+   - Layout actuel
+   - Ce qui fonctionne deja bien (ne pas toucher ce qui marche)
+   - Ce qui viole les principes du design system
+   - Comment l'ameliorer SANS changer la structure
 
-Consulter uniquement si la page a un layout complexe qui n'est pas couvert par les patterns du design-system :
-- `https://www.apple.com/fr/` — Home : bento grid, sections produit empilees
-- `https://www.apple.com/fr/iphone-17e/` — Page produit : label+titre gradient+visuel, bento asymetrique
-- `https://www.apple.com/fr/macbook-pro/` — Page pro : fond noir, sticky nav, typo geante
+Si Chrome timeout ou ne repond pas, insister (recharger, attendre). Ne JAMAIS sauter l'audit visuel.
 
-## Composants disponibles
+---
+
+## Phase 3 — Plan (obligatoire, AVANT d'implementer)
+
+Presenter a l'utilisateur un plan section par section :
 
 ```
-AnimatedCounter — compteur anime whileInView (end, prefix, suffix, duration)
-FadeInView — fade directionnel (direction: up/down/left/right, delay)
-ScrollReveal — parallax Y + opacity au scroll (offset, scale: bool)
-TextReveal — titre mot par mot (as: h1-h3, staggerSpeed)
-SpringCard — micro-interactions hover/tap (hoverY, hoverScale)
-StaggerContainer + StaggerItem — animations en cascade (stagger, direction)
-HeroSection + HeroVideo/HeroBackground — hero reutilisable (layout, badge, ctas)
+Section X — [Nom]
+- Etat actuel : [description]
+- Modifications prevues : [liste]
+- Ce que je ne touche PAS : [ce qui marche deja]
 ```
 
-## Livrable
+**Attendre la validation** de l'utilisateur avant de commencer l'implementation.
 
-1. Page modifiee — build OK
-2. Traductions FR + EN a jour
+Meme si le prompt dit "mode autonome", les modifications structurelles ou le contenu invente DOIVENT etre valides. L'autonomie porte sur l'execution du plan valide, pas sur les decisions de contenu.
+
+---
+
+## Phase 4 — Implementation
+
+Pour chaque section existante, appliquer les principes du design-system :
+
+### Checklist par section (ameliorations purement visuelles)
+
+- [ ] **Label categorie** : ajouter si absent (`text-xs font-semibold uppercase tracking-[0.2em]`)
+- [ ] **Titre** : passer en taille display si trop petit (`text-4xl lg:text-6xl`)
+- [ ] **Bold selectif** : identifier 2-3 mots cles dans les paragraphes, passer en `t.rich()` avec balises `<bold>`
+- [ ] **Fond** : verifier que 2 sections adjacentes n'ont pas le meme fond. Changer si necessaire (voir palette design-system section 2)
+- [ ] **Animations** : varier les directions (pas tout "up"), ajouter scale-in sur les visuels, utiliser AnimatedCounter sur les stats
+- [ ] **Spacing** : verifier `py-20 lg:py-32` sur les sections, `h-12`/`h-14` sur les CTAs
+- [ ] **Layout** : si 2 sections consecutives ont le meme layout (ex: 2 grilles 3 colonnes), proposer de varier l'une d'elles
+- [ ] **Images** : si une zone est vide et beneficierait d'un visuel, ajouter un placeholder
+
+### Ce qui est INTERDIT sans validation
+- Ajouter une section qui n'existe pas
+- Supprimer une section
+- Changer le contenu textuel (sauf ajout de balises `<bold>`)
+- Inventer des chiffres ou des statistiques
+- Modifier la navigation ou les liens
+
+### Traductions
+- Mettre a jour FR (labels, bold tags)
+- Creer les equivalents EN
+- Ne JAMAIS inventer de contenu — les labels sont descriptifs ("NOS STUDIOS", "FAQ"), pas creatifs
+
+---
+
+## Phase 5 — Verification
+
+1. `npm run build` — zero erreur
+2. Si possible, naviguer sur la page deployee et verifier le rendu
 3. Commit + push avec message descriptif
+
+---
+
+## Inspiration Apple (usage occasionnel)
+
+Consulter les pages Apple SEULEMENT si tu as besoin d'inspiration pour un layout specifique que le design-system ne couvre pas. Le but est de comprendre les PRINCIPES Apple (hierarchie, respiration, variete), pas de copier leurs sections.
+
+- `https://www.apple.com/fr/` — Bento grid, variete de tuiles
+- `https://www.apple.com/fr/iphone-17e/` — Label+titre+visuel, bento asymetrique
+- `https://www.apple.com/fr/macbook-pro/` — Fond noir, typo geante, stats animees
+
+**ATTENTION** : Apple est un site B2C de produits grand public. Nous sommes un site B2B de solutions industrielles. L'inspiration est dans la TECHNIQUE (typo, layout, animation), pas dans le TON ou la STRUCTURE.
