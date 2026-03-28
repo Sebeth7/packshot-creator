@@ -342,7 +342,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          8. FINAL CTA — Asymmetric 3/5 + 2/5
+          8. FINAL CTA — Centered demo card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
@@ -352,22 +352,13 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               {t('finalCta.heading')}
             </TextReveal>
           </ScrollReveal>
-          <div className="grid lg:grid-cols-5 gap-8">
-            <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 sm:p-10 lg:p-14 h-full flex flex-col">
+          <div className="max-w-2xl mx-auto">
+            <SpringCard hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 sm:p-10 lg:p-14 text-center">
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
-                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.demo.description')}</p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed">{t('finalCta.demo.description')}</p>
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg">
                   <Link href="/contact">{t('finalCta.demo.cta')}</Link>
-                </Button>
-              </div>
-            </SpringCard>
-            <SpringCard className="lg:col-span-2" hoverY={-6}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-white/10 h-full flex flex-col">
-                <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.guide.heading')}</h3>
-                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">{t('finalCta.guide.description')}</p>
-                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
-                  <Link href="/blog">{t('finalCta.guide.cta')}</Link>
                 </Button>
               </div>
             </SpringCard>

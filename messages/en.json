@@ -39,7 +39,7 @@
       "feature2": "Built-in BlendAI",
       "feature3": "Automatic LED lighting",
       "feature4": "Multi-channel export",
-      "cta": "See this system in demo",
+      "cta": "Discover the Alphashot Pro G2",
       "ctaSecondary": "Compare all 20 models"
     },
     "industries": {
@@ -164,22 +164,22 @@
       "label": "The problem",
       "heading": "Is your photo production slowing your growth?",
       "slow": {
-        "title": "Too slow",
+        "title": "Limited production",
         "stat": "30",
         "statUnit": "photos/day",
-        "description": "Your photographer takes <bold>30 photos a day</bold>. Your competitors do <bold>300</bold>. Every day of delay on your product listings is <bold>lost revenue</bold>."
+        "description": "Even with an in-house team, the bottleneck remains volume. Your competitors publish <bold>10x more visuals</bold>."
       },
       "expensive": {
-        "title": "Too expensive",
+        "title": "Hidden costs",
         "stat": "15-50€",
         "statUnit": "per image",
-        "description": "The average cost of an outsourced packshot: <bold>€15 to €50 per image</bold>. At 5,000 products, that's <bold>€75,000 to €250,000 per year</bold>."
+        "description": "Retouching, post-production, operator time... The <bold>real cost per image</bold> often exceeds estimates, both in-house and outsourced."
       },
       "dependent": {
-        "title": "Too dependent",
+        "title": "Inconsistent quality",
         "stat": "100%",
-        "statUnit": "outsourced",
-        "description": "When your freelance photographer is unavailable or your agency takes <bold>3 weeks</bold>, your catalog is <bold>blocked</bold>. The know-how doesn't stay in your company."
+        "statUnit": "variable",
+        "description": "From one shoot to another, from one operator to another, <bold>visual consistency</bold> remains a challenge. Know-how doesn't stay in the company."
       },
       "bridge": "There's a better way."
     },
@@ -189,7 +189,7 @@
       "t1": {
         "stat": "65%",
         "statLabel": "reduction in production time",
-        "quote": "We went from 50 to 300 packshots per day. Quality is consistent, regardless of the operator. PackshotCreator transformed our workflow.",
+        "quote": "We went from 50 to 300 packshots per day. Quality is consistent regardless of operator. PackshotCreator transformed our productivity.",
         "name": "E-commerce Director",
         "company": "International fashion brand",
         "sector": "Fashion & Textile"
@@ -197,15 +197,15 @@
       "t2": {
         "stat": "8 months",
         "statLabel": "to reach ROI",
-        "quote": "Cost per image was divided by 5. In 8 months, the investment was paid off. Today, we produce 100% of our visuals in-house.",
+        "quote": "Cost per image was divided by 5. In 8 months, the investment had paid for itself. Today we produce 100% of our visuals in-house, with superior quality.",
         "name": "Production Manager",
         "company": "European retail group",
         "sector": "Retail"
       },
       "t3": {
         "stat": "90%",
-        "statLabel": "of shoots internalized",
-        "quote": "No more need for an external photographer for 90% of our shoots. The Orbitvu studio and BlendAI cover all our needs, from packshot to lifestyle.",
+        "statLabel": "productivity gain",
+        "quote": "The Orbitvu studio and BlendAI cover all our needs, from packshot to lifestyle. Our production increased 10x with the same team.",
         "name": "Digital Project Manager",
         "company": "Premium cosmetics brand",
         "sector": "Cosmetics & Beauty"
@@ -819,7 +819,7 @@
       },
       "q5": {
         "question": "Can I test a system before buying?",
-        "answer": "Yes. We arrange free demonstrations — on-site at our Villeurbanne showroom, remotely, or at your premises with your own products. It's the best way to evaluate concrete ROI before investing."
+        "answer": "Yes. We arrange free demonstrations — on-site at our Lyon showroom, remotely, or at your premises with your own products. It's the best way to evaluate concrete ROI before investing."
       },
       "q6": {
         "question": "What is the delivery time?",
@@ -830,7 +830,7 @@
       "heading": "Ready to see our systems in action?",
       "demo": {
         "heading": "Personalized demo — 30 min",
-        "description": "Our experts show you the system suited to your products. On-site, remote, or at our Villeurbanne showroom.",
+        "description": "Our experts show you the system suited to your products. On-site, remote, or at our Lyon showroom.",
         "cta": "Book my demo"
       },
       "guide": {

@@ -27,22 +27,22 @@
       "label": "Le problème",
       "heading": "Votre production photo freine votre croissance ?",
       "slow": {
-        "title": "Trop lent",
+        "title": "Production limitée",
         "stat": "30",
         "statUnit": "photos/jour",
-        "description": "Votre photographe fait <bold>30 photos par jour</bold>. Vos concurrents en font <bold>300</bold>. Chaque jour de retard sur vos fiches produit, c'est du <bold>chiffre d'affaires perdu</bold>."
+        "description": "Même avec une équipe interne, le goulot d'étranglement reste le volume. Vos concurrents publient <bold>10x plus de visuels</bold>."
       },
       "expensive": {
-        "title": "Trop cher",
+        "title": "Coûts cachés",
         "stat": "15-50€",
         "statUnit": "par image",
-        "description": "Le coût moyen d'un packshot en prestation externe : <bold>15 à 50 € par image</bold>. À 5 000 produits, cela représente <bold>75 000 à 250 000 € par an</bold>."
+        "description": "Retouche, post-production, temps opérateur... Le <bold>coût réel par image</bold> dépasse souvent les estimations, en interne comme en externe."
       },
       "dependent": {
-        "title": "Trop dépendant",
+        "title": "Qualité inconsistante",
         "stat": "100%",
-        "statUnit": "externalisé",
-        "description": "Quand votre photographe freelance est indisponible ou que votre prestataire prend <bold>3 semaines</bold>, votre catalogue est <bold>bloqué</bold>. Le savoir-faire ne reste pas dans l'entreprise."
+        "statUnit": "variable",
+        "description": "D'un shooting à l'autre, d'un opérateur à l'autre, la <bold>cohérence visuelle</bold> reste un défi. Le savoir-faire ne reste pas dans l'entreprise."
       },
       "bridge": "Il y a une autre manière de faire."
     },
@@ -76,7 +76,7 @@
       "feature2": "IA BlendAI intégrée",
       "feature3": "Éclairage LED automatique",
       "feature4": "Export multi-canal",
-      "cta": "Voir ce système en démo",
+      "cta": "Découvrir l'Alphashot Pro G2",
       "ctaSecondary": "Comparer les 20 modèles"
     },
     "gallery": {
@@ -97,7 +97,7 @@
       "t1": {
         "stat": "65%",
         "statLabel": "de réduction du temps de production",
-        "quote": "Nous sommes passés de 50 à 300 packshots par jour. La qualité est constante, quel que soit l'opérateur. PackshotCreator a transformé notre workflow.",
+        "quote": "Nous sommes passés de 50 à 300 packshots par jour. La qualité est constante, quel que soit l'opérateur. PackshotCreator a transformé notre productivité.",
         "name": "Directeur e-commerce",
         "company": "Marque mode internationale",
         "sector": "Mode & Textile"
@@ -105,15 +105,15 @@
       "t2": {
         "stat": "8 mois",
         "statLabel": "pour atteindre le ROI",
-        "quote": "Le coût par image a été divisé par 5. En 8 mois, l'investissement était rentabilisé. Aujourd'hui, nous produisons 100% de nos visuels en interne.",
+        "quote": "Le coût par image a été divisé par 5. En 8 mois, l'investissement était rentabilisé. Aujourd'hui, nous produisons 100% de nos visuels en interne, avec une qualité supérieure.",
         "name": "Responsable production",
         "company": "Groupe retail européen",
         "sector": "Grande Distribution"
       },
       "t3": {
         "stat": "90%",
-        "statLabel": "de prises de vue internalisées",
-        "quote": "Plus besoin de photographe externe pour 90% de nos prises de vue. Le studio Orbitvu et BlendAI couvrent tous nos besoins, du packshot au lifestyle.",
+        "statLabel": "de gain de productivité",
+        "quote": "Le studio Orbitvu et BlendAI couvrent tous nos besoins, du packshot au lifestyle. Notre production a été multipliée par 10 avec la même équipe.",
         "name": "Chef de projet digital",
         "company": "Marque cosmétiques premium",
         "sector": "Cosmétiques & Beauté"
@@ -822,7 +822,7 @@
       },
       "q5": {
         "question": "Peut-on tester un système avant d'acheter ?",
-        "answer": "Oui. Nous organisons des démonstrations gratuites — sur site dans notre showroom de Villeurbanne, en visio, ou chez vous avec vos propres produits. C'est le meilleur moyen d'évaluer le ROI concret avant investissement."
+        "answer": "Oui. Nous organisons des démonstrations gratuites — sur site dans notre showroom de Lyon, en visio, ou chez vous avec vos propres produits. C'est le meilleur moyen d'évaluer le ROI concret avant investissement."
       },
       "q6": {
         "question": "Quel est le délai de livraison ?",
@@ -833,7 +833,7 @@
       "heading": "Prêt à voir nos systèmes en action ?",
       "demo": {
         "heading": "Démo personnalisée — 30 min",
-        "description": "Nos experts vous montrent le système adapté à vos produits. Sur site, en visio, ou dans notre showroom de Villeurbanne.",
+        "description": "Nos experts vous montrent le système adapté à vos produits. Sur site, en visio, ou dans notre showroom de Lyon.",
         "cta": "Réserver ma démo"
       },
       "guide": {

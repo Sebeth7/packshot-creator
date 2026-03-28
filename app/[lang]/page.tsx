@@ -215,7 +215,7 @@ export default async function HomePage({
             {SOCIAL_PROOF_STATS.map((stat) => (
               <StaggerItem key={stat.key}>
                 <div className="text-center px-6">
-                  <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <p className={`font-heading font-bold text-white tracking-tight ${stat.key === 'stat4' ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-4xl sm:text-5xl lg:text-7xl'}`}>
                     <AnimatedCounter
                       end={stat.end}
                       prefix={stat.prefix}
@@ -351,13 +351,6 @@ export default async function HomePage({
                 >
                   <Link href="/studios-photo-automatises">{t('hybrid.cta')}</Link>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-transparent border border-very-peri-200 text-heading-dark hover:bg-very-peri-50 px-6 h-12 text-base rounded-lg"
-                >
-                  <Link href="/ia-photo-produit">{t('hybrid.ctaSecondary')}</Link>
-                </Button>
               </div>
 
               {/* Why Automate stats — merged from former standalone section */}
@@ -475,7 +468,7 @@ export default async function HomePage({
                   size="lg"
                   className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg"
                 >
-                  <Link href="/contact">{t('spotlight.cta')}</Link>
+                  <Link href="/studio-photo/alphashot-pro-g2">{t('spotlight.cta')}</Link>
                 </Button>
                 <Button
                   asChild
