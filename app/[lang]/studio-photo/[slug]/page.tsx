@@ -287,9 +287,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           </FadeInView>
 
           {/* Bento grid — Apple "Points forts" style */}
-          <div className="grid grid-cols-6 lg:grid-cols-12 gap-4 lg:gap-5">
-            {/* Large featured — packshot */}
-            <ScrollReveal className="col-span-6 lg:col-span-7">
+          {/* Row 1: 7/5 split */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mb-4 lg:mb-5">
+            <ScrollReveal className="lg:col-span-7">
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
                   <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
@@ -298,15 +298,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   </p>
                 </div>
                 <div className="absolute bottom-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
-                    Packshot
-                  </span>
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">Packshot</span>
                 </div>
               </div>
             </ScrollReveal>
 
-            {/* Video — dark, dominant */}
-            <ScrollReveal offset={20} className="col-span-6 lg:col-span-5">
+            <ScrollReveal offset={20} className="lg:col-span-5">
               <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group cursor-pointer">
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <div className="h-16 w-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
@@ -323,9 +320,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 </div>
               </div>
             </ScrollReveal>
+          </div>
 
-            {/* 360° interactive */}
-            <ScrollReveal offset={30} className="col-span-3 lg:col-span-4">
+          {/* Row 2: thirds */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            <ScrollReveal offset={30}>
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
                   <Eye className="h-8 w-8 mb-2 opacity-30" />
@@ -334,15 +333,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   </p>
                 </div>
                 <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
-                    360°
-                  </span>
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">360°</span>
                 </div>
               </div>
             </ScrollReveal>
 
-            {/* Reflective product */}
-            <ScrollReveal offset={40} className="col-span-3 lg:col-span-4">
+            <ScrollReveal offset={40}>
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
                   <ImageIcon className="h-8 w-8 mb-2 opacity-30" />
@@ -358,8 +354,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </ScrollReveal>
 
-            {/* Text card — Apple-style feature tile */}
-            <ScrollReveal offset={50} className="col-span-6 lg:col-span-4">
+            <ScrollReveal offset={50} className="col-span-2 lg:col-span-1">
               <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-52 lg:h-64 p-6 lg:p-8 flex flex-col justify-end">
                 <p className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight mb-2">
                   {machine.capaciteJour}
@@ -368,7 +363,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   </span>
                 </p>
                 <p className="text-sm text-white/50">
-                  {isFr ? 'Détourage automatique sur le matériel, zéro post-production' : 'Hardware-based auto clipping, zero post-production'}
+                  {isFr ? 'Détourage automatique, zéro post-production' : 'Auto clipping, zero post-production'}
                 </p>
               </div>
             </ScrollReveal>
