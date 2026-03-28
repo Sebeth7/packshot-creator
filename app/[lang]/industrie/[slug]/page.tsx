@@ -99,31 +99,55 @@ export default async function SecteurPage({ params }: PageProps) {
       </HeroSection>
 
       {/* ═══════════════════════════════════════════════════════════
-          PROBLÉMATIQUES — fond future-dusk-0, centré + items empilés
+          PROBLÉMATIQUES — fond future-dusk-0, split heading + ghost numbers
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <FadeInView direction="left" className="text-center mb-16">
-              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'VOS DÉFIS' : 'YOUR CHALLENGES'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
-                {secteur.problematiques.titre}
-              </TextReveal>
-            </FadeInView>
-            <StaggerContainer className="space-y-4">
-              {secteur.problematiques.items.map((item, index) => (
-                <StaggerItem key={index}>
-                  <div className="flex items-start gap-4 bg-white rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors shadow-sm">
-                    <span className="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
-                      {index + 1}
-                    </span>
-                    <p className="text-future-dusk-600 leading-relaxed">{item}</p>
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Left — sticky heading + image */}
+            <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
+              <FadeInView direction="left">
+                <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'VOS DÉFIS' : 'YOUR CHALLENGES'}
+                </span>
+                <h2 className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+                  {secteur.problematiques.titre}
+                </h2>
+                <p className="text-neutral-medium leading-relaxed mb-8">
+                  {isFr
+                    ? 'Des contraintes spécifiques qui freinent votre production visuelle.'
+                    : 'Specific constraints that slow down your visual production.'}
+                </p>
+              </FadeInView>
+              <FadeInView direction="left" delay={0.2}>
+                <div className="hidden lg:flex w-full h-[240px] bg-white rounded-2xl items-center justify-center border border-neutral-100">
+                  <div className="text-center">
+                    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                    <p className="text-xs text-neutral-300">{isFr ? 'Illustration secteur' : 'Sector illustration'} ~500x240</p>
                   </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                </div>
+              </FadeInView>
+            </div>
+
+            {/* Right — items with ghost numbers */}
+            <div className="lg:col-span-3">
+              <StaggerContainer className="space-y-6">
+                {secteur.problematiques.items.map((item, index) => (
+                  <StaggerItem key={index}>
+                    <div className="relative bg-white rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-200 transition-colors shadow-sm overflow-hidden">
+                      {/* Ghost number */}
+                      <span className="absolute -top-3 -right-2 text-7xl lg:text-8xl font-heading font-bold text-neutral-100 select-none leading-none">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <p className="text-future-dusk-800 leading-relaxed text-lg font-medium">{item}</p>
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
