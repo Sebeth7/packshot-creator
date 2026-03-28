@@ -53,7 +53,7 @@ const CLIENT_LOGOS = [
 
 const SOCIAL_PROOF_STATS = [
   { key: 'stat1' as const, labelKey: 'stat1Label' as const, end: 25, suffix: '', prefix: '' },
-  { key: 'stat2' as const, labelKey: 'stat2Label' as const, end: 500, suffix: '+', prefix: '' },
+  { key: 'stat2' as const, labelKey: 'stat2Label' as const, end: 5000, suffix: '+', prefix: '' },
   { key: 'stat3' as const, labelKey: 'stat3Label' as const, end: 3, suffix: ' sec', prefix: '' },
   { key: 'stat4' as const, labelKey: 'stat4Label' as const, end: 85, suffix: '%', prefix: '60-' },
 ] as const;
@@ -78,8 +78,6 @@ const GALLERY_ITEMS = [
   { key: 'jewelry' as const, image: '/images/gallery/jewelry-macro.avif', span: '' },
   { key: 'furniture' as const, image: '/images/gallery/furniture-large.avif', span: 'col-span-2' },
 ] as const;
-
-const MINI_GALLERY = GALLERY_ITEMS.slice(0, 3);
 
 const TESTIMONIALS = [
   { key: 't1' as const },
@@ -490,27 +488,38 @@ export default async function HomePage({
             </FadeInView>
           </div>
 
-          {/* Mini gallery — full width below */}
-          <ScrollReveal scale className="mt-16">
-            <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4">
-              {MINI_GALLERY.map((item) => (
-                <div key={item.key} className="relative aspect-[4/3] rounded-xl overflow-hidden group bg-neutral-100">
-                  <Image
-                    src={item.image}
-                    alt={t(`gallery.items.${item.key}`)}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    sizes="33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-tight">
-                    {t(`gallery.items.${item.key}`)}
-                  </span>
-                </div>
+          {/* Machine carousel — 6 systems to show range diversity */}
+          <FadeInView className="mt-16">
+            <p className="text-center text-sm font-semibold text-neutral-medium uppercase tracking-[0.15em] mb-8">
+              {lang === 'fr' ? 'Découvrez toute la gamme' : 'Discover the full range'}
+            </p>
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+              {[
+                { name: 'Alphashot XL v2', image: '/images/machines/alphashot-xl.avif', href: '/studio-photo/alphashot-xl-v2' },
+                { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: '/studio-photo/alphastudio-compact-pro-v2' },
+                { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: '/studio-photo/fashion-studio-pro-v2' },
+                { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: '/studio-photo/alphashot-360' },
+                { name: 'Bike Studio', image: '/images/machines/bike-studio.avif', href: '/studio-photo/bike-studio' },
+                { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: '/studio-photo/alphatable-v2' },
+              ].map((machine) => (
+                <Link key={machine.name} href={machine.href} className="group flex-shrink-0 w-[200px] sm:w-[240px] snap-start">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-50 border border-neutral-100 group-hover:border-very-peri-200 transition-colors duration-300">
+                    <Image
+                      src={machine.image}
+                      alt={machine.name}
+                      fill
+                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      sizes="240px"
+                    />
+                  </div>
+                  <p className="mt-3 text-sm font-medium text-heading-dark text-center group-hover:text-very-peri-600 transition-colors">
+                    {machine.name}
+                  </p>
+                </Link>
               ))}
             </div>
-          </ScrollReveal>
+          </FadeInView>
         </div>
       </section>
 
