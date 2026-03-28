@@ -177,55 +177,56 @@ export default async function FormationsPackshotPage({ params }: { params: Promi
       </HeroSection>
 
       {/* ════════════════════════════════════════════════════════════
-          BENEFITS — Bento Grid, fond blanc
+          BENEFITS — Split image + bénéfices, fond blanc
           ════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView direction="up">
-            <div className="max-w-3xl mb-16">
-              <span className="text-xs font-semibold text-emerald-600 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Pourquoi se former' : 'Why train'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
-              </TextReveal>
-            </div>
-          </FadeInView>
-
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* Hero card — Productivité x10 (large, full height left) */}
-            <FadeInView direction="left" delay={0.1}>
-              <SpringCard className="h-full">
-                <div className="bg-white rounded-2xl border border-neutral-100 hover:border-emerald-300 p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl">
-                  <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-amber-100 text-amber-700 mb-6">
-                    {benefits[0].icon}
-                  </span>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">{benefits[0].title}</h3>
-                  <p className="text-future-dusk-600 leading-relaxed text-lg flex-1">{benefits[0].desc}</p>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            {/* Left — Image d'illustration */}
+            <FadeInView direction="left">
+              <ScrollReveal scale>
+                <div className="relative">
+                  <Image
+                    src="/images/illustrations/pillar-formation.avif"
+                    alt={isFr ? 'Formation photo produit en situation' : 'Product photography training in action'}
+                    width={600}
+                    height={700}
+                    className="rounded-2xl shadow-2xl object-cover w-full"
+                  />
+                  {/* Badge flottant */}
+                  <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-white rounded-xl shadow-lg px-5 py-3 border border-neutral-100">
+                    <p className="text-2xl font-heading font-bold text-emerald-600">500+</p>
+                    <p className="text-xs text-future-dusk-500">{isFr ? 'stagiaires formés' : 'trained professionals'}</p>
+                  </div>
                 </div>
-              </SpringCard>
+              </ScrollReveal>
             </FadeInView>
 
-            {/* 2 smaller cards stacked */}
-            <div className="space-y-6">
-              {benefits.slice(1).map((b, i) => (
-                <FadeInView key={b.title} direction="right" delay={0.15 + i * 0.1}>
-                  <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className="bg-white rounded-2xl border border-neutral-100 hover:border-emerald-300 p-6 transition-all duration-300 shadow-sm hover:shadow-lg">
-                      <div className="flex items-start gap-5">
-                        <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${b.color} flex-shrink-0 mt-1`}>
-                          {b.icon}
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">{b.title}</h3>
-                          <p className="text-sm text-future-dusk-500 leading-relaxed">{b.desc}</p>
-                        </div>
+            {/* Right — Titre + 3 bénéfices empilés */}
+            <FadeInView direction="right" delay={0.15}>
+              <div>
+                <span className="text-xs font-semibold text-emerald-600 uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'Pourquoi se former' : 'Why train'}
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-10">
+                  {isFr ? 'Pourquoi se former aux studios Orbitvu ?' : 'Why train on Orbitvu studios?'}
+                </TextReveal>
+
+                <div className="space-y-0 divide-y divide-neutral-100">
+                  {benefits.map((b, i) => (
+                    <div key={b.title} className="flex items-start gap-5 py-6 first:pt-0 last:pb-0">
+                      <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${b.color} flex-shrink-0 mt-0.5`}>
+                        {b.icon}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-1.5">{b.title}</h3>
+                        <p className="text-future-dusk-500 leading-relaxed">{b.desc}</p>
                       </div>
                     </div>
-                  </SpringCard>
-                </FadeInView>
-              ))}
-            </div>
+                  ))}
+                </div>
+              </div>
+            </FadeInView>
           </div>
         </div>
       </section>
