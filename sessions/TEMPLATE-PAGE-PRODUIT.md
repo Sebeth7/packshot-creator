@@ -14,26 +14,22 @@ Chaque page produit suit cette sequence de sections. L'ordre est FIXE et ne doit
 |---|---------|------|--------|-------------|
 | 1 | Hero Product | `bg-future-dusk-900` (dark) | Split HeroSection | Oui |
 | 2 | IA Ready Banner | `bg-gradient-to-r from-amber-50 to-very-peri-50` | Horizontal icon+text+CTA | Si machine IA Ready |
-| 3 | **Galerie de resultats** | `bg-white` | Bento grid asymetrique | Oui |
-| 4 | **Description + Video** | `bg-neutral-50` | Split 6/6 text+video | Oui |
-| 5 | Key Stats Ribbon | `bg-future-dusk-900` (dark) | 3 colonnes AnimatedCounter | Si keyStats definis |
-| 6 | Avantages cles | `bg-white` | Split 4/8 sticky + ghost numbers | Oui |
-| 7 | Caracteristiques techniques | `bg-future-dusk-900` (dark) | Carte blanche centree | Oui |
-| 8 | Cas d'usage & Limites | `bg-white` | 2 colonnes SpringCard | Oui |
-| 9 | CTA Intermediaire | `bg-gradient dark` | Centre 2 CTAs | Oui |
-| 10 | Systemes similaires | `bg-neutral-50` | Grid 3 colonnes | Si machines similaires |
-| 11 | Formation Academy | `bg-white` | Split 7/5 + carte gradient | Oui |
-| 12 | FAQ | `bg-neutral-50` | Split 4/8 sticky + accordion | Si faqItems definis |
-| 13 | CTA Final (ADN) | `bg-black` | 2 cartes (gradient peri 3/5 + glassmorphism 2/5) | Oui |
+| 3 | **Product Story** | `bg-white` | Centre Apple + bento grid (7/5 + tiers) | Oui |
+| 4 | Key Stats Ribbon | `bg-future-dusk-900` (dark) | 3 colonnes AnimatedCounter | Si keyStats definis |
+| 5 | Avantages cles | `bg-white` | Featured dark full-width + 2-col grid | Oui |
+| 6 | **Specs & Use Cases** | `bg-future-dusk-900` (dark) | Split 7/5 (specs table + glassmorphism cards) | Oui |
+| 7 | Systemes similaires | `bg-neutral-50` | Grid 3 colonnes | Si machines similaires |
+| 8 | Formation Academy | `bg-white` | Split 7/5 + carte gradient | Oui |
+| 9 | FAQ | `bg-neutral-50` | Split 4/8 sticky + accordion | Si faqItems definis |
+| 10 | CTA Final (ADN) | `bg-black` | 2 cartes (gradient peri 3/5 + glassmorphism 2/5) | Oui |
 
 ### Rythme des fonds (alternance dark/light)
 ```
-Hero (dark) → IA Ready (light gradient) → Galerie (white) → Description (neutral-50) →
-Stats (dark) → Avantages (white) → Specs (dark) → Use Cases (white) →
-CTA Inter (dark) → Similaires (neutral-50) → Formation (white) → FAQ (neutral-50) →
-CTA Final (black)
+Hero (dark) → IA Ready (gradient) → Product Story (white) → Stats (dark) →
+Avantages (white) → Specs & Use Cases (dark) → Similaires (gray) →
+Formation (white) → FAQ (gray) → CTA Final (black)
 ```
-Jamais 2 fonds identiques consecutifs.
+Jamais 2 fonds identiques consecutifs. 10 sections au lieu de 13 (fusions + suppression redondances).
 
 ---
 
