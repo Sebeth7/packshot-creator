@@ -423,12 +423,12 @@ export default async function FormationsIAPage({ params }: { params: Promise<{ l
           <div className="grid lg:grid-cols-5 gap-8">
             <FadeInView direction="left" delay={0.1} className="lg:col-span-3">
               <SpringCard hoverY={-6}>
-                <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-3xl p-6 sm:p-10 lg:p-14 h-full flex flex-col">
+                <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-3xl p-6 sm:p-10 lg:p-14 h-full flex flex-col">
                   <h3 className="text-3xl font-heading font-bold mb-4">{isFr ? 'Consultez le calendrier' : 'Check the calendar'}</h3>
-                  <p className="text-amber-100 text-lg mb-8 leading-relaxed flex-1">
+                  <p className="text-emerald-100 text-lg mb-8 leading-relaxed flex-1">
                     {isFr ? 'Choisissez votre session de formation IA et développez vos compétences.' : 'Choose your AI training session and develop your skills.'}
                   </p>
-                  <Button asChild className="bg-white text-amber-700 hover:bg-amber-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                  <Button asChild className="bg-white text-emerald-700 hover:bg-emerald-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
                     <Link href="/academy/calendrier">{isFr ? 'Voir le calendrier' : 'View calendar'} <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </div>
