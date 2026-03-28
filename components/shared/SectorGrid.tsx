@@ -17,6 +17,7 @@ import {
   HeartPulse,
   Factory,
   Shield,
+  Glasses,
 } from 'lucide-react';
 
 export interface Sector {
@@ -87,4 +88,5 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'sante-medical', name: 'Santé & Médical', Icon: HeartPulse, description: 'Visuels conformes CE et documentation réglementaire' },
   { slug: 'industrie-manufacturiere', name: 'Industrie Manufacturière', Icon: Factory, description: 'Catalogage massif et intégration PIM automatisée' },
   { slug: 'defense-securite', name: 'Défense & Sécurité', Icon: Shield, description: 'Studio sur site sécurisé, traçabilité et conformité' },
+  { slug: 'lunetterie', name: 'Lunetterie & Optique', Icon: Glasses, description: 'Packshot montures, verres et solaires avec gestion des reflets' },
 ];

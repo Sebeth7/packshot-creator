@@ -1011,4 +1011,71 @@ export const secteurs: Secteur[] = [
       { question: 'Les visuels respectent-ils les normes de documentation défense ?', answer: 'Les studios produisent des visuels standardisés conformes aux cahiers des charges institutionnels. L\'export est disponible dans les formats requis par les donneurs d\'ordre du secteur.' },
     ],
   },
+
+  // 15. LUNETTERIE & OPTIQUE
+  {
+    slug: 'lunetterie',
+    titre: 'Photo Produit Professionnelle pour Lunetterie & Optique',
+    description:
+      'Solutions packshot et IA pour montures optiques et solaires : studios automatisés Orbitvu avec gestion des reflets et transparences.',
+    hero: {
+      titre: 'Lunetterie & Optique',
+      sousTitre: 'Packshot montures sans reflets, visuels lifestyle par IA',
+      description:
+        'Les montures optiques et solaires exigent une maîtrise parfaite des reflets sur les verres et des matières (métal, acétate, titane). Nos studios Orbitvu et l\'IA BlendAI produisent des visuels catalogue et lifestyle à la hauteur de vos collections.',
+    },
+    problematiques: {
+      titre: 'Les défis de la photo de lunettes',
+      items: [
+        'Reflets parasites sur les verres et le métal',
+        'Rendu fidèle des couleurs et matières (acétate, titane, or)',
+        'Volumes de collection importants (200-800 montures/saison)',
+        'Besoin de visuels portés et lifestyle pour le e-commerce',
+      ],
+    },
+    solutions: {
+      titre: 'Solutions packshot et IA pour la lunetterie',
+      items: [
+        {
+          titre: 'Studio Orbitvu — Packshot montures',
+          description:
+            'Éclairage LED anti-reflets optimisé pour les verres et surfaces métalliques. Packshot fond blanc, 360° et détourage automatique.',
+          avantages: [
+            'Éclairage polarisé pour éliminer les reflets',
+            'Rendu fidèle des couleurs et textures',
+            'Packshot automatisé en moins de 10 secondes',
+            'Vue 360° pour les boutiques en ligne',
+          ],
+        },
+        {
+          titre: 'BlendAI.studio — Visuels lifestyle optique',
+          description:
+            'Générez des visuels portés et des mises en scène lifestyle à partir de vos packshots, sans mannequin ni photographe.',
+          avantages: [
+            'Visuels portés générés par IA à partir du packshot',
+            'Ambiances personnalisables par collection',
+            'Production série rapide pour les catalogues saisonniers',
+            'Cohérence visuelle sur toute la gamme',
+          ],
+        },
+      ],
+    },
+    casClients: [
+      {
+        titre: 'Opticien premium — 400 montures/saison',
+        description:
+          'Passage de 2 semaines à 3 jours pour le shooting collection. Qualité constante sur les reflets et les couleurs. Budget photo réduit de 65%.',
+      },
+    ],
+    cta: {
+      titre: 'Testez avec vos montures',
+      description:
+        'Réservez une démo personnalisée avec vos propres montures. 30 minutes pour voir la différence.',
+    },
+    faq: [
+      { question: 'Comment gérez-vous les reflets sur les verres ?', answer: 'Nos studios utilisent un éclairage LED polarisé et des protocoles de prise de vue spécifiques à la lunetterie. Les reflets parasites sont éliminés dès la capture, sans retouche nécessaire.' },
+      { question: 'Peut-on photographier des montures en métal très réfléchissant ?', answer: 'Oui, l\'éclairage LED circulaire des studios Orbitvu est conçu pour maîtriser les reflets sur toutes les surfaces : métal poli, titane brossé, acétate brillant.' },
+      { question: 'L\'IA peut-elle générer des visuels portés à partir d\'un simple packshot ?', answer: 'Oui, BlendAI.studio génère des visuels portés réalistes à partir du packshot monture. Vous choisissez le style de mannequin et l\'ambiance par collection.' },
+    ],
+  },
 ];

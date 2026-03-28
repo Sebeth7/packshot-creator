@@ -311,3 +311,6 @@ Quand une image n'est pas encore disponible, ajouter un placeholder visible (imp
 7. **Paragraphes sans bold selectif** — Descriptions longues = 2-3 mots en gras.
 8. **Sections sans label categorie** — Chaque section majeure a son label.
 9. **Appliquer mecaniquement le design system** — Les regles sont des principes, pas une checklist.
+10. **Stats en texte statique** — Quand des chiffres sont affiches dans une section stats/ribbon, TOUJOURS utiliser `AnimatedCounter` au lieu de texte brut. Le compteur anime est un outil de conversion (l'oeil s'y arrete).
+11. **CTA Final simplifie** — Le CTA final doit suivre le pattern ADN (bg-black, 2 cartes distinctes avec contenu different). Ne PAS utiliser un simple gradient avec un seul bloc de texte.
+12. **Cartes d'avantages sans description** — Quand une section liste des avantages, chaque item doit avoir un titre ET un paragraphe descriptif (2-3 lignes). Un titre seul n'est pas suffisant pour convaincre un acheteur B2B a 15-50K EUR.

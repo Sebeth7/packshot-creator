@@ -193,7 +193,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                 {[
                   { icon: <Camera className="h-4 w-4" />, label: 'Packshot' },
                   { icon: <RotateCcw className="h-4 w-4" />, label: '360°' },
-                  { icon: <Shirt className="h-4 w-4" />, label: isFr ? 'Mode' : 'Fashion' },
+                  { icon: <Shirt className="h-4 w-4" />, label: '3D' },
                   { icon: <Layout className="h-4 w-4" />, label: 'Flat-lay' },
                 ].map((type) => (
                   <span key={type.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-medium text-future-dusk-200 border border-white/5">

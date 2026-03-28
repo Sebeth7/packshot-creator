@@ -1,10 +1,9 @@
-import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import {
   Factory, Zap, TrendingUp, Target, Camera, Sparkles, Send,
-  ArrowRight, ChevronDown, Quote, GraduationCap, Layout,
+  ArrowRight, ChevronDown, GraduationCap, Glasses, Wine, HeartPulse, Shield,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
@@ -14,6 +13,7 @@ import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import AnimatedCounter from '@/components/animations/AnimatedCounter';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ? 'Solutions Photo Produit par Industrie | Studios Automatisés & IA'
       : 'Product Photography Solutions by Industry | Automated Studios & AI',
     description: lang === 'fr'
-      ? 'Solutions packshot et IA photo produit pour 14 secteurs : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique, industrie, défense. Studios Orbitvu + BlendAI.'
-      : 'Packshot and AI product photography solutions for 14 industries: shoes, jewelry, furniture, food, cosmetics, fashion, electronics, manufacturing, defense. Orbitvu + BlendAI.',
+      ? 'Solutions packshot et IA photo produit pour 15 secteurs : lunetterie, chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique, industrie, défense. Studios Orbitvu + BlendAI.'
+      : 'Packshot and AI product photography solutions for 15 industries: eyewear, shoes, jewelry, furniture, food, cosmetics, fashion, electronics, manufacturing, defense. Orbitvu + BlendAI.',
     keywords: lang === 'fr'
-      ? 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, chaussures, bijoux, mobilier, food, cosmétiques'
-      : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, shoes, jewelry, furniture, food, cosmetics',
+      ? 'photo produit industrie, packshot secteur, studio photo automatisé, IA lifestyle, lunetterie, chaussures, bijoux, mobilier, food, cosmétiques'
+      : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, eyewear, shoes, jewelry, furniture, food, cosmetics',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie`,
       languages: { fr: '/fr/industrie', en: '/en/industrie' },
@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         ? 'Solutions Photo Produit par Industrie | Studios Automatisés & IA'
         : 'Product Photography Solutions by Industry | Automated Studios & AI',
       description: lang === 'fr'
-        ? 'Solutions packshot et IA photo produit adaptées à 14 secteurs. Studios Orbitvu + BlendAI.'
-        : 'Packshot and AI product photography solutions for 14 industries. Orbitvu Studios + BlendAI.',
+        ? 'Solutions packshot et IA photo produit adaptées à 15 secteurs. Studios Orbitvu + BlendAI.'
+        : 'Packshot and AI product photography solutions for 15 industries. Orbitvu Studios + BlendAI.',
       type: 'website',
       url: `https://www.packshot-creator.com/${lang}/industrie`,
       siteName: 'PackshotCreator',
@@ -63,13 +63,61 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
     { name: 'Industries', url: `https://www.packshot-creator.com/${lang}/industrie` },
   ];
 
+  /* ── Featured sectors (large cards) ── */
+  const featuredSectors = [
+    {
+      slug: 'lunetterie',
+      icon: <Glasses className="h-7 w-7" />,
+      title: isFr ? 'Lunetterie & Optique' : 'Eyewear & Optics',
+      description: isFr
+        ? 'Packshot montures sans reflets, visuels portés par IA. Gestion des transparences et matières nobles.'
+        : 'Frameless packshots, AI-generated worn visuals. Handling transparency and premium materials.',
+      color: 'bg-very-peri-50 text-very-peri-600',
+      hoverBorder: 'hover:border-very-peri-300',
+    },
+    {
+      slug: 'food-alimentaire',
+      icon: <Wine className="h-7 w-7" />,
+      title: isFr ? 'Food & Alimentaire' : 'Food & Beverage',
+      description: isFr
+        ? 'Packshot packaging et food styling IA. Visuels appétissants en série pour catalogues et marketplaces.'
+        : 'Packaging packshots and AI food styling. Appetizing serial visuals for catalogs and marketplaces.',
+      color: 'bg-amber-50 text-amber-600',
+      hoverBorder: 'hover:border-amber-300',
+    },
+    {
+      slug: 'sante-medical',
+      icon: <HeartPulse className="h-7 w-7" />,
+      title: isFr ? 'Santé & Médical' : 'Healthcare & Medical',
+      description: isFr
+        ? 'Visuels conformes CE et documentation réglementaire. Studios déployables sur site sécurisé.'
+        : 'CE-compliant visuals and regulatory documentation. Studios deployable on secure sites.',
+      color: 'bg-emerald-50 text-emerald-600',
+      hoverBorder: 'hover:border-emerald-300',
+    },
+    {
+      slug: 'industrie-manufacturiere',
+      icon: <Shield className="h-7 w-7" />,
+      title: isFr ? 'Industrie & Défense' : 'Industry & Defense',
+      description: isFr
+        ? 'Catalogage massif, traçabilité complète, studios sur site sécurisé. Conformité ISO et réglementaire.'
+        : 'Mass cataloging, full traceability, on-site secured studios. ISO and regulatory compliance.',
+      color: 'bg-future-dusk-50 text-future-dusk-600',
+      hoverBorder: 'hover:border-future-dusk-300',
+    },
+  ];
+
+  /* ── Compact grid: all other sectors ── */
+  const featuredSlugs = ['lunetterie', 'food-alimentaire', 'sante-medical', 'industrie-manufacturiere', 'defense-securite'];
+  const compactSectors = DEFAULT_SECTORS.filter((s) => !featuredSlugs.includes(s.slug));
+
   const benefits = [
     {
       icon: <Zap className="h-6 w-6" />,
       title: isFr ? 'Production Accélérée' : 'Accelerated Production',
       description: isFr
-        ? '50-300 produits/jour en studio automatisé. 100-500 visuels lifestyle/jour via IA. Délais réduits de 70-90%.'
-        : '50-300 products/day in automated studio. 100-500 lifestyle visuals/day via AI. Timelines reduced by 70-90%.',
+        ? '50-300 produits/jour en studio automatisé. 100-500 visuels lifestyle/jour via IA. Délais réduits de <bold>70-90%</bold>.'
+        : '50-300 products/day in automated studio. 100-500 lifestyle visuals/day via AI. Timelines reduced by <bold>70-90%</bold>.',
       color: 'bg-amber-100 text-amber-700',
       hoverBorder: 'hover:border-amber-300',
     },
@@ -77,8 +125,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       icon: <TrendingUp className="h-6 w-6" />,
       title: isFr ? 'ROI Rapide' : 'Fast ROI',
       description: isFr
-        ? 'Retour sur investissement 12-18 mois. Réduction coûts photo 60-85%. Idéal pour catalogues 100 à 5000+ références.'
-        : 'Return on investment 12-18 months. Photo cost reduction 60-85%. Ideal for catalogs with 100 to 5000+ references.',
+        ? 'Retour sur investissement <bold>12-18 mois</bold>. Réduction coûts photo <bold>60-85%</bold>. Idéal pour catalogues 100 à 5000+ références.'
+        : 'Return on investment <bold>12-18 months</bold>. Photo cost reduction <bold>60-85%</bold>. Ideal for catalogs with 100 to 5000+ references.',
       color: 'bg-emerald-100 text-emerald-700',
       hoverBorder: 'hover:border-emerald-300',
     },
@@ -86,8 +134,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       icon: <Target className="h-6 w-6" />,
       title: isFr ? 'Cohérence Absolue' : 'Absolute Consistency',
       description: isFr
-        ? 'Même qualité sur tout le catalogue. Éclairage, angles et ambiances identiques. Renforce l\'identité de marque.'
-        : 'Same quality across the entire catalog. Identical lighting, angles and ambiances. Strengthens brand identity.',
+        ? 'Même qualité sur <bold>tout le catalogue</bold>. Éclairage, angles et ambiances identiques. Renforce l\'<bold>identité de marque</bold>.'
+        : 'Same quality across <bold>the entire catalog</bold>. Identical lighting, angles and ambiances. Strengthens <bold>brand identity</bold>.',
       color: 'bg-very-peri-100 text-very-peri-700',
       hoverBorder: 'hover:border-very-peri-300',
     },
@@ -98,59 +146,32 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       icon: <Camera className="h-6 w-6" />,
       title: isFr ? 'Capture Packshot Automatisée' : 'Automated Packshot Capture',
       description: isFr
-        ? 'Systèmes Orbitvu : packshot fond blanc haute résolution, 360° optionnel, détourage automatique.'
-        : 'Orbitvu systems: high-resolution white background packshot, optional 360°, automatic clipping.',
+        ? 'Systèmes Orbitvu : packshot <bold>fond blanc haute résolution</bold>, 360° optionnel, détourage automatique.'
+        : 'Orbitvu systems: <bold>high-resolution white background</bold> packshot, optional 360°, automatic clipping.',
       num: '01',
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
       title: isFr ? 'Génération Lifestyle IA' : 'AI Lifestyle Generation',
       description: isFr
-        ? 'BlendAI.studio : transformez packshots en visuels lifestyle. Personnalisation ADN marque. Production série rapide.'
-        : 'BlendAI.studio: transform packshots into lifestyle visuals. Brand DNA customization. Fast series production.',
+        ? 'BlendAI.studio : transformez packshots en <bold>visuels lifestyle</bold>. Personnalisation ADN marque. Production <bold>série rapide</bold>.'
+        : 'BlendAI.studio: transform packshots into <bold>lifestyle visuals</bold>. Brand DNA customization. <bold>Fast series</bold> production.',
       num: '02',
     },
     {
       icon: <Send className="h-6 w-6" />,
       title: isFr ? 'Diffusion Multi-Canal' : 'Multi-Channel Distribution',
       description: isFr
-        ? 'Export formats optimisés e-commerce, marketplaces, réseaux sociaux, print.'
-        : 'Export formats optimized for e-commerce, marketplaces, social media, print.',
+        ? 'Export formats optimisés <bold>e-commerce</bold>, marketplaces, <bold>réseaux sociaux</bold>, print.'
+        : 'Export formats optimized for <bold>e-commerce</bold>, marketplaces, <bold>social media</bold>, print.',
       num: '03',
-    },
-  ];
-
-  const caseStudies = [
-    {
-      sector: isFr ? 'Chaussures' : 'Footwear',
-      client: isFr ? 'Marque sneakers — 250 SKUs/saison' : 'Sneaker brand — 250 SKUs/season',
-      result: isFr ? 'Délais de 3 semaines → 48h. Budget photo -70%.' : 'Timelines from 3 weeks → 48h. Photo budget -70%.',
-      color: 'border-very-peri-200 bg-very-peri-50/50',
-    },
-    {
-      sector: isFr ? 'Cosmétiques' : 'Cosmetics',
-      client: isFr ? 'Marque bio — 120 SKUs' : 'Organic brand — 120 SKUs',
-      result: isFr ? 'Conversion e-commerce +40%. 3 visuels lifestyle IA/produit.' : 'E-commerce conversion +40%. 3 AI lifestyle visuals/product.',
-      color: 'border-amber-200 bg-amber-50/50',
-    },
-    {
-      sector: isFr ? 'Industrie' : 'Manufacturing',
-      client: isFr ? 'Fabricant équipements — 3000 références' : 'Equipment manufacturer — 3,000 references',
-      result: isFr ? 'Catalogue complet en 4 semaines (vs 4 mois). Erreurs commande -40%.' : 'Full catalog in 4 weeks (vs 4 months). Order errors -40%.',
-      color: 'border-emerald-200 bg-emerald-50/50',
-    },
-    {
-      sector: isFr ? 'Mode' : 'Fashion',
-      client: isFr ? 'Marque vêtements — 400 SKUs/saison' : 'Clothing brand — 400 SKUs/season',
-      result: isFr ? 'Délais -75%. Taux de retour -15% grâce aux visuels portés IA.' : 'Timelines -75%. Return rate -15% thanks to AI worn visuals.',
-      color: 'border-rose-200 bg-rose-50/50',
     },
   ];
 
   const faqs = isFr ? [
     {
       question: 'PackshotCreator intervient-il dans mon secteur ?',
-      answer: 'Oui. Nous accompagnons 14 secteurs : chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique, pièces techniques, automobile, jouets, sport, santé, industrie manufacturière et défense. Chaque secteur a ses contraintes spécifiques (reflets, matières, conformité) et nous y répondons avec des solutions studio + IA adaptées.',
+      answer: 'Oui. Nous accompagnons 15 secteurs : lunetterie, chaussures, bijoux, mobilier, food, cosmétiques, mode, électronique, pièces techniques, automobile, jouets, sport, santé, industrie manufacturière et défense. Chaque secteur a ses contraintes spécifiques (reflets, matières, conformité) et nous y répondons avec des solutions studio + IA adaptées.',
     },
     {
       question: 'Quel volume minimum pour justifier un studio automatisé ?',
@@ -158,7 +179,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
     },
     {
       question: 'L\'IA lifestyle fonctionne-t-elle pour tous les types de produits ?',
-      answer: 'BlendAI.studio fonctionne avec tous les types de produits photographiés en studio Orbitvu : objets, vêtements, mobilier, alimentation, cosmétiques... L\'IA part d\'un packshot de qualité studio pour générer des mises en scène fidèles au produit, avec des styles personnalisables par secteur.',
+      answer: 'BlendAI.studio fonctionne avec tous les types de produits photographiés en studio Orbitvu : objets, vêtements, mobilier, alimentation, cosmétiques, montures... L\'IA part d\'un packshot de qualité studio pour générer des mises en scène fidèles au produit, avec des styles personnalisables par secteur.',
     },
     {
       question: 'Proposez-vous des solutions pour les environnements réglementés ?',
@@ -171,7 +192,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
   ] : [
     {
       question: 'Does PackshotCreator work with my industry?',
-      answer: 'Yes. We serve 14 sectors: footwear, jewelry, furniture, food, cosmetics, fashion, electronics, technical parts, automotive, toys, sports, healthcare, manufacturing and defense. Each sector has specific constraints (reflections, materials, compliance) and we address them with tailored studio + AI solutions.',
+      answer: 'Yes. We serve 15 sectors: eyewear, footwear, jewelry, furniture, food, cosmetics, fashion, electronics, technical parts, automotive, toys, sports, healthcare, manufacturing and defense. Each sector has specific constraints (reflections, materials, compliance) and we address them with tailored studio + AI solutions.',
     },
     {
       question: 'What minimum volume justifies an automated studio?',
@@ -179,7 +200,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
     },
     {
       question: 'Does AI lifestyle work for all product types?',
-      answer: 'BlendAI.studio works with all product types photographed in Orbitvu studios: objects, clothing, furniture, food, cosmetics... AI starts from a studio-quality packshot to generate product-faithful scenes, with sector-customizable styles.',
+      answer: 'BlendAI.studio works with all product types photographed in Orbitvu studios: objects, clothing, furniture, food, cosmetics, eyewear... AI starts from a studio-quality packshot to generate product-faithful scenes, with sector-customizable styles.',
     },
     {
       question: 'Do you offer solutions for regulated environments?',
@@ -193,17 +214,25 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
   const faqItems = faqs.map(f => ({ question: f.question, answer: f.answer }));
 
+  const renderBold = (text: string) => {
+    const parts = text.split(/<bold>(.*?)<\/bold>/g);
+    return parts.map((part, i) =>
+      i % 2 === 1
+        ? <strong key={i} className="text-heading-dark font-semibold">{part}</strong>
+        : part
+    );
+  };
+
   return (
     <>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Split layout, industry focus
-          Design: Big headline + industry image. Immersive gradient.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <HeroSection
         layout="split"
         badge={{
           icon: <Factory className="h-4 w-4" />,
-          label: isFr ? '14 secteurs couverts' : '14 sectors covered',
+          label: isFr ? '15 secteurs couverts' : '15 sectors covered',
           colorClass: 'bg-very-peri-500/15 text-very-peri-300',
         }}
         title={isFr
@@ -228,91 +257,103 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
             <Link href="/contact">{isFr ? 'Demander une démo' : 'Request a demo'}</Link>
           </Button>
           <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
-            <a href="#secteurs">{isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'}</a>
+            <a href="#secteurs">{isFr ? 'Voir les 15 secteurs' : 'View all 15 sectors'}</a>
           </Button>
         </div>
       </HeroSection>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          2. SECTORS GRID — TextReveal heading, enhanced wrapper
-          Design: Overline + TextReveal, left-aligned heading. SectorGrid
-          component handles the actual sector cards.
+          2. SECTORS — Featured cards + compact grid
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="secteurs" className="py-16 lg:py-28 bg-white">
+      <section id="secteurs" className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-3xl mb-12">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Nos secteurs' : 'Our sectors'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {isFr ? '14 Secteurs d\'Activité Couverts' : '14 Industry Sectors Covered'}
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+                {isFr ? '15 Secteurs d\'Activité' : '15 Industry Sectors'}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500">
+              <p className="text-lg text-neutral-medium leading-relaxed">
                 {isFr
-                  ? 'De la chaussure à la défense, du bijou à l\'industrie manufacturière : des solutions photo produit adaptées à chaque contrainte métier.'
-                  : 'From footwear to defense, jewelry to manufacturing: product photo solutions tailored to every business constraint.'}
+                  ? renderBold('De la <bold>lunetterie</bold> à la <bold>défense</bold>, du bijou à l\'industrie manufacturière : des solutions photo produit adaptées à chaque <bold>contrainte métier</bold>.')
+                  : renderBold('From <bold>eyewear</bold> to <bold>defense</bold>, jewelry to manufacturing: product photo solutions tailored to every <bold>business constraint</bold>.')}
               </p>
             </div>
           </ScrollReveal>
-          <FadeInView delay={0.15}>
-            <SectorGrid sectors={DEFAULT_SECTORS} columns={4} />
+
+          {/* Featured sectors — 2x2 large cards */}
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 mb-12">
+            {featuredSectors.map((sector, idx) => (
+              <FadeInView key={sector.slug} direction={idx % 2 === 0 ? 'left' : 'right'} delay={idx * 0.1}>
+                <SpringCard hoverY={-4} hoverScale={1.01} className="h-full">
+                  <Link
+                    href={`/industrie/${sector.slug}`}
+                    className={`group block bg-white rounded-2xl border border-neutral-200 ${sector.hoverBorder} p-6 lg:p-10 transition-all duration-300 hover:shadow-xl h-full`}
+                  >
+                    <div className="flex items-start gap-5">
+                      <span className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl ${sector.color} shrink-0`}>
+                        {sector.icon}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="text-xl lg:text-2xl font-heading font-bold text-heading-dark group-hover:text-very-peri-600 transition-colors">
+                            {sector.title}
+                          </h3>
+                          <ArrowRight className="h-5 w-5 text-neutral-300 group-hover:text-very-peri-500 group-hover:translate-x-1 transition-all shrink-0" />
+                        </div>
+                        <p className="text-neutral-medium leading-relaxed">
+                          {sector.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </SpringCard>
+              </FadeInView>
+            ))}
+          </div>
+
+          {/* Compact grid — remaining sectors */}
+          <FadeInView delay={0.3}>
+            <SectorGrid sectors={compactSectors} columns={4} />
           </FadeInView>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          3. CASE STUDIES — Split 4/8, sticky heading + stacked cards
-          Design: Heading stays left, case study cards scroll right.
-          Each card has a sector badge and result highlight.
+          3. STATS BRIDGE — Typography-driven key numbers
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-            {/* Left column: sticky heading */}
-            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Cas concrets' : 'Case studies'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                {isFr ? 'Résultats concrets, tous secteurs' : 'Concrete results, all sectors'}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 leading-relaxed">
-                {isFr
-                  ? 'Des entreprises de toutes tailles ont transformé leur production visuelle avec nos solutions.'
-                  : 'Companies of all sizes have transformed their visual production with our solutions.'}
-              </p>
-            </ScrollReveal>
-
-            {/* Right column: stacked case study cards */}
-            <div className="lg:col-span-8 space-y-6">
-              {caseStudies.map((cs) => (
-                <ScrollReveal key={cs.sector} offset={30}>
-                  <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className={`rounded-2xl border ${cs.color} p-3 sm:p-5 lg:p-10 transition-all duration-300`}>
-                      <div className="flex items-start gap-4 mb-4">
-                        <Quote className="h-6 w-6 text-future-dusk-300 shrink-0 mt-1" />
-                        <div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-future-dusk-400">{cs.sector}</span>
-                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mt-1">{cs.client}</h3>
-                        </div>
-                      </div>
-                      <p className="text-future-dusk-700 font-semibold text-lg ml-10">{cs.result}</p>
-                    </div>
-                  </SpringCard>
-                </ScrollReveal>
-              ))}
-            </div>
+      <section className="py-12 lg:py-16 bg-future-dusk-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
+            {[
+              { end: 500, suffix: '+', label: isFr ? 'entreprises équipées' : 'equipped companies' },
+              { end: 15, suffix: '', label: isFr ? 'secteurs couverts' : 'sectors covered' },
+              { end: 85, suffix: '%', prefix: '60-', label: isFr ? 'réduction des coûts' : 'cost reduction' },
+              { end: 3, suffix: ' sec', label: isFr ? 'par packshot' : 'per packshot' },
+            ].map((stat, idx) => (
+              <FadeInView key={idx} delay={idx * 0.12}>
+                <div className="text-center lg:px-8">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white mb-2">
+                    {stat.prefix && <span>{stat.prefix}</span>}
+                    <AnimatedCounter end={stat.end} suffix={stat.suffix} duration={2} />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
+                    {stat.label}
+                  </p>
+                </div>
+              </FadeInView>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           4. BENEFITS — Bento grid, hero card + 2 smaller
-          Design: First benefit is the hero card (large, left),
-          other two stack on the right. Creates visual hierarchy.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -321,7 +362,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Pourquoi automatiser' : 'Why automate'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
                 {isFr ? 'Avantages pour toutes les industries' : 'Benefits for all industries'}
               </TextReveal>
             </div>
@@ -329,44 +370,44 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
           <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">
             {/* Hero card — Production Accélérée */}
-            <ScrollReveal offset={30}>
+            <FadeInView direction="left" delay={0.1}>
               <SpringCard className="h-full">
-                <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefits[0].hoverBorder} p-5 sm:p-8 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl`}>
+                <div className={`bg-future-dusk-0 rounded-2xl border border-neutral-100 ${benefits[0].hoverBorder} p-5 sm:p-8 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl`}>
                   <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${benefits[0].color} mb-6`}>
                     {benefits[0].icon}
                   </span>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-heading-dark mb-4">
                     {benefits[0].title}
                   </h3>
-                  <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
-                    {benefits[0].description}
+                  <p className="text-neutral-medium leading-relaxed text-lg flex-1">
+                    {renderBold(benefits[0].description)}
                   </p>
                 </div>
               </SpringCard>
-            </ScrollReveal>
+            </FadeInView>
 
             {/* 2 smaller cards stacked */}
             <div className="space-y-3 sm:space-y-6">
-              {benefits.slice(1).map((benefit) => (
-                <ScrollReveal key={benefit.title} offset={20}>
+              {benefits.slice(1).map((benefit, idx) => (
+                <FadeInView key={benefit.title} direction="right" delay={0.15 + idx * 0.1}>
                   <SpringCard hoverY={-3} hoverScale={1.005}>
-                    <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${benefit.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
+                    <div className={`bg-future-dusk-0 rounded-2xl border border-neutral-100 ${benefit.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
                       <div className="flex items-start gap-5">
                         <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${benefit.color} flex-shrink-0 mt-1`}>
                           {benefit.icon}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
+                          <h3 className="text-lg font-heading font-bold text-heading-dark mb-2">
                             {benefit.title}
                           </h3>
-                          <p className="text-sm text-future-dusk-500 leading-relaxed">
-                            {benefit.description}
+                          <p className="text-sm text-neutral-medium leading-relaxed">
+                            {renderBold(benefit.description)}
                           </p>
                         </div>
                       </div>
                     </div>
                   </SpringCard>
-                </ScrollReveal>
+                </FadeInView>
               ))}
             </div>
           </div>
@@ -375,10 +416,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. WORKFLOW — Dark bg, timeline editorial
-          Design: Dark surround. Giant step numbers, horizontal rows,
-          icon + content. Same energy as Studios S6.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-very-peri-800/20 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -388,26 +427,24 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Notre processus' : 'Our process'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-6">
                 {isFr ? 'Packshot → IA → Diffusion' : 'Packshot → AI → Distribution'}
               </TextReveal>
-              <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">
+              <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto leading-relaxed">
                 {isFr
-                  ? 'Le processus standard pour tous les secteurs : capture packshot haute qualité, génération lifestyle IA, diffusion multi-canal.'
-                  : 'The standard process for all sectors: high-quality packshot capture, AI lifestyle generation, multi-channel distribution.'}
+                  ? renderBold('Le processus standard pour <bold>tous les secteurs</bold> : capture packshot haute qualité, génération lifestyle IA, diffusion <bold>multi-canal</bold>.')
+                  : renderBold('The standard process for <bold>all sectors</bold>: high-quality packshot capture, AI lifestyle generation, <bold>multi-channel</bold> distribution.')}
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Image placeholder — à remplacer par un visuel workflow pipeline */}
-
           <div className="space-y-0">
             {workflowSteps.map((step, idx) => (
-              <ScrollReveal key={step.num} offset={30}>
+              <FadeInView key={step.num} direction={idx % 2 === 0 ? 'left' : 'right'} delay={idx * 0.15}>
                 <div className={`grid md:grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-12 ${idx < workflowSteps.length - 1 ? 'border-b border-white/10' : ''}`}>
                   {/* Number — massive, decorative */}
                   <div className="md:col-span-2 text-center md:text-right">
-                    <span className="text-3xl sm:text-5xl lg:text-9xl font-heading font-bold text-white/5 select-none leading-none">
+                    <span className="text-3xl sm:text-5xl lg:text-9xl font-heading font-bold text-white/8 select-none leading-none">
                       {step.num}
                     </span>
                   </div>
@@ -423,36 +460,35 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                       {step.title}
                     </h3>
                     <p className="text-future-dusk-300 leading-relaxed max-w-2xl">
-                      {step.description}
+                      {renderBold(step.description)}
                     </p>
                   </div>
                 </div>
-              </ScrollReveal>
+              </FadeInView>
             ))}
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          6. FAQ — Two-column: heading left, accordion right
-          Design: Split layout, heading stays while user scrolls FAQs.
+          6. FAQ — Split sticky heading + accordion
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
+      <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-              <ScrollReveal>
+              <FadeInView direction="left">
                 <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
-                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1] mb-4">
                   {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
                 </TextReveal>
-                <p className="text-future-dusk-500 leading-relaxed">
+                <p className="text-neutral-medium leading-relaxed">
                   {isFr
                     ? 'Tout ce que vous devez savoir sur nos solutions par secteur.'
                     : 'Everything you need to know about our industry solutions.'}
                 </p>
-              </ScrollReveal>
+              </FadeInView>
             </div>
 
             {/* Right: accordion */}
@@ -462,13 +498,13 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                   <StaggerItem key={i}>
                     <details className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
                       <summary className="flex items-center justify-between gap-4 p-4 sm:p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                        <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
+                        <h3 className="text-lg font-heading font-semibold text-heading-dark text-left leading-snug group-hover:text-very-peri-600 transition-colors">
                           {faq.question}
                         </h3>
                         <ChevronDown className="h-5 w-5 text-future-dusk-400 shrink-0 group-open:rotate-180 transition-transform duration-300" />
                       </summary>
                       <div className="px-6 lg:px-8 pb-6 lg:pb-8 -mt-1">
-                        <p className="text-future-dusk-500 leading-relaxed">{faq.answer}</p>
+                        <p className="text-neutral-medium leading-relaxed">{faq.answer}</p>
                       </div>
                     </details>
                   </StaggerItem>
@@ -481,60 +517,62 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           7. FINAL CTA — Asymmetric, demo card is dominant
-          Design: Demo card takes 3/5, quote card 2/5. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
+            <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
               {isFr ? 'Quel est votre secteur ?' : 'What is your industry?'}
             </TextReveal>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
             {/* Demo — 3/5 = dominant */}
-            <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
-                <h3 className="text-3xl font-heading font-bold mb-4">
-                  {isFr ? 'Démo personnalisée' : 'Personalized demo'}
-                </h3>
-                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
-                  {isFr
-                    ? 'Tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur. 30 min, sans engagement.'
-                    : 'Packshot tests with your products + AI lifestyle examples for your sector. 30 min, no commitment.'}
-                </p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
-                  <Link href="/contact">
-                    {isFr ? 'Réserver ma démo' : 'Book my demo'} <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-            </SpringCard>
+            <FadeInView direction="left" delay={0.1} className="lg:col-span-3">
+              <SpringCard hoverY={-6}>
+                <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
+                  <h3 className="text-3xl font-heading font-bold mb-4">
+                    {isFr ? 'Démo personnalisée' : 'Personalized demo'}
+                  </h3>
+                  <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
+                    {isFr
+                      ? 'Tests packshot avec vos produits + exemples IA lifestyle adaptés à votre secteur. 30 min, sans engagement.'
+                      : 'Packshot tests with your products + AI lifestyle examples for your sector. 30 min, no commitment.'}
+                  </p>
+                  <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
+                    <Link href="/contact">
+                      {isFr ? 'Réserver ma démo' : 'Book my demo'} <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
+              </SpringCard>
+            </FadeInView>
             {/* Quote — 2/5 = secondary */}
-            <SpringCard className="lg:col-span-2" hoverY={-6}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 h-full flex flex-col">
-                <h3 className="text-2xl font-heading font-bold mb-4">
-                  {isFr ? 'Devis sur mesure' : 'Custom quote'}
-                </h3>
-                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
-                  {isFr
-                    ? 'Analyse de vos besoins, recommandation système + IA, et devis détaillé. Réponse sous 24h.'
-                    : 'Needs analysis, system + AI recommendation, and detailed quote. Response within 24h.'}
-                </p>
-                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
-                  <Link href="/contact">
-                    {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </SpringCard>
+            <FadeInView direction="right" delay={0.2} className="lg:col-span-2">
+              <SpringCard hoverY={-6}>
+                <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 h-full flex flex-col">
+                  <h3 className="text-2xl font-heading font-bold mb-4">
+                    {isFr ? 'Devis sur mesure' : 'Custom quote'}
+                  </h3>
+                  <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
+                    {isFr
+                      ? 'Analyse de vos besoins, recommandation système + IA, et devis détaillé. Réponse sous 24h.'
+                      : 'Needs analysis, system + AI recommendation, and detailed quote. Response within 24h.'}
+                  </p>
+                  <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                    <Link href="/contact">
+                      {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </SpringCard>
+            </FadeInView>
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           8. CROSS-LINKS — Minimal, editorial
-          Design: Vertical dividers, no cards. Clean text hierarchy.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 bg-white border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -553,12 +591,12 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                 <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-very-peri-500">{link.icon}</span>
-                    <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                    <h3 className="font-heading font-bold text-heading-dark group-hover:text-very-peri-600 transition-colors">
                       {link.title}
                     </h3>
                     <ArrowRight className="h-4 w-4 text-future-dusk-300 group-hover:text-very-peri-500 group-hover:translate-x-1 transition-all ml-auto" />
                   </div>
-                  <p className="text-sm text-future-dusk-500 leading-relaxed">
+                  <p className="text-sm text-neutral-medium leading-relaxed">
                     {link.desc}
                   </p>
                 </Link>
