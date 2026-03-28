@@ -11,7 +11,7 @@ import {
 import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
@@ -80,6 +80,9 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
   const isFr = lang === 'fr';
 
+  const boldOrange = (chunks: React.ReactNode) => <strong className="text-accent-orange font-semibold">{chunks}</strong>;
+  const boldOrangeLight = (chunks: React.ReactNode) => <strong className="text-amber-400 font-semibold">{chunks}</strong>;
+
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: 'IA Photo Produit', url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
@@ -105,7 +108,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           colorClass: 'bg-very-peri-500/20 text-very-peri-300',
         }}
         title={t('hero.title')}
-        subtitle={t('hero.subtitle')}
+        subtitle={t.rich('hero.subtitle', { bold: boldOrangeLight })}
         ctas={[
           { label: t('hero.ctaPrimary'), href: '/contact', variant: 'primary' },
           { label: t('hero.ctaSecondary'), href: '#resultats', variant: 'secondary' },
@@ -134,21 +137,27 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Asymmetric. Heading stays left, principles scroll right
           with ghost numbers and horizontal card layout.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16 items-start">
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Notre philosophie' : 'Our philosophy'}
               </span>
-              <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('manifeste.heading')}
               </TextReveal>
               <p className="text-base lg:text-lg text-future-dusk-500 leading-relaxed mb-8">
-                {t('manifeste.subtitle')}
+                {t.rich('manifeste.subtitle', { bold: boldOrange })}
               </p>
-              {/* Image placeholder — à remplacer par un visuel AVIF transparent */}
+              {/* Image placeholder */}
+              <div className="w-full h-[280px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
+                <div className="text-center">
+                  <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                  <p className="text-xs text-neutral-300">Packshot studio Orbitvu — ~500x280</p>
+                </div>
+              </div>
             </ScrollReveal>
 
             {/* Right column: stacked principle cards */}
@@ -173,7 +182,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                         {t(`manifeste.${principle.key}.title`)}
                       </h3>
                       <p className="text-future-dusk-500 leading-relaxed">
-                        {t(`manifeste.${principle.key}.description`)}
+                        {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
                       </p>
                     </div>
                   </SpringCard>
@@ -189,17 +198,17 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Recommended card is the hero (larger, elevated), pure IA
           card is secondary (smaller). Creates visual hierarchy.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className=" relative overflow-hidden">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-neutral-50" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Comparatif' : 'Comparison'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
                 {t('whyBase.heading')}
               </TextReveal>
             </div>
@@ -223,7 +232,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                       <p className="text-sm text-very-peri-500">{t('whyBase.blendai.examples')}</p>
                     </div>
                   </div>
-                  <p className="text-future-dusk-500 mb-6 leading-relaxed text-lg">{t('whyBase.blendai.description')}</p>
+                  <p className="text-future-dusk-500 mb-6 leading-relaxed text-lg">{t.rich('whyBase.blendai.description', { bold: boldOrange })}</p>
                   <ul className="space-y-3 mb-8">
                     {[1, 2, 3, 4].map((i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -278,21 +287,21 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Dark surround with gradient. Platform info on white
           floating card. Features as timeline steps inside.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-[#2d1b4e]/40 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <div className="text-center mb-14">
-              <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em] mb-4 block">
                 BlendAI.studio
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-4">
                 {t('platform.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">
-                {t('platform.subtitle')}
+                {t.rich('platform.subtitle', { bold: boldOrangeLight })}
               </p>
             </div>
           </ScrollReveal>
@@ -318,7 +327,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                         {t(`platform.${feat.key}.title`)}
                       </h3>
                       <p className="text-future-dusk-500 leading-relaxed">
-                        {t(`platform.${feat.key}.description`)}
+                        {t.rich(`platform.${feat.key}.description`, { bold: boldOrange })}
                       </p>
                     </div>
                   </div>
@@ -343,20 +352,20 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: First card spans 2 rows (hero card), others are smaller.
           Creates visual hierarchy instead of 4 identical boxes.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Fonctionnalités' : 'Features'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('features.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500">
-                {t('features.subtitle')}
+                {t.rich('features.subtitle', { bold: boldOrange })}
               </p>
             </div>
           </ScrollReveal>
@@ -367,7 +376,13 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             <ScrollReveal offset={30}>
               <SpringCard className="h-full">
                 <div className="bg-neutral-50 rounded-2xl border border-neutral-100 hover:border-pink-300 p-6 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group">
-                  {/* Image placeholder — à remplacer par un visuel lifestyle AVIF */}
+                  {/* Image placeholder */}
+                  <div className="w-full h-[180px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-6">
+                    <div className="text-center">
+                      <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                      <p className="text-xs text-neutral-300">Lifestyle scene — ~800x180</p>
+                    </div>
+                  </div>
                   <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${FEATURES[0].color} mb-6`}>
                     {FEATURES[0].icon}
                   </span>
@@ -375,7 +390,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                     {t(`features.${FEATURES[0].key}.name`)}
                   </h3>
                   <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
-                    {t(`features.${FEATURES[0].key}.description`)}
+                    {t.rich(`features.${FEATURES[0].key}.description`, { bold: boldOrange })}
                   </p>
                 </div>
               </SpringCard>
@@ -387,6 +402,13 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 <ScrollReveal key={feat.key} offset={20}>
                   <SpringCard hoverY={-3} hoverScale={1.005}>
                     <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group`}>
+                      {/* Image placeholder */}
+                      <div className="w-full h-[100px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-4">
+                        <div className="text-center">
+                          <ImageIcon className="w-6 h-6 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                          <p className="text-[10px] text-neutral-300">Feature visual — ~400x100</p>
+                        </div>
+                      </div>
                       <div className="flex items-start gap-5">
                         <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} flex-shrink-0 mt-1`}>
                           {feat.icon}
@@ -396,7 +418,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                             {t(`features.${feat.key}.name`)}
                           </h3>
                           <p className="text-sm text-future-dusk-500 leading-relaxed">
-                            {t(`features.${feat.key}.description`)}
+                            {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
                           </p>
                         </div>
                       </div>
@@ -414,20 +436,20 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Each slider reveals at different offsets. Floating
           sector badges. Subtle parallax on the grid.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="resultats" className="py-16 lg:py-28 bg-neutral-50 relative overflow-hidden">
+      <section id="resultats" className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-very-peri-200/10 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Résultats concrets' : 'Real results'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
                 {t('casUsage.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-                {t('casUsage.subtitle')}
+                {t.rich('casUsage.subtitle', { bold: boldOrange })}
               </p>
             </div>
           </ScrollReveal>
@@ -469,23 +491,53 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Dark bg, giant numbers dominate. Quote below.
           Same energy as Studios S2.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          {/* Giant stats */}
+          {/* Label + heading */}
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <span className="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Résultats clients' : 'Client results'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white">
+                {t('socialProof.heading')}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
+
+          {/* Giant stats with AnimatedCounter */}
           <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-14">
-            {(['stat1', 'stat2', 'stat3'] as const).map((stat) => (
-              <StaggerItem key={stat}>
-                <div className="text-center px-8">
-                  <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                    {t(`socialProof.${stat}`)}
-                  </p>
-                  <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                    {t(`socialProof.${stat}Label`)}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <AnimatedCounter end={100} suffix="+" duration={2} />
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('socialProof.stat1Label')}
+                </p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <AnimatedCounter end={5000} suffix="+" duration={2.5} />
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('socialProof.stat2Label')}
+                </p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  4.9<span className="text-3xl md:text-4xl lg:text-5xl">/5</span>
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('socialProof.stat3Label')}
+                </p>
+              </div>
+            </StaggerItem>
           </StaggerContainer>
 
           {/* Quote */}
@@ -510,16 +562,19 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           8. COMPATIBLE SYSTEMES ORBITVU — Split gradient, enhanced
           Design: Full gradient bg, split image + content. TextReveal title.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             <ScrollReveal>
-              <TextReveal as="h2" className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-[1.1]">
+              <span className="text-xs font-semibold text-amber-300 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Intégration' : 'Integration'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold mb-6 leading-[1.1]">
                 {t('compatible.heading')}
               </TextReveal>
               <p className="text-lg text-very-peri-100 mb-8 leading-relaxed">
-                {t('compatible.subtitle')}
+                {t.rich('compatible.subtitle', { bold: boldOrangeLight })}
               </p>
               <ul className="space-y-4 mb-10">
                 {(['feature1', 'feature2', 'feature3', 'offer'] as const).map((key) => (
@@ -558,14 +613,14 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Split layout, heading stays while user scrolls FAQs.
           Same pattern as Studios S8.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
+      <section className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
-                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
-                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">FAQ</span>
+                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                   {t('faq.heading')}
                 </TextReveal>
                 <p className="text-future-dusk-500 leading-relaxed">
@@ -605,11 +660,11 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           Design: Test BlendAI card takes 3/5, demo card 2/5.
           Visual hierarchy. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
+            <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
               {isFr ? 'Prêt à transformer vos visuels ?' : 'Ready to transform your visuals?'}
             </TextReveal>
           </ScrollReveal>

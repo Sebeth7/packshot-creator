@@ -388,24 +388,24 @@
     },
     "hero": {
       "title": "Vos produits, des déclinaisons infinies",
-      "subtitle": "BlendAI part de votre packshot professionnel pour créer des mises en scène lifestyle fidèles à 100%. Pas de photo inventée, pas d'approximation.",
+      "subtitle": "BlendAI part de votre packshot professionnel pour créer des mises en scène lifestyle <bold>fidèles à 100%</bold>. Pas de photo inventée, pas d'approximation.",
       "ctaPrimary": "Tester BlendAI gratuitement",
       "ctaSecondary": "Voir les résultats"
     },
     "manifeste": {
       "heading": "L'IA ne remplace pas la photo, elle la prolonge",
-      "subtitle": "La qualité de vos déclinaisons dépend de la qualité de votre photo d'origine. BlendAI garantit la fidélité de chaque visuel.",
+      "subtitle": "La qualité de vos déclinaisons dépend de la qualité de votre <bold>photo d'origine</bold>. BlendAI garantit la <bold>fidélité</bold> de chaque visuel.",
       "principle1": {
         "title": "Packshot pro = la base",
-        "description": "Un packshot de qualité studio (idéalement Orbitvu) comme fondation. Éclairage calibré, détourage parfait, couleurs fidèles. C'est cette qualité que l'IA va multiplier."
+        "description": "Un packshot de <bold>qualité studio</bold> (idéalement Orbitvu) comme fondation. Éclairage calibré, détourage parfait, couleurs fidèles. C'est cette qualité que l'IA va <bold>multiplier</bold>."
       },
       "principle2": {
         "title": "IA = multiplication",
-        "description": "À partir de ce packshot, BlendAI crée des mises en scène lifestyle, des arrière-plans contextuels, des variations créatives. Un produit, des dizaines de visuels."
+        "description": "À partir de ce packshot, BlendAI crée des <bold>mises en scène lifestyle</bold>, des arrière-plans contextuels, des variations créatives. Un produit, <bold>des dizaines de visuels</bold>."
       },
       "principle3": {
         "title": "Fidélité 100% garantie",
-        "description": "L'IA ne touche jamais au produit. Elle crée le décor autour. Textures, couleurs, proportions : tout reste identique à la photo originale."
+        "description": "L'IA ne touche <bold>jamais au produit</bold>. Elle crée le décor autour. Textures, couleurs, proportions : tout reste <bold>identique à la photo originale</bold>."
       }
     },
     "whyBase": {
@@ -423,7 +423,7 @@
       "blendai": {
         "label": "Packshot pro + IA",
         "examples": "BlendAI.studio",
-        "description": "Part d'un packshot de qualité studio pour créer des déclinaisons fidèles.",
+        "description": "Part d'un packshot de <bold>qualité studio</bold> pour créer des déclinaisons <bold>fidèles</bold>.",
         "point1": "Fidélité produit 100% — zéro hallucination",
         "point2": "Textures, couleurs et proportions garanties",
         "point3": "Conforme aux exigences luxe, cosmétiques, bijouterie",
@@ -433,49 +433,49 @@
     },
     "platform": {
       "heading": "BlendAI.studio : notre plateforme, votre avantage",
-      "subtitle": "BlendAI.studio est la solution propriétaire de PackshotCreator. Pas un outil générique — une plateforme que nous développons et améliorons en continu.",
+      "subtitle": "BlendAI.studio est la <bold>solution propriétaire</bold> de PackshotCreator. Pas un outil générique — une plateforme que nous <bold>développons et améliorons en continu</bold>.",
       "feature1": {
         "title": "Zéro complexité",
-        "description": "Upload, choix de style, génération. Pas de prompts, pas de compétences IA requises."
+        "description": "Upload, choix de style, génération. <bold>Pas de prompts</bold>, pas de compétences IA requises."
       },
       "feature2": {
         "title": "100+ styles professionnels",
-        "description": "Bibliothèque de styles prêts à l'emploi. Créez vos propres styles et réutilisez-les à l'infini."
+        "description": "Bibliothèque de <bold>100+ styles</bold> prêts à l'emploi. Créez vos propres styles et réutilisez-les <bold>à l'infini</bold>."
       },
       "feature3": {
         "title": "Retouche experte incluse",
-        "description": "Pour les produits complexes (bijoux, lunettes, reflets), nos experts finalisent chaque visuel. Livraison 4K en 24-72h."
+        "description": "Pour les produits complexes (bijoux, lunettes, reflets), nos experts finalisent chaque visuel. Livraison <bold>4K en 24-72h</bold>."
       },
       "feature4": {
         "title": "Développement sur mesure",
-        "description": "Solution propriétaire = on développe les fonctions dont vous avez besoin. Workflows post-prod, traitements par lots, retouche auto, intégrations API spécifiques."
+        "description": "Solution propriétaire = on développe les fonctions dont <bold>vous avez besoin</bold>. Workflows post-prod, traitements par lots, retouche auto, intégrations API."
       },
       "pricing": "À partir de 75 €/mois — 3 crédits offerts pour tester",
       "cta": "Découvrir BlendAI.studio"
     },
     "features": {
       "heading": "Ce que BlendAI fait pour vous",
-      "subtitle": "4 outils spécialisés pour transformer vos packshots",
+      "subtitle": "<bold>4 outils spécialisés</bold> pour transformer vos packshots",
       "lifestyle": {
         "name": "Mises en scène lifestyle",
-        "description": "Transformez vos packshots en visuels lifestyle contextualisés. Intérieur, extérieur, ambiance — le produit reste intact."
+        "description": "Transformez vos packshots en visuels lifestyle contextualisés. Intérieur, extérieur, ambiance — le <bold>produit reste intact</bold>."
       },
       "background": {
         "name": "Arrière-plans sur mesure",
-        "description": "Générez des fonds professionnels adaptés à votre marque et à chaque canal de diffusion."
+        "description": "Générez des fonds professionnels <bold>adaptés à votre marque</bold> et à chaque canal de diffusion."
       },
       "retouche": {
         "name": "Retouche IA + experte",
-        "description": "Corrections automatiques (couleurs, défauts) + retouche humaine pour les cas complexes. Garantie qualité."
+        "description": "Corrections automatiques (couleurs, défauts) + <bold>retouche humaine</bold> pour les cas complexes. Garantie qualité."
       },
       "batch": {
         "name": "Traitement par lots",
-        "description": "Appliquez un style à des milliers de produits en quelques minutes. Même rendu, même qualité, à l'échelle."
+        "description": "Appliquez un style à <bold>des milliers de produits</bold> en quelques minutes. Même rendu, même qualité, <bold>à l'échelle</bold>."
       }
     },
     "casUsage": {
       "heading": "Résultats concrets, secteur par secteur",
-      "subtitle": "Un packshot professionnel entre, des visuels prêts à publier sortent."
+      "subtitle": "Un packshot professionnel entre, des visuels <bold>prêts à publier</bold> sortent."
     },
     "socialProof": {
       "heading": "Ils créent leurs visuels avec BlendAI",
@@ -491,7 +491,7 @@
     },
     "compatible": {
       "heading": "Compatible avec tous les systèmes Orbitvu",
-      "subtitle": "BlendAI s'intègre parfaitement dans votre workflow de production photo.",
+      "subtitle": "BlendAI s'intègre <bold>parfaitement</bold> dans votre workflow de <bold>production photo</bold>.",
       "feature1": "Export haute qualité automatique",
       "feature2": "Métadonnées produit préservées",
       "feature3": "Workflow packshot → lifestyle intégré",
