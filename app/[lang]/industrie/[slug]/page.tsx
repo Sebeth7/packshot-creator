@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
-import Image from 'next/image';
 import { secteurs } from '@/data/secteurs';
-import { CheckCircle, ArrowRight, Camera, Sparkles, ChevronRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronRight, ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import TextReveal from '@/components/animations/TextReveal';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 
 interface PageProps {
@@ -44,7 +46,6 @@ export default async function SecteurPage({ params }: PageProps) {
   if (!secteur) notFound();
 
   const isFr = lang === 'fr';
-  const heroImage = `/images/hero/hero-secteur-${slug.split('-')[0]}.avif`;
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -54,9 +55,14 @@ export default async function SecteurPage({ params }: PageProps) {
 
   const otherSectors = DEFAULT_SECTORS.filter((s) => s.slug !== slug).slice(0, 8);
 
+  /* Featured solution (first) + remaining solutions */
+  const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
+
   return (
     <>
-      {/* Hero */}
+      {/* ═══════════════════════════════════════════════════════════
+          HERO — Split layout via HeroSection
+          ═══════════════════════════════════════════════════════════ */}
       <HeroSection
         layout="split"
         badge={{
@@ -71,14 +77,12 @@ export default async function SecteurPage({ params }: PageProps) {
           { label: isFr ? 'Découvrir nos formations' : 'Discover our training', href: '/academy', variant: 'secondary' },
         ]}
         media={
-          <Image
-            src={heroImage}
-            alt={secteur.hero.titre}
-            width={640}
-            height={480}
-            className="rounded-2xl shadow-2xl"
-            priority
-          />
+          <div className="w-full h-[360px] lg:h-[440px] bg-white/5 backdrop-blur-sm flex items-center justify-center border border-white/10 rounded-2xl">
+            <div className="text-center">
+              <ImageIcon className="w-12 h-12 text-white/20 mx-auto mb-2" strokeWidth={1} />
+              <p className="text-sm text-white/20">{isFr ? 'Visuel secteur' : 'Sector visual'} ~640x480</p>
+            </div>
+          </div>
         }
       >
         <p className="text-xl text-very-peri-200 font-medium mt-4">
@@ -86,21 +90,24 @@ export default async function SecteurPage({ params }: PageProps) {
         </p>
       </HeroSection>
 
-      {/* Problématiques */}
-      <section className="py-20 bg-white">
+      {/* ═══════════════════════════════════════════════════════════
+          PROBLÉMATIQUES — fond future-dusk-0, centré + items empilés
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <FadeInView className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+            <FadeInView direction="left" className="text-center mb-16">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'VOS DÉFIS' : 'YOUR CHALLENGES'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
                 {secteur.problematiques.titre}
-              </h2>
+              </TextReveal>
             </FadeInView>
             <StaggerContainer className="space-y-4">
               {secteur.problematiques.items.map((item, index) => (
                 <StaggerItem key={index}>
-                  <div
-                    className="flex items-start gap-4 bg-neutral-50 rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors"
-                  >
+                  <div className="flex items-start gap-4 bg-white rounded-xl p-6 border border-neutral-100 hover:border-very-peri-200 transition-colors shadow-sm">
                     <span className="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-100 text-very-peri-700 text-sm font-bold">
                       {index + 1}
                     </span>
@@ -113,102 +120,110 @@ export default async function SecteurPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Solutions */}
-      <section className="py-20 bg-neutral-50">
+      {/* ═══════════════════════════════════════════════════════════
+          SOLUTIONS — fond white, featured card + grille
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-4">
+          <FadeInView direction="right" className="text-center mb-16">
+            <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+              {isFr ? 'NOS SOLUTIONS' : 'OUR SOLUTIONS'}
+            </span>
+            <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
               {secteur.solutions.titre}
-            </h2>
+            </TextReveal>
           </FadeInView>
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
-            {secteur.solutions.items.map((solution, index) => (
-              <StaggerItem key={index}>
-                <div
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
-                >
-                  <div className={`h-2 ${index === 0 ? 'bg-very-peri-500' : 'bg-amber-500'}`} />
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${
-                        index === 0 ? 'bg-very-peri-100 text-very-peri-700' : 'bg-amber-100 text-amber-700'
-                      }`}>
-                        {index === 0 ? <Camera className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
-                      </span>
-                      <h3 className="text-xl font-heading font-bold text-future-dusk-900">
-                        {solution.titre}
-                      </h3>
-                    </div>
-                    <p className="text-future-dusk-500 mb-6">{solution.description}</p>
+
+          {/* Featured solution — full width, dark bg */}
+          <ScrollReveal>
+            <SpringCard>
+              <div className="bg-future-dusk-900 rounded-2xl overflow-hidden mb-8">
+                <div className="grid lg:grid-cols-2 gap-0">
+                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-4">
+                      {featuredSolution.titre}
+                    </h3>
+                    <p className="text-future-dusk-300 leading-relaxed mb-6">
+                      {featuredSolution.description}
+                    </p>
                     <ul className="space-y-3">
-                      {solution.avantages.map((avantage, idx) => (
+                      {featuredSolution.avantages.map((avantage, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
-                          <span className="text-sm text-future-dusk-600">{avantage}</span>
+                          <CheckCircle className="h-5 w-5 text-very-peri-400 shrink-0 mt-0.5" />
+                          <span className="text-sm text-future-dusk-200">{avantage}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
+                  <div className="bg-future-dusk-800/50 flex items-center justify-center min-h-[280px] lg:min-h-0">
+                    <div className="text-center p-8">
+                      <ImageIcon className="w-10 h-10 text-future-dusk-600 mx-auto mb-2" strokeWidth={1} />
+                      <p className="text-xs text-future-dusk-600">{isFr ? 'Visuel solution' : 'Solution visual'} ~600x400</p>
+                    </div>
+                  </div>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+              </div>
+            </SpringCard>
+          </ScrollReveal>
+
+          {/* Other solutions — grid */}
+          {otherSolutions.length > 0 && (
+            <StaggerContainer className={`grid gap-8 ${otherSolutions.length === 1 ? 'md:grid-cols-1 max-w-2xl mx-auto' : 'md:grid-cols-2'}`}>
+              {otherSolutions.map((solution, index) => (
+                <StaggerItem key={index}>
+                  <SpringCard>
+                    <div className={`rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full ${
+                      index % 2 === 0 ? 'bg-very-peri-50' : 'bg-future-dusk-0'
+                    }`}>
+                      <div className="p-8">
+                        <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
+                          {solution.titre}
+                        </h3>
+                        <p className="text-neutral-medium mb-6 leading-relaxed">{solution.description}</p>
+                        <ul className="space-y-3">
+                          {solution.avantages.map((avantage, idx) => (
+                            <li key={idx} className="flex items-start gap-3">
+                              <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                              <span className="text-sm text-future-dusk-600">{avantage}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
-      {/* Cas Clients */}
+      {/* ═══════════════════════════════════════════════════════════
+          CAS CLIENTS — fond very-peri-50, cartes premium
+          ═══════════════════════════════════════════════════════════ */}
       {secteur.casClients && secteur.casClients.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-20 lg:py-32 bg-very-peri-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
-              <FadeInView className="mb-12 text-center">
-                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                  {isFr ? 'Cas Clients' : 'Client Cases'} {secteur.titre.split(':')[0]}
-                </h2>
+              <FadeInView direction="left" className="text-center mb-16">
+                <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'RÉSULTATS CLIENTS' : 'CLIENT RESULTS'}
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
+                  {isFr ? 'Résultats clients' : 'Client results'}
+                </TextReveal>
               </FadeInView>
               <StaggerContainer className="space-y-6">
                 {secteur.casClients.map((cas, index) => (
                   <StaggerItem key={index}>
-                    <div
-                      className="bg-gradient-to-r from-very-peri-50 to-white rounded-2xl p-8 border-l-4 border-very-peri-500"
-                    >
-                      <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-3">
-                        {cas.titre}
-                      </h3>
-                      <p className="text-future-dusk-500 leading-relaxed">{cas.description}</p>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* FAQ */}
-      {secteur.faq && secteur.faq.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
-              <FadeInView className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900">
-                  {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
-                </h2>
-              </FadeInView>
-              <StaggerContainer className="space-y-4">
-                {secteur.faq.map((item, index) => (
-                  <StaggerItem key={index}>
-                    <details className="group bg-neutral-50 rounded-xl border border-neutral-100 hover:border-very-peri-200 transition-colors">
-                      <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                        <h3 className="text-base font-semibold text-future-dusk-900 text-left">
-                          {item.question}
+                    <SpringCard>
+                      <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow">
+                        <h3 className="text-xl lg:text-2xl font-heading font-bold text-heading-dark mb-4">
+                          {cas.titre}
                         </h3>
-                        <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
-                      </summary>
-                      <div className="px-6 pb-6 pt-0">
-                        <p className="text-future-dusk-600 leading-relaxed">{item.answer}</p>
+                        <p className="text-neutral-medium leading-relaxed text-lg">{cas.description}</p>
                       </div>
-                    </details>
+                    </SpringCard>
                   </StaggerItem>
                 ))}
               </StaggerContainer>
@@ -217,35 +232,122 @@ export default async function SecteurPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white">
-        <FadeInView className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
-            {secteur.cta.titre}
-          </h2>
-          <p className="text-lg text-very-peri-100 mb-8 max-w-2xl mx-auto">
-            {secteur.cta.description}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-              <Link href="/contact">
-                {isFr ? 'Demander un devis gratuit' : 'Get a free quote'} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/academy">
-                {isFr ? 'Découvrir nos formations' : 'Discover our training'}
-              </Link>
-            </Button>
+      {/* ═══════════════════════════════════════════════════════════
+          FAQ — fond future-dusk-0, split sticky heading + accordion
+          ═══════════════════════════════════════════════════════════ */}
+      {secteur.faq && secteur.faq.length > 0 && (
+        <section className="py-20 lg:py-32 bg-future-dusk-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+              {/* Left — sticky heading */}
+              <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
+                <FadeInView direction="left">
+                  <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                    FAQ
+                  </span>
+                  <h2 className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1]">
+                    {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                  </h2>
+                </FadeInView>
+              </div>
+
+              {/* Right — accordion */}
+              <div className="lg:col-span-3">
+                <StaggerContainer className="space-y-4">
+                  {secteur.faq.map((item, index) => (
+                    <StaggerItem key={index}>
+                      <details className="group bg-white rounded-xl border border-neutral-100 hover:border-very-peri-200 transition-colors shadow-sm">
+                        <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                          <h3 className="text-base font-semibold text-heading-dark text-left">
+                            {item.question}
+                          </h3>
+                          <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
+                        </summary>
+                        <div className="px-6 pb-6 pt-0">
+                          <p className="text-neutral-medium leading-relaxed">{item.answer}</p>
+                        </div>
+                      </details>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </div>
           </div>
-        </FadeInView>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════
+          CTA FINAL — Pattern ADN bg-black + 2 cartes distinctes
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 lg:py-32 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-12 lg:mb-16">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white leading-[1.1] mb-6">
+                {secteur.cta.titre}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto leading-relaxed">
+                {secteur.cta.description}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-5 gap-6">
+            {/* Carte principale — gradient peri */}
+            <FadeInView direction="left" className="lg:col-span-3">
+              <div className="bg-gradient-to-br from-very-peri-600 to-very-peri-800 rounded-2xl p-8 lg:p-10 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-3">
+                    {isFr ? 'Réservez votre démo' : 'Book your demo'}
+                  </h3>
+                  <p className="text-very-peri-100 leading-relaxed mb-8">
+                    {isFr
+                      ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.'
+                      : '30 minutes with an expert. See our systems in action on your own products.'}
+                  </p>
+                </div>
+                <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg w-fit">
+                  <Link href="/contact">
+                    {isFr ? 'Demander une démo gratuite' : 'Request a free demo'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeInView>
+
+            {/* Carte secondaire — glassmorphism */}
+            <FadeInView direction="right" className="lg:col-span-2">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-10 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-heading font-bold text-white mb-3">
+                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                  </h3>
+                  <p className="text-future-dusk-300 leading-relaxed mb-8">
+                    {isFr
+                      ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
+                      : 'Estimate your savings in 2 minutes. Personalized and immediate results.'}
+                  </p>
+                </div>
+                <Button asChild size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl w-fit">
+                  <Link href="/calculateur-roi">
+                    {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeInView>
+          </div>
+        </div>
       </section>
 
-      {/* Other Sectors */}
-      <section className="py-16 bg-neutral-50 border-t border-neutral-100">
+      {/* ═══════════════════════════════════════════════════════════
+          CROSS-LINKS — fond white, autres secteurs
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-16 lg:py-24 bg-white border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="text-center mb-8">
-            <h3 className="text-2xl font-heading font-bold text-future-dusk-900">
+          <FadeInView className="text-center mb-10">
+            <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+              {isFr ? 'AUTRES SECTEURS' : 'OTHER SECTORS'}
+            </span>
+            <h3 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
               {isFr ? 'Découvrez nos autres secteurs' : 'Discover our other sectors'}
             </h3>
           </FadeInView>
@@ -254,7 +356,7 @@ export default async function SecteurPage({ params }: PageProps) {
               <StaggerItem key={other.slug}>
                 <Link
                   href={`/industrie/${other.slug}`}
-                  className="group flex items-center gap-3 bg-white rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
+                  className="group flex items-center gap-3 bg-future-dusk-0 rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
                 >
                   <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-50 text-very-peri-600 shrink-0">
                     <other.Icon className="h-4 w-4" />
@@ -269,7 +371,7 @@ export default async function SecteurPage({ params }: PageProps) {
           <FadeInView className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-xl">
               <Link href="/industrie">
-                {isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
+                {isFr ? 'Voir tous les secteurs' : 'View all sectors'} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </FadeInView>
