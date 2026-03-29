@@ -488,6 +488,20 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
                     ? 'Tout ce que vous devez savoir sur nos solutions par secteur.'
                     : 'Everything you need to know about our industry solutions.'}
                 </p>
+                <div className="mt-6 space-y-3">
+                  <Link
+                    href="/besoins-photographie-produit"
+                    className="block text-sm text-very-peri-500 hover:text-very-peri-600 font-medium transition-colors"
+                  >
+                    {isFr ? 'Identifier votre besoin →' : 'Identify your need →'}
+                  </Link>
+                  <Link
+                    href="/questions-cles-photographie-produit"
+                    className="block text-sm text-very-peri-500 hover:text-very-peri-600 font-medium transition-colors"
+                  >
+                    {isFr ? 'Les 9 questions cles →' : 'The 9 key questions →'}
+                  </Link>
+                </div>
               </FadeInView>
             </div>
 

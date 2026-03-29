@@ -217,6 +217,13 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
                     ? 'Vous avez d\'autres questions ? Contactez nos experts pour un diagnostic gratuit.'
                     : 'Have more questions? Contact our experts for a free diagnostic.'}
                 </p>
+                <div className="mt-8">
+                  <Button asChild variant="outline" className="rounded-xl">
+                    <Link href="/questions-cles-photographie-produit">
+                      {isFr ? 'Les 9 questions cles' : 'The 9 key questions'} <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
               </FadeInView>
             </div>
             <div className="lg:col-span-3">

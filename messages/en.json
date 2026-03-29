@@ -354,7 +354,12 @@
       "santeMedicalDesc": "CE-compliant visuals, on-site secured studios",
       "industrieDefense": "Industry & Defense",
       "industrieDefenseDesc": "Mass cataloging, traceability and ISO compliance",
-      "allSectors": "All sectors →"
+      "allSectors": "All sectors →",
+      "guides": "Guides",
+      "guidesBesoins": "Identify your need",
+      "guidesBesoinsDesc": "Find the right photo solution for your business",
+      "guidesQuestions": "Key questions",
+      "guidesQuestionsDesc": "9 essential questions before investing"
     },
     "footer": {
       "tagline": "Professional automated product photography solutions for e-commerce and visual communication.",

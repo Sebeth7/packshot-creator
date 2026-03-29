@@ -152,11 +152,19 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               <p className="text-lg text-neutral-medium leading-relaxed mb-8">
                 {t.rich('orientation.description', boldRenderer)}
               </p>
-              <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-8 h-14 text-base font-semibold">
-                <a href="#studios">
-                  {t('orientation.cta')} <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-8 h-14 text-base font-semibold">
+                  <a href="#studios">
+                    {t('orientation.cta')} <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+                <Link
+                  href="/besoins-photographie-produit"
+                  className="text-sm text-very-peri-500 hover:text-very-peri-600 font-medium transition-colors"
+                >
+                  {isFr ? 'Pas sur ? Identifiez votre besoin →' : 'Not sure? Identify your need →'}
+                </Link>
+              </div>
             </FadeInView>
 
             <ScrollReveal scale>

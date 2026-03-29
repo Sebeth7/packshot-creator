@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield } from 'lucide-react';
+import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface DropdownItem {
@@ -234,6 +234,23 @@ export default function Header() {
           labelKey: 'allSectors',
           descKey: '',
           icon: <></>,
+        },
+      ],
+    },
+    {
+      titleKey: 'guides',
+      items: [
+        {
+          href: '/besoins-photographie-produit',
+          labelKey: 'guidesBesoins',
+          descKey: 'guidesBesoinsDesc',
+          icon: <Search className="h-4 w-4" />,
+        },
+        {
+          href: '/questions-cles-photographie-produit',
+          labelKey: 'guidesQuestions',
+          descKey: 'guidesQuestionsDesc',
+          icon: <HelpCircle className="h-4 w-4" />,
         },
       ],
     },

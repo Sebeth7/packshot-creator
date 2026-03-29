@@ -357,7 +357,12 @@
       "santeMedicalDesc": "Visuels conformes CE, studios sur site sécurisé",
       "industrieDefense": "Industrie & Défense",
       "industrieDefenseDesc": "Catalogage massif, traçabilité et conformité ISO",
-      "allSectors": "Tous les secteurs →"
+      "allSectors": "Tous les secteurs →",
+      "guides": "Guides",
+      "guidesBesoins": "Identifier votre besoin",
+      "guidesBesoinsDesc": "Trouvez la solution photo adaptee a votre entreprise",
+      "guidesQuestions": "Questions cles",
+      "guidesQuestionsDesc": "9 questions essentielles avant d'investir"
     },
     "footer": {
       "tagline": "Solutions professionnelles de photographie de produits automatisée pour l'e-commerce et la communication visuelle.",
