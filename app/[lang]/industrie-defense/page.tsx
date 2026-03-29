@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
@@ -53,6 +53,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function parseStatValue(value: string): { end: number; prefix: string; suffix: string } | null {
+  const match = value.match(/^([^0-9]*?)(\d+)(.*)$/);
+  if (!match) return null;
+  return { prefix: match[1], end: parseInt(match[2], 10), suffix: match[3] };
+}
+
 export default async function IndustrieDefensePage({ params }: PageProps) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'industrieDefense' });
@@ -95,14 +101,14 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </HeroSection>
 
       {/* ===== 2. Pain Points — Split 4/8 sticky heading ===== */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Le constat' : 'The challenge'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('painPoints.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 leading-relaxed">
@@ -142,14 +148,14 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 3. Technologies Orbitvu — Grid 4 cols + SpringCard ===== */}
-      <section id="technologies" className="py-16 lg:py-28 bg-neutral-50">
+      <section id="technologies" className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Technologie Orbitvu' : 'Orbitvu Technology'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('technologies.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
@@ -183,14 +189,14 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 4. Segments Industriels — Bento grid ===== */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Secteurs' : 'Sectors'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('segments.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
@@ -274,36 +280,50 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <FadeInView className="text-center mb-12">
+            <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+              {isFr ? 'Chiffres clés' : 'Key figures'}
+            </span>
             <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
               {t('stats.heading')}
             </h2>
           </FadeInView>
           <StaggerContainer stagger={0.12} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-0 sm:divide-x sm:divide-white/10">
-            {[1, 2, 3, 4].map((i) => (
-              <StaggerItem key={i}>
-                <div className="text-center px-4 sm:px-6 lg:px-8">
-                  <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                    {t(`stats.stat${i}.value`)}
-                  </p>
-                  <p className="mt-2 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                    {t(`stats.stat${i}.label`)}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            {[1, 2, 3, 4].map((i) => {
+              const rawValue = t(`stats.stat${i}.value`);
+              const parsed = parseStatValue(rawValue);
+              return (
+                <StaggerItem key={i}>
+                  <div className="text-center px-4 sm:px-6 lg:px-8">
+                    <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                      {parsed ? (
+                        <AnimatedCounter
+                          end={parsed.end}
+                          prefix={parsed.prefix}
+                          suffix={parsed.suffix}
+                          duration={2.5}
+                        />
+                      ) : rawValue}
+                    </p>
+                    <p className="mt-2 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                      {t(`stats.stat${i}.label`)}
+                    </p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
 
       {/* ===== 6. Cas d'usage — Timeline editorial ===== */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Applications' : 'Applications'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('useCases.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
@@ -355,14 +375,14 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 7. Machines recommandees — ScrollReveal + SpringCard ===== */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
+      <section className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Equipement' : 'Equipment'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('machines.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
@@ -410,7 +430,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 8. Conformite & Normes — Dark bg + floating white card ===== */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -468,14 +488,14 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 9. FAQ — Split: sticky heading left + accordion right ===== */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
+      <section className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 FAQ
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('faq.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-500 leading-relaxed">
@@ -505,34 +525,49 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
       </section>
 
       {/* ===== 10. CTA Final — Asymmetric 3/5 + 2/5 ===== */}
-      <section className="py-16 lg:py-28 bg-gradient-to-br from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
-        <FadeInView>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-            <div className="grid lg:grid-cols-5 gap-8 lg:gap-16 items-center">
-              <div className="lg:col-span-3">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4 leading-tight">
-                  {t('cta.heading')}
-                </h2>
-                <p className="text-lg text-very-peri-100">
+      <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
+              {t('cta.heading')}
+            </TextReveal>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
+            <SpringCard className="lg:col-span-3" hoverY={-6}>
+              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 lg:p-14 h-full flex flex-col">
+                <h3 className="text-3xl font-heading font-bold mb-4">
+                  {isFr ? 'Demandez une étude personnalisée' : 'Request a personalized study'}
+                </h3>
+                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
                   {t('cta.description')}
                 </p>
-              </div>
-              <div className="lg:col-span-2 flex flex-col gap-4">
-                <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg w-full justify-center">
+                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
                   <Link href="/contact?subject=industrie">
-                    {t('cta.ctaPrimary')} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl w-full justify-center">
-                  <Link href="/studios-photo-automatises">
-                    {t('cta.ctaSecondary')}
+                    {t('cta.ctaPrimary')} <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
-            </div>
+            </SpringCard>
+            <SpringCard className="lg:col-span-2" hoverY={-6}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 lg:p-10 border border-white/10 h-full flex flex-col">
+                <h3 className="text-2xl font-heading font-bold mb-4">
+                  {isFr ? 'Découvrir les systèmes' : 'Discover the systems'}
+                </h3>
+                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
+                  {isFr
+                    ? 'Explorez notre gamme complète de systèmes photo automatisés pour l\'industrie.'
+                    : 'Explore our full range of automated photo systems for industry.'}
+                </p>
+                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
+                  <Link href="/studios-photo-automatises">
+                    {t('cta.ctaSecondary')} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </SpringCard>
           </div>
-        </FadeInView>
+        </div>
       </section>
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(faqs)]} />

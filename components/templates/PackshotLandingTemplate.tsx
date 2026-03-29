@@ -1,12 +1,12 @@
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
-import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, ImageIcon } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
 
@@ -24,6 +24,21 @@ interface Props {
   config: PackshotLandingConfig;
   lang: string;
   t: (key: string) => string;
+}
+
+function renderBold(text: string, onDark = false) {
+  const parts = text.split(/<bold>(.*?)<\/bold>/g);
+  return parts.map((part, i) =>
+    i % 2 === 1
+      ? <strong key={i} className={`font-semibold ${onDark ? 'text-white' : 'text-heading-dark'}`}>{part}</strong>
+      : part
+  );
+}
+
+function parseStatValue(value: string): { end: number; prefix: string; suffix: string } | null {
+  const match = value.match(/^([^0-9]*?)(\d+)(.*)$/);
+  if (!match) return null;
+  return { prefix: match[1], end: parseInt(match[2], 10), suffix: match[3] };
 }
 
 export default function PackshotLandingTemplate({ config, lang, t }: Props) {
@@ -67,19 +82,35 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
       <section className="py-16 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <FadeInView className="text-center mb-10">
+            <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em]">
+              {isFr ? 'Chiffres clés' : 'Key figures'}
+            </span>
+          </FadeInView>
           <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
-            {[1, 2, 3].map((i) => (
-              <StaggerItem key={i}>
-                <div className="text-center px-3 sm:px-6 lg:px-8">
-                  <p className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                    {t(`stats.stat${i}.value`)}
-                  </p>
-                  <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                    {t(`stats.stat${i}.label`)}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            {[1, 2, 3].map((i) => {
+              const rawValue = t(`stats.stat${i}.value`);
+              const parsed = parseStatValue(rawValue);
+              return (
+                <StaggerItem key={i}>
+                  <div className="text-center px-3 sm:px-6 lg:px-8">
+                    <p className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                      {parsed ? (
+                        <AnimatedCounter
+                          end={parsed.end}
+                          prefix={parsed.prefix}
+                          suffix={parsed.suffix}
+                          duration={2.5}
+                        />
+                      ) : rawValue}
+                    </p>
+                    <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                      {t(`stats.stat${i}.label`)}
+                    </p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -88,7 +119,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           3. BENEFITS — Split 4/8, sticky heading, numbered cards
           Design: Asymmetric. Heading stays left, benefits scroll right.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             {/* Left column: sticky heading */}
@@ -96,9 +127,18 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Avantages' : 'Benefits'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('benefits.heading')}
               </TextReveal>
+              {/* Placeholder image under sticky heading */}
+              <div className="hidden lg:block mt-8">
+                <div className="w-full h-[300px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
+                  <div className="text-center">
+                    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                    <p className="text-xs text-neutral-300">Visuel produit ~500x300</p>
+                  </div>
+                </div>
+              </div>
             </ScrollReveal>
 
             {/* Right column: stacked benefit cards */}
@@ -119,7 +159,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                         {t(`benefits.item${i + 1}.title`)}
                       </h3>
                       <p className="text-future-dusk-500 leading-relaxed">
-                        {t(`benefits.item${i + 1}.description`)}
+                        {renderBold(t(`benefits.item${i + 1}.description`))}
                       </p>
                     </div>
                   </SpringCard>
@@ -134,7 +174,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           4. MACHINES — Dark bg, floating white card
           Design: Dark surround. Machine cards on white elevated surface.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -144,11 +184,11 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Systèmes recommandés' : 'Recommended systems'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-4">
                 {t('machines.heading')}
               </TextReveal>
               <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">
-                {t('machines.subtitle')}
+                {renderBold(t('machines.subtitle'), true)}
               </p>
             </div>
           </ScrollReveal>
@@ -162,7 +202,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                   return (
                     <SpringCard key={machine.id} hoverY={-4}>
                       <div className="rounded-2xl border border-neutral-100 hover:border-very-peri-200 bg-neutral-50 overflow-hidden transition-all duration-300 h-full flex flex-col hover:shadow-lg">
-                        <div className="h-1.5 bg-gradient-to-r from-very-peri-500 to-very-peri-400" />
+                        <div className="h-2 bg-gradient-to-r from-very-peri-500 to-very-peri-400" />
                         <div className="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
                           <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
                             {machine.nom}
@@ -198,14 +238,14 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           5. FAQ — Two-column: heading left, accordion right
           Design: Split layout, heading stays while user scrolls FAQs.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-neutral-50">
+      <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16">
             {/* Left: sticky heading */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
                 <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
-                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                   {t('faq.heading')}
                 </TextReveal>
                 <p className="text-future-dusk-500 leading-relaxed">
@@ -244,11 +284,11 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           6. FINAL CTA — Asymmetric 3/5 + 2/5
           Design: Demo card takes 3/5, guide card 2/5. Dot pattern bg.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-28 bg-future-dusk-900 text-white relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-center mb-16">
+            <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
               {t('cta.heading')}
             </TextReveal>
           </ScrollReveal>
@@ -257,7 +297,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-4 sm:p-6 lg:p-14 h-full flex flex-col">
                 <h3 className="text-3xl font-heading font-bold mb-4">
-                  {t('cta.heading')}
+                  {isFr ? 'Réservez votre démo' : 'Book your demo'}
                 </h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
                   {t('cta.description')}
@@ -269,19 +309,19 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                 </Button>
               </div>
             </SpringCard>
-            {/* Guide — 2/5 = secondary */}
+            {/* ROI — 2/5 = secondary */}
             <SpringCard className="lg:col-span-2" hoverY={-6}>
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 h-full flex flex-col">
                 <h3 className="text-2xl font-heading font-bold mb-4">
-                  {t('cta.ctaSecondary')}
+                  {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
                 </h3>
                 <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
                   {isFr
-                    ? 'Découvrez notre gamme complète de systèmes photo automatisés.'
-                    : 'Explore our full range of automated photo systems.'}
+                    ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
+                    : 'Estimate your savings in 2 minutes. Personalized and instant results.'}
                 </p>
                 <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-4 sm:px-6 lg:px-8 h-10 sm:h-11 lg:h-12 text-sm sm:text-base w-fit">
-                  <Link href="/studios-photo-automatises">
+                  <Link href="/roi-calculator">
                     {t('cta.ctaSecondary')} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -297,7 +337,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
       <section className="py-20 bg-white border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="mb-12">
-            <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">
+            <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em]">
               {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
             </span>
           </FadeInView>
