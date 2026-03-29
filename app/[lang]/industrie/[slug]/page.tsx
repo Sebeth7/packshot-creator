@@ -153,7 +153,7 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SOLUTIONS — fond white, featured card + grille
+          SOLUTIONS — fond white, piliers côte à côte (2) ou featured+grille (3+)
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -166,127 +166,152 @@ export default async function SecteurPage({ params }: PageProps) {
             </TextReveal>
           </FadeInView>
 
-          {/* Featured solution — full width, dark bg */}
-          <ScrollReveal>
-            <SpringCard>
-              <div className={`rounded-2xl overflow-hidden mb-8 ${
-                featuredSolution.type === 'ia'
-                  ? 'bg-gradient-to-br from-amber-900 to-amber-950'
-                  : 'bg-future-dusk-900'
-              }`}>
-                <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    {/* Type badge */}
-                    {featuredSolution.type && (
-                      <div className="flex items-center gap-2 mb-5">
-                        {featuredSolution.type === 'hardware' ? (
-                          <Camera className="h-4 w-4 text-very-peri-400" />
-                        ) : (
-                          <Sparkles className="h-4 w-4 text-amber-400" />
-                        )}
-                        <span className={`text-xs font-semibold uppercase tracking-[0.15em] ${
-                          featuredSolution.type === 'hardware' ? 'text-very-peri-400' : 'text-amber-400'
+          {/* === LAYOUT 2 SOLUTIONS : side-by-side piliers === */}
+          {secteur.solutions.items.length === 2 && (
+            <div className="grid lg:grid-cols-2 gap-6">
+              {secteur.solutions.items.map((solution, index) => {
+                const isIa = solution.type === 'ia';
+                const isHw = solution.type === 'hardware';
+                return (
+                  <FadeInView key={index} direction={index === 0 ? 'left' : 'right'}>
+                    <SpringCard>
+                      <div className={`rounded-2xl overflow-hidden h-full ${
+                        isIa ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-future-dusk-900'
+                      }`}>
+                        {/* Image placeholder top */}
+                        <div className={`w-full h-[180px] flex items-center justify-center ${
+                          isIa ? 'bg-amber-800/30' : 'bg-future-dusk-800/50'
                         }`}>
-                          {featuredSolution.type === 'hardware' ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
-                        </span>
-                      </div>
-                    )}
-                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-4">
-                      {featuredSolution.titre}
-                    </h3>
-                    <p className="text-future-dusk-300 leading-relaxed mb-6">
-                      {featuredSolution.description}
-                    </p>
-                    <ul className="space-y-3">
-                      {featuredSolution.avantages.map((avantage, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className={`h-5 w-5 shrink-0 mt-0.5 ${
-                            featuredSolution.type === 'ia' ? 'text-amber-400' : 'text-very-peri-400'
-                          }`} />
-                          <span className="text-sm text-future-dusk-200">{avantage}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="bg-white/5 flex items-center justify-center min-h-[280px] lg:min-h-0">
-                    <div className="text-center p-8">
-                      <ImageIcon className="w-10 h-10 text-white/15 mx-auto mb-2" strokeWidth={1} />
-                      <p className="text-xs text-white/15">{isFr ? 'Visuel solution' : 'Solution visual'} ~600x400</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SpringCard>
-          </ScrollReveal>
-
-          {/* Other solutions — grid */}
-          {otherSolutions.length > 0 && (
-            <StaggerContainer className={`grid gap-8 ${otherSolutions.length === 1 ? 'md:grid-cols-1 max-w-2xl mx-auto' : 'md:grid-cols-2'}`}>
-              {otherSolutions.map((solution, index) => (
-                <StaggerItem key={index}>
-                  <SpringCard>
-                    <div className={`rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full ${
-                      solution.type === 'ia' ? 'bg-amber-50' :
-                      solution.type === 'hardware' ? 'bg-very-peri-50' :
-                      index % 2 === 0 ? 'bg-very-peri-50' : 'bg-future-dusk-0'
-                    }`}>
-                      <div className="p-8">
-                        {/* Type badge */}
-                        {solution.type && (
-                          <div className="flex items-center gap-2 mb-4">
-                            {solution.type === 'hardware' ? (
-                              <Camera className="h-3.5 w-3.5 text-very-peri-600" />
+                          <div className="text-center">
+                            {isIa ? (
+                              <Sparkles className="w-10 h-10 text-amber-400/30 mx-auto mb-1" strokeWidth={1} />
                             ) : (
-                              <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+                              <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
                             )}
-                            <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${
-                              solution.type === 'hardware' ? 'text-very-peri-600' : 'text-amber-600'
-                            }`}>
-                              {solution.type === 'hardware' ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
-                            </span>
+                            <p className="text-xs text-white/15">{isFr ? 'Visuel solution' : 'Solution visual'}</p>
                           </div>
-                        )}
-                        <h3 className="text-xl font-heading font-bold text-heading-dark mb-3">
-                          {solution.titre}
-                        </h3>
-                        <p className="text-neutral-medium mb-6 leading-relaxed">{solution.description}</p>
-                        <ul className="space-y-3">
-                          {solution.avantages.map((avantage, idx) => (
-                            <li key={idx} className="flex items-start gap-3">
-                              <CheckCircle className={`h-5 w-5 shrink-0 mt-0.5 ${
-                                solution.type === 'ia' ? 'text-amber-500' : 'text-emerald-500'
-                              }`} />
-                              <span className="text-sm text-future-dusk-600">{avantage}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        </div>
+
+                        <div className="p-8 lg:p-10">
+                          {/* Type badge */}
+                          {solution.type && (
+                            <div className="flex items-center gap-2 mb-5">
+                              {isHw ? (
+                                <Camera className="h-4 w-4 text-very-peri-400" />
+                              ) : (
+                                <Sparkles className="h-4 w-4 text-amber-400" />
+                              )}
+                              <span className={`text-xs font-semibold uppercase tracking-[0.15em] ${
+                                isHw ? 'text-very-peri-400' : 'text-amber-400'
+                              }`}>
+                                {isHw ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
+                              </span>
+                            </div>
+                          )}
+
+                          <h3 className="text-2xl font-heading font-bold text-white mb-3">
+                            {solution.titre}
+                          </h3>
+                          <p className="text-future-dusk-300 leading-relaxed mb-6">
+                            {solution.description}
+                          </p>
+                          <ul className="space-y-3">
+                            {solution.avantages.map((avantage, idx) => (
+                              <li key={idx} className="flex items-start gap-3">
+                                <CheckCircle className={`h-5 w-5 shrink-0 mt-0.5 ${
+                                  isIa ? 'text-amber-400' : 'text-very-peri-400'
+                                }`} />
+                                <span className="text-sm text-future-dusk-200">{avantage}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                  </SpringCard>
-                </StaggerItem>
-              ))}
+                    </SpringCard>
+                  </FadeInView>
+                );
+              })}
+            </div>
+          )}
+
+          {/* === LAYOUT 3+ SOLUTIONS : toutes en grille === */}
+          {secteur.solutions.items.length >= 3 && (
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {secteur.solutions.items.map((solution, index) => {
+                const isIa = solution.type === 'ia';
+                const isHw = solution.type === 'hardware';
+                return (
+                  <StaggerItem key={index}>
+                    <SpringCard>
+                      <div className={`rounded-2xl overflow-hidden h-full ${
+                        isIa ? 'bg-gradient-to-br from-amber-900 to-amber-950' :
+                        isHw ? 'bg-future-dusk-900' :
+                        'bg-future-dusk-900'
+                      }`}>
+                        <div className="p-8">
+                          {/* Type badge */}
+                          {solution.type && (
+                            <div className="flex items-center gap-2 mb-4">
+                              {isHw ? (
+                                <Camera className="h-3.5 w-3.5 text-very-peri-400" />
+                              ) : (
+                                <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                              )}
+                              <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${
+                                isHw ? 'text-very-peri-400' : 'text-amber-400'
+                              }`}>
+                                {isHw ? 'STUDIO ORBITVU' : 'BLENDAI.STUDIO'}
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Ghost number */}
+                          <span className="text-5xl font-heading font-bold text-white/5 leading-none mb-3 block">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+
+                          <h3 className="text-xl font-heading font-bold text-white mb-3">
+                            {solution.titre}
+                          </h3>
+                          <p className="text-future-dusk-300 mb-5 leading-relaxed text-sm">{solution.description}</p>
+                          <ul className="space-y-2.5">
+                            {solution.avantages.map((avantage, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <CheckCircle className={`h-4 w-4 shrink-0 mt-0.5 ${
+                                  isIa ? 'text-amber-400' : 'text-very-peri-400'
+                                }`} />
+                                <span className="text-xs text-future-dusk-300">{avantage}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </SpringCard>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           )}
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          CAS D'USAGE — fond very-peri-50, cartes processus industriels
+          AU-DELÀ DU PACKSHOT — fond very-peri-50, idées d'application
           ═══════════════════════════════════════════════════════════ */}
       {secteur.useCases && secteur.useCases.length > 0 && (
         <section className="py-20 lg:py-32 bg-very-peri-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView direction="left" className="text-center mb-16">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'CAS D\'USAGE' : 'USE CASES'}
+                {isFr ? 'AU-DELÀ DU PACKSHOT' : 'BEYOND THE PACKSHOT'}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
-                {isFr ? 'Applications concrètes' : 'Concrete applications'}
+                {isFr ? 'Et si vos studios faisaient bien plus ?' : 'What if your studios did much more?'}
               </TextReveal>
               <p className="text-lg text-neutral-medium max-w-2xl mx-auto leading-relaxed">
                 {isFr
-                  ? 'Comment nos systèmes répondent aux processus spécifiques de votre secteur.'
-                  : 'How our systems address the specific processes of your sector.'}
+                  ? 'Des applications auxquelles on ne pense pas toujours — et qui peuvent transformer vos processus.'
+                  : 'Applications you might not expect — that can transform your processes.'}
               </p>
             </FadeInView>
 
