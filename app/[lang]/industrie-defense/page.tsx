@@ -609,6 +609,24 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* ===== Cross-link vers la page secteur defense-securite ===== */}
+      <section className="py-12 bg-very-peri-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <FadeInView>
+            <p className="text-sm text-future-dusk-500 mb-3">
+              {isFr ? 'Découvrez aussi notre page secteur complète' : 'Also discover our full sector page'}
+            </p>
+            <Link
+              href="/industrie/defense-securite"
+              className="inline-flex items-center gap-2 text-lg font-heading font-bold text-very-peri-600 hover:text-very-peri-700 transition-colors"
+            >
+              {isFr ? 'Secteur Défense & Sécurité' : 'Defense & Security Sector'}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </FadeInView>
+        </div>
+      </section>
+
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(faqs)]} />
     </>
   );

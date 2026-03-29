@@ -350,6 +350,8 @@
       "lunetterieDesc": "Frame packshots, reflection control and AI-worn visuals",
       "food": "Food & Beverage",
       "foodDesc": "Packaging packshots and AI food styling",
+      "vinSpiritueux": "Wine & Spirits",
+      "vinSpiritueuxDesc": "Bottle packshots, labels and premium gift sets",
       "santeMedical": "Healthcare & Medical",
       "santeMedicalDesc": "CE-compliant visuals, on-site secured studios",
       "industrieDefense": "Industry & Defense",
@@ -403,7 +405,14 @@
       "privacy": "Privacy policy",
       "rights": "All rights reserved.",
       "madeWith": "Made with passion in France",
-      "manageCookies": "Manage cookies"
+      "manageCookies": "Manage cookies",
+      "packshot": "Packshot by sector",
+      "packshotEcommerce": "E-commerce Packshot",
+      "packshotBijoux": "Jewelry Packshot",
+      "packshotAmazon": "Amazon Packshot",
+      "packshotMode": "Fashion Packshot",
+      "packshotIndustriel": "Industrial Packshot",
+      "packshotDefense": "Industry & Defense"
     }
   },
   "iaPhotoProduit": {

@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="bg-future-dusk-900 text-future-dusk-300">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8 lg:gap-6">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
@@ -133,6 +133,45 @@ export default function Footer() {
               <li>
                 <Link href="/solutions/documentation-probatoire" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('docProbatoire')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Packshot par secteur */}
+          <div>
+            <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">
+              {t('packshot')}
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link href="/packshot-e-commerce" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotEcommerce')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/packshot-bijoux" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotBijoux')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/packshot-amazon" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotAmazon')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/packshot-mode" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotMode')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/packshot-industriel" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotIndustriel')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie-defense" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('packshotDefense')}
                 </Link>
               </li>
             </ul>

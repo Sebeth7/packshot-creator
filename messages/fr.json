@@ -353,6 +353,8 @@
       "lunetterieDesc": "Packshot montures, gestion des reflets et visuels portés IA",
       "food": "Food & Alimentaire",
       "foodDesc": "Packshot packaging et food styling par IA",
+      "vinSpiritueux": "Vins & Spiritueux",
+      "vinSpiritueuxDesc": "Packshot bouteilles, étiquettes et coffrets premium",
       "santeMedical": "Santé & Médical",
       "santeMedicalDesc": "Visuels conformes CE, studios sur site sécurisé",
       "industrieDefense": "Industrie & Défense",
@@ -406,7 +408,14 @@
       "privacy": "Confidentialité",
       "rights": "Tous droits réservés.",
       "madeWith": "Conçu avec passion en France",
-      "manageCookies": "Gérer les cookies"
+      "manageCookies": "Gérer les cookies",
+      "packshot": "Packshot par secteur",
+      "packshotEcommerce": "Packshot E-commerce",
+      "packshotBijoux": "Packshot Bijoux",
+      "packshotAmazon": "Packshot Amazon",
+      "packshotMode": "Packshot Mode",
+      "packshotIndustriel": "Packshot Industriel",
+      "packshotDefense": "Industrie & Défense"
     }
   },
   "iaPhotoProduit": {

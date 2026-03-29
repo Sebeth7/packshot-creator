@@ -623,6 +623,44 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
+          PACKSHOT LANDING — lien vers la landing page associée
+          ═══════════════════════════════════════════════════════════ */}
+      {(() => {
+        const SECTOR_PACKSHOT_MAP: Record<string, { href: string; labelFr: string; labelEn: string }> = {
+          'bijoux-joaillerie': { href: '/packshot-bijoux', labelFr: 'Packshot Bijoux', labelEn: 'Jewelry Packshot' },
+          'mode-textile': { href: '/packshot-mode', labelFr: 'Packshot Mode', labelEn: 'Fashion Packshot' },
+          'chaussures': { href: '/packshot-mode', labelFr: 'Packshot Mode', labelEn: 'Fashion Packshot' },
+          'industrie-manufacturiere': { href: '/packshot-industriel', labelFr: 'Packshot Industriel', labelEn: 'Industrial Packshot' },
+          'defense-securite': { href: '/industrie-defense', labelFr: 'Industrie & Défense', labelEn: 'Industry & Defense' },
+          'e-commerce-marketplace': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
+          'food-alimentaire': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
+          'lunetterie': { href: '/packshot-bijoux', labelFr: 'Packshot Bijoux', labelEn: 'Jewelry Packshot' },
+          'cosmetique-parfumerie': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
+          'vin-spiritueux': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
+        };
+        const mapping = SECTOR_PACKSHOT_MAP[secteur.slug];
+        if (!mapping) return null;
+        return (
+          <section className="py-12 bg-very-peri-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+              <FadeInView>
+                <p className="text-sm text-future-dusk-500 mb-3">
+                  {isFr ? 'Guide spécialisé pour votre secteur' : 'Specialized guide for your sector'}
+                </p>
+                <Link
+                  href={mapping.href}
+                  className="inline-flex items-center gap-2 text-lg font-heading font-bold text-very-peri-600 hover:text-very-peri-700 transition-colors"
+                >
+                  {isFr ? mapping.labelFr : mapping.labelEn}
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </FadeInView>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* ═══════════════════════════════════════════════════════════
           CROSS-LINKS — fond white, autres secteurs
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-16 lg:py-24 bg-white border-t border-neutral-100">
