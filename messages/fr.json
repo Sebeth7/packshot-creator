@@ -1030,6 +1030,11 @@
       "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo bijoux.",
       "ctaPrimary": "Demander une démo",
       "ctaSecondary": "Calculer mon ROI"
+    },
+    "testimonial": {
+      "quote": "La qualité macro du Super Focus a transformé notre catalogue en ligne. Nos clients voient enfin chaque détail de nos créations.",
+      "author": "Thomas D.",
+      "role": "Fondateur, maison de joaillerie parisienne"
     }
   },
   "packshotMode": {
@@ -1105,6 +1110,11 @@
       "description": "Découvrez nos solutions lors d'une démonstration avec un expert photo textile.",
       "ctaPrimary": "Demander une démo",
       "ctaSecondary": "Calculer mon ROI"
+    },
+    "testimonial": {
+      "quote": "Nous shootons 200 références par jour avec un seul opérateur. La cadence a été multipliée par 8 depuis l'installation.",
+      "author": "Alexandre M.",
+      "role": "Directeur de production, marque de prêt-à-porter"
     }
   },
   "packshotEcommerce": {
@@ -1180,6 +1190,11 @@
       "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo produit.",
       "ctaPrimary": "Demander une démo",
       "ctaSecondary": "Calculer mon ROI"
+    },
+    "testimonial": {
+      "quote": "Depuis que nous avons internalisé avec PackshotCreator, nous produisons 400 visuels par jour au lieu de 30. Le ROI a été atteint en 5 mois.",
+      "author": "Marie L.",
+      "role": "Directrice e-commerce, marque de cosmétiques internationale"
     }
   },
   "besoinsPhoto": {
@@ -1466,6 +1481,11 @@
       "description": "Decouvrez comment nos studios automatises produisent des photos Amazon-ready en volume.",
       "ctaPrimary": "Demander une demo",
       "ctaSecondary": "Calculer mon ROI"
+    },
+    "testimonial": {
+      "quote": "Zéro rejet Amazon depuis 18 mois. Le détourage IQ Mask produit un fond blanc conforme à chaque fois, sans aucune retouche.",
+      "author": "Sophie R.",
+      "role": "Responsable marketplace, groupe de distribution"
     }
   },
   "packshotIndustriel": {
@@ -1541,6 +1561,11 @@
       "description": "Decouvrez comment nos studios automatises transforment la documentation technique de vos produits industriels.",
       "ctaPrimary": "Demander une demo",
       "ctaSecondary": "Calculer mon ROI"
+    },
+    "testimonial": {
+      "quote": "La reproductibilité est totale. Chaque pièce de notre catalogue de 15 000 références a exactement le même rendu.",
+      "author": "Philippe B.",
+      "role": "Responsable documentation technique, équipementier automobile"
     }
   },
   "industrieDefense": {

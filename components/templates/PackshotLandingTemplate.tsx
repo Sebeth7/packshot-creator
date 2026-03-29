@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
@@ -6,9 +7,22 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
-import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, ImageIcon } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, ImageIcon, Quote, Box, Zap, Upload } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
+
+const CLIENT_LOGOS = [
+  { name: 'Chanel', src: '/images/logos/client-chanel.svg', w: 225, h: 225 },
+  { name: 'Amazon', src: '/images/logos/client-amazon.svg', w: 409, h: 123 },
+  { name: 'Bosch', src: '/images/logos/client-bosch.svg', w: 462, h: 109 },
+  { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.svg', w: 600, h: 66 },
+  { name: 'Valentino', src: '/images/logos/client-valentino.svg', w: 320, h: 157 },
+  { name: 'Sandro', src: '/images/logos/client-sandro.svg', w: 390, h: 100 },
+  { name: 'Seiko', src: '/images/logos/client-seiko.svg', w: 508, h: 99 },
+  { name: 'Lidl', src: '/images/logos/client-lidl.svg', w: 177, h: 168 },
+  { name: 'Würth', src: '/images/logos/client-wurth.svg', w: 485, h: 104 },
+  { name: 'Jägermeister', src: '/images/logos/client-jagermeister.svg', w: 187, h: 167 },
+];
 
 export interface PackshotLandingConfig {
   namespace: string;
@@ -116,6 +130,45 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2b. LOGO BAR — Trust strip
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
+            <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-6">
+              {isFr ? 'Ils produisent leurs packshots avec nous' : 'They produce their packshots with us'}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-12">
+              {CLIENT_LOGOS.map((logo) => (
+                <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-60 transition-opacity duration-300">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={logo.w}
+                    height={logo.h}
+                    className="h-full w-auto max-w-[60px] sm:max-w-[80px] object-contain"
+                    loading="eager"
+                  />
+                </div>
+              ))}
+            </div>
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2c. BREATHER — Full-bleed visual pause
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="relative w-full h-[300px] lg:h-[400px] bg-neutral-100 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <ImageIcon className="w-10 h-10 text-neutral-300 mx-auto mb-2" strokeWidth={1} />
+            <p className="text-sm text-neutral-400">{isFr ? 'Visuel showroom — 100% × 400px' : 'Showroom visual — 100% × 400px'}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. BENEFITS — Split 4/8, sticky heading, numbered cards
           Design: Asymmetric. Heading stays left, benefits scroll right.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -166,6 +219,74 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                 </ScrollReveal>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3b. HOW IT WORKS — 3-step process
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 lg:py-32 bg-very-peri-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Comment ça marche' : 'How it works'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                {isFr ? '3 étapes. Zéro compétence photo.' : '3 steps. Zero photo skills.'}
+              </TextReveal>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              {
+                step: '01',
+                Icon: Box,
+                title: isFr ? 'Placez votre produit' : 'Place your product',
+                desc: isFr
+                  ? 'Ouvrez le studio, posez l\'objet. Le logiciel guide l\'opérateur pour le positionnement optimal.'
+                  : 'Open the studio, place the item. The software guides the operator for optimal positioning.',
+              },
+              {
+                step: '02',
+                Icon: Zap,
+                title: isFr ? 'Capturez en un clic' : 'Capture in one click',
+                desc: isFr
+                  ? 'Photo, 360°, vidéo : tout est automatisé. Éclairage LED calibré, cadrage, détourage IQ Mask.'
+                  : 'Photo, 360°, video: everything is automated. Calibrated LED lighting, framing, IQ Mask clipping.',
+              },
+              {
+                step: '03',
+                Icon: Upload,
+                title: isFr ? 'Exportez partout' : 'Export everywhere',
+                desc: isFr
+                  ? 'Formats marketplace-ready en un clic. Intégration PIM/DAM. Publication directe sur vos canaux.'
+                  : 'Marketplace-ready formats in one click. PIM/DAM integration. Direct publishing to your channels.',
+              },
+            ].map((item, i) => (
+              <FadeInView key={i} direction={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} delay={i * 0.15}>
+                <div className="text-center">
+                  <div className="relative inline-flex items-center justify-center mb-6">
+                    <span className="text-7xl lg:text-8xl font-heading font-bold text-very-peri-100 select-none leading-none">
+                      {item.step}
+                    </span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center">
+                        <item.Icon className="h-7 w-7 text-very-peri-600" />
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-xl lg:text-2xl font-heading font-bold text-future-dusk-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed max-w-sm mx-auto">
+                    {item.desc}
+                  </p>
+                </div>
+              </FadeInView>
+            ))}
           </div>
         </div>
       </section>
@@ -231,6 +352,29 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               </div>
             </div>
           </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4b. TESTIMONIAL — Social proof quote
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 lg:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-6 block">
+                {isFr ? 'Témoignage client' : 'Client testimonial'}
+              </span>
+              <Quote className="h-10 w-10 text-very-peri-200 mx-auto mb-6" strokeWidth={1.5} />
+              <blockquote className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 leading-snug mb-8">
+                &ldquo;{t('testimonial.quote')}&rdquo;
+              </blockquote>
+              <div>
+                <p className="text-sm font-semibold text-future-dusk-900">{t('testimonial.author')}</p>
+                <p className="text-sm text-future-dusk-500">{t('testimonial.role')}</p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

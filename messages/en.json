@@ -1027,6 +1027,11 @@
       "description": "Discover our solutions during a personalized demo with a jewelry photography expert.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "testimonial": {
+      "quote": "The Super Focus macro quality has transformed our online catalog. Our customers can finally see every detail of our creations.",
+      "author": "Thomas D.",
+      "role": "Founder, Parisian jewelry house"
     }
   },
   "packshotMode": {
@@ -1102,6 +1107,11 @@
       "description": "Discover our solutions during a demo with a textile photography expert.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "testimonial": {
+      "quote": "We shoot 200 references per day with a single operator. Production speed has increased 8x since installation.",
+      "author": "Alexandre M.",
+      "role": "Production Director, ready-to-wear brand"
     }
   },
   "packshotEcommerce": {
@@ -1177,6 +1187,11 @@
       "description": "Discover our solutions during a personalized demo with a product photography expert.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "testimonial": {
+      "quote": "Since we internalized with PackshotCreator, we produce 400 visuals per day instead of 30. ROI was reached in 5 months.",
+      "author": "Marie L.",
+      "role": "E-commerce Director, international cosmetics brand"
     }
   },
   "besoinsPhoto": {
@@ -1463,6 +1478,11 @@
       "description": "Discover how our automated studios produce Amazon-ready photos at scale.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "testimonial": {
+      "quote": "Zero Amazon rejections for 18 months. IQ Mask clipping produces a compliant white background every time, no retouching needed.",
+      "author": "Sophie R.",
+      "role": "Marketplace Manager, distribution group"
     }
   },
   "packshotIndustriel": {
@@ -1538,6 +1558,11 @@
       "description": "Discover how our automated studios transform the technical documentation of your industrial products.",
       "ctaPrimary": "Request a demo",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "testimonial": {
+      "quote": "Reproducibility is total. Every part in our 15,000-reference catalog has exactly the same rendering.",
+      "author": "Philippe B.",
+      "role": "Technical Documentation Manager, automotive supplier"
     }
   },
   "industrieDefense": {
