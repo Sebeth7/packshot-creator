@@ -115,6 +115,27 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+
+            <h3 className="text-sm font-semibold text-white mt-6 mb-4 tracking-wide">
+              {t('industrialDoc')}
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link href="/solutions/documentation-technique-visuelle" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('docTechnique')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/documentation-qualite-produit" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('docQualite')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/documentation-probatoire" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('docProbatoire')}
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Academy */}

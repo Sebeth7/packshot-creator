@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { secteurs } from '@/data/secteurs';
-import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera, Sparkles } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { solutions } from '@/data/solutions';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
@@ -65,6 +66,17 @@ export default async function SecteurPage({ params }: PageProps) {
   const recommendedMachines = machineIds
     .map((id) => MACHINES.find((m) => m.id === id))
     .filter(Boolean);
+
+  /* Solutions industrielles pertinentes pour ce secteur */
+  const relevantSolutions = solutions.filter((sol) =>
+    sol.secteurs.items.some((s) => s.slug === slug)
+  );
+
+  const solutionIcons: Record<string, React.ReactNode> = {
+    'documentation-technique-visuelle': <FileText className="h-5 w-5" />,
+    'documentation-qualite-produit': <ClipboardCheck className="h-5 w-5" />,
+    'documentation-probatoire': <Scale className="h-5 w-5" />,
+  };
 
   return (
     <>
@@ -358,6 +370,59 @@ export default async function SecteurPage({ params }: PageProps) {
                   </SpringCard>
                 </StaggerItem>
               ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════
+          DOCUMENTATION INDUSTRIELLE — fond white, liens vers solutions
+          ═══════════════════════════════════════════════════════════ */}
+      {relevantSolutions.length > 0 && (
+        <section className="py-16 lg:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView className="text-center mb-12">
+              <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'DOCUMENTATION INDUSTRIELLE' : 'INDUSTRIAL DOCUMENTATION'}
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark leading-[1.1]">
+                {isFr ? 'Allez plus loin avec nos solutions dédiées' : 'Go further with our dedicated solutions'}
+              </h2>
+            </FadeInView>
+
+            <StaggerContainer className={`grid gap-6 ${
+              relevantSolutions.length === 1 ? 'max-w-lg mx-auto' :
+              relevantSolutions.length === 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' :
+              'md:grid-cols-3'
+            }`}>
+              {relevantSolutions.map((sol) => {
+                const secteurData = sol.secteurs.items.find((s) => s.slug === slug);
+                return (
+                  <StaggerItem key={sol.slug}>
+                    <Link href={`/solutions/${sol.slug}`} className="group block h-full">
+                      <SpringCard>
+                        <div className="bg-future-dusk-0 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-300 transition-all h-full flex flex-col">
+                          <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-50 text-very-peri-600 mb-4">
+                            {solutionIcons[sol.slug] || <FileText className="h-5 w-5" />}
+                          </span>
+                          <h3 className="text-lg font-heading font-bold text-heading-dark mb-2 group-hover:text-very-peri-600 transition-colors">
+                            {sol.hero.badge}
+                          </h3>
+                          {secteurData && (
+                            <p className="text-sm text-neutral-medium leading-relaxed flex-1 mb-4">
+                              {secteurData.useCase}
+                            </p>
+                          )}
+                          <div className="flex items-center text-very-peri-600 text-sm font-medium">
+                            {isFr ? 'Découvrir cette solution' : 'Discover this solution'}
+                            <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </SpringCard>
+                    </Link>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           </div>
         </section>

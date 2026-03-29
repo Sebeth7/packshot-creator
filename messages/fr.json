@@ -362,7 +362,14 @@
       "guidesBesoins": "Identifier votre besoin",
       "guidesBesoinsDesc": "Trouvez la solution photo adaptee a votre entreprise",
       "guidesQuestions": "Questions cles",
-      "guidesQuestionsDesc": "9 questions essentielles avant d'investir"
+      "guidesQuestionsDesc": "9 questions essentielles avant d'investir",
+      "industrialDoc": "Documentation industrielle",
+      "docTechnique": "Documentation technique",
+      "docTechniqueDesc": "Catalogues illustrés, manuels d'assemblage, nomenclature visuelle",
+      "docQualite": "Qualité & Traçabilité",
+      "docQualiteDesc": "Documentation qualité répétable, rapports NCR, conformité ISO",
+      "docProbatoire": "Documentation probatoire",
+      "docProbatoireDesc": "Photos à valeur de preuve, patrimoine, expertise judiciaire"
     },
     "footer": {
       "tagline": "Solutions professionnelles de photographie de produits automatisée pour l'e-commerce et la communication visuelle.",
@@ -380,6 +387,10 @@
       "fashion": "Mode & Textile",
       "electronics": "Électronique & High-Tech",
       "allIndustries": "Toutes les industries",
+      "industrialDoc": "Documentation industrielle",
+      "docTechnique": "Documentation technique",
+      "docQualite": "Qualité & Traçabilité",
+      "docProbatoire": "Documentation probatoire",
       "academy": "Academy",
       "formationsPackshot": "Formations Packshot",
       "formationsIA": "Formations IA",
@@ -1525,7 +1536,7 @@
     "stats": {
       "stat1": {
         "value": "150+",
-        "label": "pieces photographiees par jour"
+        "label": "pièces photographiées par jour"
       },
       "stat2": {
         "value": "100%",
@@ -1570,205 +1581,205 @@
   },
   "industrieDefense": {
     "meta": {
-      "title": "Documentation Visuelle Industrie & Defense | PackshotCreator",
-      "description": "Solutions de photographie automatisee pour l'industrie et la defense. Systemes integres aux processus AS9100, ISO 13485, MIL-STD. 25 ans d'expertise. Demandez une etude."
+      "title": "Documentation Visuelle Industrie & Défense | PackshotCreator",
+      "description": "Solutions de photographie automatisée pour l'industrie et la défense. Systèmes intégrés aux processus AS9100, ISO 13485, MIL-STD. 25 ans d'expertise. Demandez une étude."
     },
     "hero": {
-      "title": "Documentation Visuelle Industrielle et Defense : Automatisee, Repetable, Certifiable",
-      "subtitle": "Nos systemes s'integrent dans vos processus certifies AS9100, ISO 13485, MIL-STD. 25 ans d'expertise en photographie de precision.",
-      "ctaPrimary": "Demander une etude personnalisee",
+      "title": "Documentation Visuelle Industrielle et Défense : Automatisée, Répétable, Certifiable",
+      "subtitle": "Nos systèmes s'intègrent dans vos processus certifiés AS9100, ISO 13485, MIL-STD. 25 ans d'expertise en photographie de précision.",
+      "ctaPrimary": "Demander une étude personnalisée",
       "ctaSecondary": "Voir les technologies"
     },
     "painPoints": {
       "heading": "Pourquoi automatiser votre documentation visuelle ?",
-      "subtitle": "Les methodes manuelles ne repondent plus aux exigences de tracabilite et de conformite industrielle.",
+      "subtitle": "Les méthodes manuelles ne répondent plus aux exigences de traçabilité et de conformité industrielle.",
       "pain1": {
-        "title": "Documentation non standardisee",
-        "desc": "Photos smartphone, eclairages variables, cadrages aleatoires : impossible a auditer, impossible a certifier."
+        "title": "Documentation non standardisée",
+        "desc": "Photos smartphone, éclairages variables, cadrages aléatoires : impossible à auditer, impossible à certifier."
       },
       "pain2": {
-        "title": "Controle qualite defaillant",
-        "desc": "Fatigue de l'inspecteur, 20 a 30% d'erreur en inspection manuelle, aucune reference photographique exploitable."
+        "title": "Contrôle qualité défaillant",
+        "desc": "Fatigue de l'inspecteur, 20 à 30% d'erreur en inspection manuelle, aucune référence photographique exploitable."
       },
       "pain3": {
-        "title": "Catalogues obsoletes",
-        "desc": "5 a 50 EUR par image en sous-traitance. Des catalogues en retard de plusieurs annees sur le parc de pieces."
+        "title": "Catalogues obsolètes",
+        "desc": "5 à 50 EUR par image en sous-traitance. Des catalogues en retard de plusieurs années sur le parc de pièces."
       },
       "pain4": {
-        "title": "Dependance au photographe",
-        "desc": "Savoir-faire perdu a chaque turnover. Pas de processus formalise, pas de repetabilite."
+        "title": "Dépendance au photographe",
+        "desc": "Savoir-faire perdu à chaque turnover. Pas de processus formalisé, pas de répétabilité."
       }
     },
     "technologies": {
       "heading": "8 technologies Orbitvu pour l'industrie",
-      "subtitle": "Une base technologique concue pour les exigences de precision, de repetabilite et de tracabilite.",
+      "subtitle": "Une base technologique conçue pour les exigences de précision, de répétabilité et de traçabilité.",
       "tech1": {
-        "name": "Templates sauvegardes",
-        "desc": "Repetabilite certifiable pour documentation qualite AS9100 / ISO 13485."
+        "name": "Templates sauvegardés",
+        "desc": "Répétabilité certifiable pour documentation qualité AS9100 / ISO 13485."
       },
       "tech2": {
-        "name": "Rotation 360 motorisee",
-        "desc": "Documentation exhaustive de pieces pour catalogues et inspections."
+        "name": "Rotation 360 motorisée",
+        "desc": "Documentation exhaustive de pièces pour catalogues et inspections."
       },
       "tech3": {
         "name": "SuperFocus",
-        "desc": "Inspection micro-composants, detection micro-defauts et soudures par focus stacking."
+        "desc": "Inspection micro-composants, détection micro-défauts et soudures par focus stacking."
       },
       "tech4": {
         "name": "IQ Mask",
-        "desc": "Production de visuels catalogues standardises sans post-production."
+        "desc": "Production de visuels catalogues standardisés sans post-production."
       },
       "tech5": {
         "name": "Ghost Image",
-        "desc": "Comparaison avant/apres, suivi de degradation temporelle des pieces."
+        "desc": "Comparaison avant/après, suivi de dégradation temporelle des pièces."
       },
       "tech6": {
         "name": "74 LED individuelles",
-        "desc": "Conditions d'eclairage certifiables pour conformite reglementaire."
+        "desc": "Conditions d'éclairage certifiables pour conformité réglementaire."
       },
       "tech7": {
-        "name": "Export automatise",
-        "desc": "Integration directe ERP/DAM/PIM avec nommage SKU/NSN."
+        "name": "Export automatisé",
+        "desc": "Intégration directe ERP/DAM/PIM avec nommage SKU/NSN."
       },
       "tech8": {
         "name": "AI Photo Assistant",
-        "desc": "Utilisation par operateurs non-photographes sur ligne de production."
+        "desc": "Utilisation par opérateurs non-photographes sur ligne de production."
       }
     },
     "segments": {
-      "heading": "6 segments industriels adresses",
-      "subtitle": "Des solutions adaptees aux normes et aux exigences de chaque secteur.",
+      "heading": "6 segments industriels adressés",
+      "subtitle": "Des solutions adaptées aux normes et aux exigences de chaque secteur.",
       "seg1": {
-        "name": "Aeronautique & Spatial",
-        "norms": "AS9100 | Zero defaut | Tracabilite complete",
-        "useCase": "First Article Inspection (FAI), documentation MRO avant/apres, catalogage pieces de rechange. Marche de 374 milliards USD, croissance 7,8%/an.",
-        "argument": "Zero defaut documentaire -- conformite AS9100 facilitee"
+        "name": "Aéronautique & Spatial",
+        "norms": "AS9100 | Zéro défaut | Traçabilité complète",
+        "useCase": "First Article Inspection (FAI), documentation MRO avant/après, catalogage pièces de rechange. Marché de 374 milliards USD, croissance 7,8%/an.",
+        "argument": "Zéro défaut documentaire -- conformité AS9100 facilitée"
       },
       "seg2": {
-        "name": "Defense terrestre & navale",
+        "name": "Défense terrestre & navale",
         "norms": "ITAR | CMMC | MIL-STD",
-        "useCase": "Inventaire de pieces, anti-contrefacon, suivi d'usure, documentation avant/apres MCO. 130 000+ vehicules dans les programmes MRO.",
+        "useCase": "Inventaire de pièces, anti-contrefaçon, suivi d'usure, documentation avant/après MCO. 130 000+ véhicules dans les programmes MRO.",
         "argument": "L'expertise reste dans le système -- indépendance du turnover"
       },
       "seg3": {
-        "name": "Automobile & Equipementiers",
+        "name": "Automobile & Équipementiers",
         "norms": "IATF 16949",
         "useCase": "QC sortie production, catalogage aftermarket, inspection fournisseurs. Aftermarket mondial : 500+ milliards USD.",
-        "argument": "500+ pieces/jour, publication e-commerce en 2 minutes"
+        "argument": "500+ pièces/jour, publication e-commerce en 2 minutes"
       },
       "seg4": {
-        "name": "Medical & Pharma",
+        "name": "Médical & Pharma",
         "norms": "FDA | ISO 13485 | GMP",
-        "useCase": "Documentation de lots, catalogage d'instruments, inspection d'emballages. Exigences de tracabilite strictes.",
-        "argument": "Documentation de lot inattaquable, prets pour audits FDA"
+        "useCase": "Documentation de lots, catalogage d'instruments, inspection d'emballages. Exigences de traçabilité strictes.",
+        "argument": "Documentation de lot inattaquable, prêts pour audits FDA"
       },
       "seg5": {
-        "name": "Electronique & Semi-conducteurs",
+        "name": "Électronique & Semi-conducteurs",
         "norms": "IPC | RoHS",
         "useCase": "Inspection PCB, documentation de composants obsolescents. Taux d'erreur en inspection manuelle : 20-30%.",
-        "argument": "Detection micro-defauts soudure par focus stacking"
+        "argument": "Détection micro-défauts soudure par focus stacking"
       },
       "seg6": {
         "name": "Logistique militaire & Supply Chain",
         "norms": "UID / IUID | NSN",
-        "useCase": "Identification anti-contrefacon, documentation stock UID/IUID. 5,1 milliards USD de stock inutilisable par identification defaillante.",
-        "argument": "Chaque NSN illustre, chaque etat documente"
+        "useCase": "Identification anti-contrefaçon, documentation stock UID/IUID. 5,1 milliards USD de stock inutilisable par identification défaillante.",
+        "argument": "Chaque NSN illustré, chaque état documenté"
       }
     },
     "stats": {
-      "heading": "Resultats mesures",
+      "heading": "Résultats mesurés",
       "stat1": {
         "value": "-90%",
-        "label": "de cout de documentation photo"
+        "label": "de coût de documentation photo"
       },
       "stat2": {
         "value": "500+",
-        "label": "pieces photographiees par jour"
+        "label": "pièces photographiées par jour"
       },
       "stat3": {
         "value": "1 EUR",
-        "label": "par piece vs 5-50 EUR en sous-traitance"
+        "label": "par pièce vs 5-50 EUR en sous-traitance"
       },
       "stat4": {
         "value": "30 Mrd",
-        "label": "USD marche inspection visuelle 2029"
+        "label": "USD marché inspection visuelle 2029"
       }
     },
     "useCases": {
       "heading": "Cas d'usage industriels",
-      "subtitle": "Des applications concretes qui transforment vos processus documentaires.",
+      "subtitle": "Des applications concrètes qui transforment vos processus documentaires.",
       "uc1": {
         "title": "First Article Inspection (FAI)",
-        "desc": "Documentation photographique certifiable de chaque premiere piece produite. Comparaison automatisee avec le plan de reference.",
+        "desc": "Documentation photographique certifiable de chaque première pièce produite. Comparaison automatisée avec le plan de référence.",
         "techs": "SuperFocus + Templates + 74 LED",
-        "result": "Conformite AS9100 facilitee, audit-ready"
+        "result": "Conformité AS9100 facilitée, audit-ready"
       },
       "uc2": {
-        "title": "Inventaire anti-contrefacon",
-        "desc": "Photographie haute definition de chaque piece pour identification visuelle et detection de contrefacons dans la supply chain defense.",
+        "title": "Inventaire anti-contrefaçon",
+        "desc": "Photographie haute définition de chaque pièce pour identification visuelle et détection de contrefaçons dans la supply chain défense.",
         "techs": "Rotation 360 + IQ Mask + Export NSN",
-        "result": "Chaque piece identifiee, chaque contrefacon detectee"
+        "result": "Chaque pièce identifiée, chaque contrefaçon détectée"
       },
       "uc3": {
         "title": "Catalogage aftermarket automobile",
-        "desc": "Production a haut volume de visuels pour catalogues de pieces detachees. Nommage automatique par reference constructeur.",
+        "desc": "Production à haut volume de visuels pour catalogues de pièces détachées. Nommage automatique par référence constructeur.",
         "techs": "Templates + IQ Mask + Export ERP",
-        "result": "500+ pieces/jour, publication en 2 minutes"
+        "result": "500+ pièces/jour, publication en 2 minutes"
       },
       "uc4": {
-        "title": "Documentation MRO avant/apres",
-        "desc": "Suivi visuel de l'etat des pieces avant et apres maintenance. Tracabilite photographique complete pour chaque intervention.",
+        "title": "Documentation MRO avant/après",
+        "desc": "Suivi visuel de l'état des pièces avant et après maintenance. Traçabilité photographique complète pour chaque intervention.",
         "techs": "Ghost Image + Templates + Export DAM",
-        "result": "Tracabilite totale, litiges reduits de 80%"
+        "result": "Traçabilité totale, litiges réduits de 80%"
       }
     },
     "machines": {
       "heading": "Systèmes recommandés pour l'industrie",
-      "subtitle": "Des studios robustes, adaptes aux exigences de precision et de volume industriel."
+      "subtitle": "Des studios robustes, adaptés aux exigences de précision et de volume industriel."
     },
     "compliance": {
-      "heading": "Integration dans vos processus normes",
-      "subtitle": "Nos systemes s'integrent dans vos environnements certifies grace a la repetabilite et la tracabilite intrinseques de la technologie Orbitvu.",
-      "point1": "Templates sauvegardes : memes conditions de prise de vue a chaque capture, repetabilite certifiable.",
-      "point2": "Export automatise avec nommage SKU/NSN : tracabilite complete de chaque visuel produit.",
-      "point3": "74 LED calibrees individuellement : conditions d'eclairage documentables et reproductibles.",
-      "point4": "Historique Ghost Image : comparaison avant/apres pour suivi de degradation et maintenance."
+      "heading": "Intégration dans vos processus normés",
+      "subtitle": "Nos systèmes s'intègrent dans vos environnements certifiés grâce à la répétabilité et la traçabilité intrinsèques de la technologie Orbitvu.",
+      "point1": "Templates sauvegardés : mêmes conditions de prise de vue à chaque capture, répétabilité certifiable.",
+      "point2": "Export automatisé avec nommage SKU/NSN : traçabilité complète de chaque visuel produit.",
+      "point3": "74 LED calibrées individuellement : conditions d'éclairage documentables et reproductibles.",
+      "point4": "Historique Ghost Image : comparaison avant/après pour suivi de dégradation et maintenance."
     },
     "faq": {
-      "heading": "Questions frequentes",
+      "heading": "Questions fréquentes",
       "q1": {
         "question": "Comment automatiser la documentation photographique industrielle ?",
-        "answer": "Les studios Orbitvu automatisent l'integralite du processus : positionnement, eclairage, capture et export. Un operateur sans competence photo produit des visuels standardises en quelques secondes grace aux templates sauvegardes."
+        "answer": "Les studios Orbitvu automatisent l'intégralité du processus : positionnement, éclairage, capture et export. Un opérateur sans compétence photo produit des visuels standardisés en quelques secondes grâce aux templates sauvegardés."
       },
       "q2": {
         "question": "Les solutions Orbitvu sont-elles compatibles avec les normes AS9100 ?",
-        "answer": "Oui. Les templates sauvegardes garantissent la repetabilite des prises de vue, l'eclairage calibre assure des conditions certifiables, et l'export automatise avec nommage standardise facilite la tracabilite documentaire exigee par AS9100."
+        "answer": "Oui. Les templates sauvegardés garantissent la répétabilité des prises de vue, l'éclairage calibré assure des conditions certifiables, et l'export automatisé avec nommage standardisé facilite la traçabilité documentaire exigée par AS9100."
       },
       "q3": {
-        "question": "Quel est le ROI d'un studio photo automatise pour l'industrie ?",
-        "answer": "Le cout passe de 5-50 EUR par image en sous-traitance a environ 1 EUR par piece en interne. Avec 500+ pieces photographiees par jour, le retour sur investissement est atteint en 3 a 8 mois selon le volume."
+        "question": "Quel est le ROI d'un studio photo automatisé pour l'industrie ?",
+        "answer": "Le coût passe de 5-50 EUR par image en sous-traitance à environ 1 EUR par pièce en interne. Avec 500+ pièces photographiées par jour, le retour sur investissement est atteint en 3 à 8 mois selon le volume."
       },
       "q4": {
-        "question": "Les operateurs non-photographes peuvent-ils utiliser le systeme ?",
-        "answer": "Oui, c'est l'un des avantages cles. L'AI Photo Assistant et les templates preetablis permettent a tout operateur de ligne de production de capturer des visuels conformes sans formation photographique."
+        "question": "Les opérateurs non-photographes peuvent-ils utiliser le système ?",
+        "answer": "Oui, c'est l'un des avantages clés. L'AI Photo Assistant et les templates préétablis permettent à tout opérateur de ligne de production de capturer des visuels conformes sans formation photographique."
       },
       "q5": {
-        "question": "Comment integrer les photos dans notre ERP/PIM ?",
-        "answer": "L'export automatise d'Orbitvu genere les fichiers dans les formats et nomenclatures requis (SKU, NSN, reference constructeur) pour une integration directe dans votre ERP, PIM ou DAM existant."
+        "question": "Comment intégrer les photos dans notre ERP/PIM ?",
+        "answer": "L'export automatisé d'Orbitvu génère les fichiers dans les formats et nomenclatures requis (SKU, NSN, référence constructeur) pour une intégration directe dans votre ERP, PIM ou DAM existant."
       },
       "q6": {
-        "question": "Les solutions sont-elles adaptees aux environnements militaires ?",
-        "answer": "Les studios Orbitvu fonctionnent en environnement controle (atelier, magasin de pieces). Ils repondent aux besoins de documentation MIL-STD, de tracabilite IUID et d'identification anti-contrefacon dans la supply chain defense."
+        "question": "Les solutions sont-elles adaptées aux environnements militaires ?",
+        "answer": "Les studios Orbitvu fonctionnent en environnement contrôlé (atelier, magasin de pièces). Ils répondent aux besoins de documentation MIL-STD, de traçabilité IUID et d'identification anti-contrefaçon dans la supply chain défense."
       },
       "q7": {
-        "question": "Quel studio choisir pour des pieces volumineuses ?",
-        "answer": "L'Alphastudio XXL Pro v2 accepte des pieces jusqu'a 100x70x190 cm et 100 kg. Pour des pieces plus grandes, contactez-nous pour une etude personnalisee."
+        "question": "Quel studio choisir pour des pièces volumineuses ?",
+        "answer": "L'Alphastudio XXL Pro v2 accepte des pièces jusqu'à 100x70x190 cm et 100 kg. Pour des pièces plus grandes, contactez-nous pour une étude personnalisée."
       }
     },
     "cta": {
-      "heading": "Etudions ensemble votre projet industriel",
-      "description": "20 ans d'expertise en photographie de precision. Distributeur exclusif Orbitvu France & Suisse.",
-      "ctaPrimary": "Demander une etude personnalisee",
+      "heading": "Étudions ensemble votre projet industriel",
+      "description": "20 ans d'expertise en photographie de précision. Distributeur exclusif Orbitvu France & Suisse.",
+      "ctaPrimary": "Demander une étude personnalisée",
       "ctaSecondary": "Voir les studios"
     }
   },

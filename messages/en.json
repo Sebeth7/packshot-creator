@@ -359,7 +359,14 @@
       "guidesBesoins": "Identify your need",
       "guidesBesoinsDesc": "Find the right photo solution for your business",
       "guidesQuestions": "Key questions",
-      "guidesQuestionsDesc": "9 essential questions before investing"
+      "guidesQuestionsDesc": "9 essential questions before investing",
+      "industrialDoc": "Industrial documentation",
+      "docTechnique": "Technical documentation",
+      "docTechniqueDesc": "Illustrated catalogs, assembly manuals, visual nomenclature",
+      "docQualite": "Quality & Traceability",
+      "docQualiteDesc": "Repeatable quality documentation, NCR reports, ISO compliance",
+      "docProbatoire": "Forensic documentation",
+      "docProbatoireDesc": "Evidence-grade photography, heritage, forensic expertise"
     },
     "footer": {
       "tagline": "Professional automated product photography solutions for e-commerce and visual communication.",
@@ -377,6 +384,10 @@
       "fashion": "Fashion & Textile",
       "electronics": "Electronics & High-Tech",
       "allIndustries": "All industries",
+      "industrialDoc": "Industrial documentation",
+      "docTechnique": "Technical documentation",
+      "docQualite": "Quality & Traceability",
+      "docProbatoire": "Forensic documentation",
       "academy": "Academy",
       "formationsPackshot": "Packshot Training",
       "formationsIA": "AI Training",

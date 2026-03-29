@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle } from 'lucide-react';
+import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface DropdownItem {
@@ -234,6 +234,29 @@ export default function Header() {
           labelKey: 'allSectors',
           descKey: '',
           icon: <></>,
+        },
+      ],
+    },
+    {
+      titleKey: 'industrialDoc',
+      items: [
+        {
+          href: '/solutions/documentation-technique-visuelle',
+          labelKey: 'docTechnique',
+          descKey: 'docTechniqueDesc',
+          icon: <FileText className="h-4 w-4" />,
+        },
+        {
+          href: '/solutions/documentation-qualite-produit',
+          labelKey: 'docQualite',
+          descKey: 'docQualiteDesc',
+          icon: <ClipboardCheck className="h-4 w-4" />,
+        },
+        {
+          href: '/solutions/documentation-probatoire',
+          labelKey: 'docProbatoire',
+          descKey: 'docProbatoireDesc',
+          icon: <Scale className="h-4 w-4" />,
         },
       ],
     },
