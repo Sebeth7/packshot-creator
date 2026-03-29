@@ -1226,4 +1226,94 @@ export const secteurs: Secteur[] = [
       { question: 'L\'IA peut-elle générer des visuels portés à partir d\'un simple packshot ?', answer: 'Oui, BlendAI.studio génère des visuels portés réalistes à partir du packshot monture. Vous choisissez le style de mannequin et l\'ambiance par collection.' },
     ],
   },
+
+  // 16. VIN & SPIRITUEUX
+  {
+    slug: 'vin-spiritueux',
+    titre: 'Photo Produit Vin & Spiritueux : Packshot Bouteilles & Lifestyle IA',
+    description:
+      'Studios photo automatisés pour bouteilles de vin et spiritueux : gestion des reflets verre, fidélité étiquettes et mises en scène IA cave, bar, table.',
+    hero: {
+      titre: 'Photo Bouteilles Vin & Spiritueux : Packshot & Lifestyle IA',
+      sousTitre: 'Sublimez vos cuvées avec des visuels dignes des plus grands domaines',
+      description:
+        'Capturez chaque bouteille avec une fidélité parfaite — étiquettes lisibles, reflets maîtrisés, couleurs du vin préservées — puis créez des mises en scène cave, bar ou table gastronomique par IA.',
+    },
+    problematiques: {
+      titre: 'Défis Photo Vin & Spiritueux',
+      items: [
+        'Reflets parasites sur le verre (bouteilles, flacons, carafes)',
+        'Lisibilité et fidélité colorimétrique des étiquettes (dorures, reliefs, papier texturé)',
+        'Formes variées de bouteilles (bordelaise, bourguignonne, alsacienne, champagne, flûte, pot)',
+        'Capsules et muselet métalliques créant des reflets incontrôlés',
+        'Shootings lifestyle cave ou bar coûteux et logistiquement complexes',
+        'Volumes saisonniers importants (foires aux vins, primeurs, fêtes de fin d\'année)',
+      ],
+    },
+    solutions: {
+      titre: 'Nos Solutions Vin & Spiritueux',
+      items: [
+        {
+          type: 'hardware',
+          titre: 'Alphashot XL Wine v2 — Studio dédié bouteilles',
+          description:
+            'Conçu spécifiquement pour la photographie de bouteilles, avec un éclairage optimisé verre et étiquettes',
+          avantages: [
+            'Éclairage polarisé anti-reflets verre : suppression des reflets parasites dès la capture',
+            'Zone d\'éclairage calibrée étiquettes : lisibilité parfaite, dorures et reliefs préservés',
+            'Compatibilité toutes formes : bordelaise, bourguignonne, champagne, magnum, flacon spiritueux',
+            '360° bouteille : rotation interactive montrant l\'étiquette, la contre-étiquette et la capsule',
+            'Détourage automatique fond blanc pour catalogues et e-commerce',
+            'Workflow rapide : 20-40 bouteilles/heure photographiées',
+          ],
+        },
+        {
+          type: 'ia',
+          titre: 'BlendAI Studio — Mises en scène IA',
+          description:
+            'Transformez vos packshots en visuels lifestyle cave, bar, table gastronomique',
+          avantages: [
+            'Ambiances cave : voûtes en pierre, barriques, lumière tamisée',
+            'Ambiances bar & restaurant : comptoir bois, cocktails, ambiance lounge',
+            'Accords mets-vins : table dressée, fromages, charcuterie, plats gastronomiques',
+            'Ambiances saisonnières : vendanges, fêtes, terrasse estivale',
+            'Production série : 30-100 visuels lifestyle en quelques heures',
+            'ROI : -85% coûts vs shootings lifestyle sur site (cave, château, restaurant)',
+          ],
+        },
+      ],
+    },
+    useCases: [
+      {
+        titre: 'Catalogue domaine viticole',
+        processus: 'Photographier l\'intégralité de la gamme (cuvées, millésimes, formats) avec un rendu cohérent pour le site web, les fiches techniques et les salons professionnels.',
+        fonctionsOrbitvu: ['Templates bouteille', '360°', 'Multi-export PDF/Web'],
+        valeur: 'Catalogue visuel complet prêt pour le web et l\'impression en quelques jours',
+      },
+      {
+        titre: 'E-commerce CHR & cavistes',
+        processus: 'Production de visuels packshot et lifestyle pour les plateformes B2B (cafés, hôtels, restaurants) et les cavistes en ligne nécessitant des visuels homogènes sur des catalogues de plusieurs centaines de références.',
+        fonctionsOrbitvu: ['Détourage auto', 'Export multi-format', 'Workflow batch'],
+        valeur: 'Intégration rapide dans les plateformes e-commerce CHR',
+      },
+      {
+        titre: 'Communication importateur / distributeur',
+        processus: 'Fournir aux importateurs et distributeurs des visuels professionnels prêts à l\'emploi pour leurs propres supports de vente (catalogues, fiches, réseaux sociaux).',
+        fonctionsOrbitvu: ['Templates', 'Export HD', 'Métadonnées'],
+        valeur: 'Visuels standardisés pour tout le réseau de distribution',
+      },
+    ],
+    cta: {
+      titre: 'Sublimez vos bouteilles',
+      description:
+        'Réservez une démo avec vos propres bouteilles. 30 minutes pour voir la différence Alphashot XL Wine.',
+    },
+    faq: [
+      { question: 'Comment éliminer les reflets sur les bouteilles en verre ?', answer: 'L\'Alphashot XL Wine v2 utilise un éclairage LED polarisé spécifiquement calibré pour le verre. Les reflets parasites sont supprimés dès la capture, sans retouche. Le protocole fonctionne sur le verre clair, teinté et les flacons de spiritueux.' },
+      { question: 'Les étiquettes avec dorures ou reliefs sont-elles bien rendues ?', answer: 'Oui, la zone d\'éclairage dédiée étiquettes préserve les dorures à chaud, les gaufrages et les textures papier. La fidélité colorimétrique est assurée par un étalonnage LED 74 points.' },
+      { question: 'Peut-on photographier toutes les formes de bouteilles ?', answer: 'Le studio accepte toutes les formes courantes : bordelaise, bourguignonne, alsacienne, champagne, magnum, demi-bouteille et flacons de spiritueux. Un système de calage ajustable maintient chaque bouteille parfaitement droite.' },
+      { question: 'Comment gérer les volumes importants en période de foire aux vins ?', answer: 'Le workflow automatisé permet de photographier 20 à 40 bouteilles par heure. Sur une journée, vous pouvez traiter 150 à 300 références avec packshot fond blanc, détourage et export multi-format.' },
+      { question: 'Les visuels lifestyle IA sont-ils réalistes pour le vin ?', answer: 'BlendAI génère des mises en scène réalistes : cave en pierre, table de dégustation, comptoir bar. Les bouteilles sont intégrées avec gestion des ombres, reflets et éclairage ambiant cohérent.' },
+    ],
+  },
 ];
