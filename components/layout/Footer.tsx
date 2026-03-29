@@ -70,6 +70,16 @@ export default function Footer() {
                   {t('machineSelector')}
                 </Link>
               </li>
+              <li>
+                <Link href="/besoins-photographie-produit" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('guidesBesoins')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/questions-cles-photographie-produit" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('guidesQuestions')}
+                </Link>
+              </li>
             </ul>
           </div>
 

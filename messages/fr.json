@@ -365,6 +365,8 @@
       "studios": "Studios Photo",
       "aiSoftware": "IA & Logiciels",
       "machineSelector": "Sélecteur de Systèmes",
+      "guidesBesoins": "Guide des besoins",
+      "guidesQuestions": "Questions clés",
       "industries": "Industries",
       "shoes": "Chaussures",
       "jewelry": "Bijoux & Joaillerie",
@@ -965,23 +967,23 @@
       "heading": "Pourquoi choisir un studio automatisé pour vos bijoux ?",
       "item1": {
         "title": "Rendu macro ultra-détaillé",
-        "description": "Chaque facette, chaque reflet capturé avec une précision remarquable grâce au Super Focus."
+        "description": "Chaque facette, chaque reflet capturé avec une précision remarquable grâce au <bold>Super Focus</bold>."
       },
       "item2": {
         "title": "Photo 360° interactive",
-        "description": "Offrez à vos clients une expérience immersive sur votre site e-commerce avec la rotation 360°."
+        "description": "Offrez à vos clients une expérience immersive sur votre site e-commerce avec la <bold>rotation 360°</bold>."
       },
       "item3": {
         "title": "Fond parfaitement neutre",
-        "description": "Détourage automatique IQ Mask : fond blanc professionnel sans aucune retouche manuelle."
+        "description": "Détourage automatique <bold>IQ Mask</bold> : fond blanc professionnel sans aucune <bold>retouche manuelle</bold>."
       },
       "item4": {
         "title": "50 bijoux photographiés par heure",
-        "description": "Automatisation complète du processus : positionnement, éclairage, capture et export en quelques secondes."
+        "description": "Automatisation complète du processus : positionnement, éclairage, capture et export en <bold>quelques secondes</bold>."
       },
       "item5": {
         "title": "Compatible marketplaces",
-        "description": "Exports optimisés pour Amazon, Etsy, Shopify et toutes les plateformes e-commerce."
+        "description": "Exports optimisés pour Amazon, Etsy, Shopify et <bold>toutes les plateformes</bold> e-commerce."
       }
     },
     "stats": {
@@ -1000,7 +1002,7 @@
     },
     "machines": {
       "heading": "Systèmes recommandés pour la bijouterie",
-      "subtitle": "Des studios conçus pour sublimer les petits objets précieux",
+      "subtitle": "Des studios conçus pour sublimer les <bold>petits objets précieux</bold>",
       "cta": "Demander un devis"
     },
     "faq": {
@@ -1040,23 +1042,23 @@
       "heading": "Pourquoi automatiser votre production photo mode ?",
       "item1": {
         "title": "Photos à plat ou sur mannequin",
-        "description": "Flat-lay avec l'Alphadesk ou photo portée avec les studios grand format. Toutes les techniques en un seul workflow."
+        "description": "Flat-lay avec l'Alphadesk ou photo portée avec les studios grand format. <bold>Toutes les techniques</bold> en un seul workflow."
       },
       "item2": {
         "title": "Rendu fidèle des textures et couleurs",
-        "description": "Éclairage LED calibré pour une reproduction exacte des matières, teintes et détails textiles."
+        "description": "Éclairage LED calibré pour une <bold>reproduction exacte</bold> des matières, teintes et détails textiles."
       },
       "item3": {
         "title": "Photo 360° immersive",
-        "description": "Offrez une expérience client interactive avec la rotation 360° de vos vêtements et accessoires."
+        "description": "Offrez une expérience client interactive avec la <bold>rotation 360°</bold> de vos vêtements et accessoires."
       },
       "item4": {
         "title": "Volume : centaines de pièces par jour",
-        "description": "Production à haute cadence grâce à l'automatisation complète : capture, détourage, export simultanés."
+        "description": "Production à <bold>haute cadence</bold> grâce à l'automatisation complète : capture, détourage, export simultanés."
       },
       "item5": {
         "title": "Intégration catalogue e-commerce",
-        "description": "Export direct vers votre PIM, DAM ou plateforme e-commerce avec les bons formats et métadonnées."
+        "description": "Export direct vers votre PIM, DAM ou plateforme e-commerce avec les <bold>bons formats</bold> et métadonnées."
       }
     },
     "stats": {
@@ -1075,7 +1077,7 @@
     },
     "machines": {
       "heading": "Systèmes recommandés pour la mode",
-      "subtitle": "Des studios adaptés au textile, de la chaussure au prêt-à-porter",
+      "subtitle": "Des studios adaptés au textile, de la <bold>chaussure au prêt-à-porter</bold>",
       "cta": "Demander un devis"
     },
     "faq": {
@@ -1115,23 +1117,23 @@
       "heading": "Pourquoi internaliser votre production photo e-commerce ?",
       "item1": {
         "title": "Production en volume : 500+ produits/jour",
-        "description": "Automatisation complète du workflow photo : positionnement, éclairage, capture, détourage et export en quelques secondes."
+        "description": "Automatisation complète du workflow photo : positionnement, éclairage, capture, détourage et export en <bold>quelques secondes</bold>."
       },
       "item2": {
         "title": "Fond blanc Amazon-ready",
-        "description": "Détourage automatique IQ Mask : visuels conformes aux exigences Amazon, Zalando, Cdiscount et toutes les marketplaces."
+        "description": "Détourage automatique <bold>IQ Mask</bold> : visuels conformes aux exigences Amazon, Zalando, Cdiscount et <bold>toutes les marketplaces</bold>."
       },
       "item3": {
         "title": "Photo 360° interactive",
-        "description": "Augmentez vos conversions avec des visuels 360° que vos clients peuvent faire pivoter sur votre site."
+        "description": "Augmentez vos <bold>conversions</bold> avec des visuels 360° que vos clients peuvent faire pivoter sur votre site."
       },
       "item4": {
         "title": "Réduction des coûts de 80%",
-        "description": "Passez de 5-15 € par photo en studio externe à moins de 1 € par image en interne avec un studio automatisé."
+        "description": "Passez de 5-15 € par photo en studio externe à <bold>moins de 1 €</bold> par image en interne avec un studio automatisé."
       },
       "item5": {
         "title": "ROI mesurable",
-        "description": "Retour sur investissement en 4 à 8 mois. Utilisez notre calculateur ROI pour une estimation personnalisée."
+        "description": "Retour sur investissement en <bold>4 à 8 mois</bold>. Utilisez notre calculateur ROI pour une estimation personnalisée."
       }
     },
     "stats": {
@@ -1150,7 +1152,7 @@
     },
     "machines": {
       "heading": "Systèmes recommandés pour l'e-commerce",
-      "subtitle": "Des studios polyvalents pour tous types de produits",
+      "subtitle": "Des studios <bold>polyvalents</bold> pour tous types de produits",
       "cta": "Demander un devis"
     },
     "faq": {
@@ -1186,8 +1188,9 @@
       "cta": "Etre rappele gratuitement"
     },
     "needs": {
+      "label": "VOS BESOINS",
       "heading": "Identifiez votre besoin",
-      "subtitle": "Chaque entreprise a des besoins differents en photo produit. Decouvrez quelle solution est faite pour vous.",
+      "subtitle": "Chaque entreprise a des <bold>besoins differents</bold> en photo produit. Decouvrez quelle <bold>solution</bold> est faite pour vous.",
       "item1": {
         "title": "Packshot fond blanc e-commerce",
         "description": "Photos produit professionnelles sur fond blanc pour vos fiches produit et marketplaces.",
@@ -1218,21 +1221,23 @@
       }
     },
     "solution": {
+      "label": "PROCESSUS",
       "heading": "Comment ca marche ?",
       "step1": {
         "title": "Diagnostic gratuit",
-        "description": "Nous analysons vos besoins, volumes, types de produits et contraintes pour identifier la meilleure solution."
+        "description": "Nous analysons vos besoins, volumes, types de produits et contraintes pour identifier la <bold>meilleure solution</bold>."
       },
       "step2": {
         "title": "Demo personnalisee",
-        "description": "Nous vous montrons en live le studio adapte a vos produits et vous testez avec vos propres echantillons."
+        "description": "Nous vous montrons en live le studio adapte a vos produits et vous testez avec <bold>vos propres echantillons</bold>."
       },
       "step3": {
         "title": "Installation & formation",
-        "description": "Installation sur site, formation certifiee Qualiopi et accompagnement au demarrage inclus."
+        "description": "Installation sur site, <bold>formation certifiee Qualiopi</bold> et accompagnement au demarrage inclus."
       }
     },
     "sectors": {
+      "label": "SECTEURS",
       "heading": "Solutions par secteur",
       "item1": {
         "name": "Mode & textile",
@@ -1260,6 +1265,7 @@
       }
     },
     "faq": {
+      "label": "FAQ",
       "heading": "Questions frequentes",
       "q1": {
         "question": "Combien coute un studio photo automatise ?",
@@ -1279,6 +1285,20 @@
       "description": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h.",
       "ctaPrimary": "Demander un diagnostic gratuit",
       "ctaSecondary": "Voir les studios"
+    },
+    "finalCta": {
+      "heading": "Pret a automatiser votre photo produit ?",
+      "subtitle": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h.",
+      "card1": {
+        "heading": "Demandez votre diagnostic",
+        "description": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h."
+      },
+      "card2": {
+        "heading": "Calculez votre ROI",
+        "description": "Estimez vos economies en 2 minutes. Resultat personnalise et immediat."
+      },
+      "ctaPrimary": "Demander un diagnostic gratuit",
+      "ctaSecondary": "Calculer mon ROI"
     }
   },
   "questionsCles": {
@@ -1292,21 +1312,23 @@
       "cta": "Parler a un expert"
     },
     "categories": {
+      "label": "PILIERS",
       "heading": "3 piliers pour bien choisir",
       "cat1": {
         "title": "Qualite & coherence",
-        "description": "Comment garantir des visuels professionnels et homogenes sur tout votre catalogue."
+        "description": "Comment garantir des <bold>visuels professionnels</bold> et homogenes sur tout votre catalogue."
       },
       "cat2": {
         "title": "Productivite & volumes",
-        "description": "Combien de produits photographier par jour et comment automatiser votre workflow."
+        "description": "Combien de produits photographier par jour et comment <bold>automatiser votre workflow</bold>."
       },
       "cat3": {
         "title": "ROI & rentabilite",
-        "description": "Comment mesurer le retour sur investissement d'un studio photo automatise."
+        "description": "Comment mesurer le <bold>retour sur investissement</bold> d'un studio photo automatise."
       }
     },
     "questions": {
+      "label": "QUESTIONS CLES",
       "heading": "Les 9 questions essentielles",
       "q1": {
         "question": "Combien de produits avez-vous a photographier par an ?",
@@ -1350,6 +1372,20 @@
       "description": "Nos experts analysent vos besoins et vous recommandent la solution optimale. Diagnostic gratuit et sans engagement.",
       "ctaPrimary": "Parler a un expert",
       "ctaSecondary": "Voir les studios"
+    },
+    "finalCta": {
+      "heading": "Des questions ? Parlons-en.",
+      "subtitle": "Nos experts analysent vos besoins et vous recommandent la solution optimale.",
+      "card1": {
+        "heading": "Parler a un expert",
+        "description": "Nos experts analysent vos besoins et vous recommandent la solution optimale. Diagnostic gratuit et sans engagement."
+      },
+      "card2": {
+        "heading": "Calculez votre ROI",
+        "description": "Estimez vos economies en 2 minutes. Resultat personnalise et immediat."
+      },
+      "ctaPrimary": "Parler a un expert",
+      "ctaSecondary": "Calculer mon ROI"
     }
   },
   "packshotAmazon": {
@@ -1367,23 +1403,23 @@
       "heading": "Pourquoi un studio automatise pour vos photos Amazon ?",
       "item1": {
         "title": "Fond blanc pur garanti (RGB 255,255,255)",
-        "description": "Detourage automatique IQ Mask : fond blanc conforme Amazon des la capture, sans retouche manuelle."
+        "description": "Detourage automatique <bold>IQ Mask</bold> : fond blanc conforme Amazon des la capture, <bold>sans retouche manuelle</bold>."
       },
       "item2": {
         "title": "Detourage automatique precis",
-        "description": "Chaque produit est automatiquement detoure avec une precision pixel-perfect pour un rendu professionnel."
+        "description": "Chaque produit est automatiquement detoure avec une precision <bold>pixel-perfect</bold> pour un rendu professionnel."
       },
       "item3": {
         "title": "Photo 360 pour fiches enrichies",
-        "description": "Ajoutez des vues 360 interactives a vos fiches Amazon A+ Content pour augmenter vos conversions."
+        "description": "Ajoutez des vues <bold>360 interactives</bold> a vos fiches Amazon A+ Content pour augmenter vos <bold>conversions</bold>."
       },
       "item4": {
         "title": "Traitement par lots haute cadence",
-        "description": "Photographiez des centaines de produits par jour. Ideal pour les catalogues Amazon de grande taille."
+        "description": "Photographiez des <bold>centaines de produits</bold> par jour. Ideal pour les catalogues Amazon de grande taille."
       },
       "item5": {
         "title": "Formats optimises marketplace",
-        "description": "Export JPEG/PNG aux dimensions exactes requises par Amazon, Cdiscount, Zalando et toutes les marketplaces."
+        "description": "Export JPEG/PNG aux <bold>dimensions exactes</bold> requises par Amazon, Cdiscount, Zalando et toutes les marketplaces."
       }
     },
     "stats": {
@@ -1402,7 +1438,7 @@
     },
     "machines": {
       "heading": "Systèmes recommandés pour Amazon",
-      "subtitle": "Des studios compacts et performants pour la photo marketplace",
+      "subtitle": "Des studios <bold>compacts et performants</bold> pour la photo marketplace",
       "cta": "Demander un devis"
     },
     "faq": {
@@ -1442,23 +1478,23 @@
       "heading": "Pourquoi un studio automatise pour l'industrie ?",
       "item1": {
         "title": "Rendu des details mecaniques",
-        "description": "Eclairage calibre et macrophotographie pour capturer filetages, usinages, gravures et finitions de surface."
+        "description": "Eclairage calibre et macrophotographie pour capturer <bold>filetages, usinages, gravures</bold> et finitions de surface."
       },
       "item2": {
         "title": "Photo 360 pour catalogues techniques",
-        "description": "Vues 360 interactives de vos pieces detachees pour faciliter l'identification et reduire les erreurs de commande."
+        "description": "Vues <bold>360 interactives</bold> de vos pieces detachees pour faciliter l'identification et <bold>reduire les erreurs</bold> de commande."
       },
       "item3": {
         "title": "Eclairage controle pour surfaces metalliques",
-        "description": "Gestion avancee des reflets sur acier, aluminium, laiton et autres metaux grace a l'eclairage polarise."
+        "description": "Gestion avancee des reflets sur acier, aluminium, laiton et autres metaux grace a l'<bold>eclairage polarise</bold>."
       },
       "item4": {
         "title": "Standardisation visuelle multi-references",
-        "description": "Meme rendu, meme eclairage, meme angle sur l'ensemble de votre catalogue technique, quelle que soit la quantite."
+        "description": "Meme rendu, meme eclairage, meme angle sur l'ensemble de votre catalogue technique, <bold>quelle que soit la quantite</bold>."
       },
       "item5": {
         "title": "Integration PIM/DAM",
-        "description": "Export automatique avec nomenclatures, codes produit et metadonnees pour integration directe dans vos systemes PIM/ERP."
+        "description": "Export automatique avec nomenclatures, codes produit et metadonnees pour <bold>integration directe</bold> dans vos systemes PIM/ERP."
       }
     },
     "stats": {
@@ -1477,7 +1513,7 @@
     },
     "machines": {
       "heading": "Systèmes recommandés pour l'industrie",
-      "subtitle": "Des studios robustes pour les pieces techniques et mecaniques",
+      "subtitle": "Des studios <bold>robustes</bold> pour les pieces techniques et mecaniques",
       "cta": "Demander un devis"
     },
     "faq": {

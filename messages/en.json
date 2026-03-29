@@ -362,6 +362,8 @@
       "studios": "Photo Studios",
       "aiSoftware": "AI & Software",
       "machineSelector": "System Selector",
+      "guidesBesoins": "Needs Guide",
+      "guidesQuestions": "Key Questions",
       "industries": "Industries",
       "shoes": "Shoes",
       "jewelry": "Jewelry & Watchmaking",
@@ -1183,8 +1185,9 @@
       "cta": "Get a free callback"
     },
     "needs": {
+      "label": "YOUR NEEDS",
       "heading": "Identify your needs",
-      "subtitle": "Every business has different product photo needs. Find out which solution is right for you.",
+      "subtitle": "Every business has <bold>different needs</bold>. Find out which <bold>solution</bold> is right for you.",
       "item1": {
         "title": "White background e-commerce packshot",
         "description": "Professional product photos on white background for your product pages and marketplaces.",
@@ -1215,21 +1218,23 @@
       }
     },
     "solution": {
+      "label": "PROCESS",
       "heading": "How it works",
       "step1": {
         "title": "Free assessment",
-        "description": "We analyze your needs, volumes, product types and constraints to identify the best solution."
+        "description": "We analyze your needs, volumes, product types and constraints to identify the <bold>best solution</bold>."
       },
       "step2": {
         "title": "Personalized demo",
-        "description": "We show you the studio adapted to your products live and you test with your own samples."
+        "description": "We show you the studio adapted to your products live and you test with <bold>your own samples</bold>."
       },
       "step3": {
         "title": "Installation & training",
-        "description": "On-site installation, Qualiopi-certified training and startup support included."
+        "description": "On-site installation, <bold>Qualiopi-certified training</bold> and startup support included."
       }
     },
     "sectors": {
+      "label": "SECTORS",
       "heading": "Solutions by sector",
       "item1": {
         "name": "Fashion & textile",
@@ -1257,6 +1262,7 @@
       }
     },
     "faq": {
+      "label": "FAQ",
       "heading": "Frequently asked questions",
       "q1": {
         "question": "How much does an automated photo studio cost?",
@@ -1276,6 +1282,20 @@
       "description": "Free assessment, personalized demo with your products, quote within 48 hours.",
       "ctaPrimary": "Request a free assessment",
       "ctaSecondary": "View studios"
+    },
+    "finalCta": {
+      "heading": "Ready to automate your product photography?",
+      "subtitle": "Free diagnostic, personalized demo with your products, quote within 48h.",
+      "card1": {
+        "heading": "Request your diagnostic",
+        "description": "Free diagnostic, personalized demo with your products, quote within 48h."
+      },
+      "card2": {
+        "heading": "Calculate your ROI",
+        "description": "Estimate your savings in 2 minutes. Personalized and immediate result."
+      },
+      "ctaPrimary": "Request a free diagnostic",
+      "ctaSecondary": "Calculate my ROI"
     }
   },
   "questionsCles": {
@@ -1289,21 +1309,23 @@
       "cta": "Talk to an expert"
     },
     "categories": {
+      "label": "PILLARS",
       "heading": "3 pillars for the right choice",
       "cat1": {
         "title": "Quality & consistency",
-        "description": "How to guarantee professional and consistent visuals across your entire catalog."
+        "description": "How to guarantee <bold>professional visuals</bold> and consistent across your entire catalog."
       },
       "cat2": {
         "title": "Productivity & volumes",
-        "description": "How many products to photograph per day and how to automate your workflow."
+        "description": "How many products to photograph per day and how to <bold>automate your workflow</bold>."
       },
       "cat3": {
         "title": "ROI & profitability",
-        "description": "How to measure the return on investment of an automated photo studio."
+        "description": "How to measure the <bold>return on investment</bold> of an automated photo studio."
       }
     },
     "questions": {
+      "label": "KEY QUESTIONS",
       "heading": "The 9 essential questions",
       "q1": {
         "question": "How many products do you need to photograph per year?",
@@ -1347,6 +1369,20 @@
       "description": "Our experts analyze your needs and recommend the optimal solution. Free and no-obligation assessment.",
       "ctaPrimary": "Talk to an expert",
       "ctaSecondary": "View studios"
+    },
+    "finalCta": {
+      "heading": "Questions? Let's talk.",
+      "subtitle": "Our experts analyze your needs and recommend the optimal solution.",
+      "card1": {
+        "heading": "Talk to an expert",
+        "description": "Our experts analyze your needs and recommend the optimal solution. Free diagnostic, no commitment."
+      },
+      "card2": {
+        "heading": "Calculate your ROI",
+        "description": "Estimate your savings in 2 minutes. Personalized and immediate result."
+      },
+      "ctaPrimary": "Talk to an expert",
+      "ctaSecondary": "Calculate my ROI"
     }
   },
   "packshotAmazon": {
