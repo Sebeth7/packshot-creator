@@ -2,45 +2,45 @@
   "home": {
     "meta": {
       "title": "PackshotCreator | Photo Studios, AI & Certified Training",
-      "description": "Exclusive Orbitvu distributor France & Switzerland. Automated photo studios, BlendAI AI and Qualiopi certified training for visual production."
+      "description": "Exclusive Orbitvu distributor France & Switzerland. Automated photo studios, BlendAI.studio AI and Qualiopi certified training. 5000+ companies equipped. Packshot in 3 seconds."
     },
     "hero": {
       "badge": "Exclusive Orbitvu Distributor France & Switzerland",
-      "title": "Professional packshot in 3 seconds. No photographer needed.",
-      "subtitle": "Orbitvu automated photo studios + BlendAI AI + Qualiopi certified training. The approach trusted by Chanel, Amazon and 500+ companies in France and Switzerland.",
+      "title": "Professional packshot in 3 seconds. AI ready.",
+      "subtitle": "Orbitvu automated photo studios + BlendAI.studio AI + Qualiopi certified training. The approach trusted by Chanel, Amazon and 5000+ companies in France and Switzerland.",
       "cta": "Request a free demo",
       "ctaSecondary": "Calculate my ROI in 2 min",
-      "microStats": "Average ROI: 6-12 months | Photo cost reduction: 60-85%"
+      "microStats": "Average ROI: 6-12 months | Photo cost reduction: 60+%"
     },
     "hybrid": {
       "label": "Our approach",
-      "heading": "Photo studio + AI: the approach that changes everything",
-      "subtitle": "Not all hardware, not all AI. The <bold>intelligent combination</bold> of both, backed by <bold>25 years of expertise</bold> in product photography.",
+      "heading": "Packshot capture + AI creation: the approach that changes everything",
+      "subtitle": "The <bold>intelligent combination</bold> of both worlds, powered by <bold>25 years of expertise</bold> in product photography.",
       "capture": {
         "title": "Perfect capture",
         "description": "Orbitvu studios: packshot in <bold>3 seconds</bold>, 360°, video, automatic background removal and real shadows. The <bold>irreplaceable foundation</bold> for AI."
       },
       "ia": {
-        "title": "AI multiplication",
-        "description": "BlendAI transforms <bold>1 packshot into 10+ visuals</bold>. Contextual backgrounds, staged scenes, creative variations. Your real photo <bold>always remains the base</bold>."
+        "title": "AI creation",
+        "description": "BlendAI.studio transforms <bold>1 packshot into 10+ lifestyle visuals</bold>. Contextual backgrounds, staged scenes, creative variations. Your real photo <bold>always remains the base</bold>."
       },
       "formation": {
         "title": "Total autonomy",
-        "description": "<bold>Qualiopi certified</bold> training to master the complete Hardware + AI workflow. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company."
+        "description": "<bold>Qualiopi certified</bold> training to master photo conventions and AI tools. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company."
       },
       "cta": "Discover the Orbitvu range",
-      "ctaSecondary": "Learn more about BlendAI"
+      "ctaSecondary": "Learn more about BlendAI.studio"
     },
     "spotlight": {
       "badge": "Best-seller",
       "heading": "Alphashot Pro G2: your complete photo studio in 1 m²",
-      "description": "Our <bold>best-selling photo studio</bold>. Capture packshots, videos and 360° animations in <bold>seconds</bold> with built-in AI and optimized LED lighting.",
+      "description": "Our <bold>best-selling photo studio</bold>. Capture packshots, videos and 360° animations in <bold>seconds</bold> with built-in AI and ultra-precise LED lighting.",
       "feature1": "Packshot in 3 seconds",
-      "feature2": "Built-in BlendAI",
-      "feature3": "Automatic LED lighting",
+      "feature2": "",
+      "feature3": "Automated LED lighting",
       "feature4": "Multi-channel export",
       "cta": "Discover the Alphashot Pro G2",
-      "ctaSecondary": "Compare all 20 models"
+      "ctaSecondary": "Compare models"
     },
     "industries": {
       "label": "Industries",
@@ -68,7 +68,7 @@
       },
       "q2": {
         "question": "How much does an automated photo studio cost?",
-        "answer": "The investment in an Orbitvu automated photo studio varies depending on the model and production needs. The average return on investment is achieved between 6 and 12 months for companies producing more than 500 visuals per year. Cost per image is reduced by 60 to 85% compared to external providers. Contact us for a personalized quote."
+        "answer": "The investment in an Orbitvu automated photo studio varies depending on the model and production needs. The average return on investment is achieved between 6 and 12 months for companies producing more than 500 visuals per year. Cost per image is reduced by 60 to 85% compared to traditional external or in-house production. Contact us for a personalized quote adapted to your volume."
       },
       "q3": {
         "question": "How does an Orbitvu automated photo studio work?",
@@ -80,7 +80,7 @@
       },
       "q5": {
         "question": "How quickly does an automated studio pay for itself?",
-        "answer": "Average ROI is achieved between 6 and 12 months depending on your production volume. Companies producing more than 1,000 visuals per year see a return from the 4th month. Use our ROI calculator for a personalized estimate based on your actual data."
+        "answer": "Average ROI is achieved between 6 and 12 months depending on your production volume. Companies producing more than 1,000 visuals per year often see a return from the 6th month. Use our ROI calculator for a personalized estimate based on your actual data."
       },
       "q6": {
         "question": "Are your training programs eligible for OPCO funding?",
@@ -105,7 +105,7 @@
       "subtitle": "3 decisive advantages for your visual production.",
       "noSkills": {
         "title": "Pro results without photo skills",
-        "description": "Our automated studios handle lighting, framing and background removal. After just <bold>1 hour of training</bold>, any operator produces packshots worthy of an expert photographer.",
+        "description": "After just <bold>1 hour of training</bold>, any operator produces professional packshots. Lighting, background removal with real shadow preservation are <bold>fully automated</bold>.",
         "stat": "1h",
         "statLabel": "to get started"
       },
@@ -132,12 +132,12 @@
         "label": "Still exploring",
         "cta": "Calculate my ROI in 2 min"
       },
-      "phone": "Or call us directly: +33 4 78 90 76 76"
+      "phone": "Or call us directly: +33 1 47 42 66 66"
     },
     "finalCta": {
       "heading": "Your next packshot could be ready in 3 seconds",
       "subtitle": "Book a demo with a PackshotCreator expert. 30 minutes to see our studios in action.",
-      "microTestimonial": "\"PackshotCreator helped us save 65% of time on our photo production.\" — E-commerce Dir., international brand",
+      "microTestimonial": "\"PackshotCreator helped us save 65% of time on our photo production.\" — Marketing Dir., industrial products",
       "ctaPrimary": "Book my demo",
       "ctaSecondary": "Calculate my ROI",
       "card1": {
@@ -153,7 +153,7 @@
       "heading": "They produce their packshots with us",
       "stat1": "25",
       "stat1Label": "years of expertise",
-      "stat2": "500+",
+      "stat2": "5000+",
       "stat2Label": "companies equipped",
       "stat3": "3 sec",
       "stat3Label": "per packshot",
@@ -167,7 +167,7 @@
         "title": "Limited production",
         "stat": "30",
         "statUnit": "photos/day",
-        "description": "Even with an in-house team, the bottleneck remains volume. Your competitors publish <bold>10x more visuals</bold>."
+        "description": "Even with an in-house team, the bottleneck remains volume. Your competitors publish <bold>8x more visuals</bold>."
       },
       "expensive": {
         "title": "Hidden costs",
@@ -189,17 +189,17 @@
       "t1": {
         "stat": "65%",
         "statLabel": "reduction in production time",
-        "quote": "We went from 50 to 300 packshots per day. Quality is consistent regardless of operator. PackshotCreator transformed our productivity.",
+        "quote": "We went from 50 to 250 packshots per day. Quality is consistent regardless of operator. PackshotCreator boosted our productivity.",
         "name": "E-commerce Director",
-        "company": "International fashion brand",
-        "sector": "Fashion & Textile"
+        "company": "French eyewear brand",
+        "sector": "Eyewear & optics"
       },
       "t2": {
         "stat": "8 months",
         "statLabel": "to reach ROI",
         "quote": "Cost per image was divided by 5. In 8 months, the investment had paid for itself. Today we produce 100% of our visuals in-house, with superior quality.",
-        "name": "Production Manager",
-        "company": "European retail group",
+        "name": "CFO",
+        "company": "Retail group France + Switzerland",
         "sector": "Retail"
       },
       "t3": {
@@ -216,7 +216,7 @@
     "meta": {
       "title": "Academy | Qualiopi Certified Packshot & AI Training",
       "suffix": "PackshotCreator Academy",
-      "description": "Professional Qualiopi certified product photography training. Packshot with Orbitvu studios, AI with BlendAI. 100% OPCO funding possible."
+      "description": "Qualiopi certified professional product photography training. Packshot with Orbitvu studios, AI with BlendAI + Anthropic. 100% OPCO funding possible."
     },
     "hero": {
       "title": "PackshotCreator Academy",
@@ -226,9 +226,9 @@
     },
     "qualiopi": {
       "heading": "Qualiopi Certification",
-      "description": "<bold>PackshotCreator Academy</bold> has been Qualiopi certified since 2023, guaranteeing the quality of our training programs and eligibility for <bold>OPCO funding</bold>.",
-      "feature1": "Expert trainer (20 years luxury photography)",
-      "feature2": "Proven pedagogy (500+ trainees)",
+      "description": "<bold>PackshotCreator Academy</bold> has been Qualiopi certified since 2017, guaranteeing the quality of our training programs and eligibility for <bold>OPCO funding</bold>.",
+      "feature1": "Expert trainers (20 years luxury photography, 3 years AI)",
+      "feature2": "Proven pedagogy (500+ trainees trained)",
       "feature3": "Post-training follow-up (30-60 days)"
     },
     "opco": {
@@ -255,13 +255,13 @@
       "bio3": "500+ professionals trained in the Photo studio + AI workflow.",
       "cert1": "Qualiopi certified (training organization)",
       "cert2": "Exclusive Orbitvu distributor France & Switzerland",
-      "cert3": "Co-founder BlendAI Studio"
+      "cert3": "Founder of BlendAI.Studio"
     },
     "formateur2": {
-      "name": "[Trainer name to be defined]",
+      "name": "Stéphane Gormand",
       "title": "Product Photo & Automated Workflow Expert",
       "bio1": "Proven experience in product photography and post-production for e-commerce.",
-      "bio2": "Specialist in automated workflows and visual production optimization.",
+      "bio2": "Specialist in Orbitvu automated workflows and visual production optimization.",
       "bio3": "Certified trainer with practice-oriented pedagogy and concrete results.",
       "cert1": "Professional product photography certification",
       "cert2": "Orbitvu automated studios expert",
@@ -276,7 +276,7 @@
       "heading": "Frequently Asked Questions",
       "q1": {
         "question": "How does OPCO funding work?",
-        "answer": "Your company (or yourself if self-employed) contacts its OPCO to request coverage. PackshotCreator provides the quote and detailed program. The OPCO can fund up to 100% of the training cost."
+        "answer": "Your company (or yourself if self-employed) contacts its OPCO to request coverage. PackshotCreator provides the quote, detailed program and all necessary documents. The OPCO can fund up to 100% of the training cost."
       },
       "q2": {
         "question": "What is the difference between Blended and In-Person?",
@@ -284,11 +284,11 @@
       },
       "q3": {
         "question": "Do I need to already have an Orbitvu studio to take Packshot training?",
-        "answer": "No, the training takes place in our Lyon showroom equipped with all studios (Alphashot, Station M, etc.). You can then decide to acquire your own equipment."
+        "answer": "No, training can take place in our fully equipped Lyon showroom with all studios. You can then decide to acquire your own equipment."
       },
       "q4": {
-        "question": "Do AI training programs require a BlendAI subscription?",
-        "answer": "BlendAI access is included during training and for 30 days after. Then, you can subscribe to a plan (from €75/month) if you wish to continue."
+        "question": "Do AI training programs require AI subscriptions?",
+        "answer": "Yes, for Anthropic. BlendAI access is included during training and for 30 days after. Then, you can subscribe to a plan (from €75/month) if you wish to continue."
       }
     }
   },
@@ -353,7 +353,7 @@
       "vinSpiritueux": "Wine & Spirits",
       "vinSpiritueuxDesc": "Bottle packshots, labels and premium gift sets",
       "santeMedical": "Healthcare & Medical",
-      "santeMedicalDesc": "CE-compliant visuals, on-site secured studios",
+      "santeMedicalDesc": "Contractual visuals, on-site secured studios",
       "industrieDefense": "Industry & Defense",
       "industrieDefenseDesc": "Mass cataloging, traceability and ISO compliance",
       "allSectors": "All sectors →",
@@ -417,14 +417,14 @@
   },
   "iaPhotoProduit": {
     "meta": {
-      "title": "AI Product Photography | BlendAI.studio - Packshot to Lifestyle in 1 Click",
+      "title": "AI Product Photography | BlendAI.studio - Pro Packshot to Lifestyle in 3 Clicks",
       "description": "BlendAI.studio: product photo AI that starts from your professional packshot to create 100% faithful lifestyle variations. PackshotCreator proprietary solution. Free trial.",
       "keywords": "ai product photography, blendai, photoroom alternative, ai packshot, lifestyle generator, product photo ai, blendai vs photoroom",
       "ogDescription": "Multiply your product visuals from a single professional packshot. Specialized AI, 100% fidelity, zero hallucination."
     },
     "hero": {
       "title": "Your products, infinite variations",
-      "subtitle": "BlendAI starts from your professional packshot to create <bold>100% faithful</bold> lifestyle scenes. No invented photo, no approximation.",
+      "subtitle": "BlendAI starts from your professional packshot to create lifestyle scenes <bold>100% faithful</bold> to the original. No reinvented product, no approximation.",
       "ctaPrimary": "Try BlendAI for free",
       "ctaSecondary": "See results"
     },
@@ -432,7 +432,7 @@
       "heading": "AI doesn't replace photography, it extends it",
       "subtitle": "The quality of your variations depends on the quality of your <bold>original photo</bold>. BlendAI guarantees the <bold>fidelity</bold> of every visual.",
       "principle1": {
-        "title": "Pro packshot = the foundation",
+        "title": "Pro packshot = the essential foundation",
         "description": "A <bold>studio-quality</bold> packshot (ideally Orbitvu) as the base. Calibrated lighting, perfect cutout, faithful colors. This quality is what AI will <bold>multiply</bold>."
       },
       "principle2": {
@@ -441,7 +441,7 @@
       },
       "principle3": {
         "title": "100% fidelity guaranteed",
-        "description": "AI <bold>never touches the product</bold>. It creates the setting around it. Textures, colors, proportions: everything stays <bold>identical to the original photo</bold>."
+        "description": "AI <bold>never touches the product</bold>. It places it into a scene. Textures, colors, proportions, logos: everything stays <bold>identical to the original photo</bold>."
       }
     },
     "whyBase": {
@@ -451,11 +451,11 @@
         "examples": "Photoroom, Claid, Flair, Pebblely",
         "description": "Generates the product from scratch based on a description or any photo.",
         "point1": "Fast, no equipment required",
-        "point2": "Texture and color approximations",
-        "point3": "Possible hallucinations on details",
+        "point2": "Approximations on shapes and textures",
+        "point3": "Hallucinations on details",
         "point4": "Human verification needed for every visual",
         "point5": "Basic creative templates used by all your competitors",
-        "verdict": "Suited for prototypes and basic e-commerce"
+        "verdict": "Suited for prototypes and sole proprietorships"
       },
       "blendai": {
         "label": "Pro packshot + AI",
@@ -463,7 +463,7 @@
         "description": "Starts from a <bold>studio-quality</bold> packshot to create <bold>faithful</bold> variations.",
         "point1": "100% product fidelity — zero hallucination",
         "point2": "Textures, colors and proportions guaranteed",
-        "point3": "Meets luxury, cosmetics, jewelry requirements",
+        "point3": "Meets luxury, eyewear, jewelry requirements",
         "point4": "Expert human retouching included when needed",
         "point5": "Complete control over your art direction",
         "verdict": "Built for manufacturers and brands producing >500 visuals/year"
@@ -481,8 +481,8 @@
         "description": "Library of <bold>100+ styles</bold> ready to use. Create your own styles and reuse them <bold>infinitely</bold>."
       },
       "feature3": {
-        "title": "Expert retouching included",
-        "description": "For complex products (jewelry, glasses, reflections), our experts finalize every visual. <bold>4K delivery in 24-72h</bold>."
+        "title": "Zero prompts",
+        "description": "Video generation from your creations"
       },
       "feature4": {
         "title": "Custom development",
@@ -500,7 +500,7 @@
       },
       "mannequin": {
         "name": "On-model product photos",
-        "description": "Showcase your products worn on realistic <bold>virtual mannequins</bold>. Fashion, accessories, eyewear — no photoshoot needed."
+        "description": "Showcase your products worn on truly realistic <bold>virtual mannequins</bold>. Fashion, accessories, eyewear — no photoshoot needed."
       },
       "background": {
         "name": "Custom backgrounds",
@@ -512,7 +512,7 @@
       },
       "batch": {
         "name": "Batch processing",
-        "description": "Apply a style to <bold>thousands of products</bold> in minutes. Same result, same quality, <bold>at scale</bold>."
+        "description": "Apply a style to <bold>hundreds of products</bold> in minutes. Same result, same quality, <bold>at scale</bold>."
       }
     },
     "casUsage": {
@@ -527,36 +527,36 @@
       "stat2Label": "visuals created",
       "stat3": "4.9/5",
       "stat3Label": "client satisfaction",
-      "quote": "BlendAI transformed our visual production. We went from 2 visuals per product to 10, with no extra effort.",
-      "quoteName": "E-commerce Director",
+      "quote": "Simple, fast and super effective — a real daily time-saver.",
+      "quoteName": "Marketing Team - Grosfilley",
       "quoteCompany": "Premium accessories brand"
     },
     "compatible": {
       "heading": "Compatible with all Orbitvu systems",
-      "subtitle": "BlendAI integrates <bold>seamlessly</bold> into your <bold>photo production</bold> workflow.",
+      "subtitle": "BlendAI.studio integrates <bold>seamlessly</bold> into your <bold>photo production</bold> workflow.",
       "feature1": "Automatic high-quality export",
-      "feature2": "Product metadata preserved",
+      "feature2": "Product details preserved",
       "feature3": "Integrated packshot to lifestyle workflow",
-      "offer": "Special offer: Orbitvu system + 6 months BlendAI included",
+      "offer": "Special offer: Orbitvu system + 1 month BlendAI included",
       "cta": "Discover our systems"
     },
     "faq": {
       "heading": "Frequently asked questions about AI product photography",
       "q1": {
         "question": "Do I need an Orbitvu system to use BlendAI?",
-        "answer": "No, BlendAI works with any professional-quality packshot. But integration with an Orbitvu system offers the best workflow: capture, AI, distribution — with no manual steps."
+        "answer": "No, BlendAI works with any professional-quality packshot. But integration with an Orbitvu system offers the best workflow: capture → AI → distribution, with no friction."
       },
       "q2": {
         "question": "What's the difference between BlendAI and Photoroom?",
-        "answer": "Photoroom and pure generative AI tools create visuals from scratch. BlendAI starts from your professional packshot and creates the setting around it, never modifying the product. Result: 100% fidelity, zero hallucination, meets brand requirements."
+        "answer": "Photoroom and pure generative AI tools create visuals from scratch. BlendAI starts from your professional packshot and integrates it into the scene, never modifying the product. Result: 100% fidelity, zero hallucination, meets brand requirements."
       },
       "q3": {
         "question": "How long does it take to generate a visual?",
-        "answer": "A few seconds per image. In batch processing, BlendAI processes hundreds of products in minutes. Expert retouching (for complex cases) is delivered in 24-72h."
+        "answer": "About 30 seconds per image. In batch processing, BlendAI processes hundreds of products autonomously. Expert retouching (for complex cases) is delivered in 24-72h."
       },
       "q4": {
         "question": "Can I create custom styles?",
-        "answer": "Yes. You can create your own styles and apply them to all your products. This is a major advantage for brands wanting consistent visual identity."
+        "answer": "Yes. You can create your own styles/art directions and apply them to all your products. This is a major advantage for brands wanting consistent visual identity."
       },
       "q5": {
         "question": "Can BlendAI be adapted to our specific needs?",
@@ -578,7 +578,7 @@
   },
   "blog": {
     "metaTitle": "Product Photography Blog | Guides & Reviews | PackshotCreator",
-    "metaDescription": "Practical guides, photo studio comparisons, AI product photography, training. 20 years e-commerce photography expertise.",
+    "metaDescription": "Practical guides, photo studio comparisons, AI product photography, training. 25 years e-commerce photography expertise.",
     "heading": "Blog",
     "subtitle": "Guides, comparisons and product photography news",
     "cta": "Read article",
@@ -607,9 +607,9 @@
   },
   "contact": {
     "metaTitle": "Contact PackshotCreator | Free Demo | Orbitvu Distributor FR/CH",
-    "metaDescription": "Contact PackshotCreator: free Orbitvu photo studio demo, training quote, technical support. Lyon showroom. Response within 24-48h.",
+    "metaDescription": "Contact PackshotCreator: free Orbitvu photo studio demo, training quote, technical support. Lyon showroom. Response within 24h.",
     "heading": "Contact us",
-    "subtitle": "Request a demo, quote or information. We respond within 24-48h.",
+    "subtitle": "Request a demo, quote or information. We respond within 24h.",
     "formTitle": "Your request",
     "formPlaceholder": "Contact form to be integrated",
     "formPlaceholderSubtitle": "Typeform, Tally or custom form",
@@ -622,13 +622,13 @@
     "showroomAddress": "22 Rue des Frères Lumière DELTAPARK, 69720 Saint-Bonnet-de-Mure",
     "faqTitle": "Frequently asked questions",
     "faq1Question": "What is the response time?",
-    "faq1Answer": "We respond within 24-48 business hours.",
+    "faq1Answer": "We respond within 24 business hours.",
     "faq2Question": "Do you offer technical support?",
     "faq2Answer": "Yes, French technical support is included with our solutions.",
     "faq3Question": "Can I visit the showroom?",
     "faq3Answer": "Yes, by appointment. Contact us to schedule your visit and test our studios.",
     "trustBadge1": "Response within 24h",
-    "trustBadge2": "500+ companies equipped",
+    "trustBadge2": "5000+ companies equipped",
     "trustBadge3": "Free demo, no commitment",
     "trustStat1Value": "25 yrs",
     "trustStat1Label": "of product photo expertise",
@@ -643,7 +643,7 @@
     "requestTypeTraining": "Training / Academy",
     "responseBadge": "Guaranteed response within 24h",
     "faq4Question": "What is your coverage area?",
-    "faq4Answer": "We cover all of France and French-speaking Switzerland. Our teams travel for installation and training. Remote support is also available.",
+    "faq4Answer": "We cover all of France and Switzerland. Our teams travel for installation and training. Remote support is also available.",
     "faq5Question": "Do you offer online demos?",
     "faq5Answer": "Yes, we offer video conference demos for initial discovery. For a complete evaluation, we recommend an in-showroom visit with your own products.",
     "faq6Question": "Can training be funded through OPCO?",
@@ -657,7 +657,7 @@
     },
     "hero": {
       "title": "Academy: Qualiopi-Certified Packshot & AI Training",
-      "subtitle": "Upskill with our certified training programs. OPCO funding up to 100%. Inter and intra-company sessions.",
+      "subtitle": "Upskill with our professional training programs. OPCO funding up to 100%. Inter and intra-company sessions.",
       "ctaPrimary": "View training programs",
       "ctaSecondary": "Simulate my OPCO funding"
     },
@@ -711,7 +711,7 @@
       "heading": "Frequently asked questions about our training",
       "q1": {
         "question": "Are PackshotCreator training programs certified?",
-        "answer": "Our training is delivered by a Qualiopi-certified organization, a state-recognized quality guarantee. You receive a skills certificate upon completion of each training program."
+        "answer": "Our training is delivered by a Qualiopi-certified organization, a state-recognized quality guarantee, but is not degree-granting. You receive a skills certificate upon completion of each training program."
       },
       "q2": {
         "question": "How can I fund my training through my OPCO?",
@@ -738,14 +738,14 @@
       "keywords": "automated photo studio, orbitvu france, product photo system, automatic product photography, photo studio roi, automated packshot"
     },
     "hero": {
-      "badge": "Official Orbitvu Distributor — France & Switzerland",
-      "title": "Produce your product photos in-house. In 3 seconds.",
+      "badge": "Exclusive Orbitvu Distributor — France & Switzerland",
+      "title": "Produce your product photos in-house. In seconds.",
       "subtitle": "Orbitvu systems automate capture, clipping and retouching. Your teams produce 500+ photos/day, without an external photographer. Average ROI: 9 months.",
       "ctaPrimary": "View systems",
       "ctaSecondary": "Request a demo"
     },
     "socialProof": {
-      "label": "500+ companies equipped in France and worldwide"
+      "label": "5000+ companies equipped in France and worldwide"
     },
     "threePillars": {
       "heading": "The PackshotCreator approach",
@@ -768,7 +768,7 @@
     },
     "photoTypes": {
       "heading": "What type of visual do you produce?",
-      "subtitle": "Packshot, 360°, fashion or flat-lay — a system for every need.",
+      "subtitle": "Packshot, 360°, 3D or flat-lay — our systems are adapted to every need.",
       "still": {
         "title": "White Background Packshot",
         "description": "Product photos on white background, e-commerce ready. Automatic clipping, optimized lighting, identical results from the first to the thousandth visual.",
@@ -817,7 +817,7 @@
       "step2title": "Installation & Certified training",
       "step2description": "Delivery, installation and <bold>Qualiopi-certified training</bold> included. Your teams are operational <bold>from day one</bold>.",
       "step3title": "Continuous support",
-      "step3description": "<bold>Dedicated hotline</bold>, preventive maintenance and software updates. We stay by your side to <bold>maximize your ROI</bold>."
+      "step3description": "<bold>Dedicated hotline</bold>. We stay by your side to <bold>maximize your results</bold>."
     },
     "roiTeaser": {
       "heading": "What is the real cost of your current photo production?",
@@ -830,27 +830,27 @@
       "description": "Everything you need to know before investing in an <bold>automated studio</bold>.",
       "q1": {
         "question": "What budget should I plan for an automated photo studio?",
-        "answer": "Our Orbitvu systems range from €12,000 (Alphashot 360 for small objects) to €150,000 (E-Comm Studio+ for large format). Budget depends on your product size and production volume. Average ROI is 9 months. Contact us for a quote tailored to your case."
+        "answer": "Our Orbitvu systems range from €12,000 (for small objects) to €150,000 (E-Comm Studio+ for large format). Budget depends on your product size and production volume. Average ROI is 9 months. Contact us for a quote tailored to your case."
       },
       "q2": {
         "question": "How do I choose the right system for my products?",
-        "answer": "It depends on your product size and the type of visual you need (packshot, 360°, video, flat-lay). Our selector above guides you in a few clicks. For a tailored recommendation, our experts provide a free demo with your own products."
+        "answer": "It depends on your product size and the type of visual you need (packshot, 360°, 3D, video, flat-lay). Our selector above guides you in a few clicks. For a tailored recommendation, our experts provide a free demo with your own products."
       },
       "q3": {
         "question": "Can all systems do 360° photography?",
-        "answer": "Most of our systems include a motorized turntable for 360° views. The Alphashot 360 specializes in small objects, but the Alphashot Pro, XL and Alphastudio ranges also offer this feature."
+        "answer": "Most of our systems include a motorized turntable for 360° views. The Alphashot Pro G2 specializes in small objects, but the Alphashot Pro XL and Alphastudio ranges also offer this feature."
       },
       "q4": {
         "question": "Is the camera included?",
-        "answer": "Orbitvu systems are compatible with most DSLR and mirrorless cameras (Canon, Nikon, Sony). The camera is not included, but we advise you on the most suitable model for your use."
+        "answer": "Orbitvu systems are compatible with Canon DSLR and mirrorless cameras. The camera is not included, but we advise you on the most suitable model for your use."
       },
       "q5": {
         "question": "Can I test a system before buying?",
-        "answer": "Yes. We arrange free demonstrations — on-site at our Lyon showroom, remotely, or at your premises with your own products. It's the best way to evaluate concrete ROI before investing."
+        "answer": "Yes. We arrange free demonstrations — on-site at our Lyon showroom, remotely, or at your premises with your own products. It's the best way to evaluate concrete results before investing."
       },
       "q6": {
         "question": "What is the delivery time?",
-        "answer": "Allow 2 to 4 weeks from order to production start. This includes delivery, installation and team training. We manage the entire deployment."
+        "answer": "Allow 2 weeks from order to production start (up to 4 weeks for large systems). This includes delivery and installation of your system. We manage the entire deployment."
       }
     },
     "finalCta": {
@@ -997,7 +997,7 @@
       },
       "item3": {
         "title": "Perfectly neutral background",
-        "description": "<bold>IQ Mask</bold> automatic clipping: professional white background without any <bold>manual retouching</bold>."
+        "description": "<bold>IQ Mask</bold> 2.0 automatic clipping: professional white background without any <bold>manual retouching</bold>."
       },
       "item4": {
         "title": "50 pieces photographed per hour",
@@ -1031,11 +1031,11 @@
       "heading": "Frequently asked questions about jewelry photography",
       "q1": {
         "question": "How to photograph shiny jewelry without unwanted reflections?",
-        "answer": "Orbitvu studios feature diffused, calibrated LED lighting that eliminates unwanted reflections. The IQ Mask system ensures perfect clipping even on reflective surfaces like gold or gemstones."
+        "answer": "Orbitvu studios feature diffused, calibrated LED lighting that eliminates unwanted reflections. The IQ Mask 2.0 system ensures perfect clipping even on reflective surfaces like gold or gemstones."
       },
       "q2": {
         "question": "What background to use for jewelry photography?",
-        "answer": "White background is the e-commerce standard. Our studios automatically produce a pure white background with IQ Mask clipping. You can also choose a gray or black background for luxury."
+        "answer": "White background is the e-commerce standard. Our studios automatically produce a pure white background with IQ Mask 2.0 clipping. You can also choose a gray or black background for luxury."
       },
       "q3": {
         "question": "How much does a jewelry photo studio cost?",
@@ -1314,7 +1314,7 @@
       },
       "q3": {
         "question": "How long to become operational?",
-        "answer": "Studio installation takes 1 to 2 days. With the included training, you are autonomous and productive from the first week."
+        "answer": "Studio installation takes a few hours. With the included training, you are autonomous and productive from the first day."
       }
     },
     "cta": {
@@ -1369,7 +1369,7 @@
       "heading": "The 9 essential questions",
       "q1": {
         "question": "How many products do you need to photograph per year?",
-        "answer": "Annual volume determines the type of studio needed. Below 500 products/year, an AlphaShot may be sufficient. Beyond that, Viso or Alphashot XL studios offer rates of 100 to 300 products/day."
+        "answer": "Annual volume helps you estimate your ROI and cumulative time savings. High-volume businesses often find great advantage in using a PackshotCreator solution."
       },
       "q2": {
         "question": "What image quality is required for your sales channels?",
@@ -1397,7 +1397,7 @@
       },
       "q8": {
         "question": "What is your production timeline?",
-        "answer": "Studio installation takes 1 to 2 days. With the included training, your team is operational from the first week. The first visuals are produced on the day of installation."
+        "answer": "Studio installation takes a few hours. With the included training, your team is operational from the first day. The first visuals are produced on the day of training."
       },
       "q9": {
         "question": "How to integrate visuals into your existing workflow?",
@@ -1486,7 +1486,7 @@
       },
       "q2": {
         "question": "How to get a pure white background for Amazon?",
-        "answer": "The IQ Mask system in Orbitvu studios automatically clips every product and generates a pure white RGB 255,255,255 background. No Photoshop retouching is needed. The result is Amazon-compliant straight from capture."
+        "answer": "The IQ Mask 2.0 system in Orbitvu studios automatically clips every product and generates a pure white RGB 255,255,255 background. No Photoshop retouching is needed. The result is Amazon-compliant straight from capture."
       },
       "q3": {
         "question": "How to automate product photos for a marketplace?",
