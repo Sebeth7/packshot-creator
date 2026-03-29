@@ -17,6 +17,7 @@ import {
   RECOMMENDED_MACHINE_IDS,
   NORMS,
 } from '@/data/industrie-defense';
+import Image from 'next/image';
 import {
   ArrowRight,
   CheckCircle,
@@ -24,6 +25,19 @@ import {
   ChevronDown,
   ChevronRight,
 } from 'lucide-react';
+
+const CLIENT_LOGOS = [
+  { name: 'Chanel', src: '/images/logos/client-chanel.svg', w: 225, h: 225 },
+  { name: 'Amazon', src: '/images/logos/client-amazon.svg', w: 409, h: 123 },
+  { name: 'Bosch', src: '/images/logos/client-bosch.svg', w: 462, h: 109 },
+  { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.svg', w: 600, h: 66 },
+  { name: 'Valentino', src: '/images/logos/client-valentino.svg', w: 320, h: 157 },
+  { name: 'Sandro', src: '/images/logos/client-sandro.svg', w: 390, h: 100 },
+  { name: 'Seiko', src: '/images/logos/client-seiko.svg', w: 508, h: 99 },
+  { name: 'Lidl', src: '/images/logos/client-lidl.svg', w: 177, h: 168 },
+  { name: 'Würth', src: '/images/logos/client-wurth.svg', w: 485, h: 104 },
+  { name: 'Jägermeister', src: '/images/logos/client-jagermeister.svg', w: 187, h: 167 },
+];
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -99,6 +113,31 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
           </Button>
         </div>
       </HeroSection>
+
+      {/* ===== 1b. Logo bar — Trust strip ===== */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
+            <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-6">
+              {isFr ? 'Ils nous font confiance' : 'They trust us'}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-12">
+              {CLIENT_LOGOS.map((logo) => (
+                <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-60 transition-opacity duration-300">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={logo.w}
+                    height={logo.h}
+                    className="h-full w-auto max-w-[60px] sm:max-w-[80px] object-contain"
+                    loading="eager"
+                  />
+                </div>
+              ))}
+            </div>
+          </FadeInView>
+        </div>
+      </section>
 
       {/* ===== 2. Pain Points — Split 4/8 sticky heading ===== */}
       <section className="py-20 lg:py-32 bg-white">
