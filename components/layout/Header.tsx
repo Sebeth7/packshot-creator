@@ -212,9 +212,9 @@ export default function Header() {
           icon: <Glasses className="h-4 w-4" />,
         },
         {
-          href: '/industrie/food-alimentaire',
-          labelKey: 'food',
-          descKey: 'foodDesc',
+          href: '/industrie/vin-spiritueux',
+          labelKey: 'vinSpiritueux',
+          descKey: 'vinSpiritueuxDesc',
           icon: <Wine className="h-4 w-4" />,
         },
         {
