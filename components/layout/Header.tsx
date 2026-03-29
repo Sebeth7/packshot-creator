@@ -23,10 +23,12 @@ function NavDropdown({
   label,
   sections,
   t,
+  megaMenu,
 }: {
   label: string;
   sections: DropdownSection[];
   t: (key: string) => string;
+  megaMenu?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -47,6 +49,49 @@ function NavDropdown({
     };
   }, []);
 
+  const renderItem = (item: DropdownItem) =>
+    item.descKey ? (
+      <Link
+        key={item.href}
+        href={item.href}
+        className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
+        onClick={() => setOpen(false)}
+      >
+        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
+          {item.icon}
+        </span>
+        <div>
+          <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
+            {t(item.labelKey)}
+          </span>
+          <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
+            {t(item.descKey)}
+          </span>
+        </div>
+      </Link>
+    ) : (
+      <Link
+        key={item.href}
+        href={item.href}
+        className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
+        onClick={() => setOpen(false)}
+      >
+        {t(item.labelKey)}
+      </Link>
+    );
+
+  const renderSection = (section: DropdownSection, sIdx: number, showBorder = true) => (
+    <div key={sIdx}>
+      {showBorder && sIdx > 0 && <div className="border-t border-neutral-100 my-2" />}
+      {section.titleKey && (
+        <span className="block px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
+          {t(section.titleKey)}
+        </span>
+      )}
+      {section.items.map(renderItem)}
+    </div>
+  );
+
   return (
     <div
       ref={ref}
@@ -65,50 +110,32 @@ function NavDropdown({
         />
       </button>
 
-      {open && (
+      {open && !megaMenu && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
           <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-2 min-w-[280px]">
-            {sections.map((section, sIdx) => (
-              <div key={sIdx}>
-                {sIdx > 0 && <div className="border-t border-neutral-100 my-2" />}
-                {section.titleKey && (
-                  <span className="block px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
-                    {t(section.titleKey)}
-                  </span>
-                )}
-                {section.items.map((item) =>
-                  item.descKey ? (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
-                      onClick={() => setOpen(false)}
-                    >
-                      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
-                        {item.icon}
-                      </span>
-                      <div>
-                        <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
-                          {t(item.labelKey)}
-                        </span>
-                        <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
-                          {t(item.descKey)}
-                        </span>
-                      </div>
-                    </Link>
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
-                      onClick={() => setOpen(false)}
-                    >
-                      {t(item.labelKey)}
-                    </Link>
-                  )
-                )}
+            {sections.map((section, sIdx) => renderSection(section, sIdx))}
+          </div>
+        </div>
+      )}
+
+      {open && megaMenu && (
+        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+          <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-4 w-[720px]">
+            <div className="grid grid-cols-3 gap-4">
+              {/* Colonne 1 : Solutions principales */}
+              <div>
+                {sections[0] && renderSection(sections[0], 0, false)}
               </div>
-            ))}
+              {/* Colonne 2 : Par secteur */}
+              <div>
+                {sections[1] && renderSection(sections[1], 0, false)}
+              </div>
+              {/* Colonne 3 : Doc industrielle + Guides */}
+              <div>
+                {sections[2] && renderSection(sections[2], 0, false)}
+                {sections[3] && renderSection(sections[3], 1, true)}
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -338,6 +365,7 @@ export default function Header() {
               label={t('solutions')}
               sections={solutionSections}
               t={t}
+              megaMenu
             />
 
             <NavDropdown
