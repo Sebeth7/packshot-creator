@@ -563,14 +563,14 @@ export const secteurs: Secteur[] = [
   // 8. PIÈCES TECHNIQUES / INDUSTRIE
   {
     slug: 'pieces-techniques-industrie',
-    titre: 'Photo Pièces Techniques & Industrielles : Packshot Précision',
+    titre: 'Photo Pièces Techniques & Détachées : Studio Packshot Industriel',
     description:
-      'Studios packshot pour pièces techniques, mécaniques, industrielles. Netteté absolue, mesures visibles.',
+      'Studios packshot pour pièces techniques, détachées et industrielles. Catalogage, SAV, nomenclature. Netteté absolue, intégration PIM/ERP.',
     hero: {
-      titre: 'Photo Pièces Techniques : Précision & Détails',
-      sousTitre: 'Packshot haute résolution pour pièces mécaniques et industrielles',
+      titre: 'Photo Pièces Techniques & Détachées : Précision Industrielle',
+      sousTitre: 'Catalogage automatisé, packshot haute résolution, intégration nomenclature',
       description:
-        'Capturez tous les détails techniques : filetages, usinages, dimensions, matériaux.',
+        'Photographiez pièces techniques, détachées et de rechange : filetages, usinages, dimensions, matériaux. Catalogage SAV et nomenclature intégrée.',
     },
     problematiques: {
       titre: 'Défis Photo Pièces Techniques',
@@ -580,6 +580,9 @@ export const secteurs: Secteur[] = [
         'Catalogues B2B énormes (500-5000+ références) nécessitant rapidité',
         'Besoin visibilité dimensions, matériaux, finitions précises',
         'Photos manuelles incohérentes sur catalogues larges',
+        'Catalogage pièces détachées : identifier, classifier et photographier des milliers de références SAV et rechange',
+        'Nomenclature visuelle : associer chaque visuel à un code article, une référence ERP, un numéro de pièce de rechange',
+        'Digitalisation SAV : documenter visuellement les pièces de rechange pour portails clients et manuels après-vente',
       ],
     },
     solutions: {
@@ -596,6 +599,8 @@ export const secteurs: Secteur[] = [
             '360° pièces : rotations interactives pour catalogues techniques',
             'Rapidité : 50-150 pièces/jour selon taille',
             'Cohérence absolue : même rendu sur milliers de références',
+            'Pièces détachées : catalogage systématique SAV, rechange, aftermarket',
+            'Standardisation : même rendu pour pièces neuves, reconditionnées, d\'occasion',
           ],
         },
         {
@@ -607,6 +612,8 @@ export const secteurs: Secteur[] = [
             'Nomenclatures intégrées : codes produits/dimensions sur visuels',
             'Export formats multiples : web, print, PDF catalogues',
             'Base données visuels : recherche rapide par référence/dimension',
+            'Nomenclature intégrée : code article, désignation, numéro de rechange liés au visuel',
+            'Digitalisation SAV : visuels prêts pour portail pièces détachées et catalogue interactif',
           ],
         },
       ],
@@ -631,16 +638,32 @@ export const secteurs: Secteur[] = [
         fonctionsOrbitvu: ['Multi-angles', 'Templates', 'Annotations'],
         valeur: 'Manuels techniques visuels standardisés multi-sites',
       },
+      {
+        titre: 'Catalogage pièces détachées',
+        processus: 'Photographier et classifier des milliers de pièces de rechange pour constituer un catalogue visuel complet. Identification par code-barres, capture multi-vues standardisée, export automatique vers le système de gestion.',
+        fonctionsOrbitvu: ['Auto-naming SKU', 'Batch processing', 'Multi-vues', 'IQ Mask'],
+        valeur: 'Catalogue pièces détachées complet, consultable par référence',
+      },
+      {
+        titre: 'Digitalisation nomenclature SAV',
+        processus: 'Créer une base visuelle exhaustive de pièces de rechange liée aux codes articles ERP/PIM. Chaque visuel est associé à sa désignation, son numéro de pièce et ses dimensions pour alimenter le portail SAV ou le catalogue interactif.',
+        fonctionsOrbitvu: ['Templates', 'Export PIM', 'Métadonnées', 'Nomenclature auto'],
+        valeur: 'Portail SAV visuel avec identification instantanée des pièces',
+      },
     ],
     cta: {
-      titre: 'Automatisez vos catalogues techniques',
-      description: 'Devis packshot industriel pour gros volumes.',
+      titre: 'Automatisez vos catalogues de pièces techniques et détachées',
+      description: 'Devis packshot industriel, catalogage SAV et intégration nomenclature.',
     },
     faq: [
       { question: 'Peut-on photographier des pièces métalliques sans reflets parasites ?', answer: 'Les studios Orbitvu intègrent un éclairage polarisé qui contrôle les reflets sur l\'acier, l\'aluminium et le laiton. Le rendu est fidèle sans surexposition ni reflets parasites.' },
       { question: 'Comment photographier des pièces très petites (filetages, usinages) ?', answer: 'La macrophotographie Orbitvu capture les détails microscopiques : filetages, usinages, gravures, poinçons. Le focus stacking assure une netteté absolue sur toute la profondeur de la pièce.' },
       { question: 'Quel volume de pièces techniques peut-on traiter par jour ?', answer: 'En batch processing automatisé, 50 à 150 pièces par jour selon la taille, avec nomenclatures intégrées (codes produits, dimensions) et export multi-formats.' },
       { question: 'L\'intégration avec notre ERP/PIM est-elle possible ?', answer: 'Oui, les studios Orbitvu s\'intègrent avec les systèmes PIM/ERP via export automatisé avec nomenclatures, codes produits et dimensions directement liés aux visuels.' },
+      { question: 'Comment cataloguer efficacement des milliers de pièces détachées ?', answer: 'Le batch processing Orbitvu permet de photographier 50 à 150 pièces détachées par jour avec identification automatique par code-barres. Chaque visuel est nommé selon votre nomenclature (code article, référence SAV) et exporté directement vers votre système de gestion.' },
+      { question: 'Les visuels peuvent-ils être liés directement à notre nomenclature SAV ?', answer: 'Oui. Les studios Orbitvu associent automatiquement chaque visuel à son code article, sa désignation et son numéro de pièce de rechange. L\'export vers votre PIM ou portail SAV est direct, sans ressaisie manuelle.' },
+      { question: 'Quelle différence entre photographier des pièces techniques neuves et des pièces de rechange ?', answer: 'Le processus est identique grâce aux templates sauvegardés : mêmes conditions d\'éclairage, même angle, même fond. Que la pièce soit neuve, reconditionnée ou d\'occasion, le rendu est standardisé et comparable.' },
+      { question: 'Comment digitaliser un catalogue de pièces détachées existant ?', answer: 'Les studios Orbitvu permettent de reprendre un catalogue papier ou incomplet en photographiant systématiquement chaque référence. Le batch processing, l\'auto-naming par code-barres et l\'export multi-formats accélèrent la digitalisation de catalogues de plusieurs milliers de pièces.' },
     ],
   },
 
