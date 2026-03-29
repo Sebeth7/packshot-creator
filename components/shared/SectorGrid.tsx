@@ -18,6 +18,7 @@ import {
   Factory,
   Shield,
   Glasses,
+  UtensilsCrossed,
 } from 'lucide-react';
 
 export interface Sector {
@@ -79,7 +80,7 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'chaussures', name: 'Chaussures', Icon: Footprints, description: 'Packshot, 360° et lifestyle pour sneakers, luxe et sport' },
   { slug: 'bijoux-joaillerie', name: 'Bijoux & Joaillerie', Icon: Gem, description: 'Macro focus stacking et visuels lifestyle haute joaillerie' },
   { slug: 'mobilier-decoration', name: 'Mobilier & Décoration', Icon: Armchair, description: 'Grands formats et mises en scène IA multi-ambiances' },
-  { slug: 'food-alimentaire', name: 'Food & Alimentaire', Icon: Wine, description: 'Packshot packaging et food styling IA' },
+  { slug: 'vin-spiritueux', name: 'Vin & Spiritueux', Icon: Wine, description: 'Packshot bouteilles, fidélité étiquettes et lifestyle cave & bar par IA' },
   { slug: 'cosmetiques-beaute', name: 'Cosmétiques & Beauté', Icon: Sparkles, description: 'Rendu textures, reflets et ambiances spa par IA' },
   { slug: 'mode-textile', name: 'Mode & Textile', Icon: Shirt, description: 'Ghost mannequin, porté et flat-lay automatisés' },
   { slug: 'electronique-hightech', name: 'Électronique & High-Tech', Icon: Smartphone, description: 'Packshot reflets maîtrisés et visuels lifestyle tech' },
@@ -91,5 +92,5 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'industrie-manufacturiere', name: 'Industrie Manufacturière', Icon: Factory, description: 'Catalogage massif et intégration PIM automatisée' },
   { slug: 'defense-securite', name: 'Défense & Sécurité', Icon: Shield, description: 'Studio sur site sécurisé, traçabilité et conformité' },
   { slug: 'lunetterie', name: 'Lunetterie & Optique', Icon: Glasses, description: 'Packshot montures, verres et solaires avec gestion des reflets' },
-  { slug: 'vin-spiritueux', name: 'Vin & Spiritueux', Icon: Wine, description: 'Packshot bouteilles, fidélité étiquettes et lifestyle cave & bar par IA' },
+  { slug: 'food-alimentaire', name: 'Food & Alimentaire', Icon: UtensilsCrossed, description: 'Packshot packaging et food styling IA' },
 ];

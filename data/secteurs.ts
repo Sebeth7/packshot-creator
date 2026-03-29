@@ -1247,6 +1247,7 @@ export const secteurs: Secteur[] = [
         'Formes variées de bouteilles (bordelaise, bourguignonne, alsacienne, champagne, flûte, pot)',
         'Capsules et muselet métalliques créant des reflets incontrôlés',
         'Shootings lifestyle cave ou bar coûteux et logistiquement complexes',
+        'Suppression des contre-étiquettes complexe en post-production (codes-barres, mentions légales au dos)',
         'Volumes saisonniers importants (foires aux vins, primeurs, fêtes de fin d\'année)',
       ],
     },
