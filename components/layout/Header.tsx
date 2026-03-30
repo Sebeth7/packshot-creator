@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface DropdownItem {
@@ -19,16 +19,100 @@ interface DropdownSection {
   items: DropdownItem[];
 }
 
+function NavDropdownFlyout({
+  section,
+  t,
+  onClose,
+}: {
+  section: DropdownSection;
+  t: (key: string) => string;
+  onClose: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setHovered(true);
+  };
+
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => setHovered(false), 120);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        type="button"
+        className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group text-left"
+      >
+        <span className="text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
+          {section.titleKey ? t(section.titleKey) : ''}
+        </span>
+        <ChevronRight className="h-3.5 w-3.5 text-future-dusk-400 group-hover:text-very-peri-600 transition-colors" />
+      </button>
+
+      {hovered && (
+        <div className="absolute left-full top-0 pl-1.5 z-50">
+          <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-2 min-w-[260px]">
+            {section.items.map((item) =>
+              item.descKey ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
+                  onClick={onClose}
+                >
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
+                    {item.icon}
+                  </span>
+                  <div>
+                    <span className="block text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-700">
+                      {t(item.labelKey)}
+                    </span>
+                    <span className="block text-xs text-future-dusk-400 mt-0.5 leading-relaxed">
+                      {t(item.descKey)}
+                    </span>
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
+                  onClick={onClose}
+                >
+                  {t(item.labelKey)}
+                </Link>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function NavDropdown({
   label,
   sections,
   t,
-  megaMenu,
+  cascading,
 }: {
   label: string;
   sections: DropdownSection[];
   t: (key: string) => string;
-  megaMenu?: boolean;
+  cascading?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -49,13 +133,15 @@ function NavDropdown({
     };
   }, []);
 
+  const close = () => setOpen(false);
+
   const renderItem = (item: DropdownItem) =>
     item.descKey ? (
       <Link
         key={item.href}
         href={item.href}
         className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
-        onClick={() => setOpen(false)}
+        onClick={close}
       >
         <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">
           {item.icon}
@@ -74,23 +160,15 @@ function NavDropdown({
         key={item.href}
         href={item.href}
         className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
-        onClick={() => setOpen(false)}
+        onClick={close}
       >
         {t(item.labelKey)}
       </Link>
     );
 
-  const renderSection = (section: DropdownSection, sIdx: number, showBorder = true) => (
-    <div key={sIdx}>
-      {showBorder && sIdx > 0 && <div className="border-t border-neutral-100 my-2" />}
-      {section.titleKey && (
-        <span className="block px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
-          {t(section.titleKey)}
-        </span>
-      )}
-      {section.items.map(renderItem)}
-    </div>
-  );
+  /* Sections avec titre = affichées en flyout, sans titre = affichées en plein */
+  const mainSections = sections.filter((s) => !s.titleKey);
+  const flyoutSections = sections.filter((s) => s.titleKey);
 
   return (
     <div
@@ -110,32 +188,43 @@ function NavDropdown({
         />
       </button>
 
-      {open && !megaMenu && (
+      {open && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
           <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-2 min-w-[280px]">
-            {sections.map((section, sIdx) => renderSection(section, sIdx))}
-          </div>
-        </div>
-      )}
+            {/* Liens principaux (sections sans titre) */}
+            {mainSections.map((section, sIdx) => (
+              <div key={sIdx}>
+                {section.items.map(renderItem)}
+              </div>
+            ))}
 
-      {open && megaMenu && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
-          <div className="bg-white rounded-xl shadow-lg border border-neutral-100 p-4 w-[720px]">
-            <div className="grid grid-cols-3 gap-4">
-              {/* Colonne 1 : Solutions principales */}
-              <div>
-                {sections[0] && renderSection(sections[0], 0, false)}
+            {/* Séparateur + sections en flyout */}
+            {cascading && flyoutSections.length > 0 && (
+              <>
+                <div className="border-t border-neutral-100 my-2" />
+                {flyoutSections.map((section, sIdx) => (
+                  <NavDropdownFlyout
+                    key={sIdx}
+                    section={section}
+                    t={t}
+                    onClose={close}
+                  />
+                ))}
+              </>
+            )}
+
+            {/* Mode classique (non-cascading) : tout empilé */}
+            {!cascading && flyoutSections.length > 0 && flyoutSections.map((section, sIdx) => (
+              <div key={sIdx}>
+                <div className="border-t border-neutral-100 my-2" />
+                {section.titleKey && (
+                  <span className="block px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-future-dusk-400">
+                    {t(section.titleKey)}
+                  </span>
+                )}
+                {section.items.map(renderItem)}
               </div>
-              {/* Colonne 2 : Par secteur */}
-              <div>
-                {sections[1] && renderSection(sections[1], 0, false)}
-              </div>
-              {/* Colonne 3 : Doc industrielle + Guides */}
-              <div>
-                {sections[2] && renderSection(sections[2], 0, false)}
-                {sections[3] && renderSection(sections[3], 1, true)}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       )}
@@ -365,7 +454,7 @@ export default function Header() {
               label={t('solutions')}
               sections={solutionSections}
               t={t}
-              megaMenu
+              cascading
             />
 
             <NavDropdown
