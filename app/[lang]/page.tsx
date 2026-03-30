@@ -65,9 +65,9 @@ const PAIN_POINTS = [
 ] as const;
 
 const HYBRID_STEPS = [
-  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action' },
-  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels' },
-  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation' },
+  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '' },
+  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '' },
+  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif' },
 ];
 
 const GALLERY_ITEMS = [
@@ -268,12 +268,13 @@ export default async function HomePage({
               </TextReveal>
             </ScrollReveal>
             <FadeInView direction="right">
-              <div className="w-full aspect-[3/2] bg-future-dusk-0 flex items-center justify-center border border-neutral-100 rounded-2xl">
-                <div className="text-center">
-                  <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                  <p className="text-xs text-neutral-300">Illustration production photo ~600x400</p>
-                </div>
-              </div>
+              <Image
+                src="/images/illustrations/home-pain-points.avif"
+                alt="Production photo produit — packshot studio"
+                width={600}
+                height={400}
+                className="w-full rounded-2xl"
+              />
             </FadeInView>
           </div>
 
@@ -376,14 +377,14 @@ export default async function HomePage({
                 ))}
               </div>
 
-              {/* TODO: Replace with real product image — alphashot-360.avif or pillar-hardware.webp */}
-              <div className="hidden lg:block rounded-2xl bg-white border border-neutral-100 overflow-hidden aspect-[4/3]">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <ImageIcon className="w-10 h-10 text-neutral-300 mx-auto mb-2" strokeWidth={1} />
-                    <p className="text-xs text-neutral-400">Image produit ~500x400</p>
-                  </div>
-                </div>
+              <div className="hidden lg:block rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/illustrations/home-hybrid-hero.avif"
+                  alt="Approche PackshotCreator — capture packshot + création IA"
+                  width={500}
+                  height={400}
+                  className="w-full rounded-2xl"
+                />
               </div>
             </ScrollReveal>
 
@@ -392,13 +393,18 @@ export default async function HomePage({
                 <FadeInView key={step.key} direction="right" delay={idx * 0.1}>
                   <SpringCard>
                     <div className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300">
-                      {/* TODO: Replace with real image per step */}
-                      <div className="w-full h-[160px] lg:h-[200px] bg-neutral-50 flex items-center justify-center border-b border-neutral-100">
-                        <div className="text-center">
-                          <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                          <p className="text-xs text-neutral-300">{step.placeholder}</p>
+                      {step.image ? (
+                        <div className="w-full h-[160px] lg:h-[200px] relative border-b border-neutral-100 overflow-hidden">
+                          <Image src={step.image} alt={step.placeholder} fill className="object-cover" />
                         </div>
-                      </div>
+                      ) : (
+                        <div className="w-full h-[160px] lg:h-[200px] bg-neutral-50 flex items-center justify-center border-b border-neutral-100">
+                          <div className="text-center">
+                            <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
+                            <p className="text-xs text-neutral-300">{step.placeholder}</p>
+                          </div>
+                        </div>
+                      )}
                       <div className="p-6 lg:p-10">
                         <div className="flex items-center gap-4 mb-5">
                           <div className={`w-12 h-12 rounded-xl ${step.bg} flex items-center justify-center`}>
