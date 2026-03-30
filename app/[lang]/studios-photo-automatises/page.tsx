@@ -168,12 +168,13 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
             </FadeInView>
 
             <ScrollReveal scale>
-              <div className="w-full aspect-[4/3] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-2xl">
-                <div className="text-center">
-                  <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                  <p className="text-xs text-neutral-300">Système Orbitvu en situation ~600x450</p>
-                </div>
-              </div>
+              <Image
+                src="/images/illustrations/studios-orientation.avif"
+                alt={isFr ? 'Gamme de studios photo automatisés Orbitvu' : 'Orbitvu automated photo studio range'}
+                width={600}
+                height={450}
+                className="w-full rounded-2xl"
+              />
             </ScrollReveal>
           </div>
         </div>
