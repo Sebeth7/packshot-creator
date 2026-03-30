@@ -438,7 +438,7 @@ export default async function HomePage({
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <ScrollReveal scale className="relative rounded-2xl overflow-hidden bg-bg-light-gray p-6 sm:p-8 lg:p-12">
+            <ScrollReveal scale className="relative rounded-2xl overflow-hidden bg-white p-6 sm:p-8 lg:p-12">
               <Image
                 src="/images/machines/alphashot-pro-g2.avif"
                 alt="Alphashot Pro G2 — studio photo automatisé"
@@ -509,7 +509,7 @@ export default async function HomePage({
                 { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: '/studio-photo/alphatable-v2' },
               ].map((machine) => (
                 <Link key={machine.name} href={machine.href} className="group flex-shrink-0 w-[200px] sm:w-[240px] snap-start">
-                  <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-50 border border-neutral-100 group-hover:border-very-peri-200 transition-colors duration-300">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-neutral-100 group-hover:border-very-peri-200 transition-colors duration-300">
                     <Image
                       src={machine.image}
                       alt={machine.name}
@@ -715,9 +715,7 @@ export default async function HomePage({
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-8 lg:p-14 h-full flex flex-col">
-                <div className="w-full h-[140px] lg:h-[180px] rounded-xl overflow-hidden mb-6 relative">
-                  <Image src="/images/illustrations/home-final-cta.avif" alt="Démo PackshotCreator" fill className="object-cover rounded-xl" />
-                </div>
+                <Image src="/images/illustrations/home-final-cta.avif" alt="Démo PackshotCreator" width={500} height={180} className="w-full rounded-xl mb-6" />
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.card1.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.card1.description')}</p>
                 <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">

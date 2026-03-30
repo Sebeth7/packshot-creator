@@ -77,7 +77,7 @@ export function MachineCard({
       )}
 
       {/* Image */}
-      <div className="relative aspect-[4/3] bg-neutral-50 overflow-hidden">
+      <div className="relative aspect-[4/3] bg-white overflow-hidden">
         {!imageError && machine.imageUrl ? (
           <Image
             src={machine.imageUrl}
