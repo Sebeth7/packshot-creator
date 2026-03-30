@@ -7,7 +7,7 @@ import type { Machine, ProductSizeCategory } from './types';
 const MACHINE_IMAGES: Record<string, string> = {
   'alphashot-micro-v2': '/images/machines/alphashot-micro-v2.avif',
   'alphashot-360': '/images/machines/alphashot-360.avif',
-  'alphashot-g2': '/images/machines/alphashot-360.avif',
+  'alphashot-g2': '/images/machines/alphashot-pro-g2.avif',
   'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
   'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
   'alphashot-xl-wine-v2': '/images/machines/alphashot-xl.avif',
