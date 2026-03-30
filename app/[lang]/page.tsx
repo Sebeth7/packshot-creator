@@ -65,9 +65,9 @@ const PAIN_POINTS = [
 ] as const;
 
 const HYBRID_STEPS = [
-  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '/images/illustrations/home-hybrid-capture.avif' },
-  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '/images/illustrations/home-hybrid-ia.avif' },
-  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif' },
+  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '/images/illustrations/home-hybrid-capture.avif', href: '/studios-photo-automatises' },
+  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '/images/illustrations/home-hybrid-ia.avif', href: '/ia-photo-produit' },
+  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif', href: '/academy' },
 ];
 
 const GALLERY_ITEMS = [
@@ -417,11 +417,18 @@ export default async function HomePage({
                         <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3">
                           {t(`hybrid.${step.key}.title`)}
                         </h3>
-                        <p className="text-neutral-medium leading-relaxed">
+                        <p className="text-neutral-medium leading-relaxed mb-5">
                           {t.rich(`hybrid.${step.key}.description`, {
                             bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
                           })}
                         </p>
+                        <Link
+                          href={step.href}
+                          className="inline-flex items-center text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors group/link"
+                        >
+                          {t(`hybrid.${step.key}.cta`)}
+                          <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover/link:translate-x-1 transition-transform" />
+                        </Link>
                       </div>
                     </div>
                   </SpringCard>

@@ -52,15 +52,18 @@
       "subtitle": "La <bold>combinaison intelligente</bold> des deux mondes, portée par <bold>25 ans d'expertise</bold> en photographie produit.",
       "capture": {
         "title": "Capture parfaite",
-        "description": "Studios Orbitvu : packshot en <bold>3 secondes</bold>, 360°, vidéo, détourage automatique et ombres réelles. La <bold>base irremplaçable</bold> par l'IA."
+        "description": "Studios Orbitvu : packshot en <bold>3 secondes</bold>, 360°, vidéo, détourage automatique et ombres réelles. La <bold>base irremplaçable</bold> par l'IA.",
+        "cta": "Découvrir les studios"
       },
       "ia": {
         "title": "Création IA",
-        "description": "BlendAI.studio transforme <bold>1 packshot en 10+ visuels</bold> lifestyle. Fonds contextuels, mises en scène, variations créatives. Votre photo réelle reste <bold>toujours la base</bold>."
+        "description": "BlendAI.studio transforme <bold>1 packshot en 10+ visuels</bold> lifestyle. Fonds contextuels, mises en scène, variations créatives. Votre photo réelle reste <bold>toujours la base</bold>.",
+        "cta": "Découvrir BlendAI.studio"
       },
       "formation": {
         "title": "Autonomie totale",
-        "description": "Formations <bold> Qualiopi</bold> pour maîtriser les conventions photos et outils IA. Financement <bold>OPCO jusqu'à 100%</bold>. Le savoir-faire reste dans votre entreprise."
+        "description": "Formations <bold> Qualiopi</bold> pour maîtriser les conventions photos et outils IA. Financement <bold>OPCO jusqu'à 100%</bold>. Le savoir-faire reste dans votre entreprise.",
+        "cta": "Voir les formations"
       },
       "cta": "Découvrir la gamme Orbitvu",
       "ctaSecondary": "En savoir plus sur BlendAI.studio"

@@ -18,15 +18,18 @@
       "subtitle": "The <bold>intelligent combination</bold> of both worlds, powered by <bold>25 years of expertise</bold> in product photography.",
       "capture": {
         "title": "Perfect capture",
-        "description": "Orbitvu studios: packshot in <bold>3 seconds</bold>, 360°, video, automatic background removal and real shadows. The <bold>irreplaceable foundation</bold> for AI."
+        "description": "Orbitvu studios: packshot in <bold>3 seconds</bold>, 360°, video, automatic background removal and real shadows. The <bold>irreplaceable foundation</bold> for AI.",
+        "cta": "Discover the studios"
       },
       "ia": {
         "title": "AI creation",
-        "description": "BlendAI.studio transforms <bold>1 packshot into 10+ lifestyle visuals</bold>. Contextual backgrounds, staged scenes, creative variations. Your real photo <bold>always remains the base</bold>."
+        "description": "BlendAI.studio transforms <bold>1 packshot into 10+ lifestyle visuals</bold>. Contextual backgrounds, staged scenes, creative variations. Your real photo <bold>always remains the base</bold>.",
+        "cta": "Discover BlendAI.studio"
       },
       "formation": {
         "title": "Total autonomy",
-        "description": "<bold>Qualiopi certified</bold> training to master photo conventions and AI tools. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company."
+        "description": "<bold>Qualiopi certified</bold> training to master photo conventions and AI tools. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company.",
+        "cta": "View training programs"
       },
       "cta": "Discover the Orbitvu range",
       "ctaSecondary": "Learn more about BlendAI.studio"
