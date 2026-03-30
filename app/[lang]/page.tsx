@@ -65,8 +65,8 @@ const PAIN_POINTS = [
 ] as const;
 
 const HYBRID_STEPS = [
-  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '' },
-  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '' },
+  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '/images/illustrations/home-hybrid-capture.avif' },
+  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '/images/illustrations/home-hybrid-ia.avif' },
   { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif' },
 ];
 
