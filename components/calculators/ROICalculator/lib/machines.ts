@@ -768,7 +768,7 @@ export const MACHINES: Machine[] = [
     id: 'furniture-studio',
     nom: 'Furniture Studio',
     prix: 119450,
-    capaciteJour: 60,
+    capaciteJour: 40,
     tailleMax: 'Mobilier XXL',
     poidsMax: '500 kg',
     tailleCategories: ['tres-grand'],

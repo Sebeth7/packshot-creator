@@ -99,20 +99,25 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     ? inputs.montantInvestissementInitial
     : 0;
 
-  // 4. Coût total actuel (opérationnel uniquement — l'investissement initial est traité en cash mois 0)
-  const coutTotalActuel = coutEmployeurAnnuel + coutEquipementAnnuel + coutExterneAnnuel;
-
-  // 5. Capacité annuelle actuelle
+  // 4. Capacité annuelle actuelle
   const capaciteAnnuelleActuelle =
     inputs.capaciteJournaliere *
     CONSTANTES.joursProduction *
     inputs.nbOperateurs *
     (inputs.pourcentageTemps / 100);
 
-  // 6. Protection division par zéro
+  // 5. Protection division par zéro
   const photosAnnuelles = Math.max(inputs.photosAnnuelles, 1);
 
-  // 7. Coût par photo actuel
+  // 6. Facteur de volume : si le volume cible dépasse la capacité actuelle,
+  // le coût employeur doit être proportionné (il faudrait plus de ressources)
+  const facteurVolume = Math.max(photosAnnuelles / Math.max(capaciteAnnuelleActuelle, 1), 1);
+  const coutEmployeurAnnuelEffectif = coutEmployeurAnnuel * facteurVolume;
+
+  // 7. Coût total actuel (opérationnel uniquement — l'investissement initial est traité en cash mois 0)
+  const coutTotalActuel = coutEmployeurAnnuelEffectif + coutEquipementAnnuel + coutExterneAnnuel;
+
+  // 8. Coût par photo actuel
   const coutParPhotoActuel = coutTotalActuel / photosAnnuelles;
 
   // 8. Temps par photo (heures)
@@ -282,7 +287,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
 
   return {
     // Situation actuelle
-    coutEmployeurAnnuel,
+    coutEmployeurAnnuel: coutEmployeurAnnuelEffectif,
     coutEquipementAnnuel,
     coutExterneAnnuel,
     investissementInitialMontant,
