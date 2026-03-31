@@ -19,6 +19,8 @@ interface ROIPDFRequest {
     leasingActif: boolean;
     leasingMensualite?: number;
     leasingNbMois?: number;
+    investissementInitialActif: boolean;
+    montantInvestissementInitial?: number;
     // Machine
     machineNom: string;
     machineId: string;
@@ -110,6 +112,10 @@ async function createPipedriveDeal(
       `Types contenu : ${calculatorData.typesContenu.join(', ')}`,
       `Mode : ${mode}`,
     ];
+
+    if (calculatorData.investissementInitialActif && calculatorData.montantInvestissementInitial) {
+      noteLines.push(`Investissement initial envisagé : ${calculatorData.montantInvestissementInitial.toLocaleString('fr-FR')}€`);
+    }
 
     if (calculatorData.isLeasing && calculatorData.leasingMensualite) {
       noteLines.push(`Mensualité leasing : ${calculatorData.leasingMensualite}€/mois`);

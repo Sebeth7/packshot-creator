@@ -91,6 +91,8 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           leasingActif: inputs.leasingActif,
           leasingMensualite: inputs.leasingMensualite,
           leasingNbMois: inputs.leasingNbMois,
+          investissementInitialActif: inputs.investissementInitialActif,
+          montantInvestissementInitial: inputs.montantInvestissementInitial,
           machineNom: results.machine.nom,
           machineId: results.machine.id,
           economieAnnuelle: results.economieAnnuelle,

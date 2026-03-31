@@ -8,6 +8,10 @@ export interface UserInputs {
   budgetMensuelExterne?: number;     // 0 - 50000 €/mois
   capaciteJournaliere: number;       // 5 - 300 photos/jour/opérateur
 
+  // Investissement initial envisagé (optionnel)
+  investissementInitialActif: boolean;
+  montantInvestissementInitial?: number; // € HT (ex: machine concurrente, création studio)
+
   // Step 2 : Objectifs
   photosAnnuelles: number;           // 100 - 100000
   budgetEquipement?: number;         // 0 - 50000 €/an (optionnel, défaut 3000)
@@ -133,6 +137,7 @@ export interface CalculationResults {
   coutEmployeurAnnuel: number;
   coutEquipementAnnuel: number;
   coutExterneAnnuel: number;
+  investissementInitialMontant: number; // Montant cash de l'investissement initial envisagé (mois 0)
   coutTotalActuel: number;
   coutParPhotoActuel: number;
   tempsParPhotoHeures: number;

@@ -19,6 +19,11 @@ export const step1Schema = z.object({
   capaciteJournaliere: z.number()
     .min(5, 'Minimum 5 photos/jour')
     .max(300, 'Maximum 300 photos/jour'),
+  investissementInitialActif: z.boolean(),
+  montantInvestissementInitial: z.number()
+    .min(1000, 'Minimum 1 000 €')
+    .max(500000, 'Maximum 500 000 €')
+    .optional(),
 });
 
 export const step2Schema = z.object({

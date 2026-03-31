@@ -58,6 +58,8 @@ export default function ROICalculatorWizard({
         'coutSalarialMensuel',
         'utiliseSolutionExterne',
         'budgetMensuelExterne',
+        'investissementInitialActif',
+        'montantInvestissementInitial',
         'capaciteJournaliere',
       ]);
     } else if (currentStep === 2) {

@@ -94,7 +94,12 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     ? inputs.budgetMensuelExterne * 12
     : 0;
 
-  // 4. Coût total actuel
+  // 3b. Investissement initial envisagé (cash au mois 0, même traitement que le prix machine PackshotCreator)
+  const investissementInitialMontant = inputs.investissementInitialActif && inputs.montantInvestissementInitial
+    ? inputs.montantInvestissementInitial
+    : 0;
+
+  // 4. Coût total actuel (opérationnel uniquement — l'investissement initial est traité en cash mois 0)
   const coutTotalActuel = coutEmployeurAnnuel + coutEquipementAnnuel + coutExterneAnnuel;
 
   // 5. Capacité annuelle actuelle
@@ -211,26 +216,33 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   const economieAvecFiscal = economieOperationnelle + avantageFiscalAnnuel;
 
   // Rentabilité et break-even
+  // Investissement net = prix PackshotCreator - investissement initial envisagé
+  // Si négatif → PackshotCreator est moins cher que l'alternative dès le départ
   let breakEvenMois: number | null = null;
   let isRentable: boolean;
 
   if (isLeasing) {
     // En leasing : rentable si les économies opérationnelles + fiscales > loyers
-    isRentable = economieAvecFiscal > 0;
-    // Pas de break-even classique en leasing (pas d'investissement initial à rembourser)
-    // On indique le mois à partir duquel le cumul des économies nettes devient positif
-    if (economieAvecFiscal > 0) {
-      breakEvenMois = 1; // Rentable dès le premier mois
+    isRentable = economieAvecFiscal > 0 || investissementInitialMontant > 0;
+    if (economieAvecFiscal > 0 || investissementInitialMontant > 0) {
+      breakEvenMois = 1;
     }
   } else {
-    const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
-    isRentable = economieAvecFiscal > amortissementAnnuel;
-    if (economieAvecFiscal > 0) {
-      breakEvenMois = machine.prix / (economieAvecFiscal / 12);
+    const netInvestissement = machine.prix - investissementInitialMontant;
+    if (netInvestissement <= 0) {
+      // PackshotCreator coûte moins cher que l'alternative dès le jour 1
+      isRentable = true;
+      breakEvenMois = 1;
+    } else {
+      const amortissementNet = netInvestissement / CONSTANTES.dureeAmortissement;
+      isRentable = economieAvecFiscal > amortissementNet;
+      if (economieAvecFiscal > 0) {
+        breakEvenMois = netInvestissement / (economieAvecFiscal / 12);
+      }
     }
   }
 
-  // ROI
+  // ROI — l'investissement initial envisagé est de l'argent économisé (pas dépensé chez un concurrent)
   const coutTotalInvestissement = isLeasing
     ? inputs.leasingMensualite! * inputs.leasingNbMois!
     : machine.prix;
@@ -239,12 +251,12 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     : CONSTANTES.dureeAmortissement;
 
   const roiAn1 = isLeasing
-    ? ((economieAvecFiscal - (inputs.leasingMensualite! * 12)) / Math.max(inputs.leasingMensualite! * 12, 1)) * 100
-    : ((economieAvecFiscal - machine.prix) / machine.prix) * 100;
+    ? ((economieAvecFiscal + investissementInitialMontant - (inputs.leasingMensualite! * 12)) / Math.max(inputs.leasingMensualite! * 12, 1)) * 100
+    : ((economieAvecFiscal + investissementInitialMontant - machine.prix) / Math.max(machine.prix, 1)) * 100;
 
   const economie5ans = isLeasing
-    ? (economieAvecFiscal * dureeAnalyse) - coutTotalInvestissement
-    : (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix;
+    ? (economieAvecFiscal * dureeAnalyse) - coutTotalInvestissement + investissementInitialMontant
+    : (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix + investissementInitialMontant;
 
   const roi5ans = (economie5ans / Math.max(coutTotalInvestissement, 1)) * 100;
 
@@ -268,6 +280,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     coutEmployeurAnnuel,
     coutEquipementAnnuel,
     coutExterneAnnuel,
+    investissementInitialMontant,
     coutTotalActuel,
     coutParPhotoActuel,
     tempsParPhotoHeures,
@@ -344,13 +357,18 @@ export function generateChartData(results: CalculationResults): Array<{
   const data = [];
   const dureeMois = results.isLeasing ? 60 : 60; // Toujours 60 mois pour comparabilité
 
+  // Investissement initial envisagé : cash au mois 0 (même traitement que machine.prix pour PackshotCreator)
+  const investissementInitialMois0 = results.investissementInitialMontant;
+  // Coût mensuel récurrent actuel (purement opérationnel)
+  const coutMensuelActuelRecurrent = results.coutTotalActuel / 12;
+
   if (results.isLeasing) {
     // Leasing : coût mensuel = loyer + opérateur - avantage fiscal (loyers 100% déductibles)
     const coutMensuelLeasing =
       (results.tcoAnnuel + results.coutOperateurMachine - results.avantageFiscalAnnuel) / 12;
 
     for (let mois = 0; mois <= dureeMois; mois++) {
-      const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
+      const coutActuelCumule = investissementInitialMois0 + (coutMensuelActuelRecurrent * mois);
       const coutOrbituCumule = coutMensuelLeasing * mois; // Pas de saut au mois 0
 
       data.push({
@@ -369,7 +387,7 @@ export function generateChartData(results: CalculationResults): Array<{
         results.avantageFiscalAnnuel) / 12;
 
     for (let mois = 0; mois <= dureeMois; mois++) {
-      const coutActuelCumule = (results.coutTotalActuel / 12) * mois;
+      const coutActuelCumule = investissementInitialMois0 + (coutMensuelActuelRecurrent * mois);
       const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
 
       data.push({

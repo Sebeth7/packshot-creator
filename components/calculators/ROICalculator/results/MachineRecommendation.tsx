@@ -101,6 +101,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
             tailleProduitsCategory: '',
             typesContenu: [],
             leasingActif: false,
+            investissementInitialActif: false,
             economieAnnuelle: 0,
             roi5ans: 0,
             breakEvenMois: null,
