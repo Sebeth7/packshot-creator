@@ -32,7 +32,7 @@ const LABELS = {
     methodology: 'Méthode de calcul',
     capacityWarningTitle: 'Volume supérieur à la capacité de cette machine',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
-      `La ${machineName} peut produire jusqu'à ${capaciteMax.toLocaleString('fr-FR')} photos/an (${Math.round(capaciteMax / 230)} photos/jour × 230 jours). Votre besoin de ${demande.toLocaleString('fr-FR')} photos/an dépasse cette capacité.`,
+      `La ${machineName} peut produire jusqu'à ${capaciteMax.toLocaleString('fr-FR')} produits/an (${Math.round(capaciteMax / 230)} produits/jour × 230 jours). Votre besoin de ${demande.toLocaleString('fr-FR')} produits/an dépasse cette capacité.`,
     capacityWarningSolutions: 'Solutions possibles :',
     capacitySolution1: 'Ajouter un 2ème opérateur en relais (+50% de capacité effective)',
     capacitySolution2: 'Opter pour une machine à plus forte capacité de production',
@@ -43,7 +43,7 @@ const LABELS = {
     methodology: 'Calculation method',
     capacityWarningTitle: 'Volume exceeds this machine\'s capacity',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
-      `The ${machineName} can produce up to ${capaciteMax.toLocaleString('en-US')} photos/year (${Math.round(capaciteMax / 230)} photos/day × 230 days). Your need of ${demande.toLocaleString('en-US')} photos/year exceeds this capacity.`,
+      `The ${machineName} can produce up to ${capaciteMax.toLocaleString('en-US')} products/year (${Math.round(capaciteMax / 230)} products/day × 230 days). Your need of ${demande.toLocaleString('en-US')} products/year exceeds this capacity.`,
     capacityWarningSolutions: 'Possible solutions:',
     capacitySolution1: 'Add a 2nd operator in relay (+50% effective capacity)',
     capacitySolution2: 'Choose a machine with higher production capacity',

@@ -21,7 +21,7 @@ const LABELS = {
     },
     scalability: {
       title: 'Scalabilité',
-      description: 'Capacité résiduelle de {capacity} photos/an. Croissance sans coûts supplémentaires.',
+      description: 'Capacité résiduelle de {capacity} produits/an. Croissance sans coûts supplémentaires.',
     },
     autonomy: {
       title: 'Autonomie Totale',
@@ -40,7 +40,7 @@ const LABELS = {
     },
     scalability: {
       title: 'Scalability',
-      description: 'Residual capacity of {capacity} photos/year. Growth without additional costs.',
+      description: 'Residual capacity of {capacity} products/year. Growth without additional costs.',
     },
     autonomy: {
       title: 'Total Autonomy',

@@ -24,7 +24,7 @@ const LABELS = {
     bookDemo: 'Être recontacté',
 
     imagePlaceholder: 'Image bientôt disponible',
-    photosPerDay: 'photos/jour',
+    photosPerDay: 'produits/jour',
     contactTitle: 'Être recontacté par notre équipe',
     emailLabel: 'Email',
     phoneLabel: 'Téléphone',
@@ -48,7 +48,7 @@ const LABELS = {
     bookDemo: 'Get in touch',
 
     imagePlaceholder: 'Image coming soon',
-    photosPerDay: 'photos/day',
+    photosPerDay: 'products/day',
     contactTitle: 'Get in touch with our team',
     emailLabel: 'Email',
     phoneLabel: 'Phone',

@@ -13,16 +13,16 @@ interface QuestionDailyCapacityProps {
 
 const LABELS = {
   fr: {
-    label: 'Combien de photos finalisées produisez-vous par jour ?',
+    label: 'Combien de produits finalisés photographiez-vous par jour ?',
     sublabel: 'Par opérateur, prises de vues + retouches complètes',
-    tooltip: 'Photos 100% prêtes à être mises en ligne',
-    unit: 'photos/jour/opérateur',
+    tooltip: 'Produits 100% prêts à être mis en ligne',
+    unit: 'produits/jour/opérateur',
   },
   en: {
-    label: 'How many finalized photos do you produce per day?',
+    label: 'How many finalized products do you photograph per day?',
     sublabel: 'Per operator, including shooting + complete retouching',
-    tooltip: 'Photos 100% ready to be published online',
-    unit: 'photos/day/operator',
+    tooltip: 'Products 100% ready to be published online',
+    unit: 'products/day/operator',
   },
 };
 

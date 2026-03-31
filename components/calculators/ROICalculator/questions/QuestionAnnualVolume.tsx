@@ -13,16 +13,16 @@ interface QuestionAnnualVolumeProps {
 
 const LABELS = {
   fr: {
-    label: 'Combien de photos produit devez-vous réaliser par an ?',
+    label: 'Combien de produits devez-vous photographier par an ?',
     sublabel: 'Objectif total : existant + nouveautés + renouvellement',
-    tooltip: 'Comptez TOUS les visuels produits',
-    unit: 'photos/an',
+    tooltip: 'Comptez TOUS les produits à photographier',
+    unit: 'produits/an',
   },
   en: {
-    label: 'How many product photos do you need to produce per year?',
+    label: 'How many products do you need to photograph per year?',
     sublabel: 'Total goal: existing + new + renewal',
-    tooltip: 'Count ALL produced visuals',
-    unit: 'photos/year',
+    tooltip: 'Count ALL products to photograph',
+    unit: 'products/year',
   },
 };
 

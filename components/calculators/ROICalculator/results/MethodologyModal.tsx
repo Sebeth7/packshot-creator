@@ -18,12 +18,12 @@ const CONTENT = {
       {
         icon: Calculator,
         title: 'Coût de votre solution actuelle',
-        body: 'Nous calculons le coût annuel de votre production photo en additionnant : le salaire chargé de vos opérateurs (au prorata du temps consacré à la photo), votre budget équipement annuel, et vos éventuels prestataires externes.',
+        body: 'Nous calculons le coût annuel de votre production en additionnant : le salaire chargé de vos opérateurs (au prorata du temps consacré à la photographie produit), votre budget équipement annuel, et vos éventuels prestataires externes.',
       },
       {
         icon: TrendingDown,
         title: 'Coût avec un studio PackshotCreator',
-        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (photos/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes.',
+        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (produits/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes.',
       },
       {
         icon: Clock,
@@ -45,12 +45,12 @@ const CONTENT = {
       {
         icon: Calculator,
         title: 'Cost of your current solution',
-        body: 'We calculate the annual cost of your photo production by adding: the loaded salary of your operators (proportional to time spent on photography), your annual equipment budget, and any external providers.',
+        body: 'We calculate the annual cost of your production by adding: the loaded salary of your operators (proportional to time spent on product photography), your annual equipment budget, and any external providers.',
       },
       {
         icon: TrendingDown,
         title: 'Cost with a PackshotCreator studio',
-        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (photos/day) relative to your annual volume. The more productive the machine, the less it ties up your teams.',
+        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (products/day) relative to your annual volume. The more productive the machine, the less it ties up your teams.',
       },
       {
         icon: Clock,
