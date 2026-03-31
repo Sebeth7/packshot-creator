@@ -138,6 +138,11 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
       ? (MACHINES.find(m => m.id === forceMachineId) ?? recommanderMachine(inputs))
       : recommanderMachine(inputs);
 
+  // 1b. Accessoires complémentaires (achat uniquement — inclus dans le leasing)
+  const montantAccessoires = (!isLeasing && inputs.montantAccessoires) ? inputs.montantAccessoires : 0;
+  // Prix total PackshotCreator = machine + accessoires
+  const prixTotalPackshotCreator = machine.prix + montantAccessoires;
+
   // 2. Coûts machine selon mode achat ou leasing
   const tauxIS = 0.25;
   let tcoAnnuel: number;
@@ -152,14 +157,14 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     avantageFiscalAnnuel = leasingAnnuel * tauxIS;
   } else {
     tcoAnnuel =
-      (machine.prix / CONSTANTES.dureeAmortissement) +
+      (prixTotalPackshotCreator / CONSTANTES.dureeAmortissement) +
       machine.maintenanceAnnuelle +
       machine.consommablesAnnuels;
     coutOperationnelMachineAnnuel =
       machine.maintenanceAnnuelle +
       machine.consommablesAnnuels;
-    // Amortissement réduit le bénéfice imposable
-    const amortissementAnnuel = machine.prix / CONSTANTES.dureeAmortissement;
+    // Amortissement réduit le bénéfice imposable (machine + accessoires)
+    const amortissementAnnuel = prixTotalPackshotCreator / CONSTANTES.dureeAmortissement;
     avantageFiscalAnnuel = amortissementAnnuel * tauxIS;
   }
 
@@ -228,7 +233,7 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
       breakEvenMois = 1;
     }
   } else {
-    const netInvestissement = machine.prix - investissementInitialMontant;
+    const netInvestissement = prixTotalPackshotCreator - investissementInitialMontant;
     if (netInvestissement <= 0) {
       // PackshotCreator coûte moins cher que l'alternative dès le jour 1
       isRentable = true;
@@ -242,21 +247,21 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
     }
   }
 
-  // ROI — l'investissement initial envisagé est de l'argent économisé (pas dépensé chez un concurrent)
+  // ROI — prixTotalPackshotCreator inclut machine + accessoires
   const coutTotalInvestissement = isLeasing
     ? inputs.leasingMensualite! * inputs.leasingNbMois!
-    : machine.prix;
+    : prixTotalPackshotCreator;
   const dureeAnalyse = isLeasing
     ? inputs.leasingNbMois! / 12
     : CONSTANTES.dureeAmortissement;
 
   const roiAn1 = isLeasing
     ? ((economieAvecFiscal + investissementInitialMontant - (inputs.leasingMensualite! * 12)) / Math.max(inputs.leasingMensualite! * 12, 1)) * 100
-    : ((economieAvecFiscal + investissementInitialMontant - machine.prix) / Math.max(machine.prix, 1)) * 100;
+    : ((economieAvecFiscal + investissementInitialMontant - prixTotalPackshotCreator) / Math.max(prixTotalPackshotCreator, 1)) * 100;
 
   const economie5ans = isLeasing
     ? (economieAvecFiscal * dureeAnalyse) - coutTotalInvestissement + investissementInitialMontant
-    : (economieAvecFiscal * CONSTANTES.dureeAmortissement) - machine.prix + investissementInitialMontant;
+    : (economieAvecFiscal * CONSTANTES.dureeAmortissement) - prixTotalPackshotCreator + investissementInitialMontant;
 
   const roi5ans = (economie5ans / Math.max(coutTotalInvestissement, 1)) * 100;
 
@@ -289,6 +294,8 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
 
     // Avec machine
     machine,
+    montantAccessoires,
+    prixTotalPackshotCreator,
     tcoAnnuel,
     coutOperateurMachine,
     coutTotalMachine,
@@ -388,7 +395,7 @@ export function generateChartData(results: CalculationResults): Array<{
 
     for (let mois = 0; mois <= dureeMois; mois++) {
       const coutActuelCumule = investissementInitialMois0 + (coutMensuelActuelRecurrent * mois);
-      const coutOrbituCumule = results.machine.prix + (coutOperationnelMensuel * mois);
+      const coutOrbituCumule = results.prixTotalPackshotCreator + (coutOperationnelMensuel * mois);
 
       data.push({
         mois,

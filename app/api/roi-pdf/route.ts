@@ -21,6 +21,7 @@ interface ROIPDFRequest {
     leasingNbMois?: number;
     investissementInitialActif: boolean;
     montantInvestissementInitial?: number;
+    montantAccessoires?: number;
     // Machine
     machineNom: string;
     machineId: string;
@@ -115,6 +116,10 @@ async function createPipedriveDeal(
 
     if (calculatorData.investissementInitialActif && calculatorData.montantInvestissementInitial) {
       noteLines.push(`Investissement initial envisagé : ${calculatorData.montantInvestissementInitial.toLocaleString('fr-FR')}€`);
+    }
+
+    if (calculatorData.montantAccessoires) {
+      noteLines.push(`Accessoires complémentaires : ${calculatorData.montantAccessoires.toLocaleString('fr-FR')}€`);
     }
 
     if (calculatorData.isLeasing && calculatorData.leasingMensualite) {

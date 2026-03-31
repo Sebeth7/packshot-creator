@@ -18,6 +18,9 @@ export interface UserInputs {
   tailleProduitsCategory: ProductSizeCategory;
   typesContenu: ContentType[];       // Types de contenu souhaités
 
+  // Accessoires complémentaires (achat uniquement, inclus dans le leasing)
+  montantAccessoires?: number;         // € HT
+
   // Leasing (optionnel)
   leasingActif: boolean;
   leasingMachineId?: string;         // ID de la machine en leasing
@@ -146,6 +149,8 @@ export interface CalculationResults {
 
   // Avec machine recommandée
   machine: Machine;
+  montantAccessoires: number;            // Accessoires complémentaires (0 en leasing)
+  prixTotalPackshotCreator: number;      // machine.prix + accessoires (cash mois 0)
   tcoAnnuel: number;
   coutOperateurMachine: number;
   coutTotalMachine: number;
