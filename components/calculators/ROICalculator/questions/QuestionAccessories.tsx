@@ -14,13 +14,13 @@ interface QuestionAccessoriesProps {
 const LABELS = {
   fr: {
     label: 'Accessoires compl\u00e9mentaires',
-    tooltip: 'Si votre devis PackshotCreator inclut des accessoires (plateaux, \u00e9clairages, fonds\u2026), indiquez leur montant total pour un calcul pr\u00e9cis.',
+    tooltip: 'Montant des accessoires Orbitvu (hors appareils photo) figurant sur votre devis PackshotCreator. Ce montant s\u2019ajoute au tarif du studio pour le calcul du ROI.',
     placeholder: 'Ex: 3000',
     unit: '\u20ac HT',
   },
   en: {
     label: 'Additional accessories',
-    tooltip: 'If your PackshotCreator quote includes accessories (turntables, lighting, backgrounds\u2026), enter the total amount for an accurate calculation.',
+    tooltip: 'Amount of Orbitvu accessories (excluding cameras) listed on your PackshotCreator quote. This amount is added to the studio price for ROI calculation.',
     placeholder: 'e.g.: 3000',
     unit: '\u20ac excl. tax',
   },
@@ -34,7 +34,7 @@ export default function QuestionAccessories({ locale }: QuestionAccessoriesProps
 
   return (
     <div className="space-y-2">
-      <div className="flex items-start justify-between gap-2">
+      <div className="flex items-center gap-2">
         <Label className="text-base font-medium text-future-dusk-900">
           {t.label}
         </Label>
