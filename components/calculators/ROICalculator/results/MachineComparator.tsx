@@ -304,13 +304,12 @@ export default function MachineComparator({
   const criteria = userInputsToSelectionCriteria(inputs);
   const eligibleMachines = getTopMachinesForComparison(criteria, 0, inputs.tailleProduitsCategory);
 
-  // Calculer le ROI pour chaque machine et filtrer les non-rentables
+  // Calculer le ROI pour chaque machine éligible (taille + contenu)
   const machinesWithROI = eligibleMachines
     .map(eligibility => ({
       eligibility,
       roiResults: calculateROI(inputs, eligibility.machine.id),
-    }))
-    .filter(({ roiResults }) => roiResults.isRentable); // Ne garder que les machines rentables
+    }));
 
   if (machinesWithROI.length === 0) {
     return null;
