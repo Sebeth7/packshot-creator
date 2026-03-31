@@ -120,11 +120,10 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   // 8. Coût par photo actuel
   const coutParPhotoActuel = coutTotalActuel / photosAnnuelles;
 
-  // 8. Temps par photo (heures)
+  // 8. Temps par produit (heures) — basé sur la cadence journalière réelle
   const heuresTravailAnnuel = CONSTANTES.heuresSemaine * CONSTANTES.nbSemainesTravail;
-  const tempsParPhotoHeures =
-    (heuresTravailAnnuel * inputs.nbOperateurs * (inputs.pourcentageTemps / 100)) /
-    photosAnnuelles;
+  const heuresParJour = CONSTANTES.heuresSemaine / 5;
+  const tempsParPhotoHeures = heuresParJour / Math.max(inputs.capaciteJournaliere, 1);
 
   // 9. Jours de production actuels
   const joursProductionActuels =
@@ -206,9 +205,8 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   // 6. Coût par photo avec machine
   const coutParPhotoMachine = coutTotalMachine / photosAnnuelles;
 
-  // 7. Temps par photo avec machine
-  const heuresAvecMachine = heuresTravailAnnuel * nbOperateursMachine * (pourcentageTempsMachineEffectif / 100);
-  const tempsParPhotoMachine = heuresAvecMachine / photosAnnuelles;
+  // 7. Temps par produit avec machine — basé sur la cadence journalière de la machine
+  const tempsParPhotoMachine = heuresParJour / Math.max(capaciteJourEffective, 1);
 
   // 8. Jours de production avec machine
   const joursProductionMachine = photosAnnuelles / capaciteJourEffective;
