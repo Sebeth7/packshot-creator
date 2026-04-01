@@ -1,105 +1,64 @@
 'use client';
 
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 
 export default function FloatingCalendar() {
   return (
-    <div className="flex items-center justify-center">
-      <div style={{ perspective: '800px' }}>
+    <div className="flex items-center justify-center py-2">
+      <div style={{ perspective: '900px' }}>
+        {/* Ombre portée au sol */}
+        <div
+          className="mx-auto w-[60%] h-[16px] rounded-full mt-2"
+          style={{
+            background: 'radial-gradient(ellipse, rgba(0,0,0,0.25) 0%, transparent 70%)',
+            filter: 'blur(6px)',
+            animation: 'cal-shadow 5s ease-in-out infinite',
+          }}
+        />
+
         <Link
           href="/contact"
           className="block relative group cursor-pointer"
           style={{
-            animation: 'cal-float 4s ease-in-out infinite',
+            animation: 'cal-float 5s ease-in-out infinite',
             transformStyle: 'preserve-3d',
           }}
         >
-          {/* Ombre portée */}
-          <div
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-[14px] rounded-full pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse, rgba(102,103,171,0.3) 0%, transparent 70%)',
-              filter: 'blur(5px)',
-              animation: 'cal-shadow 4s ease-in-out infinite',
-            }}
-          />
-
-          {/* Calendrier */}
-          <div
-            className="relative w-[180px] h-[180px] rounded-2xl overflow-visible group-hover:scale-105 transition-transform duration-300"
-            style={{
-              background: 'linear-gradient(145deg, #1a1d2e 0%, #0f1118 100%)',
-              boxShadow: '0 20px 40px -10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-              border: '1px solid rgba(180,160,100,0.2)',
-            }}
-          >
-            {/* Anneaux spirale en haut */}
-            <div className="absolute -top-3 left-0 right-0 flex justify-center gap-5">
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="w-4 h-6 rounded-full border-[2.5px]"
-                  style={{
-                    borderColor: '#2a2d42',
-                    background: 'transparent',
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Bord doré supérieur */}
-            <div
-              className="absolute top-0 left-0 right-0 h-[2px]"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(180,160,100,0.3), transparent)' }}
+          {/* Image 3D originale */}
+          <div className="relative group-hover:scale-[1.03] transition-transform duration-500">
+            <Image
+              src="/images/illustrations/home-final-cta.avif"
+              alt="Réservez votre démo — calendrier"
+              width={500}
+              height={180}
+              className="w-full rounded-xl"
+              loading="lazy"
             />
 
-            {/* Grille de jours */}
-            <div className="pt-6 px-4 pb-4">
-              <div className="grid grid-cols-4 gap-2">
-                {Array.from({ length: 12 }).map((_, i) => {
-                  const isSelected = i === 5;
-                  return (
-                    <div
-                      key={i}
-                      className="aspect-square rounded-lg"
-                      style={{
-                        background: isSelected
-                          ? '#6667AB'
-                          : 'linear-gradient(145deg, #252840 0%, #1a1d2e 100%)',
-                        boxShadow: isSelected
-                          ? '0 0 12px rgba(102,103,171,0.5)'
-                          : 'inset 0 1px 2px rgba(0,0,0,0.3)',
-                        animation: isSelected ? 'cal-pulse 2s ease-in-out infinite' : undefined,
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Curseur animé */}
+            {/* Curseur animé en overlay */}
             <div
               className="absolute pointer-events-none"
               style={{
-                right: '28px',
-                bottom: '32px',
-                animation: 'cal-cursor 3s ease-in-out infinite',
+                right: '25%',
+                bottom: '20%',
+                animation: 'cal-cursor 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
               }}
             >
               <svg
-                width="28"
-                height="32"
+                width="32"
+                height="36"
                 viewBox="0 0 24 28"
                 fill="none"
                 style={{
-                  filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                  filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.4))',
                 }}
               >
                 <path
-                  d="M4 1L22 12L14 14L18 26L14 27L10 16L4 20V1Z"
-                  fill="#6667AB"
-                  stroke="#8384c0"
-                  strokeWidth="1"
+                  d="M3 1L21 12.5L13.5 14.5L17 26L13.5 27.5L9.5 15.5L3 20V1Z"
+                  fill="rgba(102,103,171,0.9)"
+                  stroke="rgba(131,132,192,0.8)"
+                  strokeWidth="0.8"
                   strokeLinejoin="round"
                 />
               </svg>
@@ -110,23 +69,20 @@ export default function FloatingCalendar() {
 
       <style jsx>{`
         @keyframes cal-float {
-          0%, 100% { transform: rotateX(8deg) rotateY(-6deg) translateY(0px); }
-          50% { transform: rotateX(8deg) rotateY(-6deg) translateY(-8px); }
+          0%, 100% { transform: rotateY(-3deg) translateY(0px); }
+          50% { transform: rotateY(-3deg) translateY(-10px); }
         }
         @keyframes cal-shadow {
-          0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-          50% { opacity: 0.5; transform: translateX(-50%) scale(0.9); }
-        }
-        @keyframes cal-pulse {
-          0%, 100% { box-shadow: 0 0 12px rgba(102,103,171,0.5); }
-          50% { box-shadow: 0 0 20px rgba(102,103,171,0.8); }
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 0.4; transform: scale(0.88); }
         }
         @keyframes cal-cursor {
-          0%, 100% { transform: translate(0, 0); }
-          30% { transform: translate(-8px, -6px); }
-          50% { transform: translate(-8px, -6px) scale(0.9); }
-          55% { transform: translate(-8px, -6px) scale(1); }
-          80% { transform: translate(4px, 2px); }
+          0% { transform: translate(6px, 4px); opacity: 0.9; }
+          25% { transform: translate(-4px, -2px); opacity: 1; }
+          40% { transform: translate(-4px, -2px) scale(0.88); opacity: 1; }
+          48% { transform: translate(-4px, -2px) scale(1); opacity: 1; }
+          70% { transform: translate(2px, 6px); opacity: 0.9; }
+          100% { transform: translate(6px, 4px); opacity: 0.9; }
         }
       `}</style>
     </div>
