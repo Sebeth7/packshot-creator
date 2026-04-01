@@ -5,7 +5,8 @@ import { Link } from '@/i18n/routing';
 
 export default function FloatingCalendar() {
   return (
-    <div className="flex items-center justify-center py-2">
+    <div className="relative flex items-center justify-center py-2">
+      {/* Container avec perspective pour l'image uniquement */}
       <div style={{ perspective: '900px' }}>
         {/* Ombre portée au sol */}
         <div
@@ -25,44 +26,46 @@ export default function FloatingCalendar() {
             transformStyle: 'preserve-3d',
           }}
         >
-          {/* Image 3D originale */}
+          {/* Image 3D originale — pleine largeur */}
           <div className="relative group-hover:scale-[1.03] transition-transform duration-500">
             <Image
               src="/images/illustrations/home-final-cta.avif"
               alt="Réservez votre démo — calendrier"
               width={500}
               height={180}
-              className="w-full rounded-xl"
+              className="w-full max-w-none rounded-xl"
+              sizes="(max-width: 768px) 100vw, 500px"
               loading="lazy"
             />
+          </div>
 
-            {/* Curseur animé en overlay */}
-            <div
-              className="absolute pointer-events-none"
+          {/* Curseur animé — HORS de la perspective 3D */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              right: '22%',
+              bottom: '24%',
+              transformStyle: 'flat',
+              animation: 'cal-cursor 3s ease-in-out infinite',
+            }}
+          >
+            <svg
+              width="30"
+              height="34"
+              viewBox="0 0 24 28"
+              fill="none"
               style={{
-                right: '25%',
-                bottom: '20%',
-                animation: 'cal-cursor 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.35))',
               }}
             >
-              <svg
-                width="32"
-                height="36"
-                viewBox="0 0 24 28"
-                fill="none"
-                style={{
-                  filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.4))',
-                }}
-              >
-                <path
-                  d="M3 1L21 12.5L13.5 14.5L17 26L13.5 27.5L9.5 15.5L3 20V1Z"
-                  fill="rgba(102,103,171,0.9)"
-                  stroke="rgba(131,132,192,0.8)"
-                  strokeWidth="0.8"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
+              <path
+                d="M3 1L21 12.5L13.5 14.5L17 26L13.5 27.5L9.5 15.5L3 20V1Z"
+                fill="#7864d8"
+                stroke="#9a8ae6"
+                strokeWidth="0.6"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
         </Link>
       </div>
@@ -77,12 +80,12 @@ export default function FloatingCalendar() {
           50% { opacity: 0.4; transform: scale(0.88); }
         }
         @keyframes cal-cursor {
-          0% { transform: translate(6px, 4px); opacity: 0.9; }
-          25% { transform: translate(-4px, -2px); opacity: 1; }
-          40% { transform: translate(-4px, -2px) scale(0.88); opacity: 1; }
-          48% { transform: translate(-4px, -2px) scale(1); opacity: 1; }
-          70% { transform: translate(2px, 6px); opacity: 0.9; }
-          100% { transform: translate(6px, 4px); opacity: 0.9; }
+          0% { transform: translate(4px, 3px); }
+          8% { transform: translate(-3px, -2px); }
+          16% { transform: translate(4px, 3px); }
+          24% { transform: translate(-3px, -2px); }
+          32% { transform: translate(4px, 3px); }
+          100% { transform: translate(4px, 3px); }
         }
       `}</style>
     </div>
