@@ -69,7 +69,10 @@ export default function FloatingDashboard() {
                   <span className="text-[9px] text-red-500 font-semibold">Saturée</span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-red-400 to-red-500 rounded-full" style={{ width: '94%' }} />
+                  <div
+                    className="h-full bg-gradient-to-r from-red-400 to-red-500 rounded-full"
+                    style={{ animation: 'bar-pulse-1 3s ease-in-out infinite' }}
+                  />
                 </div>
               </div>
               <div>
@@ -78,7 +81,10 @@ export default function FloatingDashboard() {
                   <span className="text-[9px] text-amber-500 font-semibold">Élevé</span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full" style={{ width: '78%' }} />
+                  <div
+                    className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full"
+                    style={{ animation: 'bar-pulse-2 4s ease-in-out infinite' }}
+                  />
                 </div>
               </div>
               <div>
@@ -87,7 +93,10 @@ export default function FloatingDashboard() {
                   <span className="text-[9px] text-red-500 font-semibold">Critique</span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-red-300 to-red-400 rounded-full" style={{ width: '32%' }} />
+                  <div
+                    className="h-full bg-gradient-to-r from-red-300 to-red-400 rounded-full"
+                    style={{ animation: 'bar-pulse-3 3.5s ease-in-out infinite' }}
+                  />
                 </div>
               </div>
             </div>
@@ -104,6 +113,7 @@ export default function FloatingDashboard() {
                       height: `${h}%`,
                       background: h > 80 ? '#f87171' : h > 60 ? '#fbbf24' : '#c4b5fd',
                       opacity: 0.7 + (i * 0.015),
+                      animation: `chart-bar ${2 + (i % 5) * 0.4}s ease-in-out ${i * 0.15}s infinite`,
                     }}
                   />
                 ))}
@@ -121,6 +131,24 @@ export default function FloatingDashboard() {
         @keyframes dashboard-shadow {
           0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
           50% { opacity: 0.6; transform: translateX(-50%) scale(0.9); }
+        }
+        @keyframes bar-pulse-1 {
+          0%, 100% { width: 94%; }
+          50% { width: 88%; }
+        }
+        @keyframes bar-pulse-2 {
+          0%, 100% { width: 78%; }
+          40% { width: 82%; }
+          70% { width: 72%; }
+        }
+        @keyframes bar-pulse-3 {
+          0%, 100% { width: 32%; }
+          30% { width: 28%; }
+          60% { width: 36%; }
+        }
+        @keyframes chart-bar {
+          0%, 100% { transform: scaleY(1); }
+          50% { transform: scaleY(0.85); }
         }
       `}</style>
     </div>
