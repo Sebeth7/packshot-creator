@@ -35,30 +35,23 @@ export default function FloatingCalendar() {
               loading="lazy"
             />
 
-            {/* Curseur SVG symétrique, incliné 30° */}
+            {/* Curseur flèche — image AVIF */}
             <div
-              className="absolute pointer-events-none left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2"
+              className="absolute pointer-events-none left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2"
               style={{
                 animation: 'cal-cursor 3s ease-in-out infinite',
-                transform: 'translate(-50%, -50%) rotate(30deg)',
               }}
             >
-              <svg
-                width="32"
-                height="40"
-                viewBox="0 0 32 40"
-                fill="none"
-                style={{ filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.35))' }}
-              >
-                {/* Curseur symétrique : pointe en haut, corps centré */}
-                <path
-                  d="M4 2 L4 30 L10 24 L14.5 36 L17.5 35 L13 23 L20 22 Z"
-                  fill="#7864d8"
-                  stroke="#9a8ae6"
-                  strokeWidth="0.8"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Image
+                src="/images/illustrations/cursor-arrow.avif"
+                alt=""
+                width={40}
+                height={40}
+                className="w-10 h-10"
+                style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
+                loading="lazy"
+                aria-hidden="true"
+              />
             </div>
           </div>
         </Link>
