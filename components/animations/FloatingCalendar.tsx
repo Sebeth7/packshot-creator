@@ -37,10 +37,8 @@ export default function FloatingCalendar() {
 
             {/* Curseur SVG flat — animation va-et-vient */}
             <div
-              className="absolute pointer-events-none"
+              className="absolute pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               style={{
-                right: '24%',
-                bottom: '22%',
                 animation: 'cal-cursor 3s ease-in-out infinite',
               }}
             >
