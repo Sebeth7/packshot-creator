@@ -36,6 +36,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import FloatingDashboard from '@/components/animations/FloatingDashboard';
+import FloatingCalendar from '@/components/animations/FloatingCalendar';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -717,7 +718,9 @@ export default async function HomePage({
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-8 lg:p-14 h-full flex flex-col">
-                <Image src="/images/illustrations/home-final-cta.avif" alt="Démo PackshotCreator" width={500} height={180} className="w-full rounded-xl mb-6" />
+                <div className="mb-6">
+                  <FloatingCalendar />
+                </div>
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.card1.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.card1.description')}</p>
                 <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
