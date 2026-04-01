@@ -84,8 +84,7 @@ export default function SpinningCoin({
                 width: size * 0.92,
                 height: size * 0.92,
                 marginTop: size * 0.04,
-                background: 'linear-gradient(180deg, #d4a843 0%, #c9982e 30%, #b8892a 50%, #c9982e 70%, #d4a843 100%)',
-                boxShadow: 'inset 0 0 4px rgba(0,0,0,0.2)',
+                background: '#ffffff',
               }}
             />
           </div>
