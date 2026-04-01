@@ -34,6 +34,32 @@ export default function FloatingCalendar() {
               sizes="(max-width: 768px) 100vw, 580px"
               loading="lazy"
             />
+
+            {/* Curseur SVG flat — animation va-et-vient */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                right: '24%',
+                bottom: '22%',
+                animation: 'cal-cursor 3s ease-in-out infinite',
+              }}
+            >
+              <svg
+                width="30"
+                height="34"
+                viewBox="0 0 24 28"
+                fill="none"
+                style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.35))' }}
+              >
+                <path
+                  d="M3 1L21 12.5L13.5 14.5L17 26L13.5 27.5L9.5 15.5L3 20V1Z"
+                  fill="#7864d8"
+                  stroke="#9a8ae6"
+                  strokeWidth="0.6"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </div>
         </Link>
       </div>
@@ -46,6 +72,14 @@ export default function FloatingCalendar() {
         @keyframes cal-shadow {
           0%, 100% { opacity: 0.8; transform: scale(1); }
           50% { opacity: 0.4; transform: scale(0.88); }
+        }
+        @keyframes cal-cursor {
+          0% { transform: translate(4px, 3px); }
+          8% { transform: translate(-3px, -2px); }
+          16% { transform: translate(4px, 3px); }
+          24% { transform: translate(-3px, -2px); }
+          32% { transform: translate(4px, 3px); }
+          100% { transform: translate(4px, 3px); }
         }
       `}</style>
     </div>
