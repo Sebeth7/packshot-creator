@@ -35,6 +35,7 @@ import { HeroSection, HeroVideo } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import SpinningCoin from '@/components/animations/SpinningCoin';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -267,13 +268,13 @@ export default async function HomePage({
                 {t('painPoints.heading')}
               </TextReveal>
             </ScrollReveal>
-            <FadeInView direction="right">
-              <Image
-                src="/images/illustrations/home-pain-points.avif"
-                alt="Production photo produit — packshot studio"
-                width={600}
-                height={400}
-                className="w-full rounded-2xl"
+            <FadeInView direction="right" className="flex items-center justify-center">
+              <SpinningCoin
+                frontSrc="/images/illustrations/euro-coin-face.avif"
+                backSrc="/images/illustrations/euro-coin-pile.avif"
+                alt="Pièce de 1 euro — coût de la photo produit"
+                size={300}
+                duration={5}
               />
             </FadeInView>
           </div>
