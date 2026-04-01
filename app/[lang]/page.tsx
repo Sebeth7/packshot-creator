@@ -35,7 +35,7 @@ import { HeroSection, HeroVideo } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
-import SpinningCoin from '@/components/animations/SpinningCoin';
+import FloatingDashboard from '@/components/animations/FloatingDashboard';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -268,14 +268,8 @@ export default async function HomePage({
                 {t('painPoints.heading')}
               </TextReveal>
             </ScrollReveal>
-            <FadeInView direction="right" className="flex items-center justify-center">
-              <SpinningCoin
-                frontSrc="/images/illustrations/euro-coin-face.avif"
-                backSrc="/images/illustrations/euro-coin-pile.avif"
-                alt="Pièce de 1 euro — coût de la photo produit"
-                size={300}
-                duration={5}
-              />
+            <FadeInView direction="right">
+              <FloatingDashboard />
             </FadeInView>
           </div>
 
