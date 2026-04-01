@@ -37,7 +37,7 @@ export default function FloatingCalendar() {
 
             {/* Curseur flèche — image AVIF */}
             <div
-              className="absolute pointer-events-none left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2"
+              className="absolute pointer-events-none left-[60%] top-[70%] -translate-x-1/2 -translate-y-1/2"
               style={{
                 animation: 'cal-cursor 3s ease-in-out infinite',
               }}
