@@ -2,6 +2,9 @@
 
 import Image from 'next/image';
 
+const EDGE_SLICES = 12;
+const EDGE_DEPTH = 8; // px total thickness
+
 export default function SpinningCoin({
   frontSrc,
   backSrc,
@@ -15,6 +18,14 @@ export default function SpinningCoin({
   size?: number;
   duration?: number;
 }) {
+  /* Generate edge slices between front (z=0) and back (z=-EDGE_DEPTH) */
+  const edgeSlices = Array.from({ length: EDGE_SLICES }, (_, i) => {
+    const z = -(EDGE_DEPTH / EDGE_SLICES) * (i + 1);
+    return z;
+  });
+
+  const coinRadius = size / 2;
+
   return (
     <div
       className="flex items-center justify-center"
@@ -29,17 +40,20 @@ export default function SpinningCoin({
           animation: `coin-spin ${duration}s linear infinite`,
         }}
       >
-        {/* Face (front) */}
+        {/* Face (front) — z=0 */}
         <div
           className="absolute inset-0"
-          style={{ backfaceVisibility: 'hidden' }}
+          style={{
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(1px)',
+          }}
         >
           <Image
             src={frontSrc}
             alt={alt}
             width={size}
             height={size}
-            className="w-full h-full object-contain drop-shadow-lg"
+            className="w-full h-full object-contain"
             loading="lazy"
           />
           {/* Reflet glissant */}
@@ -52,12 +66,37 @@ export default function SpinningCoin({
           />
         </div>
 
-        {/* Pile (back) — rotated 180° so it appears correctly when flipped */}
+        {/* Épaisseur — tranches métalliques entre les 2 faces */}
+        {edgeSlices.map((z, i) => (
+          <div
+            key={i}
+            className="absolute"
+            style={{
+              width: size,
+              height: size,
+              transform: `translateZ(${z}px)`,
+              backfaceVisibility: 'visible',
+            }}
+          >
+            <div
+              className="rounded-full mx-auto"
+              style={{
+                width: size * 0.92,
+                height: size * 0.92,
+                marginTop: size * 0.04,
+                background: 'linear-gradient(180deg, #d4a843 0%, #c9982e 30%, #b8892a 50%, #c9982e 70%, #d4a843 100%)',
+                boxShadow: 'inset 0 0 4px rgba(0,0,0,0.2)',
+              }}
+            />
+          </div>
+        ))}
+
+        {/* Pile (back) — z=-EDGE_DEPTH, rotated 180° */}
         <div
           className="absolute inset-0"
           style={{
             backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            transform: `translateZ(${-EDGE_DEPTH - 1}px) rotateY(180deg)`,
           }}
         >
           <Image
@@ -65,7 +104,7 @@ export default function SpinningCoin({
             alt={`${alt} — reverse`}
             width={size}
             height={size}
-            className="w-full h-full object-contain drop-shadow-lg"
+            className="w-full h-full object-contain"
             loading="lazy"
           />
           {/* Reflet glissant */}
