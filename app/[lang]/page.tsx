@@ -16,9 +16,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Clock,
-  TrendingUp,
-  Shield,
   TrendingDown,
   Receipt,
   Focus,
@@ -72,14 +69,6 @@ const HYBRID_STEPS = [
   { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif', href: '/academy' },
 ];
 
-const GALLERY_ITEMS = [
-  { key: 'packshot' as const, image: '/images/gallery/packshot-fondBlanc.avif', span: 'col-span-2 row-span-2' },
-  { key: 'threeSixty' as const, image: '/images/gallery/360-product.avif', span: '' },
-  { key: 'fashion' as const, image: '/images/gallery/fashion-model.avif', span: '' },
-  { key: 'flatlay' as const, image: '/images/gallery/flatlay-composition.avif', span: '' },
-  { key: 'jewelry' as const, image: '/images/gallery/jewelry-macro.avif', span: '' },
-  { key: 'furniture' as const, image: '/images/gallery/furniture-large.avif', span: 'col-span-2' },
-] as const;
 
 const TESTIMONIALS = [
   { key: 't1' as const },
@@ -87,25 +76,16 @@ const TESTIMONIALS = [
   { key: 't3' as const },
 ] as const;
 
-const WHY_AUTOMATE = [
-  { key: 'noSkills' as const, Icon: Clock },
-  { key: 'scalability' as const, Icon: TrendingUp },
-  { key: 'knowHow' as const, Icon: Shield },
-] as const;
 
 const INDUSTRIES = [
-  { key: 'chaussures', icon: '/images/secteurs/chaussures.svg', href: '/industrie/chaussures' },
-  { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: '/industrie/bijoux-joaillerie' },
-  { key: 'mobilier', icon: '/images/secteurs/meubles.svg', href: '/industrie/mobilier-decoration' },
-  { key: 'food', icon: '/images/secteurs/agroalimentaire.svg', href: '/industrie/food-alimentaire' },
   { key: 'cosmetiques', icon: '/images/secteurs/skincare-cosmetiques.svg', href: '/industrie/cosmetiques-beaute' },
   { key: 'mode', icon: '/images/secteurs/mode-accessoires.svg', href: '/industrie/mode-textile' },
+  { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: '/industrie/bijoux-joaillerie' },
+  { key: 'food', icon: '/images/secteurs/agroalimentaire.svg', href: '/industrie/food-alimentaire' },
+  { key: 'chaussures', icon: '/images/secteurs/chaussures.svg', href: '/industrie/chaussures' },
+  { key: 'mobilier', icon: '/images/secteurs/meubles.svg', href: '/industrie/mobilier-decoration' },
   { key: 'hightech', icon: '/images/secteurs/hightech-electromenager.svg', href: '/industrie/electronique-hightech' },
-  { key: 'pieces', icon: '/images/secteurs/pieces-techniques.svg', href: '/industrie/pieces-techniques-industrie' },
-  { key: 'vins', icon: '/images/secteurs/vins-spiritueux.svg', href: '/industrie' },
-  { key: 'optique', icon: '/images/secteurs/optique-lunetterie.svg', href: '/industrie' },
   { key: 'sport', icon: '/images/secteurs/sports.svg', href: '/industrie/sport-outdoor' },
-  { key: 'art', icon: '/images/secteurs/objets-art-antiquites.svg', href: '/industrie' },
 ] as const;
 
 /* ──────────────────────────── Metadata ──────────────────────────── */
@@ -318,7 +298,7 @@ export default async function HomePage({
       </section>
 
       {/* ━━━ BREATHER — Full-bleed visual break ━━━ */}
-      <ScrollReveal scale offset={40} className="relative w-full h-[280px] lg:h-[400px] bg-neutral-900 overflow-hidden">
+      <ScrollReveal scale offset={40} className="relative w-full h-[200px] lg:h-[280px] bg-neutral-900 overflow-hidden">
         <Image
           src="/images/hero/hero-studios-wide.avif"
           alt="Showroom PackshotCreator — gamme complète de studios photo automatisés Orbitvu"
@@ -357,23 +337,7 @@ export default async function HomePage({
                 </Button>
               </div>
 
-              {/* Why Automate stats — merged from former standalone section */}
-              <div className="space-y-3 mb-8">
-                {WHY_AUTOMATE.map((item) => (
-                  <div key={item.key} className="flex items-center gap-3 bg-white rounded-xl p-3 border border-neutral-100">
-                    <div className="w-10 h-10 rounded-lg bg-very-peri-100 flex items-center justify-center shrink-0">
-                      <item.Icon className="w-5 h-5 text-very-peri-600" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <span className="text-lg font-heading font-bold text-gradient-peri">{t(`whyAutomate.${item.key}.stat`)}</span>
-                      <span className="text-sm text-neutral-medium ml-1.5">{t(`whyAutomate.${item.key}.statLabel`)}</span>
-                      <p className="text-xs text-neutral-medium leading-snug">{t(`whyAutomate.${item.key}.title`)}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="hidden lg:block rounded-2xl overflow-hidden">
+              <div className="hidden lg:block rounded-2xl overflow-hidden mt-8">
                 <Image
                   src="/images/illustrations/home-hybrid-hero.avif"
                   alt="Approche PackshotCreator — capture packshot + création IA"
