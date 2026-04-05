@@ -12,6 +12,7 @@ import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
+import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
@@ -121,87 +122,47 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   return (
     <>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          1. HERO — Result-first, warm gradient, social proof logos
+          1. HERO — Full-bleed background image, same pattern as Home
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] via-[#f5efe6] to-[#ede4d8]">
-        {/* Subtle decorative blobs */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-200/20 blur-[120px]" />
-          <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-200/15 blur-[150px]" />
-        </div>
+      <HeroSection
+        layout="centered"
+        align="left"
+        backgroundImage="/images/illustrations/pillar-ia.avif"
+        badge={{
+          icon: <Sparkles className="h-4 w-4" />,
+          label: 'BlendAI.studio',
+          colorClass: 'bg-very-peri-500/20 text-very-peri-300',
+        }}
+        title={t('hero.title')}
+        subtitle={t.rich('hero.subtitle', { bold: boldOrangeLight })}
+        ctas={[
+          { label: isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included', href: 'https://blendai.studio' as '/', variant: 'primary' },
+          { label: isFr ? 'Voir les résultats' : 'See the results', href: '#resultats' as '/', variant: 'secondary' },
+        ]}
+      >
+        <p className="text-sm text-future-dusk-300 mt-2">
+          {isFr ? 'Sans carte bancaire' : 'No credit card required'}
+        </p>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative pt-16 pb-20 lg:pt-24 lg:pb-32">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Left: Copy */}
-            <div>
-              <FadeInView>
-                {/* Badge */}
-                <span className="inline-flex items-center gap-2 bg-very-peri-500/10 text-very-peri-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
-                  <Sparkles className="h-4 w-4" />
-                  BlendAI.studio
-                </span>
-
-                <TextReveal as="h1" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.08] mb-6">
-                  {t('hero.title')}
-                </TextReveal>
-
-                <p className="text-lg lg:text-xl text-future-dusk-500 leading-relaxed mb-8 max-w-lg">
-                  {t.rich('hero.subtitle', { bold: boldOrange })}
-                </p>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-3">
-                  <Button asChild size="lg" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl shadow-lg shadow-very-peri-500/25 px-8 h-14 text-base font-semibold">
-                    <a href="https://blendai.studio" target="_blank" rel="noopener noreferrer">
-                      {isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included'}
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="border-future-dusk-300 text-future-dusk-700 hover:bg-future-dusk-50 rounded-xl px-8 h-14 text-base font-semibold">
-                    <a href="#resultats">
-                      {isFr ? 'Voir les résultats' : 'See the results'} <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
-                <p className="text-sm text-future-dusk-400 ml-1">
-                  {isFr ? 'Sans carte bancaire' : 'No credit card required'}
-                </p>
-
-                {/* Social proof logos */}
-                <div className="mt-10 pt-8 border-t border-future-dusk-200/40">
-                  <p className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.15em] mb-5">
-                    {isFr ? '300+ marques nous font confiance' : '300+ brands trust us'}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-6 lg:gap-8">
-                    {CLIENT_LOGOS.map((logo) => (
-                      <Image
-                        key={logo.name}
-                        src={logo.src}
-                        alt={logo.name}
-                        width={80}
-                        height={32}
-                        className="h-6 lg:h-7 w-auto opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </FadeInView>
-            </div>
-
-            {/* Right: Hero result photo placeholder */}
-            <ScrollReveal offset={40}>
-              <SpringCard hoverY={-6}>
-                <div className="w-full aspect-[4/3] bg-white/60 backdrop-blur-sm rounded-2xl border border-neutral-200/60 shadow-2xl shadow-future-dusk-900/10 flex items-center justify-center overflow-hidden">
-                  <div className="text-center">
-                    <ImageIcon className="w-12 h-12 text-neutral-300 mx-auto mb-3" strokeWidth={1} />
-                    <p className="text-sm text-neutral-400 font-medium">Photo résultat BlendAI — lifestyle hero</p>
-                    <p className="text-xs text-neutral-300 mt-1">640x480</p>
-                  </div>
-                </div>
-              </SpringCard>
-            </ScrollReveal>
+        {/* Social proof logos */}
+        <div className="mt-10 pt-8 border-t border-white/15">
+          <p className="text-xs font-semibold text-future-dusk-300 uppercase tracking-[0.15em] mb-5">
+            {isFr ? '300+ marques nous font confiance' : '300+ brands trust us'}
+          </p>
+          <div className="flex flex-wrap items-center gap-6 lg:gap-8">
+            {CLIENT_LOGOS.map((logo) => (
+              <Image
+                key={logo.name}
+                src={logo.src}
+                alt={logo.name}
+                width={80}
+                height={32}
+                className="h-6 lg:h-7 w-auto opacity-50 invert grayscale hover:opacity-80 transition-all duration-300"
+              />
+            ))}
           </div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. GALLERY MASONRY — 12 BlendAI result placeholders
@@ -677,7 +638,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
-              {isFr ? 'Vos produits méritent mieux qu\u2019un fond blanc' : 'Your products deserve better than a white background'}
+              {isFr ? 'Un packshot, des dizaines de déclinaisons' : 'One packshot, dozens of variations'}
             </TextReveal>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-8">
