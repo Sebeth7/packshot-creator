@@ -29,9 +29,18 @@ const PLATFORM_FEATURES = [
   { key: 'feature5' as const, icon: <Link2 className="h-5 w-5" />, num: '05' },
 ];
 
-const GALLERY_SECTORS = [
-  'Cosmétiques', 'Mode', 'Bijoux', 'Décoration', 'Food', 'Lunettes',
-  'Mobilier', 'Accessoires', 'Vin', 'Sport', 'Luxe', 'Textile',
+const GALLERY_ITEMS = [
+  { src: '/images/gallery-ia/gallery-ia-01.avif', alt: 'BlendAI — Cosmétiques lifestyle' },
+  { src: '/images/gallery-ia/gallery-ia-02.avif', alt: 'BlendAI — Mode accessoires' },
+  { src: '/images/gallery-ia/gallery-ia-03.avif', alt: 'BlendAI — Bijoux mise en scène' },
+  { src: '/images/gallery-ia/gallery-ia-04.avif', alt: 'BlendAI — Décoration intérieure' },
+  { src: '/images/gallery-ia/gallery-ia-05.avif', alt: 'BlendAI — Lifestyle produit' },
+  { src: '/images/gallery-ia/gallery-ia-06.avif', alt: 'BlendAI — Mise en ambiance' },
+  { src: '/images/gallery-ia/gallery-ia-07.avif', alt: 'BlendAI — Scène créative' },
+  { src: '/images/gallery-ia/gallery-ia-08.avif', alt: 'BlendAI — Spiritueux lifestyle' },
+  { src: '/images/gallery-ia/gallery-ia-09.avif', alt: 'BlendAI — Visuel e-commerce' },
+  { src: '/images/gallery-ia/gallery-ia-10.avif', alt: 'BlendAI — Photo mannequin IA' },
+  { src: '/images/gallery-ia/gallery-ia-11.avif', alt: 'BlendAI — Déclinaison lifestyle' },
 ];
 
 const CLIENT_LOGOS = [
@@ -122,12 +131,21 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         }}
         title={t('hero.title')}
         subtitle={t.rich('hero.subtitle', { bold: boldOrangeLight })}
-        ctas={[
-          { label: isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included', href: 'https://blendai.studio' as '/', variant: 'primary' },
-          { label: isFr ? 'Voir les résultats' : 'See the results', href: '#resultats' as '/', variant: 'secondary' },
-        ]}
       >
-        <p className="text-sm text-future-dusk-300 mt-2">
+        {/* CTAs */}
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-2">
+          <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-14 text-base font-semibold rounded-xl shadow-lg shadow-very-peri-500/25">
+            <a href="https://blendai.studio" target="_blank" rel="noopener noreferrer">
+              {isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included'}
+            </a>
+          </Button>
+          <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-14 text-base rounded-xl">
+            <a href="#resultats">
+              {isFr ? 'Voir les résultats' : 'See the results'} <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        </div>
+        <p className="text-sm text-future-dusk-300">
           {isFr ? 'Sans carte bancaire' : 'No credit card required'}
         </p>
 
@@ -171,17 +189,18 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           </ScrollReveal>
 
           <StaggerContainer stagger={0.06} className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {GALLERY_SECTORS.map((sector, idx) => (
-              <StaggerItem key={sector}>
-                <div
-                  className={`break-inside-avoid bg-neutral-100 rounded-2xl border border-neutral-200/60 flex flex-col items-center justify-center ${
-                    idx % 2 === 0 ? 'h-[280px]' : 'h-[340px]'
-                  }`}
-                >
-                  <ImageIcon className="w-8 h-8 text-neutral-300 mb-3" strokeWidth={1} />
-                  <p className="text-sm text-neutral-400 font-medium text-center px-4">
-                    {isFr ? `Résultat BlendAI — ${sector}` : `BlendAI Result — ${sector}`}
-                  </p>
+            {GALLERY_ITEMS.map((item, idx) => (
+              <StaggerItem key={item.src}>
+                <div className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={400}
+                    height={idx % 2 === 0 ? 400 : 500}
+                    className="w-full h-auto object-cover"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    loading="lazy"
+                  />
                 </div>
               </StaggerItem>
             ))}
