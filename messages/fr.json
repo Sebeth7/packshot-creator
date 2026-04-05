@@ -542,6 +542,10 @@
         "title": "Développement sur mesure",
         "description": "Solution propriétaire = on développe les fonctions dont <bold>vous avez besoin</bold>. Workflows post-prod, traitements par lots, retouche auto, intégrations API."
       },
+      "feature5": {
+        "title": "Intégration native Orbitvu",
+        "description": "Workflow <bold>packshot → lifestyle</bold> intégré. Export haute qualité, détails produit préservés, compatible avec <bold>tous les systèmes Orbitvu</bold>."
+      },
       "pricing": "À partir de 75 €/mois — 3 crédits offerts pour tester",
       "cta": "Découvrir BlendAI.studio"
     },

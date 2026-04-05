@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import {
   Sparkles, Wand2, ImageIcon, Paintbrush, Layers,
-  ArrowRight, Check, X, ExternalLink,
+  ArrowRight, Check, X, ExternalLink, Link2,
   Code2, Palette, UserCheck, Zap, Camera, GraduationCap, Layout,
   ChevronDown, User,
 } from 'lucide-react';
@@ -26,6 +26,7 @@ const PLATFORM_FEATURES = [
   { key: 'feature2' as const, icon: <Palette className="h-5 w-5" />, num: '02' },
   { key: 'feature3' as const, icon: <UserCheck className="h-5 w-5" />, num: '03' },
   { key: 'feature4' as const, icon: <Code2 className="h-5 w-5" />, num: '04' },
+  { key: 'feature5' as const, icon: <Link2 className="h-5 w-5" />, num: '05' },
 ];
 
 const GALLERY_SECTORS = [
@@ -267,19 +268,60 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          5. COMPARATIF — Bento asymmetric (whyBase)
+          5. COMPARATIF — Philosophie intro + Bento asymmetric
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-white" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          {/* Philosophie intro */}
+          <ScrollReveal>
+            <div className="max-w-3xl mb-10">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Notre approche' : 'Our approach'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                {t('manifeste.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 leading-relaxed">
+                {t.rich('manifeste.subtitle', { bold: boldOrange })}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* 3 principes en ligne */}
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-10 mb-20">
+            {([
+              { key: 'principle1' as const, icon: <Camera className="h-5 w-5" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
+              { key: 'principle2' as const, icon: <Sparkles className="h-5 w-5" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700' },
+              { key: 'principle3' as const, icon: <Zap className="h-5 w-5" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
+            ]).map((principle) => (
+              <FadeInView key={principle.key}>
+                <div className="flex items-start gap-4">
+                  <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${principle.iconBg} flex-shrink-0`}>
+                    <span className={principle.iconColor}>{principle.icon}</span>
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-1.5">
+                      {t(`manifeste.${principle.key}.title`)}
+                    </h3>
+                    <p className="text-sm text-future-dusk-500 leading-relaxed">
+                      {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
+                    </p>
+                  </div>
+                </div>
+              </FadeInView>
+            ))}
+          </div>
+
+          {/* Comparatif heading */}
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
                 {isFr ? 'Comparatif' : 'Comparison'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+              <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
                 {t('whyBase.heading')}
               </TextReveal>
             </div>
@@ -431,95 +473,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          8. PHILOSOPHIE — Condensed, 3 inline bullets
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-24 bg-white border-t border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                {t('manifeste.heading')}
-              </TextReveal>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-            {([
-              { key: 'principle1' as const, icon: <Camera className="h-5 w-5" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
-              { key: 'principle2' as const, icon: <Sparkles className="h-5 w-5" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700' },
-              { key: 'principle3' as const, icon: <Zap className="h-5 w-5" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
-            ]).map((principle) => (
-              <FadeInView key={principle.key}>
-                <div className="flex items-start gap-4">
-                  <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${principle.iconBg} flex-shrink-0`}>
-                    <span className={principle.iconColor}>{principle.icon}</span>
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-1.5">
-                      {t(`manifeste.${principle.key}.title`)}
-                    </h3>
-                    <p className="text-sm text-future-dusk-500 leading-relaxed">
-                      {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
-                    </p>
-                  </div>
-                </div>
-              </FadeInView>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          9. COMPATIBLE SYSTEMES ORBITVU — Split gradient
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} aria-hidden="true" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
-            <ScrollReveal>
-              <span className="text-xs font-semibold text-amber-300 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Intégration' : 'Integration'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold mb-6 leading-[1.1]">
-                {t('compatible.heading')}
-              </TextReveal>
-              <p className="text-lg text-very-peri-100 mb-8 leading-relaxed">
-                {t.rich('compatible.subtitle', { bold: boldOrangeLight })}
-              </p>
-              <ul className="space-y-4 mb-10">
-                {(['feature1', 'feature2', 'feature3'] as const).map((key) => (
-                  <li key={key} className="flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-white/10">
-                      <Check className="h-4 w-4 text-amber-300" />
-                    </span>
-                    <span className="text-very-peri-50 font-medium">{t(`compatible.${key}`)}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg shadow-very-peri-900/20 px-8 h-14 text-base font-semibold">
-                <Link href="/studios-photo-automatises">
-                  {t('compatible.cta')} <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </ScrollReveal>
-            <ScrollReveal offset={50}>
-              <SpringCard hoverY={-6}>
-                <Image
-                  src="/images/illustrations/ia-feature-integration.avif"
-                  alt={isFr ? 'Intégration système Orbitvu et IA' : 'Orbitvu system and AI integration'}
-                  width={560}
-                  height={400}
-                  className="w-full h-auto rounded-2xl shadow-2xl shadow-very-peri-900/30"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </SpringCard>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          10. FAQ — Two-column: heading left, accordion right
+          8. FAQ — Two-column: heading left, accordion right
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

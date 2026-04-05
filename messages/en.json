@@ -539,6 +539,10 @@
         "title": "Custom development",
         "description": "Proprietary solution = we develop the features <bold>you need</bold>. Post-prod workflows, batch processing, auto retouching, API integrations."
       },
+      "feature5": {
+        "title": "Native Orbitvu integration",
+        "description": "Integrated <bold>packshot → lifestyle</bold> workflow. High-quality export, product details preserved, compatible with <bold>all Orbitvu systems</bold>."
+      },
       "pricing": "Starting from €75/month — 3 free credits to try",
       "cta": "Discover BlendAI.studio"
     },
