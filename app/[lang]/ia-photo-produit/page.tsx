@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import {
   Sparkles, Wand2, ImageIcon, Paintbrush, Layers,
-  ArrowRight, Check, X, ExternalLink, Star,
+  ArrowRight, Check, X, ExternalLink,
   Code2, Palette, UserCheck, Zap, Camera, GraduationCap, Layout,
   ChevronDown, User,
 } from 'lucide-react';
@@ -12,30 +12,13 @@ import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
-import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import FeaturesTabs from './_components/FeaturesTabs';
+import TestimonialCarousel from './_components/TestimonialCarousel';
 
 /* ──────── Static data ──────── */
-
-const HERO_FEATURES = [
-  { key: 'lifestyle' as const, icon: <ImageIcon className="h-6 w-6" />, color: 'bg-pink-100 text-pink-700', hoverBorder: 'hover:border-pink-300' },
-  { key: 'mannequin' as const, icon: <User className="h-6 w-6" />, color: 'bg-violet-100 text-violet-700', hoverBorder: 'hover:border-violet-300' },
-];
-
-const SECONDARY_FEATURES = [
-  { key: 'background' as const, icon: <Wand2 className="h-6 w-6" />, color: 'bg-blue-100 text-blue-700', hoverBorder: 'hover:border-blue-300' },
-  { key: 'retouche' as const, icon: <Paintbrush className="h-6 w-6" />, color: 'bg-amber-100 text-amber-700', hoverBorder: 'hover:border-amber-300' },
-  { key: 'batch' as const, icon: <Layers className="h-6 w-6" />, color: 'bg-emerald-100 text-emerald-700', hoverBorder: 'hover:border-emerald-300' },
-];
-
-const PLATFORM_FEATURES = [
-  { key: 'feature1' as const, icon: <Zap className="h-5 w-5" />, num: '01' },
-  { key: 'feature2' as const, icon: <Palette className="h-5 w-5" />, num: '02' },
-  { key: 'feature3' as const, icon: <UserCheck className="h-5 w-5" />, num: '03' },
-  { key: 'feature4' as const, icon: <Code2 className="h-5 w-5" />, num: '04' },
-];
 
 const BEFORE_AFTER_ITEMS = [
   { sector: 'cosmetiques', before: '/images/before-after/ia-before-after-cosmetiques-1-before.avif', after: '/images/before-after/ia-before-after-cosmetiques-1-after.avif' },
@@ -50,6 +33,27 @@ const SECTOR_LABELS: Record<string, { fr: string; en: string }> = {
   bijoux: { fr: 'Bijoux — Mise en valeur', en: 'Jewelry — Showcase' },
   decoration: { fr: 'Décoration — Ambiance intérieure', en: 'Home Decor — Interior setting' },
 };
+
+const PLATFORM_FEATURES = [
+  { key: 'feature1' as const, icon: <Zap className="h-5 w-5" />, num: '01' },
+  { key: 'feature2' as const, icon: <Palette className="h-5 w-5" />, num: '02' },
+  { key: 'feature3' as const, icon: <UserCheck className="h-5 w-5" />, num: '03' },
+  { key: 'feature4' as const, icon: <Code2 className="h-5 w-5" />, num: '04' },
+];
+
+const GALLERY_SECTORS = [
+  'Cosmétiques', 'Mode', 'Bijoux', 'Décoration', 'Food', 'Lunettes',
+  'Mobilier', 'Accessoires', 'Vin', 'Sport', 'Luxe', 'Textile',
+];
+
+const CLIENT_LOGOS = [
+  { name: 'Chanel', src: '/logos/clients/chanel.svg' },
+  { name: 'Sandro', src: '/logos/clients/sandro.svg' },
+  { name: 'Amazon', src: '/logos/clients/amazon.svg' },
+  { name: 'Bosch', src: '/logos/clients/bosch.svg' },
+  { name: 'Valentino', src: '/logos/clients/valentino.svg' },
+  { name: 'Seiko', src: '/logos/clients/seiko.svg' },
+];
 
 /* ──────── Metadata ──────── */
 
@@ -97,113 +101,282 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
     answer: t(`faq.q${i}.answer`),
   }));
 
+  /* Features data for FeaturesTabs */
+  const featuresData = [
+    { id: 'lifestyle', label: t('features.lifestyle.name'), description: t('features.lifestyle.description'), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700' },
+    { id: 'mannequin', label: t('features.mannequin.name'), description: t('features.mannequin.description'), icon: <User className="h-5 w-5" />, color: 'bg-violet-100 text-violet-700', activeColor: 'bg-violet-100 text-violet-700' },
+    { id: 'background', label: t('features.background.name'), description: t('features.background.description'), icon: <Wand2 className="h-5 w-5" />, color: 'bg-blue-100 text-blue-700', activeColor: 'bg-blue-100 text-blue-700' },
+    { id: 'retouche', label: t('features.retouche.name'), description: t('features.retouche.description'), icon: <Paintbrush className="h-5 w-5" />, color: 'bg-amber-100 text-amber-700', activeColor: 'bg-amber-100 text-amber-700' },
+    { id: 'batch', label: t('features.batch.name'), description: t('features.batch.description'), icon: <Layers className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', activeColor: 'bg-emerald-100 text-emerald-700' },
+  ];
+
+  /* Testimonials data for TestimonialCarousel */
+  const testimonials = [1, 2, 3, 4, 5, 6].map((i) => ({
+    quote: t(`testimonials.t${i}.quote`),
+    name: t(`testimonials.t${i}.name`),
+    title: t(`testimonials.t${i}.title`),
+    company: t(`testimonials.t${i}.company`),
+  }));
+
   return (
     <>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          1. HERO — Split layout, gradient + media
-          Design: Big headline left, product image right. Immersive gradient.
+          1. HERO — Result-first, warm gradient, social proof logos
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <HeroSection
-        layout="split"
-        gradient="bg-gradient-to-br from-future-dusk-900 via-[#2d1b4e] to-very-peri-800"
-        badge={{
-          icon: <Sparkles className="h-4 w-4" />,
-          label: 'BlendAI.studio',
-          colorClass: 'bg-very-peri-500/20 text-very-peri-300',
-        }}
-        title={t('hero.title')}
-        subtitle={t.rich('hero.subtitle', { bold: boldOrangeLight })}
-        ctas={[
-          { label: t('hero.ctaPrimary'), href: '/contact', variant: 'primary' },
-          { label: t('hero.ctaSecondary'), href: '#resultats', variant: 'secondary' },
-        ]}
-        media={
-          <Image
-            src="/images/illustrations/pillar-ia.avif"
-            alt="BlendAI - IA Photo Produit"
-            width={640}
-            height={480}
-            className="w-full h-auto rounded-2xl shadow-2xl"
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-        }
-        backgroundVideo={
-          <div className="absolute inset-0 opacity-10 z-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-400 blur-[120px]" />
-            <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-400 blur-[150px]" />
-          </div>
-        }
-      />
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] via-[#f5efe6] to-[#ede4d8]">
+        {/* Subtle decorative blobs */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-very-peri-200/20 blur-[120px]" />
+          <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-pink-200/15 blur-[150px]" />
+        </div>
 
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          2. MANIFESTE — Split 4/8, sticky heading, numbered cards
-          Design: Asymmetric. Heading stays left, principles scroll right
-          with ghost numbers and horizontal card layout.
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-16 items-start">
-            {/* Left column: sticky heading */}
-            <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Notre philosophie' : 'Our philosophy'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                {t('manifeste.heading')}
-              </TextReveal>
-              <p className="text-base lg:text-lg text-future-dusk-500 leading-relaxed mb-8">
-                {t.rich('manifeste.subtitle', { bold: boldOrange })}
-              </p>
-              {/* Image placeholder */}
-              <div className="w-full h-[280px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
-                <div className="text-center">
-                  <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                  <p className="text-xs text-neutral-300">Packshot studio Orbitvu — ~500x280</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative pt-16 pb-20 lg:pt-24 lg:pb-32">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left: Copy */}
+            <div>
+              <FadeInView>
+                {/* Badge */}
+                <span className="inline-flex items-center gap-2 bg-very-peri-500/10 text-very-peri-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
+                  <Sparkles className="h-4 w-4" />
+                  BlendAI.studio
+                </span>
+
+                <TextReveal as="h1" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.08] mb-6">
+                  {t('hero.title')}
+                </TextReveal>
+
+                <p className="text-lg lg:text-xl text-future-dusk-500 leading-relaxed mb-8 max-w-lg">
+                  {t.rich('hero.subtitle', { bold: boldOrange })}
+                </p>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-3">
+                  <Button asChild size="lg" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl shadow-lg shadow-very-peri-500/25 px-8 h-14 text-base font-semibold">
+                    <a href="https://blendai.studio" target="_blank" rel="noopener noreferrer">
+                      {isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included'}
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="border-future-dusk-300 text-future-dusk-700 hover:bg-future-dusk-50 rounded-xl px-8 h-14 text-base font-semibold">
+                    <a href="#resultats">
+                      {isFr ? 'Voir les résultats' : 'See the results'} <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
                 </div>
-              </div>
-            </ScrollReveal>
+                <p className="text-sm text-future-dusk-400 ml-1">
+                  {isFr ? 'Sans carte bancaire' : 'No credit card required'}
+                </p>
 
-            {/* Right column: stacked principle cards */}
-            <div className="lg:col-span-8 space-y-4 lg:space-y-8">
-              {([
-                { key: 'principle1' as const, icon: <Camera className="h-6 w-6" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu', num: '01' },
-                { key: 'principle2' as const, icon: <Sparkles className="h-6 w-6" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700', num: '02' },
-                { key: 'principle3' as const, icon: <Zap className="h-6 w-6" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success', num: '03' },
-              ]).map((principle) => (
-                <ScrollReveal key={principle.key} offset={40}>
-                  <SpringCard>
-                    <div className="group bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:border-very-peri-200 transition-colors duration-300 p-4 sm:p-6 lg:p-10">
-                      <div className="flex items-center gap-4 mb-5">
-                        <div className={`w-12 h-12 rounded-xl ${principle.iconBg} flex items-center justify-center`}>
-                          <span className={principle.iconColor}>{principle.icon}</span>
-                        </div>
-                        <span className="text-2xl sm:text-3xl lg:text-6xl font-heading font-bold text-neutral-100 select-none leading-none">
-                          {principle.num}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
-                        {t(`manifeste.${principle.key}.title`)}
-                      </h3>
-                      <p className="text-future-dusk-500 leading-relaxed">
-                        {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
-                      </p>
-                    </div>
-                  </SpringCard>
-                </ScrollReveal>
-              ))}
+                {/* Social proof logos */}
+                <div className="mt-10 pt-8 border-t border-future-dusk-200/40">
+                  <p className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.15em] mb-5">
+                    {isFr ? '300+ marques nous font confiance' : '300+ brands trust us'}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-6 lg:gap-8">
+                    {CLIENT_LOGOS.map((logo) => (
+                      <Image
+                        key={logo.name}
+                        src={logo.src}
+                        alt={logo.name}
+                        width={80}
+                        height={32}
+                        className="h-6 lg:h-7 w-auto opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </FadeInView>
             </div>
+
+            {/* Right: Hero result photo placeholder */}
+            <ScrollReveal offset={40}>
+              <SpringCard hoverY={-6}>
+                <div className="w-full aspect-[4/3] bg-white/60 backdrop-blur-sm rounded-2xl border border-neutral-200/60 shadow-2xl shadow-future-dusk-900/10 flex items-center justify-center overflow-hidden">
+                  <div className="text-center">
+                    <ImageIcon className="w-12 h-12 text-neutral-300 mx-auto mb-3" strokeWidth={1} />
+                    <p className="text-sm text-neutral-400 font-medium">Photo résultat BlendAI — lifestyle hero</p>
+                    <p className="text-xs text-neutral-300 mt-1">640x480</p>
+                  </div>
+                </div>
+              </SpringCard>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          3. POURQUOI LA QUALITE DE LA BASE COMPTE — Bento asymmetric
-          Design: Recommended card is the hero (larger, elevated), pure IA
-          card is secondary (smaller). Creates visual hierarchy.
+          2. GALLERY MASONRY — 12 BlendAI result placeholders
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Galerie' : 'Gallery'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('gallery.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t.rich('gallery.subtitle', { bold: boldOrange })}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <StaggerContainer stagger={0.06} className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            {GALLERY_SECTORS.map((sector, idx) => (
+              <StaggerItem key={sector}>
+                <div
+                  className={`break-inside-avoid bg-neutral-100 rounded-2xl border border-neutral-200/60 flex flex-col items-center justify-center ${
+                    idx % 2 === 0 ? 'h-[280px]' : 'h-[340px]'
+                  }`}
+                >
+                  <ImageIcon className="w-8 h-8 text-neutral-300 mb-3" strokeWidth={1} />
+                  <p className="text-sm text-neutral-400 font-medium text-center px-4">
+                    {isFr ? `Résultat BlendAI — ${sector}` : `BlendAI Result — ${sector}`}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. STATS + SOCIAL PROOF — Dark bg, AnimatedCounters + Testimonials
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 lg:py-32 bg-future-dusk-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          {/* Stats */}
+          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-6">
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  -<AnimatedCounter end={66} suffix="%" duration={2} />
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('stats.costLabel')}
+                </p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  <AnimatedCounter end={98} suffix="%" duration={2.5} />
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('stats.conversionLabel')}
+                </p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="text-center px-8">
+                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
+                  +<AnimatedCounter end={38} suffix="%" duration={2} />
+                </p>
+                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
+                  {t('stats.ctrLabel')}
+                </p>
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
+
+          <p className="text-center text-xs text-future-dusk-400 mb-16">
+            {t('stats.source')}
+          </p>
+
+          {/* Testimonial carousel */}
+          <FadeInView delay={0.2}>
+            <TestimonialCarousel testimonials={testimonials} />
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. FEATURES TABS — Tabbed video demos
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="max-w-3xl mb-16">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Fonctionnalités' : 'Features'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                {t('features.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500">
+                {t.rich('features.subtitle', { bold: boldOrange })}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <FadeInView delay={0.15}>
+            <FeaturesTabs features={featuresData} />
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. BEFORE/AFTER RESULTATS — Staggered reveal, sector badges
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="resultats" className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-very-peri-200/10 rounded-full blur-[150px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Résultats concrets' : 'Real results'}
+              </span>
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('casUsage.heading')}
+              </TextReveal>
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t.rich('casUsage.subtitle', { bold: boldOrange })}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
+            {BEFORE_AFTER_ITEMS.map((item, i) => (
+              <ScrollReveal key={item.sector} offset={20 + i * 15}>
+                <SpringCard hoverY={-4}>
+                  <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
+                    <BeforeAfterSlider
+                      before={{
+                        src: item.before,
+                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Avant`,
+                        label: isFr ? 'Packshot pro' : 'Pro packshot',
+                      }}
+                      after={{
+                        src: item.after,
+                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Après`,
+                        label: isFr ? 'Après BlendAI' : 'After BlendAI',
+                      }}
+                      width={800}
+                      height={600}
+                    />
+                    <div className="px-6 py-4 border-t border-neutral-50">
+                      <p className="text-sm font-semibold text-future-dusk-700">
+                        {SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector}
+                      </p>
+                    </div>
+                  </div>
+                </SpringCard>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. COMPARATIF — Bento asymmetric (whyBase)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-neutral-50" />
+        <div className="absolute inset-0 bg-white" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -301,9 +474,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          4. BLENDAI.STUDIO PLATEFORME — Dark bg, floating card
-          Design: Dark surround with gradient. Platform info on white
-          floating card. Features as timeline steps inside.
+          7. PLATEFORME BLENDAI — Dark bg, floating card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-[#2d1b4e]/40 to-future-dusk-900" />
@@ -366,215 +537,46 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          5. FONCTIONNALITES — Bento grid, varied card sizes
-          Design: First card spans 2 rows (hero card), others are smaller.
-          Creates visual hierarchy instead of 4 identical boxes.
+          8. PHILOSOPHIE — Condensed, 3 inline bullets
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <section className="py-16 lg:py-24 bg-white border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Fonctionnalités' : 'Features'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {t('features.heading')}
+            <div className="text-center mb-12">
+              <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                {t('manifeste.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500">
-                {t.rich('features.subtitle', { bold: boldOrange })}
-              </p>
             </div>
           </ScrollReveal>
 
-          {/* 2 hero cards side by side — Lifestyle + Mannequin */}
-          <div className="grid lg:grid-cols-2 gap-6 mb-6">
-            {HERO_FEATURES.map((feat, idx) => (
-              <ScrollReveal key={feat.key} offset={20 + idx * 15}>
-                <SpringCard className="h-full">
-                  <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 lg:p-10 transition-all duration-300 h-full flex flex-col shadow-sm hover:shadow-xl group`}>
-                    {/* Image placeholder */}
-                    <div className="w-full h-[200px] bg-white flex items-center justify-center border border-neutral-100 rounded-xl mb-6">
-                      <div className="text-center">
-                        <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                        <p className="text-xs text-neutral-300">
-                          {feat.key === 'lifestyle' ? 'Lifestyle scene — ~600x200' : 'On-model photo — ~600x200'}
-                        </p>
-                      </div>
-                    </div>
-                    <span className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${feat.color} mb-6`}>
-                      {feat.icon}
-                    </span>
-                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">
-                      {t(`features.${feat.key}.name`)}
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {([
+              { key: 'principle1' as const, icon: <Camera className="h-5 w-5" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
+              { key: 'principle2' as const, icon: <Sparkles className="h-5 w-5" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700' },
+              { key: 'principle3' as const, icon: <Zap className="h-5 w-5" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
+            ]).map((principle) => (
+              <FadeInView key={principle.key}>
+                <div className="flex items-start gap-4">
+                  <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${principle.iconBg} flex-shrink-0`}>
+                    <span className={principle.iconColor}>{principle.icon}</span>
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-1.5">
+                      {t(`manifeste.${principle.key}.title`)}
                     </h3>
-                    <p className="text-future-dusk-500 leading-relaxed text-lg flex-1">
-                      {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
+                    <p className="text-sm text-future-dusk-500 leading-relaxed">
+                      {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
                     </p>
                   </div>
-                </SpringCard>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* 3 smaller cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {SECONDARY_FEATURES.map((feat) => (
-              <ScrollReveal key={feat.key} offset={20}>
-                <SpringCard hoverY={-3} hoverScale={1.005}>
-                  <div className={`bg-neutral-50 rounded-2xl border border-neutral-100 ${feat.hoverBorder} p-6 transition-all duration-300 shadow-sm hover:shadow-lg group h-full`}>
-                    <div className="flex items-start gap-5">
-                      <span className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.color} flex-shrink-0 mt-1`}>
-                        {feat.icon}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
-                          {t(`features.${feat.key}.name`)}
-                        </h3>
-                        <p className="text-sm text-future-dusk-500 leading-relaxed">
-                          {t.rich(`features.${feat.key}.description`, { bold: boldOrange })}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </SpringCard>
-              </ScrollReveal>
+                </div>
+              </FadeInView>
             ))}
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          6. BEFORE/AFTER RESULTATS — Staggered reveal, sector badges
-          Design: Each slider reveals at different offsets. Floating
-          sector badges. Subtle parallax on the grid.
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="resultats" className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-very-peri-200/10 rounded-full blur-[150px]" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Résultats concrets' : 'Real results'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
-                {t('casUsage.heading')}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-                {t.rich('casUsage.subtitle', { bold: boldOrange })}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            {BEFORE_AFTER_ITEMS.map((item, i) => (
-              <ScrollReveal key={item.sector} offset={20 + i * 15}>
-                <SpringCard hoverY={-4}>
-                  <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
-                    <BeforeAfterSlider
-                      before={{
-                        src: item.before,
-                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Avant`,
-                        label: isFr ? 'Packshot pro' : 'Pro packshot',
-                      }}
-                      after={{
-                        src: item.after,
-                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Après`,
-                        label: isFr ? 'Après BlendAI' : 'After BlendAI',
-                      }}
-                      width={800}
-                      height={600}
-                    />
-                    <div className="px-6 py-4 border-t border-neutral-50">
-                      <p className="text-sm font-semibold text-future-dusk-700">
-                        {SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector}
-                      </p>
-                    </div>
-                  </div>
-                </SpringCard>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          7. PREUVE SOCIALE — Horizontal ribbon, oversized stats
-          Design: Dark bg, giant numbers dominate. Quote below.
-          Same energy as Studios S2.
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          {/* Label + heading */}
-          <ScrollReveal>
-            <div className="text-center mb-14">
-              <span className="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Résultats clients' : 'Client results'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white">
-                {t('socialProof.heading')}
-              </TextReveal>
-            </div>
-          </ScrollReveal>
-
-          {/* Giant stats with AnimatedCounter */}
-          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-14">
-            <StaggerItem>
-              <div className="text-center px-8">
-                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                  <AnimatedCounter end={100} suffix="+" duration={2} />
-                </p>
-                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                  {t('socialProof.stat1Label')}
-                </p>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="text-center px-8">
-                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                  <AnimatedCounter end={5000} suffix="+" duration={2.5} />
-                </p>
-                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                  {t('socialProof.stat2Label')}
-                </p>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="text-center px-8">
-                <p className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                  4.9<span className="text-3xl md:text-4xl lg:text-5xl">/5</span>
-                </p>
-                <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                  {t('socialProof.stat3Label')}
-                </p>
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
-
-          {/* Quote */}
-          <FadeInView delay={0.3}>
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="flex justify-center gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-lg text-future-dusk-200 italic leading-relaxed mb-4">
-                &ldquo;{t('socialProof.quote')}&rdquo;
-              </p>
-              <p className="text-sm font-semibold text-white">{t('socialProof.quoteName')}</p>
-              <p className="text-xs text-future-dusk-400">{t('socialProof.quoteCompany')}</p>
-            </div>
-          </FadeInView>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          8. COMPATIBLE SYSTEMES ORBITVU — Split gradient, enhanced
-          Design: Full gradient bg, split image + content. TextReveal title.
+          9. COMPATIBLE SYSTEMES ORBITVU — Split gradient
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-gradient-to-r from-very-peri-600 to-very-peri-700 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} aria-hidden="true" />
@@ -623,9 +625,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          9. FAQ — Two-column: heading left, accordion right
-          Design: Split layout, heading stays while user scrolls FAQs.
-          Same pattern as Studios S8.
+          10. FAQ — Two-column: heading left, accordion right
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -670,16 +670,14 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          10. FINAL CTA — Asymmetric, test card is dominant
-          Design: Test BlendAI card takes 3/5, demo card 2/5.
-          Visual hierarchy. Dot pattern bg.
+          11. CTA FINAL — Emotional title, asymmetric layout
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
-              {isFr ? 'Prêt à transformer vos visuels ?' : 'Ready to transform your visuals?'}
+              {isFr ? 'Vos produits méritent mieux qu\u2019un fond blanc' : 'Your products deserve better than a white background'}
             </TextReveal>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-8">
@@ -712,8 +710,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          11. CROSS-LINKS — Minimal, editorial
-          Design: Vertical dividers, no cards. Clean text hierarchy.
+          12. CROSS-LINKS — Minimal, editorial
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 bg-white border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

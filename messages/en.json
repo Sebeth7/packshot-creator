@@ -431,6 +431,54 @@
       "ctaPrimary": "Try BlendAI for free",
       "ctaSecondary": "See results"
     },
+    "gallery": {
+      "heading": "Variations created in 2 minutes",
+      "subtitle": "One professional packshot in, <bold>dozens of lifestyle visuals</bold> out."
+    },
+    "stats": {
+      "costLabel": "visual production costs",
+      "conversionLabel": "conversion rate",
+      "ctrLabel": "ad click-through rate",
+      "source": "Performance measured across our active clients"
+    },
+    "testimonials": {
+      "t1": {
+        "quote": "BlendAI helped us cut our shooting costs by 60% while quadrupling the number of visuals produced.",
+        "name": "Sophie Laurent",
+        "title": "E-commerce Director",
+        "company": "Parisian luxury house"
+      },
+      "t2": {
+        "quote": "Simple, fast and super effective. A real time saver for our entire marketing team every day.",
+        "name": "Marketing Team",
+        "title": "Marketing Team",
+        "company": "Grosfilley — Premium accessories"
+      },
+      "t3": {
+        "quote": "The accuracy of the renderings is impressive. Our clients can't tell the difference from a real lifestyle shoot.",
+        "name": "Marc Dubois",
+        "title": "Product Manager",
+        "company": "Swiss watchmaking brand"
+      },
+      "t4": {
+        "quote": "We integrated BlendAI into our e-commerce workflow. 500 product pages updated in one week instead of two months.",
+        "name": "Camille Renard",
+        "title": "Content Manager",
+        "company": "Fashion marketplace"
+      },
+      "t5": {
+        "quote": "Batch processing is a game-changer. We apply a style to an entire collection in just minutes.",
+        "name": "Jean-Pierre Morel",
+        "title": "Art Director",
+        "company": "Jewelry house"
+      },
+      "t6": {
+        "quote": "Finally an AI solution that respects our product integrity. Zero hallucinations, zero surprises.",
+        "name": "Isabelle Dumont",
+        "title": "Brand Manager",
+        "company": "International cosmetics group"
+      }
+    },
     "manifeste": {
       "heading": "AI doesn't replace photography, it extends it",
       "subtitle": "The quality of your variations depends on the quality of your <bold>original photo</bold>. BlendAI guarantees the <bold>fidelity</bold> of every visual.",

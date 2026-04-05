@@ -434,6 +434,54 @@
       "ctaPrimary": "Tester BlendAI gratuitement",
       "ctaSecondary": "Voir les résultats"
     },
+    "gallery": {
+      "heading": "Des déclinaisons créées en 2 minutes",
+      "subtitle": "Un packshot professionnel entre, des <bold>dizaines de visuels lifestyle</bold> en sortent."
+    },
+    "stats": {
+      "costLabel": "coûts de production visuelle",
+      "conversionLabel": "taux de conversion",
+      "ctrLabel": "taux de clic publicitaire",
+      "source": "Performances mesurées sur nos clients actifs"
+    },
+    "testimonials": {
+      "t1": {
+        "quote": "BlendAI nous a permis de réduire nos coûts de shooting de 60% tout en multipliant par 4 le nombre de visuels produits.",
+        "name": "Sophie Laurent",
+        "title": "Directrice E-commerce",
+        "company": "Maison de luxe parisienne"
+      },
+      "t2": {
+        "quote": "Simple, rapide et super efficace. Un vrai gain de temps au quotidien pour toute l'équipe marketing.",
+        "name": "Team Marketing",
+        "title": "Équipe Marketing",
+        "company": "Grosfilley — Accessoires premium"
+      },
+      "t3": {
+        "quote": "La fidélité des rendus est impressionnante. Nos clients ne font pas la différence avec un vrai shooting lifestyle.",
+        "name": "Marc Dubois",
+        "title": "Chef de produit",
+        "company": "Marque horlogerie suisse"
+      },
+      "t4": {
+        "quote": "On a intégré BlendAI dans notre workflow e-commerce. 500 fiches produit mises à jour en une semaine au lieu de deux mois.",
+        "name": "Camille Renard",
+        "title": "Responsable Contenu",
+        "company": "Marketplace mode"
+      },
+      "t5": {
+        "quote": "Le traitement par lots est un game-changer. On applique un style à toute une collection en quelques minutes.",
+        "name": "Jean-Pierre Morel",
+        "title": "Directeur Artistique",
+        "company": "Maison de joaillerie"
+      },
+      "t6": {
+        "quote": "Enfin une solution IA qui respecte l'intégrité de nos produits. Zéro hallucination, zéro surprise.",
+        "name": "Isabelle Dumont",
+        "title": "Brand Manager",
+        "company": "Groupe cosmétiques international"
+      }
+    },
     "manifeste": {
       "heading": "L'IA ne remplace pas la photo, elle la prolonge",
       "subtitle": "La qualité de vos déclinaisons dépend de la qualité de votre <bold>photo d'origine</bold>. BlendAI garantit la <bold>fidélité</bold> de chaque visuel.",
