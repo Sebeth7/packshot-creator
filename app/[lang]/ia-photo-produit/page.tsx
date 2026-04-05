@@ -123,6 +123,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       <HeroSection
         layout="centered"
         align="left"
+        className="[&_picture_img]:object-top"
         backgroundImage="/images/illustrations/pillar-ia.avif"
         badge={{
           icon: <Sparkles className="h-4 w-4" />,
