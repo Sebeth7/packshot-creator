@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import {
   Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown,
-  RotateCcw, Shirt, Layout, Users, Truck, Headphones, Calculator, ImageIcon,
+  RotateCcw, Shirt, Layout, Users, Truck, Headphones, Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
