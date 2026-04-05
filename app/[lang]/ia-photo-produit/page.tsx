@@ -8,7 +8,6 @@ import {
   Code2, Palette, UserCheck, Zap, Camera, GraduationCap, Layout,
   ChevronDown, User,
 } from 'lucide-react';
-import { BeforeAfterSlider } from '@/components/media';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
@@ -21,19 +20,6 @@ import TestimonialCarousel from './_components/TestimonialCarousel';
 
 /* ──────── Static data ──────── */
 
-const BEFORE_AFTER_ITEMS = [
-  { sector: 'cosmetiques', before: '/images/before-after/ia-before-after-cosmetiques-1-before.avif', after: '/images/before-after/ia-before-after-cosmetiques-1-after.avif' },
-  { sector: 'mode', before: '/images/before-after/ia-before-after-mode-1-before.avif', after: '/images/before-after/ia-before-after-mode-1-after.avif' },
-  { sector: 'bijoux', before: '/images/before-after/ia-before-after-bijoux-1-before.avif', after: '/images/before-after/ia-before-after-bijoux-1-after.avif' },
-  { sector: 'decoration', before: '/images/before-after/ia-before-after-decoration-1-before.avif', after: '/images/before-after/ia-before-after-decoration-1-after.avif' },
-];
-
-const SECTOR_LABELS: Record<string, { fr: string; en: string }> = {
-  cosmetiques: { fr: 'Cosmétiques — Lifestyle', en: 'Cosmetics — Lifestyle' },
-  mode: { fr: 'Mode — Mise en scène IA', en: 'Fashion — AI staging' },
-  bijoux: { fr: 'Bijoux — Mise en valeur', en: 'Jewelry — Showcase' },
-  decoration: { fr: 'Décoration — Ambiance intérieure', en: 'Home Decor — Interior setting' },
-};
 
 const PLATFORM_FEATURES = [
   { key: 'feature1' as const, icon: <Zap className="h-5 w-5" />, num: '01' },
@@ -167,7 +153,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. GALLERY MASONRY — 12 BlendAI result placeholders
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id="resultats" className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -281,60 +267,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          5. BEFORE/AFTER RESULTATS — Staggered reveal, sector badges
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="resultats" className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-very-peri-200/10 rounded-full blur-[150px]" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Résultats concrets' : 'Real results'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
-                {t('casUsage.heading')}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-                {t.rich('casUsage.subtitle', { bold: boldOrange })}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            {BEFORE_AFTER_ITEMS.map((item, i) => (
-              <ScrollReveal key={item.sector} offset={20 + i * 15}>
-                <SpringCard hoverY={-4}>
-                  <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
-                    <BeforeAfterSlider
-                      before={{
-                        src: item.before,
-                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Avant`,
-                        label: isFr ? 'Packshot pro' : 'Pro packshot',
-                      }}
-                      after={{
-                        src: item.after,
-                        alt: `${SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector} - Après`,
-                        label: isFr ? 'Après BlendAI' : 'After BlendAI',
-                      }}
-                      width={800}
-                      height={600}
-                    />
-                    <div className="px-6 py-4 border-t border-neutral-50">
-                      <p className="text-sm font-semibold text-future-dusk-700">
-                        {SECTOR_LABELS[item.sector]?.[lang as 'fr' | 'en'] || item.sector}
-                      </p>
-                    </div>
-                  </div>
-                </SpringCard>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          6. COMPARATIF — Bento asymmetric (whyBase)
+          5. COMPARATIF — Bento asymmetric (whyBase)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-white" />
