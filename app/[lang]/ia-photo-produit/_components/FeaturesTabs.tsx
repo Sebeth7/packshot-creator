@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ImageIcon, User, Wand2, Paintbrush, Layers } from 'lucide-react';
+import { BeforeAfterSlider } from '@/components/media';
 
 interface Feature {
   id: string;
   label: string;
-  description: string;
+  description: React.ReactNode;
   icon: React.ReactNode;
   color: string;
   activeColor: string;
+  before: { src: string; alt: string; label: string };
+  after: { src: string; alt: string; label: string };
 }
 
 interface FeaturesTabsProps {
@@ -56,7 +58,7 @@ export default function FeaturesTabs({ features }: FeaturesTabsProps) {
         ))}
       </div>
 
-      {/* Right: Video/Visual + Description */}
+      {/* Right: Before/After + Description */}
       <div className="lg:col-span-8">
         <AnimatePresence mode="wait">
           <motion.div
@@ -66,25 +68,20 @@ export default function FeaturesTabs({ features }: FeaturesTabsProps) {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Video placeholder */}
-            <div className="w-full aspect-video bg-neutral-100 rounded-2xl border border-neutral-200 flex items-center justify-center mb-6 overflow-hidden">
-              <div className="text-center">
-                <div
-                  className={`w-16 h-16 rounded-2xl ${active.activeColor} flex items-center justify-center mx-auto mb-3`}
-                >
-                  {active.icon}
-                </div>
-                <p className="text-sm text-neutral-400 font-medium">
-                  Video demo — {active.label}
-                </p>
-                <p className="text-xs text-neutral-300 mt-1">MP4 placeholder — 1080p, 10-20s</p>
-              </div>
+            {/* Before/After Slider */}
+            <div className="rounded-2xl overflow-hidden border border-neutral-200 mb-6">
+              <BeforeAfterSlider
+                before={active.before}
+                after={active.after}
+                width={800}
+                height={500}
+              />
             </div>
 
             <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
               {active.label}
             </h3>
-            <p className="text-lg text-future-dusk-500 leading-relaxed">{active.description}</p>
+            <div className="text-lg text-future-dusk-500 leading-relaxed">{active.description}</div>
           </motion.div>
         </AnimatePresence>
       </div>

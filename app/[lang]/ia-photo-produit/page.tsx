@@ -99,12 +99,24 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   }));
 
   /* Features data for FeaturesTabs */
+  const beforeLabel = isFr ? 'Packshot pro' : 'Pro packshot';
+  const afterLabel = isFr ? 'Après BlendAI' : 'After BlendAI';
   const featuresData = [
-    { id: 'lifestyle', label: t('features.lifestyle.name'), description: t('features.lifestyle.description'), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700' },
-    { id: 'mannequin', label: t('features.mannequin.name'), description: t('features.mannequin.description'), icon: <User className="h-5 w-5" />, color: 'bg-violet-100 text-violet-700', activeColor: 'bg-violet-100 text-violet-700' },
-    { id: 'background', label: t('features.background.name'), description: t('features.background.description'), icon: <Wand2 className="h-5 w-5" />, color: 'bg-blue-100 text-blue-700', activeColor: 'bg-blue-100 text-blue-700' },
-    { id: 'retouche', label: t('features.retouche.name'), description: t('features.retouche.description'), icon: <Paintbrush className="h-5 w-5" />, color: 'bg-amber-100 text-amber-700', activeColor: 'bg-amber-100 text-amber-700' },
-    { id: 'batch', label: t('features.batch.name'), description: t('features.batch.description'), icon: <Layers className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', activeColor: 'bg-emerald-100 text-emerald-700' },
+    { id: 'lifestyle', label: t('features.lifestyle.name'), description: t.rich('features.lifestyle.description', { bold: boldOrange }), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700',
+      before: { src: '/images/before-after/ia-before-after-cosmetiques-1-before.avif', alt: 'Packshot cosmétiques', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-cosmetiques-1-after.avif', alt: 'Lifestyle cosmétiques BlendAI', label: afterLabel } },
+    { id: 'mannequin', label: t('features.mannequin.name'), description: t.rich('features.mannequin.description', { bold: boldOrange }), icon: <User className="h-5 w-5" />, color: 'bg-violet-100 text-violet-700', activeColor: 'bg-violet-100 text-violet-700',
+      before: { src: '/images/before-after/ia-before-after-mode-1-before.avif', alt: 'Packshot mode', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-mode-1-after.avif', alt: 'Mannequin IA BlendAI', label: afterLabel } },
+    { id: 'background', label: t('features.background.name'), description: t.rich('features.background.description', { bold: boldOrange }), icon: <Wand2 className="h-5 w-5" />, color: 'bg-blue-100 text-blue-700', activeColor: 'bg-blue-100 text-blue-700',
+      before: { src: '/images/before-after/ia-before-after-decoration-1-before.avif', alt: 'Packshot décoration', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-decoration-1-after.avif', alt: 'Arrière-plan BlendAI', label: afterLabel } },
+    { id: 'retouche', label: t('features.retouche.name'), description: t.rich('features.retouche.description', { bold: boldOrange }), icon: <Paintbrush className="h-5 w-5" />, color: 'bg-amber-100 text-amber-700', activeColor: 'bg-amber-100 text-amber-700',
+      before: { src: '/images/before-after/ia-before-after-bijoux-1-before.avif', alt: 'Packshot bijoux', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-bijoux-1-after.avif', alt: 'Retouche bijoux BlendAI', label: afterLabel } },
+    { id: 'batch', label: t('features.batch.name'), description: t.rich('features.batch.description', { bold: boldOrange }), icon: <Layers className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', activeColor: 'bg-emerald-100 text-emerald-700',
+      before: { src: '/images/before-after/ia-before-after-cosmetiques-2-before.avif', alt: 'Packshot cosmétiques lot', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-cosmetiques-2-after.avif', alt: 'Batch BlendAI', label: afterLabel } },
   ];
 
   /* Testimonials data for TestimonialCarousel */
