@@ -117,8 +117,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       before: { src: '/images/before-after/ia-before-after-bijoux-1-before.avif', alt: 'Packshot bijoux', label: beforeLabel },
       after: { src: '/images/before-after/ia-before-after-bijoux-1-after.avif', alt: 'Retouche bijoux BlendAI', label: afterLabel } },
     { id: 'batch', label: t('features.batch.name'), description: t.rich('features.batch.description', { bold: boldOrange }), icon: <Layers className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', activeColor: 'bg-emerald-100 text-emerald-700',
-      before: { src: '/images/before-after/ia-before-after-cosmetiques-2-before.avif', alt: 'Packshot cosmétiques lot', label: beforeLabel },
-      after: { src: '/images/before-after/ia-before-after-cosmetiques-2-after.avif', alt: 'Batch BlendAI', label: afterLabel } },
+      mode: 'image' as const, image: { src: '/images/before-after/ia-before-after-batch.avif', alt: 'BlendAI — Traitement par lots' } },
   ];
 
   /* Testimonials data for TestimonialCarousel */
