@@ -1,0 +1,194 @@
+{
+  "categorie": "ia",
+  "description_courte": "Formation 100% e-learning à votre rythme + 2 calls 1:1 personnalisés. Idéal profils autonomes et petits budgets.",
+  "duree_heures": 4,
+  "eligible_opco": true,
+  "format": "blended",
+  "livrables": [
+    "4h e-learning vidéos accessibles 30 jours",
+    "2 calls 1:1 personnalisés 30min (J+7 et J+21)",
+    "Exercices pratiques guidés",
+    "Templates et outils (calculateur ROI, workflow)",
+    "30 jours support email"
+  ],
+  "niveau": 1,
+  "objectifs": [
+    "Maîtriser BlendAI Studio en autonomie totale à votre rythme",
+    "Créer un style visuel personnalisé pour votre marque",
+    "Produire vos premiers visuels lifestyle professionnels",
+    "Calculer et justifier le ROI de l'IA photo produit"
+  ],
+  "prerequis": "Aucun. Grande autonomie et rigueur requises.",
+  "prix_blended": 450,
+  "prix_presentiel": null,
+  "programme": [
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "Contenu E-learning (4h à votre rythme)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 1 : Mindset IA & ROI (45min)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Démythification IA photo produit\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Calcul ROI réel vs shooting traditionnel\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Showcases clients avant/après\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Calculer votre ROI personnel"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 2 : BlendAI Studio Interface (1h15)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Tour complet interface\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Workflow Quick Mode détaillé\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Tutoriel interactif : 1er visuel lifestyle\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Système crédits et optimisation budget"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 3 : Styles Personnalisés (1h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Importance cohérence marque\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Méthodologie création style custom\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Sélection images références\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Créer votre style marque"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 4 : Production Série (1h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Batch Mode vs Quick Mode\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Variations contextuelles\n"
+        },
+        {
+          "_type": "span",
+          "text": "• AI Retouch ajustements\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Mini-série 5 visuels cohérents"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "2 CALLS 1:1 PERSONNALISÉS (30min chacun)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Call 1 (J+7) : Déblocage technique, revue premiers visuels\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Call 2 (J+21) : Optimisation workflow, plan d'action 30 jours"
+        }
+      ],
+      "style": "normal"
+    }
+  ],
+  "public_cible": "Profils très autonomes, petits budgets, freelances, micro-entreprises, entrepreneurs solos",
+  "slug": "elearning-autonome-niveau-1",
+  "titre": "Niveau 1 IA Autonome - E-learning Pur"
+}

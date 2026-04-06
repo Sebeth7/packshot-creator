@@ -1,0 +1,149 @@
+{
+  "categorie": "packshot",
+  "description_courte": "Formation expert 2 jours : audit marque, stratégie omnicanal, consulting externe. Format mentorat intensif, groupe 4-6 max.",
+  "duree_heures": 14,
+  "eligible_opco": true,
+  "format": "presentiel",
+  "livrables": [
+    "2 rapports audit marques complets (méthodologie réutilisable)",
+    "Workflow automatisé personnalisé (schéma + doc technique)",
+    "Stratégie visuelle 12 mois exécutable",
+    "Dashboard KPIs performance (Google Sheets/Looker)",
+    "Offre consulting structurée commercialisable",
+    "Plan formation équipe interne",
+    "6 mois mentorat (6 calls 30min mensuels)",
+    "Certification Expert + badge LinkedIn officiel"
+  ],
+  "niveau": 3,
+  "objectifs": [
+    "Réaliser des audits visuels complets de marques avec méthodologie éprouvée",
+    "Construire une stratégie visuelle omnicanal 12 mois exécutable",
+    "Optimiser des workflows IA complexes multi-outils (BlendAI, Midjourney, Photoshop...)",
+    "Structurer une offre consulting IA photo produit commercialisable",
+    "Former vos équipes internes et gérer le change management"
+  ],
+  "prerequis": "Avoir suivi Niveau 2 OU avoir 6+ mois expérience intensive IA photo produit. Maîtrise Photoshop requise.",
+  "prix_blended": null,
+  "prix_presentiel": 1800,
+  "programme": [
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "JOUR 1 - AUDIT & OPTIMISATION (7h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Positionnement expert (45min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Audit visuel marque - méthodologie (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Optimisation workflows complexes (1h15)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Déjeuner inclus (1h)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Outils IA complémentaires écosystème (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Gestion projets IA complexes (1h30)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "JOUR 2 - STRATÉGIE & CONSULTING (7h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Stratégie contenu omnicanal 12 mois (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Mesure performance & optimisation (1h15)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Déjeuner inclus (1h)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Formation interne & change management (1h15)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Consulting externe & positionnement marché (1h15)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Projets personnels + mentorat (1h)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "BONUS NIVEAU 3"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• 2 déjeuners inclus\n"
+        },
+        {
+          "_type": "span",
+          "text": "• 6 mois mentorat : 1 appel/mois 30min (vs 90j N2)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Accès alumni network privé\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Certification Expert Packshot-Creator (badge LinkedIn)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Opportunités co-consulting (missions partagées)"
+        }
+      ],
+      "style": "normal"
+    }
+  ],
+  "public_cible": "Consultants, photographes experts, responsables marketing senior souhaitant monétiser leur expertise IA photo produit",
+  "slug": "niveau-3-expert-presentiel",
+  "titre": "Stratégie Visuelle IA & Optimisation Avancée - Expert"
+}

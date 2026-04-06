@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { client } from '@/sanity/lib/client';
+import { getFormation } from '@/lib/formations';
 import { Badge, BadgeQualiopi } from '@/components/shared/Badge';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
@@ -8,49 +8,6 @@ import { CheckCircle, Package, Euro, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
-
-interface Formation {
-  titre: string;
-  slug: { current: string };
-  categorie: 'packshot' | 'ia';
-  niveau: 1 | 2 | 3;
-  format: 'blended' | 'presentiel' | 'both';
-  prix_blended?: number;
-  prix_presentiel: number;
-  duree_heures: number;
-  description_courte: string;
-  programme: any[];
-  objectifs: string[];
-  public_cible: string;
-  prerequis?: string;
-  eligible_opco: boolean;
-  thumbnail?: any;
-  livrables?: string[];
-}
-
-async function getFormation(slug: string): Promise<Formation | null> {
-  return await client.fetch(
-    `*[_type == "formation" && slug.current == $slug][0]{
-      titre,
-      slug,
-      categorie,
-      niveau,
-      format,
-      prix_blended,
-      prix_presentiel,
-      duree_heures,
-      description_courte,
-      programme,
-      objectifs,
-      public_cible,
-      prerequis,
-      eligible_opco,
-      thumbnail,
-      livrables
-    }`,
-    { slug }
-  );
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params;

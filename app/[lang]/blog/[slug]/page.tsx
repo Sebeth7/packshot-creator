@@ -1,14 +1,15 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { getMdxArticle } from '@/lib/blog';
 import { getWebflowArticle } from '@/lib/webflow';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { Link } from '@/i18n/routing';
-import { getSanityBlogPost, urlFor } from '@/lib/sanity-blog';
-import { PortableText } from '@portabletext/react';
 import {
-  portableTextComponents,
   TableOfContents,
   ArticleCTA,
   RelatedArticles,
+  Callout,
+  ComparisonTable,
 } from '@/components/blog';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
@@ -16,11 +17,13 @@ import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import {
   processHtmlContent,
-  extractPortableTextHeadings,
+  extractMarkdownHeadings,
   calculateReadingTime,
+  slugify,
   type HeadingData,
 } from '@/lib/blog-utils';
 import { sanitizeHtml } from '@/lib/sanitize';
+import Image from 'next/image';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -29,33 +32,26 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { lang, slug } = await params;
 
-  // Try Sanity first
-  const sanityPost = await getSanityBlogPost(slug);
-  if (sanityPost) {
-    const seoTitle = sanityPost.seo?.seoTitle || sanityPost.title;
-    const seoDescription = sanityPost.seo?.seoDescription || sanityPost.description;
-
+  // Try MDX first
+  const mdxArticle = getMdxArticle(slug);
+  if (mdxArticle) {
     return {
-      title: seoTitle,
-      description: seoDescription,
-      keywords: sanityPost.keywords?.join(', '),
+      title: mdxArticle.title,
+      description: mdxArticle.description,
+      keywords: mdxArticle.keywords?.join(', '),
       alternates: {
         canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages: { fr: `/fr/blog/${slug}`, en: `/en/blog/${slug}` },
       },
       openGraph: {
-        title: seoTitle,
-        description: seoDescription,
-        images: sanityPost.image
-          ? [urlFor(sanityPost.image).width(1200).height(630).url()]
-          : [{ url: `/api/og?title=${encodeURIComponent(seoTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
+        title: mdxArticle.title,
+        description: mdxArticle.description,
+        images: mdxArticle.image
+          ? [{ url: mdxArticle.image, width: 1200, height: 630 }]
+          : [{ url: `/api/og?title=${encodeURIComponent(mdxArticle.title)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
-        publishedTime: sanityPost.date,
-        authors: [sanityPost.author],
-      },
-      robots: {
-        index: !sanityPost.seo?.noIndex,
-        follow: !sanityPost.seo?.noIndex,
+        publishedTime: mdxArticle.date,
+        authors: [mdxArticle.author],
       },
     };
   }
@@ -86,6 +82,76 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+// MDX components for rendering
+const mdxComponents = {
+  h1: (props: any) => (
+    <h1 className="font-heading text-4xl font-bold text-future-dusk-900 mb-6 mt-8" {...props} />
+  ),
+  h2: (props: any) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = slugify(text);
+    return <h2 id={id} className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24" {...props} />;
+  },
+  h3: (props: any) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = slugify(text);
+    return <h3 id={id} className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24" {...props} />;
+  },
+  h4: (props: any) => (
+    <h4 className="font-heading text-lg font-bold text-future-dusk-900 mb-2 mt-4" {...props} />
+  ),
+  p: (props: any) => <p className="mb-4 leading-relaxed text-future-dusk-600" {...props} />,
+  ul: (props: any) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
+  ol: (props: any) => <ol className="list-decimal pl-6 mb-4 space-y-2" {...props} />,
+  li: (props: any) => <li className="text-future-dusk-600" {...props} />,
+  strong: (props: any) => <strong className="font-bold" {...props} />,
+  em: (props: any) => <em className="italic" {...props} />,
+  a: (props: any) => {
+    const isExternal = props.href?.startsWith('http');
+    return (
+      <a
+        className="text-very-peri-600 hover:text-very-peri-700 underline transition-colors"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        {...props}
+      />
+    );
+  },
+  blockquote: (props: any) => (
+    <blockquote className="border-l-4 border-very-peri-500 pl-4 italic my-6 text-future-dusk-500" {...props} />
+  ),
+  code: (props: any) => {
+    // Inline code
+    if (!props.className) {
+      return <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-sm font-mono" {...props} />;
+    }
+    // Code block (wrapped in pre)
+    return <code {...props} />;
+  },
+  pre: (props: any) => (
+    <pre className="bg-future-dusk-900 text-white p-4 rounded-lg overflow-x-auto my-6" {...props} />
+  ),
+  img: (props: any) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="rounded-lg shadow-sm my-8 max-w-full" alt={props.alt || ''} {...props} />
+  ),
+  hr: () => <hr className="my-8 border-neutral-200" />,
+  table: (props: any) => (
+    <div className="overflow-x-auto my-6">
+      <table className="min-w-full border border-neutral-200 rounded-lg" {...props} />
+    </div>
+  ),
+  th: (props: any) => (
+    <th className="bg-future-dusk-50 px-4 py-3 text-left text-sm font-semibold text-future-dusk-900 border-b border-neutral-200" {...props} />
+  ),
+  td: (props: any) => (
+    <td className="px-4 py-3 text-sm text-future-dusk-600 border-b border-neutral-100" {...props} />
+  ),
+  // Custom components available in MDX
+  Callout,
+  ComparisonTable,
+};
+
 // Prose classes for Webflow HTML content styling
 const articleProseClasses = [
   'prose prose-lg max-w-none',
@@ -105,12 +171,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
 
-  // 1. Try Sanity first
-  const sanityPost = await getSanityBlogPost(slug);
+  // 1. Try MDX first
+  const mdxArticle = getMdxArticle(slug);
   // 2. Fallback to Webflow
-  const webflowArticle = !sanityPost ? await getWebflowArticle(slug) : null;
+  const webflowArticle = !mdxArticle ? await getWebflowArticle(slug) : null;
 
-  if (!sanityPost && !webflowArticle) notFound();
+  if (!mdxArticle && !webflowArticle) notFound();
 
   // Normalize article data
   let title: string;
@@ -124,19 +190,17 @@ export default async function BlogArticlePage({ params }: PageProps) {
   let contentElement: React.ReactNode;
   let isWebflow = false;
 
-  if (sanityPost) {
-    title = sanityPost.title;
-    description = sanityPost.description;
-    date = sanityPost.date;
-    author = sanityPost.author;
-    category = sanityPost.category;
-    imageUrl = sanityPost.image
-      ? urlFor(sanityPost.image).width(1200).height(600).url()
-      : null;
-    readingTime = sanityPost.readingTime;
-    headings = extractPortableTextHeadings(sanityPost.content);
+  if (mdxArticle) {
+    title = mdxArticle.title;
+    description = mdxArticle.description;
+    date = mdxArticle.date;
+    author = mdxArticle.author;
+    category = mdxArticle.category;
+    imageUrl = mdxArticle.image || null;
+    readingTime = mdxArticle.readingTime;
+    headings = extractMarkdownHeadings(mdxArticle.content);
     contentElement = (
-      <PortableText value={sanityPost.content} components={portableTextComponents} />
+      <MDXRemote source={mdxArticle.content} components={mdxComponents} />
     );
   } else {
     const wf = webflowArticle!;
@@ -242,7 +306,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   </div>
                 )}
 
-                <article className={articleProseClasses}>
+                <article className={isWebflow ? articleProseClasses : ''}>
                   {contentElement}
                 </article>
 

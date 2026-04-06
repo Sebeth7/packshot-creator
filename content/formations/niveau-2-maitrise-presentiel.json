@@ -1,0 +1,158 @@
+{
+  "categorie": "packshot",
+  "description_courte": "2 jours intensifs ultra-personnalisés : batch industriel, Photoshop avancé, 3D, stratégie. Groupe restreint 6 participants max.",
+  "duree_heures": 14,
+  "eligible_opco": true,
+  "format": "presentiel",
+  "livrables": [
+    "60+ visuels batch (vs 50+ blended)",
+    "20 variations pub (vs 15 blended)",
+    "5 visuels Photoshop pro (vs 3 blended)",
+    "3 vidéos Pro 1080p (vs 2 blended)",
+    "2-3 modèles 3D (vs 1 démo blended)",
+    "Calendrier 12 mois (vs 90j blended)",
+    "Business case + présentation PowerPoint",
+    "90 jours support + 3 calls 1:1 personnalisés"
+  ],
+  "niveau": 2,
+  "objectifs": [
+    "Maîtriser le batch processing industriel avec coaching intensif 2 jours",
+    "Créer 2-3 modèles 3D complets (vs démo blended)",
+    "Finaliser 5 visuels Photoshop niveau publication",
+    "Construire une stratégie contenu visuel 12 mois complète",
+    "Présenter un business case ROI convaincant à votre direction"
+  ],
+  "prerequis": "Avoir suivi Niveau 1 ou avoir des bases IA photo produit. Photoshop recommandé.",
+  "prix_blended": null,
+  "prix_presentiel": 1500,
+  "programme": [
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "Programme 2 Jours Complets (14h)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "JOUR 1 - BATCH & WORKFLOWS (7h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Batch processing approfondi (2h vs 1h30 blended)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• AI Retouch avancé avec cas multiples (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Déjeuner inclus + networking (1h)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Photoshop hybride (2h vs 1h30 blended, plus de pratique)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Publicités multi-variations (1h30)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "JOUR 2 - 3D, VIDÉOS & STRATÉGIE (7h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• 3D approfondi : 2-3 modèles créés (2h vs 1h blended)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéos avancées + shoppable videos (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Déjeuner inclus + networking (1h)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Stratégie contenu 12 mois (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• ROI & business case (1h)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Projets personnels + feedback (1h, exclusif présentiel)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "BONUS PRÉSENTIEL"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• 2 déjeuners networking inclus (valeur 50€)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• 3 calls suivi 30min (J+15, J+30, J+60 vs 2 lives groupe blended)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Accès 90 jours support (vs 60j blended)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Certificat physique + photo groupe\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Networking alumni (groupe privé LinkedIn)"
+        }
+      ],
+      "style": "normal"
+    }
+  ],
+  "public_cible": "E-commerçants catalogues importants, photographes pro, équipes marketing privilégiant formation intensive et networking exclusif",
+  "slug": "niveau-2-maitrise-presentiel",
+  "titre": "Workflow Industriel & Technologies 3D - Présentiel Premium"
+}

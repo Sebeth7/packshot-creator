@@ -1,0 +1,268 @@
+{
+  "categorie": "packshot",
+  "description_courte": "Transformez vos packshots en visuels lifestyle professionnels grâce à l'IA. Format blended : 4h e-learning + 3h présentiel.",
+  "duree_heures": 7,
+  "eligible_opco": true,
+  "format": "blended",
+  "livrables": [
+    "10-12 visuels lifestyle professionnels créés pendant la formation",
+    "2 vidéos social media 5-10s prêtes à publier",
+    "1 style personnalisé marque réutilisable",
+    "Workflow documenté (PDF téléchargeable)",
+    "Calculateur ROI (Excel template)",
+    "30 jours accès e-learning post-formation",
+    "30 jours support email formateur"
+  ],
+  "niveau": 1,
+  "objectifs": [
+    "Maîtriser l'interface BlendAI Studio et générer vos premiers visuels lifestyle en moins de 5 minutes",
+    "Créer un style visuel personnalisé reflétant l'identité de votre marque",
+    "Produire 10-12 visuels professionnels cohérents pour vos campagnes marketing",
+    "Transformer vos packshots en vidéos courtes optimisées pour les réseaux sociaux",
+    "Calculer et justifier le ROI de l'IA photo produit pour convaincre votre direction"
+  ],
+  "prerequis": "Aucun prérequis technique. Ordinateur avec connexion internet stable.",
+  "prix_blended": 650,
+  "prix_presentiel": 850,
+  "programme": [
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "PHASE 1 - E-LEARNING ASYNCHRONE (4h, 1-2 semaines avant présentiel)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 1 : Mindset IA & ROI (45min)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Démythification IA photo produit (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Calcul ROI réel vs shooting traditionnel (10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Showcases clients avant/après (10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Calculer ROI personnel (tableau Excel fourni, 10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Quiz validation : 10 questions (5min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 2 : BlendAI Studio - Interface & Premiers Pas (1h15)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Tour interface (Photo Studio, Video Studio, Styles) (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Workflow Quick Mode détaillé (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Tutoriel interactif : Générer 1er visuel lifestyle guidé (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Système crédits et optimisation budget (10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice obligatoire : Générer 3 visuels lifestyle (10min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 3 : Styles Personnalisés - DNA de Marque (1h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Importance cohérence marque vs IA générique (12min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Méthodologie création style custom (18min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Sélection images références (2-10 images) (10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice obligatoire : Créer 1 style custom marque (15min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 4 : Production Série & Cohérence (1h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Batch Mode vs Quick Mode (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Variations contextuelles (café, rue, studio...) (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : AI Retouch pour ajustements mineurs (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice obligatoire : Produire mini-série 5 visuels cohérents (15min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "PHASE 2 - PRÉSENTIEL/VISIO LIVE (3h, demi-journée)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "14h00 - 14h30 | REVUE EXERCICES & Q&A (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Tour de table : présentation participants (5min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Revue collective exercices pré-formation (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Q&A déblocages techniques (10min)\n\n"
+        },
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "14h30 - 16h00 | WORKSHOP INTENSIF PRODUCTION (1h30)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Brief : Créer série 10 visuels cohérents (même ambiance, produits variés)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Production live : Chaque participant travaille sur ses produits\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Coaching individualisé : formateur passe voir chacun (5-10min/participant)\n\n"
+        },
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "16h00 - 16h30 | VIDÉOS SOCIAL MEDIA (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Démo : Transformer image → vidéo 5-10s (10min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Pratique flash : Créer 2 vidéos produit (15min)\n\n"
+        },
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "16h30 - 17h00 | RETOUCHE & PLAN D'ACTION (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Plan d'action 30 jours : Workflow répétable\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Présentation Niveau 2 + offre BlendAI Studio"
+        }
+      ],
+      "style": "normal"
+    }
+  ],
+  "public_cible": "E-commerçants, photographes packshot, responsables marketing, équipes créatives cherchant à accélérer leur production visuelle avec l'IA",
+  "slug": "niveau-1-fondation-blended",
+  "titre": "De Packshot à Lifestyle en 1 Jour - Blended Learning"
+}

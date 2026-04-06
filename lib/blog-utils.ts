@@ -65,61 +65,10 @@ export function processHtmlContent(html: string): {
 }
 
 /**
- * Extract headings from Sanity Portable Text blocks
- */
-export function extractPortableTextHeadings(blocks: any[]): HeadingData[] {
-  if (!blocks || !Array.isArray(blocks)) return [];
-
-  const headings: HeadingData[] = [];
-
-  for (const block of blocks) {
-    if (block._type !== 'block') continue;
-    if (block.style !== 'h2' && block.style !== 'h3') continue;
-
-    const text = block.children
-      ?.map((child: any) => child.text || '')
-      .join('') || '';
-
-    if (!text.trim()) continue;
-
-    const id = slugify(text);
-    if (!id) continue;
-
-    headings.push({
-      id,
-      text: text.trim(),
-      level: block.style === 'h2' ? 2 : 3,
-    });
-  }
-
-  return headings;
-}
-
-/**
- * Extract plain text from Portable Text blocks for word count
- */
-function getPortableTextPlainText(blocks: any[]): string {
-  if (!blocks || !Array.isArray(blocks)) return '';
-
-  let text = '';
-  for (const block of blocks) {
-    if (block._type === 'block' && block.children) {
-      text += block.children.map((c: any) => c.text || '').join(' ') + ' ';
-    }
-  }
-
-  return text.trim();
-}
-
-/**
  * Calculate reading time from word count (200 words/min)
  */
-export function calculateReadingTime(wordCountOrBlocks: number | any[]): number {
-  const count = typeof wordCountOrBlocks === 'number'
-    ? wordCountOrBlocks
-    : getPortableTextPlainText(wordCountOrBlocks).split(/\s+/).filter(Boolean).length;
-
-  return Math.max(1, Math.ceil(count / 200));
+export function calculateReadingTime(wordCount: number): number {
+  return Math.max(1, Math.ceil(wordCount / 200));
 }
 
 /**
@@ -127,4 +76,33 @@ export function calculateReadingTime(wordCountOrBlocks: number | any[]): number 
  */
 export function getBlockText(value: any): string {
   return value?.children?.map((c: any) => c.text || '').join('') || '';
+}
+
+/**
+ * Extract headings from raw Markdown/MDX content for ToC
+ */
+export function extractMarkdownHeadings(markdown: string): HeadingData[] {
+  const headings: HeadingData[] = [];
+  const lines = markdown.split('\n');
+
+  for (const line of lines) {
+    const match = line.match(/^(#{2,3})\s+(.+)$/);
+    if (!match) continue;
+
+    const level = match[1].length;
+    // Strip markdown formatting from heading text
+    const text = match[2]
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/\*(.+?)\*/g, '$1')
+      .replace(/`(.+?)`/g, '$1')
+      .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+      .trim();
+
+    const id = slugify(text);
+    if (id) {
+      headings.push({ id, text, level });
+    }
+  }
+
+  return headings;
 }

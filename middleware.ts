@@ -4,6 +4,6 @@ import { routing } from './i18n/routing';
 export default createMiddleware(routing);
 
 export const config = {
-  // Match all pathnames except API routes, static files, Sanity Studio, and standalone pages
-  matcher: ['/', '/((?!api|_next|_vercel|studio|calculateur-roi|.*\\..*).*)']
+  // Match all pathnames except API routes, static files, and standalone pages
+  matcher: ['/', '/((?!api|_next|_vercel|calculateur-roi|.*\\..*).*)']
 };

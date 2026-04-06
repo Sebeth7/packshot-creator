@@ -1,0 +1,371 @@
+{
+  "categorie": "packshot",
+  "description_courte": "Passez à l'échelle avec le batch processing industriel, Photoshop hybride et création 3D. 8h e-learning + 6h présentiel intensif.",
+  "duree_heures": 14,
+  "eligible_opco": true,
+  "format": "blended",
+  "livrables": [
+    "50+ visuels batch cohérents produits en formation",
+    "15 variations publicité campagne complète",
+    "3 visuels finalisés Photoshop niveau pro",
+    "2 vidéos Pro 1080p",
+    "1 modèle 3D simple (démo)",
+    "Calendrier éditorial 90 jours prêt à exécuter",
+    "Business case ROI présentable à votre direction",
+    "60 jours support email + 2 lives Q&A groupe"
+  ],
+  "niveau": 2,
+  "objectifs": [
+    "Maîtriser le batch processing industriel pour traiter 50-200 SKUs efficacement",
+    "Intégrer Photoshop dans votre workflow IA pour des retouches niveau publication",
+    "Créer 15 variations publicitaires cohérentes pour vos campagnes A/B testing",
+    "Découvrir la création 3D à partir de packshots 2D",
+    "Construire un calendrier éditorial visuel 90 jours exécutable"
+  ],
+  "prerequis": "Avoir suivi Niveau 1 ou avoir des bases IA photo produit. Connaissances Photoshop recommandées.",
+  "prix_blended": 1100,
+  "prix_presentiel": 1500,
+  "programme": [
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "PHASE 1 - E-LEARNING ASYNCHRONE (8h, 2 semaines avant)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 1 : Batch Processing Industriel (2h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Différence Quick vs Batch Mode (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Méthodologie traiter 50-200 SKUs (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Préparation fichiers (naming, organisation) (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Gestion variations (même produit, 5 contextes) (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Batch 30 produits fictifs fournis (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Quiz validation (10min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 2 : AI Retouch Série & Cohérence (1h30)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : AI Retouch variations (poses multiples) (25min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Créer familles visuelles cohérentes (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Cas pratique : Série bijoux (10 produits) (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Créer famille 8 produits (15min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 3 : Intégration Photoshop (Workflow Hybride) (2h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Export BlendAI → Photoshop (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Masking précis produits complexes (30min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Compositing multi-layers (25min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Color grading professionnel (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Finaliser 2 visuels complexes (30min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 4 : Publicités Multi-Variations (1h30)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Créer 10-20 variations pub (25min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : A/B testing visuel (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Formats pub (Meta, Google, Pinterest) (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Campagne 10 variations (30min)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "MODULE 5 : Création 3D à partir 2D (1h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéo : Introduction 3D & ROI (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Vidéo : Technologies 2D→3D accessibles (20min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Démonstration : Packshot → modèle 3D (15min)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Tenter créer 1 modèle 3D simple (10min, optionnel)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "PHASE 2 - PRÉSENTIEL/VISIO LIVE (1 journée, 6h)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "09h00 - 09h30 | REVUE PROJETS & TROUBLESHOOTING (30min)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "09h30 - 11h30 | WORKSHOP PHOTOSHOP HYBRIDE AVANCÉ (2h)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Cas complexes : bijoux détails (pierres, reflets)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Pratique : Chacun finalise 3 visuels niveau publication\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Coaching individualisé formateur"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "11h45 - 13h00 | STRATÉGIE CONTENU 12 MOIS (1h15)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Framework calendrier éditorial visuel\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Répartition formats optimale (statique/vidéo)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Cohérence multi-canal (Instagram/Site/Amazon)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Workshop : Créer calendrier 3 mois (template fourni)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "14h00 - 15h30 | VIDÉOS AVANCÉES & 3D PRATIQUE (1h30)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Vidéos Pro 1080p vs Standard 720p\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Atelier : Créer 2 vidéos Pro 1080p\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Démo 3D live : Créer modèle 3D simple\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Export formats 3D (GLB, OBJ, USDZ)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "15h45 - 16h30 | ROI & BUSINESS CASE (45min)"
+        }
+      ],
+      "style": "h3"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "• Calculer ROI précis (temps, coûts, conversions)\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Template business case Direction/DAF\n"
+        },
+        {
+          "_type": "span",
+          "text": "• Exercice : Business case personnel (chiffres entreprise)"
+        }
+      ],
+      "style": "normal"
+    },
+    {
+      "_type": "block",
+      "children": [
+        {
+          "_type": "span",
+          "text": "16h30 - 17h00 | FINALISATION PROJET FIL ROUGE & CERTIFICATION (30min)"
+        }
+      ],
+      "style": "h3"
+    }
+  ],
+  "public_cible": "E-commerçants avec catalogues importants (50+ SKUs), équipes créatives, photographes souhaitant industrialiser leur production",
+  "slug": "niveau-2-maitrise-blended",
+  "titre": "Workflow Industriel & Technologies 3D - Blended Learning"
+}
