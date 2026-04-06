@@ -82,6 +82,18 @@ const STATIC_ARTICLES: StaticArticle[] = [
 ];
 
 /**
+ * Escape bare `<` in MDX content that are NOT part of JSX tags.
+ * MDX treats `<` as JSX opener, so `<100`, `<5s` etc. cause parse errors.
+ * We only keep `<` when followed by a valid JSX tag name (uppercase component or lowercase HTML tag).
+ */
+function escapeMdxContent(content: string): string {
+  // Replace `<` NOT followed by a valid tag name, closing tag, or MDX expression
+  // Valid JSX: <Tag, <tag, </Tag, </tag, <!, <-- (comments)
+  // Invalid (escape): <5, <100, <.5, etc.
+  return content.replace(/<(?![A-Za-z/!])/g, '&lt;');
+}
+
+/**
  * Read all MDX articles from content/blog/
  */
 function getMdxArticles(): MdxArticle[] {
@@ -107,7 +119,7 @@ function getMdxArticles(): MdxArticle[] {
       keywords: data.keywords,
       readingTime: data.readingTime || 10,
       image: data.image,
-      content,
+      content: escapeMdxContent(content),
       source: 'mdx' as const,
     };
   });

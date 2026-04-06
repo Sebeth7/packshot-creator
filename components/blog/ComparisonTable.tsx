@@ -9,7 +9,8 @@ interface ComparisonTableProps {
   className?: string;
 }
 
-export function ComparisonTable({ headers, rows, className = '' }: ComparisonTableProps) {
+export function ComparisonTable({ headers = [], rows = [], className = '' }: ComparisonTableProps) {
+  if (!headers.length || !rows.length) return null;
   return (
     <div className={`overflow-x-auto my-8 ${className}`}>
       <table className="min-w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
