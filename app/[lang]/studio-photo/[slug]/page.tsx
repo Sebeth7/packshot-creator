@@ -927,48 +927,6 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Hardware Components */}
-      {gallery.hardware && gallery.hardware.length > 0 && (
-        <section className="py-20 lg:py-32 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <FadeInView>
-              <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
-                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'Composants' : 'Components'}
-                </span>
-                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                  {isFr ? 'Technologie intégrée' : 'Integrated technology'}
-                </TextReveal>
-              </div>
-            </FadeInView>
-            <div className="grid md:grid-cols-3 gap-6">
-              {gallery.hardware.map((hw, idx) => (
-                <ScrollReveal key={idx} offset={20 + idx * 15}>
-                  <SpringCard>
-                    <div className="rounded-2xl border border-neutral-100 overflow-hidden bg-neutral-50 hover:border-very-peri-200 transition-colors">
-                      <div className="aspect-[3/2] relative bg-white">
-                        <Image
-                          src={hw.src}
-                          alt={isFr ? hw.alt.fr : hw.alt.en}
-                          width={hw.w}
-                          height={hw.h}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <h3 className="text-lg font-heading font-bold text-future-dusk-900">
-                          {isFr ? hw.label.fr : hw.label.en}
-                        </h3>
-                      </div>
-                    </div>
-                  </SpringCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Software Features */}
       {gallery.software && gallery.software.length > 0 && (
         <section className="py-20 lg:py-32 bg-neutral-50">

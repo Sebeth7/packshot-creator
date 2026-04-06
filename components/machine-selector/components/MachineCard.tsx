@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { Link } from '@/i18n/routing';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineCardProps {
@@ -76,8 +77,8 @@ export function MachineCard({
         </div>
       )}
 
-      {/* Image */}
-      <div className="relative aspect-[4/3] bg-white overflow-hidden">
+      {/* Image — clickable link to product page */}
+      <Link href={`/studio-photo/${machine.id}`} className="block relative aspect-[4/3] bg-white overflow-hidden" onClick={(e) => e.stopPropagation()}>
         {!imageError && machine.imageUrl ? (
           <Image
             src={machine.imageUrl}
@@ -102,7 +103,7 @@ export function MachineCard({
         <div className={`absolute bottom-3 left-3 px-2 py-1 rounded-full text-xs font-medium ${automationLabel.color}`}>
           {locale === 'fr' ? automationLabel.fr : automationLabel.en}
         </div>
-      </div>
+      </Link>
 
       {/* Contenu */}
       <div className="p-4">
@@ -174,17 +175,27 @@ export function MachineCard({
         </p>
 
         {/* Actions */}
-        {onViewDetails && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails(machine);
-            }}
-            className="w-full py-2 px-4 text-sm font-medium text-very-peri-600 border border-very-peri-500 rounded-xl hover:bg-very-peri-600 hover:text-white transition-colors"
+        <div className="flex gap-2">
+          <Link
+            href={`/studio-photo/${machine.id}`}
+            onClick={(e) => e.stopPropagation()}
+            className="flex-1 py-2 px-4 text-sm font-medium text-white bg-very-peri-600 rounded-xl hover:bg-very-peri-700 transition-colors text-center"
           >
-            {locale === 'fr' ? 'Voir les détails' : 'View details'}
-          </button>
-        )}
+            {locale === 'fr' ? 'Voir la fiche' : 'View product'}
+          </Link>
+          {onViewDetails && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewDetails(machine);
+              }}
+              className="py-2 px-4 text-sm font-medium text-future-dusk-600 border border-neutral-200 rounded-xl hover:bg-neutral-50 transition-colors"
+            >
+              {locale === 'fr' ? 'Aperçu' : 'Preview'}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

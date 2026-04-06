@@ -283,30 +283,31 @@ export function MachineModal({
 
         {/* Footer */}
         <div className="flex items-center justify-between p-6 border-t border-neutral-200 bg-neutral-50">
-          <Link
-            href={`/studio-photo/${machine.id}`}
-            className="text-sm font-medium text-very-peri-600 hover:text-very-peri-700 transition-colors"
+          <button
+            onClick={onClose}
+            className="px-5 py-2.5 text-future-dusk-500 text-sm hover:text-future-dusk-700 transition-colors font-medium"
           >
-            {locale === 'fr' ? 'Voir la fiche complète →' : 'View full details →'}
-          </Link>
+            {locale === 'fr' ? 'Fermer' : 'Close'}
+          </button>
           <div className="flex items-center gap-3">
-            <button
-              onClick={onClose}
-              className="px-6 py-2.5 text-future-dusk-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors font-medium"
-            >
-              {locale === 'fr' ? 'Fermer' : 'Close'}
-            </button>
             {onSelect && (
               <button
                 onClick={() => {
                   onSelect(machine);
                   onClose();
                 }}
-                className="px-6 py-2.5 text-white bg-very-peri-600 rounded-lg hover:bg-very-peri-600/90 transition-colors font-medium"
+                className="px-5 py-2.5 text-future-dusk-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors font-medium text-sm"
               >
-                {locale === 'fr' ? 'Sélectionner cette machine' : 'Select this machine'}
+                {locale === 'fr' ? 'Sélectionner' : 'Select'}
               </button>
             )}
+            <Link
+              href={`/studio-photo/${machine.id}`}
+              className="px-6 py-2.5 text-white bg-very-peri-600 rounded-lg hover:bg-very-peri-700 transition-colors font-medium text-sm inline-flex items-center gap-2"
+            >
+              {locale === 'fr' ? 'Voir la fiche complète' : 'View full details'}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
           </div>
         </div>
       </motion.div>
