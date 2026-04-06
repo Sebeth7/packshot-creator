@@ -58,44 +58,292 @@ interface ProductGallery {
 }
 
 function getProductGallery(id: string): ProductGallery {
-  const base = `/images/machines/${id}`;
+  const b = (machineId: string) => `/images/machines/${machineId}`;
+  const img = (machineId: string, file: string, fr: string, en: string, w: number, h: number) =>
+    ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, w, h });
+  const labeled = (machineId: string, file: string, fr: string, en: string, labelFr: string, labelEn: string, w: number, h: number) =>
+    ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, label: { fr: labelFr, en: labelEn }, w, h });
+
   const galleries: Record<string, ProductGallery> = {
+    // ── ALPHASHOT PRO G2 ──
     'alphashot-pro-g2': {
-      bentoPackshot: {
-        src: `${base}/packshot-mascara.avif`,
-        alt: { fr: 'Packshot mascara NARS réalisé avec l\'Alphashot Pro G2', en: 'NARS mascara packshot made with the Alphashot Pro G2' },
-        w: 1080, h: 1080,
-      },
-      orbitvu360: {
-        shareId: 'W2VVEnzxvCD8t2A8qqJNBQ',
-        scriptId: '217258',
-      },
-      video: {
-        youtubeId: 'tR-6RBucmWw',
-        poster: `${base}/session.avif`,
-      },
+      bentoPackshot: img('alphashot-pro-g2', 'packshot-mascara.avif', 'Packshot mascara NARS', 'NARS mascara packshot', 1080, 1080),
+      orbitvu360: { shareId: 'W2VVEnzxvCD8t2A8qqJNBQ', scriptId: '217258' },
+      video: { youtubeId: 'tR-6RBucmWw', poster: `${b('alphashot-pro-g2')}/session.avif` },
       bentoRow2: [
-        { src: `${base}/packshot-eyeshadow.avif`, alt: { fr: 'Packshot palette maquillage fond blanc', en: 'Eyeshadow palette white background packshot' }, w: 1080, h: 1080 },
-        { src: `${base}/packshot-popcorn.avif`, alt: { fr: 'Packshot machine à popcorn fond blanc', en: 'Popcorn maker white background packshot' }, w: 1080, h: 1080 },
-        { src: `${base}/packshot-sunglasses-360.avif`, alt: { fr: 'Packshot lunettes de soleil', en: 'Sunglasses packshot' }, w: 600, h: 600 },
+        img('alphashot-pro-g2', 'packshot-eyeshadow.avif', 'Packshot palette maquillage', 'Eyeshadow palette packshot', 1080, 1080),
+        img('alphashot-pro-g2', 'packshot-popcorn.avif', 'Packshot machine à popcorn', 'Popcorn maker packshot', 1080, 1080),
+        img('alphashot-pro-g2', 'packshot-sunglasses-360.avif', 'Packshot lunettes de soleil', 'Sunglasses packshot', 600, 600),
       ],
-      advantageHero: {
-        src: `${base}/soft-ai-detourage.avif`,
-        alt: { fr: 'Détourage automatique par IA — Orbitvu Station', en: 'AI automatic background removal — Orbitvu Station' },
-        w: 1305, h: 1100,
-      },
+      advantageHero: img('alphashot-pro-g2', 'soft-ai-detourage.avif', 'Détourage automatique IA', 'AI background removal', 1305, 1100),
       hardware: [
-        { src: `${base}/hw-panel-lighting.avif`, alt: { fr: 'Panneau d\'éclairage LED virtuel', en: 'Virtual LED lighting panel' }, label: { fr: 'Éclairage virtuel', en: 'Virtual lighting' }, w: 439, h: 435 },
-        { src: `${base}/hw-turntable.avif`, alt: { fr: 'Plateau tournant motorisé intégré', en: 'Integrated motorized turntable' }, label: { fr: 'Plateau motorisé', en: 'Motorized turntable' }, w: 439, h: 435 },
+        labeled('alphashot-pro-g2', 'hw-panel-lighting.avif', 'Panneau éclairage LED virtuel', 'Virtual LED panel', 'Éclairage virtuel', 'Virtual lighting', 439, 435),
+        labeled('alphashot-pro-g2', 'hw-turntable.avif', 'Plateau tournant motorisé', 'Motorized turntable', 'Plateau motorisé', 'Motorized turntable', 439, 435),
       ],
       software: [
-        { src: `${base}/soft-lighting.avif`, alt: { fr: 'Contrôle d\'éclairage intelligent Orbitvu Station', en: 'Smart lighting control Orbitvu Station' }, label: { fr: 'Contrôle éclairage', en: 'Lighting control' }, w: 1305, h: 1100 },
-        { src: `${base}/soft-postprod.avif`, alt: { fr: 'Post-production automatique Orbitvu Station', en: 'Automatic post-production Orbitvu Station' }, label: { fr: 'Post-production', en: 'Post-production' }, w: 1305, h: 1100 },
-        { src: `${base}/soft-export.avif`, alt: { fr: 'Export multi-canal Orbitvu Station', en: 'Multi-channel export Orbitvu Station' }, label: { fr: 'Export multi-canal', en: 'Multi-channel export' }, w: 1304, h: 1100 },
-        { src: `${base}/soft-ai-detourage.avif`, alt: { fr: 'Détourage IA automatique Orbitvu Station', en: 'AI background removal Orbitvu Station' }, label: { fr: 'Détourage IA', en: 'AI background removal' }, w: 1305, h: 1100 },
+        labeled('alphashot-pro-g2', 'soft-lighting.avif', 'Contrôle éclairage Orbitvu Station', 'Lighting control', 'Contrôle éclairage', 'Lighting control', 1305, 1100),
+        labeled('alphashot-pro-g2', 'soft-postprod.avif', 'Post-production automatique', 'Auto post-production', 'Post-production', 'Post-production', 1305, 1100),
+        labeled('alphashot-pro-g2', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export multi-canal', 'Multi-channel export', 1304, 1100),
+        labeled('alphashot-pro-g2', 'soft-ai-detourage.avif', 'Détourage IA automatique', 'AI background removal', 'Détourage IA', 'AI removal', 1305, 1100),
+      ],
+    },
+    // ── ALPHASHOT MICRO V2 ──
+    'alphashot-micro-v2': {
+      bentoPackshot: img('alphashot-micro-v2', 'packshot-ring.avif', 'Packshot bague sur fond blanc', 'Ring packshot white background', 300, 300),
+      orbitvu360: { shareId: 'toSuU4T5ZMkm264rJPBAAe', scriptId: '212198' },
+      bentoRow2: [
+        img('alphashot-micro-v2', 'packshot-necklace.avif', 'Packshot collier', 'Necklace packshot', 300, 600),
+        img('alphashot-micro-v2', 'packshot-watch-360.avif', 'Packshot montre 360°', 'Watch 360° packshot', 600, 600),
+        img('alphashot-micro-v2', 'packshot-ring-gold.avif', 'Packshot bague or', 'Gold ring packshot', 300, 300),
+      ],
+      advantageHero: img('alphashot-micro-v2', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphashot-micro-v2', 'hw-reflection.avif', 'Système anti-reflets', 'Anti-reflection system', 'Anti-reflets', 'Anti-reflection', 1304, 1100),
+        labeled('alphashot-micro-v2', 'hw-lights-4.avif', 'Éclairage LED intégré', 'Integrated LED lighting', 'Éclairage LED', 'LED lighting', 652, 550),
+        labeled('alphashot-micro-v2', 'hw-lighting.avif', 'Système d\'éclairage', 'Lighting system', 'Éclairage', 'Lighting', 700, 700),
+      ],
+      software: [
+        labeled('alphashot-micro-v2', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage auto', 'Auto removal', 1304, 1100),
+        labeled('alphashot-micro-v2', 'soft-superfocus.avif', 'Super Focus macro', 'Super Focus macro', 'Super Focus', 'Super Focus', 1304, 1100),
+        labeled('alphashot-micro-v2', 'soft-retouch.avif', 'Retouche automatique', 'Auto retouch', 'Retouche', 'Retouch', 1304, 1100),
+        labeled('alphashot-micro-v2', 'soft-templates.avif', 'Templates personnalisés', 'Custom templates', 'Templates', 'Templates', 1304, 1100),
+      ],
+    },
+    // ── ALPHASHOT 360 ──
+    'alphashot-360': {
+      bentoPackshot: img('alphashot-360', 'packshot-wallet.avif', 'Packshot portefeuille', 'Wallet packshot', 1080, 1080),
+      bentoRow2: [
+        img('alphashot-360', 'packshot-camera.avif', 'Packshot appareil photo', 'Camera packshot', 1080, 1080),
+        img('alphashot-360', 'packshot-perfume.avif', 'Packshot parfum', 'Perfume packshot', 300, 600),
+        img('alphashot-360', 'packshot-toy.avif', 'Packshot jouet', 'Toy packshot', 300, 300),
+      ],
+      advantageHero: img('alphashot-360', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphashot-360', 'hw-360-view.avif', 'Vue 360° intégrée', 'Integrated 360° view', 'Vue 360°', '360° view', 1051, 1050),
+        labeled('alphashot-360', 'hw-motorized-zoom.avif', 'Zoom motorisé', 'Motorized zoom', 'Zoom motorisé', 'Motorized zoom', 439, 435),
+        labeled('alphashot-360', 'hw-led.avif', 'Éclairage LED', 'LED lighting', 'LED', 'LED', 438, 435),
+      ],
+      software: [
+        labeled('alphashot-360', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphashot-360', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphashot-360', 'soft-lighting.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1304, 1100),
+        labeled('alphashot-360', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export', 'Export', 1304, 1100),
+      ],
+    },
+    // ── ALPHASHOT XL ──
+    'alphashot-xl-v2': {
+      bentoPackshot: img('alphashot-xl', 'packshot-keyboard.avif', 'Packshot clavier', 'Keyboard packshot', 300, 300),
+      bentoRow2: [
+        img('alphashot-xl', 'packshot-speaker.avif', 'Packshot enceinte', 'Speaker packshot', 300, 600),
+        img('alphashot-xl', 'packshot-shoe-360.avif', 'Packshot chaussure 360°', 'Shoe 360° packshot', 600, 600),
+        img('alphashot-xl', 'packshot-bag.avif', 'Packshot sac', 'Bag packshot', 300, 300),
+      ],
+      advantageHero: img('alphashot-xl', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphashot-xl', 'hw-studio.avif', 'Vue d\'ensemble studio', 'Studio overview', 'Studio', 'Studio', 1920, 946),
+        labeled('alphashot-xl', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 439, 435),
+        labeled('alphashot-xl', 'hw-led.avif', 'Éclairage LED', 'LED lighting', 'LED', 'LED', 439, 435),
+      ],
+      software: [
+        labeled('alphashot-xl', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphashot-xl', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphashot-xl', 'soft-lighting.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1304, 1100),
+        labeled('alphashot-xl', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export', 'Export', 1304, 1100),
+      ],
+    },
+    // ── ALPHASTUDIO COMPACT ──
+    'alphastudio-compact-v2': {
+      bentoPackshot: img('alphastudio-compact', 'packshot-chair.avif', 'Packshot chaise', 'Chair packshot', 1080, 1080),
+      orbitvu360: { shareId: 'mdkgtBZcnzjRYNUHyRKdh6', scriptId: '169132' },
+      bentoRow2: [
+        img('alphastudio-compact', 'packshot-karcher.avif', 'Packshot nettoyeur haute pression', 'Pressure washer packshot', 1080, 1080),
+        img('alphastudio-compact', 'packshot-bag.avif', 'Packshot sac', 'Bag packshot', 1080, 1080),
+        img('alphastudio-compact', 'packshot-speaker.avif', 'Packshot enceinte', 'Speaker packshot', 300, 300),
+      ],
+      advantageHero: img('alphastudio-compact', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphastudio-compact', 'hw-led.avif', 'Éclairage LED', 'LED lighting', 'LED', 'LED', 438, 436),
+        labeled('alphastudio-compact', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 439, 436),
+        labeled('alphastudio-compact', 'hw-diffusers.avif', 'Diffuseurs latéraux', 'Side diffusers', 'Diffuseurs', 'Diffusers', 439, 435),
+      ],
+      software: [
+        labeled('alphastudio-compact', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphastudio-compact', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphastudio-compact', 'soft-lighting.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1304, 1100),
+        labeled('alphastudio-compact', 'soft-ecommerce.avif', 'Intégration e-commerce', 'E-commerce integration', 'E-commerce', 'E-commerce', 1304, 1100),
+      ],
+    },
+    // ── ALPHASTUDIO XXL ──
+    'alphastudio-xxl-v2': {
+      bentoPackshot: img('alphastudio-xxl', 'packshot-jacket.avif', 'Packshot veste', 'Jacket packshot', 1080, 1080),
+      orbitvu360: { shareId: 'BtmKBPaKrDfgee6uNETQAc', scriptId: '169062' },
+      bentoRow2: [
+        img('alphastudio-xxl', 'packshot-skirt.avif', 'Packshot jupe', 'Skirt packshot', 1080, 1080),
+        img('alphastudio-xxl', 'packshot-suitcase-360.avif', 'Packshot valise 360°', 'Suitcase 360° packshot', 600, 600),
+        img('alphastudio-xxl', 'packshot-model-video.avif', 'Vidéo mannequin', 'Model video', 300, 600),
+      ],
+      advantageHero: img('alphastudio-xxl', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphastudio-xxl', 'hw-studio.avif', 'Vue d\'ensemble studio', 'Studio overview', 'Studio XXL', 'XXL Studio', 1920, 946),
+        labeled('alphastudio-xxl', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 439, 436),
+        labeled('alphastudio-xxl', 'hw-column-stand.avif', 'Colonne motorisée', 'Motorized column', 'Colonne', 'Column', 439, 435),
+      ],
+      software: [
+        labeled('alphastudio-xxl', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphastudio-xxl', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphastudio-xxl', 'soft-lighting.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1304, 1100),
+        labeled('alphastudio-xxl', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export', 'Export', 1304, 1100),
+      ],
+    },
+    // ── ALPHATABLE / ALPHADESK ──
+    'alphadesk': {
+      bentoPackshot: img('alphatable-alphadesk', 'packshot-coat.avif', 'Packshot flat-lay manteau', 'Flat-lay coat packshot', 1200, 1200),
+      orbitvu360: { shareId: 'pk8sM2ak2D6BamQyzri9r3', scriptId: '191142' },
+      bentoRow2: [
+        img('alphatable-alphadesk', 'packshot-blouse.avif', 'Packshot blouse enfant', 'Kid blouse packshot', 1200, 1105),
+        img('alphatable-alphadesk', 'packshot-dungarees.avif', 'Packshot salopette', 'Dungarees packshot', 1200, 1215),
+        img('alphatable-alphadesk', 'packshot-dress.avif', 'Packshot robe enfant', 'Kid dress packshot', 1200, 1215),
+      ],
+      advantageHero: img('alphatable-alphadesk', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphatable-alphadesk', 'hw-lights.avif', 'Éclairage LED', 'LED lighting', 'Éclairage', 'Lighting', 438, 436),
+        labeled('alphatable-alphadesk', 'hw-motorized-zoom.avif', 'Zoom motorisé', 'Motorized zoom', 'Zoom motorisé', 'Motorized zoom', 439, 435),
+        labeled('alphatable-alphadesk', 'hw-button.avif', 'Bouton de commande', 'Control button', 'Commande', 'Control', 439, 436),
+      ],
+      software: [
+        labeled('alphatable-alphadesk', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphatable-alphadesk', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphatable-alphadesk', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export', 'Export', 1304, 1100),
+      ],
+    },
+    'alphatable': {
+      bentoPackshot: img('alphatable-alphadesk', 'packshot-coat.avif', 'Packshot flat-lay manteau', 'Flat-lay coat packshot', 1200, 1200),
+      orbitvu360: { shareId: 'pk8sM2ak2D6BamQyzri9r3', scriptId: '191142' },
+      bentoRow2: [
+        img('alphatable-alphadesk', 'packshot-blouse.avif', 'Packshot blouse enfant', 'Kid blouse packshot', 1200, 1105),
+        img('alphatable-alphadesk', 'packshot-dungarees.avif', 'Packshot salopette', 'Dungarees packshot', 1200, 1215),
+        img('alphatable-alphadesk', 'packshot-dress.avif', 'Packshot robe enfant', 'Kid dress packshot', 1200, 1215),
+      ],
+      advantageHero: img('alphatable-alphadesk', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('alphatable-alphadesk', 'hw-lights.avif', 'Éclairage LED', 'LED lighting', 'Éclairage', 'Lighting', 438, 436),
+        labeled('alphatable-alphadesk', 'hw-motorized-zoom.avif', 'Zoom motorisé', 'Motorized zoom', 'Zoom motorisé', 'Motorized zoom', 439, 435),
+      ],
+      software: [
+        labeled('alphatable-alphadesk', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('alphatable-alphadesk', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('alphatable-alphadesk', 'soft-export.avif', 'Export multi-canal', 'Multi-channel export', 'Export', 'Export', 1304, 1100),
+      ],
+    },
+    // ── FASHION STUDIO ──
+    'fashion-studio-basic': {
+      bentoPackshot: img('fashion-studio', 'packshot-sport-1.avif', 'Photo mode sport', 'Sport fashion photo', 720, 1080),
+      orbitvu360: { shareId: 'BQGVkbgPwMMWJSeXKkjmb5', scriptId: '131515' },
+      bentoRow2: [
+        img('fashion-studio', 'packshot-sport-2.avif', 'Photo mode sport 2', 'Sport fashion photo 2', 720, 1080),
+        img('fashion-studio', 'packshot-sport-4.avif', 'Photo mode sport 4', 'Sport fashion photo 4', 720, 1080),
+        img('fashion-studio', 'packshot-video.avif', 'Vidéo mannequin', 'Model video', 565, 565),
+      ],
+      advantageHero: img('fashion-studio', 'soft-lights.avif', 'Éclairage contrôlé par logiciel', 'Software-controlled lighting', 653, 551),
+      hardware: [
+        labeled('fashion-studio', 'hw-studio.avif', 'Vue d\'ensemble studio', 'Studio overview', 'Fashion Studio', 'Fashion Studio', 1920, 946),
+        labeled('fashion-studio', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 439, 436),
+        labeled('fashion-studio', 'hw-led.avif', 'Éclairage LED', 'LED lighting', 'LED', 'LED', 438, 436),
+      ],
+      software: [
+        labeled('fashion-studio', 'soft-templates.avif', 'Templates personnalisés', 'Custom templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('fashion-studio', 'soft-clip-merging.avif', 'Fusion de clips', 'Clip merging', 'Fusion clips', 'Clip merging', 652, 550),
+        labeled('fashion-studio', 'soft-upload.avif', 'Publication directe', 'Direct publishing', 'Publication', 'Publishing', 1304, 1100),
+      ],
+    },
+    'fashion-studio': {
+      bentoPackshot: img('fashion-studio', 'packshot-sport-1.avif', 'Photo mode sport', 'Sport fashion photo', 720, 1080),
+      orbitvu360: { shareId: 'BQGVkbgPwMMWJSeXKkjmb5', scriptId: '131515' },
+      bentoRow2: [
+        img('fashion-studio', 'packshot-sport-2.avif', 'Photo mode sport 2', 'Sport fashion photo 2', 720, 1080),
+        img('fashion-studio', 'packshot-sport-4.avif', 'Photo mode sport 4', 'Sport fashion photo 4', 720, 1080),
+        img('fashion-studio', 'packshot-video.avif', 'Vidéo mannequin', 'Model video', 565, 565),
+      ],
+      advantageHero: img('fashion-studio', 'soft-lights.avif', 'Éclairage contrôlé par logiciel', 'Software-controlled lighting', 653, 551),
+      hardware: [
+        labeled('fashion-studio', 'hw-studio.avif', 'Vue d\'ensemble studio', 'Studio overview', 'Fashion Studio', 'Fashion Studio', 1920, 946),
+        labeled('fashion-studio', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 439, 436),
+        labeled('fashion-studio', 'hw-led.avif', 'Éclairage LED', 'LED lighting', 'LED', 'LED', 438, 436),
+      ],
+      software: [
+        labeled('fashion-studio', 'soft-templates.avif', 'Templates personnalisés', 'Custom templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('fashion-studio', 'soft-clip-merging.avif', 'Fusion de clips', 'Clip merging', 'Fusion clips', 'Clip merging', 652, 550),
+        labeled('fashion-studio', 'soft-upload.avif', 'Publication directe', 'Direct publishing', 'Publication', 'Publishing', 1304, 1100),
+      ],
+    },
+    // ── BIKE STUDIO ──
+    'bike-studio': {
+      bentoPackshot: img('bike-studio', 'packshot-angle-1.avif', 'Packshot vélo angle', 'Bike angle packshot', 1080, 1093),
+      orbitvu360: { shareId: 'KQejRGFGhuey2oUXhPkwrT', scriptId: '162118' },
+      bentoRow2: [
+        img('bike-studio', 'packshot-front.avif', 'Packshot vélo face', 'Bike front packshot', 1080, 994),
+        img('bike-studio', 'packshot-tire.avif', 'Packshot pneu vélo', 'Bike tire packshot', 1080, 1093),
+        img('bike-studio', 'packshot-360.avif', 'Vue 360° vélo', 'Bike 360° view', 285, 570),
+      ],
+      advantageHero: img('bike-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 652, 550),
+      hardware: [
+        labeled('bike-studio', 'hw-session.avif', 'Session photo vélo', 'Bike photo session', 'Session', 'Session', 1440, 700),
+        labeled('bike-studio', 'hw-suspension.avif', 'Système de suspension', 'Suspension system', 'Suspension', 'Suspension', 450, 450),
+        labeled('bike-studio', 'hw-lights.avif', 'Éclairage studio', 'Studio lighting', 'Éclairage', 'Lighting', 652, 550),
+      ],
+      software: [
+        labeled('bike-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 652, 550),
+        labeled('bike-studio', 'soft-templates.avif', 'Templates Orbitvu Station', 'Orbitvu Station templates', 'Templates', 'Templates', 652, 550),
+        labeled('bike-studio', 'soft-upload.avif', 'Publication directe', 'Direct publishing', 'Publication', 'Publishing', 652, 550),
+      ],
+    },
+    // ── E-COMM STUDIO+ ──
+    'e-comm-studio-plus': {
+      bentoPackshot: img('e-comm-studio', 'packshot-cabinet.avif', 'Packshot meuble rouge', 'Red cabinet packshot', 1069, 1080),
+      orbitvu360: { shareId: 'g3rdCvWUXjSjuwxtiTte5h', scriptId: '207312' },
+      bentoRow2: [
+        img('e-comm-studio', 'packshot-fridge.avif', 'Packshot réfrigérateur', 'Fridge packshot', 1081, 1080),
+        img('e-comm-studio', 'packshot-sofa-360.avif', 'Canapé 360°', 'Sofa 360°', 571, 570),
+        img('e-comm-studio', 'packshot-quad.avif', 'Packshot quad', 'Quad packshot', 285, 285),
+      ],
+      advantageHero: img('e-comm-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('e-comm-studio', 'hw-studio.avif', 'Vue d\'ensemble E-Comm Studio', 'E-Comm Studio overview', 'Studio', 'Studio', 1920, 946),
+        labeled('e-comm-studio', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 440, 437),
+        labeled('e-comm-studio', 'hw-lamp.avif', 'Éclairage', 'Lighting', 'Éclairage', 'Lighting', 439, 437),
+      ],
+      software: [
+        labeled('e-comm-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('e-comm-studio', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('e-comm-studio', 'soft-lights.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1305, 1100),
+        labeled('e-comm-studio', 'soft-publish.avif', 'Publication directe', 'Direct publishing', 'Publication', 'Publishing', 1304, 1100),
+      ],
+    },
+    // ── FURNITURE STUDIO ──
+    'furniture-studio': {
+      bentoPackshot: img('furniture-studio', 'packshot-chair.avif', 'Packshot chaise rouge', 'Red chair packshot', 1081, 1081),
+      orbitvu360: { shareId: 'g3rdCvWUXjSjuwxtiTte5h', scriptId: '207312' },
+      bentoRow2: [
+        img('furniture-studio', 'packshot-lamp.avif', 'Packshot lampe jaune', 'Yellow lamp packshot', 1081, 1081),
+        img('furniture-studio', 'packshot-shelf.avif', 'Packshot étagère rouge', 'Red shelf packshot', 1081, 1081),
+        img('furniture-studio', 'packshot-sofa-360.avif', 'Canapé 360°', 'Sofa 360°', 292, 293),
+      ],
+      advantageHero: img('furniture-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Auto background removal', 1304, 1100),
+      hardware: [
+        labeled('furniture-studio', 'hw-studio.avif', 'Vue d\'ensemble Furniture Studio', 'Furniture Studio overview', 'Studio', 'Studio', 1920, 946),
+        labeled('furniture-studio', 'hw-turntable.avif', 'Plateau tournant', 'Turntable', 'Plateau', 'Turntable', 440, 437),
+      ],
+      software: [
+        labeled('furniture-studio', 'soft-bg-removal.avif', 'Détourage automatique', 'Background removal', 'Détourage', 'Removal', 1304, 1100),
+        labeled('furniture-studio', 'soft-templates.avif', 'Templates', 'Templates', 'Templates', 'Templates', 1304, 1100),
+        labeled('furniture-studio', 'soft-lights.avif', 'Contrôle éclairage', 'Lighting control', 'Éclairage', 'Lighting', 1305, 1100),
+        labeled('furniture-studio', 'soft-publish.avif', 'Publication directe', 'Direct publishing', 'Publication', 'Publishing', 1304, 1100),
       ],
     },
   };
+  // Handle variant IDs that share gallery with base
+  if (id === 'alphashot-xl-wine-v2' || id === 'alphashot-xl-pro-v2') return galleries['alphashot-xl-v2'] || {};
+  if (id === 'alphashot-g2') return galleries['alphashot-pro-g2'] || {};
   return galleries[id] || {};
 }
 
