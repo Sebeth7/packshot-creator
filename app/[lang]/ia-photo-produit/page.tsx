@@ -29,18 +29,21 @@ const PLATFORM_FEATURES = [
   { key: 'feature5' as const, icon: <Link2 className="h-5 w-5" />, num: '05' },
 ];
 
-const GALLERY_ITEMS = [
-  { src: '/images/gallery-ia/gallery-ia-01.avif', alt: 'BlendAI — Cosmétiques lifestyle' },
-  { src: '/images/gallery-ia/gallery-ia-02.avif', alt: 'BlendAI — Mode accessoires' },
-  { src: '/images/gallery-ia/gallery-ia-03.avif', alt: 'BlendAI — Bijoux mise en scène' },
-  { src: '/images/gallery-ia/gallery-ia-04.avif', alt: 'BlendAI — Décoration intérieure' },
-  { src: '/images/gallery-ia/gallery-ia-05.avif', alt: 'BlendAI — Lifestyle produit' },
-  { src: '/images/gallery-ia/gallery-ia-06.avif', alt: 'BlendAI — Mise en ambiance' },
-  { src: '/images/gallery-ia/gallery-ia-07.avif', alt: 'BlendAI — Scène créative' },
-  { src: '/images/gallery-ia/gallery-ia-08.avif', alt: 'BlendAI — Spiritueux lifestyle' },
-  { src: '/images/gallery-ia/gallery-ia-09.avif', alt: 'BlendAI — Visuel e-commerce' },
-  { src: '/images/gallery-ia/gallery-ia-10.avif', alt: 'BlendAI — Photo mannequin IA' },
-  { src: '/images/gallery-ia/gallery-ia-11.avif', alt: 'BlendAI — Déclinaison lifestyle' },
+const GALLERY_ITEMS: Array<
+  | { type: 'image'; src: string; alt: string }
+  | { type: 'video'; src: string; poster: string; alt: string }
+> = [
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-01.avif', alt: 'BlendAI — Cosmétiques lifestyle' },
+  { type: 'video', src: '/images/gallery-ia/gallery-ia-02.mp4', poster: '/images/gallery-ia/gallery-ia-02-poster.avif', alt: 'BlendAI — Mode accessoires vidéo' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-03.avif', alt: 'BlendAI — Bijoux mise en scène' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-04.avif', alt: 'BlendAI — Décoration intérieure' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-05.avif', alt: 'BlendAI — Lifestyle produit' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-06.avif', alt: 'BlendAI — Mise en ambiance' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-07.avif', alt: 'BlendAI — Scène créative' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-08.avif', alt: 'BlendAI — Spiritueux lifestyle' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-09.avif', alt: 'BlendAI — Visuel e-commerce' },
+  { type: 'video', src: '/images/gallery-ia/gallery-ia-10.mp4', poster: '/images/gallery-ia/gallery-ia-10-poster.avif', alt: 'BlendAI — Mannequin IA vidéo' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-11.avif', alt: 'BlendAI — Déclinaison lifestyle' },
 ];
 
 const CLIENT_LOGOS = [
@@ -205,15 +208,29 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {GALLERY_ITEMS.map((item, idx) => (
               <StaggerItem key={item.src}>
                 <div className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={400}
-                    height={idx % 2 === 0 ? 400 : 500}
-                    className="w-full h-auto object-cover"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    loading="lazy"
-                  />
+                  {item.type === 'video' ? (
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      poster={item.poster}
+                      className="w-full h-auto object-cover"
+                    >
+                      <source src={item.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={400}
+                      height={idx % 2 === 0 ? 400 : 500}
+                      className="w-full h-auto object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
               </StaggerItem>
             ))}
