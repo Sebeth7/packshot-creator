@@ -75,8 +75,9 @@ function getProductGallery(id: string): ProductGallery {
         poster: `${base}/session.avif`,
       },
       bentoRow2: [
-        { src: `${base}/packshot-sunglasses-360.avif`, alt: { fr: 'Vue 360° lunettes de soleil', en: '360° sunglasses view' }, w: 600, h: 600 },
         { src: `${base}/packshot-eyeshadow.avif`, alt: { fr: 'Packshot palette maquillage fond blanc', en: 'Eyeshadow palette white background packshot' }, w: 1080, h: 1080 },
+        { src: `${base}/packshot-popcorn.avif`, alt: { fr: 'Packshot machine à popcorn fond blanc', en: 'Popcorn maker white background packshot' }, w: 1080, h: 1080 },
+        { src: `${base}/packshot-sunglasses-360.avif`, alt: { fr: 'Packshot lunettes de soleil', en: 'Sunglasses packshot' }, w: 600, h: 600 },
       ],
       advantageHero: {
         src: `${base}/soft-ai-detourage.avif`,
@@ -353,15 +354,17 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           {/* Row 1: 7/5 split */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mb-4 lg:mb-5">
             <ScrollReveal className="lg:col-span-7">
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
+              <div className="relative bg-white rounded-2xl overflow-hidden h-72 lg:h-[420px] group border border-neutral-100">
                 {gallery.bentoPackshot ? (
-                  <Image
-                    src={gallery.bentoPackshot.src}
-                    alt={isFr ? gallery.bentoPackshot.alt.fr : gallery.bentoPackshot.alt.en}
-                    width={gallery.bentoPackshot.w}
-                    height={gallery.bentoPackshot.h}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  <div className="absolute inset-0 p-6 lg:p-10 flex items-center justify-center">
+                    <Image
+                      src={gallery.bentoPackshot.src}
+                      alt={isFr ? gallery.bentoPackshot.alt.fr : gallery.bentoPackshot.alt.en}
+                      width={gallery.bentoPackshot.w}
+                      height={gallery.bentoPackshot.h}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
                     <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
@@ -370,8 +373,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     </p>
                   </div>
                 )}
-                <div className="absolute bottom-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">Packshot</span>
+                <div className="absolute bottom-4 left-4 z-10">
+                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Packshot</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -403,72 +406,30 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </ScrollReveal>
           </div>
 
-          {/* Row 2: thirds */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-            <ScrollReveal offset={30}>
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
-                {gallery.bentoRow2?.[0] ? (
-                  <Image
-                    src={gallery.bentoRow2[0].src}
-                    alt={isFr ? gallery.bentoRow2[0].alt.fr : gallery.bentoRow2[0].alt.en}
-                    width={gallery.bentoRow2[0].w}
-                    height={gallery.bentoRow2[0].h}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                    <Eye className="h-8 w-8 mb-2 opacity-30" />
-                    <p className="text-xs font-medium text-center opacity-50">
-                      {isFr ? 'Animation 360°' : '360° animation'}
-                    </p>
+          {/* Row 2: packshot gallery — adapts to number of images */}
+          {gallery.bentoRow2 && gallery.bentoRow2.length > 0 && (
+            <div className={`grid gap-4 lg:gap-5 ${
+              gallery.bentoRow2.length >= 4 ? 'grid-cols-2 lg:grid-cols-4' :
+              gallery.bentoRow2.length === 3 ? 'grid-cols-2 lg:grid-cols-3' :
+              'grid-cols-2'
+            }`}>
+              {gallery.bentoRow2.map((img, idx) => (
+                <ScrollReveal key={idx} offset={30 + idx * 10}>
+                  <div className="relative bg-white rounded-2xl overflow-hidden border border-neutral-100 group">
+                    <div className="aspect-square p-4 lg:p-6 flex items-center justify-center">
+                      <Image
+                        src={img.src}
+                        alt={isFr ? img.alt.fr : img.alt.en}
+                        width={img.w}
+                        height={img.h}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
                   </div>
-                )}
-                <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">360°</span>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal offset={40}>
-              <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
-                {gallery.bentoRow2?.[1] ? (
-                  <Image
-                    src={gallery.bentoRow2[1].src}
-                    alt={isFr ? gallery.bentoRow2[1].alt.fr : gallery.bentoRow2[1].alt.en}
-                    width={gallery.bentoRow2[1].w}
-                    height={gallery.bentoRow2[1].h}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                    <ImageIcon className="h-8 w-8 mb-2 opacity-30" />
-                    <p className="text-xs font-medium text-center opacity-50">
-                      {isFr ? 'Produit réfléchissant' : 'Reflective product'}
-                    </p>
-                  </div>
-                )}
-                <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
-                    {isFr ? 'Verre & métal' : 'Glass & metal'}
-                  </span>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal offset={50} className="col-span-2 lg:col-span-1">
-              <div className="relative bg-gradient-to-br from-very-peri-600 to-very-peri-700 rounded-2xl overflow-hidden h-52 lg:h-64 p-6 lg:p-8 flex flex-col justify-between">
-                <Sparkles className="h-8 w-8 text-white/40" />
-                <div>
-                  <p className="text-lg font-heading font-bold text-white leading-tight mb-1">
-                    {isFr ? 'Premier studio photo IA au monde' : 'World\'s first AI photo studio'}
-                  </p>
-                  <p className="text-sm text-white/60">
-                    {isFr ? 'Détection automatique des réglages' : 'Automatic settings detection'}
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
