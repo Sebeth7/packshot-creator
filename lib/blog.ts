@@ -70,6 +70,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'IA & Technologie',
     readingTime: 13,
+    image: '/images/blog/thumbnail-article-nouveau-5.avif',
     source: 'static',
   },
   {
@@ -80,6 +81,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'IA & Technologie',
     readingTime: 12,
+    image: '/blog/blendai-vs-flair-cover.jpg',
     source: 'static',
   },
   {
@@ -90,6 +92,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'IA & Technologie',
     readingTime: 12,
+    image: '/blog/blendai-vs-photoroom-cover.jpg',
     source: 'static',
   },
   {
@@ -100,6 +103,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Hardware & Studios',
     readingTime: 12,
+    image: '/images/blog/thumbnail-article-nouveau-3.avif',
     source: 'static',
   },
   {
@@ -110,6 +114,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Hardware & Studios',
     readingTime: 12,
+    image: '/images/blog/thumbnail-article-nouveau-3.avif',
     source: 'static',
   },
   {
@@ -120,6 +125,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Hardware & Studios',
     readingTime: 10,
+    image: '/images/blog/thumbnail-article-nouveau-2.avif',
     source: 'static',
   },
   {
@@ -130,6 +136,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Formation & Academy',
     readingTime: 10,
+    image: '/blog/financement-opco-cover.jpg',
     source: 'static',
   },
   {
@@ -140,6 +147,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Formation & Academy',
     readingTime: 11,
+    image: '/images/blog/thumbnail-article-nouveau-2.avif',
     source: 'static',
   },
 ];

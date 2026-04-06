@@ -145,6 +145,17 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
         </div>
       </HeroSection>
 
+      {/* Cover Image */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 mb-12 relative z-10">
+        <img
+          src="/images/blog/thumbnail-article-nouveau-3.avif"
+          alt="Guide achat studio photo automatisé Orbitvu 2026"
+          className="w-full rounded-2xl shadow-lg"
+          width={1344}
+          height={768}
+        />
+      </div>
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. ARTICLE BODY
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}

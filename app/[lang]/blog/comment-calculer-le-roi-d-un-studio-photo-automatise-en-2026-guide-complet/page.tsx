@@ -141,6 +141,17 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
         </div>
       </HeroSection>
 
+      {/* Cover Image */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 mb-12 relative z-10">
+        <img
+          src="/images/blog/thumbnail-article-nouveau-2.avif"
+          alt="Calculer le ROI d'un studio photo automatisé"
+          className="w-full rounded-2xl shadow-lg"
+          width={1344}
+          height={768}
+        />
+      </div>
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. ARTICLE BODY
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}

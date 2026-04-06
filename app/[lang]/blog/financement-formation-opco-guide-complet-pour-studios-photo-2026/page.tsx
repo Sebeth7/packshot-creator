@@ -166,6 +166,17 @@ export default async function FinancementOpcoGuidePage({
         </div>
       </HeroSection>
 
+      {/* Cover Image */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 mb-12 relative z-10">
+        <img
+          src="/blog/financement-opco-cover.jpg"
+          alt="Financement OPCO pour formations photo produit"
+          className="w-full rounded-2xl shadow-lg"
+          width={1344}
+          height={768}
+        />
+      </div>
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. ARTICLE LAYOUT (TOC + body)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
