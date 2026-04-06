@@ -106,8 +106,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   const afterLabel = isFr ? 'Après BlendAI' : 'After BlendAI';
   const featuresData = [
     { id: 'lifestyle', label: t('features.lifestyle.name'), description: t.rich('features.lifestyle.description', { bold: boldOrange }), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700',
-      before: { src: '/images/before-after/ia-before-after-cosmetiques-1-before.avif', alt: 'Packshot cosmétiques', label: beforeLabel },
-      after: { src: '/images/before-after/ia-before-after-cosmetiques-1-after.avif', alt: 'Lifestyle cosmétiques BlendAI', label: afterLabel } },
+      before: { src: '/images/before-after/ia-before-after-furniture-1-before.avif', alt: 'Packshot mobilier', label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-furniture-1-after.avif', alt: 'Lifestyle mobilier BlendAI', label: afterLabel } },
     { id: 'mannequin', label: t('features.mannequin.name'), description: t.rich('features.mannequin.description', { bold: boldOrange }), icon: <User className="h-5 w-5" />, color: 'bg-violet-100 text-violet-700', activeColor: 'bg-violet-100 text-violet-700',
       before: { src: '/images/before-after/ia-before-after-mode-1-before.avif', alt: 'Packshot mode', label: beforeLabel },
       after: { src: '/images/before-after/ia-before-after-mode-1-after.avif', alt: 'Mannequin IA BlendAI', label: afterLabel } },
