@@ -133,9 +133,11 @@ export function articleSchema(article: {
   url: string;
   image?: string;
   datePublished: string;
+  dateModified?: string;
   author?: string;
   category?: string;
 }) {
+  const isNamedAuthor = article.author && article.author !== 'PackshotCreator';
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -144,10 +146,26 @@ export function articleSchema(article: {
     url: article.url,
     image: article.image,
     datePublished: article.datePublished,
-    author: {
-      '@type': 'Person',
-      name: article.author || 'PackshotCreator',
-    },
+    dateModified: article.dateModified || article.datePublished,
+    author: isNamedAuthor
+      ? {
+          '@type': 'Person',
+          name: article.author,
+          jobTitle: 'Dirigeant & Expert Photo Produit',
+          url: 'https://www.packshot-creator.com/fr/a-propos',
+          sameAs: [
+            'https://www.linkedin.com/in/sebastienjourdan/',
+          ],
+          worksFor: {
+            '@type': 'Organization',
+            name: 'PackshotCreator / Sysnext',
+          },
+        }
+      : {
+          '@type': 'Organization',
+          name: 'PackshotCreator',
+          url: 'https://www.packshot-creator.com',
+        },
     publisher: {
       '@type': 'Organization',
       name: 'PackshotCreator',
