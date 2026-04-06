@@ -12,6 +12,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
+import { YouTubeFacade } from '@/components/video/YouTubeFacade';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -34,6 +35,60 @@ function getMachineImage(id: string): string {
     'e-comm-studio-plus': '/images/machines/ecomm-studio-plus.avif',
   };
   return imageMap[id] || '/images/machines/placeholder-medium.svg';
+}
+
+interface ProductGallery {
+  /** Bento grid — large packshot result (row1 left, 7/12) */
+  bentoPackshot?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
+  /** Bento grid — demo video YouTube embed (row1 right, 5/12) */
+  bentoVideo?: { youtubeId: string; poster?: string };
+  /** Bento grid — row2 images (360°, reflective, etc.) */
+  bentoRow2?: Array<{ src: string; alt: { fr: string; en: string }; w: number; h: number }>;
+  /** Key advantage featured image */
+  advantageHero?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
+  /** Hardware component images */
+  hardware?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+  /** Accessory images */
+  accessories?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+}
+
+function getProductGallery(id: string): ProductGallery {
+  const base = `/images/machines/${id}`;
+  const galleries: Record<string, ProductGallery> = {
+    'alphashot-pro-g2': {
+      bentoPackshot: {
+        src: `${base}/gallery-perfume.avif`,
+        alt: { fr: 'Packshot parfum Hugo Boss réalisé avec l\'Alphashot Pro G2', en: 'Hugo Boss perfume packshot made with the Alphashot Pro G2' },
+        w: 450, h: 670,
+      },
+      bentoVideo: {
+        youtubeId: 'tR-6RBucmWw',
+        poster: `${base}/specification.avif`,
+      },
+      bentoRow2: [
+        { src: `${base}/gallery-candle.avif`, alt: { fr: 'Packshot bougie — fond blanc automatique', en: 'Candle packshot — automatic white background' }, w: 450, h: 320 },
+        { src: `${base}/gallery-sunglasses.avif`, alt: { fr: 'Packshot lunettes de soleil réfléchissantes', en: 'Reflective sunglasses packshot' }, w: 450, h: 320 },
+      ],
+      advantageHero: {
+        src: `${base}/ai-interface.avif`,
+        alt: { fr: 'Interface logicielle IA de l\'Alphashot Pro G2', en: 'Alphashot Pro G2 AI software interface' },
+        w: 1000, h: 1000,
+      },
+      hardware: [
+        { src: `${base}/hw-lighting.avif`, alt: { fr: 'Système d\'éclairage virtuel LED', en: 'Virtual LED lighting system' }, label: { fr: 'Éclairage virtuel', en: 'Virtual lighting' }, w: 401, h: 270 },
+        { src: `${base}/hw-isolation-panel.avif`, alt: { fr: 'Panneau d\'isolation lumineuse', en: 'Light isolation panel' }, label: { fr: 'Isolation lumineuse', en: 'Light isolation' }, w: 401, h: 270 },
+        { src: `${base}/hw-turntable.avif`, alt: { fr: 'Plateau tournant motorisé intégré', en: 'Integrated motorized turntable' }, label: { fr: 'Plateau motorisé', en: 'Motorized turntable' }, w: 401, h: 270 },
+      ],
+      accessories: [
+        { src: `${base}/acc-camera-holder.avif`, alt: { fr: 'Support caméra secondaire', en: 'Secondary camera holder' }, label: { fr: 'Support caméra', en: 'Camera holder' }, w: 800, h: 800 },
+        { src: `${base}/acc-centering-turntable.avif`, alt: { fr: 'Plateau de centrage', en: 'Centering turntable' }, label: { fr: 'Plateau de centrage', en: 'Centering turntable' }, w: 800, h: 800 },
+        { src: `${base}/acc-mini-support.avif`, alt: { fr: 'Mini support produit', en: 'Mini product support' }, label: { fr: 'Mini support', en: 'Mini support' }, w: 800, h: 800 },
+        { src: `${base}/acc-phone-usbc.avif`, alt: { fr: 'Support smartphone USB-C', en: 'USB-C smartphone holder' }, label: { fr: 'Support smartphone USB-C', en: 'USB-C phone holder' }, w: 800, h: 800 },
+        { src: `${base}/acc-phone-lightning.avif`, alt: { fr: 'Support smartphone Lightning', en: 'Lightning smartphone holder' }, label: { fr: 'Support smartphone Lightning', en: 'Lightning phone holder' }, w: 800, h: 800 },
+      ],
+    },
+  };
+  return galleries[id] || {};
 }
 
 function getFormationLevel(machine: Machine): string {
@@ -117,6 +172,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const isFr = lang === 'fr';
   const machineImage = getMachineImage(machine.id);
   const iaReady = isIAReady(machine.id);
+  const gallery = getProductGallery(machine.id);
 
   const similarMachines = getSimilarMachines(machine);
   const faqItems = machine.faqItems || [];
@@ -291,12 +347,22 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mb-4 lg:mb-5">
             <ScrollReveal className="lg:col-span-7">
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
-                  <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
-                  <p className="text-sm font-medium text-center opacity-50">
-                    {isFr ? 'Photo packshot — fond blanc automatique' : 'Packshot photo — automatic white background'}
-                  </p>
-                </div>
+                {gallery.bentoPackshot ? (
+                  <Image
+                    src={gallery.bentoPackshot.src}
+                    alt={isFr ? gallery.bentoPackshot.alt.fr : gallery.bentoPackshot.alt.en}
+                    width={gallery.bentoPackshot.w}
+                    height={gallery.bentoPackshot.h}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
+                    <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
+                    <p className="text-sm font-medium text-center opacity-50">
+                      {isFr ? 'Photo packshot — fond blanc automatique' : 'Packshot photo — automatic white background'}
+                    </p>
+                  </div>
+                )}
                 <div className="absolute bottom-4 left-4">
                   <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">Packshot</span>
                 </div>
@@ -304,21 +370,31 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </ScrollReveal>
 
             <ScrollReveal offset={20} className="lg:col-span-5">
-              <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group cursor-pointer">
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="h-16 w-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
-                    <Play className="h-7 w-7 text-white ml-1" />
+              {gallery.bentoVideo ? (
+                <YouTubeFacade
+                  videoId={gallery.bentoVideo.youtubeId}
+                  poster={gallery.bentoVideo.poster}
+                  title={`${machine.nom} demo`}
+                  badge={isFr ? 'Vidéo démo' : 'Demo video'}
+                  className="h-72 lg:h-[420px]"
+                />
+              ) : (
+                <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
+                    <div className="h-16 w-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
+                      <Play className="h-7 w-7 text-white ml-1" />
+                    </div>
+                    <p className="mt-4 text-sm font-medium text-white/60">
+                      {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
+                    </p>
                   </div>
-                  <p className="mt-4 text-sm font-medium text-white/60">
-                    {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
-                  </p>
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-very-peri-500/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      {isFr ? 'Vidéo démo' : 'Demo video'}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-very-peri-500/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    {isFr ? 'Vidéo démo' : 'Demo video'}
-                  </span>
-                </div>
-              </div>
+              )}
             </ScrollReveal>
           </div>
 
@@ -326,12 +402,22 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             <ScrollReveal offset={30}>
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                  <Eye className="h-8 w-8 mb-2 opacity-30" />
-                  <p className="text-xs font-medium text-center opacity-50">
-                    {isFr ? 'Animation 360°' : '360° animation'}
-                  </p>
-                </div>
+                {gallery.bentoRow2?.[0] ? (
+                  <Image
+                    src={gallery.bentoRow2[0].src}
+                    alt={isFr ? gallery.bentoRow2[0].alt.fr : gallery.bentoRow2[0].alt.en}
+                    width={gallery.bentoRow2[0].w}
+                    height={gallery.bentoRow2[0].h}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
+                    <Eye className="h-8 w-8 mb-2 opacity-30" />
+                    <p className="text-xs font-medium text-center opacity-50">
+                      {isFr ? 'Animation 360°' : '360° animation'}
+                    </p>
+                  </div>
+                )}
                 <div className="absolute bottom-3 left-3">
                   <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">360°</span>
                 </div>
@@ -340,12 +426,22 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
             <ScrollReveal offset={40}>
               <div className="relative bg-neutral-100 rounded-2xl overflow-hidden h-52 lg:h-64 group">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
-                  <ImageIcon className="h-8 w-8 mb-2 opacity-30" />
-                  <p className="text-xs font-medium text-center opacity-50">
-                    {isFr ? 'Produit réfléchissant' : 'Reflective product'}
-                  </p>
-                </div>
+                {gallery.bentoRow2?.[1] ? (
+                  <Image
+                    src={gallery.bentoRow2[1].src}
+                    alt={isFr ? gallery.bentoRow2[1].alt.fr : gallery.bentoRow2[1].alt.en}
+                    width={gallery.bentoRow2[1].w}
+                    height={gallery.bentoRow2[1].h}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-4">
+                    <ImageIcon className="h-8 w-8 mb-2 opacity-30" />
+                    <p className="text-xs font-medium text-center opacity-50">
+                      {isFr ? 'Produit réfléchissant' : 'Reflective product'}
+                    </p>
+                  </div>
+                )}
                 <div className="absolute bottom-3 left-3">
                   <span className="bg-white/90 backdrop-blur-sm text-future-dusk-700 text-xs font-medium px-3 py-1.5 rounded-full">
                     {isFr ? 'Verre & métal' : 'Glass & metal'}
@@ -437,8 +533,18 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       </p>
                     )}
                   </div>
-                  <div className="bg-white/5 rounded-xl h-48 lg:h-56 flex items-center justify-center">
-                    <ImageIcon className="h-10 w-10 text-white/20" />
+                  <div className="bg-white/5 rounded-xl h-48 lg:h-56 flex items-center justify-center overflow-hidden">
+                    {gallery.advantageHero ? (
+                      <Image
+                        src={gallery.advantageHero.src}
+                        alt={isFr ? gallery.advantageHero.alt.fr : gallery.advantageHero.alt.en}
+                        width={gallery.advantageHero.w}
+                        height={gallery.advantageHero.h}
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                    ) : (
+                      <ImageIcon className="h-10 w-10 text-white/20" />
+                    )}
                   </div>
                 </div>
               </div>
@@ -567,6 +673,90 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Hardware Components */}
+      {gallery.hardware && gallery.hardware.length > 0 && (
+        <section className="py-20 lg:py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+              <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'Composants' : 'Components'}
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                  {isFr ? 'Technologie intégrée' : 'Integrated technology'}
+                </TextReveal>
+              </div>
+            </FadeInView>
+            <div className="grid md:grid-cols-3 gap-6">
+              {gallery.hardware.map((hw, idx) => (
+                <ScrollReveal key={idx} offset={20 + idx * 15}>
+                  <SpringCard>
+                    <div className="rounded-2xl border border-neutral-100 overflow-hidden bg-neutral-50 hover:border-very-peri-200 transition-colors">
+                      <div className="aspect-[3/2] relative bg-white">
+                        <Image
+                          src={hw.src}
+                          alt={isFr ? hw.alt.fr : hw.alt.en}
+                          width={hw.w}
+                          height={hw.h}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-5">
+                        <h3 className="text-lg font-heading font-bold text-future-dusk-900">
+                          {isFr ? hw.label.fr : hw.label.en}
+                        </h3>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Accessories */}
+      {gallery.accessories && gallery.accessories.length > 0 && (
+        <section className="py-20 lg:py-32 bg-neutral-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+              <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'Accessoires' : 'Accessories'}
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                  {isFr ? 'Complétez votre système' : 'Complete your system'}
+                </TextReveal>
+              </div>
+            </FadeInView>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+              {gallery.accessories.map((acc, idx) => (
+                <ScrollReveal key={idx} offset={10 + idx * 8}>
+                  <SpringCard hoverY={-4}>
+                    <div className="rounded-2xl border border-neutral-100 overflow-hidden bg-white hover:border-very-peri-200 transition-colors">
+                      <div className="aspect-square relative bg-neutral-50 p-4">
+                        <Image
+                          src={acc.src}
+                          alt={isFr ? acc.alt.fr : acc.alt.en}
+                          width={acc.w}
+                          height={acc.h}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="p-3 text-center">
+                        <p className="text-sm font-medium text-future-dusk-700">
+                          {isFr ? acc.label.fr : acc.label.en}
+                        </p>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* #D Similar Machines */}
       {similarMachines.length > 0 && (
