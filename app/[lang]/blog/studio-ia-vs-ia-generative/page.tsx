@@ -288,7 +288,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
                     BlendAI.studio
                   </Link>
                   {' '}{isFr
-                    ? ': decouvrez comment l\'IA augmente vos packshots sans jamais toucher au produit.'
+                    ? ': découvrez comment l\'IA augmente vos packshots sans jamais toucher au produit.'
                     : ': discover how AI enhances your packshots without ever touching the product.'}
                 </p>
               </div>
@@ -305,10 +305,10 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
                 <p className="text-future-dusk-700 leading-relaxed">
                   <Camera className="inline h-4 w-4 text-very-peri-600 mr-1.5 -mt-0.5" />
                   <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 font-medium underline underline-offset-4">
-                    {isFr ? 'Studios photo automatises Orbitvu' : 'Orbitvu Automated Photo Studios'}
+                    {isFr ? 'Studios photo automatisés Orbitvu' : 'Orbitvu Automated Photo Studios'}
                   </Link>
                   {' '}{isFr
-                    ? ': explorez la gamme complete, du bureau a l\'entrepot industriel.'
+                    ? ': explorez la gamme complète, du bureau à l\'entrepôt industriel.'
                     : ': explore the full range, from desktop to industrial warehouse.'}
                 </p>
               </div>
@@ -502,7 +502,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
                   {t('relatedLinks.link1description')}
                 </p>
                 <span className="inline-flex items-center gap-1.5 mt-3 text-sm text-very-peri-600 font-medium group-hover:gap-2.5 transition-all">
-                  {isFr ? 'Decouvrir' : 'Learn more'} <ArrowRight className="h-3.5 w-3.5" />
+                  {isFr ? 'Découvrir' : 'Learn more'} <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </Link>
 
