@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, Calendar } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import {
   Callout,
@@ -81,7 +81,37 @@ const headings = [
   { id: 'format-blended-flexibilite-maximale', text: 'Format Blended : Flexibilité Maximale', level: 2 },
   { id: 'le-formateur-sebastien-jourdan', text: 'Le Formateur : Sébastien Jourdan', level: 2 },
   { id: 'calendrier-inscription', text: 'Calendrier & Inscription', level: 2 },
+  { id: 'faq-formation-photo-produit', text: 'Questions Fréquentes', level: 2 },
   { id: 'conclusion', text: 'Conclusion', level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: 'Combien coûte une formation photo produit professionnelle ?',
+    answer: 'Les formations PackshotCreator vont de 650 € (Niveau 1, 7h, format Blended) à 1 800 € (Niveau 3, 21h, présentiel). Toutes sont finançables à 100 % par votre OPCO grâce à la certification Qualiopi.',
+  },
+  {
+    question: 'Faut-il des prérequis pour suivre une formation packshot ?',
+    answer: 'Le Niveau 1 est accessible aux débutants complets, sans expérience photo requise. Pour le Niveau 2 (IA incluse), la maîtrise du Niveau 1 est obligatoire car l\'IA ne peut pas corriger un mauvais packshot source.',
+  },
+  {
+    question: 'En combien de temps peut-on rentabiliser une formation photo produit ?',
+    answer: 'Le seuil de rentabilité est atteint en 3 à 6 mois. À 50–150 € par photo externalisée, un catalogue de 1 000 produits coûte 50 000–150 000 € par an ; après formation et acquisition d\'un studio (~20 000 €), le coût marginal descend à 2–5 € par photo.',
+  },
+  {
+    question: 'Quelle est la différence entre formation packshot et formation IA photo produit ?',
+    answer: 'La formation packshot porte sur la capture en studio (éclairage, cadrage, Orbitvu). La formation IA apprend à transformer ces packshots en visuels lifestyle avec BlendAI. Les deux sont complémentaires et l\'IA nécessite de maîtriser le packshot en prérequis.',
+  },
+  {
+    question: 'Les formations PackshotCreator sont-elles disponibles en dehors de Paris ?',
+    answer: 'Oui, les sessions ont lieu à Paris 11e et à Lyon 2e (partenaire). Le format Blended (70 % e-learning à distance + 30 % présentiel en studio) permet de minimiser les déplacements.',
+  },
+  {
+    question: 'Qui anime les formations photo produit PackshotCreator ?',
+    answer: 'Sébastien Jourdan, photographe packshot depuis 2005 avec 20 ans d\'expérience (CHANEL, Van Cleef & Arpels, BOSCH), formateur agréé Orbitvu depuis 2019 et expert IA photo produit. Les groupes sont limités à 4–8 participants pour un suivi individualisé.',
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -1145,6 +1175,27 @@ export default async function FormationPhotoProduitPage({
               </div>
               <hr className="my-8 border-neutral-200" />
 
+            {/* FAQ */}
+
+              <section className="mt-16 pt-12 border-t border-neutral-200">
+                <h2 id="faq-formation-photo-produit" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
+                  Questions Fréquentes
+                </h2>
+                <div className="space-y-4">
+                  {faqItems.map((item, i) => (
+                    <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                        {item.question}
+                        <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                      </summary>
+                      <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                        {item.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+
             {/* Conclusion */}
 
               <h2
@@ -1277,6 +1328,7 @@ export default async function FormationPhotoProduitPage({
             author: 'Sébastien Jourdan',
             category: 'Formation & Academy',
           }),
+          faqSchema(faqItems),
         ]}
       />
     </>

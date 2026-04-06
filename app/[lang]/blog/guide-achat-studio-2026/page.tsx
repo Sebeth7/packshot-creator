@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -63,8 +63,41 @@ const tocHeadings = [
   { id: 'processus-dachat-en-5-etapes', text: 'Processus d\'Achat en 5 Étapes', level: 2 },
   { id: 'erreurs-courantes-a-eviter', text: 'Erreurs Courantes à Éviter', level: 2 },
   { id: 'financement-et-aides', text: 'Financement et Aides', level: 2 },
-  { id: 'faq-achat-studios-photo', text: 'FAQ Achat Studios Photo', level: 2 },
+  { id: 'faq-achat-studios-photo', text: 'Questions fréquentes', level: 2 },
   { id: 'conclusion-choisir-en-connaissance-de-cause', text: 'Conclusion', level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: "Quel délai entre la commande et l'installation d'un studio Orbitvu ?",
+    answer: "Pour les machines en stock France, le délai est de 2 à 3 semaines. Pour un import direct depuis la Pologne, comptez 6 à 10 semaines. En pratique, anticipez 8 à 12 semaines entre la commande et le go-live, en intégrant la livraison, l'installation et la formation initiale.",
+  },
+  {
+    question: "Quelle garantie est incluse avec un studio Orbitvu ?",
+    answer: "La garantie constructeur standard est de 2 ans (pièces et main d'œuvre), extensible jusqu'à 5 ans moyennant 500 à 1 000€/an. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
+  },
+  {
+    question: "Peut-on louer un studio Orbitvu plutôt que l'acheter ?",
+    answer: "Orbitvu ne propose pas de location classique. L'alternative est le leasing professionnel, qui permet de financer la machine sur 3 à 5 ans avec option d'achat en fin de contrat. Pour les entreprises souhaitant maîtriser leur trésorerie, c'est souvent la solution recommandée.",
+  },
+  {
+    question: "Est-il risqué d'acheter un Orbitvu d'occasion ?",
+    answer: "C'est déconseillé dans la plupart des cas : les machines d'occasion sont souvent hors garantie, la formation initiale n'est pas transférable, et la décote n'est que de 30 à 40% — soit une économie réelle limitée pour un risque accru. Une exception est acceptable pour les machines de moins de 2 ans avec garantie transférable, à vérifier avec PackshotCreator.",
+  },
+  {
+    question: "Quel modèle Orbitvu convient le mieux pour la majorité des e-commerçants ?",
+    answer: "L'AlphaShot G2 est recommandé pour 90% des cas : il couvre les produits jusqu'à 100 cm, offre une polyvalence maximale pour la mode, la chaussure et l'électronique, et affiche un ROI de 4 à 8 mois pour les volumes supérieurs à 1 000 produits par an. Les modules 360° et vidéo sont ajoutables à tout moment.",
+  },
+  {
+    question: "Comment financer l'achat d'un studio photo automatisé ?",
+    answer: "Plusieurs options existent : le leasing professionnel (mensualités lissées sur 36 à 60 mois), le crédit-bail, ou les aides à l'investissement (BPI France, crédit impôt innovation selon secteur). Pour les PME industrielles, des dispositifs régionaux peuvent couvrir jusqu'à 30% de l'investissement.",
+  },
+  {
+    question: "Un studio Orbitvu peut-il évoluer avec les besoins futurs ?",
+    answer: "Oui, c'est l'un des points forts d'Orbitvu : des modules additionnels (360°, vidéo, 3D scan) sont disponibles après achat, les mises à jour logicielles sont gratuites (2 à 3 par an), et les pièces détachées sont disponibles pendant 7 à 10 ans. La compatibilité ascendante garantit que les anciens modèles restent compatibles avec les nouveaux logiciels.",
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -1011,63 +1044,24 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <hr className="my-8 border-neutral-200" />
 
                 {/* ── FAQ ── */}
-                <h2 id="faq-achat-studios-photo" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
-                  FAQ Achat Studios Photo
-                </h2>
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Quel délai de livraison ?</h3>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Stock France</strong> : 2-3 semaines (machines en stock Paris)</li>
-                  <li className="text-future-dusk-600"><strong>Import Pologne</strong> : 6-10 semaines (si modèle non disponible stock FR)</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Conseil</strong> : Anticiper 8-12 semaines entre commande et go-live (livraison + installation + formation).
-                </p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Quelle garantie ?</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Garantie constructeur</strong> : 2 ans (pièces et main d'œuvre) | <strong>Extension possible</strong> : Jusqu'à 5 ans (+ 500 - 1 000€/an)</p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Couverture</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Défauts matériels — Interventions technicien on-site — Pièces détachées</li>
-                  <li className="text-future-dusk-600">Hors couverture : Usure normale (ampoules, backgrounds), Dommages accidentels (choc, chute)</li>
-                </ul>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Location possible ?</h3>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Non, Orbitvu ne propose pas de location.</strong> Uniquement achat (comptant ou leasing). <strong>Alternative</strong> : Leasing professionnel = pseudo-location avec option rachat.
-                </p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Occasion fiable ?</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Non recommandé</strong> pour plusieurs raisons :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600"><strong>Obsolescence rapide</strong> : Technologie évolue vite (logiciels, capteurs)</li>
-                  <li className="text-future-dusk-600"><strong>Garantie limitée</strong> : Machines d'occasion souvent hors garantie</li>
-                  <li className="text-future-dusk-600"><strong>Pas de formation</strong> : Formation initiale non transférable</li>
-                  <li className="text-future-dusk-600"><strong>Prix décevants</strong> : Décote faible (30-40% seulement), peu d'économie réelle</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Exception</strong> : Machines récentes (&lt; 2 ans) avec garantie transférable, vérifier avec PackshotCreator.
-                </p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Évolutivité réelle ?</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Orbitvu excellent sur ce point</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Modules additionnels disponibles (360°, vidéo, 3D)</li>
-                  <li className="text-future-dusk-600">Upgrades software gratuits (2-3/an)</li>
-                  <li className="text-future-dusk-600">Pièces détachées disponibles 7-10 ans</li>
-                  <li className="text-future-dusk-600">Compatibilité ascendante (anciens modèles compatibles nouveaux logiciels)</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Concurrent souvent limité</strong> : Upgrades payants, modules incompatibles, obsolescence programmée.
-                </p>
+                <section className="mt-16 pt-12 border-t border-neutral-200">
+                  <h2 id="faq-achat-studios-photo" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
+                    Questions fréquentes
+                  </h2>
+                  <div className="space-y-4">
+                    {faqItems.map((item, i) => (
+                      <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                        <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                          {item.question}
+                          <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                          {item.answer}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </section>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -1181,6 +1175,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
           author: 'Sébastien Jourdan',
           category: 'Hardware & Studios',
         }),
+        faqSchema(faqItems),
       ]} />
     </>
   );

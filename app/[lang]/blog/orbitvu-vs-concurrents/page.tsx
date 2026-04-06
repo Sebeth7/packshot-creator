@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
@@ -60,8 +60,37 @@ const headings: HeadingData[] = [
   { id: 'orbitvu-vs-photomatics-positionnements-differents', text: 'Orbitvu vs Photomatics : Positionnements Différents', level: 2 },
   { id: 'tableau-comparatif-general-les-3-acteurs', text: 'Tableau Comparatif Général : Les 3 Acteurs', level: 2 },
   { id: 'pourquoi-choisir-orbitvu-les-5-avantages-cles', text: 'Pourquoi Choisir Orbitvu ? Les 5 Avantages Clés', level: 2 },
-  { id: 'faq-comparatif', text: 'FAQ Comparatif', level: 2 },
+  { id: 'faq-comparatif', text: 'Questions fréquentes', level: 2 },
   { id: 'conclusion-orbitvu-le-choix-rationnel-2026', text: 'Conclusion : Orbitvu, le Choix Rationnel 2026', level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: 'Orbitvu est-il un fabricant fiable ?',
+    answer: "Oui, Orbitvu est leader européen des studios photo automatisés depuis 2003, avec plus de 15 000 machines installées dans 45 pays et une part de marché d'environ 45% en Europe. Les clients français incluent CHANEL, SANDRO, BOSCH, Leroy Merlin et Décathlon.",
+  },
+  {
+    question: 'Le SAV Orbitvu est-il efficace en France ?',
+    answer: "Oui, PackshotCreator assure le support exclusif Orbitvu en France avec un showroom Paris 11e, un stock de pièces détachées livrables en 24h et 4 techniciens dédiés. Contrairement aux concurrents dont le SAV passe par la Pologne ou les Pays-Bas, tout est géré localement.",
+  },
+  {
+    question: 'Orbitvu est-il compatible avec les logiciels tiers et les PIM ?',
+    answer: "Oui, Orbitvu propose une API REST ouverte avec intégrations natives pour BlendAI, Adobe Lightroom/Photoshop, les PIM (Akeneo, Salsify) et les plateformes e-commerce (Shopify, WooCommerce, Magento). StyleShoots propose une API plus limitée avec des intégrations custom plus complexes.",
+  },
+  {
+    question: 'Pourquoi Orbitvu est-il moins cher que StyleShoots à qualité équivalente ?',
+    answer: "Orbitvu est fabriqué en Pologne (vs Pays-Bas pour StyleShoots), ce qui génère des coûts de production inférieurs d'environ 15%. Les volumes de production doublés permettent des économies d'échelle supplémentaires. La qualité des capteurs est identique voire supérieure (50 MP Orbitvu vs 42 MP StyleShoots en 2025).",
+  },
+  {
+    question: 'Peut-on tester Orbitvu avant de l\'acheter ?',
+    answer: "Oui, PackshotCreator propose des démonstrations gratuites : soit on-site chez vous (déplacement avec machine pour tester vos produits réels, 2–4h), soit au showroom Paris (5–10 produits testés sur place). Demandez votre démo gratuite via le formulaire de contact.",
+  },
+  {
+    question: 'Quelle est la différence principale entre Orbitvu et Photomatics ?',
+    answer: "Orbitvu est positionné milieu/haut de gamme (8 000–50 000€) pour les e-commerçants professionnels avec des volumes importants et une exigence de qualité professionnelle. Photomatics est un produit entry-level DIY (2 000–8 000€) adapté aux TPE et créateurs avec moins de 100 produits par an.",
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -633,96 +662,24 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
 
           {/* ── SECTION 7 : FAQ ── */}
 
-            <h2 id="faq-comparatif" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
-              6. FAQ Comparatif
+          <section className="mt-16 pt-12 border-t border-neutral-200">
+            <h2 id="faq-comparatif" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
+              Questions fréquentes
             </h2>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Orbitvu est-il fiable ?
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Oui, leader européen depuis 2003.</strong>
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Indicateurs fiabilité</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">15 000+ machines installées monde (2025)</li>
-              <li className="text-future-dusk-600">Présence 45 pays</li>
-              <li className="text-future-dusk-600">Part de marché EU : ~45%</li>
-              <li className="text-future-dusk-600">Satisfaction client : 95%+ (études indépendantes)</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Références clients France</strong> : CHANEL, SANDRO, BOSCH, Leroy Merlin, Décathlon (via PackshotCreator).
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              SAV France vraiment efficace ?
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Oui, PackshotCreator = distributeur exclusif avec infrastructure France.</strong>
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Preuves</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Showroom Paris 11e (démos, formations)</li>
-              <li className="text-future-dusk-600">Stock pièces détachées Paris (livraison 24h)</li>
-              <li className="text-future-dusk-600">4 techniciens dédiés Orbitvu France</li>
-              <li className="text-future-dusk-600">Hotline FR (vs hotline Pologne ou Pays-Bas concurrents)</li>
-            </ul>
-            <blockquote className="border-l-4 border-very-peri-300 pl-4 italic text-future-dusk-600 my-4">
-              "Panne plateau tournant un lundi matin. Pièce reçue mardi 10h, technicien sur site mardi 14h. Machine réparée en 2h. Service irréprochable."
-              <footer className="mt-2 not-italic text-sm text-future-dusk-400">— Laurent M., Directeur Production, E-commerce Électroménager (5 000 références)</footer>
-            </blockquote>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Compatible logiciels tiers ?
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Oui, API ouverte Orbitvu.</strong>
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Intégrations natives</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">BlendAI (IA photo produit)</li>
-              <li className="text-future-dusk-600">Adobe Lightroom / Photoshop</li>
-              <li className="text-future-dusk-600">PIM : Akeneo, Salsify, Plytix</li>
-              <li className="text-future-dusk-600">DAM : Bynder, Canto, Widen</li>
-              <li className="text-future-dusk-600">E-commerce : Shopify, WooCommerce, Magento</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>API REST</strong> : Intégration custom possible (documentation complète).
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>StyleShoots</strong> : API limitée, intégrations custom complexes.
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Orbitvu moins cher = qualité moindre ?
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Non, rapport qualité/prix supérieur.</strong>
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Explications différence prix</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Fabrication Pologne</strong> (vs Pays-Bas StyleShoots) : Coûts -15%</li>
-              <li className="text-future-dusk-600"><strong>Volumes production</strong> : 2× plus de machines = économies d'échelle</li>
-              <li className="text-future-dusk-600"><strong>Distribution directe</strong> : PackshotCreator = pas de multiples intermédiaires</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Qualité rendu</strong> : Identique voire supérieure (capteurs 50 MP Orbitvu vs 42 MP StyleShoots Gen 2025).
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Peut-on essayer avant achat ?
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Oui, démos gratuites PackshotCreator.</strong>
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2 options</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Démo on-site chez vous</strong> : Nous venons avec machine, test vos produits réels (2–4h)</li>
-              <li className="text-future-dusk-600"><strong>Démo showroom Paris</strong> : Visite showroom + test 5–10 produits (2–4h)</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Réservation</strong> : <a href="/contact/demande-demo" className="text-very-peri-600 hover:text-very-peri-700 underline">Demander une démo gratuite</a>
-            </p>
+            <div className="space-y-4">
+              {faqItems.map((item, i) => (
+                <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                    {item.question}
+                    <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                  </summary>
+                  <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
 
           <hr className="my-8 border-neutral-200" />
 
@@ -828,6 +785,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
           author: 'Sébastien Jourdan',
           category: 'Hardware & Studios',
         }),
+        faqSchema(faqItems),
       ]} />
     </>
   );

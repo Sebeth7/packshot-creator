@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
@@ -67,7 +67,41 @@ const headings: HeadingData[] = [
   { id: 'comment-integrer-lia-dans-votre-workflow-photo', text: 'Comment Intégrer l\'IA dans Votre Workflow Photo ?', level: 2 },
   { id: 'roi-de-lia-photo-produit-calculs-reels', text: 'ROI de l\'IA Photo Produit : Calculs Réels', level: 2 },
   { id: 'formations-ia-photo-produit-maitrisez-blendai', text: 'Formations IA Photo Produit : Maîtrisez BlendAI', level: 2 },
+  { id: 'questions-frequentes', text: 'Questions fréquentes', level: 2 },
   { id: 'conclusion-lia-photo-produit-en-2026', text: "Conclusion : L'IA Photo Produit en 2026", level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: "Quelle est la différence entre l'IA photo produit et l'IA générative comme Midjourney ?",
+    answer: "L'IA photo produit spécialisée (BlendAI, Photoroom) part d'un packshot studio réel pour générer des déclinaisons en préservant à 100% la fidélité du produit. Midjourney génère des images de toutes pièces, avec des risques de déformation des couleurs, des proportions et des détails — incompatible avec les exigences du e-commerce professionnel.",
+  },
+  {
+    question: 'Combien coûte BlendAI pour une entreprise e-commerce ?',
+    answer: "BlendAI propose des forfaits entreprise à partir de 530€/mois pour la production industrielle de catalogues. Photoroom est plus accessible dès 10€/mois pour les TPE/PME à faible volume, tandis que Flair AI se situe entre 30 et 200€/mois pour les usages créatifs.",
+  },
+  {
+    question: "Quel ROI peut-on espérer avec l'IA photo produit ?",
+    answer: "Le ROI est positif dès 40–50 photos traitées par mois. Sur 3 ans, les économies atteignent 75–95% pour les catalogues de 100+ produits par rapport à une production photo traditionnelle externalisée. Les économies proviennent de la réduction du temps de post-production et de l'élimination des shootings lifestyle en studio.",
+  },
+  {
+    question: "L'IA peut-elle remplacer complètement le photographe produit ?",
+    answer: "Non. L'IA photo produit nécessite toujours un packshot studio de qualité comme point de départ. Elle automatise la post-production et les déclinaisons (backgrounds, lifestyle), mais la prise de vue initiale doit être réalisée dans de bonnes conditions de lumière et de mise en scène.",
+  },
+  {
+    question: 'BlendAI fonctionne-t-il avec les studios Orbitvu ?',
+    answer: "Oui, BlendAI s'intègre nativement dans le workflow Orbitvu. Les photos shootées avec un studio Orbitvu sont automatiquement exportées vers BlendAI pour la post-production IA. C'est cette combinaison Hardware + IA qui offre le meilleur rapport vitesse/qualité/coût sur le marché en 2026.",
+  },
+  {
+    question: 'Les formations IA photo produit sont-elles finançables par l\'OPCO ?',
+    answer: "Oui, toutes les formations BlendAI de PackshotCreator sont certifiées Qualiopi et éligibles au financement OPCO. Pour les TPE/PME, la prise en charge peut atteindre 100%. Le délai entre la demande et la validation OPCO est généralement de 3 à 6 semaines.",
+  },
+  {
+    question: 'Quelle IA choisir entre BlendAI, Photoroom et Flair AI en 2026 ?',
+    answer: "BlendAI est recommandé pour la production industrielle de catalogues (précision, volume, API). Photoroom convient aux TPE/PME avec un budget serré et un volume modéré. Flair AI est idéal pour les campagnes marketing créatives nécessitant des visuels lifestyle stylisés. Les trois outils répondent à des besoins distincts et peuvent être complémentaires.",
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -946,6 +980,26 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <a href="/academy#formations-ia" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les formations IA</a>
             </p>
 
+          {/* ── FAQ ── */}
+          <section className="mt-16 pt-12 border-t border-neutral-200">
+            <h2 id="questions-frequentes" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
+              Questions fréquentes
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((item, i) => (
+                <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                    {item.question}
+                    <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                  </summary>
+                  <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 7 : CONCLUSION ── */}
@@ -1015,6 +1069,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
           author: 'Sébastien Jourdan',
           category: 'IA & Technologie',
         }),
+        faqSchema(faqItems),
       ]} />
     </>
   );

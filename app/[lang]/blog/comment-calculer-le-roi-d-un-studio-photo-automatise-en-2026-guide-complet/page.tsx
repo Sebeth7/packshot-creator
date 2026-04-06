@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -59,8 +59,41 @@ const tocHeadings = [
   { id: 'methodologie-de-calcul-la-formule-roi-complete', text: '5. Méthodologie de Calcul', level: 3 },
   { id: 'calculateur-roi-gratuit', text: '6. Calculateur ROI Gratuit', level: 3 },
   { id: 'facteurs-qualitatifs-limpact-strategique', text: '7. Facteurs Qualitatifs Stratégiques', level: 3 },
-  { id: 'faq-roi-studios-photo', text: '8. FAQ ROI Studios Photo', level: 3 },
+  { id: 'faq-roi-studios-photo', text: '8. Questions Fréquentes', level: 3 },
   { id: 'conclusion-investir-en-connaissance-de-cause', text: 'Conclusion', level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: 'Quel est le délai de retour sur investissement d\'un studio photo automatisé ?',
+    answer: 'Le délai moyen de retour sur investissement est de 12 à 18 mois pour un catalogue de 500 à 2 000 produits par an. Le ROI atteint 50 à 150 % dès la première année selon le volume et les coûts actuels.',
+  },
+  {
+    question: 'Combien coûte un studio photo automatisé Orbitvu ?',
+    answer: 'Les studios Orbitvu vont de 8 000–10 000 € pour l\'AlphaShot Micro (bijoux, cosmétiques) à 45 000–50 000 € pour l\'AlphaShot XXL (meubles, électroménager). Le G2 mid-range se situe entre 15 000 et 20 000 €.',
+  },
+  {
+    question: 'Un studio automatisé est-il rentable pour de petits volumes ?',
+    answer: 'Le seuil de rentabilité recommandé est de 500 produits par an minimum. En dessous, une solution combinant studio manuel et IA BlendAI peut être plus adaptée.',
+  },
+  {
+    question: 'Quels sont les coûts cachés d\'un studio photo automatisé ?',
+    answer: 'Les principaux coûts récurrents sont la maintenance annuelle (10–15 % du prix machine), la formation continue (500–1 000 €/an) et les mises à jour logicielles (généralement gratuites chez Orbitvu). Les consommables sont négligeables (moins de 200 €/an).',
+  },
+  {
+    question: 'Comment financer l\'achat d\'un studio photo automatisé ?',
+    answer: 'Plusieurs options existent : leasing professionnel sur 36–60 mois, crédit équipement bancaire, ou amortissement comptable sur 3–5 ans. La formation associée (certifiée Qualiopi) peut être prise en charge à 100 % par votre OPCO.',
+  },
+  {
+    question: 'Quelle est la formule pour calculer le ROI d\'un studio photo ?',
+    answer: 'ROI = ((Gains annuels − Coûts annuels) / Investissement initial) × 100. Les gains incluent les économies sur externalisation (30–150 €/photo) et le temps opérateur (gain de 80–90 % par produit).',
+  },
+  {
+    question: 'Un studio Orbitvu est-il compatible avec l\'IA photo produit ?',
+    answer: 'Oui, les studios Orbitvu sont IA Ready et compatibles nativement avec BlendAI. Le workflow combiné Hardware + IA génère un gain de productivité total de 92–95 % vs méthode traditionnelle.',
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -509,53 +542,24 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <hr className="my-8 border-neutral-200" />
 
                 {/* Section 8 — FAQ */}
-                <h3 id="faq-roi-studios-photo" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                  8. FAQ ROI Studios Photo
-                </h3>
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Quel ROI réaliste attendre ?</h4>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Délai de retour moyen</strong> : 12-18 mois pour catalogues 500-2 000 produits/an.</li>
-                  <li className="text-future-dusk-600"><strong>ROI année 1</strong> : 50-150% selon volume et coûts actuels.</li>
-                  <li className="text-future-dusk-600"><strong>ROI années suivantes</strong> : 200-500% (économies nettes sans nouvel investissement).</li>
-                </ul>
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Une machine est-elle rentable pour petits volumes ?</h4>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Seuil de rentabilité</strong> : Minimum 500 produits/an recommandé.</li>
-                  <li className="text-future-dusk-600"><strong>En dessous</strong> : Studio manuel + IA BlendAI peut être plus adapté.</li>
-                  <li className="text-future-dusk-600"><strong>Calcul personnalisé</strong> : Utilisez notre calculateur ROI pour votre cas spécifique.</li>
-                </ul>
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Quels sont les coûts cachés ?</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600">Les coûts souvent oubliés :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Maintenance annuelle</strong> : 10-15% prix machine (obligatoire pour garantie)</li>
-                  <li className="text-future-dusk-600"><strong>Formation continue</strong> : Budget 500-1 000€/an pour montée en compétences équipes</li>
-                  <li className="text-future-dusk-600"><strong>Évolutions logicielles</strong> : Généralement gratuites (Orbitvu)</li>
-                  <li className="text-future-dusk-600"><strong>Consommables</strong> : Négligeables (&lt; 200€/an)</li>
-                </ul>
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Peut-on financer l'achat ?</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600">Oui, plusieurs options :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Leasing professionnel</strong> : 36-60 mois, taux 1,5-3%</li>
-                  <li className="text-future-dusk-600"><strong>Crédit équipement bancaire</strong> : Selon profil entreprise</li>
-                  <li className="text-future-dusk-600"><strong>Amortissement comptable</strong> : 3-5 ans</li>
-                  <li className="text-future-dusk-600"><strong>Formation OPCO</strong> : Si achat inclut formation certifiée Qualiopi (1 100-1 800€ pris en charge)</li>
-                </ul>
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Comment justifier l'investissement auprès de ma direction ?</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600">
-                  Utilisez notre <strong>calculateur ROI + export PDF</strong> :
-                </p>
-                <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Chiffres personnalisés votre entreprise</li>
-                  <li className="text-future-dusk-600">Graphiques évolution ROI 3 ans</li>
-                  <li className="text-future-dusk-600">Comparaison avant/après détaillée</li>
-                  <li className="text-future-dusk-600">Recommandation machine argumentée</li>
-                  <li className="text-future-dusk-600">Section "Facteurs qualitatifs" (image de marque, time-to-market)</li>
-                </ol>
+                <section className="mt-16 pt-12 border-t border-neutral-200">
+                  <h2 id="faq-roi-studios-photo" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
+                    8. Questions Fréquentes
+                  </h2>
+                  <div className="space-y-4">
+                    {faqItems.map((item, i) => (
+                      <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                        <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                          {item.question}
+                          <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                          {item.answer}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </section>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -685,6 +689,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
           author: 'Sébastien Jourdan',
           category: 'Hardware & Studios',
         }),
+        faqSchema(faqItems),
       ]} />
     </>
   );

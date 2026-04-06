@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, Calendar } from 'lucide-react';
-import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import {
   Callout,
@@ -77,9 +77,42 @@ const headings = [
   { id: 'opco-par-secteur-tableau-complet', text: '4. OPCO Par Secteur : Tableau Complet', level: 2 },
   { id: 'cas-pratiques-3-profils-types', text: '5. Cas Pratiques : 3 Profils Types', level: 2 },
   { id: 'avantages-formations-certifiees-qualiopi', text: '6. Avantages Formations Certifiées Qualiopi', level: 2 },
-  { id: 'faq-financement-opco', text: '7. FAQ Financement OPCO', level: 2 },
+  { id: 'faq-financement-opco', text: '7. Questions Fréquentes', level: 2 },
   { id: 'telecharger-le-pack-documents-opco', text: '8. Télécharger le Pack Documents OPCO', level: 2 },
   { id: 'conclusion', text: 'Conclusion', level: 2 },
+];
+
+/* ─────────────────────────── FAQ ─────────────────────────── */
+
+const faqItems = [
+  {
+    question: 'Mon entreprise cotise-t-elle à un OPCO ?',
+    answer: 'Oui, toutes les entreprises françaises cotisent automatiquement — c\'est une obligation légale. Les cotisations formation représentent environ 1 % de la masse salariale et sont redistribuées via les OPCO.',
+  },
+  {
+    question: 'Combien de formations puis-je financer par an via l\'OPCO ?',
+    answer: 'Cela dépend de votre budget disponible : 500 à 3 000 € par salarié selon la taille de l\'entreprise. Avec 2 000 €/an, vous pouvez financer une formation Niveau 2 (1 800 €) ou trois formations Niveau 1 IA (600 € × 3).',
+  },
+  {
+    question: 'Les formations à distance (Blended) sont-elles éligibles OPCO ?',
+    answer: 'Oui, les formations Blended (70 % e-learning + 30 % présentiel) sont totalement éligibles OPCO. Depuis la réforme 2019, l\'OPCO finance aussi bien le présentiel que le distanciel dès lors que l\'organisme est certifié Qualiopi.',
+  },
+  {
+    question: 'Quel est le délai pour obtenir un financement OPCO ?',
+    answer: 'Comptez 6 à 12 semaines entre la demande et le début de la formation : constitution du dossier (1 semaine), validation OPCO (2–4 semaines), marge de sécurité (3–7 semaines). Déposez le dossier avant toute inscription.',
+  },
+  {
+    question: 'PackshotCreator est-il certifié Qualiopi ?',
+    answer: 'Oui, PackshotCreator est certifié Qualiopi depuis 2022 (renouvellement 2025, valide jusqu\'en 2028). Le taux de validation des dossiers OPCO est de 98 % sur plus de 150 dossiers déposés.',
+  },
+  {
+    question: 'Puis-je cumuler financement OPCO et CPF ?',
+    answer: 'Oui, dans certains cas : si la formation se déroule hors temps de travail, ou si le budget OPCO est insuffisant. Un cas fréquent : OPCO finance 80 % et le CPF complète les 20 % restants pour les formations premium de plus de 2 000 €.',
+  },
+  {
+    question: 'Que se passe-t-il si mon dossier OPCO est refusé ?',
+    answer: 'Les refus sont très rares (2 % pour les formations PackshotCreator). Les causes principales sont un dossier incomplet ou un budget OPCO épuisé. PackshotCreator vous accompagne dans la correction et la ré-soumission.',
+  },
 ];
 
 /* ─────────────────────────── Page ─────────────────────────── */
@@ -893,105 +926,27 @@ export default async function FinancementOpcoGuidePage({
 
             {/* Section 7 — FAQ */}
 
-              <h2
-                id="faq-financement-opco"
-                className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
-              >
-                7. FAQ Financement OPCO
-              </h2>
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q1 : Mon entreprise cotise-t-elle à un OPCO ?
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Oui</strong>, toutes les entreprises françaises cotisent automatiquement (obligation
-                légale). Les cotisations formation représentent environ{' '}
-                <strong>1 % de la masse salariale</strong> (variable selon taille entreprise).
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q2 : Combien de formations puis-je financer par an ?
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Selon votre <strong>budget disponible</strong> (500–3 000 € par salarié selon taille entreprise).
-                Exemple : budget 2 000 €/an → vous pouvez financer 1 formation Niveau 2 (1 800 €) ou 3
-                formations Niveau 1 IA (600 € × 3). <strong>Contactez votre OPCO</strong> pour connaître votre
-                enveloppe exacte.
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q3 : Les formations à distance (Blended) sont-elles éligibles OPCO ?
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Oui</strong>, les formations Blended (70 % e-learning + 30 % présentiel) sont{' '}
-                <strong>totalement éligibles</strong> OPCO. Depuis la réforme 2019, l&apos;OPCO finance aussi
-                bien présentiel que distanciel (si organisme certifié Qualiopi).
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q4 : Quel est le délai moyen pour obtenir un financement ?
-              </h3>
-              <p className="mb-2 font-semibold text-future-dusk-800">6–12 semaines entre demande et début formation :</p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Constitution dossier : 1 semaine</li>
-                <li className="text-future-dusk-600">Validation OPCO : 2–4 semaines</li>
-                <li className="text-future-dusk-600">Marge sécurité : 3–7 semaines (anticipation)</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Anticipez minimum 6 semaines</strong> avant votre date formation souhaitée.
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q5 : PackshotCreator est certifié Qualiopi depuis quand ?
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Depuis 2022</strong> (renouvellement 2025, valide jusqu&apos;en 2028). Audit annuel
-                réussi en décembre 2025 ✅. <strong>Taux validation dossiers OPCO</strong> : <strong>98 %</strong>{' '}
-                (sur 150+ dossiers depuis 2022).
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q6 : Puis-je cumuler OPCO et CPF ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Oui</strong>, dans certains cas :
-              </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">
-                  Si formation hors temps de travail (CPF sur temps personnel)
-                </li>
-                <li className="text-future-dusk-600">Si budget OPCO insuffisant (complément CPF possible)</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Cas fréquent</strong> : OPCO finance 80 % + CPF finance 20 % (si formation premium
-                &gt;2 000 €).
-              </p>
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                Q7 : Que se passe-t-il si mon dossier OPCO est refusé ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Très rare</strong> (2 % de refus pour nos formations). Causes fréquentes :
-              </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Dossier incomplet (document manquant)</li>
-                <li className="text-future-dusk-600">
-                  Budget OPCO épuisé (dépôt trop tardif dans l&apos;année)
-                </li>
-                <li className="text-future-dusk-600">
-                  Formation non cohérente avec activité entreprise (rare)
-                </li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Solution</strong> : PackshotCreator vous accompagne dans la correction/ré-soumission
-                du dossier.
-              </p>
+              <section className="mt-16 pt-12 border-t border-neutral-200">
+                <h2
+                  id="faq-financement-opco"
+                  className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24"
+                >
+                  7. Questions Fréquentes
+                </h2>
+                <div className="space-y-4">
+                  {faqItems.map((item, i) => (
+                    <details key={i} className="group border border-neutral-200 rounded-xl overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-future-dusk-900 hover:bg-neutral-50 transition-colors">
+                        {item.question}
+                        <span className="ml-4 text-very-peri-500 group-open:rotate-180 transition-transform">▼</span>
+                      </summary>
+                      <div className="px-6 pb-4 text-future-dusk-600 leading-relaxed">
+                        {item.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
 
               <Callout type="success">
                 <p className="font-bold text-lg mb-2">Formations Certifiées Qualiopi 100 % Finançables</p>
@@ -1190,6 +1145,7 @@ export default async function FinancementOpcoGuidePage({
             author: 'Sébastien Jourdan',
             category: 'Formation & Academy',
           }),
+          faqSchema(faqItems),
         ]}
       />
     </>
