@@ -48,6 +48,8 @@ interface ProductGallery {
   advantageHero?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
   /** Hardware component images */
   hardware?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+  /** Software feature screenshots */
+  software?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
   /** Accessory images */
   accessories?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
 }
@@ -57,34 +59,32 @@ function getProductGallery(id: string): ProductGallery {
   const galleries: Record<string, ProductGallery> = {
     'alphashot-pro-g2': {
       bentoPackshot: {
-        src: `${base}/gallery-perfume.avif`,
-        alt: { fr: 'Packshot parfum Hugo Boss réalisé avec l\'Alphashot Pro G2', en: 'Hugo Boss perfume packshot made with the Alphashot Pro G2' },
-        w: 450, h: 670,
+        src: `${base}/packshot-mascara.avif`,
+        alt: { fr: 'Packshot mascara NARS réalisé avec l\'Alphashot Pro G2', en: 'NARS mascara packshot made with the Alphashot Pro G2' },
+        w: 1080, h: 1080,
       },
       bentoVideo: {
         youtubeId: 'tR-6RBucmWw',
-        poster: `${base}/specification.avif`,
+        poster: `${base}/session.avif`,
       },
       bentoRow2: [
-        { src: `${base}/gallery-candle.avif`, alt: { fr: 'Packshot bougie — fond blanc automatique', en: 'Candle packshot — automatic white background' }, w: 450, h: 320 },
-        { src: `${base}/gallery-sunglasses.avif`, alt: { fr: 'Packshot lunettes de soleil réfléchissantes', en: 'Reflective sunglasses packshot' }, w: 450, h: 320 },
+        { src: `${base}/packshot-sunglasses-360.avif`, alt: { fr: 'Vue 360° lunettes de soleil', en: '360° sunglasses view' }, w: 600, h: 600 },
+        { src: `${base}/packshot-eyeshadow.avif`, alt: { fr: 'Packshot palette maquillage fond blanc', en: 'Eyeshadow palette white background packshot' }, w: 1080, h: 1080 },
       ],
       advantageHero: {
-        src: `${base}/ai-interface.avif`,
-        alt: { fr: 'Interface logicielle IA de l\'Alphashot Pro G2', en: 'Alphashot Pro G2 AI software interface' },
-        w: 1000, h: 1000,
+        src: `${base}/soft-ai-detourage.avif`,
+        alt: { fr: 'Détourage automatique par IA — Orbitvu Station', en: 'AI automatic background removal — Orbitvu Station' },
+        w: 1305, h: 1100,
       },
       hardware: [
-        { src: `${base}/hw-lighting.avif`, alt: { fr: 'Système d\'éclairage virtuel LED', en: 'Virtual LED lighting system' }, label: { fr: 'Éclairage virtuel', en: 'Virtual lighting' }, w: 401, h: 270 },
-        { src: `${base}/hw-isolation-panel.avif`, alt: { fr: 'Panneau d\'isolation lumineuse', en: 'Light isolation panel' }, label: { fr: 'Isolation lumineuse', en: 'Light isolation' }, w: 401, h: 270 },
-        { src: `${base}/hw-turntable.avif`, alt: { fr: 'Plateau tournant motorisé intégré', en: 'Integrated motorized turntable' }, label: { fr: 'Plateau motorisé', en: 'Motorized turntable' }, w: 401, h: 270 },
+        { src: `${base}/hw-panel-lighting.avif`, alt: { fr: 'Panneau d\'éclairage LED virtuel', en: 'Virtual LED lighting panel' }, label: { fr: 'Éclairage virtuel', en: 'Virtual lighting' }, w: 439, h: 435 },
+        { src: `${base}/hw-turntable.avif`, alt: { fr: 'Plateau tournant motorisé intégré', en: 'Integrated motorized turntable' }, label: { fr: 'Plateau motorisé', en: 'Motorized turntable' }, w: 439, h: 435 },
       ],
-      accessories: [
-        { src: `${base}/acc-camera-holder.avif`, alt: { fr: 'Support caméra secondaire', en: 'Secondary camera holder' }, label: { fr: 'Support caméra', en: 'Camera holder' }, w: 800, h: 800 },
-        { src: `${base}/acc-centering-turntable.avif`, alt: { fr: 'Plateau de centrage', en: 'Centering turntable' }, label: { fr: 'Plateau de centrage', en: 'Centering turntable' }, w: 800, h: 800 },
-        { src: `${base}/acc-mini-support.avif`, alt: { fr: 'Mini support produit', en: 'Mini product support' }, label: { fr: 'Mini support', en: 'Mini support' }, w: 800, h: 800 },
-        { src: `${base}/acc-phone-usbc.avif`, alt: { fr: 'Support smartphone USB-C', en: 'USB-C smartphone holder' }, label: { fr: 'Support smartphone USB-C', en: 'USB-C phone holder' }, w: 800, h: 800 },
-        { src: `${base}/acc-phone-lightning.avif`, alt: { fr: 'Support smartphone Lightning', en: 'Lightning smartphone holder' }, label: { fr: 'Support smartphone Lightning', en: 'Lightning phone holder' }, w: 800, h: 800 },
+      software: [
+        { src: `${base}/soft-lighting.avif`, alt: { fr: 'Contrôle d\'éclairage intelligent Orbitvu Station', en: 'Smart lighting control Orbitvu Station' }, label: { fr: 'Contrôle éclairage', en: 'Lighting control' }, w: 1305, h: 1100 },
+        { src: `${base}/soft-postprod.avif`, alt: { fr: 'Post-production automatique Orbitvu Station', en: 'Automatic post-production Orbitvu Station' }, label: { fr: 'Post-production', en: 'Post-production' }, w: 1305, h: 1100 },
+        { src: `${base}/soft-export.avif`, alt: { fr: 'Export multi-canal Orbitvu Station', en: 'Multi-channel export Orbitvu Station' }, label: { fr: 'Export multi-canal', en: 'Multi-channel export' }, w: 1304, h: 1100 },
+        { src: `${base}/soft-ai-detourage.avif`, alt: { fr: 'Détourage IA automatique Orbitvu Station', en: 'AI background removal Orbitvu Station' }, label: { fr: 'Détourage IA', en: 'AI background removal' }, w: 1305, h: 1100 },
       ],
     },
   };
@@ -705,6 +705,48 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       <div className="p-5">
                         <h3 className="text-lg font-heading font-bold text-future-dusk-900">
                           {isFr ? hw.label.fr : hw.label.en}
+                        </h3>
+                      </div>
+                    </div>
+                  </SpringCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Software Features */}
+      {gallery.software && gallery.software.length > 0 && (
+        <section className="py-20 lg:py-32 bg-neutral-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+              <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                  Orbitvu Station
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
+                  {isFr ? 'Logiciel tout-en-un' : 'All-in-one software'}
+                </TextReveal>
+              </div>
+            </FadeInView>
+            <div className="grid md:grid-cols-2 gap-6">
+              {gallery.software.map((feat, idx) => (
+                <ScrollReveal key={idx} offset={20 + idx * 10}>
+                  <SpringCard hoverY={-4}>
+                    <div className="rounded-2xl border border-neutral-100 overflow-hidden bg-white hover:border-very-peri-200 transition-colors">
+                      <div className="aspect-[6/5] relative">
+                        <Image
+                          src={feat.src}
+                          alt={isFr ? feat.alt.fr : feat.alt.en}
+                          width={feat.w}
+                          height={feat.h}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-5">
+                        <h3 className="text-lg font-heading font-bold text-future-dusk-900">
+                          {isFr ? feat.label.fr : feat.label.en}
                         </h3>
                       </div>
                     </div>
