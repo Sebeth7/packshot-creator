@@ -13,6 +13,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 import { YouTubeFacade } from '@/components/video/YouTubeFacade';
+import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -40,8 +41,10 @@ function getMachineImage(id: string): string {
 interface ProductGallery {
   /** Bento grid — large packshot result (row1 left, 7/12) */
   bentoPackshot?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
-  /** Bento grid — demo video YouTube embed (row1 right, 5/12) */
-  bentoVideo?: { youtubeId: string; poster?: string };
+  /** Bento grid — Orbitvu SUN 360° viewer (row1 right, 5/12) */
+  orbitvu360?: { shareId: string; scriptId: string };
+  /** Full-width YouTube video section */
+  video?: { youtubeId: string; poster?: string };
   /** Bento grid — row2 images (360°, reflective, etc.) */
   bentoRow2?: Array<{ src: string; alt: { fr: string; en: string }; w: number; h: number }>;
   /** Key advantage featured image */
@@ -63,7 +66,11 @@ function getProductGallery(id: string): ProductGallery {
         alt: { fr: 'Packshot mascara NARS réalisé avec l\'Alphashot Pro G2', en: 'NARS mascara packshot made with the Alphashot Pro G2' },
         w: 1080, h: 1080,
       },
-      bentoVideo: {
+      orbitvu360: {
+        shareId: 'W2VVEnzxvCD8t2A8qqJNBQ',
+        scriptId: '217258',
+      },
+      video: {
         youtubeId: 'tR-6RBucmWw',
         poster: `${base}/session.avif`,
       },
@@ -370,28 +377,26 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </ScrollReveal>
 
             <ScrollReveal offset={20} className="lg:col-span-5">
-              {gallery.bentoVideo ? (
-                <YouTubeFacade
-                  videoId={gallery.bentoVideo.youtubeId}
-                  poster={gallery.bentoVideo.poster}
-                  title={`${machine.nom} demo`}
-                  badge={isFr ? 'Vidéo démo' : 'Demo video'}
-                  className="h-72 lg:h-[420px]"
-                />
-              ) : (
-                <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
-                    <div className="h-16 w-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-very-peri-500/80 transition-all group-hover:scale-110">
-                      <Play className="h-7 w-7 text-white ml-1" />
-                    </div>
-                    <p className="mt-4 text-sm font-medium text-white/60">
-                      {isFr ? `Découvrez le ${machine.nom} en action` : `See the ${machine.nom} in action`}
-                    </p>
-                  </div>
+              {gallery.orbitvu360 ? (
+                <div className="relative bg-white rounded-2xl overflow-hidden h-72 lg:h-[420px] border border-neutral-100">
+                  <OrbitvuViewer
+                    shareId={gallery.orbitvu360.shareId}
+                    scriptId={gallery.orbitvu360.scriptId}
+                    className="w-full h-full"
+                  />
                   <div className="absolute top-4 left-4 z-10">
                     <span className="bg-very-peri-500/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                      {isFr ? 'Vidéo démo' : 'Demo video'}
+                      360°
                     </span>
+                  </div>
+                </div>
+              ) : (
+                <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <Eye className="h-12 w-12 text-white/30 mb-2" />
+                    <p className="text-sm font-medium text-white/60">
+                      {isFr ? 'Vue 360° interactive' : 'Interactive 360° view'}
+                    </p>
                   </div>
                 </div>
               )}
@@ -466,6 +471,33 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Full-width Video Demo */}
+      {gallery.video && (
+        <section className="py-20 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <FadeInView>
+              <div className="text-center mb-10">
+                <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
+                  {isFr ? 'Vidéo démo' : 'Demo video'}
+                </span>
+                <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white">
+                  {isFr ? `Le ${machine.nom} en action` : `The ${machine.nom} in action`}
+                </h2>
+              </div>
+            </FadeInView>
+            <ScrollReveal>
+              <YouTubeFacade
+                videoId={gallery.video.youtubeId}
+                poster={gallery.video.poster}
+                title={`${machine.nom} demo`}
+                className="aspect-video w-full rounded-2xl shadow-2xl shadow-black/30"
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* #A Key Stats — Dark ribbon */}
       {keyStats.length > 0 && (
