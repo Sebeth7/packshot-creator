@@ -91,6 +91,7 @@ function getProductGallery(id: string): ProductGallery {
     'alphashot-micro-v2': {
       bentoPackshot: img('alphashot-micro-v2', 'packshot-ring.avif', 'Packshot bague sur fond blanc', 'Ring packshot white background', 300, 300),
       orbitvu360: { shareId: 'toSuU4T5ZMkm264rJPBAAe', scriptId: '212198' },
+      video: { youtubeId: 'IWcXbWzVEYQ', poster: `${b('alphashot-micro-v2')}/session.avif` },
       bentoRow2: [
         img('alphashot-micro-v2', 'packshot-necklace.avif', 'Packshot collier', 'Necklace packshot', 300, 600),
         img('alphashot-micro-v2', 'packshot-watch-360.avif', 'Packshot montre 360°', 'Watch 360° packshot', 600, 600),
@@ -112,6 +113,7 @@ function getProductGallery(id: string): ProductGallery {
     // ── ALPHASHOT 360 ──
     'alphashot-360': {
       bentoPackshot: img('alphashot-360', 'packshot-wallet.avif', 'Packshot portefeuille', 'Wallet packshot', 1080, 1080),
+      video: { youtubeId: 'g6DABbE2lgs', poster: `${b('alphashot-360')}/hero.avif` },
       bentoRow2: [
         img('alphashot-360', 'packshot-camera.avif', 'Packshot appareil photo', 'Camera packshot', 1080, 1080),
         img('alphashot-360', 'packshot-perfume.avif', 'Packshot parfum', 'Perfume packshot', 300, 600),
@@ -133,6 +135,7 @@ function getProductGallery(id: string): ProductGallery {
     // ── ALPHASHOT XL ──
     'alphashot-xl-v2': {
       bentoPackshot: img('alphashot-xl', 'packshot-keyboard.avif', 'Packshot clavier', 'Keyboard packshot', 300, 300),
+      video: { youtubeId: '1GnZ_pexOGw', poster: `${b('alphashot-xl')}/hero.avif` },
       bentoRow2: [
         img('alphashot-xl', 'packshot-speaker.avif', 'Packshot enceinte', 'Speaker packshot', 300, 600),
         img('alphashot-xl', 'packshot-shoe-360.avif', 'Packshot chaussure 360°', 'Shoe 360° packshot', 600, 600),
@@ -155,6 +158,7 @@ function getProductGallery(id: string): ProductGallery {
     'alphastudio-compact-v2': {
       bentoPackshot: img('alphastudio-compact', 'packshot-chair.avif', 'Packshot chaise', 'Chair packshot', 1080, 1080),
       orbitvu360: { shareId: 'mdkgtBZcnzjRYNUHyRKdh6', scriptId: '169132' },
+      video: { youtubeId: 'nLRk83owzgI', poster: `${b('alphastudio-compact')}/hero.avif` },
       bentoRow2: [
         img('alphastudio-compact', 'packshot-karcher.avif', 'Packshot nettoyeur haute pression', 'Pressure washer packshot', 1080, 1080),
         img('alphastudio-compact', 'packshot-bag.avif', 'Packshot sac', 'Bag packshot', 1080, 1080),
@@ -177,6 +181,7 @@ function getProductGallery(id: string): ProductGallery {
     'alphastudio-xxl-v2': {
       bentoPackshot: img('alphastudio-xxl', 'packshot-jacket.avif', 'Packshot veste', 'Jacket packshot', 1080, 1080),
       orbitvu360: { shareId: 'BtmKBPaKrDfgee6uNETQAc', scriptId: '169062' },
+      video: { youtubeId: 'J_MNV-zIGrA', poster: `${b('alphastudio-xxl')}/hero.avif` },
       bentoRow2: [
         img('alphastudio-xxl', 'packshot-skirt.avif', 'Packshot jupe', 'Skirt packshot', 1080, 1080),
         img('alphastudio-xxl', 'packshot-suitcase-360.avif', 'Packshot valise 360°', 'Suitcase 360° packshot', 600, 600),
@@ -199,6 +204,7 @@ function getProductGallery(id: string): ProductGallery {
     'alphadesk': {
       bentoPackshot: img('alphatable-alphadesk', 'packshot-coat.avif', 'Packshot flat-lay manteau', 'Flat-lay coat packshot', 1200, 1200),
       orbitvu360: { shareId: 'pk8sM2ak2D6BamQyzri9r3', scriptId: '191142' },
+      video: { youtubeId: '8C4hmYaSitk', poster: `${b('alphatable-alphadesk')}/hero.avif` },
       bentoRow2: [
         img('alphatable-alphadesk', 'packshot-blouse.avif', 'Packshot blouse enfant', 'Kid blouse packshot', 1200, 1105),
         img('alphatable-alphadesk', 'packshot-dungarees.avif', 'Packshot salopette', 'Dungarees packshot', 1200, 1215),
@@ -219,6 +225,7 @@ function getProductGallery(id: string): ProductGallery {
     'alphatable': {
       bentoPackshot: img('alphatable-alphadesk', 'packshot-coat.avif', 'Packshot flat-lay manteau', 'Flat-lay coat packshot', 1200, 1200),
       orbitvu360: { shareId: 'pk8sM2ak2D6BamQyzri9r3', scriptId: '191142' },
+      video: { youtubeId: '8C4hmYaSitk', poster: `${b('alphatable-alphadesk')}/hero.avif` },
       bentoRow2: [
         img('alphatable-alphadesk', 'packshot-blouse.avif', 'Packshot blouse enfant', 'Kid blouse packshot', 1200, 1105),
         img('alphatable-alphadesk', 'packshot-dungarees.avif', 'Packshot salopette', 'Dungarees packshot', 1200, 1215),
@@ -239,6 +246,7 @@ function getProductGallery(id: string): ProductGallery {
     'fashion-studio-basic': {
       bentoPackshot: img('fashion-studio', 'packshot-sport-1.avif', 'Photo mode sport', 'Sport fashion photo', 720, 1080),
       orbitvu360: { shareId: 'BQGVkbgPwMMWJSeXKkjmb5', scriptId: '131515' },
+      video: { youtubeId: 'R-err-JDU_w', poster: `${b('fashion-studio')}/hero.avif` },
       bentoRow2: [
         img('fashion-studio', 'packshot-sport-2.avif', 'Photo mode sport 2', 'Sport fashion photo 2', 720, 1080),
         img('fashion-studio', 'packshot-sport-4.avif', 'Photo mode sport 4', 'Sport fashion photo 4', 720, 1080),
@@ -259,6 +267,7 @@ function getProductGallery(id: string): ProductGallery {
     'fashion-studio': {
       bentoPackshot: img('fashion-studio', 'packshot-sport-1.avif', 'Photo mode sport', 'Sport fashion photo', 720, 1080),
       orbitvu360: { shareId: 'BQGVkbgPwMMWJSeXKkjmb5', scriptId: '131515' },
+      video: { youtubeId: 'R-err-JDU_w', poster: `${b('fashion-studio')}/hero.avif` },
       bentoRow2: [
         img('fashion-studio', 'packshot-sport-2.avif', 'Photo mode sport 2', 'Sport fashion photo 2', 720, 1080),
         img('fashion-studio', 'packshot-sport-4.avif', 'Photo mode sport 4', 'Sport fashion photo 4', 720, 1080),
@@ -280,6 +289,7 @@ function getProductGallery(id: string): ProductGallery {
     'bike-studio': {
       bentoPackshot: img('bike-studio', 'packshot-angle-1.avif', 'Packshot vélo angle', 'Bike angle packshot', 1080, 1093),
       orbitvu360: { shareId: 'KQejRGFGhuey2oUXhPkwrT', scriptId: '162118' },
+      video: { youtubeId: 'eMBa5epGf7E', poster: `${b('bike-studio')}/hero.avif` },
       bentoRow2: [
         img('bike-studio', 'packshot-front.avif', 'Packshot vélo face', 'Bike front packshot', 1080, 994),
         img('bike-studio', 'packshot-tire.avif', 'Packshot pneu vélo', 'Bike tire packshot', 1080, 1093),
@@ -301,6 +311,7 @@ function getProductGallery(id: string): ProductGallery {
     'e-comm-studio-plus': {
       bentoPackshot: img('e-comm-studio', 'packshot-cabinet.avif', 'Packshot meuble rouge', 'Red cabinet packshot', 1069, 1080),
       orbitvu360: { shareId: 'g3rdCvWUXjSjuwxtiTte5h', scriptId: '207312' },
+      video: { youtubeId: '5O2-WKmre_Y', poster: `${b('e-comm-studio')}/hero.avif` },
       bentoRow2: [
         img('e-comm-studio', 'packshot-fridge.avif', 'Packshot réfrigérateur', 'Fridge packshot', 1081, 1080),
         img('e-comm-studio', 'packshot-sofa-360.avif', 'Canapé 360°', 'Sofa 360°', 571, 570),
@@ -323,6 +334,7 @@ function getProductGallery(id: string): ProductGallery {
     'furniture-studio': {
       bentoPackshot: img('furniture-studio', 'packshot-chair.avif', 'Packshot chaise rouge', 'Red chair packshot', 1081, 1081),
       orbitvu360: { shareId: 'g3rdCvWUXjSjuwxtiTte5h', scriptId: '207312' },
+      video: { youtubeId: 'Ejg8nOp9x-0', poster: `${b('furniture-studio')}/hero.avif` },
       bentoRow2: [
         img('furniture-studio', 'packshot-lamp.avif', 'Packshot lampe jaune', 'Yellow lamp packshot', 1081, 1081),
         img('furniture-studio', 'packshot-shelf.avif', 'Packshot étagère rouge', 'Red shelf packshot', 1081, 1081),
