@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
@@ -120,36 +119,33 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
 
           {/* Article meta bar */}
-          <FadeInView>
+
             <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-400 mb-10 pb-8 border-b border-neutral-100">
               <Link href="/blog" className="inline-flex items-center gap-1.5 text-very-peri-600 hover:text-very-peri-700 transition-colors">
                 <ArrowLeft className="h-4 w-4" />
                 {isFr ? 'Retour au blog' : 'Back to blog'}
               </Link>
             </div>
-          </FadeInView>
 
           {/* TOC */}
-          <FadeInView>
+
             <div className="mb-12 p-6 rounded-2xl border border-neutral-100 bg-neutral-50">
               <TableOfContents headings={headings} title="Sommaire" collapsible />
             </div>
-          </FadeInView>
 
           {/* ── INTRO ── */}
-          <FadeInView>
+
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
               Le marché des studios photo automatisés s'est considérablement structuré ces dernières années. Trois acteurs principaux se distinguent en 2026 : <strong>Orbitvu</strong> (leader européen), <strong>StyleShoots</strong> (premium néerlandais), et <strong>Photomatics</strong> (entry-level américain). Choisir entre ces solutions peut s'avérer complexe tant les positionnements, tarifs et philosophies produit diffèrent.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
               Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution, leur <strong>rapport qualité/prix</strong>, et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, que votre budget soit de 5 000€ ou 50 000€, ce guide vous aidera à faire le choix optimal pour votre activité.
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 1 : MARCHÉ ── */}
-          <FadeInView>
+
             <h2 id="introduction-le-marche-des-studios-photo-en-2026" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Introduction : Le Marché des Studios Photo en 2026
             </h2>
@@ -188,12 +184,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Solutions chinoises généralistes (Alibaba, Taobao)</li>
               <li className="text-future-dusk-600">Studios DIY custom (makers, bricolage)</li>
             </ul>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 2 : ORBITVU VS STYLESHOOTS ── */}
-          <FadeInView>
+
             <h2 id="orbitvu-vs-styleshoots-le-duel-du-premium" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               1. Orbitvu vs StyleShoots : Le Duel du Premium
             </h2>
@@ -214,9 +209,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Évolutivité', values: ['✅ Excellente (modules)', '⚠️ Moyenne'] },
               ]}
             />
-          </FadeInView>
 
-          <FadeInView>
             <h3 id="forces-orbitvu" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Forces Orbitvu
             </h3>
@@ -236,9 +229,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600"><strong>Distribution PackshotCreator</strong> : Pas de multiples intermédiaires</li>
               <li className="text-future-dusk-600"><strong>Volumes production</strong> : Orbitvu produit 2× plus de machines (économies d'échelle)</li>
             </ul>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">2. Software Intuitif : Courbe d'Apprentissage Courte</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Logiciel Orbitvu Station</strong> (inclus à vie) :
@@ -258,9 +249,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               "Nos opérateurs ont été opérationnels en 3 jours avec Orbitvu. StyleShoots nous demandait 1 semaine de formation intensive."
               <footer className="mt-2 not-italic text-sm text-future-dusk-400">— Marie D., Responsable Studio Photo, E-commerce Mode (1 500 références)</footer>
             </blockquote>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">3. IA Ready : Intégration BlendAI Native</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Orbitvu = Seul fabricant avec intégration IA native en 2026.</strong>
@@ -284,9 +273,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</a>
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">4. Support Français Premium : PackshotCreator Distributeur Exclusif</h4>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Hotline française</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -315,9 +302,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               "Panne logicielle un vendredi soir, technicien PackshotCreator sur site lundi 10h. Avec StyleShoots, on aurait attendu 1 semaine. Ça fait la différence."
               <footer className="mt-2 not-italic text-sm text-future-dusk-400">— Thomas L., Directeur Technique, E-commerce Électronique (3 000 références)</footer>
             </blockquote>
-          </FadeInView>
 
-          <FadeInView>
             <h3 id="forces-styleshoots" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Forces StyleShoots
             </h3>
@@ -358,9 +343,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Impact réel</strong> : Marginal pour l'utilisation quotidienne, mais appréciable pour le networking secteur.
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 id="verdict-orbitvu-vs-styleshoots" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Verdict Orbitvu vs StyleShoots
             </h3>
@@ -369,12 +352,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <p className="mt-2"><strong>StyleShoots l'emporte</strong> sur : Design premium, Modes automatiques mode (marginal), Prestige marque.</p>
               <p className="mt-2"><strong>Recommandation</strong> : <strong>Orbitvu pour 90% des cas d'usage</strong>, sauf si budget illimité et prestige showroom prioritaire.</p>
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 3 : PACKSHOTCREATOR ── */}
-          <FadeInView>
+
             <h2 id="orbitvu-vs-packshotcreator-contexte-historique" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               2. Orbitvu vs PackshotCreator : Contexte Historique
             </h2>
@@ -404,9 +386,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Upgrade facilité (ancien PackshotStudio R3 → Orbitvu AlphaShot G2)</li>
               <li className="text-future-dusk-600">Amélioration technologique (Orbitvu Gen 2026 &gt; PackshotCreator Gen 2018)</li>
             </ul>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Évolution Performances : Ancien vs Nouveau
             </h3>
@@ -424,9 +404,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Bilan</strong> : Performances <strong>×3 supérieures</strong> à prix constant sur 8 ans (inflation ajustée).
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Transition Clients Facilitée
             </h3>
@@ -453,12 +431,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               "Migration de notre ancien PackshotStudio R3 vers AlphaShot G2 en 2 jours. Productivité immédiate ×2, aucune rupture workflow."
               <footer className="mt-2 not-italic text-sm text-future-dusk-400">— Camille R., Responsable Photo, Bijouterie Luxe (2 500 références)</footer>
             </blockquote>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 4 : PHOTOMATICS ── */}
-          <FadeInView>
+
             <h2 id="orbitvu-vs-photomatics-positionnements-differents" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               3. Orbitvu vs Photomatics : Positionnements Différents
             </h2>
@@ -481,9 +458,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Support', values: ['Email (48–72h)', 'Hotline FR (2h)'] },
               ]}
             />
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Cas d'Usage Photomatics
             </h3>
@@ -501,9 +476,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Production quotidienne intensive</li>
               <li className="text-future-dusk-600">Workflows professionnels (intégration PIM/DAM)</li>
             </ul>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Cas d'Usage Orbitvu
             </h3>
@@ -524,12 +497,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <p><strong>Photomatics et Orbitvu ne sont PAS concurrents directs.</strong> Ils répondent à des besoins radicalement différents.</p>
               <p className="mt-2"><strong>Analogie</strong> : Photomatics = Smartphone photo, Orbitvu = Reflex professionnel. Les deux ont leur utilité selon contexte.</p>
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 5 : TABLEAU GÉNÉRAL ── */}
-          <FadeInView>
+
             <h2 id="tableau-comparatif-general-les-3-acteurs" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               4. Tableau Comparatif Général : Les 3 Acteurs
             </h2>
@@ -551,12 +523,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Idéal pour', values: ['E-com pro 500+', 'Marques luxe', 'Créateurs TPE'] },
               ]}
             />
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 6 : 5 AVANTAGES ORBITVU ── */}
-          <FadeInView>
+
             <h2 id="pourquoi-choisir-orbitvu-les-5-avantages-cles" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               5. Pourquoi Choisir Orbitvu ? Les 5 Avantages Clés
             </h2>
@@ -574,9 +545,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <p className="mt-1">=&gt; 500 produits supplémentaires shootables</p>
               <p className="mt-1 ml-3">(à 20€ économisé/produit vs externalisation)</p>
             </div>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               2. IA Ready : Workflow 2026 Complet
             </h3>
@@ -595,9 +564,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'approche 3 piliers : Hardware + IA + Formation</a>
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               3. Support Français Excellence : PackshotCreator
             </h3>
@@ -614,9 +581,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Satisfaction client</strong> : 98% (enquête 2025 sur 150+ installations).
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               4. Évolutivité : Modules Additionnels
             </h3>
@@ -635,9 +600,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>StyleShoots</strong> : Évolutivité limitée, upgrades souvent impossibles (changement machine requis).
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               5. Écosystème Complet : Approche 3 Piliers
             </h3>
@@ -665,12 +628,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Avantage compétitif</strong> : Workflow complet clé en main, un seul interlocuteur pour tout.
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 7 : FAQ ── */}
-          <FadeInView>
+
             <h2 id="faq-comparatif" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               6. FAQ Comparatif
             </h2>
@@ -691,9 +653,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Références clients France</strong> : CHANEL, SANDRO, BOSCH, Leroy Merlin, Décathlon (via PackshotCreator).
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               SAV France vraiment efficace ?
             </h3>
@@ -711,9 +671,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               "Panne plateau tournant un lundi matin. Pièce reçue mardi 10h, technicien sur site mardi 14h. Machine réparée en 2h. Service irréprochable."
               <footer className="mt-2 not-italic text-sm text-future-dusk-400">— Laurent M., Directeur Production, E-commerce Électroménager (5 000 références)</footer>
             </blockquote>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Compatible logiciels tiers ?
             </h3>
@@ -734,9 +692,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>StyleShoots</strong> : API limitée, intégrations custom complexes.
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Orbitvu moins cher = qualité moindre ?
             </h3>
@@ -752,9 +708,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Qualité rendu</strong> : Identique voire supérieure (capteurs 50 MP Orbitvu vs 42 MP StyleShoots Gen 2025).
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Peut-on essayer avant achat ?
             </h3>
@@ -769,12 +723,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Réservation</strong> : <a href="/contact/demande-demo" className="text-very-peri-600 hover:text-very-peri-700 underline">Demander une démo gratuite</a>
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 8 : CONCLUSION ── */}
-          <FadeInView>
+
             <h2 id="conclusion-orbitvu-le-choix-rationnel-2026" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Conclusion : Orbitvu, le Choix Rationnel 2026
             </h2>
@@ -844,7 +797,6 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
               <li className="text-future-dusk-600"><strong>Formations</strong> : <a href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</a></li>
             </ul>
-          </FadeInView>
 
         </div>
       </article>

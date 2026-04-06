@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, ArrowRight, Sparkles } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -153,7 +152,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
 
           {/* Main content */}
           <div className="flex-1 min-w-0">
-            <FadeInView>
+
               {/* Intro */}
               <p className="mb-4 leading-relaxed text-future-dusk-600">
                 Le marché de l'IA photo produit s'est considérablement diversifié en 2025-2026, avec l'émergence d'outils spécialisés répondant à des besoins distincts. <strong>BlendAI</strong> et <strong>Flair.ai</strong> illustrent parfaitement cette diversification : BlendAI se positionne comme la solution de référence pour la production de catalogues e-commerce cohérents et industriels, tandis que Flair.ai cible les équipes marketing cherchant à créer des campagnes visuelles créatives et percutantes.
@@ -734,7 +733,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               <p className="text-sm text-future-dusk-400 mt-8">
                 <strong>Auteur :</strong> Sébastien Jourdan, Expert Photo Produit &amp; IA — <strong>Dernière mise à jour :</strong> 22 janvier 2026
               </p>
-            </FadeInView>
+
           </div>
         </div>
       </section>

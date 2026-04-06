@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -118,7 +117,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
             {/* Main content */}
             <div>
-              <FadeInView>
+
                 {/* Introduction */}
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   L'acquisition d'un studio photo automatisé représente un investissement stratégique majeur pour toute entreprise e-commerce. Avec des budgets allant de 10 000€ à 50 000€ selon les modèles, la décision ne peut être prise à la légère. Un ROI mal calculé peut conduire à choisir une machine inadaptée, sous-dimensionnée pour vos besoins futurs, ou au contraire surdimensionnée et sous-exploitée.
@@ -645,7 +644,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                     <Link href="/blog/guide-achat-studio-2026" className="text-very-peri-600 hover:text-very-peri-700 underline">Choisir le bon studio 2026</Link>
                   </li>
                 </ul>
-              </FadeInView>
+
             </div>
 
             {/* Sidebar TOC */}

@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
@@ -126,36 +125,33 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
 
           {/* Article meta bar */}
-          <FadeInView>
+
             <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-400 mb-10 pb-8 border-b border-neutral-100">
               <Link href="/blog" className="inline-flex items-center gap-1.5 text-very-peri-600 hover:text-very-peri-700 transition-colors">
                 <ArrowLeft className="h-4 w-4" />
                 {isFr ? 'Retour au blog' : 'Back to blog'}
               </Link>
             </div>
-          </FadeInView>
 
           {/* TOC */}
-          <FadeInView>
+
             <div className="mb-12 p-6 rounded-2xl border border-neutral-100 bg-neutral-50">
               <TableOfContents headings={headings} title="Sommaire" collapsible />
             </div>
-          </FadeInView>
 
           {/* ── INTRO ── */}
-          <FadeInView>
+
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
               L'explosion de l'intelligence artificielle entre 2024 et 2026 a radicalement transformé le paysage de la photographie produit e-commerce. Alors que des IA généralistes comme Midjourney ou DALL-E ont démocratisé la création d'images, elles se révèlent inadaptées aux exigences strictes du packshot professionnel. Les marques ont besoin de cohérence produit, de précision des couleurs et de respect absolu de leur identité visuelle. C'est précisément cette problématique qui a donné naissance à une nouvelle génération d'IA spécialisées : <strong>BlendAI</strong>, <strong>Photoroom</strong> et <strong>Flair AI</strong>. Ces solutions ne génèrent pas vos produits de toutes pièces, elles transforment intelligemment vos packshots existants en déclinaisons lifestyle, backgrounds contextuels et retouches automatisées.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
               Dans ce guide complet, nous décortiquons l'écosystème des IA photo produit, comparons les solutions leaders du marché, détaillons les workflows d'intégration et calculons le ROI réel pour votre entreprise. Que vous gériez un catalogue de 100 ou 10 000 références, ce guide vous donnera les clés pour automatiser votre production photo sans compromis sur la qualité.
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 1 ── */}
-          <FadeInView>
+
             <h2 id="quest-ce-que-lia-photo-produit" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Qu'est-ce que l'IA Photo Produit ?
             </h2>
@@ -240,12 +236,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <Callout type="success" title="Recommandation">
               Pour le e-commerce professionnel, <strong>privilégiez toujours l'IA photo produit</strong> plutôt que l'IA générative pure. La fidélité produit n'est pas négociable.
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 2 : FONCTIONNALITÉS ── */}
-          <FadeInView>
+
             <h2 id="les-4-fonctionnalites-cles-de-lia-photo-produit" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Les 4 Fonctionnalités Clés de l'IA Photo Produit
             </h2>
@@ -292,11 +287,9 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <Callout type="info" title="Astuce ROI">
               Le Lifestyle Generator permet d'économiser <strong>95% du coût</strong> d'une séance photo mannequin traditionnelle (1 500–5 000€ par shooting).
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
-          <FadeInView>
             <h3 id="background-generator-contextualisez-vos-produits" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               2. Background Generator : Contextualisez Vos Produits
             </h3>
@@ -343,11 +336,9 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600"><strong>Photoroom</strong> : Inclus dans tous les plans (10–50€/mois)</li>
               <li className="text-future-dusk-600"><strong>Flair AI</strong> : 30–200€/mois (bibliothèque de templates)</li>
             </ul>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
-          <FadeInView>
             <h3 id="retouche-photo-ia-post-production-automatisee" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               3. Retouche Photo IA : Post-Production Automatisée
             </h3>
@@ -420,11 +411,9 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Workflow recommandé</strong> : IA pour 90% du volume, retouche manuelle pour 10% des cas complexes.
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
-          <FadeInView>
             <h3 id="batch-processing-traitez-10-000-photos-en-2-heures" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               4. Batch Processing : Traitez 10 000 Photos en 2 Heures
             </h3>
@@ -483,12 +472,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <Callout type="warning" title="Attention capacité serveur">
               Le Batch Processing sollicite fortement les serveurs IA. Vérifiez les <strong>limites de concurrence</strong> de votre plan (nombre de batchs simultanés autorisés).
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 3 : COMPARATIF ── */}
-          <FadeInView>
+
             <h2 id="comparatif-blendai-vs-photoroom-vs-flair-ai" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Comparatif : BlendAI vs Photoroom vs Flair AI
             </h2>
@@ -538,11 +526,9 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Lien</strong> : <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir BlendAI</a>
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
-          <FadeInView>
             <h3 id="photoroom-le-couteau-suisse-grand-public" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Photoroom : Le Couteau Suisse Grand Public
             </h3>
@@ -565,11 +551,9 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Pour qui ?</strong> : E-commerçants généralistes (mode, maison, déco), budgets serrés (&lt;500€/mois photo).
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
-          <FadeInView>
             <h3 id="flair-ai-le-creatif-lifestyle" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Flair AI : Le Créatif Lifestyle
             </h3>
@@ -592,9 +576,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Pour qui ?</strong> : Marques lifestyle (cosmétiques, food, déco) cherchant des visuels Instagram percutants.
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 id="verdict-quelle-ia-choisir-en-2026" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Verdict : Quelle IA choisir en 2026 ?
             </h3>
@@ -604,12 +586,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <p className="mt-2"><strong>Vous faites du lifestyle/food/déco</strong> → <strong>Flair AI</strong> (créativité maximale)</p>
               <p className="mt-2"><strong>Vous gérez 5000+ produits</strong> → <strong>BlendAI</strong> (seul à offrir batch illimité + API)</p>
             </Callout>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 4 : WORKFLOW ── */}
-          <FadeInView>
+
             <h2 id="comment-integrer-lia-dans-votre-workflow-photo" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Comment Intégrer l'IA dans Votre Workflow Photo ?
             </h2>
@@ -645,9 +626,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <Callout type="warning" title="CRITIQUE : Qualité source = Qualité finale">
               L'IA ne peut pas <strong>inventer</strong> des détails absents de la photo source. Un packshot flou ou sous-exposé donnera un résultat IA médiocre. <strong>Ne négligez jamais la prise de vue initiale</strong>.
             </Callout>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 2 : Export Haute Qualité</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Objectif</strong> : Préparer les fichiers pour ingestion IA
@@ -675,9 +654,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Lien</strong> : <a href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les studios Orbitvu IA Ready</a>
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 3 : Traitement IA (BlendAI / Photoroom / Flair)</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Objectif</strong> : Générer les déclinaisons lifestyle, backgrounds, retouches
@@ -692,9 +669,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Monitoring</strong> : Toutes les solutions proposent un dashboard temps réel avec le nombre d'images traitées, le temps restant et des aperçus des résultats.
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 4 : Validation / Retouche Finale</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Objectif</strong> : Contrôle qualité humain + retouches mineures si nécessaire
@@ -726,12 +701,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Temps total pour 100 produits</strong> : Sans IA = 30–50h | Avec IA = 5–8h | <strong>Gain : 80–85% du temps</strong>
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 5 : ROI ── */}
-          <FadeInView>
+
             <h2 id="roi-de-lia-photo-produit-calculs-reels" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               ROI de l'IA Photo Produit : Calculs Réels
             </h2>
@@ -764,9 +738,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Gain : 727h économisées = 95% du temps</strong>
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Calcul 2 : Coûts Directs
             </h3>
@@ -845,9 +817,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Économie : 35 890€</strong> soit <strong>76% du budget</strong>
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Calcul 3 : Breakeven (Seuil de Rentabilité)
             </h3>
@@ -870,9 +840,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               Si vous traitez <strong>plus de 50 photos par mois</strong>, l'IA photo produit est <strong>systématiquement rentable dès le 1er mois</strong>.
               <p className="mt-2">Pour les catalogues 100+ produits, le ROI est <strong>massif</strong> : économie de <strong>75–95%</strong> sur 1 an.</p>
             </Callout>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Calcul 4 : ROI Complet sur 3 Ans
             </h3>
@@ -894,12 +862,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Économie sur 3 ans : 234 420€ | Temps libéré : 4 000h | ROI : 463%</strong> (4,63€ économisés pour 1€ investi)
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 6 : FORMATIONS ── */}
-          <FadeInView>
+
             <h2 id="formations-ia-photo-produit-maitrisez-blendai" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Formations IA Photo Produit : Maîtrisez BlendAI
             </h2>
@@ -958,9 +925,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Certification</strong> : Certification BlendAI Architect
             </p>
-          </FadeInView>
 
-          <FadeInView>
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Financement OPCO : Prise en Charge 100%
             </h3>
@@ -980,12 +945,11 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <a href="/academy#formations-ia" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les formations IA</a>
             </p>
-          </FadeInView>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 7 : CONCLUSION ── */}
-          <FadeInView>
+
             <h2 id="conclusion-lia-photo-produit-en-2026" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
               Conclusion : L'IA Photo Produit en 2026
             </h2>
@@ -1020,7 +984,6 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
               <li className="text-future-dusk-600"><strong>Academy</strong> : <a href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations IA certifiées Qualiopi</a></li>
             </ul>
-          </FadeInView>
 
         </div>
       </article>

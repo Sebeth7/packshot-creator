@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -152,7 +151,6 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
 
           {/* Main content */}
           <div className="flex-1 min-w-0">
-            <FadeInView>
 
               {/* Intro */}
               <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -784,7 +782,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               <p className="text-sm text-future-dusk-400 mt-8">
                 <strong>Auteur :</strong> Sébastien Jourdan, Expert Photo Produit &amp; IA — <strong>Dernière mise à jour :</strong> 22 janvier 2026
               </p>
-            </FadeInView>
+
           </div>
         </div>
       </section>

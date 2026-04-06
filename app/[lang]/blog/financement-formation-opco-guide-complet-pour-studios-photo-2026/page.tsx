@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, Calendar } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import {
   Callout,
@@ -149,7 +148,7 @@ export default async function FinancementOpcoGuidePage({
           {/* Article body */}
           <article className="flex-1 min-w-0 max-w-3xl">
             {/* Intro */}
-            <FadeInView>
+
               <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
                 Les formations professionnelles représentent un investissement stratégique, mais leur coût
                 (500–2 000 € par jour) freine de nombreuses entreprises et salariés. Pourtant, une solution
@@ -171,10 +170,9 @@ export default async function FinancementOpcoGuidePage({
                 droits formation en compétences concrètes.
               </p>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 1 */}
-            <FadeInView>
+
               <h2
                 id="cest-quoi-un-opco"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -288,10 +286,9 @@ export default async function FinancementOpcoGuidePage({
                 l&apos;OPCO et les accords de branche. Contactez votre OPCO pour connaître votre enveloppe exacte.
               </p>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 2 */}
-            <FadeInView>
+
               <h2
                 id="formations-packshot-creator-eligibles-opco"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -479,10 +476,9 @@ export default async function FinancementOpcoGuidePage({
                 conservant la pratique essentielle (30 % présentiel).
               </Callout>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 3 */}
-            <FadeInView>
+
               <h2
                 id="comment-faire-financer-par-lopco"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -641,10 +637,9 @@ export default async function FinancementOpcoGuidePage({
                 la limite de votre enveloppe annuelle OPCO).
               </p>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 4 */}
-            <FadeInView>
+
               <h2
                 id="opco-par-secteur-tableau-complet"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -669,10 +664,9 @@ export default async function FinancementOpcoGuidePage({
                 accords de branche.
               </p>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 5 */}
-            <FadeInView>
+
               <h2
                 id="cas-pratiques-3-profils-types"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -803,10 +797,9 @@ export default async function FinancementOpcoGuidePage({
                 (économie 15 000 €/an vs prestataires externes)
               </p>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 6 */}
-            <FadeInView>
+
               <h2
                 id="avantages-formations-certifiees-qualiopi"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -897,10 +890,9 @@ export default async function FinancementOpcoGuidePage({
                 </li>
               </ul>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 7 — FAQ */}
-            <FadeInView>
+
               <h2
                 id="faq-financement-opco"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1015,10 +1007,9 @@ export default async function FinancementOpcoGuidePage({
                 </Link>
               </Callout>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section 8 */}
-            <FadeInView>
+
               <h2
                 id="telecharger-le-pack-documents-opco"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1052,10 +1043,9 @@ export default async function FinancementOpcoGuidePage({
                 Demander le Pack Documents OPCO
               </Link>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Conclusion */}
-            <FadeInView>
+
               <h2
                 id="conclusion"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1171,7 +1161,7 @@ export default async function FinancementOpcoGuidePage({
                 <strong>Auteur</strong> : Sébastien Jourdan, Photographe Packshot &amp; Formateur Certifié
                 Qualiopi — <strong>Dernière mise à jour</strong> : 22 janvier 2026
               </p>
-            </FadeInView>
+
           </article>
         </div>
       </section>

@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 
@@ -122,7 +121,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
             {/* Main content */}
             <div>
-              <FadeInView>
+
                 {/* Introduction */}
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   Le marché des studios photo automatisés a considérablement évolué ces dernières années. Avec plus de 20 modèles disponibles en 2026, allant de 8 000€ à 50 000€, choisir le bon équipement peut rapidement devenir complexe. Une décision mal informée peut vous coûter des dizaines de milliers d'euros en sur-investissement ou, pire encore, en sous-performance chronique.
@@ -1141,7 +1140,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                     <Link href="/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet" className="text-very-peri-600 hover:text-very-peri-700 underline">Méthode calcul ROI complète</Link>
                   </li>
                 </ul>
-              </FadeInView>
+
             </div>
 
             {/* Sidebar TOC */}

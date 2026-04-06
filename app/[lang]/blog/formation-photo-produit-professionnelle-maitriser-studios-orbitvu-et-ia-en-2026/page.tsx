@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, Calendar } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
-import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import {
   Callout,
@@ -151,7 +150,7 @@ export default async function FormationPhotoProduitPage({
           {/* Article body */}
           <article className="flex-1 min-w-0 max-w-3xl">
             {/* Intro */}
-            <FadeInView>
+
               <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
                 L&apos;e-commerce représente aujourd&apos;hui plus de 15 % du commerce de détail mondial, et
                 ce chiffre ne cesse de croître. Dans cet univers ultra-compétitif,{' '}
@@ -181,10 +180,9 @@ export default async function FormationPhotoProduitPage({
                 </Link>
               </div>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Pourquoi se former */}
-            <FadeInView>
+
               <h2
                 id="pourquoi-se-former-a-la-photo-produit-en-2026"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -299,10 +297,9 @@ export default async function FormationPhotoProduitPage({
                 Découvrir nos solutions studios automatisés
               </Link>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : 3 niveaux */}
-            <FadeInView>
+
               <h2
                 id="les-3-niveaux-de-formation-photo-produit"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -595,10 +592,9 @@ export default async function FormationPhotoProduitPage({
                 ]}
               />
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Packshot vs IA */}
-            <FadeInView>
+
               <h2
                 id="formations-packshot-vs-formations-ia-photo-produit"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -733,10 +729,9 @@ export default async function FormationPhotoProduitPage({
                 Lire notre guide complet IA photo produit 2026
               </Link>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Financement OPCO */}
-            <FadeInView>
+
               <h2
                 id="financement-opco-100-pris-en-charge"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -891,10 +886,9 @@ export default async function FormationPhotoProduitPage({
                 </Link>
               </div>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Format Blended */}
-            <FadeInView>
+
               <h2
                 id="format-blended-flexibilite-maximale"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -953,10 +947,9 @@ export default async function FormationPhotoProduitPage({
                 nécessaire à ce niveau d&apos;expertise.
               </Callout>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Le Formateur */}
-            <FadeInView>
+
               <h2
                 id="le-formateur-sebastien-jourdan"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1068,10 +1061,9 @@ export default async function FormationPhotoProduitPage({
                 </blockquote>
               </div>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Section : Calendrier */}
-            <FadeInView>
+
               <h2
                 id="calendrier-inscription"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1152,10 +1144,9 @@ export default async function FormationPhotoProduitPage({
                 </Link>
               </div>
               <hr className="my-8 border-neutral-200" />
-            </FadeInView>
 
             {/* Conclusion */}
-            <FadeInView>
+
               <h2
                 id="conclusion"
                 className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24"
@@ -1257,7 +1248,7 @@ export default async function FormationPhotoProduitPage({
                 <strong>Auteur</strong> : Sébastien Jourdan, Photographe Packshot &amp; Formateur Certifié
                 Qualiopi — <strong>Dernière mise à jour</strong> : 10 janvier 2026
               </p>
-            </FadeInView>
+
           </article>
         </div>
       </section>
