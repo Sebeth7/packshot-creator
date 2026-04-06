@@ -138,10 +138,10 @@ export function BeforeAfterSlider({
         loading="lazy"
       />
 
-      {/* Before image (clipped) */}
+      {/* Before image (clipped via clip-path so image stays at full-width position) */}
       <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ width: `${position}%` }}
+        className="absolute inset-0"
+        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <Image
           src={before.src}
@@ -149,7 +149,6 @@ export function BeforeAfterSlider({
           width={width}
           height={height}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ minWidth: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }}
           loading="lazy"
         />
       </div>
