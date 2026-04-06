@@ -1,19 +1,34 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BeforeAfterSlider } from '@/components/media';
 
-interface Feature {
+interface FeatureBase {
   id: string;
   label: string;
   description: React.ReactNode;
   icon: React.ReactNode;
   color: string;
   activeColor: string;
+}
+
+interface FeatureBeforeAfter extends FeatureBase {
+  mode?: 'beforeAfter';
   before: { src: string; alt: string; label: string };
   after: { src: string; alt: string; label: string };
+  image?: never;
 }
+
+interface FeatureImage extends FeatureBase {
+  mode: 'image';
+  image: { src: string; alt: string };
+  before?: never;
+  after?: never;
+}
+
+type Feature = FeatureBeforeAfter | FeatureImage;
 
 interface FeaturesTabsProps {
   features: Feature[];
@@ -58,7 +73,7 @@ export default function FeaturesTabs({ features }: FeaturesTabsProps) {
         ))}
       </div>
 
-      {/* Right: Before/After + Description */}
+      {/* Right: Visual + Description */}
       <div className="lg:col-span-8">
         <AnimatePresence mode="wait">
           <motion.div
@@ -68,14 +83,23 @@ export default function FeaturesTabs({ features }: FeaturesTabsProps) {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Before/After Slider */}
             <div className="rounded-2xl overflow-hidden border border-neutral-200 mb-6">
-              <BeforeAfterSlider
-                before={active.before}
-                after={active.after}
-                width={800}
-                height={500}
-              />
+              {active.mode === 'image' ? (
+                <Image
+                  src={active.image.src}
+                  alt={active.image.alt}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto object-cover"
+                />
+              ) : (
+                <BeforeAfterSlider
+                  before={active.before}
+                  after={active.after}
+                  width={800}
+                  height={500}
+                />
+              )}
             </div>
 
             <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">
