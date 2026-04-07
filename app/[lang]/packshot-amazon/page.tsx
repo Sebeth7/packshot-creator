@@ -6,6 +6,7 @@ import { ShoppingCart, Target, RotateCw, Layers, FileImage } from 'lucide-react'
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotAmazon',
   slug: 'packshot-amazon',
+  benefitImageSlug: 'amazon',
   heroIcon: ShoppingCart,
   heroBadge: { fr: 'Amazon & Marketplaces', en: 'Amazon & Marketplaces' },
   benefitIcons: [Target, ShoppingCart, RotateCw, Layers, FileImage],

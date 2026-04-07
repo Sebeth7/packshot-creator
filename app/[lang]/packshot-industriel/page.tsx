@@ -6,6 +6,7 @@ import { Wrench, RotateCw, Lightbulb, Repeat, Plug } from 'lucide-react';
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotIndustriel',
   slug: 'packshot-industriel',
+  benefitImageSlug: 'industriel',
   heroIcon: Wrench,
   heroBadge: { fr: 'Industrie & Technique', en: 'Industry & Technical' },
   benefitIcons: [Wrench, RotateCw, Lightbulb, Repeat, Plug],

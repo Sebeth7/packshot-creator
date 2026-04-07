@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { solutions } from '@/data/solutions';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import {
@@ -168,11 +169,15 @@ export default async function SolutionPage({ params }: PageProps) {
                 </p>
               </FadeInView>
               <FadeInView direction="left" delay={0.2}>
-                <div className="hidden lg:flex w-full h-[280px] bg-white rounded-2xl items-center justify-center border border-neutral-100">
-                  <div className="text-center">
-                    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                    <p className="text-xs text-neutral-300">{isFr ? 'Workflow Orbitvu' : 'Orbitvu workflow'} ~500x280</p>
-                  </div>
+                <div className="hidden lg:block">
+                  <Image
+                    src="/images/illustrations/solution-workflow-overview.avif"
+                    alt="Process de documentation visuelle"
+                    width={500}
+                    height={280}
+                    className="w-full h-auto rounded-2xl"
+                    loading="lazy"
+                  />
                 </div>
               </FadeInView>
             </div>
@@ -188,12 +193,20 @@ export default async function SolutionPage({ params }: PageProps) {
                         {String(index + 1).padStart(2, '0')}
                       </span>
 
-                      {/* Image placeholder */}
-                      <div className="w-full h-[160px] bg-future-dusk-0 rounded-xl flex items-center justify-center mb-6 border border-neutral-100">
-                        <div className="text-center">
-                          <Camera className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                          <p className="text-xs text-neutral-300">{isFr ? 'Illustration étape' : 'Step illustration'} {index + 1}</p>
-                        </div>
+                      {/* Step illustration */}
+                      <div className="w-full rounded-xl overflow-hidden mb-6">
+                        <Image
+                          src={`/images/illustrations/solution-step-${
+                            index === 0 ? 'capture' :
+                            index === 1 ? 'traitement' :
+                            slug === 'documentation-probatoire' ? 'probatoire' : 'archivage'
+                          }.avif`}
+                          alt={etape.titre}
+                          width={600}
+                          height={160}
+                          className="w-full h-auto rounded-xl"
+                          loading="lazy"
+                        />
                       </div>
 
                       <div className="relative z-10">
@@ -320,9 +333,16 @@ export default async function SolutionPage({ params }: PageProps) {
                     <Link href={`/studio-photo/${machine!.id}`} className="group block h-full">
                       <SpringCard>
                         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:border-very-peri-400/40 transition-all">
-                          {/* Image placeholder */}
-                          <div className="w-full h-[140px] bg-white/5 rounded-xl flex items-center justify-center mb-5">
-                            <Camera className="w-8 h-8 text-white/15" strokeWidth={1} />
+                          {/* Machine image */}
+                          <div className="w-full h-[140px] rounded-xl overflow-hidden mb-5 flex items-center justify-center">
+                            <Image
+                              src={`/images/machines/${machine!.id}.avif`}
+                              alt={machine!.nom}
+                              width={280}
+                              height={140}
+                              className="w-full h-full object-contain"
+                              loading="lazy"
+                            />
                           </div>
 
                           {/* Size badge */}

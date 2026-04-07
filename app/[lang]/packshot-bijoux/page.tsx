@@ -6,6 +6,7 @@ import { Gem, ScanSearch, RotateCw, Eraser, Zap, ShoppingBag } from 'lucide-reac
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotBijoux',
   slug: 'packshot-bijoux',
+  benefitImageSlug: 'bijoux',
   heroIcon: Gem,
   heroBadge: { fr: 'Bijoux & Joaillerie', en: 'Jewelry & Watchmaking' },
   benefitIcons: [ScanSearch, RotateCw, Eraser, Zap, ShoppingBag],

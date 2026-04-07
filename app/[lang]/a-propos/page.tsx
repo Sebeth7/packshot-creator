@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { ArrowRight, Lightbulb, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
@@ -91,6 +92,18 @@ export default async function AProposPage({ params }: PageProps) {
                 <div className="bg-gradient-to-r from-very-peri-50 to-very-peri-100/50 rounded-2xl p-6 sm:p-10 lg:p-14">
                   <p className="text-lg text-future-dusk-700 leading-relaxed mb-6">{t('mission.p1')}</p>
                   <p className="text-lg text-future-dusk-700 leading-relaxed">{t('mission.p2')}</p>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal offset={40}>
+                <div className="mt-8">
+                  <Image
+                    src="/images/illustrations/team-showroom.avif"
+                    alt="Équipe PackshotCreator dans le showroom"
+                    width={1344}
+                    height={768}
+                    className="w-full h-auto rounded-2xl"
+                    loading="lazy"
+                  />
                 </div>
               </ScrollReveal>
             </div>

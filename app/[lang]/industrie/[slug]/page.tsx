@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { secteurs } from '@/data/secteurs';
-import { CheckCircle, ArrowRight, ChevronRight, ImageIcon, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { solutions } from '@/data/solutions';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
@@ -13,7 +13,50 @@ import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animatio
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
-import { HeroSection } from '@/components/hero';
+import { HeroSection, HeroImage } from '@/components/hero';
+
+/** Maps sector data slugs to hero image filename bases in /public/images/hero/ */
+const SECTOR_HERO_IMAGE_MAP: Record<string, string> = {
+  'chaussures': 'hero-secteur-chaussures',
+  'bijoux-joaillerie': 'hero-secteur-bijoux',
+  'mobilier-decoration': 'hero-secteur-mobilier',
+  'electronique-hightech': 'hero-secteur-hightech',
+  'mode-textile': 'hero-secteur-mode',
+  'food-alimentaire': 'hero-secteur-food',
+  'lunetterie': 'hero-secteur-lunetterie',
+  'cosmetiques-beaute': 'hero-secteur-cosmetiques',
+  'sante-medical': 'hero-secteur-sante',
+  'sport-outdoor': 'hero-secteur-sport',
+  'vin-spiritueux': 'hero-secteur-vin-spiritueux',
+  'jouets-puericulture': 'hero-secteur-jouets',
+  'pieces-techniques-industrie': 'hero-secteur-pieces-tech',
+  'automobile-pieces-detachees': 'hero-secteur-automobile',
+  'industrie-manufacturiere': 'hero-secteur-industrie-manufacturiere',
+  'defense-securite': 'hero-secteur-defense-securite',
+};
+
+/** Maps machine IDs to their image paths in /public/images/machines/ */
+function getMachineImage(id: string): string {
+  const imageMap: Record<string, string> = {
+    'alphashot-micro-v2': '/images/machines/alphashot-micro-v2.avif',
+    'alphashot-360': '/images/machines/alphashot-360.avif',
+    'alphashot-g2': '/images/machines/alphashot-pro-g2.avif',
+    'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
+    'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
+    'alphashot-xl-wine-v2': '/images/machines/alphashot-xl.avif',
+    'alphashot-xl-pro-v2': '/images/machines/alphashot-xl.avif',
+    'alphadesk': '/images/machines/alphatable-alphadesk.avif',
+    'alphatable': '/images/machines/alphatable-alphadesk.avif',
+    'alphastudio-compact-v2': '/images/machines/alphastudio-compact.avif',
+    'alphastudio-xxl-v2': '/images/machines/alphastudio-xxl.avif',
+    'fashion-studio-basic': '/images/machines/fashion-studio.avif',
+    'fashion-studio': '/images/machines/fashion-studio.avif',
+    'bike-studio': '/images/machines/bike-studio.avif',
+    'furniture-studio': '/images/machines/furniture-studio.avif',
+    'e-comm-studio-plus': '/images/machines/ecomm-studio-plus.avif',
+  };
+  return imageMap[id] || '/images/machines/placeholder-medium.svg';
+}
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -97,11 +140,19 @@ export default async function SecteurPage({ params }: PageProps) {
           { label: isFr ? 'Découvrir nos formations' : 'Discover our training', href: '/academy', variant: 'secondary' },
         ]}
         media={
-          <div className="w-full h-[360px] lg:h-[440px] bg-white/5 backdrop-blur-sm flex items-center justify-center border border-white/10 rounded-2xl">
-            <div className="text-center">
-              <ImageIcon className="w-12 h-12 text-white/20 mx-auto mb-2" strokeWidth={1} />
-              <p className="text-sm text-white/20">{isFr ? 'Visuel secteur' : 'Sector visual'} ~640x480</p>
-            </div>
+          <div className="w-full h-[360px] lg:h-[440px] rounded-2xl overflow-hidden">
+            {SECTOR_HERO_IMAGE_MAP[slug] ? (
+              <HeroImage
+                basePath={`/images/hero/${SECTOR_HERO_IMAGE_MAP[slug]}`}
+                alt={secteur.hero.titre}
+                priority
+                className="rounded-2xl"
+              />
+            ) : (
+              <div className="w-full h-full bg-white/5 backdrop-blur-sm flex items-center justify-center border border-white/10 rounded-2xl">
+                <Camera className="w-12 h-12 text-white/20" strokeWidth={1} />
+              </div>
+            )}
           </div>
         }
       >
@@ -130,14 +181,6 @@ export default async function SecteurPage({ params }: PageProps) {
                     ? 'Des contraintes spécifiques qui freinent votre production visuelle.'
                     : 'Specific constraints that slow down your visual production.'}
                 </p>
-              </FadeInView>
-              <FadeInView direction="left" delay={0.2}>
-                <div className="hidden lg:flex w-full h-[240px] bg-white rounded-2xl items-center justify-center border border-neutral-100">
-                  <div className="text-center">
-                    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                    <p className="text-xs text-neutral-300">{isFr ? 'Illustration secteur' : 'Sector illustration'} ~500x240</p>
-                  </div>
-                </div>
               </FadeInView>
             </div>
 
@@ -471,9 +514,16 @@ export default async function SecteurPage({ params }: PageProps) {
                     <Link href={`/studio-photo/${machine!.id}`} className="group block h-full">
                       <SpringCard>
                         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:border-very-peri-400/40 transition-all">
-                          {/* Image placeholder */}
-                          <div className="w-full h-[140px] bg-white/5 rounded-xl flex items-center justify-center mb-5">
-                            <Camera className="w-8 h-8 text-white/15" strokeWidth={1} />
+                          {/* Machine image */}
+                          <div className="w-full h-[140px] rounded-xl flex items-center justify-center mb-5 overflow-hidden bg-white/5">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={getMachineImage(machine!.id)}
+                              alt={machine!.nom}
+                              className="w-full h-full object-contain p-3"
+                              loading="lazy"
+                              decoding="async"
+                            />
                           </div>
 
                           {/* Size badge */}

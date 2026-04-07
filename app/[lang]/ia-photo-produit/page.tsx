@@ -383,12 +383,16 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   <span className="absolute -top-3 left-8 bg-very-peri-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
                     {isFr ? 'Recommandé' : 'Recommended'}
                   </span>
-                  {/* Image placeholder */}
-                  <div className="w-full h-[160px] bg-very-peri-50 flex items-center justify-center border border-very-peri-100 rounded-xl mb-6 mt-2">
-                    <div className="text-center">
-                      <ImageIcon className="w-8 h-8 text-very-peri-300 mx-auto mb-1" strokeWidth={1} />
-                      <p className="text-xs text-very-peri-300">Packshot pro + BlendAI result — ~600x160</p>
-                    </div>
+                  {/* Comparatif result image */}
+                  <div className="w-full rounded-xl overflow-hidden mb-6 mt-2">
+                    <Image
+                      src="/images/illustrations/comparatif-blendai-result.avif"
+                      alt="Résultat BlendAI - fidèle au produit"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto rounded-xl"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="flex items-center gap-4 mb-6">
                     <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-very-peri-100 text-very-peri-700">
@@ -419,12 +423,16 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             <ScrollReveal offset={50} className="lg:col-span-2">
               <SpringCard className="h-full" hoverY={-3} hoverScale={1.005}>
                 <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 border border-neutral-200 h-full">
-                  {/* Image placeholder */}
-                  <div className="w-full h-[120px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl mb-5">
-                    <div className="text-center">
-                      <ImageIcon className="w-6 h-6 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                      <p className="text-[10px] text-neutral-300">Pure AI generated — ~400x120</p>
-                    </div>
+                  {/* Comparatif pure IA result image */}
+                  <div className="w-full rounded-xl overflow-hidden mb-5">
+                    <Image
+                      src="/images/illustrations/comparatif-ia-pure-result.avif"
+                      alt="Résultat IA générative pure"
+                      width={400}
+                      height={300}
+                      className="w-full h-auto rounded-xl"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="flex items-center gap-3 mb-5">
                     <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-neutral-100 text-neutral-500">

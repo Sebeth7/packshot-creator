@@ -6,6 +6,7 @@ import { Shirt, Layers, Palette, RotateCw, Zap, Upload } from 'lucide-react';
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotMode',
   slug: 'packshot-mode',
+  benefitImageSlug: 'mode',
   heroIcon: Shirt,
   heroBadge: { fr: 'Mode & Textile', en: 'Fashion & Textile' },
   benefitIcons: [Layers, Palette, RotateCw, Zap, Upload],

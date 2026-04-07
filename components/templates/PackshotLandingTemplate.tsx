@@ -7,7 +7,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
-import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, ImageIcon, Quote, Box, Zap, Upload } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, Quote, Box, Zap, Upload } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
 
@@ -24,9 +24,35 @@ const CLIENT_LOGOS = [
   { name: 'Jägermeister', src: '/images/logos/client-jagermeister.svg', w: 187, h: 167 },
 ];
 
+/** Maps machine IDs to their image paths in /public/images/machines/ */
+const MACHINE_IMAGE_MAP: Record<string, string> = {
+  'alphashot-micro-v2': '/images/machines/alphashot-micro-v2.avif',
+  'alphashot-360': '/images/machines/alphashot-360.avif',
+  'alphashot-g2': '/images/machines/alphashot-pro-g2.avif',
+  'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
+  'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
+  'alphashot-xl-wine-v2': '/images/machines/alphashot-xl.avif',
+  'alphashot-xl-pro-v2': '/images/machines/alphashot-xl.avif',
+  'alphadesk': '/images/machines/alphatable-alphadesk.avif',
+  'alphatable': '/images/machines/alphatable-alphadesk.avif',
+  'alphastudio-compact-v2': '/images/machines/alphastudio-compact.avif',
+  'alphastudio-xxl-v2': '/images/machines/alphastudio-xxl.avif',
+  'fashion-studio-basic': '/images/machines/fashion-studio.avif',
+  'fashion-studio': '/images/machines/fashion-studio.avif',
+  'bike-studio': '/images/machines/bike-studio.avif',
+  'furniture-studio': '/images/machines/furniture-studio.avif',
+  'e-comm-studio-plus': '/images/machines/ecomm-studio-plus.avif',
+};
+
+function getMachineImage(id: string): string {
+  return MACHINE_IMAGE_MAP[id] || '/images/machines/placeholder-medium.svg';
+}
+
 export interface PackshotLandingConfig {
   namespace: string;
   slug: string;
+  /** Short identifier for benefit illustration: bijoux, mode, ecommerce, amazon, industriel */
+  benefitImageSlug: string;
   heroIcon: LucideIcon;
   heroBadge: { fr: string; en: string };
   benefitIcons: LucideIcon[];
@@ -56,7 +82,7 @@ function parseStatValue(value: string): { end: number; prefix: string; suffix: s
 }
 
 export default function PackshotLandingTemplate({ config, lang, t }: Props) {
-  const { slug, heroIcon: HeroIcon, heroBadge, benefitIcons, machineIds, faqCount } = config;
+  const { slug, benefitImageSlug, heroIcon: HeroIcon, heroBadge, benefitIcons, machineIds, faqCount } = config;
   const machines = machineIds.map(getMachineById).filter(Boolean);
   const isFr = lang === 'fr';
 
@@ -83,6 +109,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
         }}
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
+        backgroundImage={`/images/hero/hero-landing-${slug}.avif`}
         ctas={[
           { label: t('hero.cta'), href: '/contact', variant: 'primary' },
           { label: t('hero.ctaSecondary'), href: '/studios-photo-automatises', variant: 'secondary' },
@@ -160,12 +187,13 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           2c. BREATHER — Full-bleed visual pause
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="relative w-full h-[300px] lg:h-[400px] bg-neutral-100 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <ImageIcon className="w-10 h-10 text-neutral-300 mx-auto mb-2" strokeWidth={1} />
-            <p className="text-sm text-neutral-400">{isFr ? 'Visuel showroom — 100% × 400px' : 'Showroom visual — 100% × 400px'}</p>
-          </div>
-        </div>
+        <Image
+          src="/images/illustrations/breather-showroom.avif"
+          alt="Showroom PackshotCreator"
+          fill
+          className="object-cover"
+          loading="lazy"
+        />
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -183,13 +211,16 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('benefits.heading')}
               </TextReveal>
-              {/* Placeholder image under sticky heading */}
+              {/* Benefit illustration */}
               <div className="hidden lg:block mt-8">
-                <div className="w-full h-[300px] bg-neutral-50 flex items-center justify-center border border-neutral-100 rounded-xl">
-                  <div className="text-center">
-                    <ImageIcon className="w-8 h-8 text-neutral-300 mx-auto mb-1" strokeWidth={1} />
-                    <p className="text-xs text-neutral-300">Visuel produit ~500x300</p>
-                  </div>
+                <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
+                  <Image
+                    src={`/images/illustrations/benefits-${benefitImageSlug}.avif`}
+                    alt={t('benefits.heading')}
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </ScrollReveal>
@@ -324,6 +355,17 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                     <SpringCard key={machine.id} hoverY={-4}>
                       <div className="rounded-2xl border border-neutral-100 hover:border-very-peri-200 bg-neutral-50 overflow-hidden transition-all duration-300 h-full flex flex-col hover:shadow-lg">
                         <div className="h-2 bg-gradient-to-r from-very-peri-500 to-very-peri-400" />
+                        {/* Machine image */}
+                        <div className="relative w-full h-[140px] bg-white flex items-center justify-center">
+                          <Image
+                            src={getMachineImage(machine.id)}
+                            alt={machine.nom}
+                            width={200}
+                            height={140}
+                            className="object-contain max-h-[120px] w-auto"
+                            loading="lazy"
+                          />
+                        </div>
                         <div className="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
                           <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
                             {machine.nom}

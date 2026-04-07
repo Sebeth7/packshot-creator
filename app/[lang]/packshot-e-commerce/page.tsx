@@ -6,6 +6,7 @@ import { ShoppingCart, Package, Eraser, RotateCw, TrendingDown, Calculator } fro
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotEcommerce',
   slug: 'packshot-e-commerce',
+  benefitImageSlug: 'ecommerce',
   heroIcon: ShoppingCart,
   heroBadge: { fr: 'E-commerce & Marketplaces', en: 'E-commerce & Marketplaces' },
   benefitIcons: [Package, Eraser, RotateCw, TrendingDown, Calculator],

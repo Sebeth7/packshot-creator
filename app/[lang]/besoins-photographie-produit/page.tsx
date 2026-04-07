@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, ScrollReveal, TextReveal, SpringCard } from '@/components/animations';
@@ -268,11 +269,15 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
             <SpringCard className="lg:col-span-3" hoverY={-6}>
               <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-8 lg:p-14 h-full flex flex-col">
-                <div className="w-full h-[140px] lg:h-[180px] rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-6">
-                  <div className="text-center">
-                    <ImageIcon className="w-8 h-8 text-white/30 mx-auto mb-1" strokeWidth={1} />
-                    <p className="text-xs text-white/30">Visuel diagnostic ~500x180</p>
-                  </div>
+                <div className="w-full rounded-xl overflow-hidden mb-6">
+                  <Image
+                    src="/images/illustrations/cta-packshot-result.avif"
+                    alt="Résultat packshot professionnel"
+                    width={500}
+                    height={375}
+                    className="w-full h-auto rounded-xl"
+                    loading="lazy"
+                  />
                 </div>
                 <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.card1.heading')}</h3>
                 <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">{t('finalCta.card1.description')}</p>

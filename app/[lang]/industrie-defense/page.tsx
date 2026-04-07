@@ -94,6 +94,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
     <>
       {/* ===== 1. Hero Premium ===== */}
       <HeroSection
+        layout="split"
         badge={{
           icon: <ShieldCheck className="h-4 w-4" />,
           label: isFr ? 'Industrie & Defense' : 'Industry & Defense',
@@ -104,6 +105,16 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
         ctas={[
           { label: t('hero.ctaPrimary'), href: '/contact?subject=industrie', variant: 'primary' },
         ]}
+        media={
+          <Image
+            src="/images/hero/hero-industrie-defense.avif"
+            alt={isFr ? 'Solutions photo pour l\'industrie et la défense' : 'Photo solutions for industry and defense'}
+            width={640}
+            height={480}
+            className="rounded-2xl shadow-2xl"
+            priority
+          />
+        }
       >
         <div className="mt-4 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
@@ -389,6 +400,31 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                     </div>
                     {/* Content */}
                     <div className="md:col-span-9 bg-neutral-50 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-200 transition-colors">
+                      {/* Use case illustration for FAI (index 0) and MRO (index 3) */}
+                      {i === 0 && (
+                        <div className="mb-4 rounded-xl overflow-hidden">
+                          <Image
+                            src="/images/illustrations/usecase-fai-inspection.avif"
+                            alt={t(`useCases.${uc.titleKey}`)}
+                            width={600}
+                            height={300}
+                            className="w-full h-auto rounded-xl"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      {i === 3 && (
+                        <div className="mb-4 rounded-xl overflow-hidden">
+                          <Image
+                            src="/images/illustrations/usecase-mro-before-after.avif"
+                            alt={t(`useCases.${uc.titleKey}`)}
+                            width={600}
+                            height={300}
+                            className="w-full h-auto rounded-xl"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
                       <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
                         {t(`useCases.${uc.titleKey}`)}
                       </h3>
@@ -439,6 +475,17 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                     <div className="rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col hover:border-very-peri-200 transition-colors duration-300">
                       <div className="h-2 bg-very-peri-500" />
                       <div className="p-8 flex flex-col flex-grow">
+                        {/* Machine image */}
+                        <div className="w-full h-[140px] rounded-xl overflow-hidden mb-4 flex items-center justify-center">
+                          <Image
+                            src={`/images/machines/${machine.id}.avif`}
+                            alt={machine.nom}
+                            width={280}
+                            height={140}
+                            className="w-full h-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
                         <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">
                           {machine.nom}
                         </h3>
