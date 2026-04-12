@@ -53,7 +53,7 @@ export default {
       '/logiciel': '/fr/ia-photo-produit',
       '/formation': '/fr/academy',
       '/formations': '/fr/academy',
-      '/produits': '/fr/studio-photo/selecteur-machines',
+      '/produits': '/fr/studios-photo-automatises',
       '/gestion-workflow-shotflow': '/fr/ia-photo-produit',
       '/ancien-studio-photo': '/fr/studios-photo-automatises',
       '/packshot-secteur-chaussures': '/fr/industrie/chaussures',
