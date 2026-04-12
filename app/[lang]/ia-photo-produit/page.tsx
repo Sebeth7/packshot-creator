@@ -47,12 +47,12 @@ const GALLERY_ITEMS: Array<
 ];
 
 const CLIENT_LOGOS = [
-  { name: 'Chanel', src: '/logos/clients/chanel.svg' },
-  { name: 'Sandro', src: '/logos/clients/sandro.svg' },
-  { name: 'Amazon', src: '/logos/clients/amazon.svg' },
-  { name: 'Bosch', src: '/logos/clients/bosch.svg' },
-  { name: 'Valentino', src: '/logos/clients/valentino.svg' },
-  { name: 'Seiko', src: '/logos/clients/seiko.svg' },
+  { name: 'Chanel', src: '/logos/clients/chanel.avif' },
+  { name: 'Sandro', src: '/logos/clients/sandro.avif' },
+  { name: 'Amazon', src: '/logos/clients/amazon.avif' },
+  { name: 'Bosch', src: '/logos/clients/bosch.avif' },
+  { name: 'Valentino', src: '/logos/clients/valentino.avif' },
+  { name: 'Seiko', src: '/logos/clients/seiko.avif' },
 ];
 
 /* ──────── Metadata ──────── */
