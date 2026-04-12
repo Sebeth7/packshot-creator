@@ -14,14 +14,32 @@ export default {
     const url = new URL(request.url);
     const pathname = url.pathname;
 
+    // Non-www → www (301) pour éviter contenu dupliqué
+    if (url.hostname === 'packshot-creator.com') {
+      const wwwUrl = new URL(url);
+      wwwUrl.hostname = 'www.packshot-creator.com';
+      return Response.redirect(wwwUrl.toString(), 301);
+    }
+
+    // Racine → /fr (301 SEO-friendly)
+    if (pathname === '/') {
+      return new Response(null, {
+        status: 301,
+        headers: {
+          'Location': `${url.origin}/fr`,
+          'Cache-Control': 'no-cache',
+        },
+      });
+    }
+
     const isNextJS = NEXTJS_PATTERNS.some((p) => p.test(pathname));
     const origin = isNextJS ? env.NEXTJS_ORIGIN : env.WEBFLOW_ORIGIN;
 
     const targetUrl = new URL(pathname + url.search, origin);
 
     const headers = new Headers(request.headers);
-    headers.set('Host', new URL(origin).host);
-    headers.set('X-Forwarded-Host', url.host);
+    // Garder le Host original (www.packshot-creator.com) pour que Vercel
+    // reconnaisse le domaine configuré dans le projet
 
     const response = await fetch(targetUrl.toString(), {
       method: request.method,

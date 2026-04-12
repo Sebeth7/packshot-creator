@@ -19,34 +19,29 @@ export default function AnimatedCounter({
   className = '',
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [mounted, setMounted] = useState(false);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReducedMotion = useReducedMotion();
+  // Always start at `end` so SSR and initial render show the real value
   const [count, setCount] = useState(end);
-  const wasInViewport = useRef(false);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    setMounted(true);
-    // Only reset to 0 if element is below the fold (will animate later)
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-      wasInViewport.current = inViewport;
-      if (!inViewport) {
-        setCount(0);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    if (prefersReducedMotion) {
-      setCount(end);
-      return;
-    }
-
+    if (prefersReducedMotion || hasAnimated.current) return;
     if (!isInView) return;
 
+    hasAnimated.current = true;
+
+    // If element was already in viewport on first paint, skip animation
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      const wasAboveFold = rect.top < window.innerHeight && rect.bottom > 0;
+      if (wasAboveFold) {
+        setCount(end);
+        return;
+      }
+    }
+
+    // Animate from 0 to end
     let startTime: number;
     let animationFrame: number;
 
@@ -61,9 +56,11 @@ export default function AnimatedCounter({
       }
     };
 
+    // Brief reset to 0 then animate — only for below-fold elements
+    setCount(0);
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [mounted, isInView, end, duration, prefersReducedMotion]);
+  }, [isInView, end, duration, prefersReducedMotion]);
 
   return (
     <span ref={ref} className={className}>
