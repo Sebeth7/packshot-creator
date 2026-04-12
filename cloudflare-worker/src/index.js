@@ -36,6 +36,30 @@ export default {
       });
     }
 
+    // DE/ES/NL → /en (301) — ces langues ne sont plus maintenues
+    // Redirections spécifiques pour les pages à fort trafic GSC
+    const LANG_SPECIFIC_REDIRECTS = {
+      '/es/blog/como-elige-mejor-objectivo-foto-paquete': '/en/blog/how-to-choose-best-lens-for-product-photography',
+      '/es/blog/aprender-fotografia-joyas-ecommerce': '/en/blog/technique-photograph-jewelry-tutorial',
+      '/es/blog/8-pasos-para-fotografiar-joyas-profesionalmente': '/en/blog/8-steps-to-professional-jewelry-photography',
+      '/es/guide/que-equipo-elegir-para-foto-joyas': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/es/guide/que-ajustes-para-fotografiar-joyas': '/en/guide/what-settings-to-photograph-jewelry',
+      '/es/guide/como-fotografiar-gafas-para-e-commerce': '/en/guide/how-to-photograph-glasses-for-e-commerce',
+      '/es/guide/como-posicionar-reloj-para-fotos-producto': '/en/guide/how-to-position-watch-before-shooting-photo',
+      '/de/blog/welches-bildformat-ist-das-beste-fur-das-web': '/en/blog/best-image-format-for-the-web',
+      '/de/blog/8-schritte-zur-professionellen-schmuckfotografie': '/en/blog/8-steps-to-professional-jewelry-photography',
+      '/de/guide/welche-ausrustung-fur-schmuckfotografie-wahlen': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/de/guide/welche-einstellungen-zum-fotografieren-von-schmuck': '/en/guide/what-settings-to-photograph-jewelry',
+      '/de/fotostudio/alphashot-g2': '/en/studio-photo/alphashot-g2',
+      '/nl/blog/8-stappen-voor-professionele-sieradenfotografie': '/en/blog/8-steps-to-professional-jewelry-photography',
+      '/nl/guide/welke-instellingen-om-sieraden-te-fotograferen': '/en/guide/what-settings-to-photograph-jewelry',
+    };
+
+    if (/^\/(de|es|nl)(\/|$)/.test(pathname)) {
+      const target = LANG_SPECIFIC_REDIRECTS[pathname] || '/en';
+      return Response.redirect(`${url.origin}${target}`, 301);
+    }
+
     const isNextJS = NEXTJS_PATTERNS.some((p) => p.test(pathname));
     const origin = isNextJS ? env.NEXTJS_ORIGIN : env.WEBFLOW_ORIGIN;
 
