@@ -69,22 +69,18 @@ export default {
       return Response.redirect(`${url.origin}${LEGACY_REDIRECTS[pathname]}`, 301);
     }
 
-    // Redirections avec sous-chemins (patterns)
-    if (pathname.startsWith('/blog/')) {
-      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
-    }
+    // Redirections index uniquement (les /blog/:slug et /guide/:slug restent sur Webflow)
     if (pathname === '/blog') {
       return Response.redirect(`${url.origin}/fr/blog`, 301);
-    }
-    if (pathname.startsWith('/guide/')) {
-      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
     }
     if (pathname === '/guide') {
       return Response.redirect(`${url.origin}/fr/guide`, 301);
     }
-    if (pathname.startsWith('/academy/') || pathname === '/academy') {
-      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    if (pathname === '/academy') {
+      return Response.redirect(`${url.origin}/fr/academy`, 301);
     }
+    // /blog/:slug et /guide/:slug → PAS de redirect, servis par Webflow (contenu legacy encore live)
+    // /academy/:path → PAS de redirect, servi par Webflow (slugs différents entre Webflow et Next.js)
     if (pathname.startsWith('/industrie/')) {
       return Response.redirect(`${url.origin}/fr${pathname}`, 301);
     }
