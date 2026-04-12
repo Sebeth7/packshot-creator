@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useState, useEffect, type ReactNode } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -33,19 +33,30 @@ export default function FadeInView({
   amount = 0.2,
 }: FadeInViewProps) {
   const shouldReduce = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  const offset = offsets[direction];
+  const ref = useRef<HTMLDivElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setMounted(true);
+    if (!ref.current) { setShouldAnimate(false); return; }
+    const rect = ref.current.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    // Elements already visible from SSR: no animation. Below fold: animate.
+    setShouldAnimate(!inViewport);
   }, []);
 
-  // SSR + pre-mount: render visible plain div (no opacity:0 inline styles)
-  if (shouldReduce || !mounted) {
+  const offset = offsets[direction];
+
+  // SSR + pre-mount + reduced motion: visible plain div
+  if (shouldReduce || shouldAnimate === null) {
+    return <div ref={ref} className={className}>{children}</div>;
+  }
+
+  // Already in viewport at mount: render visible, no animation
+  if (!shouldAnimate) {
     return <div className={className}>{children}</div>;
   }
 
-  // After mount: motion.div with whileInView (manages its own IntersectionObserver)
+  // Below fold: animate on scroll into view
   return (
     <motion.div
       initial={{ opacity: 0, x: offset.x, y: offset.y }}

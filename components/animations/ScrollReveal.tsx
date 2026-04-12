@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useState, useEffect, ReactNode } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { useRef, useState, useEffect, type ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -16,36 +16,34 @@ export default function ScrollReveal({
   offset = 60,
   scale = false,
 }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const [mounted, setMounted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
   const shouldReduce = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 0.4], [offset, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const scaleValue = useTransform(scrollYProgress, [0, 0.4], [0.96, 1]);
-
   useEffect(() => {
-    setMounted(true);
+    if (!ref.current) { setShouldAnimate(false); return; }
+    const rect = ref.current.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    setShouldAnimate(!inViewport);
   }, []);
 
   // SSR + pre-mount + reduced motion: render visible plain div
-  if (!mounted || shouldReduce) {
+  if (shouldAnimate === null || shouldReduce) {
+    return <div ref={ref} className={className}>{children}</div>;
+  }
+
+  // Already in viewport at mount: no animation
+  if (!shouldAnimate) {
     return <div className={className}>{children}</div>;
   }
 
+  // Below fold: fade+slide on scroll into view
   return (
     <motion.div
-      ref={ref}
-      style={{
-        y,
-        opacity,
-        ...(scale ? { scale: scaleValue } : {}),
-      }}
+      initial={{ opacity: 0, y: offset, ...(scale ? { scale: 0.96 } : {}) }}
+      whileInView={{ opacity: 1, y: 0, ...(scale ? { scale: 1 } : {}) }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, ease: [0, 0, 0.2, 1] }}
       className={className}
     >
       {children}

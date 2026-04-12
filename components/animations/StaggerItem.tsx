@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useState, useEffect, type ReactNode } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -24,33 +24,30 @@ export default function StaggerItem({
   direction = "up",
   className,
 }: StaggerItemProps) {
-  const [mounted, setMounted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
   const shouldReduce = useReducedMotion();
   const offset = offsets[direction];
 
   useEffect(() => {
-    setMounted(true);
+    if (!ref.current) { setShouldAnimate(false); return; }
+    const rect = ref.current.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    setShouldAnimate(!inViewport);
   }, []);
 
-  // SSR + pre-mount + reduced motion: render visible plain div
-  if (!mounted || shouldReduce) {
-    return <div className={className}>{children}</div>;
+  // SSR + pre-mount + reduced motion + in viewport: visible plain div
+  if (shouldAnimate === null || shouldReduce || !shouldAnimate) {
+    return <div ref={ref} className={className}>{children}</div>;
   }
 
+  // Below fold: animate on scroll
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, x: offset.x, y: offset.y },
-        visible: {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          transition: {
-            duration: 0.5,
-            ease: [0, 0, 0.2, 1],
-          },
-        },
-      }}
+      initial={{ opacity: 0, x: offset.x, y: offset.y }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, ease: [0, 0, 0.2, 1] }}
       className={className}
     >
       {children}

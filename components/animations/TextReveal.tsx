@@ -20,24 +20,28 @@ export default function TextReveal({
   staggerSpeed = 0.04,
   once = true,
 }: TextRevealProps) {
-  const ref = useRef(null);
-  const [mounted, setMounted] = useState(false);
-  const isInView = useInView(ref, { once, amount: 0.5 });
+  const ref = useRef<HTMLElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
+  const isInView = useInView(ref, { once, amount: 0.3 });
   const shouldReduce = useReducedMotion();
 
   useEffect(() => {
-    setMounted(true);
+    if (!ref.current) { setShouldAnimate(false); return; }
+    const rect = ref.current.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    setShouldAnimate(!inViewport);
   }, []);
 
-  // SSR + pre-mount + reduced motion: render visible plain tag
-  if (!mounted || shouldReduce) {
-    return <Tag className={className}>{children}</Tag>;
+  // SSR + pre-mount + reduced motion + already in viewport: visible plain tag
+  if (shouldAnimate === null || shouldReduce || !shouldAnimate) {
+    return <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className}>{children}</Tag>;
   }
 
+  // Below fold: word-by-word reveal on scroll
   const words = children.split(' ');
 
   return (
-    <Tag ref={ref} className={className}>
+    <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className}>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden">
           <motion.span

@@ -23,10 +23,19 @@ export default function AnimatedCounter({
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReducedMotion = useReducedMotion();
   const [count, setCount] = useState(end);
+  const wasInViewport = useRef(false);
 
   useEffect(() => {
     setMounted(true);
-    setCount(0);
+    // Only reset to 0 if element is below the fold (will animate later)
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      wasInViewport.current = inViewport;
+      if (!inViewport) {
+        setCount(0);
+      }
+    }
   }, []);
 
   useEffect(() => {
