@@ -36,6 +36,65 @@ export default {
       });
     }
 
+    // Anciennes URLs FR sans préfixe /fr/ → redirection 301
+    // (dans le Worker car next.config.ts ne les voit jamais — le Worker route vers Webflow avant)
+    const LEGACY_REDIRECTS = {
+      '/contact': '/fr/contact',
+      '/a-propos': '/fr/a-propos',
+      '/mentions-legales': '/fr/mentions-legales',
+      '/confidentialite': '/fr/confidentialite',
+      '/cgu': '/fr/cgu',
+      '/ia-photo-produit': '/fr/ia-photo-produit',
+      '/studios-photo-automatises': '/fr/studios-photo-automatises',
+      '/e-commerce': '/fr/blog',
+      '/industrie': '/fr/industrie',
+      '/studio-photo': '/fr/studios-photo-automatises',
+      '/blendai': '/fr/ia-photo-produit',
+      '/logiciel': '/fr/ia-photo-produit',
+      '/formation': '/fr/academy',
+      '/formations': '/fr/academy',
+      '/produits': '/fr/studio-photo/selecteur-machines',
+      '/gestion-workflow-shotflow': '/fr/ia-photo-produit',
+      '/ancien-studio-photo': '/fr/studios-photo-automatises',
+      '/packshot-secteur-chaussures': '/fr/industrie/chaussures',
+      '/packshot-secteur-bijouterie': '/fr/industrie/bijoux-joaillerie',
+      '/packshot-secteur-meuble': '/fr/industrie/mobilier-decoration',
+      '/packshot-secteur-mode-accessoires': '/fr/industrie/mode-textile',
+      '/packshot-secteur-pieces-techniques': '/fr/industrie/pieces-techniques-industrie',
+      '/packshot-secteur-e-commerce': '/fr/blog',
+    };
+
+    // Vérifier les redirections exactes
+    if (LEGACY_REDIRECTS[pathname]) {
+      return Response.redirect(`${url.origin}${LEGACY_REDIRECTS[pathname]}`, 301);
+    }
+
+    // Redirections avec sous-chemins (patterns)
+    if (pathname.startsWith('/blog/')) {
+      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    }
+    if (pathname === '/blog') {
+      return Response.redirect(`${url.origin}/fr/blog`, 301);
+    }
+    if (pathname.startsWith('/guide/')) {
+      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    }
+    if (pathname === '/guide') {
+      return Response.redirect(`${url.origin}/fr/guide`, 301);
+    }
+    if (pathname.startsWith('/academy/') || pathname === '/academy') {
+      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    }
+    if (pathname.startsWith('/industrie/')) {
+      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    }
+    if (pathname.startsWith('/packshot-packshotcreator')) {
+      return Response.redirect(`${url.origin}/fr`, 301);
+    }
+    if (pathname.startsWith('/accessoires')) {
+      return Response.redirect(`${url.origin}/fr/studios-photo-automatises`, 301);
+    }
+
     // DE/ES/NL → /en (301) — ces langues ne sont plus maintenues
     // Redirections spécifiques pour les pages à fort trafic GSC
     const LANG_SPECIFIC_REDIRECTS = {
