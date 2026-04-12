@@ -4,9 +4,12 @@
 const NEXTJS_PATTERNS = [
   /^\/(fr|en)(\/|$)/,    // /fr, /en et tout sous-chemin
   /^\/_next\//,           // Assets Next.js (JS, CSS, images)
+  /^\/images\//,          // Images statiques (public/images/)
   /^\/api\//,             // API routes Next.js
   /^\/calculateur-roi/,   // Page non-localisée
   /^\/sitemap\.xml$/,     // Sitemap généré par Next.js
+  /^\/favicon/,           // Favicons
+  /^\/robots\.txt$/,      // robots.txt
 ];
 
 export default {
