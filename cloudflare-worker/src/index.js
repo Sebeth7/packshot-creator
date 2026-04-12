@@ -91,6 +91,9 @@ export default {
     if (pathname.startsWith('/packshot-packshotcreator')) {
       return Response.redirect(`${url.origin}/fr`, 301);
     }
+    if (pathname.startsWith('/studio-photo/')) {
+      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+    }
     if (pathname.startsWith('/accessoires')) {
       return Response.redirect(`${url.origin}/fr/studios-photo-automatises`, 301);
     }
