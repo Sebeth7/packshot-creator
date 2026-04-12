@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 interface TextRevealProps {
@@ -21,10 +21,16 @@ export default function TextReveal({
   once = true,
 }: TextRevealProps) {
   const ref = useRef(null);
+  const [mounted, setMounted] = useState(false);
   const isInView = useInView(ref, { once, amount: 0.5 });
-  const prefersReducedMotion = useReducedMotion();
+  const shouldReduce = useReducedMotion();
 
-  if (prefersReducedMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // SSR + pre-mount + reduced motion: render visible plain tag
+  if (!mounted || shouldReduce) {
     return <Tag className={className}>{children}</Tag>;
   }
 

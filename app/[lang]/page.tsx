@@ -469,8 +469,8 @@ export default async function HomePage({
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
               {[
                 { name: 'Alphashot XL v2', image: '/images/machines/alphashot-xl.avif', href: '/studio-photo/alphashot-xl-v2' },
-                { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: '/studio-photo/alphastudio-compact-pro-v2' },
-                { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: '/studio-photo/fashion-studio-pro-v2' },
+                { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: '/studio-photo/alphastudio-compact-v2' },
+                { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: '/studio-photo/fashion-studio' },
                 { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: '/studio-photo/alphashot-360' },
                 { name: 'Bike Studio', image: '/images/machines/bike-studio.avif', href: '/studio-photo/bike-studio' },
                 { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: '/studio-photo/alphatable-v2' },

@@ -3,5 +3,5 @@ main = "src/index.js"
 compatibility_date = "2024-01-01"
 
 [vars]
-WEBFLOW_ORIGIN = "https://packshot-creator.webflow.io"
+WEBFLOW_ORIGIN = "https://packshot-creator-staging.webflow.io"
 NEXTJS_ORIGIN = "https://sysnext.vercel.app"

@@ -114,6 +114,55 @@ const nextConfig: NextConfig = {
       { source: '/accessoires/:slug', destination: '/fr/studios-photo-automatises', statusCode: 301 },
 
       // ============================================================
+      // BLOC 2c - URLs EN Webflow → Next.js EN (migration)
+      // Ces pages /en/* existaient sur Webflow avec des slugs anglais.
+      // Le Worker les route vers Vercel, il faut des redirections 301.
+      // ============================================================
+
+      // Pages statiques EN (slugs Webflow → slugs Next.js)
+      { source: '/en/workflow-management-shotflow', destination: '/en/ia-photo-produit', statusCode: 301 },
+      { source: '/en/industry', destination: '/en/industrie', statusCode: 301 },
+      { source: '/en/key-questions-product-photography', destination: '/en/questions-cles-photographie-produit', statusCode: 301 },
+      { source: '/en/trainings-product-photography', destination: '/en/academy', statusCode: 301 },
+      { source: '/en/products', destination: '/en/studio-photo/selecteur-machines', statusCode: 301 },
+      { source: '/en/creator-connected-photo-studios', destination: '/en/studios-photo-automatises', statusCode: 301 },
+      { source: '/en/automate-product-photography-packshotcreator', destination: '/en/studios-photo-automatises', statusCode: 301 },
+      { source: '/en/needs-product-photography', destination: '/en/besoins-photographie-produit', statusCode: 301 },
+      { source: '/en/old-photo-studio', destination: '/en/studios-photo-automatises', statusCode: 301 },
+      { source: '/en/disclaimer', destination: '/en/mentions-legales', statusCode: 301 },
+      { source: '/en/confidentiality', destination: '/en/confidentialite', statusCode: 301 },
+      { source: '/en/actualites', destination: '/en/blog', statusCode: 301 },
+      { source: '/en/e-commerce', destination: '/en/blog', statusCode: 301 },
+      { source: '/en/blog-produits', destination: '/en/blog', statusCode: 301 },
+      { source: '/en/innovations', destination: '/en/blog', statusCode: 301 },
+      { source: '/en/sitemap', destination: '/en', statusCode: 301 },
+      { source: '/en/guides', destination: '/en/guide', statusCode: 301 },
+
+      // Anciens secteurs EN (slug FR sur /en/)
+      { source: '/en/packshot-secteur-chaussures', destination: '/en/industrie/chaussures', statusCode: 301 },
+      { source: '/en/packshot-secteur-e-commerce', destination: '/en/blog', statusCode: 301 },
+      { source: '/en/packshot-secteur-bijouterie', destination: '/en/industrie/bijoux-joaillerie', statusCode: 301 },
+      { source: '/en/packshot-secteur-mode-accessoires', destination: '/en/industrie/mode-textile', statusCode: 301 },
+      { source: '/en/packshot-secteur-pieces-techniques', destination: '/en/industrie/pieces-techniques-industrie', statusCode: 301 },
+      { source: '/en/packshot-secteur-meuble', destination: '/en/industrie/mobilier-decoration', statusCode: 301 },
+      { source: '/en/packshot-packshotcreator', destination: '/en', statusCode: 301 },
+      { source: '/en/packshot-packshotcreator/:slug', destination: '/en', statusCode: 301 },
+
+      // Secteurs EN (slugs anglais Webflow → Next.js industrie)
+      { source: '/en/sector/art-and-antiquities', destination: '/en/industrie', statusCode: 301 },
+      { source: '/en/sector/culinary', destination: '/en/industrie/food-alimentaire', statusCode: 301 },
+      { source: '/en/sector/beauty', destination: '/en/industrie/cosmetiques-beaute', statusCode: 301 },
+      { source: '/en/sector/jewelry', destination: '/en/industrie/bijoux-joaillerie', statusCode: 301 },
+      { source: '/en/sector/wine-spirits', destination: '/en/industrie/vin-spiritueux', statusCode: 301 },
+      { source: '/en/sector/footwear', destination: '/en/industrie/chaussures', statusCode: 301 },
+      { source: '/en/sector/components', destination: '/en/industrie/pieces-techniques-industrie', statusCode: 301 },
+      { source: '/en/sector/electronics', destination: '/en/industrie/electronique-hightech', statusCode: 301 },
+      { source: '/en/sector/sport', destination: '/en/industrie/sport-outdoor', statusCode: 301 },
+      { source: '/en/sector/eyewear', destination: '/en/industrie/lunetterie', statusCode: 301 },
+      { source: '/en/sector/fashion', destination: '/en/industrie/mode-textile', statusCode: 301 },
+      { source: '/en/sector/furniture', destination: '/en/industrie/mobilier-decoration', statusCode: 301 },
+
+      // ============================================================
       // BLOC 3 - Langues DE/ES/NL → /en
       // Redirections individuelles (URLs >20 clics GSC 3 mois)
       // placées AVANT les catch-all (Next.js évalue dans l'ordre)

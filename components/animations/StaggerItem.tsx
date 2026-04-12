@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -24,7 +24,18 @@ export default function StaggerItem({
   direction = "up",
   className,
 }: StaggerItemProps) {
+  const [mounted, setMounted] = useState(false);
+  const shouldReduce = useReducedMotion();
   const offset = offsets[direction];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // SSR + pre-mount + reduced motion: render visible plain div
+  if (!mounted || shouldReduce) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

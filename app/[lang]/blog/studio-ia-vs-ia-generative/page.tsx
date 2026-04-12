@@ -523,7 +523,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
               </Link>
 
               <Link
-                href="/studios-photo-automatises#calculateur"
+                href="/calculateur-roi"
                 className="group block p-5 rounded-2xl border border-neutral-100 bg-white hover:border-very-peri-200 hover:shadow-md transition-all"
               >
                 <ArrowRight className="h-6 w-6 text-very-peri-500 mb-3" />

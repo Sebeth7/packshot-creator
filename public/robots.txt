@@ -1,6 +1,11 @@
-# PackshotCreator - robots.txt
-# Crawlers IA autorisés (AEO)
+# Crawlers principaux
+User-agent: Googlebot
+Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+# Crawlers IA (GEO - important pour la visibilite LLM)
 User-agent: GPTBot
 Allow: /
 
@@ -28,18 +33,13 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-# Crawlers SEO
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Bloquer répertoires techniques
+# Tous les autres crawlers
 User-agent: *
+Allow: /
 Disallow: /api/
 Disallow: /_next/
-Disallow: /studio/
+Disallow: /fr/calculateur
+Disallow: /en/calculateur
 
 # Sitemap
 Sitemap: https://www.packshot-creator.com/sitemap.xml

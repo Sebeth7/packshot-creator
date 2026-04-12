@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, ReactNode } from 'react';
+import { useRef, useState, useEffect, ReactNode } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 
 interface ScrollRevealProps {
@@ -17,7 +17,8 @@ export default function ScrollReveal({
   scale = false,
 }: ScrollRevealProps) {
   const ref = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  const shouldReduce = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -28,7 +29,12 @@ export default function ScrollReveal({
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const scaleValue = useTransform(scrollYProgress, [0, 0.4], [0.96, 1]);
 
-  if (prefersReducedMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // SSR + pre-mount + reduced motion: render visible plain div
+  if (!mounted || shouldReduce) {
     return <div className={className}>{children}</div>;
   }
 

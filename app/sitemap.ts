@@ -10,6 +10,13 @@ const SECTORS = [
   'pieces-techniques-industrie', 'automobile-pieces-detachees',
   'jouets-puericulture', 'sport-outdoor', 'sante-medical',
   'industrie-manufacturiere', 'defense-securite',
+  'lunetterie', 'vin-spiritueux',
+];
+
+const SOLUTIONS = [
+  'documentation-technique-visuelle',
+  'documentation-qualite-produit',
+  'documentation-probatoire',
 ];
 
 const MACHINES = [
@@ -95,6 +102,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: `/en/studio-photo/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
   ]);
 
+  // --- Solution pages (FR + EN) ---
+  const solutionPages = SOLUTIONS.flatMap((slug) => [
+    { path: `/fr/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+  ]);
+
   // --- Dynamic: Blog articles ---
   let blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
   try {
@@ -123,6 +136,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...mainPages,
     ...sectorPages,
     ...machinePages,
+    ...solutionPages,
     ...blogPages,
     ...guidePages,
   ].map(({ path, priority, changeFrequency }) => ({

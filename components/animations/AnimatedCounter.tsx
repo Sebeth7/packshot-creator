@@ -19,11 +19,18 @@ export default function AnimatedCounter({
   className = '',
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
+  const [mounted, setMounted] = useState(false);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReducedMotion = useReducedMotion();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
 
   useEffect(() => {
+    setMounted(true);
+    setCount(0);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (prefersReducedMotion) {
       setCount(end);
       return;
@@ -47,7 +54,7 @@ export default function AnimatedCounter({
 
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [isInView, end, duration, prefersReducedMotion]);
+  }, [mounted, isInView, end, duration, prefersReducedMotion]);
 
   return (
     <span ref={ref} className={className}>
