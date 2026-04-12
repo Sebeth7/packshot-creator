@@ -5,6 +5,7 @@ const NEXTJS_PATTERNS = [
   /^\/(fr|en)(\/|$)/,    // /fr, /en et tout sous-chemin
   /^\/_next\//,           // Assets Next.js (JS, CSS, images)
   /^\/images\//,          // Images statiques (public/images/)
+  /^\/logos\//,           // Logos (public/logos/)
   /^\/api\//,             // API routes Next.js
   /^\/calculateur-roi/,   // Page non-localisée
   /^\/sitemap\.xml$/,     // Sitemap généré par Next.js
