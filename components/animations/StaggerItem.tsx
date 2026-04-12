@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -11,12 +10,12 @@ interface StaggerItemProps {
   className?: string;
 }
 
-const offsets: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 24 },
-  down: { x: 0, y: -24 },
-  left: { x: 24, y: 0 },
-  right: { x: -24, y: 0 },
-  none: { x: 0, y: 0 },
+const transforms: Record<Direction, string> = {
+  up: "translateY(24px)",
+  down: "translateY(-24px)",
+  left: "translateX(24px)",
+  right: "translateX(-24px)",
+  none: "none",
 };
 
 export default function StaggerItem({
@@ -25,32 +24,44 @@ export default function StaggerItem({
   className,
 }: StaggerItemProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
-  const shouldReduce = useReducedMotion();
-  const offset = offsets[direction];
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) { setShouldAnimate(false); return; }
-    const rect = ref.current.getBoundingClientRect();
-    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-    setShouldAnimate(!inViewport);
+    setIsMounted(true);
+    const el = ref.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  // SSR + pre-mount + reduced motion + in viewport: visible plain div
-  if (shouldAnimate === null || shouldReduce || !shouldAnimate) {
-    return <div ref={ref} className={className}>{children}</div>;
-  }
+  const style: React.CSSProperties = isMounted
+    ? {
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "none" : transforms[direction],
+        transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+      }
+    : {};
 
-  // Below fold: animate on scroll
   return (
-    <motion.div
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: [0, 0, 0.2, 1] }}
-      className={className}
-    >
+    <div ref={ref} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 interface TextRevealProps {
   children: string;
@@ -17,48 +16,47 @@ export default function TextReveal({
   as: Tag = 'h2',
   className = '',
   delay = 0,
-  staggerSpeed = 0.04,
   once = true,
 }: TextRevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
-  const isInView = useInView(ref, { once, amount: 0.3 });
-  const shouldReduce = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) { setShouldAnimate(false); return; }
-    const rect = ref.current.getBoundingClientRect();
-    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-    setShouldAnimate(!inViewport);
-  }, []);
+    setIsMounted(true);
+    const el = ref.current;
+    if (!el) return;
 
-  // SSR + pre-mount + reduced motion + already in viewport: visible plain tag
-  if (shouldAnimate === null || shouldReduce || !shouldAnimate) {
-    return <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className}>{children}</Tag>;
-  }
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+      return;
+    }
 
-  // Below fold: word-by-word reveal on scroll
-  const words = children.split(' ');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (once) observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [once]);
+
+  const style: React.CSSProperties = isMounted
+    ? {
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'none' : 'translateY(16px)',
+        transition: `opacity 0.5s ease-out ${delay}s, transform 0.5s ease-out ${delay}s`,
+      }
+    : {};
 
   return (
-    <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden">
-          <motion.span
-            className="inline-block"
-            initial={{ y: '100%', opacity: 0 }}
-            animate={isInView ? { y: '0%', opacity: 1 } : { y: '100%', opacity: 0 }}
-            transition={{
-              duration: 0.5,
-              ease: [0.25, 0.1, 0.25, 1],
-              delay: delay + i * staggerSpeed,
-            }}
-          >
-            {word}
-          </motion.span>
-          {i < words.length - 1 && '\u00A0'}
-        </span>
-      ))}
+    <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className} style={style}>
+      {children}
     </Tag>
   );
 }

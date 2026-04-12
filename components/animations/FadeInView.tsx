@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -15,14 +14,6 @@ interface FadeInViewProps {
   amount?: number;
 }
 
-const offsets: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 24 },
-  down: { x: 0, y: -24 },
-  left: { x: 24, y: 0 },
-  right: { x: -24, y: 0 },
-  none: { x: 0, y: 0 },
-};
-
 export default function FadeInView({
   children,
   direction = "up",
@@ -30,46 +21,57 @@ export default function FadeInView({
   duration = 0.5,
   className,
   once = true,
-  amount = 0.2,
 }: FadeInViewProps) {
-  const shouldReduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) { setShouldAnimate(false); return; }
-    const rect = ref.current.getBoundingClientRect();
-    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-    // Elements already visible from SSR: no animation. Below fold: animate.
-    setShouldAnimate(!inViewport);
-  }, []);
+    setIsMounted(true);
+    const el = ref.current;
+    if (!el) return;
 
-  const offset = offsets[direction];
+    // If already in viewport at mount, show immediately (no animation)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+      return;
+    }
 
-  // SSR + pre-mount + reduced motion: visible plain div
-  if (shouldReduce || shouldAnimate === null) {
-    return <div ref={ref} className={className}>{children}</div>;
-  }
+    // Below fold: observe for scroll-triggered animation
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (once) observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [once]);
 
-  // Already in viewport at mount: render visible, no animation
-  if (!shouldAnimate) {
-    return <div className={className}>{children}</div>;
-  }
+  const transforms: Record<Direction, string> = {
+    up: "translateY(24px)",
+    down: "translateY(-24px)",
+    left: "translateX(24px)",
+    right: "translateX(-24px)",
+    none: "none",
+  };
 
-  // Below fold: animate on scroll into view
+  // SSR: visible, no animation styles
+  const style: React.CSSProperties = isMounted
+    ? {
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "none" : transforms[direction],
+        transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
+      }
+    : {};
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, amount }}
-      transition={{
-        duration,
-        delay,
-        ease: [0, 0, 0.2, 1],
-      }}
-      className={className}
-    >
+    <div ref={ref} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
