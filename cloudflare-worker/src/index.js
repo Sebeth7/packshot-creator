@@ -13,6 +13,35 @@ const NEXTJS_PATTERNS = [
   /^\/robots\.txt$/,      // robots.txt
 ];
 
+// Slugs blog qui existent comme pages statiques dans Next.js
+// Tout autre slug sous /(fr|en)/blog/ ou /(fr|en)/guide/ → Webflow
+const NEXTJS_BLOG_SLUGS = new Set([
+  'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026',
+  'blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
+  'budget-studio-photo-automatise',
+  'comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet',
+  'comparatif-orbitvu-ortery-styleshoots-2026',
+  'financement-formation-opco-guide-complet-pour-studios-photo-2026',
+  'formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026',
+  'guide-achat-studio-2026',
+  'ia-photo-produit-guide-2026',
+  'orbitvu-vs-concurrents',
+  'prestataire-packshot-vs-studio-interne',
+  'studio-ia-vs-ia-generative',
+]);
+
+function isWebflowContent(pathname) {
+  // /(fr|en)/blog/:slug → Webflow si le slug n'est pas dans Next.js
+  const blogMatch = pathname.match(/^\/(fr|en)\/blog\/([^/]+)$/);
+  if (blogMatch && !NEXTJS_BLOG_SLUGS.has(blogMatch[2])) return true;
+
+  // /en/guide/:slug → Webflow (guides EN existent sur Webflow, pas dans Next.js)
+  // /fr/guide/:slug → Next.js (les guides FR sont fetchés via l'API Webflow CMS par Next.js)
+  if (/^\/en\/guide\/[^/]+$/.test(pathname)) return true;
+
+  return false;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -121,7 +150,9 @@ export default {
       return Response.redirect(`${url.origin}${target}`, 301);
     }
 
-    const isNextJS = NEXTJS_PATTERNS.some((p) => p.test(pathname));
+    // Blog/guide avec slug Webflow → forcer vers Webflow (évite 500 Next.js)
+    const forceWebflow = isWebflowContent(pathname);
+    const isNextJS = !forceWebflow && NEXTJS_PATTERNS.some((p) => p.test(pathname));
     const origin = isNextJS ? env.NEXTJS_ORIGIN : env.WEBFLOW_ORIGIN;
 
     const targetUrl = new URL(pathname + url.search, origin);
