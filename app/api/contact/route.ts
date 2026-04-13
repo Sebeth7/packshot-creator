@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod/v4';
 import { Resend } from 'resend';
+import { enrichLead, formatEnrichmentNote } from '@/lib/lead-enrichment';
 
 // ── Pipedrive config ──────────────────────────────────────────
 const PIPEDRIVE_PIPELINE_ID = 3; // PackshotCreator Pipeline
@@ -301,6 +302,39 @@ export async function POST(request: NextRequest) {
         : 'PackshotCreator — Your request has been received',
       html: confirmHtml,
     }).catch((err) => console.error('Confirmation email error:', err));
+
+    // 4. Enrichissement asynchrone — ne bloque pas la réponse
+    const PIPEDRIVE_API_TOKEN_FOR_ENRICH = PIPEDRIVE_API_TOKEN;
+    const dealIdForEnrich = pipedriveResult.dealId;
+
+    if (dealIdForEnrich && PIPEDRIVE_API_TOKEN_FOR_ENRICH) {
+      // Fire-and-forget : enrichit le lead puis met à jour la note Pipedrive
+      enrichLead({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        company: data.company,
+        sector: data.sector,
+        requestType: data.requestType,
+        message: data.message,
+        pageSource: data.pageSource,
+        machineContext: data.machineContext,
+      }).then(async (enriched) => {
+        const enrichmentNote = formatEnrichmentNote(enriched);
+
+        await fetch(
+          `https://api.pipedrive.com/v1/notes?api_token=${PIPEDRIVE_API_TOKEN_FOR_ENRICH}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              deal_id: dealIdForEnrich,
+              content: enrichmentNote,
+              pinned_to_deal_flag: false,
+            }),
+          }
+        );
+      }).catch((err) => console.error('Lead enrichment error:', err));
+    }
 
     return NextResponse.json({ success: true, pipedrive: pipedriveResult });
   } catch (error) {
