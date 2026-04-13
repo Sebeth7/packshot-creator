@@ -49,8 +49,21 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
     { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
   ];
 
-  const heroPost = posts[0];
-  const gridPosts = posts.slice(1);
+  // Pre-format dates server-side to avoid hydration mismatch (timezone differences)
+  const formatDate = (date: string) =>
+    new Date(date + 'T00:00:00').toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+  const postsWithFormattedDates = posts.map((p) => ({
+    ...p,
+    formattedDate: formatDate(p.date),
+  }));
+
+  const heroPost = postsWithFormattedDates[0];
+  const gridPosts = postsWithFormattedDates.slice(1);
   const categories = [...new Set(posts.map((p) => p.category).filter(Boolean))] as string[];
 
   return (
@@ -95,11 +108,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
                         </span>
                       )}
                       <span className="text-future-dusk-400">
-                        {new Date(heroPost.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
+                        {heroPost.formattedDate}
                       </span>
                     </div>
                     <h2 className="font-heading text-2xl lg:text-3xl font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">

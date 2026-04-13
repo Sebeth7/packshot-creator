@@ -81,7 +81,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'IA & Technologie',
     readingTime: 12,
-    image: '/blog/blendai-vs-flair-cover.jpg',
+    image: '/images/blog/blendai-vs-flair-cover.jpg',
     source: 'static',
   },
   {
@@ -92,7 +92,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'IA & Technologie',
     readingTime: 12,
-    image: '/blog/blendai-vs-photoroom-cover.jpg',
+    image: '/images/blog/blendai-vs-photoroom-cover.jpg',
     source: 'static',
   },
   {
@@ -136,7 +136,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
     date: '2026-01-22',
     category: 'Formation & Academy',
     readingTime: 10,
-    image: '/blog/financement-opco-cover.jpg',
+    image: '/images/blog/financement-opco-cover.jpg',
     source: 'static',
   },
   {

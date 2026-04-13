@@ -12,6 +12,7 @@ interface BlogArticle {
   title: string;
   description: string;
   date: string;
+  formattedDate?: string;
   image?: string;
   category?: string;
 }
@@ -101,11 +102,7 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
                   </span>
                 )}
                 <span className="text-future-dusk-400">
-                  {new Date(post.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {post.formattedDate || post.date}
                 </span>
               </div>
               <h2 className="font-heading text-xl font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors line-clamp-2">

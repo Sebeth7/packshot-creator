@@ -140,7 +140,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
       {/* Cover Image */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 mb-12 relative z-10">
         <img
-          src="/blog/blendai-vs-flair-cover.jpg"
+          src="/images/blog/blendai-vs-flair-cover.jpg"
           alt="Comparatif BlendAI vs Flair.ai pour la photo produit"
           className="w-full rounded-2xl shadow-lg"
           width={1344}
