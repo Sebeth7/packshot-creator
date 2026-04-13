@@ -160,7 +160,7 @@
       "stat2Label": "companies equipped",
       "stat3": "3 sec",
       "stat3Label": "per packshot",
-      "stat4": "60-85%",
+      "stat4": "60+ %",
       "stat4Label": "cost reduction"
     },
     "painPoints": {
@@ -2273,7 +2273,7 @@
         "label": "Average return on investment"
       },
       "stat2": {
-        "value": "60-85%",
+        "value": "60+ %",
         "label": "Photo cost reduction"
       },
       "stat3": {
@@ -2498,7 +2498,7 @@
       "criteria4detail": "If your product pages need interactive 360, video, ghost mannequin or focus stacking, only an automated studio with a physical turntable makes it possible.",
       "criteria5": "Brand consistency.",
       "criteria5detail": "If your catalog exceeds 50 references and visual consistency is a commercial concern, generative AI's visual drift becomes a real risk to your brand image.",
-      "body2": "The upfront investment is higher (starting at EUR 12,450 for an Alphashot 360, or EUR 344/month on a lease). But for an e-commerce SMB producing 5,000 photos a year, break-even is typically 8-12 months, with a 60-85% cost reduction compared to outsourcing."
+      "body2": "The upfront investment is higher (starting at EUR 12,450 for an Alphashot 360, or EUR 344/month on a lease). But for an e-commerce SMB producing 5,000 photos a year, break-even is typically 8-12 months, with a 60+ % cost reduction compared to outsourcing."
     },
     "faq": {
       "heading": "Frequently asked questions",

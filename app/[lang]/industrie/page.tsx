@@ -125,8 +125,8 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
       icon: <TrendingUp className="h-6 w-6" />,
       title: isFr ? 'ROI Rapide' : 'Fast ROI',
       description: isFr
-        ? 'Retour sur investissement <bold>12-18 mois</bold>. Réduction coûts photo <bold>60-85%</bold>. Idéal pour catalogues 100 à 5000+ références.'
-        : 'Return on investment <bold>12-18 months</bold>. Photo cost reduction <bold>60-85%</bold>. Ideal for catalogs with 100 to 5000+ references.',
+        ? 'Retour sur investissement <bold>12-18 mois</bold>. Réduction coûts photo <bold>60+ %</bold>. Idéal pour catalogues 100 à 5000+ références.'
+        : 'Return on investment <bold>12-18 months</bold>. Photo cost reduction <bold>60+ %</bold>. Ideal for catalogs with 100 to 5000+ references.',
       color: 'bg-emerald-100 text-emerald-700',
       hoverBorder: 'hover:border-emerald-300',
     },
@@ -175,7 +175,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
     },
     {
       question: 'Quel volume minimum pour justifier un studio automatisé ?',
-      answer: 'À partir de 100 produits/an, un studio automatisé commence à être plus rentable qu\'un prestataire externe. Le ROI est significatif dès 500 produits/an. Pour les catalogues de 1000+ références, le gain est considérable : délais réduits de 70-90% et coûts photo en baisse de 60-85%.',
+      answer: 'À partir de 100 produits/an, un studio automatisé commence à être plus rentable qu\'un prestataire externe. Le ROI est significatif dès 500 produits/an. Pour les catalogues de 1000+ références, le gain est considérable : délais réduits de 70-90% et coûts photo en baisse de 60+ %.',
     },
     {
       question: 'L\'IA lifestyle fonctionne-t-elle pour tous les types de produits ?',
@@ -196,7 +196,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
     },
     {
       question: 'What minimum volume justifies an automated studio?',
-      answer: 'From 100 products/year, an automated studio starts being more cost-effective than external providers. ROI becomes significant at 500+ products/year. For catalogs with 1,000+ references, the gain is substantial: timelines reduced by 70-90% and photo costs down 60-85%.',
+      answer: 'From 100 products/year, an automated studio starts being more cost-effective than external providers. ROI becomes significant at 500+ products/year. For catalogs with 1,000+ references, the gain is substantial: timelines reduced by 70-90% and photo costs down 60+ %.',
     },
     {
       question: 'Does AI lifestyle work for all product types?',

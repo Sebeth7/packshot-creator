@@ -20,7 +20,7 @@
       "stat2Label": "entreprises équipées",
       "stat3": "3 sec",
       "stat3Label": "par packshot",
-      "stat4": "60-85%",
+      "stat4": "60+ %",
       "stat4Label": "de réduction des coûts"
     },
     "painPoints": {
@@ -2276,7 +2276,7 @@
         "label": "Retour sur investissement moyen"
       },
       "stat2": {
-        "value": "60-85%",
+        "value": "60+ %",
         "label": "Réduction des coûts photo"
       },
       "stat3": {
