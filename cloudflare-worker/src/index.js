@@ -30,6 +30,142 @@ const NEXTJS_BLOG_SLUGS = new Set([
   'studio-ia-vs-ia-generative',
 ]);
 
+// ============================================================
+// Pages définitivement supprimées → 410 Gone
+// Source : audit GSC complet (128 URLs en 404 confirmées)
+// ============================================================
+const GONE_PATHS = new Set([
+  // FR blog (sans préfixe langue — anciennes URLs pré-Webflow)
+  '/blog/11-ans-deja',
+  '/blog/chaussures-homme-luxe-lelegance-en-ligne',
+  '/blog/codes-et-dernieres-tendances-pour-vos-visuels-produits-sur-les-reseaux-sociaux',
+  '/blog/comment-mieux-exporter-son-vin-en-chine-quel-role-jouent-les-visuels-e-commerce',
+  '/blog/comment-permettre-a-vos-visiteurs-de-voir-vos-produits-sous-plusieurs-angles',
+  '/blog/comment-photographier-des-petits-objets-pour-votre-e-commerce',
+  '/blog/conseils-dexperts-pour-des-visuels-produits-efficaces',
+  '/blog/decouvrez-lhistoire-dun-fail-du-e-commerce',
+  '/blog/donnez-du-relief-a-votre-communication-maestrobot3d-par-packshotcreator',
+  '/blog/e-commerce-8-elements-indispensables-pour-reussi',
+  '/blog/e-commerce-astuces-diminution-taux-de-rebond',
+  '/blog/e-commerce-avec-quel-materiel-photographier-de-petits-objets-en-studio',
+  '/blog/e-commerce-comment-prendre-en-photo-vos-bijoux-et-creations-en-studio',
+  '/blog/e-commerce-du-stock-physique-de-produits-au-stock-numerique',
+  '/blog/e-commerce-les-4-arguments-justifiant-la-necessite-de-produire-vos-propres-visuels',
+  '/blog/evolution-du-e-commerce-et-photographie-de-produits',
+  '/blog/guide-photo-ecommerce-2018',
+  '/blog/instagram-pinterest-lequel-pour-vos-visuels',
+  '/blog/la-loupe-cest-bien-le-zoom-progressif-cest-mieux',
+  '/blog/les-5-lois-de-lattraction-visuelle-dans-le-e-commerce',
+  '/blog/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e-commerce',
+  '/blog/les-conseils-de-packshotcreator-pour-2016-dans-le-livre-blanc-de-wizishop',
+  '/blog/limportance-du-visuel-pour-un-site-web-e-commerce',
+  '/blog/nouveautes-2018-photos-ecommerce',
+  '/blog/offrez-a-vos-e-shoppers-un-confort-de-navigation-optimal-sur-votre-site-e-commerce',
+  '/blog/optimisez-la-gestion-budgetaire-de-votre-studio-photo-interne',
+  '/blog/packshotcreator-lance-son-nouveau-livre-blanc',
+  '/blog/peut-on-faire-de-bonnes-images-sans-bon-materiel-photo',
+  '/blog/photographie-de-produits-gerez-les-reflets-et-la-transparence',
+  '/blog/photos-e-commerce-4-millions-dinternautes-a-seduire-quotidiennement-a-laide-de-centaines-de-photos-de-produits',
+  '/blog/retour-du-salon-mondial-de-la-realite-augmentee-awe',
+  '/blog/solution-ecommerce-wizishop-nouvelle-version',
+  '/blog/studio-photo-interne-ecommerce',
+  '/blog/studio-photo-maison-photographie-produit',
+  '/blog/une-seconde-vie-pour-vos-photos-de-produits-avec-pinterest',
+  '/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22',
+  '/blog/webinar-augmenter-votre-taux-de-conversion-grace-a-des-visuels-produit-en-360',
+  // EN pages diverses
+  '/en/ads-generaliste',
+  '/en/besoins',
+  '/en/packshot-automatise-packshotcreator',
+  '/en/questions-cles',
+  '/en/thank-you-page',
+  // EN blog
+  '/en/blog/11-years-service-product-photography',
+  '/en/blog/3-good-practices-for-organizing-the-production-of-your-internal-photo-studio2',
+  '/en/blog/3d-object-relief-communication',
+  '/en/blog/4-reasons-producing-ecommerce-visuals',
+  '/en/blog/automated-photography-solutions-comparison',
+  '/en/blog/awe-show-return',
+  '/en/blog/boost-your-conversion-rate-with-product-visuals-4-mistakes-to-avoid',
+  '/en/blog/can-one-take-good-product-photos-without-good-material',
+  '/en/blog/display-clothes-photo-flatlay',
+  '/en/blog/e-commerce-8-elements-success-copy',
+  '/en/blog/e-commerce-million-users-seduce',
+  '/en/blog/e-commerce-stockroom-digital-inventory',
+  '/en/blog/e-commerce-tips-reduce-bounce-rate',
+  '/en/blog/evolution-e-commerce-packshot',
+  '/en/blog/expert-tips-product-photography',
+  '/en/blog/guidelines-trends-social-media-images',
+  '/en/blog/homemade-photo-studio-product-photography',
+  '/en/blog/how-better-export-wine-china-role-e-commerce',
+  '/en/blog/how-visitors-see-products-multiple-perspectives',
+  '/en/blog/htlm5-360-animations-keys-success-e-commerce',
+  '/en/blog/importance-visuals-e-commerce-website',
+  '/en/blog/in-house-photo-studio-economies-scale',
+  '/en/blog/instagram-pinterest-which-your-e-commerce',
+  '/en/blog/law-visual-attraction-ecommerce',
+  '/en/blog/luxury-shoes-elegance-online',
+  '/en/blog/magnifying-glass-good-zoom-better',
+  '/en/blog/news-e-commerce-photos',
+  '/en/blog/offer-e-shoppers-optimal-browsing',
+  '/en/blog/optimize-budget-management-photo-studio',
+  '/en/blog/packshot-invest-orbitvu-photo-studios',
+  '/en/blog/packshotcreator-white-book-e-commerce',
+  '/en/blog/photograph-a-ring-like-a-professional-in-8-steps',
+  '/en/blog/photograph-small-objetcs-e-commerce',
+  '/en/blog/photographing-ring-8-steps',
+  '/en/blog/product-photo-guide',
+  '/en/blog/product-photography-reflections-transparency',
+  '/en/blog/roi-in-house-photo-studio',
+  '/en/blog/second-life-products-pinterest-e-commerce',
+  '/en/blog/small-items-macrophotography-studio',
+  '/en/blog/story-e-commerce-failure',
+  '/en/blog/tips-wizishop-by-packshotcreator',
+  '/en/blog/use-photo-studio-virtual-reality-2',
+  '/en/blog/visuals-in-house-saves-time-budget',
+  '/en/blog/visuals-referencing-your-e-commerce',
+  '/en/blog/webinar-increase-conversion-rate',
+  '/en/blog/wizishop-new-version',
+  // EN guides
+  '/en/guide/animation-360-focus-stacking',
+  '/en/guide/comment-photographier-lunettes-e-commerce',
+  '/en/guide/convert-product-color-in-product-photography',
+  '/en/guide/equipement-photo-360-bijoux',
+  '/en/guide/guide-montre',
+  '/en/guide/guide-photo-bijoux-pierres-precieuses',
+  '/en/guide/realiser-animation-360-professionnelle-chaussures',
+  '/en/guide/what-settings-photograph-jewelry',
+  '/en/guide/which-settings-for-jewelry-photography',
+  // FR guides (sans préfixe)
+  '/guide/5-videos-chaussures-ia-alphashot-pro-g2',
+  '/guide/conversion-de-couleur',
+  '/guide/equipement-photo-360-bijoux',
+  '/guide/guide-montre',
+  '/guide/guide-photo-bijoux-pierres-precieuses',
+  // Legacy paths (ftp, resources, pages, old products)
+  '/ftp/PackshotViewer/3D-leicanew/HTML5Viewer.html',
+  '/ftp/SYSNEXT_CGV_EN.pdf',
+  '/ftp/Sysnext_CGS_EN.pdf',
+  '/ftp/Sysnext_CGS_FR.pdf',
+  '/ftp/libro-blanco-problematicas-e-business-fotografia-2-0.pdf',
+  '/new-get-the-best-out-of-the-new-packshotcreator-2013-software-with-your-nikon-slr-camera',
+  '/new-product-photography-software',
+  '/pages/tools-components-photography',
+  '/resources/files/2019/03/en-packshotcreator-r3-installation-guide.pdf',
+]);
+
+function shouldReturn410(path) {
+  // 1. Exact match
+  if (GONE_PATHS.has(path)) return true;
+  // 2. Pattern: suffix -mod or contains -old-
+  if (path.endsWith('-mod') || path.includes('-old-')) return true;
+  // 3. Prefix: /ftp/ /resources/ /pages/
+  if (path.startsWith('/ftp/') || path.startsWith('/resources/') || path.startsWith('/pages/')) return true;
+  // 4. Double lang prefix /en/en/
+  if (path.startsWith('/en/en/')) return true;
+  return false;
+}
+
 function isWebflowContent(pathname) {
   // /(fr|en)/blog/:slug → Webflow si le slug n'est pas dans Next.js
   const blogMatch = pathname.match(/^\/(fr|en)\/blog\/([^/]+)$/);
@@ -148,6 +284,24 @@ export default {
     if (/^\/(de|es|nl)(\/|$)/.test(pathname)) {
       const target = LANG_SPECIFIC_REDIRECTS[pathname] || '/en';
       return Response.redirect(`${url.origin}${target}`, 301);
+    }
+
+    // ============================================================
+    // 410 Gone — Pages définitivement supprimées (pré-Webflow + legacy)
+    // Interceptées AVANT le proxy Webflow pour éviter des 404 soft
+    // ============================================================
+    if (shouldReturn410(pathname)) {
+      return new Response(
+        `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>…</p></body></html>`,
+        {
+          status: 410,
+          headers: {
+            'Content-Type': 'text/html; charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
+            'X-Robots-Tag': 'noindex, nofollow',
+          },
+        }
+      );
     }
 
     // Blog/guide avec slug Webflow → forcer vers Webflow (évite 500 Next.js)
