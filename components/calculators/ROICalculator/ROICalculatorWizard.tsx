@@ -127,14 +127,14 @@ export default function ROICalculatorWizard({
       {/* Header avec progression */}
       <div className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 px-6 py-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-white font-heading font-bold text-lg">
+          <h2 className="text-white font-heading font-bold text-lg">
             {STEPS[currentStep - 1].title[locale]}
-          </h3>
+          </h2>
           <span className="text-white/80 text-sm">
             {locale === 'fr' ? 'Étape' : 'Step'} {currentStep}/{STEPS.length}
           </span>
         </div>
-        <Progress value={progressPercent} className="h-2 bg-white/20" />
+        <Progress value={progressPercent} className="h-2 bg-white/20" aria-label={locale === 'fr' ? `Progression : étape ${currentStep} sur ${STEPS.length}` : `Progress: step ${currentStep} of ${STEPS.length}`} />
       </div>
 
       {/* Contenu */}

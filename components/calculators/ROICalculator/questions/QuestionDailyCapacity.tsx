@@ -44,7 +44,7 @@ export default function QuestionDailyCapacity({ locale }: QuestionDailyCapacityP
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -63,6 +63,7 @@ export default function QuestionDailyCapacity({ locale }: QuestionDailyCapacityP
           max={300}
           step={5}
           className="w-full"
+          aria-label={t.label}
         />
         <div className="flex justify-between mt-2">
           <span className="text-sm text-future-dusk-500">5</span>

@@ -41,7 +41,7 @@ export default function QuestionAccessories({ locale }: QuestionAccessoriesProps
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

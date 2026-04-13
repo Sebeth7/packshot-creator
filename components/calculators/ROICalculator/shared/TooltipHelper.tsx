@@ -12,7 +12,7 @@ export default function TooltipHelper({ content }: TooltipHelperProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button type="button" className="text-future-dusk-500 hover:text-very-peri-600 ml-2">
+          <button type="button" className="text-future-dusk-500 hover:text-very-peri-600 ml-2" aria-label="Aide">
             <HelpCircle className="w-4 h-4" />
           </button>
         </TooltipTrigger>

@@ -44,7 +44,7 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -63,6 +63,7 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
           max={20}
           step={0.5}
           className="w-full"
+          aria-label={t.label}
         />
         <div className="flex justify-between mt-2">
           <span className="text-sm text-future-dusk-500">0.5</span>

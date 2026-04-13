@@ -49,7 +49,7 @@ export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumePro
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600">
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -68,6 +68,7 @@ export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumePro
           max={100000}
           step={100}
           className="w-full"
+          aria-label={t.label}
         />
         <div className="flex justify-between mt-2">
           <span className="text-sm text-future-dusk-500">100</span>
