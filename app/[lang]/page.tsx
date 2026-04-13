@@ -222,6 +222,7 @@ export default async function HomePage({
                     alt={logo.name}
                     width={logo.w}
                     height={logo.h}
+                    sizes="(max-width: 640px) 60px, 80px"
                     className="h-full w-auto max-w-[60px] sm:max-w-[80px] object-contain invert"
                     loading="eager"
                   />

@@ -128,7 +128,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
               {clientLogos.map((logo) => (
                 <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-70 transition-opacity duration-300">
-                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} className="h-full w-auto max-w-[80px] object-contain invert" loading="eager" />
+                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="80px" className="h-full w-auto max-w-[80px] object-contain invert" loading="eager" />
                 </div>
               ))}
             </div>
