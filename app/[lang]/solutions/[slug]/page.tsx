@@ -22,6 +22,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
 import { HeroSection } from '@/components/hero';
+import { ContactForm } from '@/components/forms/ContactForm';
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -468,24 +469,18 @@ export default async function SolutionPage({ params }: PageProps) {
           </ScrollReveal>
 
           <div className="grid lg:grid-cols-5 gap-6">
-            {/* Carte principale — gradient peri */}
+            {/* Contact form (3/5) */}
             <FadeInView direction="left" className="lg:col-span-3">
-              <div className="bg-gradient-to-br from-very-peri-600 to-very-peri-800 rounded-2xl p-8 lg:p-10 h-full flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-3">
-                    {isFr ? 'Réservez votre démo' : 'Book your demo'}
-                  </h3>
-                  <p className="text-very-peri-100 leading-relaxed mb-8">
-                    {isFr
-                      ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres pièces et composants.'
-                      : '30 minutes with an expert. See our systems in action on your own parts and components.'}
-                  </p>
-                </div>
-                <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg w-fit">
-                  <Link href="/contact">
-                    {isFr ? 'Demander une démo gratuite' : 'Request a free demo'} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+              <div className="bg-white rounded-2xl p-6 lg:p-10">
+                <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-2">
+                  {isFr ? 'Réservez votre démo' : 'Book your demo'}
+                </h3>
+                <p className="text-future-dusk-500 mb-6">
+                  {isFr
+                    ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.'
+                    : '30 minutes with an expert. See our systems in action on your own products.'}
+                </p>
+                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" />
               </div>
             </FadeInView>
 

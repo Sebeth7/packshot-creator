@@ -1,12 +1,7 @@
 import { getTranslations } from 'next-intl/server';
-import dynamic from 'next/dynamic';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
-
-const PipedriveContactForm = dynamic(
-  () => import('@/components/forms/PipedriveContactForm').then((mod) => mod.PipedriveContactForm),
-  { loading: () => <div className="h-64 bg-neutral-100 rounded-2xl animate-pulse" /> }
-);
+import { ContactForm } from '@/components/forms/ContactForm';
 import { Phone, Clock, MapPin, ChevronRight, Shield, Users, Zap } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, localBusinessSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
@@ -99,7 +94,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mb-6">
                 {t('formTitle')}
               </h2>
-              <PipedriveContactForm locale={lang as 'fr' | 'en'} />
+              <ContactForm locale={lang as 'fr' | 'en'} />
             </FadeInView>
 
             {/* Info Column (2/5) */}

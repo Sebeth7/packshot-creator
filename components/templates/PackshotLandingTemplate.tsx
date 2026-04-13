@@ -10,6 +10,7 @@ import { getMachineById } from '@/components/calculators/ROICalculator/lib/machi
 import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, Quote, Box, Zap, Upload } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
+import { ContactForm } from '@/components/forms/ContactForm';
 
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
@@ -479,40 +480,42 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
             </TextReveal>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
-            {/* Demo — 3/5 = dominant */}
-            <SpringCard className="lg:col-span-3" hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-4 sm:p-6 lg:p-14 h-full flex flex-col">
-                <h3 className="text-3xl font-heading font-bold mb-4">
+            {/* Contact form — 3/5 = dominant */}
+            <FadeInView direction="left" className="lg:col-span-3">
+              <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-10">
+                <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
                   {isFr ? 'Réservez votre démo' : 'Book your demo'}
                 </h3>
-                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed flex-1">
-                  {t('cta.description')}
-                </p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-4 sm:px-6 lg:px-8 h-11 sm:h-12 lg:h-14 text-sm sm:text-base shadow-lg w-fit">
-                  <Link href="/contact">
-                    {t('cta.ctaPrimary')} <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" />
               </div>
-            </SpringCard>
+            </FadeInView>
             {/* ROI — 2/5 = secondary */}
-            <SpringCard className="lg:col-span-2" hoverY={-6}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 h-full flex flex-col">
-                <h3 className="text-2xl font-heading font-bold mb-4">
-                  {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
-                </h3>
-                <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
-                  {isFr
-                    ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
-                    : 'Estimate your savings in 2 minutes. Personalized and instant results.'}
-                </p>
+            <FadeInView direction="right" delay={0.15} className="lg:col-span-2 flex flex-col gap-4 lg:gap-8">
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-heading font-bold mb-4">
+                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                  </h3>
+                  <p className="text-future-dusk-300 mb-8 leading-relaxed">
+                    {isFr
+                      ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
+                      : 'Estimate your savings in 2 minutes. Personalized and instant results.'}
+                  </p>
+                </div>
                 <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-4 sm:px-6 lg:px-8 h-10 sm:h-11 lg:h-12 text-sm sm:text-base w-fit">
-                  <Link href="/roi-calculator">
+                  <Link href="/calculateur-roi">
                     {t('cta.ctaSecondary')} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </SpringCard>
+              <div className="bg-gradient-to-br from-very-peri-500/20 to-very-peri-600/10 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-very-peri-400/20">
+                <p className="text-very-peri-200 text-sm leading-relaxed">
+                  {isFr
+                    ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.'
+                    : '30 minutes with an expert. See our systems in action on your own products.'}
+                </p>
+              </div>
+            </FadeInView>
           </div>
         </div>
       </section>

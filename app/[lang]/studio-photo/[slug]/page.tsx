@@ -14,6 +14,7 @@ import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 import { YouTubeFacade } from '@/components/video/YouTubeFacade';
 import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
+import { ContactForm } from '@/components/forms/ContactForm';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -1195,25 +1196,18 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           </FadeInView>
 
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
-            {/* Card 1 — Gradient peri (3/5) */}
+            {/* Contact form (3/5) */}
             <FadeInView direction="left" className="lg:col-span-3">
-              <div className="relative bg-gradient-to-br from-very-peri-600 to-very-peri-700 rounded-2xl p-8 lg:p-10 overflow-hidden h-full">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
-                <div className="relative">
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold mb-3">
-                    {isFr ? 'Demandez une démo personnalisée' : 'Request a personalized demo'}
-                  </h3>
-                  <p className="text-very-peri-100 mb-8 max-w-md">
-                    {isFr
-                      ? `Testez le ${machine.nom} dans nos showrooms et découvrez comment il peut transformer votre production photo.`
-                      : `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`}
-                  </p>
-                  <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
-                    <Link href="/contact">
-                      {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
+              <div className="bg-white rounded-2xl p-6 lg:p-10">
+                <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-2">
+                  {isFr ? 'Demandez une démo personnalisée' : 'Request a personalized demo'}
+                </h3>
+                <p className="text-future-dusk-500 mb-6">
+                  {isFr
+                    ? `Testez le ${machine.nom} dans nos showrooms et découvrez comment il peut transformer votre production photo.`
+                    : `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`}
+                </p>
+                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" machineContext={machine.nom} />
               </div>
             </FadeInView>
 
@@ -1232,7 +1226,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl w-full justify-center">
-                  <Link href="/studios-photo-automatises#calculateur-roi">
+                  <Link href="/calculateur-roi">
                     <BarChart3 className="mr-2 h-4 w-4" /> {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'}
                   </Link>
                 </Button>
