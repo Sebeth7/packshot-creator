@@ -16,6 +16,8 @@ const contactSchema = z.object({
   sector: z.string().min(1),
   requestType: z.enum(['demo', 'quote', 'support', 'training', 'other']),
   message: z.string().optional(),
+  rgpdConsent: z.literal(true),
+  newsletter: z.enum(['yes', 'no']),
   locale: z.enum(['fr', 'en']).default('fr'),
   pageSource: z.string().optional(), // page d'origine (ex: "/fr/studio-photo/alphashot-pro-g2")
   machineContext: z.string().optional(), // machine pré-sélectionnée si applicable
@@ -144,6 +146,8 @@ async function createDealWithNote(
         ``,
         data.message ? `💬 Message :\n${data.message}` : null,
         ``,
+        `📰 Newsletter : ${data.newsletter === 'yes' ? 'Oui' : 'Non'}`,
+        ``,
         `📅 ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`,
         data.pageSource ? `🔗 Page d'origine : ${data.pageSource}` : null,
         data.machineContext ? `🖥 Machine : ${data.machineContext}` : null,
@@ -215,17 +219,24 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Email notification interne
+    const PIPEDRIVE_DOMAIN = process.env.PIPEDRIVE_DOMAIN || 'packshotcreator.pipedrive.com';
+    const dealUrl = pipedriveResult.dealId
+      ? `https://${PIPEDRIVE_DOMAIN}/deal/${pipedriveResult.dealId}`
+      : null;
+
     const notifHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background-color: #7C6BF0; padding: 20px; border-radius: 12px 12px 0 0;">
           <h1 style="color: white; margin: 0; font-size: 20px;">${typeLabel}</h1>
         </div>
         <div style="padding: 20px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
+          ${dealUrl ? `<a href="${dealUrl}" style="display: inline-block; background: #7C6BF0; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 16px;">Voir l'affaire dans Pipedrive</a>` : ''}
           <p><strong>Nom :</strong> ${data.firstName} ${data.lastName}</p>
           <p><strong>Email :</strong> ${data.email}</p>
           ${data.phone ? `<p><strong>Téléphone :</strong> ${data.phone}</p>` : ''}
           <p><strong>Société :</strong> ${data.company}</p>
           <p><strong>Secteur :</strong> ${data.sector}</p>
+          <p><strong>Newsletter :</strong> ${data.newsletter === 'yes' ? 'Oui' : 'Non'}</p>
           <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;" />
           ${data.message ? `<p><strong>Message :</strong></p><p>${data.message.replace(/\n/g, '<br/>')}</p>` : '<p><em>Pas de message</em></p>'}
           ${data.pageSource ? `<p style="color: #888; font-size: 12px;">Page d'origine : ${data.pageSource}</p>` : ''}

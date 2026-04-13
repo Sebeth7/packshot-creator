@@ -64,8 +64,8 @@ const SECTORS = {
 
 function createContactSchema(locale: 'fr' | 'en') {
   const msg = locale === 'fr'
-    ? { required: 'Ce champ est requis', email: 'Email invalide', min2: 'Minimum 2 caractères' }
-    : { required: 'This field is required', email: 'Invalid email', min2: 'Minimum 2 characters' };
+    ? { required: 'Ce champ est requis', email: 'Email invalide', min2: 'Minimum 2 caractères', rgpd: 'Vous devez accepter la politique de confidentialité' }
+    : { required: 'This field is required', email: 'Invalid email', min2: 'Minimum 2 characters', rgpd: 'You must accept the privacy policy' };
 
   return z.object({
     firstName: z.string().min(2, msg.min2),
@@ -76,6 +76,8 @@ function createContactSchema(locale: 'fr' | 'en') {
     sector: z.string().min(1, msg.required),
     requestType: z.enum(['demo', 'quote', 'support', 'training', 'other']),
     message: z.string().optional(),
+    rgpdConsent: z.literal(true, { error: msg.rgpd }),
+    newsletter: z.enum(['yes', 'no']),
   });
 }
 
@@ -119,6 +121,8 @@ export function ContactForm({
     defaultValues: {
       requestType: defaultRequestType,
       sector: defaultSector || '',
+      rgpdConsent: false as unknown as true,
+      newsletter: 'no' as const,
     },
   });
 
@@ -141,7 +145,10 @@ export function ContactForm({
         errorTitle: 'Une erreur est survenue',
         errorMessage: 'Veuillez réessayer ou nous contacter directement par email.',
         retry: 'Réessayer',
-        rgpd: 'En soumettant ce formulaire, vous acceptez notre politique de confidentialité.',
+        rgpdLabel: 'J\'accepte la politique de confidentialité et le traitement de mes données personnelles.',
+        newsletterLabel: 'Souhaitez-vous recevoir notre newsletter ?',
+        newsletterYes: 'Oui',
+        newsletterNo: 'Non',
         optional: 'facultatif',
       }
     : {
@@ -162,7 +169,10 @@ export function ContactForm({
         errorTitle: 'An error occurred',
         errorMessage: 'Please try again or contact us directly by email.',
         retry: 'Try again',
-        rgpd: 'By submitting this form, you accept our privacy policy.',
+        rgpdLabel: 'I accept the privacy policy and the processing of my personal data.',
+        newsletterLabel: 'Would you like to receive our newsletter?',
+        newsletterYes: 'Yes',
+        newsletterNo: 'No',
         optional: 'optional',
       };
 
@@ -306,6 +316,34 @@ export function ContactForm({
         </div>
       )}
 
+      {/* Newsletter opt-in */}
+      <fieldset className="mb-4">
+        <legend className={labelBase}>{t.newsletterLabel}</legend>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2 cursor-pointer text-sm">
+            <input type="radio" value="yes" {...register('newsletter')} className="accent-very-peri-600" />
+            {t.newsletterYes}
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer text-sm">
+            <input type="radio" value="no" {...register('newsletter')} className="accent-very-peri-600" />
+            {t.newsletterNo}
+          </label>
+        </div>
+      </fieldset>
+
+      {/* RGPD consent checkbox */}
+      <div className="mb-6">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            {...register('rgpdConsent')}
+            className="accent-very-peri-600 mt-1 h-4 w-4 shrink-0"
+          />
+          <span className="text-xs text-future-dusk-500 leading-relaxed">{t.rgpdLabel} *</span>
+        </label>
+        {errors.rgpdConsent && <p className={errorBase}>{errors.rgpdConsent.message}</p>}
+      </div>
+
       {/* Submit */}
       <Button
         type="submit"
@@ -325,8 +363,6 @@ export function ContactForm({
         )}
       </Button>
 
-      {/* RGPD */}
-      <p className="text-xs text-future-dusk-400 mt-3 text-center">{t.rgpd}</p>
     </form>
   );
 }
