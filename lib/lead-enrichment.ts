@@ -207,7 +207,14 @@ Available machines (smallest to largest):
 - Furniture Studio: large objects (furniture, bikes, sports equipment)
 - Alphatable: flat surface for flat-lay shooting
 
-Reply in plain text (no markdown, no bold, no asterisks). 3-4 lines max, format:
+Reply in plain text (no markdown, no bold, no asterisks). Give the analysis in BOTH languages, separated by a blank line. Format:
+
+[FR]
+1. Profil : [taille, activité, potentiel en une phrase]
+2. Machine(s) : [recommandation et pourquoi]
+3. Priorité : [Haute/Moyenne/Basse + justification courte]
+
+[EN]
 1. Profile: [size, activity, potential in one sentence]
 2. Machine(s): [recommendation and why]
 3. Priority: [High/Medium/Low + short justification]`;
@@ -311,4 +318,43 @@ export function formatEnrichmentNote(enriched: EnrichedLead): string {
   }
 
   return lines.join('\n');
+}
+
+/**
+ * Formate les données enrichies en HTML pour l'email de notification
+ */
+export function formatEnrichmentHtml(enriched: EnrichedLead): string {
+  const parts: string[] = [];
+
+  parts.push('<div style="background: #f0eef9; border-radius: 8px; padding: 16px; margin-top: 16px;">');
+  parts.push('<h3 style="margin: 0 0 12px 0; color: #5B4CC4; font-size: 14px;">AUTO-ENRICHMENT</h3>');
+
+  if (enriched.company) {
+    const c = enriched.company;
+    parts.push(`<p style="margin: 4px 0;"><strong>${c.nom}</strong></p>`);
+    if (c.siren) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">SIREN: ${c.siren} | ${c.categorie} | ${c.effectif}${c.anneeEffectif ? ` (${c.anneeEffectif})` : ''}</p>`);
+    if (c.adresse) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">HQ: ${c.adresse}</p>`);
+    if (c.nbEtablissements > 1) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">${c.nbEtablissements} locations | Founded: ${c.dateCreation}</p>`);
+  } else {
+    parts.push('<p style="margin: 4px 0; font-size: 13px; color: #888;">Company not found in INSEE (foreign or unregistered)</p>');
+  }
+
+  if (enriched.website) {
+    parts.push(`<p style="margin: 6px 0 2px 0; font-size: 13px; color: #555;">🌐 ${enriched.website.domain}</p>`);
+    if (enriched.website.description) {
+      const desc = enriched.website.description.length > 150
+        ? enriched.website.description.slice(0, 150) + '...'
+        : enriched.website.description;
+      parts.push(`<p style="margin: 2px 0; font-size: 12px; color: #777; font-style: italic;">${desc}</p>`);
+    }
+  }
+
+  if (enriched.aiSummary) {
+    parts.push('<hr style="border: none; border-top: 1px solid #d4d0ec; margin: 12px 0;" />');
+    parts.push('<p style="margin: 0 0 4px 0; font-size: 13px; color: #5B4CC4; font-weight: bold;">🤖 AI Analysis</p>');
+    parts.push(`<p style="margin: 0; font-size: 13px; color: #333; white-space: pre-line;">${enriched.aiSummary}</p>`);
+  }
+
+  parts.push('</div>');
+  return parts.join('\n');
 }
