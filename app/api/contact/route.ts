@@ -303,37 +303,39 @@ export async function POST(request: NextRequest) {
       html: confirmHtml,
     }).catch((err) => console.error('Confirmation email error:', err));
 
-    // 4. Enrichissement asynchrone — ne bloque pas la réponse
-    const PIPEDRIVE_API_TOKEN_FOR_ENRICH = PIPEDRIVE_API_TOKEN;
-    const dealIdForEnrich = pipedriveResult.dealId;
+    // 4. Enrichissement — en parallèle des emails (ajouté ~1-2s côté serveur,
+    //    invisible pour le prospect qui voit déjà le message de succès côté client)
+    if (pipedriveResult.dealId && PIPEDRIVE_API_TOKEN) {
+      try {
+        const enriched = await enrichLead({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          company: data.company,
+          sector: data.sector,
+          requestType: data.requestType,
+          message: data.message,
+          pageSource: data.pageSource,
+          machineContext: data.machineContext,
+        });
 
-    if (dealIdForEnrich && PIPEDRIVE_API_TOKEN_FOR_ENRICH) {
-      // Fire-and-forget : enrichit le lead puis met à jour la note Pipedrive
-      enrichLead({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        company: data.company,
-        sector: data.sector,
-        requestType: data.requestType,
-        message: data.message,
-        pageSource: data.pageSource,
-        machineContext: data.machineContext,
-      }).then(async (enriched) => {
         const enrichmentNote = formatEnrichmentNote(enriched);
 
         await fetch(
-          `https://api.pipedrive.com/v1/notes?api_token=${PIPEDRIVE_API_TOKEN_FOR_ENRICH}`,
+          `https://api.pipedrive.com/v1/notes?api_token=${PIPEDRIVE_API_TOKEN}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              deal_id: dealIdForEnrich,
+              deal_id: pipedriveResult.dealId,
               content: enrichmentNote,
               pinned_to_deal_flag: false,
             }),
           }
         );
-      }).catch((err) => console.error('Lead enrichment error:', err));
+      } catch (err) {
+        console.error('Lead enrichment error:', err);
+      }
     }
 
     return NextResponse.json({ success: true, pipedrive: pipedriveResult });

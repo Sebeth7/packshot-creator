@@ -31,6 +31,7 @@ const SECTORS = {
   fr: [
     'Agroalimentaire, arts de la table',
     'Chaussures',
+    'Défense, industrie, aéronautique',
     'High-tech, électroménager, informatique',
     'Horlogerie, bijouterie, joaillerie',
     'Meubles',
@@ -45,6 +46,7 @@ const SECTORS = {
   ],
   en: [
     'Food & tableware',
+    'Defense, industry, aerospace',
     'Footwear',
     'High-tech, electronics',
     'Watches, jewelry',
