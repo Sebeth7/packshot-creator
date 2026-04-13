@@ -216,14 +216,14 @@ export default async function HomePage({
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-12">
               {CLIENT_LOGOS.map((logo) => (
-                <div key={logo.name} className="h-7 flex items-center opacity-40 hover:opacity-70 transition-opacity duration-300">
+                <div key={logo.name} className="h-[34px] flex items-center opacity-60 hover:opacity-90 transition-opacity duration-300">
                   <Image
                     src={logo.src}
                     alt={logo.name}
                     width={logo.w}
                     height={logo.h}
-                    sizes="(max-width: 640px) 60px, 80px"
-                    className="h-full w-auto max-w-[60px] sm:max-w-[80px] object-contain invert"
+                    sizes="(max-width: 640px) 72px, 96px"
+                    className="h-full w-auto max-w-[72px] sm:max-w-[96px] object-contain invert"
                     loading="eager"
                   />
                 </div>

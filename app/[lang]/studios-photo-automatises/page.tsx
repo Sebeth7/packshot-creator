@@ -127,8 +127,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           <FadeInView delay={0.3}>
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
               {clientLogos.map((logo) => (
-                <div key={logo.name} className="h-7 flex items-center opacity-30 hover:opacity-70 transition-opacity duration-300">
-                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="80px" className="h-full w-auto max-w-[80px] object-contain invert" loading="eager" />
+                <div key={logo.name} className="h-[34px] flex items-center opacity-60 hover:opacity-90 transition-opacity duration-300">
+                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="96px" className="h-full w-auto max-w-[96px] object-contain invert" loading="eager" />
                 </div>
               ))}
             </div>

@@ -176,7 +176,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                 alt={logo.name}
                 width={80}
                 height={32}
-                className="h-6 lg:h-7 w-auto opacity-50 invert grayscale hover:opacity-80 transition-all duration-300"
+                sizes="80px"
+                className="h-6 lg:h-7 w-auto opacity-70 invert grayscale hover:opacity-90 transition-all duration-300"
               />
             ))}
           </div>
