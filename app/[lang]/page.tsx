@@ -54,7 +54,7 @@ const SOCIAL_PROOF_STATS = [
   { key: 'stat1' as const, labelKey: 'stat1Label' as const, end: 25, suffix: '', prefix: '' },
   { key: 'stat2' as const, labelKey: 'stat2Label' as const, end: 5000, suffix: '+', prefix: '' },
   { key: 'stat3' as const, labelKey: 'stat3Label' as const, end: 3, suffix: ' sec', prefix: '' },
-  { key: 'stat4' as const, labelKey: 'stat4Label' as const, end: 85, suffix: '%', prefix: '60-' },
+  { key: 'stat4' as const, labelKey: 'stat4Label' as const, end: 60, suffix: '+ %', prefix: '' },
 ] as const;
 
 const PAIN_POINTS = [
@@ -195,7 +195,7 @@ export default async function HomePage({
             {SOCIAL_PROOF_STATS.map((stat) => (
               <StaggerItem key={stat.key}>
                 <div className="text-center px-6">
-                  <p className={`font-heading font-bold text-white tracking-tight ${stat.key === 'stat4' ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-4xl sm:text-5xl lg:text-7xl'}`}>
+                  <p className="font-heading font-bold text-white tracking-tight text-4xl sm:text-5xl lg:text-7xl">
                     <AnimatedCounter
                       end={stat.end}
                       prefix={stat.prefix}
@@ -320,9 +320,11 @@ export default async function HomePage({
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
                 {t('hybrid.label')}
               </span>
-              <TextReveal as="h2" className="text-4xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
-                {t('hybrid.heading')}
-              </TextReveal>
+              <h2 className="text-4xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
+                {t.rich('hybrid.heading', {
+                  br: () => <br />,
+                })}
+              </h2>
               <p className="text-lg text-neutral-medium leading-relaxed mb-8">
                 {t.rich('hybrid.subtitle', {
                   bold: (chunks) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
@@ -338,15 +340,6 @@ export default async function HomePage({
                 </Button>
               </div>
 
-              <div className="hidden lg:block rounded-2xl overflow-hidden mt-8">
-                <Image
-                  src="/images/illustrations/home-hybrid-hero.avif"
-                  alt="Approche PackshotCreator — capture packshot + création IA"
-                  width={500}
-                  height={400}
-                  className="w-full rounded-2xl"
-                />
-              </div>
             </ScrollReveal>
 
             <div className="lg:col-span-8 space-y-6">
