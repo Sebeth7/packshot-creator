@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Mail, Download, Check } from 'lucide-react';
 import type { CalculationResults } from '../lib/types';
+import { trackEmailCapture } from '../lib/analytics';
 
 interface EmailCaptureProps {
   results: CalculationResults;
@@ -56,8 +57,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
     try {
       await onSendPDF(email);
       setIsSent(true);
-
-      // Track event (structure Pipedrive-ready — intégration à venir)
+      trackEmailCapture(email, results);
     } catch (err) {
       setError(t.errorSending);
     } finally {

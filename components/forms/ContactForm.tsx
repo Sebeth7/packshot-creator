@@ -7,6 +7,7 @@ import { z } from 'zod/v4';
 import { Button } from '@/components/ui/button';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { trackFormSubmit } from '@/lib/analytics';
 
 // ── Config ────────────────────────────────────────────────────
 
@@ -193,6 +194,7 @@ export function ContactForm({
       });
       if (!res.ok) throw new Error('API error');
       setStatus('success');
+      trackFormSubmit('contact_form');
     } catch {
       setStatus('error');
     }

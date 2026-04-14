@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronRight, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
 interface DropdownItem {
   href: string;
@@ -484,11 +485,12 @@ export default function Header() {
               href={pathname}
               locale={otherLocale}
               className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
+              onClick={() => trackLanguageSwitch(locale, otherLocale)}
             >
               {otherLocale.toUpperCase()}
             </Link>
             <Button asChild size="sm" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-lg shadow-sm">
-              <Link href="/contact">
+              <Link href="/contact" onClick={() => trackCTAClick('receive_offer', 'header_desktop')}>
                 {t('receiveOffer')}
               </Link>
             </Button>
@@ -500,6 +502,7 @@ export default function Header() {
               href={pathname}
               locale={otherLocale}
               className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
+              onClick={() => trackLanguageSwitch(locale, otherLocale)}
             >
               {otherLocale.toUpperCase()}
             </Link>
@@ -570,7 +573,7 @@ export default function Header() {
               {/* Mobile CTA */}
               <div className="mt-6 pb-4">
                 <Button asChild className="w-full bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-lg">
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/contact" onClick={() => { setMobileMenuOpen(false); trackCTAClick('receive_offer', 'header_mobile'); }}>
                     {t('receiveOffer')}
                   </Link>
                 </Button>

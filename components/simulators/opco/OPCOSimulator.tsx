@@ -11,6 +11,7 @@ import type {
   ResultatEligibilite,
 } from './lib/types';
 import { calculerEligibilite } from './lib/eligibility';
+import { trackOPCOSimulatorComplete } from '@/lib/analytics';
 import { Step1Profil } from './steps/Step1Profil';
 import { Step2Entreprise } from './steps/Step2Entreprise';
 import { Step3Formation } from './steps/Step3Formation';
@@ -91,6 +92,7 @@ export function OPCOSimulator({
   // Soumission finale
   const handleSubmit = useCallback(() => {
     if (state.resultat && state.coordonnees.prenom && state.coordonnees.nom && state.coordonnees.email) {
+      trackOPCOSimulatorComplete();
       onComplete?.(state.resultat, state.coordonnees as Coordonnees);
     }
   }, [state.resultat, state.coordonnees, onComplete]);

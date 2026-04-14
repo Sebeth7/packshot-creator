@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
@@ -18,6 +18,8 @@ import { DEFAULT_VALUES } from './lib/constants';
 import { calculateROI } from './lib/calculations';
 import { MACHINES } from './lib/machines';
 import type { CalculationResults, UserInputs } from './lib/types';
+import { trackStepChange, trackCalculatorAbandonment } from './lib/analytics';
+import { trackROICalculatorStart } from '@/lib/analytics';
 
 interface ROICalculatorWizardProps {
   className?: string;
@@ -47,6 +49,19 @@ export default function ROICalculatorWizard({
   });
 
   const { trigger, getValues } = methods;
+
+  // Track calculator start on mount, abandonment on unmount
+  const currentStepRef = useRef(currentStep);
+  currentStepRef.current = currentStep;
+
+  useEffect(() => {
+    trackROICalculatorStart();
+    return () => {
+      if (currentStepRef.current < STEPS.length) {
+        trackCalculatorAbandonment(currentStepRef.current);
+      }
+    };
+  }, []);
 
   const handleNext = useCallback(async () => {
     let isValid = false;
@@ -92,13 +107,17 @@ export default function ROICalculatorWizard({
 
     if (isValid) {
       direction.current = 1;
-      setCurrentStep(prev => Math.min(prev + 1, STEPS.length));
+      const nextStep = Math.min(currentStep + 1, STEPS.length);
+      setCurrentStep(nextStep);
+      trackStepChange(nextStep, 'forward');
     }
   }, [currentStep, trigger, getValues]);
 
   const handleBack = useCallback(() => {
     direction.current = -1;
-    setCurrentStep(prev => Math.max(prev - 1, 1));
+    const prevStep = Math.max(currentStep - 1, 1);
+    setCurrentStep(prevStep);
+    trackStepChange(prevStep, 'back');
     if (currentStep === 3) {
       setResults(null);
     }
