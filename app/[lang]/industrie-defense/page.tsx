@@ -29,14 +29,13 @@ import {
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
   { name: 'Amazon', src: '/images/logos/client-amazon.avif', w: 409, h: 123 },
-  { name: 'Bosch', src: '/images/logos/client-bosch.avif', w: 462, h: 109 },
+  { name: 'Safran', src: '/images/logos/client-safran.avif', w: 960, h: 340 },
   { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.avif', w: 600, h: 66 },
   { name: 'Valentino', src: '/images/logos/client-valentino.avif', w: 320, h: 157 },
   { name: 'Sandro', src: '/images/logos/client-sandro.avif', w: 390, h: 100 },
   { name: 'Seiko', src: '/images/logos/client-seiko.avif', w: 508, h: 99 },
   { name: 'Lidl', src: '/images/logos/client-lidl.avif', w: 177, h: 168 },
   { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
-  { name: 'Jägermeister', src: '/images/logos/client-jagermeister.avif', w: 187, h: 167 },
 ];
 
 interface PageProps {
