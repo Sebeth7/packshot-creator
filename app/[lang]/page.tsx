@@ -40,7 +40,7 @@ import FloatingCalendar from '@/components/animations/FloatingCalendar';
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
   { name: 'Amazon', src: '/images/logos/client-amazon.avif', w: 409, h: 123 },
-  { name: 'Safran', src: '/images/logos/client-safran.avif', w: 960, h: 340 },
+  { name: 'Safran', src: '/images/logos/client-safran.avif', w: 994, h: 228 },
   { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.avif', w: 600, h: 66 },
   { name: 'Valentino', src: '/images/logos/client-valentino.avif', w: 320, h: 157 },
   { name: 'Sandro', src: '/images/logos/client-sandro.avif', w: 390, h: 100 },
@@ -213,16 +213,16 @@ export default async function HomePage({
             <p className="text-center text-xs font-semibold text-neutral-500 uppercase tracking-[0.15em] mb-6">
               {t('socialProof.heading')}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-12">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 lg:gap-x-14">
               {CLIENT_LOGOS.map((logo) => (
-                <div key={logo.name} className="h-[34px] flex items-center opacity-60 hover:opacity-90 transition-opacity duration-300">
+                <div key={logo.name} className="w-[80px] h-[32px] sm:w-[110px] sm:h-[38px] flex items-center justify-center opacity-60 hover:opacity-90 transition-opacity duration-300">
                   <Image
                     src={logo.src}
                     alt={logo.name}
                     width={logo.w}
                     height={logo.h}
-                    sizes="(max-width: 640px) 72px, 96px"
-                    className="h-full w-auto max-w-[72px] sm:max-w-[96px] object-contain invert"
+                    sizes="110px"
+                    className="w-full h-full object-contain invert"
                     loading="eager"
                   />
                 </div>

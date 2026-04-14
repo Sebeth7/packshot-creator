@@ -10,7 +10,7 @@ export default function ClientLogos() {
     { name: 'Chanel', src: '/logos/clients/chanel.avif', width: 225, height: 225 },
     { name: 'Lidl', src: '/logos/clients/lidl.avif', width: 177, height: 168 },
     { name: 'GS1', src: '/logos/clients/gs1.avif', width: 245, height: 206 },
-    { name: 'Safran', src: '/images/logos/client-safran.avif', width: 960, height: 340 },
+    { name: 'Safran', src: '/images/logos/client-safran.avif', width: 994, height: 228 },
     { name: 'Sandro', src: '/logos/clients/sandro.avif', width: 390, height: 100 },
     { name: 'Seiko', src: '/logos/clients/seiko.avif', width: 508, height: 99 },
     { name: 'Valentino', src: '/logos/clients/valentino.avif', width: 320, height: 157 },
