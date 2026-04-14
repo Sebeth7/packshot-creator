@@ -21,18 +21,22 @@ export default function ClientLogos() {
   return (
     <section className="py-12 px-4 bg-neutral-lighter">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
-          {logos.map((logo, idx) => (
-            <div key={idx} className="h-12 flex items-center">
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={logo.width}
-                height={logo.height}
-                className="h-full w-auto max-w-[120px] object-contain"
-              />
-            </div>
-          ))}
+        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
+            {[...logos, ...logos].map((logo, i) => (
+              <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={logo.width}
+                  height={logo.height}
+                  sizes="120px"
+                  className="w-full h-full object-contain grayscale"
+                  loading="eager"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

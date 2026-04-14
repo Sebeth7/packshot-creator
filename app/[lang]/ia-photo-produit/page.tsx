@@ -47,12 +47,15 @@ const GALLERY_ITEMS: Array<
 ];
 
 const CLIENT_LOGOS = [
-  { name: 'Chanel', src: '/logos/clients/chanel.avif' },
-  { name: 'Sandro', src: '/logos/clients/sandro.avif' },
-  { name: 'Amazon', src: '/logos/clients/amazon.avif' },
-  { name: 'Bosch', src: '/logos/clients/bosch.avif' },
-  { name: 'Valentino', src: '/logos/clients/valentino.avif' },
-  { name: 'Seiko', src: '/logos/clients/seiko.avif' },
+  { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
+  { name: 'Amazon', src: '/images/logos/client-amazon.avif', w: 409, h: 123 },
+  { name: 'Safran', src: '/images/logos/client-safran.avif', w: 994, h: 228 },
+  { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.avif', w: 600, h: 66 },
+  { name: 'Valentino', src: '/images/logos/client-valentino.avif', w: 320, h: 157 },
+  { name: 'Sandro', src: '/images/logos/client-sandro.avif', w: 390, h: 100 },
+  { name: 'Seiko', src: '/images/logos/client-seiko.avif', w: 508, h: 99 },
+  { name: 'Lidl', src: '/images/logos/client-lidl.avif', w: 177, h: 168 },
+  { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
 ];
 
 /* ──────── Metadata ──────── */
@@ -168,18 +171,22 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <p className="text-xs font-semibold text-future-dusk-300 uppercase tracking-[0.15em] mb-5">
             {isFr ? '300+ marques nous font confiance' : '300+ brands trust us'}
           </p>
-          <div className="flex flex-wrap items-center gap-6 lg:gap-8">
-            {CLIENT_LOGOS.map((logo) => (
-              <Image
-                key={logo.name}
-                src={logo.src}
-                alt={logo.name}
-                width={80}
-                height={32}
-                sizes="80px"
-                className="h-6 lg:h-7 w-auto opacity-70 invert grayscale hover:opacity-90 transition-all duration-300"
-              />
-            ))}
+          <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+                <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={logo.w}
+                    height={logo.h}
+                    sizes="120px"
+                    className="w-full h-full object-contain invert"
+                    loading="eager"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </HeroSection>

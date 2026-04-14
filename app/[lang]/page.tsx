@@ -213,20 +213,22 @@ export default async function HomePage({
             <p className="text-center text-xs font-semibold text-neutral-500 uppercase tracking-[0.15em] mb-6">
               {t('socialProof.heading')}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 lg:gap-x-14">
-              {CLIENT_LOGOS.map((logo) => (
-                <div key={logo.name} className="w-[80px] h-[32px] sm:w-[110px] sm:h-[38px] flex items-center justify-center opacity-60 hover:opacity-90 transition-opacity duration-300">
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={logo.w}
-                    height={logo.h}
-                    sizes="110px"
-                    className="w-full h-full object-contain invert"
-                    loading="eager"
-                  />
-                </div>
-              ))}
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
+                {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+                  <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={logo.w}
+                      height={logo.h}
+                      sizes="120px"
+                      className="w-full h-full object-contain invert"
+                      loading="eager"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeInView>
         </div>

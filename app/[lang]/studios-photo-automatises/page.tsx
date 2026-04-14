@@ -125,12 +125,14 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
             ))}
           </StaggerContainer>
           <FadeInView delay={0.3}>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-              {clientLogos.map((logo) => (
-                <div key={logo.name} className="h-[34px] flex items-center opacity-60 hover:opacity-90 transition-opacity duration-300">
-                  <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="96px" className="h-full w-auto max-w-[96px] object-contain invert" loading="eager" />
-                </div>
-              ))}
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
+                {[...clientLogos, ...clientLogos].map((logo, i) => (
+                  <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
+                    <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="120px" className="w-full h-full object-contain invert" loading="eager" />
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeInView>
         </div>

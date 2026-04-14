@@ -131,20 +131,22 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
             <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-6">
               {isFr ? 'Ils nous font confiance' : 'They trust us'}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-8 lg:gap-x-12">
-              {CLIENT_LOGOS.map((logo) => (
-                <div key={logo.name} className="h-[34px] flex items-center opacity-60 hover:opacity-90 transition-opacity duration-300">
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={logo.w}
-                    height={logo.h}
-                    sizes="(max-width: 640px) 72px, 96px"
-                    className="h-full w-auto max-w-[72px] sm:max-w-[96px] object-contain"
-                    loading="eager"
-                  />
-                </div>
-              ))}
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
+                {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+                  <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={logo.w}
+                      height={logo.h}
+                      sizes="120px"
+                      className="w-full h-full object-contain"
+                      loading="eager"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeInView>
         </div>
