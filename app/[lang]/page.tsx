@@ -425,7 +425,7 @@ export default async function HomePage({
               </p>
 
               <ul className="mt-8 space-y-4">
-                {[1, 2, 3, 4].map((i) => (
+                {[1, 2, 3].map((i) => (
                   <li key={i} className="flex items-center gap-3">
                     <div className="w-6 h-6 rounded-full bg-accent-success/10 flex items-center justify-center flex-shrink-0">
                       <Check className="w-3.5 h-3.5 text-accent-success" />
