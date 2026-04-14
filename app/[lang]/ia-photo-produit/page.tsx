@@ -153,7 +153,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-2">
           <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-14 text-base font-semibold rounded-xl shadow-lg shadow-very-peri-500/25">
             <a href="https://blendai.studio" target="_blank" rel="noopener noreferrer">
-              {isFr ? 'Essai gratuit — 5 visuels offerts' : 'Free trial — 5 visuals included'}
+              {isFr ? 'Essai gratuit — 6 visuels offerts' : 'Free trial — 6 visuals included'}
             </a>
           </Button>
           <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-14 text-base rounded-xl">
@@ -192,55 +192,27 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </HeroSection>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          2. GALLERY MASONRY — 12 BlendAI result placeholders
+          2. FEATURES TABS — Tabbed video demos
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="resultats" className="py-20 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
-            <div className="text-center mb-16">
+            <div className="max-w-3xl mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Galerie' : 'Gallery'}
+                {isFr ? 'Fonctionnalités' : 'Features'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
-                {t('gallery.heading')}
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
+                {t('features.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
-                {t.rich('gallery.subtitle', { bold: boldOrange })}
+              <p className="text-lg text-future-dusk-500">
+                {t.rich('features.subtitle', { bold: boldOrange })}
               </p>
             </div>
           </ScrollReveal>
-
-          <StaggerContainer stagger={0.06} className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {GALLERY_ITEMS.map((item, idx) => (
-              <StaggerItem key={item.src}>
-                <div className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
-                  {item.type === 'video' ? (
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      poster={item.poster}
-                      className="w-full h-auto object-cover"
-                    >
-                      <source src={item.src} type="video/mp4" />
-                    </video>
-                  ) : (
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      width={400}
-                      height={idx % 2 === 0 ? 400 : 500}
-                      className="w-full h-auto object-cover"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      loading="lazy"
-                    />
-                  )}
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <FadeInView delay={0.15}>
+            <FeaturesTabs features={featuresData} />
+          </FadeInView>
         </div>
       </section>
 
@@ -296,29 +268,55 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          4. FEATURES TABS — Tabbed video demos
+          4. GALLERY MASONRY — BlendAI results
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <section id="resultats" className="py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <div className="max-w-3xl mb-16">
+            <div className="text-center mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Fonctionnalités' : 'Features'}
+                {isFr ? 'Galerie' : 'Gallery'}
               </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {t('features.heading')}
+              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('gallery.heading')}
               </TextReveal>
-              <p className="text-lg text-future-dusk-500">
-                {t.rich('features.subtitle', { bold: boldOrange })}
+              <p className="text-lg text-future-dusk-500 max-w-2xl mx-auto">
+                {t.rich('gallery.subtitle', { bold: boldOrange })}
               </p>
             </div>
           </ScrollReveal>
 
-          <FadeInView delay={0.15}>
-            <FeaturesTabs features={featuresData} />
-          </FadeInView>
+          <StaggerContainer stagger={0.06} className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            {GALLERY_ITEMS.map((item, idx) => (
+              <StaggerItem key={item.src}>
+                <div className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  {item.type === 'video' ? (
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      poster={item.poster}
+                      className="w-full h-auto object-cover"
+                    >
+                      <source src={item.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={400}
+                      height={idx % 2 === 0 ? 400 : 500}
+                      className="w-full h-auto object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
@@ -330,44 +328,54 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          {/* Philosophie intro */}
-          <ScrollReveal>
-            <div className="max-w-3xl mb-10">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Notre approche' : 'Our approach'}
-              </span>
-              <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {t('manifeste.heading')}
-              </TextReveal>
-              <p className="text-lg text-future-dusk-500 leading-relaxed">
-                {t.rich('manifeste.subtitle', { bold: boldOrange })}
-              </p>
+          {/* Philosophie — Split sticky Apple-style: heading sticky gauche + principes empilés droite */}
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 mb-24">
+            {/* Heading sticky (2/5) */}
+            <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
+              <ScrollReveal>
+                <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-6 block">
+                  {isFr ? 'Notre approche' : 'Our approach'}
+                </span>
+                <TextReveal as="h2" className="text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
+                  {t('manifeste.heading')}
+                </TextReveal>
+                <p className="text-lg text-future-dusk-500 leading-relaxed">
+                  {t.rich('manifeste.subtitle', { bold: boldOrange })}
+                </p>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
 
-          {/* 3 principes en ligne */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-10 mb-20">
-            {([
-              { key: 'principle1' as const, icon: <Camera className="h-5 w-5" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu' },
-              { key: 'principle2' as const, icon: <Sparkles className="h-5 w-5" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700' },
-              { key: 'principle3' as const, icon: <Zap className="h-5 w-5" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success' },
-            ]).map((principle) => (
-              <FadeInView key={principle.key}>
-                <div className="flex items-start gap-4">
-                  <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl ${principle.iconBg} flex-shrink-0`}>
-                    <span className={principle.iconColor}>{principle.icon}</span>
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-1.5">
-                      {t(`manifeste.${principle.key}.title`)}
-                    </h3>
-                    <p className="text-sm text-future-dusk-500 leading-relaxed">
-                      {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
-                    </p>
+            {/* Principes empilés (3/5) — grands, aérés */}
+            <div className="lg:col-span-3 space-y-0">
+              {([
+                { key: 'principle1' as const, num: '01', icon: <Camera className="h-6 w-6" />, iconBg: 'bg-secondary-orbitvu/10', iconColor: 'text-secondary-orbitvu', border: 'border-secondary-orbitvu/20' },
+                { key: 'principle2' as const, num: '02', icon: <Sparkles className="h-6 w-6" />, iconBg: 'bg-very-peri-100', iconColor: 'text-very-peri-700', border: 'border-very-peri-200' },
+                { key: 'principle3' as const, num: '03', icon: <Zap className="h-6 w-6" />, iconBg: 'bg-accent-success/10', iconColor: 'text-accent-success', border: 'border-accent-success/20' },
+              ]).map((principle, idx) => (
+                <FadeInView key={principle.key} delay={idx * 0.1}>
+                  <div className="py-10 border-b border-neutral-100 last:border-b-0">
+                    <div className="flex items-start gap-6">
+                      <span className="text-5xl lg:text-6xl font-heading font-bold text-neutral-100 leading-none select-none">
+                        {principle.num}
+                      </span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className={`inline-flex items-center justify-center h-11 w-11 rounded-2xl ${principle.iconBg} flex-shrink-0`}>
+                            <span className={principle.iconColor}>{principle.icon}</span>
+                          </span>
+                          <h3 className="text-xl lg:text-2xl font-heading font-bold text-future-dusk-900">
+                            {t(`manifeste.${principle.key}.title`)}
+                          </h3>
+                        </div>
+                        <p className="text-base lg:text-lg text-future-dusk-500 leading-relaxed max-w-xl">
+                          {t.rich(`manifeste.${principle.key}.description`, { bold: boldOrange })}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </FadeInView>
-            ))}
+                </FadeInView>
+              ))}
+            </div>
           </div>
 
           {/* Comparatif heading */}
