@@ -33,6 +33,7 @@ const NEXTJS_BLOG_SLUGS = new Set([
 // ============================================================
 // Pages définitivement supprimées → 410 Gone
 // Source : audit GSC complet (128 URLs en 404 confirmées)
+// + AJOUT 2026-04-14 — audit redirections 999 URLs GSC
 // ============================================================
 const GONE_PATHS = new Set([
   // FR blog (sans préfixe langue — anciennes URLs pré-Webflow)
@@ -152,6 +153,98 @@ const GONE_PATHS = new Set([
   '/new-product-photography-software',
   '/pages/tools-components-photography',
   '/resources/files/2019/03/en-packshotcreator-r3-installation-guide.pdf',
+
+  // AJOUT 2026-04-14 — 404-LANGUE-MORTE — 21 entrées
+  // Blog/guide DE/ES/NL sur www sans préfixe langue, contenu supprimé
+  '/blog/blog-ist-sinnvoll-deine-fotoproduktion-verinnerlichen',
+  '/blog/fotografia-de-productos-como-presentar-su-ropa',
+  '/blog/hoe-shotflow-de-productie-van-mode-visuele-content-versnelt',
+  '/blog/interview-visuele-ecommerce-wizishop',
+  '/blog/lost-packshotcreator-ortery-software-solution',
+  '/blog/packshotcreator-ortery-software-verloren-loesung',
+  '/blog/produktfotografie-beleuchtung',
+  '/blog/produktfotografie-wie-sie-ihre-kleidung-prasentieren',
+  '/blog/team-samenwerking-optimaliseren-succesverhaal-shotflow',
+  '/guide/como-posicionar-reloj-para-fotos-producto',
+  '/guide/crear-animacion-360-profesional-de-zapatos',
+  '/guide/farbe-eines-produktfotos-andern',
+  '/guide/guide-hoe-horloge-plaatsen-voor-fotoshoot',
+  '/guide/hoe-benadruk-je-de-texturen-van-producten-in-een-packshot',
+  '/guide/hoe-creeer-je-automatische-multi-angle-views-van-een-object',
+  '/guide/hoe-creeer-je-een-360-video-van-een-kunstobject',
+  '/guide/hoe-focus-stacking-doen-voor-ringfotografie',
+  '/guide/hoe-maak-je-meerhoekige-fotos-van-schoenen',
+  '/guide/modificar-color-producto-foto',
+  '/guide/que-ajustes-para-fotografiar-joyas',
+  '/guide/wie-man-ein-schuhvideo-macht',
+  '/guide/wie-uhr-vor-shooting-reinigen',
+
+  // AJOUT 2026-04-14 — 404-PRINCIPAL — 18 entrées
+  // Pages EN legacy sans préfixe langue, contenu supprimé
+  '/automated-photography-solutions-comparison',
+  '/boost-your-conversion-rate-with-product-visuals-4-mistakes-to-avoid',
+  '/display-clothes-photo-flatlay',
+  '/drop-shadow-feature',
+  '/ecommerce-jewelry-photography-tutorial',
+  '/multiple-formats-product-photography',
+  '/new-software-installation-mac',
+  '/packshot-monitoring-devices',
+  '/packshotcreator-is-a-time-saving-and-stressless-solution-for-product-photography',
+  '/studio-photography-rings-360',
+  '/time-lapse-software-feature',
+  '/transparent-png-file',
+  '/ty-challenges-e-commerce-2',
+  '/webinars-product-photography-packshot',
+
+  // AJOUT 2026-04-14 — 404-MINEUR — 3 entrées
+  '/home',
+  '/it',
+  '/index.asp',
+
+  // AJOUT 2026-04-14 — 404-SOUS-DOMAINE — 46 entrées
+  // Anciennes pages DE/ES/NL/FR sur sous-domaines, pathnames arrivant sur www après DNS
+  '/360-drehscheibe-produktfotografie',
+  '/animaties-3d',
+  '/archivos-personalizados-fotos-productos',
+  '/beheer-meerdere-foto-studios',
+  '/comparator-features-packshot-studios',
+  '/comparator-funcionalidades-estudio-foto',
+  '/configurador-estudios-foto',
+  '/ecommerce-time-to-market',
+  '/estudios-foto-ropa-accesorios-moda',
+  '/fotografias-productos-multiangulos',
+  '/fotos-360-amazon',
+  '/gamme-start/presentation-studios-photo-web-economiques',
+  '/gamme-studio/studio-photo-360-bijoux-packshot-macro-r/photographier-montre-joaillerie',
+  '/gamme-studio/studio-photo-360-bijoux-packshot-macro-r/presentation',
+  '/gamme-studio/table-lumineuse-photo-luminapad/presentation',
+  '/image-fantome-transparence-photos',
+  '/industry/estudio-fotos-zapatos',
+  '/industry/foto-anteojos-estudio',
+  '/industry/fotografia-producto-tecnicos',
+  '/industry/fotos-packshot-lederwaren-bagage',
+  '/industry/moda',
+  '/iq-mask-detourage-photo-automatique',
+  '/leitfaden-packshot-fotografie-warum-packshots-machen',
+  '/medir-fotos-productos',
+  '/nutzen-mit-foto-studios-for-visual-produkte',
+  '/optimisez-la-gestion-budgetaire-de-votre-studio-photo-interne',
+  '/packshotcreator-auf-der-cebit-vom-6-\u2013-10-maerz-2012-vertreten-stand-f61-e-hall-15-planet-reseller',
+  '/packshotcreator-is-dat-een-mini-fotostudio',
+  '/perfiles-fotos-productos',
+  '/photos-et-animations-produits-dans-votre-secteur/equipements-bureautiques',
+  '/product/captura-foto-3d',
+  '/produkt-messung-feature',
+  '/range-pro/foto-studio-enterprise-packshot-creator-x2/prasentation',
+  '/review/packshot-bottles-wine',
+  '/rich-media-visuelle-3D-produkte-ecommerce-web-umrechnungskurse',
+  // /secteur/*/exemples-* → interceptés dans le fetch handler (avant le handler /secteur/*)
+  '/software-erfolg-packshotcreator',
+  '/sondage-optimisation-photos-e-commerce',
+  '/transparant-png-bestand',
+  '/vorteile-toplight-produkt-fotografie',
+  '/wie-man-objektiv-fuer-produktfotografie-auswaehlt',
+  '/zelfgemaakte-fotostudio-productfotografie',
 ]);
 
 function shouldReturn410(path) {
@@ -159,10 +252,21 @@ function shouldReturn410(path) {
   if (GONE_PATHS.has(path)) return true;
   // 2. Pattern: suffix -mod or contains -old-
   if (path.endsWith('-mod') || path.includes('-old-')) return true;
-  // 3. Prefix: /ftp/ /resources/ /pages/
-  if (path.startsWith('/ftp/') || path.startsWith('/resources/') || path.startsWith('/pages/')) return true;
+  // 3. Prefix: /ftp/ /resources/ /pages/ /commun/
+  if (path.startsWith('/ftp/') || path.startsWith('/resources/') || path.startsWith('/pages/') || path.startsWith('/commun/')) return true;
   // 4. Double lang prefix /en/en/
   if (path.startsWith('/en/en/')) return true;
+  // 5. Trailing /amp or /amp/ sur des paths supprimés
+  if (path.endsWith('/amp') || path.endsWith('/amp/')) {
+    const base = path.replace(/\/amp\/?$/, '');
+    if (GONE_PATHS.has(base)) return true;
+  }
+  // 6. Query strings sur des paths supprimés (ignorer les params)
+  const pathWithoutQuery = path.split('?')[0];
+  if (pathWithoutQuery !== path && GONE_PATHS.has(pathWithoutQuery)) return true;
+  // 7. Trailing slash variant
+  const pathNoSlash = path.endsWith('/') ? path.slice(0, -1) : path;
+  if (pathNoSlash !== path && GONE_PATHS.has(pathNoSlash)) return true;
   return false;
 }
 
@@ -201,8 +305,11 @@ export default {
       });
     }
 
+    // ============================================================
     // Anciennes URLs FR sans préfixe /fr/ → redirection 301
-    // (dans le Worker car next.config.ts ne les voit jamais — le Worker route vers Webflow avant)
+    // (dans le Worker car next.config.ts ne les voit jamais —
+    //  le Worker route vers Webflow avant)
+    // ============================================================
     const LEGACY_REDIRECTS = {
       '/contact': '/fr/contact',
       '/a-propos': '/fr/a-propos',
@@ -227,6 +334,27 @@ export default {
       '/packshot-secteur-mode-accessoires': '/fr/industrie/mode-textile',
       '/packshot-secteur-pieces-techniques': '/fr/industrie/pieces-techniques-industrie',
       '/packshot-secteur-e-commerce': '/fr/blog',
+
+      // AJOUT 2026-04-14 — Chaînes raccourcies — 23 entrées
+      // Court-circuitent les redirections intermédiaires Webflow (économise 1-2 hops)
+      '/configurateur-produit': '/fr/ia-photo-produit',
+      '/logiciels-packshotcreator': '/fr/studios-photo-automatises',
+      '/toutes-les-gammes-studios-photo-packshotcreator': '/fr/studios-photo-automatises',
+      '/comparateur-packshot-studios-photo-produits': '/fr/studios-photo-automatises',
+      '/presentation-societe-corporate': '/fr/contact',
+      '/fonctionnalite-ombre-portee': '/fr',
+      '/industry/wine-spirits': '/en/industrie/vin-spiritueux',
+      '/industry/packaging': '/en/industrie',
+      '/jewelry-photo-studios': '/en/studio-photo/alphashot-micro-v2',
+      '/small-items-macrophotography-studio': '/en/studio-photo/alphashot-micro-v2',
+      '/bottle-product-photography-testimonial': '/en/industrie/vin-spiritueux',
+      '/how-to-e-commerce-product-photography': '/en/studios-photo-automatises',
+      '/amp': '/fr/blog',
+
+      // AJOUT 2026-04-14 — Guides EN sans préfixe /en/ — 3 entrées
+      '/guide/what-settings-to-photograph-jewelry': '/en/guide/what-settings-to-photograph-jewelry',
+      '/guide/how-to-position-watch-before-shooting-photo': '/en/guide/how-to-position-watch-before-shooting-photo',
+      '/guide/which-equipment-to-choose-for-jewelry-photo': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
     };
 
     // Vérifier les redirections exactes
@@ -257,6 +385,95 @@ export default {
     }
     if (pathname.startsWith('/accessoires')) {
       return Response.redirect(`${url.origin}/fr/studios-photo-automatises`, 301);
+    }
+
+    // AJOUT 2026-04-14 — /secteur/*/exemples-* → 410 (pages supprimées, AVANT le handler /secteur/*)
+    if (pathname.startsWith('/secteur/') && pathname.includes('/exemples-')) {
+      return new Response(
+        `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
+        {
+          status: 410,
+          headers: {
+            'Content-Type': 'text/html; charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
+            'X-Robots-Tag': 'noindex, nofollow',
+          },
+        }
+      );
+    }
+
+    // AJOUT 2026-04-14 — Handler /secteur/* → /fr/industrie/* (court-circuite Webflow)
+    // Avant : /secteur/bijoux → Webflow 301 /industrie/bijoux → Worker 301 /fr/industrie/bijoux
+    // Après : /secteur/bijoux → Worker 301 /fr/industrie/bijoux (1 hop au lieu de 2)
+    if (pathname.startsWith('/secteur/')) {
+      const slug = pathname.replace(/^\/secteur\//, '').replace(/\/$/, '');
+      return Response.redirect(`${url.origin}/fr/industrie/${slug}`, 301);
+    }
+
+    // AJOUT 2026-04-14 — Handler /produit/* → /fr/studio-photo/* (court-circuite Webflow)
+    const PRODUIT_REDIRECTS = {
+      '/produit/bike-studio': '/en/studio-photo/bike-studio',
+      '/produit/e-comm-studio': '/fr/studio-photo/e-comm-studio',
+      '/produit/fashion-studio': '/fr/studio-photo/fashion-studio',
+      '/produit/studio-photo-bijoux-gemmes': '/fr/studio-photo/alphashot-micro',
+    };
+    if (PRODUIT_REDIRECTS[pathname]) {
+      return Response.redirect(`${url.origin}${PRODUIT_REDIRECTS[pathname]}`, 301);
+    }
+
+    // AJOUT 2026-04-14 — Handler /product/* → /en/studio-photo/* (court-circuite Webflow)
+    const PRODUCT_REDIRECTS = {
+      '/product/bike-studio': '/en/studio-photo/bike-studio',
+      '/product/e-comm-studio': '/en/studio-photo/e-comm-studio-plus',
+      '/product/fashion-studio': '/en/studio-photo/fashion-studio',
+      '/product/packshotmacro-dl-gemstones': '/en/studio-photo/alphashot-micro-v2',
+      '/product/photo-studio-r3': '/en/studio-photo/alphashot-xl-v2',
+    };
+    if (PRODUCT_REDIRECTS[pathname]) {
+      return Response.redirect(`${url.origin}${PRODUCT_REDIRECTS[pathname]}`, 301);
+    }
+
+    // AJOUT 2026-04-14 — Handler /how-to/* → destinations finales (court-circuite Webflow + catch-all DE/ES/NL)
+    // Avant : /how-to/X → Webflow 301 /de/guide/Y → Worker 301 /en → 3 hops inutiles
+    // Après : /how-to/X → Worker 301 destination finale
+    const HOWTO_REDIRECTS = {
+      // → guides EN spécifiques
+      '/how-to/einstellungen-foto-schmuck': '/en/guide/what-settings-to-photograph-jewelry',
+      '/how-to/equipamiento-foto-joyeria': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/how-to/fotografiar-gafas-tienda-online': '/en/guide/how-to-photograph-glasses-for-e-commerce',
+      '/how-to/objektive-foto-schmuck': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/how-to/posicionar-reloj-antes-fotografiarlo': '/en/guide/how-to-position-watch-before-shooting-photo',
+      '/how-to/que-objetivos-fotos-joyas': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/how-to/welke-fotolenzen-gebruiken-sieraden': '/en/guide/what-settings-to-photograph-jewelry',
+      '/how-to/ausrustung-schmuckfotografie-studio': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+      '/how-to/camera-instellingen-sieraden-fotos': '/en/guide/what-settings-to-photograph-jewelry',
+      '/how-to/360-diamond-sparkle-view': '/en/studio-photo/alphashot-micro-v2',
+      '/how-to/turntable-360-jewels': '/en/studios-photo-automatises',
+      // → guides FR
+      '/how-to/fabriquer-plateau-tournant-360-bijoux': '/fr/studio-photo/alphashot-micro',
+      '/how-to/photographie-360-colliers-suspendus': '/fr/studio-photo/alphashot-micro',
+      '/how-to/equipments-photo-360-bijoux': '/fr/guide/quel-equipement-choisir-pour-photo-bijoux',
+      '/how-to/equipments-photo-bijoux-studio': '/fr/guide/quel-equipement-choisir-pour-photo-bijoux',
+      '/how-to/objectifs-photos-bijoux': '/fr/guide/quel-equipement-choisir-pour-photo-bijoux',
+      '/how-to/reglages-photo-bijoux': '/fr/guide/quels-reglages-pour-photographier-bijoux',
+      '/how-to/focus-stacking-bijoux': '/fr/guide/comment-faire-focus-stacking-pour-photographier-bracelet',
+      '/how-to/photographier-lunettes-ecommerce': '/fr/guide/comment-photographier-lunettes-e-commerce',
+      '/how-to/photos-multi-angles-chaussures': '/fr/guide/comment-faire-photos-multi-angles-chaussures',
+      '/how-to/comment-nettoyer-montre': '/fr/guide/comment-nettoyer-montre-avant-shooting',
+      '/how-to/comment-positionner-une-montre': '/fr/guide/comment-positionner-montre-avant-shooting-photo',
+      '/how-to/positionner-bijoux-photographie': '/fr/guide/comment-prendre-photo-nette-bijoux-sans-fond',
+      // → /en catch-all (langues mortes sans équivalent EN spécifique)
+      '/how-to/brillen-onlinehandel-fotografieren': '/en',
+      '/how-to/conversion-color-producto': '/en',
+      '/how-to/fokus-stapelung-handbuch-photoshop': '/en',
+      '/how-to/foto-sieraden-studio-apparatuur': '/en',
+      '/how-to/positioniert-schmuck-fotografie': '/en',
+      '/how-to/tutorial-fotograf-uhr': '/en',
+      '/how-to/video-360-zapatos': '/en',
+      '/how-to/camara-fotografiar-joyas': '/en',
+    };
+    if (HOWTO_REDIRECTS[pathname]) {
+      return Response.redirect(`${url.origin}${HOWTO_REDIRECTS[pathname]}`, 301);
     }
 
     // DE/ES/NL → /en (301) — ces langues ne sont plus maintenues
@@ -292,7 +509,7 @@ export default {
     // ============================================================
     if (shouldReturn410(pathname)) {
       return new Response(
-        `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>…</p></body></html>`,
+        `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
         {
           status: 410,
           headers: {

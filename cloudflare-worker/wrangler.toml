@@ -1,6 +1,15 @@
 name = "packshot-router"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
+account_id = "a51802d1e09d29095ca7ba45d63bf0f2"
+
+[[routes]]
+pattern = "www.packshot-creator.com/*"
+zone_id = "b51d039e5159fc409b22cd37c0221475"
+
+[[routes]]
+pattern = "packshot-creator.com/*"
+zone_id = "b51d039e5159fc409b22cd37c0221475"
 
 [vars]
 WEBFLOW_ORIGIN = "https://packshot-creator-staging.webflow.io"

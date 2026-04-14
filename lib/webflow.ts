@@ -41,16 +41,21 @@ export async function getWebflowArticles(limit = 100): Promise<WebflowArticle[]>
 
     const data = await response.json();
 
-    return data.items.map((item: any) => ({
-      slug: item.slug,
-      title: item.name || item.title,
-      description: item['post-summary'] || item.description,
-      date: item['created-on'] || item.publishedOn,
-      image: item['main-image']?.url || item.thumbnailImage?.url,
-      category: item.category,
-      content: item['post-body'] || item.content, // HTML
-      source: 'webflow' as const,
-    }));
+    return data.items
+      .map((item: any) => {
+        const f = item.fieldData || {};
+        return {
+          slug: f.slug || item.slug,
+          title: f.name || f.title || item.name,
+          description: f['post-summary'] || f.description || '',
+          date: f['created-on'] || item.createdOn || '',
+          image: f['main-image']?.url || f.thumbnailImage?.url,
+          category: f.category,
+          content: f['post-body'] || f.content, // HTML
+          source: 'webflow' as const,
+        };
+      })
+      .filter((a: WebflowArticle) => a.slug && a.slug !== 'undefined');
   } catch (error) {
     console.error('Error fetching Webflow articles:', error);
     return [];

@@ -108,26 +108,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
   ]);
 
-  // --- Dynamic: Blog articles ---
+  // --- Dynamic: Blog articles (static Next.js only, not Webflow legacy) ---
+  // Les articles Webflow sont servis directement par Webflow (sitemap Webflow séparé).
+  // Seuls les articles statiques Next.js (avec slug connu) vont dans ce sitemap.
   let blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
   try {
     const articles = await getAllArticles(0);
-    blogPages = articles.flatMap((article) => [
-      { path: `/fr/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
-      { path: `/en/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
-    ]);
+    blogPages = articles
+      .filter((article) => article.source === 'static')
+      .flatMap((article) => [
+        { path: `/fr/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
+        { path: `/en/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
+      ]);
   } catch {
     // Silently fail - blog articles are optional
   }
 
-  // --- Dynamic: Guide pages ---
+  // --- Dynamic: Guide pages (FR only) ---
+  // Les guides Webflow CMS ont des slugs FR. Next.js les sert sous /fr/guide/*.
+  // Les guides EN sont servis directement par Webflow → pas dans ce sitemap.
   let guidePages: { path: string; priority: number; changeFrequency: 'monthly' }[] = [];
   try {
     const guides = await getWebflowGuides();
-    guidePages = guides.flatMap((guide) => [
-      { path: `/fr/guide/${guide.slug}`, priority: 0.6, changeFrequency: 'monthly' as const },
-      { path: `/en/guide/${guide.slug}`, priority: 0.6, changeFrequency: 'monthly' as const },
-    ]);
+    guidePages = guides
+      .filter((guide) => guide.slug && guide.slug !== 'undefined')
+      .map((guide) => ({
+        path: `/fr/guide/${guide.slug}`,
+        priority: 0.6,
+        changeFrequency: 'monthly' as const,
+      }));
   } catch {
     // Silently fail - guides are optional
   }
