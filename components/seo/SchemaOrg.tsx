@@ -115,16 +115,6 @@ export function productSchema(product: {
       '@type': 'Organization',
       name: 'Orbitvu',
     },
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      seller: {
-        '@type': 'Organization',
-        name: 'PackshotCreator',
-        url: 'https://www.packshot-creator.com',
-      },
-    },
   };
 }
 
@@ -240,15 +230,6 @@ export function productWithRatingSchema(product: {
           },
         }
       : {}),
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      seller: {
-        '@type': 'Organization',
-        name: 'PackshotCreator',
-      },
-    },
   };
 }
 
