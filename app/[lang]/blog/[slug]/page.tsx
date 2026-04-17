@@ -25,21 +25,22 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { lang, slug } = await params;
 
-  const webflowArticle = await getWebflowArticle(slug);
+  const webflowArticle = await getWebflowArticle(slug, lang as 'fr' | 'en');
   if (webflowArticle) {
+    const pageTitle = webflowArticle.metaTitle || webflowArticle.title;
     return {
-      title: webflowArticle.title,
+      title: pageTitle,
       description: webflowArticle.description,
       alternates: {
         canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages: { fr: `/fr/blog/${slug}`, en: `/en/blog/${slug}` },
       },
       openGraph: {
-        title: webflowArticle.title,
+        title: pageTitle,
         description: webflowArticle.description,
         images: webflowArticle.image
           ? [webflowArticle.image]
-          : [{ url: `/api/og?title=${encodeURIComponent(webflowArticle.title)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
+          : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
       },
     };
@@ -68,16 +69,16 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
 
   // Webflow fallback only (static articles have their own routes)
-  const webflowArticle = await getWebflowArticle(slug);
+  const webflowArticle = await getWebflowArticle(slug, lang as 'fr' | 'en');
   if (!webflowArticle) notFound();
 
   const processed = processHtmlContent(webflowArticle.content || '');
-  const title = webflowArticle.title;
+  const title = webflowArticle.h1 || webflowArticle.title;
   const description = webflowArticle.description;
   const date = webflowArticle.date;
   const category = webflowArticle.category;
   const imageUrl = webflowArticle.image || null;
-  const readingTime = calculateReadingTime(processed.wordCount);
+  const readingTime = webflowArticle.readingTime ?? calculateReadingTime(processed.wordCount);
   const headings = processed.headings;
 
   const breadcrumbs = [
