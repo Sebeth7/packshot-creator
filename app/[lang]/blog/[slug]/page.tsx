@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { getWebflowArticle } from '@/lib/webflow';
+import { getWebflowArticle, getArticleAlternates } from '@/lib/webflow';
 import { Link } from '@/i18n/routing';
 import {
   TableOfContents,
   ArticleCTA,
   RelatedArticles,
 } from '@/components/blog';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, Calendar, ChevronRight, Clock, User } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
@@ -28,12 +28,16 @@ export async function generateMetadata({ params }: PageProps) {
   const webflowArticle = await getWebflowArticle(slug, lang as 'fr' | 'en');
   if (webflowArticle) {
     const pageTitle = webflowArticle.metaTitle || webflowArticle.title;
+    const alternates = await getArticleAlternates(webflowArticle.webflowItemId);
+    const languages: Record<string, string> = {};
+    if (alternates.fr) languages.fr = `/fr/blog/${alternates.fr}`;
+    if (alternates.en) languages.en = `/en/blog/${alternates.en}`;
     return {
       title: pageTitle,
       description: webflowArticle.description,
       alternates: {
         canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
-        languages: { fr: `/fr/blog/${slug}`, en: `/en/blog/${slug}` },
+        languages,
       },
       openGraph: {
         title: pageTitle,
@@ -118,9 +122,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
             <Clock className="h-4 w-4" />
             {t('readingTime', { minutes: readingTime })}
           </span>
-          <span className="px-2 py-0.5 text-xs bg-future-dusk-700 rounded-full text-future-dusk-200">
-            {t('webflowArchive')}
-          </span>
+          {webflowArticle.author && (
+            <span className="inline-flex items-center gap-1.5">
+              <User className="h-4 w-4" />
+              {webflowArticle.author}
+            </span>
+          )}
         </div>
       </HeroSection>
 
@@ -164,13 +171,55 @@ export default async function BlogArticlePage({ params }: PageProps) {
         </section>
       </FadeInView>
 
+      {webflowArticle.faqs.length > 0 && (
+        <section className="py-16 bg-neutral-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            <FadeInView>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-future-dusk-900 mb-10">
+                {t('faqHeading')}
+              </h2>
+            </FadeInView>
+            <div className="space-y-4">
+              {webflowArticle.faqs.map((faq, i) => (
+                <details key={i} className="group rounded-2xl border border-neutral-100 bg-white">
+                  <summary className="flex items-center justify-between cursor-pointer p-6 font-medium text-future-dusk-900 hover:text-very-peri-600 transition-colors">
+                    {faq.question}
+                    <ChevronRight className="w-5 h-5 text-future-dusk-400 group-open:rotate-90 transition-transform shrink-0 ml-4" />
+                  </summary>
+                  <div className="px-6 pb-6 text-future-dusk-600 whitespace-pre-line">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <ArticleCTA lang={lang} />
       <RelatedArticles currentSlug={slug} category={category} lang={lang} />
 
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
-        articleSchema({ title, description, url: `https://www.packshot-creator.com/${lang}/blog/${slug}`, image: imageUrl || undefined, datePublished: date, category }),
+        articleSchema({
+          title,
+          description,
+          url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
+          image: imageUrl || undefined,
+          datePublished: date,
+          category,
+          author: webflowArticle.author,
+        }),
+        ...(webflowArticle.faqs.length > 0 ? [{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: webflowArticle.faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }] : []),
       ]} />
     </>
   );

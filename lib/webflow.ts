@@ -8,6 +8,31 @@ const CMS_LOCALE_ID: Record<'fr' | 'en', string | undefined> = {
   en: '672e1f1758256ef525dbc4c7',
 };
 
+// Webflow "Option" fields expose IDs, not labels. Resolve hardcoded until
+// the extraction script in Phase 1 snapshots them into local JSON.
+const CATEGORY_LABELS: Record<string, { fr: string; en: string }> = {
+  '5f78e051722c291d8cbf5ec9fea26fc5': { fr: 'Actualités', en: 'News' },
+  '104a291d655dd1b3985ecb9a34c0df8a': { fr: 'E-commerce', en: 'E-commerce' },
+  '21dbdefef81c6afd88ac0fb6b4a61478': { fr: 'Produits', en: 'Products' },
+  'a0975835d398d479f43208215ebfea18': { fr: 'Innovations', en: 'Innovations' },
+};
+
+const AUTHOR_LABELS: Record<string, string> = {
+  '1ee1af407b1304f8ec54d409bf4544ab': 'Laurent Wainberg',
+};
+
+// Internal paths that existed in Webflow but need a specific rewrite target.
+// The full 653-link cleanup lives in the Phase 1 extraction script; this
+// proto-level map covers the common aliases so a live-rendered article looks
+// correct in preview.
+const INTERNAL_PATH_REWRITES: Record<string, string> = {
+  '/ancien-studio-photo': '/studios-photo-automatises',
+  '/fashion-apparel-photo-studios': '/studio-photo/fashion-studio',
+  '/?r=0': '',
+};
+
+const SLUG_RE = /^[a-z0-9][a-z0-9-]*$/;
+
 export interface WebflowFaq {
   question: string;
   answer: string;
@@ -24,6 +49,7 @@ export interface WebflowArticle {
   date: string;
   image?: string;
   category?: string;
+  categoryId?: string;
   author?: string;
   readingTime?: number;
   content?: string;
@@ -31,14 +57,52 @@ export interface WebflowArticle {
   source: 'webflow';
 }
 
-const HEX_ID_RE = /^[0-9a-f]{24,32}$/i;
-const maybeRef = (v: unknown): string | undefined =>
-  typeof v === 'string' && !HEX_ID_RE.test(v) ? v : undefined;
+function rewriteInternalLinks(html: string, lang: 'fr' | 'en'): string {
+  if (!html) return html;
+  const prefix = `/${lang}`;
+
+  return html.replace(/href="([^"]+)"/g, (match, href: string) => {
+    // Leave anchors, external, mailto/tel, data URIs alone
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+      return match;
+    }
+    if (/^https?:\/\//i.test(href)) {
+      // Absolute link to our own domain — normalize to relative lang-prefixed path
+      try {
+        const u = new URL(href);
+        if (/(^|\.)packshot-creator\.com$/i.test(u.hostname)) {
+          // Drop legacy FR subdomain
+          let path = u.pathname + u.search + u.hash;
+          if (path === '/' || path === '') path = '';
+          return `href="${prefix}${path}"`;
+        }
+      } catch {
+        /* ignore */
+      }
+      return match;
+    }
+    // Relative internal path
+    let path = href;
+    // Apply targeted rewrites for known legacy aliases
+    for (const [from, to] of Object.entries(INTERNAL_PATH_REWRITES)) {
+      if (path === from || path.startsWith(from + '/') || path.startsWith(from + '?')) {
+        path = path.replace(from, to);
+        break;
+      }
+    }
+    if (!path.startsWith('/')) return match;
+    if (path.startsWith('/fr/') || path.startsWith('/en/') || path === '/fr' || path === '/en') {
+      return `href="${path}"`;
+    }
+    if (path === '/') return `href="${prefix}"`;
+    return `href="${prefix}${path}"`;
+  });
+}
 
 function mapItem(item: any, lang: 'fr' | 'en'): WebflowArticle | null {
   const f = item?.fieldData || {};
   const slug = f.slug || item.slug;
-  if (!slug || slug === 'undefined') return null;
+  if (!slug || slug === 'undefined' || !SLUG_RE.test(slug)) return null;
 
   const name: string = f.name || item.name || '';
   const h1: string = f['titre-principal-h1-et-metatitre'] || name;
@@ -50,6 +114,18 @@ function mapItem(item: any, lang: 'fr' | 'en'): WebflowArticle | null {
     }))
     .filter((q) => q.question && q.answer);
 
+  const categoryId = typeof f.categorie === 'string' ? f.categorie : undefined;
+  const categoryLabel = categoryId && CATEGORY_LABELS[categoryId]
+    ? CATEGORY_LABELS[categoryId][lang]
+    : undefined;
+
+  const authorId = typeof f.auteur === 'string' ? f.auteur : undefined;
+  const authorLabel = authorId && AUTHOR_LABELS[authorId]
+    ? AUTHOR_LABELS[authorId]
+    : undefined;
+
+  const content = f.contenu ? rewriteInternalLinks(f.contenu, lang) : undefined;
+
   return {
     webflowItemId: item.id,
     lang,
@@ -60,10 +136,11 @@ function mapItem(item: any, lang: 'fr' | 'en'): WebflowArticle | null {
     description: f['meta-description'] || '',
     date: f.date || item.lastPublished || item.createdOn || '',
     image: f['image-principale']?.url,
-    category: maybeRef(f.categorie),
-    author: maybeRef(f.auteur),
+    category: categoryLabel,
+    categoryId,
+    author: authorLabel,
     readingTime: typeof f['temps-de-lecture'] === 'number' ? f['temps-de-lecture'] : undefined,
-    content: f.contenu,
+    content,
     faqs,
     source: 'webflow',
   };
@@ -114,4 +191,22 @@ export async function getWebflowArticle(
 ): Promise<WebflowArticle | null> {
   const articles = await getWebflowArticles(lang);
   return articles.find((article) => article.slug === slug) || null;
+}
+
+/**
+ * Resolve the FR/EN slug pair for a given Webflow item.
+ * Used to emit accurate <link rel="alternate" hreflang> since FR and EN slugs
+ * are different strings that share the same webflowItemId.
+ */
+export async function getArticleAlternates(
+  webflowItemId: string
+): Promise<{ fr?: string; en?: string }> {
+  const [fr, en] = await Promise.all([
+    getWebflowArticles('fr'),
+    getWebflowArticles('en'),
+  ]);
+  return {
+    fr: fr.find((a) => a.webflowItemId === webflowItemId)?.slug,
+    en: en.find((a) => a.webflowItemId === webflowItemId)?.slug,
+  };
 }
