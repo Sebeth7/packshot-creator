@@ -31,6 +31,10 @@ export interface WebflowArticle {
   source: 'webflow';
 }
 
+const HEX_ID_RE = /^[0-9a-f]{24,32}$/i;
+const maybeRef = (v: unknown): string | undefined =>
+  typeof v === 'string' && !HEX_ID_RE.test(v) ? v : undefined;
+
 function mapItem(item: any, lang: 'fr' | 'en'): WebflowArticle | null {
   const f = item?.fieldData || {};
   const slug = f.slug || item.slug;
@@ -56,8 +60,8 @@ function mapItem(item: any, lang: 'fr' | 'en'): WebflowArticle | null {
     description: f['meta-description'] || '',
     date: f.date || item.lastPublished || item.createdOn || '',
     image: f['image-principale']?.url,
-    category: f.categorie,
-    author: f.auteur,
+    category: maybeRef(f.categorie),
+    author: maybeRef(f.auteur),
     readingTime: typeof f['temps-de-lecture'] === 'number' ? f['temps-de-lecture'] : undefined,
     content: f.contenu,
     faqs,
