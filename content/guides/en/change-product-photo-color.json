@@ -1,0 +1,83 @@
+{
+  "webflowItemId": "67ee4fe74bff9cef22954f2e",
+  "lang": "en",
+  "slug": "change-product-photo-color",
+  "title": "Color conversion on your product photos",
+  "h1": "🎨 Converting the colors of your products",
+  "metaTitle": "🎨 Change the color of a photo product in 1 click",
+  "description": "Generate all your colors in a few clicks thanks to Orbitvu. Save time and harmonize your e-commerce visuals. 💻",
+  "date": "2025-06-23T10:14:09.011Z",
+  "image": "/images/guide/67d99183faaec781646a846c.avif",
+  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846c_67acbd1777dea5760cba3fc5_hero_conversion_couleurs.avif",
+  "categoryId": "6683fd55fc6636e76b9d96fc",
+  "duration": "5 minutes",
+  "tool": "Orbitvu photo studio and Orbitvu Station software",
+  "logistics": "An Orbitvu 360° photo studio",
+  "introText": "<p id=\"\">🎨 <strong id=\"\">Change the colors of a product without redoing the whole photo shoot</strong>, it is possible. Thanks to the functionality of <strong id=\"\">color conversion</strong> integrated into the software <strong id=\"\">Orbitvu Station</strong>, all you have to do is <strong id=\"\">Photograph a single variation</strong>. The software then allows you to <strong id=\"\">change hue, saturation, and brightness</strong> in a few clicks, while maintaining a <strong id=\"\">optimal image quality</strong>.</p><p id=\"\">💡 This <strong id=\"\">automated workflow</strong> Allows you to <strong id=\"\">save precious time</strong>, of <strong id=\"\">reduce production costs</strong> and to ensure a <strong id=\"\">homogeneous presentation</strong> on all your product sheets.</p><p id=\"\">📊 Whether for <strong id=\"\">online catalogs</strong>, of <strong id=\"\">advertising campaigns</strong> Or <strong id=\"\">digital showcases</strong>, this technology helps you <strong id=\"\">enhance your products</strong> while keeping a <strong id=\"\">quick and easy process</strong>, accessible even without technical expertise.</p><p id=\"\">🖼 This tutorial was created with the studio <strong id=\"\">Alphashot Pro G2</strong>, one of <a href=\"/en/studio-photo/alphashot-g2\" id=\"\">Premiers <strong id=\"\">automated photo studios</strong> assisted by <strong id=\"\">AI</strong></a>.</p>",
+  "introMedia": "<p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-video w-richtext-align-fullwidth\" style=\"max-width:100%;padding-bottom:85.71428571428571%;width:100%\" data-rt-type=\"video\" data-rt-align=\"fullwidth\" data-rt-max-width=\"100%\" data-rt-max-height=\"85.71428571428571%\" data-rt-dimensions=\"350:300\" data-page-url=\"https://orbitvu.co/share/ej488dRotesnyCjRAoXceA/6435370/360/view\"><div id=\"\"><iframe allowfullscreen=\"true\" frameborder=\"0\" scrolling=\"no\" src=\"//cdn.embedly.com/widgets/media.html?src=%2F%2Forbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2F6435370%2F360%2Fiframe%3Fwidth%3Dauto%26height%3Dauto%26content2%3Dyes%26partial_load%3Dyes&display_name=ORBITVU+SUN+CLOUD&url=https%3A%2F%2Forbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2F6435370%2F360%2Fview&image=https%3A%2F%2Fcdn.orbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2Fstill%2Fview%3Fplay_button%3D1%26height%3D630%26action%3Dsupplement%26width%3D1200%26supplement_color%3Dffffffc8&type=text%2Fhtml&schema=orbitvu\"></iframe></div></figure><p id=\"\">‍</p>",
+  "steps": [
+    {
+      "position": 1,
+      "title": "Place the object in the photo studio",
+      "content": "<p id=\"\">📍 Place your item in the <strong id=\"\">Center of the plateau</strong> rotate and choose a default or custom template. </p><p id=\"\">For more details on this stage, we invite you to discover our <strong id=\"\">tutorial on positioning a watch, for example.</strong></p>",
+      "image": "/images/guide/67d99183faaec781646a8479.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8479_67af0b125b2e65f6e31f71a3_Choix_template_psition_gobelet.avif",
+      "structuredText": "Place your object in the center of the turntable and choose a default or custom template. For more details on this step, we invite you to discover our tutorial on positioning a watch, for example."
+    },
+    {
+      "position": 2,
+      "title": "Adjust your camera settings",
+      "content": "<p id=\"\">⚙ Adjust your camera's ISOs, aperture, and speed, then adjust the intensity of each LED light source in the studio to get the ideal exposure. </p><p id=\"\">Also, set up the light for the<strong id=\"\">IQ Mask</strong> in order to obtain a transparent background.</p>",
+      "image": "/images/guide/67d99183faaec781646a8480.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8480_67af0bb0481bb5e83a98a32c_r%25C3%25A9glage_appareil_gobelet.avif",
+      "structuredText": "Adjust your camera's ISOs, aperture, and speed, then adjust the intensity of each LED light source in the studio to get the ideal exposure. Also, set the light for the IQ Mask to get a transparent background."
+    },
+    {
+      "position": 3,
+      "title": "Choice of angles for the 360° animation",
+      "content": "<p id=\"\">🔄 Choose the direction of rotation, speed, and number of frames that will make up the 360° animation. For an e-commerce website, for example, specializing in shoes, <strong id=\"\">24 photos are more than enough.</strong><br>‍</p><p id=\"\">✅ Start recording the animation</p>",
+      "image": "/images/guide/67d99183faaec781646a846f.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846f_67af0c3a4d589896c674545b_choix_angle_animation_gobelet.avif",
+      "structuredText": "Choose the direction of rotation, speed, and number of frames that will make up the 360 animation. For an e-commerce website, for example, specializing in shoes, 24 photos are more than enough. Start recording the animation."
+    },
+    {
+      "position": 4,
+      "title": "Product color change",
+      "content": "<p id=\"\">🎨 Once your animation is captured, go to the color settings in the section <strong id=\"\">Edition</strong>. </p><p id=\"\">You can adjust color settings to change the appearance of certain areas of the product by adjusting hue, saturation, or brightness. </p><p id=\"\">You also have the option of selecting a <strong id=\"\">specific color to change</strong>. For example, in our case, we chose to change the red part of our cup.</p><p id=\"\">✨<strong id=\"\">tip</strong> : if you have made a mistake or want to go back, you can click on the”<strong id=\"\">Reinitialize</strong>” to return to the original photo.</p>",
+      "image": "/images/guide/67d99183faaec781646a8469.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8469_67af0ca08e6dd886dc355a8c_edition_couleur_animation_gobelet.avif",
+      "structuredText": "Once your animation is captured, go to the color settings in the Edit section. You can adjust color settings to change the appearance of certain areas of the product by adjusting hue, saturation, or brightness. You also have the option to select a specific color to change. For example, in our case, we chose to change the red part of our cup. Tip: If you made a mistake or want to go back, you can click the Reset button to go back to the original photo."
+    },
+    {
+      "position": 5,
+      "title": "Declination of colors",
+      "content": "<p id=\"\">Here is an overview of our changes to the color red, which we transformed into different shades and hues. </p><p id=\"\">📤 Once you have made your changes, you can proceed to export your animation.<br><strong>Also discover our tutorial on creating 360° shoe animations.</strong></p>",
+      "image": "/images/guide/67d99183faaec781646a847c.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a847c_67af0d1733176c123ec78741_d%25C3%25A9clinaison_couleurs_animation_gobelet.avif",
+      "structuredText": "Here is an overview of our changes to the color red, which we transformed into different shades and hues. Once you have made your changes, you can proceed to export your animation. Also discover our tutorial on creating 360 shoe animations."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do color changes affect the visual quality of the animation?",
+      "answer": "No, color changes are applied accurately and non-destructively, which means that the visual quality of the animation remains intact. The system guarantees smooth and natural transitions between the various shades."
+    },
+    {
+      "question": "What are the financial advantages of using a variety of colors without retaking a photo?",
+      "answer": "By avoiding reshooting for every color variation, you significantly reduce production costs. This allows you to present multiple product combinations quickly, increasing your sales potential without additional effort."
+    },
+    {
+      "question": "Does the software automatically detect areas that need to be changed when the color changes?",
+      "answer": "Yes, the software is equipped with an intelligent color detection tool that makes it easy to select specific areas of the product to be adjusted, without affecting other parts."
+    },
+    {
+      "question": "Is the software suitable for non-professional users?",
+      "answer": "Absolutely. Thanks to its intuitive interface and built-in guides, even users with little photography experience can produce professional visuals quickly."
+    },
+    {
+      "question": "Is it possible to apply the same color settings to multiple products at once?",
+      "answer": "Yes, using saved color profiles, you can quickly apply the same adjustments to multiple similar products, ensuring visual consistency and saving time when editing."
+    }
+  ],
+  "source": "webflow"
+}

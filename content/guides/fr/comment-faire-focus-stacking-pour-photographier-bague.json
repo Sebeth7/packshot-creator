@@ -1,0 +1,115 @@
+{
+  "webflowItemId": "67ee6176535574c4aae27f27",
+  "lang": "fr",
+  "slug": "comment-faire-focus-stacking-pour-photographier-bague",
+  "title": "Comment faire un focus stacking pour photographier une bague ?",
+  "h1": "📸 Focus stacking pour une photo nette de bague",
+  "metaTitle": "🔍 Focus stacking : photo parfaite d’une bague",
+  "description": "Focus stacking produits | Technique complète photos ultra-nettes. Guide expert photographe pro PackshotCreator. Lire le tutoriel ►",
+  "date": "2025-12-30T16:42:54.933Z",
+  "image": "/images/guide/67d991805e0a0980101b8a98.avif",
+  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a98_67b5fe04b6ab629f1792b603_positionnement_bague_2.avif",
+  "categoryId": "6683fd64b1ba87536a6582ff",
+  "duration": "5 minutes",
+  "tool": "Logiciel Obitvu Station, un appareil photo Canon EOS RP et un objectif 100mm Macro",
+  "logistics": "Alphashot Micro V2 et une personne de votre équipe",
+  "introText": "<p id=\"\"><strong id=\"\">🔍Le focus stacking</strong>, ou empilement de mises au point, est une technique incontournable en <strong id=\"\">macrophotographie </strong>de produits, particulièrement adaptée aux bijoux tels que les bracelets, les bagues ou les boutons de manchette. </p><p id=\"\">Cette méthode permet d’<strong id=\"\">assembler automatiquement</strong> plusieurs photos prises à des distances de mise au point différentes pour obtenir une image finale <strong id=\"\">entièrement nette</strong>, du premier plan à l’arrière-plan.</p><p id=\"\"><strong id=\"\">💍</strong>Avec ce tutoriel, nous vous montrons comment réaliser un <strong id=\"\">focus stacking</strong> avec le logiciel <strong id=\"\">Orbitvu Station</strong>, combiné au studio photo Orbitvu spécialisé dans la <a href=\"/fr/industrie/bijoux\">photographie de bijoux</a>, <a href=\"/fr/studio-photo/alphashot-micro\"><strong id=\"\">Alphashot Micro V2</strong>.</a></p>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:2000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"2000px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d9917f5e0a0980101b8a65_67b599d82efff7baf2796c72_bague_sans_fond.avif\" alt=\"Résultat focus stacking sur une bague\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "steps": [
+    {
+      "position": 1,
+      "title": "Positionnement et choix du template",
+      "content": "<p id=\"\"><strong id=\"\">🧼</strong>Commencez par nettoyer votre bague afin d'éviter toute imperfection. </p><p id=\"\">📌Positionnez-la correctement sur le point centrale du studio photo, ou en utilisant un kit de fixation pour un rendu optimal. </p><p id=\"\">📂Une fois votre bague en place, choisissez le <strong id=\"\">template </strong>de prise de vue prédéfini dans le logiciel, correspondant au type de bijou que vous capturez (bague simple, précieuse ou à surface complexe).</p>",
+      "image": "/images/guide/67d991805e0a0980101b8aa4.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa4_67ae06822e095471af4e5fb3_position_choix_template_superfocus_bague.avif",
+      "structuredText": "Commencez par nettoyer votre bague afin d'éviter toute imperfection. Positionnez-la correctement sur le point centrale du studio photo, ou en utilisant un kit de fixation pour un rendu optimal. Une fois votre bague en place, choisissez le template de prise de vue prédéfini dans le logiciel, correspondant au type de bijou que vous capturez (bague simple, précieuse ou à surface complexe)."
+    },
+    {
+      "position": 2,
+      "title": "Réglages de la lumière et de l’appareil photo",
+      "content": "<p id=\"\">💡Assurez-vous que les conditions de lumière sont optimales pour capturer les détails de la bague sans créer de <strong id=\"\">reflets indésirables</strong>. </p><p id=\"\">📷Nous vous recommandons d'utiliser un <strong id=\"\">objectif macro</strong> pour maximiser les détails, avec une grande ouverture (f/2.8 à f/4) pour obtenir une faible profondeur de champ et une <strong id=\"\">belle netteté de votre bijou</strong>.<strong id=\"\">💍 </strong></p><p id=\"\"><strong id=\"\">⚡</strong>Pour que votre image soit la plus nette possible, nous vous recommandons de régler la valeur <strong id=\"\">ISO entre 100 et 200</strong> afin <strong id=\"\">d’éviter le bruit</strong>. </p><p id=\"\"><strong id=\"\">⚖️</strong>La<strong id=\"\"> balance des blancs</strong> devra être ajustée selon votre préférence et votre environnement lumineux.</p><p id=\"\">Ajustez également l’<strong id=\"\">éclairage</strong> du studio en fonction de la finition du bijou (mat ou brillant).</p><p id=\"\"><a href=\"/fr/guide/quels-reglages-pour-photographier-bijoux\"><strong>Pour plus de précision, découvrez notre guide sur les réglages d'appareil photo pour la photographie de bijoux.</strong></a></p>",
+      "image": "/images/guide/67d991805e0a0980101b8a8d.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a8d_67ae06de4e885c020369aadc_r%25C3%25A9glage_lumi%25C3%25A8re_focus_bague.avif",
+      "structuredText": "Assurez-vous que les conditions de lumière sont optimales pour capturer les détails de la bague sans créer de reflets indésirables . Nous vous recommandons d'utiliser un objectif macro pour maximiser les détails, avec une grande ouverture (f/2.8 à f/4) pour obtenir une faible profondeur de champ et une belle netteté de votre bijou . Pour que votre image soit la plus nette possible, nous vous recommandons de régler la valeur ISO entre 100 et 200 afin déviter le bruit . La balance des blancs devra être ajustée selon votre préférence et votre environnement lumineux. Ajustez également l éclairage du studio en fonction de la finition du bijou (mat ou brillant). Pour plus de précision, découvrez notre guide sur les réglages d'appareil photo pour la photographie de bijoux."
+    },
+    {
+      "position": 3,
+      "title": "Utilisation du Superfocus (Assistant)",
+      "content": "<p id=\"\">Cliquez sur l’assistant Superfocus depuis l’interface d'Orbitvu Station.<strong id=\"\">💻 </strong></p><p id=\"\">Cet assistant guidera <strong id=\"\">automatiquement </strong>les différentes étapes de <strong id=\"\">l’empilement </strong>en vous suggérant les paramètres idéaux pour le focus stacking.</p>",
+      "image": "/images/guide/67d991805e0a0980101b8a9e.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a9e_67ae074e10062eefd9bc3b39_assistant_superfocus_bague.avif",
+      "structuredText": "Cliquez sur lassistant Superfocus depuis linterface d'Orbitvu Station. Cet assistant guidera automatiquement les différentes étapes de lempilement en vous suggérant les paramètres idéaux pour le focus stacking."
+    },
+    {
+      "position": 4,
+      "title": "1ère étape de l’empilage - mise au point sur la zone avant",
+      "content": "<p id=\"\">🔍Démarrez la séquence en zoomant et en effectuant la première mise au point sur la <strong id=\"\">partie avant de la bague</strong>, c'est-à-dire le premier plan. </p><p id=\"\">Cela vous permettra de saisir tous les <strong id=\"\">détails précis</strong> des zones les plus proches de l'objectif.</p>",
+      "image": "/images/guide/67d991805e0a0980101b8a95.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a95_67ae07b77c765e3a854f2857_empilage_focus_avant_bague.avif",
+      "structuredText": "Démarrez la séquence en zoomant et en effectuant la première mise au point sur la partie avant de la bague , c'est-à-dire le premier plan. Cela vous permettra de saisir tous les détails précis des zones les plus proches de l'objectif."
+    },
+    {
+      "position": 5,
+      "title": "2ème étape de l’empilage - mise au point sur la zone arrière",
+      "content": "<p id=\"\">Déplacez la mise au point progressivement vers la <strong id=\"\">partie arrière</strong> de la bague. </p><p id=\"\">🔍Le zoom peut être utilisé ici pour vous assurer que les détails fins, comme les gravures ou les pierres, sont <strong id=\"\">capturés avec précision</strong>.</p>",
+      "image": "/images/guide/67d991805e0a0980101b8a9b.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a9b_67ae0811410a56c15c7dd5ce_empilage_focus_arri%25C3%25A8re_bague.avif",
+      "structuredText": "Déplacez la mise au point progressivement vers la partie arrière de la bague. Le zoom peut être utilisé ici pour vous assurer que les détails fins, comme les gravures ou les pierres, sont capturés avec précision ."
+    },
+    {
+      "position": 6,
+      "title": "3ème étape de l’empilage - définissez la taille des pas entre les mises au point",
+      "content": "<p id=\"\">Configurez la<strong id=\"\"> taille des pas</strong> (ou incréments) entre les différentes prises de vue. </p><p id=\"\">Une <strong id=\"\">petite taille de pas</strong> est recommandée pour les bagues complexes ou avec des détails fins. Cela garantit que toutes les zones de l’objet sont <strong id=\"\">parfaitement nettes</strong>.</p>",
+      "image": "/images/guide/67d991805e0a0980101b8aaa.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aaa_67ae08661d9f7c5d9df4179e_mise_au_point_empilage_bague.avif",
+      "structuredText": "Configurez la taille des pas (ou incréments) entre les différentes prises de vue. Une petite taille de pas est recommandée pour les bagues complexes ou avec des détails fins. Cela garantit que toutes les zones de lobjet sont parfaitement nettes ."
+    },
+    {
+      "position": 7,
+      "title": "4ème étape de l’empilage - nombre d’étapes pour la mise au point",
+      "content": "<p id=\"\">Déterminez le nombre d’étapes à réaliser pour le focus stacking complet. Le nombre d'étapes nécessaires <strong id=\"\">dépend de l'ouverture</strong> de votre objectif et de la <strong id=\"\">complexité de l'objet</strong>.<strong id=\"\">💍 </strong></p><p id=\"\">Plus l'ouverture est grande, plus la profondeur de champ est faible, et plus vous aurez besoin de <strong id=\"\">photos intermédiaires</strong> pour assurer une netteté parfaite.</p><p id=\"\">Cliquez sur \"Capturer tout\" pour commencer la prise de vues.<strong id=\"\">🎬</strong></p>",
+      "image": "/images/guide/67d991805e0a0980101b8a90.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a90_67ae0a70e73417cd6dc74de4_d%25C3%25A9marage_enregistrement_focus_satcking_bague.avif",
+      "structuredText": "Déterminez le nombre détapes à réaliser pour le focus stacking complet. Le nombre d'étapes nécessaires dépend de l'ouverture de votre objectif et de la complexité de l'objet . Plus l'ouverture est grande, plus la profondeur de champ est faible, et plus vous aurez besoin de photos intermédiaires pour assurer une netteté parfaite. Cliquez sur \"Capturer tout\" pour commencer la prise de vues."
+    },
+    {
+      "position": 8,
+      "title": "Édition et retouche des images",
+      "content": "<p id=\"\">Une fois les images compilées, vous pouvez passer à la retouche.🎨</p><p id=\"\">Le logiciel <strong id=\"\">Orbitvu Station</strong> offre plusieurs options, telles que l'ajustement des couleurs, de la luminosité, du contraste, des détails fins, ainsi que de nombreuses autres améliorations pour affiner l'image et obtenir le résultat souhaité, tout en <strong id=\"\">restant fidèle au bijou</strong>.🎯</p>",
+      "image": "/images/guide/67d991805e0a0980101b8aa1.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa1_67ae0ac28229a6e4f81ed584_retouches_focus_stacking_bague.avif",
+      "structuredText": "Une fois les images compilées, vous pouvez passer à la retouche. Le logiciel Orbitvu Station offre plusieurs options, telles que l'ajustement des couleurs, de la luminosité, du contraste, des détails fins, ainsi que de nombreuses autres améliorations pour affiner l'image et obtenir le résultat souhaité, tout en restant fidèle au bijou ."
+    },
+    {
+      "position": 9,
+      "title": "Exportation des images avec différents formats",
+      "content": "<h6 id=\"\">Une fois la retouche terminée, sélectionnez le ou les formats d'exportation en fonction de l'utilisation prévue, tels que JPEG, TIFF ou PNG si vous souhaitez conserver une haute qualité d'image et la possibilité de transparence.</h6><p id=\"\">📂Vous pouvez également créer un <strong id=\"\">template </strong>pour ces paramètres afin de <strong id=\"\">gagner du temps</strong> lors de futures exportations. </p><p id=\"\">📤Finalisez l'exportation, et votre visuel de bague est prêt à être utilisé !</p>",
+      "image": "/images/guide/67d991805e0a0980101b8aa7.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa7_67ae0bac8229a6e4f81f9aa3_exportation_formats_focus_bague.avif",
+      "structuredText": "Une fois la retouche terminée, sélectionnez le ou les formats d'exportation en fonction de l'utilisation prévue, tels que JPEG, TIFF ou PNG si vous souhaitez conserver une haute qualité d'image et la possibilité de transparence. Vous pouvez également créer un template pour ces paramètres afin de gagner du temps lors de futures exportations. Finalisez l'exportation, et votre visuel de bague est prêt à être utilisé !"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Comment éviter les reflets indésirables lors de la prise de vue ?",
+      "answer": "Pour minimiser les reflets, ajustez les sources d’éclairage du studio de manière à les diffuser ou à les orienter indirectement. L’utilisation de diffuseurs de lumière et de paramètres de lumière personnalisés en fonction du matériau du bijou est également recommandée."
+    },
+    {
+      "question": "Pourquoi un logiciel de retouche intégré est-il essentiel pour la photographie de bagues ?",
+      "answer": "Un logiciel intégré, comme Orbitvu Station, permet de corriger rapidement les imperfections, d’ajuster les couleurs et la lumière, et de sublimer les détails sans nécessiter de logiciels tiers. Cela accélère la production et réduit les coûts de post-production."
+    },
+    {
+      "question": "Quels sont les avantages d’utiliser un focus stacking par rapport à une prise de vue simple ?",
+      "answer": "Le focus stacking permet d’obtenir une netteté maximale sur toutes les zones de la bague, ce qui est essentiel pour les bijoux avec des détails complexes. Contrairement à une prise de vue simple, il élimine les problèmes liés à une profondeur de champ réduite."
+    },
+    {
+      "question": "Comment le focus stacking permet-il de réduire les coûts de post-production ?",
+      "answer": "En capturant plusieurs images à différents plans de mise au point et en les fusionnant automatiquement, le focus stacking élimine le besoin de retouches manuelles importantes. Cela réduit les coûts de post-production et accélère le processus de création visuelle."
+    },
+    {
+      "question": "Quels bénéfices financiers peut-on tirer d’une formation sur la photographie de bijoux ?",
+      "answer": "En apprenant à configurer correctement les paramètres de capture et d’éclairage, vous réduisez les besoins en retouches et les erreurs de capture. Cela permet d’augmenter la productivité et de diminuer les coûts de production."
+    }
+  ],
+  "source": "webflow"
+}

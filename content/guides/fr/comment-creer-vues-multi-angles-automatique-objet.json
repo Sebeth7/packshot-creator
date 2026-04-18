@@ -1,0 +1,91 @@
+{
+  "webflowItemId": "67ee768f96abba326e9632dc",
+  "lang": "fr",
+  "slug": "comment-creer-vues-multi-angles-automatique-objet",
+  "title": "Comment créer une prise de vue multi-angles automatique d’un objet ?",
+  "h1": "Comment créer une prise de vues multi-angles et automatisée d’un objet ?🤖",
+  "metaTitle": "🤖Photographie multi-angles automatisée pour le e-commerce",
+  "description": "Guide photographie produits e-commerce | Techniques professionnelles. Conseils experts PackshotCreator. Lire le guide ►. Conseils PackshotCreator.",
+  "date": "2025-12-30T16:42:54.933Z",
+  "image": "/images/guide/67ed01e8e439dc9faaae6640.avif",
+  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed01e8e439dc9faaae6640_r%C3%A9sultat_multi_vues_statue.avif",
+  "categoryId": "6683fd8c0b8787726aa51adb",
+  "duration": "3 minutes",
+  "tool": "Logiciel Orbitvu Station et un objet d'art",
+  "logistics": "Studio Alphashot Pro G2",
+  "introText": "<p id=\"\">La présentation<strong id=\"\"> multi angles</strong> de vos produits sur votre site internet est indispensable et la production de ces visuels peut être facilitée grâce à l'automatisation. <strong id=\"\">🤖</strong></p><p id=\"\">Dans ce tutoriel, nous vous guidons pas à pas pour capturer des photos à différents angles grâce à l’<a href=\"/fr/studio-photo/alphashot-g2\" id=\"\"><strong id=\"\">Alphashot PRO G2.</strong></a></p><p id=\"\">Nous utilisons ici un objet d’art comme exemple, mais cette méthode s’applique également à des <a href=\"/fr/industrie/pieces-techniques\"><strong id=\"\">produits techniques</strong></a>, <a href=\"/fr/industrie/objets-art-antiquite\" id=\"\"><strong id=\"\">artisanaux ou de collection</strong></a>. </p><p id=\"\">Grâce à l'interface d'<strong id=\"\">Orbitvu Station</strong> et aux templates multi-vues, vous gagnerez en <strong id=\"\">précision</strong>, <strong id=\"\">cohérence </strong>et <strong id=\"\">rapidité</strong>. ⏳</p><p id=\"\"><a href=\"/fr/guide/comment-creer-video-360-objet-art\"><strong>Découvrez également comment faire une vidéo à 360° de votre statue pour un contenu immersif.</strong></a></p>",
+  "introMedia": "<div data-rt-embed-type='true'><script type=\"text/javascript\" async src=\"//orbitvu.co/share/ASXZKJ2cEk49CviBf6pR3L/6527890/360/script?width=auto&height=auto&content2=yes&partial_load=yes\"></script>\n<div class=\"orbitvu-viewer\" style=\"width: 100%;height: 100%;\">\n    <div id=\"ovContent-ASXZKJ2cEk49CviBf6pR3L\"></div>\n</div></div>",
+  "steps": [
+    {
+      "position": 1,
+      "title": "Positionnement de l'objet",
+      "content": "<p id=\"\">La première étape consiste à placer l’objet au centre du plateau tournant. L’Alphashot PRO G2 est équipé d’un<strong id=\"\"> laser de centrage</strong>, ce qui vous permet de positionner l’objet avec <strong id=\"\">précision</strong>. 📍</p><p id=\"\">Pour les objets fragiles ou qui pourraient bouger lors de la rotation du plateau, vous pouvez utiliser de de la pâte à fixer ou du scotch invisible double face pour stabiliser sans altérer l’esthétique.</p><p id=\"\">Assurez-vous que l'appareil photo soit correctement positionné à l’angle souhaité.</p>",
+      "image": "/images/guide/67ecf7a9518b215db53c35dc.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecf7a9518b215db53c35dc_positonnement_template_IA.avif",
+      "structuredText": "La première étape consiste à placer l’objet au centre du plateau tournant. L’Alphashot PRO G2 est équipé d’un laser de centrage, ce qui vous permet de positionner l’objet avec précision. Pour les objets fragiles ou qui pourraient bouger lors de la rotation du plateau, vous pouvez utiliser de de la pâte à fixer ou du scotch invisible double face pour stabiliser sans altérer l’esthétique. Assurez-vous que l'appareil photo soit correctement positionné à l’angle souhaité."
+    },
+    {
+      "position": 2,
+      "title": "Configurez la lumière avec l’aide de l’IA",
+      "content": "<p id=\"\">Ce studio possède un <strong id=\"\">AI Assistant</strong>, une technologie qui reconnaît automatiquement les caractéristiques de l’objet placé dans le studio. 💡</p><p id=\"\">Cliquez sur l<strong id=\"\">'icone \"AI\"</strong> et il vous propose plusieurs configurations lumineuses adaptées. Vous pouvez en choisir une et affiner manuellement les réglages. 📂</p>",
+      "image": "/images/guide/67ecfc3cd83c178bfc1b19fb.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc3cd83c178bfc1b19fb_template_lumi%C3%A8res_IA.avif",
+      "structuredText": "Ce studio possède un AI Assistant, une technologie qui reconnaît automatiquement les caractéristiques de l’objet placé dans le studio. Cliquez sur l'icone \"AI\" et il vous propose plusieurs configurations lumineuses adaptées. Vous pouvez en choisir une et affiner manuellement les réglages."
+    },
+    {
+      "position": 3,
+      "title": "Activez l’IQ Mask pour un détourage automatique",
+      "content": "<p id=\"\">Activez la fonction <strong id=\"\">IQ Mask</strong>, elle vous permet de détourer automatiquement l’objet sur fond blanc ou transparent. Pour obtenir un détourage parfait, faites des réglages au niveau de la lumière. Il faut que votre objet soit plus foncé que le fond. Tout ce qui est encore clair sera supprimé.</p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Jouez sur les panneaux du fond et du plateau tournant pur créer une lumière à contre sens de votre objet ce qui le fera paraitre plus foncé. </p><p id=\"\">‍</p>",
+      "image": "/images/guide/67ed03995c1fa68f7d066cf0.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed03995c1fa68f7d066cf0_r%C3%A9glages_IQ_Mask_statue.avif",
+      "structuredText": "Activez la fonction IQ Mask, elle vous permet de détourer automatiquement l’objet sur fond blanc ou transparent. Pour obtenir un détourage parfait, faites des réglages au niveau de la lumière. Il faut que votre objet soit plus foncé que le fond. Tout ce qui est encore clair sera supprimé. Astuce : Jouez sur les panneaux du fond et du plateau tournant pur créer une lumière à contre sens de votre objet ce qui le fera paraitre plus foncé."
+    },
+    {
+      "position": 4,
+      "title": "Programmez les angles de prise de vue",
+      "content": "<p id=\"\">Avec le logiciel Orbitvu Station, vous pouvez programmer <strong id=\"\">la prise de vues multiples à des angles prédéfinis</strong>. </p><p id=\"\">Par exemple, vous pouvez décider de capturer l’objet à 0°, 45°, 90°, 135° et 180°... Pour ce faire, choisissez vos angles en cliquant à l'extérieur dans la roue pour fixer des point de prise de vues comme sur la photo. </p><p id=\"\">Une fois les angles définis, le plateau tournant s’ajuste automatiquement à chaque position, déclenche la prise de vue, puis passe au suivant <strong id=\"\">sans intervention manuelle</strong>. <strong id=\"\">🤖</strong></p><p id=\"\">Vous pouvez également enregistrer cette configuration comme un template réutilisable, ce qui est idéal pour créer une série cohérente de visuels à grande échelle. 📂</p>",
+      "image": "/images/guide/67ed044b321ee8113504c659.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
+      "structuredText": "Avec le logiciel Orbitvu Station, vous pouvez programmer la prise de vues multiples à des angles prédéfinis. Par exemple, vous pouvez décider de capturer l’objet à 0°, 45°, 90°, 135° et 180°... Pour ce faire, choisissez vos angles en cliquant à l'extérieur dans la roue pour fixer des point de prise de vues comme sur la photo. Une fois les angles définis, le plateau tournant s’ajuste automatiquement à chaque position, déclenche la prise de vue, puis passe au suivant sans intervention manuelle. Vous pouvez également enregistrer cette configuration comme un template réutilisable, ce qui est idéal pour créer une série cohérente de visuels à grande échelle."
+    },
+    {
+      "position": 5,
+      "title": "Capturez et traitez vos images",
+      "content": "<p id=\"\">Lorsque tout est prêt, cliquez simplement sur <strong id=\"\">« Capturer tout »</strong> dans Orbitvu Station. 📷</p><p id=\"\">Le studio va exécuter la séquence entière. Une fois les images capturées, vous pouvez les consulter, les trier, et effectuer des retouches si besoin via les <strong id=\"\">options de post-traitement intégrées</strong>. 🎨</p>",
+      "image": "/images/guide/67ed044b321ee8113504c659.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
+      "structuredText": "Lorsque tout est prêt, cliquez simplement sur « Capturer tout » dans Orbitvu Station. Le studio va exécuter la séquence entière. Une fois les images capturées, vous pouvez les consulter, les trier, et effectuer des retouches si besoin via les options de post-traitement intégrées."
+    },
+    {
+      "position": 6,
+      "title": "Exportez vos visuels et partagez-les",
+      "content": "<p id=\"\">Enfin, vous pouvez exporter vos images depuis l’onglet <strong id=\"\">« Publier »</strong> et choisissez le format d'exportation <strong id=\"\">JPEG </strong>pour le web, <strong id=\"\">PNG </strong>avec transparence, <strong id=\"\">WEPB</strong>, <strong id=\"\">TIF</strong>... 📤</p><p id=\"\">Vous pouvez aussi publier vos photos depuis le logiciel directement sur vos <strong id=\"\">réseaux sociaux</strong> ou sur une marketplace comme <strong id=\"\">Shopify </strong>ou <strong id=\"\">Magento</strong>. <strong id=\"\">💻</strong></p>",
+      "image": "/images/guide/67ed0542c7a3759d728beb9c.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed0542c7a3759d728beb9c_exporter_format_multivues_statue.avif",
+      "structuredText": "Enfin, vous pouvez exporter vos images depuis l’onglet « Publier » et choisissez le format d'exportation JPEG pour le web, PNG avec transparence, WEPB, TIF... Vous pouvez aussi publier vos photos depuis le logiciel directement sur vos réseaux sociaux ou sur une marketplace comme Shopify ou Magento."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "L'Alphashot PRO G2 est-il adapté aux débutants en photographie ou vidéo ?",
+      "answer": "Oui, l'Alphashot PRO G2 est conçu pour être accessible même aux utilisateurs sans expérience préalable en photographie. Grâce à son assistant IA et ses templates lumineux prédéfinis, il automatise une grande partie des réglages complexes, permettant une prise en main rapide et intuitive."
+    },
+    {
+      "question": "Quels types d'objets peuvent être photographiés ou filmés avec l'Alphashot PRO G2 ?",
+      "answer": "L'Alphashot PRO G2 est conçu pour capturer des objets de petite à moyenne taille, comme des produits cosmétiques, des lunettes ou des objets décoratifs. Il peut également gérer des surfaces variées (mattes, brillantes) grâce à ses 74 sources lumineuses ajustables."
+    },
+    {
+      "question": "Comment l'Alphashot PRO G2 peut-il aider une entreprise à réduire ses coûts liés à la photographie professionnelle ? ",
+      "answer": "L'Alphashot PRO G2 réduit les coûts liés à la photographie professionnelle en automatisant l'ensemble du processus, de la prise de vue à la post-production, ce qui diminue le besoin de main-d'œuvre spécialisée et accélère la création de contenu."
+    },
+    {
+      "question": "Quels types de fichiers de sortie l'Alphashot Pro G2 génère-t-il?",
+      "answer": "L'Alphashot PRO G2 permet d'exporter des images aux formats JPEG, PNG, TIFF, AVIF, WEBP... ainsi que des animations 360° en HTML5 et des vidéos en MP4, offrant une grande flexibilité pour diverses plateformes et utilisations."
+    },
+    {
+      "question": "Existe-t-il une fonction d’empilement de mises au point (focus stacking) intégrée pour obtenir une netteté optimale sur des objets très détaillés ou aux reliefs complexes ?",
+      "answer": "Oui, une fonction de focus stacking est disponible pour capturer plusieurs zones de netteté et les combiner automatiquement. Cela permet d’obtenir une image entièrement nette sur toute la surface de l’objet, même s’il présente de nombreux reliefs ou détails fins."
+    }
+  ],
+  "source": "webflow"
+}

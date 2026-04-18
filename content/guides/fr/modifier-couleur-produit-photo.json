@@ -1,0 +1,83 @@
+{
+  "webflowItemId": "67ee4fe74bff9cef22954f2e",
+  "lang": "fr",
+  "slug": "modifier-couleur-produit-photo",
+  "title": "La conversion de couleur sur vos photos produits",
+  "h1": "🎨 Conversion des couleurs de vos produits",
+  "metaTitle": "🎨 Modifier la couleur d’un produit photo en 1 clic",
+  "description": "Guide photographie produits | Techniques pro pour e-commerce. Conseils experts PackshotCreator. Lire le guide complet ►. Conseils PackshotCreator.",
+  "date": "2025-12-30T16:42:54.933Z",
+  "image": "/images/guide/67d99183faaec781646a846c.avif",
+  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846c_67acbd1777dea5760cba3fc5_hero_conversion_couleurs.avif",
+  "categoryId": "6683fd55fc6636e76b9d96fc",
+  "duration": "5 minutes",
+  "tool": "Studio photo Orbitvu et logiciel Orbitvu Station",
+  "logistics": "Un studio photo 360° d'Orbitvu",
+  "introText": "<p id=\"\">🎨 <strong id=\"\">Changer les couleurs d’un produit sans refaire toute la séance photo</strong>, c’est possible. Grâce à la fonctionnalité de <strong id=\"\">conversion des couleurs</strong> intégrée dans le logiciel <strong id=\"\">Orbitvu Station</strong>, il suffit de <strong id=\"\">photographier une seule déclinaison</strong>. Le logiciel vous permet ensuite de <strong id=\"\">modifier teinte, saturation et luminosité</strong> en quelques clics, tout en conservant une <strong id=\"\">qualité d’image optimale</strong>.</p><p id=\"\">💡 Ce <strong id=\"\">flux de travail automatisé</strong> permet de <strong id=\"\">gagner un temps précieux</strong>, de <strong id=\"\">réduire les coûts de production</strong> et d’assurer une <strong id=\"\">présentation homogène</strong> sur toutes vos fiches produits.</p><p id=\"\">📊 Que ce soit pour des <strong id=\"\">catalogues en ligne</strong>, des <strong id=\"\">campagnes publicitaires</strong> ou des <strong id=\"\">vitrines digitales</strong>, cette technologie vous aide à <strong id=\"\">sublimer vos produits</strong> tout en gardant un <strong id=\"\">processus simple et rapide</strong>, accessible même sans expertise technique.</p><p id=\"\">🖼 Ce tutoriel a été réalisé avec le studio <strong id=\"\">Alphashot Pro G2</strong>, l’un des <a href=\"/fr/studio-photo/alphashot-g2\">premiers <strong id=\"\">studios photo automatisés</strong> assistés par <strong id=\"\">IA</strong></a>.</p>",
+  "introMedia": "<p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-video w-richtext-align-fullwidth\" style=\"max-width:100%;padding-bottom:85.71428571428571%;width:100%\" data-rt-type=\"video\" data-rt-align=\"fullwidth\" data-rt-max-width=\"100%\" data-rt-max-height=\"85.71428571428571%\" data-rt-dimensions=\"350:300\" data-page-url=\"https://orbitvu.co/share/ej488dRotesnyCjRAoXceA/6435370/360/view\"><div id=\"\"><iframe allowfullscreen=\"true\" frameborder=\"0\" scrolling=\"no\" src=\"//cdn.embedly.com/widgets/media.html?src=%2F%2Forbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2F6435370%2F360%2Fiframe%3Fwidth%3Dauto%26height%3Dauto%26content2%3Dyes%26partial_load%3Dyes&display_name=ORBITVU+SUN+CLOUD&url=https%3A%2F%2Forbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2F6435370%2F360%2Fview&image=https%3A%2F%2Fcdn.orbitvu.co%2Fshare%2Fej488dRotesnyCjRAoXceA%2Fstill%2Fview%3Fplay_button%3D1%26height%3D630%26action%3Dsupplement%26width%3D1200%26supplement_color%3Dffffffc8&type=text%2Fhtml&schema=orbitvu\"></iframe></div></figure><p id=\"\">‍</p>",
+  "steps": [
+    {
+      "position": 1,
+      "title": "Placez l'objet dans le studio photo",
+      "content": "<p id=\"\">📍Placez votre objet au <strong id=\"\">centre du plateau</strong> tournant et choisissez un template par défaut ou personnalisé. </p><p id=\"\">Pour plus de précision sur cette étape, nous vous invitons à découvrir notre <strong id=\"\">tutoriel sur le positionnement d’une montre, par exemple.</strong></p>",
+      "image": "/images/guide/67d99183faaec781646a8479.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8479_67af0b125b2e65f6e31f71a3_Choix_template_psition_gobelet.avif",
+      "structuredText": "Placez votre objet au centre du plateau tournant et choisissez un template par défaut ou personnalisé. Pour plus de précision sur cette étape, nous vous invitons à découvrir notre tutoriel sur le positionnement dune montre, par exemple."
+    },
+    {
+      "position": 2,
+      "title": "Ajustez vos réglages d'appareil photo",
+      "content": "<p id=\"\">⚙Réglez les ISO, l'ouverture et la vitesse de votre appareil photo, puis ajustez l'intensité de chaque source d'éclairage LED du studio pour obtenir l'exposition idéale. &nbsp;</p><p id=\"\">Configurez également la lumière pour l<strong id=\"\">'IQ Mask</strong> afin d’obtenir un fond transparent.</p>",
+      "image": "/images/guide/67d99183faaec781646a8480.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8480_67af0bb0481bb5e83a98a32c_r%25C3%25A9glage_appareil_gobelet.avif",
+      "structuredText": "Réglez les ISO, l'ouverture et la vitesse de votre appareil photo, puis ajustez l'intensité de chaque source d'éclairage LED du studio pour obtenir l'exposition idéale. Configurez également la lumière pour l 'IQ Mask afin dobtenir un fond transparent."
+    },
+    {
+      "position": 3,
+      "title": "Choix des angles pour l'animation 360°",
+      "content": "<p id=\"\">🔄Choisissez le sens de rotation, la vitesse et le nombre d’images qui composeront l’animation à 360°. Pour un site web e-commerce, par exemple, spécialisé dans la chaussure, <strong id=\"\">24 photos sont largement suffisantes.</strong><br>‍</p><p id=\"\">✅Démarrez l'enregistrement de l’animation.</p>",
+      "image": "/images/guide/67d99183faaec781646a846f.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846f_67af0c3a4d589896c674545b_choix_angle_animation_gobelet.avif",
+      "structuredText": "Choisissez le sens de rotation, la vitesse et le nombre dimages qui composeront lanimation à 360. Pour un site web e-commerce, par exemple, spécialisé dans la chaussure, 24 photos sont largement suffisantes. Démarrez l'enregistrement de lanimation."
+    },
+    {
+      "position": 4,
+      "title": "Changement des couleurs du produit",
+      "content": "<p id=\"\">🎨Une fois votre animation capturée, accédez aux réglages de couleur dans la rubrique <strong id=\"\">Édition</strong>. </p><p id=\"\">Vous pouvez ajuster les paramètres de couleur pour modifier l'apparence de certaines zones du produit, en jouant sur la teinte, la saturation ou la luminosité. </p><p id=\"\">Vous avez également la possibilité de sélectionner une <strong id=\"\">couleur spécifique à modifier</strong>. Par exemple, dans notre cas, nous avons choisi de modifier la partie rouge de notre tasse.</p><p id=\"\">✨<strong id=\"\">Astuce</strong> : si vous avez fait une erreur ou souhaitez revenir en arrière, vous pouvez cliquer sur le bouton “<strong id=\"\">Réinitialiser</strong>” pour revenir à la photo originale.</p>",
+      "image": "/images/guide/67d99183faaec781646a8469.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8469_67af0ca08e6dd886dc355a8c_edition_couleur_animation_gobelet.avif",
+      "structuredText": "Une fois votre animation capturée, accédez aux réglages de couleur dans la rubrique Édition . Vous pouvez ajuster les paramètres de couleur pour modifier l'apparence de certaines zones du produit, en jouant sur la teinte, la saturation ou la luminosité. Vous avez également la possibilité de sélectionner une couleur spécifique à modifier . Par exemple, dans notre cas, nous avons choisi de modifier la partie rouge de notre tasse. Astuce : si vous avez fait une erreur ou souhaitez revenir en arrière, vous pouvez cliquer sur le bouton Réinitialiser pour revenir à la photo originale."
+    },
+    {
+      "position": 5,
+      "title": "Déclinaison des couleurs",
+      "content": "<p id=\"\">Voici la vue d'ensemble de nos modifications sur la couleur rouge, que nous avons transformée en différentes nuances et teintes. </p><p id=\"\">📤Une fois vos modifications effectuées, vous pouvez procéder à l'exportation de votre animation.</p><p id=\"\"><a href=\"/fr/guide/realiser-animation-360-professionnelle-chaussures\"><strong>Découvrez aussi notre tutoriel sur la réalisation d'animations 360° de chaussures.</strong></a></p>",
+      "image": "/images/guide/67d99183faaec781646a847c.avif",
+      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a847c_67af0d1733176c123ec78741_d%25C3%25A9clinaison_couleurs_animation_gobelet.avif",
+      "structuredText": "Voici la vue d'ensemble de nos modifications sur la couleur rouge, que nous avons transformée en différentes nuances et teintes. Une fois vos modifications effectuées, vous pouvez procéder à l'exportation de votre animation. Découvrez aussi notre tutoriel sur la réalisation d'animations 360 de chaussures."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Les changements de couleur affectent-ils la qualité visuelle de l’animation ?",
+      "answer": "Non, les modifications de couleur sont appliquées de manière précise et non destructive, ce qui signifie que la qualité visuelle de l’animation reste intacte. Le système garantit des transitions fluides et naturelles entre les différentes teintes."
+    },
+    {
+      "question": "Quels sont les avantages financiers de la déclinaison des couleurs sans reprise de photo ?",
+      "answer": "En évitant de refaire la prise de vue pour chaque variation de couleur, vous réduisez considérablement les coûts de production. Cela vous permet de présenter plusieurs déclinaisons de produits rapidement, augmentant ainsi votre potentiel de vente sans effort supplémentaire."
+    },
+    {
+      "question": "Est-ce que le logiciel détecte automatiquement les zones à modifier lors des changements de couleur ?",
+      "answer": "Oui, le logiciel est équipé d’un outil de détection de couleur intelligent qui permet de sélectionner facilement des zones spécifiques du produit à ajuster, sans affecter les autres parties."
+    },
+    {
+      "question": "Le logiciel est-il adapté aux utilisateurs non professionnels ?",
+      "answer": "Absolument. Grâce à son interface intuitive et ses guides intégrés, même les utilisateurs ayant peu d’expérience en photographie peuvent produire des visuels professionnels rapidement."
+    },
+    {
+      "question": "Est-il possible d’appliquer les mêmes réglages de couleur à plusieurs produits en une seule fois ?",
+      "answer": "Oui, en utilisant les profils de couleur enregistrés, vous pouvez appliquer rapidement les mêmes ajustements à plusieurs produits similaires, ce qui garantit une cohérence visuelle et gagne du temps lors de la modification."
+    }
+  ],
+  "source": "webflow"
+}
