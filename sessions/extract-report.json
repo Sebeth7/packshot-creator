@@ -1,0 +1,21 @@
+{
+  "ranAt": "2026-04-18T10:04:30.098Z",
+  "dry": false,
+  "skipImages": false,
+  "counts": {
+    "blog": {
+      "fr": 60,
+      "en": 55
+    },
+    "guide": {
+      "fr": 22,
+      "en": 21
+    },
+    "images": 470,
+    "imagesDownloaded": 470
+  },
+  "alternates": {
+    "blog": 60,
+    "guide": 22
+  }
+}
