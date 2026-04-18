@@ -450,6 +450,8 @@ const GONE_PATHS = new Set([
   '/donnez-du-relief-a-votre-communication-maestrobot3d-par-packshotcreator',
   '/webinar-augmenter-votre-taux-de-conversion-grace-a-des-visuels-produit-en-360',
   '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e\u2011commerce',
+  '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e%E2%80%91commerce',
+  '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e%e2%80%91commerce',
   '/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
   '/packshotcreator-cologne-photokina-2018',
 ]);
