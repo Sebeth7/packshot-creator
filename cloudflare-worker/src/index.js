@@ -30,10 +30,56 @@ const NEXTJS_BLOG_SLUGS = new Set([
   'studio-ia-vs-ia-generative',
 ]);
 
+// Blog EN sans préfixe /en/ — articles vivants sur Webflow à /en/blog/slug
+// Redirect 301 /blog/slug → /en/blog/slug pour préserver le link equity
+const BLOG_EN_REDIRECTS = new Set([
+  '4-fundamentals-for-reducing-abandoned-shopping-carts',
+  '5-cameras-realistic-3d-animation',
+  '5-questions-before-investing-in-an-in-house-photo-studio',
+  '8-challenges-producing-visual-content',
+  'advantages-toplight-product-photography',
+  'ai-virtual-lights-revolution-packshot',
+  'automate-creation-product-photographs-animations',
+  'best-image-format-for-the-web',
+  'best-photo-studio-in-house-photo-shoots',
+  'e-commerce-8-elements-success',
+  'focus-on-the-focus-stacking',
+  'from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry',
+  'furniture-decoration-e-commerce-photography',
+  'how-to-avoid-blurry-product-photographs',
+  'how-to-choose-best-lens-for-product-photography',
+  'how-to-e-commerce-product-photography',
+  'how-to-ensure-consistency-between-photos-packshot-photography-guide',
+  'how-to-get-best-amazon-product-photos',
+  'impact-photographs-product-sheet',
+  'interview-laurent-wainberg-founder-packshotcreator',
+  'lighting-3d-packshots',
+  'optimizing-visual-production-work',
+  'orbitvu-automation-for-3d-360-product-photography',
+  'packshot-photography-guide-product-photography-equipment',
+  'packshot-photography-guide-why-make-product-packshots',
+  'potential-advantages-e-commerce-businesses',
+  'product-photo-lighting',
+  'product-showcase-how-to-packshot-photography-guide',
+  'second-hand-packshot-photo-studio',
+  'technique-photograph-jewelry-tutorial',
+  'tips-photo-framing-composition',
+  'what-return-on-investment-with-an-internal-photo-studio',
+  'why-choose-orbitvu-for-packshot-photography',
+]);
+
+// Guides EN sans préfixe /en/ — vivants sur Webflow à /en/guide/slug
+const GUIDE_EN_REDIRECTS = new Set([
+  'create-professional-360-animation-of-shoes',
+  'how-to-do-focus-stacking-for-ring-photography',
+  'how-to-take-multi-angle-photos-of-shoes',
+]);
+
 // ============================================================
 // Pages définitivement supprimées → 410 Gone
 // Source : audit GSC complet (128 URLs en 404 confirmées)
 // + AJOUT 2026-04-14 — audit redirections 999 URLs GSC
+// + AJOUT 2026-04-16 — audit 429 URLs GSC 404 (269 encore en 404)
 // ============================================================
 const GONE_PATHS = new Set([
   // FR blog (sans préfixe langue — anciennes URLs pré-Webflow)
@@ -201,6 +247,150 @@ const GONE_PATHS = new Set([
   '/it',
   '/index.asp',
 
+  // AJOUT 2026-04-16 — audit GSC 429 URLs en 404 — 139 entrées
+  // Blog multilingues morts (ES/DE/NL — 87 entrées)
+  '/blog/10-consejos-crear-foto-venta',
+  '/blog/360-productfotografie-marktplaatsen-amazon',
+  '/blog/360-produktfotografie-marktplatze-amazon',
+  '/blog/5-camaras-simultaneamente-animacion-3d',
+  '/blog/5-kameras-gleichzeitig-realistiche-3d-animationen',
+  '/blog/8-pasos-para-fotografiar-joyas-profesionalmente',
+  '/blog/8-uitdagingen-produceren-visuele-content',
+  '/blog/amazon-produktfotos-wie-man-sie-optimiert',
+  '/blog/amp/1',
+  '/blog/aprender-fotografia-joyas-ecommerce',
+  '/blog/automatiseer-creatie-productfoto-animaties',
+  '/blog/automatizar-fotos-productos',
+  '/blog/beleuchtung-3d-animationen-360-objekt-packshots',
+  '/blog/blog-guia-3-destacar-productos',
+  '/blog/boost-der-conversionrate-vermeiden-sie-diese-fehler',
+  '/blog/comercio-electronico-8-elementos-para-exito',
+  '/blog/como-elige-mejor-objectivo-foto-paquete',
+  '/blog/como-evitar-fotografias-productos-borrosas',
+  '/blog/como-orbitvu-convirtio-socio-referencia',
+  '/blog/como-shotflow-permite-optimizar-produccion-contenido',
+  '/blog/como-tener-mejores-fotos-impulsar-ventas-amazon',
+  '/blog/concentreer-op-hyperfocus',
+  '/blog/concentrese-en-el-hiperenfoque',
+  '/blog/consejos-encuadre-composicion',
+  '/blog/conversiepercentage-verhoog-beeldmateriaal-6-praktische',
+  '/blog/cual-estudio-fotografico-sesiones-fotografia-productos-internas',
+  '/blog/de-la-fotografia-2d-a-los-modelos-3d-de-sus-productos-introduccion-a-la-fotogrametria',
+  '/blog/e-books-fotos-e-commerce-speciaal-producten',
+  '/blog/e-commerce-4-grundlagen-reduzierung-kaufabbruchen',
+  '/blog/e-commerce-fotostudio-richte-fur-internen-packshots',
+  '/blog/e-commerce-packshot-evolutie',
+  '/blog/eine-reihe-foto-e-books-fotografieren-produkte-widmen',
+  '/blog/entrevista-laurent-wainberg-fundador-packshotcreator',
+  '/blog/estudio-foto-comercio-electronico-configurarlo-packshots-internos',
+  '/blog/fotografia-calzado-comercio-electronico-nuestras-soluciones-sector-dinamico',
+  '/blog/fotografia-muebles-decoracion-comercio-electronico',
+  '/blog/fotos-360-amazon',
+  '/blog/fotostudio-produkt-fotoshootings',
+  '/blog/fototipps-rahmung-komposition',
+  '/blog/fototips-inlijsten-compositie',
+  '/blog/gebrauchten-fotostudios',
+  '/blog/gids-2-packshot-fotoapparatuur-weten',
+  '/blog/gids-4-welke-media',
+  '/blog/gids-5-professionelere-fotografies',
+  '/blog/guia-1-porque-tomar-foto-paquetes',
+  '/blog/guia-2-equipo-fotografico-lo-necesita-saber',
+  '/blog/guia-4-que-medio-elegir',
+  '/blog/guia-5-obtener-fotografias-profesionales-consistentes',
+  '/blog/het-belang-belichting-3d-360-objectpackshots',
+  '/blog/hoe-ai-de-visuele-productie-revolutioneert',
+  '/blog/hoe-beste-productfoto-verkoop-stimuleren',
+  '/blog/impact-fotos-op-productblad-e-commerce',
+  '/blog/importancia-iluminacion-animaciones-3d-fotografias-paquetes',
+  '/blog/infographik-8-wesentliche-elemente-erfolg',
+  '/blog/interview-laurent-wainberg-grunder-packshotcreator',
+  '/blog/interview-laurent-wainberg-oprichter-packshotcreator',
+  '/blog/konzentrieren-hyperfokus',
+  '/blog/leitfaden-packshot-fotografie-warum-packshots-machen',
+  '/blog/maximaliseer-potentieel-e-commerce',
+  '/blog/meubel-decoratiefotografie-e-commerce',
+  '/blog/mobel-dekorationsfotografie-e-commerce',
+  '/blog/optimizacion-trabajo-produccion-visual',
+  '/blog/orbitvu-automatisering-voor-3d-360-productfotografie',
+  '/blog/orbitvu-automatizacion-para-fotografia-3d-360',
+  '/blog/packshot-gids-1-maken',
+  '/blog/productfoto-10-onfeilbare-maker-verkoopproductfoto',
+  '/blog/productfotografie-hoe-uw-kleding-te-presenteren',
+  '/blog/productfotografie-orbitvu-go-to-partner',
+  '/blog/produkt-vorstellen-leitfaden-packshot-fotografie',
+  '/blog/produktfotos-fur-onlineshop-10-unfehlbaren-tipps',
+  '/blog/que-formato-para-web',
+  '/blog/unscharfe-produktabbildungen-vermeiden',
+  '/blog/usa-estudio-foto-hacer-realidad-virtual',
+  '/blog/vergleich-von-automatisierten-fotografie-loesungen',
+  '/blog/vollstange-anleitung-packshot-fotoausrustung',
+  '/blog/von-2d-fotografie-zu-3d-modellen-ihrer-produkte-einfuhrung-in-die-photogrammetrie',
+  '/blog/vorteile-des-e-commerce-fur-unternehmen',
+  '/blog/vorteile-toplight-produkt-fotografie',
+  '/blog/wat-rendement-met-een-intern-fotostudio',
+  '/blog/wat-typische-fotostudio-voor-productopnames',
+  '/blog/welches-bildformat-ist-das-beste-fur-das-web',
+  '/blog/welches-medium-zu-bevorzugen-ist-leitfaden-packshot-fotografie',
+  '/blog/welk-beeldformaat-voor-het-web',
+  '/blog/welke-techniek-sieraden-e-commerce-fotohandleiding',
+  '/blog/wie-haben-professionelle-fotos-anleitungen-packshot-produkt',
+  '/blog/wie-man-objektiv-fuer-produktfotografie-auswaehlt',
+  '/blog/wie-shotflow-die-content-produktion-optimieren-kann',
+  // Guides multilingues morts (ES/DE/NL — 13 entrées)
+  '/guide/animacion-360-focus-stacking',
+  '/guide/como-crear-una-animacion-360-con-el-asistente-de-ia-de-orbitvu',
+  '/guide/como-crear-video-de-zapatos',
+  '/guide/como-hacer-focus-stacking-para-fotografiar-anillo',
+  '/guide/hoe-creeer-je-een-360-animatie-met-de-orbitvu-ai-assistent',
+  '/guide/hoe-een-schoenenvideo-maken',
+  '/guide/hoe-focus-stacking-doen-voor-armbandfotografie',
+  '/guide/hoe-uitgesneden-sieradenfoto-maken',
+  '/guide/lipstick-textuur-foto-ai-verbeteren',
+  '/guide/professionele-360-animatie-van-schoenen-maken',
+  '/guide/professionelle-360-animation-von-schuhen-erstellen',
+  '/guide/que-equipo-elegir-para-foto-joyas',
+  '/guide/wie-focus-stacking-fur-ringfotografie-machen',
+  // Pages legacy marketing et divers (39 entrées)
+  '/2018-guide-e-commerce-photos',
+  '/2d-product-photography/amp',
+  '/360-product-photography',
+  '/3d-products-models',
+  '/automask-automated-background-removal',
+  '/category/ecommerce/amp',
+  '/cdn-cgi/l/email-protection',
+  '/challenges-e-commerce',
+  '/complementary-solutions/software/packshot-creator',
+  '/discover-packshotcreator',
+  '/e-commerce-6-good-practices-to-boost-your-conversion-rate',
+  '/e-commerce-6-good-practices-to-boost-your-conversion-rate/amp',
+  '/fashion-automated-photo-studio/amp',
+  '/fotostudios-voor-mode-en-accessoires',
+  '/functions-software-packshot',
+  '/html5/product-pages/360-blackbag/HTML5Viewer.html',
+  '/images/hero/hero-landing-packshot-mode-lg.avif',
+  '/lp-attractive-visuals-3',
+  '/lp-automatiser-prises-de-vue',
+  '/online-demonstration-packshotcreator',
+  '/packshotcreator-fashion-retail-industry',
+  '/packshotlive',
+  '/product-industry/packaging-en',
+  '/product-photography-light-sources',
+  '/products-animations-360/amp',
+  '/promod-is-boosting-its-fashion-photo-shoot-with-packshotspin',
+  '/quote-ressources',
+  '/range-start/photo-turntable-O3T/advantages',
+  '/request-information-product',
+  '/review/sport-shoes-still-shot',
+  '/revolution-in-the-biggest-polish-online-private-sale-website',
+  '/robotic-photo-studio-ecommerce/amp',
+  '/second-hand-packshot-photo-studios',
+  '/services-packshot-consulting',
+  '/software-interactivity-packshotviewer',
+  '/software-updates-packshotcreator',
+  '/study-case-eyewear-photography-for-ecommerce',
+  '/webinar-increase-your-conversion-rate-with-product-visuals-in-360',
+  '/webinar-v2',
+
   // AJOUT 2026-04-14 — 404-SOUS-DOMAINE — 46 entrées
   // Anciennes pages DE/ES/NL/FR sur sous-domaines, pathnames arrivant sur www après DNS
   '/360-drehscheibe-produktfotografie',
@@ -267,6 +457,8 @@ function shouldReturn410(path) {
   // 7. Trailing slash variant
   const pathNoSlash = path.endsWith('/') ? path.slice(0, -1) : path;
   if (pathNoSlash !== path && GONE_PATHS.has(pathNoSlash)) return true;
+  // 8. /industry/*/examples-* /industry/*/ejemplos-* /industry/*/beispiele-* (galeries mortes)
+  if (path.startsWith('/industry/') && /\/(examples?|ejemplos|beispiele)-/.test(path)) return true;
   return false;
 }
 
@@ -351,6 +543,13 @@ export default {
       '/how-to-e-commerce-product-photography': '/en/studios-photo-automatises',
       '/amp': '/fr/blog',
 
+      // AJOUT 2026-04-16 — Pages EN avec slugs FR (Webflow réutilisait les mêmes slugs) — 5 entrées
+      '/en/automatiser': '/en/studios-photo-automatises',
+      '/en/createur-des-studios-photos-connectes': '/en/a-propos',
+      '/en/disclaimer-copy': '/en/mentions-legales',
+      '/en/produits': '/en/studio-photo/selecteur-machines',
+      '/en/solutions': '/en/studios-photo-automatises',
+
       // AJOUT 2026-04-14 — Guides EN sans préfixe /en/ — 3 entrées
       '/guide/what-settings-to-photograph-jewelry': '/en/guide/what-settings-to-photograph-jewelry',
       '/guide/how-to-position-watch-before-shooting-photo': '/en/guide/how-to-position-watch-before-shooting-photo',
@@ -428,9 +627,17 @@ export default {
       '/product/fashion-studio': '/en/studio-photo/fashion-studio',
       '/product/packshotmacro-dl-gemstones': '/en/studio-photo/alphashot-micro-v2',
       '/product/photo-studio-r3': '/en/studio-photo/alphashot-xl-v2',
+      // AJOUT 2026-04-16 — 6 anciennes fiches produit EN
+      '/product/360-photo-studio-diamonds-gemstones': '/en/studio-photo/alphashot-micro-v2',
+      '/product/livestudio-fotos-automatizada': '/en/studios-photo-automatises',
+      '/product/livestudio-renews-image-capturing/caracteristiques-livestudio': '/en/studios-photo-automatises',
+      '/product/packshot-rotating-plate/caracteristiques-packshotspin-series': '/en/studios-photo-automatises',
+      '/product/packshotspin-jewelry': '/en/studio-photo/alphashot-micro-v2',
+      '/product/packshotstudio-modular-lighting': '/en/studios-photo-automatises',
     };
-    if (PRODUCT_REDIRECTS[pathname]) {
-      return Response.redirect(`${url.origin}${PRODUCT_REDIRECTS[pathname]}`, 301);
+    const productPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+    if (PRODUCT_REDIRECTS[productPath]) {
+      return Response.redirect(`${url.origin}${PRODUCT_REDIRECTS[productPath]}`, 301);
     }
 
     // AJOUT 2026-04-14 — Handler /how-to/* → destinations finales (court-circuite Webflow + catch-all DE/ES/NL)
@@ -471,9 +678,49 @@ export default {
       '/how-to/tutorial-fotograf-uhr': '/en',
       '/how-to/video-360-zapatos': '/en',
       '/how-to/camara-fotografiar-joyas': '/en',
+      // AJOUT 2026-04-16 — 1 how-to EN
+      '/how-to/how-to-photograph-eyewear': '/en/guide/comment-photographier-lunettes-e-commerce',
     };
-    if (HOWTO_REDIRECTS[pathname]) {
-      return Response.redirect(`${url.origin}${HOWTO_REDIRECTS[pathname]}`, 301);
+    const howtoPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+    if (HOWTO_REDIRECTS[howtoPath]) {
+      return Response.redirect(`${url.origin}${HOWTO_REDIRECTS[howtoPath]}`, 301);
+    }
+
+    // AJOUT 2026-04-16 — Blog EN sans préfixe → /en/blog/slug (articles vivants sur Webflow EN)
+    // Intercepte AVANT le proxy Webflow pour rediriger proprement
+    if (pathname.startsWith('/blog/')) {
+      const slug = pathname.slice(6).replace(/\/$/, '');
+      if (BLOG_EN_REDIRECTS.has(slug)) {
+        return Response.redirect(`${url.origin}/en/blog/${slug}`, 301);
+      }
+    }
+
+    // AJOUT 2026-04-16 — Guides EN sans préfixe → /en/guide/slug
+    if (pathname.startsWith('/guide/')) {
+      const slug = pathname.slice(7).replace(/\/$/, '');
+      if (GUIDE_EN_REDIRECTS.has(slug)) {
+        return Response.redirect(`${url.origin}/en/guide/${slug}`, 301);
+      }
+    }
+
+    // AJOUT 2026-04-16 — /industry/*/examples-* → 410 (galeries mortes, AVANT le catch-all)
+    if (pathname.startsWith('/industry/') && /\/(examples?|ejemplos|beispiele)-/.test(pathname)) {
+      return new Response(
+        `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
+        {
+          status: 410,
+          headers: {
+            'Content-Type': 'text/html; charset=UTF-8',
+            'Cache-Control': 'public, max-age=86400',
+            'X-Robots-Tag': 'noindex, nofollow',
+          },
+        }
+      );
+    }
+
+    // AJOUT 2026-04-16 — /industry/* → /en/industrie (catch-all, court-circuite Webflow)
+    if (pathname.startsWith('/industry/') || pathname === '/industry') {
+      return Response.redirect(`${url.origin}/en/industrie`, 301);
     }
 
     // DE/ES/NL → /en (301) — ces langues ne sont plus maintenues
