@@ -7,7 +7,7 @@
   "metaTitle": "Pro photo white background without retouching: Expert method in 3 min 📸",
   "description": "Learn how to get the perfect white background without clipping for your products. This method is facilitated by the Orbitvu Station software and mandatory for perfect videos of your products.",
   "date": "2025-06-23T10:14:09.011Z",
-  "image": "/images/guide/67e56a2ea33452c19f8129f4.avif",
+  "image": "/images/guides/67e56a2ea33452c19f8129f4.avif",
   "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56a2ea33452c19f8129f4_avant-apr%C3%A8s-fond-blanc.avif",
   "categoryId": "6683fd64b1ba87536a6582ff",
   "duration": "3 minutes",
@@ -20,7 +20,7 @@
       "position": 1,
       "title": "Position the product and choose the right lighting",
       "content": "<p id=\"\">Start by placing your product in the center of the photo studio, using the center guide on the turntable. 📍 Make sure the object is centered on your screen. </p><p id=\"\">On the lighting side, select a predefined template to help and inspire you. 💡 </p><p id=\"\"><strong id=\"\">tip </strong>: If you're shooting reflective objects, adjust the angle of the light sources slightly to avoid annoying reflections.</p>",
-      "image": "/images/guide/67e56b69065dee4b78a0795a.avif",
+      "image": "/images/guides/67e56b69065dee4b78a0795a.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56b69065dee4b78a0795a_positionnement-choix-template.avif",
       "structuredText": "Start by positioning your product in the center of the photo studio turntable, using the central coordinate system for accurate placement. Check the alignment on the preview screen to make sure the object is fully centered. On the lighting side, select a predefined template to benefit from a quick and consistent adjustment. Tip: If you're working with reflective objects, adjust the angle of the light sources slightly to reduce unwanted reflections."
     },
@@ -28,7 +28,7 @@
       "position": 2,
       "title": "Adjust light and camera settings",
       "content": "<p id=\"\">Adjust light intensities to avoid overexposure or reflections. On the camera side, apply these settings: 📷</p><ul id=\"\"><li id=\"\"><strong id=\"\">Opening </strong>: f/14 or f/16 (for a good depth of field)</li><li id=\"\"><strong id=\"\">ISO </strong>: Around 600 (to minimize noise) </li><li id=\"\"><strong id=\"\">Shutter speed</strong> : 1/80 </li></ul><p id=\"\">Remember to save your settings to ensure consistency across all your shots and save time. 📂</p>",
-      "image": "/images/guide/67e56c0b797e2b381a656996.avif",
+      "image": "/images/guides/67e56c0b797e2b381a656996.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56c0b797e2b381a656996_r%C3%A9glages-appareil-photo.avif",
       "structuredText": "Adjust the intensity of the light sources to avoid overexposure or reflections on the product. On the camera side, apply the following settings to ensure a sharp and balanced image: Aperture: f/14 or f/16 for optimal depth of field ISO: approximately 600 to minimize digital noise Shutter speed: 1/80. Once you have found the right settings, remember to save them as a template to ensure consistency across all your shots and save time in future sessions."
     },
@@ -36,7 +36,7 @@
       "position": 3,
       "title": "Start shooting",
       "content": "<p id=\"\">Before shooting, take a photo by yourself to make sure your settings are optimal. </p><p id=\"\">When everything is ready, click “Capture All” or “Save” for a video. <strong id=\"\">🎬</strong></p>",
-      "image": "/images/guide/67e56c9a67369e735f839fe2.avif",
+      "image": "/images/guides/67e56c9a67369e735f839fe2.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56c9a67369e735f839fe2_lancement-photo.avif",
       "structuredText": "Before shooting, take a photo by yourself to make sure your settings are optimal. When everything is ready, click “Capture All” or “Save” for a video. "
     },
@@ -44,7 +44,7 @@
       "position": 4,
       "title": "Adjust the histogram",
       "content": "<p id=\"\">Switch to edit mode in Orbitvu Station. The first step is to adjust the histogram to refine the exposure. 🎨</p><p id=\"\">Click on the<strong id=\"\">Drop icon</strong> at the top right of the tool <strong id=\"\">histogram </strong>to access level settings. </p>",
-      "image": "/images/guide/67e56d0f62f67086fdaa644a.avif",
+      "image": "/images/guides/67e56d0f62f67086fdaa644a.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56d0f62f67086fdaa644a_activer-histogramme.avif",
       "structuredText": "Switch to edit mode in Orbitvu Station. The first step is to adjust the histogram to refine the exposure. Click the drop icon at the top right of the histogram tool to access level settings. "
     },
@@ -52,7 +52,7 @@
       "position": 5,
       "title": "Perfect the white background",
       "content": "<p id=\"\">To get pure white, use<strong id=\"\">level tool</strong>. Lower level 250 gradually until the bottom becomes <strong id=\"\">Entirely red</strong>, anything that is red will turn white once validated. </p><p id=\"\">Click on the drop again to see the final result. This technique guarantees a uniform white background without clipping and without tedious retouching. </p>",
-      "image": "/images/guide/67e551aab01271056be36289.avif",
+      "image": "/images/guides/67e551aab01271056be36289.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e551aab01271056be36289_retouches-fond-niveau.avif",
       "structuredText": "To get pure white, use the levels tool. Gradually lower the 250 level until the background turns completely red, everything that is red will turn white once validated. Click on the drop again to see the final result. This technique guarantees a uniform white background without clipping and without tedious retouching. "
     },
@@ -60,7 +60,7 @@
       "position": 6,
       "title": "Export and publish your photos",
       "content": "<p id=\"\">Once the rendering has been validated, export your images in the format that best suits your needs: <strong id=\"\">JPEG </strong>for maximum compatibility, <strong id=\"\">PNG </strong>if you need a transparent background, <strong id=\"\">MP4 </strong>for a video... 📤</p><p id=\"\"><a href=\"/en/guide/consistent-product-image-collection\"><strong>Also, find out how to get consistent visuals for an entire collection of products.</strong></a></p>",
-      "image": "/images/guide/67e56dc7bdd853b5c80ff8d4.avif",
+      "image": "/images/guides/67e56dc7bdd853b5c80ff8d4.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67e56dc7bdd853b5c80ff8d4_exportation-photo-fond-blanc.avif",
       "structuredText": "Once the rendering has been validated, export your images in the format that best suits your needs: JPEG for maximum compatibility, PNG if you need a transparent background, MP4 for a video..."
     }

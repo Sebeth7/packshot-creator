@@ -618,7 +618,7 @@ async function main() {
     for (const it of guide.fr.concat(guide.en)) {
       const urls = new Set();
       collectGuideImageUrls(it, urls);
-      for (const u of urls) if (!urlKind.has(u)) urlKind.set(u, 'guide');
+      for (const u of urls) if (!urlKind.has(u)) urlKind.set(u, 'guides');
     }
     const CONCURRENCY = 6;
     const queue = [...all];
@@ -627,7 +627,7 @@ async function main() {
         const url = queue.shift();
         const kind = urlKind.get(url) || 'blog';
         const dir = kind === 'blog' ? DIRS.imagesBlog : DIRS.imagesGuides;
-        const prefix = `/images/${kind}`;
+        const prefix = kind === 'blog' ? '/images/blog' : '/images/guides';
         try {
           await processImage(url, dir, prefix, urlToLocal);
           done++;

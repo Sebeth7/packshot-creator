@@ -7,7 +7,7 @@
   "metaTitle": "🤖 Automated multi-angle photography for e-commerce",
   "description": "Learn how to create a multi-angle shot of an object with the Alphashot PRO G2 automated photo studio. A simple tutorial for visuals produced internally in a few minutes.",
   "date": "2025-06-23T10:14:09.011Z",
-  "image": "/images/guide/67ed01e8e439dc9faaae6640.avif",
+  "image": "/images/guides/67ed01e8e439dc9faaae6640.avif",
   "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed01e8e439dc9faaae6640_r%C3%A9sultat_multi_vues_statue.avif",
   "categoryId": "6683fd8c0b8787726aa51adb",
   "duration": "3 minutes",
@@ -20,7 +20,7 @@
       "position": 1,
       "title": "Positioning the object",
       "content": "<p id=\"\">The first step is to place the object in the center of the turntable. The Alphashot PRO G2 is equipped with a<strong id=\"\"> centering laser</strong>, which allows you to position the object with <strong id=\"\">precision</strong>. 📍</p><p id=\"\">For fragile objects or objects that could move during the rotation of the tray, you can use fixing paste or double-sided invisible tape to stabilize without altering the aesthetics.</p><p id=\"\">Make sure the camera is properly positioned at the desired angle.</p>",
-      "image": "/images/guide/67ecf7a9518b215db53c35dc.avif",
+      "image": "/images/guides/67ecf7a9518b215db53c35dc.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecf7a9518b215db53c35dc_positonnement_template_IA.avif",
       "structuredText": "The first step is to place the object in the center of the turntable. The Alphashot PRO G2 is equipped with a centering laser, which allows you to position the object precisely. For fragile objects or objects that could move during the rotation of the tray, you can use fixing paste or double-sided invisible tape to stabilize without altering the aesthetics. Make sure the camera is properly positioned at the desired angle."
     },
@@ -28,7 +28,7 @@
       "position": 2,
       "title": "Set up the light with the help of AI",
       "content": "<p id=\"\">This studio has a <strong id=\"\">AI Assistant</strong>, a technology that automatically recognizes the characteristics of the object placed in the studio. 💡</p><p id=\"\">Click on the<strong id=\"\">The “AI” icon</strong> and it offers several adapted light configurations. You can choose one and fine-tune the settings manually. 📂</p>",
-      "image": "/images/guide/67ecfc3cd83c178bfc1b19fb.avif",
+      "image": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc3cd83c178bfc1b19fb_template_lumi%C3%A8res_IA.avif",
       "structuredText": "This studio has an AI Assistant, a technology that automatically recognizes the characteristics of the object placed in the studio. Click on the “AI” icon and it offers you several adapted light configurations. You can choose one and fine-tune the settings manually."
     },
@@ -36,7 +36,7 @@
       "position": 3,
       "title": "Activate IQ Mask for automatic clipping",
       "content": "<p id=\"\">Activate the function <strong id=\"\">IQ Mask</strong>, it allows you to automatically crop the object on a white or transparent background. To get the perfect clipping, adjust the light level. Your object should be darker than the background. Anything that is still clear will be removed.</p><p id=\"\"><strong id=\"\">✨ Tip </strong>: Play on the panels at the back and on the turntable to create a light in the opposite direction of your object which will make it appear darker. </p><p id=\"\">‍</p>",
-      "image": "/images/guide/67ed03995c1fa68f7d066cf0.avif",
+      "image": "/images/guides/67ed03995c1fa68f7d066cf0.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed03995c1fa68f7d066cf0_r%C3%A9glages_IQ_Mask_statue.avif",
       "structuredText": "Activate the IQ Mask function, it allows you to automatically crop the object on a white or transparent background. To get the perfect clipping, make adjustments to the light level. Your object should be darker than the background. Anything that is still clear will be removed. Tip: Play with the panels at the back and on the turntable to create a light in the opposite direction of your object, which will make it appear darker."
     },
@@ -44,7 +44,7 @@
       "position": 4,
       "title": "Program the shooting angles",
       "content": "<p id=\"\">With the Orbitvu Station software, you can program <strong id=\"\">shooting multiple shots at predefined angles</strong>. </p><p id=\"\">For example, you may decide to capture the object at 0°, 45°, 45°, 90°, 135°, and 180°... To do this, choose your angles by clicking outside in the wheel to fix shooting points as in the photo. </p><p id=\"\">Once the angles are set, the turntable automatically adjusts to each position, triggers the shot, and then moves on to the next <strong id=\"\">without manual intervention</strong>. <strong id=\"\">🤖</strong></p><p id=\"\">You can also save this configuration as a reusable template, which is ideal for creating a coherent set of visuals at scale. 📂</p>",
-      "image": "/images/guide/67ed044b321ee8113504c659.avif",
+      "image": "/images/guides/67ed044b321ee8113504c659.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
       "structuredText": "With the Orbitvu Station software, you can schedule multiple shots to be shot at predefined angles. For example, you may decide to capture the object at 0°, 45°, 45°, 90°, 135°, and 180°... To do this, choose your angles by clicking outside in the wheel to fix shooting points as in the photo. Once the angles are set, the turntable automatically adjusts to each position, triggers the shot, and then moves on to the next without manual intervention. You can also save this configuration as a reusable template, which is ideal for creating a coherent set of visuals at scale."
     },
@@ -52,7 +52,7 @@
       "position": 5,
       "title": "Capture and process your images",
       "content": "<p id=\"\">When everything is ready, simply click on <strong id=\"\">“Capture everything”</strong> in Orbitvu Station. 📷</p><p id=\"\">The studio is going to run the entire sequence. Once the images have been captured, you can consult them, sort them, and edit them if necessary via <strong id=\"\">built-in post-processing options</strong>. 🎨</p>",
-      "image": "/images/guide/67ed044b321ee8113504c659.avif",
+      "image": "/images/guides/67ed044b321ee8113504c659.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
       "structuredText": "When everything is ready, simply click “Capture All” in Orbitvu Station. The studio is going to run the entire sequence. Once captured, you can review, sort, and edit images as needed using built-in post-processing options."
     },
@@ -60,7 +60,7 @@
       "position": 6,
       "title": "Export your visuals and share them",
       "content": "<p id=\"\">Finally, you can export your images from the tab <strong id=\"\">“Publish”</strong> and choose the export format <strong id=\"\">JPEG </strong>for the web, <strong id=\"\">PNG </strong>with transparency, <strong id=\"\">WEPB</strong>, <strong id=\"\">TIF</strong>... 📤</p><p id=\"\">You can also publish your photos from the software directly on your <strong id=\"\">social networks</strong> or on a marketplace like <strong id=\"\">Shopify </strong>or <strong id=\"\">Magento</strong>. <strong id=\"\">💻</strong></p><p>‍</p>",
-      "image": "/images/guide/67ed0542c7a3759d728beb9c.avif",
+      "image": "/images/guides/67ed0542c7a3759d728beb9c.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed0542c7a3759d728beb9c_exporter_format_multivues_statue.avif",
       "structuredText": "Finally, you can export your images from the “Publish” tab and choose the export format JPEG for the web, PNG with transparency, WEPB, TIF... You can also publish your photos from the software directly on your social networks or on a marketplace like Shopify or Magento."
     }

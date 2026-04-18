@@ -7,7 +7,7 @@
   "metaTitle": "Comment créer une vidéo pour vos objets d’Art avec l’Alphashot PRO G2",
   "description": "Créer animation 360° produits | Guide complet avec IA Orbitvu. Studio automatisé PackshotCreator. Lire le tutoriel ►. Conseils PackshotCreator.",
   "date": "2025-12-30T16:42:54.933Z",
-  "image": "/images/guide/67f8b00dd1d997a80bd4aaec.avif",
+  "image": "/images/guides/67f8b00dd1d997a80bd4aaec.avif",
   "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67f8b00dd1d997a80bd4aaec_Statue360.avif",
   "categoryId": "6683fd8c0b8787726aa51adb",
   "duration": "3 minutes",
@@ -20,7 +20,7 @@
       "position": 1,
       "title": "Positionnez votre statuette",
       "content": "<p id=\"\">L’installation de l’objet est la première étape vers une vidéo réussie. Aidez vous du laser pour placer votre statue bien au centre du plateau tournant du studio. 📍</p><p id=\"\">Si l’objet est fragile ou qu'il risque de bouger lors de la rotation, utilisez de la pâte à fixer ou du scotch invisible double face. </p>",
-      "image": "/images/guide/67ecf7a9518b215db53c35dc.avif",
+      "image": "/images/guides/67ecf7a9518b215db53c35dc.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecf7a9518b215db53c35dc_positonnement_template_IA.avif",
       "structuredText": "L’installation de l’objet est une étape essentielle pour réussir la prise de vue vidéo. Utilisez le système de positionnement laser du studio photo afin de placer la statue précisément au centre du plateau tournant. Si l’objet est fragile ou susceptible de bouger pendant la rotation, fixez-le à l’aide de pâte adhésive ou de ruban adhésif double face transparent."
     },
@@ -28,7 +28,7 @@
       "position": 2,
       "title": "Choisissez un template lumineux IA",
       "content": "<p id=\"\">L’Alphashot PRO G2 est équipé de <strong id=\"\">74 sources lumineuses</strong> et d’un <strong id=\"\">AI Assistant</strong> qui propose automatiquement des configurations de lumière optimales. 💡</p><p id=\"\">Cliquez sur l'icone \"AI\" et laissez l’intelligence artificielle analyser ses caractéristiques (dimensions, réflectivité, etc.). L'assistant vous proposera 4 options d’éclairage.</p><p id=\"\">Optez pour un rendu uniforme si l’objet est mat ou texturé, et atténuez l’intensité pour éviter les reflets trop marqués sur les surfaces brillantes. <strong id=\"\">✨</strong></p>",
-      "image": "/images/guide/67ecfc3cd83c178bfc1b19fb.avif",
+      "image": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc3cd83c178bfc1b19fb_template_lumi%C3%A8res_IA.avif",
       "structuredText": "L’Alphashot PRO G2 est équipé de 74 sources lumineuses ainsi que d’un assistant intelligent (AI Assistant) capable de proposer automatiquement des configurations d’éclairage optimales. Cliquez sur l’icône « AI » pour lancer l’analyse des caractéristiques de l’objet, telles que ses dimensions, sa réflectivité ou sa texture. L’assistant génère ensuite quatre propositions d’éclairage. Pour un objet mat ou texturé, sélectionnez le rendu uniforme. En cas de surfaces brillantes, réduisez l’intensité lumineuse afin de limiter les reflets excessifs."
     },
@@ -36,7 +36,7 @@
       "position": 3,
       "title": "Peaufinez la lumière et les réglages de l'appareil photo",
       "content": "<p id=\"\">Pour une qualité d’image optimale, quelques ajustements sont nécessaires : 📷</p><ul id=\"\"><li id=\"\"><strong id=\"\">Ouverture</strong> : Entre <strong id=\"\">f/14</strong> et <strong id=\"\">f/16</strong> pour maximiser la profondeur de champ.</li><li id=\"\"><strong id=\"\">ISO</strong> : Aux alentours de <strong id=\"\">600</strong> pour limiter le bruit numérique.</li><li id=\"\"><strong id=\"\">Vitesse d’obturation</strong> : <strong id=\"\">1/80</strong> minimum pour éviter le flou de bougé. (Si vous filmez en 30 FPS, respectez au moins 1/60 pour une fluidité conforme à la règle du « double »).</li></ul><p id=\"\">Si vous souhaitez un fond presque blanc (voire pur), augmentez l’intensité des panneaux arrières depuis le logiciel Orbitvu Station.</p><p id=\"\"><strong id=\"\">✨Astuce</strong> : Enregistrez vos réglages dans un <strong id=\"\">template </strong>dès que vous trouvez la combinaison idéale (appareil photo+ lumières). Vous pourrez la réutiliser pour d’autres produits. 📂</p><p id=\"\">‍</p>",
-      "image": "/images/guide/67ecfc8bb42e461702a5addc.avif",
+      "image": "/images/guides/67ecfc8bb42e461702a5addc.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc8bb42e461702a5addc_r%C3%A9glages_lumi%C3%A8res_appareil.avif",
       "structuredText": "Pour garantir une qualité d’image optimale, quelques réglages techniques doivent être ajustés : Ouverture : Réglez entre f/14 et f/16 afin d’obtenir une profondeur de champ maximale. ISO : Positionnez autour de 600 pour limiter le bruit numérique. Vitesse d’obturation : Sélectionnez au minimum 1/80 afin d’éviter le flou de bougé. En cas de prise de vue en 30 FPS, utilisez au moins 1/60 conformément à la règle du double de la fréquence d’images. Si vous souhaitez obtenir un fond blanc ou presque blanc, augmentez l’intensité des panneaux lumineux arrière directement depuis le logiciel Orbitvu Station. Astuce : Une fois les bons réglages trouvés (boîtier photo + éclairages), enregistrez-les dans un modèle (template) afin de les réutiliser pour d'autres prises de vue produit."
     },
@@ -44,7 +44,7 @@
       "position": 4,
       "title": "Réalisez un premier test et lancez l’enregistrement",
       "content": "<p id=\"\">Prenez une photo pour vérifier l’exposition, la netteté et l’alignement. Vous pouvez aussi faire tourner le plateau à 360° pour vérifier que le centrage est bien fait. 🔄</p><p id=\"\">Choisissez la vitesse de rotation et cliquez sur « Enregistrer » pour démarrer la prise vidéo. <strong id=\"\">🎬</strong></p>",
-      "image": "/images/guide/67ecfd8ae439dc9faaaad70d.avif",
+      "image": "/images/guides/67ecfd8ae439dc9faaaad70d.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfd8ae439dc9faaaad70d_lancer_vid%C3%A9o_objet_dart.avif",
       "structuredText": "Prenez une photo de test afin de vérifier l’exposition, la netteté et l’alignement de l’objet. Vous pouvez ensuite faire tourner le plateau à 360 degrés pour vous assurer que l’objet est bien centré tout au long de la rotation. Sélectionnez la vitesse de rotation souhaitée, puis cliquez sur « Enregistrer » pour lancer la prise vidéo."
     },
@@ -52,7 +52,7 @@
       "position": 5,
       "title": "Retouchez l'image : La statue",
       "content": "<p id=\"\">Une fois l’enregistrement terminé, passez en <strong id=\"\">mode édition</strong> pour affiner les réglages d'images comme la <strong id=\"\">netteté</strong>, la <strong id=\"\">luminance</strong>, la <strong id=\"\">teinte</strong>... 🎨</p><p id=\"\">Utilisez <strong id=\"\">l'Auto Polisher </strong>pour éliminer les petites imperfections de votre objet. <strong id=\"\">🧼</strong></p>",
-      "image": "/images/guide/67ecfe1ef117ffebc9697863.avif",
+      "image": "/images/guides/67ecfe1ef117ffebc9697863.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfe1ef117ffebc9697863_retouches_vid%C3%A9o_art.avif",
       "structuredText": "Une fois l’enregistrement terminé, activez le mode édition afin d’ajuster les paramètres d’image tels que la netteté, la luminance ou encore la teinte. Utilisez la fonction Auto Polisher pour corriger automatiquement les petites imperfections visibles sur l’objet."
     },
@@ -60,7 +60,7 @@
       "position": 6,
       "title": "Retouchez l’image : Le fond",
       "content": "<p id=\"\">Cliquez sur l'outil \"<strong id=\"\">Histogramme</strong>\" dans le logiciel puis sur l'icone \"<strong id=\"\">goutte d'eau</strong>\" en haut à droite. Cela vous permettra de mettre en évidence les parties blanchis. </p><p id=\"\">Retournez dans la barre de réglages d'images pour ajuster le niveau. Cliquez petit à petit sur le <strong id=\"\">bouton \"-\" à côté de 250</strong>. Tout ce qui est rouge va être blanchis par le logiciel. Attention à ne pas trop en abuser pour ne pas blanchir votre objet.</p>",
-      "image": "/images/guide/67ecfeccf0814c66d5ae117e.avif",
+      "image": "/images/guides/67ecfeccf0814c66d5ae117e.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfeccf0814c66d5ae117e_retouches_fond_vid%C3%A9o_art.avif",
       "structuredText": "Dans le logiciel, cliquez sur l’outil « Histogramme », puis sélectionnez l’icône en forme de goutte d’eau située en haut à droite de l’interface. Cette fonctionnalité permet de visualiser les zones de l’image qui seront blanchies. Ensuite, retournez dans la barre de réglages d’image et ajustez progressivement le niveau de blanchiment en cliquant sur le bouton « - » à côté de la valeur 250. Les zones rouges indiquent les parties qui seront blanchies par le logiciel. Veillez à ne pas exagérer l’ajustement afin d’éviter de blanchir l’objet lui-même."
     },
@@ -68,7 +68,7 @@
       "position": 7,
       "title": "Exportez votre vidéo",
       "content": "<p id=\"\">Vous pouvez maintenant exporter votre vidéo au format <strong id=\"\">MP4</strong>, <strong id=\"\">MOV </strong>ou même créer un <strong id=\"\">GIF</strong>. Vous avez également la possibilité de transformer votre vidéo en <strong id=\"\">animation 360°. 📤</strong></p><p id=\"\">Pour se faire, créez un nouveau profil de publication 360° et choisissez \"vidéos\" dans les sources. Vous pourrez alors obtenir un <strong id=\"\">code HTML5 ou un lien d'intégration</strong> depuis la plateforme <strong id=\"\">Orbitvu Sun</strong>. <strong id=\"\">💻</strong></p>",
-      "image": "/images/guide/67ecff960e57858e697b1490.avif",
+      "image": "/images/guides/67ecff960e57858e697b1490.avif",
       "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecff960e57858e697b1490_exporter_vid%C3%A9o_art.avif",
       "structuredText": "Une fois votre vidéo finalisée, vous pouvez l’exporter aux formats MP4, MOV ou en GIF selon vos besoins. Il est également possible de transformer votre vidéo en animation 360°. Pour cela, créez un nouveau profil de publication 360° et sélectionnez « Vidéos » comme source. Une fois le profil configuré, vous pourrez générer un code HTML5 ou un lien d’intégration via la plateforme Orbitvu Sun."
     }
