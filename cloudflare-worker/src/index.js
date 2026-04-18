@@ -435,6 +435,23 @@ const GONE_PATHS = new Set([
   '/vorteile-toplight-produkt-fotografie',
   '/wie-man-objektiv-fuer-produktfotografie-auswaehlt',
   '/zelfgemaakte-fotostudio-productfotografie',
+  // AJOUT 2026-04-18 — landing legacy fr.packshot-creator.com citées par articles blog
+  // finissent aujourd'hui en 404 via Webflow → passer en 410 Gone pour signal SEO net
+  '/fonctions-simplicite',
+  '/fonctions-productivite',
+  '/fonctions-creativite',
+  '/photographie-produits-formats-multiples',
+  '/photographie-produits-360',
+  '/produit/livestudio-reinvente-la-mise-en-images',
+  '/produit/studio-macrophotographie-360-bagues',
+  '/produit/plateaux-tournants-360',
+  '/produit/packshotalto-mark-2',
+  '/pourquoi-choisir-orbitvu-photographie-packshot',
+  '/donnez-du-relief-a-votre-communication-maestrobot3d-par-packshotcreator',
+  '/webinar-augmenter-votre-taux-de-conversion-grace-a-des-visuels-produit-en-360',
+  '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e\u2011commerce',
+  '/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
+  '/packshotcreator-cologne-photokina-2018',
 ]);
 
 function shouldReturn410(path) {
