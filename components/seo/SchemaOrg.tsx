@@ -22,6 +22,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://www.packshot-creator.com/#organization',
     name: 'PackshotCreator',
     url: 'https://www.packshot-creator.com',
     logo: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
@@ -46,6 +47,82 @@ export function organizationSchema() {
     foundingDate: '2004',
     numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 50 },
     areaServed: ['FR', 'CH', 'BE'],
+    subOrganization: {
+      '@type': 'Organization',
+      '@id': 'https://www.packshot-creator.com/industrie-solutions/#organization',
+      name: 'Sysnext Industrial Solutions',
+      url: 'https://www.packshot-creator.com/industrie-solutions',
+    },
+  };
+}
+
+/**
+ * Schéma Organization pour Sysnext Industrial Solutions.
+ *
+ * Entité distincte de PackshotCreator, reliée par parentOrganization.
+ * À utiliser EXCLUSIVEMENT sur les pages sous /[lang]/industrie-solutions/*.
+ * Règle R6 du contrat d'étanchéité de cohabitation (DR-011 + DR-012).
+ * Source : config/cohabitation-marques.md §3 R6.
+ */
+export function sysnextOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://www.packshot-creator.com/industrie-solutions/#organization',
+    name: 'Sysnext Industrial Solutions',
+    alternateName: 'Sysnext',
+    url: 'https://www.packshot-creator.com/industrie-solutions',
+    logo: 'https://www.packshot-creator.com/images/logos/sysnext-industrial-solutions-logo.png',
+    description:
+      "Documentation visuelle industrielle standardisée. Stations Orbitvu pilotées par Templates verrouillés, intégrées ERP/PIM/GMAO, utilisables par un opérateur non-photographe. Aftermarket auto, SAV outillage, QC inspection, MRO aéronautique civile, forensique, dispositifs médicaux.",
+    slogan: 'La documentation visuelle industrielle standardisée',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '254 rue Vendôme',
+      addressLocality: 'Lyon',
+      postalCode: '69003',
+      addressCountry: 'FR',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+33147426666',
+      email: 'industriel@sysnext.com',
+      contactType: 'sales',
+      availableLanguage: ['French', 'English'],
+      areaServed: ['FR', 'CH'],
+    },
+    sameAs: [
+      'https://www.linkedin.com/showcase/sysnext-industrial-solutions/',
+    ],
+    parentOrganization: {
+      '@type': 'Organization',
+      '@id': 'https://www.packshot-creator.com/#organization',
+      name: 'PackshotCreator',
+      url: 'https://www.packshot-creator.com',
+    },
+    areaServed: ['FR', 'CH'],
+    audience: {
+      '@type': 'BusinessAudience',
+      name: 'Industrial decision-makers',
+      audienceType: 'B2B',
+    },
+    knowsAbout: [
+      'AS9100',
+      'IATF 16949',
+      'ISO 13485',
+      'AS9102 First Article Inspection',
+      'EN 9110',
+      'EASA Part 145',
+      'IPC-A-610',
+      'GMP',
+      'Documentation visuelle industrielle',
+      'Orbitvu',
+      'Aftermarket automobile',
+      'MRO aéronautique civile',
+      "Contrôle qualité inspection visuelle",
+      'Forensique civile',
+      'Dispositifs médicaux',
+    ],
   };
 }
 

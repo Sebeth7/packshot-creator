@@ -34,6 +34,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import FloatingDashboard from '@/components/animations/FloatingDashboard';
 import FloatingCalendar from '@/components/animations/FloatingCalendar';
+import SysnextEntryBanner from '@/components/sysnext/SysnextEntryBanner';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -139,6 +140,12 @@ export default async function HomePage({
 
   return (
     <>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          0. H2 — Sysnext Industrial Solutions entry banner
+          Règle H2 cohabitation (DR-011 + DR-012) — config/cohabitation-marques.md §5.1
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <SysnextEntryBanner />
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Centered, video background, display typography
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}

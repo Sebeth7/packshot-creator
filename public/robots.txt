@@ -41,5 +41,8 @@ Disallow: /_next/
 Disallow: /fr/calculateur
 Disallow: /en/calculateur
 
-# Sitemap
+# Sitemaps
+# - sitemap.xml : pages PackshotCreator (e-commerce, retail, luxe, hub sectoriel, blog, guide, machines, solutions)
+# - sitemap-sysnext.xml : pages Sysnext Industrial Solutions (/industrie-solutions/*) — règle R4 cohabitation
 Sitemap: https://www.packshot-creator.com/sitemap.xml
+Sitemap: https://www.packshot-creator.com/sitemap-sysnext.xml

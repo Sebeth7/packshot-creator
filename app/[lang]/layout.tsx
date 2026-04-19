@@ -1,11 +1,11 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Inter, Roboto } from 'next/font/google';
+import { Inter, Roboto, IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono } from 'next/font/google';
 import { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import HeaderGate from '@/components/layout/HeaderGate';
+import FooterGate from '@/components/layout/FooterGate';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import { SmoothScroll } from '@/components/animations';
@@ -22,6 +22,29 @@ const roboto = Roboto({
   variable: '--font-roboto',
   weight: ['400', '500'],
   display: 'swap'
+});
+
+// Polices Sysnext Industrial Solutions — usage exclusif sous /industrie-solutions/*
+// Chargées globalement pour éviter un second FOUT au changement de route.
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-sans',
+  weight: ['400', '500', '700'],
+  display: 'swap',
+});
+
+const ibmPlexSerif = IBM_Plex_Serif({
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-serif',
+  weight: ['400', '600'],
+  display: 'swap',
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-mono',
+  weight: ['400', '500'],
+  display: 'swap',
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -77,14 +100,14 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={lang} className={`${inter.variable} ${roboto.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${roboto.variable} ${ibmPlexSans.variable} ${ibmPlexSerif.variable} ${ibmPlexMono.variable}`}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
-          <Header />
+          <HeaderGate />
           <main>{children}</main>
-          <Footer />
+          <FooterGate />
           <CookieBanner />
         </NextIntlClientProvider>
       </body>

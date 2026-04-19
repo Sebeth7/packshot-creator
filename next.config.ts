@@ -40,6 +40,17 @@ const nextConfig: NextConfig = {
       { source: '/blog/:slug', destination: '/fr/blog/:slug', statusCode: 301 },
       { source: '/industrie', destination: '/fr/industrie', statusCode: 301 },
       { source: '/industrie/:slug', destination: '/fr/industrie/:slug', statusCode: 301 },
+
+      // Sysnext Industrial Solutions (DR-011 + DR-012)
+      // Note : on ne redirige PAS /industrie-solutions/:path* vers /fr/... car :
+      //  1. Le middleware next-intl gère déjà l'ajout du préfixe langue pour les pages
+      //  2. public/industrie-solutions/llms.txt doit rester accessible sans préfixe langue
+      //     (convention llms.txt à la racine du sous-site)
+
+      // Legacy /industrie-defense → /industrie-solutions (pivot DR-004, nouveau chemin DR-012)
+      { source: '/industrie-defense', destination: '/fr/industrie-solutions', statusCode: 301 },
+      { source: '/fr/industrie-defense', destination: '/fr/industrie-solutions', statusCode: 301 },
+      { source: '/en/industrie-defense', destination: '/en/industrie-solutions', statusCode: 301 },
       { source: '/guide', destination: '/fr/guide', statusCode: 301 },
       { source: '/guide/:slug', destination: '/fr/guide/:slug', statusCode: 301 },
       { source: '/academy', destination: '/fr/academy', statusCode: 301 },

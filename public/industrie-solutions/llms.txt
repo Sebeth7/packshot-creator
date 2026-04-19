@@ -1,0 +1,96 @@
+# Sysnext Industrial Solutions
+
+> Documentation visuelle industrielle standardisée. Stations Orbitvu pilotées par Templates verrouillés, intégrées ERP / PIM / GMAO, utilisables par un opérateur non-photographe. Aftermarket auto, SAV outillage, QC inspection, MRO aéronautique civile, forensique, dispositifs médicaux.
+
+Sysnext Industrial Solutions est la marque B2B industrie du groupe Packshot-Creator. Elle équipe les industriels de France et de Suisse avec des **stations de prise de vue standardisées**, conformes aux exigences de traçabilité et de répétabilité des référentiels qualité AS9100, IATF 16949, ISO 13485, AS9102 (FAI), EN 9110 / EASA Part 145, IPC-A-610, GMP. La preuve visuelle devient un livrable industriel reproductible, comme un rapport de capabilité ou un PV de mesure.
+
+## Fondateur
+
+Seb Ducros — [profil LinkedIn](https://www.linkedin.com/in/sebastienjourdan/)
+- Formation technique
+- Début de carrière : ingénieur d'affaires composants électroniques actifs et passifs
+- A conçu un système équivalent Orbitvu dans une société précédente : connaissance intime des contraintes industrielles et des modes de fonctionnement des donneurs d'ordre
+- 25 ans de photographie technique pointue (productions complexes, matériaux difficiles)
+- A racheté Packshot-Creator en janvier 2026 avec la conviction d'ouvrir ces stations photo automatisées aux industriels qui souffrent d'une documentation visuelle artisanale
+
+## Positionnement — le trou de marché
+
+Entre le **smartphone du technicien** (non standardisé, non auditable) et la **vision industrielle en ligne** type Keyence / Cognex (50 à 300 k€, rigide, dédiée à une chaîne de production), Sysnext Industrial Solutions occupe la case **« station de documentation visuelle standardisée, flexible, intégrable »**.
+
+## Les cinq applications industrielles
+
+### 1. [Catalogue pièces détachées aftermarket auto & équipementiers](https://www.packshot-creator.com/fr/industrie-solutions/catalogue-pieces-detachees)
+
+Industrialiser la photo du catalogue aftermarket : 300 à 500 pièces par jour, standardisées, intégrées au PIM (Akeneo, Quable, Plytix, Contentserv). Coût par image divisé par 15 à 50, time-to-market catalogue divisé par 5.
+
+Références : Faurecia / Forvia, Continental Aftermarket, Schaeffler Automotive Aftermarket, Precisium, Würth Industrie Service.
+
+### 2. [Contrôle qualité & inspection](https://www.packshot-creator.com/fr/industrie-solutions/controle-qualite-inspection)
+
+Rapports de non-conformité (NCR) auto-générés avec photos multi-angles horodatées. Golden sample visuel par référence, versionné. Dossier d'audit AS9100 / IATF 16949 / ISO 13485 prêt sur demande. First Article Inspection (AS9102) avec Templates pré-configurés.
+
+### 3. [MRO aéronautique civile](https://www.packshot-creator.com/fr/industrie-solutions/mro-aeronautique-civile)
+
+Documentation avant/après intervention standardisée via Ghost Image (superposition transparente). Base de référence visuelle par type d'équipement consultable sur tablette. Conformité EN 9110 / EASA Part 145. Intégration GMAO (Maximo, SAP PM, SOMA, Coswin).
+
+Cibles : Air France Industries KLM E&M, Safran Services, ATR, Dassault Falcon Service, Revima, Sabena technics.
+
+### 4. [Documentation forensique civile](https://www.packshot-creator.com/fr/industrie-solutions/documentation-forensique)
+
+Mode forensique Orbitvu : paramètres de prise de vue verrouillés, horodatage cryptographique, signature numérique. Valeur probatoire garantie. Cible : experts judiciaires, cabinets d'expertise, laboratoires police scientifique, assurances.
+
+### 5. [Formation technique AR / VR](https://www.packshot-creator.com/fr/industrie-solutions/formation-technique-ar-vr)
+
+Manuels techniques 360° interactifs auto-générés depuis les captures. Vues éclatées, hotspots cliquables, support AR/VR pour équipes MRO et production. Formation immersive sans immobiliser l'équipement.
+
+## Technologies Orbitvu mobilisées
+
+- **Templates sauvegardés** : paramètres complets (éclairage, angle, caméra, post-production) pour répétabilité certifiable.
+- **Rotation 360° motorisée** : capture multi-angles automatisée.
+- **SuperFocus** : focus stacking multi-plans (quelques µm à plusieurs dizaines de mm). Inspection micro-composants, PCB.
+- **IQ Mask** : détourage automatique temps réel, y compris objets transparents/réfléchissants.
+- **Ghost Image** : superposition transparente pour positionnement identique. Comparaison avant/après MRO.
+- **74 LED individuelles** : éclairage 100 % reproductible, zones indépendamment contrôlables.
+- **Color Beautifier** : mise en valeur des matériaux (or, argent, chrome, noirs profonds, verre).
+- **Export automatisé** : multi-format, nommage SKU / NSN, intégration ERP / DAM / PIM.
+- **AI Photo Assistant** : reconnaissance produit + suggestion automatique des réglages optimaux.
+
+## Référentiel client industriel
+
+Clients existants du portefeuille Packshot-Creator déjà actifs sur le volet industriel :
+- Safran Nacelle MRO (aéronautique)
+- Faurecia / Forvia (équipementier auto Tier 1)
+- Continental Aftermarket & Services
+- Schaeffler Automotive Aftermarket
+- Precisium Groupe / Alliance Automotive
+- Würth Industrie Service
+- EFI Automotive, B.E.G. Brück Electronic, Vitacom Electronics, Dbc electronics
+
+## Calculateur ROI industrie
+
+[Calculateur ROI dédié industrie](https://www.packshot-creator.com/fr/industrie-solutions/calculateur-roi) : simulation personnalisée par segment (aftermarket auto, QC inspection, MRO aéro). Inputs : volume de références annuel, coût actuel par photo, délai actuel, nombre de sites. Sorties : économie annuelle, réduction time-to-market, période d'amortissement, volume traitable par an.
+
+## Ressources éditoriales
+
+- [Blog industrie](https://www.packshot-creator.com/fr/industrie-solutions/blog) : articles piliers sur AS9100, IATF 16949, ISO 13485, AS9102, IPC, aftermarket, MRO, PIM, photo industrielle.
+
+## Contact
+
+- Email : industriel@sysnext.com
+- Téléphone : +33 1 47 42 66 66
+- Adresse : 254 rue Vendôme, 69003 Lyon, France
+- [Réserver une démo de 30 minutes](https://www.packshot-creator.com/fr/industrie-solutions#contact)
+
+## Rapport à PackshotCreator
+
+Sysnext Industrial Solutions est une **marque commerciale** de Packshot-Creator (société mère, 25 ans d'activité). Entité juridique : PackshotCreator. Entité Schema.org distincte reliée par `parentOrganization`. Domaine partagé en Phase 1 (0-12 mois), migration prévue vers `sysnext-industrial.fr` en Phase 2 selon traction.
+
+Pour l'offre e-commerce, retail et luxe (catalogues grand public, IA BlendAI, formations photo produit), consultez [PackshotCreator](https://www.packshot-creator.com/llms.txt).
+
+## Ce que Sysnext n'est pas
+
+- Ce n'est pas un système de vision industrielle en ligne (pas concurrent frontal de Keyence, Cognex).
+- Ce n'est pas une station de métrologie dimensionnelle absolue (pas concurrent de Mitutoyo, Zeiss).
+- Ce n'est pas un scanner 3D CAD (pas concurrent de Hexagon, GOM).
+- Ce n'est pas un service photo marketing (différencié de PackshotCreator e-commerce).
+- Ce n'est pas adressé à la défense militaire / armement (DGA, ITAR, Pacte Défense PME) — scope civil exclusif.

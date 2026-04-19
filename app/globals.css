@@ -77,6 +77,34 @@
   --color-primary-formation: var(--primary-formation);
   --color-primary-blog: var(--primary-blog);
 
+  /* ========================================================= */
+  /* Sysnext Industrial Solutions — mini-site /industrie-solutions/* */
+  /* Contrat d'étanchéité : ces tokens ne sont utilisés que sous  */
+  /* /[lang]/industrie-solutions/* (DR-011 + DR-012).             */
+  /* Source : config/cohabitation-marques.md + BRIEF-IDENTITE.   */
+  /* ========================================================= */
+  --color-sysnext-50:  var(--sysnext-50);
+  --color-sysnext-200: var(--sysnext-200);
+  --color-sysnext-500: var(--sysnext-500);
+  --color-sysnext-700: var(--sysnext-700);
+  --color-sysnext-900: var(--sysnext-900);
+
+  --color-calibration-200: var(--calibration-200);
+  --color-calibration-500: var(--calibration-500);
+
+  --color-proof-200: var(--proof-200);
+  --color-proof-500: var(--proof-500);
+
+  --color-graphite-50:  var(--graphite-50);
+  --color-graphite-200: var(--graphite-200);
+  --color-graphite-500: var(--graphite-500);
+  --color-graphite-700: var(--graphite-700);
+  --color-graphite-900: var(--graphite-900);
+
+  --font-sysnext-sans:  var(--font-ibm-plex-sans);
+  --font-sysnext-serif: var(--font-ibm-plex-serif);
+  --font-sysnext-mono:  var(--font-ibm-plex-mono);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -183,6 +211,28 @@
   --primary-creation: #ff7809;     /* Orange - Section Création */
   --primary-formation: #cdcdfd;    /* Bleu clair - Section Formation */
   --primary-blog: #CBE857;         /* Lime - Section Blog */
+
+  /* ========================================================= */
+  /* Sysnext Industrial Solutions — palette dédiée              */
+  /* Usage exclusif sous /[lang]/industrie-solutions/*          */
+  /* ========================================================= */
+  --sysnext-900: #0E2A47;          /* Bleu industriel profond — wordmark, headers */
+  --sysnext-700: #1B4068;          /* Bleu medium — boutons primaires, liens hover */
+  --sysnext-500: #2B5F8F;          /* Bleu clair — liens, accents UI */
+  --sysnext-200: #A9C1D7;          /* Bleu pâle — fonds soft, séparateurs */
+  --sysnext-50:  #EEF3F8;          /* Bleu très clair — fonds doux */
+
+  --calibration-500: #7DBF3F;      /* Vert lime calibration — badges conforme, CTA secondaire */
+  --calibration-200: #D8EDC1;      /* Vert pâle — fonds validation positifs */
+
+  --proof-500: #E07A2F;            /* Orange preuve — accents éditoriaux, surlignages */
+  --proof-200: #F5D6BC;            /* Orange pâle — fonds attention */
+
+  --graphite-900: #0F1216;         /* Graphite profond — texte body sombre */
+  --graphite-700: #2F353D;         /* Graphite medium — texte secondaire */
+  --graphite-500: #5C6470;         /* Graphite — texte tertiaire, labels */
+  --graphite-200: #D4D8DD;         /* Graphite pâle — bordures, séparateurs */
+  --graphite-50:  #F6F7F9;         /* Graphite très clair — fonds page */
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
