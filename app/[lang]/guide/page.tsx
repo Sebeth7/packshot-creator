@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { getWebflowGuides } from '@/lib/webflow-guides';
+import { getAllGuides } from '@/lib/content';
 import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GuidesPage({ params }: PageProps) {
   const { lang } = await params;
-  const guides = await getWebflowGuides();
+  const guides = getAllGuides(lang as 'fr' | 'en');
 
   const breadcrumbs = breadcrumbSchema([
     { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
@@ -74,17 +74,18 @@ export default async function GuidesPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <StaggerContainer stagger={0.06} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {guides.map((guide) => {
-              const cleanTitle = guide.mainTitle.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
+              const rawTitle = guide.h1 || guide.title;
+              const cleanTitle = rawTitle.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
               return (
                 <StaggerItem key={guide.slug}>
                   <Link
                     href={`/guide/${guide.slug}`}
                     className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg transition-shadow block"
                   >
-                    {guide.mainImage && (
+                    {guide.image && (
                       <div className="relative w-full aspect-video overflow-hidden">
                         <Image
-                          src={guide.mainImage}
+                          src={guide.image}
                           alt={cleanTitle}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -96,9 +97,9 @@ export default async function GuidesPage({ params }: PageProps) {
                       <h2 className="text-lg font-heading font-bold text-future-dusk-900 mb-3 group-hover:text-very-peri-600 transition-colors line-clamp-2">
                         {cleanTitle}
                       </h2>
-                      {guide.metaDescription && (
+                      {guide.description && (
                         <p className="text-sm text-future-dusk-500 mb-4 line-clamp-2">
-                          {guide.metaDescription}
+                          {guide.description}
                         </p>
                       )}
                       <div className="flex items-center justify-between">
