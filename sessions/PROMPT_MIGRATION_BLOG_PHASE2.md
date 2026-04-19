@@ -78,7 +78,7 @@ Phase 2 est la plus risquée car :
 - Repo remote : `https://github.com/Sebeth7/packshot-creator.git`
 - Permission : **push direct sur `main` est autorisé** dans cette session (Seb l'a validé plusieurs fois) — mais toujours demander pour `push --force` ou actions destructrices
 
-### 2.2 Fichiers créés par Phase 1
+### 2.2 Fichiers créés par Phase 1 (mis à jour 19/04 post-migration guide EN)
 
 ```
 content/
@@ -89,7 +89,7 @@ content/
   guides/
     alternates.json
     fr/<slug>.json                     # 22 guides
-    en/<slug>.json                     # 21 guides
+    en/<slug>.json                     # 22 guides (21 + 1 draft whitelisté migré le 19/04)
 
 public/images/
   blog/<fileId>.<avif|mp4>             # 305 blog assets
@@ -188,8 +188,7 @@ interface Alternates {
 - `boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter`
 - `les-visuels-au-service-du-referencement-de-votre-e-commerce`
 
-**Guide** — 1 guide FR sans alternate EN :
-- `realiser-animation-360-professionnelle-chaussures` (le draft EN `create-professional-360-animation-of-shoes` existe mais n'est pas dans le corpus migré, cf. section Pièges)
+**Guide** — aucun désormais (depuis le 19/04). Il en restait 1 (`realiser-animation-360-professionnelle-chaussures`) jusqu'à la découverte que son alternate EN `create-professional-360-animation-of-shoes` était **servi en prod par Webflow** malgré `isDraft: true` côté API. Le guide EN a été migré via `GUIDE_DRAFTS_TO_KEEP` dans le script. Corpus : 22/22 FR/EN paires complètes. Détail en §7.15.
 
 ### 2.7 Drafts whitelistés (3 blog)
 
@@ -586,15 +585,34 @@ Cet article (draft whitelisté, 14 images) est le meilleur test visuel pour Phas
 
 Préserver la shape existante évite les régressions ailleurs.
 
-### 7.15 Le guide EN draft `create-professional-360-animation-of-shoes`
+### 7.15 Le guide EN `create-professional-360-animation-of-shoes` — MIGRÉ le 19/04
 
-Ce slug EN est dans `GUIDE_EN_REDIRECTS` du Worker (→ 301 vers `/en/guide/create-...`) mais il n'est PAS dans le corpus migré (le guide est `isDraft: true` en EN, `isArchived: false` en FR). Le FR correspondant est `realiser-animation-360-professionnelle-chaussures`, bien publié.
+**Cas traité, résolu.** Commit `4393491`.
 
-**Deux options à trancher avec Seb** :
-1. Migrer le draft EN aussi (l'ajouter dans une whitelist `GUIDE_DRAFTS_TO_KEEP` analogue à celle du blog) — script à re-run
-2. Retirer ce slug de `GUIDE_EN_REDIRECTS` du Worker en Phase 3
+**Découverte** : malgré `isDraft: true` côté API Webflow, ce guide est **servi en prod** par Webflow (HTTP 200, `x-served-by: webflow`). Raison : `lastPublished` est non-null (`2025-06-23T10:14:09.011Z`). Webflow continue de servir la dernière version publiée d'un item jusqu'à une nouvelle publication du site, même si l'item a été repassé en draft côté CMS. Si on n'avait pas migré, Phase 3 aurait transformé cette URL live en 404.
 
-Par défaut, Phase 2 ne change rien ; seule Phase 3 touche au Worker.
+**Règle générale à appliquer pour toute migration Webflow → Next.js** :
+- `isDraft: true` + `lastPublished: null` → non servi en prod, safe à ignorer
+- `isDraft: true` + `lastPublished: <date>` → **servi en prod**, à migrer via whitelist
+
+Vérification exhaustive faite le 19/04 :
+- 22 FR guides, 22 EN guides — 1 seul cas `draft-mais-live` (celui-ci)
+- 80 FR blog, 80 EN blog non-archivés — **0 cas** `draft-mais-live`
+- Aucun item archivé dans les collections
+- Aucun published avec `lastPublished` null (aberration)
+
+**Mécanisme mis en place dans `scripts/extract-webflow-content.mjs`** :
+```js
+const GUIDE_DRAFTS_TO_KEEP = new Set([
+  'create-professional-360-animation-of-shoes',
+]);
+```
+Filtres `mapGuideItem` et `filterGuide` respectent la whitelist comme pour `DRAFTS_TO_KEEP` côté blog.
+
+**État corpus après migration** :
+- `content/guides/en/create-professional-360-animation-of-shoes.json` créé (9 étapes, 5 FAQs, 10 images, toutes dédupliquées avec FR via `fileId` partagés)
+- `content/guides/alternates.json` mis à jour : paire complète pour l'itemId `67ee891719af08cfa4ebfacf`
+- Bénéfice SEO collatéral : 5 JSON (2 blog + 3 guides) ont eu leurs liens internes vers ce slug EN restaurés (auparavant unlinkés)
 
 ---
 
@@ -1020,14 +1038,20 @@ Fichiers dans `~/.claude/projects/-Users-photodif-Documents-SYSNEXT-SITE-WEB/mem
 - `project_blog_migration_plan.md` — Plan migration (ce doc le détaille)
 - `project_migration_live_status.md` — État prod post-16/04
 
-### G. Décisions en attente au début Phase 2
+### G. Décisions en attente au début Phase 2 — TRANCHÉES le 19/04
 
-À poser à Seb en début de session :
+1. **Guide EN draft** `create-professional-360-animation-of-shoes` → **MIGRÉ** (commit `4393491`). Cf. §7.15. Motif : URL live en prod via Webflow malgré `isDraft: true`.
+2. **Résolution `categorie-3` guides** → **non, pas nécessaire Phase 2**. Le listing guide actuel (`app/[lang]/guide/page.tsx`) n'utilise aucune catégorie (pas de filtre, pas de tri, pas de badge). À rediscuter Phase 5 si un filtre SEO devient pertinent.
+3. **Composant `RelatedArticles` côté guides** → **n'existe pas, pas ajouté Phase 2**. Amélioration fonctionnelle hors scope « changer la source sans casser ». À rediscuter Phase 5.
+4. **Traductions EN manquantes dans `STATIC_ARTICLES`** → **status quo accepté**. Inventaire : sur les 12 articles statiques, **4** ont un namespace i18n complet FR+EN (`blogBudget`, `blogStudioIa`, `blogPrestataire`, `blogComparatif`), **8** ont leurs metas hardcodées en français dans le `page.tsx`. Sur `/en/blog/<slug>` ces 8 servent le contenu FR — dégradation SEO EN connue, hors scope Phase 2. Les 12 apparaissent dans le listing FR **ET** EN (cohérent avec le routing Worker + `[lang]` dynamique). À rediscuter Phase 5.
 
-1. **Guide EN draft** `create-professional-360-animation-of-shoes` — migrer et publier, ou laisser orphelin (2 occurrences de lien) ?
-2. **Résolution `categorie-3` guides** — mapping hardcodé à ajouter si besoin listing par catégorie ?
-3. **Composant `RelatedArticles` côté guides** — existe-t-il ? sinon à créer ?
-4. **Traductions EN manquantes dans `STATIC_ARTICLES`** — inventorier quels dossiers `app/en/blog/<slug>` existent pour les 12 articles statiques, décider si les non-traduits apparaissent dans le listing EN ou pas.
+### G.bis — Bug collatéral découvert et qui sera corrigé par le refactor
+
+`app/[lang]/guide/[slug]/page.tsx` ligne ~32 émet des `alternates.languages` avec le **même slug** pour fr et en :
+```ts
+languages: { fr: `/fr/guide/${slug}`, en: `/en/guide/${slug}` }
+```
+Or **21 slugs FR sur 22 diffèrent de leur EN** (et 22/22 après migration du draft). Le refactor étape 3 (template guide lit `content/`) corrigera ce bug SEO automatiquement en passant par `getGuideAlternates(webflowItemId)`.
 
 ### H. Fichiers dossier sessions/
 
