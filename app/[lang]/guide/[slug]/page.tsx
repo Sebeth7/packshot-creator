@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getWebflowGuide, getWebflowGuides } from '@/lib/webflow-guides';
+import { getGuide, getAllGuideSlugs, getGuideAlternates } from '@/lib/content';
 import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { Clock, Wrench, Box, ArrowLeft, ChevronRight } from 'lucide-react';
@@ -12,31 +12,42 @@ interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const guides = await getWebflowGuides();
-  return guides.map((guide) => ({ slug: guide.slug }));
+export function generateStaticParams() {
+  const out: { lang: string; slug: string }[] = [];
+  for (const lang of ['fr', 'en'] as const) {
+    for (const slug of getAllGuideSlugs(lang)) {
+      out.push({ lang, slug });
+    }
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  const guide = await getWebflowGuide(slug);
+  const guide = getGuide(slug, lang as 'fr' | 'en');
   if (!guide) return { title: 'Guide introuvable' };
 
-  const cleanTitle = guide.metaTitle.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
+  const metaTitleSource = guide.metaTitle || guide.title;
+  const cleanTitle = metaTitleSource.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
+
+  const alternates = getGuideAlternates(guide.webflowItemId);
+  const languages: Record<string, string> = {};
+  if (alternates.fr) languages.fr = `/fr/guide/${alternates.fr}`;
+  if (alternates.en) languages.en = `/en/guide/${alternates.en}`;
 
   return {
     title: cleanTitle,
-    description: guide.metaDescription,
+    description: guide.description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/guide/${slug}`,
-      languages: { fr: `/fr/guide/${slug}`, en: `/en/guide/${slug}` },
+      languages,
     },
     openGraph: {
       title: cleanTitle,
-      description: guide.metaDescription,
+      description: guide.description,
       url: `https://www.packshot-creator.com/${lang}/guide/${slug}`,
-      images: guide.mainImage
-        ? [{ url: guide.mainImage, width: 1200, height: 630 }]
+      images: guide.image
+        ? [{ url: guide.image, width: 1200, height: 630 }]
         : [{ url: `/api/og?title=${encodeURIComponent(cleanTitle)}&type=page&lang=${lang}`, width: 1200, height: 630 }],
       type: 'article',
     },
@@ -45,19 +56,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GuidePage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const guide = await getWebflowGuide(slug);
+  const guide = getGuide(slug, lang as 'fr' | 'en');
 
   if (!guide) notFound();
 
-  const cleanTitle = guide.mainTitle.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
+  const h1Source = guide.h1 || guide.title;
+  const cleanTitle = h1Source.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
 
   // Schema.org HowTo
   const howToSchema = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: cleanTitle,
-    description: guide.metaDescription,
-    image: guide.mainImage,
+    description: guide.description,
+    image: guide.image,
     totalTime: guide.duration ? `PT${guide.duration.replace(/[^0-9]/g, '')}M` : undefined,
     tool: guide.tool ? { '@type': 'HowToTool', name: guide.tool } : undefined,
     step: guide.steps.map((step, i) => ({
@@ -101,8 +113,8 @@ export default async function GuidePage({ params }: PageProps) {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
               {cleanTitle}
             </h1>
-            {guide.metaDescription && (
-              <p className="text-lg text-white/70 max-w-2xl">{guide.metaDescription}</p>
+            {guide.description && (
+              <p className="text-lg text-white/70 max-w-2xl">{guide.description}</p>
             )}
 
             {/* Metadata badges */}
@@ -131,12 +143,12 @@ export default async function GuidePage({ params }: PageProps) {
       </section>
 
       {/* Main image */}
-      {guide.mainImage && (
+      {guide.image && (
         <section className="py-10 bg-neutral-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src={guide.mainImage}
+                src={guide.image}
                 alt={cleanTitle}
                 fill
                 className="object-cover"
