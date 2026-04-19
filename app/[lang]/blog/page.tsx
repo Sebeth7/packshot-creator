@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function BlogPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const posts = await getAllArticles(0);
+  const posts = await getAllArticles(lang as 'fr' | 'en', 0);
   const t = await getTranslations({ locale: lang, namespace: 'blog' });
   const isFr = lang === 'fr';
 
@@ -60,6 +60,8 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
   const postsWithFormattedDates = posts.map((p) => ({
     ...p,
     formattedDate: formatDate(p.date),
+    image: p.image ?? undefined,
+    category: p.category ?? undefined,
   }));
 
   const heroPost = postsWithFormattedDates[0];

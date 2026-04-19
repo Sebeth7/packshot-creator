@@ -13,7 +13,7 @@ interface RelatedArticlesProps {
 
 export async function RelatedArticles({ currentSlug, category, lang }: RelatedArticlesProps) {
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
-  const allArticles = await getAllArticles(0);
+  const allArticles = await getAllArticles(lang as 'fr' | 'en', 0);
 
   let candidates = allArticles.filter((a) => a.slug !== currentSlug);
 

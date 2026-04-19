@@ -111,9 +111,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // --- Dynamic: Blog articles (static Next.js only, not Webflow legacy) ---
   // Les articles Webflow sont servis directement par Webflow (sitemap Webflow séparé).
   // Seuls les articles statiques Next.js (avec slug connu) vont dans ce sitemap.
+  // Phase 2 étape 7 (à venir) ajoutera les 60 FR + 55 EN articles migrés depuis content/.
   let blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
   try {
-    const articles = await getAllArticles(0);
+    const articles = await getAllArticles('fr', 0);
     blogPages = articles
       .filter((article) => article.source === 'static')
       .flatMap((article) => [

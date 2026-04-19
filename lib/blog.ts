@@ -1,6 +1,10 @@
-// lib/blog.ts — Static articles + Webflow
+// lib/blog.ts — Static articles + articles migrés lus depuis content/
 
-import { getWebflowArticles, type WebflowArticle } from './webflow';
+import {
+  getAllArticles as getAllMigratedArticles,
+  type MigratedArticle,
+  type Lang,
+} from './content';
 
 export interface StaticArticle {
   slug: string;
@@ -14,7 +18,7 @@ export interface StaticArticle {
   source: 'static';
 }
 
-export type Article = WebflowArticle | StaticArticle;
+export type Article = MigratedArticle | StaticArticle;
 
 /**
  * All static blog pages (each has its own route in app/[lang]/blog/)
@@ -161,14 +165,17 @@ export const STATIC_ARTICLE_SLUGS: ReadonlySet<string> = new Set(
 );
 
 /**
- * Get all articles (static pages + Webflow), sorted by date
+ * Get all articles (static pages + content/ migrés), filtrés par langue et triés par date.
+ * Les 12 STATIC_ARTICLES apparaissent dans FR ET EN (leur contenu est servi via
+ * les namespaces i18n pour 4/12 ; les 8 autres ont leurs metas hardcodées en FR —
+ * dégradation SEO EN connue, hors scope Phase 2, cf. handover §13.G).
  */
-export async function getAllArticles(limit = 8): Promise<Article[]> {
-  const webflowArticles = await getWebflowArticles();
+export async function getAllArticles(lang: Lang, limit = 0): Promise<Article[]> {
+  const migrated = getAllMigratedArticles(lang);
 
   const allArticles: Article[] = [
     ...STATIC_ARTICLES,
-    ...webflowArticles,
+    ...migrated,
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return limit > 0 ? allArticles.slice(0, limit) : allArticles;
