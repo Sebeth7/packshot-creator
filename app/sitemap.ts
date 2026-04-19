@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
-import { getWebflowGuides } from '@/lib/webflow-guides';
-import { getAllArticles } from '@/lib/blog';
+import { getAllArticleSlugs, getAllGuideSlugs } from '@/lib/content';
+import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
 
 const BASE_URL = 'https://www.packshot-creator.com';
 
@@ -108,38 +108,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
   ]);
 
-  // --- Dynamic: Blog articles (static Next.js only, not Webflow legacy) ---
-  // Les articles Webflow sont servis directement par Webflow (sitemap Webflow séparé).
-  // Seuls les articles statiques Next.js (avec slug connu) vont dans ce sitemap.
-  // Phase 2 étape 7 (à venir) ajoutera les 60 FR + 55 EN articles migrés depuis content/.
-  let blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
-  try {
-    const articles = await getAllArticles('fr', 0);
-    blogPages = articles
-      .filter((article) => article.source === 'static')
-      .flatMap((article) => [
-        { path: `/fr/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
-        { path: `/en/blog/${article.slug}`, priority: 0.6, changeFrequency: 'weekly' as const },
-      ]);
-  } catch {
-    // Silently fail - blog articles are optional
+  // --- Blog articles : 12 statics (FR+EN) + 60 FR + 55 EN migrés depuis content/ ---
+  const blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
+  // Les 12 statiques : un dossier app/[lang]/blog/<slug>/ sert les deux langues
+  for (const slug of STATIC_ARTICLE_SLUGS) {
+    blogPages.push({ path: `/fr/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
+    blogPages.push({ path: `/en/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
+  }
+  // Les articles migrés : slugs distincts par langue
+  for (const slug of getAllArticleSlugs('fr')) {
+    if (STATIC_ARTICLE_SLUGS.has(slug)) continue;
+    blogPages.push({ path: `/fr/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
+  }
+  for (const slug of getAllArticleSlugs('en')) {
+    if (STATIC_ARTICLE_SLUGS.has(slug)) continue;
+    blogPages.push({ path: `/en/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
   }
 
-  // --- Dynamic: Guide pages (FR only) ---
-  // Les guides Webflow CMS ont des slugs FR. Next.js les sert sous /fr/guide/*.
-  // Les guides EN sont servis directement par Webflow → pas dans ce sitemap.
-  let guidePages: { path: string; priority: number; changeFrequency: 'monthly' }[] = [];
-  try {
-    const guides = await getWebflowGuides();
-    guidePages = guides
-      .filter((guide) => guide.slug && guide.slug !== 'undefined')
-      .map((guide) => ({
-        path: `/fr/guide/${guide.slug}`,
-        priority: 0.6,
-        changeFrequency: 'monthly' as const,
-      }));
-  } catch {
-    // Silently fail - guides are optional
+  // --- Guide pages : 22 FR + 22 EN depuis content/ ---
+  const guidePages: { path: string; priority: number; changeFrequency: 'monthly' }[] = [];
+  for (const slug of getAllGuideSlugs('fr')) {
+    guidePages.push({ path: `/fr/guide/${slug}`, priority: 0.6, changeFrequency: 'monthly' });
+  }
+  for (const slug of getAllGuideSlugs('en')) {
+    guidePages.push({ path: `/en/guide/${slug}`, priority: 0.6, changeFrequency: 'monthly' });
   }
 
   return [
