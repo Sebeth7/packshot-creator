@@ -46,6 +46,13 @@ const DRAFTS_TO_KEEP = new Set([
   'photographie-de-produits-a-360-degres-en-interne',
 ]);
 
+// Guide drafts (par slug, toute locale) à migrer malgré isDraft=true côté API.
+// Cas : l'item est marqué draft mais lastPublished est non-null, Webflow continue
+// de le servir en prod jusqu'à la prochaine republication du site.
+const GUIDE_DRAFTS_TO_KEEP = new Set([
+  'create-professional-360-animation-of-shoes',
+]);
+
 const BLOG_CATEGORY_LABELS = {
   '5f78e051722c291d8cbf5ec9fea26fc5': { fr: 'Actualités', en: 'News' },
   '104a291d655dd1b3985ecb9a34c0df8a': { fr: 'E-commerce', en: 'E-commerce' },
@@ -455,7 +462,7 @@ function mapGuideItem(item, lang, ctx) {
   const slug = f.slug;
   if (!isValidSlug(slug)) return null;
   if (item.isArchived) return null;
-  if (item.isDraft) return null; // no draft-to-keep list for guides
+  if (item.isDraft && !GUIDE_DRAFTS_TO_KEEP.has(slug)) return null;
 
   const steps = [];
   for (let i = 1; i <= 10; i++) {
@@ -567,7 +574,10 @@ async function main() {
   const filterGuide = (items) =>
     items.filter((i) => {
       const s = i?.fieldData?.slug;
-      return isValidSlug(s) && !i.isArchived && !i.isDraft;
+      if (!isValidSlug(s)) return false;
+      if (i.isArchived) return false;
+      if (i.isDraft && !GUIDE_DRAFTS_TO_KEEP.has(s)) return false;
+      return true;
     });
 
   const blog = { fr: filterBlog(rawBlogFr), en: filterBlog(rawBlogEn) };

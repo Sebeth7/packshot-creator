@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-04-18T10:04:30.098Z",
+  "ranAt": "2026-04-19T13:36:02.702Z",
   "dry": false,
   "skipImages": false,
   "counts": {
@@ -9,7 +9,7 @@
     },
     "guide": {
       "fr": 22,
-      "en": 21
+      "en": 22
     },
     "images": 470,
     "imagesDownloaded": 470
