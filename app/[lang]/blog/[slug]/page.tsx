@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { getWebflowArticle, getArticleAlternates } from '@/lib/webflow';
+import { getArticle, getAllArticleSlugs, getBlogAlternates } from '@/lib/content';
+import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
 import { Link } from '@/i18n/routing';
 import {
   TableOfContents,
@@ -22,28 +23,39 @@ interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
 }
 
+export function generateStaticParams() {
+  const out: { lang: string; slug: string }[] = [];
+  for (const lang of ['fr', 'en'] as const) {
+    for (const slug of getAllArticleSlugs(lang)) {
+      if (STATIC_ARTICLE_SLUGS.has(slug)) continue;
+      out.push({ lang, slug });
+    }
+  }
+  return out;
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const { lang, slug } = await params;
 
-  const webflowArticle = await getWebflowArticle(slug, lang as 'fr' | 'en');
-  if (webflowArticle) {
-    const pageTitle = webflowArticle.metaTitle || webflowArticle.title;
-    const alternates = await getArticleAlternates(webflowArticle.webflowItemId);
+  const article = getArticle(slug, lang as 'fr' | 'en');
+  if (article) {
+    const pageTitle = article.metaTitle || article.title;
+    const alternates = getBlogAlternates(article.webflowItemId);
     const languages: Record<string, string> = {};
     if (alternates.fr) languages.fr = `/fr/blog/${alternates.fr}`;
     if (alternates.en) languages.en = `/en/blog/${alternates.en}`;
     return {
       title: pageTitle,
-      description: webflowArticle.description,
+      description: article.description,
       alternates: {
         canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages,
       },
       openGraph: {
         title: pageTitle,
-        description: webflowArticle.description,
-        images: webflowArticle.image
-          ? [webflowArticle.image]
+        description: article.description,
+        images: article.image
+          ? [article.image]
           : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
       },
@@ -72,17 +84,16 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
 
-  // Webflow fallback only (static articles have their own routes)
-  const webflowArticle = await getWebflowArticle(slug, lang as 'fr' | 'en');
-  if (!webflowArticle) notFound();
+  const article = getArticle(slug, lang as 'fr' | 'en');
+  if (!article) notFound();
 
-  const processed = processHtmlContent(webflowArticle.content || '');
-  const title = webflowArticle.h1 || webflowArticle.title;
-  const description = webflowArticle.description;
-  const date = webflowArticle.date;
-  const category = webflowArticle.category;
-  const imageUrl = webflowArticle.image || null;
-  const readingTime = webflowArticle.readingTime ?? calculateReadingTime(processed.wordCount);
+  const processed = processHtmlContent(article.content || '');
+  const title = article.h1 || article.title;
+  const description = article.description;
+  const date = article.date;
+  const category = article.category;
+  const imageUrl = article.image || null;
+  const readingTime = article.readingTime ?? calculateReadingTime(processed.wordCount);
   const headings = processed.headings;
 
   const breadcrumbs = [
@@ -122,10 +133,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
             <Clock className="h-4 w-4" />
             {t('readingTime', { minutes: readingTime })}
           </span>
-          {webflowArticle.author && (
+          {article.author && (
             <span className="inline-flex items-center gap-1.5">
               <User className="h-4 w-4" />
-              {webflowArticle.author}
+              {article.author}
             </span>
           )}
         </div>
@@ -171,7 +182,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
         </section>
       </FadeInView>
 
-      {webflowArticle.faqs.length > 0 && (
+      {article.faqs.length > 0 && (
         <section className="py-16 bg-neutral-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <FadeInView>
@@ -180,7 +191,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
               </h2>
             </FadeInView>
             <div className="space-y-4">
-              {webflowArticle.faqs.map((faq, i) => (
+              {article.faqs.map((faq, i) => (
                 <details key={i} className="group rounded-2xl border border-neutral-100 bg-white">
                   <summary className="flex items-center justify-between cursor-pointer p-6 font-medium text-future-dusk-900 hover:text-very-peri-600 transition-colors">
                     {faq.question}
@@ -197,7 +208,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       )}
 
       <ArticleCTA lang={lang} />
-      <RelatedArticles currentSlug={slug} category={category} lang={lang} />
+      <RelatedArticles currentSlug={slug} category={category ?? undefined} lang={lang} />
 
       <SchemaOrg schema={[
         organizationSchema(),
@@ -208,13 +219,13 @@ export default async function BlogArticlePage({ params }: PageProps) {
           url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
           image: imageUrl || undefined,
           datePublished: date,
-          category,
-          author: webflowArticle.author,
+          category: category ?? undefined,
+          author: article.author ?? undefined,
         }),
-        ...(webflowArticle.faqs.length > 0 ? [{
+        ...(article.faqs.length > 0 ? [{
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: webflowArticle.faqs.map((faq) => ({
+          mainEntity: article.faqs.map((faq) => ({
             '@type': 'Question',
             name: faq.question,
             acceptedAnswer: { '@type': 'Answer', text: faq.answer },

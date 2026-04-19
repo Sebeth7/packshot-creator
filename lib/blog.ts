@@ -153,6 +153,14 @@ const STATIC_ARTICLES: StaticArticle[] = [
 ];
 
 /**
+ * Set of static article slugs (each has its own app/[lang]/blog/<slug>/page.tsx).
+ * Utilisé par generateStaticParams du template dynamique pour exclure ces slugs.
+ */
+export const STATIC_ARTICLE_SLUGS: ReadonlySet<string> = new Set(
+  STATIC_ARTICLES.map((a) => a.slug),
+);
+
+/**
  * Get all articles (static pages + Webflow), sorted by date
  */
 export async function getAllArticles(limit = 8): Promise<Article[]> {
