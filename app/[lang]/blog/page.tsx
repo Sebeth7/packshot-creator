@@ -49,13 +49,14 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
     { name: 'Blog', url: `https://www.packshot-creator.com/${lang}/blog` },
   ];
 
-  // Pre-format dates server-side to avoid hydration mismatch (timezone differences)
+  // Pre-format dates server-side to avoid hydration mismatch (timezone differences).
+  // Les STATIC_ARTICLES ont des dates 'YYYY-MM-DD', les migrés ont ISO complet
+  // ('YYYY-MM-DDTHH:mm:ss.sssZ') — on gère les deux sans doubler le suffixe T.
   const formatDate = (date: string) =>
-    new Date(date + 'T00:00:00').toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    new Date(date.includes('T') ? date : date + 'T00:00:00').toLocaleDateString(
+      isFr ? 'fr-FR' : 'en-US',
+      { year: 'numeric', month: 'long', day: 'numeric' },
+    );
 
   const postsWithFormattedDates = posts.map((p) => ({
     ...p,
