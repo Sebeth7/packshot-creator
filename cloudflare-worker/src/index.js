@@ -629,12 +629,9 @@ function shouldReturn410(path) {
 }
 
 function isWebflowContent(pathname) {
-  // /(fr|en)/blog/:slug → Webflow si le slug n'est pas dans Next.js
-  const blogMatch = pathname.match(/^\/(fr|en)\/blog\/([^/]+)$/);
-  if (blogMatch && !NEXTJS_BLOG_SLUGS.has(blogMatch[2])) return true;
-
-  // /(fr|en)/guide/:slug → Next.js (Phase 3 complète : 22 FR + 22 EN servis par les templates)
-
+  // Phase 3 finalisée (2026-05-02) : 100% du périmètre blog+guides servi par Next.js.
+  // Tout slug inconnu sous /(fr|en)/blog/* ou /(fr|en)/guide/* est traité par Next.js
+  // (qui sert une 404 avec la charte 2026, plutôt qu'une 404 Webflow ancienne charte).
   return false;
 }
 
