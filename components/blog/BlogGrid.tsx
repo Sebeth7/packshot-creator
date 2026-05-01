@@ -5,7 +5,11 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
 
-const ARTICLES_PER_PAGE = 9;
+// Tous les articles rendus en SSR initial. Bouton « Voir plus » reste actif
+// si le corpus dépasse cette limite. Avec 72 articles aujourd'hui, le HTML
+// supplémentaire est négligeable et Google indexe la liste complète d'un
+// coup (pas dépendant de l'interaction client-side).
+const ARTICLES_PER_PAGE = 100;
 
 interface BlogArticle {
   slug: string;
