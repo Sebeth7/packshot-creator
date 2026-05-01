@@ -93,6 +93,64 @@ const NEXTJS_BLOG_SLUGS = new Set([
   'taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
   'utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle',
   'votre-studio-photo-interne-3-bonnes-pratiques-pour-lorganiser',
+
+  // === 55 articles EN migrés Webflow → Next.js (Phase 3 complète — 2026-05-02) ===
+  // 3 slugs identiques aux FR (drafts whitelistés) sont naturellement dédupliqués par le Set
+  '3-good-practices-for-organizing-the-production-of-your-internal-photo-studio',
+  '360-photos-marketplaces',
+  '4-fundamentals-for-reducing-abandoned-shopping-carts',
+  '5-cameras-realistic-3d-animation',
+  '5-questions-before-investing-in-an-in-house-photo-studio',
+  '8-challenges-producing-visual-content',
+  '8-steps-to-professional-jewelry-photography',
+  'advantages-toplight-product-photography',
+  'ai-virtual-lights-revolution-packshot',
+  'automate-creation-product-photographs-animations',
+  'best-image-format-for-the-web',
+  'best-photo-studio-in-house-photo-shoots',
+  'comparison-of-automated-photography-solutions',
+  'e-commerce-6-practices-to-boost-your-conversion-rate',
+  'e-commerce-8-elements-success',
+  'e-commerce-packshot-evolution',
+  'e-commerce-set-up-internal-packshots',
+  'focus-on-the-focus-stacking',
+  'from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry',
+  'furniture-decoration-e-commerce-photography',
+  'how-ai-revolutionizing-visual-production',
+  'how-shotflow-accelerates-fashion-visual-content-production',
+  'how-shotflow-helps-optimize-content-production',
+  'how-shotflow-improves-real-time-task-tracking',
+  'how-to-avoid-blurry-product-photographs',
+  'how-to-choose-best-lens-for-product-photography',
+  'how-to-e-commerce-product-photography',
+  'how-to-ensure-consistency-between-photos-packshot-photography-guide',
+  'how-to-get-best-amazon-product-photos',
+  'impact-photographs-product-sheet',
+  'interview-laurent-wainberg-founder-packshotcreator',
+  'interview-visuals-ecommerce-wizishop',
+  'lighting-3d-packshots',
+  'lost-packshotcreator-ortery-software-solution',
+  'media-photography-complete-guide-to-packshot-photography-4',
+  'optimize-team-collaboration-success-story-shotflow',
+  'optimizing-visual-production-work',
+  'orbitvu-automation-for-3d-360-product-photography',
+  'packshot-photography-guide-product-photography-equipment',
+  'packshot-photography-guide-why-make-product-packshots',
+  'photographie-2d-de-produits',
+  'photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre',
+  'photographie-de-produits-a-360-degres-en-interne',
+  'potential-advantages-e-commerce-businesses',
+  'product-photo-lighting',
+  'product-photography-how-to-showcase-your-clothing',
+  'product-showcase-how-to-packshot-photography-guide',
+  'second-hand-packshot-photo-studio',
+  'series-e-commerce-ebooks-shooting-products',
+  'shoes-the-unmissable-e-business-sector-boosted-with-packshotcreator',
+  'technique-photograph-jewelry-tutorial',
+  'tips-photo-framing-composition',
+  'use-photo-studio-virtual-reality',
+  'what-return-on-investment-with-an-internal-photo-studio',
+  'why-choose-orbitvu-for-packshot-photography',
 ]);
 
 // Blog EN sans préfixe /en/ — articles vivants sur Webflow à /en/blog/slug
@@ -572,9 +630,7 @@ function isWebflowContent(pathname) {
   const blogMatch = pathname.match(/^\/(fr|en)\/blog\/([^/]+)$/);
   if (blogMatch && !NEXTJS_BLOG_SLUGS.has(blogMatch[2])) return true;
 
-  // /en/guide/:slug → Webflow (guides EN existent sur Webflow, pas dans Next.js)
-  // /fr/guide/:slug → Next.js (les guides FR sont fetchés via l'API Webflow CMS par Next.js)
-  if (/^\/en\/guide\/[^/]+$/.test(pathname)) return true;
+  // /(fr|en)/guide/:slug → Next.js (Phase 3 complète : 22 FR + 22 EN servis par les templates)
 
   return false;
 }
