@@ -1,12 +1,12 @@
 {
   "home": {
     "meta": {
-      "title": "PackshotCreator | Packshot Professionnel en 3 Secondes | Studios Photo Automatisés",
-      "description": "Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI.studio et formations Qualiopi. 5000+ entreprises équipées. Packshot en 3 secondes."
+      "title": "Packshot professionnel automatisé — PackshotCreator",
+      "description": "Réalisez vos packshots produits en 3 secondes avec un studio photo automatisé. Solution complète : capture, IA, formation. 5 000+ entreprises équipées."
     },
     "hero": {
       "badge": "Distributeur exclusif Orbitvu France & Suisse",
-      "title": "Packshot professionnel en 3 secondes. IA ready.",
+      "title": "Packshot produit professionnel en 3 secondes.",
       "subtitle": "Studios photo automatisés Orbitvu + IA BlendAI.studio + Formations Qualiopi. L'approche qui équipe Chanel, Amazon et 5000+ entreprises en France et en Suisse.",
       "cta": "Demander une démo gratuite",
       "ctaSecondary": "Calculer mon ROI en 2 min",
@@ -48,8 +48,8 @@
     },
     "hybrid": {
       "label": "Notre approche",
-      "heading": "Capture Packshot<br></br>+<br></br>Création IA :<br></br>l'approche qui change tout",
-      "subtitle": "La <bold>combinaison intelligente</bold> des deux mondes, portée par <bold>25 ans d'expertise</bold> en photographie produit.",
+      "heading": "Capture du packshot produit<br></br>+<br></br>Création IA :<br></br>l'approche qui change tout",
+      "subtitle": "La <bold>combinaison intelligente</bold> des deux mondes — la photo packshot et la création IA — portée par <bold>25 ans d'expertise</bold> en photographie produit.",
       "capture": {
         "title": "Capture parfaite",
         "description": "Studios Orbitvu : packshot en <bold>3 secondes</bold>, 360°, vidéo, détourage automatique et ombres réelles. La <bold>base irremplaçable</bold> par l'IA.",
@@ -422,13 +422,13 @@
   },
   "iaPhotoProduit": {
     "meta": {
-      "title": "IA Photo Produit | BlendAI.studio - Packshot Pro vers Lifestyle en 3 Clics",
-      "description": "BlendAI.studio : IA photo produit qui part de votre packshot professionnel pour créer des déclinaisons lifestyle fidèles à 100%. Solution propriétaire PackshotCreator. Essai gratuit.",
+      "title": "Photo produit IA : packshots en déclinaisons lifestyle — BlendAI",
+      "description": "Générez des déclinaisons lifestyle depuis vos photos produit avec l'IA. Fond, ambiance, mise en scène : 100% automatique en quelques clics. Essai gratuit.",
       "keywords": "ia photo produit, blendai, alternative photoroom, ia packshot, lifestyle generator, photo produit ia, blendai vs photoroom",
       "ogDescription": "Décuplez vos visuels produit à partir d'un seul packshot professionnel. IA spécialisée, fidélité 100%, zéro hallucination."
     },
     "hero": {
-      "title": "Vos produits, des déclinaisons infinies",
+      "title": "Créez des déclinaisons lifestyle depuis vos photos produit",
       "subtitle": "BlendAI part de votre packshot professionnel pour créer des mises en scène lifestyle <bold>fidèles à 100%</bold>. Pas de produit réinventé, pas d'approximation.",
       "ctaPrimary": "Tester BlendAI gratuitement",
       "ctaSecondary": "Voir les résultats"
@@ -550,7 +550,7 @@
     },
     "features": {
       "heading": "Ce que BlendAI fait pour vous",
-      "subtitle": "<bold>5 outils spécialisés</bold> pour transformer vos packshots",
+      "subtitle": "<bold>5 outils spécialisés</bold> pour transformer vos packshots en mises en scène produit lifestyle.",
       "lifestyle": {
         "name": "Mises en scène lifestyle",
         "description": "Transformez vos packshots en visuels lifestyle contextualisés. Intérieur, extérieur, ambiance - le <bold>produit reste intact</bold>."
@@ -790,13 +790,13 @@
   },
   "studiosHardware": {
     "meta": {
-      "title": "Studios Photo Automatisés Orbitvu | PackshotCreator — Distributeur France & Suisse",
-      "description": "Systèmes photo automatisés Orbitvu. 500+ photos/jour, ROI en 9 mois. Distributeur exclusif France & Suisse. 20 systèmes du bijou au mobilier. Démo gratuite.",
+      "title": "Studio photo automatisé pour e-commerce — PackshotCreator",
+      "description": "Studio photo automatisé pour vos packshots e-commerce. 20 systèmes Orbitvu, 500+ photos/jour, ROI moyen 9 mois. 5 000+ entreprises équipées. Démo gratuite.",
       "keywords": "studio photo automatisé, orbitvu france, système photo produit, photo produit automatique, roi studio photo, packshot automatisé"
     },
     "hero": {
       "badge": "Distributeur Exclusif Orbitvu — France & Suisse",
-      "title": "Produisez vos photos produit en interne. En quelques secondes.",
+      "title": "Studio photo automatisé : produisez vos packshots en interne.",
       "subtitle": "Les systèmes Orbitvu automatisent la prise de vue, le détourage et la retouche. Vos équipes produisent 500+ photos/jour, sans photographe externe. ROI moyen : 9 mois.",
       "ctaPrimary": "Voir les systèmes",
       "ctaSecondary": "Demander une démo"
@@ -861,7 +861,7 @@
     },
     "products": {
       "heading": "Trouvez le système adapté à votre production",
-      "subtitle": "<bold>20 systèmes</bold> Orbitvu, du bijou au mobilier. Filtrez par <bold>taille de produit</bold>, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
+      "subtitle": "<bold>20 systèmes</bold> Orbitvu — du studio photo packshot au studio photo e-commerce, du bijou au mobilier. Filtrez par <bold>taille de produit</bold>, type de contenu ou volume de production pour identifier votre solution en quelques clics.",
       "ctaText": "En savoir plus",
       "viewAll": "Voir tous les systèmes"
     },
