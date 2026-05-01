@@ -13,9 +13,12 @@ const NEXTJS_PATTERNS = [
   /^\/robots\.txt$/,      // robots.txt
 ];
 
-// Slugs blog qui existent comme pages statiques dans Next.js
-// Tout autre slug sous /(fr|en)/blog/ ou /(fr|en)/guide/ → Webflow
+// Slugs blog servis par Next.js. Deux origines :
+// (a) 12 articles statiques (pages TSX dans app/[lang]/blog/<slug>/)
+// (b) 60 articles FR migrés depuis Webflow vers content/blog/fr/ (Phase 2)
+// Tout autre slug sous /(fr|en)/blog/ → Webflow proxy.
 const NEXTJS_BLOG_SLUGS = new Set([
+  // === 12 articles statiques ===
   'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026',
   'blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
   'budget-studio-photo-automatise',
@@ -28,6 +31,68 @@ const NEXTJS_BLOG_SLUGS = new Set([
   'orbitvu-vs-concurrents',
   'prestataire-packshot-vs-studio-interne',
   'studio-ia-vs-ia-generative',
+
+  // === 60 articles FR migrés Webflow → Next.js (Phase 3 — 2026-05-01) ===
+  '5-appareils-photo-en-simultane-pour-de-lanimation-3d-realiste',
+  '8-defis-prodution-contenu-visuel',
+  'acheter-studio-photo-packshot-occasion',
+  'avantage-du-e-commerce-pour-les-entreprises',
+  'avantages-toplight-photographie-produits',
+  'boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter',
+  'choix-media-guide-de-la-photographie-packshot-4',
+  'comment-automatiser-la-creation-de-vos-photographies-animations-de-produits',
+  'comment-avoir-des-photos-professionnelles-guide-packshot-produit',
+  'comment-avoir-meilleure-photo-produit-e-commerce',
+  'comment-avoir-meilleures-images-amazon',
+  'comment-choisir-objectif-en-photographie-packshot',
+  'comment-ia-revolutionne-production-visuelle',
+  'comment-maitriser-le-flou-dans-la-photographie-de-produits',
+  'comment-mettre-en-valeur-un-produit-guide-photographie-packshot',
+  'comment-shotflow-ameliore-suivi-taches-en-temps-reel',
+  'comment-shotflow-permet-accelerer-production-contenus-visuels-mode',
+  'comment-shotflow-permet-optimiser-production-contenu',
+  'comparatif-de-solutions-de-photographie-automatisee',
+  'conseils-photo-le-cadrage-et-la-composition',
+  'de-la-photographie-2d-aux-modeles-3d-de-vos-produits-introduction-a-la-photogrammetrie',
+  'decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator',
+  'e-commerce-4-fondamentaux-pour-reduire-les-abandons-de-panier',
+  'e-commerce-8-elements-indispensables-pour-reussir',
+  'e-commerce-comment-mettre-en-place-votre-studio-photo',
+  'e-commerce-quel-est-le-reel-impact-des-visuels',
+  'eclairage-packshots-360-3d-produits',
+  'eclairage-photos-produits',
+  'est-il-utile-dinternaliser-sa-production-de-photos-packshot',
+  'evolution-e-commerce-packshot',
+  'focus-sur-lhyperfocus',
+  'guide-photographie-packshot-pourquoi-faire-packshots',
+  'ia-lumieres-virtuelles-revolution-packshot',
+  'interview-visuels-ecommerce-wizishop',
+  'joailliers-nos-conseils-pour-reussir-vos-visuels-produits',
+  'la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator',
+  'lancement-dune-serie-debooks-dediee-au-ecommerce',
+  'les-visuels-au-service-du-referencement-de-votre-e-commerce',
+  'logiciel-packshotcreator-ortery-perdu-solution',
+  'materiel-photo-guide-photographie-packshot',
+  'meubles-decorations-comment-etre-plus-visibles-sur-le-web',
+  'optimiser-collaboration-equipe-success-story-shotflow',
+  'optimiser-travail-production-visuelle',
+  'orbitvu-lautomatisation-au-service-de-la-photographie-3d-360deg',
+  'oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg',
+  'photographie-2d-de-produits',
+  'photographie-360-amazon',
+  'photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre',
+  'photographie-de-produits-a-360-degres-en-interne',
+  'photographie-de-produits-comment-presenter-vos-vetements',
+  'photographier-une-bague-comme-un-professionnel-en-8-etapes',
+  'pourquoi-choisir-orbitvu-photographie-packshot',
+  'promod-revolutionne-ses-shootings-photos-de-mode',
+  'quel-format-d-image-pour-le-web',
+  'quel-retour-sur-investissement-avec-un-studio-photo-en-interne',
+  'quel-studio-photo-type-pour-vos-shootings-produits-en-interne',
+  'revolution-e-commerce-les-animations-3d-spheriques-de-produits-pour-le-sport',
+  'taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
+  'utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle',
+  'votre-studio-photo-interne-3-bonnes-pratiques-pour-lorganiser',
 ]);
 
 // Blog EN sans préfixe /en/ — articles vivants sur Webflow à /en/blog/slug
@@ -73,6 +138,8 @@ const GUIDE_EN_REDIRECTS = new Set([
   'create-professional-360-animation-of-shoes',
   'how-to-do-focus-stacking-for-ring-photography',
   'how-to-take-multi-angle-photos-of-shoes',
+  // AJOUT 2026-04-20 — guide EN migré vers Next.js
+  'how-to-make-360-animation-transparent-object',
 ]);
 
 // ============================================================
@@ -454,6 +521,25 @@ const GONE_PATHS = new Set([
   '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e%e2%80%91commerce',
   '/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
   '/packshotcreator-cologne-photokina-2018',
+
+  // AJOUT 2026-04-20 — URLs encore 404 au rapport GSC du 2026-04-20
+  // Variante courte d'un article mort (vrai slug : /e-commerce-6-good-practices-to-boost-your-conversion-rate)
+  '/blog/e-commerce-6-practices-to-boost-your-conversion-rate',
+  // Images hero renommées (nouveaux noms : hero-landing-industriel-*.avif, hero-landing-ecommerce-*.avif)
+  '/images/hero/hero-landing-packshot-industriel-sm.avif',
+  '/images/hero/hero-landing-packshot-industriel-md.avif',
+  '/images/hero/hero-landing-packshot-industriel-lg.avif',
+  '/images/hero/hero-landing-packshot-industriel-xl.avif',
+  '/images/hero/hero-landing-packshot-industriel.avif',
+  '/images/hero/hero-landing-packshot-e-commerce-sm.avif',
+  '/images/hero/hero-landing-packshot-e-commerce-md.avif',
+  '/images/hero/hero-landing-packshot-e-commerce-lg.avif',
+  '/images/hero/hero-landing-packshot-e-commerce-xl.avif',
+  '/images/hero/hero-landing-packshot-e-commerce.avif',
+  '/images/hero/hero-landing-packshot-mode-sm.avif',
+  '/images/hero/hero-landing-packshot-mode-md.avif',
+  '/images/hero/hero-landing-packshot-mode-xl.avif',
+  '/images/hero/hero-landing-packshot-mode.avif',
 ]);
 
 function shouldReturn410(path) {
@@ -505,13 +591,18 @@ export default {
       return Response.redirect(wwwUrl.toString(), 301);
     }
 
-    // Racine → /fr (301 SEO-friendly)
+    // Racine → détection langue via Accept-Language (/fr si francophone, /en sinon)
+    // Logique : seuls les francophones explicites ont /fr ; tout le reste (en, de, es, nl, bot, etc.) → /en
     if (pathname === '/') {
+      const acceptLang = request.headers.get('Accept-Language') || '';
+      const firstLang = acceptLang.split(',')[0].trim().toLowerCase();
+      const target = firstLang.startsWith('fr') ? '/fr' : '/en';
       return new Response(null, {
-        status: 301,
+        status: 302,
         headers: {
-          'Location': `${url.origin}/fr`,
+          'Location': `${url.origin}${target}`,
           'Cache-Control': 'no-cache',
+          'Vary': 'Accept-Language',
         },
       });
     }
@@ -568,6 +659,11 @@ export default {
       '/en/disclaimer-copy': '/en/mentions-legales',
       '/en/produits': '/en/studio-photo/selecteur-machines',
       '/en/solutions': '/en/studios-photo-automatises',
+
+      // AJOUT 2026-04-20 — Slugs FR sous /en/guide/ → équivalent EN (via alternates.json)
+      '/en/guide/comment-faire-photos-multi-angles-chaussures': '/en/guide/how-to-take-multi-angle-photos-of-shoes',
+      '/en/guide/comment-obtenir-fond-blanc-parfait-sans-detourage-produit': '/en/guide/how-to-get-a-perfect-white-background-without-product-cutout',
+      '/en/guide/visuels-collection-produits-homogenes': '/en/guide/consistent-product-image-collection',
 
       // AJOUT 2026-04-14 — Guides EN sans préfixe /en/ — 3 entrées
       '/guide/what-settings-to-photograph-jewelry': '/en/guide/what-settings-to-photograph-jewelry',
