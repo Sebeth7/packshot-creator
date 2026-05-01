@@ -151,6 +151,9 @@ const NEXTJS_BLOG_SLUGS = new Set([
   'use-photo-studio-virtual-reality',
   'what-return-on-investment-with-an-internal-photo-studio',
   'why-choose-orbitvu-for-packshot-photography',
+
+  // === Articles natifs Next.js (post-Phase 3) ===
+  'generer-images-produit-ia',
 ]);
 
 // Blog EN sans préfixe /en/ — articles vivants sur Webflow à /en/blog/slug
