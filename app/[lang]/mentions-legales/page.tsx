@@ -6,6 +6,8 @@ import { ArrowRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 
+export const revalidate = 86400;
+
 interface PageProps {
   params: Promise<{ lang: string }>;
 }

@@ -87,6 +87,10 @@ const INDUSTRIES = [
   { key: 'sport', icon: '/images/secteurs/sports.svg', href: '/industrie/sport-outdoor' },
 ] as const;
 
+/* ──────────────────────────── Cache ──────────────────────────── */
+
+export const revalidate = 3600;
+
 /* ──────────────────────────── Metadata ──────────────────────────── */
 
 export async function generateMetadata({

@@ -6,6 +6,8 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/se
 import { getTranslations } from 'next-intl/server';
 import { HeroSection } from '@/components/hero';
 
+export const revalidate = 86400;
+
 interface PageProps {
   params: Promise<{ lang: string }>;
 }

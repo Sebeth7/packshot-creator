@@ -6,6 +6,8 @@ import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
+export const revalidate = 3600;
+
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
