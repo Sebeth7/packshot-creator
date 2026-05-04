@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/hero';
 
 export const revalidate = 86400;
@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CGUPage({ params }: PageProps) {
   const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: 'cgu' });
 
   const breadcrumbs = [

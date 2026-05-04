@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import SchemaOrg, {
@@ -134,6 +134,7 @@ export default async function HomePage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: 'home' });
 
   const faqItems = [1, 2, 3, 4, 5, 6].map((i) => ({

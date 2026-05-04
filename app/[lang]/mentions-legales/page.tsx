@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function MentionsLegalesPage({ params }: PageProps) {
   const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: 'legal' });
 
   const breadcrumbs = [

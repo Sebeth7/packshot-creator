@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { setRequestLocale } from 'next-intl/server';
 import { getAllGuides } from '@/lib/content';
 import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GuidesPage({ params }: PageProps) {
   const { lang } = await params;
+  setRequestLocale(lang);
   const guides = getAllGuides(lang as 'fr' | 'en');
 
   const breadcrumbs = breadcrumbSchema([
