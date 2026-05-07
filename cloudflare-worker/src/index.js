@@ -363,17 +363,11 @@ const GONE_PATHS = new Set([
   '/multiple-formats-product-photography',
   '/new-software-installation-mac',
   '/packshot-monitoring-devices',
-  '/packshotcreator-is-a-time-saving-and-stressless-solution-for-product-photography',
   '/studio-photography-rings-360',
   '/time-lapse-software-feature',
   '/transparent-png-file',
   '/ty-challenges-e-commerce-2',
   '/webinars-product-photography-packshot',
-
-  // AJOUT 2026-04-14 — 404-MINEUR — 3 entrées
-  '/home',
-  '/it',
-  '/index.asp',
 
   // AJOUT 2026-04-16 — audit GSC 429 URLs en 404 — 139 entrées
   // Blog multilingues morts (ES/DE/NL — 87 entrées)
@@ -570,6 +564,11 @@ const GONE_PATHS = new Set([
   '/fonctions-creativite',
   '/photographie-produits-formats-multiples',
   '/photographie-produits-360',
+  '/fr/photographie-produits-360',
+  // AJOUT 2026-05-02 — audit GSC validation #2 (avec suivi redirects)
+  '/fr/a-chaque-metier-son-packshot',
+  '/multi-product-capture-automation',
+  '/range-studio/studio-photo-without-clipping-packshot-r3/presentation',
   '/produit/livestudio-reinvente-la-mise-en-images',
   '/produit/studio-macrophotographie-360-bagues',
   '/produit/plateaux-tournants-360',
@@ -582,6 +581,11 @@ const GONE_PATHS = new Set([
   '/les-animations-nouvelles-cles-de-reussite-pour-vos-sites-e%e2%80%91commerce',
   '/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
   '/packshotcreator-cologne-photokina-2018',
+
+  // AJOUT 2026-05-02 — Pages Webflow sans équivalent Next.js (audit débranchement)
+  '/p4ck5h0t2025cr34t0r38xyzq7lm9pv6k8dr2jt5',  // URL secrète IndexNow Webflow
+  '/search',                                     // Page recherche Webflow (pas d'équivalent)
+  '/thank-you-page',                             // Page confirmation formulaire Webflow
 
   // AJOUT 2026-04-20 — URLs encore 404 au rapport GSC du 2026-04-20
   // Variante courte d'un article mort (vrai slug : /e-commerce-6-good-practices-to-boost-your-conversion-rate)
@@ -721,10 +725,97 @@ export default {
       '/en/guide/comment-obtenir-fond-blanc-parfait-sans-detourage-produit': '/en/guide/how-to-get-a-perfect-white-background-without-product-cutout',
       '/en/guide/visuels-collection-produits-homogenes': '/en/guide/consistent-product-image-collection',
 
+      // AJOUT 2026-05-02 — 10 slugs FR sous /en/guide/ + 1 slug EN sur /fr/ (audit GSC 02/05)
+      '/en/guide/comment-creer-animation-360-avec-assistant-ia-orbitvu': '/en/guide/how-to-create-360-animation-with-orbitvu-ai-assistant',
+      '/en/guide/comment-creer-video-360-objet-art': '/en/guide/how-to-create-a-360-video-of-an-art-object',
+      '/en/guide/comment-creer-vues-multi-angles-automatique-objet': '/en/guide/how-to-create-automatic-multi-angle-views-of-an-object',
+      '/en/guide/comment-faire-video-chaussures': '/en/guide/how-to-make-shoe-video',
+      '/en/guide/comment-nettoyer-montre-avant-shooting': '/en/guide/how-to-clean-watch-before-shooting',
+      '/en/guide/comment-obtenir-couleurs-fideles-photographie-produit': '/en/guide/how-to-get-accurate-colors-in-product-photography',
+      '/en/guide/comment-positionner-montre-avant-shooting-photo': '/en/guide/how-to-position-watch-before-shooting-photo',
+      '/en/guide/comment-prendre-photo-nette-bijoux-sans-fond': '/en/guide/how-to-take-cut-out-jewelry-photo',
+      '/en/guide/comment-sublimer-texture-rouge-a-levres-photo-avec-ia': '/en/guide/enhance-lipstick-texture-photo-ai',
+      '/en/guide/quels-reglages-pour-photographier-bijoux': '/en/guide/what-settings-to-photograph-jewelry',
+      '/fr/createur-des-studios-photos-connectes': '/fr/a-propos',
+
       // AJOUT 2026-04-14 — Guides EN sans préfixe /en/ — 3 entrées
       '/guide/what-settings-to-photograph-jewelry': '/en/guide/what-settings-to-photograph-jewelry',
       '/guide/how-to-position-watch-before-shooting-photo': '/en/guide/how-to-position-watch-before-shooting-photo',
       '/guide/which-equipment-to-choose-for-jewelry-photo': '/en/guide/which-equipment-to-choose-for-jewelry-photo',
+
+      // AJOUT 2026-05-02 — 13 pages racine FR Webflow non couvertes (audit débranchement)
+      // Toutes les cibles sont vérifiées 200 nextjs (curl 2026-05-02)
+      '/actualites': '/fr/blog',
+      '/automatiser': '/fr/studios-photo-automatises',
+      '/besoins-photographie-produit': '/fr/besoins-photographie-produit',
+      '/blog-produits': '/fr/blog',
+      '/createur-des-studios-photos-connectes': '/fr/a-propos',
+      '/formations-photographie-produits-packshotcreator': '/fr/academy',
+      '/guides': '/fr/guide',
+      '/innovations': '/fr/blog',
+      '/packshot-automatise-packshotcreator': '/fr',
+      '/politique-de-confidentialite': '/fr/confidentialite',
+      '/questions-cles-photographie-produit': '/fr/questions-cles-photographie-produit',
+      '/secteurs': '/fr/industrie',
+      '/sitemap': '/sitemap.xml',
+
+      // AJOUT 2026-05-02 — Slug guide supprimé (anciennement dans next.config.ts)
+      // Le catch-all /guide/<slug> redirigerait vers /fr/guide/modifier-couleur-produit-photo (404),
+      // intercepter en amont vers /fr/blog
+      '/guide/modifier-couleur-produit-photo': '/fr/blog',
+
+      // ============================================================
+      // AJOUT 2026-05-07 — Audit GSC complet (420 URLs)
+      // - 4 vrais 404 : slugs EN sous /fr/guide/ → équivalent FR
+      // - 4 ex-410 sortis de GONE_PATHS pour validation GSC
+      // - 28 soft 404 sous /fr/industrie/ et /fr/studio-photo/
+      // ============================================================
+
+      // 4 slugs EN sous /fr/guide/ → équivalent FR (alternates.json)
+      '/fr/guide/which-equipment-to-choose-for-jewelry-photo': '/fr/guide/quel-equipement-choisir-pour-photo-bijoux',
+      '/fr/guide/how-to-photograph-glasses-for-e-commerce': '/fr/guide/comment-photographier-lunettes-e-commerce',
+      '/fr/guide/how-to-create-a-360-video-of-an-art-object': '/fr/guide/comment-creer-video-360-objet-art',
+      '/fr/guide/how-to-take-multi-angle-photos-of-shoes': '/fr/guide/comment-faire-photos-multi-angles-chaussures',
+
+      // 4 ex-GONE_PATHS → 301 vers cible pertinente (validation GSC)
+      // GSC ne valide pas les 410 comme correction d'un 404 (doc Search Central)
+      '/index.asp': '/',
+      '/home': '/',
+      '/it': '/en',
+      '/packshotcreator-is-a-time-saving-and-stressless-solution-for-product-photography': '/en',
+
+      // 24 slugs sous /fr/industrie/ → secteur FR valide (soft 404 actuels)
+      '/fr/industrie/mode': '/fr/industrie/mode-textile',
+      '/fr/industrie/wine-spirits': '/fr/industrie/vin-spiritueux',
+      '/fr/industrie/furniture': '/fr/industrie/mobilier-decoration',
+      '/fr/industrie/components': '/fr/industrie/pieces-techniques-industrie',
+      '/fr/industrie/beauty': '/fr/industrie/cosmetiques-beaute',
+      '/fr/industrie/sport': '/fr/industrie/sport-outdoor',
+      '/fr/industrie/schuhe': '/fr/industrie/chaussures',
+      '/fr/industrie/moda': '/fr/industrie/mode-textile',
+      '/fr/industrie/schoenheit': '/fr/industrie/cosmetiques-beaute',
+      '/fr/industrie/sportartikel': '/fr/industrie/sport-outdoor',
+      '/fr/industrie/foto-technische-onderdelen': '/fr/industrie/pieces-techniques-industrie',
+      '/fr/industrie/fotos-uitrusting-sport': '/fr/industrie/sport-outdoor',
+      '/fr/industrie/fotos-producten-cosmetica': '/fr/industrie/cosmetiques-beaute',
+      '/fr/industrie/fotografie-meubels-decoratie': '/fr/industrie/mobilier-decoration',
+      '/fr/industrie/fotografie-culinair-voedingsmiddelen': '/fr/industrie/food-alimentaire',
+      '/fr/industrie/fotos-producten-high-tech': '/fr/industrie/electronique-hightech',
+      '/fr/industrie/vereenvoudig-productie-van-uw-fotos-optiek-brillen': '/fr/industrie/lunetterie',
+      '/fr/industrie/produktansichten-ihrer-brillen-ganz-einfach-selbst-produzieren': '/fr/industrie/lunetterie',
+      '/fr/industrie/foto-anteojos-estudio': '/fr/industrie/lunetterie',
+      '/fr/industrie/estudio-foto-botellas': '/fr/industrie/vin-spiritueux',
+      '/fr/industrie/estudio-fotograficos-joyas': '/fr/industrie/bijoux-joaillerie',
+      '/fr/industrie/estudio-fotograficos-belleza': '/fr/industrie/cosmetiques-beaute',
+      '/fr/industrie/estudio-fotos-zapatos': '/fr/industrie/chaussures',
+      // (4 cas "art-and-antiquities", "kunst-antiquitaeten", "arte-antiguedades", "fotos-kunstvoorwerpen-antiek",
+      //  "fotos-animadas-360-productos" → pas de cible pertinente, le not-found.tsx renverra un vrai 404)
+
+      // 4 slugs sous /fr/studio-photo/ → machine FR valide (soft 404 actuels)
+      '/fr/studio-photo/360-drehtische': '/fr/studio-photo/selecteur-machines',
+      '/fr/studio-photo/360-draaitafels': '/fr/studio-photo/selecteur-machines',
+      '/fr/studio-photo/tocadiscos-orbitvu-g2': '/fr/studio-photo/alphashot-g2',
+      '/fr/studio-photo/alphashot-360-kleine-producten': '/fr/studio-photo/alphashot-360',
     };
 
     // Vérifier les redirections exactes
@@ -857,21 +948,37 @@ export default {
       return Response.redirect(`${url.origin}${HOWTO_REDIRECTS[howtoPath]}`, 301);
     }
 
-    // AJOUT 2026-04-16 — Blog EN sans préfixe → /en/blog/slug (articles vivants sur Webflow EN)
-    // Intercepte AVANT le proxy Webflow pour rediriger proprement
-    if (pathname.startsWith('/blog/')) {
+    // /blog/<slug> sans préfixe langue
+    // - Si dans GONE_PATHS / patterns 410 → fallthrough vers le check shouldReturn410 ci-dessous
+    // - Slugs EN whitelistés → /en/blog/<slug> (articles servis par Next.js EN)
+    // - Tout le reste → /fr/blog/<slug> (catch-all FR : 57 articles Blog FR Webflow,
+    //   tous présents dans NEXTJS_BLOG_SLUGS, audit 2026-05-02)
+    if (pathname.startsWith('/blog/') && !shouldReturn410(pathname)) {
       const slug = pathname.slice(6).replace(/\/$/, '');
       if (BLOG_EN_REDIRECTS.has(slug)) {
         return Response.redirect(`${url.origin}/en/blog/${slug}`, 301);
       }
+      return Response.redirect(`${url.origin}/fr/blog/${slug}`, 301);
     }
 
-    // AJOUT 2026-04-16 — Guides EN sans préfixe → /en/guide/slug
-    if (pathname.startsWith('/guide/')) {
+    // /guide/<slug> sans préfixe langue
+    // - Si dans GONE_PATHS / patterns 410 → fallthrough vers shouldReturn410
+    // - Slugs EN whitelistés → /en/guide/<slug>
+    // - Tout le reste → /fr/guide/<slug> (catch-all FR : 22 guides FR Webflow)
+    if (pathname.startsWith('/guide/') && !shouldReturn410(pathname)) {
       const slug = pathname.slice(7).replace(/\/$/, '');
       if (GUIDE_EN_REDIRECTS.has(slug)) {
         return Response.redirect(`${url.origin}/en/guide/${slug}`, 301);
       }
+      return Response.redirect(`${url.origin}/fr/guide/${slug}`, 301);
+    }
+
+    // /academy/<slug> sans préfixe langue → /fr/academy/<slug>
+    // (audit 2026-05-02 : 0 slug academy publié sur Webflow,
+    //  commentaire historique "slugs différents" obsolète)
+    if (pathname.startsWith('/academy/') && !shouldReturn410(pathname)) {
+      const slug = pathname.slice(9).replace(/\/$/, '');
+      return Response.redirect(`${url.origin}/fr/academy/${slug}`, 301);
     }
 
     // AJOUT 2026-04-16 — /industry/*/examples-* → 410 (galeries mortes, AVANT le catch-all)
