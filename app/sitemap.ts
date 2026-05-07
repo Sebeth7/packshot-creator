@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllArticleSlugs, getAllGuideSlugs } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
+import { getAllFormations } from '@/lib/formations';
 
 const BASE_URL = 'https://www.packshot-creator.com';
 
@@ -56,11 +57,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/fr/academy/formations-ia', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/academy/formations-ia', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/academy/simulateur-opco', priority: 0.6, changeFrequency: 'monthly' as const },
+    { path: '/en/academy/simulateur-opco', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/fr/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/en/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
     // ROI Calculator
     { path: '/fr/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
+    // Outil de comparaison financement (FR-only — contenu non traduit)
+    { path: '/fr/outil-financement', priority: 0.4, changeFrequency: 'monthly' as const },
     // Machine selector
     { path: '/fr/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
@@ -108,6 +112,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
   ]);
 
+  // --- Academy formations (FR + EN) — slugs depuis content/formations/*.json ---
+  const formationPages = getAllFormations().flatMap((f) => [
+    { path: `/fr/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: `/en/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+  ]);
+
   // --- Blog articles : 12 statics (FR+EN) + 60 FR + 55 EN migrés depuis content/ ---
   const blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
   // Les 12 statiques : un dossier app/[lang]/blog/<slug>/ sert les deux langues
@@ -139,6 +149,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...sectorPages,
     ...machinePages,
     ...solutionPages,
+    ...formationPages,
     ...blogPages,
     ...guidePages,
   ].map(({ path, priority, changeFrequency }) => ({
