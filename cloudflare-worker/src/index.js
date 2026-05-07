@@ -759,10 +759,10 @@ export default {
       '/secteurs': '/fr/industrie',
       '/sitemap': '/sitemap.xml',
 
-      // AJOUT 2026-05-02 — Slug guide supprimé (anciennement dans next.config.ts)
-      // Le catch-all /guide/<slug> redirigerait vers /fr/guide/modifier-couleur-produit-photo (404),
-      // intercepter en amont vers /fr/blog
-      '/guide/modifier-couleur-produit-photo': '/fr/blog',
+      // AJOUT 2026-05-07 — Le guide existe à nouveau dans content/guides/fr/
+      // (re-migré). On préserve le PageRank Webflow ("changer couleur image")
+      // en redirigeant vers la page guide réelle, pas vers /fr/blog.
+      '/guide/modifier-couleur-produit-photo': '/fr/guide/modifier-couleur-produit-photo',
 
       // ============================================================
       // AJOUT 2026-05-07 — Audit GSC complet (420 URLs)

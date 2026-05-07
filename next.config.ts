@@ -85,6 +85,12 @@ const nextConfig: NextConfig = {
       { source: '/en/studio-photo/e-comm-studio', destination: '/en/studio-photo/e-comm-studio-plus', statusCode: 301 },
       { source: '/en/studio-photo/360-turntables', destination: '/en/studios-photo-automatises', statusCode: 301 },
 
+      // Segment /studio-photo nu (sans suffixe) — pas de page index dans app/[lang]/studio-photo/.
+      // Consolider vers le hub canonique /studios-photo-automatises (cohérent avec le redirect
+      // sans préfixe '/studio-photo' → '/fr/studios-photo-automatises' déjà présent).
+      { source: '/fr/studio-photo', destination: '/fr/studios-photo-automatises', statusCode: 301 },
+      { source: '/en/studio-photo', destination: '/en/studios-photo-automatises', statusCode: 301 },
+
       // Contact variantes
       { source: '/fr/contact/demande-demo', destination: '/fr/contact?subject=demo', statusCode: 301 },
       { source: '/en/contact/request-demo', destination: '/en/contact?subject=demo', statusCode: 301 },
@@ -101,9 +107,11 @@ const nextConfig: NextConfig = {
       // Industrie bouteilles → food-alimentaire
       { source: '/industrie/bouteilles', destination: '/fr/industrie/food-alimentaire', statusCode: 301 },
 
-      // Guide supprimé (n'existe pas dans le nouveau site)
-      { source: '/guide/modifier-couleur-produit-photo', destination: '/fr/blog', statusCode: 301 },
-      { source: '/en/guide/modifier-couleur-produit-photo', destination: '/en/blog', statusCode: 301 },
+      // Guide existe à nouveau dans content/guides/{fr,en}/ (re-migré)
+      // Préserver le PageRank Webflow ("changer couleur image") en redirigeant
+      // vers la page guide réelle, pas vers /fr/blog ou /en/blog.
+      { source: '/guide/modifier-couleur-produit-photo', destination: '/fr/guide/modifier-couleur-produit-photo', statusCode: 301 },
+      { source: '/en/guide/modifier-couleur-produit-photo', destination: '/en/guide/change-product-photo-color', statusCode: 301 },
 
       // Webflow-specific paths
       { source: '/gestion-workflow-shotflow', destination: '/fr/ia-photo-produit', statusCode: 301 },
