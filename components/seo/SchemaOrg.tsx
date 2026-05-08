@@ -1,3 +1,10 @@
+const SITE_URL = 'https://www.packshot-creator.com';
+const ORG_ID = `${SITE_URL}/#organization`;
+const SITE_ID = `${SITE_URL}/#website`;
+const SHOWROOM_ID = `${SITE_URL}/#showroom`;
+const PERSON_SEB_ID = `${SITE_URL}/#person-sebastien-jourdan`;
+const LOGO_URL = `${SITE_URL}/images/logos/packshot-creator-logo.png`;
+
 interface SchemaOrgProps {
   schema: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -22,9 +29,13 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': ORG_ID,
     name: 'PackshotCreator',
-    url: 'https://www.packshot-creator.com',
-    logo: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: LOGO_URL,
+    },
     description: 'Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
     address: {
       '@type': 'PostalAddress',
@@ -49,17 +60,15 @@ export function organizationSchema() {
   };
 }
 
-export function websiteSchema() {
+export function websiteSchema(lang: 'fr' | 'en' = 'fr') {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': SITE_ID,
     name: 'PackshotCreator',
-    url: 'https://www.packshot-creator.com',
-    inLanguage: ['fr', 'en'],
-    publisher: {
-      '@type': 'Organization',
-      name: 'PackshotCreator',
-    },
+    url: SITE_URL,
+    inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
+    publisher: { '@id': ORG_ID },
   };
 }
 
@@ -115,6 +124,13 @@ export function productSchema(product: {
       '@type': 'Organization',
       name: 'Orbitvu',
     },
+    offers: {
+      '@type': 'Offer',
+      url: product.url,
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      seller: { '@id': ORG_ID },
+    },
   };
 }
 
@@ -141,30 +157,17 @@ export function articleSchema(article: {
     author: isNamedAuthor
       ? {
           '@type': 'Person',
+          '@id': PERSON_SEB_ID,
           name: article.author,
           jobTitle: 'Dirigeant & Expert Photo Produit',
-          url: 'https://www.packshot-creator.com/fr/a-propos',
+          url: `${SITE_URL}/fr/a-propos`,
           sameAs: [
             'https://www.linkedin.com/in/sebastienjourdan/',
           ],
-          worksFor: {
-            '@type': 'Organization',
-            name: 'PackshotCreator / Sysnext',
-          },
+          worksFor: { '@id': ORG_ID },
         }
-      : {
-          '@type': 'Organization',
-          name: 'PackshotCreator',
-          url: 'https://www.packshot-creator.com',
-        },
-    publisher: {
-      '@type': 'Organization',
-      name: 'PackshotCreator',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
-      },
-    },
+      : { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
     articleSection: article.category,
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -182,7 +185,7 @@ export function aggregateRatingSchema(rating: {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'PackshotCreator',
-    url: 'https://www.packshot-creator.com',
+    url: SITE_URL,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: rating.ratingValue,
@@ -219,6 +222,13 @@ export function productWithRatingSchema(product: {
       '@type': 'Organization',
       name: 'Orbitvu',
     },
+    offers: {
+      '@type': 'Offer',
+      url: product.url,
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      seller: { '@id': ORG_ID },
+    },
     ...(product.ratingValue && product.reviewCount
       ? {
           aggregateRating: {
@@ -249,25 +259,27 @@ export function itemListSchema(items: { name: string; url: string; position?: nu
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': 'https://www.packshot-creator.com/#business',
-    name: 'PackshotCreator (Sysnext)',
-    image: 'https://www.packshot-creator.com/images/logos/packshot-creator-logo.png',
-    url: 'https://www.packshot-creator.com',
+    '@type': 'Store',
+    '@id': SHOWROOM_ID,
+    name: 'PackshotCreator – Showroom Lyon (Sysnext)',
+    image: LOGO_URL,
+    url: SITE_URL,
     telephone: '+33147426666',
     email: 'sales@sysnext.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '254 rue Vendôme',
-      addressLocality: 'Lyon',
-      postalCode: '69003',
+      streetAddress: '22 Rue des Frères Lumière',
+      addressLocality: 'Saint-Bonnet-de-Mure',
+      postalCode: '69720',
       addressCountry: 'FR',
+      addressRegion: 'Auvergne-Rhône-Alpes',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 45.7580,
-      longitude: 4.8320,
+      latitude: 45.7013014,
+      longitude: 5.015408,
     },
+    hasMap: 'https://www.google.com/maps/place/PackshotCreator+-+Orbitvu/@45.7013014,5.015408,17z',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -277,8 +289,10 @@ export function localBusinessSchema() {
     areaServed: [
       { '@type': 'Country', name: 'France' },
       { '@type': 'Country', name: 'Switzerland' },
+      { '@type': 'Country', name: 'Belgium' },
     ],
     priceRange: '€€€',
+    parentOrganization: { '@id': ORG_ID },
   };
 }
 
@@ -294,16 +308,65 @@ export function courseSchema(course: {
     '@type': 'Course',
     name: course.name,
     description: course.description,
-    provider: {
-      '@type': 'Organization',
-      name: course.provider || 'PackshotCreator Academy',
-      sameAs: 'https://www.packshot-creator.com/fr/academy',
-    },
+    provider: course.provider
+      ? {
+          '@type': 'Organization',
+          name: course.provider,
+          sameAs: `${SITE_URL}/fr/academy`,
+        }
+      : { '@id': ORG_ID },
     url: course.url,
     hasCourseInstance: {
       '@type': 'CourseInstance',
       courseMode: 'Blended',
       inLanguage: 'fr',
     },
+  };
+}
+
+export function reviewSchema(review: {
+  authorName: string;
+  rating: number;
+  text: string;
+  datePublished: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.authorName },
+    reviewBody: review.text,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    datePublished: review.datePublished,
+    itemReviewed: { '@id': ORG_ID },
+    publisher: { '@type': 'Organization', name: 'Google' },
+  };
+}
+
+export function serviceSchema(service: {
+  name: string;
+  description?: string;
+  serviceType?: string;
+  url: string;
+  areaServed?: string[];
+  category?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    serviceType: service.serviceType || 'Photographie produit automatisée',
+    url: service.url,
+    provider: { '@id': ORG_ID },
+    areaServed: (service.areaServed || ['FR', 'CH', 'BE']).map((code) => ({
+      '@type': 'Country',
+      name: code,
+    })),
+    category: service.category,
   };
 }

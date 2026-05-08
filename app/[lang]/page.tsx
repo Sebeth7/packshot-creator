@@ -5,10 +5,11 @@ import SchemaOrg, {
   organizationSchema,
   websiteSchema,
   faqSchema,
-  aggregateRatingSchema,
-  productWithRatingSchema,
+  productSchema,
   itemListSchema,
 } from '@/components/seo/SchemaOrg';
+import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
+import { getTestimonialsByCategory } from '@/data/testimonials';
 import {
   Camera,
   Sparkles,
@@ -49,12 +50,19 @@ const CLIENT_LOGOS = [
   { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
 ];
 
-const SOCIAL_PROOF_STATS = [
-  { key: 'stat1' as const, labelKey: 'stat1Label' as const, end: 25, suffix: '', prefix: '' },
-  { key: 'stat2' as const, labelKey: 'stat2Label' as const, end: 5000, suffix: '+', prefix: '' },
-  { key: 'stat3' as const, labelKey: 'stat3Label' as const, end: 3, suffix: ' sec', prefix: '' },
-  { key: 'stat4' as const, labelKey: 'stat4Label' as const, end: 60, suffix: '+ %', prefix: '' },
-] as const;
+const SOCIAL_PROOF_STATS: ReadonlyArray<{
+  key: string;
+  labelKey: string;
+  sourceKey?: string;
+  end: number;
+  suffix: string;
+  prefix: string;
+}> = [
+  { key: 'stat1', labelKey: 'stat1Label', end: 25, suffix: '', prefix: '' },
+  { key: 'stat2', labelKey: 'stat2Label', end: 5000, suffix: '+', prefix: '' },
+  { key: 'stat3', labelKey: 'stat3Label', sourceKey: 'stat3Source', end: 3, suffix: ' sec', prefix: '' },
+  { key: 'stat4', labelKey: 'stat4Label', sourceKey: 'stat4Source', end: 60, suffix: '+ %', prefix: '' },
+];
 
 const PAIN_POINTS = [
   { key: 'slow' as const, Icon: TrendingDown, color: 'text-future-dusk-500', bg: 'bg-future-dusk-0', border: 'border-neutral-100' },
@@ -210,6 +218,11 @@ export default async function HomePage({
                   <p className="mt-3 text-xs text-neutral-400 font-medium uppercase tracking-[0.15em]">
                     {t(`socialProof.${stat.labelKey}`)}
                   </p>
+                  {stat.sourceKey && (
+                    <p className="mt-1 text-[10px] text-neutral-500 italic tracking-wide">
+                      {t(`socialProof.${stat.sourceKey}`)}
+                    </p>
+                  )}
                 </div>
               </StaggerItem>
             ))}
@@ -229,7 +242,7 @@ export default async function HomePage({
                       height={logo.h}
                       sizes="120px"
                       className="w-full h-full object-contain invert"
-                      loading="eager"
+                      loading="lazy"
                     />
                   </div>
                 ))}
@@ -522,19 +535,13 @@ export default async function HomePage({
                 <p className="text-sm font-medium text-future-dusk-300 mb-8">
                   {t(`testimonials.${TESTIMONIALS[0].key}.statLabel`)}
                 </p>
-                <p className="text-lg lg:text-xl text-future-dusk-200 leading-relaxed italic flex-1 mb-8">
-                  &ldquo;{t(`testimonials.${TESTIMONIALS[0].key}.quote`)}&rdquo;
+                <p className="text-lg lg:text-xl text-future-dusk-200 leading-relaxed flex-1 mb-8">
+                  {t(`testimonials.${TESTIMONIALS[0].key}.description`)}
                 </p>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="font-semibold text-white">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.name`)}
+                <div className="border-t border-white/10 pt-4">
+                  <p className="text-xs italic text-future-dusk-400 tracking-wide">
+                    {t(`testimonials.${TESTIMONIALS[0].key}.source`)}
                   </p>
-                  <p className="text-sm text-future-dusk-300">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.company`)}
-                  </p>
-                  <span className="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-very-peri-300 bg-very-peri-500/15 px-3 py-1 rounded-full">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.sector`)}
-                  </span>
                 </div>
               </div>
             </FadeInView>
@@ -550,15 +557,12 @@ export default async function HomePage({
                     <p className="text-xs font-medium text-future-dusk-300 mb-4">
                       {t(`testimonials.${testimonial.key}.statLabel`)}
                     </p>
-                    <p className="text-future-dusk-200 leading-relaxed italic flex-1 mb-4 text-sm">
-                      &ldquo;{t(`testimonials.${testimonial.key}.quote`)}&rdquo;
+                    <p className="text-future-dusk-200 leading-relaxed flex-1 mb-4 text-sm">
+                      {t(`testimonials.${testimonial.key}.description`)}
                     </p>
-                    <div className="border-t border-white/10 pt-4">
-                      <p className="font-semibold text-white text-sm">
-                        {t(`testimonials.${testimonial.key}.name`)}
-                      </p>
-                      <p className="text-xs text-future-dusk-400">
-                        {t(`testimonials.${testimonial.key}.company`)}
+                    <div className="border-t border-white/10 pt-3">
+                      <p className="text-[11px] italic text-future-dusk-400 tracking-wide">
+                        {t(`testimonials.${testimonial.key}.source`)}
                       </p>
                     </div>
                   </div>
@@ -659,6 +663,11 @@ export default async function HomePage({
         </div>
       </section>
 
+      <TestimonialsSection
+        items={getTestimonialsByCategory('general')}
+        lang={lang as 'fr' | 'en'}
+      />
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           11. FINAL CTA — Pure black, asymmetric 3/5 + 2/5
           Differentiated card content. Dot pattern bg.
@@ -709,26 +718,20 @@ export default async function HomePage({
       <SchemaOrg
         schema={[
           organizationSchema(),
-          websiteSchema(),
+          websiteSchema(lang as 'fr' | 'en'),
           faqSchema(faqItems),
-          aggregateRatingSchema({
-            ratingValue: 4.8,
-            reviewCount: 127,
-          }),
-          productWithRatingSchema({
+          productSchema({
             name: 'Alphashot Pro G2',
             description: 'Studio photo automatisé compact. Packshot en 3 secondes, 360°, vidéo, détourage automatique, IA BlendAI intégrée.',
             image: 'https://www.packshot-creator.com/images/machines/alphashot-pro-g2.avif',
-            url: 'https://www.packshot-creator.com/fr/studio-photo/alphashot-pro-g2',
+            url: `https://www.packshot-creator.com/${lang}/studio-photo/alphashot-pro-g2`,
             brand: 'Orbitvu',
             category: 'Photo Studio Equipment',
-            ratingValue: 4.9,
-            reviewCount: 45,
           }),
           itemListSchema(
             INDUSTRIES.map((ind, i) => ({
               name: t(`industries.${ind.key}`),
-              url: `https://www.packshot-creator.com/fr${ind.href}`,
+              url: `https://www.packshot-creator.com/${lang}${ind.href}`,
               position: i + 1,
             }))
           ),

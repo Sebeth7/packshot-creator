@@ -5,7 +5,7 @@ import { secteurs } from '@/data/secteurs';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { solutions } from '@/data/solutions';
 import { Button } from '@/components/ui/button';
-import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { SECTOR_MACHINE_MAP } from '@/data/sector-machine-map';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
@@ -748,6 +748,13 @@ export default async function SecteurPage({ params }: PageProps) {
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
+        serviceSchema({
+          name: secteur.titre,
+          description: secteur.description,
+          serviceType: isFr ? 'Photographie produit automatisée' : 'Automated product photography',
+          url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
+          category: secteur.titre.split(':')[0].trim(),
+        }),
         ...(secteur.faq ? [faqSchema(secteur.faq)] : []),
       ]} />
     </>

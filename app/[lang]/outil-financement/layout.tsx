@@ -7,15 +7,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     title: isFr
-      ? 'Calculateur ROI — Retour sur investissement studio photo | PackshotCreator'
-      : 'ROI Calculator — Photo Studio Return on Investment | PackshotCreator',
+      ? 'Outil de financement — Comparateur leasing vs crédit bancaire | PackshotCreator'
+      : 'Financing Tool — Leasing vs Bank Loan Comparator | PackshotCreator',
     description: isFr
-      ? 'Calculez gratuitement le retour sur investissement d\'un studio photo automatisé Orbitvu. Comparez achat vs leasing et découvrez vos économies.'
-      : 'Calculate the return on investment of an Orbitvu automated photo studio for free. Compare purchase vs leasing and discover your savings.',
+      ? 'Comparez en temps réel le leasing et le crédit bancaire pour votre studio photo automatisé. Mensualités, coût total, avantages fiscaux.'
+      : 'Compare leasing and bank loan in real time for your automated photo studio. Monthly payments, total cost, tax benefits.',
   };
 }
 
-export default async function CalculateurROILayout({
+export default async function OutilFinancementLayout({
   children,
   params,
 }: {
@@ -26,7 +26,7 @@ export default async function CalculateurROILayout({
   const isFr = lang === 'fr';
   const breadcrumbs = [
     { name: isFr ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
-    { name: isFr ? 'Calculateur ROI' : 'ROI Calculator', url: `https://www.packshot-creator.com/${lang}/calculateur-roi` },
+    { name: isFr ? 'Outil de financement' : 'Financing Tool', url: `https://www.packshot-creator.com/${lang}/outil-financement` },
   ];
 
   return (

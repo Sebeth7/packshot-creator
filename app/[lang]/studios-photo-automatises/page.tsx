@@ -8,7 +8,9 @@ import {
   RotateCcw, Shirt, Layout, Users, Truck, Headphones, Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
+import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
+import { getTestimonialsByCategory } from '@/data/testimonials';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
@@ -412,7 +414,25 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(studioFaqs)]} />
+      <TestimonialsSection
+        items={getTestimonialsByCategory('studios')}
+        lang={lang as 'fr' | 'en'}
+      />
+
+      <SchemaOrg schema={[
+        organizationSchema(),
+        breadcrumbSchema(breadcrumbs),
+        serviceSchema({
+          name: isFr ? 'Studios photo automatisés Orbitvu' : 'Orbitvu Automated Photo Studios',
+          description: isFr
+            ? 'Gamme complète de studios photo automatisés Orbitvu : Alphashot, Alphastudio, Fashion Studio, Bike Studio. Photographie produit haute qualité avec IA BlendAI intégrée.'
+            : 'Full range of Orbitvu automated photo studios: Alphashot, Alphastudio, Fashion Studio, Bike Studio. High-quality product photography with integrated BlendAI.',
+          serviceType: isFr ? 'Studio photo automatisé' : 'Automated photo studio',
+          url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
+          category: isFr ? 'Équipement studio photo' : 'Photo studio equipment',
+        }),
+        faqSchema(studioFaqs),
+      ]} />
     </>
   );
 }
