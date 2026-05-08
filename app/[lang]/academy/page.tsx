@@ -5,6 +5,8 @@ import { Metadata } from 'next';
 import { GraduationCap, Camera, Brain, Calculator, CalendarDays, ArrowRight, Check, Award, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
+import { getTestimonialsByCategory } from '@/data/testimonials';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
@@ -380,6 +382,15 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
           </div>
         </div>
       </section>
+
+      <TestimonialsSection
+        items={getTestimonialsByCategory('formation')}
+        lang={lang as 'fr' | 'en'}
+        headline={isFr ? 'Avis de nos stagiaires' : 'What our trainees say'}
+        subhead={isFr
+          ? 'Une sélection d\'avis publiés sur Google par les participants à nos formations.'
+          : 'A selection of reviews published on Google by participants of our training programs.'}
+      />
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(academyFaqs)]} />
     </>

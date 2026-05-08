@@ -5,10 +5,11 @@ import SchemaOrg, {
   organizationSchema,
   websiteSchema,
   faqSchema,
-  aggregateRatingSchema,
-  productWithRatingSchema,
+  productSchema,
   itemListSchema,
 } from '@/components/seo/SchemaOrg';
+import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
+import { getTestimonialsByCategory } from '@/data/testimonials';
 import {
   Camera,
   Sparkles,
@@ -229,7 +230,7 @@ export default async function HomePage({
                       height={logo.h}
                       sizes="120px"
                       className="w-full h-full object-contain invert"
-                      loading="eager"
+                      loading="lazy"
                     />
                   </div>
                 ))}
@@ -659,6 +660,11 @@ export default async function HomePage({
         </div>
       </section>
 
+      <TestimonialsSection
+        items={getTestimonialsByCategory('general')}
+        lang={lang as 'fr' | 'en'}
+      />
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           11. FINAL CTA — Pure black, asymmetric 3/5 + 2/5
           Differentiated card content. Dot pattern bg.
@@ -709,26 +715,20 @@ export default async function HomePage({
       <SchemaOrg
         schema={[
           organizationSchema(),
-          websiteSchema(),
+          websiteSchema(lang as 'fr' | 'en'),
           faqSchema(faqItems),
-          aggregateRatingSchema({
-            ratingValue: 4.8,
-            reviewCount: 127,
-          }),
-          productWithRatingSchema({
+          productSchema({
             name: 'Alphashot Pro G2',
             description: 'Studio photo automatisé compact. Packshot en 3 secondes, 360°, vidéo, détourage automatique, IA BlendAI intégrée.',
             image: 'https://www.packshot-creator.com/images/machines/alphashot-pro-g2.avif',
-            url: 'https://www.packshot-creator.com/fr/studio-photo/alphashot-pro-g2',
+            url: `https://www.packshot-creator.com/${lang}/studio-photo/alphashot-pro-g2`,
             brand: 'Orbitvu',
             category: 'Photo Studio Equipment',
-            ratingValue: 4.9,
-            reviewCount: 45,
           }),
           itemListSchema(
             INDUSTRIES.map((ind, i) => ({
               name: t(`industries.${ind.key}`),
-              url: `https://www.packshot-creator.com/fr${ind.href}`,
+              url: `https://www.packshot-creator.com/${lang}${ind.href}`,
               position: i + 1,
             }))
           ),
