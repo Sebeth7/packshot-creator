@@ -160,7 +160,9 @@
       "stat3": "3 sec",
       "stat3Label": "per packshot",
       "stat4": "60+ %",
-      "stat4Label": "cost reduction"
+      "stat4Label": "cost reduction",
+      "stat3Source": "Reference: Alphashot Pro G2",
+      "stat4Source": "PackshotCreator client study, 2025"
     },
     "painPoints": {
       "label": "Your challenges",
@@ -330,7 +332,9 @@
       "aiSoftware": "AI & Software",
       "aiSoftwareDesc": "AI retouching, clipping and automated post-production",
       "industries": "Industries",
-      "academy": "Academy",
+      "academy": "Training",
+      "academyHub": "All our trainings",
+      "academyHubDesc": "Overview of the PackshotCreator Academy offering",
       "formationsPackshot": "Packshot Training",
       "formationsPackshotDesc": "Master professional product photography",
       "formationsIA": "AI Training",
@@ -395,7 +399,7 @@
       "docTechnique": "Technical documentation",
       "docQualite": "Quality & Traceability",
       "docProbatoire": "Forensic documentation",
-      "academy": "Academy",
+      "academy": "Training",
       "formationsPackshot": "Packshot Training",
       "formationsIA": "AI Training",
       "simulateurOPCO": "Funding Simulator",

@@ -400,6 +400,12 @@ export default function Header() {
     {
       items: [
         {
+          href: '/academy',
+          labelKey: 'academyHub',
+          descKey: 'academyHubDesc',
+          icon: <Sparkles className="h-4 w-4" />,
+        },
+        {
           href: '/academy/formations-packshot',
           labelKey: 'formationsPackshot',
           descKey: 'formationsPackshotDesc',

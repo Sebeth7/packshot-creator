@@ -21,7 +21,9 @@
       "stat3": "3 sec",
       "stat3Label": "par packshot",
       "stat4": "60+ %",
-      "stat4Label": "de réduction des coûts"
+      "stat4Label": "de réduction des coûts",
+      "stat3Source": "Référence : Alphashot Pro G2",
+      "stat4Source": "Étude clients PackshotCreator 2025"
     },
     "painPoints": {
       "label": "Vos défis",
@@ -333,7 +335,9 @@
       "aiSoftware": "IA & Logiciels",
       "aiSoftwareDesc": "Retouche IA, détourage et post-production automatisés",
       "industries": "Industries",
-      "academy": "Academy",
+      "academy": "Formations",
+      "academyHub": "Toutes nos formations",
+      "academyHubDesc": "Vue d'ensemble de l'offre Academy PackshotCreator",
       "formationsPackshot": "Formations Packshot",
       "formationsPackshotDesc": "Maîtrisez la photographie produit professionnelle",
       "formationsIA": "Formations IA",
@@ -398,7 +402,7 @@
       "docTechnique": "Documentation technique",
       "docQualite": "Qualité & Traçabilité",
       "docProbatoire": "Documentation probatoire",
-      "academy": "Academy",
+      "academy": "Formations",
       "formationsPackshot": "Formations Packshot",
       "formationsIA": "Formations IA",
       "simulateurOPCO": "Simulateur OPCO",

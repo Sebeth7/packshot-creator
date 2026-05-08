@@ -50,12 +50,19 @@ const CLIENT_LOGOS = [
   { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
 ];
 
-const SOCIAL_PROOF_STATS = [
-  { key: 'stat1' as const, labelKey: 'stat1Label' as const, end: 25, suffix: '', prefix: '' },
-  { key: 'stat2' as const, labelKey: 'stat2Label' as const, end: 5000, suffix: '+', prefix: '' },
-  { key: 'stat3' as const, labelKey: 'stat3Label' as const, end: 3, suffix: ' sec', prefix: '' },
-  { key: 'stat4' as const, labelKey: 'stat4Label' as const, end: 60, suffix: '+ %', prefix: '' },
-] as const;
+const SOCIAL_PROOF_STATS: ReadonlyArray<{
+  key: string;
+  labelKey: string;
+  sourceKey?: string;
+  end: number;
+  suffix: string;
+  prefix: string;
+}> = [
+  { key: 'stat1', labelKey: 'stat1Label', end: 25, suffix: '', prefix: '' },
+  { key: 'stat2', labelKey: 'stat2Label', end: 5000, suffix: '+', prefix: '' },
+  { key: 'stat3', labelKey: 'stat3Label', sourceKey: 'stat3Source', end: 3, suffix: ' sec', prefix: '' },
+  { key: 'stat4', labelKey: 'stat4Label', sourceKey: 'stat4Source', end: 60, suffix: '+ %', prefix: '' },
+];
 
 const PAIN_POINTS = [
   { key: 'slow' as const, Icon: TrendingDown, color: 'text-future-dusk-500', bg: 'bg-future-dusk-0', border: 'border-neutral-100' },
@@ -211,6 +218,11 @@ export default async function HomePage({
                   <p className="mt-3 text-xs text-neutral-400 font-medium uppercase tracking-[0.15em]">
                     {t(`socialProof.${stat.labelKey}`)}
                   </p>
+                  {stat.sourceKey && (
+                    <p className="mt-1 text-[10px] text-neutral-500 italic tracking-wide">
+                      {t(`socialProof.${stat.sourceKey}`)}
+                    </p>
+                  )}
                 </div>
               </StaggerItem>
             ))}
