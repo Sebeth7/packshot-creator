@@ -279,7 +279,7 @@ export function localBusinessSchema() {
       latitude: 45.7013014,
       longitude: 5.015408,
     },
-    hasMap: 'https://www.google.com/maps/place/PackshotCreator+-+Orbitvu/@45.7013014,5.015408,17z',
+    hasMap: 'https://www.google.com/maps?cid=16728861988640520249',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

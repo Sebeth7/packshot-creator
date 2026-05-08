@@ -10,7 +10,7 @@ export interface Testimonial {
   isLocalGuide?: boolean;
 }
 
-export const GMB_URL = 'https://www.google.com/maps/place/PackshotCreator+-+Orbitvu/@45.7013014,5.015408,17z';
+export const GMB_URL = 'https://www.google.com/maps?cid=16728861988640520249';
 export const GMB_AGGREGATE = { ratingValue: 4.7, reviewCount: 83 } as const;
 
 export const testimonials: Testimonial[] = [
