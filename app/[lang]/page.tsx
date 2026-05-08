@@ -535,19 +535,13 @@ export default async function HomePage({
                 <p className="text-sm font-medium text-future-dusk-300 mb-8">
                   {t(`testimonials.${TESTIMONIALS[0].key}.statLabel`)}
                 </p>
-                <p className="text-lg lg:text-xl text-future-dusk-200 leading-relaxed italic flex-1 mb-8">
-                  &ldquo;{t(`testimonials.${TESTIMONIALS[0].key}.quote`)}&rdquo;
+                <p className="text-lg lg:text-xl text-future-dusk-200 leading-relaxed flex-1 mb-8">
+                  {t(`testimonials.${TESTIMONIALS[0].key}.description`)}
                 </p>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="font-semibold text-white">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.name`)}
+                <div className="border-t border-white/10 pt-4">
+                  <p className="text-xs italic text-future-dusk-400 tracking-wide">
+                    {t(`testimonials.${TESTIMONIALS[0].key}.source`)}
                   </p>
-                  <p className="text-sm text-future-dusk-300">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.company`)}
-                  </p>
-                  <span className="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-very-peri-300 bg-very-peri-500/15 px-3 py-1 rounded-full">
-                    {t(`testimonials.${TESTIMONIALS[0].key}.sector`)}
-                  </span>
                 </div>
               </div>
             </FadeInView>
@@ -563,15 +557,12 @@ export default async function HomePage({
                     <p className="text-xs font-medium text-future-dusk-300 mb-4">
                       {t(`testimonials.${testimonial.key}.statLabel`)}
                     </p>
-                    <p className="text-future-dusk-200 leading-relaxed italic flex-1 mb-4 text-sm">
-                      &ldquo;{t(`testimonials.${testimonial.key}.quote`)}&rdquo;
+                    <p className="text-future-dusk-200 leading-relaxed flex-1 mb-4 text-sm">
+                      {t(`testimonials.${testimonial.key}.description`)}
                     </p>
-                    <div className="border-t border-white/10 pt-4">
-                      <p className="font-semibold text-white text-sm">
-                        {t(`testimonials.${testimonial.key}.name`)}
-                      </p>
-                      <p className="text-xs text-future-dusk-400">
-                        {t(`testimonials.${testimonial.key}.company`)}
+                    <div className="border-t border-white/10 pt-3">
+                      <p className="text-[11px] italic text-future-dusk-400 tracking-wide">
+                        {t(`testimonials.${testimonial.key}.source`)}
                       </p>
                     </div>
                   </div>

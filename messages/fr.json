@@ -101,26 +101,20 @@
       "t1": {
         "stat": "65%",
         "statLabel": "de réduction du temps de production",
-        "quote": "Nous sommes passés de 50 à 250 packshots par jour. La qualité est constante, quel que soit l'opérateur. PackshotCreator a boosté notre productivité.",
-        "name": "Directeur e-commerce",
-        "company": "Marque lunetterie Française",
-        "sector": "Lunettes & optique"
+        "description": "L'automatisation de la prise de vue, du détourage et de la post-production réduit le temps de production des visuels de plus de moitié. Opérations manuelles éliminées, workflow standardisé, validation accélérée.",
+        "source": "Étude clients PackshotCreator 2025"
       },
       "t2": {
         "stat": "8 mois",
         "statLabel": "pour atteindre le ROI",
-        "quote": "Le coût par image a été divisé par 5. En 8 mois, l'investissement était rentabilisé. Aujourd'hui, nous produisons 100% de nos visuels en interne, avec une qualité supérieure.",
-        "name": "DAF",
-        "company": "Groupe retail France + Suisse",
-        "sector": "Grande Distribution"
+        "description": "Le coût par visuel est divisé par 5 par rapport à une prestation externe ou un studio interne classique. Le retour sur investissement intervient en moyenne sur 6 à 12 mois selon le volume produit en interne.",
+        "source": "Étude clients PackshotCreator 2025"
       },
       "t3": {
         "stat": "90%",
         "statLabel": "de gain de productivité",
-        "quote": "Le studio Orbitvu et BlendAI couvrent tous nos besoins, du packshot au lifestyle. Notre production a été multipliée par 10 avec la même équipe.",
-        "name": "Chef de projet digital",
-        "company": "Marque cosmétiques premium",
-        "sector": "Cosmétiques & Beauté"
+        "description": "Le studio Orbitvu couvre la prise de vue automatisée, BlendAI génère les déclinaisons lifestyle. Une même équipe absorbe jusqu'à 10 fois plus de production sans renforcer ses effectifs.",
+        "source": "Étude clients PackshotCreator 2025"
       }
     },
     "whyAutomate": {

@@ -193,26 +193,20 @@
       "t1": {
         "stat": "65%",
         "statLabel": "reduction in production time",
-        "quote": "We went from 50 to 250 packshots per day. Quality is consistent regardless of operator. PackshotCreator boosted our productivity.",
-        "name": "E-commerce Director",
-        "company": "French eyewear brand",
-        "sector": "Eyewear & optics"
+        "description": "Automating shooting, clipping and post-production cuts visual production time by more than half. Manual steps eliminated, standardized workflow, faster validation.",
+        "source": "PackshotCreator client study, 2025"
       },
       "t2": {
         "stat": "8 months",
         "statLabel": "to reach ROI",
-        "quote": "Cost per image was divided by 5. In 8 months, the investment had paid for itself. Today we produce 100% of our visuals in-house, with superior quality.",
-        "name": "CFO",
-        "company": "Retail group France + Switzerland",
-        "sector": "Retail"
+        "description": "The cost per visual is divided by 5 compared to outsourcing or a traditional in-house studio. ROI is typically reached within 6 to 12 months depending on internal production volume.",
+        "source": "PackshotCreator client study, 2025"
       },
       "t3": {
         "stat": "90%",
         "statLabel": "productivity gain",
-        "quote": "The Orbitvu studio and BlendAI cover all our needs, from packshot to lifestyle. Our production increased 10x with the same team.",
-        "name": "Digital Project Manager",
-        "company": "Premium cosmetics brand",
-        "sector": "Cosmetics & Beauty"
+        "description": "The Orbitvu studio handles automated shooting, BlendAI generates lifestyle variations. A single team absorbs up to 10 times more production without increasing headcount.",
+        "source": "PackshotCreator client study, 2025"
       }
     }
   },
