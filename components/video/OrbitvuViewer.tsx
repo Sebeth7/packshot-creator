@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface OrbitvuViewerProps {
   /** Orbitvu SUN share ID (e.g. "W2VVEnzxvCD8t2A8qqJNBQ") */
@@ -14,15 +14,38 @@ interface OrbitvuViewerProps {
 
 /**
  * Embeds an Orbitvu SUN 360° interactive viewer.
- * Loads the orbittour script dynamically and renders the viewer in a container div.
- * All 360° images are served from Orbitvu's CDN — zero weight on our hosting.
+ * Loads the orbittour script (and its ~1.4 MB of 360° frames) only when the viewer
+ * is near the viewport, via IntersectionObserver. All 360° images are served from
+ * Orbitvu's CDN — zero weight on our hosting.
  */
 export function OrbitvuViewer({ shareId, scriptId, cdnHash = '14921a33', className = '' }: OrbitvuViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const loadedRef = useRef(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  // Defer script loading until the viewer is close to entering the viewport.
+  useEffect(() => {
+    if (shouldLoad) return;
+    if (!containerRef.current) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
 
   useEffect(() => {
-    if (loadedRef.current) return;
+    if (!shouldLoad || loadedRef.current) return;
     loadedRef.current = true;
 
     // Create the target div that orbittour expects
@@ -45,7 +68,7 @@ export function OrbitvuViewer({ shareId, scriptId, cdnHash = '14921a33', classNa
       // Cleanup on unmount
       try { document.body.removeChild(script); } catch {}
     };
-  }, [shareId, scriptId, cdnHash]);
+  }, [shouldLoad, shareId, scriptId, cdnHash]);
 
   return (
     <div

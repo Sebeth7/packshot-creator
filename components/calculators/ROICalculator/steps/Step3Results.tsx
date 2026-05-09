@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Info, AlertTriangle } from 'lucide-react';
@@ -8,17 +9,20 @@ import MethodologyModal from '../results/MethodologyModal';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
 import MachineComparator from '../results/MachineComparator';
-import EvolutionChart from '../results/EvolutionChart';
 import ComparisonTable from '../results/ComparisonTable';
 import BreakEvenTimeline from '../results/BreakEvenTimeline';
 import AdditionalBenefits from '../results/AdditionalBenefits';
 import ContextualCTA from '../results/ContextualCTA';
 import NotProfitableCTA from '../results/NotProfitableCTA';
 import EmailCapture from '../results/EmailCapture';
-import { generatePDF } from '../results/PDFGenerator';
 import { trackCalculatorCompleted, trackCTAClick } from '../lib/analytics';
 import { formatEuro } from '../lib/calculations';
 import type { CalculationResults, UserInputs } from '../lib/types';
+
+const EvolutionChart = dynamic(() => import('../results/EvolutionChart'), {
+  loading: () => <div className="h-72 w-full bg-neutral-100 rounded-lg animate-pulse" />,
+  ssr: false,
+});
 
 interface Step3ResultsProps {
   results: CalculationResults;
@@ -64,6 +68,9 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
 
   const handleSendPDF = async (email: string) => {
     trackCTAClick('email_capture', results);
+
+    // Charger jspdf + html2canvas-pro à la demande (≈ 340 KB) au clic uniquement
+    const { generatePDF } = await import('../results/PDFGenerator');
 
     // Générer et télécharger le PDF côté client
     const pdfBlob = await generatePDF(contentRef, results, locale, email);

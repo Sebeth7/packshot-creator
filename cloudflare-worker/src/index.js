@@ -816,6 +816,22 @@ export default {
       '/fr/studio-photo/360-draaitafels': '/fr/studio-photo/selecteur-machines',
       '/fr/studio-photo/tocadiscos-orbitvu-g2': '/fr/studio-photo/alphashot-g2',
       '/fr/studio-photo/alphashot-360-kleine-producten': '/fr/studio-photo/alphashot-360',
+
+      // AJOUT 2026-05-08 — Slugs courts /industrie/<X> → slug Next.js complet
+      // Détectés via audit Core Web Vitals : /industrie/bijoux était à 276 clics/3mo en 404.
+      // Symétrie : on couvre la version sans préfixe ET avec préfixe /fr/.
+      '/industrie/bijoux': '/fr/industrie/bijoux-joaillerie',
+      '/fr/industrie/bijoux': '/fr/industrie/bijoux-joaillerie',
+      '/industrie/cosmetiques': '/fr/industrie/cosmetiques-beaute',
+      '/fr/industrie/cosmetiques': '/fr/industrie/cosmetiques-beaute',
+      '/industrie/mobilier': '/fr/industrie/mobilier-decoration',
+      '/fr/industrie/mobilier': '/fr/industrie/mobilier-decoration',
+      '/industrie/vin': '/fr/industrie/vin-spiritueux',
+      '/fr/industrie/vin': '/fr/industrie/vin-spiritueux',
+      '/industrie/hightech': '/fr/industrie/electronique-hightech',
+      '/fr/industrie/hightech': '/fr/industrie/electronique-hightech',
+      '/industrie/electronique': '/fr/industrie/electronique-hightech',
+      '/fr/industrie/electronique': '/fr/industrie/electronique-hightech',
     };
 
     // Vérifier les redirections exactes
@@ -1057,11 +1073,30 @@ export default {
     // Garder le Host original (www.packshot-creator.com) pour que Vercel
     // reconnaisse le domaine configuré dans le projet
 
+    // Cache edge Cloudflare pour les pages HTML Next.js (Sprint 3 audit perf 2026-05-08).
+    // Vercel renvoie `cache-control: max-age=0, must-revalidate` (ISR), donc Cloudflare
+    // ne cache pas le HTML par défaut (cf-cache-status: DYNAMIC). On force ici un cache
+    // edge 60s sur les GET HTML sans query string.
+    // - Limité à GET (pas de POST/PUT/DELETE)
+    // - Limité à /fr/* et /en/* servis par Next.js (skip Webflow legacy + API + assets)
+    // - Skip si query string (variantes utm, ?subject= contact, etc.)
+    // - Skip si cookies sensibles (auth/admin/preview Vercel)
+    const isCacheableHTML =
+      isNextJS &&
+      request.method === 'GET' &&
+      url.search === '' &&
+      !pathname.startsWith('/api/') &&
+      !pathname.startsWith('/_next/') &&
+      !request.headers.get('cookie')?.match(/(__vercel|__next_preview|session=|token=)/i);
+
     const response = await fetch(targetUrl.toString(), {
       method: request.method,
       headers,
       body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : undefined,
       redirect: 'manual',
+      cf: isCacheableHTML
+        ? { cacheTtl: 60, cacheEverything: true, cacheTtlByStatus: { '200-299': 60, '301-399': 86400, '404': 10, '500-599': 0 } }
+        : undefined,
     });
 
     const newResponse = new Response(response.body, {
@@ -1071,6 +1106,20 @@ export default {
     });
 
     newResponse.headers.set('X-Served-By', isNextJS ? 'nextjs' : 'webflow');
+
+    // Réécrit le header `Link: <https://*.vercel.app/...>; rel="alternate"; hreflang="..."`
+    // posé par next-intl middleware (qui lit le Host interne Vercel) vers le domaine canonique.
+    // Sans ça, Google voit des URLs alternates sur sysnext.vercel.app.
+    const linkHeader = newResponse.headers.get('link');
+    if (linkHeader && /https?:\/\/[a-z0-9-]+\.vercel\.app/i.test(linkHeader)) {
+      newResponse.headers.set(
+        'link',
+        linkHeader.replace(
+          /https?:\/\/[a-z0-9-]+\.vercel\.app/gi,
+          'https://www.packshot-creator.com',
+        ),
+      );
+    }
 
     return newResponse;
   },
