@@ -1,4 +1,4 @@
-import { Inter, Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 
 const inter = Inter({
@@ -8,12 +8,7 @@ const inter = Inter({
   display: 'swap'
 });
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  variable: '--font-roboto',
-  weight: ['400', '500'],
-  display: 'swap'
-});
+// Body font: native system stack (--font-body in globals.css)
 
 export const metadata: Metadata = {
   title: 'Calculateur ROI - Studios Photo PackshotCreator',
@@ -27,7 +22,7 @@ export default function CalculateurROILayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${roboto.variable}`}>
+    <html lang="fr" className={inter.variable}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
         {children}
       </body>

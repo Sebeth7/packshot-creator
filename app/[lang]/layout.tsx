@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Inter, Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
@@ -17,12 +17,8 @@ const inter = Inter({
   display: 'swap'
 });
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  variable: '--font-roboto',
-  weight: ['400', '500'],
-  display: 'swap'
-});
+// Body font is now the native system stack (defined in globals.css :root --font-body)
+// — saves ~37 KB of WOFF2 + 1 <link rel="preload"> on every page.
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -79,7 +75,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={lang} className={`${inter.variable} ${roboto.variable}`}>
+    <html lang={lang} className={inter.variable}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <SmoothScroll />

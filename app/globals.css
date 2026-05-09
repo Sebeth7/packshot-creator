@@ -9,7 +9,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-inter);
-  --font-body: var(--font-roboto);
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Palette Orbitvu (Design System Officiel) */
   --color-primary-orbitvu: var(--primary-orbitvu);
