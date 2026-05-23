@@ -1185,6 +1185,20 @@ var index_default = {
       // — Backlinks Semrush (anciens produits/software)
       "/packshot-creator-new-photo-software-2018": "/en/ia-photo-produit",
       "/packshot-creator-new-photo-software-2018/": "/en/ia-photo-produit",
+
+      // — Anciens slugs industrie référencés dans les articles blog
+      "/fr/industrie/beautes": "/fr/industrie/cosmetiques-beaute",
+      "/fr/industrie/meubles": "/fr/industrie/mobilier-decoration",
+      "/fr/industrie/bouteilles": "/fr/industrie/vin-spiritueux",
+      "/fr/industrie/high-tech-electromenager-informatique": "/fr/industrie/electronique-hightech",
+      "/fr/industrie/shootings-photo": "/fr/industrie",
+      "/fr/industrie/objets-art-antiquite": "/fr/industrie",
+      "/fr/industrie/sports": "/fr/industrie/sport-outdoor",
+      "/fr/industrie/simplifiez-production-de-vos-visuels-optique-lunetterie": "/fr/industrie/lunetterie",
+      "/fr/industrie/art-de-table-photos-culinaires": "/fr/industrie/food-alimentaire",
+      "/en/industrie/beautes": "/en/industrie/cosmetiques-beaute",
+      "/en/industrie/meubles": "/en/industrie/mobilier-decoration",
+      "/en/industrie/shootings-photo": "/en/industrie",
     };
     if (LEGACY_REDIRECTS[pathname]) {
       return Response.redirect(`${url.origin}${LEGACY_REDIRECTS[pathname]}`, 301);
