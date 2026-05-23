@@ -2,6 +2,11 @@ import { MetadataRoute } from 'next';
 import { getAllArticleSlugs, getAllGuideSlugs } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
 import { getAllFormations } from '@/lib/formations';
+import {
+  NOINDEX_EN_BLOG_SLUGS,
+  NOINDEX_EN_INDUSTRIE_SLUGS,
+  NOINDEX_EN_SOLUTIONS_SLUGS,
+} from '@/lib/seo-config';
 
 const BASE_URL = 'https://www.packshot-creator.com';
 
@@ -94,11 +99,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/confidentialite', priority: 0.3, changeFrequency: 'yearly' as const },
   ];
 
-  // --- Sector pages (FR + EN) ---
-  const sectorPages = SECTORS.flatMap((slug) => [
-    { path: `/fr/industrie/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: `/en/industrie/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-  ]);
+  // --- Sector pages (FR + EN, excluding noindex EN pages) ---
+  const sectorPages = SECTORS.flatMap((slug) => {
+    const pages = [
+      { path: `/fr/industrie/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+    ];
+    if (!NOINDEX_EN_INDUSTRIE_SLUGS.has(slug)) {
+      pages.push({ path: `/en/industrie/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const });
+    }
+    return pages;
+  });
 
   // --- Product / machine pages (FR + EN) ---
   const machinePages = MACHINES.flatMap((slug) => [
@@ -106,11 +116,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: `/en/studio-photo/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
   ]);
 
-  // --- Solution pages (FR + EN) ---
-  const solutionPages = SOLUTIONS.flatMap((slug) => [
-    { path: `/fr/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-  ]);
+  // --- Solution pages (FR + EN, excluding noindex EN pages) ---
+  const solutionPages = SOLUTIONS.flatMap((slug) => {
+    const pages = [
+      { path: `/fr/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+    ];
+    if (!NOINDEX_EN_SOLUTIONS_SLUGS.has(slug)) {
+      pages.push({ path: `/en/solutions/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const });
+    }
+    return pages;
+  });
 
   // --- Academy formations (FR + EN) — slugs depuis content/formations/*.json ---
   const formationPages = getAllFormations().flatMap((f) => [
@@ -132,6 +147,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
   for (const slug of getAllArticleSlugs('en')) {
     if (STATIC_ARTICLE_SLUGS.has(slug)) continue;
+    if (NOINDEX_EN_BLOG_SLUGS.has(slug)) continue;
     blogPages.push({ path: `/en/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
   }
 

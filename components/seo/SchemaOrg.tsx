@@ -52,7 +52,7 @@ export function organizationSchema() {
       availableLanguage: ['French', 'English'],
     },
     sameAs: [
-      'https://www.linkedin.com/company/packshotcreator/',
+      'https://www.linkedin.com/company/packshotcreator-sysnext/',
     ],
     foundingDate: '2004',
     numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 50 },

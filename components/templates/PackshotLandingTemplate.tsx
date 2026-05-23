@@ -109,7 +109,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
         }}
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
-        backgroundImage={`/images/hero/hero-landing-${slug}.avif`}
+        backgroundImage={`/images/hero/hero-landing-${config.benefitImageSlug}.avif`}
         ctas={[
           { label: t('hero.cta'), href: '/contact', variant: 'primary' },
           { label: t('hero.ctaSecondary'), href: '/studios-photo-automatises', variant: 'secondary' },

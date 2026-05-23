@@ -2,9 +2,10 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { GraduationCap, Camera, Brain, Calculator, CalendarDays, ArrowRight, Check, Award, ChevronDown } from 'lucide-react';
+import { GraduationCap, Camera, Brain, Calculator, CalendarDays, ArrowRight, Check, Award, ChevronDown, BookOpen, Euro } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import { getAllFormations } from '@/lib/formations';
 import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
 import { getTestimonialsByCategory } from '@/data/testimonials';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -241,6 +242,77 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
+      {/* Catalogue complet — liens vers les 6 formations individuelles */}
+      <section className="py-16 lg:py-20 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeInView>
+            <div className="text-center mb-12">
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
+                {isFr ? 'Catalogue complet' : 'Full catalog'}
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-future-dusk-900">
+                {isFr ? 'Toutes nos formations' : 'All our training programs'}
+              </h2>
+            </div>
+          </FadeInView>
+          <StaggerContainer stagger={0.06} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {getAllFormations().map((formation) => {
+              const levelLabel = isFr
+                ? `Niveau ${formation.niveau}`
+                : `Level ${formation.niveau}`;
+              const formatLabel = formation.format === 'blended'
+                ? 'Blended'
+                : isFr ? 'Présentiel' : 'In-person';
+              const durationLabel = `${formation.duree_heures}h`;
+
+              return (
+                <StaggerItem key={formation.slug}>
+                  <Link
+                    href={`/academy/${formation.slug}`}
+                    className="group block rounded-2xl border border-neutral-200 bg-white p-6 hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 h-full"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`inline-flex items-center justify-center h-8 w-8 rounded-lg ${
+                        formation.categorie === 'ia'
+                          ? 'bg-amber-100 text-amber-700'
+                          : 'bg-very-peri-100 text-very-peri-700'
+                      }`}>
+                        {formation.categorie === 'ia' ? <Brain className="h-4 w-4" /> : <Camera className="h-4 w-4" />}
+                      </span>
+                      <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-wider">
+                        {levelLabel}
+                      </span>
+                    </div>
+                    <h3 className="font-heading font-bold text-future-dusk-900 mb-2 group-hover:text-very-peri-600 transition-colors text-sm leading-snug">
+                      {formation.titre}
+                    </h3>
+                    <p className="text-xs text-future-dusk-500 mb-4 line-clamp-2">
+                      {formation.description_courte}
+                    </p>
+                    <div className="flex items-center gap-3 text-xs text-future-dusk-400">
+                      <span className="inline-flex items-center gap-1">
+                        <CalendarDays className="h-3 w-3" />
+                        {durationLabel}
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <BookOpen className="h-3 w-3" />
+                        {formatLabel}
+                      </span>
+                      {formation.eligible_opco && (
+                        <span className="inline-flex items-center gap-1 text-emerald-600">
+                          <Check className="h-3 w-3" />
+                          OPCO
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* Tools — Fond sombre avec floating cards */}
       <section className="py-16 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900" />
@@ -258,14 +330,14 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
               <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto">{t('tools.subtitle')}</p>
             </div>
           </ScrollReveal>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className={`grid gap-8 ${isFr ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
             <SpringCard>
-              <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/20">
+              <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/20 h-full flex flex-col">
                 <Calculator className="h-10 w-10 text-emerald-600 mb-4" />
                 <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
                   {t('tools.simulator.title')}
                 </h3>
-                <p className="text-future-dusk-500 leading-relaxed mb-6">
+                <p className="text-future-dusk-500 leading-relaxed mb-6 flex-1">
                   {t('tools.simulator.description')}
                 </p>
                 <Button asChild variant="outline" className="rounded-xl">
@@ -276,12 +348,12 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
               </div>
             </SpringCard>
             <SpringCard>
-              <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/20">
+              <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/20 h-full flex flex-col">
                 <CalendarDays className="h-10 w-10 text-very-peri-600 mb-4" />
                 <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
                   {t('tools.calendar.title')}
                 </h3>
-                <p className="text-future-dusk-500 leading-relaxed mb-6">
+                <p className="text-future-dusk-500 leading-relaxed mb-6 flex-1">
                   {t('tools.calendar.description')}
                 </p>
                 <Button asChild variant="outline" className="rounded-xl">
@@ -291,6 +363,24 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
                 </Button>
               </div>
             </SpringCard>
+            {isFr && (
+              <SpringCard>
+                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/20 h-full flex flex-col">
+                  <Euro className="h-10 w-10 text-amber-600 mb-4" />
+                  <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-3">
+                    Comparateur de financement
+                  </h3>
+                  <p className="text-future-dusk-500 leading-relaxed mb-6 flex-1">
+                    Comparez les dispositifs OPCO, CPF et FNE-Formation pour choisir le financement adapté à votre situation.
+                  </p>
+                  <Button asChild variant="outline" className="rounded-xl">
+                    <Link href="/outil-financement">
+                      Comparer les financements <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </SpringCard>
+            )}
           </div>
         </div>
       </section>

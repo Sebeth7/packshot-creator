@@ -44,10 +44,7 @@ export async function generateMetadata({
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogComparatif' });
 
-  const slug =
-    lang === 'fr'
-      ? 'comparatif-orbitvu-ortery-styleshoots-2026'
-      : 'orbitvu-vs-ortery-vs-styleshoots-2026';
+  const slug = 'comparatif-orbitvu-ortery-styleshoots-2026';
 
   return {
     title: t('meta.title'),
@@ -56,8 +53,8 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
       languages: {
-        fr: '/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026',
-        en: '/en/blog/orbitvu-vs-ortery-vs-styleshoots-2026',
+        fr: `/fr/blog/${slug}`,
+        en: `/en/blog/${slug}`,
       },
     },
     openGraph: {
@@ -167,9 +164,7 @@ export default async function ComparatifPage({ params }: PageProps) {
   });
   const isFr = lang === 'fr';
 
-  const slug = isFr
-    ? 'comparatif-orbitvu-ortery-styleshoots-2026'
-    : 'orbitvu-vs-ortery-vs-styleshoots-2026';
+  const slug = 'comparatif-orbitvu-ortery-styleshoots-2026';
 
   const breadcrumbs = [
     {

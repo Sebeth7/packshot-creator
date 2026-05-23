@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { secteurs } from '@/data/secteurs';
+import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { solutions } from '@/data/solutions';
 import { Button } from '@/components/ui/button';
@@ -72,9 +73,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const secteur = secteurs.find((s) => s.slug === slug);
   if (!secteur) return { title: 'Secteur non trouvé' };
 
+  const isNoindex = lang === 'en' && NOINDEX_EN_INDUSTRIE_SLUGS.has(slug);
+
   return {
     title: secteur.titre,
     description: secteur.description,
+    ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
       languages: { fr: `/fr/industrie/${slug}`, en: `/en/industrie/${slug}` },

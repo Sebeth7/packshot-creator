@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://www.linkedin.com/company/packshotcreator/"
+                href="https://www.linkedin.com/company/packshotcreator-sysnext/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center h-9 w-9 rounded-lg bg-future-dusk-800 text-future-dusk-400 hover:text-white hover:bg-very-peri-600 transition-colors"

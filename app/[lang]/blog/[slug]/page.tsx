@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getArticle, getAllArticleSlugs, getBlogAlternates } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
+import { NOINDEX_EN_BLOG_SLUGS } from '@/lib/seo-config';
 import { Link } from '@/i18n/routing';
 import {
   TableOfContents,
@@ -42,11 +43,15 @@ export async function generateMetadata({ params }: PageProps) {
     const pageTitle = article.metaTitle || article.title;
     const alternates = getBlogAlternates(article.webflowItemId);
     const languages: Record<string, string> = {};
-    if (alternates.fr) languages.fr = `/fr/blog/${alternates.fr}`;
-    if (alternates.en) languages.en = `/en/blog/${alternates.en}`;
+    if (alternates.fr && getArticle(alternates.fr, 'fr')) languages.fr = `/fr/blog/${alternates.fr}`;
+    if (alternates.en && getArticle(alternates.en, 'en')) languages.en = `/en/blog/${alternates.en}`;
+
+    const isNoindex = lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug);
+
     return {
       title: pageTitle,
       description: article.description,
+      ...(isNoindex && { robots: { index: false, follow: true } }),
       alternates: {
         canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
         languages,

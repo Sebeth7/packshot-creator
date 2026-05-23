@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { solutions } from '@/data/solutions';
+import { NOINDEX_EN_SOLUTIONS_SLUGS } from '@/lib/seo-config';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import {
   CheckCircle,
@@ -37,9 +38,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const solution = solutions.find((s) => s.slug === slug);
   if (!solution) return { title: 'Solution non trouvée' };
 
+  const isNoindex = lang === 'en' && NOINDEX_EN_SOLUTIONS_SLUGS.has(slug);
+
   return {
     title: solution.titre,
     description: solution.description,
+    ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/solutions/${slug}`,
       languages: { fr: `/fr/solutions/${slug}`, en: `/en/solutions/${slug}` },
