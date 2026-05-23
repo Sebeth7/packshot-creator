@@ -148,11 +148,20 @@ export default async function BlogArticlePage({ params }: PageProps) {
       </HeroSection>
 
       {imageUrl && (
-        <FadeInView>
+        <>
+          <link rel="preload" as="image" href={imageUrl} fetchPriority="high" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
-            <img src={imageUrl} alt={title} className="w-full rounded-2xl shadow-lg" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imageUrl}
+              alt={title}
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
+              className="w-full rounded-2xl shadow-lg"
+            />
           </div>
-        </FadeInView>
+        </>
       )}
 
       <FadeInView delay={0.2}>

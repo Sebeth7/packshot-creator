@@ -58,10 +58,19 @@ export function processHtmlContent(html: string): {
     }
   );
 
+  // Lazy-load all content images to prioritize hero image LCP
+  const withLazyImages = processedHtml.replace(
+    /<img\b(?![^>]*loading=)((?:[^>]*)>)/gi,
+    '<img loading="lazy" decoding="async"$1'
+  ).replace(
+    /<img\b([^>]*)\bloading="auto"([^>]*>)/gi,
+    '<img$1loading="lazy"$2'
+  );
+
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml, headings, wordCount };
+  return { processedHtml: withLazyImages, headings, wordCount };
 }
 
 /**
