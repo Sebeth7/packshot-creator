@@ -660,6 +660,15 @@
     "relatedHeading": "Related articles",
     "readArticle": "Read article"
   },
+  "notFound": {
+    "heading": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved. Discover our solutions below.",
+    "studios": "Photo Studios",
+    "blog": "Blog",
+    "academy": "Academy",
+    "backHome": "Back to homepage",
+    "contact": "Contact us"
+  },
   "contact": {
     "metaTitle": "Contact PackshotCreator | Free Demo | Orbitvu Distributor FR/CH",
     "metaDescription": "Contact PackshotCreator: free Orbitvu photo studio demo, training quote, technical support. Lyon showroom. Response within 24h.",

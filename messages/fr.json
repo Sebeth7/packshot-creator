@@ -663,6 +663,15 @@
     "relatedHeading": "Articles similaires",
     "readArticle": "Lire l'article"
   },
+  "notFound": {
+    "heading": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Découvrez nos solutions ci-dessous.",
+    "studios": "Studios Photo",
+    "blog": "Blog",
+    "academy": "Academy",
+    "backHome": "Retour à l'accueil",
+    "contact": "Nous contacter"
+  },
   "contact": {
     "metaTitle": "Contact PackshotCreator | Démo Gratuite | Distributeur Orbitvu FR/CH",
     "metaDescription": "Contactez PackshotCreator : démo gratuite studios photo Orbitvu, devis formation, support technique. Showroom Lyon. Réponse sous 24h.",

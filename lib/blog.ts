@@ -5,6 +5,7 @@ import {
   type MigratedArticle,
   type Lang,
 } from './content';
+import { NOINDEX_EN_BLOG_SLUGS } from './seo-config';
 
 export interface StaticArticle {
   slug: string;
@@ -166,15 +167,16 @@ export const STATIC_ARTICLE_SLUGS: ReadonlySet<string> = new Set(
 
 /**
  * Get all articles (static pages + content/ migrés), filtrés par langue et triés par date.
- * Les 12 STATIC_ARTICLES apparaissent dans FR ET EN (leur contenu est servi via
- * les namespaces i18n pour 4/12 ; les 8 autres ont leurs metas hardcodées en FR —
- * dégradation SEO EN connue, hors scope Phase 2, cf. handover §13.G).
  */
 export async function getAllArticles(lang: Lang, limit = 0): Promise<Article[]> {
   const migrated = getAllMigratedArticles(lang);
 
+  const statics = lang === 'en'
+    ? STATIC_ARTICLES.filter((a) => !NOINDEX_EN_BLOG_SLUGS.has(a.slug))
+    : STATIC_ARTICLES;
+
   const allArticles: Article[] = [
-    ...STATIC_ARTICLES,
+    ...statics,
     ...migrated,
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
