@@ -36,8 +36,6 @@ Allow: /
 # Tous les autres crawlers
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /_next/
 Disallow: /fr/calculateur
 Disallow: /en/calculateur
 

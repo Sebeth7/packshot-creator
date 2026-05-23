@@ -1,0 +1,64 @@
+# PackshotCreator
+
+> Studios photo automatisés Orbitvu, IA BlendAI et formations certifiées Qualiopi. Distributeur exclusif France & Suisse & Belgique.
+
+PackshotCreator équipe les marques de e-commerce, retail et luxe avec des stations photo automatisées (Orbitvu), une IA de génération de visuels (BlendAI) et des formations certifiantes (Qualiopi). Basé à Lyon depuis 2004, l'entreprise accompagne ses clients sur la chaîne complète : hardware, logiciel, intégration et formation.
+
+## Solutions PackshotCreator
+
+### Studios photo automatisés Orbitvu
+
+- [Studios photo automatisés](https://www.packshot-creator.com/fr/studios-photo-automatises) : gamme complète AlphaShot, AlphaStudio, AlphaTable pour petits, moyens et grands produits.
+- [Machines Orbitvu](https://www.packshot-creator.com/fr/studio-photo/selecteur-machines) : sélecteur de machines par taille de produit et volume.
+- [Calculateur ROI](https://www.packshot-creator.com/fr/calculateur-roi) : simulateur d'économies selon volume de photos, coût actuel, type de machine.
+
+### IA photo produit BlendAI
+
+- [IA photo produit](https://www.packshot-creator.com/fr/ia-photo-produit) : génération de visuels portés, mises en scène lifestyle, retouches batch.
+
+### Formation Academy (Qualiopi)
+
+- [Formations packshot](https://www.packshot-creator.com/fr/academy/formations-packshot)
+- [Formations IA](https://www.packshot-creator.com/fr/academy/formations-ia)
+- [Calendrier](https://www.packshot-creator.com/fr/academy/calendrier)
+- [Simulateur OPCO](https://www.packshot-creator.com/fr/academy/simulateur-opco) : financement OPCO / Qualiopi.
+
+## Solutions par secteur
+
+PackshotCreator adresse 15 secteurs avec des pages dédiées sous `/industrie/*` :
+
+- [Lunetterie & Optique](https://www.packshot-creator.com/fr/industrie/lunetterie)
+- [Vin & Spiritueux](https://www.packshot-creator.com/fr/industrie/vin-spiritueux)
+- [Chaussures](https://www.packshot-creator.com/fr/industrie/chaussures)
+- [Bijoux & Joaillerie](https://www.packshot-creator.com/fr/industrie/bijoux-joaillerie)
+- [Mobilier & Décoration](https://www.packshot-creator.com/fr/industrie/mobilier-decoration)
+- [Food & Alimentaire](https://www.packshot-creator.com/fr/industrie/food-alimentaire)
+- [Cosmétiques & Beauté](https://www.packshot-creator.com/fr/industrie/cosmetiques-beaute)
+- [Mode & Textile](https://www.packshot-creator.com/fr/industrie/mode-textile)
+- [Électronique & High-tech](https://www.packshot-creator.com/fr/industrie/electronique-hightech)
+- [Santé & Médical](https://www.packshot-creator.com/fr/industrie/sante-medical)
+- [Sport & Outdoor](https://www.packshot-creator.com/fr/industrie/sport-outdoor)
+- [Jouets & Puériculture](https://www.packshot-creator.com/fr/industrie/jouets-puericulture)
+- [Automobile & Pièces détachées](https://www.packshot-creator.com/fr/industrie/automobile-pieces-detachees)
+- [Industrie manufacturière](https://www.packshot-creator.com/fr/industrie/industrie-manufacturiere)
+- [Pièces techniques industrie](https://www.packshot-creator.com/fr/industrie/pieces-techniques-industrie)
+- [Défense & Sécurité](https://www.packshot-creator.com/fr/industrie/defense-securite)
+
+## Ressources éditoriales
+
+- [Blog](https://www.packshot-creator.com/fr/blog) : articles e-commerce, retouche, IA photo.
+- [Guides](https://www.packshot-creator.com/fr/guide) : guides techniques packshot par type de produit.
+- [Besoins photographie produit](https://www.packshot-creator.com/fr/besoins-photographie-produit)
+- [Questions clés photographie produit](https://www.packshot-creator.com/fr/questions-cles-photographie-produit)
+
+## Contact
+
+- Email : sales@sysnext.com
+- Téléphone : +33 1 47 42 66 66
+- Adresse : 254 rue Vendôme, 69003 Lyon, France
+- Contact : [formulaire](https://www.packshot-creator.com/fr/contact)
+
+## Ce que PackshotCreator n'est pas
+
+- Ce n'est pas un fabricant de logiciels de retouche généralistes type Photoshop / Affinity.
+- Ce n'est pas un studio photo traditionnel à la prestation — PackshotCreator vend des stations automatisées à ses clients.
