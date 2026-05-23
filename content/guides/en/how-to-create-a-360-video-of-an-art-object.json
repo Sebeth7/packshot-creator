@@ -8,7 +8,7 @@
   "description": "Learn how to make professional videos of your works or decorative objects with the Alphashot PRO G2, an automated photo studio optimized by AI. Discover tips for perfect lighting, precise adjustments, and 360° videos",
   "date": "2025-06-23T10:14:09.011Z",
   "image": "/images/guides/67f8b00dd1d997a80bd4aaec.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67f8b00dd1d997a80bd4aaec_Statue360.avif",
+  "imageSource": "/images/guides/67f8b00dd1d997a80bd4aaec.avif",
   "categoryId": "6683fd8c0b8787726aa51adb",
   "duration": "3 minutes",
   "tool": "Orbitvu Station software and a statue",
@@ -21,7 +21,7 @@
       "title": "Position your statuette",
       "content": "<p id=\"\">Installing the object is the first step to a successful video. Use the laser to place your statue right in the center of the studio turntable. 📍</p><p id=\"\">If the object is fragile or may move during rotation, use adhesive tape or double-sided invisible tape. </p>",
       "image": "/images/guides/67ecf7a9518b215db53c35dc.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecf7a9518b215db53c35dc_positonnement_template_IA.avif",
+      "imageSource": "/images/guides/67ecf7a9518b215db53c35dc.avif",
       "structuredText": "Installing the object is an essential step for successful video shooting. Use the photo studio's laser positioning system to place the statue precisely in the center of the turntable. If the object is fragile or likely to move during rotation, secure it using adhesive paste or clear double-sided tape."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Choose a bright AI template",
       "content": "<p id=\"\">The Alphashot PRO G2 is equipped with <strong id=\"\">74 light sources</strong> and a <strong id=\"\">AI Assistant</strong> which automatically suggests optimal light configurations. 💡</p><p id=\"\">Click on the “AI” icon and let artificial intelligence analyze its characteristics (dimensions, reflectivity, etc.). The assistant will offer you 4 lighting options.</p><p id=\"\">Opt for a uniform look if the object is matte or textured, and reduce the intensity to avoid excessive reflections on shiny surfaces. <strong id=\"\">✨</strong></p>",
       "image": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc3cd83c178bfc1b19fb_template_lumi%C3%A8res_IA.avif",
+      "imageSource": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
       "structuredText": "The Alphashot PRO G2 is equipped with 74 light sources as well as an intelligent assistant (AI Assistant) that can automatically suggest optimal lighting configurations. Click on the “AI” icon to start analyzing the characteristics of the object, such as its dimensions, reflectivity, or texture. The assistant then generates four lighting proposals. For a matte or textured object, select the uniform finish. For shiny surfaces, reduce the light intensity to limit excessive reflections."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Fine-tune the light and camera settings",
       "content": "<p id=\"\">For optimal image quality, some adjustments are necessary: 📷</p><ul id=\"\"><li id=\"\"><strong id=\"\">Opening</strong> : Between <strong id=\"\">f/14</strong> and <strong id=\"\">f/16</strong> to maximize depth of field.</li><li id=\"\"><strong id=\"\">ISO</strong> : In the vicinity of <strong id=\"\">600</strong> to limit digital noise.</li><li id=\"\"><strong id=\"\">Shutter speed</strong> : <strong id=\"\">1/80</strong> minimum to avoid motion blur. (If you're shooting in 30 FPS, stick to at least 1/60 for fluidity that complies with the “double” rule).</li></ul><p id=\"\">If you want an almost white (or even pure) background, increase the intensity of the back panels from the Orbitvu Station software.</p><p id=\"\"><strong id=\"\">✨ Tip</strong> : Save your settings in a <strong id=\"\">Template </strong>as soon as you find the ideal combination (camera+lights). You can reuse it for other products. 📂</p><p id=\"\">‍</p>",
       "image": "/images/guides/67ecfc8bb42e461702a5addc.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc8bb42e461702a5addc_r%C3%A9glages_lumi%C3%A8res_appareil.avif",
+      "imageSource": "/images/guides/67ecfc8bb42e461702a5addc.avif",
       "structuredText": "To ensure optimal image quality, a few technical settings need to be adjusted: Aperture: Set between f/14 and f/16 in order to obtain maximum depth of field. ISO: Position around 600 to limit digital noise. Shutter speed: Select at least 1/80 to avoid motion blur. When shooting in 30 FPS, use at least 1/60 according to the double frame rate rule. If you want to get a white or almost white background, increase the intensity of the rear light panels directly from the Orbitvu Station software. Tip: Once you have found the right settings (camera + lights), save them in a template so you can reuse them for other product shots."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Perform a first test and start recording",
       "content": "<p id=\"\">Take a photo to check exposure, sharpness, and alignment. You can also rotate the tray 360° to check that the centering is done correctly. 🔄</p><p id=\"\">Choose the rotation speed and click “Record” to start shooting video. <strong id=\"\">🎬</strong></p>",
       "image": "/images/guides/67ecfd8ae439dc9faaaad70d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfd8ae439dc9faaaad70d_lancer_vid%C3%A9o_objet_dart.avif",
+      "imageSource": "/images/guides/67ecfd8ae439dc9faaaad70d.avif",
       "structuredText": "Take a test photo to check the exposure, sharpness, and alignment of the object. You can then rotate the tray 360 degrees to make sure the object is centered throughout the rotation. Select the desired rotation speed, then click “Save” to start shooting video."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Retouch the image: The statue",
       "content": "<p id=\"\">Once the registration is complete, go on <strong id=\"\">Edit mode</strong> to fine-tune image settings such as <strong id=\"\">sharpness</strong>, the <strong id=\"\">luminance</strong>, the <strong id=\"\">tint</strong>... 🎨</p><p id=\"\">Use <strong id=\"\">The Auto Polisher </strong>to eliminate the small imperfections of your object. <strong id=\"\">🧼</strong></p>",
       "image": "/images/guides/67ecfe1ef117ffebc9697863.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfe1ef117ffebc9697863_retouches_vid%C3%A9o_art.avif",
+      "imageSource": "/images/guides/67ecfe1ef117ffebc9697863.avif",
       "structuredText": "Once recording is complete, activate edit mode to adjust image settings such as sharpness, luminance, and hue. Use the Auto Polisher function to automatically correct small visible imperfections on the object."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Retouch the image: The background",
       "content": "<p id=\"\">Click on the tool ”<strong id=\"\">Histogram</strong>“in the software then on the icon ”<strong id=\"\">Water drop</strong>“ at the top right. This will allow you to highlight the bleached parts. </p><p id=\"\">Go back to the image adjustment bar to adjust the level. Click little by little on the <strong id=\"\">“-” button next to 250</strong>. Anything that is red will be bleached by the software. Be careful not to overdo it so as not to launder your object.</p>",
       "image": "/images/guides/67ecfeccf0814c66d5ae117e.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfeccf0814c66d5ae117e_retouches_fond_vid%C3%A9o_art.avif",
+      "imageSource": "/images/guides/67ecfeccf0814c66d5ae117e.avif",
       "structuredText": "In the software, click on the “Histogram” tool, then select the teardrop icon located at the top right of the interface. This feature allows you to visualize which areas of the image will be bleached. Then, go back to the image settings bar and gradually adjust the whitening level by clicking the “-” button next to the 250 value. The red areas indicate which parts will be blanched by the software. Be careful not to overdo the fit to avoid bleaching the object itself."
     },
     {
@@ -69,7 +69,7 @@
       "title": "Export your video",
       "content": "<p id=\"\">You can now export your video in <strong id=\"\">MP4</strong>, <strong id=\"\">MOV </strong>or even create a <strong id=\"\">GIF</strong>. You also have the option to turn your video into <strong id=\"\">360° animation. 📤</strong></p><p id=\"\">To do so, create a new 360° publication profile and choose “videos” in the sources. You will then be able to get a <strong id=\"\">HTML5 code or an integration link</strong> from the platform <strong id=\"\">Orbitvu Sun</strong>. <strong id=\"\">💻</strong></p>",
       "image": "/images/guides/67ecff960e57858e697b1490.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecff960e57858e697b1490_exporter_vid%C3%A9o_art.avif",
+      "imageSource": "/images/guides/67ecff960e57858e697b1490.avif",
       "structuredText": "Once your video is finalized, you can export it to MP4, MOV, or GIF formats depending on your needs. It is also possible to transform your video into a 360° animation. To do this, create a new 360° publishing profile and select “Videos” as the source. Once the profile is set up, you can generate an HTML5 code or an integration link via the Orbitvu Sun platform."
     }
   ],

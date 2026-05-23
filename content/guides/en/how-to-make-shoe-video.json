@@ -8,20 +8,20 @@
   "description": "Make 360 videos of shoes with Orbitvu. Automated studio, light, clipping and fast export. 👠",
   "date": "2025-06-23T10:14:09.011Z",
   "image": "/images/guides/67d99181daa8e9e40dbbbf34.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf34_67d19896e1cc6f8a5ff8b4f2_shooting_photo_animation_360_chaussures.avif",
+  "imageSource": "/images/guides/67d99181daa8e9e40dbbbf34.avif",
   "categoryId": "6683fd40c7f5f7afa47b18da",
   "duration": "3 minutes",
   "tool": "Orbitvu Station software and a pair of shoes",
   "logistics": "An Orbitvu 360 photo studio and someone on your team",
   "introText": "<p id=\"\">‍<strong id=\"\">Make a 360° video of shoes in an automated photo studio</strong> is an effective alternative to<a href=\"/en/guide/create-professional-360-animation-of-shoes\"><strong id=\"\"> 360° animation in HTML5 format</strong></a><strong id=\"\">.</strong>🎥 This video format highlights your fashion products from all angles, with a smooth rendering, ready to be integrated into your <strong id=\"\">e-commerce campaigns</strong>, your <strong id=\"\">product sheets</strong> or on the <strong id=\"\">social networks</strong>.</p><p id=\"\">Unlike 360° animation, video does not allow interaction, but it is easier to publish and quickly captures attention in news feeds. 📊 It is an excellent way to boost engagement and present your <strong id=\"\">shoes in a dynamic and professional way</strong>.</p><p id=\"\">Of the <strong id=\"\">preparation of the product</strong> To the <strong id=\"\">video capture</strong>, going through the <strong id=\"\">light adjustment</strong> And the <strong id=\"\">Turntable configuration</strong>, this tutorial takes you step by step with the <a href=\"/en/studio-photo/alphashot-xl\" id=\"\"><strong id=\"\">Alphashot XL Photo Studio</strong></a>. 👠</p>",
-  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1000px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99180c0fd8f51c4369cc2_67b6f6be6660a76818dd2eba_Tuto%2520chaussures%2520360%2520en%25209%2520%25C3%25A9tapes_1.gif\" alt=\"Vidéo de chaussures avec studio photo automatisé\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1000px\"><div id=\"\"><img src=\"/images/guides/67d99180c0fd8f51c4369cc2.gif\" alt=\"Vidéo de chaussures avec studio photo automatisé\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
   "steps": [
     {
       "position": 1,
       "title": "Prepare your pair of pumps before putting them in the studio",
       "content": "<p id=\"\">On this example of heeled pumps, use a dusting spray or a rag to remove any dust particles that would be visible on the final video.<strong id=\"\">🧺</strong></p><p id=\"\">Also, don't hesitate to wear <strong id=\"\">cotton gloves</strong> so as not to leave marks on your shoes during the various manipulations.<strong id=\"\">🧤</strong></p>",
       "image": "/images/guides/67d99180c0fd8f51c4369cc5.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99180c0fd8f51c4369cc5_67b59ef9ea7d2f694c7f1470_nettoyage_chaussures.avif",
+      "imageSource": "/images/guides/67d99180c0fd8f51c4369cc5.avif",
       "structuredText": "On this model, for example, high-heeled pumps, use a dusting spray or a rag to remove any dust particles that would be visible on the final video. Do not hesitate to also wear cotton gloves so as not to leave marks on your shoes during the various manipulations."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Place, position, and center the pair of shoes",
       "content": "<p id=\"\">Center your pair of shoes in the photo studio using the <strong id=\"\">integrated laser</strong> and which is activated by clicking on the software's laser button <strong id=\"\">Orbitvu Station</strong>. 🎯 </p><p id=\"\">Check on your LiveView screen that your shoes are centered.<strong id=\"\">💻</strong></p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf31.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf31_67b5a2562ec3b11e6cff16b7_centrage_chaussures_animation_360.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf31.avif",
       "structuredText": "Center your pair of shoes in the photo studio using the built-in laser, which is activated by clicking on the laser button in the Orbitvu Station software. Check on your LiveView screen that your shoes are centered."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Create a template",
       "content": "<p id=\"\">Once your pumps are in position, memorize their position with a <strong id=\"\">Phantom image</strong>.<strong id=\"\">👻</strong></p><p id=\"\">This image will serve as a position memory for future pairs of similar shoes. </p><p id=\"\">Save this ghost image in a profile, you can <strong id=\"\">reuse later</strong>. 📂</p><p id=\"\">Stored in the software library, this profile will be used to record all detailed settings in the next steps of this tutorial. ⚙</p><p id=\"\">‍</p>",
       "image": "/images/guides/67d99180c0fd8f51c4369ca8.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99180c0fd8f51c4369ca8_67b6f01dd9c9a78896417b75_enregistrement_template_chaussures.avif",
+      "imageSource": "/images/guides/67d99180c0fd8f51c4369ca8.avif",
       "structuredText": "Once your pumps are in position, memorize their position with a ghost image. This image will serve as a position memory for future pairs of similar shoes. Save this ghost image in a profile so you can use it again later. Stored in the software library, this profile will be used to record all detailed settings in the next steps of this tutorial."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Get your camera ready to shoot your video",
       "content": "<p id=\"\">Set, from the software interface: </p><p id=\"\">Les <strong id=\"\">ISO </strong>over a range between 100 and 400, <strong id=\"\">The opening </strong>between f/8 and f/16 the speed min 1/50. 📷</p><p id=\"\">Create a <strong id=\"\">adjustment profile</strong> for your pumps video. 📂</p><p id=\"\">‍</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf3a.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf3a_67b5a30b2b3cc2adffb6f37b_r%25C3%25A9glages_appareil_photo_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf3a.avif",
       "structuredText": "Set, from the software interface: The ISOs to a range between 100 and 400, the aperture between f/8 and f/16, the speed (min. 1/50). Create a tuning profile for your pumps video."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Create the ideal lighting ambiance for the 360 video of the pumps",
       "content": "<p id=\"\">To get the desired image, adjust the intensity of each lighting source in the studio from 1 to 100% separately. 💡 </p><p id=\"\">See the results of the adjustments on your shoes live on the screen.<strong id=\"\">💻</strong></p><p id=\"\">Orbitvu studios are naturally equipped with light spots that simulate daylight, but you can also customize them and get a warmer or colder light depending on the desired result.<strong id=\"\">⚖️</strong></p><p id=\"\">‍</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf40.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf40_67b5a384966a1d808e51ca78_r%25C3%25A9glages_lumi%25C3%25A8re_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf40.avif",
       "structuredText": "To get the desired image, adjust the intensity of each lighting source in the studio from 1 to 100% separately. See the results of the adjustments on your shoes live on the screen. Orbitvu studios are naturally equipped with light spots that simulate daylight, but you can also customize them and get a warmer or colder light depending on the desired result."
     },
     {
@@ -61,7 +61,7 @@
       "title": "The engine is running... Action! Your 360 shoe video is on",
       "content": "<p id=\"\">You are ready! Click on ”<strong id=\"\">Registration</strong>“, the set rotates completely while the camera films your shoes... <strong id=\"\">🎬</strong></p><p id=\"\">And it's in the box!</p>",
       "image": "/images/guides/67d99182daa8e9e40dbbbf47.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99182daa8e9e40dbbbf47_67b7431769a3cac6afcd5aec_d%25C3%25A9marrage_enregistrement_vid%25C3%25A9o_chaussures.avif",
+      "imageSource": "/images/guides/67d99182daa8e9e40dbbbf47.avif",
       "structuredText": "You are ready! Click “Record”, the set rotates completely while the camera films your shoes... And it's in the box!"
     },
     {
@@ -69,7 +69,7 @@
       "title": "Editing and retouching",
       "content": "<p id=\"\">Now let's move on to the editing stage. 🎨 </p><p id=\"\">Now you can edit your video, increase contrast or brightness, adjust colors to make them even, sharpen sharpness, and more. </p><p id=\"\">A very important function is the brightening of the background to obtain a uniform white. </p><p id=\"\">Go through the levels and brighten the background until it turns completely red. That means your background is 100% white.</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf37.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf37_67b5a7315d16d90e1da8bbb7_edition_animation_360_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf37.avif",
       "structuredText": "Now let's move on to the editing stage. Now you can edit your video, increase contrast or brightness, adjust colors to make them even, sharpen sharpness, and more. A very important function is the brightening of the background to obtain a uniform white. Go through the levels and brighten the background until it turns completely red. That means your background is 100% white."
     },
     {
@@ -77,7 +77,7 @@
       "title": "Creating the profile",
       "content": "<p id=\"\">Save your camera settings and studio lighting settings on a single profile: </p><p id=\"\">Speed and direction of rotation of the turntable, whether or not to remove the audio and the choice of the length of time to play the video. ⚙</p><p id=\"\">‍</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf29.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf29_67b7436ef69dff45f260bf65_enregistrer_profil_r%25C3%25A9glages.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf29.avif",
       "structuredText": "Record your camera and studio lighting settings on a single profile: Speed and direction of rotation of the turntable, audio suppression or not, and the choice of video playback time."
     },
     {
@@ -85,7 +85,7 @@
       "title": "Register your work",
       "content": "<p id=\"\">Finalize your <strong id=\"\">e-commerce product video</strong> by choosing the recording format: MP4 or MOV, depending on your broadcasting needs. In less than 3 minutes, your <strong id=\"\">360° visual content is ready for integration</strong> on your product sheets, social campaigns or marketplaces. Thanks to saved profiles, you can produce videos on the go, without losing quality or time.</p><p id=\"\">By reusing the profiles created, the production time will be practically <strong id=\"\">Divided by two</strong>.<strong id=\"\">⌚️</strong></p><p id=\"\">You can also use your video to make a <strong id=\"\">360° animation or a GIF</strong>. Everything happens during export.</p><p id=\"\">‍</p><p id=\"\"><strong id=\"\">Also discover our </strong><a href=\"/en/guide/how-to-take-multi-angle-photos-of-shoes\"><strong id=\"\">Tutorial on multi-angle shoe photography. 👠</strong></a></p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf3d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf3d_67b5a7c3faa3914cce6aca76_export_animation_360_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf3d.avif",
       "structuredText": "Then choose the video format when recording: Mp4 or mov. You've just completed the entire shooting process in under 3 minutes. By reusing the profiles created, the production time will be practically halved. You can also use your video to make a 360 animation or a GIF. Everything happens during export. Also discover our tutorial on multi-angle shoe photography."
     }
   ],

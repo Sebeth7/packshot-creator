@@ -8,7 +8,7 @@
   "description": "Automatisez vos prises de vue multi-angles avec l'Alphashot PRO G2 et l'IA Orbitvu : positionnement, détourage IQ Mask et export pour le e-commerce.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67ed01e8e439dc9faaae6640.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed01e8e439dc9faaae6640_r%C3%A9sultat_multi_vues_statue.avif",
+  "imageSource": "/images/guides/67ed01e8e439dc9faaae6640.avif",
   "categoryId": "6683fd8c0b8787726aa51adb",
   "duration": "3 minutes",
   "tool": "Logiciel Orbitvu Station et un objet d'art",
@@ -21,7 +21,7 @@
       "title": "Positionnement de l'objet",
       "content": "<p id=\"\">La première étape consiste à placer l’objet au centre du plateau tournant. L’Alphashot PRO G2 est équipé d’un<strong id=\"\"> laser de centrage</strong>, ce qui vous permet de positionner l’objet avec <strong id=\"\">précision</strong>. 📍</p><p id=\"\">Pour les objets fragiles ou qui pourraient bouger lors de la rotation du plateau, vous pouvez utiliser de de la pâte à fixer ou du scotch invisible double face pour stabiliser sans altérer l’esthétique.</p><p id=\"\">Assurez-vous que l'appareil photo soit correctement positionné à l’angle souhaité.</p>",
       "image": "/images/guides/67ecf7a9518b215db53c35dc.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecf7a9518b215db53c35dc_positonnement_template_IA.avif",
+      "imageSource": "/images/guides/67ecf7a9518b215db53c35dc.avif",
       "structuredText": "La première étape consiste à placer l’objet au centre du plateau tournant. L’Alphashot PRO G2 est équipé d’un laser de centrage, ce qui vous permet de positionner l’objet avec précision. Pour les objets fragiles ou qui pourraient bouger lors de la rotation du plateau, vous pouvez utiliser de de la pâte à fixer ou du scotch invisible double face pour stabiliser sans altérer l’esthétique. Assurez-vous que l'appareil photo soit correctement positionné à l’angle souhaité."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Configurez la lumière avec l’aide de l’IA",
       "content": "<p id=\"\">Ce studio possède un <strong id=\"\">AI Assistant</strong>, une technologie qui reconnaît automatiquement les caractéristiques de l’objet placé dans le studio. 💡</p><p id=\"\">Cliquez sur l<strong id=\"\">'icone \"AI\"</strong> et il vous propose plusieurs configurations lumineuses adaptées. Vous pouvez en choisir une et affiner manuellement les réglages. 📂</p>",
       "image": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ecfc3cd83c178bfc1b19fb_template_lumi%C3%A8res_IA.avif",
+      "imageSource": "/images/guides/67ecfc3cd83c178bfc1b19fb.avif",
       "structuredText": "Ce studio possède un AI Assistant, une technologie qui reconnaît automatiquement les caractéristiques de l’objet placé dans le studio. Cliquez sur l'icone \"AI\" et il vous propose plusieurs configurations lumineuses adaptées. Vous pouvez en choisir une et affiner manuellement les réglages."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Activez l’IQ Mask pour un détourage automatique",
       "content": "<p id=\"\">Activez la fonction <strong id=\"\">IQ Mask</strong>, elle vous permet de détourer automatiquement l’objet sur fond blanc ou transparent. Pour obtenir un détourage parfait, faites des réglages au niveau de la lumière. Il faut que votre objet soit plus foncé que le fond. Tout ce qui est encore clair sera supprimé.</p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Jouez sur les panneaux du fond et du plateau tournant pur créer une lumière à contre sens de votre objet ce qui le fera paraitre plus foncé. </p><p id=\"\">‍</p>",
       "image": "/images/guides/67ed03995c1fa68f7d066cf0.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed03995c1fa68f7d066cf0_r%C3%A9glages_IQ_Mask_statue.avif",
+      "imageSource": "/images/guides/67ed03995c1fa68f7d066cf0.avif",
       "structuredText": "Activez la fonction IQ Mask, elle vous permet de détourer automatiquement l’objet sur fond blanc ou transparent. Pour obtenir un détourage parfait, faites des réglages au niveau de la lumière. Il faut que votre objet soit plus foncé que le fond. Tout ce qui est encore clair sera supprimé. Astuce : Jouez sur les panneaux du fond et du plateau tournant pur créer une lumière à contre sens de votre objet ce qui le fera paraitre plus foncé."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Programmez les angles de prise de vue",
       "content": "<p id=\"\">Avec le logiciel Orbitvu Station, vous pouvez programmer <strong id=\"\">la prise de vues multiples à des angles prédéfinis</strong>. </p><p id=\"\">Par exemple, vous pouvez décider de capturer l’objet à 0°, 45°, 90°, 135° et 180°... Pour ce faire, choisissez vos angles en cliquant à l'extérieur dans la roue pour fixer des point de prise de vues comme sur la photo. </p><p id=\"\">Une fois les angles définis, le plateau tournant s’ajuste automatiquement à chaque position, déclenche la prise de vue, puis passe au suivant <strong id=\"\">sans intervention manuelle</strong>. <strong id=\"\">🤖</strong></p><p id=\"\">Vous pouvez également enregistrer cette configuration comme un template réutilisable, ce qui est idéal pour créer une série cohérente de visuels à grande échelle. 📂</p>",
       "image": "/images/guides/67ed044b321ee8113504c659.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
+      "imageSource": "/images/guides/67ed044b321ee8113504c659.avif",
       "structuredText": "Avec le logiciel Orbitvu Station, vous pouvez programmer la prise de vues multiples à des angles prédéfinis. Par exemple, vous pouvez décider de capturer l’objet à 0°, 45°, 90°, 135° et 180°... Pour ce faire, choisissez vos angles en cliquant à l'extérieur dans la roue pour fixer des point de prise de vues comme sur la photo. Une fois les angles définis, le plateau tournant s’ajuste automatiquement à chaque position, déclenche la prise de vue, puis passe au suivant sans intervention manuelle. Vous pouvez également enregistrer cette configuration comme un template réutilisable, ce qui est idéal pour créer une série cohérente de visuels à grande échelle."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Capturez et traitez vos images",
       "content": "<p id=\"\">Lorsque tout est prêt, cliquez simplement sur <strong id=\"\">« Capturer tout »</strong> dans Orbitvu Station. 📷</p><p id=\"\">Le studio va exécuter la séquence entière. Une fois les images capturées, vous pouvez les consulter, les trier, et effectuer des retouches si besoin via les <strong id=\"\">options de post-traitement intégrées</strong>. 🎨</p>",
       "image": "/images/guides/67ed044b321ee8113504c659.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed044b321ee8113504c659_programmation_nombre_vues_statue.avif",
+      "imageSource": "/images/guides/67ed044b321ee8113504c659.avif",
       "structuredText": "Lorsque tout est prêt, cliquez simplement sur « Capturer tout » dans Orbitvu Station. Le studio va exécuter la séquence entière. Une fois les images capturées, vous pouvez les consulter, les trier, et effectuer des retouches si besoin via les options de post-traitement intégrées."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Exportez vos visuels et partagez-les",
       "content": "<p id=\"\">Enfin, vous pouvez exporter vos images depuis l’onglet <strong id=\"\">« Publier »</strong> et choisissez le format d'exportation <strong id=\"\">JPEG </strong>pour le web, <strong id=\"\">PNG </strong>avec transparence, <strong id=\"\">WEPB</strong>, <strong id=\"\">TIF</strong>... 📤</p><p id=\"\">Vous pouvez aussi publier vos photos depuis le logiciel directement sur vos <strong id=\"\">réseaux sociaux</strong> ou sur une marketplace comme <strong id=\"\">Shopify </strong>ou <strong id=\"\">Magento</strong>. <strong id=\"\">💻</strong></p>",
       "image": "/images/guides/67ed0542c7a3759d728beb9c.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67ed0542c7a3759d728beb9c_exporter_format_multivues_statue.avif",
+      "imageSource": "/images/guides/67ed0542c7a3759d728beb9c.avif",
       "structuredText": "Enfin, vous pouvez exporter vos images depuis l’onglet « Publier » et choisissez le format d'exportation JPEG pour le web, PNG avec transparence, WEPB, TIF... Vous pouvez aussi publier vos photos depuis le logiciel directement sur vos réseaux sociaux ou sur une marketplace comme Shopify ou Magento."
     }
   ],

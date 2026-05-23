@@ -8,7 +8,7 @@
   "description": "Tutoriel pas à pas pour créer des animations 360° interactives avec l'Assistant IA Orbitvu : scan du produit, éclairage optimal et export cloud.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67d991833ebc915e495facdf.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991833ebc915e495facdf_67d40dca409fe87c8dc56ad8_cover_animation_36_lipstick.avif",
+  "imageSource": "/images/guides/67d991833ebc915e495facdf.avif",
   "categoryId": "6683fda8716a93e0202fa300",
   "duration": "3 minutes",
   "tool": "Logiciel Orbitvu Station, un rouge à lèvres et des gants en coton",
@@ -21,7 +21,7 @@
       "title": "Positionner le rouge à lèvres",
       "content": "<p id=\"\">Placez le rouge à lèvres au centre exact du plateau tournant. Le studio dispose d’un <strong id=\"\">système laser de centrage intégré</strong> pour garantir un positionnement précis, évitant ainsi les erreurs de rotation qui pourraient nuire à la qualité de l’animation. 📍</p><p id=\"\">Vous pouvez également vous aider du <strong id=\"\">point centrale du plateau</strong>. Enfin vérifiez sur votre écran que le produit soit bien au centre et bien orienté face à la caméra. <strong id=\"\">💻</strong></p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Assurez-vous que le rouge à lèvres est bien stable. Si vous travaillez sur un produit de petite taille ou cylindrique qui risquerait de bouger, utilisez un bout de pate à fixer ou d'adhésif double face transparent.</p>",
       "image": "/images/guides/67dee4b551013d950eb99709.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99709_67dd619d957f0dffd26b292d_positionner_liptsick_animation.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99709.avif",
       "structuredText": "Placez le rouge à lèvres au centre exact du plateau tournant. Le studio dispose dun système laser de centrage intégré pour garantir un positionnement précis, évitant ainsi les erreurs de rotation qui pourraient nuire à la qualité de lanimation. Vous pouvez également vous aider du point centrale du plateau. Enfin vérifiez sur votre écran que le produit soit bien au centre et bien orienté face à la caméra. Astuce : Assurez-vous que le rouge à lèvres est bien stable. Si vous travaillez sur un produit de petite taille ou cylindrique qui risquerait de bouger, utilisez un bout de pate à fixer ou d'adhésif double face transparent."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Réglage de la lumière avec l'IA",
       "content": "<p id=\"\">L’Assistant IA Orbitvu est doté d'une fonction puissante pour suggérer les meilleures configurations de lumière <strong id=\"\">selon le type de produit</strong>. <strong id=\"\">💄</strong></p><p id=\"\">Une fois votre rouge à lèvres positionné, cliquez sur l'icone \"AI\" et laissez l’Assistant IA <strong id=\"\">scanner le produit</strong> et proposer plusieurs options d’éclairage adaptées. </p><p id=\"\">L'IA vous proposera<strong id=\"\"> 4 templates de lumière</strong> différents, choisissez celui qui met le plus en valeur votre rouge à lèvres. Pour notre animation nous avons choisis le template Velvet. </p>",
       "image": "/images/guides/67dee4b551013d950eb99700.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99700_67dd62ab4bd50dcc6f32bc8d_diff%25C3%25A9rents_templates_IA.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99700.avif",
       "structuredText": "LAssistant IA Orbitvu est doté d'une fonction puissante pour suggérer les meilleures configurations de lumière selon le type de produit. Une fois votre rouge à lèvres positionné, cliquez sur l'icone \"AI\" et laissez lAssistant IA scanner le produit et proposer plusieurs options déclairage adaptées. L'IA vous proposera 4 templates de lumière différents, choisissez celui qui met le plus en valeur votre rouge à lèvres."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Faire des ajustements",
       "content": "<p id=\"\">Bien que l’Assistant IA suggère des réglages de lumières de qualité, vous pouvez toujours affiner les réglages selon vos besoins spécifiques. Le logiciel <strong id=\"\">Orbitvu Station</strong> permet de modifier facilement l’intensité ou l’angle des 74 sources lumineuses indépendantes qui entourent le produit. 💡</p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Si votre rouge à lèvres est métallique ou réfléchissant, réduisez l’intensité des feux frontaux et accentuez les lumières latérales pour une meilleure définition des contours.</p>",
       "image": "/images/guides/67dee4b551013d950eb99736.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99736_67dd61f3ec183421c9dc4981_template_lumi%25C3%25A8re_IA.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99736.avif",
       "structuredText": "Bien que lAssistant IA suggère des réglages de lumières de qualité, vous pouvez toujours affiner les réglages selon vos besoins spécifiques. Linterface intuitive de contrôle permet de modifier facilement lintensité ou langle des 74 sources lumineuses indépendantes qui entourent le produit. Astuce : Si votre rouge à lèvres est métallique ou réfléchissant, réduisez lintensité des feux frontaux et accentuez les lumières latérales pour une meilleure définition des contours."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Régler l'IQ Mask pour un détourage parfait",
       "content": "<p id=\"\">Le détourage est un élément essentiel pour obtenir un rendu professionnel. Cette tache est <strong id=\"\">facilité et automatisé grâce à l'IQ Mask</strong>. </p><p id=\"\">Activez la fonctionnalité et vérifiez que le rouge à lèvres soit <strong id=\"\">complètement noir et le fond bien blanc</strong>. Toute la partie blanche sera supprimée, veillez à ce que les contours de votre produit sont bien noircis, sinon baissez l'intensité de la lumière. </p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Faites une photo pour vérifier les contours, puis corrigez directement dans le logiciel si nécessaire. </p>",
       "image": "/images/guides/67dee4b551013d950eb99718.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99718_67dd6a14a53690202ae9df34_IQ_Mask_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99718.avif",
       "structuredText": "Le détourage est un élément essentiel pour obtenir un rendu professionnel. Cette tache est facilité et automatisé grâce à l'IQ Mask. Activez la fonctionnalité et vérifiez que le rouge à lèvres soit complètement noir et le fond bien blanc. Toute la partie blanche sera supprimée, veillez à ce que les contours de votre produit sont bien noircis, sinon baissez l'intensité de la lumière. Faites une photo pour vérifier les contours, puis corrigez directement dans le logiciel si nécessaire."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Configurez l'animation 360°",
       "content": "<p id=\"\">Une fois les ajustements terminés, sélectionnez le mode 360° dans l'interface Orbitvu Station. Définissez ensuite le nombre d’images pour l’animation, généralement, <strong id=\"\">24 à 36 clichés offrent une fluidité idéale</strong>. 🔄</p><p id=\"\">Appuyez ensuite sur le bouton « Enregistrer » et laissez le plateau tournant motorisé capturer chaque angle avec précision. <strong id=\"\">🎬<br>‍<br></strong>🎯 Grâce à cette approche packshot automatisée, vous gagnez en régularité, en rapidité et en <strong id=\"\">impact visuel</strong>. Ces visuels interactifs renforcent l’engagement et favorisent la <strong id=\"\">conversion sur vos fiches produits e-commerce</strong>, tout en valorisant l’expérience utilisateur.</p><p id=\"\">‍</p>",
       "image": "/images/guides/67dee4b551013d950eb99715.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99715_67dd6a950cb34ba82a845b5a_configurer_animation_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99715.avif",
       "structuredText": "Une fois les ajustements terminés, sélectionnez le mode 360 dans l'interface Orbitvu Station. Définissez ensuite le nombre dimages pour lanimation, généralement, 36 à 72 clichés offrent une fluidité idéale. Appuyez ensuite sur le bouton \" Enregistrer \" et laissez le plateau tournant motorisé capturer chaque angle avec précision."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Retouches de l’image",
       "content": "<p id=\"\">Après la session de prise de vues, passez aux retouches d’image. Le logiciel Orbitvu Station vous permet de faire des retouches tels que la luminosité, la couleur, le contraste... Ajustez les selon vos besoins. 🎨</p><p id=\"\"><strong id=\"\">✨Astuce </strong>: Pour les produits cosmétiques comme le rouge à lèvres, un contraste équilibré est primordial pour refléter les vraies couleurs.</p>",
       "image": "/images/guides/67dee4b551013d950eb99706.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99706_67dd6b35bf56acfbae17fe09_retouches_liptsick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99706.avif",
       "structuredText": "Après la session de prise de vues, passez aux retouches dimage. Le logiciel Orbitvu Station de contrôle à distance du studio photo, vous permet de faire des retouches tels que la luminosité, la couleur, le contraste... Ajustez les selon vos besoins. Astuce : Pour les produits cosmétiques comme le rouge à lèvres, un contraste équilibré est primordial pour refléter les vraies couleurs."
     },
     {
@@ -69,7 +69,7 @@
       "title": "Exportation de l’animation",
       "content": "<p id=\"\">Une fois vos retouches finalisées, il est temps d'exporter l'animation. Choisissez le <strong id=\"\">format HTML</strong> et exportez votre animation sur le cloud Orbitvu Sun. 📤</p><p id=\"\">Ce logiciel vous permettra d'obtenir un <strong id=\"\">lien ou un code d'intégration</strong>. Vous aurez également la possibilité de personnaliser votre animations, comme la couleur des boutons, le visuel d'introduction... et même d'intégrer un boutons pour renvoyer vers les réseaux sociaux par exemple.</p><p id=\"\"><strong id=\"\">Bonus </strong>: Vous pouvez exportez également des images fixes extraites de votre animation pour une utilisation complémentaire dans vos campagnes marketing.</p><p id=\"\"><a href=\"/fr/guide/comment-sublimer-texture-rouge-a-levres-photo-avec-ia\"><strong>Découvrez également comment sublimer la texture d'un rouge à lèvres à travers un packshot.</strong></a></p>",
       "image": "/images/guides/67dee4b551013d950eb9970c.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb9970c_67dd6dca5efb1403a9b11e39_exporter_animation_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb9970c.avif",
       "structuredText": "Une fois vos retouches finalisées, il est temps d'exporter l'animation. Choisissez le format HTML et exportez votre animation sur le cloud Orbitvu Sun. Ce logiciel vous permettra d'obtenir un lien ou un code d'intégration. Vous aurez également la possibilité de personnaliser votre animations, comme la couleur des boutons, le visuel d'introction... et même d'intégrer un boutons pour renvoyer vers les réseaux sociaux par exemple. Bonus : Vous pouvez exportez également des images fixes extraites de votre animation pour une utilisation complémentaire dans vos campagnes marketing."
     }
   ],

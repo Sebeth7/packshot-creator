@@ -8,20 +8,20 @@
   "description": "Guide détaillé pour nettoyer une montre avant un shooting photo : bracelets cuir, métal et caoutchouc, boîtier, cadran et séchage anti-reflets.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67d991806d27adf17e17afa7.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991806d27adf17e17afa7_67b5ab7b018dd80ced7ba545_nettoyage_cadran.avif",
+  "imageSource": "/images/guides/67d991806d27adf17e17afa7.avif",
   "categoryId": "6683fd64b1ba87536a6582ff",
   "duration": "1h et 30 min avec séchage",
   "tool": "Chiffon en laine, un gant en éponge, cirage incolore nourrissant, une brosse à dents à poils souples, des cotons tiges et un chiffon doux non pelucheux",
   "logistics": "Une personne de votre équipe",
   "introText": "<p id=\"\"><strong id=\"\">⌚️</strong>Lorsque vous photographiez vos montres, en particulier avec un <strong id=\"\">objectif photo macro</strong>, la moindre trace sera visible sur vos visuels.</p><p id=\"\"><strong id=\"\">Découvrez nos conseils sur </strong><a href=\"/fr/guide/quel-equipement-choisir-pour-photo-bijoux\"><strong id=\"\">les équipements pour la photographie de bijoux.</strong></a></p><p id=\"\">La poussière est particulièrement apparente sur les gros plans montrant le bracelet, le cadran ou une partie du boîtier. Il en va de même pour les traces de doigts. </p><p id=\"\">✏️Vous risquez de perdre du temps à les supprimer en post-production. Voici nos conseils pour présenter vos montres sous leur meilleur jour.</p><p id=\"\"><strong id=\"\">Comment nettoyer une montre avant de la photographier ?📷</strong></p>",
-  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1750px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1750px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d9917f6d27adf17e17af74_67b5ac6f7b2a4aba029ea4d5_nettoyage_de_montre_avant_shooting.avif\" alt=\"comment nettoyer une montre avant un shooting photo\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1750px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1750px\"><div id=\"\"><img src=\"/images/guides/67d9917f6d27adf17e17af74.avif\" alt=\"comment nettoyer une montre avant un shooting photo\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
   "steps": [
     {
       "position": 1,
       "title": "Nettoyage d’un bracelet en cuir de montre",
       "content": "<p id=\"\">🧴Passez un coup de <strong id=\"\">chiffon en laine</strong> (il ne doit pas pelucher) ou de coton imbibé de lait démaquillant, ou encore de savon de Marseille.</p><p id=\"\"><strong id=\"\">🧽</strong>Si le bracelet est très sale, utilisez une <strong id=\"\">éponge humidifiée</strong>. </p><p id=\"\"><strong id=\"\">🧺</strong>Séchez avec un gant en éponge, puis laissez sécher le bracelet avant d’appliquer un cirage incolore nourrissant (n’utilisez pas de crèmes pour les chaussures).</p>",
       "image": "/images/guides/67d991806d27adf17e17afa3.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991806d27adf17e17afa3_67b600322b3a94c78c9b4d07_nettoyage_bracelet_cuir_montre.avif",
+      "imageSource": "/images/guides/67d991806d27adf17e17afa3.avif",
       "structuredText": "Passez un coup de chiffon en laine (il ne doit pas pelucher) ou de coton imbibé de lait démaquillant, ou encore de savon de Marseille. Si le bracelet est très sale, utilisez une éponge humidifiée . Séchez avec un gant en éponge, puis laissez sécher le bracelet avant dappliquer un cirage incolore nourrissant (nutilisez pas de crèmes pour les chaussures)."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Nettoyage d'un bracelets métalliques ou en caoutchouc",
       "content": "<p id=\"\"><strong id=\"\">🧼</strong>Pour les bracelets métalliques ou en caoutchouc, il vous faudra : une <strong id=\"\">brosse tendre humide et du savon</strong>. </p><p id=\"\"><strong id=\"\">🧺</strong>Séchez avec un chiffon <strong id=\"\">doux et sec</strong>. Utilisez ensuite un chiffon doux et tamponnez le bracelet. </p><p id=\"\">Si des taches persistantes sont présentes, une brosse à dents <strong id=\"\">à poils souples</strong> vous permettra de les effacer et de pénétrer entre les maillons d’un bracelet en acier inoxydable. </p><p id=\"\">Vous pouvez également vous servir d’un coton-tige.</p>",
       "image": "/images/guides/67d991806d27adf17e17af9d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991806d27adf17e17af9d_67b5ab0281538ce17bd2f3ac_nettoyage_montre_bracelet-caoutchouc.avif",
+      "imageSource": "/images/guides/67d991806d27adf17e17af9d.avif",
       "structuredText": "Pour les bracelets métalliques ou en caoutchouc, il vous faudra : une brosse tendre humide et du savon . Séchez avec un chiffon doux et sec . Utilisez ensuite un chiffon doux et tamponnez le bracelet. Si des taches persistantes sont présentes, une brosse à dents à poils souples vous permettra de les effacer et de pénétrer entre les maillons dun bracelet en acier inoxydable. Vous pouvez également vous servir dun coton-tige."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Nettoyer le boîtier et son cadran",
       "content": "<p id=\"\"><strong id=\"\">🧼</strong>Là aussi, équipez-vous d’un <strong id=\"\">chiffon humide</strong> pour nettoyer les deux faces du boîtier. Si malgré ce premier nettoyage la saleté persiste, reprenez une brosse à dents à poils souples imbibée d’eau savonneuse. </p><p id=\"\">🔄Réalisez des <strong id=\"\">mouvements circulaires</strong> sur toute la surface du boîtier, cadran compris. </p><p id=\"\">Là encore, si la pièce s’avère sensible à nettoyer, comme un cadran avec des pièces décoratives, utilisez un coton-tige imbibé d’<strong id=\"\">eau savonneuse ou d’alcool isopropylique</strong> et réalisez de légers mouvements circulaires sur sa surface.</p>",
       "image": "/images/guides/67d991806d27adf17e17afa0.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991806d27adf17e17afa0_67b6e4891999e14700620863_nettoyage_cadran_montre_brosse.avif",
+      "imageSource": "/images/guides/67d991806d27adf17e17afa0.avif",
       "structuredText": "Là aussi, équipez-vous dun chiffon humide pour nettoyer les deux faces du boîtier. Si malgré ce premier nettoyage la saleté persiste, reprenez une brosse à dents à poils souples imbibée deau savonneuse. Réalisez des mouvements circulaires sur toute la surface du boîtier, cadran compris. Là encore, si la pièce savère sensible à nettoyer, comme un cadran avec des pièces décoratives, utilisez un coton-tige imbibé d eau savonneuse ou dalcool isopropylique et réalisez de légers mouvements circulaires sur sa surface."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Dernière étape avant de préparer votre montre pour le shooting",
       "content": "<p id=\"\"><strong id=\"\">🧣</strong>Essuyez la montre une dernière fois avec un chiffon doux non pelucheux. </p><p id=\"\"><strong id=\"\">⌚️</strong>Enfin, laissez-la sécher <strong id=\"\">au moins une heure</strong>. </p><p id=\"\"><strong id=\"\">🧤</strong>Vous serez ensuite fin prêt à enfiler vos gants et à positionner le garde-temps pour votre shooting photo.</p><p id=\"\">Découvrez dans ce tutoriel <a href=\"/fr/guide/comment-positionner-montre-avant-shooting-photo\"><strong>Comment positionner une montre avant de la photographier.</strong></a></p>",
       "image": "/images/guides/67d991806d27adf17e17afad.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991806d27adf17e17afad_67b5abe7cbef46b41e4cbafa_s%25C3%25A9chage_montre.avif",
+      "imageSource": "/images/guides/67d991806d27adf17e17afad.avif",
       "structuredText": "Essuyez la montre une dernière fois avec un chiffon doux non pelucheux. Enfin, laissez-la sécher au moins une heure . Vous serez ensuite fin prêt à enfiler vos gants et à positionner le garde-temps pour votre shooting photo. Découvrez dans ce tutoriel Comment positionner une montre avant de la photographier."
     }
   ],

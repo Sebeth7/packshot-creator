@@ -8,7 +8,7 @@
   "description": "Create a 360 shoe animation in 9 steps. Enhance your e-commerce visuals with interactive and immersive rendering.",
   "date": "2025-06-23T10:14:09.011Z",
   "image": "/images/guides/67d99180c0fd8f51c4369ca0.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99180c0fd8f51c4369ca0_67b5a977d6e7a63f1de9fad9_animation_360_chaussures.avif",
+  "imageSource": "/images/guides/67d99180c0fd8f51c4369ca0.avif",
   "categoryId": "6683fd40c7f5f7afa47b18da",
   "duration": "1 to 5 minutes for a complete animation",
   "tool": "Canon EOS R5 SLR, Orbitvu Station software and a pump (or other)",
@@ -21,7 +21,7 @@
       "title": "On your marks: clean your shoe",
       "content": "<p id=\"\"><strong id=\"\">🧽</strong>Depending on the material of the shoe, use a <strong id=\"\">rag or brush</strong> to remove all traces of dust. </p><p id=\"\">💨 On a suede pump, we recommend using a <strong id=\"\">dust remover aerosol</strong>. </p><p id=\"\">Some shoe models made of leather or soft fabric require a<strong id=\"\"> paper upholstery</strong> to keep their shape when shooting in the studio.</p>",
       "image": "/images/guides/67d99180c0fd8f51c4369cc5.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99180c0fd8f51c4369cc5_67b59ef9ea7d2f694c7f1470_nettoyage_chaussures.avif",
+      "imageSource": "/images/guides/67d99180c0fd8f51c4369cc5.avif",
       "structuredText": "Depending on the material of the shoe, use a rag or brush to remove any traces of dust. On a suede pump, we recommend using a dusting spray. Some shoe models made of leather or soft fabric require paper padding to keep their shape during studio shooting."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Position it in your photo studio (0'30 minutes)",
       "content": "<p id=\"\">📍 Place the pump <strong id=\"\">In profile</strong> in the studio, in the center of the turntable using the coordinate system located in the center of the turntable or trigger <strong id=\"\">The positioning laser</strong> from the software. For this tutorial we used <a href=\"/en/studio-photo/alphashot-xl\"><strong id=\"\">Orbitvu's Alphashot XL studio, which is the most suitable for shooting shoes</strong></a>.</p><p id=\"\">Once your shoe is perfectly centered, create a<strong id=\"\"> Phantom image</strong>. The exact position of the pump is stored by the software on a profile. This phantom image will later be used to make it easier for you to position similar products. </p><p id=\"\">On a thin heel pump, use a small <strong id=\"\">Tip of paste to fix</strong> to prevent any movement during the rotation of the platter. 🔄</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf31.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf31_67b5a2562ec3b11e6cff16b7_centrage_chaussures_animation_360.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf31.avif",
       "structuredText": "Place the profile clip in the studio, in the center of the turntable using the coordinate system located in the center of the turntable, or trigger the positioning laser from the software. For this tutorial we used Orbitvu's Alphashot XL studio, which is the most suitable for shooting shoes. Once your shoe is perfectly centered, create a ghost image. The exact position of the carpin is stored by the software on a profile. This phantom image will later be used to make it easier for you to position similar products. On a thin-heeled pump, use a small piece of clay to attach to prevent movement as the platter rotates."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Set up the camera (0'15 seconds)",
       "content": "<p id=\"\">✔ Set the <strong id=\"\">ISO </strong>on a value between 200 and 400.</p><p id=\"\">✔<strong id=\"\">The opening </strong>out of 11 for completely clear photos.</p><p id=\"\">✔ The <strong id=\"\">speed </strong>at 1/80.</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf3a.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf3a_67b5a30b2b3cc2adffb6f37b_r%25C3%25A9glages_appareil_photo_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf3a.avif",
       "structuredText": "Set the ISOs to a value between 200 and 400. Aperture to 11 for completely clear photos. The speed at 1/80."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Ready? Choose the ideal lighting for your pump (1 minute)",
       "content": "<p id=\"\">Adjust the intensity of <strong id=\"\">6 different lighting sources</strong> Studio LEDs: front, rear, columns or even turntable backlighting. If you need inspiration, try the <strong id=\"\">Templates </strong>by default. </p><p id=\"\">You can also adjust the white balance to make the light warmer or colder, or leave it as it is. </p><p id=\"\">✔ All Orbitvu studios are set to get the <strong id=\"\">as natural light as possible</strong> by default (daylight). </p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf40.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf40_67b5a384966a1d808e51ca78_r%25C3%25A9glages_lumi%25C3%25A8re_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf40.avif",
       "structuredText": "Adjust the intensity of the 6 different LED lighting sources in the studio: front, rear, columns or even turntable backlighting. If you need inspiration, try the default templates. You can also adjust the white balance to make the light warmer or colder, or leave it as it is. All Orbitvu studios are set to obtain the most natural light possible by default (daylight)."
     },
     {
@@ -53,7 +53,7 @@
       "title": "IQ Mask profile creation and verification",
       "content": "<p id=\"\">📂 Name and save the <strong id=\"\">Template </strong>(profile) to store all of these camera and light settings on a profile that can be reused later. 🔄</p><p id=\"\">✔ Take a single photo to check the settings of <strong id=\"\">The IQ Mask </strong>(automatic clipping tool) before moving on to animating your bottomless shoe.</p>",
       "image": "/images/guides/67dad088aa1f72b4f75eab49.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dad088aa1f72b4f75eab49_67b5a4591a69cf56d82f0b5f_IQ_Mask_chaussures.avif",
+      "imageSource": "/images/guides/67dad088aa1f72b4f75eab49.avif",
       "structuredText": "Name and save the template (profile) to store all of these camera and lighting settings on a profile that can be reused later. Take a single photo to check the IQ Mask settings (automatic clipping tool) before moving on to animating your bottomless shoe."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Before leaving the starting blocks (0'10 minutes)",
       "content": "<p id=\"\">Choose the direction of rotation, speed, and number of frames that will make up the 360° animation. It is possible to achieve <strong id=\"\">up to 360 photos</strong> to get the smoothest animation possible. </p><p id=\"\">For an e-commerce website, for example specialized in shoes, <strong id=\"\">24 photos are more than enough!</strong></p>",
       "image": "/images/guides/67dad088aa1f72b4f75eab4e.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dad088aa1f72b4f75eab4e_67b5a52780d97b892c258951_choix_nombre_photo_animation_chaussures.avif",
+      "imageSource": "/images/guides/67dad088aa1f72b4f75eab4e.avif",
       "structuredText": "Choose the direction of rotation, speed, and number of frames that will make up the 360 animation. It is possible to take up to 360 photos to obtain the smoothest animation possible. For an e-commerce website, for example specialized in shoes, 24 photos are more than enough!"
     },
     {
@@ -69,7 +69,7 @@
       "title": "Go away! The 360° animation of the shoe is started (1.15 seconds)",
       "content": "<p id=\"\">🎬 Start recording by clicking <strong id=\"\">“Check-in”.</strong> </p><p id=\"\">The board starts to rotate 360 degrees. During this rotation, the software automatically calculates the angles and the camera photographs your shoe 24 times. </p><p id=\"\">✔ When shooting is complete, go to the next step.</p><p id=\"\">‍</p>",
       "image": "/images/guides/67dad088aa1f72b4f75eab46.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dad088aa1f72b4f75eab46_67b5a5bd55dc5dc246458fd8_d%25C3%25A9marrez_l%2527enregistrement_animation_chaussures.avif",
+      "imageSource": "/images/guides/67dad088aa1f72b4f75eab46.avif",
       "structuredText": "Start recording by clicking on “Record.” The board starts to rotate 360 degrees. During this rotation, the software automatically calculates the angles and the camera photographs your shoe 24 times. When shooting is complete, move on to the next step."
     },
     {
@@ -77,7 +77,7 @@
       "title": "Image and IQ Mask retouching (1 minute on average)",
       "content": "<p id=\"\">🎨 Edit images if necessary and check that the<strong id=\"\">IQ Mask</strong> has removed the bottom well. When you are happy with the result, move on to exporting your animation. 🖌</p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf37.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf37_67b5a7315d16d90e1da8bbb7_edition_animation_360_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf37.avif",
       "structuredText": "Retouch the images if necessary and check that IQ Mask has removed the background. When you are happy with the result, move on to exporting your animation."
     },
     {
@@ -85,7 +85,7 @@
       "title": "Automatic export and assembly of images (0'15 minutes)",
       "content": "<p id=\"\">The Orbitvu Station software takes care of <strong id=\"\">Assemble automatically</strong> the 24 photographs of the pump. Select the export format (s) according to the intended use, for example <strong id=\"\">HTML, MP4, MOV, or GIF</strong>. 🎥</p><p id=\"\">A file in the chosen format is then generated, and you can then transfer it to the Orbitvu Sun software, which will serve as a storage cloud. 📤 </p><p id=\"\">Orbitvu Sun will allow you to get a <strong id=\"\">integration link</strong> effortlessly, all you have to do is copy and paste it onto your website for the animation to be displayed online. <strong id=\"\">💻 </strong></p><p id=\"\">Also discover our <a href=\"/en/guide/how-to-make-shoe-video\"><strong>tutorial on making a shoe video with an Orbitvu 360 photo studio.</strong></a></p>",
       "image": "/images/guides/67d99181daa8e9e40dbbbf3d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99181daa8e9e40dbbbf3d_67b5a7c3faa3914cce6aca76_export_animation_360_chaussures.avif",
+      "imageSource": "/images/guides/67d99181daa8e9e40dbbbf3d.avif",
       "structuredText": "The Orbitvu Station software automatically assembles the 24 photographs of the scarpin. Select the export format (s) according to the intended use, for example HTML, MP4, MOV, or GIF. A file in the chosen format is then generated, and you can then transfer it to the Orbitvu Sun software, which will serve as a storage cloud. Orbitvu Sun will allow you to get an integration link effortlessly, simply copy and paste it onto your website for the animation to be displayed online. Also check out our tutorial on how to make a shoe video with an Orbitvu 360 photo studio."
     }
   ],

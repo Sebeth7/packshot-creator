@@ -8,20 +8,20 @@
   "description": "Positionnez correctement vos montres pour un shooting photo réussi : règle des aiguilles à 10h10, angles à plat et incliné, supports Alphashot Micro V2.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67d99183a2299f1c17eaaa90.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183a2299f1c17eaaa90_67b5b7036858ebec7976dd09_shooting_photo_montre.avif",
+  "imageSource": "/images/guides/67d99183a2299f1c17eaaa90.avif",
   "categoryId": "6683fd64b1ba87536a6582ff",
   "duration": "5 minutes",
   "tool": "Logiciel Obitvu Station, un appareil photo Canon EOS RP, un objectif 100mm Macro",
   "logistics": "Une personne et un studio photo Alphashot Micro Pro v2",
   "introText": "<p id=\"\">Vous souhaitez <a href=\"/fr/industrie/bijoux\">réussir la photographie de vos <strong id=\"\">montres</strong></a> pour votre site <strong id=\"\">e-commerce</strong> ? </p><p id=\"\">Ce guide vous dévoile comment <strong id=\"\">positionner vos modèles</strong> de manière professionnelle pour valoriser chaque <strong id=\"\">détail</strong> : <strong id=\"\">cadran</strong>, <strong id=\"\">aiguilles</strong>, <strong id=\"\">bracelet</strong>, <strong id=\"\">texture</strong>.</p><p id=\"\">Grâce aux <strong id=\"\">studios photo automatisés</strong> comme l’<a href=\"/fr/studio-photo/alphashot-micro\">Alphashot Micro v2 </a>et au <strong id=\"\">logiciel Orbitvu Station</strong>, vous obtiendrez des visuels cohérents, nets et convaincants. Suivez nos <strong id=\"\">étapes clés</strong> pour un rendu horloger haut de gamme. 👓📷</p>",
-  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:4000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"4000px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99182a2299f1c17eaaa6c_67b6e912eced17dd1e3740c8_montre_r%25C3%25A9sultat-final.avif\" alt=\"Résultat d'un shooting photo de montre pris avec un studio Orbitvu \" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:4000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"4000px\"><div id=\"\"><img src=\"/images/guides/67d99182a2299f1c17eaaa6c.avif\" alt=\"Résultat d'un shooting photo de montre pris avec un studio Orbitvu \" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
   "steps": [
     {
       "position": 1,
       "title": "Préparation : la règle des aiguilles à 10h10",
       "content": "<p id=\"\">Après avoir nettoyé votre montre (découvrez notre <a href=\"/fr/guide/comment-nettoyer-montre-avant-shooting\"><strong>tutoriel sur le nettoyage d’une montre avant la prise de vue</strong></a>), positionnez ses aiguilles à 10 h 10.</p><p id=\"\">Il s’agit d’un clin d’œil à l’introduction de l’heure de <strong id=\"\">référence universelle</strong>, et c’est aussi une <strong id=\"\">position esthétique</strong>. Les aiguilles ne masqueront pas les complications et cadrans tels que la réserve de marche d’une montre automatique.</p>",
       "image": "/images/guides/67d99183a2299f1c17eaaa9b.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183a2299f1c17eaaa9b_67c06d2cc94b9f0854edb8f8_position_aiguilles_shooting_montre.avif",
+      "imageSource": "/images/guides/67d99183a2299f1c17eaaa9b.avif",
       "structuredText": "Après avoir nettoyé votre montre (découvrez notre tutoriel sur le nettoyage dune montre avant la prise de vue ), positionnez ses aiguilles à 10 h 10. Il sagit dun clin dil à lintroduction de lheure de référence universelle , et cest aussi une position esthétique . Les aiguilles ne masqueront pas les complications et cadrans tels que la réserve de marche dune montre automatique."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Prise de vue à plat : mettez en avant les détails d’une montre",
       "content": "<p id=\"\">📍Posez la montre <strong id=\"\">à plat</strong> au centre de votre studio, indiqué par <strong id=\"\">un point au milieu du plateau </strong>tournant, puis positionnez l'appareil photo au-dessus de votre studio. </p><p id=\"\">🔍Utilisez cette configuration pour la <strong id=\"\">photographie 2D</strong> et la <strong id=\"\">photographie en gros plan</strong> des composants : fermoir du bracelet, couronne, cadrans.</p>",
       "image": "/images/guides/67d99183a2299f1c17eaaa94.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183a2299f1c17eaaa94_67b5b32055dc5dc2465383c1_photo_%25C3%25A0_plat_montre.avif",
+      "imageSource": "/images/guides/67d99183a2299f1c17eaaa94.avif",
       "structuredText": "Posez la montre à plat au centre de votre studio, indiqué par un point au milieu du plateau tournant, puis positionnez l'appareil photo au-dessus de votre studio. Utilisez cette configuration pour la photographie 2D et la photographie en gros plan des composants : fermoir du bracelet, couronne, cadrans."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Photo à plat avec un appareil photo positionné à 45° : l'effet 3D",
       "content": "<p id=\"\">La montre est également disposée <strong id=\"\">à plat</strong> dans le studio. </p><p id=\"\">Placez l’<strong id=\"\">appareil photo à 45°</strong> pour obtenir un effet de plongée. Cette position en 3D fera, par exemple, <strong id=\"\">ressortir les reliefs et les détails du cadran</strong>. </p><p id=\"\">💡Il faudra doser l’éclairage pour les accentuer ou les atténuer. Faites ensuite pivoter l’image pour obtenir l’angle souhaité.</p>",
       "image": "/images/guides/67d99183a2299f1c17eaaa8d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183a2299f1c17eaaa8d_67b6e6783b2a5b3ad552d30f_photo_montre_inclin%25C3%25A9e_45.avif",
+      "imageSource": "/images/guides/67d99183a2299f1c17eaaa8d.avif",
       "structuredText": "La montre est également disposée à plat dans le studio. Placez l appareil photo à 45 pour obtenir un effet de plongée. Cette position en 3D fera, par exemple, ressortir les reliefs et les détails du cadran . Il faudra doser léclairage pour les accentuer ou les atténuer. Faites ensuite pivoter limage pour obtenir langle souhaité."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Donnez une impression de portée à une montre",
       "content": "<p id=\"\">⌚️<strong id=\"\">Pour créer une illusion de montre portée</strong>, utilisez un <strong id=\"\">support vertical</strong> et un <strong id=\"\">rigidifieur</strong> dans votre studio photo. </p><p id=\"\">📷 Positionnez la montre au <strong id=\"\">centre du plateau</strong> et shootez <strong id=\"\">de face</strong> avec un <strong id=\"\">objectif macro</strong> adapté, pour révéler les <strong id=\"\">détails fins du cadran</strong> et du <strong id=\"\">bracelet</strong>. Ce type de prise de vue est idéal pour une <strong id=\"\">présentation réaliste</strong> sur votre site e-commerce.</p><p id=\"\">🔄 Le <strong id=\"\">support en plexiglas</strong> peut apparaître sur certaines vues (notamment sous le bracelet), mais il disparaît facilement grâce au <strong id=\"\">détourage automatique IQ Mask</strong>. Il permet aussi de réaliser une <strong id=\"\">animation 360° fluide</strong> de la montre.</p><p id=\"\">👉 <em id=\"\">Découvrez également notre tutoriel pour </em><a href=\"/fr/guide/animation-360-focus-stacking\"><strong><em id=\"\">réaliser des animations 360° de bijoux avec une netteté parfaite</em></strong></a><em id=\"\">.</em></p>",
       "image": "/images/guides/67d99183a2299f1c17eaaa97.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183a2299f1c17eaaa97_67b854f3b40ba306ce235315_montre_impression_port%25C3%25A9e%2520(2).avif",
+      "imageSource": "/images/guides/67d99183a2299f1c17eaaa97.avif",
       "structuredText": "Donnez une impression de portée à votre montre avec un support vertical et un rigidifieur pour les prises de vue. Positionnez votre montre au centre du plateau et votre appareil photo bien en face, en utilisant un objectif adapté à la macrophotographie pour capturer les détails fins du cadran et du bracelet. Ce type de prise de vue permet de créer un effet réaliste, donnant l'illusion que la montre est effectivement portée. Notez que le support en plexiglas sera visible sous certains angles, notamment sur le revers du bracelet, mais il disparaîtra pour d'autres prises de vue. Ce support vous permettra également de créer une animation à 360 de votre montre. Découvrez notre tutoriel pour réaliser des animations 360 de bijoux avec une netteté parfaite ."
     }
   ],

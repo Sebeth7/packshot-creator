@@ -8,20 +8,20 @@
   "description": "Standardisez les photos d'une collection entière avec l'Alphashot Pro G2 : sessions IA, images fantômes pour un positionnement identique et retouches en lot.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67d991829eae3cf535a36cc5.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991829eae3cf535a36cc5_67d42738a0e72a3c57591570_packshot_homog%25C3%25A8nes_lipstick.avif",
+  "imageSource": "/images/guides/67d991829eae3cf535a36cc5.avif",
   "categoryId": "6683fda8716a93e0202fa300",
   "duration": "5 minutes",
   "tool": "Logiciel Orbitvu Station et des rouges à lèvres",
   "logistics": "Alphashot Pro G2",
   "introText": "<p id=\"\">Dans le domaine du e-commerce, des visuels homogènes et professionnels sont des éléments stratégiques qui <strong id=\"\">renforcent la crédibilité de votre marque et favorisent les ventes</strong>. 📊</p><p id=\"\">Mais comment garantir une cohérence parfaite lorsque l’on travaille sur plusieurs produits, avec différentes formes, tailles et textures ? Grâce aux technologies comme celles d’<strong id=\"\">Orbitvu</strong>, il est désormais possible d’industrialiser la production visuelle tout en obtenant un résultat impeccable.</p><p id=\"\">Dans cet article, nous vous guidons pas à pas pour obtenir <strong id=\"\">des photos homogènes d’une collection entière de produits</strong>, en prenant l’exemple de trois rouges à lèvres. <strong id=\"\">💄</strong></p>",
-  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1200px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1200px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991819eae3cf535a36c9d_67d429a6781b0026f9396b3d_r%25C3%25A9sultat_packshot_homog%25C3%25A8nes_liptsick.avif\" alt=\"Résultat packshot homogène pour plusieurs rouges à lèvres\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:1200px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"1200px\"><div id=\"\"><img src=\"/images/guides/67d991819eae3cf535a36c9d.avif\" alt=\"Résultat packshot homogène pour plusieurs rouges à lèvres\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
   "steps": [
     {
       "position": 1,
       "title": "Créer une session sur Orbitvu Station",
       "content": "<p id=\"\">Premièrement, nous allons commencer par configurer une session dédiée pour votre produit dans le <strong id=\"\">logiciel Orbitvu Station</strong>. Entrez les informations spécifiques à votre projet, comme le nom de la collection ou les dimensions des produits que vous allez photographier. </p><p id=\"\">L’outil propose une intégration avec <strong id=\"\">des scanners de codes-barres</strong> pour identifier automatiquement les produits, ce qui facilite encore davantage la gestion de vos fichiers. 📂</p>",
       "image": "/images/guides/67dee4b56ff9ec4a82db4979.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b56ff9ec4a82db4979_67dd46880eebacb9d1f61c56_Cr%25C3%25A9er_session_photo_collection.avif",
+      "imageSource": "/images/guides/67dee4b56ff9ec4a82db4979.avif",
       "structuredText": "Premièrement, nous allons commencer par configurer une session dédiée pour votre produit dans le logiciel Orbitvu Station. Entrez les informations spécifiques à votre projet, comme le nom de la collection ou les dimensions des produits que vous allez photographier. Ce cadre initial garantit la standardisation tout au long du processus. Loutil propose une intégration avec des scanners de codes-barres pour identifier automatiquement les produits, ce qui facilite encore davantage la gestion de vos fichiers."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Centrer le produit et activer l’assistant IA",
       "content": "<p id=\"\">Une fois votre session créée, placez votre rouge à lèvres au centre du studio photo, en utilisant le laser intégré pour un positionnement précis. 📍</p><p id=\"\">Aidez vous également de votre écran pour vérifier que votre produit soit bien centré et bien en face de l'appareil photo. <strong id=\"\">💻</strong></p><p id=\"\">Ensuite, activez l’intelligence artificielle d’Orbitvu en cliquant sur l'icone AI. L’assistant IA se charge d’analyser le produit afin de suggérer les meilleurs paramètres pour l’éclairage. 💡</p>",
       "image": "/images/guides/67dee4b56ff9ec4a82db4986.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b56ff9ec4a82db4986_67dd4711afef400156ede17b_centrage_assistant_IA.avif",
+      "imageSource": "/images/guides/67dee4b56ff9ec4a82db4986.avif",
       "structuredText": "Une fois votre session créée, placez votre rouge à lèvres (ou tout autre produit) au centre du studio photo, en utilisant les pointeurs laser intégrés pour un positionnement précis. Aidez vous églement de votre écran pour vérifier que votre produit soit bien centré et bien en face de l'appareil photo. Ensuite, activez lintelligence artificielle dOrbitvu en cliquant sur l'icone AI. Lassistant IA se charge danalyser le produit afin de suggérer les meilleurs paramètres pour léclairage et langle de prise de vue. Ce système vous fait gagner un temps considérable et assure des conditions de prise de vue idéales dès le début. Astuce : Le positionnement précis est un facteur clé pour garantir une cohérence parfaite dun produit à lautre. Cest également la première étape pour obtenir des visuels standardisés."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Prise de vue et édition de la photo",
       "content": "<p id=\"\">Activez l'<strong id=\"\">IQ Mask</strong> et il s’occupera de supprimer automatiquement l’arrière-plan, tout en respectant des paramètres prédéfinis pour les couleurs, la luminosité et les ombres.</p><p id=\"\">Une fois l’a photo prise, vous pouvez effectuer des ajustements directement depuis le logiciel. <strong id=\"\">💻</strong></p><p id=\"\">Les outils de post-production intégrés, comme le recadrage automatique ou l’optimisation de la colorimétrie, permettent de finaliser vos visuels <strong id=\"\">sans avoir besoin de passer par des logiciels tiers</strong>. 🎨</p><p id=\"\">Pensez à enregistrer vos retouches dans un template pour les réutiliser sur les autres photos.</p>",
       "image": "/images/guides/67dee4b56ff9ec4a82db497f.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b56ff9ec4a82db497f_67dd487c8b8842d779453d46_retouche_photo_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b56ff9ec4a82db497f.avif",
       "structuredText": "Maintenant que tout est configuré, il est temps de capturer votre premier produit. Activez l'IQ Mask et il soccupera de supprimer automatiquement larrière-plan, tout en respectant des paramètres prédéfinis pour les couleurs, la luminosité et les ombres. Une fois limage capturée, vous pouvez effectuer des ajustements directement depuis le logiciel. Les outils de post-production intégrés, comme le recadrage automatique ou loptimisation de la colorimétrie, permettent de finaliser vos visuels sans avoir besoin de passer par des logiciels tiers."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Créer une image fantôme pour un positionnement identique",
       "content": "<p id=\"\">Pour garantir la même homogénéité sur les produits suivants, utilisez la fonctionnalité d’image fantôme. <strong id=\"\">👻</strong></p><p id=\"\">Ce procédé consiste à superposer une image semi-transparente de votre premier rouge à lèvres sur l’interface en temps réel. Ainsi, vous pouvez positionner votre deuxième produit exactement au même endroit. 📍</p>",
       "image": "/images/guides/67dee4b56ff9ec4a82db497c.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b56ff9ec4a82db497c_67dd4955a5332e001812eb1b_ghost_image_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b56ff9ec4a82db497c.avif",
       "structuredText": "Pour garantir la même homogénéité sur les produits suivants, utilisez la fonctionnalité dimage fantôme. Ce procédé consiste à superposer une image semi-transparente de votre premier rouge à lèvres sur linterface en temps réel. Ainsi, vous pouvez positionner votre deuxième produit exactement au même endroit. Cela est particulièrement utile pour les séries de produits similaires, comme des cosmétiques ou des chaussures, où chaque variation doit être visuellement cohérente."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Reproduire la position avec un autre produit",
       "content": "<p id=\"\">Appliquez la même méthode pour tous vos produits. Grâce à l’image fantôme, repositionner le produit devient intuitif. <strong id=\"\">💄</strong></p><p id=\"\">Une fois en place, répétez le processus précédent : prise de vue, suppression de l’arrière-plan, et optimisation grâce aux outils automatisés.</p>",
       "image": "/images/guides/67dee4b56ff9ec4a82db4989.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b56ff9ec4a82db4989_67dd49cf75fd4a4e85b94843_ghost_image_lipstick2.avif",
+      "imageSource": "/images/guides/67dee4b56ff9ec4a82db4989.avif",
       "structuredText": "Appliquez la même méthode pour tous vos produits. Grâce à limage fantôme, repositionner le produit devient intuitif. Une fois en place, répétez le processus précédent : prise de vue, suppression de larrière-plan, et optimisation grâce aux outils automatisés. Avec des paramètres standardisés sous forme de template, chaque prise de vue sintègre harmonieusement, renforçant leffet dune collection homogène."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Retouches finales et exportation",
       "content": "<p id=\"\">Une fois toutes les photos capturées, passez à la retouche finale. Orbitvu Station vous permet de regrouper les visuels et de réaliser des ajustements par lots. 🎨</p><p id=\"\">De plus, grâce à l’intégration d’Orbitvu avec des outils comme Shopify ou Magento, vous pouvez synchroniser vos fichiers professionnels directement sur votre boutique en ligne. <strong id=\"\">💻</strong></p><p id=\"\">En suivant ces étapes, vous obtiendrez un résultat final irréprochable pour votre collection. Dans notre exemple avec trois rouges à lèvres, les visuels partagent la même lumière, le même positionnement, et une esthétique cohérente. <strong id=\"\">💄</strong></p><p id=\"\"><a href=\"/fr/guide/comment-creer-animation-360-avec-assistant-ia-orbitvu\"><strong>Découvrez dans ce tutoriel comment utiliser l'Assistant IA Orbitvu pour réaliser une animation 360° de votre rouge à lèvres.</strong></a></p><p id=\"\"><a href=\"/fr/guide/comment-sublimer-texture-rouge-a-levres-photo-avec-ia\"><strong>Découvrez dans ce tutoriel comment mettre en valeur la texture de votre rouge à lèvres à travers un packshot.</strong></a></p>",
       "image": "/images/guides/67d991819eae3cf535a36c9d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991819eae3cf535a36c9d_67d429a6781b0026f9396b3d_r%25C3%25A9sultat_packshot_homog%25C3%25A8nes_liptsick.avif",
+      "imageSource": "/images/guides/67d991819eae3cf535a36c9d.avif",
       "structuredText": "Une fois toutes les photos capturées, passez à la retouche finale. Orbitvu Station vous permet de regrouper les visuels et de réaliser des ajustements par lots. Cela inclut : Luniformisation des couleurs pour correspondre aux guides de votre marque. La suppression et standardisation des ombres.Lexportation des fichiers dans un format adapté à votre plateforme (site web, marketplace, etc.). De plus, grâce à lintégration dOrbitvu avec des outils comme Shopify ou Magento, vous pouvez synchroniser vos fichiers professionnels directement sur votre boutique en ligne."
     }
   ],

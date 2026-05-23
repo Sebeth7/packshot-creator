@@ -8,20 +8,20 @@
   "description": "📷 Achieve a completely clear image of your jewelry thanks to automated focus stacking with Orbitvu. Steps, settings, tools.",
   "date": "2025-06-23T10:14:09.011Z",
   "image": "/images/guides/67d991805e0a0980101b8a98.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a98_67b5fe04b6ab629f1792b603_positionnement_bague_2.avif",
+  "imageSource": "/images/guides/67d991805e0a0980101b8a98.avif",
   "categoryId": "6683fd64b1ba87536a6582ff",
   "duration": "5 minutes",
   "tool": "Obitvu Station software, a Canon EOS RP camera, and a 100mm Macro lens",
   "logistics": "Alphashot Micro V2 and someone on your team",
   "introText": "<p id=\"\"><strong id=\"\">🔍 Focus stacking</strong>, or focus stacking, is an essential technique in <strong id=\"\">macro photography </strong>of products, particularly suitable for jewelry such as bracelets, rings or cufflinks. </p><p id=\"\">This method allows <strong id=\"\">Assemble automatically</strong> several photos taken at different focus distances to obtain a final image <strong id=\"\">completely clear</strong>, from the foreground to the background.</p><p id=\"\"><strong id=\"\">💍</strong>With this tutorial, we show you how to make a <strong id=\"\">Focus Stacking</strong> with the software <strong id=\"\">Orbitvu Station</strong>, combined with the Orbitvu photo studio specialized in <a href=\"/en/industrie/bijoux\" id=\"\">jewelry photography</a>, <a href=\"/en/studio-photo/alphashot-micro\" id=\"\"><strong id=\"\">Alphashot Micro V2</strong>.</a></p>",
-  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:2000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"2000px\"><div id=\"\"><img src=\"https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d9917f5e0a0980101b8a65_67b599d82efff7baf2796c72_bague_sans_fond.avif\" alt=\"Résultat focus stacking sur une bague\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
+  "introMedia": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:2000px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"2000px\"><div id=\"\"><img src=\"/images/guides/67d9917f5e0a0980101b8a65.avif\" alt=\"Résultat focus stacking sur une bague\" width=\"auto\" height=\"auto\" loading=\"auto\" id=\"\"></div></figure>",
   "steps": [
     {
       "position": 1,
       "title": "Positioning and choice of the template",
       "content": "<p id=\"\"><strong id=\"\">🧼</strong>Start by cleaning your ring to avoid any imperfection. </p><p id=\"\">📌 Position it correctly on the center point of the photo studio, or by using a mounting kit for an optimal result. </p><p id=\"\">📂 Once your ring is in place, choose the <strong id=\"\">Template </strong>predefined shooting in the software, corresponding to the type of jewelry you are capturing (simple, precious or complex ring).</p>",
       "image": "/images/guides/67d991805e0a0980101b8aa4.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa4_67ae06822e095471af4e5fb3_position_choix_template_superfocus_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8aa4.avif",
       "structuredText": "Start by cleaning your ring to avoid any imperfection. Position it correctly on the center point of the photo studio, or by using a mounting kit for an optimal result. Once your ring is in place, choose the shooting template predefined in the software, corresponding to the type of jewelry you are capturing (simple, precious or complex ring)."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Light and camera settings",
       "content": "<p id=\"\">💡 Ensure that the light conditions are optimal to capture the details of the ring without creating <strong id=\"\">unwanted reflections</strong>. </p><p id=\"\">📷 We recommend using a <strong id=\"\">macro lens</strong> to maximize detail, with a large aperture (f/2.8 to f/4) to obtain a shallow depth of field and a <strong id=\"\">beautiful sharpness of your jewelry</strong>.<strong id=\"\">💍 </strong></p><p id=\"\"><strong id=\"\">⚡</strong>To make your image as clear as possible, we recommend that you adjust the value <strong id=\"\">ISO between 100 and 200</strong> In order <strong id=\"\">To avoid noise</strong>. </p><p id=\"\"><strong id=\"\">⚖️</strong>La<strong id=\"\"> white balance</strong> should be adjusted according to your preference and your light environment.</p><p id=\"\">Also adjust the<strong id=\"\">lighting</strong> of the studio depending on the finish of the jewel (matt or shiny).</p><p id=\"\"><a href=\"/en/guide/what-settings-to-photograph-jewelry\"><strong>For more precision, check out our guide to camera settings for jewelry photography.</strong></a></p>",
       "image": "/images/guides/67d991805e0a0980101b8a8d.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a8d_67ae06de4e885c020369aadc_r%25C3%25A9glage_lumi%25C3%25A8re_focus_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8a8d.avif",
       "structuredText": "Make sure the light conditions are optimal to capture the details of the ring without creating unwanted reflections. We recommend using a macro lens to maximize detail, with a large aperture (f/2.8 to f/4) to get a shallow depth of field and a nice sharpness in your jewelry. To keep your image as sharp as possible, we recommend that you set the ISO value between 100 and 200 to avoid noise. The white balance should be adjusted according to your preference and your light environment. Also, adjust the studio lighting according to the finish of the jewelry (matt or shiny). For more precision, check out our guide to camera settings for jewelry photography."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Using Superfocus (Assistant)",
       "content": "<p id=\"\">Click on the Superfocus Wizard from the Orbitvu Station interface.<strong id=\"\">💻 </strong></p><p id=\"\">This assistant will guide <strong id=\"\">automatically </strong>the different stages of <strong id=\"\">stacking </strong>by suggesting the ideal parameters for focus stacking.</p>",
       "image": "/images/guides/67d991805e0a0980101b8a9e.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a9e_67ae074e10062eefd9bc3b39_assistant_superfocus_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8a9e.avif",
       "structuredText": "Click on the Superfocus Wizard from the Orbitvu Station interface. This assistant will automatically guide the various stacking steps by suggesting the ideal settings for focus stacking."
     },
     {
@@ -45,7 +45,7 @@
       "title": "1st stacking stage - focus on the front area",
       "content": "<p id=\"\">🔍 Start the sequence by zooming in and focusing the first time on the <strong id=\"\">front part of the ring</strong>, that is, the first plan. </p><p id=\"\">This will allow you to enter all <strong id=\"\">precise details</strong> of the areas closest to the objective.</p>",
       "image": "/images/guides/67d991805e0a0980101b8a95.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a95_67ae07b77c765e3a854f2857_empilage_focus_avant_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8a95.avif",
       "structuredText": "Start the sequence by zooming in and focusing first on the front part of the ring, i.e. the foreground. This will allow you to capture all the precise details of the areas closest to the lens."
     },
     {
@@ -53,7 +53,7 @@
       "title": "2nd stacking stage - focus on the back area",
       "content": "<p id=\"\">Move the focus gradually to <strong id=\"\">rear part</strong> of the ring. </p><p id=\"\">🔍 Zoom can be used here to make sure fine details, like carvings or stones, are <strong id=\"\">captured accurately</strong>.</p>",
       "image": "/images/guides/67d991805e0a0980101b8a9b.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a9b_67ae0811410a56c15c7dd5ce_empilage_focus_arri%25C3%25A8re_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8a9b.avif",
       "structuredText": "Move the focus gradually to the back of the ring. Zoom can be used here to make sure fine details, like carvings or stones, are captured accurately."
     },
     {
@@ -61,7 +61,7 @@
       "title": "3rd stage of stacking - set the size of the steps between the focuses",
       "content": "<p id=\"\">Configure the<strong id=\"\"> Step size</strong> (or increments) between the different shots. </p><p id=\"\">One <strong id=\"\">small step size</strong> is recommended for rings that are complex or have fine details. This ensures that all areas of the object are <strong id=\"\">perfectly clean</strong>.</p>",
       "image": "/images/guides/67d991805e0a0980101b8aaa.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aaa_67ae08661d9f7c5d9df4179e_mise_au_point_empilage_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8aaa.avif",
       "structuredText": "Set the size of the steps (or increments) between shots. A small step size is recommended for rings that are complex or have fine details. This ensures that all areas of the object are perfectly clear."
     },
     {
@@ -69,7 +69,7 @@
       "title": "4th stage of stacking - number of steps for focusing",
       "content": "<p id=\"\">Determine the number of steps to complete for full focus stacking. The number of steps required <strong id=\"\">Depends on the opening</strong> of your objective and of the <strong id=\"\">complexity of the object</strong>.<strong id=\"\">💍 </strong></p><p id=\"\">The larger the aperture, the shallower the depth of field, and the more you'll need <strong id=\"\">intermediate photos</strong> to ensure perfect sharpness.</p><p id=\"\">Click “Capture All” to start shooting.<strong id=\"\">🎬</strong></p>",
       "image": "/images/guides/67d991805e0a0980101b8a90.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8a90_67ae0a70e73417cd6dc74de4_d%25C3%25A9marage_enregistrement_focus_satcking_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8a90.avif",
       "structuredText": "Determine the number of steps to complete for full focus stacking. The number of steps required depends on the openness of your objective and the complexity of the object. The larger the aperture, the shallower the depth of field, and the more intermediate shots you'll need to ensure perfect sharpness. Click “Capture All” to start shooting."
     },
     {
@@ -77,7 +77,7 @@
       "title": "Image editing and retouching",
       "content": "<p id=\"\">Once the images are compiled, you can move on to editing. 🎨</p><p id=\"\">The software <strong id=\"\">Orbitvu Station</strong> offers several options, such as adjusting colors, brightness, contrast, contrast, fine details, and many other enhancements to refine the image and achieve the desired result, while <strong id=\"\">remaining faithful to the jewel</strong>. 🎯</p>",
       "image": "/images/guides/67d991805e0a0980101b8aa1.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa1_67ae0ac28229a6e4f81ed584_retouches_focus_stacking_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8aa1.avif",
       "structuredText": "Once the images are compiled, you can move on to editing. The Orbitvu Station software offers several options, such as adjusting colors, brightness, contrast, fine details, as well as numerous other enhancements to refine the image and achieve the desired result, while remaining true to the jewel."
     },
     {
@@ -85,7 +85,7 @@
       "title": "Exporting images with various formats",
       "content": "<p id=\"\">Once the editing is complete, select the export format (s) according to the intended use, such as <strong id=\"\">JPEG, TIFF, or PNG</strong> if you want to keep high image quality and the possibility of transparency.</p><p id=\"\">📂 You can also create a <strong id=\"\">Template </strong>for these settings in order to <strong id=\"\">Save time</strong> for future exports. </p><p id=\"\">📤 Finalize the export, and your ring design is ready to be used!</p>",
       "image": "/images/guides/67d991805e0a0980101b8aa7.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991805e0a0980101b8aa7_67ae0bac8229a6e4f81f9aa3_exportation_formats_focus_bague.avif",
+      "imageSource": "/images/guides/67d991805e0a0980101b8aa7.avif",
       "structuredText": "Once the editing is complete, select the export format (s) according to the intended use, such as JPEG, TIFF, or PNG if you want to maintain high image quality and the possibility of transparency. You can also create a template for these settings to save time for future exports. Finalize the export, and your ring design is ready to be used!"
     }
   ],

@@ -8,7 +8,7 @@
   "description": "Modifiez la couleur de vos produits sans refaire de photo : ajustez teinte, saturation et luminosité dans Orbitvu Station pour créer des déclinaisons.",
   "date": "2025-12-30T16:42:54.933Z",
   "image": "/images/guides/67d99183faaec781646a846c.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846c_67acbd1777dea5760cba3fc5_hero_conversion_couleurs.avif",
+  "imageSource": "/images/guides/67d99183faaec781646a846c.avif",
   "categoryId": "6683fd55fc6636e76b9d96fc",
   "duration": "5 minutes",
   "tool": "Studio photo Orbitvu et logiciel Orbitvu Station",
@@ -21,7 +21,7 @@
       "title": "Placez l'objet dans le studio photo",
       "content": "<p id=\"\">📍Placez votre objet au <strong id=\"\">centre du plateau</strong> tournant et choisissez un template par défaut ou personnalisé. </p><p id=\"\">Pour plus de précision sur cette étape, nous vous invitons à découvrir notre <strong id=\"\">tutoriel sur le positionnement d’une montre, par exemple.</strong></p>",
       "image": "/images/guides/67d99183faaec781646a8479.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8479_67af0b125b2e65f6e31f71a3_Choix_template_psition_gobelet.avif",
+      "imageSource": "/images/guides/67d99183faaec781646a8479.avif",
       "structuredText": "Placez votre objet au centre du plateau tournant et choisissez un template par défaut ou personnalisé. Pour plus de précision sur cette étape, nous vous invitons à découvrir notre tutoriel sur le positionnement dune montre, par exemple."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Ajustez vos réglages d'appareil photo",
       "content": "<p id=\"\">⚙Réglez les ISO, l'ouverture et la vitesse de votre appareil photo, puis ajustez l'intensité de chaque source d'éclairage LED du studio pour obtenir l'exposition idéale. &nbsp;</p><p id=\"\">Configurez également la lumière pour l<strong id=\"\">'IQ Mask</strong> afin d’obtenir un fond transparent.</p>",
       "image": "/images/guides/67d99183faaec781646a8480.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8480_67af0bb0481bb5e83a98a32c_r%25C3%25A9glage_appareil_gobelet.avif",
+      "imageSource": "/images/guides/67d99183faaec781646a8480.avif",
       "structuredText": "Réglez les ISO, l'ouverture et la vitesse de votre appareil photo, puis ajustez l'intensité de chaque source d'éclairage LED du studio pour obtenir l'exposition idéale. Configurez également la lumière pour l 'IQ Mask afin dobtenir un fond transparent."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Choix des angles pour l'animation 360°",
       "content": "<p id=\"\">🔄Choisissez le sens de rotation, la vitesse et le nombre d’images qui composeront l’animation à 360°. Pour un site web e-commerce, par exemple, spécialisé dans la chaussure, <strong id=\"\">24 photos sont largement suffisantes.</strong><br>‍</p><p id=\"\">✅Démarrez l'enregistrement de l’animation.</p>",
       "image": "/images/guides/67d99183faaec781646a846f.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a846f_67af0c3a4d589896c674545b_choix_angle_animation_gobelet.avif",
+      "imageSource": "/images/guides/67d99183faaec781646a846f.avif",
       "structuredText": "Choisissez le sens de rotation, la vitesse et le nombre dimages qui composeront lanimation à 360. Pour un site web e-commerce, par exemple, spécialisé dans la chaussure, 24 photos sont largement suffisantes. Démarrez l'enregistrement de lanimation."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Changement des couleurs du produit",
       "content": "<p id=\"\">🎨Une fois votre animation capturée, accédez aux réglages de couleur dans la rubrique <strong id=\"\">Édition</strong>. </p><p id=\"\">Vous pouvez ajuster les paramètres de couleur pour modifier l'apparence de certaines zones du produit, en jouant sur la teinte, la saturation ou la luminosité. </p><p id=\"\">Vous avez également la possibilité de sélectionner une <strong id=\"\">couleur spécifique à modifier</strong>. Par exemple, dans notre cas, nous avons choisi de modifier la partie rouge de notre tasse.</p><p id=\"\">✨<strong id=\"\">Astuce</strong> : si vous avez fait une erreur ou souhaitez revenir en arrière, vous pouvez cliquer sur le bouton “<strong id=\"\">Réinitialiser</strong>” pour revenir à la photo originale.</p>",
       "image": "/images/guides/67d99183faaec781646a8469.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a8469_67af0ca08e6dd886dc355a8c_edition_couleur_animation_gobelet.avif",
+      "imageSource": "/images/guides/67d99183faaec781646a8469.avif",
       "structuredText": "Une fois votre animation capturée, accédez aux réglages de couleur dans la rubrique Édition . Vous pouvez ajuster les paramètres de couleur pour modifier l'apparence de certaines zones du produit, en jouant sur la teinte, la saturation ou la luminosité. Vous avez également la possibilité de sélectionner une couleur spécifique à modifier . Par exemple, dans notre cas, nous avons choisi de modifier la partie rouge de notre tasse. Astuce : si vous avez fait une erreur ou souhaitez revenir en arrière, vous pouvez cliquer sur le bouton Réinitialiser pour revenir à la photo originale."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Déclinaison des couleurs",
       "content": "<p id=\"\">Voici la vue d'ensemble de nos modifications sur la couleur rouge, que nous avons transformée en différentes nuances et teintes. </p><p id=\"\">📤Une fois vos modifications effectuées, vous pouvez procéder à l'exportation de votre animation.</p><p id=\"\"><a href=\"/fr/guide/realiser-animation-360-professionnelle-chaussures\"><strong>Découvrez aussi notre tutoriel sur la réalisation d'animations 360° de chaussures.</strong></a></p>",
       "image": "/images/guides/67d99183faaec781646a847c.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d99183faaec781646a847c_67af0d1733176c123ec78741_d%25C3%25A9clinaison_couleurs_animation_gobelet.avif",
+      "imageSource": "/images/guides/67d99183faaec781646a847c.avif",
       "structuredText": "Voici la vue d'ensemble de nos modifications sur la couleur rouge, que nous avons transformée en différentes nuances et teintes. Une fois vos modifications effectuées, vous pouvez procéder à l'exportation de votre animation. Découvrez aussi notre tutoriel sur la réalisation d'animations 360 de chaussures."
     }
   ],

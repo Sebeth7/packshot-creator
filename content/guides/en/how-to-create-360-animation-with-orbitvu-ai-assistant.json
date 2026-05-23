@@ -8,7 +8,7 @@
   "description": "🎯 Create interactive 360° animations in 3 minutes with Orbitvu. Clipping, light, integrated AI: everything is automated.",
   "date": "2025-06-23T10:14:09.011Z",
   "image": "/images/guides/67d991833ebc915e495facdf.avif",
-  "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67d991833ebc915e495facdf_67d40dca409fe87c8dc56ad8_cover_animation_36_lipstick.avif",
+  "imageSource": "/images/guides/67d991833ebc915e495facdf.avif",
   "categoryId": "6683fda8716a93e0202fa300",
   "duration": "3 minutes",
   "tool": "Orbitvu Station software, a lipstick and cotton gloves",
@@ -21,7 +21,7 @@
       "title": "Position the lipstick",
       "content": "<p id=\"\">Place the lipstick in the exact center of the turntable. The studio has a <strong id=\"\">integrated laser centering system</strong> to ensure accurate positioning, thus avoiding rotation errors that could affect the quality of the animation. 📍</p><p id=\"\">You can also help yourself with <strong id=\"\">center point of the plateau</strong>. Finally, check on your screen that the product is in the center and well oriented in front of the camera. <strong id=\"\">💻</strong></p><p id=\"\"><strong id=\"\">✨ Tip </strong>: Make sure the lipstick is stable. If you are working on a small or cylindrical product that may move, use a piece of adhesive tape or clear double-sided tape.</p>",
       "image": "/images/guides/67dee4b551013d950eb99709.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99709_67dd619d957f0dffd26b292d_positionner_liptsick_animation.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99709.avif",
       "structuredText": "Place the lipstick in the exact center of the turntable. The studio has an integrated laser centering system to ensure accurate positioning, thus avoiding rotation errors that could affect the quality of the animation. You can also help yourself from the center point of the board. Finally, check on your screen that the product is in the center and well oriented in front of the camera. Tip: Make sure the lipstick is stable. If you are working on a small or cylindrical product that may move, use a piece of adhesive tape or clear double-sided tape."
     },
     {
@@ -29,7 +29,7 @@
       "title": "Adjusting the light with AI",
       "content": "<p id=\"\">The Orbitvu AI Assistant comes with a powerful feature to suggest the best light configurations <strong id=\"\">depending on the type of product</strong>. <strong id=\"\">💄</strong></p><p id=\"\">Once your lipstick is positioned, click on the “AI” icon and let the AI Assistant <strong id=\"\">Scan the product</strong> and offer several adapted lighting options. </p><p id=\"\">The AI will offer you<strong id=\"\"> 4 light templates</strong> different, choose the one that highlights your lipstick the most. For our animation we chose the Velvet template. </p>",
       "image": "/images/guides/67dee4b551013d950eb99700.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99700_67dd62ab4bd50dcc6f32bc8d_diff%25C3%25A9rents_templates_IA.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99700.avif",
       "structuredText": "The Orbitvu AI Assistant has a powerful function to suggest the best light configurations depending on the type of product. Once your lipstick is positioned, click on the “AI” icon and let the AI Assistant scan the product and offer several suitable lighting options. The AI will offer you 4 different light templates, choose the one that best highlights your lipstick."
     },
     {
@@ -37,7 +37,7 @@
       "title": "Make adjustments",
       "content": "<p id=\"\">While the AI Assistant suggests quality light settings, you can always fine-tune the settings to suit your specific needs. The software <strong id=\"\">Orbitvu Station</strong> allows you to easily change the intensity or the angle of the 74 independent light sources that surround the product. 💡</p><p id=\"\"><strong id=\"\">✨ Tip </strong>: If your lipstick is metallic or reflective, reduce the intensity of the headlights and highlight the side lights for better edge definition.</p>",
       "image": "/images/guides/67dee4b551013d950eb99736.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99736_67dd61f3ec183421c9dc4981_template_lumi%25C3%25A8re_IA.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99736.avif",
       "structuredText": "While the AI Assistant suggests quality light settings, you can always fine-tune the settings to suit your specific needs. The intuitive control interface makes it easy to change the intensity or angle of the 74 independent light sources that surround the product. Tip: If your lipstick is metallic or reflective, reduce the intensity of the headlights and highlight the side lights for better edge definition."
     },
     {
@@ -45,7 +45,7 @@
       "title": "Adjust the IQ Mask for the perfect clipping",
       "content": "<p id=\"\">Clipping is an essential element to obtain a professional result. This task is <strong id=\"\">easy and automated thanks to the IQ Mask</strong>. </p><p id=\"\">Activate the feature and check that the lipstick is <strong id=\"\">completely black and the background very white</strong>. All the white part will be removed, make sure that the contours of your product are blackened, otherwise lower the light intensity. </p><p id=\"\"><strong id=\"\">✨ Tip </strong>: Take a photo to check the contours, then correct directly in the software if necessary. </p>",
       "image": "/images/guides/67dee4b551013d950eb99718.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99718_67dd6a14a53690202ae9df34_IQ_Mask_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99718.avif",
       "structuredText": "Clipping is an essential element to obtain a professional result. This task is facilitated and automated thanks to the IQ Mask. Activate the feature and check that the lipstick is completely black and the background is white. All the white part will be removed, make sure that the contours of your product are blackened, otherwise lower the light intensity. Take a photo to check the contours, then correct directly in the software if necessary."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Set up the 360° animation",
       "content": "<p id=\"\">Once adjustments are complete, select 360° mode in the Orbitvu Station interface. Then set the number of frames for the animation, usually, <strong id=\"\">24 to 36 shots offer ideal fluidity</strong>. 🔄</p><p id=\"\">Then press the “Save” button and let the motorized turntable capture every angle accurately. <strong id=\"\">🎬<br>‍<br></strong>🎯 Thanks to this automated packshot approach, you gain in consistency, speed and <strong id=\"\">visual impact</strong>. These interactive visuals reinforce engagement and promote <strong id=\"\">conversion on your e-commerce product sheets</strong>, while valuing the user experience.</p><p id=\"\">‍</p>",
       "image": "/images/guides/67dee4b551013d950eb99715.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99715_67dd6a950cb34ba82a845b5a_configurer_animation_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99715.avif",
       "structuredText": "Once adjustments are complete, select 360 mode in the Orbitvu Station interface. Then set the number of frames for the animation, generally 36 to 72 shots provide ideal fluidity. Then press the “Save” button and let the motorized turntable capture every angle accurately."
     },
     {
@@ -61,7 +61,7 @@
       "title": "Image retouching",
       "content": "<p id=\"\">After the shooting session, move on to editing the image. The Orbitvu Station software allows you to make edits such as brightness, color, contrast... Adjust them according to your needs. 🎨</p><p id=\"\"><strong id=\"\">✨ Tip </strong>: For cosmetic products like lipstick, balanced contrast is essential to reflect true colors.</p>",
       "image": "/images/guides/67dee4b551013d950eb99706.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb99706_67dd6b35bf56acfbae17fe09_retouches_liptsick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb99706.avif",
       "structuredText": "After the shooting session, move on to retouching the image. The Orbitvu Photo Studio Remote Control Station software allows you to make edits such as brightness, color, contrast... Adjust them according to your needs. Tip: For cosmetic products like lipstick, balanced contrast is essential to reflect true colors."
     },
     {
@@ -69,7 +69,7 @@
       "title": "Exporting the animation",
       "content": "<p id=\"\">Once your edits are finalized, it's time to export the animation. Choose the <strong id=\"\">HTML format</strong> and export your animation to the Orbitvu Sun cloud. 📤</p><p id=\"\">This software will allow you to obtain a <strong id=\"\">link or integration code</strong>. You will also be able to customize your animations, such as the color of the buttons, the introduction visual... and even to integrate a button to link to social networks for example.</p><p id=\"\"><strong id=\"\">Bonus </strong>: You can also export still images taken from your animation for additional use in your marketing campaigns.</p><p id=\"\"><a href=\"/en/guide/enhance-lipstick-texture-photo-ai\"><strong>Also discover how to enhance the texture of a lipstick through a packshot.</strong></a></p>",
       "image": "/images/guides/67dee4b551013d950eb9970c.avif",
-      "imageSource": "https://cdn.prod.website-files.com/6683be0da77ea30e6c1e466d/67dee4b551013d950eb9970c_67dd6dca5efb1403a9b11e39_exporter_animation_lipstick.avif",
+      "imageSource": "/images/guides/67dee4b551013d950eb9970c.avif",
       "structuredText": "Once your edits are finalized, it's time to export the animation. Choose HTML and export your animation to the Orbitvu Sun cloud. This software will allow you to obtain a link or an integration code. You will also be able to customize your animations, such as the color of the buttons, the intro visual... and even to integrate a button to refer to social networks for example. Bonus: You can also export still images taken from your animation for additional use in your marketing campaigns."
     }
   ],
