@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import LemlistTracker from '@/components/analytics/LemlistTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import { SmoothScroll } from '@/components/animations';
 
@@ -80,6 +81,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
+          <LemlistTracker />
           <Header />
           <main>{children}</main>
           <Footer />
