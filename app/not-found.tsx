@@ -1,26 +1,23 @@
 import Link from 'next/link';
 import { Home, Search } from 'lucide-react';
-import { cookies } from 'next/headers';
 
-const texts = {
-  fr: {
-    heading: 'Page introuvable',
-    description: 'La page que vous recherchez n’existe pas ou a été déplacée.',
-    backHome: 'Retour à l’accueil',
-    contact: 'Nous contacter',
-  },
-  en: {
-    heading: 'Page not found',
-    description: 'The page you’re looking for doesn’t exist or has been moved.',
-    backHome: 'Back to homepage',
-    contact: 'Contact us',
-  },
+// IMPORTANT — ne PAS lire cookies()/headers() ici.
+// Ce not-found racine fait partie de l'arbre de rendu partagé par TOUTES les routes :
+// y appeler une API dynamique (cookies/headers) opte l'intégralité du site en rendu
+// dynamique (x-vercel-cache: MISS, cache-control: no-store) et désactive l'ISR/edge.
+// Ce composant ne couvre QUE les 404 hors préfixe de langue (rares : localePrefix
+// 'always' + Worker CF redirigent vers /fr|/en). Les 404 DANS une langue sont gérées,
+// localisées, par app/[lang]/not-found.tsx (via getLocale()). On rend donc ce fallback
+// en langue par défaut (fr), statiquement.
+const t = {
+  heading: 'Page introuvable',
+  description: 'La page que vous recherchez n’existe pas ou a été déplacée.',
+  backHome: 'Retour à l’accueil',
+  contact: 'Nous contacter',
 } as const;
+const locale = 'fr';
 
-export default async function NotFound() {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get('NEXT_LOCALE')?.value === 'en' ? 'en' : 'fr';
-  const t = texts[locale];
+export default function NotFound() {
 
   return (
     <html lang={locale}>
