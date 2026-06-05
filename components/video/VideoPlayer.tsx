@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { Play } from 'lucide-react';
 import { trackVideoStart, trackVideoProgress, trackVideoComplete } from '@/lib/analytics';
@@ -34,6 +34,18 @@ export function VideoPlayer({ src, poster, title = 'Vidéo', badge, className = 
 
   const handlePlay = useCallback(() => setPlaying(true), []);
 
+  // Démarrage fiable : l'attribut `autoPlay` n'est pas honoré de façon constante
+  // pour une vidéo avec son (politique autoplay des navigateurs, dépend du Media
+  // Engagement Index). On appelle play() explicitement dès le montage du <video>,
+  // qui reste dans la fenêtre d'activation transitoire du clic → lecture autorisée.
+  useEffect(() => {
+    if (!playing) return;
+    const v = videoRef.current;
+    if (!v) return;
+    const p = v.play();
+    if (p) p.catch(() => { /* bloqué : les contrôles natifs prennent le relais */ });
+  }, [playing]);
+
   const handleStarted = useCallback(() => {
     if (!firedRef.current.has(0)) {
       firedRef.current.add(0);
@@ -64,7 +76,6 @@ export function VideoPlayer({ src, poster, title = 'Vidéo', badge, className = 
           src={src}
           poster={poster}
           controls
-          autoPlay
           playsInline
           preload="auto"
           onPlay={handleStarted}
