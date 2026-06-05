@@ -12,7 +12,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
-import { YouTubeFacade } from '@/components/video/YouTubeFacade';
+import { VideoPlayer } from '@/components/video/VideoPlayer';
 import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 import { ContactForm } from '@/components/forms/ContactForm';
 
@@ -39,9 +39,13 @@ function getMachineImage(id: string): string {
   return imageMap[id] || '/images/machines/placeholder-medium.svg';
 }
 
-// Métadonnées vidéo YouTube — uploadDate (REQUIS par Google pour les rich results vidéo)
-// et duration, relevées sur les pages /watch publiques (source : ld+json YouTube).
-// Clé = youtubeId. À mettre à jour si une vidéo démo est remplacée.
+// Base publique des vidéos démo auto-hébergées (Cloudflare R2, bucket packshot-videos).
+// Fichiers nommés `<youtubeId>.mp4`. Domaine custom = videos.packshot-creator.com.
+const R2_VIDEO_BASE = 'https://videos.packshot-creator.com';
+
+// Métadonnées vidéo — uploadDate (REQUIS par Google pour les rich results vidéo) et
+// duration, relevées sur les pages /watch YouTube d'origine (source : ld+json YouTube).
+// Clé = youtubeId (= nom du fichier sur R2). À mettre à jour si une vidéo est remplacée.
 const VIDEO_META: Record<string, { uploadDate: string; duration: string }> = {
   'tR-6RBucmWw': { uploadDate: '2024-10-22', duration: 'PT1M48S' }, // alphashot-pro-g2
   'IWcXbWzVEYQ': { uploadDate: '2023-12-12', duration: 'PT1M59S' }, // alphashot-micro-v2
@@ -727,10 +731,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </FadeInView>
             <ScrollReveal>
-              <YouTubeFacade
-                videoId={gallery.video.youtubeId}
+              <VideoPlayer
+                src={`${R2_VIDEO_BASE}/${gallery.video.youtubeId}.mp4`}
                 poster={gallery.video.poster}
-                title={`${machine.nom} demo`}
+                title={isFr ? `${machine.nom} en action` : `${machine.nom} in action`}
                 className="aspect-video w-full rounded-2xl shadow-2xl shadow-black/30"
               />
             </ScrollReveal>
@@ -1276,11 +1280,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               description: isFr
                 ? `Démonstration du studio photo automatisé ${machine.nom} (Orbitvu) : ${machine.useCases.join(', ')}.`
                 : `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${machine.useCases.join(', ')}.`,
-              // Thumbnail JPEG YouTube (l'AVIF poster n'est pas un format supporté par Google ici)
-              thumbnailUrl: `https://i.ytimg.com/vi/${gallery.video.youtubeId}/hqdefault.jpg`,
+              // Miniature JPEG auto-hébergée sur R2 (l'AVIF poster n'est pas un format supporté par Google)
+              thumbnailUrl: `${R2_VIDEO_BASE}/${gallery.video.youtubeId}.jpg`,
               uploadDate: VIDEO_META[gallery.video.youtubeId].uploadDate,
               duration: VIDEO_META[gallery.video.youtubeId].duration,
-              embedUrl: `https://www.youtube.com/embed/${gallery.video.youtubeId}`,
+              contentUrl: `${R2_VIDEO_BASE}/${gallery.video.youtubeId}.mp4`,
             })]
           : []),
       ]} />

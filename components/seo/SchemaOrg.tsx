@@ -141,8 +141,8 @@ export function videoSchema(video: {
   thumbnailUrl: string | string[];
   /** ISO 8601 (YYYY-MM-DD) — champ REQUIS par Google pour les rich results vidéo */
   uploadDate: string;
-  /** URL du lecteur embarquable (ex. https://www.youtube.com/embed/ID) */
-  embedUrl: string;
+  /** URL directe du fichier vidéo (MP4 auto-hébergé) — préféré par Google quand on héberge le média */
+  contentUrl: string;
   /** ISO 8601 (ex. PT1M48S) — recommandé par Google */
   duration?: string;
 }) {
@@ -154,7 +154,7 @@ export function videoSchema(video: {
     thumbnailUrl: video.thumbnailUrl,
     uploadDate: video.uploadDate,
     ...(video.duration ? { duration: video.duration } : {}),
-    embedUrl: video.embedUrl,
+    contentUrl: video.contentUrl,
     publisher: { '@id': ORG_ID },
   };
 }

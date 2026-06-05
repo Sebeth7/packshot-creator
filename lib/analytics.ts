@@ -38,3 +38,16 @@ export function trackROICalculatorComplete(machineName: string, roi: number) {
 export function trackOPCOSimulatorComplete() {
   trackEvent('opco_simulator_complete');
 }
+
+// ── Vidéo (lecteur auto-hébergé R2) — conventions GA4 video_* ──
+export function trackVideoStart(videoTitle: string) {
+  trackEvent('video_start', { video_title: videoTitle, video_provider: 'self-hosted' });
+}
+
+export function trackVideoProgress(videoTitle: string, percent: 25 | 50 | 75) {
+  trackEvent('video_progress', { video_title: videoTitle, video_percent: percent, video_provider: 'self-hosted' });
+}
+
+export function trackVideoComplete(videoTitle: string) {
+  trackEvent('video_complete', { video_title: videoTitle, video_provider: 'self-hosted' });
+}
