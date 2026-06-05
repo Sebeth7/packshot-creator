@@ -29,6 +29,10 @@ export function YouTubeFacade({ videoId, poster, title = 'Video', badge, classNa
           className="absolute inset-0 w-full h-full"
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
           title={title}
+          // YouTube valide le domaine d'embed via le Referer. Le Referrer-Policy global
+          // (same-origin) le supprime en cross-origin → "Erreur 153". On envoie l'origin
+          // uniquement pour cet iframe (valeur par défaut des navigateurs, RAS sécurité/SEO).
+          referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />

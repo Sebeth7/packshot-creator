@@ -134,6 +134,31 @@ export function productSchema(product: {
   };
 }
 
+export function videoSchema(video: {
+  name: string;
+  description: string;
+  /** JPEG/PNG/WebP only — Google ne supporte pas l'AVIF en thumbnailUrl VideoObject */
+  thumbnailUrl: string | string[];
+  /** ISO 8601 (YYYY-MM-DD) — champ REQUIS par Google pour les rich results vidéo */
+  uploadDate: string;
+  /** URL du lecteur embarquable (ex. https://www.youtube.com/embed/ID) */
+  embedUrl: string;
+  /** ISO 8601 (ex. PT1M48S) — recommandé par Google */
+  duration?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: video.thumbnailUrl,
+    uploadDate: video.uploadDate,
+    ...(video.duration ? { duration: video.duration } : {}),
+    embedUrl: video.embedUrl,
+    publisher: { '@id': ORG_ID },
+  };
+}
+
 export function articleSchema(article: {
   title: string;
   description: string;

@@ -65,6 +65,9 @@ export function VideoFacade({
         <iframe
           src={embedUrl}
           title={title}
+          // Cf. YouTubeFacade : le Referrer-Policy global (same-origin) supprime le Referer
+          // cross-origin → "Erreur 153". On envoie l'origin uniquement pour cet iframe.
+          referrerPolicy="strict-origin-when-cross-origin"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
           className="absolute inset-0 h-full w-full border-0"

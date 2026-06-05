@@ -6,7 +6,7 @@ import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon, Eye } from 'lucide-react';
-import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema, videoSchema } from '@/components/seo/SchemaOrg';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
@@ -38,6 +38,23 @@ function getMachineImage(id: string): string {
   };
   return imageMap[id] || '/images/machines/placeholder-medium.svg';
 }
+
+// Métadonnées vidéo YouTube — uploadDate (REQUIS par Google pour les rich results vidéo)
+// et duration, relevées sur les pages /watch publiques (source : ld+json YouTube).
+// Clé = youtubeId. À mettre à jour si une vidéo démo est remplacée.
+const VIDEO_META: Record<string, { uploadDate: string; duration: string }> = {
+  'tR-6RBucmWw': { uploadDate: '2024-10-22', duration: 'PT1M48S' }, // alphashot-pro-g2
+  'IWcXbWzVEYQ': { uploadDate: '2023-12-12', duration: 'PT1M59S' }, // alphashot-micro-v2
+  'g6DABbE2lgs': { uploadDate: '2024-02-12', duration: 'PT1M43S' }, // alphashot-360
+  '1GnZ_pexOGw': { uploadDate: '2023-07-03', duration: 'PT1M23S' }, // alphashot-xl
+  'nLRk83owzgI': { uploadDate: '2024-03-20', duration: 'PT1M13S' }, // alphastudio-compact
+  'J_MNV-zIGrA': { uploadDate: '2023-04-25', duration: 'PT1M58S' }, // alphastudio-xxl
+  '8C4hmYaSitk': { uploadDate: '2021-10-21', duration: 'PT1M36S' }, // alphatable / alphadesk
+  'R-err-JDU_w': { uploadDate: '2021-05-14', duration: 'PT55S' },   // fashion-studio
+  'eMBa5epGf7E': { uploadDate: '2023-11-24', duration: 'PT1M44S' }, // bike-studio
+  '5O2-WKmre_Y': { uploadDate: '2023-05-24', duration: 'PT1M41S' }, // e-comm-studio
+  'Ejg8nOp9x-0': { uploadDate: '2024-01-02', duration: 'PT2M20S' }, // furniture-studio
+};
 
 interface ProductGallery {
   /** Bento grid — large packshot result (row1 left, 7/12) */
@@ -1252,6 +1269,19 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               question: isFr ? faq.question.fr : faq.question.en,
               answer: isFr ? faq.answer.fr : faq.answer.en,
             })))]
+          : []),
+        ...(gallery.video && VIDEO_META[gallery.video.youtubeId]
+          ? [videoSchema({
+              name: isFr ? `${machine.nom} en action — démo vidéo` : `${machine.nom} in action — demo video`,
+              description: isFr
+                ? `Démonstration du studio photo automatisé ${machine.nom} (Orbitvu) : ${machine.useCases.join(', ')}.`
+                : `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${machine.useCases.join(', ')}.`,
+              // Thumbnail JPEG YouTube (l'AVIF poster n'est pas un format supporté par Google ici)
+              thumbnailUrl: `https://i.ytimg.com/vi/${gallery.video.youtubeId}/hqdefault.jpg`,
+              uploadDate: VIDEO_META[gallery.video.youtubeId].uploadDate,
+              duration: VIDEO_META[gallery.video.youtubeId].duration,
+              embedUrl: `https://www.youtube.com/embed/${gallery.video.youtubeId}`,
+            })]
           : []),
       ]} />
     </>
