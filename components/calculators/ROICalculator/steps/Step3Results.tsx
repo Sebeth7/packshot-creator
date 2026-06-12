@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Info, AlertTriangle } from 'lucide-react';
+import { getAttribution } from '@/lib/attribution';
 import MethodologyModal from '../results/MethodologyModal';
 import HeroMetrics from '../results/HeroMetrics';
 import MachineRecommendation from '../results/MachineRecommendation';
@@ -113,6 +114,7 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           coutTotalMachine: results.coutTotalMachine,
         },
         locale,
+        attribution: getAttribution() ?? undefined,
       }),
     }).catch(() => {/* Envoi silencieux — le PDF a déjà été téléchargé côté client */});
   };

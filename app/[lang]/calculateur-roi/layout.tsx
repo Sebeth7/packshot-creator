@@ -12,6 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: isFr
       ? 'Calculez gratuitement le retour sur investissement d\'un studio photo automatisé Orbitvu. Comparez achat vs leasing et découvrez vos économies.'
       : 'Calculate the return on investment of an Orbitvu automated photo studio for free. Compare purchase vs leasing and discover your savings.',
+    alternates: {
+      canonical: `https://www.packshot-creator.com/${lang}/calculateur-roi`,
+      languages: { fr: '/fr/calculateur-roi', en: '/en/calculateur-roi', 'x-default': '/fr/calculateur-roi' },
+    },
   };
 }
 

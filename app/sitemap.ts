@@ -3,6 +3,7 @@ import { getAllArticleSlugs, getAllGuideSlugs } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
 import { getAllFormations } from '@/lib/formations';
 import {
+  NOINDEX_EN_ACADEMY_SLUGS,
   NOINDEX_EN_BLOG_SLUGS,
   NOINDEX_EN_INDUSTRIE_SLUGS,
   NOINDEX_EN_SOLUTIONS_SLUGS,
@@ -127,17 +128,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return pages;
   });
 
-  // --- Academy formations (FR + EN) — slugs depuis content/formations/*.json ---
-  const formationPages = getAllFormations().flatMap((f) => [
-    { path: `/fr/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: `/en/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-  ]);
+  // --- Academy formations (FR + EN hors noindex) — slugs depuis content/formations/*.json ---
+  const formationPages = getAllFormations().flatMap((f) => {
+    const pages = [
+      { path: `/fr/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
+    ];
+    if (!NOINDEX_EN_ACADEMY_SLUGS.has(f.slug)) {
+      pages.push({ path: `/en/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const });
+    }
+    return pages;
+  });
 
   // --- Blog articles : 12 statics (FR+EN) + 60 FR + 55 EN migrés depuis content/ ---
   const blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
   // Les 12 statiques : un dossier app/[lang]/blog/<slug>/ sert les deux langues
   for (const slug of STATIC_ARTICLE_SLUGS) {
     blogPages.push({ path: `/fr/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
+    // Les slugs EN noindex sont 301 vers /fr via le Worker : ne pas les émettre
+    if (NOINDEX_EN_BLOG_SLUGS.has(slug)) continue;
     blogPages.push({ path: `/en/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
   }
   // Les articles migrés : slugs distincts par langue

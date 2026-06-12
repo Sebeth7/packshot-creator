@@ -56,7 +56,7 @@ export function organizationSchema() {
     ],
     foundingDate: '2004',
     numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 50 },
-    areaServed: ['FR', 'CH', 'BE'],
+    areaServed: ['FR', 'CH'],
   };
 }
 
@@ -314,7 +314,6 @@ export function localBusinessSchema() {
     areaServed: [
       { '@type': 'Country', name: 'France' },
       { '@type': 'Country', name: 'Switzerland' },
-      { '@type': 'Country', name: 'Belgium' },
     ],
     priceRange: '€€€',
     parentOrganization: { '@id': ORG_ID },
@@ -388,7 +387,7 @@ export function serviceSchema(service: {
     serviceType: service.serviceType || 'Photographie produit automatisée',
     url: service.url,
     provider: { '@id': ORG_ID },
-    areaServed: (service.areaServed || ['FR', 'CH', 'BE']).map((code) => ({
+    areaServed: (service.areaServed || ['FR', 'CH']).map((code) => ({
       '@type': 'Country',
       name: code,
     })),

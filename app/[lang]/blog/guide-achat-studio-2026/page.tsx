@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: url,
       languages: {
         fr: '/fr/blog/guide-achat-studio-2026',
-        en: '/en/blog/guide-achat-studio-2026',
+        'x-default': '/fr/blog/guide-achat-studio-2026', // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

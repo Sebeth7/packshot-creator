@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const languages: Record<string, string> = {};
   if (alternates.fr && getGuide(alternates.fr, 'fr')) languages.fr = `/fr/guide/${alternates.fr}`;
   if (alternates.en && getGuide(alternates.en, 'en')) languages.en = `/en/guide/${alternates.en}`;
+  if (languages.fr) languages['x-default'] = languages.fr;
 
   return {
     title: cleanTitle,

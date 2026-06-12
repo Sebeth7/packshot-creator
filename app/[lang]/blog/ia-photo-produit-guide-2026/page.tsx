@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/blog/ia-photo-produit-guide-2026`,
       languages: {
         fr: '/fr/blog/ia-photo-produit-guide-2026',
-        en: '/en/blog/ia-photo-produit-guide-2026',
+        'x-default': '/fr/blog/ia-photo-produit-guide-2026', // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

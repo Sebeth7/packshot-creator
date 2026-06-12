@@ -12,16 +12,40 @@ export const NOINDEX_EN_BLOG_SLUGS = new Set([
   'photographie-de-produits-a-360-degres-en-interne',
 ]);
 
+// Tous les hubs /en/industrie/* servent du contenu FR (data secteurs
+// monolingues, vérifié h1 par h1 le 12/06/2026). Noindex RÉVERSIBLE (D9) —
+// bascule en 301 ciblée seulement si l'export backlinks révèle des liens externes.
 export const NOINDEX_EN_INDUSTRIE_SLUGS = new Set([
   'automobile-pieces-detachees',
+  'bijoux-joaillerie',
+  'chaussures',
+  'cosmetiques-beaute',
   'defense-securite',
+  'electronique-hightech',
+  'food-alimentaire',
+  'horlogerie',
   'industrie-manufacturiere',
   'jouets-puericulture',
   'lunetterie',
   'mobilier-decoration',
   'mode-textile',
   'pieces-techniques-industrie',
+  'sante-medical',
+  'sport-outdoor',
   'vin-spiritueux',
+]);
+
+// Les 6 fiches formation servent du contenu FR sur /en/ (content/formations/*.json
+// monolingues, vérifié page par page le 12/06/2026). Les hubs academy
+// (/academy, formations-packshot, formations-ia, simulateur-opco, calendrier)
+// sont réellement traduits → hors lot.
+export const NOINDEX_EN_ACADEMY_SLUGS = new Set([
+  'elearning-autonome-niveau-1',
+  'niveau-1-fondation-blended',
+  'niveau-1-fondation-presentiel',
+  'niveau-2-maitrise-blended',
+  'niveau-2-maitrise-presentiel',
+  'niveau-3-expert-presentiel',
 ]);
 
 export const NOINDEX_EN_SOLUTIONS_SLUGS = new Set([

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-      languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises' },
+      languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises', 'x-default': '/fr/studios-photo-automatises' },
     },
     openGraph: {
       title: t('title'), description: t('description'), type: 'website',

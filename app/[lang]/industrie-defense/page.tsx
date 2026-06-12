@@ -9,6 +9,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection } from '@/components/hero';
 import { getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
+import { getMachineImage } from '@/lib/machine-images';
 import {
   TECHNOLOGIES,
   PAIN_POINTS,
@@ -54,6 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: {
         fr: '/fr/industrie-defense',
         en: '/en/industrie-defense',
+        'x-default': '/fr/industrie-defense',
       },
     },
     openGraph: {
@@ -480,7 +482,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                         {/* Machine image */}
                         <div className="w-full h-[140px] rounded-xl overflow-hidden mb-4 flex items-center justify-center">
                           <Image
-                            src={`/images/machines/${machine.id}.avif`}
+                            src={getMachineImage(machine.id)}
                             alt={machine.nom}
                             width={280}
                             height={140}

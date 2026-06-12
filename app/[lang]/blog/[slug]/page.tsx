@@ -44,7 +44,11 @@ export async function generateMetadata({ params }: PageProps) {
     const alternates = getBlogAlternates(article.webflowItemId);
     const languages: Record<string, string> = {};
     if (alternates.fr && getArticle(alternates.fr, 'fr')) languages.fr = `/fr/blog/${alternates.fr}`;
-    if (alternates.en && getArticle(alternates.en, 'en')) languages.en = `/en/blog/${alternates.en}`;
+    // Pas d'alternate en vers une cible noindex
+    if (alternates.en && getArticle(alternates.en, 'en') && !NOINDEX_EN_BLOG_SLUGS.has(alternates.en)) {
+      languages.en = `/en/blog/${alternates.en}`;
+    }
+    if (languages.fr) languages['x-default'] = languages.fr;
 
     const isNoindex = lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug);
 
@@ -59,7 +63,8 @@ export async function generateMetadata({ params }: PageProps) {
       openGraph: {
         title: pageTitle,
         description: article.description,
-        images: article.image
+        // Un .mp4 n'est pas une og:image valide → fallback image OG générée
+        images: article.image && !article.image.endsWith('.mp4')
           ? [article.image]
           : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
         type: 'article',
@@ -147,7 +152,21 @@ export default async function BlogArticlePage({ params }: PageProps) {
         </div>
       </HeroSection>
 
-      {imageUrl && (
+      {imageUrl && imageUrl.endsWith('.mp4') ? (
+        // Bannières .mp4 héritées de Webflow : balise <video>, pas d'optimiseur d'images ni de preload image
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
+          <video
+            src={imageUrl}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="metadata"
+            aria-label={title}
+            className="w-full rounded-2xl shadow-lg"
+          />
+        </div>
+      ) : imageUrl ? (
         <>
           <link rel="preload" as="image" href={imageUrl} fetchPriority="high" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
@@ -162,7 +181,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
             />
           </div>
         </>
-      )}
+      ) : null}
 
       <FadeInView delay={0.2}>
         <section className="py-12 lg:py-16 bg-white">

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/a-propos`,
-      languages: { fr: '/fr/a-propos', en: '/en/a-propos' },
+      languages: { fr: '/fr/a-propos', en: '/en/a-propos', 'x-default': '/fr/a-propos' },
     },
     openGraph: {
       title: t('meta.title'),

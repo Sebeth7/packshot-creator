@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: url,
       languages: {
         fr: '/fr/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet',
-        en: '/en/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet',
+        'x-default': '/fr/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet', // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

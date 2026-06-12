@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { trackFormSubmit } from '@/lib/analytics';
+import { getAttribution } from '@/lib/attribution';
 
 // ── Config ────────────────────────────────────────────────────
 
@@ -190,6 +191,7 @@ export function ContactForm({
           locale,
           pageSource: pathname,
           machineContext,
+          attribution: getAttribution() ?? undefined,
         }),
       });
       if (!res.ok) throw new Error('API error');

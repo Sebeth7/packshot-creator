@@ -36,6 +36,30 @@ interface ROIPDFRequest {
     coutTotalMachine: number;
   };
   locale: 'fr' | 'en';
+  // Attribution first-touch de session (mesure GEO : trafic IA / SEO / campagnes)
+  attribution?: {
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmTerm?: string;
+    utmContent?: string;
+    referrer?: string;
+    landingPage?: string;
+  };
+}
+
+/** Lignes lisibles pour la note Pipedrive (attribution de la demande). */
+function formatAttributionLines(attribution: ROIPDFRequest['attribution']): string[] {
+  if (!attribution) return [];
+  const lines: string[] = [];
+  if (attribution.utmSource) lines.push(`🎯 Source : ${attribution.utmSource}`);
+  if (attribution.utmMedium) lines.push(`📡 Medium : ${attribution.utmMedium}`);
+  if (attribution.utmCampaign) lines.push(`📣 Campagne : ${attribution.utmCampaign}`);
+  if (attribution.utmTerm) lines.push(`🔑 Terme : ${attribution.utmTerm}`);
+  if (attribution.utmContent) lines.push(`🧩 Contenu : ${attribution.utmContent}`);
+  if (attribution.referrer) lines.push(`🌐 Referrer : ${attribution.referrer}`);
+  if (attribution.landingPage) lines.push(`🛬 Landing : ${attribution.landingPage}`);
+  return lines;
 }
 
 async function createPipedrivePerson(
@@ -89,7 +113,8 @@ async function createPipedriveDeal(
   email: string,
   apiToken: string,
   phone?: string,
-  company?: string
+  company?: string,
+  attribution?: ROIPDFRequest['attribution']
 ): Promise<number | null> {
   try {
     const mode = calculatorData.isLeasing ? 'Leasing' : 'Achat';
@@ -98,6 +123,7 @@ async function createPipedriveDeal(
     const contactLines = [`👤 Contact : ${email}`];
     if (phone) contactLines.push(`📱 Téléphone : ${phone}`);
     if (company) contactLines.push(`🏢 Société : ${company}`);
+    contactLines.push(...formatAttributionLines(attribution));
 
     const noteLines = [
       `📊 Résultats Calculateur ROI`,
@@ -187,7 +213,7 @@ export async function POST(request: NextRequest) {
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
 
     const body: ROIPDFRequest = await request.json();
-    const { email, phone, company, contactRequest, calculatorData, locale } = body;
+    const { email, phone, company, contactRequest, calculatorData, locale, attribution } = body;
 
     if (!email && !phone) {
       return NextResponse.json(
@@ -305,7 +331,7 @@ export async function POST(request: NextRequest) {
     if (PIPEDRIVE_API_TOKEN) {
       const personId = await createPipedrivePerson(PIPEDRIVE_API_TOKEN, email, phone, company);
       if (personId) {
-        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN, phone, company);
+        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN, phone, company, attribution);
         pipedriveResult = { personId, dealId };
       }
     }

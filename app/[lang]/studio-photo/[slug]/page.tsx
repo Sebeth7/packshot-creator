@@ -445,11 +445,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
-      languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}` },
+      languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}`, 'x-default': `/fr/studio-photo/${slug}` },
     },
     openGraph: {
       title,
       images: [{ url: `/api/og?title=${encodeURIComponent(machine.nom)}&type=product&lang=${lang}`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`/api/og?title=${encodeURIComponent(machine.nom)}&type=product&lang=${lang}`],
     },
   };
 }
@@ -754,13 +760,15 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             </FadeInView>
             <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
               {keyStats.map((stat, index) => {
-                const numericValue = parseInt(stat.value.replace(/[^0-9]/g, ''), 10);
-                const suffix = stat.value.replace(/[0-9]/g, '');
+                // Valeurs sans chiffre ('Semi') ou composées ('3x3m') : affichage brut sans compteur
+                const match = stat.value.match(/^([^0-9]*?)(\d+)(.*)$/);
                 return (
                   <StaggerItem key={index}>
                     <div className="text-center px-4 sm:px-6 lg:px-8">
                       <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight">
-                        <AnimatedCounter end={numericValue} suffix={suffix} duration={2} />
+                        {match ? (
+                          <AnimatedCounter end={parseInt(match[2], 10)} prefix={match[1]} suffix={match[3]} duration={2} />
+                        ) : stat.value}
                       </p>
                       <p className="mt-2 text-sm font-medium text-future-dusk-300 uppercase tracking-wider">
                         {isFr ? stat.label.fr : stat.label.en}

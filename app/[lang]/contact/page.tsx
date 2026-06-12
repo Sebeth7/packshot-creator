@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('metaDescription'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/contact`,
-      languages: { fr: '/fr/contact', en: '/en/contact' },
+      languages: { fr: '/fr/contact', en: '/en/contact', 'x-default': '/fr/contact' },
     },
     openGraph: {
       title: t('metaTitle'),

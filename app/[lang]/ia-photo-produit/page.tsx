@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
-      languages: { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit' },
+      languages: { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit', 'x-default': '/fr/ia-photo-produit' },
     },
     openGraph: {
       title: t('title'),

@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Package, Euro, ChevronRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@/components/seo/SchemaOrg';
+import { NOINDEX_EN_ACADEMY_SLUGS } from '@/lib/seo-config';
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 
@@ -17,12 +18,21 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   const isFr = lang === 'fr';
 
+  const isNoindex = lang === 'en' && NOINDEX_EN_ACADEMY_SLUGS.has(slug);
+  // Pas d'alternate en quand la version EN est noindex (contenu FR non traduit)
+  const hasEnAlternate = !NOINDEX_EN_ACADEMY_SLUGS.has(slug);
+
   return {
     title: `${formation.titre} | PackshotCreator Academy`,
     description: formation.description_courte,
+    ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/${slug}`,
-      languages: { fr: `/fr/academy/${slug}`, en: `/en/academy/${slug}` },
+      languages: {
+        fr: `/fr/academy/${slug}`,
+        ...(hasEnAlternate && { en: `/en/academy/${slug}` }),
+        'x-default': `/fr/academy/${slug}`,
+      },
     },
     openGraph: {
       title: `${formation.titre} | PackshotCreator Academy`,

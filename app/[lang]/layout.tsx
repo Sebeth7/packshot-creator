@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import LemlistTracker from '@/components/analytics/LemlistTracker';
+import AttributionTracker from '@/components/analytics/AttributionTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import { SmoothScroll } from '@/components/animations';
 
@@ -82,6 +83,7 @@ export default async function LocaleLayout({
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
           <LemlistTracker />
+          <AttributionTracker />
           <Header />
           <main>{children}</main>
           <Footer />

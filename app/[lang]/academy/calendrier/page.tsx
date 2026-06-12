@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'View the PackshotCreator Academy 2026 training calendar. Book your packshot or AI session. OPCO funding.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/calendrier`,
-      languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier' },
+      languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier', 'x-default': '/fr/academy/calendrier' },
     },
     openGraph: {
       title: isFr

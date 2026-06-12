@@ -34,7 +34,7 @@ export async function generateMetadata({
       canonical: `https://www.packshot-creator.com/${lang}/blog/${SLUG}`,
       languages: {
         fr: `/fr/blog/${SLUG}`,
-        en: `/en/blog/${SLUG}`,
+        'x-default': `/fr/blog/${SLUG}`, // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

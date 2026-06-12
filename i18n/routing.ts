@@ -12,6 +12,11 @@ export const routing = defineRouting({
   // Préfixe de locale: 'always' signifie que toutes les URLs auront un préfixe (/fr/, /en/, etc.)
   localePrefix: 'always',
 
+  // Désactive l'en-tête HTTP `Link` hreflang du middleware : il émettait un
+  // x-default vers l'URL sans préfixe (307) et doublonnait — en divergeant —
+  // les alternates HTML posés par generateMetadata (seule source conservée).
+  alternateLinks: false,
+
   // Désactive le cookie NEXT_LOCALE. Le middleware next-intl le posait sur chaque
   // requête cookieless (= tous les bots Google/IA), ce qui rendait la réponse
   // `Set-Cookie` → `cache-control: private, no-store` côté Vercel : toutes les pages

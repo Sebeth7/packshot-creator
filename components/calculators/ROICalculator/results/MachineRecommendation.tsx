@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Check, Loader2, X } from 'lucide-react';
+import { getAttribution } from '@/lib/attribution';
 import type { Machine } from '../lib/types';
 
 interface MachineRecommendationProps {
@@ -113,6 +114,7 @@ export default function MachineRecommendation({ machine, locale }: MachineRecomm
           },
           locale,
           contactRequest: true,
+          attribution: getAttribution() ?? undefined,
         }),
       });
 

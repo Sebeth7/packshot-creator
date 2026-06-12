@@ -74,6 +74,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!secteur) return { title: 'Secteur non trouvé' };
 
   const isNoindex = lang === 'en' && NOINDEX_EN_INDUSTRIE_SLUGS.has(slug);
+  // Pas d'alternate en quand la version EN est noindex (hreflang vers cible non indexable)
+  const hasEnAlternate = !NOINDEX_EN_INDUSTRIE_SLUGS.has(slug);
 
   return {
     title: secteur.titre,
@@ -81,12 +83,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
-      languages: { fr: `/fr/industrie/${slug}`, en: `/en/industrie/${slug}` },
+      languages: {
+        fr: `/fr/industrie/${slug}`,
+        ...(hasEnAlternate && { en: `/en/industrie/${slug}` }),
+        'x-default': `/fr/industrie/${slug}`,
+      },
     },
     openGraph: {
       title: secteur.titre,
       description: secteur.description,
       images: [{ url: `/api/og?title=${encodeURIComponent(secteur.titre)}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: secteur.titre,
+      description: secteur.description,
+      images: [`/api/og?title=${encodeURIComponent(secteur.titre)}&type=page&lang=${lang}`],
     },
   };
 }

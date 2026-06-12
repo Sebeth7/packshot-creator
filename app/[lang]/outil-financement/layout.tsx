@@ -12,6 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: isFr
       ? 'Comparez en temps réel le leasing et le crédit bancaire pour votre studio photo automatisé. Mensualités, coût total, avantages fiscaux.'
       : 'Compare leasing and bank loan in real time for your automated photo studio. Monthly payments, total cost, tax benefits.',
+    // Contenu FR-only : /en/outil-financement sert le même contenu FR → canonical vers /fr
+    alternates: {
+      canonical: 'https://www.packshot-creator.com/fr/outil-financement',
+    },
   };
 }
 

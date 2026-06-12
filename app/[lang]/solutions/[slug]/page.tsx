@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { solutions } from '@/data/solutions';
 import { NOINDEX_EN_SOLUTIONS_SLUGS } from '@/lib/seo-config';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
+import { getMachineImage } from '@/lib/machine-images';
 import {
   CheckCircle,
   ArrowRight,
@@ -39,6 +40,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!solution) return { title: 'Solution non trouvée' };
 
   const isNoindex = lang === 'en' && NOINDEX_EN_SOLUTIONS_SLUGS.has(slug);
+  // Pas d'alternate en quand la version EN est noindex (hreflang vers cible non indexable)
+  const hasEnAlternate = !NOINDEX_EN_SOLUTIONS_SLUGS.has(slug);
 
   return {
     title: solution.titre,
@@ -46,7 +49,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/solutions/${slug}`,
-      languages: { fr: `/fr/solutions/${slug}`, en: `/en/solutions/${slug}` },
+      languages: {
+        fr: `/fr/solutions/${slug}`,
+        ...(hasEnAlternate && { en: `/en/solutions/${slug}` }),
+        'x-default': `/fr/solutions/${slug}`,
+      },
     },
     openGraph: {
       title: solution.titre,
@@ -341,7 +348,7 @@ export default async function SolutionPage({ params }: PageProps) {
                           {/* Machine image */}
                           <div className="w-full h-[140px] rounded-xl overflow-hidden mb-5 flex items-center justify-center">
                             <Image
-                              src={`/images/machines/${machine!.id}.avif`}
+                              src={getMachineImage(machine!.id)}
                               alt={machine!.nom}
                               width={280}
                               height={140}

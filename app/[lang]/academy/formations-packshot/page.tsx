@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'Qualiopi certified training on Orbitvu automated photo studios. Master professional packshot photography. OPCO funding up to 100%.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-packshot`,
-      languages: { fr: '/fr/academy/formations-packshot', en: '/en/academy/formations-packshot' },
+      languages: { fr: '/fr/academy/formations-packshot', en: '/en/academy/formations-packshot', 'x-default': '/fr/academy/formations-packshot' },
     },
     openGraph: {
       title: isFr

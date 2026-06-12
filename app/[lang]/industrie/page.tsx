@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, eyewear, shoes, jewelry, furniture, food, cosmetics',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie`,
-      languages: { fr: '/fr/industrie', en: '/en/industrie' },
+      languages: { fr: '/fr/industrie', en: '/en/industrie', 'x-default': '/fr/industrie' },
     },
     openGraph: {
       title: lang === 'fr'

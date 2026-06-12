@@ -114,7 +114,7 @@ export async function generateMetadata({
     description: t('description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}`,
-      languages: { fr: '/fr', en: '/en' },
+      languages: { fr: '/fr', en: '/en', 'x-default': '/fr' },
     },
     openGraph: {
       title: t('title'),

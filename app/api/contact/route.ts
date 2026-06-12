@@ -22,6 +22,16 @@ const contactSchema = z.object({
   locale: z.enum(['fr', 'en']).default('fr'),
   pageSource: z.string().optional(), // page d'origine (ex: "/fr/studio-photo/alphashot-pro-g2")
   machineContext: z.string().optional(), // machine pré-sélectionnée si applicable
+  // Attribution first-touch de session (mesure GEO : trafic IA / SEO / campagnes)
+  attribution: z.object({
+    utmSource: z.string().max(200).optional(),
+    utmMedium: z.string().max(200).optional(),
+    utmCampaign: z.string().max(200).optional(),
+    utmTerm: z.string().max(200).optional(),
+    utmContent: z.string().max(200).optional(),
+    referrer: z.string().max(500).optional(),
+    landingPage: z.string().max(500).optional(),
+  }).optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -98,6 +108,20 @@ async function findOrCreateOrganization(
   }
 }
 
+/** Lignes lisibles pour la note Pipedrive / l'email interne (attribution de la demande). */
+function formatAttributionLines(attribution: ContactFormData['attribution']): string[] {
+  if (!attribution) return [];
+  const lines: string[] = [];
+  if (attribution.utmSource) lines.push(`🎯 Source : ${attribution.utmSource}`);
+  if (attribution.utmMedium) lines.push(`📡 Medium : ${attribution.utmMedium}`);
+  if (attribution.utmCampaign) lines.push(`📣 Campagne : ${attribution.utmCampaign}`);
+  if (attribution.utmTerm) lines.push(`🔑 Terme : ${attribution.utmTerm}`);
+  if (attribution.utmContent) lines.push(`🧩 Contenu : ${attribution.utmContent}`);
+  if (attribution.referrer) lines.push(`🌐 Referrer : ${attribution.referrer}`);
+  if (attribution.landingPage) lines.push(`🛬 Landing : ${attribution.landingPage}`);
+  return lines;
+}
+
 const REQUEST_TYPE_LABELS: Record<string, { fr: string; en: string }> = {
   demo: { fr: 'Demande de démonstration', en: 'Demo request' },
   quote: { fr: 'Demande de devis', en: 'Quote request' },
@@ -152,6 +176,7 @@ async function createDealWithNote(
         `📅 ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`,
         data.pageSource ? `🔗 Page d'origine : ${data.pageSource}` : null,
         data.machineContext ? `🖥 Machine : ${data.machineContext}` : null,
+        ...formatAttributionLines(data.attribution),
       ].filter(Boolean).join('\n');
 
       await fetch(
@@ -264,6 +289,7 @@ export async function POST(request: NextRequest) {
           ${data.message ? `<p><strong>Message :</strong></p><p>${data.message.replace(/\n/g, '<br/>')}</p>` : '<p><em>Pas de message</em></p>'}
           ${data.pageSource ? `<p style="color: #888; font-size: 12px;">Page d'origine : ${data.pageSource}</p>` : ''}
           ${data.machineContext ? `<p style="color: #888; font-size: 12px;">Machine : ${data.machineContext}</p>` : ''}
+          ${formatAttributionLines(data.attribution).map((line) => `<p style="color: #888; font-size: 12px;">${line}</p>`).join('')}
           ${enrichmentBlock}
         </div>
       </div>

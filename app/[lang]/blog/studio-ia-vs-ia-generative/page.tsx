@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       languages: {
         fr: '/fr/blog/studio-ia-vs-ia-generative',
         en: '/en/blog/studio-ia-vs-ia-generative',
+        'x-default': '/fr/blog/studio-ia-vs-ia-generative',
       },
     },
     openGraph: {

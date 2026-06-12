@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'Qualiopi certified training on generative AI for e-commerce. Master BlendAI to create lifestyle visuals. OPCO funding.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-ia`,
-      languages: { fr: '/fr/academy/formations-ia', en: '/en/academy/formations-ia' },
+      languages: { fr: '/fr/academy/formations-ia', en: '/en/academy/formations-ia', 'x-default': '/fr/academy/formations-ia' },
     },
     openGraph: {
       title: isFr

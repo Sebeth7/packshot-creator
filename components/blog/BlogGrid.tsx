@@ -85,7 +85,19 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
             className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 block"
           >
             <div className="relative h-48 w-full bg-neutral-100 overflow-hidden">
-              {post.image ? (
+              {post.image && post.image.endsWith('.mp4') ? (
+                // Vignettes .mp4 héritées de Webflow : l'optimiseur d'images ne traite pas la vidéo (400)
+                <video
+                  src={post.image}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  preload="metadata"
+                  aria-label={post.title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              ) : post.image ? (
                 <Image
                   src={post.image}
                   alt={post.title}

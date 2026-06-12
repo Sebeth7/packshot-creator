@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy`,
-      languages: { fr: '/fr/academy', en: '/en/academy' },
+      languages: { fr: '/fr/academy', en: '/en/academy', 'x-default': '/fr/academy' },
     },
     openGraph: {
       title: t('title'),

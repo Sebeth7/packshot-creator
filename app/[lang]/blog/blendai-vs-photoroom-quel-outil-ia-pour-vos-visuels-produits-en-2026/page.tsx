@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026`,
       languages: {
         fr: '/fr/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
-        en: '/en/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
+        'x-default': '/fr/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026', // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

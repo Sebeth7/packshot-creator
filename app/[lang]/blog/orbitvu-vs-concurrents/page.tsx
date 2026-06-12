@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       canonical: `https://www.packshot-creator.com/${lang}/blog/orbitvu-vs-concurrents`,
       languages: {
         fr: '/fr/blog/orbitvu-vs-concurrents',
-        en: '/en/blog/orbitvu-vs-concurrents',
+        'x-default': '/fr/blog/orbitvu-vs-concurrents', // /en/blog/* = 301 Worker : pas d'alternate en
       },
     },
     openGraph: {

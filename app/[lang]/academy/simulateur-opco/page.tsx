@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: {
         fr: '/fr/academy/simulateur-opco',
         en: '/en/academy/simulateur-opco',
+        'x-default': '/fr/academy/simulateur-opco',
       },
     },
     openGraph: {

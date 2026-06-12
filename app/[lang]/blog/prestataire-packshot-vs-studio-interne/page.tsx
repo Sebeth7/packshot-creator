@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       languages: {
         fr: `/fr/blog/${slug}`,
         en: `/en/blog/${slug}`,
+        'x-default': `/fr/blog/${slug}`,
       },
     },
     openGraph: {

@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: {
         fr: '/fr/besoins-photographie-produit',
         en: '/en/besoins-photographie-produit',
+        'x-default': '/fr/besoins-photographie-produit',
       },
     },
     openGraph: {

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/budget-studio-photo-automatise`,
-      languages: { fr: '/fr/blog/budget-studio-photo-automatise', en: '/en/blog/budget-studio-photo-automatise' },
+      languages: { fr: '/fr/blog/budget-studio-photo-automatise', en: '/en/blog/budget-studio-photo-automatise', 'x-default': '/fr/blog/budget-studio-photo-automatise' },
     },
     openGraph: {
       title: t('title'), description: t('description'), type: 'article',

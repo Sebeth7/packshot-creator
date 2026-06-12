@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('metaDescription'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog`,
-      languages: { fr: '/fr/blog', en: '/en/blog' },
+      languages: { fr: '/fr/blog', en: '/en/blog', 'x-default': '/fr/blog' },
     },
     openGraph: {
       title: t('metaTitle'),
@@ -87,7 +87,19 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
               <Link href={`/blog/${heroPost.slug}`} className="group block">
                 <div className="grid lg:grid-cols-2 gap-0 rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300">
                   <div className="relative h-64 lg:h-80 bg-neutral-100 overflow-hidden">
-                    {heroPost.image ? (
+                    {heroPost.image && heroPost.image.endsWith('.mp4') ? (
+                      // Vignettes .mp4 héritées de Webflow : l'optimiseur d'images ne traite pas la vidéo (400)
+                      <video
+                        src={heroPost.image}
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        preload="metadata"
+                        aria-label={heroPost.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : heroPost.image ? (
                       <Image
                         src={heroPost.image}
                         alt={heroPost.title}

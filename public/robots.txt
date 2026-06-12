@@ -1,43 +1,79 @@
-# Crawlers principaux
+# Orientation B (D1, 06/2026) : ouvrir les crawlers de CITATION (réponses IA
+# sourcées = visibilité GEO), bloquer les crawlers d'ENTRAÎNEMENT/extraction.
+# Pré-requis edge : Cloudflare « Block AI bots » + AI Labyrinth désactivés.
+
+# ── Moteurs de recherche ──────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-# Crawlers IA (GEO - important pour la visibilite LLM)
-User-agent: GPTBot
+User-agent: Applebot
+Allow: /
+
+# Google-Extended : ne pas bloquer (décision arrêtée)
+User-agent: Google-Extended
+Allow: /
+
+# ── Crawlers IA de citation (GEO) — autorisés ─────────────────
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: ClaudeBot
-Allow: /
-
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Perplexity-User
 Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# ── Crawlers d'entraînement / extraction — bloqués ────────────
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
 
 User-agent: anthropic-ai
-Allow: /
+Disallow: /
 
 User-agent: CCBot
-Allow: /
+Disallow: /
 
 User-agent: cohere-ai
-Allow: /
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
 
 User-agent: Diffbot
-Allow: /
+Disallow: /
 
-# Tous les autres crawlers
+# ── Tous les autres crawlers ──────────────────────────────────
+# Pas de Disallow calculateur : l'objectif est la désindexation (noindex),
+# or un Disallow empêche Google de lire le noindex.
 User-agent: *
 Allow: /
-Disallow: /fr/calculateur
-Disallow: /en/calculateur
 
 # Sitemap
 Sitemap: https://www.packshot-creator.com/sitemap.xml

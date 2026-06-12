@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: {
         fr: '/fr/questions-cles-photographie-produit',
         en: '/en/questions-cles-photographie-produit',
+        'x-default': '/fr/questions-cles-photographie-produit',
       },
     },
     openGraph: {
