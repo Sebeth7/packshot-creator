@@ -242,6 +242,11 @@ export default function Footer() {
                   {t('blog')}
                 </Link>
               </li>
+              <li>
+                <Link href="/distributeur-orbitvu-suisse" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('distributeurSuisse')}
+                </Link>
+              </li>
             </ul>
 
             <h3 className="text-sm font-semibold text-white mt-6 mb-4 tracking-wide">

@@ -17,7 +17,7 @@ const SECTORS = [
   'pieces-techniques-industrie', 'automobile-pieces-detachees',
   'jouets-puericulture', 'sport-outdoor', 'sante-medical',
   'industrie-manufacturiere', 'defense-securite',
-  'lunetterie', 'vin-spiritueux',
+  'lunetterie', 'vin-spiritueux', 'horlogerie',
 ];
 
 const SOLUTIONS = [
@@ -91,6 +91,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/questions-cles-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/industrie-defense', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/industrie-defense', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Distributeur Suisse — FR seul (EN servi en noindex,follow)
+    { path: '/fr/distributeur-orbitvu-suisse', priority: 0.7, changeFrequency: 'monthly' as const },
     // Legal FR + EN
     { path: '/fr/mentions-legales', priority: 0.3, changeFrequency: 'yearly' as const },
     { path: '/en/mentions-legales', priority: 0.3, changeFrequency: 'yearly' as const },
