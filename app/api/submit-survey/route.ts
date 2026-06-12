@@ -262,7 +262,11 @@ function escapeHtml(s: string | null | undefined): string {
 async function sendInternalNotification(data: Payload, insertedId: string | null) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
-  const to = process.env.NOTIFICATION_EMAIL || 'sebastien.jourdan@sysnext.com';
+  // NOTIFICATION_EMAIL accepte plusieurs adresses séparées par des virgules
+  const to = (process.env.NOTIFICATION_EMAIL || 'sebastien.jourdan@sysnext.com')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
   if (!apiKey || !from) return;
 
   const resend = new Resend(apiKey);
