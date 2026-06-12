@@ -18,7 +18,7 @@ const CATEGORY_LABELS: Record<string, { fr: string; en: string }> = {
 };
 
 const AUTHOR_LABELS: Record<string, string> = {
-  '1ee1af407b1304f8ec54d409bf4544ab': 'Laurent Wainberg',
+  '1ee1af407b1304f8ec54d409bf4544ab': 'PackshotCreator',
 };
 
 // Internal paths that existed in Webflow but need a specific rewrite target.
