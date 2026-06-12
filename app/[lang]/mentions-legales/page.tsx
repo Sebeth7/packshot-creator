@@ -61,42 +61,56 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
 
             <h2 className="mt-12 text-2xl font-bold">{t('article1.heading')}</h2>
             <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100 not-prose">
-              <p className="font-heading font-bold text-future-dusk-900 mb-3">Sysnext</p>
+              <p className="font-heading font-bold text-future-dusk-900 mb-3">{t('article1.companyTitle')}</p>
               <ul className="space-y-1.5 text-sm text-future-dusk-600">
-                <li><strong>{t('article1.legalForm')}:</strong> SAS</li>
-                <li><strong>{t('article1.headquarters')}:</strong> 6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
-                <li><strong>{t('article1.shareCapital')}:</strong> 500 000 EUR</li>
-                <li><strong>{t('article1.registration')}:</strong> RCS Nanterre 805 401 148</li>
-                <li><strong>TVA:</strong> FR95805401148</li>
-                <li><strong>{t('article1.publicationDirector')}:</strong> Laurent Wainberg, {t('article1.president')}</li>
-                <li><strong>Contact:</strong> info[at]sysnext.com / +33 (0)1 47 42 66 66</li>
+                <li><strong>{t('article1.legalForm')}:</strong> {t('article1.legalFormValue')}</li>
+                <li><strong>{t('article1.headquarters')}:</strong> {t('article1.headquartersValue')}</li>
+                <li><strong>{t('article1.shareCapital')}:</strong> {t('article1.shareCapitalValue')}</li>
+                <li><strong>{t('article1.registration')}:</strong> {t('article1.registrationValue')}</li>
+                <li><strong>{t('article1.vat')}:</strong> {t('article1.vatValue')}</li>
+                <li><strong>{t('article1.publicationDirector')}:</strong> {t('article1.publicationDirectorValue')}</li>
+                <li>{t('article1.trademark')}</li>
               </ul>
             </div>
 
             <h2 className="mt-12 text-2xl font-bold">{t('article2.heading')}</h2>
             <div className="space-y-4 not-prose">
               <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100">
-                <p className="font-heading font-bold text-future-dusk-900 mb-1">{t('article2.development')}: Afalence</p>
-                <p className="text-sm text-future-dusk-600">Contact: alemeur[at]afalence.com</p>
+                <p className="font-heading font-bold text-future-dusk-900 mb-3">{t('article2.france')}</p>
+                <ul className="space-y-1.5 text-sm text-future-dusk-600">
+                  <li><strong>{t('article2.phone')}:</strong> +33 (0)1 47 42 66 66</li>
+                  <li><strong>{t('article2.email')}:</strong> info[at]sysnext.com</li>
+                  <li><strong>{t('article2.showroom')}:</strong> {t('article2.showroomValue')}</li>
+                </ul>
               </div>
               <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100">
-                <p className="font-heading font-bold text-future-dusk-900 mb-1">{t('article2.hosting')}: Vercel, Inc.</p>
-                <p className="text-sm text-future-dusk-600">340 S Lemon Ave #4133, Walnut, CA 91789, USA</p>
+                <p className="font-heading font-bold text-future-dusk-900 mb-3">{t('article2.switzerland')}</p>
+                <ul className="space-y-1.5 text-sm text-future-dusk-600">
+                  <li><strong>{t('article2.phone')}:</strong> +41 44 580 43 84</li>
+                  <li>{t('article2.switzerlandNote')}</li>
+                </ul>
               </div>
             </div>
 
             <h2 className="mt-12 text-2xl font-bold">{t('article3.heading')}</h2>
             <p>
-              {t('article3.description')}
+              {t('article3.publisher')}
             </p>
-            <ul>
-              <li><strong>{t('article3.collection')}:</strong> {t('article3.collectionDetail')}</li>
-              <li><strong>Cookies:</strong> {t('article3.cookiesDetail')}</li>
-            </ul>
+            <div className="rounded-2xl bg-neutral-50 p-6 border border-neutral-100 not-prose">
+              <p className="font-heading font-bold text-future-dusk-900 mb-1">{t('article3.hosting')}</p>
+              <p className="text-sm text-future-dusk-600">{t('article3.hostingValue')}</p>
+            </div>
 
             <h2 className="mt-12 text-2xl font-bold">{t('article4.heading')}</h2>
             <p>
               {t('article4.description')}
+            </p>
+            <ul>
+              <li><strong>{t('article4.collection')}:</strong> {t('article4.collectionDetail')}</li>
+              <li><strong>Cookies:</strong> {t('article4.cookiesDetail')}</li>
+            </ul>
+            <p>
+              {t('article4.privacyNote')}
             </p>
 
             <h2 className="mt-12 text-2xl font-bold">{t('article5.heading')}</h2>
@@ -107,6 +121,11 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             <h2 className="mt-12 text-2xl font-bold">{t('article6.heading')}</h2>
             <p>
               {t('article6.description')}
+            </p>
+
+            <h2 className="mt-12 text-2xl font-bold">{t('article7.heading')}</h2>
+            <p>
+              {t('article7.description')}
             </p>
 
             {/* CTA */}

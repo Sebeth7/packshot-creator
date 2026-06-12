@@ -2033,7 +2033,7 @@
     },
     "article8": {
       "title": "Article 8 : Droit applicable",
-      "text": "Les présentes CGU sont régies par le droit français. Tout litige sera soumis aux tribunaux de Nanterre."
+      "text": "Les présentes CGU sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents de Lyon."
     },
     "contact": {
       "title": "Contact",
@@ -2053,42 +2053,62 @@
     },
     "breadcrumb": "Mentions légales",
     "hero": {
-      "title": "Mentions Légales",
+      "title": "Mentions légales",
       "subtitle": "Informations légales relatives au site www.packshot-creator.com"
     },
-    "intro": "Les présentes conditions générales d'utilisation (dites \"CGU\") ont pour objet l'encadrement juridique des modalités de mise à disposition du site et des services par SYSNEXT - PackshotCreator.",
+    "intro": "Les présentes mentions ont pour objet l'encadrement juridique des modalités de mise à disposition du site et des services par SYSNEXT — PackshotCreator, distributeur officiel des solutions Orbitvu pour la France et la Suisse.",
     "article1": {
       "heading": "Article 1 : Éditeur du site",
+      "companyTitle": "SYSNEXT (nom commercial : PackshotCreator)",
       "legalForm": "Forme juridique",
+      "legalFormValue": "Société par actions simplifiée (SAS)",
       "headquarters": "Siège social",
+      "headquartersValue": "254 rue Vendôme, 69003 Lyon, France",
       "shareCapital": "Capital social",
+      "shareCapitalValue": "10 000 €",
       "registration": "Immatriculation",
+      "registrationValue": "RCS Lyon 805 401 148 — SIRET 805 401 148 00038",
+      "vat": "TVA intracommunautaire",
+      "vatValue": "FR95805401148",
       "publicationDirector": "Directeur de la publication",
-      "president": "Président"
+      "publicationDirectorValue": "Sébastien Jourdan, Président",
+      "trademark": "« Packshot Creator » est une marque déposée (INPI, dépôt du 20 mars 2024)"
     },
     "article2": {
-      "heading": "Article 2 : Développement et hébergement",
-      "development": "Développement",
-      "hosting": "Hébergement"
+      "heading": "Article 2 : Contact",
+      "france": "France",
+      "switzerland": "Suisse",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "showroom": "Showroom (sur rendez-vous)",
+      "showroomValue": "22 rue des Frères Lumière, DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+      "switzerlandNote": "PackshotCreator est distributeur officiel Orbitvu pour la France et la Suisse : livraison, installation et formation assurées sur l'ensemble des deux territoires."
     },
     "article3": {
-      "heading": "Article 3 : Collecte des données",
-      "description": "Le site www.packshot-creator.com respecte votre vie privée et se conforme au RGPD.",
-      "collection": "Collecte",
-      "collectionDetail": "Les informations recueillies via les formulaires sont utilisées uniquement dans le cadre de votre demande.",
-      "cookiesDetail": "Ce site utilise des cookies pour améliorer votre expérience."
+      "heading": "Article 3 : Hébergement",
+      "publisher": "Le site est conçu, développé et édité par Sysnext - PackshotCreator.",
+      "hosting": "Hébergement",
+      "hostingValue": "Vercel, Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA"
     },
     "article4": {
-      "heading": "Article 4 : Propriété intellectuelle",
-      "description": "Tous les éléments présents sur ce site sont la propriété exclusive de Sysnext, sauf mention contraire explicite. Toute reproduction est interdite sans autorisation écrite préalable."
+      "heading": "Article 4 : Données personnelles",
+      "description": "Le site www.packshot-creator.com respecte votre vie privée et se conforme au Règlement général sur la protection des données (RGPD) ainsi que, pour les personnes situées en Suisse, à la loi fédérale sur la protection des données (LPD).",
+      "collection": "Collecte",
+      "collectionDetail": "les informations recueillies via les formulaires sont utilisées uniquement dans le cadre du traitement de votre demande.",
+      "cookiesDetail": "ce site utilise des cookies pour améliorer votre expérience. Vous pouvez les gérer via le lien « Gérer les cookies » en pied de page.",
+      "privacyNote": "Pour plus de détails, consultez notre politique de confidentialité."
     },
     "article5": {
-      "heading": "Article 5 : Responsabilité",
-      "description": "Sysnext s'efforce de fournir des informations précises et à jour. Toutefois, la société ne saurait être tenue responsable des erreurs ou omissions."
+      "heading": "Article 5 : Propriété intellectuelle",
+      "description": "Tous les éléments présents sur ce site (textes, visuels, logos, marques) sont la propriété exclusive de SYSNEXT, sauf mention contraire explicite. Toute reproduction est interdite sans autorisation écrite préalable."
     },
     "article6": {
-      "heading": "Article 6 : Litiges",
-      "description": "Les présentes mentions légales sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents de Nanterre."
+      "heading": "Article 6 : Responsabilité",
+      "description": "SYSNEXT s'efforce de fournir des informations précises et à jour. Toutefois, la société ne saurait être tenue responsable des erreurs ou omissions."
+    },
+    "article7": {
+      "heading": "Article 7 : Droit applicable et litiges",
+      "description": "Les présentes mentions légales sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents de Lyon."
     },
     "cta": {
       "heading": "Des questions ?",
@@ -2104,13 +2124,13 @@
     "breadcrumb": "Confidentialité",
     "hero": {
       "title": "Politique de Confidentialité",
-      "description": "La société Sysnext accorde une grande importance à la protection de vos données personnelles et se conforme au RGPD."
+      "description": "La société Sysnext accorde une grande importance à la protection de vos données personnelles et se conforme au RGPD ainsi que, pour les personnes situées en Suisse, à la loi fédérale sur la protection des données (LPD)."
     },
     "article1": {
       "heading": "Article 1 : Responsable du traitement",
       "capitalLabel": "au capital de",
-      "address": "6 rue Antonin Raynaud, 92300 Levallois-Perret, France",
-      "rcs": "RCS Nanterre 805 401 148",
+      "address": "254 rue Vendôme, 69003 Lyon, France",
+      "rcs": "RCS Lyon 805 401 148",
       "dpo": "Contact DPO: info@sysnext.com"
     },
     "article2": {

@@ -145,7 +145,7 @@ export default async function CGUPage({ params }: PageProps) {
               <ul className="space-y-1.5 text-sm text-future-dusk-600">
                 <li><strong>Email:</strong> info@sysnext.com</li>
                 <li><strong>{t('contact.phone')}:</strong> +33 (0)1 47 42 66 66</li>
-                <li><strong>{t('contact.address')}:</strong> SYSNEXT - PackshotCreator, 6 rue Antonin Raynaud, 92300 Levallois-Perret, France</li>
+                <li><strong>{t('contact.address')}:</strong> SYSNEXT - PackshotCreator, 254 rue Vendôme, 69003 Lyon, France</li>
               </ul>
             </div>
 

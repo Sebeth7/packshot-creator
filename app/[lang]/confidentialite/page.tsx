@@ -100,7 +100,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
               <div className="rounded-xl bg-neutral-50 p-6 border border-neutral-100">
                 <p className="font-heading font-bold text-future-dusk-900 mb-3">Sysnext</p>
                 <ul className="space-y-1.5 text-sm text-future-dusk-600">
-                  <li><strong>SAS</strong> {t('article1.capitalLabel')} 500 000 EUR</li>
+                  <li><strong>SAS</strong> {t('article1.capitalLabel')} 10 000 EUR</li>
                   <li>{t('article1.address')}</li>
                   <li>{t('article1.rcs')}</li>
                   <li>{t('article1.dpo')}</li>
