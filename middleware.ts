@@ -5,5 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Match all pathnames except API routes, static files, and standalone pages
-  matcher: ['/', '/((?!api|_next|_vercel|calculateur-roi|.*\\..*).*)']
+  matcher: ['/', '/((?!api|_next|_vercel|calculateur-roi|etude-clients-2026|.*\\..*).*)']
 };
