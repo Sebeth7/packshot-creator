@@ -323,7 +323,7 @@ export default function SurveyForm({ initialEmail, initialName, initialCompany, 
         </h1>
         <p className="text-[var(--neutral-medium)] max-w-xl mx-auto">
           Votre retour a bien été enregistré. Nous reviendrons vers vous si nous avons besoin
-          d&apos;une précision — sinon, rendez-vous pour la suite.
+          d&apos;une précision. Merci pour votre participation au questionnaire&nbsp;!
         </p>
         <div className="mt-8">
           <Button asChild variant="outline">
