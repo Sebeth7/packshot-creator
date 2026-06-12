@@ -18,4 +18,5 @@ export const SECTOR_MACHINE_MAP: Record<string, string[]> = {
   'industrie-manufacturiere': ['alphashot-micro-v2', 'alphashot-pro-g2', 'alphashot-xl-pro-v2', 'alphastudio-compact-v2', 'alphastudio-xxl-v2'],
   'defense-securite': ['alphashot-micro-v2', 'alphashot-pro-g2', 'alphashot-xl-pro-v2', 'alphastudio-compact-v2', 'alphastudio-xxl-v2'],
   'vin-spiritueux': ['alphashot-xl-wine-v2', 'alphashot-xl-v2', 'alphashot-xl-pro-v2'],
+  'horlogerie': ['alphashot-micro-v2', 'alphashot-360', 'alphashot-pro-g2'],
 };

@@ -1340,4 +1340,77 @@ export const secteurs: Secteur[] = [
       { question: 'Les visuels lifestyle IA sont-ils réalistes pour le vin ?', answer: 'BlendAI génère des mises en scène réalistes : cave en pierre, table de dégustation, comptoir bar. Les bouteilles sont intégrées avec gestion des ombres, reflets et éclairage ambiant cohérent.' },
     ],
   },
+
+  // 17. HORLOGERIE
+  {
+    slug: 'horlogerie',
+    titre: 'Photo Produit Horlogerie : Packshot & 360° pour Montres',
+    description:
+      'Studios photo automatisés pour montres et horlogerie : macro focus stacking, gestion des reflets verre saphir et boîtiers. Packshot, 360° et lifestyle IA.',
+    hero: {
+      titre: 'Photographie de Montre : Packshot Horlogerie & 360°',
+      sousTitre: 'Cadrans, complications, bracelets : chaque détail capturé',
+      description:
+        'Studios photo automatisés Orbitvu pour marques, manufactures et sous-traitants horlogers : packshot haute résolution, rotation 360° et macro avec gestion des reflets sur verres saphir et boîtiers polis.',
+    },
+    problematiques: {
+      titre: 'Défis Photo Horlogerie',
+      items: [
+        'Reflets sur verres saphir, boîtiers polis et bracelets métalliques',
+        'Netteté totale du réhaut au fond de cadran (profondeur de champ macro)',
+        'Positionnement reproductible des aiguilles et bracelets sur des séries entières',
+        'Cohérence visuelle entre déclinaisons d\'une même référence (cadrans, finitions, bracelets)',
+        'Confidentialité des prototypes et nouveautés : un shooting externalisé expose avant le lancement',
+      ],
+    },
+    solutions: {
+      titre: 'Nos Solutions Horlogerie',
+      items: [
+        {
+          type: 'hardware',
+          titre: 'Studios Orbitvu Horlogerie',
+          description:
+            'Packshot et 360° haute résolution en interne, avec focus stacking automatique',
+          avantages: [
+            'Focus stacking : netteté absolue sur cadran, index, aiguilles et complications',
+            'Éclairage polarisé : reflets maîtrisés sur verre saphir, boîtiers polis et maillons',
+            'Macro haute résolution : guillochages, sertissages et gravures restitués',
+            'Rotation 360° interactive : la montre sous tous les angles pour l\'e-commerce',
+            'Production internalisée : prototypes et nouveautés restent dans vos murs',
+          ],
+        },
+        {
+          type: 'ia',
+          titre: 'BlendAI Lifestyle Horlogerie',
+          description:
+            'Transformez vos packshots en visuels lifestyle haut de gamme',
+          avantages: [
+            'Portés IA : montres au poignet dans des ambiances affaires, sport ou soirée',
+            'Décors luxe : marbre, cuir, bois précieux, vitrine éclairée',
+            'Cohérence de collection : même ADN visuel sur toutes les références',
+            'Production série : déclinaisons lifestyle générées en quelques minutes',
+          ],
+        },
+      ],
+    },
+    casClients: [
+      {
+        titre: '[CAS_CLIENT_A_VALIDER] Horloger suisse',
+        description:
+          '[CAS_CLIENT_A_VALIDER] Cas client horloger suisse (Genève / Vallée de Joux) à documenter : internalisation de la production packshot + 360°.',
+      },
+    ],
+    cta: {
+      titre: 'Équipez votre production horlogère',
+      description:
+        'Devis studio Orbitvu horlogerie + démonstration avec vos propres montres, en France ou en Suisse.',
+    },
+    faq: [
+      { question: 'Comment photographier une montre sans reflets sur le verre saphir ?', answer: 'Les studios Orbitvu utilisent un éclairage LED polarisé qui supprime les reflets parasites sur le verre saphir, les boîtiers polis et les bracelets métalliques dès la capture, sans retouche manuelle.' },
+      { question: 'Peut-on automatiser le packshot 360° d\'une montre ?', answer: 'Oui. La rotation 360° est entièrement automatisée : la montre est photographiée sous tous les angles en quelques minutes, avec un rendu interactif intégrable directement dans une fiche produit e-commerce.' },
+      { question: 'Livrez-vous et installez-vous en Suisse ?', answer: 'Oui. PackshotCreator est distributeur officiel Orbitvu pour la France et la Suisse : livraison, installation et formation sur site sont assurées dans toute la Suisse, notamment dans l\'Arc jurassien et le bassin lémanique. Contact Suisse : +41 44 580 43 84.' },
+      { question: 'Peut-on tester un studio avec ses propres montres avant l\'achat ?', answer: 'Oui. Notre showroom, à moins de 2 heures de Genève, vous accueille sur rendez-vous pour une démonstration avec vos propres montres, accompagné par nos experts.' },
+      { question: 'Comment préserver la confidentialité des prototypes avant un lancement ?', answer: 'En internalisant la production visuelle avec un studio automatisé, vos prototypes ne quittent jamais vos locaux : aucun prestataire externe n\'a accès aux nouveautés avant leur présentation officielle.' },
+    ],
+  },
 ];
