@@ -1,3 +1,5 @@
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
 # Orientation B (D1, 06/2026) : ouvrir les crawlers de CITATION (réponses IA
 # sourcées = visibilité GEO), bloquer les crawlers d'ENTRAÎNEMENT/extraction.
 # Pré-requis edge : Cloudflare « Block AI bots » + AI Labyrinth désactivés.
