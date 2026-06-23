@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
 import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import { SECTOR_MACHINE_MAP } from '@/data/sector-machine-map';
+import { SECTOR_RELATED_MAP } from '@/data/sector-related-map';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
@@ -16,6 +17,8 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { HeroSection, HeroImage } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { SectorResources } from '@/components/maillage/MaillageSections';
+import { buildLanguages } from '@/lib/hreflang';
 
 /** Maps sector data slugs to hero image filename bases in /public/images/hero/ */
 const SECTOR_HERO_IMAGE_MAP: Record<string, string> = {
@@ -83,11 +86,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
-      languages: {
-        fr: `/fr/industrie/${slug}`,
-        ...(hasEnAlternate && { en: `/en/industrie/${slug}` }),
-        'x-default': `/fr/industrie/${slug}`,
-      },
+      languages: buildLanguages(`/fr/industrie/${slug}`, hasEnAlternate ? { en: `/en/industrie/${slug}` } : {}),
     },
     openGraph: {
       title: secteur.titre,
@@ -116,7 +115,19 @@ export default async function SecteurPage({ params }: PageProps) {
     { name: secteur.titre.split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/industrie/${slug}` },
   ];
 
-  const otherSectors = DEFAULT_SECTORS.filter((s) => s.slug !== slug).slice(0, 8);
+  // Maillage contextuel : secteurs connexes curatés (carte de proximité),
+  // avec repli sur les autres secteurs si la carte est incomplète (T2).
+  const relatedSlugs = SECTOR_RELATED_MAP[slug] ?? [];
+  const relatedSectors = relatedSlugs
+    .map((rs) => DEFAULT_SECTORS.find((s) => s.slug === rs))
+    .filter((s): s is (typeof DEFAULT_SECTORS)[number] => Boolean(s));
+  const fallbackSectors = DEFAULT_SECTORS.filter(
+    (s) => s.slug !== slug && !relatedSlugs.includes(s.slug)
+  );
+  const otherSectors = (relatedSectors.length >= 4
+    ? relatedSectors
+    : [...relatedSectors, ...fallbackSectors]
+  ).slice(0, 6);
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
@@ -720,6 +731,11 @@ export default async function SecteurPage({ params }: PageProps) {
           </section>
         );
       })()}
+
+      {/* ═══════════════════════════════════════════════════════════
+          RESSOURCES — guides & articles du secteur (maillage P1.A)
+          ═══════════════════════════════════════════════════════════ */}
+      <SectorResources slug={slug} lang={lang} />
 
       {/* ═══════════════════════════════════════════════════════════
           CROSS-LINKS — fond white, autres secteurs

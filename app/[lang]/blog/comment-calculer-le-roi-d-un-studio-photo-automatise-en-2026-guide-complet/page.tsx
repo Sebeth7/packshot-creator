@@ -4,6 +4,7 @@ import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -19,10 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: 'calculer roi studio photo, retour investissement packshot, rentabilité studio automatisé, roi orbitvu, investissement studio photo',
     alternates: {
       canonical: url,
-      languages: {
-        fr: '/fr/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet',
-        'x-default': '/fr/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet', // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages('/fr/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet'),
     },
     openGraph: {
       title,

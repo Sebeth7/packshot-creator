@@ -130,6 +130,51 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/industrie/horlogerie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('watchmaking')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/food-alimentaire" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('food')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/sante-medical" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('health')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/sport-outdoor" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('sport')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/jouets-puericulture" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('toys')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/automobile-pieces-detachees" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('automotive')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/pieces-techniques-industrie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('technicalParts')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/industrie-manufacturiere" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('manufacturing')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/industrie/defense-securite" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('defense')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/industrie" className="text-sm text-very-peri-400 hover:text-very-peri-300 transition-colors">
                   {t('allIndustries')} &rarr;
                 </Link>

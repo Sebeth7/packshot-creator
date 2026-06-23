@@ -13,6 +13,7 @@ import { ArrowLeft, Calendar, ChevronRight, Clock, User } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
+import { RecommendedStudio } from '@/components/maillage/MaillageSections';
 import {
   processHtmlContent,
   calculateReadingTime,
@@ -44,6 +45,8 @@ export async function generateMetadata({ params }: PageProps) {
     const alternates = getBlogAlternates(article.webflowItemId);
     const languages: Record<string, string> = {};
     if (alternates.fr && getArticle(alternates.fr, 'fr')) languages.fr = `/fr/blog/${alternates.fr}`;
+    // fr-CH = même URL /fr : la page FR sert aussi la Suisse romande (Workstream A)
+    if (languages.fr) languages['fr-CH'] = languages.fr;
     // Pas d'alternate en vers une cible noindex
     if (alternates.en && getArticle(alternates.en, 'en') && !NOINDEX_EN_BLOG_SLUGS.has(alternates.en)) {
       languages.en = `/en/blog/${alternates.en}`;
@@ -239,6 +242,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Studio recommandé (tunnel conversion — P1.B) */}
+      <RecommendedStudio contentSlug={slug} lang={lang} />
 
       <ArticleCTA lang={lang} />
       <RelatedArticles currentSlug={slug} category={category ?? undefined} lang={lang} />

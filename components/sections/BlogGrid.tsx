@@ -48,34 +48,34 @@ export default function BlogGrid({
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {posts.map((post, idx) => (
             <StaggerItem key={idx}>
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <a href={post.slug} className="block">
-                {/* Image */}
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={post.imageSrc}
-                    alt={post.imageAlt}
-                    fill
-                    className="object-cover"
-                  />
+            <Card className="relative overflow-hidden hover:shadow-lg transition-shadow">
+              {/* Image */}
+              <div className="relative h-48 w-full">
+                <Image
+                  src={post.imageSrc}
+                  alt={post.imageAlt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Contenu */}
+              <div className="p-6 space-y-3">
+                {/* Catégorie + Date */}
+                <div className="flex items-center gap-3 text-sm">
+                  <span className="text-secondary-orbitvu font-medium">
+                    {t(post.categoryKey)}
+                  </span>
+                  <span className="text-neutral-medium/60">{post.date}</span>
                 </div>
 
-                {/* Contenu */}
-                <div className="p-6 space-y-3">
-                  {/* Catégorie + Date */}
-                  <div className="flex items-center gap-3 text-sm">
-                    <span className="text-secondary-orbitvu font-medium">
-                      {t(post.categoryKey)}
-                    </span>
-                    <span className="text-neutral-medium/60">{post.date}</span>
-                  </div>
-
-                  {/* Titre */}
-                  <h3 className="font-heading text-xl text-neutral-dark hover:text-secondary-orbitvu transition-colors">
+                {/* Titre */}
+                <h3 className="font-heading text-xl text-neutral-dark hover:text-secondary-orbitvu transition-colors">
+                  <a href={post.slug} className="after:absolute after:inset-0">
                     {t(post.titleKey)}
-                  </h3>
-                </div>
-              </a>
+                  </a>
+                </h3>
+              </div>
             </Card>
             </StaggerItem>
           ))}

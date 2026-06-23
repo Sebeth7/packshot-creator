@@ -19,6 +19,7 @@ import {
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { buildLanguages } from '@/lib/hreflang';
 
 export const revalidate = 86400;
 
@@ -92,7 +93,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ...(lang === 'en' && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/${SLUG}`,
-      languages: { fr: `/fr/${SLUG}`, 'x-default': `/fr/${SLUG}` },
+      languages: buildLanguages(`/fr/${SLUG}`),
     },
     openGraph: {
       title,

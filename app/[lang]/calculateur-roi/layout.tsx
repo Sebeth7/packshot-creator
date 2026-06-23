@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'Calculate the return on investment of an Orbitvu automated photo studio for free. Compare purchase vs leasing and discover your savings.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/calculateur-roi`,
-      languages: { fr: '/fr/calculateur-roi', en: '/en/calculateur-roi', 'x-default': '/fr/calculateur-roi' },
+      languages: buildLanguages('/fr/calculateur-roi', { en: '/en/calculateur-roi' }),
     },
   };
 }

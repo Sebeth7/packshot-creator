@@ -12,6 +12,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { Button } from '@/components/ui/button';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -25,11 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/studio-ia-vs-ia-generative`,
-      languages: {
-        fr: '/fr/blog/studio-ia-vs-ia-generative',
-        en: '/en/blog/studio-ia-vs-ia-generative',
-        'x-default': '/fr/blog/studio-ia-vs-ia-generative',
-      },
+      languages: buildLanguages('/fr/blog/studio-ia-vs-ia-generative', { en: '/en/blog/studio-ia-vs-ia-generative' }),
     },
     openGraph: {
       title: t('title'),

@@ -4,6 +4,7 @@ import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -18,10 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: 'blendai vs photoroom, ia photo produit, détourage ia, background generator, batch processing',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026`,
-      languages: {
-        fr: '/fr/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
-        'x-default': '/fr/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026', // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages('/fr/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026'),
     },
     openGraph: {
       title,

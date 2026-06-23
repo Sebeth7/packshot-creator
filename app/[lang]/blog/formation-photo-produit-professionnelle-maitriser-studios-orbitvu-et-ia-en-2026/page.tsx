@@ -10,6 +10,7 @@ import {
   ArticleCTA,
   RelatedArticles,
 } from '@/components/blog';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -34,10 +35,7 @@ export async function generateMetadata({
       'formation photo produit, formation studio orbitvu, formation ia photo, formation packshot, certification qualiopi',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/${SLUG}`,
-      languages: {
-        fr: `/fr/blog/${SLUG}`,
-        'x-default': `/fr/blog/${SLUG}`, // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages(`/fr/blog/${SLUG}`),
     },
     openGraph: {
       title: TITLE,

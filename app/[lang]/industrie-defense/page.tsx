@@ -26,6 +26,7 @@ import {
   ChevronDown,
   ChevronRight,
 } from 'lucide-react';
+import { buildLanguages } from '@/lib/hreflang';
 
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
@@ -52,11 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie-defense`,
-      languages: {
-        fr: '/fr/industrie-defense',
-        en: '/en/industrie-defense',
-        'x-default': '/fr/industrie-defense',
-      },
+      languages: buildLanguages('/fr/industrie-defense', { en: '/en/industrie-defense' }),
     },
     openGraph: {
       title: t('meta.title'),

@@ -10,6 +10,7 @@ import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/a-propos`,
-      languages: { fr: '/fr/a-propos', en: '/en/a-propos', 'x-default': '/fr/a-propos' },
+      languages: buildLanguages('/fr/a-propos', { en: '/en/a-propos' }),
     },
     openGraph: {
       title: t('meta.title'),

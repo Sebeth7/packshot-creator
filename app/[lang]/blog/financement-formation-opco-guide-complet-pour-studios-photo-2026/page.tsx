@@ -10,6 +10,7 @@ import {
   ArticleCTA,
   RelatedArticles,
 } from '@/components/blog';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -32,10 +33,7 @@ export async function generateMetadata({
       'financement opco formation, opco photo produit, formation certifiée qualiopi, financement formation studio photo, prise en charge opco',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/${SLUG}`,
-      languages: {
-        fr: `/fr/blog/${SLUG}`,
-        'x-default': `/fr/blog/${SLUG}`, // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages(`/fr/blog/${SLUG}`),
     },
     openGraph: {
       title: TITLE,

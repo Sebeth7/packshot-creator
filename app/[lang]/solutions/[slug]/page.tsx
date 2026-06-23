@@ -25,6 +25,7 @@ import SpringCard from '@/components/animations/SpringCard';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
 import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -49,11 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/solutions/${slug}`,
-      languages: {
-        fr: `/fr/solutions/${slug}`,
-        ...(hasEnAlternate && { en: `/en/solutions/${slug}` }),
-        'x-default': `/fr/solutions/${slug}`,
-      },
+      languages: buildLanguages(`/fr/solutions/${slug}`, hasEnAlternate ? { en: `/en/solutions/${slug}` } : {}),
     },
     openGraph: {
       title: solution.titre,

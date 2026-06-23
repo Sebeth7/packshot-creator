@@ -6,7 +6,7 @@ export const SECTOR_MACHINE_MAP: Record<string, string[]> = {
   'bijoux-joaillerie': ['alphashot-micro-v2', 'alphashot-pro-g2'],
   'lunetterie': ['alphashot-pro-g2'],
   'cosmetiques-beaute': ['alphashot-micro-v2', 'alphashot-360', 'alphashot-pro-g2'],
-  'mode-textile': ['alphadesk', 'alphatable', 'alphastudio-xxl-v2', 'fashion-studio-basic', 'fashion-studio'],
+  'mode-textile': ['alphadesk', 'alphatable', 'alphastudio-xxl-v2', 'fashion-studio-basic', 'fashion-studio', 'e-comm-studio-plus'],
   'food-alimentaire': ['alphashot-g2', 'alphashot-xl-v2', 'alphashot-xl-pro-v2', 'alphadesk'],
   'electronique-hightech': ['alphashot-micro-v2', 'alphashot-360', 'alphashot-g2', 'alphashot-pro-g2', 'alphashot-xl-v2', 'alphashot-xl-pro-v2'],
   'mobilier-decoration': ['alphatable', 'alphastudio-compact-v2', 'alphastudio-xxl-v2', 'furniture-studio', 'e-comm-studio-plus'],

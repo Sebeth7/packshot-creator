@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import SimulateurOPCOClient from './SimulateurOPCOClient';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -21,11 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/simulateur-opco`,
-      languages: {
-        fr: '/fr/academy/simulateur-opco',
-        en: '/en/academy/simulateur-opco',
-        'x-default': '/fr/academy/simulateur-opco',
-      },
+      languages: buildLanguages('/fr/academy/simulateur-opco', { en: '/en/academy/simulateur-opco' }),
     },
     openGraph: {
       title,

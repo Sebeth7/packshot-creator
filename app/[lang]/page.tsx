@@ -35,6 +35,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import FloatingDashboard from '@/components/animations/FloatingDashboard';
 import FloatingCalendar from '@/components/animations/FloatingCalendar';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -114,7 +115,7 @@ export async function generateMetadata({
     description: t('description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}`,
-      languages: { fr: '/fr', en: '/en', 'x-default': '/fr' },
+      languages: buildLanguages('/fr', { en: '/en' }),
     },
     openGraph: {
       title: t('title'),

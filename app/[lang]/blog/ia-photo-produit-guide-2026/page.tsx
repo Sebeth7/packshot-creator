@@ -5,6 +5,7 @@ import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/compone
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -19,10 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: 'ia photo produit, blendai, détourage ia, background generator, workflow ia e-commerce',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/ia-photo-produit-guide-2026`,
-      languages: {
-        fr: '/fr/blog/ia-photo-produit-guide-2026',
-        'x-default': '/fr/blog/ia-photo-produit-guide-2026', // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages('/fr/blog/ia-photo-produit-guide-2026'),
     },
     openGraph: {
       title,

@@ -7,6 +7,7 @@ import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { Clock, Wrench, Box, ArrowLeft, ChevronRight } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageSections';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -33,6 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const alternates = getGuideAlternates(guide.webflowItemId);
   const languages: Record<string, string> = {};
   if (alternates.fr && getGuide(alternates.fr, 'fr')) languages.fr = `/fr/guide/${alternates.fr}`;
+  // fr-CH = même URL /fr : la page FR sert aussi la Suisse romande (Workstream A)
+  if (languages.fr) languages['fr-CH'] = languages.fr;
   if (alternates.en && getGuide(alternates.en, 'en')) languages.en = `/en/guide/${alternates.en}`;
   if (languages.fr) languages['x-default'] = languages.fr;
 
@@ -251,6 +254,12 @@ export default async function GuidePage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Studio recommandé (tunnel conversion — P1.B/D) */}
+      <RecommendedStudio contentSlug={slug} lang={lang} />
+
+      {/* Pour aller plus loin (maillage guides/articles — P1.C) */}
+      <GuideRelated guideSlug={slug} lang={lang} />
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-very-peri-600 to-very-peri-700">

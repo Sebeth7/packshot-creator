@@ -18,6 +18,7 @@ import {
   ChevronDown,
   ImageIcon,
 } from 'lucide-react';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -32,11 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/besoins-photographie-produit`,
-      languages: {
-        fr: '/fr/besoins-photographie-produit',
-        en: '/en/besoins-photographie-produit',
-        'x-default': '/fr/besoins-photographie-produit',
-      },
+      languages: buildLanguages('/fr/besoins-photographie-produit', { en: '/en/besoins-photographie-produit' }),
     },
     openGraph: {
       title: t('meta.title'),

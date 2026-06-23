@@ -79,10 +79,9 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
       {/* Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {visible.map((post) => (
-          <Link
+          <article
             key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 block"
+            className="group relative rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300"
           >
             <div className="relative h-48 w-full bg-neutral-100 overflow-hidden">
               {post.image && post.image.endsWith('.mp4') ? (
@@ -121,8 +120,13 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
                   {post.formattedDate || post.date}
                 </span>
               </div>
-              <h2 className="font-heading text-xl font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors line-clamp-2">
-                {post.title}
+              <h2 className="font-heading text-xl font-bold text-future-dusk-900 line-clamp-2">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="after:absolute after:inset-0 group-hover:text-very-peri-600 transition-colors"
+                >
+                  {post.title}
+                </Link>
               </h2>
               <p className="text-future-dusk-500 text-sm line-clamp-3">
                 {post.description}
@@ -134,7 +138,7 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
                 </span>
               </div>
             </div>
-          </Link>
+          </article>
         ))}
       </div>
 

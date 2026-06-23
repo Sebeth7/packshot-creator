@@ -4,6 +4,7 @@ import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -19,10 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: 'guide achat studio photo, choisir studio orbitvu, comparatif studio automatisé, achat studio packshot, orbitvu 2026',
     alternates: {
       canonical: url,
-      languages: {
-        fr: '/fr/blog/guide-achat-studio-2026',
-        'x-default': '/fr/blog/guide-achat-studio-2026', // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages('/fr/blog/guide-achat-studio-2026'),
     },
     openGraph: {
       title,

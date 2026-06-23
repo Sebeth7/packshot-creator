@@ -13,6 +13,7 @@ import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy`,
-      languages: { fr: '/fr/academy', en: '/en/academy', 'x-default': '/fr/academy' },
+      languages: buildLanguages('/fr/academy', { en: '/en/academy' }),
     },
     openGraph: {
       title: t('title'),

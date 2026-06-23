@@ -5,6 +5,7 @@ import { ArrowRight, Shield } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/hero';
+import { buildLanguages } from '@/lib/hreflang';
 
 export const revalidate = 86400;
 
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/confidentialite`,
-      languages: { fr: '/fr/confidentialite', en: '/en/confidentialite' },
+      languages: buildLanguages('/fr/confidentialite', { en: '/en/confidentialite' }),
     },
     openGraph: {
       title: t('meta.title'),

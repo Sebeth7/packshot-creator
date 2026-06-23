@@ -38,10 +38,9 @@ export async function RelatedArticles({ currentSlug, category, lang }: RelatedAr
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {related.map((article) => (
-              <Link
+              <article
                 key={article.slug}
-                href={`/blog/${article.slug}`}
-                className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 block"
+                className="group relative rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all duration-300"
               >
                 <div className="relative h-48 w-full bg-neutral-100 overflow-hidden">
                   {article.image ? (
@@ -72,8 +71,13 @@ export async function RelatedArticles({ currentSlug, category, lang }: RelatedAr
                       })}
                     </span>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors line-clamp-2">
-                    {article.title}
+                  <h3 className="font-heading text-lg font-bold text-future-dusk-900 line-clamp-2">
+                    <Link
+                      href={`/blog/${article.slug}`}
+                      className="after:absolute after:inset-0 group-hover:text-very-peri-600 transition-colors"
+                    >
+                      {article.title}
+                    </Link>
                   </h3>
                   <p className="text-future-dusk-500 text-sm line-clamp-2">
                     {article.description}
@@ -85,7 +89,7 @@ export async function RelatedArticles({ currentSlug, category, lang }: RelatedAr
                     </span>
                   </div>
                 </div>
-              </Link>
+              </article>
             ))}
           </div>
         </div>

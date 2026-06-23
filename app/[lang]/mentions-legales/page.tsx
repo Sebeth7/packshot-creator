@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
+import { buildLanguages } from '@/lib/hreflang';
 
 export const revalidate = 86400;
 
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/mentions-legales`,
-      languages: { fr: '/fr/mentions-legales', en: '/en/mentions-legales' },
+      languages: buildLanguages('/fr/mentions-legales', { en: '/en/mentions-legales' }),
     },
     openGraph: {
       title: t('title'),

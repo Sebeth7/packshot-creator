@@ -8,6 +8,7 @@ import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'View the PackshotCreator Academy 2026 training calendar. Book your packshot or AI session. OPCO funding.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/calendrier`,
-      languages: { fr: '/fr/academy/calendrier', en: '/en/academy/calendrier', 'x-default': '/fr/academy/calendrier' },
+      languages: buildLanguages('/fr/academy/calendrier', { en: '/en/academy/calendrier' }),
     },
     openGraph: {
       title: isFr

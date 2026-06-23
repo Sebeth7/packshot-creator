@@ -17,6 +17,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import FeaturesTabs from './_components/FeaturesTabs';
 import TestimonialCarousel from './_components/TestimonialCarousel';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ──────── Static data ──────── */
 
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
-      languages: { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit', 'x-default': '/fr/ia-photo-produit' },
+      languages: buildLanguages('/fr/ia-photo-produit', { en: '/en/ia-photo-produit' }),
     },
     openGraph: {
       title: t('title'),

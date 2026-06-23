@@ -36,7 +36,7 @@ export function organizationSchema() {
       '@type': 'ImageObject',
       url: LOGO_URL,
     },
-    description: 'Distributeur exclusif Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
+    description: 'Distributeur officiel Orbitvu France & Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '254 rue Vendôme',

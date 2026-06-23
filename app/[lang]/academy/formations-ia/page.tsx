@@ -10,6 +10,7 @@ import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animatio
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ── Bold sélectif emerald (couleur secondaire Academy) ── */
 const B = ({ children }: { children: React.ReactNode }) => (
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'Qualiopi certified training on generative AI for e-commerce. Master BlendAI to create lifestyle visuals. OPCO funding.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-ia`,
-      languages: { fr: '/fr/academy/formations-ia', en: '/en/academy/formations-ia', 'x-default': '/fr/academy/formations-ia' },
+      languages: buildLanguages('/fr/academy/formations-ia', { en: '/en/academy/formations-ia' }),
     },
     openGraph: {
       title: isFr

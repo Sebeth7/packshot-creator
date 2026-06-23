@@ -8,6 +8,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/se
 import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { BlogGrid } from '@/components/blog/BlogGrid';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('metaDescription'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog`,
-      languages: { fr: '/fr/blog', en: '/en/blog', 'x-default': '/fr/blog' },
+      languages: buildLanguages('/fr/blog', { en: '/en/blog' }),
     },
     openGraph: {
       title: t('metaTitle'),

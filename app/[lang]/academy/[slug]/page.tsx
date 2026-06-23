@@ -9,6 +9,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema, courseSchema } from '@
 import { NOINDEX_EN_ACADEMY_SLUGS } from '@/lib/seo-config';
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params;
@@ -28,11 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/${slug}`,
-      languages: {
-        fr: `/fr/academy/${slug}`,
-        ...(hasEnAlternate && { en: `/en/academy/${slug}` }),
-        'x-default': `/fr/academy/${slug}`,
-      },
+      languages: buildLanguages(`/fr/academy/${slug}`, hasEnAlternate ? { en: `/en/academy/${slug}` } : {}),
     },
     openGraph: {
       title: `${formation.titre} | PackshotCreator Academy`,

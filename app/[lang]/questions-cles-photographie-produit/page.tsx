@@ -15,6 +15,7 @@ import {
   TrendingUp,
   ImageIcon,
 } from 'lucide-react';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -29,11 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/questions-cles-photographie-produit`,
-      languages: {
-        fr: '/fr/questions-cles-photographie-produit',
-        en: '/en/questions-cles-photographie-produit',
-        'x-default': '/fr/questions-cles-photographie-produit',
-      },
+      languages: buildLanguages('/fr/questions-cles-photographie-produit', { en: '/en/questions-cles-photographie-produit' }),
     },
     openGraph: {
       title: t('meta.title'),

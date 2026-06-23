@@ -29,6 +29,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { Button } from '@/components/ui/button';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ──────────────────────── Types ──────────────────────── */
 
@@ -52,11 +53,7 @@ export async function generateMetadata({
     keywords: t('meta.keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
-      languages: {
-        fr: `/fr/blog/${slug}`,
-        en: `/en/blog/${slug}`,
-        'x-default': `/fr/blog/${slug}`,
-      },
+      languages: buildLanguages(`/fr/blog/${slug}`, { en: `/en/blog/${slug}` }),
     },
     openGraph: {
       title: t('meta.title'),

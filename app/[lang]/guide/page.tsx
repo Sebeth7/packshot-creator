@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { buildLanguages } from '@/lib/hreflang';
 
 export const revalidate = 3600;
 
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/guide`,
-      languages: { fr: '/fr/guide', en: '/en/guide', 'x-default': '/fr/guide' },
+      languages: buildLanguages('/fr/guide', { en: '/en/guide' }),
     },
     openGraph: {
       title,

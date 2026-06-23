@@ -5,6 +5,7 @@ import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/compone
 import { HeroSection } from '@/components/hero';
 import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -19,10 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: 'orbitvu vs concurrents, comparatif studio photo, orbitvu vs styleshoots, orbitvu vs photorobot, meilleur studio automatisé',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog/orbitvu-vs-concurrents`,
-      languages: {
-        fr: '/fr/blog/orbitvu-vs-concurrents',
-        'x-default': '/fr/blog/orbitvu-vs-concurrents', // /en/blog/* = 301 Worker : pas d'alternate en
-      },
+      languages: buildLanguages('/fr/blog/orbitvu-vs-concurrents'),
     },
     openGraph: {
       title,

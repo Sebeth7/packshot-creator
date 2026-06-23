@@ -6,6 +6,7 @@ import { Phone, Clock, MapPin, ChevronRight, Shield, Users, Zap } from 'lucide-r
 import SchemaOrg, { organizationSchema, breadcrumbSchema, localBusinessSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('metaDescription'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/contact`,
-      languages: { fr: '/fr/contact', en: '/en/contact', 'x-default': '/fr/contact' },
+      languages: buildLanguages('/fr/contact', { en: '/en/contact' }),
     },
     openGraph: {
       title: t('metaTitle'),

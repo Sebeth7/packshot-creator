@@ -14,6 +14,7 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
+import { buildLanguages } from '@/lib/hreflang';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'product photography industry, sector packshot, automated photo studio, AI lifestyle, eyewear, shoes, jewelry, furniture, food, cosmetics',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/industrie`,
-      languages: { fr: '/fr/industrie', en: '/en/industrie', 'x-default': '/fr/industrie' },
+      languages: buildLanguages('/fr/industrie', { en: '/en/industrie' }),
     },
     openGraph: {
       title: lang === 'fr'

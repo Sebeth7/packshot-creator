@@ -16,6 +16,7 @@ import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 const MachineSelector = dynamic(
   () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-      languages: { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises', 'x-default': '/fr/studios-photo-automatises' },
+      languages: buildLanguages('/fr/studios-photo-automatises', { en: '/en/studios-photo-automatises' }),
     },
     openGraph: {
       title: t('title'), description: t('description'), type: 'website',

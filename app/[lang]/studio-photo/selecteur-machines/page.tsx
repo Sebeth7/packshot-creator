@@ -6,6 +6,7 @@ import { ChevronRight, ArrowRight, Phone, Mail } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
+import { buildLanguages } from '@/lib/hreflang';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       : 'Find the perfect automated photo studio for your needs. Compare 16+ Orbitvu studios by size, features and sector.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
-      languages: { fr: '/fr/studio-photo/selecteur-machines', en: '/en/studio-photo/selecteur-machines', 'x-default': '/fr/studio-photo/selecteur-machines' },
+      languages: buildLanguages('/fr/studio-photo/selecteur-machines', { en: '/en/studio-photo/selecteur-machines' }),
     },
     openGraph: {
       title: isFr

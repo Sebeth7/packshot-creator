@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/components/templates/PackshotLandingTemplate';
 import { ShoppingCart, Package, Eraser, RotateCw, TrendingDown, Calculator } from 'lucide-react';
+import { buildLanguages } from '@/lib/hreflang';
 
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotEcommerce',
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
-      languages: { fr: `/fr/${CONFIG.slug}`, en: `/en/${CONFIG.slug}`, 'x-default': `/fr/${CONFIG.slug}` },
+      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}` }),
     },
     openGraph: {
       title: t('meta.title'),

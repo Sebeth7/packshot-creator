@@ -10,6 +10,7 @@ import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animatio
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
+import { buildLanguages } from '@/lib/hreflang';
 
 /* ── Bold sélectif emerald (couleur secondaire Academy) ── */
 const B = ({ children }: { children: React.ReactNode }) => (
@@ -56,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       : 'Qualiopi certified training on Orbitvu automated photo studios. Master professional packshot photography. OPCO funding up to 100%.',
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/academy/formations-packshot`,
-      languages: { fr: '/fr/academy/formations-packshot', en: '/en/academy/formations-packshot', 'x-default': '/fr/academy/formations-packshot' },
+      languages: buildLanguages('/fr/academy/formations-packshot', { en: '/en/academy/formations-packshot' }),
     },
     openGraph: {
       title: isFr

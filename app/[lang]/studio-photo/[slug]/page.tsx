@@ -15,6 +15,7 @@ import { HeroSection } from '@/components/hero';
 import { VideoPlayer } from '@/components/video/VideoPlayer';
 import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { buildLanguages } from '@/lib/hreflang';
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -445,7 +446,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
-      languages: { fr: `/fr/studio-photo/${slug}`, en: `/en/studio-photo/${slug}`, 'x-default': `/fr/studio-photo/${slug}` },
+      languages: buildLanguages(`/fr/studio-photo/${slug}`, { en: `/en/studio-photo/${slug}` }),
     },
     openGraph: {
       title,
