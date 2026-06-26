@@ -215,7 +215,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/packshot-bijoux" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href="/industrie/bijoux-joaillerie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('packshotBijoux')}
                 </Link>
               </li>

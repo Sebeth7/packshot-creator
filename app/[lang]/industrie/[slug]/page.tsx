@@ -699,14 +699,14 @@ export default async function SecteurPage({ params }: PageProps) {
           ═══════════════════════════════════════════════════════════ */}
       {(() => {
         const SECTOR_PACKSHOT_MAP: Record<string, { href: string; labelFr: string; labelEn: string }> = {
-          'bijoux-joaillerie': { href: '/packshot-bijoux', labelFr: 'Packshot Bijoux', labelEn: 'Jewelry Packshot' },
+          // 'bijoux-joaillerie' retiré : l'ancienne landing est fusionnée DANS ce hub (consolidation rapport Laurent V4) → pas d'auto-lien.
           'mode-textile': { href: '/packshot-mode', labelFr: 'Packshot Mode', labelEn: 'Fashion Packshot' },
           'chaussures': { href: '/packshot-mode', labelFr: 'Packshot Mode', labelEn: 'Fashion Packshot' },
           'industrie-manufacturiere': { href: '/packshot-industriel', labelFr: 'Packshot Industriel', labelEn: 'Industrial Packshot' },
           'defense-securite': { href: '/industrie-defense', labelFr: 'Industrie & Défense', labelEn: 'Industry & Defense' },
           'e-commerce-marketplace': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
           'food-alimentaire': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
-          'lunetterie': { href: '/packshot-bijoux', labelFr: 'Packshot Bijoux', labelEn: 'Jewelry Packshot' },
+          // 'lunetterie' retiré : pointait vers l'ancienne landing bijoux (supprimée) ; lien cross-secteur incohérent, non repointé.
           'cosmetique-parfumerie': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
           'vin-spiritueux': { href: '/packshot-e-commerce', labelFr: 'Packshot E-commerce', labelEn: 'E-commerce Packshot' },
         };

@@ -81,8 +81,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/packshot-industriel', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/packshot-e-commerce', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/packshot-e-commerce', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/fr/packshot-bijoux', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/en/packshot-bijoux', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/packshot-mode', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/packshot-mode', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/besoins-photographie-produit', priority: 0.7, changeFrequency: 'monthly' as const },

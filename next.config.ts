@@ -61,6 +61,15 @@ const nextConfig: NextConfig = {
       { source: '/en/studio-photo', destination: '/en/studios-photo-automatises', statusCode: 301 },
 
       // ============================================================
+      // Consolidation page bijoux (rapport Laurent V4) : l'ancienne page
+      // "money" /packshot-bijoux est fusionnée dans le hub sectoriel canonique
+      // /industrie/bijoux-joaillerie. 301 unique, même locale, pas de chaîne.
+      // (Forme sans préfixe langue → gérée par le Worker si besoin, cf. note plus haut.)
+      // ============================================================
+      { source: '/fr/packshot-bijoux', destination: '/fr/industrie/bijoux-joaillerie', statusCode: 301 },
+      { source: '/en/packshot-bijoux', destination: '/en/industrie/bijoux-joaillerie', statusCode: 301 },
+
+      // ============================================================
       // Variantes formulaire contact (paramètres pré-remplis)
       // ============================================================
       { source: '/fr/contact/demande-demo', destination: '/fr/contact?subject=demo', statusCode: 301 },
