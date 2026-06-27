@@ -207,7 +207,7 @@ export default async function FormationPage({ params }: { params: Promise<{ lang
                       : 'This training is eligible for OPCO funding (100% coverage possible).'}
                   </p>
                   <Link
-                    href="/academy#qualiopi"
+                    href={{ pathname: '/academy', hash: 'qualiopi' }}
                     className="text-sm text-emerald-800 font-medium underline inline-block hover:no-underline"
                   >
                     {isFr ? 'En savoir plus' : 'Learn more'} →

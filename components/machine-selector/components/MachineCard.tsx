@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineCardProps {
@@ -78,7 +78,7 @@ export function MachineCard({
       )}
 
       {/* Image — clickable link to product page */}
-      <Link href={`/studio-photo/${machine.id}`} className="block relative aspect-[4/3] bg-white overflow-hidden" onClick={(e) => e.stopPropagation()}>
+      <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }} className="block relative aspect-[4/3] bg-white overflow-hidden" onClick={(e) => e.stopPropagation()}>
         {!imageError && machine.imageUrl ? (
           <Image
             src={machine.imageUrl}
@@ -177,7 +177,7 @@ export function MachineCard({
         {/* Actions */}
         <div className="flex gap-2">
           <Link
-            href={`/studio-photo/${machine.id}`}
+            href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }}
             onClick={(e) => e.stopPropagation()}
             className="flex-1 py-2 px-4 text-sm font-medium text-white bg-very-peri-600 rounded-xl hover:bg-very-peri-700 transition-colors text-center"
           >

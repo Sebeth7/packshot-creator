@@ -64,10 +64,11 @@ export interface Dimensions {
   h: number;  // Hauteur en cm
 }
 
-// Texte bilingue
+// Texte bilingue (+ allemand suisse optionnel, fallback → en via pickL)
 export interface BilingualText {
   fr: string;
   en: string;
+  'de-ch'?: string;
 }
 
 // FAQ bilingue pour fiches machines

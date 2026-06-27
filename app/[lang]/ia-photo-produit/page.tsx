@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import {
@@ -18,6 +18,7 @@ import SpringCard from '@/components/animations/SpringCard';
 import FeaturesTabs from './_components/FeaturesTabs';
 import TestimonialCarousel from './_components/TestimonialCarousel';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
 
 /* ──────── Static data ──────── */
 
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
-      languages: buildLanguages('/fr/ia-photo-produit', { en: '/en/ia-photo-produit' }),
+      languages: buildLanguages('/fr/ia-photo-produit', { en: '/en/ia-photo-produit', deCh: '/de-ch/ia-photo-produit' }),
     },
     openGraph: {
       title: t('title'),
@@ -78,11 +79,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: 'website',
       url: `https://www.packshot-creator.com/${lang}/ia-photo-produit`,
       siteName: 'PackshotCreator',
-      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
       images: [{ url: `/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image', title: t('title'), description: t('ogDescription') },
   };
+}
+
+/* ──────── Static params ──────── */
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
 }
 
 /* ──────── Page ──────── */
@@ -90,7 +97,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function IAPhotoProduitPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
-  const isFr = lang === 'fr';
 
   const boldOrange = (chunks: React.ReactNode) => <strong className="text-accent-orange font-semibold">{chunks}</strong>;
   const boldOrangeLight = (chunks: React.ReactNode) => <strong className="text-amber-400 font-semibold">{chunks}</strong>;
@@ -106,8 +112,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   }));
 
   /* Features data for FeaturesTabs */
-  const beforeLabel = isFr ? 'Packshot pro' : 'Pro packshot';
-  const afterLabel = isFr ? 'Après BlendAI' : 'After BlendAI';
+  const beforeLabel = tx(lang, 'Packshot pro', 'Pro packshot', 'Profi-Packshot');
+  const afterLabel = tx(lang, 'Après BlendAI', 'After BlendAI', 'Nach BlendAI');
   const featuresData = [
     { id: 'lifestyle', label: t('features.lifestyle.name'), description: t.rich('features.lifestyle.description', { bold: boldOrange }), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700',
       before: { src: '/images/before-after/ia-before-after-furniture-1-before.avif', alt: 'Packshot mobilier', label: beforeLabel },
@@ -154,23 +160,23 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-2">
           <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-14 text-base font-semibold rounded-xl shadow-lg shadow-very-peri-500/25">
             <a href="https://blendai.studio" target="_blank" rel="noopener noreferrer">
-              {isFr ? 'Essai gratuit — 6 visuels offerts' : 'Free trial — 6 visuals included'}
+              {tx(lang, 'Essai gratuit — 6 visuels offerts', 'Free trial — 6 visuals included', 'Kostenlos testen — 6 Bilder gratis')}
             </a>
           </Button>
           <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-14 text-base rounded-xl">
             <a href="#resultats">
-              {isFr ? 'Voir les résultats' : 'See the results'} <ArrowRight className="ml-2 h-4 w-4" />
+              {tx(lang, 'Voir les résultats', 'See the results', 'Ergebnisse ansehen')} <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
         </div>
         <p className="text-sm text-future-dusk-300">
-          {isFr ? 'Sans carte bancaire' : 'No credit card required'}
+          {tx(lang, 'Sans carte bancaire', 'No credit card required', 'Ohne Kreditkarte')}
         </p>
 
         {/* Social proof logos */}
         <div className="mt-10 pt-8 border-t border-white/15">
           <p className="text-xs font-semibold text-future-dusk-300 uppercase tracking-[0.15em] mb-5">
-            {isFr ? '300+ marques nous font confiance' : '300+ brands trust us'}
+            {tx(lang, '300+ marques nous font confiance', '300+ brands trust us', 'Über 300 Marken vertrauen uns')}
           </p>
           <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
@@ -201,7 +207,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Fonctionnalités' : 'Features'}
+                {tx(lang, 'Fonctionnalités', 'Features', 'Funktionen')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
                 {t('features.heading')}
@@ -276,7 +282,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Galerie' : 'Gallery'}
+                {tx(lang, 'Galerie', 'Gallery', 'Galerie')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 mb-4">
                 {t('gallery.heading')}
@@ -335,7 +341,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
               <ScrollReveal>
                 <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-6 block">
-                  {isFr ? 'Notre approche' : 'Our approach'}
+                  {tx(lang, 'Notre approche', 'Our approach', 'Unser Ansatz')}
                 </span>
                 <TextReveal as="h2" className="text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                   {t('manifeste.heading')}
@@ -383,7 +389,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
               <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Comparatif' : 'Comparison'}
+                {tx(lang, 'Comparatif', 'Comparison', 'Vergleich')}
               </span>
               <TextReveal as="h2" className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
                 {t('whyBase.heading')}
@@ -398,7 +404,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               <SpringCard className="h-full">
                 <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-12 border-2 border-very-peri-300 ring-1 ring-very-peri-100 h-full relative shadow-sm hover:shadow-xl transition-shadow duration-300">
                   <span className="absolute -top-3 left-8 bg-very-peri-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
-                    {isFr ? 'Recommandé' : 'Recommended'}
+                    {tx(lang, 'Recommandé', 'Recommended', 'Empfohlen')}
                   </span>
                   {/* Comparatif result image */}
                   <div className="w-full rounded-xl overflow-hidden mb-6 mt-2">
@@ -558,9 +564,10 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   {t('faq.heading')}
                 </TextReveal>
                 <p className="text-future-dusk-500 leading-relaxed">
-                  {isFr
-                    ? 'L\'IA photo produit expliquée simplement. Vos questions, nos réponses.'
-                    : 'Product photo AI explained simply. Your questions, our answers.'}
+                  {tx(lang,
+                    'L\'IA photo produit expliquée simplement. Vos questions, nos réponses.',
+                    'Product photo AI explained simply. Your questions, our answers.',
+                    'Produktfoto-KI einfach erklärt. Ihre Fragen, unsere Antworten.')}
                 </p>
               </ScrollReveal>
             </div>
@@ -597,7 +604,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
             <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-center mb-16">
-              {isFr ? 'Un packshot, des dizaines de déclinaisons' : 'One packshot, dozens of variations'}
+              {tx(lang, 'Un packshot, des dizaines de déclinaisons', 'One packshot, dozens of variations', 'Ein Packshot, Dutzende Varianten')}
             </TextReveal>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-8">
@@ -636,14 +643,14 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="mb-12">
             <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">
-              {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
+              {tx(lang, 'Explorez nos solutions', 'Explore our solutions', 'Entdecken Sie unsere Lösungen')}
             </span>
           </FadeInView>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
-              { key: 'studios', href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier. Packshot, 360°, vidéo.' : '20 Orbitvu systems from jewelry to furniture. Packshot, 360°, video.' },
-              { key: 'industrie', href: '/industrie', icon: <Layout className="h-5 w-5" />, title: isFr ? 'Solutions par secteur' : 'Solutions by industry', desc: isFr ? '14 secteurs couverts avec des solutions photo adaptées.' : '14 sectors covered with tailored photo solutions.' },
-              { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy — Formations certifiées' : 'Academy — Certified training', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système et l\'IA.' : 'Qualiopi training to master your system and AI.' },
+              { key: 'studios', href: '/studios-photo-automatises' as const, icon: <Camera className="h-5 w-5" />, title: tx(lang, 'Studios Photo Automatisés', 'Automated Photo Studios', 'Automatisierte Fotostudios'), desc: tx(lang, '20 systèmes Orbitvu du bijou au mobilier. Packshot, 360°, vidéo.', '20 Orbitvu systems from jewelry to furniture. Packshot, 360°, video.', '20 Orbitvu-Systeme vom Schmuck bis zum Möbel. Packshot, 360°, Video.') },
+              { key: 'industrie', href: '/industrie' as const, icon: <Layout className="h-5 w-5" />, title: tx(lang, 'Solutions par secteur', 'Solutions by industry', 'Lösungen nach Branche'), desc: tx(lang, '14 secteurs couverts avec des solutions photo adaptées.', '14 sectors covered with tailored photo solutions.', '14 Branchen mit massgeschneiderten Fotolösungen abgedeckt.') },
+              { key: 'academy', href: '/academy' as const, icon: <GraduationCap className="h-5 w-5" />, title: tx(lang, 'Academy — Formations certifiées', 'Academy — Certified training', 'Academy — Zertifizierte Schulungen'), desc: tx(lang, 'Formations Qualiopi pour maîtriser votre système et l\'IA.', 'Qualiopi training to master your system and AI.', 'Qualiopi-Schulungen, um Ihr System und die KI zu beherrschen.') },
             ].map((link) => (
               <FadeInView key={link.key}>
                 <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
@@ -677,9 +684,10 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             applicationCategory: 'MultimediaApplication',
             operatingSystem: 'Web',
             url: 'https://blendai.studio',
-            description: isFr
-              ? 'IA photo produit spécialisée. Part d\'un packshot professionnel pour créer des déclinaisons lifestyle fidèles à 100%.'
-              : 'Specialized product photo AI. Starts from a professional packshot to create 100% faithful lifestyle variations.',
+            description: tx(lang,
+              'IA photo produit spécialisée. Part d\'un packshot professionnel pour créer des déclinaisons lifestyle fidèles à 100%.',
+              'Specialized product photo AI. Starts from a professional packshot to create 100% faithful lifestyle variations.',
+              'Spezialisierte Produktfoto-KI. Ausgehend von einem professionellen Packshot entstehen zu 100% originalgetreue Lifestyle-Varianten.'),
             offers: {
               '@type': 'Offer',
               price: '75',

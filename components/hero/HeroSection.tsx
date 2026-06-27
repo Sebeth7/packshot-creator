@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
 import { FadeInView } from '@/components/animations';
 import HeroBackground from './HeroBackground';

@@ -122,7 +122,7 @@ export function BlogGrid({ articles, categories, lang, translations }: BlogGridP
               </div>
               <h2 className="font-heading text-xl font-bold text-future-dusk-900 line-clamp-2">
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={{ pathname: '/blog/[slug]', params: { slug: post.slug } }}
                   className="after:absolute after:inset-0 group-hover:text-very-peri-600 transition-colors"
                 >
                   {post.title}

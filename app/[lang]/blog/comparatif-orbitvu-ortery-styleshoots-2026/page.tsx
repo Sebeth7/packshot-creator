@@ -683,7 +683,7 @@ export default async function ComparatifPage({ params }: PageProps) {
             </StaggerItem>
             <StaggerItem>
               <Link
-                href="/studio-photo/alphashot-pro-g2"
+                href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }}
                 className="group block rounded-2xl border border-neutral-100 bg-white p-6 hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 h-full"
               >
                 <h3 className="font-heading font-bold text-future-dusk-900 mb-2 group-hover:text-very-peri-600 transition-colors">

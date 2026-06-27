@@ -3,9 +3,10 @@
 // Les ancres des liens reprennent le TITRE réel des contenus (descriptif,
 // porteur du mot-clé cible), conformément au plan de maillage chirurgical.
 
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { ArrowRight, BookOpen, Camera, Compass } from 'lucide-react';
 import { getGuide, getArticle, type Lang } from '@/lib/content';
+import { tx } from '@/lib/locale-text';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import {
   SECTOR_RESOURCES_MAP,
@@ -13,8 +14,12 @@ import {
   GUIDE_RELATED_MAP,
 } from '@/data/content-maillage';
 
+type ResourceHref =
+  | { pathname: '/guide/[slug]'; params: { slug: string } }
+  | { pathname: '/blog/[slug]'; params: { slug: string } };
+
 interface ResourceLink {
-  href: string;
+  href: ResourceHref;
   title: string;
   description: string;
 }
@@ -23,18 +28,22 @@ function resolveGuides(slugs: string[], lang: Lang): ResourceLink[] {
   return slugs
     .map((s) => {
       const g = getGuide(s, lang);
-      return g ? { href: `/guide/${s}`, title: g.title, description: g.description } : null;
+      return g
+        ? { href: { pathname: '/guide/[slug]' as const, params: { slug: s } }, title: g.title, description: g.description }
+        : null;
     })
-    .filter((x): x is ResourceLink => Boolean(x));
+    .filter((x): x is NonNullable<typeof x> => x !== null);
 }
 
 function resolveArticles(slugs: string[], lang: Lang): ResourceLink[] {
   return slugs
     .map((s) => {
       const a = getArticle(s, lang);
-      return a ? { href: `/blog/${s}`, title: a.title, description: a.description } : null;
+      return a
+        ? { href: { pathname: '/blog/[slug]' as const, params: { slug: s } }, title: a.title, description: a.description }
+        : null;
     })
-    .filter((x): x is ResourceLink => Boolean(x));
+    .filter((x): x is NonNullable<typeof x> => x !== null);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -45,7 +54,6 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
   const map = SECTOR_RESOURCES_MAP[slug];
   if (!map) return null;
 
-  const isFr = lang === 'fr';
   const items = [
     ...resolveGuides(map.guides, lang as Lang),
     ...resolveArticles(map.articles, lang as Lang),
@@ -57,16 +65,16 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-            {isFr ? 'GUIDES & RESSOURCES' : 'GUIDES & RESOURCES'}
+            {tx(lang, 'GUIDES & RESSOURCES', 'GUIDES & RESOURCES', 'RATGEBER & RESSOURCEN')}
           </span>
           <h3 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-            {isFr ? 'Pour réussir vos visuels' : 'To master your visuals'}
+            {tx(lang, 'Pour réussir vos visuels', 'To master your visuals', 'Für überzeugende Produktbilder')}
           </h3>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item) => (
             <article
-              key={item.href}
+              key={`${item.href.pathname}:${item.href.params.slug}`}
               className="group relative rounded-2xl border border-neutral-100 bg-white p-6 hover:shadow-lg hover:border-very-peri-200 transition-all duration-300"
             >
               <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-very-peri-50 text-very-peri-600 mb-4">
@@ -99,13 +107,12 @@ export function RecommendedStudio({ contentSlug, lang }: { contentSlug: string; 
   const machine = MACHINES.find((m) => m.id === rec.machineId);
   if (!machine) return null;
 
-  const isFr = lang === 'fr';
-  const explicit = isFr ? rec.anchorFr : rec.anchorEn;
+  const explicit = lang === 'fr' ? rec.anchorFr : lang === 'en' ? rec.anchorEn : undefined;
   let anchor = explicit;
   if (!anchor) {
     const usages = (machine.useCases ?? []).slice(0, 2).join(' & ').toLowerCase();
     anchor = usages
-      ? `${machine.nom} — ${isFr ? 'studio photo' : 'photo studio'} ${usages}`
+      ? `${machine.nom} — ${tx(lang, 'studio photo', 'photo studio', 'Fotostudio')} ${usages}`
       : machine.nom;
   }
 
@@ -118,10 +125,10 @@ export function RecommendedStudio({ contentSlug, lang }: { contentSlug: string; 
           </span>
           <div className="flex-1">
             <p className="text-sm text-future-dusk-500 mb-1">
-              {isFr ? 'Studio recommandé pour ce sujet' : 'Recommended studio for this topic'}
+              {tx(lang, 'Studio recommandé pour ce sujet', 'Recommended studio for this topic', 'Empfohlenes Fotostudio für dieses Thema')}
             </p>
             <Link
-              href={`/studio-photo/${machine.id}`}
+              href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }}
               className="text-lg font-heading font-bold text-very-peri-700 hover:text-very-peri-800 inline-flex items-center gap-2 transition-colors"
             >
               {anchor}
@@ -142,7 +149,6 @@ export function GuideRelated({ guideSlug, lang }: { guideSlug: string; lang: str
   const map = GUIDE_RELATED_MAP[guideSlug];
   if (!map) return null;
 
-  const isFr = lang === 'fr';
   const items = [
     ...resolveGuides(map.guides, lang as Lang),
     ...resolveArticles(map.articles, lang as Lang),
@@ -154,11 +160,11 @@ export function GuideRelated({ guideSlug, lang }: { guideSlug: string; lang: str
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <h2 className="text-xl md:text-2xl font-heading font-bold text-future-dusk-900 mb-6 flex items-center gap-2">
           <Compass className="h-5 w-5 text-very-peri-600" />
-          {isFr ? 'Pour aller plus loin' : 'Go further'}
+          {tx(lang, 'Pour aller plus loin', 'Go further', 'Mehr erfahren')}
         </h2>
         <ul className="space-y-3">
           {items.map((item) => (
-            <li key={item.href}>
+            <li key={`${item.href.pathname}:${item.href.params.slug}`}>
               <Link
                 href={item.href}
                 className="group inline-flex items-center gap-2 text-future-dusk-700 hover:text-very-peri-600 font-medium transition-colors"

@@ -127,7 +127,7 @@ export default async function MachineSelectorPage({ params }: PageProps) {
                 </a>
               </Button>
               <Button asChild variant="outline" className="rounded-xl w-full">
-                <Link href="/studios-photo-automatises#calculateur-roi">
+                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}>
                   {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

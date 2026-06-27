@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { getAllArticles } from '@/lib/blog';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { FadeInView } from '@/components/animations';
@@ -73,7 +73,7 @@ export async function RelatedArticles({ currentSlug, category, lang }: RelatedAr
                   </div>
                   <h3 className="font-heading text-lg font-bold text-future-dusk-900 line-clamp-2">
                     <Link
-                      href={`/blog/${article.slug}`}
+                      href={{ pathname: '/blog/[slug]', params: { slug: article.slug } }}
                       className="after:absolute after:inset-0 group-hover:text-very-peri-600 transition-colors"
                     >
                       {article.title}

@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 import SchemaOrg, {
   organizationSchema,
@@ -36,6 +36,11 @@ import SpringCard from '@/components/animations/SpringCard';
 import FloatingDashboard from '@/components/animations/FloatingDashboard';
 import FloatingCalendar from '@/components/animations/FloatingCalendar';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
 
 /* ──────────────────────────── Static data ──────────────────────────── */
 
@@ -72,9 +77,9 @@ const PAIN_POINTS = [
 ] as const;
 
 const HYBRID_STEPS = [
-  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '/images/illustrations/home-hybrid-capture.avif', href: '/studios-photo-automatises' },
-  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '/images/illustrations/home-hybrid-ia.avif', href: '/ia-photo-produit' },
-  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif', href: '/academy' },
+  { key: 'capture' as const, Icon: Camera, bg: 'bg-secondary-orbitvu/10', icon: 'text-secondary-orbitvu', placeholder: 'Studio Orbitvu en action', image: '/images/illustrations/home-hybrid-capture.avif', href: '/studios-photo-automatises' as const },
+  { key: 'ia' as const, Icon: Sparkles, bg: 'bg-primary-orbitvu/10', icon: 'text-primary-orbitvu', placeholder: 'BlendAI — génération de visuels', image: '/images/illustrations/home-hybrid-ia.avif', href: '/ia-photo-produit' as const },
+  { key: 'formation' as const, Icon: GraduationCap, bg: 'bg-accent-success/10', icon: 'text-accent-success', placeholder: 'Formation en situation', image: '/images/illustrations/home-hybrid-formation.avif', href: '/academy' as const },
 ];
 
 
@@ -86,14 +91,14 @@ const TESTIMONIALS = [
 
 
 const INDUSTRIES = [
-  { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: '/industrie/bijoux-joaillerie' },
-  { key: 'mode', icon: '/images/secteurs/mode-accessoires.svg', href: '/industrie/mode-textile' },
-  { key: 'cosmetiques', icon: '/images/secteurs/skincare-cosmetiques.svg', href: '/industrie/cosmetiques-beaute' },
-  { key: 'mobilier', icon: '/images/secteurs/meubles.svg', href: '/industrie/mobilier-decoration' },
-  { key: 'vins', icon: '/images/secteurs/vins-spiritueux.svg', href: '/industrie/vin-spiritueux' },
-  { key: 'optique', icon: '/images/secteurs/optique-lunetterie.svg', href: '/industrie/lunetterie' },
-  { key: 'chaussures', icon: '/images/secteurs/chaussures.svg', href: '/industrie/chaussures' },
-  { key: 'hightech', icon: '/images/secteurs/hightech-electromenager.svg', href: '/industrie/electronique-hightech' },
+  { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'bijoux-joaillerie' } } },
+  { key: 'mode', icon: '/images/secteurs/mode-accessoires.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'mode-textile' } } },
+  { key: 'cosmetiques', icon: '/images/secteurs/skincare-cosmetiques.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'cosmetiques-beaute' } } },
+  { key: 'mobilier', icon: '/images/secteurs/meubles.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'mobilier-decoration' } } },
+  { key: 'vins', icon: '/images/secteurs/vins-spiritueux.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'vin-spiritueux' } } },
+  { key: 'optique', icon: '/images/secteurs/optique-lunetterie.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'lunetterie' } } },
+  { key: 'chaussures', icon: '/images/secteurs/chaussures.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'chaussures' } } },
+  { key: 'hightech', icon: '/images/secteurs/hightech-electromenager.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'electronique-hightech' } } },
 ] as const;
 
 /* ──────────────────────────── Cache ──────────────────────────── */
@@ -115,7 +120,7 @@ export async function generateMetadata({
     description: t('description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}`,
-      languages: buildLanguages('/fr', { en: '/en' }),
+      languages: buildLanguages('/fr', { en: '/en', deCh: '/de-ch' }),
     },
     openGraph: {
       title: t('title'),
@@ -123,7 +128,7 @@ export async function generateMetadata({
       type: 'website',
       url: `https://www.packshot-creator.com/${lang}`,
       siteName: 'PackshotCreator',
-      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
       images: [{ url: `/api/og?title=${encodeURIComponent(t('title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
@@ -462,7 +467,7 @@ export default async function HomePage({
                   size="lg"
                   className="bg-primary-orbitvu hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg"
                 >
-                  <Link href="/studio-photo/alphashot-pro-g2">{t('spotlight.cta')}</Link>
+                  <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }}>{t('spotlight.cta')}</Link>
                 </Button>
                 <Button
                   asChild
@@ -478,16 +483,16 @@ export default async function HomePage({
           {/* Machine carousel — 6 systems to show range diversity */}
           <FadeInView className="mt-16">
             <p className="text-center text-sm font-semibold text-neutral-medium uppercase tracking-[0.15em] mb-8">
-              {lang === 'fr' ? 'Découvrez toute la gamme' : 'Discover the full range'}
+              {tx(lang, 'Découvrez toute la gamme', 'Discover the full range', 'Entdecken Sie die gesamte Produktpalette')}
             </p>
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
               {[
-                { name: 'Alphashot XL v2', image: '/images/machines/alphashot-xl.avif', href: '/studio-photo/alphashot-xl-v2' },
-                { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: '/studio-photo/alphastudio-compact-v2' },
-                { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: '/studio-photo/fashion-studio' },
-                { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: '/studio-photo/alphashot-360' },
-                { name: 'Bike Studio', image: '/images/machines/bike-studio.avif', href: '/studio-photo/bike-studio' },
-                { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: '/studio-photo/alphatable-v2' },
+                { name: 'Alphashot XL v2', image: '/images/machines/alphashot-xl.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-xl-v2' } } as const },
+                { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphastudio-compact-v2' } } as const },
+                { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'fashion-studio' } } as const },
+                { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-360' } } as const },
+                { name: 'Bike Studio', image: '/images/machines/bike-studio.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'bike-studio' } } as const },
+                { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphatable-v2' } } as const },
               ].map((machine) => (
                 <Link key={machine.name} href={machine.href} className="group flex-shrink-0 w-[200px] sm:w-[240px] snap-start">
                   <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-neutral-100 group-hover:border-very-peri-200 transition-colors duration-300">

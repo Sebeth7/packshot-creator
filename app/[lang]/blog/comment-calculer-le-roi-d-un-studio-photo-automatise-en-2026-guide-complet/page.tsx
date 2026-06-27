@@ -377,7 +377,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <Callout type="info" title="Calculez Votre ROI Personnalisé">
                   Estimez le retour sur investissement de votre futur studio photo en 5 minutes avec notre calculateur gratuit. Obtenez une recommandation machine adaptée à vos besoins.{' '}
-                  <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
                     Lancer le calculateur gratuit →
                   </Link>
                 </Callout>
@@ -490,7 +490,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <div className="text-center my-10">
                   <Link
-                    href="/studios-photo-automatises#calculateur-roi"
+                    href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}
                     className="inline-block bg-very-peri-600 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-very-peri-700 transition-colors shadow-lg"
                   >
                     Calculer Votre ROI Maintenant →
@@ -592,7 +592,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Vos Prochaines Étapes</h3>
                 <div className="flex flex-col sm:flex-row gap-4 my-8">
                   <Link
-                    href="/studios-photo-automatises#calculateur-roi"
+                    href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}
                     className="inline-block bg-very-peri-600 hover:bg-very-peri-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors text-center"
                   >
                     Calculer Mon ROI
@@ -604,7 +604,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                     Demander une Démo
                   </Link>
                   <Link
-                    href="/blog/guide-achat-studio-2026"
+                    href={{ pathname: '/blog/[slug]', params: { slug: 'guide-achat-studio-2026' } }}
                     className="inline-block border-2 border-neutral-300 text-future-dusk-700 hover:bg-neutral-100 px-6 py-3 rounded-xl font-semibold transition-colors text-center"
                   >
                     Guide d'Achat 2026
@@ -654,7 +654,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Guide d'Achat</strong> :{' '}
-                    <Link href="/blog/guide-achat-studio-2026" className="text-very-peri-600 hover:text-very-peri-700 underline">Choisir le bon studio 2026</Link>
+                    <Link href={{ pathname: '/blog/[slug]', params: { slug: 'guide-achat-studio-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Choisir le bon studio 2026</Link>
                   </li>
                 </ul>
 

@@ -170,6 +170,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     guidePages.push({ path: `/en/guide/${slug}`, priority: 0.6, changeFrequency: 'monthly' });
   }
 
+  // --- de-ch (Suisse alémanique, Workstream B) — parcours suisse, URLs PUBLIQUES localisées ---
+  // Segments localisés par next-intl : industrie→branchen, studio-photo→fotostudio,
+  // a-propos→wer-sind-wir (guide/blog inchangés). Slug bijoux exposé en 'schmuck'.
+  const deChPages: { path: string; priority: number; changeFrequency: 'monthly' | 'weekly' }[] = [
+    { path: '/de-ch', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/de-ch/studios-photo-automatises', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/de-ch/ia-photo-produit', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/de-ch/branchen', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/de-ch/branchen/schmuck', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/de-ch/wer-sind-wir', priority: 0.5, changeFrequency: 'monthly' },
+    { path: '/de-ch/fotostudio/alphashot-360', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/de-ch/fotostudio/alphashot-micro-v2', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/de-ch/fotostudio/alphashot-pro-g2', priority: 0.6, changeFrequency: 'monthly' },
+  ];
+  // B1 — guides + articles traduits en de-ch (slugs allemands, segments guide/blog inchangés)
+  for (const slug of getAllGuideSlugs('de-ch')) {
+    deChPages.push({ path: `/de-ch/guide/${slug}`, priority: 0.6, changeFrequency: 'monthly' });
+  }
+  for (const slug of getAllArticleSlugs('de-ch')) {
+    deChPages.push({ path: `/de-ch/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
+  }
+
   return [
     ...mainPages,
     ...sectorPages,
@@ -178,6 +200,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...formationPages,
     ...blogPages,
     ...guidePages,
+    ...deChPages,
   ].map(({ path, priority, changeFrequency }) => ({
     url: `${BASE_URL}${path}`,
     lastModified: now,

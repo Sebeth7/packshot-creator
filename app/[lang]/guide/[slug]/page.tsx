@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getGuide, getAllGuideSlugs, getGuideAlternates } from '@/lib/content';
-import { Link } from '@/i18n/routing';
+import { getGuide, getAllGuideSlugs, getGuideAlternates, type Lang } from '@/lib/content';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { Clock, Wrench, Box, ArrowLeft, ChevronRight } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageSections';
+import { tx } from '@/lib/locale-text';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -15,7 +16,9 @@ interface PageProps {
 
 export function generateStaticParams() {
   const out: { lang: string; slug: string }[] = [];
-  for (const lang of ['fr', 'en'] as const) {
+  // de-ch inclus : seuls les slugs réellement traduits (présents dans
+  // content/guides/de-ch/) sont émis ; les autres /de-ch/guide/<x> → 404.
+  for (const lang of ['fr', 'en', 'de-ch'] as const) {
     for (const slug of getAllGuideSlugs(lang)) {
       out.push({ lang, slug });
     }
@@ -25,7 +28,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  const guide = getGuide(slug, lang as 'fr' | 'en');
+  const guide = getGuide(slug, lang as Lang);
   if (!guide) return { title: 'Guide introuvable' };
 
   const metaTitleSource = guide.metaTitle || guide.title;
@@ -37,6 +40,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // fr-CH = même URL /fr : la page FR sert aussi la Suisse romande (Workstream A)
   if (languages.fr) languages['fr-CH'] = languages.fr;
   if (alternates.en && getGuide(alternates.en, 'en')) languages.en = `/en/guide/${alternates.en}`;
+  // de-CH : alternate vers la traduction Suisse alémanique si elle existe (Workstream B)
+  if (alternates['de-ch'] && getGuide(alternates['de-ch'], 'de-ch')) languages['de-CH'] = `/de-ch/guide/${alternates['de-ch']}`;
   if (languages.fr) languages['x-default'] = languages.fr;
 
   return {
@@ -60,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GuidePage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const guide = getGuide(slug, lang as 'fr' | 'en');
+  const guide = getGuide(slug, lang as Lang);
 
   if (!guide) notFound();
 
@@ -97,8 +102,8 @@ export default async function GuidePage({ params }: PageProps) {
   } : null;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Guides', url: `https://www.packshot-creator.com/${lang}/guide` },
+    { name: tx(lang, 'Accueil', 'Home', 'Startseite'), url: `https://www.packshot-creator.com/${lang}` },
+    { name: tx(lang, 'Guides', 'Guides', 'Ratgeber'), url: `https://www.packshot-creator.com/${lang}/guide` },
     { name: cleanTitle, url: `https://www.packshot-creator.com/${lang}/guide/${slug}` },
   ]);
 
@@ -112,7 +117,7 @@ export default async function GuidePage({ params }: PageProps) {
           <FadeInView>
             <Link href="/guide" className="inline-flex items-center gap-2 text-white/60 hover:text-white/90 text-sm mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" />
-              {lang === 'fr' ? 'Tous les guides' : 'All guides'}
+              {tx(lang, 'Tous les guides', 'All guides', 'Alle Ratgeber')}
             </Link>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
               {cleanTitle}
@@ -233,7 +238,7 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-future-dusk-900 mb-10">
-                {lang === 'fr' ? 'Questions fréquentes' : 'Frequently asked questions'}
+                {tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen')}
               </h2>
             </FadeInView>
             <StaggerContainer stagger={0.08} className="space-y-4">
@@ -266,18 +271,19 @@ export default async function GuidePage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <FadeInView>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-              {lang === 'fr' ? 'Besoin d\'un accompagnement personnalisé ?' : 'Need personalized guidance?'}
+              {tx(lang, 'Besoin d\'un accompagnement personnalisé ?', 'Need personalized guidance?', 'Brauchen Sie eine persönliche Beratung?')}
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              {lang === 'fr'
-                ? 'Nos experts PackshotCreator sont à votre disposition pour vous aider à optimiser votre workflow photo produit.'
-                : 'Our PackshotCreator experts are available to help optimize your product photography workflow.'}
+              {tx(lang,
+                'Nos experts PackshotCreator sont à votre disposition pour vous aider à optimiser votre workflow photo produit.',
+                'Our PackshotCreator experts are available to help optimize your product photography workflow.',
+                'Unsere PackshotCreator-Experten unterstützen Sie dabei, Ihren Produktfoto-Workflow zu optimieren.')}
             </p>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-very-peri-700 font-bold rounded-xl hover:bg-neutral-100 transition-colors"
             >
-              {lang === 'fr' ? 'Contactez-nous' : 'Contact us'}
+              {tx(lang, 'Contactez-nous', 'Contact us', 'Kontaktieren Sie uns')}
               <ChevronRight className="w-4 h-4" />
             </Link>
           </FadeInView>

@@ -49,7 +49,8 @@ export function organizationSchema() {
       telephone: '+33147426666',
       email: 'sales@sysnext.com',
       contactType: 'sales',
-      availableLanguage: ['French', 'English'],
+      // Allemand ajouté pour le marché suisse alémanique (locale de-ch, Workstream B).
+      availableLanguage: ['French', 'English', 'German'],
     },
     sameAs: [
       'https://www.linkedin.com/company/packshotcreator-sysnext/',

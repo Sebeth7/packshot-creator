@@ -140,19 +140,19 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
       Icon: ListChecks,
       title: 'Sélecteur de machines',
       description: 'Identifiez en quelques questions le studio Orbitvu adapté à vos produits et à vos volumes.',
-      href: '/studio-photo/selecteur-machines',
+      href: '/studio-photo/selecteur-machines' as const,
     },
     {
       Icon: Camera,
       title: 'Alphashot 360',
       description: 'Le studio photo automatisé de référence pour le packshot et les animations 360°.',
-      href: '/studio-photo/alphashot-360',
+      href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-360' } } as const,
     },
     {
       Icon: Watch,
       title: 'Solutions horlogerie',
       description: 'Packshot, macro et 360° pour marques, manufactures et sous-traitants horlogers.',
-      href: '/industrie/horlogerie',
+      href: { pathname: '/industrie/[slug]', params: { slug: 'horlogerie' } } as const,
     },
   ];
 
@@ -247,7 +247,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
           <div className="grid sm:grid-cols-3 gap-4">
             {nextLinks.map(({ Icon, title, description, href }) => (
               <Link
-                key={href}
+                key={title}
                 href={href}
                 className="group rounded-2xl bg-neutral-50 p-6 border border-neutral-100 hover:border-very-peri-300 hover:bg-very-peri-50/40 transition-colors"
               >

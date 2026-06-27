@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { getArticle, getAllArticleSlugs, getBlogAlternates } from '@/lib/content';
+import { getArticle, getAllArticleSlugs, getBlogAlternates, type Lang } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
 import { NOINDEX_EN_BLOG_SLUGS } from '@/lib/seo-config';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import {
   TableOfContents,
   ArticleCTA,
@@ -27,7 +27,9 @@ interface PageProps {
 
 export function generateStaticParams() {
   const out: { lang: string; slug: string }[] = [];
-  for (const lang of ['fr', 'en'] as const) {
+  // de-ch inclus : seuls les slugs réellement traduits (content/blog/de-ch/)
+  // sont émis ; les autres /de-ch/blog/<x> → 404.
+  for (const lang of ['fr', 'en', 'de-ch'] as const) {
     for (const slug of getAllArticleSlugs(lang)) {
       if (STATIC_ARTICLE_SLUGS.has(slug)) continue;
       out.push({ lang, slug });
@@ -39,7 +41,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const { lang, slug } = await params;
 
-  const article = getArticle(slug, lang as 'fr' | 'en');
+  const article = getArticle(slug, lang as Lang);
   if (article) {
     const pageTitle = article.metaTitle || article.title;
     const alternates = getBlogAlternates(article.webflowItemId);
@@ -50,6 +52,10 @@ export async function generateMetadata({ params }: PageProps) {
     // Pas d'alternate en vers une cible noindex
     if (alternates.en && getArticle(alternates.en, 'en') && !NOINDEX_EN_BLOG_SLUGS.has(alternates.en)) {
       languages.en = `/en/blog/${alternates.en}`;
+    }
+    // de-CH : alternate vers la traduction Suisse alémanique si elle existe (Workstream B)
+    if (alternates['de-ch'] && getArticle(alternates['de-ch'], 'de-ch')) {
+      languages['de-CH'] = `/de-ch/blog/${alternates['de-ch']}`;
     }
     if (languages.fr) languages['x-default'] = languages.fr;
 
@@ -97,7 +103,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
 
-  const article = getArticle(slug, lang as 'fr' | 'en');
+  const article = getArticle(slug, lang as Lang);
   if (!article) notFound();
 
   const processed = processHtmlContent(article.content || '');
@@ -137,7 +143,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           <span className="inline-flex items-center gap-1.5">
             <Calendar className="h-4 w-4" />
             <time dateTime={date}>
-              {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+              {new Date(date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : lang === 'de-ch' ? 'de-CH' : 'en-US', {
                 year: 'numeric', month: 'long', day: 'numeric',
               })}
             </time>

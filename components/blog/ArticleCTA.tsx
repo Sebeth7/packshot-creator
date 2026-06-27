@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calculator } from 'lucide-react';
 import { FadeInView } from '@/components/animations';
@@ -28,7 +28,7 @@ export async function ArticleCTA({ lang }: ArticleCTAProps) {
               </Link>
             </Button>
             <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href="/studios-photo-automatises#roi">
+              <Link href={{ pathname: '/studios-photo-automatises', hash: 'roi' }}>
                 <Calculator className="mr-2 h-4 w-4" /> {t('ctaRoi')}
               </Link>
             </Button>

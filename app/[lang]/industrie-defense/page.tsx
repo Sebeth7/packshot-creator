@@ -502,7 +502,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                           ))}
                         </ul>
                         <Button asChild variant="outline" className="rounded-xl w-full">
-                          <Link href="/contact?subject=industrie">
+                          <Link href={{ pathname: '/contact', query: { subject: 'industrie' } }}>
                             {isFr ? 'Demander un devis' : 'Request a quote'} <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>
@@ -630,7 +630,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
                   {t('cta.description')}
                 </p>
                 <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg w-fit">
-                  <Link href="/contact?subject=industrie">
+                  <Link href={{ pathname: '/contact', query: { subject: 'industrie' } }}>
                     {t('cta.ctaPrimary')} <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -665,7 +665,7 @@ export default async function IndustrieDefensePage({ params }: PageProps) {
               {isFr ? 'Découvrez aussi notre page secteur complète' : 'Also discover our full sector page'}
             </p>
             <Link
-              href="/industrie/defense-securite"
+              href={{ pathname: '/industrie/[slug]', params: { slug: 'defense-securite' } }}
               className="inline-flex items-center gap-2 text-lg font-heading font-bold text-very-peri-600 hover:text-very-peri-700 transition-colors"
             >
               {isFr ? 'Secteur Défense & Sécurité' : 'Defense & Security Sector'}

@@ -762,7 +762,7 @@ export default async function FormationPhotoProduitPage({
               </Callout>
 
               <Link
-                href="/blog/ia-photo-produit-guide-2026"
+                href={{ pathname: '/blog/[slug]', params: { slug: 'ia-photo-produit-guide-2026' } }}
                 className="text-very-peri-600 hover:text-very-peri-700 underline"
               >
                 Lire notre guide complet IA photo produit 2026
@@ -1274,7 +1274,7 @@ export default async function FormationPhotoProduitPage({
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>IA photo produit</strong> :{' '}
-                  <Link href="/blog/ia-photo-produit-guide-2026" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'ia-photo-produit-guide-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Guide complet BlendAI 2026
                   </Link>
                 </li>
@@ -1287,7 +1287,7 @@ export default async function FormationPhotoProduitPage({
                 <li className="text-future-dusk-600">
                   <strong>Guide financement OPCO</strong> :{' '}
                   <Link
-                    href="/blog/financement-formation-opco-guide-complet-pour-studios-photo-2026"
+                    href={{ pathname: '/blog/[slug]', params: { slug: 'financement-formation-opco-guide-complet-pour-studios-photo-2026' } }}
                     className="text-very-peri-600 hover:text-very-peri-700 underline"
                   >
                     Guide complet financement OPCO

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
 import { BadgeIAReady } from './Badge';
 import { StaggerContainer, StaggerItem } from '@/components/animations';
@@ -78,7 +78,7 @@ export default function ProductGrid({
               variant="outline"
               className="w-full border-secondary-orbitvu text-secondary-orbitvu hover:bg-secondary-orbitvu hover:text-white"
             >
-              <Link href={`/studio-photo/${product.slug}`}>
+              <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: product.slug } }}>
                 {ctaText}
               </Link>
             </Button>

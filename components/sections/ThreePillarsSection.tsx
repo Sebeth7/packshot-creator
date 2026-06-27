@@ -18,19 +18,19 @@ export default function ThreePillarsSection({
   const pillars = [
     {
       key: 'capture',
-      href: '/studios-photo-automatises',
+      href: '/studios-photo-automatises' as const,
       color: 'turquoise' as const,
       Icon: Camera,
     },
     {
       key: 'creation',
-      href: '/ia-photo-produit',
+      href: '/ia-photo-produit' as const,
       color: 'purple' as const,
       Icon: Sparkles,
     },
     {
       key: 'formation',
-      href: '/academy',
+      href: '/academy' as const,
       color: 'green' as const,
       Icon: GraduationCap,
     },

@@ -365,7 +365,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <strong>Investissement</strong> : 50 000 - 100 000€. <strong>Pour qui ?</strong> Industriels, pure players &gt;5 000 références, distributeurs multi-marques.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Calculer le ROI de votre studio selon votre volume
                   </Link>
                 </p>
@@ -459,7 +459,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <Callout type="info" title="Calculez Votre ROI Personnalisé">
                   Avant d'investir, estimez précisément le retour sur investissement selon vos volumes et besoins. Notre calculateur vous recommande la machine adaptée.{' '}
-                  <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
                     Lancer le calculateur gratuit →
                   </Link>
                 </Callout>
@@ -855,7 +855,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>Outil recommandé</strong> :{' '}
-                  <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Calculateur ROI gratuit
                   </Link>{' '}
                   — résultats instantanés, recommandation machine personnalisée, export PDF pour présentation direction.
@@ -1103,7 +1103,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Vos Prochaines Étapes</h3>
                 <div className="flex flex-col sm:flex-row gap-4 my-8">
                   <Link
-                    href="/studios-photo-automatises#calculateur-roi"
+                    href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}
                     className="inline-block bg-very-peri-600 hover:bg-very-peri-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors text-center"
                   >
                     Calculer Mon ROI
@@ -1128,7 +1128,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600">
                     <strong>Calculateur ROI</strong> :{' '}
-                    <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies en 5 min</Link>
+                    <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies en 5 min</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Intégration IA</strong> :{' '}
@@ -1140,7 +1140,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Guide ROI</strong> :{' '}
-                    <Link href="/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet" className="text-very-peri-600 hover:text-very-peri-700 underline">Méthode calcul ROI complète</Link>
+                    <Link href={{ pathname: '/blog/[slug]', params: { slug: 'comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Méthode calcul ROI complète</Link>
                   </li>
                 </ul>
 

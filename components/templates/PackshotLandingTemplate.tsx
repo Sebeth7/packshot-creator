@@ -534,9 +534,9 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           </FadeInView>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
-              { key: 'studios', href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier.' : '20 Orbitvu systems from jewelry to furniture.' },
-              { key: 'ia', href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" />, title: isFr ? 'IA Photo Produit' : 'Product Photo AI', desc: isFr ? 'Transformez vos packshots en visuels lifestyle.' : 'Transform your packshots into lifestyle visuals.' },
-              { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy' : 'Academy', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système.' : 'Qualiopi training to master your system.' },
+              { key: 'studios', href: '/studios-photo-automatises' as const, icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier.' : '20 Orbitvu systems from jewelry to furniture.' },
+              { key: 'ia', href: '/ia-photo-produit' as const, icon: <Sparkles className="h-5 w-5" />, title: isFr ? 'IA Photo Produit' : 'Product Photo AI', desc: isFr ? 'Transformez vos packshots en visuels lifestyle.' : 'Transform your packshots into lifestyle visuals.' },
+              { key: 'academy', href: '/academy' as const, icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy' : 'Academy', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système.' : 'Qualiopi training to master your system.' },
             ].map((link) => (
               <FadeInView key={link.key}>
                 <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">

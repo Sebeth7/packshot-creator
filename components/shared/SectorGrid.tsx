@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { cn } from '@/lib/utils';
 import { LucideIcon, ArrowRight } from 'lucide-react';
 import { StaggerContainer, StaggerItem } from '@/components/animations';
@@ -50,7 +50,7 @@ export default function SectorGrid({
       {sectors.map((sector) => (
         <StaggerItem key={sector.slug}>
         <Link
-          href={`/industrie/${sector.slug}`}
+          href={{ pathname: '/industrie/[slug]', params: { slug: sector.slug } }}
           className="group flex items-start gap-4 bg-future-dusk-0 rounded-xl p-5 border border-transparent hover:border-very-peri-200 hover:bg-white hover:shadow-lg transition-all duration-300"
         >
           <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-very-peri-50 text-very-peri-600 group-hover:bg-very-peri-100 transition-colors shrink-0 mt-0.5">

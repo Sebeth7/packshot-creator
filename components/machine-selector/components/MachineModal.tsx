@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineModalProps {
@@ -302,7 +302,7 @@ export function MachineModal({
               </button>
             )}
             <Link
-              href={`/studio-photo/${machine.id}`}
+              href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }}
               className="px-6 py-2.5 text-white bg-very-peri-600 rounded-lg hover:bg-very-peri-700 transition-colors font-medium text-sm inline-flex items-center gap-2"
             >
               {locale === 'fr' ? 'Voir la fiche complète' : 'View full details'}

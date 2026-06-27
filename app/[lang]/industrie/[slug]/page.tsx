@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { secteurs } from '@/data/secteurs';
+import { secteursDeCh } from '@/data/secteurs-de-ch';
+import { tx } from '@/lib/locale-text';
 import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { solutions } from '@/data/solutions';
@@ -67,26 +69,60 @@ interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
 }
 
+// Couverture de-ch (Workstream B) : un seul secteur servi en Suisse alémanique,
+// /de-ch/branchen/schmuck (= équivalent du FR /industrie/bijoux-joaillerie).
+const DE_CH_BIJOUX_FR = 'bijoux-joaillerie';
+const DE_CH_SCHMUCK = 'schmuck';
+const isBijouxSchmuckPair = (slug: string) => slug === DE_CH_BIJOUX_FR || slug === DE_CH_SCHMUCK;
+
+/** Résout l'objet secteur selon la locale (de-ch lit le jeu de données allemand). */
+function resolveSecteur(slug: string, lang: string) {
+  return lang === 'de-ch'
+    ? secteursDeCh.find((s) => s.slug === slug)
+    : secteurs.find((s) => s.slug === slug);
+}
+
+/** Slug « données » pour les maps keyées en FR (machines, hero, related, solutions). */
+function dataSlugFor(slug: string, lang: string) {
+  return lang === 'de-ch' && slug === DE_CH_SCHMUCK ? DE_CH_BIJOUX_FR : slug;
+}
+
 export async function generateStaticParams() {
-  return secteurs.map((secteur) => ({ slug: secteur.slug }));
+  const out: { lang: string; slug: string }[] = [];
+  for (const lang of ['fr', 'en']) {
+    for (const secteur of secteurs) out.push({ lang, slug: secteur.slug });
+  }
+  // de-ch : uniquement le hub bijoux, sous le slug allemand 'schmuck'.
+  out.push({ lang: 'de-ch', slug: DE_CH_SCHMUCK });
+  return out;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug, lang } = await params;
-  const secteur = secteurs.find((s) => s.slug === slug);
+  const secteur = resolveSecteur(slug, lang);
   if (!secteur) return { title: 'Secteur non trouvé' };
 
-  const isNoindex = lang === 'en' && NOINDEX_EN_INDUSTRIE_SLUGS.has(slug);
+  // Slug de l'équivalent FR (les alternates fr/en pointent toujours vers la version FR).
+  const frSlug = slug === DE_CH_SCHMUCK ? DE_CH_BIJOUX_FR : slug;
+  const isNoindex = lang === 'en' && NOINDEX_EN_INDUSTRIE_SLUGS.has(frSlug);
   // Pas d'alternate en quand la version EN est noindex (hreflang vers cible non indexable)
-  const hasEnAlternate = !NOINDEX_EN_INDUSTRIE_SLUGS.has(slug);
+  const hasEnAlternate = !NOINDEX_EN_INDUSTRIE_SLUGS.has(frSlug);
+  // L'URL réelle de-ch est /de-ch/branchen/schmuck (segment + slug localisés).
+  const canonical =
+    lang === 'de-ch'
+      ? `https://www.packshot-creator.com/de-ch/branchen/${DE_CH_SCHMUCK}`
+      : `https://www.packshot-creator.com/${lang}/industrie/${slug}`;
 
   return {
     title: secteur.titre,
     description: secteur.description,
     ...(isNoindex && { robots: { index: false, follow: true } }),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
-      languages: buildLanguages(`/fr/industrie/${slug}`, hasEnAlternate ? { en: `/en/industrie/${slug}` } : {}),
+      canonical,
+      languages: buildLanguages(`/fr/industrie/${frSlug}`, {
+        ...(hasEnAlternate ? { en: `/en/industrie/${frSlug}` } : {}),
+        ...(isBijouxSchmuckPair(slug) ? { deCh: `/de-ch/branchen/${DE_CH_SCHMUCK}` } : {}),
+      }),
     },
     openGraph: {
       title: secteur.titre,
@@ -104,25 +140,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SecteurPage({ params }: PageProps) {
   const { slug, lang } = await params;
-  const secteur = secteurs.find((s) => s.slug === slug);
+  const secteur = resolveSecteur(slug, lang);
   if (!secteur) notFound();
 
-  const isFr = lang === 'fr';
+  // Slug « données » (FR) pour les maps machines/hero/related/solutions, et
+  // base d'URL localisée pour le fil d'Ariane (de-ch → /de-ch/branchen/...).
+  const dataSlug = dataSlugFor(slug, lang);
+  const industrieBase =
+    lang === 'de-ch'
+      ? `https://www.packshot-creator.com/de-ch/branchen`
+      : `https://www.packshot-creator.com/${lang}/industrie`;
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Industries', url: `https://www.packshot-creator.com/${lang}/industrie` },
-    { name: secteur.titre.split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/industrie/${slug}` },
+    { name: tx(lang, 'Industries', 'Industries', 'Branchen'), url: industrieBase },
+    { name: secteur.titre.split(':')[0].trim(), url: `${industrieBase}/${slug}` },
   ];
 
   // Maillage contextuel : secteurs connexes curatés (carte de proximité),
   // avec repli sur les autres secteurs si la carte est incomplète (T2).
-  const relatedSlugs = SECTOR_RELATED_MAP[slug] ?? [];
+  const relatedSlugs = SECTOR_RELATED_MAP[dataSlug] ?? [];
   const relatedSectors = relatedSlugs
     .map((rs) => DEFAULT_SECTORS.find((s) => s.slug === rs))
     .filter((s): s is (typeof DEFAULT_SECTORS)[number] => Boolean(s));
   const fallbackSectors = DEFAULT_SECTORS.filter(
-    (s) => s.slug !== slug && !relatedSlugs.includes(s.slug)
+    (s) => s.slug !== dataSlug && !relatedSlugs.includes(s.slug)
   );
   const otherSectors = (relatedSectors.length >= 4
     ? relatedSectors
@@ -158,14 +200,14 @@ export default async function SecteurPage({ params }: PageProps) {
         layout="split"
         badge={{
           icon: <ChevronRight className="h-3.5 w-3.5 rotate-180" />,
-          label: isFr ? 'Toutes les industries' : 'All industries',
+          label: tx(lang, 'Toutes les industries', 'All industries', 'Alle Branchen'),
           colorClass: 'text-very-peri-300',
         }}
         title={secteur.hero.titre}
         subtitle={secteur.hero.description}
         ctas={[
-          { label: isFr ? 'Demander un devis gratuit' : 'Get a free quote', href: '/contact', variant: 'primary' },
-          { label: isFr ? 'Découvrir nos formations' : 'Discover our training', href: '/academy', variant: 'secondary' },
+          { label: tx(lang, 'Demander un devis gratuit', 'Get a free quote', 'Kostenlose Offerte anfordern'), href: '/contact', variant: 'primary' },
+          { label: tx(lang, 'Découvrir nos formations', 'Discover our training', 'Schulungen entdecken'), href: '/academy', variant: 'secondary' },
         ]}
         media={
           <div className="w-full h-[360px] lg:h-[440px] rounded-2xl overflow-hidden">
@@ -199,15 +241,16 @@ export default async function SecteurPage({ params }: PageProps) {
             <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
               <FadeInView direction="left">
                 <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'VOS DÉFIS' : 'YOUR CHALLENGES'}
+                  {tx(lang, 'VOS DÉFIS', 'YOUR CHALLENGES', 'IHRE HERAUSFORDERUNGEN')}
                 </span>
                 <h2 className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
                   {secteur.problematiques.titre}
                 </h2>
                 <p className="text-neutral-medium leading-relaxed mb-8">
-                  {isFr
-                    ? 'Des contraintes spécifiques qui freinent votre production visuelle.'
-                    : 'Specific constraints that slow down your visual production.'}
+                  {tx(lang,
+                    'Des contraintes spécifiques qui freinent votre production visuelle.',
+                    'Specific constraints that slow down your visual production.',
+                    'Spezifische Anforderungen, die Ihre Bildproduktion ausbremsen.')}
                 </p>
               </FadeInView>
             </div>
@@ -242,7 +285,7 @@ export default async function SecteurPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView direction="right" className="text-center mb-16">
             <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-              {isFr ? 'NOS SOLUTIONS' : 'OUR SOLUTIONS'}
+              {tx(lang, 'NOS SOLUTIONS', 'OUR SOLUTIONS', 'UNSERE LÖSUNGEN')}
             </span>
             <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1]">
               {secteur.solutions.titre}
@@ -271,7 +314,7 @@ export default async function SecteurPage({ params }: PageProps) {
                             ) : (
                               <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
                             )}
-                            <p className="text-xs text-white/15">{isFr ? 'Visuel solution' : 'Solution visual'}</p>
+                            <p className="text-xs text-white/15">{tx(lang, 'Visuel solution', 'Solution visual', 'Lösungsbild')}</p>
                           </div>
                         </div>
 
@@ -386,15 +429,16 @@ export default async function SecteurPage({ params }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView direction="left" className="text-center mb-16">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'AU-DELÀ DU PACKSHOT' : 'BEYOND THE PACKSHOT'}
+                {tx(lang, 'AU-DELÀ DU PACKSHOT', 'BEYOND THE PACKSHOT', 'ÜBER DEN PACKSHOT HINAUS')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-heading-dark leading-[1.1] mb-6">
-                {isFr ? 'Et si vos studios faisaient bien plus ?' : 'What if your studios did much more?'}
+                {tx(lang, 'Et si vos studios faisaient bien plus ?', 'What if your studios did much more?', 'Was, wenn Ihre Studios viel mehr könnten?')}
               </TextReveal>
               <p className="text-lg text-neutral-medium max-w-2xl mx-auto leading-relaxed">
-                {isFr
-                  ? 'Des applications auxquelles on ne pense pas toujours — et qui peuvent transformer vos processus.'
-                  : 'Applications you might not expect — that can transform your processes.'}
+                {tx(lang,
+                  'Des applications auxquelles on ne pense pas toujours — et qui peuvent transformer vos processus.',
+                  'Applications you might not expect — that can transform your processes.',
+                  'Anwendungen, an die man nicht immer denkt — und die Ihre Abläufe verändern können.')}
               </p>
             </FadeInView>
 
@@ -454,10 +498,10 @@ export default async function SecteurPage({ params }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView className="text-center mb-12">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'DOCUMENTATION INDUSTRIELLE' : 'INDUSTRIAL DOCUMENTATION'}
+                {tx(lang, 'DOCUMENTATION INDUSTRIELLE', 'INDUSTRIAL DOCUMENTATION', 'INDUSTRIELLE DOKUMENTATION')}
               </span>
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark leading-[1.1]">
-                {isFr ? 'Allez plus loin avec nos solutions dédiées' : 'Go further with our dedicated solutions'}
+                {tx(lang, 'Allez plus loin avec nos solutions dédiées', 'Go further with our dedicated solutions', 'Gehen Sie mit unseren dedizierten Lösungen weiter')}
               </h2>
             </FadeInView>
 
@@ -470,7 +514,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 const secteurData = sol.secteurs.items.find((s) => s.slug === slug);
                 return (
                   <StaggerItem key={sol.slug}>
-                    <Link href={`/solutions/${sol.slug}`} className="group block h-full">
+                    <Link href={{ pathname: '/solutions/[slug]', params: { slug: sol.slug } }} className="group block h-full">
                       <SpringCard>
                         <div className="bg-future-dusk-0 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-300 transition-all h-full flex flex-col">
                           <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-50 text-very-peri-600 mb-4">
@@ -485,7 +529,7 @@ export default async function SecteurPage({ params }: PageProps) {
                             </p>
                           )}
                           <div className="flex items-center text-very-peri-600 text-sm font-medium">
-                            {isFr ? 'Découvrir cette solution' : 'Discover this solution'}
+                            {tx(lang, 'Découvrir cette solution', 'Discover this solution', 'Diese Lösung entdecken')}
                             <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>
@@ -508,15 +552,16 @@ export default async function SecteurPage({ params }: PageProps) {
             <ScrollReveal>
               <div className="text-center mb-16">
                 <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'NOS SYSTÈMES' : 'OUR SYSTEMS'}
+                  {tx(lang, 'NOS SYSTÈMES', 'OUR SYSTEMS', 'UNSERE SYSTEME')}
                 </span>
                 <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white leading-[1.1] mb-6">
-                  {isFr ? 'Les systèmes adaptés à votre secteur' : 'Systems tailored to your sector'}
+                  {tx(lang, 'Les systèmes adaptés à votre secteur', 'Systems tailored to your sector', 'Die passenden Systeme für Ihre Branche')}
                 </TextReveal>
                 <p className="text-lg text-future-dusk-300 max-w-2xl mx-auto leading-relaxed">
-                  {isFr
-                    ? 'Studios photo automatisés Orbitvu sélectionnés pour répondre aux contraintes de votre métier.'
-                    : 'Automated Orbitvu photo studios selected to meet the constraints of your industry.'}
+                  {tx(lang,
+                    'Studios photo automatisés Orbitvu sélectionnés pour répondre aux contraintes de votre métier.',
+                    'Automated Orbitvu photo studios selected to meet the constraints of your industry.',
+                    'Automatisierte Orbitvu-Fotostudios, ausgewählt für die Anforderungen Ihrer Branche.')}
                 </p>
               </div>
             </ScrollReveal>
@@ -528,10 +573,10 @@ export default async function SecteurPage({ params }: PageProps) {
               'md:grid-cols-2 lg:grid-cols-3'
             }`}>
               {recommendedMachines.map((machine) => {
-                const sizeLabel = machine!.tailleCategories[0] === 'petit' ? (isFr ? 'Petit' : 'Small') :
-                  machine!.tailleCategories[0] === 'moyen' ? (isFr ? 'Moyen' : 'Medium') :
-                  machine!.tailleCategories[0] === 'grand' ? (isFr ? 'Grand' : 'Large') :
-                  (isFr ? 'Très grand' : 'Extra large');
+                const sizeLabel = machine!.tailleCategories[0] === 'petit' ? tx(lang, 'Petit', 'Small', 'Klein') :
+                  machine!.tailleCategories[0] === 'moyen' ? tx(lang, 'Moyen', 'Medium', 'Mittel') :
+                  machine!.tailleCategories[0] === 'grand' ? tx(lang, 'Grand', 'Large', 'Gross') :
+                  tx(lang, 'Très grand', 'Extra large', 'Sehr gross');
                 const sizeColor = machine!.tailleCategories[0] === 'petit' ? 'bg-emerald-500/20 text-emerald-300' :
                   machine!.tailleCategories[0] === 'moyen' ? 'bg-blue-500/20 text-blue-300' :
                   machine!.tailleCategories[0] === 'grand' ? 'bg-amber-500/20 text-amber-300' :
@@ -539,7 +584,7 @@ export default async function SecteurPage({ params }: PageProps) {
 
                 return (
                   <StaggerItem key={machine!.id}>
-                    <Link href={`/studio-photo/${machine!.id}`} className="group block h-full">
+                    <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: machine!.id } }} className="group block h-full">
                       <SpringCard>
                         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:border-very-peri-400/40 transition-all">
                           {/* Machine image */}
@@ -566,12 +611,12 @@ export default async function SecteurPage({ params }: PageProps) {
 
                           {/* Size info */}
                           <p className="text-sm text-future-dusk-400 mb-4">
-                            {isFr ? 'Jusqu\'à' : 'Up to'} {machine!.tailleMax}
+                            {tx(lang, 'Jusqu\'à', 'Up to', 'Bis zu')} {machine!.tailleMax}
                           </p>
 
                           {/* Arrow */}
                           <div className="flex items-center text-very-peri-400 text-sm font-medium">
-                            {isFr ? 'Voir le détail' : 'View details'}
+                            {tx(lang, 'Voir le détail', 'View details', 'Details ansehen')}
                             <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>
@@ -586,7 +631,7 @@ export default async function SecteurPage({ params }: PageProps) {
             <FadeInView className="text-center mt-10">
               <Button asChild variant="outline" className="rounded-xl border-white/20 text-white hover:bg-white/10">
                 <Link href="/studio-photo/selecteur-machines">
-                  {isFr ? 'Comparer tous les modèles' : 'Compare all models'} <ArrowRight className="ml-2 h-4 w-4" />
+                  {tx(lang, 'Comparer tous les modèles', 'Compare all models', 'Alle Modelle vergleichen')} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </FadeInView>
@@ -608,7 +653,7 @@ export default async function SecteurPage({ params }: PageProps) {
                     FAQ
                   </span>
                   <h2 className="text-4xl lg:text-5xl font-heading font-bold text-heading-dark leading-[1.1]">
-                    {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                    {tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen')}
                   </h2>
                 </FadeInView>
               </div>
@@ -659,14 +704,15 @@ export default async function SecteurPage({ params }: PageProps) {
             <FadeInView direction="left" className="lg:col-span-3">
               <div className="bg-white rounded-2xl p-6 lg:p-10">
                 <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-2">
-                  {isFr ? 'Réservez votre démo' : 'Book your demo'}
+                  {tx(lang, 'Réservez votre démo', 'Book your demo', 'Buchen Sie Ihre Demo')}
                 </h3>
                 <p className="text-future-dusk-500 mb-6">
-                  {isFr
-                    ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.'
-                    : '30 minutes with an expert. See our systems in action on your own products.'}
+                  {tx(lang,
+                    '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.',
+                    '30 minutes with an expert. See our systems in action on your own products.',
+                    '30 Minuten mit einem Experten. Sehen Sie unsere Systeme an Ihren eigenen Produkten in Aktion.')}
                 </p>
-                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" />
+                <ContactForm locale={lang === 'fr' ? 'fr' : 'en'} compact defaultRequestType="demo" />
               </div>
             </FadeInView>
 
@@ -675,17 +721,18 @@ export default async function SecteurPage({ params }: PageProps) {
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-10 h-full flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-heading font-bold text-white mb-3">
-                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                    {tx(lang, 'Calculez votre ROI', 'Calculate your ROI', 'Berechnen Sie Ihren ROI')}
                   </h3>
                   <p className="text-future-dusk-300 leading-relaxed mb-8">
-                    {isFr
-                      ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
-                      : 'Estimate your savings in 2 minutes. Personalized and immediate results.'}
+                    {tx(lang,
+                      'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.',
+                      'Estimate your savings in 2 minutes. Personalized and immediate results.',
+                      'Schätzen Sie Ihre Einsparungen in 2 Minuten. Personalisiertes Ergebnis, sofort verfügbar.')}
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl w-fit">
                   <Link href="/calculateur-roi">
-                    {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'} <ArrowRight className="ml-2 h-4 w-4" />
+                    {tx(lang, 'Calculer mon ROI', 'Calculate my ROI', 'Meinen ROI berechnen')} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
@@ -717,13 +764,13 @@ export default async function SecteurPage({ params }: PageProps) {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
               <FadeInView>
                 <p className="text-sm text-future-dusk-500 mb-3">
-                  {isFr ? 'Guide spécialisé pour votre secteur' : 'Specialized guide for your sector'}
+                  {tx(lang, 'Guide spécialisé pour votre secteur', 'Specialized guide for your sector', 'Spezialisierter Leitfaden für Ihre Branche')}
                 </p>
                 <Link
-                  href={mapping.href}
+                  href={mapping.href as any}
                   className="inline-flex items-center gap-2 text-lg font-heading font-bold text-very-peri-600 hover:text-very-peri-700 transition-colors"
                 >
-                  {isFr ? mapping.labelFr : mapping.labelEn}
+                  {tx(lang, mapping.labelFr, mapping.labelEn, mapping.labelEn)}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </FadeInView>
@@ -744,17 +791,17 @@ export default async function SecteurPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="text-center mb-10">
             <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-              {isFr ? 'AUTRES SECTEURS' : 'OTHER SECTORS'}
+              {tx(lang, 'AUTRES SECTEURS', 'OTHER SECTORS', 'WEITERE BRANCHEN')}
             </span>
             <h3 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-              {isFr ? 'Découvrez nos autres secteurs' : 'Discover our other sectors'}
+              {tx(lang, 'Découvrez nos autres secteurs', 'Discover our other sectors', 'Entdecken Sie unsere weiteren Branchen')}
             </h3>
           </FadeInView>
           <StaggerContainer className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {otherSectors.map((other) => (
               <StaggerItem key={other.slug}>
                 <Link
-                  href={`/industrie/${other.slug}`}
+                  href={{ pathname: '/industrie/[slug]', params: { slug: other.slug } }}
                   className="group flex items-center gap-3 bg-future-dusk-0 rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
                 >
                   <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-very-peri-50 text-very-peri-600 shrink-0">
@@ -770,7 +817,7 @@ export default async function SecteurPage({ params }: PageProps) {
           <FadeInView className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-xl">
               <Link href="/industrie">
-                {isFr ? 'Voir tous les secteurs' : 'View all sectors'} <ArrowRight className="ml-2 h-4 w-4" />
+                {tx(lang, 'Voir tous les secteurs', 'View all sectors', 'Alle Branchen ansehen')} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </FadeInView>
@@ -783,7 +830,7 @@ export default async function SecteurPage({ params }: PageProps) {
         serviceSchema({
           name: secteur.titre,
           description: secteur.description,
-          serviceType: isFr ? 'Photographie produit automatisée' : 'Automated product photography',
+          serviceType: tx(lang, 'Photographie produit automatisée', 'Automated product photography', 'Automatisierte Produktfotografie'),
           url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
           category: secteur.titre.split(':')[0].trim(),
         }),

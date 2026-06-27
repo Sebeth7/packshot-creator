@@ -703,7 +703,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
                 <li className="text-future-dusk-600"><strong>ROI 3 ans : 166 200€ économisés</strong></li>
               </ul>
               <p className="mb-6">
-                <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Calculer votre ROI personnalisé
                 </Link>
               </p>
@@ -759,7 +759,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
                   <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Tester BlendAI</Link> — Demandez une démonstration personnalisée BlendAI avec vos propres produits (test gratuit sur 10-20 images)
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Utilisez notre calculateur ROI gratuit pour estimer vos économies réelles avec l'approche Hardware + IA
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Utilisez notre calculateur ROI gratuit pour estimer vos économies réelles avec l'approche Hardware + IA
                 </li>
                 <li className="text-future-dusk-600">
                   <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Formations certifiées Qualiopi, financement OPCO 100%
@@ -772,11 +772,11 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               <ul className="list-disc pl-6 mb-6 space-y-2">
                 <li className="text-future-dusk-600">
                   <strong>Guide IA Photo Produit 2026 :</strong>{' '}
-                  <Link href="/blog/ia-photo-produit-guide-2026" className="text-very-peri-600 hover:text-very-peri-700 underline">Lire l'article complet</Link>
+                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'ia-photo-produit-guide-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Lire l'article complet</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>BlendAI vs Flair.ai :</strong>{' '}
-                  <Link href="/blog/blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026" className="text-very-peri-600 hover:text-very-peri-700 underline">Comparatif détaillé</Link>
+                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Comparatif détaillé</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>Hub IA Photo Produit :</strong>{' '}

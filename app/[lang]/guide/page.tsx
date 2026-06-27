@@ -84,7 +84,7 @@ export default async function GuidesPage({ params }: PageProps) {
               return (
                 <StaggerItem key={guide.slug}>
                   <Link
-                    href={`/guide/${guide.slug}`}
+                    href={{ pathname: '/guide/[slug]', params: { slug: guide.slug } }}
                     className="group rounded-2xl border border-neutral-100 bg-white overflow-hidden hover:shadow-lg transition-shadow block"
                   >
                     {guide.image && (
