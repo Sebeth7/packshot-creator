@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { MessageCircle } from 'lucide-react';
 
 interface NotProfitableCTAProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -28,10 +28,20 @@ const LABELS = {
       'Personalized advice',
     ],
   },
+  'de-ch': {
+    title: 'Ihre Situation verdient eine vertiefte Analyse',
+    description: 'Unsere Experten können auf Ihr Geschäft zugeschnittene Optimierungen identifizieren und Ihnen die am besten geeignete Lösung anbieten.',
+    cta: 'Kostenlose Analyse anfordern',
+    benefits: [
+      'Unverbindlich',
+      'Antwort innert 24 Std.',
+      'Persönliche Beratung',
+    ],
+  },
 };
 
 export default function NotProfitableCTA({ locale }: NotProfitableCTAProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   return (
     <div className="bg-gradient-to-br from-neutral-100 to-white rounded-2xl p-8 text-center border border-neutral-200">

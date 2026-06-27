@@ -195,7 +195,7 @@
         "label": "Sie informieren sich noch",
         "cta": "Meinen ROI in 2 Min. berechnen"
       },
-      "phone": "Oder rufen Sie uns direkt an: +33 1 47 42 66 66"
+      "phone": "Oder rufen Sie uns direkt an: +41 44 580 43 84"
     },
     "finalCta": {
       "heading": "Ihr nächster Packshot könnte in 3 Sekunden fertig sein",
@@ -294,30 +294,30 @@
     }
   },
   "tailorMade": {
-    "heading": "Une solution sur mesure",
+    "heading": "Eine massgeschneiderte Lösung",
     "ecommerce": {
-      "title": "E-commerce",
-      "description": "Optimisez votre catalogue produit avec des visuels professionnels prêts pour la vente en ligne."
+      "title": "E-Commerce",
+      "description": "Optimieren Sie Ihren Produktkatalog mit professionellen Visuals, die bereit für den Online-Verkauf sind."
     },
     "digital": {
       "title": "Digital Asset Management",
-      "description": "Gérez et organisez efficacement vos ressources visuelles pour une diffusion multi-canal."
+      "description": "Verwalten und organisieren Sie Ihre visuellen Assets effizient für eine kanalübergreifende Verbreitung."
     },
     "quality": {
-      "title": "Contrôle qualité",
-      "description": "Assurez une cohérence visuelle parfaite grâce à des processus automatisés et standardisés."
+      "title": "Qualitätskontrolle",
+      "description": "Sorgen Sie für eine perfekte visuelle Einheitlichkeit dank automatisierter und standardisierter Prozesse."
     },
     "studio": {
-      "title": "Studio photo intégré",
-      "description": "Créez votre propre studio de production avec nos solutions clés en main."
+      "title": "Integriertes Fotostudio",
+      "description": "Bauen Sie Ihr eigenes Produktionsstudio mit unseren schlüsselfertigen Lösungen auf."
     },
     "creative": {
-      "title": "Créativité",
-      "description": "Libérez votre potentiel créatif avec des outils professionnels intuitifs."
+      "title": "Kreativität",
+      "description": "Entfalten Sie Ihr kreatives Potenzial mit intuitiven, professionellen Werkzeugen."
     },
     "manufacturers": {
-      "title": "Fabricants",
-      "description": "Produisez des visuels techniques et marketing pour vos gammes de produits."
+      "title": "Hersteller",
+      "description": "Erstellen Sie technische und Marketing-Visuals für Ihre Produktlinien."
     }
   },
   "common": {
@@ -682,48 +682,48 @@
     "contact": "Kontaktieren Sie uns"
   },
   "contact": {
-    "metaTitle": "Contact PackshotCreator | Démo Gratuite | Distributeur Orbitvu FR/CH",
-    "metaDescription": "Contactez PackshotCreator : démo gratuite studios photo Orbitvu, devis formation, support technique. Showroom Lyon. Réponse sous 24h.",
-    "heading": "Contactez-nous",
-    "subtitle": "Demandez une démo, un devis ou des informations. Nous vous répondons sous 24h.",
-    "formTitle": "Votre demande",
-    "formPlaceholder": "Formulaire de contact à intégrer",
-    "formPlaceholderSubtitle": "Typeform, Tally ou formulaire personnalisé",
-    "infoTitle": "Nos coordonnées",
-    "phone": "Téléphone",
-    "phoneValue": "+33 (0)1 47 42 66 66",
-    "hours": "Horaires",
-    "hoursValue": "Lun-Ven 9h-18h",
+    "metaTitle": "Kontakt PackshotCreator | Kostenlose Demo | Orbitvu-Distributor Schweiz",
+    "metaDescription": "Kontaktieren Sie PackshotCreator: kostenlose Demo der Orbitvu-Fotostudios, Offerte für Schulungen, technischer Support. Showroom Lyon. Antwort innert 24 Std.",
+    "heading": "Kontaktieren Sie uns",
+    "subtitle": "Fordern Sie eine Demo, eine Offerte oder Informationen an. Wir antworten Ihnen innert 24 Std.",
+    "formTitle": "Ihre Anfrage",
+    "formPlaceholder": "Kontaktformular zum Einbinden",
+    "formPlaceholderSubtitle": "Typeform, Tally oder individuelles Formular",
+    "infoTitle": "Unsere Kontaktdaten",
+    "phone": "Telefon",
+    "phoneValue": "+41 44 580 43 84",
+    "hours": "Öffnungszeiten",
+    "hoursValue": "Mo-Fr 9-18 Uhr",
     "showroomTitle": "Showroom Lyon",
     "showroomAddress": "22 Rue des Frères Lumière DELTAPARK, 69720 Saint-Bonnet-de-Mure",
-    "faqTitle": "Questions fréquentes",
-    "faq1Question": "Quel délai de réponse ?",
-    "faq1Answer": "Nous vous répondons sous 24h ouvrées.",
-    "faq2Question": "Proposez-vous du support technique ?",
-    "faq2Answer": "Oui, support technique FR inclus avec nos solutions.",
-    "faq3Question": "Puis-je visiter le showroom ?",
-    "faq3Answer": "Oui, sur rendez-vous. Contactez-nous pour planifier votre visite et tester nos studios.",
-    "trustBadge1": "Réponse sous 24h",
-    "trustBadge2": "5000+ entreprises équipées",
-    "trustBadge3": "Démo gratuite sans engagement",
-    "trustStat1Value": "25 ans",
-    "trustStat1Label": "d'expertise photo produit",
-    "trustStat2Value": "5000+",
-    "trustStat2Label": "entreprises équipées",
-    "trustStat3Value": "24h",
-    "trustStat3Label": "délai de réponse moyen",
-    "requestTypeLabel": "Quel est l'objet de votre demande ?",
-    "requestTypeDemo": "Demande de démonstration",
-    "requestTypeQuote": "Demande de devis",
-    "requestTypeSupport": "Support technique",
-    "requestTypeTraining": "Formation / Academy",
-    "responseBadge": "Réponse sous 24h garantie",
-    "faq4Question": "Quelle est votre zone de couverture ?",
-    "faq4Answer": "Nous couvrons la France entière et la Suisse. Nos équipes se déplacent pour l'installation et la formation. Un support à distance est également disponible.",
-    "faq5Question": "Proposez-vous des démonstrations en ligne ?",
-    "faq5Answer": "Oui, nous proposons des démos en visioconférence pour une première découverte. Pour une évaluation complète, nous recommandons une visite en showroom avec vos propres produits.",
-    "faq6Question": "Les formations sont-elles finançables par un OPCO ?",
-    "faq6Answer": "Oui, nos formations sont certifiées Qualiopi et éligibles au financement OPCO jusqu'à 100%. Nous vous accompagnons dans les démarches administratives."
+    "faqTitle": "Häufige Fragen",
+    "faq1Question": "Wie schnell erhalte ich eine Antwort?",
+    "faq1Answer": "Wir antworten Ihnen innert 24 Arbeitsstunden.",
+    "faq2Question": "Bieten Sie technischen Support an?",
+    "faq2Answer": "Ja, technischer Support ist bei unseren Lösungen inbegriffen.",
+    "faq3Question": "Kann ich den Showroom besuchen?",
+    "faq3Answer": "Ja, nach Vereinbarung. Kontaktieren Sie uns, um Ihren Besuch zu planen und unsere Studios zu testen.",
+    "trustBadge1": "Antwort innert 24 Std.",
+    "trustBadge2": "5'000+ ausgerüstete Unternehmen",
+    "trustBadge3": "Kostenlose Demo ohne Verpflichtung",
+    "trustStat1Value": "25 Jahre",
+    "trustStat1Label": "Erfahrung in der Produktfotografie",
+    "trustStat2Value": "5'000+",
+    "trustStat2Label": "ausgerüstete Unternehmen",
+    "trustStat3Value": "24 Std.",
+    "trustStat3Label": "durchschnittliche Antwortzeit",
+    "requestTypeLabel": "Worum geht es bei Ihrer Anfrage?",
+    "requestTypeDemo": "Demo-Anfrage",
+    "requestTypeQuote": "Offerten-Anfrage",
+    "requestTypeSupport": "Technischer Support",
+    "requestTypeTraining": "Schulung / Academy",
+    "responseBadge": "Antwort innert 24 Std. garantiert",
+    "faq4Question": "Welches Gebiet decken Sie ab?",
+    "faq4Answer": "Wir decken die ganze Schweiz und Frankreich ab. Unsere Teams kommen für Installation und Schulung zu Ihnen. Ein Fernsupport ist ebenfalls verfügbar.",
+    "faq5Question": "Bieten Sie Online-Demonstrationen an?",
+    "faq5Answer": "Ja, für einen ersten Einblick bieten wir Demos per Videokonferenz an. Für eine umfassende Beurteilung empfehlen wir einen Showroom-Besuch mit Ihren eigenen Produkten.",
+    "faq6Question": "Gibt es Finanzierungsmöglichkeiten für die Schulungen?",
+    "faq6Answer": "Ja, unsere Schulungen sind beim Kauf einer Lösung inbegriffen, und für die Investition stehen Finanzierungs- bzw. Leasingoptionen zur Verfügung. Wir begleiten Sie bei den administrativen Schritten."
   },
   "academyHub": {
     "meta": {
@@ -1052,613 +1052,613 @@
   },
   "packshotBijoux": {
     "meta": {
-      "title": "Packshot Bijoux | Photos Joaillerie Automatisées",
-      "description": "Studio photo automatisé pour bijoux et joaillerie. Rendu macro ultra-détaillé, photo 360° interactive, fond neutre sans retouche. 50 bijoux/heure."
+      "title": "Packshot Schmuck | Automatisierte Juwelier-Fotografie",
+      "description": "Automatisiertes Fotostudio für Schmuck und Juwelierwaren. Ultradetaillierte Makroaufnahmen, interaktive 360°-Fotografie, neutraler Hintergrund ohne Retusche. 50 Schmuckstücke pro Stunde."
     },
     "hero": {
-      "title": "Packshot Bijoux : Sublimez Vos Créations en Photo",
-      "subtitle": "Des photos de bijoux professionnelles avec un rendu macro exceptionnel, en toute autonomie.",
-      "cta": "Recevoir une offre",
-      "ctaSecondary": "Voir les studios"
+      "title": "Packshot Schmuck: Setzen Sie Ihre Kreationen perfekt in Szene",
+      "subtitle": "Professionelle Schmuckfotos mit aussergewöhnlicher Makroqualität, ganz selbstständig.",
+      "cta": "Offerte anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "benefits": {
-      "heading": "Pourquoi choisir un studio automatisé pour vos bijoux ?",
+      "heading": "Warum ein automatisiertes Studio für Ihren Schmuck?",
       "item1": {
-        "title": "Rendu macro ultra-détaillé",
-        "description": "Chaque facette, chaque reflet capturé avec une précision remarquable grâce au <bold>Super Focus</bold>."
+        "title": "Ultradetaillierte Makroqualität",
+        "description": "Jede Facette, jeder Glanz mit bemerkenswerter Präzision erfasst dank <bold>Super Focus</bold>."
       },
       "item2": {
-        "title": "Photo 360° interactive",
-        "description": "Offrez à vos clients une expérience immersive sur votre site e-commerce avec la <bold>rotation 360°</bold>."
+        "title": "Interaktive 360°-Fotografie",
+        "description": "Bieten Sie Ihren Kunden ein immersives Erlebnis auf Ihrer E-Commerce-Website mit der <bold>360°-Rotation</bold>."
       },
       "item3": {
-        "title": "Fond parfaitement neutre",
-        "description": "Détourage automatique <bold>IQ Mask</bold> 2.0 : fond blanc professionnel sans aucune <bold>retouche manuelle</bold>."
+        "title": "Perfekt neutraler Hintergrund",
+        "description": "Automatisches Freistellen mit <bold>IQ Mask</bold> 2.0: professioneller weisser Hintergrund ganz ohne <bold>manuelle Retusche</bold>."
       },
       "item4": {
-        "title": "50 bijoux photographiés par heure",
-        "description": "Automatisation complète du processus : positionnement, éclairage, capture et export en <bold>quelques secondes</bold>."
+        "title": "50 Schmuckstücke pro Stunde fotografiert",
+        "description": "Vollständige Automatisierung des Ablaufs: Positionierung, Beleuchtung, Aufnahme und Export in <bold>wenigen Sekunden</bold>."
       },
       "item5": {
-        "title": "Compatible marketplaces",
-        "description": "Exports optimisés pour Amazon, Etsy, Shopify et <bold>toutes les plateformes</bold> e-commerce."
+        "title": "Marktplatz-kompatibel",
+        "description": "Optimierte Exporte für Amazon, Etsy, Shopify und <bold>alle E-Commerce-Plattformen</bold>."
       }
     },
     "stats": {
       "stat1": {
         "value": "10x",
-        "label": "plus rapide qu'un studio classique"
+        "label": "schneller als ein klassisches Studio"
       },
       "stat2": {
         "value": "100%",
-        "label": "détourage automatique"
+        "label": "automatisches Freistellen"
       },
       "stat3": {
         "value": "-80%",
-        "label": "de coûts par image"
+        "label": "Kosten pro Bild"
       }
     },
     "machines": {
-      "heading": "Systèmes recommandés pour la bijouterie",
-      "subtitle": "Des studios conçus pour sublimer les <bold>petits objets précieux</bold>",
-      "cta": "Demander un devis"
+      "heading": "Empfohlene Systeme für die Schmuckbranche",
+      "subtitle": "Studios, die <bold>kleine, kostbare Objekte</bold> perfekt in Szene setzen",
+      "cta": "Offerte anfordern"
     },
     "faq": {
-      "heading": "Questions fréquentes sur la photo de bijoux",
+      "heading": "Häufige Fragen zur Schmuckfotografie",
       "q1": {
-        "question": "Comment photographier des bijoux brillants sans reflets parasites ?",
-        "answer": "Les studios Orbitvu disposent d'un éclairage LED diffus et calibré qui élimine les reflets parasites. Le système IQ Mask 2.0 assure un détourage parfait même sur les surfaces réfléchissantes comme l'or ou les pierres précieuses."
+        "question": "Wie fotografiert man glänzenden Schmuck ohne störende Reflexe?",
+        "answer": "Die Orbitvu-Studios verfügen über eine diffuse, kalibrierte LED-Beleuchtung, die störende Reflexe eliminiert. Das System IQ Mask 2.0 sorgt für ein perfektes Freistellen, selbst auf reflektierenden Oberflächen wie Gold oder Edelsteinen."
       },
       "q2": {
-        "question": "Quel fond utiliser pour la photo de bijoux ?",
-        "answer": "Le fond blanc est le standard e-commerce. Nos studios produisent un fond blanc pur automatiquement grâce au détourage IQ Mask 2.0. Vous pouvez aussi choisir un fond gris ou noir pour le luxe."
+        "question": "Welcher Hintergrund eignet sich für die Schmuckfotografie?",
+        "answer": "Der weisse Hintergrund ist der E-Commerce-Standard. Unsere Studios erzeugen dank des Freistellens mit IQ Mask 2.0 automatisch einen rein weissen Hintergrund. Für den Luxusbereich können Sie auch einen grauen oder schwarzen Hintergrund wählen."
       },
       "q3": {
-        "question": "Combien coûte un studio photo pour bijoux ?",
-        "answer": "L'Alphashot Micro Pro v2, spécialisé bijoux et petits objets, est disponible à partir de 15 450 €. Le retour sur investissement est atteint en 4 à 8 mois pour les joailliers produisant plus de 1 000 visuels par an."
+        "question": "Was kostet ein Fotostudio für Schmuck?",
+        "answer": "Die Alphashot Micro Pro v2, spezialisiert auf Schmuck und kleine Objekte, ist ab 15 450 € erhältlich. Der Return on Investment wird bei Juwelieren, die über 1'000 Bilder pro Jahr produzieren, nach 4 bis 8 Monaten erreicht."
       }
     },
     "cta": {
-      "heading": "Prêt à sublimer vos créations joaillières ?",
-      "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo bijoux.",
-      "ctaPrimary": "Demander une démo",
-      "ctaSecondary": "Calculer mon ROI"
+      "heading": "Bereit, Ihre Schmuckkreationen perfekt in Szene zu setzen?",
+      "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Schmuckfotografie.",
+      "ctaPrimary": "Demo anfragen",
+      "ctaSecondary": "Meinen ROI berechnen"
     },
     "testimonial": {
-      "quote": "La qualité macro du Super Focus a transformé notre catalogue en ligne. Nos clients voient enfin chaque détail de nos créations.",
+      "quote": "Die Makroqualität des Super Focus hat unseren Online-Katalog verändert. Unsere Kunden sehen endlich jedes Detail unserer Kreationen.",
       "author": "Thomas D.",
-      "role": "Fondateur, maison de joaillerie parisienne"
+      "role": "Gründer, Pariser Juwelierhaus"
     }
   },
   "packshotMode": {
     "meta": {
-      "title": "Packshot Mode | Photos Vêtements E-commerce Automatisées",
-      "description": "Studio photo automatisé pour la mode et le textile. Photos à plat, mannequin, ghost, 360°. Centaines de pièces par jour. Intégration catalogue e-commerce."
+      "title": "Packshot Mode | Automatisierte Bekleidungsfotos für E-Commerce",
+      "description": "Automatisiertes Fotostudio für Mode und Textil. Flat-Lay-, Schaufensterpuppen-, Ghost- und 360°-Aufnahmen. Hunderte Teile pro Tag. Integration in den E-Commerce-Katalog."
     },
     "hero": {
-      "title": "Packshot Mode : Photos E-commerce pour Textile et Vêtements",
-      "subtitle": "Production photo professionnelle à haute cadence pour le prêt-à-porter et la mode.",
-      "cta": "Recevoir une offre",
-      "ctaSecondary": "Voir les studios"
+      "title": "Packshot Mode: E-Commerce-Fotos für Textilien und Bekleidung",
+      "subtitle": "Professionelle Fotoproduktion mit hoher Taktung für Prêt-à-porter und Mode.",
+      "cta": "Offerte anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "benefits": {
-      "heading": "Pourquoi automatiser votre production photo mode ?",
+      "heading": "Warum sollten Sie Ihre Modefotografie automatisieren?",
       "item1": {
-        "title": "Photos à plat ou sur mannequin",
-        "description": "Flat-lay avec l'Alphadesk ou photo portée avec les studios grand format. <bold>Toutes les techniques</bold> en un seul workflow."
+        "title": "Flat-Lay- oder Schaufensterpuppen-Aufnahmen",
+        "description": "Flat-Lay mit dem Alphadesk oder getragene Aufnahmen mit den Grossformat-Studios. <bold>Alle Techniken</bold> in einem einzigen Workflow."
       },
       "item2": {
-        "title": "Rendu fidèle des textures et couleurs",
-        "description": "Éclairage LED calibré pour une <bold>reproduction exacte</bold> des matières, teintes et détails textiles."
+        "title": "Originalgetreue Wiedergabe von Texturen und Farben",
+        "description": "Kalibrierte LED-Beleuchtung für eine <bold>exakte Wiedergabe</bold> von Materialien, Farbtönen und textilen Details."
       },
       "item3": {
-        "title": "Photo 360° immersive",
-        "description": "Offrez une expérience client interactive avec la <bold>rotation 360°</bold> de vos vêtements et accessoires."
+        "title": "Immersive 360°-Fotografie",
+        "description": "Bieten Sie ein interaktives Kundenerlebnis mit der <bold>360°-Rotation</bold> Ihrer Kleidung und Accessoires."
       },
       "item4": {
-        "title": "Volume : centaines de pièces par jour",
-        "description": "Production à <bold>haute cadence</bold> grâce à l'automatisation complète : capture, détourage, export simultanés."
+        "title": "Volumen: Hunderte Teile pro Tag",
+        "description": "Produktion mit <bold>hoher Taktung</bold> dank vollständiger Automatisierung: gleichzeitige Aufnahme, Freistellen und Export."
       },
       "item5": {
-        "title": "Intégration catalogue e-commerce",
-        "description": "Export direct vers votre PIM, DAM ou plateforme e-commerce avec les <bold>bons formats</bold> et métadonnées."
+        "title": "Integration in den E-Commerce-Katalog",
+        "description": "Direkter Export in Ihr PIM, DAM oder Ihre E-Commerce-Plattform mit den <bold>richtigen Formaten</bold> und Metadaten."
       }
     },
     "stats": {
       "stat1": {
         "value": "500+",
-        "label": "pièces photographiées par jour"
+        "label": "Teile pro Tag fotografiert"
       },
       "stat2": {
         "value": "3s",
-        "label": "par packshot fond blanc"
+        "label": "pro Packshot auf weissem Hintergrund"
       },
       "stat3": {
         "value": "-80%",
-        "label": "de coûts vs studio externe"
+        "label": "Kosten gegenüber externem Studio"
       }
     },
     "machines": {
-      "heading": "Systèmes recommandés pour la mode",
-      "subtitle": "Des studios adaptés au textile, de la <bold>chaussure au prêt-à-porter</bold>",
-      "cta": "Demander un devis"
+      "heading": "Empfohlene Systeme für die Mode",
+      "subtitle": "Studios für Textilien, vom <bold>Schuh bis zum Prêt-à-porter</bold>",
+      "cta": "Offerte anfordern"
     },
     "faq": {
-      "heading": "Questions fréquentes sur la photo de mode",
+      "heading": "Häufige Fragen zur Modefotografie",
       "q1": {
-        "question": "Comment photographier des vêtements pour un site e-commerce ?",
-        "answer": "Trois techniques principales : la photo à plat (flat-lay) avec l'Alphadesk, la photo sur mannequin invisible (ghost) ou la photo portée sur modèle. Nos studios automatisent chaque technique avec un éclairage calibré et un détourage instantané."
+        "question": "Wie fotografiert man Kleidung für eine E-Commerce-Website?",
+        "answer": "Drei Haupttechniken: die Flat-Lay-Aufnahme mit dem Alphadesk, die Aufnahme mit unsichtbarer Schaufensterpuppe (Ghost) oder die getragene Aufnahme am Model. Unsere Studios automatisieren jede Technik mit kalibrierter Beleuchtung und sofortigem Freistellen."
       },
       "q2": {
-        "question": "Photo à plat vs mannequin : quelle méthode choisir ?",
-        "answer": "La photo à plat est idéale pour les t-shirts, pulls et accessoires. Le mannequin invisible (ghost) convient aux vestes, robes et chemises pour un rendu 3D. La photo portée sur modèle valorise la coupe et le tombé. La plupart des marques combinent les trois techniques."
+        "question": "Flat-Lay oder Schaufensterpuppe: Welche Methode wählen?",
+        "answer": "Die Flat-Lay-Aufnahme ist ideal für T-Shirts, Pullover und Accessoires. Die unsichtbare Schaufensterpuppe (Ghost) eignet sich für Jacken, Kleider und Hemden und sorgt für einen 3D-Effekt. Die getragene Aufnahme am Model bringt Schnitt und Fall zur Geltung. Die meisten Marken kombinieren alle drei Techniken."
       },
       "q3": {
-        "question": "Quel éclairage pour la photo de mode ?",
-        "answer": "L'éclairage LED diffus est essentiel pour reproduire fidèlement les couleurs et textures. Les studios Orbitvu intègrent un éclairage automatique qui s'adapte à chaque type de textile, éliminant les ombres et reflets indésirables."
+        "question": "Welche Beleuchtung eignet sich für die Modefotografie?",
+        "answer": "Eine diffuse LED-Beleuchtung ist entscheidend, um Farben und Texturen originalgetreu wiederzugeben. Die Orbitvu-Studios verfügen über eine automatische Beleuchtung, die sich an jeden Textiltyp anpasst und unerwünschte Schatten und Reflexe eliminiert."
       }
     },
     "cta": {
-      "heading": "Prêt à accélérer votre production photo mode ?",
-      "description": "Découvrez nos solutions lors d'une démonstration avec un expert photo textile.",
-      "ctaPrimary": "Demander une démo",
-      "ctaSecondary": "Calculer mon ROI"
+      "heading": "Bereit, Ihre Modefotoproduktion zu beschleunigen?",
+      "description": "Entdecken Sie unsere Lösungen bei einer Demonstration mit einem Experten für Textilfotografie.",
+      "ctaPrimary": "Demo anfragen",
+      "ctaSecondary": "Meinen ROI berechnen"
     },
     "testimonial": {
-      "quote": "Nous shootons 200 références par jour avec un seul opérateur. La cadence a été multipliée par 8 depuis l'installation.",
+      "quote": "Wir fotografieren 200 Artikel pro Tag mit nur einem Bediener. Die Taktung hat sich seit der Installation verachtfacht.",
       "author": "Alexandre M.",
-      "role": "Directeur de production, marque de prêt-à-porter"
+      "role": "Produktionsleiter, Prêt-à-porter-Marke"
     }
   },
   "packshotEcommerce": {
     "meta": {
-      "title": "Packshot E-commerce | Photos Produit Pro en Volume",
-      "description": "Studio photo automatisé pour l'e-commerce. 500+ produits/jour, fond blanc Amazon-ready, photo 360° interactive. ROI en 4-8 mois. Réduction de 80% des coûts."
+      "title": "Packshot E-Commerce | Profi-Produktfotos in grossen Mengen",
+      "description": "Automatisiertes Fotostudio für den E-Commerce. 500+ Produkte pro Tag, Amazon-tauglicher weisser Hintergrund, interaktive 360°-Fotografie. ROI in 4-8 Monaten. 80 % weniger Kosten."
     },
     "hero": {
-      "title": "Packshot E-commerce : Photos Produit Professionnelles en Volume",
-      "subtitle": "Produisez des milliers de visuels produit de qualité studio, en interne, à une fraction du coût.",
-      "cta": "Recevoir une offre",
-      "ctaSecondary": "Voir les studios"
+      "title": "Packshot E-Commerce: Professionelle Produktfotos in grossen Mengen",
+      "subtitle": "Erstellen Sie Tausende Produktvisuals in Studioqualität, intern und zu einem Bruchteil der Kosten.",
+      "cta": "Offerte anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "benefits": {
-      "heading": "Pourquoi internaliser votre production photo e-commerce ?",
+      "heading": "Warum sollten Sie Ihre E-Commerce-Fotoproduktion intern abwickeln?",
       "item1": {
-        "title": "Production en volume : 500+ produits/jour",
-        "description": "Automatisation complète du workflow photo : positionnement, éclairage, capture, détourage et export en <bold>quelques secondes</bold>."
+        "title": "Produktion in Mengen: 500+ Produkte pro Tag",
+        "description": "Vollständige Automatisierung des Foto-Workflows: Positionierung, Beleuchtung, Aufnahme, Freistellen und Export in <bold>wenigen Sekunden</bold>."
       },
       "item2": {
-        "title": "Fond blanc Amazon-ready",
-        "description": "Détourage automatique <bold>IQ Mask</bold> : visuels conformes aux exigences Amazon, Zalando, Cdiscount et <bold>toutes les marketplaces</bold>."
+        "title": "Amazon-tauglicher weisser Hintergrund",
+        "description": "Automatisches Freistellen mit <bold>IQ Mask</bold>: Visuals, die den Anforderungen von Amazon, Zalando, Cdiscount und <bold>allen Marktplätzen</bold> entsprechen."
       },
       "item3": {
-        "title": "Photo 360° interactive",
-        "description": "Augmentez vos <bold>conversions</bold> avec des visuels 360° que vos clients peuvent faire pivoter sur votre site."
+        "title": "Interaktive 360°-Fotografie",
+        "description": "Steigern Sie Ihre <bold>Konversionen</bold> mit 360°-Visuals, die Ihre Kunden auf Ihrer Website drehen können."
       },
       "item4": {
-        "title": "Réduction des coûts de 80%",
-        "description": "Passez de 5-15 € par photo en studio externe à <bold>moins de 1 €</bold> par image en interne avec un studio automatisé."
+        "title": "80 % weniger Kosten",
+        "description": "Senken Sie die Kosten von 5-15 € pro Foto im externen Studio auf <bold>weniger als 1 €</bold> pro Bild intern mit einem automatisierten Studio."
       },
       "item5": {
-        "title": "ROI mesurable",
-        "description": "Retour sur investissement en <bold>4 à 8 mois</bold>. Utilisez notre calculateur ROI pour une estimation personnalisée."
+        "title": "Messbarer ROI",
+        "description": "Return on Investment in <bold>4 bis 8 Monaten</bold>. Nutzen Sie unseren ROI-Rechner für eine persönliche Schätzung."
       }
     },
     "stats": {
       "stat1": {
         "value": "500+",
-        "label": "produits photographiés par jour"
+        "label": "Produkte pro Tag fotografiert"
       },
       "stat2": {
         "value": "80%",
-        "label": "de réduction des coûts"
+        "label": "Kostensenkung"
       },
       "stat3": {
         "value": "4-8",
-        "label": "mois pour le retour sur investissement"
+        "label": "Monate bis zum Return on Investment"
       }
     },
     "machines": {
-      "heading": "Systèmes recommandés pour l'e-commerce",
-      "subtitle": "Des studios <bold>polyvalents</bold> pour tous types de produits",
-      "cta": "Demander un devis"
+      "heading": "Empfohlene Systeme für den E-Commerce",
+      "subtitle": "<bold>Vielseitige</bold> Studios für alle Produkttypen",
+      "cta": "Offerte anfordern"
     },
     "faq": {
-      "heading": "Questions fréquentes sur la photo e-commerce",
+      "heading": "Häufige Fragen zur E-Commerce-Fotografie",
       "q1": {
-        "question": "Quel studio photo pour l'e-commerce en 2026 ?",
-        "answer": "Les studios automatisés Orbitvu sont la référence pour la photo e-commerce en volume. L'Alphashot 360 et l'Alphashot G2 couvrent la majorité des besoins avec packshot, 360° et vidéo intégrés. Pour les petits objets, l'Alphashot Micro Pro v2 offre un rendu macro exceptionnel."
+        "question": "Welches Fotostudio eignet sich 2026 für den E-Commerce?",
+        "answer": "Die automatisierten Orbitvu-Studios sind die Referenz für E-Commerce-Fotografie in grossen Mengen. Die Alphashot 360 und die Alphashot G2 decken die meisten Bedürfnisse mit integriertem Packshot, 360° und Video ab. Für kleine Objekte bietet die Alphashot Micro Pro v2 eine aussergewöhnliche Makroqualität."
       },
       "q2": {
-        "question": "Comment réduire les coûts de photo produit ?",
-        "answer": "L'internalisation avec un studio automatisé réduit le coût par image de 80% vs un studio externe. L'automatisation élimine le besoin de photographe spécialisé et de retoucheur. Un opérateur sans compétence photo produit des visuels professionnels en quelques secondes."
+        "question": "Wie senkt man die Kosten der Produktfotografie?",
+        "answer": "Die interne Abwicklung mit einem automatisierten Studio senkt die Kosten pro Bild um 80 % gegenüber einem externen Studio. Die Automatisierung macht spezialisierte Fotografen und Retuscheure überflüssig. Ein Bediener ohne Fotokenntnisse erstellt in wenigen Sekunden professionelle Visuals."
       },
       "q3": {
-        "question": "Quels formats d'image pour les marketplaces ?",
-        "answer": "Amazon exige un fond blanc pur (RGB 255,255,255), 1000px minimum, format JPEG. Nos studios exportent directement dans les formats requis par chaque marketplace : Amazon, Shopify, Zalando, Cdiscount. Le détourage IQ Mask garantit un fond blanc conforme."
+        "question": "Welche Bildformate für die Marktplätze?",
+        "answer": "Amazon verlangt einen rein weissen Hintergrund (RGB 255,255,255), mindestens 1000 px, Format JPEG. Unsere Studios exportieren direkt in den von jedem Marktplatz geforderten Formaten: Amazon, Shopify, Zalando, Cdiscount. Das Freistellen mit IQ Mask garantiert einen konformen weissen Hintergrund."
       }
     },
     "cta": {
-      "heading": "Prêt à booster votre production photo e-commerce ?",
-      "description": "Découvrez nos solutions lors d'une démonstration personnalisée avec un expert photo produit.",
-      "ctaPrimary": "Demander une démo",
-      "ctaSecondary": "Calculer mon ROI"
+      "heading": "Bereit, Ihre E-Commerce-Fotoproduktion anzukurbeln?",
+      "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Produktfotografie.",
+      "ctaPrimary": "Demo anfragen",
+      "ctaSecondary": "Meinen ROI berechnen"
     },
     "testimonial": {
-      "quote": "Depuis que nous avons internalisé avec PackshotCreator, nous produisons 400 visuels par jour au lieu de 30. Le ROI a été atteint en 5 mois.",
+      "quote": "Seit wir mit PackshotCreator intern produzieren, erstellen wir 400 Visuals pro Tag statt 30. Der ROI wurde nach 5 Monaten erreicht.",
       "author": "Marie L.",
-      "role": "Directrice e-commerce, marque de cosmétiques internationale"
+      "role": "E-Commerce-Leiterin, internationale Kosmetikmarke"
     }
   },
   "besoinsPhoto": {
     "meta": {
-      "title": "Besoins Photo Produit | Trouvez Votre Solution Packshot",
-      "description": "Identifiez vos besoins en photographie produit et trouvez la solution adaptee : studios automatises, IA lifestyle, formation. Guide complet PackshotCreator."
+      "title": "Bedarf Produktfotografie | Finden Sie Ihre Packshot-Lösung",
+      "description": "Ermitteln Sie Ihren Bedarf in der Produktfotografie und finden Sie die passende Lösung: automatisierte Studios, KI-Lifestyle, Schulung. Der komplette Guide von PackshotCreator."
     },
     "hero": {
-      "title": "Trouvez Votre Solution Photo Produit",
-      "subtitle": "Quel que soit votre besoin en photographie produit, nous avons la solution. Studios automatises, IA lifestyle, formations certifiees.",
-      "cta": "Etre rappele gratuitement"
+      "title": "Finden Sie Ihre Lösung für die Produktfotografie",
+      "subtitle": "Was immer Sie in der Produktfotografie benötigen, wir haben die Lösung. Automatisierte Studios, KI-Lifestyle, zertifizierte Schulungen.",
+      "cta": "Kostenlosen Rückruf anfordern"
     },
     "needs": {
-      "label": "VOS BESOINS",
-      "heading": "Identifiez votre besoin",
-      "subtitle": "Chaque entreprise a des <bold>besoins differents</bold> en photo produit. Decouvrez quelle <bold>solution</bold> est faite pour vous.",
+      "label": "IHR BEDARF",
+      "heading": "Ermitteln Sie Ihren Bedarf",
+      "subtitle": "Jedes Unternehmen hat <bold>unterschiedliche Bedürfnisse</bold> in der Produktfotografie. Entdecken Sie, welche <bold>Lösung</bold> zu Ihnen passt.",
       "item1": {
-        "title": "Packshot fond blanc e-commerce",
-        "description": "Photos produit professionnelles sur fond blanc pour vos fiches produit et marketplaces.",
-        "point1": "Detourage automatique fond blanc pur",
-        "point2": "Coherence absolue sur tout le catalogue",
-        "point3": "Compatible Amazon, Shopify, WooCommerce"
+        "title": "Packshot auf Weiss für E-Commerce",
+        "description": "Professionelle Produktfotos auf weissem Hintergrund für Ihre Produktseiten und Marktplätze.",
+        "point1": "Automatisches Freistellen, rein weisser Hintergrund",
+        "point2": "Absolute Einheitlichkeit über den gesamten Katalog",
+        "point3": "Kompatibel mit Amazon, Shopify, WooCommerce"
       },
       "item2": {
-        "title": "Photo 360 interactive",
-        "description": "Rotations interactives pour permettre a vos clients de voir le produit sous tous les angles.",
-        "point1": "Rotation 360 fluide et interactive",
-        "point2": "Integration directe sur votre site",
-        "point3": "Reduction des retours produit"
+        "title": "Interaktive 360°-Fotografie",
+        "description": "Interaktive Rotationen, damit Ihre Kunden das Produkt aus allen Blickwinkeln sehen.",
+        "point1": "Flüssige und interaktive 360°-Rotation",
+        "point2": "Direkte Integration auf Ihrer Website",
+        "point3": "Weniger Produktretouren"
       },
       "item3": {
-        "title": "Catalogues gros volumes",
-        "description": "Vous avez des centaines ou milliers de produits a photographier rapidement.",
-        "point1": "Batch processing automatise",
-        "point2": "50 a 300 produits par jour",
-        "point3": "Integration PIM/ERP possible"
+        "title": "Kataloge mit grossen Mengen",
+        "description": "Sie haben Hunderte oder Tausende Produkte, die schnell fotografiert werden müssen.",
+        "point1": "Automatisierte Stapelverarbeitung",
+        "point2": "50 bis 300 Produkte pro Tag",
+        "point3": "PIM/ERP-Integration möglich"
       },
       "item4": {
-        "title": "Visuels lifestyle IA",
-        "description": "Transformez vos packshots en visuels lifestyle sans shooting photo traditionnel.",
-        "point1": "Mises en scene realistes via IA",
-        "point2": "Ambiances personnalisees par marque",
-        "point3": "ROI : -80% vs shootings traditionnels"
+        "title": "KI-Lifestyle-Visuals",
+        "description": "Verwandeln Sie Ihre Packshots in Lifestyle-Visuals ohne klassisches Fotoshooting.",
+        "point1": "Realistische Inszenierungen per KI",
+        "point2": "Massgeschneiderte Stimmungen pro Marke",
+        "point3": "ROI: -80 % gegenüber klassischen Shootings"
       }
     },
     "solution": {
-      "label": "PROCESSUS",
-      "heading": "Comment ca marche ?",
+      "label": "ABLAUF",
+      "heading": "Wie funktioniert es?",
       "step1": {
-        "title": "Diagnostic gratuit",
-        "description": "Nous analysons vos besoins, volumes, types de produits et contraintes pour identifier la <bold>meilleure solution</bold>."
+        "title": "Kostenlose Analyse",
+        "description": "Wir analysieren Ihren Bedarf, Ihre Mengen, Produkttypen und Rahmenbedingungen, um die <bold>beste Lösung</bold> zu ermitteln."
       },
       "step2": {
-        "title": "Demo personnalisee",
-        "description": "Nous vous montrons en live le studio adapte a vos produits et vous testez avec <bold>vos propres echantillons</bold>."
+        "title": "Persönliche Demo",
+        "description": "Wir zeigen Ihnen live das für Ihre Produkte passende Studio, und Sie testen es mit <bold>Ihren eigenen Mustern</bold>."
       },
       "step3": {
-        "title": "Installation & formation",
-        "description": "Installation sur site, <bold>formation certifiee Qualiopi</bold> et accompagnement au demarrage inclus."
+        "title": "Installation & Schulung",
+        "description": "Installation vor Ort, <bold>inbegriffene Schulung</bold> und Begleitung beim Start."
       }
     },
     "sectors": {
-      "label": "SECTEURS",
-      "heading": "Solutions par secteur",
+      "label": "BRANCHEN",
+      "heading": "Lösungen nach Branche",
       "item1": {
-        "name": "Mode & textile",
+        "name": "Mode & Textil",
         "href": "/industrie/mode-textile"
       },
       "item2": {
-        "name": "Bijoux & joaillerie",
+        "name": "Schmuck & Juwelier",
         "href": "/industrie/bijoux-joaillerie"
       },
       "item3": {
-        "name": "Cosmetiques & beaute",
+        "name": "Kosmetik & Beauty",
         "href": "/industrie/cosmetiques-beaute"
       },
       "item4": {
-        "name": "Food & alimentaire",
+        "name": "Food & Lebensmittel",
         "href": "/industrie/food-alimentaire"
       },
       "item5": {
-        "name": "Electronique & high-tech",
+        "name": "Elektronik & High-Tech",
         "href": "/industrie/electronique-hightech"
       },
       "item6": {
-        "name": "Mobilier & decoration",
+        "name": "Möbel & Dekoration",
         "href": "/industrie/mobilier-decoration"
       }
     },
     "faq": {
       "label": "FAQ",
-      "heading": "Questions frequentes",
+      "heading": "Häufige Fragen",
       "q1": {
-        "question": "Combien coute un studio photo automatise ?",
-        "answer": "Le prix depend du modele et de la taille des produits a photographier. Nos studios commencent a partir de quelques milliers d'euros. Contactez-nous pour un devis personnalise gratuit."
+        "question": "Was kostet ein automatisiertes Fotostudio?",
+        "answer": "Der Preis hängt vom Modell und der Grösse der zu fotografierenden Produkte ab. Unsere Studios sind ab einigen tausend Euro erhältlich. Kontaktieren Sie uns für eine kostenlose, persönliche Offerte."
       },
       "q2": {
-        "question": "Faut-il des competences en photographie ?",
-        "answer": "Non, nos studios sont automatises et ne necessitent pas de competences en photographie. De plus, nos formations certifiees Qualiopi vous rendent operationnel en 1 a 2 jours."
+        "question": "Braucht es Fotokenntnisse?",
+        "answer": "Nein, unsere Studios sind automatisiert und erfordern keine Fotokenntnisse. Zudem machen Sie unsere Schulungen innert 1 bis 2 Tagen einsatzbereit."
       },
       "q3": {
-        "question": "Combien de temps pour etre operationnel ?",
-        "answer": "L'installation du studio prend quelques heures. Avec la formation incluse, vous êtes autonome et productif des la première journée."
+        "question": "Wie lange dauert es bis zur Einsatzbereitschaft?",
+        "answer": "Die Installation des Studios dauert wenige Stunden. Dank der inbegriffenen Schulung sind Sie schon ab dem ersten Tag selbstständig und produktiv."
       }
     },
     "cta": {
-      "heading": "Pret a automatiser votre photo produit ?",
-      "description": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h.",
-      "ctaPrimary": "Demander un diagnostic gratuit",
-      "ctaSecondary": "Voir les studios"
+      "heading": "Bereit, Ihre Produktfotografie zu automatisieren?",
+      "description": "Kostenlose Analyse, persönliche Demo mit Ihren Produkten, Offerte innert 48 Std.",
+      "ctaPrimary": "Kostenlose Analyse anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "finalCta": {
-      "heading": "Pret a automatiser votre photo produit ?",
-      "subtitle": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h.",
+      "heading": "Bereit, Ihre Produktfotografie zu automatisieren?",
+      "subtitle": "Kostenlose Analyse, persönliche Demo mit Ihren Produkten, Offerte innert 48 Std.",
       "card1": {
-        "heading": "Demandez votre diagnostic",
-        "description": "Diagnostic gratuit, demo personnalisee avec vos produits, devis sous 48h."
+        "heading": "Fordern Sie Ihre Analyse an",
+        "description": "Kostenlose Analyse, persönliche Demo mit Ihren Produkten, Offerte innert 48 Std."
       },
       "card2": {
-        "heading": "Calculez votre ROI",
-        "description": "Estimez vos economies en 2 minutes. Resultat personnalise et immediat."
+        "heading": "Berechnen Sie Ihren ROI",
+        "description": "Schätzen Sie Ihre Einsparungen in 2 Minuten. Persönliches Ergebnis, sofort."
       },
-      "ctaPrimary": "Demander un diagnostic gratuit",
-      "ctaSecondary": "Calculer mon ROI"
+      "ctaPrimary": "Kostenlose Analyse anfordern",
+      "ctaSecondary": "Meinen ROI berechnen"
     }
   },
   "questionsCles": {
     "meta": {
-      "title": "Questions Cles Photographie Produit | Guide Expert",
-      "description": "Les 9 questions essentielles a se poser avant d'investir en photo produit. Guide expert PackshotCreator : ROI, qualite, volumes, IA."
+      "title": "Schlüsselfragen Produktfotografie | Experten-Guide",
+      "description": "Die 9 wesentlichen Fragen, die Sie sich vor einer Investition in die Produktfotografie stellen sollten. Experten-Guide von PackshotCreator: ROI, Qualität, Mengen, KI."
     },
     "hero": {
-      "title": "Les Questions Cles de la Photo Produit",
-      "subtitle": "Tout ce que vous devez savoir avant d'investir dans une solution de photographie produit professionnelle.",
-      "cta": "Parler a un expert"
+      "title": "Die Schlüsselfragen der Produktfotografie",
+      "subtitle": "Alles, was Sie wissen müssen, bevor Sie in eine professionelle Lösung für die Produktfotografie investieren.",
+      "cta": "Mit einem Experten sprechen"
     },
     "categories": {
-      "label": "PILIERS",
-      "heading": "3 piliers pour bien choisir",
+      "label": "SÄULEN",
+      "heading": "3 Säulen für die richtige Wahl",
       "cat1": {
-        "title": "Qualite & coherence",
-        "description": "Comment garantir des <bold>visuels professionnels</bold> et homogenes sur tout votre catalogue."
+        "title": "Qualität & Einheitlichkeit",
+        "description": "Wie Sie <bold>professionelle Visuals</bold> sicherstellen, die über Ihren gesamten Katalog hinweg einheitlich sind."
       },
       "cat2": {
-        "title": "Productivite & volumes",
-        "description": "Combien de produits photographier par jour et comment <bold>automatiser votre workflow</bold>."
+        "title": "Produktivität & Mengen",
+        "description": "Wie viele Produkte Sie pro Tag fotografieren und wie Sie <bold>Ihren Workflow automatisieren</bold>."
       },
       "cat3": {
-        "title": "ROI & rentabilite",
-        "description": "Comment mesurer le <bold>retour sur investissement</bold> d'un studio photo automatise."
+        "title": "ROI & Rentabilität",
+        "description": "Wie Sie den <bold>Return on Investment</bold> eines automatisierten Fotostudios messen."
       }
     },
     "questions": {
-      "label": "QUESTIONS CLES",
-      "heading": "Les 9 questions essentielles",
+      "label": "SCHLÜSSELFRAGEN",
+      "heading": "Die 9 wesentlichen Fragen",
       "q1": {
-        "question": "Combien de produits avez-vous a photographier par an ?",
-        "answer": "Le volume annuel vous permet d’estimer votre ROI et gain de temps cumulé. Les volumes important trouvent souvent un grand avantage à utiliser une solution PackshotCreator"
+        "question": "Wie viele Produkte müssen Sie pro Jahr fotografieren?",
+        "answer": "Das Jahresvolumen erlaubt Ihnen, Ihren ROI und die kumulierte Zeitersparnis abzuschätzen. Bei grossen Mengen lohnt sich der Einsatz einer PackshotCreator-Lösung besonders."
       },
       "q2": {
-        "question": "Quelle qualite d'image est requise pour vos canaux de vente ?",
-        "answer": "Les marketplaces (Amazon, Cdiscount) exigent des images specifiques : fond blanc pur RGB 255, resolution minimum, pas de filigrane. Un studio automatise garantit la conformite automatique a ces standards."
+        "question": "Welche Bildqualität verlangen Ihre Verkaufskanäle?",
+        "answer": "Marktplätze (Amazon, Cdiscount) verlangen spezifische Bilder: rein weisser Hintergrund RGB 255, Mindestauflösung, kein Wasserzeichen. Ein automatisiertes Studio stellt die Einhaltung dieser Standards automatisch sicher."
       },
       "q3": {
-        "question": "Quel est le cout actuel de votre production photo ?",
-        "answer": "Calculez le cout total : photographe, studio, retouche, temps de coordination. Un studio automatise reduit ces couts de 60 a 80% avec un retour sur investissement moyen de 6 a 12 mois."
+        "question": "Wie hoch sind Ihre aktuellen Kosten für die Fotoproduktion?",
+        "answer": "Berechnen Sie die Gesamtkosten: Fotograf, Studio, Retusche, Koordinationsaufwand. Ein automatisiertes Studio senkt diese Kosten um 60 bis 80 % bei einem durchschnittlichen Return on Investment von 6 bis 12 Monaten."
       },
       "q4": {
-        "question": "Avez-vous besoin de photos 360 interactives ?",
-        "answer": "Les photos 360 augmentent le taux de conversion de 20 a 40% et reduisent les retours produit. Les studios Orbitvu capturent automatiquement des rotations fluides en une seule prise."
+        "question": "Benötigen Sie interaktive 360°-Fotos?",
+        "answer": "360°-Fotos steigern die Konversionsrate um 20 bis 40 % und senken die Produktretouren. Die Orbitvu-Studios erfassen flüssige Rotationen automatisch in einer einzigen Aufnahme."
       },
       "q5": {
-        "question": "Quelle est la taille de vos produits ?",
-        "answer": "Du bijou au meuble, chaque gamme de taille a son studio optimal. Les AlphaShot couvrent les petits objets, les Viso les produits moyens, et les studios grand format les meubles jusqu'a 3 metres."
+        "question": "Wie gross sind Ihre Produkte?",
+        "answer": "Vom Schmuckstück bis zum Möbel hat jede Grössenklasse ihr optimales Studio. Die AlphaShot decken kleine Objekte ab, die Viso mittelgrosse Produkte und die Grossformat-Studios Möbel bis zu 3 Metern."
       },
       "q6": {
-        "question": "Avez-vous besoin de visuels lifestyle en plus du packshot ?",
-        "answer": "BlendAI transforme vos packshots fond blanc en visuels lifestyle realistes : ambiances interieures, contextes urbains, mises en scene produit. Production de 50 a 200 visuels/jour sans shooting supplementaire."
+        "question": "Benötigen Sie zusätzlich zum Packshot Lifestyle-Visuals?",
+        "answer": "BlendAI verwandelt Ihre Packshots auf weissem Hintergrund in realistische Lifestyle-Visuals: Innenraumstimmungen, urbane Kontexte, Produktinszenierungen. Produktion von 50 bis 200 Visuals pro Tag ohne zusätzliches Shooting."
       },
       "q7": {
-        "question": "Vos equipes ont-elles des competences en photographie ?",
-        "answer": "Nos studios sont concus pour etre utilises sans competences photo prealables. La formation certifiee Qualiopi (1 a 2 jours) rend votre equipe completement autonome. Financement OPCO possible."
+        "question": "Verfügen Ihre Teams über Fotokenntnisse?",
+        "answer": "Unsere Studios sind so konzipiert, dass sie ohne Vorkenntnisse in der Fotografie bedient werden können. Die Schulung (1 bis 2 Tage) macht Ihr Team vollständig selbstständig. Finanzierungs- und Leasingoptionen sind möglich."
       },
       "q8": {
-        "question": "Quel est votre delai de mise en production ?",
-        "answer": "L'installation d'un studio prend quelques heures. Avec la formation incluse, votre équipe est opérationnelle des la première journée. Les premiers visuels sont produits le jour même de la formation."
+        "question": "Wie schnell sind Sie produktionsbereit?",
+        "answer": "Die Installation eines Studios dauert wenige Stunden. Dank der inbegriffenen Schulung ist Ihr Team schon ab dem ersten Tag einsatzbereit. Die ersten Visuals entstehen bereits am Tag der Schulung."
       },
       "q9": {
-        "question": "Comment integrer les visuels dans votre workflow existant ?",
-        "answer": "Les studios Orbitvu s'integrent avec les principaux PIM, ERP et plateformes e-commerce. L'export est automatise avec nomenclatures, codes produits et metadonnees directement lies a vos systemes."
+        "question": "Wie integrieren Sie die Visuals in Ihren bestehenden Workflow?",
+        "answer": "Die Orbitvu-Studios lassen sich in die wichtigsten PIM-, ERP- und E-Commerce-Plattformen integrieren. Der Export erfolgt automatisiert mit Nomenklaturen, Produktcodes und Metadaten, die direkt mit Ihren Systemen verknüpft sind."
       }
     },
     "cta": {
-      "heading": "Des questions ? Parlons-en.",
-      "description": "Nos experts analysent vos besoins et vous recommandent la solution optimale. Diagnostic gratuit et sans engagement.",
-      "ctaPrimary": "Parler a un expert",
-      "ctaSecondary": "Voir les studios"
+      "heading": "Haben Sie Fragen? Sprechen wir darüber.",
+      "description": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung. Kostenlose Analyse, unverbindlich.",
+      "ctaPrimary": "Mit einem Experten sprechen",
+      "ctaSecondary": "Studios entdecken"
     },
     "finalCta": {
-      "heading": "Des questions ? Parlons-en.",
-      "subtitle": "Nos experts analysent vos besoins et vous recommandent la solution optimale.",
+      "heading": "Haben Sie Fragen? Sprechen wir darüber.",
+      "subtitle": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung.",
       "card1": {
-        "heading": "Parler a un expert",
-        "description": "Nos experts analysent vos besoins et vous recommandent la solution optimale. Diagnostic gratuit et sans engagement."
+        "heading": "Mit einem Experten sprechen",
+        "description": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung. Kostenlose Analyse, unverbindlich."
       },
       "card2": {
-        "heading": "Calculez votre ROI",
-        "description": "Estimez vos economies en 2 minutes. Resultat personnalise et immediat."
+        "heading": "Berechnen Sie Ihren ROI",
+        "description": "Schätzen Sie Ihre Einsparungen in 2 Minuten. Persönliches Ergebnis, sofort."
       },
-      "ctaPrimary": "Parler a un expert",
-      "ctaSecondary": "Calculer mon ROI"
+      "ctaPrimary": "Mit einem Experten sprechen",
+      "ctaSecondary": "Meinen ROI berechnen"
     }
   },
   "packshotAmazon": {
     "meta": {
-      "title": "Packshot Amazon | Photos Conformes Marketplace",
-      "description": "Studio photo automatise pour Amazon et marketplaces. Fond blanc pur RGB 255, detourage automatique, photo 360, traitement par lots. Conformite garantie."
+      "title": "Packshot Amazon | Marktplatz-konforme Fotos",
+      "description": "Automatisiertes Fotostudio für Amazon und Marktplätze. Rein weisser Hintergrund RGB 255, automatisches Freistellen, 360°-Fotografie, Stapelverarbeitung. Konformität garantiert."
     },
     "hero": {
-      "title": "Packshot Amazon : Photos Conformes aux Exigences Marketplace",
-      "subtitle": "Des photos produit conformes aux standards Amazon, generees automatiquement avec un studio Orbitvu.",
-      "cta": "Recevoir une offre",
-      "ctaSecondary": "Voir les studios"
+      "title": "Packshot Amazon: Fotos, die den Marktplatz-Anforderungen entsprechen",
+      "subtitle": "Produktfotos, die den Amazon-Standards entsprechen und mit einem Orbitvu-Studio automatisch erzeugt werden.",
+      "cta": "Offerte anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "benefits": {
-      "heading": "Pourquoi un studio automatise pour vos photos Amazon ?",
+      "heading": "Warum ein automatisiertes Studio für Ihre Amazon-Fotos?",
       "item1": {
-        "title": "Fond blanc pur garanti (RGB 255,255,255)",
-        "description": "Detourage automatique <bold>IQ Mask</bold> : fond blanc conforme Amazon des la capture, <bold>sans retouche manuelle</bold>."
+        "title": "Garantiert rein weisser Hintergrund (RGB 255,255,255)",
+        "description": "Automatisches Freistellen mit <bold>IQ Mask</bold>: Amazon-konformer weisser Hintergrund schon ab der Aufnahme, <bold>ohne manuelle Retusche</bold>."
       },
       "item2": {
-        "title": "Detourage automatique precis",
-        "description": "Chaque produit est automatiquement detoure avec une precision <bold>pixel-perfect</bold> pour un rendu professionnel."
+        "title": "Präzises automatisches Freistellen",
+        "description": "Jedes Produkt wird automatisch mit <bold>pixelgenauer</bold> Präzision freigestellt, für ein professionelles Resultat."
       },
       "item3": {
-        "title": "Photo 360 pour fiches enrichies",
-        "description": "Ajoutez des vues <bold>360 interactives</bold> a vos fiches Amazon A+ Content pour augmenter vos <bold>conversions</bold>."
+        "title": "360°-Fotografie für erweiterte Produktseiten",
+        "description": "Fügen Sie Ihren Amazon-A+-Content-Seiten <bold>interaktive 360°-Ansichten</bold> hinzu, um Ihre <bold>Konversionen</bold> zu steigern."
       },
       "item4": {
-        "title": "Traitement par lots haute cadence",
-        "description": "Photographiez des <bold>centaines de produits</bold> par jour. Ideal pour les catalogues Amazon de grande taille."
+        "title": "Stapelverarbeitung mit hoher Taktung",
+        "description": "Fotografieren Sie <bold>Hunderte Produkte</bold> pro Tag. Ideal für grosse Amazon-Kataloge."
       },
       "item5": {
-        "title": "Formats optimises marketplace",
-        "description": "Export JPEG/PNG aux <bold>dimensions exactes</bold> requises par Amazon, Cdiscount, Zalando et toutes les marketplaces."
+        "title": "Für Marktplätze optimierte Formate",
+        "description": "Export als JPEG/PNG in den <bold>exakten Abmessungen</bold>, die Amazon, Cdiscount, Zalando und alle Marktplätze verlangen."
       }
     },
     "stats": {
       "stat1": {
         "value": "100%",
-        "label": "conforme aux exigences Amazon"
+        "label": "konform mit den Amazon-Anforderungen"
       },
       "stat2": {
         "value": "500+",
-        "label": "produits par jour"
+        "label": "Produkte pro Tag"
       },
       "stat3": {
         "value": "-80%",
-        "label": "de couts par image"
+        "label": "Kosten pro Bild"
       }
     },
     "machines": {
-      "heading": "Systèmes recommandés pour Amazon",
-      "subtitle": "Des studios <bold>compacts et performants</bold> pour la photo marketplace",
-      "cta": "Demander un devis"
+      "heading": "Empfohlene Systeme für Amazon",
+      "subtitle": "<bold>Kompakte und leistungsstarke</bold> Studios für die Marktplatz-Fotografie",
+      "cta": "Offerte anfordern"
     },
     "faq": {
-      "heading": "Questions frequentes sur la photo Amazon",
+      "heading": "Häufige Fragen zur Amazon-Fotografie",
       "q1": {
-        "question": "Quelles sont les exigences photo Amazon en 2026 ?",
-        "answer": "Amazon exige un fond blanc pur (RGB 255,255,255), une resolution minimum de 1000x1000 pixels (2000px recommande), le format JPEG ou PNG, et le produit doit occuper au moins 85% du cadre. Nos studios produisent automatiquement des images conformes a toutes ces specifications."
+        "question": "Welche Foto-Anforderungen stellt Amazon 2026?",
+        "answer": "Amazon verlangt einen rein weissen Hintergrund (RGB 255,255,255), eine Mindestauflösung von 1000x1000 Pixeln (2000 px empfohlen), das Format JPEG oder PNG, und das Produkt muss mindestens 85 % des Bildausschnitts einnehmen. Unsere Studios erstellen automatisch Bilder, die all diesen Spezifikationen entsprechen."
       },
       "q2": {
-        "question": "Comment avoir un fond blanc pur pour Amazon ?",
-        "answer": "Le système IQ Mask 2.0 des studios Orbitvu détoure automatiquement chaque produit et génère un fond blanc pur RGB 255,255,255. Aucune retouche Photoshop n'est nécessaire. Le résultat est conforme Amazon des la capture."
+        "question": "Wie erhält man einen rein weissen Hintergrund für Amazon?",
+        "answer": "Das System IQ Mask 2.0 der Orbitvu-Studios stellt jedes Produkt automatisch frei und erzeugt einen rein weissen Hintergrund RGB 255,255,255. Es ist keine Photoshop-Retusche nötig. Das Ergebnis ist schon ab der Aufnahme Amazon-konform."
       },
       "q3": {
-        "question": "Comment automatiser les photos produit pour une marketplace ?",
-        "answer": "Les studios Orbitvu automatisent tout le processus : positionnement, eclairage calibre, capture multi-angle, detourage et export. Un operateur sans competence photo produit des visuels conformes Amazon en quelques secondes par produit."
+        "question": "Wie automatisiert man Produktfotos für einen Marktplatz?",
+        "answer": "Die Orbitvu-Studios automatisieren den gesamten Ablauf: Positionierung, kalibrierte Beleuchtung, Aufnahme aus mehreren Winkeln, Freistellen und Export. Ein Bediener ohne Fotokenntnisse erstellt Amazon-konforme Visuals in wenigen Sekunden pro Produkt."
       }
     },
     "cta": {
-      "heading": "Pret a optimiser vos visuels marketplace ?",
-      "description": "Decouvrez comment nos studios automatises produisent des photos Amazon-ready en volume.",
-      "ctaPrimary": "Demander une demo",
-      "ctaSecondary": "Calculer mon ROI"
+      "heading": "Bereit, Ihre Marktplatz-Visuals zu optimieren?",
+      "description": "Entdecken Sie, wie unsere automatisierten Studios Amazon-taugliche Fotos in grossen Mengen erstellen.",
+      "ctaPrimary": "Demo anfragen",
+      "ctaSecondary": "Meinen ROI berechnen"
     },
     "testimonial": {
-      "quote": "Zéro rejet Amazon depuis 18 mois. Le détourage IQ Mask produit un fond blanc conforme à chaque fois, sans aucune retouche.",
+      "quote": "Seit 18 Monaten keine einzige Amazon-Ablehnung. Das Freistellen mit IQ Mask erzeugt jedes Mal einen konformen weissen Hintergrund, ganz ohne Retusche.",
       "author": "Sophie R.",
-      "role": "Responsable marketplace, groupe de distribution"
+      "role": "Marktplatz-Verantwortliche, Handelsgruppe"
     }
   },
   "packshotIndustriel": {
     "meta": {
-      "title": "Packshot Industriel | Documentation Visuelle de Precision",
-      "description": "Studio photo automatise pour l'industrie. Pieces mecaniques, surfaces metalliques, photo 360, integration PIM/DAM. Standardisation visuelle multi-references."
+      "title": "Packshot Industrie | Präzise visuelle Dokumentation",
+      "description": "Automatisiertes Fotostudio für die Industrie. Mechanische Teile, metallische Oberflächen, 360°-Fotografie, PIM/DAM-Integration. Visuelle Standardisierung über mehrere Artikel hinweg."
     },
     "hero": {
-      "title": "Packshot Industriel : Documentation Visuelle de Precision",
-      "subtitle": "Photographiez vos pieces techniques et equipements industriels avec une precision et une regularite absolues.",
-      "cta": "Recevoir une offre",
-      "ctaSecondary": "Voir les studios"
+      "title": "Packshot Industrie: Präzise visuelle Dokumentation",
+      "subtitle": "Fotografieren Sie Ihre technischen Teile und Industrieausrüstungen mit absoluter Präzision und Gleichmässigkeit.",
+      "cta": "Offerte anfordern",
+      "ctaSecondary": "Studios entdecken"
     },
     "benefits": {
-      "heading": "Pourquoi un studio automatise pour l'industrie ?",
+      "heading": "Warum ein automatisiertes Studio für die Industrie?",
       "item1": {
-        "title": "Rendu des details mecaniques",
-        "description": "Eclairage calibre et macrophotographie pour capturer <bold>filetages, usinages, gravures</bold> et finitions de surface."
+        "title": "Wiedergabe mechanischer Details",
+        "description": "Kalibrierte Beleuchtung und Makrofotografie, um <bold>Gewinde, Bearbeitungen, Gravuren</bold> und Oberflächenfinish zu erfassen."
       },
       "item2": {
-        "title": "Photo 360 pour catalogues techniques",
-        "description": "Vues <bold>360 interactives</bold> de vos pieces detachees pour faciliter l'identification et <bold>reduire les erreurs</bold> de commande."
+        "title": "360°-Fotografie für technische Kataloge",
+        "description": "<bold>Interaktive 360°-Ansichten</bold> Ihrer Ersatzteile, um die Identifikation zu erleichtern und <bold>Bestellfehler zu reduzieren</bold>."
       },
       "item3": {
-        "title": "Eclairage controle pour surfaces metalliques",
-        "description": "Gestion avancee des reflets sur acier, aluminium, laiton et autres metaux grace a l'<bold>eclairage polarise</bold>."
+        "title": "Kontrollierte Beleuchtung für metallische Oberflächen",
+        "description": "Fortschrittliche Reflexkontrolle auf Stahl, Aluminium, Messing und anderen Metallen dank <bold>polarisierter Beleuchtung</bold>."
       },
       "item4": {
-        "title": "Standardisation visuelle multi-references",
-        "description": "Meme rendu, meme eclairage, meme angle sur l'ensemble de votre catalogue technique, <bold>quelle que soit la quantite</bold>."
+        "title": "Visuelle Standardisierung über mehrere Artikel hinweg",
+        "description": "Gleiches Resultat, gleiche Beleuchtung, gleicher Winkel über Ihren gesamten technischen Katalog hinweg, <bold>unabhängig von der Menge</bold>."
       },
       "item5": {
-        "title": "Integration PIM/DAM",
-        "description": "Export automatique avec nomenclatures, codes produit et metadonnees pour <bold>integration directe</bold> dans vos systemes PIM/ERP."
+        "title": "PIM/DAM-Integration",
+        "description": "Automatischer Export mit Stücklisten, Produktcodes und Metadaten für die <bold>direkte Integration</bold> in Ihre PIM/ERP-Systeme."
       }
     },
     "stats": {
       "stat1": {
         "value": "150+",
-        "label": "pièces photographiées par jour"
+        "label": "Teile pro Tag fotografiert"
       },
       "stat2": {
         "value": "100%",
-        "label": "standardisation visuelle"
+        "label": "visuelle Standardisierung"
       },
       "stat3": {
         "value": "-70%",
-        "label": "de temps de documentation"
+        "label": "Dokumentationszeit"
       }
     },
     "machines": {
-      "heading": "Systèmes recommandés pour l'industrie",
-      "subtitle": "Des studios <bold>robustes</bold> pour les pieces techniques et mecaniques",
-      "cta": "Demander un devis"
+      "heading": "Empfohlene Systeme für die Industrie",
+      "subtitle": "<bold>Robuste</bold> Studios für technische und mechanische Teile",
+      "cta": "Offerte anfordern"
     },
     "faq": {
-      "heading": "Questions frequentes sur la photo industrielle",
+      "heading": "Häufige Fragen zur Industriefotografie",
       "q1": {
-        "question": "Comment photographier des pieces metalliques sans reflets ?",
-        "answer": "Les studios Orbitvu disposent d'un eclairage LED polarise qui controle les reflets sur les surfaces metalliques (acier, aluminium, laiton). Le systeme permet d'ajuster precisement l'angle et l'intensite lumineuse pour un rendu optimal."
+        "question": "Wie fotografiert man metallische Teile ohne Reflexe?",
+        "answer": "Die Orbitvu-Studios verfügen über eine polarisierte LED-Beleuchtung, die Reflexe auf metallischen Oberflächen (Stahl, Aluminium, Messing) kontrolliert. Das System erlaubt es, Winkel und Lichtintensität präzise einzustellen, für ein optimales Resultat."
       },
       "q2": {
-        "question": "Quel studio photo pour les pieces techniques ?",
-        "answer": "L'Alphashot XL v2 est ideal pour les pieces moyennes (jusqu'a 50cm), tandis que l'Alphashot Pro G2 offre 74 sources lumineuses pour un controle total sur les objets reflechissants. Les deux proposent la photo 360 et le detourage automatique."
+        "question": "Welches Fotostudio eignet sich für technische Teile?",
+        "answer": "Die Alphashot XL v2 ist ideal für mittelgrosse Teile (bis zu 50 cm), während die Alphashot Pro G2 mit 74 Lichtquellen die vollständige Kontrolle über reflektierende Objekte bietet. Beide bieten 360°-Fotografie und automatisches Freistellen."
       },
       "q3": {
-        "question": "Comment standardiser la photo produit industrielle ?",
-        "answer": "Les studios automatises garantissent le meme eclairage, le meme cadrage et le meme fond pour chaque reference. Un operateur sans competence photo produit des visuels identiques sur des milliers de pieces, assurant la coherence de votre catalogue technique."
+        "question": "Wie standardisiert man die industrielle Produktfotografie?",
+        "answer": "Die automatisierten Studios garantieren die gleiche Beleuchtung, den gleichen Bildausschnitt und den gleichen Hintergrund für jeden Artikel. Ein Bediener ohne Fotokenntnisse erstellt identische Visuals über Tausende von Teilen hinweg und sorgt so für die Einheitlichkeit Ihres technischen Katalogs."
       }
     },
     "cta": {
-      "heading": "Pret a moderniser votre documentation visuelle ?",
-      "description": "Decouvrez comment nos studios automatises transforment la documentation technique de vos produits industriels.",
-      "ctaPrimary": "Demander une demo",
-      "ctaSecondary": "Calculer mon ROI"
+      "heading": "Bereit, Ihre visuelle Dokumentation zu modernisieren?",
+      "description": "Entdecken Sie, wie unsere automatisierten Studios die technische Dokumentation Ihrer Industrieprodukte verändern.",
+      "ctaPrimary": "Demo anfragen",
+      "ctaSecondary": "Meinen ROI berechnen"
     },
     "testimonial": {
-      "quote": "La reproductibilité est totale. Chaque pièce de notre catalogue de 15 000 références a exactement le même rendu.",
+      "quote": "Die Reproduzierbarkeit ist vollständig. Jedes Teil unseres Katalogs mit 15'000 Artikeln hat exakt dasselbe Resultat.",
       "author": "Philippe B.",
-      "role": "Responsable documentation technique, équipementier automobile"
+      "role": "Leiter technische Dokumentation, Automobilzulieferer"
     }
   },
   "industrieDefense": {
@@ -2210,18 +2210,18 @@
   },
   "media": {
     "video": {
-      "play": "Lire la vidéo : {title}"
+      "play": "Video abspielen: {title}"
     },
     "gallery": {
-      "enlarge": "Agrandir : {alt}",
-      "close": "Fermer",
-      "prev": "Image précédente",
-      "next": "Image suivante"
+      "enlarge": "Vergrössern: {alt}",
+      "close": "Schliessen",
+      "prev": "Vorheriges Bild",
+      "next": "Nächstes Bild"
     },
     "beforeAfter": {
-      "slider": "Curseur avant/après",
-      "before": "Avant",
-      "after": "Après"
+      "slider": "Vorher/Nachher-Regler",
+      "before": "Vorher",
+      "after": "Nachher"
     }
   },
   "blogBudget": {

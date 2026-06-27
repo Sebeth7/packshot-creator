@@ -18,8 +18,9 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL } from '@/lib/locale-text';
 
-// Machines cœur effectivement servies en allemand suisse (/de-ch/fotostudio/[slug]).
-const DE_CH_MACHINES = new Set(['alphashot-360', 'alphashot-micro-v2', 'alphashot-pro-g2']);
+// Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
+// Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
+const DE_CH_MACHINES = new Set(MACHINES.map((m) => m.id));
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -1266,7 +1267,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`,
                     `Testen Sie den ${machine.nom} in unseren Showrooms und entdecken Sie, wie er Ihre Fotoproduktion transformieren kann.`)}
                 </p>
-                <ContactForm locale={lang === 'fr' ? 'fr' : 'en'} compact defaultRequestType="demo" machineContext={machine.nom} />
+                <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} compact defaultRequestType="demo" machineContext={machine.nom} />
               </div>
             </FadeInView>
 

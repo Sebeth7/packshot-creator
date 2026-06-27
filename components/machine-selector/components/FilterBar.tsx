@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { tx, pickL } from '@/lib/locale-text';
 import type {
   MachineSelectorFilters,
   ProductSizeCategory,
@@ -22,55 +23,55 @@ interface FilterBarProps {
 }
 
 // Labels pour les catégories de taille
-const SIZE_LABELS: Record<ProductSizeCategory, { fr: string; en: string }> = {
-  'petit': { fr: 'Petit (< 30cm)', en: 'Small (< 30cm)' },
-  'moyen': { fr: 'Moyen (30-60cm)', en: 'Medium (30-60cm)' },
-  'grand': { fr: 'Grand (60-150cm)', en: 'Large (60-150cm)' },
-  'tres-grand': { fr: 'Très grand (> 150cm)', en: 'Extra large (> 150cm)' },
+const SIZE_LABELS: Record<ProductSizeCategory, { fr: string; en: string; 'de-ch': string }> = {
+  'petit': { fr: 'Petit (< 30cm)', en: 'Small (< 30cm)', 'de-ch': 'Klein (< 30cm)' },
+  'moyen': { fr: 'Moyen (30-60cm)', en: 'Medium (30-60cm)', 'de-ch': 'Mittel (30-60cm)' },
+  'grand': { fr: 'Grand (60-150cm)', en: 'Large (60-150cm)', 'de-ch': 'Gross (60-150cm)' },
+  'tres-grand': { fr: 'Très grand (> 150cm)', en: 'Extra large (> 150cm)', 'de-ch': 'Sehr gross (> 150cm)' },
 };
 
 // Labels pour les features
-const FEATURE_LABELS: Record<ContentType, { fr: string; en: string }> = {
-  'packshot': { fr: 'Packshot', en: 'Packshot' },
-  '360': { fr: 'Vue 360°', en: '360° View' },
-  'video': { fr: 'Vidéo', en: 'Video' },
-  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin' },
-  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay' },
-  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle' },
+const FEATURE_LABELS: Record<ContentType, { fr: string; en: string; 'de-ch': string }> = {
+  'packshot': { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot' },
+  '360': { fr: 'Vue 360°', en: '360° View', 'de-ch': '360°-Ansicht' },
+  'video': { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video' },
+  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin', 'de-ch': 'Ghost Mannequin' },
+  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', 'de-ch': 'Flat-Lay' },
+  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle' },
 };
 
 // Labels pour les secteurs
-const SECTOR_LABELS: Record<IndustrySector, { fr: string; en: string }> = {
-  'jewelry': { fr: 'Bijouterie', en: 'Jewelry' },
-  'fashion': { fr: 'Mode', en: 'Fashion' },
-  'footwear': { fr: 'Chaussures', en: 'Footwear' },
-  'bags': { fr: 'Maroquinerie', en: 'Bags' },
-  'cosmetics': { fr: 'Cosmétiques', en: 'Cosmetics' },
-  'electronics': { fr: 'Électronique', en: 'Electronics' },
-  'furniture': { fr: 'Mobilier', en: 'Furniture' },
-  'wine': { fr: 'Vins/Spiritueux', en: 'Wine/Spirits' },
-  'cycling': { fr: 'Cycles', en: 'Cycling' },
-  'sports': { fr: 'Sports', en: 'Sports' },
-  'appliances': { fr: 'Électroménager', en: 'Appliances' },
-  'automotive': { fr: 'Automobile', en: 'Automotive' },
-  'general': { fr: 'E-commerce général', en: 'General e-commerce' },
+const SECTOR_LABELS: Record<IndustrySector, { fr: string; en: string; 'de-ch': string }> = {
+  'jewelry': { fr: 'Bijouterie', en: 'Jewelry', 'de-ch': 'Schmuck' },
+  'fashion': { fr: 'Mode', en: 'Fashion', 'de-ch': 'Mode' },
+  'footwear': { fr: 'Chaussures', en: 'Footwear', 'de-ch': 'Schuhe' },
+  'bags': { fr: 'Maroquinerie', en: 'Bags', 'de-ch': 'Taschen' },
+  'cosmetics': { fr: 'Cosmétiques', en: 'Cosmetics', 'de-ch': 'Kosmetik' },
+  'electronics': { fr: 'Électronique', en: 'Electronics', 'de-ch': 'Elektronik' },
+  'furniture': { fr: 'Mobilier', en: 'Furniture', 'de-ch': 'Möbel' },
+  'wine': { fr: 'Vins/Spiritueux', en: 'Wine/Spirits', 'de-ch': 'Wein/Spirituosen' },
+  'cycling': { fr: 'Cycles', en: 'Cycling', 'de-ch': 'Fahrräder' },
+  'sports': { fr: 'Sports', en: 'Sports', 'de-ch': 'Sport' },
+  'appliances': { fr: 'Électroménager', en: 'Appliances', 'de-ch': 'Haushaltsgeräte' },
+  'automotive': { fr: 'Automobile', en: 'Automotive', 'de-ch': 'Automobil' },
+  'general': { fr: 'E-commerce général', en: 'General e-commerce', 'de-ch': 'Allgemeiner E-Commerce' },
 };
 
 // Labels pour l'automatisation
-const AUTOMATION_LABELS: Record<AutomationLevel, { fr: string; en: string }> = {
-  'manual': { fr: 'Manuel', en: 'Manual' },
-  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic' },
-  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic' },
+const AUTOMATION_LABELS: Record<AutomationLevel, { fr: string; en: string; 'de-ch': string }> = {
+  'manual': { fr: 'Manuel', en: 'Manual', 'de-ch': 'Manuell' },
+  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic', 'de-ch': 'Halbautomatisch' },
+  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic', 'de-ch': 'Vollautomatisch' },
 };
 
 // Labels pour le tri
-const SORT_LABELS: Record<SortOption, { fr: string; en: string }> = {
-  'price-asc': { fr: 'Prix croissant', en: 'Price (low to high)' },
-  'price-desc': { fr: 'Prix décroissant', en: 'Price (high to low)' },
-  'capacity-asc': { fr: 'Capacité croissante', en: 'Capacity (low to high)' },
-  'capacity-desc': { fr: 'Capacité décroissante', en: 'Capacity (high to low)' },
-  'name-asc': { fr: 'Nom A-Z', en: 'Name A-Z' },
-  'name-desc': { fr: 'Nom Z-A', en: 'Name Z-A' },
+const SORT_LABELS: Record<SortOption, { fr: string; en: string; 'de-ch': string }> = {
+  'price-asc': { fr: 'Prix croissant', en: 'Price (low to high)', 'de-ch': 'Preis aufsteigend' },
+  'price-desc': { fr: 'Prix décroissant', en: 'Price (high to low)', 'de-ch': 'Preis absteigend' },
+  'capacity-asc': { fr: 'Capacité croissante', en: 'Capacity (low to high)', 'de-ch': 'Kapazität aufsteigend' },
+  'capacity-desc': { fr: 'Capacité décroissante', en: 'Capacity (high to low)', 'de-ch': 'Kapazität absteigend' },
+  'name-asc': { fr: 'Nom A-Z', en: 'Name A-Z', 'de-ch': 'Name A-Z' },
+  'name-desc': { fr: 'Nom Z-A', en: 'Name Z-A', 'de-ch': 'Name Z-A' },
 };
 
 export function FilterBar({
@@ -102,7 +103,7 @@ export function FilterBar({
         <div className="flex-1 relative">
           <input
             type="text"
-            placeholder={locale === 'fr' ? 'Rechercher une machine...' : 'Search machines...'}
+            placeholder={tx(locale, 'Rechercher une machine...', 'Search machines...', 'Maschine suchen...')}
             value={filters.searchQuery || ''}
             onChange={(e) => onFilterChange('searchQuery', e.target.value || undefined)}
             className="w-full pl-10 pr-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all"
@@ -131,7 +132,7 @@ export function FilterBar({
           >
             {Object.entries(SORT_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
-                {locale === 'fr' ? label.fr : label.en}
+                {pickL(locale, label)}
               </option>
             ))}
           </select>
@@ -147,10 +148,10 @@ export function FilterBar({
             onChange={(e) => onFilterChange('sizeCategory', (e.target.value || undefined) as ProductSizeCategory | undefined)}
             className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
-            <option value="">{locale === 'fr' ? 'Toutes les tailles' : 'All sizes'}</option>
+            <option value="">{tx(locale, 'Toutes les tailles', 'All sizes', 'Alle Grössen')}</option>
             {Object.entries(SIZE_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
-                {locale === 'fr' ? label.fr : label.en}
+                {pickL(locale, label)}
               </option>
             ))}
           </select>
@@ -166,10 +167,10 @@ export function FilterBar({
             onChange={(e) => onFilterChange('automationLevel', (e.target.value || undefined) as AutomationLevel | undefined)}
             className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
-            <option value="">{locale === 'fr' ? 'Automatisation' : 'Automation'}</option>
+            <option value="">{tx(locale, 'Automatisation', 'Automation', 'Automatisierung')}</option>
             {Object.entries(AUTOMATION_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
-                {locale === 'fr' ? label.fr : label.en}
+                {pickL(locale, label)}
               </option>
             ))}
           </select>
@@ -190,7 +191,7 @@ export function FilterBar({
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
           </svg>
-          {locale === 'fr' ? 'Filtres avancés' : 'Advanced filters'}
+          {tx(locale, 'Filtres avancés', 'Advanced filters', 'Erweiterte Filter')}
         </button>
 
         {/* Bouton réinitialiser */}
@@ -202,7 +203,7 @@ export function FilterBar({
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
-            {locale === 'fr' ? 'Réinitialiser' : 'Reset'}
+            {tx(locale, 'Réinitialiser', 'Reset', 'Zurücksetzen')}
           </button>
         )}
       </div>
@@ -213,7 +214,7 @@ export function FilterBar({
           {/* Secteurs */}
           <div>
             <label className="block text-sm font-medium text-future-dusk-700 mb-2">
-              {locale === 'fr' ? 'Secteurs d\'activité' : 'Industries'}
+              {tx(locale, 'Secteurs d\'activité', 'Industries', 'Branchen')}
             </label>
             <div className="flex flex-wrap gap-2">
               {Object.entries(SECTOR_LABELS).map(([value, label]) => {
@@ -236,7 +237,7 @@ export function FilterBar({
                         : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
                     }`}
                   >
-                    {locale === 'fr' ? label.fr : label.en}
+                    {pickL(locale, label)}
                   </button>
                 );
               })}
@@ -246,7 +247,7 @@ export function FilterBar({
           {/* Fonctionnalités */}
           <div>
             <label className="block text-sm font-medium text-future-dusk-700 mb-2">
-              {locale === 'fr' ? 'Fonctionnalités requises' : 'Required features'}
+              {tx(locale, 'Fonctionnalités requises', 'Required features', 'Erforderliche Funktionen')}
             </label>
             <div className="flex flex-wrap gap-2">
               {Object.entries(FEATURE_LABELS).map(([value, label]) => {
@@ -269,7 +270,7 @@ export function FilterBar({
                         : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
                     }`}
                   >
-                    {locale === 'fr' ? label.fr : label.en}
+                    {pickL(locale, label)}
                   </button>
                 );
               })}
@@ -281,13 +282,16 @@ export function FilterBar({
       {/* Compteur de résultats */}
       <div className="mt-4 pt-4 border-t border-neutral-200 flex items-center justify-between text-sm text-future-dusk-600">
         <span>
-          {locale === 'fr'
-            ? `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} sur ${totalMachines}`
-            : `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} of ${totalMachines}`}
+          {tx(
+            locale,
+            `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} sur ${totalMachines}`,
+            `${visibleMachines} machine${visibleMachines > 1 ? 's' : ''} of ${totalMachines}`,
+            `${visibleMachines} Maschine${visibleMachines > 1 ? 'n' : ''} von ${totalMachines}`
+          )}
         </span>
         {hasActiveFilters && (
           <span className="text-very-peri-600">
-            {locale === 'fr' ? 'Filtres actifs' : 'Filters active'}
+            {tx(locale, 'Filtres actifs', 'Filters active', 'Aktive Filter')}
           </span>
         )}
       </div>

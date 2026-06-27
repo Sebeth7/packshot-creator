@@ -69,11 +69,28 @@ interface PageProps {
   params: Promise<{ slug: string; lang: string }>;
 }
 
-// Couverture de-ch (Workstream B) : un seul secteur servi en Suisse alémanique,
-// /de-ch/branchen/schmuck (= équivalent du FR /industrie/bijoux-joaillerie).
-const DE_CH_BIJOUX_FR = 'bijoux-joaillerie';
-const DE_CH_SCHMUCK = 'schmuck';
-const isBijouxSchmuckPair = (slug: string) => slug === DE_CH_BIJOUX_FR || slug === DE_CH_SCHMUCK;
+// Couverture de-ch (Workstream B) : secteurs « parcours suisse » servis en
+// Suisse alémanique sous /de-ch/branchen/<slug-allemand>.
+// Clé = slug ALLEMAND (segment d'URL de-ch) ; valeur = slug FR source (données,
+// maps machines/hero/related/solutions toutes keyées en FR).
+const DE_CH_SECTOR_MAP: Record<string, string> = {
+  schmuck: 'bijoux-joaillerie',
+  uhren: 'horlogerie',
+  brillen: 'lunetterie',
+  schoenheit: 'cosmetiques-beaute',
+  elektronik: 'electronique-hightech',
+  sport: 'sport-outdoor',
+  mode: 'mode-textile',
+  wein: 'vin-spiritueux',
+};
+// Réciproque slug FR → slug allemand (pour les alternates de-CH des pages fr/en).
+const FR_TO_DE_CH_SECTOR: Record<string, string> = Object.fromEntries(
+  Object.entries(DE_CH_SECTOR_MAP).map(([de, fr]) => [fr, de]),
+);
+/** Slug allemand de-ch correspondant à un slug FR (undefined si non couvert). */
+const deChSlugForFr = (frSlug: string): string | undefined => FR_TO_DE_CH_SECTOR[frSlug];
+/** Slug FR source à partir d'un slug allemand de-ch. */
+const frSlugForDeCh = (deSlug: string): string => DE_CH_SECTOR_MAP[deSlug] ?? deSlug;
 
 /** Résout l'objet secteur selon la locale (de-ch lit le jeu de données allemand). */
 function resolveSecteur(slug: string, lang: string) {
@@ -84,7 +101,7 @@ function resolveSecteur(slug: string, lang: string) {
 
 /** Slug « données » pour les maps keyées en FR (machines, hero, related, solutions). */
 function dataSlugFor(slug: string, lang: string) {
-  return lang === 'de-ch' && slug === DE_CH_SCHMUCK ? DE_CH_BIJOUX_FR : slug;
+  return lang === 'de-ch' ? frSlugForDeCh(slug) : slug;
 }
 
 export async function generateStaticParams() {
@@ -92,8 +109,8 @@ export async function generateStaticParams() {
   for (const lang of ['fr', 'en']) {
     for (const secteur of secteurs) out.push({ lang, slug: secteur.slug });
   }
-  // de-ch : uniquement le hub bijoux, sous le slug allemand 'schmuck'.
-  out.push({ lang: 'de-ch', slug: DE_CH_SCHMUCK });
+  // de-ch : secteurs du parcours suisse, sous leurs slugs allemands.
+  for (const de of Object.keys(DE_CH_SECTOR_MAP)) out.push({ lang: 'de-ch', slug: de });
   return out;
 }
 
@@ -103,14 +120,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!secteur) return { title: 'Secteur non trouvé' };
 
   // Slug de l'équivalent FR (les alternates fr/en pointent toujours vers la version FR).
-  const frSlug = slug === DE_CH_SCHMUCK ? DE_CH_BIJOUX_FR : slug;
+  const frSlug = lang === 'de-ch' ? frSlugForDeCh(slug) : slug;
   const isNoindex = lang === 'en' && NOINDEX_EN_INDUSTRIE_SLUGS.has(frSlug);
   // Pas d'alternate en quand la version EN est noindex (hreflang vers cible non indexable)
   const hasEnAlternate = !NOINDEX_EN_INDUSTRIE_SLUGS.has(frSlug);
-  // L'URL réelle de-ch est /de-ch/branchen/schmuck (segment + slug localisés).
+  // Slug allemand de-ch (présent si le secteur est couvert en Suisse alémanique).
+  const deChSlug = lang === 'de-ch' ? slug : deChSlugForFr(frSlug);
+  // L'URL réelle de-ch est /de-ch/branchen/<slug-allemand> (segment + slug localisés).
   const canonical =
     lang === 'de-ch'
-      ? `https://www.packshot-creator.com/de-ch/branchen/${DE_CH_SCHMUCK}`
+      ? `https://www.packshot-creator.com/de-ch/branchen/${slug}`
       : `https://www.packshot-creator.com/${lang}/industrie/${slug}`;
 
   return {
@@ -121,7 +140,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical,
       languages: buildLanguages(`/fr/industrie/${frSlug}`, {
         ...(hasEnAlternate ? { en: `/en/industrie/${frSlug}` } : {}),
-        ...(isBijouxSchmuckPair(slug) ? { deCh: `/de-ch/branchen/${DE_CH_SCHMUCK}` } : {}),
+        ...(deChSlug ? { deCh: `/de-ch/branchen/${deChSlug}` } : {}),
       }),
     },
     openGraph: {
@@ -174,15 +193,15 @@ export default async function SecteurPage({ params }: PageProps) {
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
 
-  /* Machines recommandées pour ce secteur */
-  const machineIds = SECTOR_MACHINE_MAP[slug] || [];
+  /* Machines recommandées pour ce secteur (maps keyées en slug FR) */
+  const machineIds = SECTOR_MACHINE_MAP[dataSlug] || [];
   const recommendedMachines = machineIds
     .map((id) => MACHINES.find((m) => m.id === id))
     .filter(Boolean);
 
   /* Solutions industrielles pertinentes pour ce secteur */
   const relevantSolutions = solutions.filter((sol) =>
-    sol.secteurs.items.some((s) => s.slug === slug)
+    sol.secteurs.items.some((s) => s.slug === dataSlug)
   );
 
   const solutionIcons: Record<string, React.ReactNode> = {
@@ -211,9 +230,9 @@ export default async function SecteurPage({ params }: PageProps) {
         ]}
         media={
           <div className="w-full h-[360px] lg:h-[440px] rounded-2xl overflow-hidden">
-            {SECTOR_HERO_IMAGE_MAP[slug] ? (
+            {SECTOR_HERO_IMAGE_MAP[dataSlug] ? (
               <HeroImage
-                basePath={`/images/hero/${SECTOR_HERO_IMAGE_MAP[slug]}`}
+                basePath={`/images/hero/${SECTOR_HERO_IMAGE_MAP[dataSlug]}`}
                 alt={secteur.hero.titre}
                 priority
                 className="rounded-2xl"
@@ -511,7 +530,7 @@ export default async function SecteurPage({ params }: PageProps) {
               'md:grid-cols-3'
             }`}>
               {relevantSolutions.map((sol) => {
-                const secteurData = sol.secteurs.items.find((s) => s.slug === slug);
+                const secteurData = sol.secteurs.items.find((s) => s.slug === dataSlug);
                 return (
                   <StaggerItem key={sol.slug}>
                     <Link href={{ pathname: '/solutions/[slug]', params: { slug: sol.slug } }} className="group block h-full">
@@ -712,7 +731,7 @@ export default async function SecteurPage({ params }: PageProps) {
                     '30 minutes with an expert. See our systems in action on your own products.',
                     '30 Minuten mit einem Experten. Sehen Sie unsere Systeme an Ihren eigenen Produkten in Aktion.')}
                 </p>
-                <ContactForm locale={lang === 'fr' ? 'fr' : 'en'} compact defaultRequestType="demo" />
+                <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} compact defaultRequestType="demo" />
               </div>
             </FadeInView>
 

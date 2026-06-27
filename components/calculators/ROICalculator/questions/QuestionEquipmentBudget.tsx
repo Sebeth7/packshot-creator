@@ -6,9 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionEquipmentBudgetProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -26,11 +27,18 @@ const LABELS = {
     placeholder: '€3,000 (suggested value)',
     unit: '€/year',
   },
+  'de-ch': {
+    label: 'Aktuelles Jahresbudget für Fotoausrüstung und Software?',
+    sublabel: 'Material, Beleuchtung, Lizenzen, Fläche (optional)',
+    tooltip: 'Abschreibung Material + Lizenzen + Miete für dedizierte Fläche',
+    placeholder: '3 000€ (Richtwert)',
+    unit: '€/Jahr',
+  },
 };
 
 export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBudgetProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('budgetEquipement');
 
@@ -46,7 +54,7 @@ export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBud
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -71,10 +79,11 @@ export default function QuestionEquipmentBudget({ locale }: QuestionEquipmentBud
       </div>
 
       <p className="text-xs text-future-dusk-500 italic">
-        {locale === 'fr'
-          ? 'Si non renseigné, nous utiliserons 3 000€ comme estimation'
-          : 'If not provided, we will use €3,000 as an estimate'
-        }
+        {tx(locale,
+          'Si non renseigné, nous utiliserons 3 000€ comme estimation',
+          'If not provided, we will use €3,000 as an estimate',
+          'Wenn nicht angegeben, verwenden wir 3 000 CHF als Schätzung'
+        )}
       </p>
 
       {errors.budgetEquipement && (

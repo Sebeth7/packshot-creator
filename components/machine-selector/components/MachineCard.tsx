@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { tx, pickL } from '@/lib/locale-text';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineCardProps {
@@ -30,20 +31,20 @@ function getText(text: BilingualText, locale: 'fr' | 'en'): string {
 }
 
 // Labels pour les features
-const FEATURE_LABELS: Record<string, { fr: string; en: string; icon: string }> = {
-  'packshot': { fr: 'Packshot', en: 'Packshot', icon: '📷' },
-  '360': { fr: '360°', en: '360°', icon: '🔄' },
-  'video': { fr: 'Vidéo', en: 'Video', icon: '🎬' },
-  'ghost-mannequin': { fr: 'Ghost', en: 'Ghost', icon: '👤' },
-  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', icon: '⬇️' },
-  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', icon: '✨' },
+const FEATURE_LABELS: Record<string, { fr: string; en: string; 'de-ch': string; icon: string }> = {
+  'packshot': { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot', icon: '📷' },
+  '360': { fr: '360°', en: '360°', 'de-ch': '360°', icon: '🔄' },
+  'video': { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video', icon: '🎬' },
+  'ghost-mannequin': { fr: 'Ghost', en: 'Ghost', 'de-ch': 'Ghost', icon: '👤' },
+  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', 'de-ch': 'Flat-Lay', icon: '⬇️' },
+  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle', icon: '✨' },
 };
 
 // Labels pour l'automatisation
-const AUTOMATION_LABELS: Record<string, { fr: string; en: string; color: string }> = {
-  'manual': { fr: 'Manuel', en: 'Manual', color: 'bg-neutral-100 text-future-dusk-700' },
-  'semi-auto': { fr: 'Semi-auto', en: 'Semi-auto', color: 'bg-blue-100 text-blue-700' },
-  'full-auto': { fr: 'Full auto', en: 'Full auto', color: 'bg-green-100 text-green-700' },
+const AUTOMATION_LABELS: Record<string, { fr: string; en: string; 'de-ch': string; color: string }> = {
+  'manual': { fr: 'Manuel', en: 'Manual', 'de-ch': 'Manuell', color: 'bg-neutral-100 text-future-dusk-700' },
+  'semi-auto': { fr: 'Semi-auto', en: 'Semi-auto', 'de-ch': 'Halbauto.', color: 'bg-blue-100 text-blue-700' },
+  'full-auto': { fr: 'Full auto', en: 'Full auto', 'de-ch': 'Vollauto.', color: 'bg-green-100 text-green-700' },
 };
 
 export function MachineCard({
@@ -73,7 +74,7 @@ export function MachineCard({
       {/* Badge sélectionné */}
       {isSelected && (
         <div className="absolute top-3 right-3 z-10 bg-very-peri-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
-          {locale === 'fr' ? 'Sélectionné' : 'Selected'}
+          {tx(locale, 'Sélectionné', 'Selected', 'Ausgewählt')}
         </div>
       )}
 
@@ -101,7 +102,7 @@ export function MachineCard({
 
         {/* Badge automatisation */}
         <div className={`absolute bottom-3 left-3 px-2 py-1 rounded-full text-xs font-medium ${automationLabel.color}`}>
-          {locale === 'fr' ? automationLabel.fr : automationLabel.en}
+          {pickL(locale, automationLabel)}
         </div>
       </Link>
 
@@ -137,7 +138,7 @@ export function MachineCard({
             <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            <span>{machine.capaciteJour} {locale === 'fr' ? 'photos/j' : 'photos/d'}</span>
+            <span>{machine.capaciteJour} {tx(locale, 'photos/j', 'photos/d', 'Fotos/Tag')}</span>
           </div>
           <div className="flex items-center gap-1.5 text-future-dusk-600">
             <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +158,7 @@ export function MachineCard({
                 className="inline-flex items-center gap-1 px-2 py-0.5 bg-neutral-100 text-future-dusk-700 text-xs rounded-full"
               >
                 <span>{label?.icon}</span>
-                <span>{locale === 'fr' ? label?.fr : label?.en}</span>
+                <span>{label ? pickL(locale, label) : null}</span>
               </span>
             );
           })}
@@ -181,7 +182,7 @@ export function MachineCard({
             onClick={(e) => e.stopPropagation()}
             className="flex-1 py-2 px-4 text-sm font-medium text-white bg-very-peri-600 rounded-xl hover:bg-very-peri-700 transition-colors text-center"
           >
-            {locale === 'fr' ? 'Voir la fiche' : 'View product'}
+            {tx(locale, 'Voir la fiche', 'View product', 'Produkt ansehen')}
           </Link>
           {onViewDetails && (
             <button
@@ -192,7 +193,7 @@ export function MachineCard({
               }}
               className="py-2 px-4 text-sm font-medium text-future-dusk-600 border border-neutral-200 rounded-xl hover:bg-neutral-50 transition-colors"
             >
-              {locale === 'fr' ? 'Aperçu' : 'Preview'}
+              {tx(locale, 'Aperçu', 'Preview', 'Vorschau')}
             </button>
           )}
         </div>

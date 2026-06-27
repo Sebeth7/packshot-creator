@@ -10,25 +10,29 @@ export const CONSTANTES = {
 } as const;
 
 // Labels pour les catégories de taille
-export const TAILLE_LABELS: Record<ProductSizeCategory, { fr: string; en: string; examples: string }> = {
+export const TAILLE_LABELS: Record<ProductSizeCategory, { fr: string; en: string; 'de-ch': string; examples: string }> = {
   petit: {
     fr: 'Petit (< 30 cm)',
     en: 'Small (< 30 cm)',
+    'de-ch': 'Klein (< 30 cm)',
     examples: 'Bijoux, montres, cosmétiques, petite électronique…',
   },
   moyen: {
     fr: 'Moyen (30-60 cm)',
     en: 'Medium (30-60 cm)',
+    'de-ch': 'Mittel (30-60 cm)',
     examples: 'Chaussures, sacs, électronique, accessoires…',
   },
   grand: {
     fr: 'Grand (60-150 cm)',
     en: 'Large (60-150 cm)',
+    'de-ch': 'Gross (60-150 cm)',
     examples: 'Petit mobilier, équipement sportif, électroménager…',
   },
   'tres-grand': {
     fr: 'Très grand (> 150 cm)',
     en: 'Very large (> 150 cm)',
+    'de-ch': 'Sehr gross (> 150 cm)',
     examples: 'Mobilier, vélos, grands équipements…',
   },
 };

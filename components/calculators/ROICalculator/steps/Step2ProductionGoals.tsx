@@ -10,7 +10,7 @@ import QuestionLeasing from '../questions/QuestionLeasing';
 import type { FullFormData } from '../lib/validation';
 
 interface Step2ProductionGoalsProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 export default function Step2ProductionGoals({ locale }: Step2ProductionGoalsProps) {

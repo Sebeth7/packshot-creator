@@ -18,6 +18,7 @@ import NotProfitableCTA from '../results/NotProfitableCTA';
 import EmailCapture from '../results/EmailCapture';
 import { trackCalculatorCompleted, trackCTAClick } from '../lib/analytics';
 import { formatEuro } from '../lib/calculations';
+import { tx } from '@/lib/locale-text';
 import type { CalculationResults, UserInputs } from '../lib/types';
 
 const EvolutionChart = dynamic(() => import('../results/EvolutionChart'), {
@@ -28,7 +29,7 @@ const EvolutionChart = dynamic(() => import('../results/EvolutionChart'), {
 interface Step3ResultsProps {
   results: CalculationResults;
   inputs: UserInputs;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
   onSelectMachine?: (machineId: string) => void;
 }
 
@@ -55,12 +56,23 @@ const LABELS = {
     capacitySolution3: 'Contact our team for a custom multi-machine study',
     capacityWarningNote: 'The results below are calculated for reference only and do not reflect a realistic production setup.',
   },
+  'de-ch': {
+    methodology: 'Berechnungsmethode',
+    capacityWarningTitle: 'Volumen übersteigt die Kapazität dieser Maschine',
+    capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
+      `Die ${machineName} kann bis zu ${capaciteMax.toLocaleString('de-CH')} Produkte/Jahr produzieren (${Math.round(capaciteMax / 230)} Produkte/Tag × 230 Tage). Ihr Bedarf von ${demande.toLocaleString('de-CH')} Produkte/Jahr übersteigt diese Kapazität.`,
+    capacityWarningSolutions: 'Mögliche Lösungen:',
+    capacitySolution1: 'Eine zweite Bedienperson im Schichtbetrieb einsetzen (+50% effektive Kapazität)',
+    capacitySolution2: 'Eine Maschine mit höherer Produktionskapazität wählen',
+    capacitySolution3: 'Unser Team für eine individuelle Mehrmaschinen-Studie kontaktieren',
+    capacityWarningNote: 'Die nachstehenden Ergebnisse dienen nur als Richtwert und spiegeln keine realistische Produktionskonfiguration wider.',
+  },
 };
 
 export default function Step3Results({ results, inputs, locale, onSelectMachine }: Step3ResultsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [showMethodology, setShowMethodology] = useState(false);
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   // Track completion au montage
   useEffect(() => {
@@ -245,9 +257,10 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           {/* Disclaimer */}
           <div data-pdf-section="disclaimer">
             <p className="mt-8 text-xs text-future-dusk-500 text-center">
-              {locale === 'fr'
-                ? 'Ces calculs sont réalisés de manière automatique et vous permettent d\'avoir un aperçu au plus juste de votre ROI. Nous vous recommandons de contacter notre équipe pour affiner la sélection du modèle et les calculs ROI en fonction de vos besoins spécifiques.'
-                : 'These calculations are performed automatically and give you the most accurate overview of your ROI. We recommend contacting our team to refine the model selection and ROI calculations based on your specific needs.'}
+              {tx(locale,
+                'Ces calculs sont réalisés de manière automatique et vous permettent d\'avoir un aperçu au plus juste de votre ROI. Nous vous recommandons de contacter notre équipe pour affiner la sélection du modèle et les calculs ROI en fonction de vos besoins spécifiques.',
+                'These calculations are performed automatically and give you the most accurate overview of your ROI. We recommend contacting our team to refine the model selection and ROI calculations based on your specific needs.',
+                'Diese Berechnungen erfolgen automatisch und geben Ihnen einen möglichst genauen Überblick über Ihren ROI. Wir empfehlen Ihnen, unser Team zu kontaktieren, um die Modellauswahl und die ROI-Berechnungen an Ihre spezifischen Bedürfnisse anzupassen.')}
             </p>
           </div>
         </>

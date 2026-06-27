@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 interface MethodologyModalProps {
   isOpen: boolean;
   onClose: () => void;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const CONTENT = {
@@ -65,11 +65,38 @@ const CONTENT = {
     ],
     note: 'These calculations are estimates based on your data and a 25% corporate tax rate. Contact our team for a personalized analysis adapted to your tax situation.',
   },
+  'de-ch': {
+    title: 'Wie werden Ihre Ergebnisse berechnet?',
+    close: 'Schliessen',
+    sections: [
+      {
+        icon: Calculator,
+        title: 'Kosten Ihrer aktuellen Lösung',
+        body: 'Wir berechnen die jährlichen Kosten Ihrer Produktion, indem wir Folgendes addieren: das Bruttogehalt Ihrer Mitarbeitenden (anteilig zur Zeit, die für die Produktfotografie aufgewendet wird), Ihr jährliches Ausrüstungsbudget sowie allfällige externe Dienstleister.',
+      },
+      {
+        icon: TrendingDown,
+        title: 'Kosten mit einem PackshotCreator-Studio',
+        body: 'Die Bedienzeit mit der Maschine wird auf Basis der realen Produktionskapazität jedes Modells (Produkte/Tag) im Verhältnis zu Ihrem Jahresvolumen berechnet. Je produktiver die Maschine, desto weniger bindet sie Ihre Teams.',
+      },
+      {
+        icon: Clock,
+        title: 'Rentabilität der Investition (Break-even)',
+        body: 'Der Break-even zeigt den Monat an, ab dem Ihre kumulierten Einsparungen den Kaufpreis der Maschine übersteigen. Jeden Monat summiert sich die Differenz zwischen Ihren aktuellen Kosten und den Betriebskosten mit der Maschine, bis die anfängliche Investition gedeckt ist. Diese Berechnung berücksichtigt den steuerlichen Vorteil aus der Abschreibung der Maschine (Unternehmenssteuer zum Satz von 25%).',
+      },
+      {
+        icon: Target,
+        title: 'ROI über 1 Jahr und 5 Jahre',
+        body: 'Der ROI vergleicht Ihre realen Einsparungen mit dem Maschinenpreis. Er umfasst: die betrieblichen Einsparungen (Reduktion der Bedienzeit und Wegfall externer Kosten) sowie den steuerlichen Vorteil von 25% Unternehmenssteuer auf die Abschreibung der Maschine (über 5 Jahre). Über 1 Jahr: Gesamteinsparungen abzüglich Kaufpreis. Über 5 Jahre: kumulierte Einsparungen über die Abschreibungsdauer.',
+      },
+    ],
+    note: 'Diese Berechnungen sind Schätzungen auf Basis Ihrer Daten und eines Unternehmenssteuersatzes von 25%. Kontaktieren Sie unser Team für eine persönliche Analyse, die auf Ihre steuerliche Situation abgestimmt ist.',
+  },
 };
 
 export default function MethodologyModal({ isOpen, onClose, locale }: MethodologyModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
-  const t = CONTENT[locale];
+  const t = CONTENT[locale] ?? CONTENT.en;
 
   // Fermer sur Escape
   useEffect(() => {

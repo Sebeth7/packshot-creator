@@ -20,16 +20,17 @@ import { MACHINES } from './lib/machines';
 import type { CalculationResults, UserInputs } from './lib/types';
 import { trackStepChange, trackCalculatorAbandonment } from './lib/analytics';
 import { trackROICalculatorStart } from '@/lib/analytics';
+import { tx } from '@/lib/locale-text';
 
 interface ROICalculatorWizardProps {
   className?: string;
-  locale?: 'fr' | 'en';
+  locale?: 'fr' | 'en' | 'de-ch';
 }
 
 const STEPS = [
-  { id: 1, title: { fr: 'Situation actuelle', en: 'Current situation' } },
-  { id: 2, title: { fr: 'Objectifs de production', en: 'Production goals' } },
-  { id: 3, title: { fr: 'Votre analyse ROI', en: 'Your ROI analysis' } },
+  { id: 1, title: { fr: 'Situation actuelle', en: 'Current situation', 'de-ch': 'Aktuelle Situation' } },
+  { id: 2, title: { fr: 'Objectifs de production', en: 'Production goals', 'de-ch': 'Produktionsziele' } },
+  { id: 3, title: { fr: 'Votre analyse ROI', en: 'Your ROI analysis', 'de-ch': 'Ihre ROI-Analyse' } },
 ];
 
 export default function ROICalculatorWizard({
@@ -147,13 +148,13 @@ export default function ROICalculatorWizard({
       <div className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-white font-heading font-bold text-lg">
-            {STEPS[currentStep - 1].title[locale]}
+            {STEPS[currentStep - 1].title[locale] ?? STEPS[currentStep - 1].title.en}
           </h2>
           <span className="text-white/80 text-sm">
-            {locale === 'fr' ? 'Étape' : 'Step'} {currentStep}/{STEPS.length}
+            {tx(locale, 'Étape', 'Step', 'Schritt')} {currentStep}/{STEPS.length}
           </span>
         </div>
-        <Progress value={progressPercent} className="h-2 bg-white/20" aria-label={locale === 'fr' ? `Progression : étape ${currentStep} sur ${STEPS.length}` : `Progress: step ${currentStep} of ${STEPS.length}`} />
+        <Progress value={progressPercent} className="h-2 bg-white/20" aria-label={tx(locale, `Progression : étape ${currentStep} sur ${STEPS.length}`, `Progress: step ${currentStep} of ${STEPS.length}`, `Fortschritt: Schritt ${currentStep} von ${STEPS.length}`)} />
       </div>
 
       {/* Contenu */}
@@ -186,7 +187,7 @@ export default function ROICalculatorWizard({
             <div className="flex flex-col items-center justify-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-very-peri-500 border-t-transparent mb-4" />
               <p className="text-future-dusk-500">
-                {locale === 'fr' ? 'Calcul de votre ROI en cours...' : 'Calculating your ROI...'}
+                {tx(locale, 'Calcul de votre ROI en cours...', 'Calculating your ROI...', 'Ihr ROI wird berechnet...')}
               </p>
             </div>
           )}
@@ -202,7 +203,7 @@ export default function ROICalculatorWizard({
                   className="gap-2"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  {locale === 'fr' ? 'Retour' : 'Back'}
+                  {tx(locale, 'Retour', 'Back', 'Zurück')}
                 </Button>
               ) : (
                 <div />
@@ -217,11 +218,11 @@ export default function ROICalculatorWizard({
                   {currentStep === 2 ? (
                     <>
                       <Calculator className="w-4 h-4" />
-                      {locale === 'fr' ? 'Calculer mon ROI' : 'Calculate my ROI'}
+                      {tx(locale, 'Calculer mon ROI', 'Calculate my ROI', 'Meinen ROI berechnen')}
                     </>
                   ) : (
                     <>
-                      {locale === 'fr' ? 'Suivant' : 'Next'}
+                      {tx(locale, 'Suivant', 'Next', 'Weiter')}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -232,7 +233,7 @@ export default function ROICalculatorWizard({
                   variant="outline"
                   onClick={handleReset}
                 >
-                  {locale === 'fr' ? 'Recommencer' : 'Start over'}
+                  {tx(locale, 'Recommencer', 'Start over', 'Neu starten')}
                 </Button>
               )}
             </div>

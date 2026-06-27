@@ -6,9 +6,10 @@ import { Slider } from '@/components/ui/slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionDailyCapacityProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -24,11 +25,17 @@ const LABELS = {
     tooltip: 'Products 100% ready to be published online',
     unit: 'products/day/operator',
   },
+  'de-ch': {
+    label: 'Wie viele fertige Produkte fotografieren Sie pro Tag?',
+    sublabel: 'Pro Bediener, Aufnahmen + vollständige Retusche',
+    tooltip: 'Produkte, die zu 100% bereit für die Veröffentlichung sind',
+    unit: 'Produkte/Tag/Bediener',
+  },
 };
 
 export default function QuestionDailyCapacity({ locale }: QuestionDailyCapacityProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('capaciteJournaliere') || 30;
 
@@ -44,7 +51,7 @@ export default function QuestionDailyCapacity({ locale }: QuestionDailyCapacityP
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

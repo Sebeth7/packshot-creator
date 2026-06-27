@@ -6,9 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionAccessoriesProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -24,11 +25,17 @@ const LABELS = {
     placeholder: 'e.g.: 3000',
     unit: '\u20ac excl. tax',
   },
+  'de-ch': {
+    label: 'Zus\u00e4tzliches Zubeh\u00f6r',
+    tooltip: 'Betrag des Orbitvu-Zubeh\u00f6rs (ohne Kameras), der auf Ihrer PackshotCreator-Offerte aufgef\u00fchrt ist. Dieser Betrag wird f\u00fcr die ROI-Berechnung zum Studiopreis hinzugerechnet.',
+    placeholder: 'z. B.: 3000',
+    unit: '\u20ac exkl. MwSt.',
+  },
 };
 
 export default function QuestionAccessories({ locale }: QuestionAccessoriesProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const montantAccessoires = watch('montantAccessoires');
 
@@ -41,7 +48,7 @@ export default function QuestionAccessories({ locale }: QuestionAccessoriesProps
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

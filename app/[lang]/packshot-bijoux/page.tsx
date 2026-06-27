@@ -19,6 +19,13 @@ interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+// Segment de-ch localisé (Suisse alémanique) — voir i18n/routing.ts pathnames.
+const DE_CH_PATH = '/de-ch/packshot-schmuck';
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
@@ -27,8 +34,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
-      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}` }),
+      canonical:
+        lang === 'de-ch'
+          ? `https://www.packshot-creator.com${DE_CH_PATH}`
+          : `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
+      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}`, deCh: DE_CH_PATH }),
     },
     openGraph: {
       title: t('meta.title'),

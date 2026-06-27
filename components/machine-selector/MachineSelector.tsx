@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { tx } from '@/lib/locale-text';
 import type { Machine, MachineSelectorProps, ProductSizeCategory } from './lib/types';
 import { useMachineSelection } from './hooks/useMachineSelection';
 import { FilterBar } from './components/FilterBar';
@@ -90,12 +91,15 @@ export function MachineSelector({
       {mode === 'selection' && (
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            {locale === 'fr' ? 'Choisissez votre machine' : 'Choose your machine'}
+            {tx(locale, 'Choisissez votre machine', 'Choose your machine', 'Wählen Sie Ihre Maschine')}
           </h2>
           <p className="text-gray-600">
-            {locale === 'fr'
-              ? 'Sélectionnez la machine qui correspond le mieux à vos besoins de production.'
-              : 'Select the machine that best matches your production needs.'}
+            {tx(
+              locale,
+              'Sélectionnez la machine qui correspond le mieux à vos besoins de production.',
+              'Select the machine that best matches your production needs.',
+              'Wählen Sie die Maschine, die am besten zu Ihren Produktionsanforderungen passt.'
+            )}
           </p>
         </div>
       )}
@@ -128,9 +132,12 @@ export function MachineSelector({
       {maxMachines && filteredMachines.length > maxMachines && (
         <div className="mt-6 text-center">
           <p className="text-gray-500">
-            {locale === 'fr'
-              ? `${filteredMachines.length - maxMachines} machines supplémentaires disponibles`
-              : `${filteredMachines.length - maxMachines} more machines available`}
+            {tx(
+              locale,
+              `${filteredMachines.length - maxMachines} machines supplémentaires disponibles`,
+              `${filteredMachines.length - maxMachines} more machines available`,
+              `${filteredMachines.length - maxMachines} weitere Maschinen verfügbar`
+            )}
           </p>
         </div>
       )}

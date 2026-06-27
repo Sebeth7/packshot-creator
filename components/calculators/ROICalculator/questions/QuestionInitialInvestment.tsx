@@ -7,9 +7,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionInitialInvestmentProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -31,11 +32,20 @@ const LABELS = {
     placeholder: 'e.g.: 20000',
     unit: '\u20ac excl. tax',
   },
+  'de-ch': {
+    label: 'Planen Sie eine Anfangsinvestition?',
+    yes: 'Ja',
+    no: 'Nein',
+    amountLabel: 'Geplanter Investitionsbetrag',
+    tooltip: 'Einrichtung eines Fotostudios, Kauf einer Ausr\u00fcstung\u2026 Geben Sie die Anschaffungskosten f\u00fcr einen vollst\u00e4ndigen Vergleich an.',
+    placeholder: 'z. B.: 20000',
+    unit: '\u20ac exkl. MwSt.',
+  },
 };
 
 export default function QuestionInitialInvestment({ locale }: QuestionInitialInvestmentProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const investissementInitialActif = watch('investissementInitialActif');
   const montantInvestissementInitial = watch('montantInvestissementInitial');
@@ -49,7 +59,7 @@ export default function QuestionInitialInvestment({ locale }: QuestionInitialInv
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

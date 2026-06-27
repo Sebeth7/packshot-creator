@@ -11,7 +11,7 @@ import type { Machine } from '../lib/types';
 
 interface MachineRecommendationProps {
   machine: Machine;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -63,10 +63,34 @@ const LABELS = {
     errorRequired: 'Please provide at least an email or phone number',
     errorSending: 'Error sending',
   },
+  'de-ch': {
+    recommended: 'Empfohlenes Modell',
+    price: 'Preis',
+    capacity: 'Kapazität',
+    maxSize: 'Maximale Grösse',
+    maxWeight: 'Maximales Gewicht',
+    useCases: 'Anwendungsfälle:',
+    bookDemo: 'Kontaktiert werden',
+
+    imagePlaceholder: 'Bild bald verfügbar',
+    photosPerDay: 'Produkte/Tag',
+    contactTitle: 'Von unserem Team kontaktiert werden',
+    emailLabel: 'E-Mail',
+    phoneLabel: 'Telefon',
+    companyLabel: 'Unternehmen',
+    emailPlaceholder: 'ihre@email.com',
+    phonePlaceholder: '+41 79 123 45 67',
+    companyPlaceholder: 'Name Ihres Unternehmens',
+    send: 'Senden',
+    sending: 'Wird gesendet...',
+    success: 'Vielen Dank! Unser Team wird Sie in Kürze kontaktieren.',
+    errorRequired: 'Bitte geben Sie mindestens eine E-Mail-Adresse oder eine Telefonnummer an',
+    errorSending: 'Fehler beim Senden',
+  },
 };
 
 export default function MachineRecommendation({ machine, locale }: MachineRecommendationProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');

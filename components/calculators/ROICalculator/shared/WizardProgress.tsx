@@ -11,7 +11,7 @@ interface Step {
 interface WizardProgressProps {
   steps: Step[];
   currentStep: number;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 export default function WizardProgress({ steps, currentStep, locale }: WizardProgressProps) {

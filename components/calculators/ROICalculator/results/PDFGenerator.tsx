@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
 import type { CalculationResults } from '../lib/types';
 import { PDF_COLORS } from '../lib/chartColors';
+import { tx } from '@/lib/locale-text';
 
 /**
  * Génère un PDF à partir du contenu HTML des résultats
@@ -13,7 +14,7 @@ import { PDF_COLORS } from '../lib/chartColors';
 export async function generatePDF(
   contentRef: React.RefObject<HTMLDivElement | null>,
   results: CalculationResults,
-  locale: 'fr' | 'en',
+  locale: 'fr' | 'en' | 'de-ch',
   contactEmail?: string
 ): Promise<Blob> {
   const content = contentRef.current;
@@ -74,14 +75,14 @@ export async function generatePDF(
     pdf.text('PackshotCreator', 15, 18);
     pdf.setFontSize(12);
     pdf.text(
-      locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
+      tx(locale, 'Analyse ROI - Studios Photo PackshotCreator', 'ROI Analysis - PackshotCreator Photo Studios', 'ROI-Analyse - PackshotCreator Fotostudios'),
       15,
       28
     );
 
     // Date
     pdf.setFontSize(10);
-    const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
+    const date = new Date().toLocaleDateString(tx(locale, 'fr-FR', 'en-US', 'de-CH'));
     pdf.text(date, pdfWidth - 35, 18);
   };
 
@@ -197,13 +198,15 @@ export async function generatePDF(
 
   // CTA cliquable sur la dernière page
   const ctaY = currentY + 5;
-  const ctaLabel = locale === 'fr' ? 'Être recontacté par l\'équipe PackshotCreator' : 'Get in touch with the PackshotCreator team';
-  const mailtoSubject = encodeURIComponent(locale === 'fr'
-    ? 'Calculateur ROI PackshotCreator - Demande de contact'
-    : 'PackshotCreator ROI Calculator - Contact request');
-  const mailtoBody = encodeURIComponent(locale === 'fr'
-    ? `Bonjour,\n\nJ'ai utilisé le calculateur ROI PackshotCreator et souhaite être recontacté.\n\nModèle recommandé : ${results.machine.nom}\n${contactEmail ? `Mon email : ${contactEmail}\n` : ''}\nCordialement`
-    : `Hello,\n\nI used the PackshotCreator ROI calculator and would like to be contacted.\n\nRecommended model: ${results.machine.nom}\n${contactEmail ? `My email: ${contactEmail}\n` : ''}\nBest regards`);
+  const ctaLabel = tx(locale, 'Être recontacté par l\'équipe PackshotCreator', 'Get in touch with the PackshotCreator team', 'Vom PackshotCreator-Team kontaktiert werden');
+  const mailtoSubject = encodeURIComponent(tx(locale,
+    'Calculateur ROI PackshotCreator - Demande de contact',
+    'PackshotCreator ROI Calculator - Contact request',
+    'PackshotCreator ROI-Rechner - Kontaktanfrage'));
+  const mailtoBody = encodeURIComponent(tx(locale,
+    `Bonjour,\n\nJ'ai utilisé le calculateur ROI PackshotCreator et souhaite être recontacté.\n\nModèle recommandé : ${results.machine.nom}\n${contactEmail ? `Mon email : ${contactEmail}\n` : ''}\nCordialement`,
+    `Hello,\n\nI used the PackshotCreator ROI calculator and would like to be contacted.\n\nRecommended model: ${results.machine.nom}\n${contactEmail ? `My email: ${contactEmail}\n` : ''}\nBest regards`,
+    `Guten Tag,\n\nIch habe den PackshotCreator ROI-Rechner verwendet und möchte kontaktiert werden.\n\nEmpfohlenes Modell: ${results.machine.nom}\n${contactEmail ? `Meine E-Mail: ${contactEmail}\n` : ''}\nFreundliche Grüsse`));
   const mailtoUrl = `mailto:sebastien.jourdan@sysnext.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
   // Bouton CTA
@@ -230,7 +233,7 @@ export async function generatePDF(
 async function generatePDFLegacy(
   contentRef: React.RefObject<HTMLDivElement | null>,
   results: CalculationResults,
-  locale: 'fr' | 'en'
+  locale: 'fr' | 'en' | 'de-ch'
 ): Promise<Blob> {
   const content = contentRef.current;
   if (!content) throw new Error('Content not found');
@@ -304,14 +307,14 @@ async function generatePDFLegacy(
   pdf.text('PackshotCreator', 15, 18);
   pdf.setFontSize(12);
   pdf.text(
-    locale === 'fr' ? 'Analyse ROI - Studios Photo PackshotCreator' : 'ROI Analysis - PackshotCreator Photo Studios',
+    tx(locale, 'Analyse ROI - Studios Photo PackshotCreator', 'ROI Analysis - PackshotCreator Photo Studios', 'ROI-Analyse - PackshotCreator Fotostudios'),
     15,
     28
   );
 
   // Date
   pdf.setFontSize(10);
-  const date = new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US');
+  const date = new Date().toLocaleDateString(tx(locale, 'fr-FR', 'en-US', 'de-CH'));
   pdf.text(date, pdfWidth - 35, 18);
 
   // Contenu capturé
@@ -385,7 +388,7 @@ async function generatePDFLegacy(
  */
 export function useDownloadPDF(
   results: CalculationResults,
-  locale: 'fr' | 'en'
+  locale: 'fr' | 'en' | 'de-ch'
 ) {
   const contentRef = useRef<HTMLDivElement>(null);
 

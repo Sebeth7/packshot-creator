@@ -7,7 +7,7 @@ import type { CalculationResults } from '../lib/types';
 
 interface BreakEvenTimelineProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -47,10 +47,28 @@ const LABELS = {
     month: 'Month',
     months: 'months',
   },
+  'de-ch': {
+    title: 'Ihr ROI-Verlauf',
+    titleLeasing: 'Ihr ROI-Verlauf im Leasing',
+    today: 'Heute',
+    todayDesc: 'Anfangsinvestition',
+    todayDescLeasing: 'Leasing-Beginn',
+    breakeven: 'Amortisation',
+    breakevenDesc: 'Investition amortisiert',
+    breakevenDescLeasing: 'Sofort rentabel',
+    year1: 'Jahr 1',
+    year1Desc: 'Erste Gewinne',
+    year1DescLeasing: 'Netto-Gewinn Jahr 1',
+    year5: 'Jahr 5',
+    year5Desc: 'Kumulierte Gewinne',
+    year5DescLeasing: 'Kumulierte Gewinne (Vertragsende)',
+    month: 'Monat',
+    months: 'Monate',
+  },
 };
 
 export default function BreakEvenTimeline({ results, locale }: BreakEvenTimelineProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   if (!results.breakEvenMois) {
     return null;

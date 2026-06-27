@@ -7,7 +7,7 @@ import type { CalculationResults } from '../lib/types';
 
 interface HeroMetricsProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -47,10 +47,28 @@ const LABELS = {
     taxNote: 'Incl. 25% corporate tax benefit',
     taxNoteLeasing: 'Lease payments 100% deductible (25% CT)',
   },
+  'de-ch': {
+    title: 'Ihre personalisierte ROI-Analyse',
+    titleLeasing: 'Ihre ROI-Analyse im Leasing',
+    breakeven: 'Maschine amortisiert in',
+    breakevenLeasing: 'Rentabel ab',
+    savings: 'Jährliche Einsparung',
+    savingsNote: 'Ab dem 2. Jahr',
+    savingsNoteLeasing: 'Jährliche Netto-Einsparung',
+    perPhoto: 'Einsparung pro Produkt',
+    roi5: 'ROI über 5 Jahre',
+    roiLeasing: 'ROI über die Vertragslaufzeit',
+    roi5Note: 'an Netto-Gewinn',
+    months: 'Monate',
+    month1: 'ab dem 1. Monat',
+    savedPerPhoto: 'gespart/Produkt',
+    taxNote: 'Inkl. Steuervorteil (25%)',
+    taxNoteLeasing: 'Leasingraten zu 100% absetzbar (25%)',
+  },
 };
 
 export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   // Si non rentable, ne pas afficher ces métriques
   if (!results.isRentable) {

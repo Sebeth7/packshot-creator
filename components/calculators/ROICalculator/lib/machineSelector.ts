@@ -381,16 +381,16 @@ export function getTopMachinesForComparison(
 // ============================================
 
 export const CONTENT_TYPE_LABELS: Record<ContentType, BilingualText> = {
-  'packshot': { fr: 'Packshot', en: 'Packshot' },
-  '360': { fr: 'Vue 360°', en: '360° View' },
-  'video': { fr: 'Vidéo', en: 'Video' },
-  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin' },
-  'flat-lay': { fr: 'Flat-lay (vue dessus)', en: 'Flat-lay (top view)' },
-  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle' },
+  'packshot': { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot' },
+  '360': { fr: 'Vue 360°', en: '360° View', 'de-ch': '360°-Ansicht' },
+  'video': { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video' },
+  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin', 'de-ch': 'Ghost-Mannequin' },
+  'flat-lay': { fr: 'Flat-lay (vue dessus)', en: 'Flat-lay (top view)', 'de-ch': 'Flat-Lay (Draufsicht)' },
+  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle' },
 };
 
 export const AUTOMATION_LABELS: Record<Machine['automationLevel'], BilingualText> = {
-  'manual': { fr: 'Manuel', en: 'Manual' },
-  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic' },
-  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic' },
+  'manual': { fr: 'Manuel', en: 'Manual', 'de-ch': 'Manuell' },
+  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic', 'de-ch': 'Halbautomatisch' },
+  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic', 'de-ch': 'Vollautomatisch' },
 };
