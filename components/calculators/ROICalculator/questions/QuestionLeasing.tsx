@@ -8,7 +8,7 @@ import type { FullFormData } from '../lib/validation';
 import { MACHINES } from '../lib/machines';
 
 interface QuestionLeasingProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -38,11 +38,24 @@ const LABELS = {
     nbMois: 'Contract duration',
     nbMoisSuffix: 'months',
   },
+  'de-ch': {
+    toggle: 'Haben Sie ein Leasingangebot erhalten?',
+    toggleSub: 'Berechnen Sie Ihren ROI unter Berücksichtigung der Konditionen Ihres Leasingangebots',
+    activate: 'Ja, Leasing simulieren',
+    deactivate: 'Nein, als Kauf berechnen',
+    machine: 'Betroffenes Modell',
+    machinePlaceholder: 'Modell auswählen',
+    mensualite: 'Monatliche Rate (exkl. MwSt.)',
+    mensualitePlaceholder: 'z. B.: 850',
+    mensualiteSuffix: '€ / Monat',
+    nbMois: 'Vertragslaufzeit',
+    nbMoisSuffix: 'Monate',
+  },
 };
 
 export default function QuestionLeasing({ locale }: QuestionLeasingProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const isActive = watch('leasingActif') || false;
   const machineId = watch('leasingMachineId') || '';

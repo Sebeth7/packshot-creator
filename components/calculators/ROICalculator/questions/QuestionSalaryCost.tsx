@@ -6,9 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionSalaryCostProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -28,11 +29,19 @@ const LABELS = {
     unit: '€/month',
     defaultNote: 'If not provided, we will use €4,000 as an estimate',
   },
+  'de-ch': {
+    label: 'Durchschnittliche monatliche Kosten pro Bediener (inkl. Lohnnebenkosten)',
+    sublabel: 'Bruttolohn × ca. 1,7. Inklusive Arbeitgeberbeiträge, Versicherung usw.',
+    tooltip: 'Gesamte monatliche Arbeitgeberkosten: Bruttolohn + Arbeitgeberbeiträge (~42%) + Krankenversicherung. Im Durchschnitt multiplizieren Sie den Bruttolohn mit 1,7.',
+    placeholder: '4 000',
+    unit: '€/Monat',
+    defaultNote: 'Wenn nicht angegeben, verwenden wir 4 000€ als Schätzung',
+  },
 };
 
 export default function QuestionSalaryCost({ locale }: QuestionSalaryCostProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('coutSalarialMensuel');
 
@@ -48,7 +57,7 @@ export default function QuestionSalaryCost({ locale }: QuestionSalaryCostProps) 
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

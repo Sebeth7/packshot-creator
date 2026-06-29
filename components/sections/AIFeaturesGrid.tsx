@@ -7,7 +7,7 @@ interface AIFeature {
   key: string;
   icon: string;
   Icon: typeof Palette;
-  href: string;
+  href: '/ia-photo-produit';
 }
 
 const AI_FEATURES: AIFeature[] = [

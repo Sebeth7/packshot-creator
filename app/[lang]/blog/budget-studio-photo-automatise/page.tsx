@@ -458,7 +458,7 @@ export default async function BudgetStudioPage({ params }: { params: Promise<{ l
               ]).map((link) => (
                 <StaggerItem key={link.key}>
                   <Link
-                    href={link.href}
+                    href={link.href as any}
                     className="group flex items-center gap-3 p-5 rounded-2xl border border-neutral-100 bg-white hover:border-very-peri-200 hover:shadow-md transition-all"
                   >
                     <div className="h-10 w-10 rounded-xl bg-very-peri-50 flex items-center justify-center text-very-peri-600 group-hover:bg-very-peri-100 transition-colors">

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 
 export default function Footer() {
@@ -90,87 +90,87 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/industrie/bijoux-joaillerie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'bijoux-joaillerie' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('jewelry')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/mode-textile" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'mode-textile' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('fashion')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/cosmetiques-beaute" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'cosmetiques-beaute' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('cosmetics')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/mobilier-decoration" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'mobilier-decoration' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('furniture')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/vin-spiritueux" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'vin-spiritueux' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('wineSpirits')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/lunetterie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'lunetterie' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('eyewear')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/chaussures" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'chaussures' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('shoes')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/electronique-hightech" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'electronique-hightech' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('electronics')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/horlogerie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'horlogerie' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('watchmaking')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/food-alimentaire" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'food-alimentaire' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('food')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/sante-medical" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'sante-medical' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('health')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/sport-outdoor" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'sport-outdoor' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('sport')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/jouets-puericulture" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'jouets-puericulture' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('toys')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/automobile-pieces-detachees" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'automobile-pieces-detachees' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('automotive')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/pieces-techniques-industrie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'pieces-techniques-industrie' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('technicalParts')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/industrie-manufacturiere" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'industrie-manufacturiere' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('manufacturing')}
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/defense-securite" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'defense-securite' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('defense')}
                 </Link>
               </li>
@@ -186,17 +186,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/solutions/documentation-technique-visuelle" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/solutions/[slug]', params: { slug: 'documentation-technique-visuelle' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('docTechnique')}
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/documentation-qualite-produit" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/solutions/[slug]', params: { slug: 'documentation-qualite-produit' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('docQualite')}
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/documentation-probatoire" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/solutions/[slug]', params: { slug: 'documentation-probatoire' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('docProbatoire')}
                 </Link>
               </li>
@@ -215,7 +215,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/industrie/bijoux-joaillerie" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                <Link href={{ pathname: '/industrie/[slug]', params: { slug: 'bijoux-joaillerie' } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('packshotBijoux')}
                 </Link>
               </li>

@@ -10,7 +10,7 @@ import { getTopMachinesForComparison, userInputsToSelectionCriteria, AUTOMATION_
 interface MachineComparatorProps {
   inputs: UserInputs;
   currentResults: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
   onSelectMachine?: (machineId: string) => void;
 }
 
@@ -67,6 +67,32 @@ const LABELS = {
     vs: 'vs',
     currentSelected: 'Current selection',
   },
+  'de-ch': {
+    title: 'Geeignete Modelle vergleichen',
+    subtitle: 'Hier sind die Modelle, die Ihren Kriterien entsprechen',
+    score: 'Score',
+    recommended: 'Empfohlen',
+    capacity: 'Kapazität',
+    photosPerDay: 'Produkte/Tag',
+    maxSize: 'Max. Grösse',
+    maxWeight: 'Max. Gewicht',
+    automation: 'Automatisierung',
+    space: 'Platzbedarf',
+    advantages: 'Stärken',
+    limitations: 'Einschränkungen',
+    annualSavings: 'Jährliche Einsparung',
+    breakEven: 'Break-even',
+    roi5years: 'ROI 5 Jahre',
+    months: 'Monate',
+    selectMachine: 'Auswählen',
+    showDetails: 'Details anzeigen',
+    hideDetails: 'Details ausblenden',
+    matchingCriteria: 'Übereinstimmende Kriterien',
+    missingCriteria: 'Zu beachten',
+    noEligibleMachines: 'Kein Modell entspricht genau Ihren Kriterien. Hier sind die besten Alternativen.',
+    vs: 'vs',
+    currentSelected: 'Aktuelle Auswahl',
+  },
 };
 
 function formatEuro(value: number): string {
@@ -83,16 +109,16 @@ interface MachineCardProps {
   isRecommended: boolean;
   isSelected: boolean;
   roiResults: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
   onSelect?: () => void;
 }
 
 function MachineCard({ eligibility, isRecommended, isSelected, roiResults, locale, onSelect }: MachineCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
   const machine = eligibility.machine;
 
-  const automationLabel = AUTOMATION_LABELS[machine.automationLevel][locale];
+  const automationLabel = AUTOMATION_LABELS[machine.automationLevel][locale] ?? AUTOMATION_LABELS[machine.automationLevel].en;
 
   return (
     <div
@@ -230,7 +256,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
               {machine.keyAdvantages.slice(0, 3).map((adv, i) => (
                 <li key={i} className="text-xs text-future-dusk-900 flex items-start gap-1">
                   <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
-                  {adv[locale]}
+                  {adv[locale] ?? adv.en}
                 </li>
               ))}
             </ul>
@@ -244,7 +270,7 @@ function MachineCard({ eligibility, isRecommended, isSelected, roiResults, local
                 {machine.limitations.map((lim, i) => (
                   <li key={i} className="text-xs text-future-dusk-900 flex items-start gap-1">
                     <XCircle className="w-3 h-3 text-yellow-500 mt-0.5 flex-shrink-0" />
-                    {lim[locale]}
+                    {lim[locale] ?? lim.en}
                   </li>
                 ))}
               </ul>
@@ -293,7 +319,7 @@ export default function MachineComparator({
   locale,
   onSelectMachine,
 }: MachineComparatorProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   // En mode leasing, ne pas afficher le comparateur (l'offre est spécifique à une machine)
   if (inputs.leasingActif) {

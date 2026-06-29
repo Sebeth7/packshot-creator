@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, Star } from 'lucide-react';
 import { formatEuro } from '../lib/calculations';
 import type { CalculationResults } from '../lib/types';
+import { tx } from '@/lib/locale-text';
 
 interface ContextualCTAProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -53,10 +54,31 @@ const LABELS = {
     },
     note: 'No commitment • Personalized demo • Response within 24h',
   },
+  'de-ch': {
+    exceptional: {
+      badge: 'Aussergewöhnlicher ROI',
+      title: 'Ihr ROI ist aussergewöhnlich!',
+      description: 'Mit einer Rentabilität der Investition von {roi}% über 5 Jahre ist die {machine} die optimale Wahl für Ihr Unternehmen.',
+      cta: 'Gratis-Demo anfragen',
+    },
+    good: {
+      badge: 'Hervorragender ROI',
+      title: 'Hervorragende Rentabilität der Investition',
+      description: 'Ein ROI von {roi}% über 5 Jahre mit {savings} jährlichen Einsparungen. Gehen Sie den nächsten Schritt.',
+      cta: 'Demo anfragen',
+    },
+    moderate: {
+      badge: 'Positiver ROI',
+      title: 'Rentable Investition',
+      description: 'Trotz eines moderaten ROI sind die qualitativen Vorteile (Konsistenz, Reaktionsfähigkeit, Autonomie) erheblich.',
+      cta: 'Mehr erfahren',
+    },
+    note: 'Unverbindlich • Persönliche Demo • Antwort innert 24 Std.',
+  },
 };
 
 export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   // Déterminer le niveau de ROI
   const roiLevel = results.roi5ans > 300 ? 'exceptional' : results.roi5ans > 100 ? 'good' : 'moderate';
@@ -106,7 +128,7 @@ export default function ContextualCTA({ results, locale }: ContextualCTAProps) {
               variant="outline"
               className="border-white text-white hover:bg-white/10 gap-2"
             >
-              {locale === 'fr' ? 'Voir la fiche produit' : 'View product sheet'}
+              {tx(locale, 'Voir la fiche produit', 'View product sheet', 'Produktdatenblatt ansehen')}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>

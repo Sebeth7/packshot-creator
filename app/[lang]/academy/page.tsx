@@ -85,7 +85,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
       >
         <div className="mt-10 flex flex-wrap gap-4">
           <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-lg shadow-emerald-600/25">
-            <Link href="#formations">{t('hero.ctaPrimary')}</Link>
+            <a href="#formations">{t('hero.ctaPrimary')}</a>
           </Button>
           <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 rounded-xl">
             <Link href="/academy/simulateur-opco">{t('hero.ctaSecondary')}</Link>
@@ -269,7 +269,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
               return (
                 <StaggerItem key={formation.slug}>
                   <Link
-                    href={`/academy/${formation.slug}`}
+                    href={{ pathname: '/academy/[slug]', params: { slug: formation.slug } }}
                     className="group block rounded-2xl border border-neutral-200 bg-white p-6 hover:shadow-lg hover:border-very-peri-200 transition-all duration-300 h-full"
                   >
                     <div className="flex items-center gap-2 mb-3">

@@ -19,6 +19,10 @@ interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
@@ -28,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
-      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}` }),
+      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}`, deCh: `/de-ch/${CONFIG.slug}` }),
     },
     openGraph: {
       title: t('meta.title'),

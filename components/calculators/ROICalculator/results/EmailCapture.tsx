@@ -10,7 +10,7 @@ import { trackEmailCapture } from '../lib/analytics';
 
 interface EmailCaptureProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
   onSendPDF: (email: string) => Promise<void>;
 }
 
@@ -35,6 +35,16 @@ const LABELS = {
     errorInvalid: 'Invalid email',
     errorSending: 'Error sending',
   },
+  'de-ch': {
+    title: 'Laden Sie Ihre vollständige Analyse herunter',
+    subtitle: 'Detailliertes PDF mit allen Berechnungen und dem empfohlenen Modell',
+    placeholder: 'ihre@email.com',
+    submit: 'PDF herunterladen',
+    sending: 'Wird heruntergeladen...',
+    success: 'Ihre ROI-Analyse wurde heruntergeladen!',
+    errorInvalid: 'Ungültige E-Mail-Adresse',
+    errorSending: 'Fehler beim Senden',
+  },
 };
 
 export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptureProps) {
@@ -43,7 +53,7 @@ export default function EmailCapture({ results, locale, onSendPDF }: EmailCaptur
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
 
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const handleSubmit = async () => {
     if (!email || !email.includes('@')) {

@@ -265,7 +265,7 @@ export default async function SolutionPage({ params }: PageProps) {
               const sectorData = DEFAULT_SECTORS.find((s) => s.slug === secteur.slug);
               return (
                 <StaggerItem key={index}>
-                  <Link href={`/industrie/${secteur.slug}`} className="group block h-full">
+                  <Link href={{ pathname: '/industrie/[slug]', params: { slug: secteur.slug } }} className="group block h-full">
                     <SpringCard>
                       <div className="bg-future-dusk-0 rounded-2xl p-6 lg:p-8 border border-neutral-100 hover:border-very-peri-300 transition-all h-full flex flex-col">
                         {/* Icon + sector name */}
@@ -339,7 +339,7 @@ export default async function SolutionPage({ params }: PageProps) {
 
                 return (
                   <StaggerItem key={machine!.id}>
-                    <Link href={`/studio-photo/${machine!.id}`} className="group block h-full">
+                    <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: machine!.id } }} className="group block h-full">
                       <SpringCard>
                         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:border-very-peri-400/40 transition-all">
                           {/* Machine image */}

@@ -19,11 +19,11 @@ interface LeasingTooltipProps {
   active?: boolean;
   payload?: Array<{ color: string; name: string; value: number }>;
   label?: number;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 function LeasingTooltip({ active, payload, label, locale }: LeasingTooltipProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
   if (active && payload && payload.length) {
     return (
       <div className="bg-white p-3 rounded-lg shadow-lg border border-neutral-200">
@@ -41,7 +41,7 @@ function LeasingTooltip({ active, payload, label, locale }: LeasingTooltipProps)
 
 interface EvolutionChartProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -65,10 +65,20 @@ const LABELS = {
     breakevenNote: 'From month',
     savingsNote: ', every euro spent generates pure savings.',
   },
+  'de-ch': {
+    title: 'Kostenentwicklung über 5 Jahre',
+    current: 'Aktuelle Situation',
+    orbitvu: 'Mit PackshotCreator',
+    breakeven: 'Break-even',
+    month: 'Monat',
+    cost: 'Kumulierte Kosten',
+    breakevenNote: 'Ab Monat',
+    savingsNote: ' generiert jeder ausgegebene Euro reine Einsparungen.',
+  },
 };
 
 export default function EvolutionChart({ results, locale }: EvolutionChartProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
   const data = generateChartData(results);
 
   return (

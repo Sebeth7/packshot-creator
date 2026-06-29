@@ -8,7 +8,7 @@ import QuestionInitialInvestment from '../questions/QuestionInitialInvestment';
 import QuestionDailyCapacity from '../questions/QuestionDailyCapacity';
 
 interface Step1CurrentSituationProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 export default function Step1CurrentSituation({ locale }: Step1CurrentSituationProps) {

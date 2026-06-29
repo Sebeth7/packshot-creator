@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -17,11 +17,16 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
 
 const MachineSelector = dynamic(
   () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
   { loading: () => <div className="h-96 bg-neutral-100 rounded-2xl animate-pulse" /> }
 );
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -32,12 +37,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     keywords: t('keywords'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-      languages: buildLanguages('/fr/studios-photo-automatises', { en: '/en/studios-photo-automatises' }),
+      languages: buildLanguages('/fr/studios-photo-automatises', { en: '/en/studios-photo-automatises', deCh: '/de-ch/studios-photo-automatises' }),
     },
     openGraph: {
       title: t('title'), description: t('description'), type: 'website',
       url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-      siteName: 'PackshotCreator', locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      siteName: 'PackshotCreator', locale: tx(lang, 'fr_FR', 'en_US', 'de_CH'),
       images: [{ url: `https://www.packshot-creator.com/api/og?title=${encodeURIComponent(t('title'))}&type=product&lang=${lang}`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: { card: 'summary_large_image', title: t('title'), description: t('description') },
@@ -47,11 +52,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function StudiosPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: tx(lang, 'Studios Photo Automatisés', 'Automated Photo Studios', 'Automatisierte Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
   ];
 
   const studioFaqs = (['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const).map((key) => ({
@@ -108,7 +112,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-12">
             {([
               { end: 5000, suffix: '+', label: t('trust.stat1label') },
-              { end: 25, suffix: isFr ? ' ans' : ' yrs', label: t('trust.stat2label') },
+              { end: 25, suffix: tx(lang, ' ans', ' yrs', ' Jahre'), label: t('trust.stat2label') },
               { end: 50, suffix: '+', label: t('trust.stat3label') },
             ]).map((stat) => (
               <StaggerItem key={stat.label}>
@@ -167,7 +171,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                   href="/besoins-photographie-produit"
                   className="text-sm text-very-peri-500 hover:text-very-peri-600 font-medium transition-colors"
                 >
-                  {isFr ? 'Pas sur ? Identifiez votre besoin →' : 'Not sure? Identify your need →'}
+                  {tx(lang, 'Pas sur ? Identifiez votre besoin →', 'Not sure? Identify your need →', 'Nicht sicher? Ermitteln Sie Ihren Bedarf →')}
                 </Link>
               </div>
             </FadeInView>
@@ -175,7 +179,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
             <ScrollReveal scale>
               <Image
                 src="/images/illustrations/studios-orientation.avif"
-                alt={isFr ? 'Gamme de studios photo automatisés Orbitvu' : 'Orbitvu automated photo studio range'}
+                alt={tx(lang, 'Gamme de studios photo automatisés Orbitvu', 'Orbitvu automated photo studio range', 'Reihe automatisierter Fotostudios von Orbitvu')}
                 width={600}
                 height={450}
                 className="w-full rounded-2xl"
@@ -194,7 +198,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           <ScrollReveal>
             <div className="text-center mb-14">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? '20 systèmes Orbitvu' : '20 Orbitvu systems'}
+                {tx(lang, '20 systèmes Orbitvu', '20 Orbitvu systems', '20 Orbitvu Systeme')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-4">
                 {t('products.heading')}
@@ -392,9 +396,9 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           </FadeInView>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
-              { key: 'ia', href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" /> },
-              { key: 'industrie', href: '/industrie', icon: <Layout className="h-5 w-5" /> },
-              { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" /> },
+              { key: 'ia', href: '/ia-photo-produit' as const, icon: <Sparkles className="h-5 w-5" /> },
+              { key: 'industrie', href: '/industrie' as const, icon: <Layout className="h-5 w-5" /> },
+              { key: 'academy', href: '/academy' as const, icon: <GraduationCap className="h-5 w-5" /> },
             ].map((link) => (
               <FadeInView key={link.key}>
                 <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
@@ -424,13 +428,16 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
         serviceSchema({
-          name: isFr ? 'Studios photo automatisés Orbitvu' : 'Orbitvu Automated Photo Studios',
-          description: isFr
-            ? 'Gamme complète de studios photo automatisés Orbitvu : Alphashot, Alphastudio, Fashion Studio, Bike Studio. Photographie produit haute qualité avec IA BlendAI intégrée.'
-            : 'Full range of Orbitvu automated photo studios: Alphashot, Alphastudio, Fashion Studio, Bike Studio. High-quality product photography with integrated BlendAI.',
-          serviceType: isFr ? 'Studio photo automatisé' : 'Automated photo studio',
+          name: tx(lang, 'Studios photo automatisés Orbitvu', 'Orbitvu Automated Photo Studios', 'Automatisierte Fotostudios von Orbitvu'),
+          description: tx(
+            lang,
+            'Gamme complète de studios photo automatisés Orbitvu : Alphashot, Alphastudio, Fashion Studio, Bike Studio. Photographie produit haute qualité avec IA BlendAI intégrée.',
+            'Full range of Orbitvu automated photo studios: Alphashot, Alphastudio, Fashion Studio, Bike Studio. High-quality product photography with integrated BlendAI.',
+            'Komplette Reihe automatisierter Fotostudios von Orbitvu: Alphashot, Alphastudio, Fashion Studio, Bike Studio. Hochwertige Produktfotografie mit integrierter BlendAI-KI.',
+          ),
+          serviceType: tx(lang, 'Studio photo automatisé', 'Automated photo studio', 'Automatisiertes Fotostudio'),
           url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
-          category: isFr ? 'Équipement studio photo' : 'Photo studio equipment',
+          category: tx(lang, 'Équipement studio photo', 'Photo studio equipment', 'Fotostudio-Ausrüstung'),
         }),
         faqSchema(studioFaqs),
       ]} />

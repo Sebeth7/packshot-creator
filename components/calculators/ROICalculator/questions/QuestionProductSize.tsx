@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils';
 import type { FullFormData } from '../lib/validation';
 import type { ProductSizeCategory } from '../lib/types';
 import { TAILLE_LABELS } from '../lib/constants';
+import { pickL } from '@/lib/locale-text';
 
 interface QuestionProductSizeProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -21,13 +22,17 @@ const LABELS = {
     label: 'What is the main size of your products?',
     sublabel: 'To recommend the right studio',
   },
+  'de-ch': {
+    label: 'Welche Grösse haben Ihre Produkte hauptsächlich?',
+    sublabel: 'Um das passende Studio zu empfehlen',
+  },
 };
 
 const SIZE_OPTIONS: ProductSizeCategory[] = ['petit', 'moyen', 'grand', 'tres-grand'];
 
 export default function QuestionProductSize({ locale }: QuestionProductSizeProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('tailleProduitsCategory') || 'moyen';
 
@@ -70,7 +75,7 @@ export default function QuestionProductSize({ locale }: QuestionProductSizeProps
                   'font-medium',
                   isSelected ? 'text-very-peri-600' : 'text-future-dusk-900'
                 )}>
-                  {locale === 'fr' ? label.fr : label.en}
+                  {pickL(locale, label)}
                 </span>
                 <span className="text-xs text-future-dusk-500 mt-1">
                   {label.examples}

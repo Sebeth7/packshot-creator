@@ -5,7 +5,7 @@ import type { CalculationResults } from '../lib/types';
 
 interface AdditionalBenefitsProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -47,10 +47,29 @@ const LABELS = {
       description: 'No more dependency on external providers. Complete control of your production.',
     },
   },
+  'de-ch': {
+    title: 'Zusätzliche Vorteile',
+    consistency: {
+      title: 'Visuelle Konsistenz',
+      description: 'Einheitliche Visuals für Ihr gesamtes Sortiment. Konstante Qualität ohne Abhängigkeit von einem Fotografen.',
+    },
+    speed: {
+      title: 'Marktreaktivität',
+      description: 'Neue Produkte innerhalb von Stunden statt Tagen online. Verkürzte Time-to-Market.',
+    },
+    scalability: {
+      title: 'Skalierbarkeit',
+      description: 'Restkapazität von {capacity} Produkten/Jahr. Wachstum ohne zusätzliche Kosten.',
+    },
+    autonomy: {
+      title: 'Vollständige Autonomie',
+      description: 'Keine Abhängigkeit mehr von externen Dienstleistern. Volle Kontrolle über Ihre Produktion.',
+    },
+  },
 };
 
 export default function AdditionalBenefits({ results, locale }: AdditionalBenefitsProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const benefits = [
     {

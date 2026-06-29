@@ -1,7 +1,9 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { Link, usePathname } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
+import { type LinkHref } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronRight, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
@@ -9,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
 interface DropdownItem {
-  href: string;
+  href: LinkHref;
   labelKey: string;
   descKey: string;
   icon: React.ReactNode;
@@ -69,7 +71,7 @@ function NavDropdownFlyout({
             {section.items.map((item) =>
               item.descKey ? (
                 <Link
-                  key={item.href}
+                  key={item.labelKey}
                   href={item.href}
                   className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
                   onClick={onClose}
@@ -88,7 +90,7 @@ function NavDropdownFlyout({
                 </Link>
               ) : (
                 <Link
-                  key={item.href}
+                  key={item.labelKey}
                   href={item.href}
                   className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
                   onClick={onClose}
@@ -139,7 +141,7 @@ function NavDropdown({
   const renderItem = (item: DropdownItem) =>
     item.descKey ? (
       <Link
-        key={item.href}
+        key={item.labelKey}
         href={item.href}
         className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-very-peri-50 transition-colors group"
         onClick={close}
@@ -158,7 +160,7 @@ function NavDropdown({
       </Link>
     ) : (
       <Link
-        key={item.href}
+        key={item.labelKey}
         href={item.href}
         className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
         onClick={close}
@@ -269,7 +271,7 @@ function MobileNavSection({
               )}
               {section.items.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.labelKey}
                   href={item.href}
                   className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
                   onClick={onClose}
@@ -323,25 +325,25 @@ export default function Header() {
       titleKey: 'bySector',
       items: [
         {
-          href: '/industrie/lunetterie',
+          href: { pathname: '/industrie/[slug]', params: { slug: 'lunetterie' } },
           labelKey: 'lunetterie',
           descKey: 'lunetterieDesc',
           icon: <Glasses className="h-4 w-4" />,
         },
         {
-          href: '/industrie/vin-spiritueux',
+          href: { pathname: '/industrie/[slug]', params: { slug: 'vin-spiritueux' } },
           labelKey: 'vinSpiritueux',
           descKey: 'vinSpiritueuxDesc',
           icon: <Wine className="h-4 w-4" />,
         },
         {
-          href: '/industrie/sante-medical',
+          href: { pathname: '/industrie/[slug]', params: { slug: 'sante-medical' } },
           labelKey: 'santeMedical',
           descKey: 'santeMedicalDesc',
           icon: <HeartPulse className="h-4 w-4" />,
         },
         {
-          href: '/industrie/industrie-manufacturiere',
+          href: { pathname: '/industrie/[slug]', params: { slug: 'industrie-manufacturiere' } },
           labelKey: 'industrieDefense',
           descKey: 'industrieDefenseDesc',
           icon: <Shield className="h-4 w-4" />,
@@ -358,19 +360,19 @@ export default function Header() {
       titleKey: 'industrialDoc',
       items: [
         {
-          href: '/solutions/documentation-technique-visuelle',
+          href: { pathname: '/solutions/[slug]', params: { slug: 'documentation-technique-visuelle' } },
           labelKey: 'docTechnique',
           descKey: 'docTechniqueDesc',
           icon: <FileText className="h-4 w-4" />,
         },
         {
-          href: '/solutions/documentation-qualite-produit',
+          href: { pathname: '/solutions/[slug]', params: { slug: 'documentation-qualite-produit' } },
           labelKey: 'docQualite',
           descKey: 'docQualiteDesc',
           icon: <ClipboardCheck className="h-4 w-4" />,
         },
         {
-          href: '/solutions/documentation-probatoire',
+          href: { pathname: '/solutions/[slug]', params: { slug: 'documentation-probatoire' } },
           labelKey: 'docProbatoire',
           descKey: 'docProbatoireDesc',
           icon: <Scale className="h-4 w-4" />,
@@ -488,7 +490,7 @@ export default function Header() {
           {/* Right side: Lang + CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href={pathname}
+              href={pathname as LinkHref}
               locale={otherLocale}
               className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
               onClick={() => trackLanguageSwitch(locale, otherLocale)}
@@ -505,7 +507,7 @@ export default function Header() {
           {/* Mobile: Lang + Burger */}
           <div className="flex lg:hidden items-center gap-2">
             <Link
-              href={pathname}
+              href={pathname as LinkHref}
               locale={otherLocale}
               className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
               onClick={() => trackLanguageSwitch(locale, otherLocale)}

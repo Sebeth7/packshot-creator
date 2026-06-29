@@ -6,9 +6,10 @@ import { Slider } from '@/components/ui/slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionOperatorsProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -24,11 +25,17 @@ const LABELS = {
     tooltip: 'Count all involved collaborators, even part-time',
     unit: 'person(s)',
   },
+  'de-ch': {
+    label: 'Wie viele Personen arbeiten an der Produktion Ihrer Visuals?',
+    sublabel: 'Inklusive Packshot + Retusche',
+    tooltip: 'Zählen Sie alle beteiligten Mitarbeitenden, auch teilweise',
+    unit: 'Person(en)',
+  },
 };
 
 export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('nbOperateurs') || 1;
 
@@ -44,7 +51,7 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>
@@ -68,7 +75,7 @@ export default function QuestionOperators({ locale }: QuestionOperatorsProps) {
         <div className="flex justify-between mt-2">
           <span className="text-sm text-future-dusk-500">0.5</span>
           <span className="text-lg font-bold text-very-peri-600">
-            {value % 1 === 0 ? value : value.toFixed(1)} {value <= 1 ? (locale === 'fr' ? 'personne' : 'person') : t.unit}
+            {value % 1 === 0 ? value : value.toFixed(1)} {value <= 1 ? tx(locale, 'personne', 'person', 'Person') : t.unit}
           </span>
           <span className="text-sm text-future-dusk-500">20</span>
         </div>

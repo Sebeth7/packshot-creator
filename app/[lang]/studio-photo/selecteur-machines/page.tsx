@@ -7,49 +7,64 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/se
 import { HeroSection } from '@/components/hero';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+// Segment de-ch localisé (Suisse alémanique) — voir i18n/routing.ts pathnames.
+const DE_CH_PATH = '/de-ch/fotostudio/maschinen-finder';
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
-  const isFr = lang === 'fr';
+  const title = tx(
+    lang,
+    'Sélecteur de Studios Photo | Trouvez votre Orbitvu idéal',
+    'Photo Studio Selector | Find your ideal Orbitvu',
+    'Fotostudio-Finder | Finden Sie Ihr ideales Orbitvu',
+  );
+  const ogTitleShort = tx(lang, 'Sélecteur de Studios Photo', 'Photo Studio Selector', 'Fotostudio-Finder');
 
   return {
-    title: isFr
-      ? 'Sélecteur de Studios Photo | Trouvez votre Orbitvu idéal'
-      : 'Photo Studio Selector | Find your ideal Orbitvu',
-    description: isFr
-      ? 'Trouvez le studio photo automatisé parfait pour vos besoins. Comparez 16+ studios Orbitvu par taille, fonctionnalités et secteur.'
-      : 'Find the perfect automated photo studio for your needs. Compare 16+ Orbitvu studios by size, features and sector.',
+    title,
+    description: tx(
+      lang,
+      'Trouvez le studio photo automatisé parfait pour vos besoins. Comparez 16+ studios Orbitvu par taille, fonctionnalités et secteur.',
+      'Find the perfect automated photo studio for your needs. Compare 16+ Orbitvu studios by size, features and sector.',
+      'Finden Sie das perfekte automatisierte Fotostudio für Ihre Bedürfnisse. Vergleichen Sie über 16 Orbitvu-Studios nach Grösse, Funktionen und Branche.',
+    ),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
-      languages: buildLanguages('/fr/studio-photo/selecteur-machines', { en: '/en/studio-photo/selecteur-machines' }),
+      canonical:
+        lang === 'de-ch'
+          ? `https://www.packshot-creator.com${DE_CH_PATH}`
+          : `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines`,
+      languages: buildLanguages('/fr/studio-photo/selecteur-machines', { en: '/en/studio-photo/selecteur-machines', deCh: DE_CH_PATH }),
     },
     openGraph: {
-      title: isFr
-        ? 'Sélecteur de Studios Photo | Trouvez votre Orbitvu idéal'
-        : 'Photo Studio Selector | Find your ideal Orbitvu',
-      images: [{ url: `/api/og?title=${encodeURIComponent(isFr ? 'Sélecteur de Studios Photo' : 'Photo Studio Selector')}&type=product&lang=${lang}`, width: 1200, height: 630 }],
+      title,
+      images: [{ url: `/api/og?title=${encodeURIComponent(ogTitleShort)}&type=product&lang=${lang}`, width: 1200, height: 630 }],
     },
   };
 }
 
 export default async function MachineSelectorPage({ params }: PageProps) {
   const { lang } = await params;
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
-    { name: isFr ? 'Sélecteur' : 'Selector', url: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines` },
+    { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: tx(lang, 'Sélecteur', 'Selector', 'Finder'), url: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines` },
   ];
 
   const categories = [
-    { label: isFr ? 'Bijoux & Montres' : 'Jewelry & Watches', color: 'bg-very-peri-500/10 text-very-peri-700' },
-    { label: isFr ? 'Chaussures & Mode' : 'Shoes & Fashion', color: 'bg-amber-500/10 text-amber-700' },
-    { label: isFr ? 'Mobilier & Grands objets' : 'Furniture & Large items', color: 'bg-emerald-500/10 text-emerald-700' },
+    { label: tx(lang, 'Bijoux & Montres', 'Jewelry & Watches', 'Schmuck & Uhren'), color: 'bg-very-peri-500/10 text-very-peri-700' },
+    { label: tx(lang, 'Chaussures & Mode', 'Shoes & Fashion', 'Schuhe & Mode'), color: 'bg-amber-500/10 text-amber-700' },
+    { label: tx(lang, 'Mobilier & Grands objets', 'Furniture & Large items', 'Möbel & Grosse Objekte'), color: 'bg-emerald-500/10 text-emerald-700' },
   ];
 
   return (
@@ -63,17 +78,18 @@ export default async function MachineSelectorPage({ params }: PageProps) {
               className="inline-flex items-center gap-1.5 text-very-peri-300 text-sm font-medium font-sans mb-6 hover:text-white transition-colors"
             >
               <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-              {isFr ? 'Studios Photo' : 'Photo Studios'}
+              {tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios')}
             </Link>
             <br />
-            {isFr ? 'Trouvez votre studio photo idéal' : 'Find your ideal photo studio'}
+            {tx(lang, 'Trouvez votre studio photo idéal', 'Find your ideal photo studio', 'Finden Sie Ihr ideales Fotostudio')}
           </>
         }
-        subtitle={
-          isFr
-            ? 'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.'
-            : 'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.'
-        }
+        subtitle={tx(
+          lang,
+          'Plus de 16 studios Orbitvu pour tous vos besoins de photo produit. Filtrez par taille, fonctionnalités et secteur.',
+          'Over 16 Orbitvu studios for all your product photography needs. Filter by size, features and sector.',
+          'Über 16 Orbitvu-Studios für alle Ihre Produktfotografie-Bedürfnisse. Filtern Sie nach Grösse, Funktionen und Branche.',
+        )}
       >
         <StaggerContainer className="flex flex-wrap justify-center gap-3" delay={0.3}>
           {categories.map((cat) => (
@@ -94,7 +110,7 @@ export default async function MachineSelectorPage({ params }: PageProps) {
             mode="display"
             showFilters={true}
             showPrices={false}
-            locale={isFr ? 'fr' : 'en'}
+            locale={lang as 'fr' | 'en'}
           />
           </FadeInView>
         </div>
@@ -106,29 +122,32 @@ export default async function MachineSelectorPage({ params }: PageProps) {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <FadeInView direction="left">
               <h2 className="text-3xl font-heading font-bold text-future-dusk-900 mb-4">
-                {isFr ? 'Besoin d\'aide pour choisir ?' : 'Need help choosing?'}
+                {tx(lang, 'Besoin d\'aide pour choisir ?', 'Need help choosing?', 'Brauchen Sie Hilfe bei der Auswahl?')}
               </h2>
               <p className="text-future-dusk-500 mb-6">
-                {isFr
-                  ? 'Nos experts sont là pour vous conseiller et vous aider à trouver la solution adaptée à vos besoins.'
-                  : 'Our experts are here to advise you and help you find the solution suited to your needs.'}
+                {tx(
+                  lang,
+                  'Nos experts sont là pour vous conseiller et vous aider à trouver la solution adaptée à vos besoins.',
+                  'Our experts are here to advise you and help you find the solution suited to your needs.',
+                  'Unsere Experten beraten Sie und helfen Ihnen, die passende Lösung für Ihre Bedürfnisse zu finden.',
+                )}
               </p>
             </FadeInView>
             <FadeInView direction="right" delay={0.2}>
             <div className="space-y-4">
               <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl w-full">
                 <Link href="/contact">
-                  <Mail className="mr-2 h-4 w-4" /> {isFr ? 'Demander un devis' : 'Request a quote'}
+                  <Mail className="mr-2 h-4 w-4" /> {tx(lang, 'Demander un devis', 'Request a quote', 'Offerte anfordern')}
                 </Link>
               </Button>
               <Button asChild variant="outline" className="rounded-xl w-full">
-                <a href="tel:+33320199090">
-                  <Phone className="mr-2 h-4 w-4" /> 03 20 19 90 90
+                <a href={lang === 'de-ch' ? 'tel:+41445804384' : 'tel:+33320199090'}>
+                  <Phone className="mr-2 h-4 w-4" /> {lang === 'de-ch' ? '+41 44 580 43 84' : '03 20 19 90 90'}
                 </a>
               </Button>
               <Button asChild variant="outline" className="rounded-xl w-full">
-                <Link href="/studios-photo-automatises#calculateur-roi">
-                  {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'} <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}>
+                  {tx(lang, 'Calculer mon ROI', 'Calculate my ROI', 'Meinen ROI berechnen')} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>

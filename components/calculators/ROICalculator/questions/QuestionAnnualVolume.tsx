@@ -6,9 +6,10 @@ import { Slider } from '@/components/ui/slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionAnnualVolumeProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -24,6 +25,12 @@ const LABELS = {
     tooltip: 'Count ALL products to photograph',
     unit: 'products/year',
   },
+  'de-ch': {
+    label: 'Wie viele Produkte müssen Sie pro Jahr fotografieren?',
+    sublabel: 'Gesamtziel: Bestand + Neuheiten + Erneuerung',
+    tooltip: 'Zählen Sie ALLE zu fotografierenden Produkte',
+    unit: 'Produkte/Jahr',
+  },
 };
 
 // Format large numbers with spaces
@@ -33,7 +40,7 @@ function formatNumber(num: number): string {
 
 export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumeProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('photosAnnuelles') || 5000;
 
@@ -49,7 +56,7 @@ export default function QuestionAnnualVolume({ locale }: QuestionAnnualVolumePro
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

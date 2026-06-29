@@ -7,9 +7,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionExternalProviderProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -31,11 +32,20 @@ const LABELS = {
     placeholder: 'e.g.: 2000',
     unit: '€/month',
   },
+  'de-ch': {
+    label: 'Beauftragen Sie einen externen Dienstleister?',
+    yes: 'Ja',
+    no: 'Nein',
+    budgetLabel: 'Durchschnittliches Monatsbudget externer Dienstleister',
+    tooltip: 'Durchschnittlich pro Monat in Rechnung gestellter Betrag',
+    placeholder: 'z. B.: 2000',
+    unit: '€/Monat',
+  },
 };
 
 export default function QuestionExternalProvider({ locale }: QuestionExternalProviderProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const utiliseSolutionExterne = watch('utiliseSolutionExterne');
   const budgetMensuelExterne = watch('budgetMensuelExterne');
@@ -49,7 +59,7 @@ export default function QuestionExternalProvider({ locale }: QuestionExternalPro
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

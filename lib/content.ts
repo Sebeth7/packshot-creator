@@ -8,7 +8,7 @@ const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'content/blog');
 const GUIDES_DIR = path.join(ROOT, 'content/guides');
 
-export type Lang = 'fr' | 'en';
+export type Lang = 'fr' | 'en' | 'de-ch';
 
 export interface MigratedFaq {
   question: string;
@@ -66,13 +66,21 @@ export interface MigratedGuide {
   source: 'webflow';
 }
 
+// Une entrée d'alternance : slugs par langue. `de-ch` est optionnel (présent
+// uniquement pour les contenus traduits en Suisse alémanique — Workstream B).
+export interface AlternatesEntry {
+  fr: string | null;
+  en: string | null;
+  'de-ch'?: string | null;
+}
+
 export interface AlternatesMap {
-  [webflowItemId: string]: { fr: string | null; en: string | null };
+  [webflowItemId: string]: AlternatesEntry;
 }
 
 const cache = {
-  blog: { fr: null as Map<string, MigratedArticle> | null, en: null as Map<string, MigratedArticle> | null },
-  guides: { fr: null as Map<string, MigratedGuide> | null, en: null as Map<string, MigratedGuide> | null },
+  blog: { fr: null, en: null, 'de-ch': null } as Record<Lang, Map<string, MigratedArticle> | null>,
+  guides: { fr: null, en: null, 'de-ch': null } as Record<Lang, Map<string, MigratedGuide> | null>,
   blogAlternates: null as AlternatesMap | null,
   guideAlternates: null as AlternatesMap | null,
 };
@@ -125,7 +133,7 @@ export function getAllArticleSlugs(lang: Lang): string[] {
   return Array.from(getBlogMap(lang).keys());
 }
 
-export function getBlogAlternates(webflowItemId: string): { fr: string | null; en: string | null } {
+export function getBlogAlternates(webflowItemId: string): AlternatesEntry {
   if (!cache.blogAlternates) {
     cache.blogAlternates =
       readJsonSync<AlternatesMap>(path.join(BLOG_DIR, 'alternates.json')) ?? {};
@@ -149,7 +157,7 @@ export function getAllGuideSlugs(lang: Lang): string[] {
   return Array.from(getGuideMap(lang).keys());
 }
 
-export function getGuideAlternates(webflowItemId: string): { fr: string | null; en: string | null } {
+export function getGuideAlternates(webflowItemId: string): AlternatesEntry {
   if (!cache.guideAlternates) {
     cache.guideAlternates =
       readJsonSync<AlternatesMap>(path.join(GUIDES_DIR, 'alternates.json')) ?? {};

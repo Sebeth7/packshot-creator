@@ -52,9 +52,18 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
+// Génération SÉLECTIVE : par défaut on ne prérend QUE fr/en pour les ~43 pages
+// statiques. de-ch n'est PAS généré globalement ici ; chaque page traduite en
+// de-ch déclare son propre generateStaticParams qui ajoute { lang: 'de-ch' }.
+// Combiné à `dynamicParams = false` ci-dessous, toute route de-ch non explicitement
+// prévue (ex: /de-ch/contact) renvoie 404 au lieu d'un fallback FR.
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ lang: locale }));
+  return [{ lang: 'fr' }, { lang: 'en' }];
 }
+
+// Aucune génération à la volée : un (lang, slug) hors des generateStaticParams
+// connus → 404. Indispensable pour que /de-ch/<non-traduit> = 404 (séquencement Worker).
+export const dynamicParams = false;
 
 export default async function LocaleLayout({
   children,
@@ -66,7 +75,7 @@ export default async function LocaleLayout({
   const { lang } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(lang as 'fr' | 'en')) {
+  if (!routing.locales.includes(lang as 'fr' | 'en' | 'de-ch')) {
     notFound();
   }
 
@@ -79,7 +88,7 @@ export default async function LocaleLayout({
   return (
     <html lang={lang} className={inter.variable}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={lang} messages={messages}>
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
           <LemlistTracker />

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 import { ArrowRight, Lightbulb, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,9 +11,14 @@ import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
+}
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -24,8 +29,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/a-propos`,
-      languages: buildLanguages('/fr/a-propos', { en: '/en/a-propos' }),
+      canonical: `https://www.packshot-creator.com/${lang}/${lang === 'de-ch' ? 'wer-sind-wir' : 'a-propos'}`,
+      languages: buildLanguages('/fr/a-propos', { en: '/en/a-propos', deCh: '/de-ch/wer-sind-wir' }),
     },
     openGraph: {
       title: t('meta.title'),
@@ -48,7 +53,6 @@ const STAT_VALUES = ['20+', '150', '4000m²', '16+'];
 export default async function AProposPage({ params }: PageProps) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'about' });
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -80,7 +84,7 @@ export default async function AProposPage({ params }: PageProps) {
             {/* Left: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Notre mission' : 'Our mission'}
+                {tx(lang, 'Notre mission', 'Our mission', 'Unsere Mission')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
                 {t('mission.heading')}
@@ -118,7 +122,7 @@ export default async function AProposPage({ params }: PageProps) {
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Nos valeurs' : 'Our values'}
+                {tx(lang, 'Nos valeurs', 'Our values', 'Unsere Werte')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
                 {t('values.heading')}
@@ -253,9 +257,9 @@ export default async function AProposPage({ params }: PageProps) {
             </SpringCard>
             <SpringCard className="lg:col-span-2" hoverY={-6}>
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-white/10 h-full flex flex-col">
-                <h3 className="text-2xl font-heading font-bold mb-4">{isFr ? 'Nos formations' : 'Our training'}</h3>
+                <h3 className="text-2xl font-heading font-bold mb-4">{tx(lang, 'Nos formations', 'Our training', 'Unsere Schulungen')}</h3>
                 <p className="text-future-dusk-300 mb-8 leading-relaxed flex-1">
-                  {isFr ? 'Découvrez nos formations certifiées Qualiopi pour maîtriser la photo produit.' : 'Discover our Qualiopi-certified training to master product photography.'}
+                  {tx(lang, 'Découvrez nos formations certifiées Qualiopi pour maîtriser la photo produit.', 'Discover our Qualiopi-certified training to master product photography.', 'Entdecken Sie unsere Qualiopi-zertifizierten Schulungen, um die Produktfotografie zu meistern.')}
                 </p>
                 <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
                   <Link href="/academy">{t('cta.ctaSecondary')}</Link>

@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import dynamic from 'next/dynamic';
 import { TrendingUp } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
+import { tx } from '@/lib/locale-text';
 
 const ROICalculator = dynamic(
   () => import('@/components/calculators/ROICalculator/ROICalculatorWizard'),
@@ -12,7 +13,6 @@ const ROICalculator = dynamic(
 
 export default function CalculateurROIPage() {
   const locale = useLocale();
-  const isFr = locale === 'fr';
 
   return (
     <>
@@ -21,15 +21,21 @@ export default function CalculateurROIPage() {
         backgroundImage="/images/hero/hero-studios-wide.avif"
         badge={{
           icon: <TrendingUp className="h-4 w-4" />,
-          label: isFr ? 'Outil gratuit' : 'Free tool',
+          label: tx(locale, 'Outil gratuit', 'Free tool', 'Kostenloses Tool'),
           colorClass: 'bg-accent-success/15 text-accent-success',
         }}
-        title={isFr
-          ? 'Calculez votre retour sur investissement'
-          : 'Calculate your return on investment'}
-        subtitle={isFr
-          ? 'Découvrez en quelques clics combien un système photo automatisé Orbitvu peut vous faire économiser.'
-          : 'Find out in a few clicks how much an Orbitvu automated photo system can save you.'}
+        title={tx(
+          locale,
+          'Calculez votre retour sur investissement',
+          'Calculate your return on investment',
+          'Berechnen Sie Ihre Rentabilität',
+        )}
+        subtitle={tx(
+          locale,
+          'Découvrez en quelques clics combien un système photo automatisé Orbitvu peut vous faire économiser.',
+          'Find out in a few clicks how much an Orbitvu automated photo system can save you.',
+          'Entdecken Sie mit wenigen Klicks, wie viel Ihnen ein automatisiertes Orbitvu-Fotosystem sparen kann.',
+        )}
       />
 
       <section className="py-16 bg-gradient-to-b from-neutral-50 to-white">

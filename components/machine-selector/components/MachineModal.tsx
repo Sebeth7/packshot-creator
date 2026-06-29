@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
+import { tx, pickL } from '@/lib/locale-text';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineModalProps {
@@ -15,9 +16,10 @@ interface MachineModalProps {
   showPrice?: boolean;
 }
 
-// Fonction pour obtenir le texte bilingue
-function getText(text: BilingualText, locale: 'fr' | 'en'): string {
-  return text[locale] || text.fr;
+// Fonction pour obtenir le texte bilingue (de-ch → en, données machines non traduites en allemand)
+function getText(text: BilingualText, locale: string): string {
+  if (locale === 'fr') return text.fr;
+  return text.en || text.fr;
 }
 
 // Fonction utilitaire pour formater le prix
@@ -31,19 +33,19 @@ function formatPrice(price: number): string {
 }
 
 // Labels
-const FEATURE_LABELS: Record<string, { fr: string; en: string; icon: string }> = {
-  'packshot': { fr: 'Packshot', en: 'Packshot', icon: '📷' },
-  '360': { fr: 'Vue 360°', en: '360° View', icon: '🔄' },
-  'video': { fr: 'Vidéo', en: 'Video', icon: '🎬' },
-  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin', icon: '👤' },
-  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', icon: '⬇️' },
-  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', icon: '✨' },
+const FEATURE_LABELS: Record<string, { fr: string; en: string; 'de-ch': string; icon: string }> = {
+  'packshot': { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot', icon: '📷' },
+  '360': { fr: 'Vue 360°', en: '360° View', 'de-ch': '360°-Ansicht', icon: '🔄' },
+  'video': { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video', icon: '🎬' },
+  'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin', 'de-ch': 'Ghost Mannequin', icon: '👤' },
+  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', 'de-ch': 'Flat-Lay', icon: '⬇️' },
+  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle', icon: '✨' },
 };
 
-const AUTOMATION_LABELS: Record<string, { fr: string; en: string }> = {
-  'manual': { fr: 'Manuel', en: 'Manual' },
-  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic' },
-  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic' },
+const AUTOMATION_LABELS: Record<string, { fr: string; en: string; 'de-ch': string }> = {
+  'manual': { fr: 'Manuel', en: 'Manual', 'de-ch': 'Manuell' },
+  'semi-auto': { fr: 'Semi-automatique', en: 'Semi-automatic', 'de-ch': 'Halbautomatisch' },
+  'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic', 'de-ch': 'Vollautomatisch' },
 };
 
 export function MachineModal({
@@ -155,25 +157,25 @@ export function MachineModal({
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-neutral-50 rounded-lg p-3">
                   <div className="text-xs text-future-dusk-500 mb-1">
-                    {locale === 'fr' ? 'Taille max produit' : 'Max product size'}
+                    {tx(locale, 'Taille max produit', 'Max product size', 'Max. Produktgrösse')}
                   </div>
                   <div className="font-semibold text-future-dusk-900">{machine.tailleMax}</div>
                 </div>
                 <div className="bg-neutral-50 rounded-lg p-3">
                   <div className="text-xs text-future-dusk-500 mb-1">
-                    {locale === 'fr' ? 'Poids max' : 'Max weight'}
+                    {tx(locale, 'Poids max', 'Max weight', 'Max. Gewicht')}
                   </div>
                   <div className="font-semibold text-future-dusk-900">{machine.poidsMax}</div>
                 </div>
                 <div className="bg-neutral-50 rounded-lg p-3">
                   <div className="text-xs text-future-dusk-500 mb-1">
-                    {locale === 'fr' ? 'Capacité/jour' : 'Capacity/day'}
+                    {tx(locale, 'Capacité/jour', 'Capacity/day', 'Kapazität/Tag')}
                   </div>
                   <div className="font-semibold text-future-dusk-900">{machine.capaciteJour} photos</div>
                 </div>
                 <div className="bg-neutral-50 rounded-lg p-3">
                   <div className="text-xs text-future-dusk-500 mb-1">
-                    {locale === 'fr' ? 'Espace requis' : 'Space required'}
+                    {tx(locale, 'Espace requis', 'Space required', 'Platzbedarf')}
                   </div>
                   <div className="font-semibold text-future-dusk-900">{machine.spaceRequired}</div>
                 </div>
@@ -182,17 +184,17 @@ export function MachineModal({
               {/* Automatisation */}
               <div>
                 <div className="text-sm font-medium text-future-dusk-700 mb-2">
-                  {locale === 'fr' ? 'Niveau d\'automatisation' : 'Automation level'}
+                  {tx(locale, 'Niveau d\'automatisation', 'Automation level', 'Automatisierungsgrad')}
                 </div>
                 <div className="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                  {AUTOMATION_LABELS[machine.automationLevel]?.[locale]}
+                  {pickL(locale, AUTOMATION_LABELS[machine.automationLevel])}
                 </div>
               </div>
 
               {/* Features */}
               <div>
                 <div className="text-sm font-medium text-future-dusk-700 mb-2">
-                  {locale === 'fr' ? 'Fonctionnalités' : 'Features'}
+                  {tx(locale, 'Fonctionnalités', 'Features', 'Funktionen')}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {machine.features.map((feature) => {
@@ -203,7 +205,7 @@ export function MachineModal({
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-future-dusk-700 text-sm rounded-full"
                       >
                         <span>{label?.icon}</span>
-                        <span>{label?.[locale]}</span>
+                        <span>{label ? pickL(locale, label) : null}</span>
                       </span>
                     );
                   })}
@@ -213,7 +215,7 @@ export function MachineModal({
               {/* Use cases */}
               <div>
                 <div className="text-sm font-medium text-future-dusk-700 mb-2">
-                  {locale === 'fr' ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
+                  {tx(locale, 'Cas d\'usage idéaux', 'Ideal use cases', 'Ideale Anwendungsfälle')}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {machine.useCases.map((useCase, index) => (
@@ -237,7 +239,7 @@ export function MachineModal({
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                {locale === 'fr' ? 'Points forts' : 'Key advantages'}
+                {tx(locale, 'Points forts', 'Key advantages', 'Stärken')}
               </h3>
               <ul className="space-y-2">
                 {machine.keyAdvantages.map((advantage, index) => (
@@ -255,7 +257,7 @@ export function MachineModal({
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-                {locale === 'fr' ? 'À considérer' : 'Considerations'}
+                {tx(locale, 'À considérer', 'Considerations', 'Zu beachten')}
               </h3>
               <ul className="space-y-2">
                 {machine.limitations.map((limitation, index) => (
@@ -272,10 +274,10 @@ export function MachineModal({
           <div className="p-6 pt-0">
             <div className="bg-blue-50 rounded-xl p-4">
               <h3 className="font-semibold text-blue-800 mb-2">
-                {locale === 'fr' ? 'Volume annuel recommandé' : 'Recommended annual volume'}
+                {tx(locale, 'Volume annuel recommandé', 'Recommended annual volume', 'Empfohlenes Jahresvolumen')}
               </h3>
               <div className="text-blue-900">
-                {machine.volumeRange.min.toLocaleString()} - {machine.volumeRange.max.toLocaleString()} {locale === 'fr' ? 'photos/an' : 'photos/year'}
+                {machine.volumeRange.min.toLocaleString()} - {machine.volumeRange.max.toLocaleString()} {tx(locale, 'photos/an', 'photos/year', 'Fotos/Jahr')}
               </div>
             </div>
           </div>
@@ -287,7 +289,7 @@ export function MachineModal({
             onClick={onClose}
             className="px-5 py-2.5 text-future-dusk-500 text-sm hover:text-future-dusk-700 transition-colors font-medium"
           >
-            {locale === 'fr' ? 'Fermer' : 'Close'}
+            {tx(locale, 'Fermer', 'Close', 'Schliessen')}
           </button>
           <div className="flex items-center gap-3">
             {onSelect && (
@@ -298,14 +300,14 @@ export function MachineModal({
                 }}
                 className="px-5 py-2.5 text-future-dusk-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors font-medium text-sm"
               >
-                {locale === 'fr' ? 'Sélectionner' : 'Select'}
+                {tx(locale, 'Sélectionner', 'Select', 'Auswählen')}
               </button>
             )}
             <Link
-              href={`/studio-photo/${machine.id}`}
+              href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }}
               className="px-6 py-2.5 text-white bg-very-peri-600 rounded-lg hover:bg-very-peri-700 transition-colors font-medium text-sm inline-flex items-center gap-2"
             >
-              {locale === 'fr' ? 'Voir la fiche complète' : 'View full details'}
+              {tx(locale, 'Voir la fiche complète', 'View full details', 'Vollständige Details ansehen')}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
           </div>

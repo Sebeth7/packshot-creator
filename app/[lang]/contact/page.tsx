@@ -8,24 +8,35 @@ import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { buildLanguages } from '@/lib/hreflang';
 
+// Segment de-ch localisé (Suisse alémanique) — voir i18n/routing.ts pathnames.
+const DE_CH_PATH = '/de-ch/kontakt';
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'contact' });
+  const url =
+    lang === 'de-ch'
+      ? `https://www.packshot-creator.com${DE_CH_PATH}`
+      : `https://www.packshot-creator.com/${lang}/contact`;
 
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/contact`,
-      languages: buildLanguages('/fr/contact', { en: '/en/contact' }),
+      canonical: url,
+      languages: buildLanguages('/fr/contact', { en: '/en/contact', deCh: DE_CH_PATH }),
     },
     openGraph: {
       title: t('metaTitle'),
       description: t('metaDescription'),
       type: 'website',
-      url: `https://www.packshot-creator.com/${lang}/contact`,
+      url,
       siteName: 'PackshotCreator',
-      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
       images: [{ url: `/api/og?title=${encodeURIComponent(t('metaTitle'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
@@ -95,7 +106,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mb-6">
                 {t('formTitle')}
               </h2>
-              <ContactForm locale={lang as 'fr' | 'en'} />
+              <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} />
             </FadeInView>
 
             {/* Info Column (2/5) */}

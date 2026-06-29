@@ -8,7 +8,7 @@ import type { ContentType } from '../lib/types';
 import { CONTENT_TYPE_LABELS } from '../lib/machineSelector';
 
 interface QuestionContentTypeProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -19,6 +19,10 @@ const LABELS = {
   en: {
     label: 'What types of content do you want to produce?',
     sublabel: 'Select one or more types (influences recommendation)',
+  },
+  'de-ch': {
+    label: 'Welche Arten von Inhalten möchten Sie produzieren?',
+    sublabel: 'Wählen Sie einen oder mehrere Typen (beeinflusst die Empfehlung)',
   },
 };
 
@@ -32,7 +36,7 @@ const CONTENT_OPTIONS: { type: ContentType; icon: string }[] = [
 
 export default function QuestionContentType({ locale }: QuestionContentTypeProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const selected: ContentType[] = watch('typesContenu') || ['packshot'];
 
@@ -59,7 +63,7 @@ export default function QuestionContentType({ locale }: QuestionContentTypeProps
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {CONTENT_OPTIONS.map(({ type, icon }) => {
           const isSelected = selected.includes(type);
-          const label = CONTENT_TYPE_LABELS[type][locale];
+          const label = CONTENT_TYPE_LABELS[type][locale] ?? CONTENT_TYPE_LABELS[type].en;
 
           return (
             <button

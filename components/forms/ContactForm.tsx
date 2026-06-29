@@ -27,6 +27,13 @@ const REQUEST_TYPES = {
     { value: 'training', label: 'Training / Academy' },
     { value: 'other', label: 'Other' },
   ],
+  'de-ch': [
+    { value: 'demo', label: 'Demo anfragen' },
+    { value: 'quote', label: 'Offerte anfordern' },
+    { value: 'support', label: 'Technischer Support' },
+    { value: 'training', label: 'Schulung / Academy' },
+    { value: 'other', label: 'Andere' },
+  ],
 };
 
 const SECTORS = {
@@ -62,14 +69,33 @@ const SECTORS = {
     'Wine & spirits',
     'Other',
   ],
+  'de-ch': [
+    'Lebensmittel, Tischkultur',
+    'Schuhe',
+    'Verteidigung, Industrie, Luftfahrt',
+    'High-Tech, Haushaltsgeräte, IT',
+    'Uhren, Schmuck, Juwelier',
+    'Möbel',
+    'Mode, Accessoires',
+    'Kunstgegenstände, Antiquitäten',
+    'Optik, Brillen',
+    'Technische Teile',
+    'Skincare, Kosmetik',
+    'Sport',
+    'Wein, Spirituosen',
+    'Andere',
+  ],
 };
 
 // ── Validation ────────────────────────────────────────────────
 
-function createContactSchema(locale: 'fr' | 'en') {
-  const msg = locale === 'fr'
-    ? { required: 'Ce champ est requis', email: 'Email invalide', min2: 'Minimum 2 caractères', rgpd: 'Vous devez accepter la politique de confidentialité' }
-    : { required: 'This field is required', email: 'Invalid email', min2: 'Minimum 2 characters', rgpd: 'You must accept the privacy policy' };
+function createContactSchema(locale: 'fr' | 'en' | 'de-ch') {
+  const messages = {
+    fr: { required: 'Ce champ est requis', email: 'Email invalide', min2: 'Minimum 2 caractères', rgpd: 'Vous devez accepter la politique de confidentialité' },
+    en: { required: 'This field is required', email: 'Invalid email', min2: 'Minimum 2 characters', rgpd: 'You must accept the privacy policy' },
+    'de-ch': { required: 'Dieses Feld ist erforderlich', email: 'Ungültige E-Mail', min2: 'Mindestens 2 Zeichen', rgpd: 'Sie müssen die Datenschutzrichtlinie akzeptieren' },
+  };
+  const msg = messages[locale] ?? messages.en;
 
   return z.object({
     firstName: z.string().min(2, msg.min2),
@@ -90,7 +116,7 @@ type ContactFormValues = z.infer<ReturnType<typeof createContactSchema>>;
 // ── Props ─────────────────────────────────────────────────────
 
 interface ContactFormProps {
-  locale?: 'fr' | 'en';
+  locale?: 'fr' | 'en' | 'de-ch';
   className?: string;
   /** Mode compact pour intégration dans les pages produits */
   compact?: boolean;
@@ -130,8 +156,8 @@ export function ContactForm({
     },
   });
 
-  const t = locale === 'fr'
-    ? {
+  const texts = {
+    fr: {
         firstName: 'Prénom',
         lastName: 'Nom',
         email: 'Email professionnel',
@@ -154,8 +180,8 @@ export function ContactForm({
         newsletterYes: 'Oui',
         newsletterNo: 'Non',
         optional: 'facultatif',
-      }
-    : {
+      },
+    en: {
         firstName: 'First name',
         lastName: 'Last name',
         email: 'Professional email',
@@ -178,7 +204,33 @@ export function ContactForm({
         newsletterYes: 'Yes',
         newsletterNo: 'No',
         optional: 'optional',
-      };
+      },
+    'de-ch': {
+        firstName: 'Vorname',
+        lastName: 'Name',
+        email: 'Geschäftliche E-Mail',
+        phone: 'Telefon',
+        company: 'Unternehmen',
+        sector: 'Branche',
+        sectorPlaceholder: 'Wählen Sie Ihre Branche',
+        requestType: 'Betreff Ihrer Anfrage',
+        message: 'Nachricht',
+        messagePlaceholder: 'Beschreiben Sie Ihr Projekt oder Ihren Bedarf...',
+        submit: 'Anfrage senden',
+        submitting: 'Wird gesendet...',
+        successTitle: 'Anfrage gesendet!',
+        successMessage: 'Unser Team meldet sich innerhalb von 24 Geschäftsstunden bei Ihnen.',
+        errorTitle: 'Ein Fehler ist aufgetreten',
+        errorMessage: 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.',
+        retry: 'Erneut versuchen',
+        rgpdLabel: 'Ich akzeptiere die Datenschutzrichtlinie und die Verarbeitung meiner personenbezogenen Daten.',
+        newsletterLabel: 'Möchten Sie unseren Newsletter erhalten?',
+        newsletterYes: 'Ja',
+        newsletterNo: 'Nein',
+        optional: 'optional',
+      },
+  };
+  const t = texts[locale] ?? texts.en;
 
   const onSubmit = async (values: ContactFormValues) => {
     setStatus('submitting');
@@ -239,7 +291,7 @@ export function ContactForm({
       <fieldset className="mb-6">
         <legend className={labelBase}>{t.requestType}</legend>
         <div className={`grid gap-2 ${compact ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
-          {REQUEST_TYPES[locale].map((type) => (
+          {(REQUEST_TYPES[locale] ?? REQUEST_TYPES.en).map((type) => (
             <label
               key={type.value}
               className={`flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-sm border
@@ -301,7 +353,7 @@ export function ContactForm({
           {...register('sector')}
         >
           <option value="">{t.sectorPlaceholder}</option>
-          {SECTORS[locale].map((s) => (
+          {(SECTORS[locale] ?? SECTORS.en).map((s) => (
             <option key={s} value={s}>{s}</option>
           ))}
         </select>

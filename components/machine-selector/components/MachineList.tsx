@@ -1,5 +1,6 @@
 'use client';
 
+import { tx } from '@/lib/locale-text';
 import type { Machine } from '../lib/types';
 import { MachineCard } from './MachineCard';
 
@@ -41,12 +42,15 @@ export function MachineList({
           />
         </svg>
         <h3 className="text-lg font-medium text-gray-900 mb-1">
-          {locale === 'fr' ? 'Aucune machine trouvée' : 'No machines found'}
+          {tx(locale, 'Aucune machine trouvée', 'No machines found', 'Keine Maschinen gefunden')}
         </h3>
         <p className="text-gray-500">
-          {emptyMessage || (locale === 'fr'
-            ? 'Essayez de modifier vos critères de recherche'
-            : 'Try adjusting your search criteria')}
+          {emptyMessage || tx(
+            locale,
+            'Essayez de modifier vos critères de recherche',
+            'Try adjusting your search criteria',
+            'Passen Sie Ihre Suchkriterien an'
+          )}
         </p>
       </div>
     );

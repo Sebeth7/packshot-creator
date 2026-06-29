@@ -44,13 +44,25 @@ export function organizationSchema() {
       postalCode: '69003',
       addressCountry: 'FR',
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+33147426666',
-      email: 'sales@sysnext.com',
-      contactType: 'sales',
-      availableLanguage: ['French', 'English'],
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+33147426666',
+        email: 'sales@sysnext.com',
+        contactType: 'sales',
+        areaServed: 'FR',
+        availableLanguage: ['French', 'English'],
+      },
+      {
+        // Point de contact suisse (marché CH, locale de-ch — Workstream B). Numéro +41.
+        '@type': 'ContactPoint',
+        telephone: '+41445804384',
+        email: 'sales@sysnext.com',
+        contactType: 'sales',
+        areaServed: 'CH',
+        availableLanguage: ['German', 'French', 'English'],
+      },
+    ],
     sameAs: [
       'https://www.linkedin.com/company/packshotcreator-sysnext/',
     ],

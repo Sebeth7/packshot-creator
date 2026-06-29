@@ -21,6 +21,13 @@ interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+// Segment de-ch localisé (Suisse alémanique) — voir i18n/routing.ts pathnames.
+const DE_CH_PATH = '/de-ch/wichtige-fragen-produktfotografie';
+
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'questionsCles' });
@@ -29,8 +36,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/questions-cles-photographie-produit`,
-      languages: buildLanguages('/fr/questions-cles-photographie-produit', { en: '/en/questions-cles-photographie-produit' }),
+      canonical:
+        lang === 'de-ch'
+          ? `https://www.packshot-creator.com${DE_CH_PATH}`
+          : `https://www.packshot-creator.com/${lang}/questions-cles-photographie-produit`,
+      languages: buildLanguages('/fr/questions-cles-photographie-produit', { en: '/en/questions-cles-photographie-produit', deCh: DE_CH_PATH }),
     },
     openGraph: {
       title: t('meta.title'),

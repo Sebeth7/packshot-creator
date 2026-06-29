@@ -6,9 +6,10 @@ import { Slider } from '@/components/ui/slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import type { FullFormData } from '../lib/validation';
+import { tx } from '@/lib/locale-text';
 
 interface QuestionTimePercentageProps {
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -22,11 +23,16 @@ const LABELS = {
     sublabel: 'Weighted average if multiple operators',
     tooltip: 'Real time: shooting + retouching + management (excluding breaks, admin)',
   },
+  'de-ch': {
+    label: 'Welcher Anteil ihrer Zeit entfällt auf die visuelle Produktion?',
+    sublabel: 'Gewichteter Durchschnitt bei mehreren Bedienern',
+    tooltip: 'Effektive Zeit: Shooting + Retusche + Verwaltung (ohne Pausen, Admin)',
+  },
 };
 
 export default function QuestionTimePercentage({ locale }: QuestionTimePercentageProps) {
   const { watch, setValue, formState: { errors } } = useFormContext<FullFormData>();
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const value = watch('pourcentageTemps') || 80;
 
@@ -42,7 +48,7 @@ export default function QuestionTimePercentage({ locale }: QuestionTimePercentag
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={locale === 'fr' ? 'Aide' : 'Help'}>
+              <button type="button" className="text-future-dusk-500 hover:text-very-peri-600" aria-label={tx(locale, 'Aide', 'Help', 'Hilfe')}>
                 <HelpCircle className="w-5 h-5" />
               </button>
             </TooltipTrigger>

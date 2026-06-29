@@ -11,6 +11,7 @@ import { ArrowRight, CheckCircle, ChevronDown, Camera, Sparkles, GraduationCap, 
 import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { tx, pickL } from '@/lib/locale-text';
 
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
@@ -84,7 +85,6 @@ function parseStatValue(value: string): { end: number; prefix: string; suffix: s
 export default function PackshotLandingTemplate({ config, lang, t }: Props) {
   const { slug, benefitImageSlug, heroIcon: HeroIcon, heroBadge, benefitIcons, machineIds, faqCount } = config;
   const machines = machineIds.map(getMachineById).filter(Boolean);
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -104,7 +104,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
       <HeroSection
         badge={{
           icon: <HeroIcon className="h-4 w-4" />,
-          label: isFr ? heroBadge.fr : heroBadge.en,
+          label: pickL(lang, heroBadge),
           colorClass: 'bg-white/10 text-very-peri-200',
         }}
         title={t('hero.title')}
@@ -125,7 +125,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <FadeInView className="text-center mb-10">
             <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em]">
-              {isFr ? 'Chiffres clés' : 'Key figures'}
+              {tx(lang, 'Chiffres clés', 'Key figures', 'Kennzahlen')}
             </span>
           </FadeInView>
           <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
@@ -163,7 +163,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-6">
-              {isFr ? 'Ils produisent leurs packshots avec nous' : 'They produce their packshots with us'}
+              {tx(lang, 'Ils produisent leurs packshots avec nous', 'They produce their packshots with us', 'Sie produzieren ihre Packshots mit uns')}
             </p>
             <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
               <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
@@ -209,7 +209,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
             {/* Left column: sticky heading */}
             <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Avantages' : 'Benefits'}
+                {tx(lang, 'Avantages', 'Benefits', 'Vorteile')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
                 {t('benefits.heading')}
@@ -265,10 +265,10 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Comment ça marche' : 'How it works'}
+                {tx(lang, 'Comment ça marche', 'How it works', 'So funktioniert\'s')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                {isFr ? '3 étapes. Zéro compétence photo.' : '3 steps. Zero photo skills.'}
+                {tx(lang, '3 étapes. Zéro compétence photo.', '3 steps. Zero photo skills.', '3 Schritte. Keine Fotokenntnisse nötig.')}
               </TextReveal>
             </div>
           </ScrollReveal>
@@ -278,26 +278,35 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               {
                 step: '01',
                 Icon: Box,
-                title: isFr ? 'Placez votre produit' : 'Place your product',
-                desc: isFr
-                  ? 'Ouvrez le studio, posez l\'objet. Le logiciel guide l\'opérateur pour le positionnement optimal.'
-                  : 'Open the studio, place the item. The software guides the operator for optimal positioning.',
+                title: tx(lang, 'Placez votre produit', 'Place your product', 'Platzieren Sie Ihr Produkt'),
+                desc: tx(
+                  lang,
+                  'Ouvrez le studio, posez l\'objet. Le logiciel guide l\'opérateur pour le positionnement optimal.',
+                  'Open the studio, place the item. The software guides the operator for optimal positioning.',
+                  'Öffnen Sie das Studio, legen Sie das Objekt ein. Die Software führt den Bediener zur optimalen Positionierung.',
+                ),
               },
               {
                 step: '02',
                 Icon: Zap,
-                title: isFr ? 'Capturez en un clic' : 'Capture in one click',
-                desc: isFr
-                  ? 'Photo, 360°, vidéo : tout est automatisé. Éclairage LED calibré, cadrage, détourage IQ Mask.'
-                  : 'Photo, 360°, video: everything is automated. Calibrated LED lighting, framing, IQ Mask clipping.',
+                title: tx(lang, 'Capturez en un clic', 'Capture in one click', 'Erfassen Sie mit einem Klick'),
+                desc: tx(
+                  lang,
+                  'Photo, 360°, vidéo : tout est automatisé. Éclairage LED calibré, cadrage, détourage IQ Mask.',
+                  'Photo, 360°, video: everything is automated. Calibrated LED lighting, framing, IQ Mask clipping.',
+                  'Foto, 360°, Video: alles ist automatisiert. Kalibrierte LED-Beleuchtung, Bildausschnitt, IQ-Mask-Freistellung.',
+                ),
               },
               {
                 step: '03',
                 Icon: Upload,
-                title: isFr ? 'Exportez partout' : 'Export everywhere',
-                desc: isFr
-                  ? 'Formats marketplace-ready en un clic. Intégration PIM/DAM. Publication directe sur vos canaux.'
-                  : 'Marketplace-ready formats in one click. PIM/DAM integration. Direct publishing to your channels.',
+                title: tx(lang, 'Exportez partout', 'Export everywhere', 'Exportieren Sie überall'),
+                desc: tx(
+                  lang,
+                  'Formats marketplace-ready en un clic. Intégration PIM/DAM. Publication directe sur vos canaux.',
+                  'Marketplace-ready formats in one click. PIM/DAM integration. Direct publishing to your channels.',
+                  'Marktplatzfertige Formate mit einem Klick. PIM/DAM-Integration. Direkte Veröffentlichung auf Ihren Kanälen.',
+                ),
               },
             ].map((item, i) => (
               <FadeInView key={i} direction={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} delay={i * 0.15}>
@@ -337,7 +346,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           <ScrollReveal>
             <div className="text-center mb-14">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Systèmes recommandés' : 'Recommended systems'}
+                {tx(lang, 'Systèmes recommandés', 'Recommended systems', 'Empfohlene Systeme')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-4">
                 {t('machines.heading')}
@@ -353,7 +362,6 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               <div className={`grid gap-8 ${machines.length >= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
                 {machines.map((machine) => {
                   if (!machine) return null;
-                  const langKey = isFr ? 'fr' : 'en';
                   return (
                     <SpringCard key={machine.id} hoverY={-4}>
                       <div className="rounded-2xl border border-neutral-100 hover:border-very-peri-200 bg-neutral-50 overflow-hidden transition-all duration-300 h-full flex flex-col hover:shadow-lg">
@@ -374,13 +382,13 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                             {machine.nom}
                           </h3>
                           <p className="text-sm text-future-dusk-500 mb-5">
-                            {isFr ? `Jusqu'à ${machine.tailleMax}` : `Up to ${machine.tailleMax}`} &middot; {machine.capaciteJour} {isFr ? 'photos/jour' : 'photos/day'}
+                            {tx(lang, `Jusqu'à ${machine.tailleMax}`, `Up to ${machine.tailleMax}`, `Bis zu ${machine.tailleMax}`)} &middot; {machine.capaciteJour} {tx(lang, 'photos/jour', 'photos/day', 'Fotos/Tag')}
                           </p>
                           <ul className="space-y-2.5 mb-6 flex-grow">
                             {machine.keyAdvantages.slice(0, 3).map((adv, idx) => (
                               <li key={idx} className="flex items-start gap-2.5">
                                 <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                                <span className="text-sm text-future-dusk-600">{adv[langKey]}</span>
+                                <span className="text-sm text-future-dusk-600">{pickL(lang, adv)}</span>
                               </li>
                             ))}
                           </ul>
@@ -408,7 +416,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           <ScrollReveal>
             <div className="text-center">
               <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-6 block">
-                {isFr ? 'Témoignage client' : 'Client testimonial'}
+                {tx(lang, 'Témoignage client', 'Client testimonial', 'Kundenstimme')}
               </span>
               <Quote className="h-10 w-10 text-very-peri-200 mx-auto mb-6" strokeWidth={1.5} />
               <blockquote className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 leading-snug mb-8">
@@ -438,9 +446,12 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
                   {t('faq.heading')}
                 </TextReveal>
                 <p className="text-future-dusk-500 leading-relaxed">
-                  {isFr
-                    ? 'Les réponses à vos questions les plus fréquentes.'
-                    : 'Answers to your most common questions.'}
+                  {tx(
+                    lang,
+                    'Les réponses à vos questions les plus fréquentes.',
+                    'Answers to your most common questions.',
+                    'Antworten auf Ihre häufigsten Fragen.',
+                  )}
                 </p>
               </ScrollReveal>
             </div>
@@ -486,9 +497,9 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
             <FadeInView direction="left" className="lg:col-span-3">
               <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-10">
                 <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">
-                  {isFr ? 'Réservez votre démo' : 'Book your demo'}
+                  {tx(lang, 'Réservez votre démo', 'Book your demo', 'Buchen Sie Ihre Demo')}
                 </h3>
-                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" />
+                <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} compact defaultRequestType="demo" />
               </div>
             </FadeInView>
             {/* ROI — 2/5 = secondary */}
@@ -496,12 +507,15 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-heading font-bold mb-4">
-                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                    {tx(lang, 'Calculez votre ROI', 'Calculate your ROI', 'Berechnen Sie Ihren ROI')}
                   </h3>
                   <p className="text-future-dusk-300 mb-8 leading-relaxed">
-                    {isFr
-                      ? 'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.'
-                      : 'Estimate your savings in 2 minutes. Personalized and instant results.'}
+                    {tx(
+                      lang,
+                      'Estimez vos économies en 2 minutes. Résultat personnalisé et immédiat.',
+                      'Estimate your savings in 2 minutes. Personalized and instant results.',
+                      'Schätzen Sie Ihre Einsparungen in 2 Minuten. Personalisiertes und sofortiges Ergebnis.',
+                    )}
                   </p>
                 </div>
                 <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-4 sm:px-6 lg:px-8 h-10 sm:h-11 lg:h-12 text-sm sm:text-base w-fit">
@@ -512,9 +526,12 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
               </div>
               <div className="bg-gradient-to-br from-very-peri-500/20 to-very-peri-600/10 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-very-peri-400/20">
                 <p className="text-very-peri-200 text-sm leading-relaxed">
-                  {isFr
-                    ? '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.'
-                    : '30 minutes with an expert. See our systems in action on your own products.'}
+                  {tx(
+                    lang,
+                    '30 minutes avec un expert. Voyez nos systèmes en action sur vos propres produits.',
+                    '30 minutes with an expert. See our systems in action on your own products.',
+                    '30 Minuten mit einem Experten. Sehen Sie unsere Systeme in Aktion an Ihren eigenen Produkten.',
+                  )}
                 </p>
               </div>
             </FadeInView>
@@ -529,14 +546,14 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView className="mb-12">
             <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em]">
-              {isFr ? 'Explorez nos solutions' : 'Explore our solutions'}
+              {tx(lang, 'Explorez nos solutions', 'Explore our solutions', 'Entdecken Sie unsere Lösungen')}
             </span>
           </FadeInView>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
-              { key: 'studios', href: '/studios-photo-automatises', icon: <Camera className="h-5 w-5" />, title: isFr ? 'Studios Photo Automatisés' : 'Automated Photo Studios', desc: isFr ? '20 systèmes Orbitvu du bijou au mobilier.' : '20 Orbitvu systems from jewelry to furniture.' },
-              { key: 'ia', href: '/ia-photo-produit', icon: <Sparkles className="h-5 w-5" />, title: isFr ? 'IA Photo Produit' : 'Product Photo AI', desc: isFr ? 'Transformez vos packshots en visuels lifestyle.' : 'Transform your packshots into lifestyle visuals.' },
-              { key: 'academy', href: '/academy', icon: <GraduationCap className="h-5 w-5" />, title: isFr ? 'Academy' : 'Academy', desc: isFr ? 'Formations Qualiopi pour maîtriser votre système.' : 'Qualiopi training to master your system.' },
+              { key: 'studios', href: '/studios-photo-automatises' as const, icon: <Camera className="h-5 w-5" />, title: tx(lang, 'Studios Photo Automatisés', 'Automated Photo Studios', 'Automatisierte Fotostudios'), desc: tx(lang, '20 systèmes Orbitvu du bijou au mobilier.', '20 Orbitvu systems from jewelry to furniture.', '20 Orbitvu-Systeme vom Schmuck bis zum Möbel.') },
+              { key: 'ia', href: '/ia-photo-produit' as const, icon: <Sparkles className="h-5 w-5" />, title: tx(lang, 'IA Photo Produit', 'Product Photo AI', 'KI-Produktfotografie'), desc: tx(lang, 'Transformez vos packshots en visuels lifestyle.', 'Transform your packshots into lifestyle visuals.', 'Verwandeln Sie Ihre Packshots in Lifestyle-Visuals.') },
+              { key: 'academy', href: '/academy' as const, icon: <GraduationCap className="h-5 w-5" />, title: tx(lang, 'Academy', 'Academy', 'Academy'), desc: tx(lang, 'Formations Qualiopi pour maîtriser votre système.', 'Qualiopi training to master your system.', 'Qualiopi-Schulungen, um Ihr System zu meistern.') },
             ].map((link) => (
               <FadeInView key={link.key}>
                 <Link href={link.href} className="group block px-4 sm:px-6 lg:px-8 py-6">

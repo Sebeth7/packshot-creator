@@ -7,7 +7,7 @@ import type { CalculationResults } from '../lib/types';
 
 interface ComparisonTableProps {
   results: CalculationResults;
-  locale: 'fr' | 'en';
+  locale: 'fr' | 'en' | 'de-ch';
 }
 
 const LABELS = {
@@ -39,10 +39,24 @@ const LABELS = {
     faster: 'faster',
     less: 'less',
   },
+  'de-ch': {
+    title: 'Zeit- & Produktionsgewinne',
+    metric: 'Kennzahl',
+    current: 'Aktuell',
+    withOrbitvu: 'Mit PackshotCreator',
+    difference: 'Differenz',
+    timePerPhoto: 'Zeit pro Produkt',
+    productionDays: 'Produktionstage',
+    annualCapacity: 'Jährliche Kapazität',
+    photos: 'Produkte',
+    days: 'Tage',
+    faster: 'schneller',
+    less: 'weniger',
+  },
 };
 
 export default function ComparisonTable({ results, locale }: ComparisonTableProps) {
-  const t = LABELS[locale];
+  const t = LABELS[locale] ?? LABELS.en;
 
   const rows = [
     {

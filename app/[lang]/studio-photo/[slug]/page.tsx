@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { Link } from '@/i18n/routing';
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
 import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
@@ -16,6 +16,11 @@ import { VideoPlayer } from '@/components/video/VideoPlayer';
 import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx, pickL } from '@/lib/locale-text';
+
+// Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
+// Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
+const DE_CH_MACHINES = new Set(MACHINES.map((m) => m.id));
 
 // Map machine IDs to local image files
 function getMachineImage(id: string): string {
@@ -404,11 +409,16 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return MACHINES.map((machine) => ({ slug: machine.id }));
+  const out: { lang: string; slug: string }[] = [];
+  // fr + en : toutes les machines.
+  for (const lang of ['fr', 'en']) for (const m of MACHINES) out.push({ lang, slug: m.id });
+  // de-ch : uniquement les 3 machines cœur.
+  for (const slug of DE_CH_MACHINES) out.push({ lang: 'de-ch', slug });
+  return out;
 }
 
 // SEO overrides for specific product pages (keyword + CTR optimization)
-const seoOverrides: Record<string, { fr: { title: string; description: string }; en: { title: string; description: string } }> = {
+const seoOverrides: Record<string, { fr: { title: string; description: string }; en: { title: string; description: string }; 'de-ch'?: { title: string; description: string } }> = {
   'alphashot-360': {
     fr: {
       title: 'Photo 360 Produit | Alphashot 360 — Studio Automatisé Orbitvu',
@@ -418,6 +428,10 @@ const seoOverrides: Record<string, { fr: { title: string; description: string };
       title: '360 Product Photography | Alphashot 360 — Automated Orbitvu Studio',
       description: 'Create automated 360 product photos with the Alphashot 360 by Orbitvu. Interactive rotation, white background, auto clipping. Request a free demo.',
     },
+    'de-ch': {
+      title: '360-Grad Produktfotografie | Alphashot 360 — Automatisiertes Orbitvu Studio',
+      description: 'Erstellen Sie automatisierte 360-Grad Produktfotos mit dem Alphashot 360 von Orbitvu. Interaktive Rotation, weisser Hintergrund, automatisches Freistellen. Demo anfordern.',
+    },
   },
 };
 
@@ -426,27 +440,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const machine = getMachineById(slug);
   if (!machine) return { title: 'Product not found' };
 
-  const isFr = lang === 'fr';
   const override = seoOverrides[slug];
 
   const title = override
-    ? (isFr ? override.fr.title : override.en.title)
-    : isFr
-      ? `${machine.nom} | Studio Photo Automatisé Orbitvu`
-      : `${machine.nom} | Automated Photo Studio Orbitvu`;
+    ? pickL(lang, { fr: override.fr.title, en: override.en.title, 'de-ch': override['de-ch']?.title })
+    : tx(lang,
+        `${machine.nom} | Studio Photo Automatisé Orbitvu`,
+        `${machine.nom} | Automated Photo Studio Orbitvu`,
+        `${machine.nom} | Automatisiertes Fotostudio Orbitvu`);
 
   const description = override
-    ? (isFr ? override.fr.description : override.en.description)
-    : isFr
-      ? `${machine.nom} — Distributeur officiel Orbitvu. Studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`
-      : `${machine.nom} — Official Orbitvu distributor. Automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`;
+    ? pickL(lang, { fr: override.fr.description, en: override.en.description, 'de-ch': override['de-ch']?.description })
+    : tx(lang,
+        `${machine.nom} — Distributeur officiel Orbitvu. Studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`,
+        `${machine.nom} — Official Orbitvu distributor. Automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`,
+        `${machine.nom} — Offizieller Orbitvu-Distributor. Automatisiertes Fotostudio für ${machine.useCases.join(', ')}. ${pickL('de-ch', machine.keyAdvantages[0])}`);
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
-      languages: buildLanguages(`/fr/studio-photo/${slug}`, { en: `/en/studio-photo/${slug}` }),
+      canonical: lang === 'de-ch'
+        ? `https://www.packshot-creator.com/de-ch/fotostudio/${slug}`
+        : `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
+      languages: buildLanguages(`/fr/studio-photo/${slug}`, {
+        en: `/en/studio-photo/${slug}`,
+        ...(DE_CH_MACHINES.has(slug) ? { deCh: `/de-ch/fotostudio/${slug}` } : {}),
+      }),
     },
     openGraph: {
       title,
@@ -465,8 +485,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const { slug, lang } = await params;
   const machine = getMachineById(slug);
   if (!machine) notFound();
+  // de-ch (Suisse alémanique) : seules les 3 machines cœur sont servies. Toute autre
+  // machine sous /de-ch/fotostudio/* renvoie 404 (le middleware next-intl réécrit l'URL
+  // localisée et contourne dynamicParams=false : garde explicite nécessaire).
+  if (lang === 'de-ch' && !DE_CH_MACHINES.has(slug)) notFound();
 
-  const isFr = lang === 'fr';
   const machineImage = getMachineImage(machine.id);
   const iaReady = isIAReady(machine.id);
   const gallery = getProductGallery(machine.id);
@@ -477,7 +500,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: isFr ? 'Studios Photo' : 'Photo Studios', url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
+    { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
     { name: machine.nom, url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}` },
   ];
 
@@ -513,14 +536,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         layout="split"
         badge={{
           icon: <ChevronRight className="h-3.5 w-3.5 rotate-180" />,
-          label: isFr ? 'Tous les studios' : 'All studios',
+          label: tx(lang, 'Tous les studios', 'All studios', 'Alle Studios'),
           colorClass: 'text-very-peri-300',
         }}
         title={machine.nom}
         subtitle={machine.useCases.join(' \u2022 ')}
         ctas={[
-          { label: isFr ? 'Demander un devis' : 'Request a quote', href: '/contact', variant: 'primary' },
-          { label: isFr ? 'Demander une démo' : 'Request a demo', href: '/contact', variant: 'secondary' },
+          { label: tx(lang, 'Demander un devis', 'Request a quote', 'Offerte anfordern'), href: '/contact', variant: 'primary' },
+          { label: tx(lang, 'Demander une démo', 'Request a demo', 'Demo anfordern'), href: '/contact', variant: 'secondary' },
         ]}
         media={
           <div className="bg-white rounded-2xl shadow-2xl p-8">
@@ -538,7 +561,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         {/* Badges */}
         <div className="flex flex-wrap gap-3 mt-4 -mb-2">
           <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
-            <Award className="h-4 w-4" /> {isFr ? 'Distributeur Exclusif Orbitvu France & Suisse' : 'Exclusive Orbitvu Distributor France & Switzerland'}
+            <Award className="h-4 w-4" /> {tx(lang, 'Distributeur Exclusif Orbitvu France & Suisse', 'Exclusive Orbitvu Distributor France & Switzerland', 'Exklusiver Orbitvu-Distributor Frankreich & Schweiz')}
           </span>
           <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full">
             <Camera className="h-4 w-4" /> Orbitvu
@@ -554,25 +577,25 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         <div className="grid grid-cols-2 gap-4 mt-8">
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
             <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-              <Ruler className="h-3.5 w-3.5" /> {isFr ? 'Taille max' : 'Max size'}
+              <Ruler className="h-3.5 w-3.5" /> {tx(lang, 'Taille max', 'Max size', 'Max. Grösse')}
             </div>
             <div className="font-bold text-white">{machine.tailleMax}</div>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
             <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-              <Weight className="h-3.5 w-3.5" /> {isFr ? 'Poids max' : 'Max weight'}
+              <Weight className="h-3.5 w-3.5" /> {tx(lang, 'Poids max', 'Max weight', 'Max. Gewicht')}
             </div>
             <div className="font-bold text-white">{machine.poidsMax}</div>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
             <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-              <Zap className="h-3.5 w-3.5" /> {isFr ? 'Capacité/jour' : 'Capacity/day'}
+              <Zap className="h-3.5 w-3.5" /> {tx(lang, 'Capacité/jour', 'Capacity/day', 'Kapazität/Tag')}
             </div>
-            <div className="font-bold text-white">{machine.capaciteJour} {isFr ? 'produits' : 'products'}</div>
+            <div className="font-bold text-white">{machine.capaciteJour} {tx(lang, 'produits', 'products', 'Produkte')}</div>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
             <div className="flex items-center gap-2 text-very-peri-300 text-xs mb-1">
-              <Monitor className="h-3.5 w-3.5" /> {isFr ? 'Espace requis' : 'Space required'}
+              <Monitor className="h-3.5 w-3.5" /> {tx(lang, 'Espace requis', 'Space required', 'Platzbedarf')}
             </div>
             <div className="font-bold text-white">{machine.spaceRequired}</div>
           </div>
@@ -598,17 +621,18 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <span className="text-sm text-future-dusk-500">Compatible BlendAI</span>
                 </div>
                 <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-2">
-                  {isFr ? 'Compatible avec l\'IA générative BlendAI' : 'Compatible with BlendAI generative AI'}
+                  {tx(lang, 'Compatible avec l\'IA générative BlendAI', 'Compatible with BlendAI generative AI', 'Kompatibel mit der generativen KI BlendAI')}
                 </h2>
                 <p className="text-future-dusk-500">
-                  {isFr
-                    ? 'Augmentez vos packshots avec des backgrounds générés par IA. Créez des mises en scène illimitées en quelques secondes.'
-                    : 'Enhance your packshots with AI-generated backgrounds. Create unlimited scene settings in seconds.'}
+                  {tx(lang,
+                    'Augmentez vos packshots avec des backgrounds générés par IA. Créez des mises en scène illimitées en quelques secondes.',
+                    'Enhance your packshots with AI-generated backgrounds. Create unlimited scene settings in seconds.',
+                    'Erweitern Sie Ihre Packshots mit KI-generierten Hintergründen. Erstellen Sie unbegrenzte Inszenierungen in wenigen Sekunden.')}
                 </p>
               </div>
               <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl shrink-0">
                 <Link href="/ia-photo-produit">
-                  {isFr ? 'Découvrir BlendAI' : 'Discover BlendAI'} <ArrowRight className="ml-2 h-4 w-4" />
+                  {tx(lang, 'Découvrir BlendAI', 'Discover BlendAI', 'BlendAI entdecken')} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -627,13 +651,16 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 {machine.nom}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                {isFr
-                  ? 'Studio photo IA pour la photographie de produits'
-                  : 'AI photo studio for product photography'}
+                {tx(lang,
+                  'Studio photo IA pour la photographie de produits',
+                  'AI photo studio for product photography',
+                  'KI-Fotostudio für die Produktfotografie')}
               </TextReveal>
               <p className="text-lg lg:text-xl text-future-dusk-500 leading-relaxed">
-                {isFr
+                {lang === 'fr'
                   ? <>Le {machine.nom} est la première solution de photographie alimentée par l&apos;IA. Équipé de <strong className="text-future-dusk-900 font-semibold">lampes virtuelles</strong> et d&apos;un <strong className="text-future-dusk-900 font-semibold">assistant IA intelligent</strong>, il reproduit un studio professionnel dans un format compact.</>
+                  : lang === 'de-ch'
+                  ? <>Der {machine.nom} ist die erste KI-gestützte Fotolösung. Ausgestattet mit <strong className="text-future-dusk-900 font-semibold">virtuellen Leuchten</strong> und einem <strong className="text-future-dusk-900 font-semibold">intelligenten KI-Assistenten</strong>, bildet er ein professionelles Studio in einem kompakten Format ab.</>
                   : <>The {machine.nom} is the first AI-powered photography solution. Equipped with <strong className="text-future-dusk-900 font-semibold">virtual lights</strong> and an <strong className="text-future-dusk-900 font-semibold">intelligent AI assistant</strong>, it replicates a professional studio in a compact format.</>}
               </p>
             </div>
@@ -648,7 +675,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <div className="absolute inset-0 p-6 lg:p-10 flex items-center justify-center">
                     <Image
                       src={gallery.bentoPackshot.src}
-                      alt={isFr ? gallery.bentoPackshot.alt.fr : gallery.bentoPackshot.alt.en}
+                      alt={pickL(lang, gallery.bentoPackshot.alt)}
                       width={gallery.bentoPackshot.w}
                       height={gallery.bentoPackshot.h}
                       className="w-full h-full object-contain"
@@ -658,7 +685,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-future-dusk-400 p-8">
                     <ImageIcon className="h-12 w-12 mb-4 opacity-30" />
                     <p className="text-sm font-medium text-center opacity-50">
-                      {isFr ? 'Photo packshot — fond blanc automatique' : 'Packshot photo — automatic white background'}
+                      {tx(lang, 'Photo packshot — fond blanc automatique', 'Packshot photo — automatic white background', 'Packshot-Foto — automatischer weisser Hintergrund')}
                     </p>
                   </div>
                 )}
@@ -687,7 +714,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <Eye className="h-12 w-12 text-white/30 mb-2" />
                     <p className="text-sm font-medium text-white/60">
-                      {isFr ? 'Vue 360° interactive' : 'Interactive 360° view'}
+                      {tx(lang, 'Vue 360° interactive', 'Interactive 360° view', 'Interaktive 360-Grad-Ansicht')}
                     </p>
                   </div>
                 </div>
@@ -708,7 +735,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     <div className="aspect-square p-4 lg:p-6 flex items-center justify-center">
                       <Image
                         src={img.src}
-                        alt={isFr ? img.alt.fr : img.alt.en}
+                        alt={pickL(lang, img.alt)}
                         width={img.w}
                         height={img.h}
                         className="w-full h-full object-contain"
@@ -730,10 +757,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <FadeInView>
               <div className="text-center mb-10">
                 <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'Vidéo démo' : 'Demo video'}
+                  {tx(lang, 'Vidéo démo', 'Demo video', 'Demo-Video')}
                 </span>
                 <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white">
-                  {isFr ? `Le ${machine.nom} en action` : `The ${machine.nom} in action`}
+                  {tx(lang, `Le ${machine.nom} en action`, `The ${machine.nom} in action`, `Der ${machine.nom} in Aktion`)}
                 </h2>
               </div>
             </FadeInView>
@@ -741,7 +768,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               <VideoPlayer
                 src={`${R2_VIDEO_BASE}/${gallery.video.youtubeId}.mp4`}
                 poster={gallery.video.poster}
-                title={isFr ? `${machine.nom} en action` : `${machine.nom} in action`}
+                title={tx(lang, `${machine.nom} en action`, `${machine.nom} in action`, `${machine.nom} in Aktion`)}
                 className="aspect-video w-full rounded-2xl shadow-2xl shadow-black/30"
               />
             </ScrollReveal>
@@ -756,7 +783,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
             <FadeInView>
               <p className="text-center text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-10">
-                {isFr ? 'En chiffres' : 'By the numbers'}
+                {tx(lang, 'En chiffres', 'By the numbers', 'In Zahlen')}
               </p>
             </FadeInView>
             <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10">
@@ -772,10 +799,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                         ) : stat.value}
                       </p>
                       <p className="mt-2 text-sm font-medium text-future-dusk-300 uppercase tracking-wider">
-                        {isFr ? stat.label.fr : stat.label.en}
+                        {pickL(lang, stat.label)}
                       </p>
                       <p className="mt-1 text-xs text-future-dusk-400">
-                        {isFr ? stat.description.fr : stat.description.en}
+                        {pickL(lang, stat.description)}
                       </p>
                     </div>
                   </StaggerItem>
@@ -792,10 +819,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <FadeInView>
             <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Pourquoi ce système' : 'Why this system'}
+                {tx(lang, 'Pourquoi ce système', 'Why this system', 'Warum dieses System')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                {isFr ? 'Avantages clés' : 'Key advantages'}
+                {tx(lang, 'Avantages clés', 'Key advantages', 'Wichtige Vorteile')}
               </TextReveal>
             </div>
           </FadeInView>
@@ -809,11 +836,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <div>
                     <span className="text-7xl lg:text-8xl font-heading font-bold text-white/5 select-none leading-none block mb-4">01</span>
                     <h3 className="text-2xl lg:text-3xl font-heading font-bold text-white mb-3">
-                      {isFr ? machine.keyAdvantages[0].fr : machine.keyAdvantages[0].en}
+                      {pickL(lang, machine.keyAdvantages[0])}
                     </h3>
                     {machine.keyAdvantages[0].description && (
                       <p className="text-future-dusk-300 leading-relaxed">
-                        {isFr ? machine.keyAdvantages[0].description.fr : machine.keyAdvantages[0].description.en}
+                        {pickL(lang, machine.keyAdvantages[0].description)}
                       </p>
                     )}
                   </div>
@@ -821,7 +848,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     {gallery.advantageHero ? (
                       <Image
                         src={gallery.advantageHero.src}
-                        alt={isFr ? gallery.advantageHero.alt.fr : gallery.advantageHero.alt.en}
+                        alt={pickL(lang, gallery.advantageHero.alt)}
                         width={gallery.advantageHero.w}
                         height={gallery.advantageHero.h}
                         className="w-full h-full object-cover rounded-xl"
@@ -845,11 +872,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       {String(index + 2).padStart(2, '0')}
                     </span>
                     <h3 className="text-lg font-heading font-bold text-future-dusk-900 mb-2">
-                      {isFr ? advantage.fr : advantage.en}
+                      {pickL(lang, advantage)}
                     </h3>
                     {advantage.description && (
                       <p className="text-sm text-future-dusk-500 leading-relaxed">
-                        {isFr ? advantage.description.fr : advantage.description.en}
+                        {pickL(lang, advantage.description)}
                       </p>
                     )}
                   </div>
@@ -868,20 +895,20 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             {/* Left — Specs table */}
             <FadeInView direction="left" className="lg:col-span-7">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Fiche technique' : 'Technical sheet'}
+                {tx(lang, 'Fiche technique', 'Technical sheet', 'Technisches Datenblatt')}
               </span>
               <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-10">
-                {isFr ? 'Caractéristiques' : 'Specifications'}
+                {tx(lang, 'Caractéristiques', 'Specifications', 'Technische Daten')}
               </h2>
 
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
                 <div className="space-y-0">
                   {[
-                    { label: isFr ? 'Taille produit max' : 'Max product size', value: machine.tailleMax },
-                    { label: isFr ? 'Poids max' : 'Max weight', value: machine.poidsMax },
-                    { label: isFr ? 'Capacité journalière' : 'Daily capacity', value: `${machine.capaciteJour} ${isFr ? 'produits' : 'products'}` },
-                    { label: isFr ? 'Espace requis' : 'Space required', value: machine.spaceRequired },
-                    ...(machine.studioFootprint ? [{ label: isFr ? 'Encombrement studio' : 'Studio footprint', value: `${machine.studioFootprint.l}x${machine.studioFootprint.w}x${machine.studioFootprint.h} cm` }] : []),
+                    { label: tx(lang, 'Taille produit max', 'Max product size', 'Max. Produktgrösse'), value: machine.tailleMax },
+                    { label: tx(lang, 'Poids max', 'Max weight', 'Max. Gewicht'), value: machine.poidsMax },
+                    { label: tx(lang, 'Capacité journalière', 'Daily capacity', 'Tageskapazität'), value: `${machine.capaciteJour} ${tx(lang, 'produits', 'products', 'Produkte')}` },
+                    { label: tx(lang, 'Espace requis', 'Space required', 'Platzbedarf'), value: machine.spaceRequired },
+                    ...(machine.studioFootprint ? [{ label: tx(lang, 'Encombrement studio', 'Studio footprint', 'Studio-Stellfläche'), value: `${machine.studioFootprint.l}x${machine.studioFootprint.w}x${machine.studioFootprint.h} cm` }] : []),
                   ].map((spec) => (
                     <div key={spec.label} className="flex justify-between py-3.5 border-b border-neutral-100 last:border-0">
                       <span className="text-future-dusk-500">{spec.label}</span>
@@ -892,13 +919,13 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
                 <div className="mt-6 pt-6 border-t border-neutral-100">
                   <h4 className="text-sm font-semibold text-future-dusk-900 uppercase tracking-wider mb-3">
-                    {isFr ? 'Fonctionnalités' : 'Features'}
+                    {tx(lang, 'Fonctionnalités', 'Features', 'Funktionen')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {machine.features.map((feature) => (
                       <span key={feature} className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full text-sm font-medium">
                         <CheckCircle className="h-3.5 w-3.5" />
-                        {isFr ? featureLabels[feature]?.fr : featureLabels[feature]?.en}
+                        {pickL(lang, featureLabels[feature] ?? { fr: feature, en: feature })}
                       </span>
                     ))}
                   </div>
@@ -911,7 +938,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               {/* Use cases */}
               <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8">
                 <h3 className="text-lg font-heading font-bold text-white mb-5">
-                  {isFr ? 'Cas d\'usage idéaux' : 'Ideal use cases'}
+                  {tx(lang, 'Cas d\'usage idéaux', 'Ideal use cases', 'Ideale Anwendungsfälle')}
                 </h3>
                 <ul className="space-y-3">
                   {machine.useCases.map((useCase, index) => (
@@ -926,12 +953,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               {/* Sectors */}
               <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8">
                 <h3 className="text-lg font-heading font-bold text-white mb-4">
-                  {isFr ? 'Secteurs idéaux' : 'Ideal sectors'}
+                  {tx(lang, 'Secteurs idéaux', 'Ideal sectors', 'Ideale Branchen')}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {machine.idealSectors.map((sector) => (
                     <span key={sector} className="bg-very-peri-500/20 text-very-peri-200 px-3 py-1.5 rounded-full text-sm font-medium">
-                      {isFr ? sectorLabels[sector]?.fr : sectorLabels[sector]?.en || sector}
+                      {pickL(lang, sectorLabels[sector] ?? { fr: sector, en: sector })}
                     </span>
                   ))}
                 </div>
@@ -941,13 +968,13 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               {machine.limitations.length > 0 && (
                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 lg:p-8">
                   <h3 className="text-lg font-heading font-bold text-amber-200 mb-4">
-                    {isFr ? 'Points d\'attention' : 'Points to consider'}
+                    {tx(lang, 'Points d\'attention', 'Points to consider', 'Zu beachten')}
                   </h3>
                   <ul className="space-y-3">
                     {machine.limitations.map((limitation, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <AlertTriangle className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
-                        <span className="text-amber-100/80">{isFr ? limitation.fr : limitation.en}</span>
+                        <span className="text-amber-100/80">{pickL(lang, limitation)}</span>
                       </li>
                     ))}
                   </ul>
@@ -968,7 +995,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   Orbitvu Station
                 </span>
                 <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                  {isFr ? 'Logiciel tout-en-un' : 'All-in-one software'}
+                  {tx(lang, 'Logiciel tout-en-un', 'All-in-one software', 'All-in-one-Software')}
                 </TextReveal>
               </div>
             </FadeInView>
@@ -980,7 +1007,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       <div className="aspect-[6/5] relative">
                         <Image
                           src={feat.src}
-                          alt={isFr ? feat.alt.fr : feat.alt.en}
+                          alt={pickL(lang, feat.alt)}
                           width={feat.w}
                           height={feat.h}
                           className="absolute inset-0 w-full h-full object-cover"
@@ -988,7 +1015,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       </div>
                       <div className="p-5">
                         <h3 className="text-lg font-heading font-bold text-future-dusk-900">
-                          {isFr ? feat.label.fr : feat.label.en}
+                          {pickL(lang, feat.label)}
                         </h3>
                       </div>
                     </div>
@@ -1007,10 +1034,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <FadeInView>
               <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
                 <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                  {isFr ? 'Accessoires' : 'Accessories'}
+                  {tx(lang, 'Accessoires', 'Accessories', 'Zubehör')}
                 </span>
                 <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">
-                  {isFr ? 'Complétez votre système' : 'Complete your system'}
+                  {tx(lang, 'Complétez votre système', 'Complete your system', 'Ergänzen Sie Ihr System')}
                 </TextReveal>
               </div>
             </FadeInView>
@@ -1022,7 +1049,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       <div className="aspect-square relative bg-neutral-50 p-4">
                         <Image
                           src={acc.src}
-                          alt={isFr ? acc.alt.fr : acc.alt.en}
+                          alt={pickL(lang, acc.alt)}
                           width={acc.w}
                           height={acc.h}
                           className="w-full h-full object-contain"
@@ -1030,7 +1057,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                       </div>
                       <div className="p-3 text-center">
                         <p className="text-sm font-medium text-future-dusk-700">
-                          {isFr ? acc.label.fr : acc.label.en}
+                          {pickL(lang, acc.label)}
                         </p>
                       </div>
                     </div>
@@ -1049,10 +1076,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <FadeInView>
             <div className="text-center mb-12 lg:mb-16">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Comparer' : 'Compare'}
+                {tx(lang, 'Comparer', 'Compare', 'Vergleichen')}
               </span>
               <h2 className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900">
-                {isFr ? 'Systèmes similaires' : 'Similar systems'}
+                {tx(lang, 'Systèmes similaires', 'Similar systems', 'Ähnliche Systeme')}
               </h2>
             </div>
             </FadeInView>
@@ -1061,7 +1088,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <ScrollReveal key={similar.id} offset={30}>
                   <SpringCard>
                     <Link
-                      href={`/studio-photo/${similar.id}`}
+                      href={{ pathname: '/studio-photo/[slug]', params: { slug: similar.id } }}
                       className="group block bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:shadow-lg hover:border-very-peri-200 transition-all"
                     >
                       <div className="p-6">
@@ -1082,7 +1109,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           <span className="text-xs bg-very-peri-50 text-very-peri-700 px-2 py-1 rounded-full">
-                            {similar.capaciteJour} {isFr ? 'prod/jour' : 'prod/day'}
+                            {similar.capaciteJour} {tx(lang, 'prod/jour', 'prod/day', 'Prod./Tag')}
                           </span>
                           <span className="text-xs bg-neutral-100 text-future-dusk-600 px-2 py-1 rounded-full">
                             {similar.tailleMax}
@@ -1107,19 +1134,20 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 PackshotCreator Academy
               </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-3">
-                {isFr ? `Maîtrisez votre ${machine.nom}` : `Master your ${machine.nom}`}
+                {tx(lang, `Maîtrisez votre ${machine.nom}`, `Master your ${machine.nom}`, `Meistern Sie Ihren ${machine.nom}`)}
               </h2>
               <p className="text-lg text-future-dusk-500 mb-8">
-                {isFr
-                  ? 'Formez-vous aux studios photo automatisés Orbitvu et maximisez votre productivité. Certifié Qualiopi, financement OPCO disponible.'
-                  : 'Train on Orbitvu automated photo studios and maximize your productivity. Qualiopi certified, OPCO funding available.'}
+                {tx(lang,
+                  'Formez-vous aux studios photo automatisés Orbitvu et maximisez votre productivité. Certifié Qualiopi, financement OPCO disponible.',
+                  'Train on Orbitvu automated photo studios and maximize your productivity. Qualiopi certified, OPCO funding available.',
+                  'Lassen Sie sich an den automatisierten Orbitvu-Fotostudios schulen und maximieren Sie Ihre Produktivität. Qualiopi-zertifiziert.')}
               </p>
 
               <ul className="space-y-3 mb-8">
                 {[
-                  isFr ? 'Prise en main complète de votre studio' : 'Full studio onboarding',
-                  isFr ? 'Optimisation des workflows de production' : 'Production workflow optimization',
-                  isFr ? 'Best practices e-commerce et marketplaces' : 'E-commerce and marketplace best practices',
+                  tx(lang, 'Prise en main complète de votre studio', 'Full studio onboarding', 'Vollständige Einarbeitung in Ihr Studio'),
+                  tx(lang, 'Optimisation des workflows de production', 'Production workflow optimization', 'Optimierung der Produktions-Workflows'),
+                  tx(lang, 'Best practices e-commerce et marketplaces', 'E-commerce and marketplace best practices', 'Best Practices für E-Commerce und Marktplätze'),
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-very-peri-600 shrink-0 mt-0.5" />
@@ -1131,12 +1159,12 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               <div className="flex flex-wrap gap-4">
                 <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl">
                   <Link href="/academy/formations-packshot">
-                    {isFr ? 'Voir les formations' : 'View training'} <ArrowRight className="ml-2 h-4 w-4" />
+                    {tx(lang, 'Voir les formations', 'View training', 'Schulungen ansehen')} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-xl">
                   <Link href="/academy/calendrier">
-                    <CalendarDays className="mr-2 h-4 w-4" /> {isFr ? 'Calendrier' : 'Calendar'}
+                    <CalendarDays className="mr-2 h-4 w-4" /> {tx(lang, 'Calendrier', 'Calendar', 'Kalender')}
                   </Link>
                 </Button>
               </div>
@@ -1147,21 +1175,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
                 <GraduationCap className="h-12 w-12 mb-6 opacity-80" />
                 <p className="text-xl font-heading font-bold mb-6">
-                  {isFr ? 'Certifications & Financement' : 'Certifications & Funding'}
+                  {tx(lang, 'Certifications & Financement', 'Certifications & Funding', 'Zertifizierungen & Finanzierung')}
                 </p>
                 <div className="space-y-4">
                   <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3">
                     <Award className="h-6 w-6 shrink-0" />
                     <div>
                       <p className="font-bold text-sm">Qualiopi</p>
-                      <p className="text-xs text-white/70">{isFr ? 'Certification qualité reconnue par l\'État' : 'State-recognized quality certification'}</p>
+                      <p className="text-xs text-white/70">{tx(lang, 'Certification qualité reconnue par l\'État', 'State-recognized quality certification', 'Staatlich anerkannte Qualitätszertifizierung')}</p>
                     </div>
                   </div>
                   <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3">
                     <BarChart3 className="h-6 w-6 shrink-0" />
                     <div>
                       <p className="font-bold text-sm">OPCO</p>
-                      <p className="text-xs text-white/70">{isFr ? 'Financement jusqu\'à 100%' : 'Funding up to 100%'}</p>
+                      <p className="text-xs text-white/70">{tx(lang, 'Financement jusqu\'à 100%', 'Funding up to 100%', 'Finanzierung bis zu 100%')}</p>
                     </div>
                   </div>
                 </div>
@@ -1181,12 +1209,13 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   FAQ
                 </span>
                 <TextReveal as="h2" className="text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-                  {isFr ? 'Questions fréquentes' : 'Frequently asked questions'}
+                  {tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen')}
                 </TextReveal>
                 <p className="text-lg text-future-dusk-500 leading-relaxed">
-                  {isFr
-                    ? `Tout ce que vous devez savoir sur le ${machine.nom}.`
-                    : `Everything you need to know about the ${machine.nom}.`}
+                  {tx(lang,
+                    `Tout ce que vous devez savoir sur le ${machine.nom}.`,
+                    `Everything you need to know about the ${machine.nom}.`,
+                    `Alles, was Sie über den ${machine.nom} wissen müssen.`)}
                 </p>
               </ScrollReveal>
 
@@ -1195,11 +1224,11 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <ScrollReveal key={index} offset={20}>
                     <details className="group bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:border-very-peri-200 transition-colors">
                       <summary className="flex items-center justify-between cursor-pointer p-6 text-future-dusk-900 font-heading font-bold hover:text-very-peri-600 transition-colors">
-                        <span className="pr-4">{isFr ? faq.question.fr : faq.question.en}</span>
+                        <span className="pr-4">{pickL(lang, faq.question)}</span>
                         <ChevronRight className="h-5 w-5 text-future-dusk-400 shrink-0 transition-transform group-open:rotate-90" />
                       </summary>
                       <div className="px-6 pb-6 text-future-dusk-600 leading-relaxed">
-                        {isFr ? faq.answer.fr : faq.answer.en}
+                        {pickL(lang, faq.answer)}
                       </div>
                     </details>
                   </ScrollReveal>
@@ -1217,10 +1246,10 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <FadeInView>
             <div className="text-center mb-12 lg:mb-16">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {isFr ? 'Passez à l\'action' : 'Take action'}
+                {tx(lang, 'Passez à l\'action', 'Take action', 'Werden Sie aktiv')}
               </span>
               <h2 className="text-4xl lg:text-6xl font-heading font-bold leading-[1.1]">
-                {isFr ? 'Prêt à transformer votre production ?' : 'Ready to transform your production?'}
+                {tx(lang, 'Prêt à transformer votre production ?', 'Ready to transform your production?', 'Bereit, Ihre Produktion zu transformieren?')}
               </h2>
             </div>
           </FadeInView>
@@ -1230,14 +1259,15 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <FadeInView direction="left" className="lg:col-span-3">
               <div className="bg-white rounded-2xl p-6 lg:p-10">
                 <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-2">
-                  {isFr ? 'Demandez une démo personnalisée' : 'Request a personalized demo'}
+                  {tx(lang, 'Demandez une démo personnalisée', 'Request a personalized demo', 'Persönliche Demo anfordern')}
                 </h3>
                 <p className="text-future-dusk-500 mb-6">
-                  {isFr
-                    ? `Testez le ${machine.nom} dans nos showrooms et découvrez comment il peut transformer votre production photo.`
-                    : `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`}
+                  {tx(lang,
+                    `Testez le ${machine.nom} dans nos showrooms et découvrez comment il peut transformer votre production photo.`,
+                    `Try the ${machine.nom} in our showrooms and discover how it can transform your photo production.`,
+                    `Testen Sie den ${machine.nom} in unseren Showrooms und entdecken Sie, wie er Ihre Fotoproduktion transformieren kann.`)}
                 </p>
-                <ContactForm locale={isFr ? 'fr' : 'en'} compact defaultRequestType="demo" machineContext={machine.nom} />
+                <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} compact defaultRequestType="demo" machineContext={machine.nom} />
               </div>
             </FadeInView>
 
@@ -1247,17 +1277,18 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <div>
                   <BarChart3 className="h-10 w-10 text-very-peri-400 mb-4" />
                   <h3 className="text-xl font-heading font-bold mb-3">
-                    {isFr ? 'Calculez votre ROI' : 'Calculate your ROI'}
+                    {tx(lang, 'Calculez votre ROI', 'Calculate your ROI', 'Berechnen Sie Ihren ROI')}
                   </h3>
                   <p className="text-white/60 text-sm mb-6">
-                    {isFr
-                      ? 'Découvrez en 2 minutes combien vous pourriez économiser avec un studio automatisé.'
-                      : 'Discover in 2 minutes how much you could save with an automated studio.'}
+                    {tx(lang,
+                      'Découvrez en 2 minutes combien vous pourriez économiser avec un studio automatisé.',
+                      'Discover in 2 minutes how much you could save with an automated studio.',
+                      'Erfahren Sie in 2 Minuten, wie viel Sie mit einem automatisierten Studio sparen könnten.')}
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl w-full justify-center">
                   <Link href="/calculateur-roi">
-                    <BarChart3 className="mr-2 h-4 w-4" /> {isFr ? 'Calculer mon ROI' : 'Calculate my ROI'}
+                    <BarChart3 className="mr-2 h-4 w-4" /> {tx(lang, 'Calculer mon ROI', 'Calculate my ROI', 'Meinen ROI berechnen')}
                   </Link>
                 </Button>
               </div>
@@ -1275,20 +1306,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           image: `https://www.packshot-creator.com${machineImage}`,
           url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
           brand: 'Orbitvu',
-          category: isFr ? 'Studio Photo Automatisé' : 'Automated Photo Studio',
+          category: tx(lang, 'Studio Photo Automatisé', 'Automated Photo Studio', 'Automatisiertes Fotostudio'),
         }),
         ...(faqItems.length > 0
           ? [faqSchema(faqItems.map((faq) => ({
-              question: isFr ? faq.question.fr : faq.question.en,
-              answer: isFr ? faq.answer.fr : faq.answer.en,
+              question: pickL(lang, faq.question),
+              answer: pickL(lang, faq.answer),
             })))]
           : []),
         ...(gallery.video && VIDEO_META[gallery.video.youtubeId]
           ? [videoSchema({
-              name: isFr ? `${machine.nom} en action — démo vidéo` : `${machine.nom} in action — demo video`,
-              description: isFr
-                ? `Démonstration du studio photo automatisé ${machine.nom} (Orbitvu) : ${machine.useCases.join(', ')}.`
-                : `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${machine.useCases.join(', ')}.`,
+              name: tx(lang, `${machine.nom} en action — démo vidéo`, `${machine.nom} in action — demo video`, `${machine.nom} in Aktion — Demo-Video`),
+              description: tx(lang,
+                `Démonstration du studio photo automatisé ${machine.nom} (Orbitvu) : ${machine.useCases.join(', ')}.`,
+                `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${machine.useCases.join(', ')}.`,
+                `Demonstration des automatisierten Fotostudios ${machine.nom} (Orbitvu): ${machine.useCases.join(', ')}.`),
               // Miniature JPEG auto-hébergée sur R2 (l'AVIF poster n'est pas un format supporté par Google)
               thumbnailUrl: `${R2_VIDEO_BASE}/${gallery.video.youtubeId}.jpg`,
               uploadDate: VIDEO_META[gallery.video.youtubeId].uploadDate,

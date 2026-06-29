@@ -1104,7 +1104,7 @@ export default async function FinancementOpcoGuidePage({
                 <li className="text-future-dusk-600">
                   <strong>Formation Photo Produit 2026</strong> :{' '}
                   <Link
-                    href="/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026"
+                    href={{ pathname: '/blog/[slug]', params: { slug: 'formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026' } }}
                     className="text-very-peri-600 hover:text-very-peri-700 underline"
                   >
                     Article complet
@@ -1113,7 +1113,7 @@ export default async function FinancementOpcoGuidePage({
                 <li className="text-future-dusk-600">
                   <strong>Guide IA Photo Produit 2026</strong> :{' '}
                   <Link
-                    href="/blog/ia-photo-produit-guide-2026"
+                    href={{ pathname: '/blog/[slug]', params: { slug: 'ia-photo-produit-guide-2026' } }}
                     className="text-very-peri-600 hover:text-very-peri-700 underline"
                   >
                     Lire l&apos;article
