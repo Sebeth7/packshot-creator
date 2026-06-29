@@ -1,9 +1,10 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { usePathname } from '@/i18n/routing';
+import { usePathname, Link as RoutingLink } from '@/i18n/routing';
+import { usePathname as useRealPathname } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
-import { type LinkHref } from '@/i18n/deChCoverage';
+import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronRight, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
@@ -290,13 +291,60 @@ function MobileNavSection({
   );
 }
 
+const SWITCHER_LOCALES: { code: AppLocale; label: string }[] = [
+  { code: 'fr', label: 'FR' },
+  { code: 'en', label: 'EN' },
+  { code: 'de-ch', label: 'DE-CH' },
+];
+
+/**
+ * Sélecteur de langue (FR / EN / DE-CH). La Suisse romande = FR (pas d'entrée
+ * dédiée). Un clic « DE » sert la page en allemand suisse si elle est traduite,
+ * sinon la version /en (cf localeSwitchHref). Utilise le Link brut de routing
+ * pour piloter `locale` explicitement (pas NavLink, qui ferait du pinning auto).
+ */
+function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: string; slug?: string }) {
+  return (
+    <div className="flex items-center gap-0.5" role="group" aria-label="Language">
+      {SWITCHER_LOCALES.map(({ code, label }) => {
+        if (code === locale) {
+          return (
+            <span
+              key={code}
+              aria-current="true"
+              className="flex items-center justify-center h-8 px-2 rounded-full text-xs font-bold text-very-peri-600 bg-very-peri-50"
+            >
+              {label}
+            </span>
+          );
+        }
+        const { href, locale: target } = localeSwitchHref(pathname, slug, locale, code);
+        return (
+          <RoutingLink
+            key={code}
+            href={href}
+            locale={target}
+            onClick={() => trackLanguageSwitch(locale, code)}
+            className="flex items-center justify-center h-8 px-2 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
+          >
+            {label}
+          </RoutingLink>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Header() {
   const t = useTranslations('common.nav');
   const locale = useLocale();
   const pathname = usePathname();
+  // next-intl usePathname() renvoie le TEMPLATE interne (/blog/[slug]) ; le slug réel
+  // (y compris pour les articles statiques en dossier littéral, absents de useParams)
+  // se lit sur le dernier segment du pathname résolu de next/navigation.
+  const realPath = useRealPathname();
+  const slug = pathname.endsWith('[slug]') ? realPath.split('/').filter(Boolean).pop() : undefined;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   const solutionSections: DropdownSection[] = [
     {
@@ -489,14 +537,7 @@ export default function Header() {
 
           {/* Right side: Lang + CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href={pathname as LinkHref}
-              locale={otherLocale}
-              className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
-              onClick={() => trackLanguageSwitch(locale, otherLocale)}
-            >
-              {otherLocale.toUpperCase()}
-            </Link>
+            <LangSwitcher locale={locale} pathname={pathname} slug={slug} />
             <Button asChild size="sm" className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-lg shadow-sm">
               <Link href="/contact" onClick={() => trackCTAClick('receive_offer', 'header_desktop')}>
                 {t('receiveOffer')}
@@ -506,14 +547,7 @@ export default function Header() {
 
           {/* Mobile: Lang + Burger */}
           <div className="flex lg:hidden items-center gap-2">
-            <Link
-              href={pathname as LinkHref}
-              locale={otherLocale}
-              className="flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-future-dusk-500 hover:text-very-peri-600 hover:bg-very-peri-50 transition-colors"
-              onClick={() => trackLanguageSwitch(locale, otherLocale)}
-            >
-              {otherLocale.toUpperCase()}
-            </Link>
+            <LangSwitcher locale={locale} pathname={pathname} slug={slug} />
             <button
               className="flex items-center justify-center h-10 w-10 rounded-lg text-future-dusk-600 hover:bg-neutral-50 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

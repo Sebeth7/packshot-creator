@@ -30,6 +30,8 @@ export const DE_CH_COVERED_STATIC: ReadonlySet<string> = new Set([
   '/packshot-e-commerce',
   '/packshot-amazon',
   '/packshot-industriel', // → /de-ch/packshot-industrie
+  '/blog', // listing servi en de-ch (generateStaticParams de-ch)
+  '/guide', // listing servi en de-ch
 ]);
 
 // Routes dynamiques servies en de-ch : pathname interne → slugs couverts.
@@ -109,4 +111,96 @@ export function navPinLocale(currentLocale: string, href: LinkHref): 'fr' | 'en'
   const pathname = hrefPathname(href);
   if (pathname && DE_CH_PIN_FR.has(pathname)) return 'fr';
   return 'en';
+}
+
+// ── Sélecteur de langue ─────────────────────────────────────────────────────
+export type AppLocale = 'fr' | 'en' | 'de-ch';
+
+// Secteurs servis en de-ch : slug FR ↔ slug allemand (cf DE_CH_SECTOR_MAP dans
+// app/[lang]/industrie/[slug]). Source unique pour le switch page-à-page : un slug
+// FR a un équivalent de-ch sous son slug allemand (sinon non couvert → /en).
+const FR_TO_DE_CH_SECTOR: Readonly<Record<string, string>> = {
+  'bijoux-joaillerie': 'schmuck',
+  'horlogerie': 'uhren',
+  'lunetterie': 'brillen',
+  'cosmetiques-beaute': 'schoenheit',
+  'electronique-hightech': 'elektronik',
+  'sport-outdoor': 'sport',
+  'mode-textile': 'mode',
+  'vin-spiritueux': 'wein',
+};
+const DE_CH_TO_FR_SECTOR: Readonly<Record<string, string>> = Object.fromEntries(
+  Object.entries(FR_TO_DE_CH_SECTOR).map(([fr, de]) => [de, fr]),
+);
+
+/**
+ * Cible (href interne + locale effective) d'un bouton du sélecteur de langue.
+ *
+ * `pathname` = pathname INTERNE de `usePathname()` next-intl : un TEMPLATE pour
+ * les routes dynamiques (ex `/industrie/[slug]`), résolu pour les statiques
+ * (ex `/contact`). `slug` = valeur réelle du param via `useParams()` (les
+ * articles/secteurs n'apparaissent pas dans le pathname interne).
+ *
+ * Règle (choix Seb) : un clic « DE-CH » sert la page en allemand suisse SI elle
+ * est traduite, SINON la version /en de la même page (jamais de 404). Les secteurs
+ * CH sont mappés vers leur slug allemand pour atteindre la vraie page de-ch.
+ * Les articles blog/guide ne sont pas switchés au niveau article : DE → /en ;
+ * depuis de-ch vers fr/en → repli sur le listing (slug allemand absent en fr/en).
+ */
+export function localeSwitchHref(
+  pathname: string,
+  slug: string | undefined,
+  currentLocale: string,
+  target: AppLocale,
+): { href: LinkHref; locale: AppLocale } {
+  // Secteurs /industrie/[slug] (slugs traduits fr↔de)
+  if (pathname === '/industrie/[slug]' && slug) {
+    const frSlug = DE_CH_TO_FR_SECTOR[slug] ?? slug;
+    if (target === 'de-ch') {
+      const deSlug = FR_TO_DE_CH_SECTOR[frSlug];
+      if (deSlug) return { href: { pathname: '/industrie/[slug]', params: { slug: deSlug } }, locale: 'de-ch' };
+      return { href: { pathname: '/industrie/[slug]', params: { slug: frSlug } }, locale: 'en' };
+    }
+    return { href: { pathname: '/industrie/[slug]', params: { slug: frSlug } }, locale: target };
+  }
+
+  // Machines /studio-photo/[slug] (id identique dans toutes les locales)
+  if (pathname === '/studio-photo/[slug]' && slug) {
+    if (target === 'de-ch') {
+      const covered = DE_CH_COVERED_DYNAMIC['/studio-photo/[slug]'].has(slug);
+      return { href: { pathname: '/studio-photo/[slug]', params: { slug } }, locale: covered ? 'de-ch' : 'en' };
+    }
+    return { href: { pathname: '/studio-photo/[slug]', params: { slug } }, locale: target };
+  }
+
+  // Articles blog/guide (slugs entièrement traduits → pas de switch article-à-article)
+  if ((pathname === '/blog/[slug]' || pathname === '/guide/[slug]') && slug) {
+    const isBlog = pathname === '/blog/[slug]';
+    const tmpl = isBlog ? ('/blog/[slug]' as const) : ('/guide/[slug]' as const);
+    if (target === 'de-ch') {
+      return { href: { pathname: tmpl, params: { slug } }, locale: 'en' };
+    }
+    // Depuis de-ch, le slug est allemand → inexistant en fr/en : repli sur le listing.
+    if (currentLocale === 'de-ch') {
+      return { href: isBlog ? '/blog' : '/guide', locale: target };
+    }
+    return { href: { pathname: tmpl, params: { slug } }, locale: target };
+  }
+
+  // Autres routes dynamiques non couvertes en de-ch
+  if (pathname === '/solutions/[slug]' && slug) {
+    const href = { pathname: '/solutions/[slug]' as const, params: { slug } };
+    return { href, locale: target === 'de-ch' ? 'en' : target };
+  }
+  if (pathname === '/academy/[slug]' && slug) {
+    const href = { pathname: '/academy/[slug]' as const, params: { slug } };
+    return { href, locale: target === 'de-ch' ? 'en' : target };
+  }
+
+  // Pages statiques : next-intl localise le segment (contact→kontakt…)
+  const href = (pathname || '/') as LinkHref;
+  if (target === 'de-ch') {
+    return { href, locale: navPinLocale('de-ch', href) ?? 'de-ch' };
+  }
+  return { href, locale: target };
 }
