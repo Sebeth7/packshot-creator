@@ -171,9 +171,16 @@ export const STATIC_ARTICLE_SLUGS: ReadonlySet<string> = new Set(
 export async function getAllArticles(lang: Lang, limit = 0): Promise<Article[]> {
   const migrated = getAllMigratedArticles(lang);
 
-  const statics = lang === 'en'
-    ? STATIC_ARTICLES.filter((a) => !NOINDEX_EN_BLOG_SLUGS.has(a.slug))
-    : STATIC_ARTICLES;
+  // de-ch (Suisse alémanique) n'a AUCUN article statique traduit : seuls les
+  // articles migrés présents dans content/blog/de-ch/ sont servis. Inclure les
+  // STATIC_ARTICLES (FR) ici polluerait le listing /de-ch/blog et générerait des
+  // liens /de-ch/blog/<slug-fr> en 404 (blog/[slug] n'émet que les slugs de-ch).
+  const statics =
+    lang === 'de-ch'
+      ? []
+      : lang === 'en'
+        ? STATIC_ARTICLES.filter((a) => !NOINDEX_EN_BLOG_SLUGS.has(a.slug))
+        : STATIC_ARTICLES;
 
   const allArticles: Article[] = [
     ...statics,

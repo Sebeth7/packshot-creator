@@ -198,6 +198,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const slug of MACHINES) {
     deChPages.push({ path: `/de-ch/fotostudio/${slug}`, priority: 0.6, changeFrequency: 'monthly' });
   }
+  // Listings blog + guide de-ch (alignés sur /fr|/en/{blog,guide}, priorité 0.7)
+  deChPages.push({ path: '/de-ch/blog', priority: 0.7, changeFrequency: 'weekly' });
+  deChPages.push({ path: '/de-ch/guide', priority: 0.7, changeFrequency: 'weekly' });
   // B1 — guides + articles traduits en de-ch (slugs allemands, segments guide/blog inchangés)
   for (const slug of getAllGuideSlugs('de-ch')) {
     deChPages.push({ path: `/de-ch/guide/${slug}`, priority: 0.6, changeFrequency: 'monthly' });

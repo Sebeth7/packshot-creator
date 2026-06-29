@@ -9,6 +9,13 @@ import { FadeInView } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { BlogGrid } from '@/components/blog/BlogGrid';
 import { buildLanguages } from '@/lib/hreflang';
+import type { Lang } from '@/lib/content';
+
+// de-ch inclus : le layout parent ne prérend que fr/en (dynamicParams=false),
+// donc le listing blog doit déclarer lui-même la locale suisse, sinon /de-ch/blog → 404.
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -19,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: t('metaDescription'),
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/blog`,
-      languages: buildLanguages('/fr/blog', { en: '/en/blog' }),
+      languages: buildLanguages('/fr/blog', { en: '/en/blog', deCh: '/de-ch/blog' }),
     },
     openGraph: {
       title: t('metaTitle'),
@@ -27,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: 'website',
       url: `https://www.packshot-creator.com/${lang}/blog`,
       siteName: 'PackshotCreator',
-      locale: lang === 'fr' ? 'fr_FR' : 'en_US',
+      locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
       images: [{ url: `/api/og?title=${encodeURIComponent(t('metaTitle'))}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
     },
     twitter: {
@@ -41,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function BlogPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const posts = await getAllArticles(lang as 'fr' | 'en', 0);
+  const posts = await getAllArticles(lang as Lang, 0);
   const t = await getTranslations({ locale: lang, namespace: 'blog' });
   const isFr = lang === 'fr';
 
@@ -186,7 +193,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
                 </Link>
               </Button>
               <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-                <Link href="/academy">
+                <Link href="/academy" locale={lang === 'de-ch' ? 'en' : undefined}>
                   {t('ctaFormation')}
                 </Link>
               </Button>

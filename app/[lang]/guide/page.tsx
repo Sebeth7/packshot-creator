@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
-import { getAllGuides } from '@/lib/content';
+import { getAllGuides, type Lang } from '@/lib/content';
 import { Link } from '@/i18n/routing';
 import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
@@ -9,6 +9,12 @@ import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animatio
 import { buildLanguages } from '@/lib/hreflang';
 
 export const revalidate = 3600;
+
+// de-ch inclus : le layout parent ne prérend que fr/en (dynamicParams=false),
+// donc le listing guide doit déclarer lui-même la locale suisse, sinon /de-ch/guide → 404.
+export function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+}
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -28,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `https://www.packshot-creator.com/${lang}/guide`,
-      languages: buildLanguages('/fr/guide', { en: '/en/guide' }),
+      languages: buildLanguages('/fr/guide', { en: '/en/guide', deCh: '/de-ch/guide' }),
     },
     openGraph: {
       title,
@@ -43,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function GuidesPage({ params }: PageProps) {
   const { lang } = await params;
   setRequestLocale(lang);
-  const guides = getAllGuides(lang as 'fr' | 'en');
+  const guides = getAllGuides(lang as Lang);
 
   const breadcrumbs = breadcrumbSchema([
     { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
@@ -146,6 +152,7 @@ export default async function GuidesPage({ params }: PageProps) {
             </p>
             <Link
               href="/academy"
+              locale={lang === 'de-ch' ? 'en' : undefined}
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-very-peri-700 font-bold rounded-xl hover:bg-neutral-100 transition-colors"
             >
               {lang === 'fr' ? 'Voir les formations' : 'View courses'}
