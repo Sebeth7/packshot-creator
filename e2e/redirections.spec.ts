@@ -104,7 +104,7 @@ test.describe('Redirections 301 - DE/ES/NL individuelles (S1)', () => {
     { from: '/de/guide/welche-ausrustung-fur-schmuckfotografie-wahlen', to: '/en/guide/which-equipment-to-choose-for-jewelry-photo' },
     { from: '/de/guide/welche-einstellungen-zum-fotografieren-von-schmuck', to: '/en/guide/what-settings-to-photograph-jewelry' },
     // DE - Machines
-    { from: '/de/fotostudio/alphashot-g2', to: '/en/studio-photo/alphashot-g2' },
+    { from: '/de/fotostudio/alphashot-g2', to: '/en/studio-photo/alphashot-xl-g2' },
     // NL - Blog
     { from: '/nl/blog/8-stappen-voor-professionele-sieradenfotografie', to: '/en/blog/8-steps-to-professional-jewelry-photography' },
     // NL - Guides
@@ -130,6 +130,23 @@ test.describe('Redirections 301 - DE/ES/NL catch-all', () => {
     { from: '/de/some-random-page', to: '/en' },
     { from: '/es/otra-pagina', to: '/en' },
     { from: '/nl/willekeurige-pagina', to: '/en' },
+  ];
+
+  for (const { from, to } of redirections) {
+    test(`${from} -> ${to}`, async ({ request }) => {
+      const response = await request.get(from, { maxRedirects: 0 });
+      expect(response.status()).toBe(301);
+      const location = response.headers()['location'];
+      expect(location).toContain(to);
+    });
+  }
+});
+
+test.describe('Redirections 301 - Alphashot G2 remplacée par XL G2', () => {
+  const redirections = [
+    { from: '/fr/studio-photo/alphashot-g2', to: '/fr/studio-photo/alphashot-xl-g2' },
+    { from: '/en/studio-photo/alphashot-g2', to: '/en/studio-photo/alphashot-xl-g2' },
+    { from: '/de-ch/fotostudio/alphashot-g2', to: '/de-ch/fotostudio/alphashot-xl-g2' },
   ];
 
   for (const { from, to } of redirections) {

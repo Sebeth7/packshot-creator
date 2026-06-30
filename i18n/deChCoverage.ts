@@ -43,7 +43,7 @@ export const DE_CH_COVERED_STATIC: ReadonlySet<string> = new Set([
 export const DE_CH_COVERED_DYNAMIC: Readonly<Record<string, ReadonlySet<string>>> = {
   // Gamme complète servie en de-ch (mêmes ids produit qu'en fr/en).
   '/studio-photo/[slug]': new Set([
-    'alphashot-micro-v2', 'alphashot-360', 'alphashot-g2', 'alphashot-pro-g2',
+    'alphashot-micro-v2', 'alphashot-360', 'alphashot-xl-g2', 'alphashot-pro-g2',
     'alphashot-xl-v2', 'alphashot-xl-wine-v2', 'alphashot-xl-pro-v2',
     'alphadesk', 'alphatable', 'alphastudio-compact-v2', 'alphastudio-xxl-v2',
     'fashion-studio-basic', 'fashion-studio', 'bike-studio', 'furniture-studio',

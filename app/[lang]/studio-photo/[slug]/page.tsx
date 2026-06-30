@@ -27,7 +27,7 @@ function getMachineImage(id: string): string {
   const imageMap: Record<string, string> = {
     'alphashot-micro-v2': '/images/machines/alphashot-micro-v2.avif',
     'alphashot-360': '/images/machines/alphashot-360.avif',
-    'alphashot-g2': '/images/machines/alphashot-pro-g2.avif',
+    'alphashot-xl-g2': '/images/machines/alphashot-xl-g2.avif',
     'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
     'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
     'alphashot-xl-wine-v2': '/images/machines/alphashot-xl.avif',
@@ -93,6 +93,17 @@ function getProductGallery(id: string): ProductGallery {
     ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, label: { fr: labelFr, en: labelEn }, w, h });
 
   const galleries: Record<string, ProductGallery> = {
+    // ── ALPHASHOT XL G2 ── (visuels officiels Orbitvu, auto-hébergés — pas de shoot PSC ni de viewer 360° dédié pour le moment)
+    'alphashot-xl-g2': {
+      bentoPackshot: img('alphashot-xl-g2', 'packshot-zoom.avif', 'Packshot produit réalisé avec l\'Alphashot XL G2', 'Product packshot created with the Alphashot XL G2', 1200, 786),
+      bentoRow2: [
+        img('alphashot-xl-g2', 'packshot-macro.avif', 'Photographie industrielle macro avec l\'Alphashot XL G2', 'Industrial macro photography with the Alphashot XL G2', 1200, 847),
+      ],
+      hardware: [
+        labeled('alphashot-xl-g2', 'hw-panel-lighting.avif', '170 panneaux LED pilotés par IA', '170 AI-controlled LED panels', 'Éclairage virtuel', 'Virtual lighting', 1400, 1004),
+        labeled('alphashot-xl-g2', 'hw-turntable.avif', 'Plateau tournant motorisé avec balance intégrée (MDC)', 'Motorized turntable with integrated scale (MDC)', 'Plateau + mesure', 'Turntable + measurement', 570, 377),
+      ],
+    },
     // ── ALPHASHOT PRO G2 ──
     'alphashot-pro-g2': {
       bentoPackshot: img('alphashot-pro-g2', 'packshot-mascara.avif', 'Packshot mascara NARS', 'NARS mascara packshot', 1080, 1080),
@@ -383,7 +394,6 @@ function getProductGallery(id: string): ProductGallery {
   };
   // Handle variant IDs that share gallery with base
   if (id === 'alphashot-xl-wine-v2' || id === 'alphashot-xl-pro-v2') return galleries['alphashot-xl-v2'] || {};
-  if (id === 'alphashot-g2') return galleries['alphashot-pro-g2'] || {};
   return galleries[id] || {};
 }
 
@@ -394,7 +404,7 @@ function getFormationLevel(machine: Machine): string {
 }
 
 const isIAReady = (id: string) =>
-  ['alphashot-g2', 'alphashot-micro-v2', 'alphashot-360', 'alphashot-pro-g2'].includes(id);
+  ['alphashot-xl-g2', 'alphashot-micro-v2', 'alphashot-360', 'alphashot-pro-g2'].includes(id);
 
 function getSimilarMachines(machine: Machine): Machine[] {
   return MACHINES.filter(
@@ -561,7 +571,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         {/* Badges */}
         <div className="flex flex-wrap gap-3 mt-4 -mb-2">
           <span className="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full">
-            <Award className="h-4 w-4" /> {tx(lang, 'Distributeur Exclusif Orbitvu France & Suisse', 'Exclusive Orbitvu Distributor France & Switzerland', 'Exklusiver Orbitvu-Distributor Frankreich & Schweiz')}
+            <Award className="h-4 w-4" /> {tx(lang, 'Distributeur Officiel Orbitvu France & Suisse', 'Official Orbitvu Distributor France & Switzerland', 'Offizieller Orbitvu-Distributor Frankreich & Schweiz')}
           </span>
           <span className="inline-flex items-center gap-2 bg-very-peri-500/15 text-very-peri-300 text-sm font-medium px-4 py-1.5 rounded-full">
             <Camera className="h-4 w-4" /> Orbitvu
@@ -1257,7 +1267,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
             {/* Contact form (3/5) */}
             <FadeInView direction="left" className="lg:col-span-3">
-              <div className="bg-white rounded-2xl p-6 lg:p-10">
+              <div className="bg-white text-future-dusk-900 rounded-2xl p-6 lg:p-10">
                 <h3 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-2">
                   {tx(lang, 'Demandez une démo personnalisée', 'Request a personalized demo', 'Persönliche Demo anfordern')}
                 </h3>

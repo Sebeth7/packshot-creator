@@ -11,7 +11,7 @@ const CONFIG: PackshotLandingConfig = {
   heroIcon: ShoppingCart,
   heroBadge: { fr: 'E-commerce & Marketplaces', en: 'E-commerce & Marketplaces' },
   benefitIcons: [Package, Eraser, RotateCw, TrendingDown, Calculator],
-  machineIds: ['alphashot-360', 'alphashot-g2', 'alphashot-micro-v2'],
+  machineIds: ['alphashot-360', 'alphashot-xl-g2', 'alphashot-micro-v2'],
   faqCount: 3,
 };
 
