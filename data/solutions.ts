@@ -457,7 +457,7 @@ export const solutions: Solution[] = [
       },
       {
         question: 'Quel est l\'investissement pour un studio à usage probatoire ?',
-        answer: 'Les studios Orbitvu adaptés à la documentation probatoire (Alphashot Micro, Pro G2, XL Pro) se situent entre 10 000 et 40 000€. L\'amortissement est rapide : le coût par image descend à environ 1€ contre 15-50€ en prestation externe, avec une qualité et une répétabilité incomparables.',
+        answer: 'L\'investissement varie selon le studio retenu (Alphashot Micro, Pro G2, XL Pro) et votre volume de production — utilisez le calculateur ROI pour estimer votre cas, ou contactez-nous pour un devis personnalisé. L\'amortissement est rapide : le coût par image descend à environ 1€ contre 15-50€ en prestation externe, avec une qualité et une répétabilité incomparables.',
       },
     ],
     cta: {

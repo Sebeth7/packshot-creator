@@ -690,18 +690,15 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               </ul>
               <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts PackshotCreator :</strong></p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Studio Orbitvu AlphaShot G2 : 18 000€ (investissement initial)</li>
+                <li className="text-future-dusk-600">Studio Orbitvu AlphaShot G2 : investissement initial sur devis</li>
                 <li className="text-future-dusk-600">Abonnement BlendAI : 3 600€/an (300€/mois)</li>
                 <li className="text-future-dusk-600">Formation : 1 800€ (OPCO → gratuit)</li>
                 <li className="text-future-dusk-600">Opérateur interne : 5 000€/an (temps partiel)</li>
-                <li className="text-future-dusk-600"><strong>Total Année 1 : 26 600€ — Total Année 2+ : 8 600€/an</strong></li>
               </ul>
               <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>ROI :</strong></p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600">Année 1 : 43 400€ économisés (62% d'économie)</li>
-                <li className="text-future-dusk-600">Année 2 : 61 400€ économisés (88% d'économie)</li>
-                <li className="text-future-dusk-600"><strong>ROI 3 ans : 166 200€ économisés</strong></li>
-              </ul>
+              <p className="mb-6 leading-relaxed text-future-dusk-600">
+                Sur 3 ans, l'écart avec les coûts traditionnels reste très significatif — utilisez le calculateur ROI pour estimer l'économie sur votre volume.
+              </p>
               <p className="mb-6">
                 <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Calculer votre ROI personnalisé

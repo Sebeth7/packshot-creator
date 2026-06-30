@@ -567,7 +567,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <strong>Pour qui ?</strong> : Marques avec catalogues premium (&gt;100€/produit), exigences strictes sur la fidélité couleur et matière.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Lien</strong> : <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir BlendAI</a>
+              <strong>Lien</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir BlendAI</Link>
             </p>
 
           <hr className="my-8 border-neutral-200" />
@@ -695,7 +695,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <strong>Gain de temps</strong> : 5–10 min par produit économisées (vs export manuel + upload)
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Lien</strong> : <a href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les studios Orbitvu IA Ready</a>
+              <strong>Lien</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les studios Orbitvu IA Ready</Link>
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 3 : Traitement IA (BlendAI / Photoroom / Flair)</h4>
@@ -986,7 +986,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <strong>Délai</strong> : 3–6 semaines entre demande et validation OPCO
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <a href="/academy#formations-ia" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les formations IA</a>
+              <a href={`/${lang}/academy#formations-ia`} className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les formations IA</a>
             </p>
 
           {/* ── FAQ ── */}
@@ -1042,10 +1042,10 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               Ressources Complémentaires
             </h3>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</a></li>
-              <li className="text-future-dusk-600"><strong>Hub Studios Photo Automatisés</strong> : <a href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Gamme Orbitvu 2026</a></li>
-              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
-              <li className="text-future-dusk-600"><strong>Academy</strong> : <a href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations IA certifiées Qualiopi</a></li>
+              <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link></li>
+              <li className="text-future-dusk-600"><strong>Hub Studios Photo Automatisés</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Gamme Orbitvu 2026</Link></li>
+              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
+              <li className="text-future-dusk-600"><strong>Academy</strong> : <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations IA certifiées Qualiopi</Link></li>
             </ul>
 
         </div>

@@ -136,13 +136,6 @@ export function productSchema(product: {
       '@type': 'Organization',
       name: 'Orbitvu',
     },
-    offers: {
-      '@type': 'Offer',
-      url: product.url,
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      seller: { '@id': ORG_ID },
-    },
   };
 }
 
@@ -258,13 +251,6 @@ export function productWithRatingSchema(product: {
     manufacturer: {
       '@type': 'Organization',
       name: 'Orbitvu',
-    },
-    offers: {
-      '@type': 'Offer',
-      url: product.url,
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      seller: { '@id': ORG_ID },
     },
     ...(product.ratingValue && product.reviewCount
       ? {

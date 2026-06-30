@@ -644,14 +644,13 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               </ul>
               <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts PackshotCreator :</strong></p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Studio Orbitvu : 18 000€ (investissement initial)</li>
+                <li className="text-future-dusk-600">Studio Orbitvu : investissement initial sur devis</li>
                 <li className="text-future-dusk-600">BlendAI : 3 600€/an (300€/mois)</li>
                 <li className="text-future-dusk-600">Formation : 1 800€ (OPCO → gratuit)</li>
                 <li className="text-future-dusk-600">Opérateur : 5 000€/an</li>
-                <li className="text-future-dusk-600"><strong>Total Année 1 : 26 600€ — Total 3 ans : 43 200€</strong></li>
               </ul>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>ROI 3 ans : 166 800€ économisés (79% d'économie)</strong>
+                <strong>Sur 3 ans, l'écart avec les coûts traditionnels reste très significatif</strong> — utilisez le calculateur ROI pour estimer l'économie sur votre volume.
               </p>
               <p className="mb-6">
                 <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">

@@ -87,7 +87,7 @@ const faqItems = [
   },
   {
     question: 'Quelle est la différence principale entre Orbitvu et Photomatics ?',
-    answer: "Orbitvu est positionné milieu/haut de gamme (8 000–50 000€) pour les e-commerçants professionnels avec des volumes importants et une exigence de qualité professionnelle. Photomatics est un produit entry-level DIY (2 000–8 000€) adapté aux TPE et créateurs avec moins de 100 produits par an.",
+    answer: "Orbitvu est positionné milieu/haut de gamme (sur devis selon configuration) pour les e-commerçants professionnels avec des volumes importants et une exigence de qualité professionnelle. Photomatics est un produit entry-level DIY (2 000–8 000€) adapté aux TPE et créateurs avec moins de 100 produits par an.",
   },
 ];
 
@@ -177,7 +177,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Le marché des studios photo automatisés s'est considérablement structuré ces dernières années. Trois acteurs principaux se distinguent en 2026 : <strong>Orbitvu</strong> (leader européen), <strong>StyleShoots</strong> (premium néerlandais), et <strong>Photomatics</strong> (entry-level américain). Choisir entre ces solutions peut s'avérer complexe tant les positionnements, tarifs et philosophies produit diffèrent.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
-              Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution, leur <strong>rapport qualité/prix</strong>, et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, que votre budget soit de 5 000€ ou 50 000€, ce guide vous aidera à faire le choix optimal pour votre activité.
+              Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution, leur <strong>rapport qualité/prix</strong>, et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, quel que soit votre budget, ce guide vous aidera à faire le choix optimal pour votre activité.
             </p>
 
           <hr className="my-8 border-neutral-200" />
@@ -196,7 +196,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ul className="list-disc pl-6 mb-4 space-y-1">
               <li className="text-future-dusk-600">Positionnement : Leader européen milieu/haut de gamme</li>
               <li className="text-future-dusk-600">Part de marché : ~45% Europe (estimation 2025)</li>
-              <li className="text-future-dusk-600">Gamme : AlphaShot Micro, G2, 360, XXL (8k€ – 50k€)</li>
+              <li className="text-future-dusk-600">Gamme : AlphaShot Micro, G2, 360, XXL (sur devis selon configuration)</li>
               <li className="text-future-dusk-600">Distributeur France exclusif : <strong>PackshotCreator</strong></li>
             </ul>
 
@@ -237,7 +237,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ComparisonTable
               headers={['Orbitvu AlphaShot G2', 'StyleShoots Vertical']}
               rows={[
-                { label: 'Prix', values: ['15–20k€', '25–30k€'] },
+                { label: 'Prix', values: ['Sur devis', '25–30k€'] },
                 { label: 'Taille produits', values: ['100×80×80 cm', '100×100×120 cm'] },
                 { label: 'Volume/jour', values: ['200–500', '150–300'] },
                 { label: 'Temps/produit', values: ['1–2 min', '2–3 min'] },
@@ -255,9 +255,9 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">1. Prix Compétitif : 15–20% Moins Cher</h4>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Comparaison directe modèles équivalents</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Orbitvu AlphaShot G2</strong> : 15 000 – 20 000€</li>
+              <li className="text-future-dusk-600"><strong>Orbitvu AlphaShot G2</strong> : Sur devis</li>
               <li className="text-future-dusk-600"><strong>StyleShoots Vertical</strong> : 25 000 – 30 000€</li>
-              <li className="text-future-dusk-600"><strong>Économie</strong> : <strong>5 000 – 10 000€</strong> sur investissement initial</li>
+              <li className="text-future-dusk-600"><strong>Économie</strong> : économie significative sur investissement initial — contactez-nous pour un comparatif chiffré</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               Cette différence de prix s'explique par :
@@ -309,7 +309,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <strong>Impact productivité</strong> : Orbitvu + BlendAI = 250–500 produits traités/jour (1 opérateur) | StyleShoots seul = 150–300 produits/jour
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</a>
+              <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</Link>
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">4. Support Français Premium : PackshotCreator Distributeur Exclusif</h4>
@@ -436,7 +436,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Détourage auto', values: ['85%', '99%+'] },
                 { label: 'IA Ready', values: ['❌ Non', '✅ Oui'] },
                 { label: 'Software', values: ['Windows uniquement', 'Windows + macOS'] },
-                { label: 'Prix équivalent', values: ['18k€ (2018)', '18k€ (2026)'] },
+                { label: 'Prix équivalent', values: ['Sur devis', 'Sur devis'] },
               ]}
             />
             <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -457,7 +457,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Étape 2 : Reprise ancien matériel</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Reprise PackshotStudio R3 : 2 000 – 4 000€ (selon état)</li>
+              <li className="text-future-dusk-600">Reprise PackshotStudio R3 : valorisation selon état (sur devis)</li>
               <li className="text-future-dusk-600">Crédit sur achat Orbitvu AlphaShot</li>
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Étape 3 : Formation migration</strong></p>
@@ -487,7 +487,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ComparisonTable
               headers={['Photomatics Studio Box', 'Orbitvu AlphaShot Micro']}
               rows={[
-                { label: 'Prix', values: ['2–3k€', '8–10k€'] },
+                { label: 'Prix', values: ['2–3k€', 'Sur devis'] },
                 { label: 'Taille produits', values: ['40×40×40 cm', '30×30×30 cm'] },
                 { label: 'Automatisation', values: ['❌ Manuelle', '✅ Complète'] },
                 { label: 'Qualité rendu', values: ['Standard (smartphone/compact)', 'Premium (reflex pro)'] },
@@ -549,7 +549,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ComparisonTable
               headers={['Orbitvu', 'StyleShoots', 'Photomatics']}
               rows={[
-                { label: 'Prix gamme', values: ['8–50k€', '25–60k€', '2–8k€'] },
+                { label: 'Prix gamme', values: ['Sur devis', '25–60k€', '2–8k€'] },
                 { label: 'Positionnement', values: ['Milieu/Haut pro', 'Haut premium', 'Entry DIY'] },
                 { label: 'Qualité rendu', values: ['Premium', 'Premium+', 'Standard'] },
                 { label: 'Évolutivité', values: ['✅ Excellente', '⚠️ Moyenne', '❌ Limitée'] },
@@ -577,11 +577,9 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <strong>15–20% moins cher</strong> que StyleShoots à qualité équivalente.
             </p>
             <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6 font-mono text-sm text-future-dusk-700 my-6">
-              <p>Orbitvu AlphaShot G2 : 18 000€</p>
+              <p>Orbitvu AlphaShot G2 : Sur devis</p>
               <p className="mt-1">StyleShoots Vertical : 28 000€</p>
-              <p className="mt-1">Économie initiale : 10 000€</p>
-              <p className="mt-1">=&gt; 500 produits supplémentaires shootables</p>
-              <p className="mt-1 ml-3">(à 20€ économisé/produit vs externalisation)</p>
+              <p className="mt-1">Économie significative à l'achat — contactez-nous pour un comparatif chiffré</p>
             </div>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -600,7 +598,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <strong>Productivité</strong> : ×20 vs workflow traditionnel (studio + retouche manuelle).
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'approche 3 piliers : Hardware + IA + Formation</a>
+              <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'approche 3 piliers : Hardware + IA + Formation</Link>
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -627,10 +625,10 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <strong>Orbitvu AlphaShot évolutif</strong> :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Module 360° (+ 5k€) : Transformation G2 → G2 360°</li>
-              <li className="text-future-dusk-600">Module vidéo (+ 2k€) : Ajout capture vidéo</li>
-              <li className="text-future-dusk-600">Éclairage additionnel (+ 1k€)</li>
-              <li className="text-future-dusk-600">Motorisation charge lourde (+ 1,5k€)</li>
+              <li className="text-future-dusk-600">Module 360° (sur devis) : Transformation G2 → G2 360°</li>
+              <li className="text-future-dusk-600">Module vidéo (sur devis) : Ajout capture vidéo</li>
+              <li className="text-future-dusk-600">Éclairage additionnel (sur devis)</li>
+              <li className="text-future-dusk-600">Motorisation charge lourde (sur devis)</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Avantage</strong> : Investissement initial maîtrisé, upgrade selon besoins futurs réels.
@@ -758,10 +756,10 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Ressources Complémentaires
             </h3>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Gamme Orbitvu Complète</strong> : <a href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Studios Photo Automatisés</a></li>
-              <li className="text-future-dusk-600"><strong>Intégration IA</strong> : <a href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</a></li>
-              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href="/studios-photo-automatises#calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
-              <li className="text-future-dusk-600"><strong>Formations</strong> : <a href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</a></li>
+              <li className="text-future-dusk-600"><strong>Gamme Orbitvu Complète</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Studios Photo Automatisés</Link></li>
+              <li className="text-future-dusk-600"><strong>Intégration IA</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link></li>
+              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
+              <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
             </ul>
 
         </div>

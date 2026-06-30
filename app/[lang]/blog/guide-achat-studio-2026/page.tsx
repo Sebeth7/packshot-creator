@@ -74,7 +74,7 @@ const faqItems = [
   },
   {
     question: "Quelle garantie est incluse avec un studio Orbitvu ?",
-    answer: "La garantie constructeur standard est de 2 ans (pièces et main d'œuvre), extensible jusqu'à 5 ans moyennant 500 à 1 000€/an. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
+    answer: "La garantie constructeur standard est de 2 ans (pièces et main d'œuvre), extensible jusqu'à 5 ans sur devis. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
   },
   {
     question: "Peut-on louer un studio Orbitvu plutôt que l'acheter ?",
@@ -166,7 +166,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 {/* Introduction */}
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Le marché des studios photo automatisés a considérablement évolué ces dernières années. Avec plus de 20 modèles disponibles en 2026, allant de 8 000€ à 50 000€, choisir le bon équipement peut rapidement devenir complexe. Une décision mal informée peut vous coûter des dizaines de milliers d'euros en sur-investissement ou, pire encore, en sous-performance chronique.
+                  Le marché des studios photo automatisés a considérablement évolué ces dernières années. Avec plus de 20 modèles disponibles en 2026, aux budgets très variables selon la taille des produits et le niveau d'automatisation, choisir le bon équipement peut rapidement devenir complexe. Une décision mal informée peut vous coûter des dizaines de milliers d'euros en sur-investissement ou, pire encore, en sous-performance chronique.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   Ce guide d'achat complet vous présente une <strong>méthodologie en 7 critères objectifs</strong> pour sélectionner le studio photo automatisé parfaitement adapté à vos besoins actuels et futurs. Que vous photographiiez des bijoux, des chaussures ou des meubles, que vous gériez 500 ou 10 000 références par an, ce guide vous donnera les clés pour faire le bon choix et maximiser votre retour sur investissement.
@@ -195,7 +195,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Cosmétiques (flacons, palettes)</li>
                   <li className="text-future-dusk-600">Électronique petite taille (écouteurs, accessoires)</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 30×30×30 cm — <strong>Prix</strong> : 8 000 - 10 000€</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 30×30×30 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Précision extrême (macro intégré)</li>
@@ -220,7 +220,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Équipement sportif moyen</li>
                   <li className="text-future-dusk-600">Électronique grand public</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : 15 000 - 20 000€</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Polyvalence maximale</li>
@@ -230,7 +230,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">360° nécessite module additionnel (+ 5 000€)</li>
+                  <li className="text-future-dusk-600">360° nécessite module additionnel (sur devis)</li>
                   <li className="text-future-dusk-600">Encombrement 150×150 cm au sol</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -250,7 +250,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Vélos et équipement sportif XXL</li>
                   <li className="text-future-dusk-600">Bagagerie grand format</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 200×150×150 cm — <strong>Prix</strong> : 45 000 - 50 000€</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 200×150×150 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Capacité très grands produits</li>
@@ -275,7 +275,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Catalogues interactifs premium</li>
                   <li className="text-future-dusk-600">Marketplaces (Amazon 360, Cdiscount 360)</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : 30 000 - 40 000€</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Vues 360° natives (24, 36 ou 72 images)</li>
@@ -294,7 +294,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </p>
 
                 <Callout type="info" title="Évolutivité G2 → 360">
-                  Si vous hésitez entre G2 et 360, privilégiez le <strong>G2 + module 360° ultérieur</strong> (économie immédiate de 10 000€, upgrade possible dans 1-2 ans selon besoins).
+                  Si vous hésitez entre G2 et 360, privilégiez le <strong>G2 + module 360° ultérieur</strong> (économie immédiate substantielle, upgrade possible dans 1-2 ans selon besoins).
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -310,8 +310,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">&lt; 500 Produits/An : Studio Manuel Recommandé</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Calcul ROI</strong> :</p>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
-                  <div>Coût studio automatisé : 15 000 - 20 000€</div>
-                  <div>Économie vs externe : 30€/produit × 500 = 15 000€/an</div>
+                  <div>Coût studio automatisé : sur devis</div>
+                  <div>Économie vs externe : variable selon votre volume (estimation avec le calculateur ROI)</div>
                   <div>Délai retour : 12-18 mois</div>
                 </div>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -322,8 +322,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">500-2 000 Produits/An : AlphaShot Micro ou G2</h4>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
-                  <div>1 000 produits/an × économie 40€/produit = 40 000€/an</div>
-                  <div>Investissement G2 : 18 000€</div>
+                  <div>1 000 produits/an : économies substantielles sur la sous-traitance photo</div>
+                  <div>Investissement G2 : sur devis</div>
                   <div>Délai retour : 5-6 mois ✅</div>
                 </div>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Machine recommandée</strong> :</p>
@@ -339,8 +339,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">2 000-10 000 Produits/An : AlphaShot G2 ou 360</h4>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
-                  <div>5 000 produits/an × économie 35€/produit = 175 000€/an</div>
-                  <div>Investissement G2 : 18 000€ ou 360 : 35 000€</div>
+                  <div>5 000 produits/an : économies substantielles sur la sous-traitance photo</div>
+                  <div>Investissement G2 ou 360 : sur devis</div>
                   <div>Délai retour : 1-2 mois ✅✅</div>
                 </div>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Machine recommandée</strong> :</p>
@@ -362,7 +362,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>MultiStation</strong> (modèle industriel) : Gestion simultanée 4-6 produits</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Investissement</strong> : 50 000 - 100 000€. <strong>Pour qui ?</strong> Industriels, pure players &gt;5 000 références, distributeurs multi-marques.
+                  <strong>Investissement</strong> : sur devis. <strong>Pour qui ?</strong> Industriels, pure players &gt;5 000 références, distributeurs multi-marques.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
@@ -389,7 +389,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages G2</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
                   <li className="text-future-dusk-600">Rapidité (1-2 min par produit)</li>
-                  <li className="text-future-dusk-600">Coût optimal (15 000 - 20 000€)</li>
+                  <li className="text-future-dusk-600">Coût optimal (sur devis)</li>
                   <li className="text-future-dusk-600">Détourage automatique intégré</li>
                 </ul>
 
@@ -442,14 +442,14 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <strong>Output</strong> : Modèles 3D (OBJ, FBX, GLTF), textures haute résolution, compatible moteurs 3D (Unity, Unreal).
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Investissement</strong> : AlphaShot 360 (30 000 - 40 000€) + logiciels 3D (500 - 2 000€/an)
+                  <strong>Investissement</strong> : AlphaShot 360 (sur devis) + logiciels 3D (500 - 2 000€/an)
                 </p>
 
                 <ComparisonTable
                   headers={['Packshot Simple', 'Vue 360°', 'Vidéo', 'Animation 3D']}
                   rows={[
                     { label: 'Machine', values: ['G2', '360', '360 + Module', '360 + 3D'] },
-                    { label: 'Prix', values: ['15-20k€', '30-40k€', '35-45k€', '35-45k€'] },
+                    { label: 'Prix', values: ['Sur devis', 'Sur devis', 'Sur devis', 'Sur devis'] },
                     { label: 'Temps/produit', values: ['1-2 min', '3-5 min', '4-6 min', '5-10 min'] },
                     { label: 'Use case principal', values: ['E-commerce', 'Premium', 'Social Media', 'AR/VR'] },
                   ]}
@@ -472,7 +472,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">Votre budget détermine la gamme accessible, mais attention au piège du sous-dimensionnement.</p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Entry-Level (8 000-12 000€) : AlphaShot Micro</h4>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Entry-Level : AlphaShot Micro</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine complète opérationnelle</li>
@@ -482,15 +482,15 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce qui n'est PAS inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Installation on-site (+ 1 000 - 1 500€)</li>
+                  <li className="text-future-dusk-600">Installation on-site (sur devis)</li>
                   <li className="text-future-dusk-600">Formation avancée (+ 650 - 1 100€)</li>
-                  <li className="text-future-dusk-600">Maintenance année 2+ (+ 1 000€/an)</li>
+                  <li className="text-future-dusk-600">Maintenance année 2+ (sur devis)</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Financement</strong> : Leasing 36 mois : 250€/mois | Crédit équipement : Selon banque</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Financement</strong> : Leasing 36 mois : sur devis | Crédit équipement : Selon banque</p>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Mid-Range (15 000-25 000€) : AlphaShot G2</h4>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Mid-Range : AlphaShot G2</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine polyvalente (80% use cases)</li>
@@ -500,19 +500,19 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Machine : 18 000€</li>
-                  <li className="text-future-dusk-600">Installation : 1 500€</li>
+                  <li className="text-future-dusk-600">Machine : sur devis</li>
+                  <li className="text-future-dusk-600">Installation : sur devis</li>
                   <li className="text-future-dusk-600">Formation avancée : 1 100€</li>
-                  <li className="text-future-dusk-600"><strong>Total : 20 600€</strong></li>
+                  <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Financement</strong> : Leasing 48 mois : 450€/mois | Amortissement comptable : 5 ans<br />
+                  <strong>Financement</strong> : Leasing 48 mois : sur devis | Amortissement comptable : 5 ans<br />
                   <strong>ROI</strong> : 4-8 mois si volume &gt; 1 000 produits/an
                 </p>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Premium (30 000-50 000€) : AlphaShot 360 ou XXL</h4>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Premium : AlphaShot 360 ou XXL</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machines haute performance</li>
@@ -522,18 +522,18 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Machine 360 : 35 000€</li>
-                  <li className="text-future-dusk-600">Installation complexe : 2 500€</li>
+                  <li className="text-future-dusk-600">Machine 360 : sur devis</li>
+                  <li className="text-future-dusk-600">Installation complexe : sur devis</li>
                   <li className="text-future-dusk-600">Formation expert : 1 800€</li>
-                  <li className="text-future-dusk-600"><strong>Total : 39 300€</strong></li>
+                  <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Financement</strong> : Leasing 60 mois : 700€/mois | Crédit professionnel : Taux 2-3%<br />
+                  <strong>Financement</strong> : Leasing 60 mois : sur devis | Crédit professionnel : Taux 2-3%<br />
                   <strong>ROI</strong> : 2-4 mois si volume &gt; 5 000 produits/an
                 </p>
 
                 <Callout type="warning" title="Attention au sous-dimensionnement">
-                  Économiser 10 000€ sur une machine sous-dimensionnée peut vous coûter <strong>50 000€/an en opportunités perdues</strong> (produits non shootables, workflows limités, réinvestissement nécessaire dans 2 ans).
+                  Économiser sur une machine sous-dimensionnée peut vous coûter <strong>très cher en opportunités perdues</strong> (produits non shootables, workflows limités, réinvestissement nécessaire dans 2 ans).
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -607,16 +607,16 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Modules Additionnels Disponibles</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>AlphaShot G2 évolutif</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Module 360°</strong> (+ 5 000€) : Transformation G2 simple en G2 360°</li>
-                  <li className="text-future-dusk-600"><strong>Module vidéo</strong> (+ 2 000€) : Ajout capture vidéo</li>
-                  <li className="text-future-dusk-600"><strong>Éclairage additionnel</strong> (+ 1 000€) : Renfort puissance lumière</li>
-                  <li className="text-future-dusk-600"><strong>Motorisation charge lourde</strong> (+ 1 500€) : Produits jusqu'à 50 kg</li>
+                  <li className="text-future-dusk-600"><strong>Module 360°</strong> (sur devis) : Transformation G2 simple en G2 360°</li>
+                  <li className="text-future-dusk-600"><strong>Module vidéo</strong> (sur devis) : Ajout capture vidéo</li>
+                  <li className="text-future-dusk-600"><strong>Éclairage additionnel</strong> (sur devis) : Renfort puissance lumière</li>
+                  <li className="text-future-dusk-600"><strong>Motorisation charge lourde</strong> (sur devis) : Produits jusqu'à 50 kg</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>AlphaShot 360 évolutif</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Module 3D/CGI</strong> (+ 3 000€) : Export modèles 3D</li>
-                  <li className="text-future-dusk-600"><strong>Plateau motorisé multi-axes</strong> (+ 4 000€) : Rotations complexes</li>
-                  <li className="text-future-dusk-600"><strong>Éclairage premium</strong> (+ 2 000€) : Rendu studio photographe</li>
+                  <li className="text-future-dusk-600"><strong>Module 3D/CGI</strong> (sur devis) : Export modèles 3D</li>
+                  <li className="text-future-dusk-600"><strong>Plateau motorisé multi-axes</strong> (sur devis) : Rotations complexes</li>
+                  <li className="text-future-dusk-600"><strong>Éclairage premium</strong> (sur devis) : Rendu studio photographe</li>
                 </ul>
 
                 <hr className="my-6 border-neutral-200" />
@@ -646,7 +646,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Pièces détachées communes (maintenance simplifiée)</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Coût</strong> : 15 000 - 18 000€ (machine seule, pas d'installation complexe)
+                  <strong>Coût</strong> : sur devis (machine seule, pas d'installation complexe)
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -717,8 +717,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Contrat maintenance</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Standard</strong> (1 000 - 1 500€/an) : Hotline, interventions à distance</li>
-                  <li className="text-future-dusk-600"><strong>Premium</strong> (2 000 - 3 000€/an) : + interventions on-site illimitées</li>
+                  <li className="text-future-dusk-600"><strong>Standard</strong> (sur devis) : Hotline, interventions à distance</li>
+                  <li className="text-future-dusk-600"><strong>Premium</strong> (sur devis) : + interventions on-site illimitées</li>
                 </ul>
 
                 <Callout type="success" title="Garantie constructeur">
@@ -739,7 +739,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   headers={['AlphaShot Micro', 'AlphaShot G2', 'AlphaShot 360', 'AlphaShot XXL']}
                   rows={[
                     { label: 'Taille max produit', values: ['30×30×30 cm', '100×80×80 cm', '100×80×80 cm', '200×150×150 cm'] },
-                    { label: 'Prix', values: ['8-10k€', '15-20k€', '30-40k€', '45-50k€'] },
+                    { label: 'Prix', values: ['Sur devis', 'Sur devis', 'Sur devis', 'Sur devis'] },
                     { label: 'Volume/jour', values: ['50-100', '200-500', '100-300', '100-200'] },
                     { label: 'Temps/produit', values: ['1-2 min', '1-2 min', '3-5 min', '3-5 min'] },
                     { label: '360° natif', values: ['Non (option)', 'Non (option)', 'Oui', 'Non (option)'] },
@@ -778,7 +778,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points faibles</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">360° non natif (module +5k€)</li>
+                  <li className="text-future-dusk-600">360° non natif (module en option)</li>
                   <li className="text-future-dusk-600">Encombrement 150×150 cm minimum</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : E-commerce mode et lifestyle, Chaussures et maroquinerie, Équipement sportif, Électronique grand public. <strong>Machine recommandée 90% des cas.</strong></p>
@@ -812,7 +812,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points faibles</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Prix très élevé (45-50k€)</li>
+                  <li className="text-future-dusk-600">Prix élevé (sur devis)</li>
                   <li className="text-future-dusk-600">Encombrement majeur (300×300 cm)</li>
                   <li className="text-future-dusk-600">Consommation électrique importante</li>
                 </ul>
@@ -965,7 +965,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Erreur 1 : Sous-Estimer le Volume Futur</h3>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Symptôme</strong> : Acheter un AlphaShot Micro alors que votre catalogue passera de 500 à 2 000 produits dans 18 mois.</p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conséquence</strong> : Réinvestissement dans un G2 (perte sèche de 8 000€).</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conséquence</strong> : Réinvestissement dans un G2 (perte sèche significative sur la machine initiale).</p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : Anticiper la croissance sur <strong>3 ans minimum</strong>. En cas de doute, privilégier la machine supérieure (évolutivité).</p>
 
                 <hr className="my-6 border-neutral-200" />
@@ -980,7 +980,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Erreur 3 : Oublier les Coûts Cachés</h3>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts souvent oubliés</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Maintenance annuelle (1 000 - 3 000€/an)</li>
+                  <li className="text-future-dusk-600">Maintenance annuelle (sur devis)</li>
                   <li className="text-future-dusk-600">Formation continue équipes (500 - 1 000€/an)</li>
                   <li className="text-future-dusk-600">Évolutions logicielles (gratuit Orbitvu, payant concurrents)</li>
                   <li className="text-future-dusk-600">Consommables et backgrounds (200€/an)</li>
@@ -1006,14 +1006,14 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Pas de sortie de trésorerie immédiate</li>
                   <li className="text-future-dusk-600">Loyers déductibles fiscalement</li>
-                  <li className="text-future-dusk-600">Option rachat en fin de contrat (1€ symbolique)</li>
+                  <li className="text-future-dusk-600">Option rachat en fin de contrat (valeur symbolique)</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conditions</strong> : Durée 36-60 mois | Taux 1,5-3% | Apport 0-10%</p>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-6 font-mono text-sm text-future-dusk-700">
-                  <div>Machine : 18 000€</div>
-                  <div>Leasing 48 mois à 2% : 395€/mois</div>
-                  <div>Économie photo : 3 500€/mois</div>
-                  <div>Gain net : 3 105€/mois</div>
+                  <div>Machine : sur devis</div>
+                  <div>Leasing 48 mois à 2% : mensualités lissées selon le montant financé</div>
+                  <div>Économie photo : à estimer selon votre volume</div>
+                  <div>Gain net : estimable avec le calculateur ROI</div>
                 </div>
 
                 <hr className="my-6 border-neutral-200" />
@@ -1045,9 +1045,9 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Amortissement Comptable</h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Durée recommandée</strong> : 3-5 ans (selon usage intensif ou modéré)</p>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-6 font-mono text-sm text-future-dusk-700">
-                  <div>Machine : 18 000€</div>
-                  <div>Amortissement 5 ans : 3 600€/an</div>
-                  <div>Économie fiscale (IS 25%) : 900€/an</div>
+                  <div>Machine : sur devis</div>
+                  <div>Amortissement 5 ans : montant annuel proportionnel au prix d'achat</div>
+                  <div>Économie fiscale (IS 25%) : à calculer selon votre investissement</div>
                 </div>
 
                 <hr className="my-8 border-neutral-200" />

@@ -70,7 +70,7 @@ const faqItems = [
   },
   {
     question: 'Combien coûte un studio photo automatisé Orbitvu ?',
-    answer: 'Les studios Orbitvu vont de 8 000–10 000 € pour l\'AlphaShot Micro (bijoux, cosmétiques) à 45 000–50 000 € pour l\'AlphaShot XXL (meubles, électroménager). Le G2 mid-range se situe entre 15 000 et 20 000 €.',
+    answer: 'Le prix d\'un studio Orbitvu varie selon le modèle (AlphaShot Micro, G2, 360 ou XXL) et vos besoins spécifiques (taille des produits, volume, fonctionnalités souhaitées). Demandez un devis personnalisé ou utilisez notre calculateur ROI gratuit pour obtenir une estimation adaptée à votre activité.',
   },
   {
     question: 'Un studio automatisé est-il rentable pour de petits volumes ?',
@@ -162,7 +162,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 {/* Introduction */}
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  L'acquisition d'un studio photo automatisé représente un investissement stratégique majeur pour toute entreprise e-commerce. Avec des budgets allant de 10 000€ à 50 000€ selon les modèles, la décision ne peut être prise à la légère. Un ROI mal calculé peut conduire à choisir une machine inadaptée, sous-dimensionnée pour vos besoins futurs, ou au contraire surdimensionnée et sous-exploitée.
+                  L'acquisition d'un studio photo automatisé représente un investissement stratégique majeur pour toute entreprise e-commerce. Avec des budgets très variables selon le modèle et la configuration retenus, la décision ne peut être prise à la légère. Un ROI mal calculé peut conduire à choisir une machine inadaptée, sous-dimensionnée pour vos besoins futurs, ou au contraire surdimensionnée et sous-exploitée.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   Dans ce guide complet, nous vous présentons une <strong>méthode en 8 facteurs</strong> pour calculer précisément le retour sur investissement de votre futur studio photo automatisé. Que vous gériez 500 ou 10 000 références, cette approche vous permettra de prendre une décision éclairée et de justifier votre investissement auprès de votre direction financière.
@@ -187,10 +187,10 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   Les studios photo automatisés Orbitvu se déclinent en plusieurs gammes selon vos besoins :
                 </p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>AlphaShot Micro</strong> : 8 000 - 10 000€ (petits objets : bijoux, montres, cosmétiques)</li>
-                  <li className="text-future-dusk-600"><strong>AlphaShot G2</strong> : 15 000 - 20 000€ (e-commerce généraliste : chaussures, maroquinerie, textile)</li>
-                  <li className="text-future-dusk-600"><strong>AlphaShot 360</strong> : 30 000 - 40 000€ (vues 360°, vidéos produits, AR/VR)</li>
-                  <li className="text-future-dusk-600"><strong>AlphaShot XXL</strong> : 45 000 - 50 000€ (grands produits : meubles, électroménager)</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot Micro</strong> : Sur devis (petits objets : bijoux, montres, cosmétiques)</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot G2</strong> : Sur devis (e-commerce généraliste : chaussures, maroquinerie, textile)</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot 360</strong> : Sur devis (vues 360°, vidéos produits, AR/VR)</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot XXL</strong> : Sur devis (grands produits : meubles, électroménager)</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Coûts d'Installation</h4>
@@ -211,9 +211,9 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Investissement initial total moyen</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Entry-level (Micro)</strong> : 10 000 - 15 000€</li>
-                  <li className="text-future-dusk-600"><strong>Mid-range (G2)</strong> : 18 000 - 25 000€</li>
-                  <li className="text-future-dusk-600"><strong>Premium (360/XXL)</strong> : 35 000 - 55 000€</li>
+                  <li className="text-future-dusk-600"><strong>Entry-level (Micro)</strong> : Sur devis</li>
+                  <li className="text-future-dusk-600"><strong>Mid-range (G2)</strong> : Sur devis</li>
+                  <li className="text-future-dusk-600"><strong>Premium (360/XXL)</strong> : Sur devis</li>
                 </ul>
 
                 <hr className="my-8 border-neutral-200" />
@@ -256,7 +256,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Maintenance et Consommables</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">N'oubliez pas les coûts récurrents :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Maintenance studio automatisé</strong> : 10-15% du prix machine par an (1 500 - 5 000€/an)</li>
+                  <li className="text-future-dusk-600"><strong>Maintenance studio automatisé</strong> : 10-15% du prix machine par an</li>
                   <li className="text-future-dusk-600"><strong>Consommables</strong> : Négligeables (électricité, backgrounds papier si besoin)</li>
                   <li className="text-future-dusk-600"><strong>Mises à jour logicielles</strong> : Généralement incluses dans maintenance</li>
                 </ul>
@@ -405,9 +405,14 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   <li className="text-future-dusk-600">Post-production freelance : 1 000 photos × 15€ = 15 000€/an</li>
                   <li className="text-future-dusk-600"><strong>Total coûts actuels : 105 000€/an</strong></li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Situation future (avec AlphaShot G2)</strong> :</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Situation future (avec un studio automatisé)</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Investissement initial : 18 000€ (machine) + 2 000€ (installation) + 1 500€ (formation) = <strong>21 500€</strong></li>
+                  <li className="text-future-dusk-600">
+                    Investissement initial (machine + installation + formation) : variable selon le modèle retenu —{' '}
+                    <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                      obtenez votre chiffrage exact en 5 minutes
+                    </Link>
+                  </li>
                   <li className="text-future-dusk-600">1 opérateur dédié studio : 35 000€/an</li>
                   <li className="text-future-dusk-600">Maintenance machine : 2 000€/an</li>
                   <li className="text-future-dusk-600">Post-production minimale (IA BlendAI) : 1 000€/an</li>
@@ -415,12 +420,16 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 </ul>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-6 font-mono text-sm text-future-dusk-700">
                   <div>Gains annuels = 105 000€ - 38 000€ = 67 000€</div>
-                  <div>ROI An 1 = ((67 000€ - 38 000€) / 21 500€) × 100 = 135%</div>
-                  <div>Délai retour = 21 500€ / (67 000€ / 12 mois) ≈ 3,9 mois</div>
                 </div>
+                <p className="mb-4 leading-relaxed text-future-dusk-600">
+                  Le ROI et le délai de retour exacts dépendent directement de l'investissement initial, lui-même variable selon le modèle retenu : utilisez le calculateur interactif pour obtenir ces deux indicateurs en temps réel à partir de vos données.
+                </p>
 
-                <Callout type="success" title="ROI Impressionnant">
-                  Dans cet exemple, l'investissement est <strong>amorti en 4 mois</strong> et génère un ROI de <strong>135% dès la première année</strong>. Les années suivantes, l'économie nette est de <strong>67 000€/an</strong>.
+                <Callout type="success" title="Une Économie Récurrente Significative">
+                  Dans cet exemple, le studio génère une <strong>économie nette de 67 000€/an</strong> dès la première année d'exploitation. Le délai de retour et le ROI cumulé exacts varient selon le modèle choisi :{' '}
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="underline font-semibold">
+                    calculez les vôtres gratuitement →
+                  </Link>
                 </Callout>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">ROI Pluriannuel (3 Ans)</h4>
@@ -437,10 +446,10 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                     </thead>
                     <tbody>
                       {[
-                        ['An 0', '21 500€', '-', '-', '-100%'],
-                        ['An 1', '-', '38 000€', '67 000€', '+135%'],
-                        ['An 2', '-', '38 000€', '67 000€', '+414%'],
-                        ['An 3', '-', '38 000€', '67 000€', '+835%'],
+                        ['An 0', 'Selon modèle*', '-', '-', '-100%'],
+                        ['An 1', '-', '38 000€', '67 000€', 'Voir calculateur*'],
+                        ['An 2', '-', '38 000€', '67 000€', 'Voir calculateur*'],
+                        ['An 3', '-', '38 000€', '67 000€', 'Voir calculateur*'],
                       ].map((row, i) => (
                         <tr key={i} className={i % 2 === 0 ? 'bg-neutral-50' : 'bg-white'}>
                           {row.map((cell, j) => (
@@ -451,8 +460,14 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                     </tbody>
                   </table>
                 </div>
+                <p className="mb-4 text-sm text-future-dusk-500 italic">
+                  * Le montant de l'investissement et le ROI cumulé dépendent du modèle retenu et de votre volume.{' '}
+                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                    Obtenez votre projection personnalisée
+                  </Link>.
+                </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Sur 3 ans</strong> : Économie nette de <strong>201 000€</strong> pour un investissement initial de <strong>21 500€</strong>.
+                  <strong>Sur 3 ans</strong> : Économie nette de <strong>201 000€</strong>, pour un investissement initial qui varie selon le modèle choisi.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
