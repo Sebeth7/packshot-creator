@@ -28,7 +28,7 @@ export async function ArticleCTA({ lang }: ArticleCTAProps) {
               </Link>
             </Button>
             <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-              <Link href={{ pathname: '/studios-photo-automatises', hash: 'roi' }}>
+              <Link href="/calculateur-roi">
                 <Calculator className="mr-2 h-4 w-4" /> {t('ctaRoi')}
               </Link>
             </Button>

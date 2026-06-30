@@ -8,12 +8,15 @@
  * Règles de ciblage :
  * - `fr`    → URL /fr (ciblage France + francophonie générique)
  * - `fr-CH` → MÊME URL /fr : on déclare que la page FR sert aussi la Suisse
- *             romande, sans dupliquer ni diluer le ciblage France (Workstream A).
+ *             romande (francophone), sans dupliquer ni diluer le ciblage
+ *             France (Workstream A, décision assumée — pas d'URL dédiée
+ *             pour la Suisse romande, contrairement à de-CH ci-dessous).
  * - `en`    → URL /en, uniquement si la page a un équivalent anglais indexable.
- * - `de-CH` → URL /de-ch, RÉSERVÉ au Workstream B (locale alémanique routée),
- *             différé tant que l'input de traduction allemande suisse n'est pas
- *             prêt. Param présent pour éviter de re-toucher les ~46 pages le jour
- *             où de-ch sera activé ; ne RIEN passer ici aujourd'hui.
+ * - `de-CH` → URL /de-ch, locale dédiée à la Suisse ALÉMANIQUE (germanophone),
+ *             Workstream B. Activée depuis le 29/06 (Paliers 1+2 déployés,
+ *             cf. commits 6a1f2f3/818cac8) : la plupart des pages passent
+ *             déjà `deCh` à `buildLanguages`. Sans rapport avec fr-CH
+ *             ci-dessus — de-CH ne couvre PAS la Suisse romande.
  * - `x-default` → /fr (la version FR est la cible par défaut).
  *
  * Réciprocité : chaque page doit lister les mêmes annotations que ses
@@ -27,7 +30,8 @@ export interface HreflangOpts {
    */
   en?: string;
   /**
-   * URL /de-ch équivalente. NE PAS renseigner aujourd'hui (Workstream B différé).
+   * URL /de-ch équivalente (Suisse alémanique, Workstream B — actif depuis le 29/06).
+   * Omettre uniquement si la page n'a pas encore d'équivalent de-ch indexable.
    */
   deCh?: string;
 }

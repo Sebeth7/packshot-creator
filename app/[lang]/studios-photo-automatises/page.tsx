@@ -13,6 +13,7 @@ import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
 import { getTestimonialsByCategory } from '@/data/testimonials';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import { ContactForm } from '@/components/forms/ContactForm';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
@@ -372,12 +373,11 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           </ScrollReveal>
           <div className="max-w-2xl mx-auto">
             <SpringCard hoverY={-6}>
-              <div className="bg-gradient-to-br from-very-peri-500 to-very-peri-600 rounded-3xl p-6 sm:p-10 lg:p-14 text-center">
-                <h3 className="text-3xl font-heading font-bold mb-4">{t('finalCta.demo.heading')}</h3>
-                <p className="text-very-peri-100 text-lg mb-8 leading-relaxed">{t('finalCta.demo.description')}</p>
-                <Button asChild className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl font-semibold px-8 h-14 text-base shadow-lg">
-                  <Link href="/contact">{t('finalCta.demo.cta')}</Link>
-                </Button>
+              {/* QW-2 : formulaire inline (au lieu d'un simple lien /contact — ferme le tunnel sur la money page) */}
+              <div className="bg-white text-future-dusk-900 rounded-3xl p-6 sm:p-10 lg:p-14">
+                <h3 className="text-3xl font-heading font-bold text-future-dusk-900 mb-4 text-center">{t('finalCta.demo.heading')}</h3>
+                <p className="text-future-dusk-500 text-lg mb-8 leading-relaxed text-center">{t('finalCta.demo.description')}</p>
+                <ContactForm locale={lang as 'fr' | 'en' | 'de-ch'} compact defaultRequestType="demo" />
               </div>
             </SpringCard>
           </div>

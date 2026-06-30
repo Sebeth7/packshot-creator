@@ -71,7 +71,7 @@ const faqItems = [
   },
   {
     question: 'Le SAV Orbitvu est-il efficace en France ?',
-    answer: "Oui, PackshotCreator assure le support exclusif Orbitvu en France avec un showroom Paris 11e, un stock de pièces détachées livrables en 24h et 4 techniciens dédiés. Contrairement aux concurrents dont le SAV passe par la Pologne ou les Pays-Bas, tout est géré localement.",
+    answer: "Oui, PackshotCreator assure le support officiel Orbitvu en France avec un showroom Paris 11e, un stock de pièces détachées livrables en 24h et 4 techniciens dédiés. Contrairement aux concurrents dont le SAV passe par la Pologne ou les Pays-Bas, tout est géré localement.",
   },
   {
     question: 'Orbitvu est-il compatible avec les logiciels tiers et les PIM ?',
@@ -197,7 +197,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Positionnement : Leader européen milieu/haut de gamme</li>
               <li className="text-future-dusk-600">Part de marché : ~45% Europe (estimation 2025)</li>
               <li className="text-future-dusk-600">Gamme : AlphaShot Micro, G2, 360, XXL (sur devis selon configuration)</li>
-              <li className="text-future-dusk-600">Distributeur France exclusif : <strong>PackshotCreator</strong></li>
+              <li className="text-future-dusk-600">Distributeur France officiel : <strong>PackshotCreator</strong></li>
             </ul>
 
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>StyleShoots</strong> (Pays-Bas, fondé en 2014)</p>
@@ -242,7 +242,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Volume/jour', values: ['200–500', '150–300'] },
                 { label: 'Temps/produit', values: ['1–2 min', '2–3 min'] },
                 { label: 'IA Ready', values: ['✅ Oui (BlendAI natif)', '❌ Non'] },
-                { label: 'Support France', values: ['✅ PackshotCreator exclusif', '⚠️ Limité'] },
+                { label: 'Support France', values: ['✅ PackshotCreator officiel', '⚠️ Limité'] },
                 { label: 'Formation incluse', values: ['✅ 2 jours', '✅ 1 jour'] },
                 { label: 'Évolutivité', values: ['✅ Excellente (modules)', '⚠️ Moyenne'] },
               ]}
@@ -312,7 +312,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</Link>
             </p>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">4. Support Français Premium : PackshotCreator Distributeur Exclusif</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">4. Support Français Premium : PackshotCreator Distributeur Officiel</h4>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Hotline française</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Réponse &lt; 2h ouvrées (vs 24–48h StyleShoots)</li>
@@ -411,12 +411,12 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">PackshotMacro (équivalent AlphaShot Micro)</li>
               <li className="text-future-dusk-600">PackshotRotator (équivalent AlphaShot 360)</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2018 : Partenariat Exclusif Orbitvu</strong></p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2018 : Partenariat Officiel Orbitvu</strong></p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pourquoi PackshotCreator a arrêté sa fabrication ?</strong></p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>R&amp;D coûteuse</strong> : Développer une nouvelle génération machines = investissement 2–3M€</li>
               <li className="text-future-dusk-600"><strong>Concurrence Orbitvu</strong> : Technologie supérieure, prix compétitifs</li>
-              <li className="text-future-dusk-600"><strong>Décision stratégique</strong> : Devenir <strong>distributeur exclusif Orbitvu France/Suisse</strong></li>
+              <li className="text-future-dusk-600"><strong>Décision stratégique</strong> : Devenir <strong>distributeur officiel Orbitvu France/Suisse</strong></li>
             </ol>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages pour clients PackshotCreator</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -605,7 +605,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               3. Support Français Excellence : PackshotCreator
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Distributeur exclusif France/Suisse depuis 2018.</strong>
+              <strong>Distributeur officiel France/Suisse depuis 2018.</strong>
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Garanties support</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -646,7 +646,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 1 : Hardware (Orbitvu)</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Gamme complète studios automatisés</li>
-              <li className="text-future-dusk-600">Distribution exclusive France/Suisse</li>
+              <li className="text-future-dusk-600">Distribution officielle France/Suisse</li>
               <li className="text-future-dusk-600">Support technique premium</li>
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 2 : IA (BlendAI)</strong></p>
@@ -705,7 +705,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Prix compétitif</strong> : -15–20% vs StyleShoots à qualité équivalente</li>
               <li className="text-future-dusk-600"><strong>IA Ready</strong> : Seul fabricant intégration IA native (workflow 2026)</li>
-              <li className="text-future-dusk-600"><strong>Support France</strong> : PackshotCreator distributeur exclusif, satisfaction 98%</li>
+              <li className="text-future-dusk-600"><strong>Support France</strong> : PackshotCreator distributeur officiel, satisfaction 98%</li>
               <li className="text-future-dusk-600"><strong>Évolutivité</strong> : Modules additionnels (360°, vidéo, 3D) selon besoins futurs</li>
               <li className="text-future-dusk-600"><strong>Écosystème complet</strong> : Approche 3 piliers Hardware + IA + Formation unique</li>
             </ol>

@@ -706,7 +706,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Support Technique France</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>PackshotCreator = Distributeur exclusif Orbitvu France/Suisse</strong>
+                  <strong>PackshotCreator = Distributeur officiel Orbitvu France/Suisse</strong>
                 </p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages support FR</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -907,7 +907,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Éléments à négocier :</strong></p>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Prix machine</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Prix public vs prix PackshotCreator distributeur exclusif (-10-15%)</li>
+                  <li className="text-future-dusk-600">Prix public vs prix PackshotCreator distributeur officiel (-10-15%)</li>
                   <li className="text-future-dusk-600">Remises volume (si achat multiple machines)</li>
                   <li className="text-future-dusk-600">Bundle machine + formation (-5-10%)</li>
                 </ul>

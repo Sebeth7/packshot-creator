@@ -8,6 +8,7 @@ import { Clock, Wrench, Box, ArrowLeft, ChevronRight } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageSections';
+import { ArticleCTA } from '@/components/blog';
 import { tx } from '@/lib/locale-text';
 
 interface PageProps {
@@ -266,29 +267,8 @@ export default async function GuidePage({ params }: PageProps) {
       {/* Pour aller plus loin (maillage guides/articles — P1.C) */}
       <GuideRelated guideSlug={slug} lang={lang} />
 
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-very-peri-600 to-very-peri-700">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <FadeInView>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-              {tx(lang, 'Besoin d\'un accompagnement personnalisé ?', 'Need personalized guidance?', 'Brauchen Sie eine persönliche Beratung?')}
-            </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              {tx(lang,
-                'Nos experts PackshotCreator sont à votre disposition pour vous aider à optimiser votre workflow photo produit.',
-                'Our PackshotCreator experts are available to help optimize your product photography workflow.',
-                'Unsere PackshotCreator-Experten unterstützen Sie dabei, Ihren Produktfoto-Workflow zu optimieren.')}
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-very-peri-700 font-bold rounded-xl hover:bg-neutral-100 transition-colors"
-            >
-              {tx(lang, 'Contactez-nous', 'Contact us', 'Kontaktieren Sie uns')}
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </FadeInView>
-        </div>
-      </section>
+      {/* CTA (Contact + Calculateur ROI — QW-1 tunnel de conversion sur le trafic guide) */}
+      <ArticleCTA lang={lang} />
     </>
   );
 }
