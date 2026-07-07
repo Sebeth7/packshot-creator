@@ -184,7 +184,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/de-ch/fotostudio/maschinen-finder', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/produktfotografie-bedarf', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/wichtige-fragen-produktfotografie', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/de-ch/packshot-schmuck', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/packshot-mode', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/packshot-e-commerce', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/packshot-amazon', priority: 0.6, changeFrequency: 'monthly' },

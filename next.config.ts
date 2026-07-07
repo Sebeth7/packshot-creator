@@ -68,6 +68,9 @@ const nextConfig: NextConfig = {
       // ============================================================
       { source: '/fr/packshot-bijoux', destination: '/fr/industrie/bijoux-joaillerie', statusCode: 301 },
       { source: '/en/packshot-bijoux', destination: '/en/industrie/bijoux-joaillerie', statusCode: 301 },
+      // de-ch aligné sur la même consolidation (arbitrage Laurent 07/07) : la
+      // landing Suisse alémanique rejoint le hub /branchen/schmuck.
+      { source: '/de-ch/packshot-schmuck', destination: '/de-ch/branchen/schmuck', statusCode: 301 },
 
       // ============================================================
       // Variantes formulaire contact (paramètres pré-remplis)

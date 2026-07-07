@@ -25,7 +25,6 @@ export const DE_CH_COVERED_STATIC: ReadonlySet<string> = new Set([
   '/studio-photo/selecteur-machines', // → /de-ch/fotostudio/maschinen-finder
   '/besoins-photographie-produit', // → /de-ch/produktfotografie-bedarf
   '/questions-cles-photographie-produit', // → /de-ch/wichtige-fragen-produktfotografie
-  '/packshot-bijoux', // → /de-ch/packshot-schmuck
   '/packshot-mode',
   '/packshot-e-commerce',
   '/packshot-amazon',

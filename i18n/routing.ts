@@ -78,7 +78,6 @@ export const routing = defineRouting({
     '/confidentialite': '/confidentialite',
     '/outil-financement': '/outil-financement',
     '/packshot-amazon': '/packshot-amazon',
-    '/packshot-bijoux': { fr: '/packshot-bijoux', en: '/packshot-bijoux', 'de-ch': '/packshot-schmuck' },
     '/packshot-e-commerce': '/packshot-e-commerce',
     '/packshot-industriel': { fr: '/packshot-industriel', en: '/packshot-industriel', 'de-ch': '/packshot-industrie' },
     '/packshot-mode': '/packshot-mode',
