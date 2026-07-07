@@ -8,14 +8,11 @@ import type {
   ContentType,
   IndustrySector,
   AutomationLevel,
-  SortOption,
 } from '../lib/types';
 
 interface FilterBarProps {
   filters: MachineSelectorFilters;
-  sortOption: SortOption;
   onFilterChange: <K extends keyof MachineSelectorFilters>(key: K, value: MachineSelectorFilters[K]) => void;
-  onSortChange: (option: SortOption) => void;
   onReset: () => void;
   totalMachines: number;
   visibleMachines: number;
@@ -64,20 +61,9 @@ const AUTOMATION_LABELS: Record<AutomationLevel, { fr: string; en: string; 'de-c
   'full-auto': { fr: 'Entièrement automatique', en: 'Fully automatic', 'de-ch': 'Vollautomatisch' },
 };
 
-// Labels pour le tri
-const SORT_LABELS: Record<SortOption, { fr: string; en: string; 'de-ch': string }> = {
-  'recommended': { fr: 'Recommandé', en: 'Recommended', 'de-ch': 'Empfohlen' },
-  'capacity-asc': { fr: 'Capacité croissante', en: 'Capacity (low to high)', 'de-ch': 'Kapazität aufsteigend' },
-  'capacity-desc': { fr: 'Capacité décroissante', en: 'Capacity (high to low)', 'de-ch': 'Kapazität absteigend' },
-  'name-asc': { fr: 'Nom A-Z', en: 'Name A-Z', 'de-ch': 'Name A-Z' },
-  'name-desc': { fr: 'Nom Z-A', en: 'Name Z-A', 'de-ch': 'Name Z-A' },
-};
-
 export function FilterBar({
   filters,
-  sortOption,
   onFilterChange,
-  onSortChange,
   onReset,
   totalMachines,
   visibleMachines,
@@ -95,26 +81,6 @@ export function FilterBar({
 
   return (
     <div className="bg-white rounded-xl border border-neutral-200 p-4 mb-6">
-      {/* Tri */}
-      <div className="flex justify-end mb-4">
-        <div className="w-full md:w-64">
-          <label className="block text-xs font-medium text-future-dusk-500 mb-1">
-            {tx(locale, 'Trier par', 'Sort by', 'Sortieren nach')}
-          </label>
-          <select
-            value={sortOption}
-            onChange={(e) => onSortChange(e.target.value as SortOption)}
-            className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white"
-          >
-            {Object.entries(SORT_LABELS).map(([value, label]) => (
-              <option key={value} value={value}>
-                {pickL(locale, label)}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
       {/* Filtres principaux */}
       <div className="flex flex-wrap items-end gap-3 mb-4">
         {/* Filtre taille */}

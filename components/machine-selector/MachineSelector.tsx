@@ -48,8 +48,6 @@ export function MachineSelector({
     filters,
     setFilter,
     resetFilters,
-    sortOption,
-    setSortOption,
     selectMachine,
     totalMachines,
     visibleMachines,
@@ -108,9 +106,7 @@ export function MachineSelector({
       {showFilters && (
         <FilterBar
           filters={filters}
-          sortOption={sortOption}
           onFilterChange={setFilter}
-          onSortChange={setSortOption}
           onReset={resetFilters}
           totalMachines={totalMachines}
           visibleMachines={visibleMachines}
