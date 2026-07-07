@@ -33,7 +33,6 @@ const defaultFilters: MachineSelectorFilters = {
   features: undefined,
   sectors: undefined,
   automationLevel: undefined,
-  searchQuery: undefined,
 };
 
 /**
@@ -41,7 +40,7 @@ const defaultFilters: MachineSelectorFilters = {
  */
 export function useMachineSelection(
   initialFilters?: Partial<MachineSelectorFilters>,
-  initialSort: SortOption = 'price-asc'
+  initialSort: SortOption = 'recommended'
 ): UseMachineSelectionReturn {
   const [filters, setFilters] = useState<MachineSelectorFilters>({
     ...defaultFilters,
@@ -104,24 +103,9 @@ export function useMachineSelection(
       result = result.filter(m => m.automationLevel === filters.automationLevel);
     }
 
-    // Filtre par recherche textuelle
-    if (filters.searchQuery && filters.searchQuery.trim()) {
-      const query = filters.searchQuery.toLowerCase().trim();
-      result = result.filter(m =>
-        m.nom.toLowerCase().includes(query) ||
-        m.useCases.some(u => u.toLowerCase().includes(query)) ||
-        m.tailleMax.toLowerCase().includes(query)
-      );
-    }
-
-    // Tri
+    // Tri ('recommended' = ordre naturel du catalogue, déjà curé du plus petit au plus grand produit)
     switch (sortOption) {
-      case 'price-asc':
-        // Machines sans prix confirmé toujours en fin de liste (non comparables)
-        result.sort((a, b) => (a.prixSurDevis ? 1 : 0) - (b.prixSurDevis ? 1 : 0) || a.prix - b.prix);
-        break;
-      case 'price-desc':
-        result.sort((a, b) => (a.prixSurDevis ? 1 : 0) - (b.prixSurDevis ? 1 : 0) || b.prix - a.prix);
+      case 'recommended':
         break;
       case 'capacity-asc':
         result.sort((a, b) => a.capaciteJour - b.capaciteJour);

@@ -100,11 +100,10 @@ export interface MachineSelectorFilters {
   features?: ContentType[];
   sectors?: IndustrySector[];
   automationLevel?: AutomationLevel;
-  searchQuery?: string;
 }
 
-// Options de tri
-export type SortOption = 'price-asc' | 'price-desc' | 'capacity-asc' | 'capacity-desc' | 'name-asc' | 'name-desc';
+// Options de tri ('recommended' = ordre naturel du catalogue, pas de tri appliqué)
+export type SortOption = 'recommended' | 'capacity-asc' | 'capacity-desc' | 'name-asc' | 'name-desc';
 
 // Props du sélecteur
 export interface MachineSelectorProps {

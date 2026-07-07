@@ -66,8 +66,7 @@ const AUTOMATION_LABELS: Record<AutomationLevel, { fr: string; en: string; 'de-c
 
 // Labels pour le tri
 const SORT_LABELS: Record<SortOption, { fr: string; en: string; 'de-ch': string }> = {
-  'price-asc': { fr: 'Prix croissant', en: 'Price (low to high)', 'de-ch': 'Preis aufsteigend' },
-  'price-desc': { fr: 'Prix décroissant', en: 'Price (high to low)', 'de-ch': 'Preis absteigend' },
+  'recommended': { fr: 'Recommandé', en: 'Recommended', 'de-ch': 'Empfohlen' },
   'capacity-asc': { fr: 'Capacité croissante', en: 'Capacity (low to high)', 'de-ch': 'Kapazität aufsteigend' },
   'capacity-desc': { fr: 'Capacité décroissante', en: 'Capacity (high to low)', 'de-ch': 'Kapazität absteigend' },
   'name-asc': { fr: 'Nom A-Z', en: 'Name A-Z', 'de-ch': 'Name A-Z' },
@@ -92,39 +91,16 @@ export function FilterBar({
     filters.priceRange ||
     (filters.features && filters.features.length > 0) ||
     (filters.sectors && filters.sectors.length > 0) ||
-    filters.automationLevel ||
-    filters.searchQuery;
+    filters.automationLevel;
 
   return (
     <div className="bg-white rounded-xl border border-neutral-200 p-4 mb-6">
-      {/* Barre de recherche et tri */}
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
-        {/* Recherche */}
-        <div className="flex-1 relative">
-          <input
-            type="text"
-            placeholder={tx(locale, 'Rechercher une machine...', 'Search machines...', 'Maschine suchen...')}
-            value={filters.searchQuery || ''}
-            onChange={(e) => onFilterChange('searchQuery', e.target.value || undefined)}
-            className="w-full pl-10 pr-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all"
-          />
-          <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-future-dusk-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </div>
-
-        {/* Tri */}
-        <div className="md:w-64">
+      {/* Tri */}
+      <div className="flex justify-end mb-4">
+        <div className="w-full md:w-64">
+          <label className="block text-xs font-medium text-future-dusk-500 mb-1">
+            {tx(locale, 'Trier par', 'Sort by', 'Sortieren nach')}
+          </label>
           <select
             value={sortOption}
             onChange={(e) => onSortChange(e.target.value as SortOption)}
@@ -140,41 +116,47 @@ export function FilterBar({
       </div>
 
       {/* Filtres principaux */}
-      <div className="flex flex-wrap gap-3 mb-4">
+      <div className="flex flex-wrap items-end gap-3 mb-4">
         {/* Filtre taille */}
         <div className="relative">
+          <label className="block text-xs font-medium text-future-dusk-500 mb-1">
+            {tx(locale, 'Taille du produit à photographier', 'Product size to photograph', 'Grösse des zu fotografierenden Produkts')}
+          </label>
           <select
             value={filters.sizeCategory || ''}
             onChange={(e) => onFilterChange('sizeCategory', (e.target.value || undefined) as ProductSizeCategory | undefined)}
             className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
-            <option value="">{tx(locale, 'Toutes les tailles', 'All sizes', 'Alle Grössen')}</option>
+            <option value="">{tx(locale, 'Toutes les tailles de produit', 'All product sizes', 'Alle Produktgrössen')}</option>
             {Object.entries(SIZE_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
                 {pickL(locale, label)}
               </option>
             ))}
           </select>
-          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute right-2 bottom-2.5 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
 
         {/* Filtre automatisation */}
         <div className="relative">
+          <label className="block text-xs font-medium text-future-dusk-500 mb-1">
+            {tx(locale, 'Niveau d\'automatisation', 'Automation level', 'Automatisierungsgrad')}
+          </label>
           <select
             value={filters.automationLevel || ''}
             onChange={(e) => onFilterChange('automationLevel', (e.target.value || undefined) as AutomationLevel | undefined)}
             className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-very-peri-500/20 focus:border-very-peri-500 outline-none transition-all bg-white text-sm"
           >
-            <option value="">{tx(locale, 'Automatisation', 'Automation', 'Automatisierung')}</option>
+            <option value="">{tx(locale, 'Toutes', 'All', 'Alle')}</option>
             {Object.entries(AUTOMATION_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
                 {pickL(locale, label)}
               </option>
             ))}
           </select>
-          <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute right-2 bottom-2.5 w-4 h-4 text-future-dusk-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
