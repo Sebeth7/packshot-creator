@@ -114,7 +114,8 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-xl-g2',
     nom: 'Alphashot XL G2',
-    prix: 48450, // [À CONFIRMER] Orbitvu n'affiche pas de prix public ("sur devis") — estimation par calibrage vs gamme existante, à valider avec Orbitvu avant mise en prod (impacte le calcul ROI affiché aux prospects)
+    prix: 0, // Orbitvu n'affiche pas de prix public ("sur devis"). Pas d'estimation interne publiée : machine exclue du calculateur ROI (voir prixSurDevis + machineSelector.ts) tant qu'aucun prix n'est confirmé par Orbitvu.
+    prixSurDevis: true,
     capaciteJour: 250,
     tailleMax: '60×40×70 cm',
     poidsMax: '25 kg',
@@ -129,9 +130,46 @@ export const MACHINES: Machine[] = [
     idealSectors: ['electronics', 'appliances', 'automotive', 'general'],
     volumeRange: { min: 1000, max: 80000 },
     keyAdvantages: [
-      { fr: 'Mesure laser et pesée intégrées (variante MDC)', en: 'Integrated laser measurement and weighing (MDC variant)', 'de-ch': 'Integrierte Lasermessung und Wägung (MDC-Variante)' },
-      { fr: '170 panneaux LED pilotés par IA', en: '170 AI-controlled LED panels', 'de-ch': '170 KI-gesteuerte LED-Panels' },
-      { fr: 'Double support caméra Canon EOS R (horizontal et vertical)', en: 'Dual Canon EOS R camera mount (horizontal and vertical)', 'de-ch': 'Doppelte Canon-EOS-R-Kamerahalterung (horizontal und vertikal)' },
+      {
+        fr: 'Mesure laser et pesée intégrées (variante MDC)',
+        en: 'Integrated laser measurement and weighing (MDC variant)',
+        'de-ch': 'Integrierte Lasermessung und Wägung (MDC-Variante)',
+        description: {
+          fr: 'Deux lasers indépendants mesurent longueur, largeur et hauteur automatiquement, pendant la balance intégrée de 25 kg pèse le produit (précision ±5 g) — dans le même cycle que la prise de vue. La variante MDC remplace ainsi trois postes distincts (studio photo, poste de mesure, saisie manuelle) par un seul appareil.',
+          en: 'Two independent lasers automatically measure length, width and height, while the integrated 25 kg scale weighs the product (±5 g accuracy) — in the same cycle as the shoot. The MDC variant replaces three separate stations (photo studio, measurement station, manual data entry) with a single device.',
+          'de-ch': 'Zwei unabhängige Laser messen automatisch Länge, Breite und Höhe, während die integrierte 25-kg-Waage das Produkt wiegt (±5 g Genauigkeit) — im selben Zyklus wie die Aufnahme. Die MDC-Variante ersetzt so drei getrennte Stationen (Fotostudio, Messstation, manuelle Dateneingabe) durch ein einziges Gerät.',
+        },
+      },
+      {
+        fr: '170 panneaux LED pilotés par IA',
+        en: '170 AI-controlled LED panels',
+        'de-ch': '170 KI-gesteuerte LED-Panels',
+        description: {
+          fr: 'La chambre entièrement fermée à parois courbes isole le produit de toute lumière parasite. Direction et intensité de chaque panneau se règlent en un clic, et chaque configuration d\'éclairage peut être enregistrée comme modèle pour garantir des résultats identiques sur toute une gamme, à toute heure de la journée.',
+          en: 'The fully enclosed chamber with curved walls isolates the product from any stray light. Direction and intensity of each panel are adjusted with a click, and every lighting setup can be saved as a template to guarantee identical results across a full product range, at any time of day.',
+          'de-ch': 'Die vollständig geschlossene Kammer mit gebogenen Wänden isoliert das Produkt von jedem Streulicht. Richtung und Intensität jedes Panels lassen sich mit einem Klick einstellen, und jede Beleuchtungskonfiguration kann als Vorlage gespeichert werden, um über die gesamte Produktpalette hinweg identische Ergebnisse zu garantieren.',
+        },
+      },
+      {
+        fr: 'Double support caméra Canon EOS R (horizontal et vertical)',
+        en: 'Dual Canon EOS R camera mount (horizontal and vertical)',
+        'de-ch': 'Doppelte Canon-EOS-R-Kamerahalterung (horizontal und vertikal)',
+        description: {
+          fr: 'Le bras caméra réglable se verrouille tous les 5° et le double support permet de capturer en horizontal et en vertical dans la même session, sans remonter le matériel. Un cadrage identique se répète ainsi sur des milliers de références, condition indispensable pour un catalogue cohérent.',
+          en: 'The adjustable camera arm locks every 5° and the dual mount lets you capture horizontal and vertical shots in the same session, without remounting the equipment. The same framing repeats identically across thousands of SKUs — essential for a consistent catalog.',
+          'de-ch': 'Der verstellbare Kameraarm rastet alle 5° ein, und die doppelte Halterung ermöglicht horizontale und vertikale Aufnahmen in derselben Sitzung, ohne die Ausrüstung neu zu montieren. So wiederholt sich derselbe Bildausschnitt identisch über Tausende Artikel hinweg.',
+        },
+      },
+      {
+        fr: 'Lecture IA des étiquettes et structuration automatique des données',
+        en: 'AI label reading and automatic data structuring',
+        'de-ch': 'KI-Etikettenerkennung und automatische Datenstrukturierung',
+        description: {
+          fr: 'L\'OCR IA lit descriptions, ingrédients, codes-barres et données de conformité directement sur l\'étiquette du produit, puis structure l\'information automatiquement — les données sont extraites et vérifiées, jamais générées ou inventées. De quoi alimenter fiches produit et ERP sans ressaisie manuelle.',
+          en: 'AI OCR reads descriptions, ingredients, barcodes and compliance data directly from the product label, then structures the information automatically — data is extracted and verified, never generated or invented. This feeds product sheets and ERP systems without manual re-entry.',
+          'de-ch': 'Die KI-OCR liest Beschreibungen, Zutaten, Barcodes und Konformitätsdaten direkt vom Produktetikett und strukturiert die Informationen automatisch — die Daten werden extrahiert und geprüft, nie generiert oder erfunden. So lassen sich Produktblätter und ERP-Systeme ohne manuelle Neuerfassung befüllen.',
+        },
+      },
     ],
     limitations: [
       { fr: 'Dimensionné pour les gros volumes (1 000+ produits/an recommandé)', en: 'Sized for high volumes (1,000+ products/year recommended)', 'de-ch': 'Für hohe Volumen ausgelegt (empfohlen ab 1\'000 Produkten/Jahr)' },
@@ -155,6 +193,22 @@ export const MACHINES: Machine[] = [
       {
         question: { fr: 'Quelles sont les options de financement pour l\'Alphashot XL G2 ?', en: 'What are the financing options for the Alphashot XL G2?', 'de-ch': 'Welche Finanzierungsmöglichkeiten gibt es für den Alphashot XL G2?' },
         answer: { fr: 'L\'Alphashot XL G2 est disponible en leasing, location avec option d\'achat ou achat direct. Avec une capacite de 250 produits par jour, l\'investissement est recommande a partir de 1 000 produits traites par an. Nos conseillers PackshotCreator vous accompagnent pour definir la formule la plus adaptee a votre activite.', en: 'The Alphashot XL G2 is available through leasing, rental with purchase option or direct purchase. With a capacity of 250 products per day, the investment is recommended from 1,000 products processed per year. Our PackshotCreator advisors help you find the formula best suited to your business.', 'de-ch': 'Der Alphashot XL G2 ist per Leasing, Miete mit Kaufoption oder Direktkauf erhältlich. Mit einer Kapazität von 250 Produkten pro Tag wird die Investition ab 1\'000 verarbeiteten Produkten pro Jahr empfohlen. Unsere PackshotCreator-Berater helfen Ihnen, die für Ihr Geschäft am besten geeignete Formel zu finden.' },
+      },
+      {
+        question: { fr: 'Comment se déroule une prise de vue avec l\'Alphashot XL G2 ?', en: 'How does a shoot work with the Alphashot XL G2?', 'de-ch': 'Wie läuft eine Aufnahme mit dem Alphashot XL G2 ab?' },
+        answer: { fr: 'L\'opérateur place le produit sur le plateau tournant, sélectionne un gabarit d\'éclairage dans Orbitvu Station puis lance le cycle. La machine pilote automatiquement les 170 panneaux LED, la rotation du plateau et le déclenchement caméra pour produire packshots, vues 360° et vidéo. Sur la variante MDC, la mesure laser et la pesée s\'exécutent dans le même cycle, sans étape manuelle supplémentaire.', en: 'The operator places the product on the turntable, selects a lighting template in Orbitvu Station, then starts the cycle. The machine automatically controls the 170 LED panels, turntable rotation and camera trigger to produce packshots, 360° views and video. On the MDC variant, laser measurement and weighing run in the same cycle, with no extra manual step.', 'de-ch': 'Die Bedienperson platziert das Produkt auf dem Drehteller, wählt eine Beleuchtungsvorlage in Orbitvu Station und startet den Zyklus. Die Maschine steuert automatisch die 170 LED-Panels, die Drehtellerrotation und die Kameraauslösung für Packshots, 360-Grad-Ansichten und Video. Bei der MDC-Variante laufen Lasermessung und Wägung im selben Zyklus, ohne zusätzlichen manuellen Schritt.' },
+      },
+      {
+        question: { fr: 'L\'IA de l\'Alphashot XL G2 génère-t-elle des données ou les extrait-elle réellement ?', en: 'Does the Alphashot XL G2\'s AI generate data or actually extract it?', 'de-ch': 'Generiert die KI des Alphashot XL G2 Daten oder extrahiert sie diese tatsächlich?' },
+        answer: { fr: 'L\'IA embarquée intervient uniquement là où elle apporte une valeur vérifiable : reconnaissance produit pour l\'éclairage, détourage automatique et OCR pour lire les étiquettes. Les dimensions, le poids et le texte extrait des étiquettes sont mesurés ou lus physiquement par la machine, jamais générés ou inventés — une distinction importante par rapport aux outils qui retouchent ou complètent une image après coup.', en: 'The onboard AI only intervenes where it brings verifiable value: product recognition for lighting, automatic background removal, and OCR to read labels. Dimensions, weight and text extracted from labels are physically measured or read by the machine, never generated or invented — an important distinction from tools that retouch or complete an image after the fact.', 'de-ch': 'Die integrierte KI kommt nur dort zum Einsatz, wo sie einen nachweisbaren Mehrwert bringt: Produkterkennung für die Beleuchtung, automatisches Freistellen und OCR zum Lesen der Etiketten. Abmessungen, Gewicht und der von den Etiketten extrahierte Text werden von der Maschine physisch gemessen oder gelesen, niemals generiert oder erfunden.' },
+      },
+      {
+        question: { fr: 'Faut-il être photographe pour utiliser l\'Alphashot XL G2 ?', en: 'Do you need to be a photographer to use the Alphashot XL G2?', 'de-ch': 'Muss man Fotograf sein, um den Alphashot XL G2 zu bedienen?' },
+        answer: { fr: 'Non. L\'automatisation complète (éclairage, rotation, déclenchement, mesure) rend la prise en main accessible sans compétence photo. La formation PackshotCreator, éligible au financement OPCO via notre certification Qualiopi, couvre le pilotage d\'Orbitvu Station et les réglages spécifiques à la variante MDC.', en: 'No. Full automation (lighting, rotation, triggering, measurement) makes it accessible without any photography skills. PackshotCreator training, eligible for OPCO funding through our Qualiopi certification, covers operating Orbitvu Station and the MDC-specific settings.', 'de-ch': 'Nein. Die vollständige Automatisierung (Beleuchtung, Rotation, Auslösung, Messung) macht die Bedienung ohne Fotokenntnisse zugänglich. Die PackshotCreator-Schulung deckt die Bedienung von Orbitvu Station und die MDC-spezifischen Einstellungen ab.' },
+      },
+      {
+        question: { fr: 'L\'Alphashot XL G2 s\'intègre-t-il à un ERP ou une plateforme e-commerce ?', en: 'Does the Alphashot XL G2 integrate with an ERP or e-commerce platform?', 'de-ch': 'Lässt sich der Alphashot XL G2 in ein ERP oder eine E-Commerce-Plattform integrieren?' },
+        answer: { fr: 'Oui. Orbitvu Station publie directement vers un DAM, une plateforme e-commerce ou un espace cloud via API, connecteurs ou scripting. Sur la variante MDC, les données structurées (dimensions, poids, contenu d\'étiquette) peuvent alimenter l\'ERP au même titre que les visuels, sans ressaisie manuelle.', en: 'Yes. Orbitvu Station publishes directly to a DAM, an e-commerce platform or cloud storage via API, connectors or scripting. On the MDC variant, structured data (dimensions, weight, label content) can feed the ERP alongside the visuals, with no manual re-entry.', 'de-ch': 'Ja. Orbitvu Station publiziert direkt in ein DAM, eine E-Commerce-Plattform oder einen Cloud-Speicher über API, Connectoren oder Scripting. Bei der MDC-Variante können strukturierte Daten (Abmessungen, Gewicht, Etiketteninhalt) das ERP-System ebenso befüllen wie die Bilder, ohne manuelle Neuerfassung.' },
       },
     ],
     keyStats: [

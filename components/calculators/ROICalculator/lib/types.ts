@@ -89,6 +89,7 @@ export interface Machine {
   id: string;
   nom: string;
   prix: number;                           // € HT (utilisé pour calculs, non affiché)
+  prixSurDevis?: boolean;                 // si true, machine exclue du calculateur ROI (prix non confirmé Orbitvu)
   capaciteJour: number;                   // photos/jour
   tailleMax: string;                      // Description textuelle
   poidsMax: string;                       // Description textuelle (peut être kg ou kg/m²)

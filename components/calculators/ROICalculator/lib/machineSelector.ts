@@ -298,7 +298,7 @@ export function selectEligibleMachines(criteria: SelectionCriteria, sizeCategory
   const machinesFiltered = (sizeCategory
     ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
     : MACHINES
-  ).filter(m => !excludedMachines.includes(m.id));
+  ).filter(m => !excludedMachines.includes(m.id) && !m.prixSurDevis);
 
   const evaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria));
 
@@ -320,9 +320,11 @@ export function recommendMachine(criteria: SelectionCriteria, sizeCategory?: Pro
   }
 
   // Fallback : prendre la machine la moins chère parmi celles de la bonne catégorie
-  const machinesFiltered = sizeCategory
+  // (machines sans prix confirmé exclues — pas de calcul ROI possible sans prix réel)
+  const machinesFiltered = (sizeCategory
     ? MACHINES.filter(m => m.tailleCategories.includes(sizeCategory))
-    : MACHINES;
+    : MACHINES
+  ).filter(m => !m.prixSurDevis);
 
   const allEvaluations = machinesFiltered.map(machine => evaluateMachine(machine, criteria))
     .sort((a, b) => a.machine.prix - b.machine.prix || b.score - a.score);

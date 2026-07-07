@@ -149,7 +149,11 @@ export function MachineModal({
               {/* Prix */}
               {showPrice && (
                 <div className="text-3xl font-bold text-brand-red">
-                  {formatPrice(machine.prix)} <span className="text-base font-normal text-future-dusk-500">HT</span>
+                  {machine.prixSurDevis ? (
+                    tx(locale, 'Sur devis', 'On request', 'Auf Anfrage')
+                  ) : (
+                    <>{formatPrice(machine.prix)} <span className="text-base font-normal text-future-dusk-500">HT</span></>
+                  )}
                 </div>
               )}
 

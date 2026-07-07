@@ -50,6 +50,7 @@ export interface Machine {
   id: string;
   nom: string;
   prix: number;                           // € HT
+  prixSurDevis?: boolean;                 // si true, n'affiche jamais machine.prix (estimation interne non publiable) — affiche "Sur devis"
   capaciteJour: number;                   // photos/jour
   tailleMax: string;                      // Description textuelle
   poidsMax: string;                       // Description textuelle

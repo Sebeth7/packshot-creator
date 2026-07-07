@@ -78,10 +78,10 @@ export function useMachineSelection(
       result = result.filter(m => m.tailleCategories.includes(filters.sizeCategory as ProductSizeCategory));
     }
 
-    // Filtre par plage de prix
+    // Filtre par plage de prix (machines sans prix confirmé toujours incluses, non comparables à une plage)
     if (filters.priceRange) {
       result = result.filter(m =>
-        m.prix >= filters.priceRange!.min && m.prix <= filters.priceRange!.max
+        m.prixSurDevis || (m.prix >= filters.priceRange!.min && m.prix <= filters.priceRange!.max)
       );
     }
 
@@ -117,10 +117,11 @@ export function useMachineSelection(
     // Tri
     switch (sortOption) {
       case 'price-asc':
-        result.sort((a, b) => a.prix - b.prix);
+        // Machines sans prix confirmé toujours en fin de liste (non comparables)
+        result.sort((a, b) => (a.prixSurDevis ? 1 : 0) - (b.prixSurDevis ? 1 : 0) || a.prix - b.prix);
         break;
       case 'price-desc':
-        result.sort((a, b) => b.prix - a.prix);
+        result.sort((a, b) => (a.prixSurDevis ? 1 : 0) - (b.prixSurDevis ? 1 : 0) || b.prix - a.prix);
         break;
       case 'capacity-asc':
         result.sort((a, b) => a.capaciteJour - b.capaciteJour);

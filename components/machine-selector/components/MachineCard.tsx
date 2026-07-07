@@ -115,7 +115,7 @@ export function MachineCard({
           </h3>
           {showPrice && (
             <span className="text-very-peri-600 font-bold whitespace-nowrap">
-              {formatPrice(machine.prix)}
+              {machine.prixSurDevis ? (locale === 'en' ? 'On request' : 'Sur devis') : formatPrice(machine.prix)}
             </span>
           )}
         </div>

@@ -88,7 +88,8 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-xl-g2',
     nom: 'Alphashot XL G2',
-    prix: 48450, // [À CONFIRMER] cf. ROICalculator/lib/machines.ts
+    prix: 0, // Orbitvu n'affiche pas de prix public ("sur devis"). Pas d'estimation interne publiée : voir prixSurDevis.
+    prixSurDevis: true,
     capaciteJour: 250,
     tailleMax: '60×40×70 cm',
     poidsMax: '25 kg',
@@ -107,6 +108,7 @@ export const MACHINES: Machine[] = [
       { fr: 'Mesure laser et pesée intégrées (variante MDC)', en: 'Integrated laser measurement and weighing (MDC variant)' },
       { fr: '170 panneaux LED pilotés par IA', en: '170 AI-controlled LED panels' },
       { fr: 'Double support caméra Canon EOS R', en: 'Dual Canon EOS R camera mount' },
+      { fr: 'Lecture IA des étiquettes et structuration automatique des données', en: 'AI label reading and automatic data structuring' },
     ],
     limitations: [
       { fr: 'Dimensionné pour les gros volumes (1 000+ produits/an recommandé)', en: 'Sized for high volumes (1,000+ products/year recommended)' },

@@ -53,6 +53,7 @@ const R2_VIDEO_BASE = 'https://videos.packshot-creator.com';
 // duration, relevées sur les pages /watch YouTube d'origine (source : ld+json YouTube).
 // Clé = youtubeId (= nom du fichier sur R2). À mettre à jour si une vidéo est remplacée.
 const VIDEO_META: Record<string, { uploadDate: string; duration: string }> = {
+  'Xq0vG-cr2bc': { uploadDate: '2026-06-11', duration: 'PT1M23S' }, // alphashot-xl-g2
   'tR-6RBucmWw': { uploadDate: '2024-10-22', duration: 'PT1M48S' }, // alphashot-pro-g2
   'IWcXbWzVEYQ': { uploadDate: '2023-12-12', duration: 'PT1M59S' }, // alphashot-micro-v2
   'g6DABbE2lgs': { uploadDate: '2024-02-12', duration: 'PT1M43S' }, // alphashot-360
@@ -93,15 +94,23 @@ function getProductGallery(id: string): ProductGallery {
     ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, label: { fr: labelFr, en: labelEn }, w, h });
 
   const galleries: Record<string, ProductGallery> = {
-    // ── ALPHASHOT XL G2 ── (visuels officiels Orbitvu, auto-hébergés — pas de shoot PSC ni de viewer 360° dédié pour le moment)
+    // ── ALPHASHOT XL G2 ── (visuels officiels Orbitvu, auto-hébergés — pas de shoot PSC dédié pour le moment)
     'alphashot-xl-g2': {
-      bentoPackshot: img('alphashot-xl-g2', 'packshot-zoom.avif', 'Packshot produit réalisé avec l\'Alphashot XL G2', 'Product packshot created with the Alphashot XL G2', 1200, 786),
+      bentoPackshot: img('alphashot-xl-g2', 'packshot-angled.avif', 'Alphashot XL G2, vue studio de trois quarts', 'Alphashot XL G2, angled studio view', 1200, 1153),
+      video: { youtubeId: 'Xq0vG-cr2bc', poster: `${b('alphashot-xl-g2')}/hero.avif` },
       bentoRow2: [
-        img('alphashot-xl-g2', 'packshot-macro.avif', 'Photographie industrielle macro avec l\'Alphashot XL G2', 'Industrial macro photography with the Alphashot XL G2', 1200, 847),
+        img('alphashot-xl-g2', 'packshot-macro.avif', 'Exemple de photographie industrielle réalisable avec l\'Alphashot XL G2', 'Example of industrial photography achievable with the Alphashot XL G2', 1200, 847),
+        img('alphashot-xl-g2', 'packshot-operator.avif', 'Opérateur utilisant l\'Alphashot XL G2 pour une prise de vue', 'Operator using the Alphashot XL G2 for a shoot', 880, 586),
       ],
+      advantageHero: img('alphashot-xl-g2', 'advantage-open-doors.avif', 'Chambre ouverte de l\'Alphashot XL G2, éclairage LED et bras caméra', 'Open chamber of the Alphashot XL G2, LED lighting and camera arm', 1400, 1004),
       hardware: [
         labeled('alphashot-xl-g2', 'hw-panel-lighting.avif', '170 panneaux LED pilotés par IA', '170 AI-controlled LED panels', 'Éclairage virtuel', 'Virtual lighting', 1400, 1004),
         labeled('alphashot-xl-g2', 'hw-turntable.avif', 'Plateau tournant motorisé avec balance intégrée (MDC)', 'Motorized turntable with integrated scale (MDC)', 'Plateau + mesure', 'Turntable + measurement', 570, 377),
+        labeled('alphashot-xl-g2', 'hw-camera-mount.avif', 'Double support caméra Canon EOS R', 'Dual Canon EOS R camera mount', 'Support caméra', 'Camera mount', 570, 377),
+      ],
+      software: [
+        labeled('alphashot-xl-g2', 'soft-station-capture.avif', 'Interface de capture Orbitvu Station sur Alphashot XL MDC G2', 'Orbitvu Station capture interface on the Alphashot XL MDC G2', 'Capture', 'Capture', 1400, 875),
+        labeled('alphashot-xl-g2', 'soft-ai-ocr.avif', 'Lecture IA des étiquettes et structuration des données produit', 'AI label reading and product data structuring', 'OCR IA', 'AI OCR', 1400, 945),
       ],
     },
     // ── ALPHASHOT PRO G2 ──
@@ -429,6 +438,20 @@ export function generateStaticParams() {
 
 // SEO overrides for specific product pages (keyword + CTR optimization)
 const seoOverrides: Record<string, { fr: { title: string; description: string }; en: { title: string; description: string }; 'de-ch'?: { title: string; description: string } }> = {
+  'alphashot-xl-g2': {
+    fr: {
+      title: 'Alphashot XL G2 | Studio Photo & Mesure Produit Automatisé Orbitvu',
+      description: 'Alphashot XL G2 (variante MDC) : packshots, 360°, vidéo, mesure laser et pesée intégrées en un seul cycle. Jusqu\'à 60×40×70 cm, 25 kg. Distributeur officiel Orbitvu.',
+    },
+    en: {
+      title: 'Alphashot XL G2 | Automated Product Photography & Measurement | Orbitvu',
+      description: 'Alphashot XL G2 (MDC variant): packshots, 360° spins, video, laser measurement and weighing in one cycle. Up to 60×40×70 cm, 25 kg. Official Orbitvu distributor.',
+    },
+    'de-ch': {
+      title: 'Alphashot XL G2 | Automatisierte Produktfotografie & Messung | Orbitvu',
+      description: 'Alphashot XL G2 (MDC-Variante): Packshots, 360°-Ansichten, Video, Lasermessung und Wägung in einem Zyklus. Bis 60×40×70 cm, 25 kg. Offizieller Orbitvu-Distributor.',
+    },
+  },
   'alphashot-360': {
     fr: {
       title: 'Photo 360 Produit | Alphashot 360 — Studio Automatisé Orbitvu',
