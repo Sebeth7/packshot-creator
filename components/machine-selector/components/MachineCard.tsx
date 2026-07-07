@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { tx, pickL } from '@/lib/locale-text';
-import type { Machine, BilingualText } from '../lib/types';
+import type { Machine } from '../lib/types';
 
 interface MachineCardProps {
   machine: Machine;
@@ -24,21 +24,6 @@ function formatPrice(price: number): string {
     maximumFractionDigits: 0,
   }).format(price);
 }
-
-// Fonction pour obtenir le texte bilingue
-function getText(text: BilingualText, locale: 'fr' | 'en'): string {
-  return text[locale] || text.fr;
-}
-
-// Labels pour les features
-const FEATURE_LABELS: Record<string, { fr: string; en: string; 'de-ch': string; icon: string }> = {
-  'packshot': { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot', icon: '📷' },
-  '360': { fr: '360°', en: '360°', 'de-ch': '360°', icon: '🔄' },
-  'video': { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video', icon: '🎬' },
-  'ghost-mannequin': { fr: 'Ghost', en: 'Ghost', 'de-ch': 'Ghost', icon: '👤' },
-  'flat-lay': { fr: 'Flat-lay', en: 'Flat-lay', 'de-ch': 'Flat-Lay', icon: '⬇️' },
-  'lifestyle': { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle', icon: '✨' },
-};
 
 // Labels pour l'automatisation
 const AUTOMATION_LABELS: Record<string, { fr: string; en: string; 'de-ch': string; color: string }> = {
@@ -78,14 +63,14 @@ export function MachineCard({
         </div>
       )}
 
-      {/* Image — clickable link to product page */}
+      {/* Image — clickable link to product page, plus grande et dominante */}
       <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }} className="block relative aspect-[4/3] bg-white overflow-hidden" onClick={(e) => e.stopPropagation()}>
         {!imageError && machine.imageUrl ? (
           <Image
             src={machine.imageUrl}
             alt={machine.nom}
             fill
-            className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+            className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
             onError={() => setImageError(true)}
           />
         ) : (
@@ -106,10 +91,9 @@ export function MachineCard({
         </div>
       </Link>
 
-      {/* Contenu */}
-      <div className="p-4">
-        {/* Titre et prix */}
-        <div className="flex items-start justify-between gap-2 mb-2">
+      {/* Contenu — épuré : titre, 2 specs clés, actions. Le détail complet est dans l'Aperçu. */}
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-2 mb-3">
           <h3 className="font-semibold text-future-dusk-900 text-lg leading-tight">
             {machine.nom}
           </h3>
@@ -120,60 +104,21 @@ export function MachineCard({
           )}
         </div>
 
-        {/* Specs principales */}
-        <div className="grid grid-cols-2 gap-2 mb-3 text-sm">
-          <div className="flex items-center gap-1.5 text-future-dusk-600">
-            <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {/* 2 specs clés */}
+        <div className="flex items-center gap-4 mb-4 text-sm text-future-dusk-600">
+          <div className="flex items-center gap-1.5">
+            <svg className="w-4 h-4 text-future-dusk-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
             </svg>
             <span>{machine.tailleMax}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-future-dusk-600">
-            <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-            </svg>
-            <span>{machine.poidsMax}</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-future-dusk-600">
-            <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex items-center gap-1.5">
+            <svg className="w-4 h-4 text-future-dusk-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             <span>{machine.capaciteJour} {tx(locale, 'photos/j', 'photos/d', 'Fotos/Tag')}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-future-dusk-600">
-            <svg className="w-4 h-4 text-future-dusk-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-            <span>{machine.spaceRequired}</span>
-          </div>
         </div>
-
-        {/* Features */}
-        <div className="flex flex-wrap gap-1.5 mb-3">
-          {machine.features.slice(0, 4).map((feature) => {
-            const label = FEATURE_LABELS[feature];
-            return (
-              <span
-                key={feature}
-                className="inline-flex items-center gap-1 px-2 py-0.5 bg-neutral-100 text-future-dusk-700 text-xs rounded-full"
-              >
-                <span>{label?.icon}</span>
-                <span>{label ? pickL(locale, label) : null}</span>
-              </span>
-            );
-          })}
-          {machine.features.length > 4 && (
-            <span className="inline-flex items-center px-2 py-0.5 bg-gray-100 text-future-dusk-500 text-xs rounded-full">
-              +{machine.features.length - 4}
-            </span>
-          )}
-        </div>
-
-        {/* Use cases */}
-        <p className="text-sm text-future-dusk-500 line-clamp-2 mb-3">
-          {machine.useCases.slice(0, 3).join(' • ')}
-          {machine.useCases.length > 3 && '...'}
-        </p>
 
         {/* Actions */}
         <div className="flex gap-2">

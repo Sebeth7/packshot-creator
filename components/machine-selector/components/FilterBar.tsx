@@ -190,42 +190,42 @@ export function FilterBar({
         )}
       </div>
 
+      {/* Secteurs — toujours visibles, c'est le critère de recherche le plus naturel */}
+      <div className="mb-4">
+        <label className="block text-xs font-medium text-future-dusk-500 mb-2">
+          {tx(locale, 'Votre secteur d\'activité', 'Your industry', 'Ihre Branche')}
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {Object.entries(SECTOR_LABELS).map(([value, label]) => {
+            const isActive = filters.sectors?.includes(value as IndustrySector);
+            return (
+              <button
+                key={value}
+                onClick={() => {
+                  const current = filters.sectors || [];
+                  if (isActive) {
+                    const newSectors = current.filter(s => s !== value);
+                    onFilterChange('sectors', newSectors.length > 0 ? newSectors : undefined);
+                  } else {
+                    onFilterChange('sectors', [...current, value as IndustrySector]);
+                  }
+                }}
+                className={`px-3 py-1.5 text-xs rounded-full transition-all ${
+                  isActive
+                    ? 'bg-very-peri-600 text-white'
+                    : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
+                }`}
+              >
+                {pickL(locale, label)}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Filtres avancés */}
       {showAdvanced && (
         <div className="pt-4 border-t border-neutral-200 space-y-4">
-          {/* Secteurs */}
-          <div>
-            <label className="block text-sm font-medium text-future-dusk-700 mb-2">
-              {tx(locale, 'Secteurs d\'activité', 'Industries', 'Branchen')}
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(SECTOR_LABELS).map(([value, label]) => {
-                const isActive = filters.sectors?.includes(value as IndustrySector);
-                return (
-                  <button
-                    key={value}
-                    onClick={() => {
-                      const current = filters.sectors || [];
-                      if (isActive) {
-                        const newSectors = current.filter(s => s !== value);
-                        onFilterChange('sectors', newSectors.length > 0 ? newSectors : undefined);
-                      } else {
-                        onFilterChange('sectors', [...current, value as IndustrySector]);
-                      }
-                    }}
-                    className={`px-3 py-1.5 text-xs rounded-full transition-all ${
-                      isActive
-                        ? 'bg-very-peri-600 text-white'
-                        : 'bg-neutral-100 text-future-dusk-700 hover:bg-neutral-200'
-                    }`}
-                  >
-                    {pickL(locale, label)}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           {/* Fonctionnalités */}
           <div>
             <label className="block text-sm font-medium text-future-dusk-700 mb-2">
