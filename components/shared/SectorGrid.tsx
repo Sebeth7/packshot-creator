@@ -19,6 +19,7 @@ import {
   Shield,
   Glasses,
   UtensilsCrossed,
+  Watch,
 } from 'lucide-react';
 
 export interface Sector {
@@ -93,4 +94,5 @@ export const DEFAULT_SECTORS: Sector[] = [
   { slug: 'defense-securite', name: 'Défense & Sécurité', Icon: Shield, description: 'Studio sur site sécurisé, traçabilité et conformité' },
   { slug: 'lunetterie', name: 'Lunetterie & Optique', Icon: Glasses, description: 'Packshot montures, verres et solaires avec gestion des reflets' },
   { slug: 'food-alimentaire', name: 'Food & Alimentaire', Icon: UtensilsCrossed, description: 'Packshot packaging et food styling IA' },
+  { slug: 'horlogerie', name: 'Horlogerie', Icon: Watch, description: 'Macro focus stacking et gestion des reflets verre saphir & boîtiers' },
 ];
