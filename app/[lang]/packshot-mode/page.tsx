@@ -11,7 +11,7 @@ const CONFIG: PackshotLandingConfig = {
   heroIcon: Shirt,
   heroBadge: { fr: 'Mode & Textile', en: 'Fashion & Textile' },
   benefitIcons: [Layers, Palette, RotateCw, Zap, Upload],
-  machineIds: ['alphashot-xl-v2', 'alphadesk', 'alphastudio-xxl-v2'],
+  machineIds: ['alphashot-xl-pro-v2', 'alphatable', 'alphastudio-xxl-v2'],
   faqCount: 3,
 };
 

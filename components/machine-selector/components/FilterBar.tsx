@@ -51,6 +51,10 @@ const SECTOR_LABELS: Record<IndustrySector, { fr: string; en: string; 'de-ch': s
   'sports': { fr: 'Sports', en: 'Sports', 'de-ch': 'Sport' },
   'appliances': { fr: 'Électroménager', en: 'Appliances', 'de-ch': 'Haushaltsgeräte' },
   'automotive': { fr: 'Automobile', en: 'Automotive', 'de-ch': 'Automobil' },
+  'optics': { fr: 'Lunetterie & Optique', en: 'Eyewear & Optics', 'de-ch': 'Optik & Brillen' },
+  'health': { fr: 'Santé & Médical', en: 'Health & Medical', 'de-ch': 'Gesundheit & Medizin' },
+  'industrial': { fr: 'Industrie & pièces techniques', en: 'Industry & technical parts', 'de-ch': 'Industrie & Technikteile' },
+  'watchmaking': { fr: 'Horlogerie', en: 'Watchmaking', 'de-ch': 'Uhrmacherei' },
   'general': { fr: 'E-commerce général', en: 'General e-commerce', 'de-ch': 'Allgemeiner E-Commerce' },
 };
 

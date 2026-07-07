@@ -11,7 +11,7 @@ const CONFIG: PackshotLandingConfig = {
   heroIcon: Wrench,
   heroBadge: { fr: 'Industrie & Technique', en: 'Industry & Technical' },
   benefitIcons: [Wrench, RotateCw, Lightbulb, Repeat, Plug],
-  machineIds: ['alphashot-xl-v2', 'alphashot-pro-g2'],
+  machineIds: ['alphashot-xl-pro-v2', 'alphashot-pro-g2'],
   faqCount: 3,
 };
 

@@ -28,8 +28,8 @@ const SOLUTIONS = [
 
 const MACHINES = [
   'alphashot-micro-v2', 'alphashot-360', 'alphashot-xl-g2', 'alphashot-pro-g2',
-  'alphashot-xl-v2', 'alphashot-xl-wine-v2', 'alphashot-xl-pro-v2',
-  'alphadesk', 'alphatable', 'alphastudio-compact-v2', 'alphastudio-xxl-v2',
+  'alphashot-xl-pro-v2',
+  'alphatable', 'alphastudio-compact-v2', 'alphastudio-xxl-v2',
   'fashion-studio-basic', 'fashion-studio', 'bike-studio',
   'furniture-studio', 'e-comm-studio-plus',
 ];

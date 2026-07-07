@@ -116,7 +116,7 @@ export default function QuestionLeasing({ locale }: QuestionLeasingProps) {
               className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-future-dusk-900 focus:border-very-peri-500 focus:outline-none focus:ring-1 focus:ring-very-peri-500"
             >
               <option value="">{t.machinePlaceholder}</option>
-              {MACHINES.filter((m) => !m.prixSurDevis).map((m) => (
+              {MACHINES.filter((m) => !m.prixSurDevis && !m.delisted).map((m) => (
                 <option key={m.id} value={m.id}>
                   {m.nom}
                 </option>

@@ -55,6 +55,10 @@ export type IndustrySector =
   | 'sports'       // Équipements sportifs
   | 'appliances'   // Électroménager
   | 'automotive'   // Automobile/Moto
+  | 'optics'       // Lunetterie & Optique
+  | 'health'       // Santé & Médical
+  | 'industrial'   // Industrie & pièces techniques
+  | 'watchmaking'  // Horlogerie
   | 'general';     // E-commerce général
 
 // Dimensions structurées
@@ -90,6 +94,7 @@ export interface Machine {
   nom: string;
   prix: number;                           // € HT (utilisé pour calculs, non affiché)
   prixSurDevis?: boolean;                 // si true, machine exclue du calculateur ROI (prix non confirmé Orbitvu)
+  delisted?: boolean;                     // si true, exclue de tout affichage/recommandation ; la page produit reste servie
   capaciteJour: number;                   // photos/jour
   tailleMax: string;                      // Description textuelle
   poidsMax: string;                       // Description textuelle (peut être kg ou kg/m²)

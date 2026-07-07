@@ -70,7 +70,7 @@ export function useMachineSelection(
 
   // Filtrer et trier les machines
   const filteredMachines = useMemo(() => {
-    let result = [...MACHINES];
+    let result = MACHINES.filter(m => !m.delisted);
 
     // Filtre par catégorie de taille
     if (filters.sizeCategory) {

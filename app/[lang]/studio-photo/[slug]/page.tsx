@@ -30,8 +30,6 @@ function getMachineImage(id: string): string {
     'alphashot-xl-g2': '/images/machines/alphashot-xl-g2.avif',
     'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
     'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
-    'alphashot-xl-wine-v2': '/images/machines/alphashot-xl.avif',
-    'alphashot-xl-pro-v2': '/images/machines/alphashot-xl.avif',
     'alphadesk': '/images/machines/alphatable-alphadesk.avif',
     'alphatable': '/images/machines/alphatable-alphadesk.avif',
     'alphastudio-compact-v2': '/images/machines/alphastudio-compact.avif',
@@ -402,8 +400,6 @@ function getProductGallery(id: string): ProductGallery {
       ],
     },
   };
-  // Handle variant IDs that share gallery with base
-  if (id === 'alphashot-xl-wine-v2' || id === 'alphashot-xl-pro-v2') return galleries['alphashot-xl-v2'] || {};
   return galleries[id] || {};
 }
 
@@ -420,6 +416,7 @@ function getSimilarMachines(machine: Machine): Machine[] {
   return MACHINES.filter(
     (m) =>
       m.id !== machine.id &&
+      !m.delisted &&
       m.tailleCategories.some((cat) => machine.tailleCategories.includes(cat))
   ).slice(0, 3);
 }

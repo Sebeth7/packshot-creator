@@ -30,6 +30,10 @@ export type IndustrySector =
   | 'sports'       // Équipements sportifs
   | 'appliances'   // Électroménager
   | 'automotive'   // Automobile/Moto
+  | 'optics'       // Lunetterie & Optique
+  | 'health'       // Santé & Médical
+  | 'industrial'   // Industrie & pièces techniques
+  | 'watchmaking'  // Horlogerie
   | 'general';     // E-commerce général
 
 // Dimensions structurées
@@ -51,6 +55,7 @@ export interface Machine {
   nom: string;
   prix: number;                           // € HT
   prixSurDevis?: boolean;                 // si true, n'affiche jamais machine.prix (estimation interne non publiable) — affiche "Sur devis"
+  delisted?: boolean;                     // si true, exclue de tout affichage/recommandation ; la page produit reste servie
   capaciteJour: number;                   // photos/jour
   tailleMax: string;                      // Description textuelle
   poidsMax: string;                       // Description textuelle

@@ -24,7 +24,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 1,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['jewelry', 'cosmetics'],
+    idealSectors: ['jewelry', 'cosmetics', 'health', 'watchmaking'],
     volumeRange: { min: 1000, max: 50000 },
     keyAdvantages: [
       { fr: 'Élimination automatique de l\'arrière-plan avec IQ Mask', en: 'Automatic background removal with IQ Mask', 'de-ch': 'Automatisches Freistellen des Hintergrunds mit IQ Mask' },
@@ -127,7 +127,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 25,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['electronics', 'appliances', 'automotive', 'general'],
+    idealSectors: ['electronics', 'appliances', 'automotive', 'general', 'footwear', 'wine', 'health', 'industrial'],
     volumeRange: { min: 1000, max: 80000 },
     keyAdvantages: [
       {
@@ -232,7 +232,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 10,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['cosmetics', 'electronics', 'general'],
+    idealSectors: ['cosmetics', 'electronics', 'general', 'optics', 'health', 'industrial', 'watchmaking', 'automotive'],
     volumeRange: { min: 5000, max: 60000 },
     keyAdvantages: [
       {
@@ -302,6 +302,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-xl-v2',
     nom: 'Alphashot XL v2',
+    delisted: true,
     prix: 18950,
     capaciteJour: 200,
     tailleMax: '50×30×70 cm',
@@ -353,6 +354,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-xl-wine-v2',
     nom: 'Alphashot XL Wine v2',
+    delisted: true,
     prix: 20450,
     capaciteJour: 200,
     tailleMax: 'Bouteilles vin/spiritueux',
@@ -365,7 +367,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 5,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['wine'],
+    idealSectors: [],
     volumeRange: { min: 1000, max: 25000 },
     keyAdvantages: [
       { fr: 'Spécialisé pour bouteilles et étiquettes', en: 'Specialized for bottles and labels', 'de-ch': 'Spezialisiert auf Flaschen und Etiketten' },
@@ -416,7 +418,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 25,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['footwear', 'bags', 'electronics', 'general'],
+    idealSectors: ['footwear', 'bags', 'electronics', 'general', 'wine', 'appliances', 'automotive', 'industrial'],
     volumeRange: { min: 5000, max: 40000 },
     keyAdvantages: [
       { fr: 'Version Pro avec éclairages coulissants pour contrôle précis', en: 'Pro version with sliding lights for precise control', 'de-ch': 'Pro-Version mit verschiebbarer Beleuchtung für präzise Kontrolle' },
@@ -459,6 +461,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphadesk',
     nom: 'Alphadesk v2',
+    delisted: true,
     prix: 17450,
     capaciteJour: 300,
     tailleMax: '85×70×5 cm',
@@ -579,7 +582,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 100,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['bags', 'furniture', 'sports', 'general'],
+    idealSectors: ['bags', 'furniture', 'sports', 'general', 'appliances', 'automotive', 'industrial'],
     volumeRange: { min: 5000, max: 40000 },
     keyAdvantages: [
       { fr: 'Flexibilité pour objets moyens à gros (jusqu\'à la valise)', en: 'Flexibility for medium to large objects (up to suitcase)', 'de-ch': 'Flexibilität für mittlere bis grosse Objekte (bis zum Koffer)' },
@@ -630,7 +633,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 100,
     features: ['packshot', '360', 'video', 'ghost-mannequin', 'lifestyle'],
     automationLevel: 'full-auto',
-    idealSectors: ['fashion', 'furniture', 'general'],
+    idealSectors: ['fashion', 'furniture', 'general', 'sports', 'appliances', 'automotive', 'industrial'],
     volumeRange: { min: 15000, max: 80000 },
     keyAdvantages: [
       { fr: 'Solution tout-en-un pour la mode (plat, ghost, porté)', en: 'All-in-one solution for fashion (flat, ghost, worn)', 'de-ch': 'All-in-one-Lösung für Mode (liegend, Ghost, getragen)' },
@@ -892,7 +895,7 @@ export const MACHINES: Machine[] = [
     poidsMaxKg: 1000,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
-    idealSectors: ['furniture', 'appliances', 'automotive'],
+    idealSectors: ['furniture'],
     volumeRange: { min: 5000, max: 50000 },
     keyAdvantages: [
       { fr: 'Aucune limite de taille pour meubles standards', en: 'No size limit for standard furniture', 'de-ch': 'Keine Grössenbeschränkung für Standardmöbel' },

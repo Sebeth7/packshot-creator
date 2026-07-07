@@ -34,7 +34,7 @@ function fallbackRecommendation(inputs: UserInputs): Machine {
   // 1. Filtrer par taille de produits (critère principal)
   // Machines sans prix confirmé exclues — pas de calcul ROI possible sans prix réel
   const machinesCompatibles = MACHINES.filter(m =>
-    m.tailleCategories.includes(tailleProduitsCategory) && !m.prixSurDevis
+    m.tailleCategories.includes(tailleProduitsCategory) && !m.prixSurDevis && !m.delisted
   );
 
   if (machinesCompatibles.length === 0) {
@@ -139,9 +139,9 @@ export function calculateROI(inputs: UserInputs, forceMachineId?: string): Calcu
   // 1. Machine (forcée par leasing, par forceMachineId, ou recommandée)
   // Machines sans prix confirmé (prixSurDevis) jamais utilisables ici — pas de calcul ROI possible sans prix réel
   const machine = isLeasing
-    ? (MACHINES.find(m => m.id === inputs.leasingMachineId && !m.prixSurDevis) ?? recommanderMachine(inputs))
+    ? (MACHINES.find(m => m.id === inputs.leasingMachineId && !m.prixSurDevis && !m.delisted) ?? recommanderMachine(inputs))
     : forceMachineId
-      ? (MACHINES.find(m => m.id === forceMachineId && !m.prixSurDevis) ?? recommanderMachine(inputs))
+      ? (MACHINES.find(m => m.id === forceMachineId && !m.prixSurDevis && !m.delisted) ?? recommanderMachine(inputs))
       : recommanderMachine(inputs);
 
   // 1b. Accessoires complémentaires (achat uniquement — inclus dans le leasing)

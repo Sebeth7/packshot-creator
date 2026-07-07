@@ -487,7 +487,7 @@ export default async function HomePage({
             </p>
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
               {[
-                { name: 'Alphashot XL v2', image: '/images/machines/alphashot-xl.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-xl-v2' } } as const },
+                { name: 'Alphashot XL G2', image: '/images/machines/alphashot-xl-g2.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-xl-g2' } } as const },
                 { name: 'Alphastudio Compact', image: '/images/machines/alphastudio-compact.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphastudio-compact-v2' } } as const },
                 { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'fashion-studio' } } as const },
                 { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-360' } } as const },
