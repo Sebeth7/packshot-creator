@@ -5,7 +5,7 @@ import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon, Eye } from 'lucide-react';
+import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema, videoSchema } from '@/components/seo/SchemaOrg';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
@@ -96,10 +96,11 @@ function getProductGallery(id: string): ProductGallery {
   const galleries: Record<string, ProductGallery> = {
     // ── ALPHASHOT XL G2 ── (visuels officiels Orbitvu, auto-hébergés — pas de shoot PSC dédié pour le moment)
     'alphashot-xl-g2': {
-      bentoPackshot: img('alphashot-xl-g2', 'packshot-angled.avif', 'Alphashot XL G2, vue studio de trois quarts', 'Alphashot XL G2, angled studio view', 1200, 1153),
+      bentoPackshot: img('alphashot-xl-g2', 'hero.avif', 'Alphashot XL G2, vue studio', 'Alphashot XL G2, studio view', 1600, 893),
       video: { youtubeId: 'Xq0vG-cr2bc', poster: `${b('alphashot-xl-g2')}/hero.avif` },
       bentoRow2: [
-        img('alphashot-xl-g2', 'packshot-macro.avif', 'Exemple de photographie industrielle réalisable avec l\'Alphashot XL G2', 'Example of industrial photography achievable with the Alphashot XL G2', 1200, 847),
+        img('alphashot-xl-g2', 'packshot-angled.avif', 'Alphashot XL G2, vue studio de trois quarts', 'Alphashot XL G2, angled studio view', 1200, 1153),
+        img('alphashot-xl-g2', 'packshot-macro.avif', 'Exemple de photographie industrielle réalisable avec l\'Alphashot XL G2', 'Example of industrial photography achievable with the Alphashot XL G2', 714, 447),
         img('alphashot-xl-g2', 'packshot-operator.avif', 'Opérateur utilisant l\'Alphashot XL G2 pour une prise de vue', 'Operator using the Alphashot XL G2 for a shoot', 880, 586),
       ],
       advantageHero: img('alphashot-xl-g2', 'advantage-open-doors.avif', 'Chambre ouverte de l\'Alphashot XL G2, éclairage LED et bras caméra', 'Open chamber of the Alphashot XL G2, LED lighting and camera arm', 1400, 1004),
@@ -651,23 +652,18 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   <span className="inline-flex items-center gap-2 bg-amber-500/10 text-amber-700 text-sm font-medium px-3 py-1 rounded-full">
                     <Sparkles className="h-3.5 w-3.5" /> IA Ready
                   </span>
-                  <span className="text-sm text-future-dusk-500">Compatible BlendAI</span>
+                  <span className="text-sm text-future-dusk-500">Orbitvu Station</span>
                 </div>
                 <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-2">
-                  {tx(lang, 'Compatible avec l\'IA générative BlendAI', 'Compatible with BlendAI generative AI', 'Kompatibel mit der generativen KI BlendAI')}
+                  {tx(lang, 'Compatible avec les modules de retouche IA Orbitvu Station', 'Compatible with Orbitvu Station AI retouching modules', 'Kompatibel mit den KI-Retusche-Modulen von Orbitvu Station')}
                 </h2>
                 <p className="text-future-dusk-500">
                   {tx(lang,
-                    'Augmentez vos packshots avec des backgrounds générés par IA. Créez des mises en scène illimitées en quelques secondes.',
-                    'Enhance your packshots with AI-generated backgrounds. Create unlimited scene settings in seconds.',
-                    'Erweitern Sie Ihre Packshots mit KI-generierten Hintergründen. Erstellen Sie unbegrenzte Inszenierungen in wenigen Sekunden.')}
+                    'Profitez des modules de retouche IA intégrés à Orbitvu Station : détourage automatique, assistant d\'éclairage et structuration des données produit.',
+                    'Take advantage of the AI retouching modules built into Orbitvu Station: automatic background removal, lighting assistant and product data structuring.',
+                    'Nutzen Sie die in Orbitvu Station integrierten KI-Retusche-Module: automatisches Freistellen, Beleuchtungsassistent und Strukturierung der Produktdaten.')}
                 </p>
               </div>
-              <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white rounded-xl shrink-0">
-                <Link href="/ia-photo-produit">
-                  {tx(lang, 'Découvrir BlendAI', 'Discover BlendAI', 'BlendAI entdecken')} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
             </div>
           </div>
           </FadeInView>
@@ -700,9 +696,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           </FadeInView>
 
           {/* Bento grid — Apple "Points forts" style */}
-          {/* Row 1: 7/5 split */}
+          {/* Row 1: 7/5 split, ou pleine largeur si pas de vue 360° */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mb-4 lg:mb-5">
-            <ScrollReveal className="lg:col-span-7">
+            <ScrollReveal className={gallery.orbitvu360 ? 'lg:col-span-7' : 'lg:col-span-12'}>
               <div className="relative bg-white rounded-2xl overflow-hidden h-72 lg:h-[420px] group border border-neutral-100">
                 {gallery.bentoPackshot ? (
                   <div className="absolute inset-0 p-6 lg:p-10 flex items-center justify-center">
@@ -728,8 +724,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal offset={20} className="lg:col-span-5">
-              {gallery.orbitvu360 ? (
+            {gallery.orbitvu360 && (
+              <ScrollReveal offset={20} className="lg:col-span-5">
                 <div className="relative bg-white rounded-2xl overflow-hidden h-72 lg:h-[420px] border border-neutral-100">
                   <OrbitvuViewer
                     shareId={gallery.orbitvu360.shareId}
@@ -742,17 +738,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     </span>
                   </div>
                 </div>
-              ) : (
-                <div className="relative bg-future-dusk-900 rounded-2xl overflow-hidden h-72 lg:h-[420px] group">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <Eye className="h-12 w-12 text-white/30 mb-2" />
-                    <p className="text-sm font-medium text-white/60">
-                      {tx(lang, 'Vue 360° interactive', 'Interactive 360° view', 'Interaktive 360-Grad-Ansicht')}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </ScrollReveal>
+              </ScrollReveal>
+            )}
           </div>
 
           {/* Row 2: packshot gallery — adapts to number of images */}
