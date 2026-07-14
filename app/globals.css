@@ -286,3 +286,62 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Blog — mise en forme du contenu prose (articles content/blog)
+   Encadré TL;DR, tableaux lisibles, signature auteur (E-E-A-T).
+   Règles hors @layer → priorité sur les utilitaires prose de Tailwind.
+   ────────────────────────────────────────────────────────────── */
+
+/* Encadré « L'essentiel en 20 secondes » — se démarque nettement du corps.
+   NB : on référence les vars de base (:root), pas --color-* (@theme inline = non émis au runtime). */
+.prose .tldr {
+  background: var(--very-peri-0-5);
+  border: 1px solid var(--very-peri-1-5);
+  border-left: 4px solid var(--very-peri-5);
+  border-radius: 0.875rem;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0 2.5rem;
+}
+.prose .tldr h2 {
+  margin-top: 0 !important;
+  margin-bottom: 0.85rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--very-peri-7) !important;
+}
+.prose .tldr ul { margin: 0; padding-left: 1.1rem; }
+.prose .tldr li { margin: 0.4rem 0; list-style: disc; color: var(--future-dusk-8); }
+
+/* Tableaux comparatifs — structurés, lisibles, scroll horizontal sur mobile */
+.prose .table-wrap { overflow-x: auto; margin: 2rem 0; border-radius: 0.75rem; }
+.prose .table-wrap table { width: 100%; border-collapse: collapse; margin: 0; font-size: 0.95rem; }
+.prose .table-wrap thead th {
+  background: var(--future-dusk-9);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  white-space: nowrap;
+}
+.prose .table-wrap tbody td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--future-dusk-1);
+  vertical-align: top;
+}
+.prose .table-wrap tbody tr:nth-child(even) { background: var(--very-peri-0-5); }
+.prose .table-wrap tbody tr:last-child td { border-bottom: 0; }
+.prose .table-wrap td:first-child { font-weight: 600; color: var(--future-dusk-9); }
+
+/* Signature auteur en clôture d'article — signal E-E-A-T visible */
+.prose .article-signature {
+  margin-top: 2.75rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 3px solid var(--very-peri-5);
+  background: var(--future-dusk-0-5);
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+.prose .article-signature p { margin: 0; font-size: 0.95rem; color: var(--future-dusk-7); }
+.prose .article-signature strong { color: var(--future-dusk-9); }
