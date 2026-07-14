@@ -43,6 +43,15 @@ export const SECTOR_RESOURCES_MAP: Record<string, { guides: string[]; articles: 
     guides: ['comment-photographier-lunettes-e-commerce'],
     articles: [],
   },
+  // 2026-07 — Liens entrants vers l'article machine Alphashot XL G2 (photo + mesures + données)
+  'food-alimentaire': {
+    guides: [],
+    articles: ['alphashot-xl-g2-photo-mesures-donnees-produit'],
+  },
+  'pieces-techniques-industrie': {
+    guides: [],
+    articles: ['alphashot-xl-g2-photo-mesures-donnees-produit'],
+  },
 };
 
 // Studio recommandé : machine + ancre optionnelle (texte explicite porteur du
@@ -51,6 +60,7 @@ export interface ProductRecommendation {
   machineId: string;
   anchorFr?: string;
   anchorEn?: string;
+  anchorDe?: string;
 }
 
 // P1.B / P1.D / P5.A — Studio recommandé (tunnel de conversion) sur guides & articles
@@ -79,6 +89,19 @@ export const CONTENT_PRODUCT_MAP: Record<string, ProductRecommendation> = {
     machineId: 'e-comm-studio-plus',
     anchorFr: 'studio photo e-commerce pour lunetterie',
     anchorEn: 'e-commerce photo studio for eyewear',
+  },
+  // 2026-07 — Article machine Alphashot XL G2 (photo + données) -> tunnel studio XL G2 (FR/EN/DE)
+  'alphashot-xl-g2-photo-mesures-donnees-produit': {
+    machineId: 'alphashot-xl-g2',
+    anchorFr: 'studio photo automatisé Alphashot XL G2 — photo, mesures et données',
+  },
+  'alphashot-xl-g2-product-photos-measurements-data': {
+    machineId: 'alphashot-xl-g2',
+    anchorEn: 'Alphashot XL G2 — automated photo, measurement & data studio',
+  },
+  'alphashot-xl-g2-produktfotos-masse-gewicht-daten': {
+    machineId: 'alphashot-xl-g2',
+    anchorDe: 'Alphashot XL G2 — automatisiertes Foto-, Mess- und Datenstudio',
   },
 };
 

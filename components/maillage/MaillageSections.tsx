@@ -107,7 +107,7 @@ export function RecommendedStudio({ contentSlug, lang }: { contentSlug: string; 
   const machine = MACHINES.find((m) => m.id === rec.machineId);
   if (!machine) return null;
 
-  const explicit = lang === 'fr' ? rec.anchorFr : lang === 'en' ? rec.anchorEn : undefined;
+  const explicit = lang === 'fr' ? rec.anchorFr : lang === 'en' ? rec.anchorEn : lang === 'de-ch' ? rec.anchorDe : undefined;
   let anchor = explicit;
   if (!anchor) {
     const usages = (machine.useCases ?? []).slice(0, 2).join(' & ').toLowerCase();
