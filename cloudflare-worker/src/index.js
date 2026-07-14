@@ -727,16 +727,17 @@ var index_default = {
       return Response.redirect(wwwUrl.toString(), 301);
     }
 
+    // Racine : 301 permanent vers /fr (cible x-default du cluster hreflang).
+    // Remplace la redirection Accept-Language (fr→/fr, sinon /en, 302) qui
+    // envoyait Googlebot — crawl sans Accept-Language fr — vers /en et a fait
+    // basculer la SERP de marque France sur /en (constat GSC semaine du 15/06,
+    // arbitrage Laurent 14/07 : GO 301 inconditionnel, alternative écartée).
     if (pathname === "/") {
-      const acceptLang = request.headers.get("Accept-Language") || "";
-      const firstLang = acceptLang.split(",")[0].trim().toLowerCase();
-      const target = firstLang.startsWith("fr") ? "/fr" : "/en";
       return new Response(null, {
-        status: 302,
+        status: 301,
         headers: {
-          "Location": `${url.origin}${target}`,
-          "Cache-Control": "no-cache",
-          "Vary": "Accept-Language"
+          "Location": `${url.origin}/fr`,
+          "Cache-Control": "public, max-age=86400"
         }
       });
     }
