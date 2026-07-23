@@ -2,8 +2,8 @@ var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
 // src/index.js
-// Généré le 2026-05-19 — redirections-merged.csv fusionné
-
+var __defProp2 = Object.defineProperty;
+var __name2 = /* @__PURE__ */ __name((target, value) => __defProp2(target, "name", { value, configurable: true }), "__name");
 var BLOG_EN_REDIRECTS = /* @__PURE__ */ new Set([
   "4-fundamentals-for-reducing-abandoned-shopping-carts",
   "5-cameras-realistic-3d-animation",
@@ -37,16 +37,14 @@ var BLOG_EN_REDIRECTS = /* @__PURE__ */ new Set([
   "technique-photograph-jewelry-tutorial",
   "tips-photo-framing-composition",
   "what-return-on-investment-with-an-internal-photo-studio",
-  "why-choose-orbitvu-for-packshot-photography",
+  "why-choose-orbitvu-for-packshot-photography"
 ]);
-
 var GUIDE_EN_REDIRECTS = /* @__PURE__ */ new Set([
   "create-professional-360-animation-of-shoes",
   "how-to-do-focus-stacking-for-ring-photography",
   "how-to-make-360-animation-transparent-object",
-  "how-to-take-multi-angle-photos-of-shoes",
+  "how-to-take-multi-angle-photos-of-shoes"
 ]);
-
 var GONE_PATHS = /* @__PURE__ */ new Set([
   "/2018-guide-e-commerce-photos",
   "/2d-product-photography/amp",
@@ -697,7 +695,6 @@ var GONE_PATHS = /* @__PURE__ */ new Set([
   "https://nl.packshot-creator.com/services-formations-photographie/",
   "https://on.packshot-creator.com/en/quote-second-hand-photo-studio/"
 ]);
-
 function shouldReturn410(path) {
   if (GONE_PATHS.has(path)) return true;
   if (path.endsWith("-mod") || path.includes("-old-")) return true;
@@ -715,23 +712,60 @@ function shouldReturn410(path) {
   return false;
 }
 __name(shouldReturn410, "shouldReturn410");
-
+__name2(shouldReturn410, "shouldReturn410");
 var index_default = {
   async fetch(request, env) {
     const url = new URL(request.url);
     const pathname = url.pathname;
 
-    if (url.hostname === "packshot-creator.com") {
-      const wwwUrl = new URL(url);
-      wwwUrl.hostname = "www.packshot-creator.com";
-      return Response.redirect(wwwUrl.toString(), 301);
+    // --- P0 : rapatriement des hosts legacy vers www (chemin preserve) ---
+    // Hosts a NE PAS rediriger (services tiers encore actifs). Completer selon inventaire DNS.
+    const PASSTHROUGH_HOSTS = /* @__PURE__ */ new Set([
+      "videos.packshot-creator.com",
+      "books.packshot-creator.com",
+      "trail.packshot-creator.com"
+    ]);
+    // Cible de la home pour chaque sous-domaine legacy (pathname === "/")
+    const HOST_HOME_MAP = {
+      "packshot-creator.com": "/fr",
+      "fr.packshot-creator.com": "/fr",
+      "de.packshot-creator.com": "/de-ch",
+      "news.packshot-creator.com": "/fr/blog",
+      "nl.packshot-creator.com": "/en",
+      "es.packshot-creator.com": "/en",
+      "it.packshot-creator.com": "/en",
+      "pl.packshot-creator.com": "/en",
+      "se.packshot-creator.com": "/en",
+      "fi.packshot-creator.com": "/en",
+      "eu.packshot-creator.com": "/en",
+      "en.packshot-creator.com": "/en",
+      "on.packshot-creator.com": "/fr/contact",
+      "hub.packshot-creator.com": "/fr/contact",
+      "user.packshot-creator.com": "/fr/contact",
+      "esupport.packshot-creator.com": "/fr/contact",
+      "store.packshot-creator.com": "/fr/studios-photo-automatises",
+      "cdn.packshot-creator.com": "/fr",
+      "cdn2.packshot-creator.com": "/fr"
+    };
+    const originalHost = url.hostname.toLowerCase();
+    // Un host passthrough (videos. = R2, books. = Zoho, trail. = lemlist) doit etre
+    // servi par SON origine : sans ce court-circuit, la requete tombe dans le proxy
+    // NEXTJS_ORIGIN en fin de handler et renvoie un 404 Vercel.
+    if (PASSTHROUGH_HOSTS.has(originalHost)) {
+      return fetch(request);
     }
-
-    // Racine : 301 permanent vers /fr (cible x-default du cluster hreflang).
-    // Remplace la redirection Accept-Language (fr→/fr, sinon /en, 302) qui
-    // envoyait Googlebot — crawl sans Accept-Language fr — vers /en et a fait
-    // basculer la SERP de marque France sur /en (constat GSC semaine du 15/06,
-    // arbitrage Laurent 14/07 : GO 301 inconditionnel, alternative écartée).
+    const isLegacyHost = originalHost !== "www.packshot-creator.com" && (originalHost === "packshot-creator.com" || originalHost.endsWith(".packshot-creator.com")) && !PASSTHROUGH_HOSTS.has(originalHost);
+    if (isLegacyHost) {
+      // On reecrit l'URL de travail : toutes les redirections ci-dessous
+      // pointeront directement vers www => un seul saut 301.
+      url.hostname = "www.packshot-creator.com";
+      url.protocol = "https:";
+      url.port = "";
+      if (pathname === "/" || pathname === "") {
+        const homeTarget = HOST_HOME_MAP[originalHost] || "/fr";
+        return Response.redirect(`${url.origin}${homeTarget}`, 301);
+      }
+    }
     if (pathname === "/") {
       return new Response(null, {
         status: 301,
@@ -741,14 +775,6 @@ var index_default = {
         }
       });
     }
-
-    // ── Variante A : /de → /de-ch (Suisse alémanique) ─────────────────────
-    // Reproduit le Worker déployé par Laurent (26-29/06/2026), relevé en prod le
-    // 07/07 (~80 URLs testées). Mappings explicites pour les cibles précises,
-    // fallbacks par segment, défaut = home /de-ch. Ce bloc remplace les anciennes
-    // entrées /de/* (→ /en ou 410) retirées des maps legacy.
-    // Consolidation bijoux (arbitrage Laurent 07/07) : cibles posées directement
-    // sur /de-ch/branchen/schmuck (jamais sur la landing packshot-schmuck).
     if (pathname === "/de" || pathname.startsWith("/de/")) {
       const DE_CH_MAP = {
         "/de/automatiser": "/de-ch/studios-photo-automatises",
@@ -797,7 +823,6 @@ var index_default = {
       }
       return Response.redirect(`${url.origin}${deTarget}`, 301);
     }
-
     const LEGACY_REDIRECTS = {
       "/11-ans-deja": "/fr/blog",
       "/15-years-already": "/fr/blog",
@@ -1035,8 +1060,6 @@ var index_default = {
       "/en/studio-photo/alphashot-micro": "/en/studio-photo/alphashot-micro-v2",
       "/en/studio-photo/alphatable-v2": "/en/studio-photo/alphatable",
       "/est-il-utile-dinternaliser-sa-production-de-photos-packshot": "/fr/blog/est-il-utile-dinternaliser-sa-production-de-photos-packshot",
-      "/esupport.packshot-creator.com/portal/en/kb/articles/configuracion-camara": "/en/blog/lost-packshotcreator-ortery-software-solution",
-      "/esupport.packshot-creator.com/portal/en/kb/articles/software-foto-animada-360": "/en/blog/lost-packshotcreator-ortery-software-solution",
       "/exemples-photos-animations-3d-360-de-produits": "/fr/blog/5-appareils-photo-en-simultane-pour-de-lanimation-3d-realiste",
       "/fashion-apparel-photo-studios": "/en/studio-photo/fashion-studio",
       "/fashion-spot-360-by-packshotcreator": "/fr/studio-photo/fashion-studio",
@@ -1234,7 +1257,7 @@ var index_default = {
       "/how-to-handle-very-small-objects-photos-and-animations": "/en/studio-photo/alphashot-micro-v2",
       "/how-to-take-good-photos-of-bottles": "/fr/industrie/vin-spiritueux",
       "/ia-photo-produit": "/fr/ia-photo-produit",
-      "/index.asp": "/en/studio-photo/selecteur-machines",
+      "/index.asp": "/fr/studios-photo-automatises",
       "/index.asp?ID=1219": "/en",
       "/index.asp?id=1320": "/fr",
       "/index.html": "/fr",
@@ -1496,12 +1519,65 @@ var index_default = {
       "/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle": "/fr/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle",
       "/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22": "/fr/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle",
       "/webinars": "/fr/academy",
-      "/what-is-ocarats-secret-to-showcase-realistic-jewelry-photography": "/en/industrie/bijoux-joaillerie"
+      "/what-is-ocarats-secret-to-showcase-realistic-jewelry-photography": "/en/industrie/bijoux-joaillerie",
+      "/en/webinar-increase-your-conversion-rate-with-product-visuals-in-360/-0": "/en/blog/e-commerce-6-practices-to-boost-your-conversion-rate",
+      "/advantages-technologies": "/fr/studios-photo-automatises",
+      "/fr/comment-mieux-exporter-son-vin-en-chine": "/fr/industrie/vin-spiritueux",
+      "/comment-mieux-exporter-son-vin-en-chine-quel-role-jouent-les-visuels-e-commerce": "/fr/industrie/vin-spiritueux",
+      "/offres-exceptionnelles-packshotcreator/one": "/fr/studios-photo-automatises",
+      "/en/use-your-photo-studio-to-create-virtual-reality": "/en/blog/use-photo-studio-virtual-reality",
+      "/portal/home": "/fr/contact",
+      "/range-start/photo-turntable-O3T/visual-animations": "/en/studio-photo/alphashot-360",
+      "/articles/focus-sur-les-photos-e-commerce-0": "/fr/blog/comment-avoir-meilleure-photo-produit-e-commerce",
+      "/webshop-fotografie": "/en/studios-photo-automatises",
+      "/3D-fotografie-erfahrung": "/de-ch/fotostudio/maschinen-finder",
+      "/studio-serie/backlight-tafel-foto-luminapad/presentatie": "/en/studio-photo/alphatable",
+      "/commun/packshot-pro-3d-hd.html": "/en/studio-photo/alphashot-xl-v2",
+      "/commun/packshot-office.html": "/en/studios-photo-automatises",
+      "/commun/packshot-creator.html": "/en/studios-photo-automatises",
+      "/en/have-you-ever-heard-about-6-degrees-freedom-principle": "/en/blog/5-cameras-realistic-3d-animation",
+      "/livre-blanc-photos-ecommerce-rentabilite": "/fr/blog/lancement-dune-serie-debooks-dediee-au-ecommerce",
+      "/portal/en/kb/articles/configuracion-camara": "/en/blog/lost-packshotcreator-ortery-software-solution",
+      "/gamme-studio/studio-photo-360-bijoux-packshot-macro/presentation": "/fr/studio-photo/alphashot-micro-v2",
+      "/die-logistische-organisation-ihres-firmeninternen-fotostudios": "/en/blog/3-good-practices-for-organizing-the-production-of-your-internal-photo-studio",
+      "/portal/en/kb/articles/software-foto-animada-360": "/en/blog/lost-packshotcreator-ortery-software-solution",
+      "/umfrage-e-commerce-produktfotos-optimierung": "/de-ch",
+      "/en/contact-quote-commercial-team": "/en/contact",
+      "/inschrijven": "/en/contact",
+      "/vijf-productfotografie-tips": "/en/blog/how-to-e-commerce-product-photography",
+      "/fotostudio-huren": "/en/studios-photo-automatises",
+      "/photos-et-animations-produits-dans-votre-secteur/bouteilles": "/fr/industrie/vin-spiritueux",
+      "/kb": "/fr/contact",
+      "/ateliers-photo-bijoux-packshot": "/fr/academy",
+      "/portal/kb/articles/05-kameraeinstellungen-23-4-2019": "/en/blog/lost-packshotcreator-ortery-software-solution",
+      "/photographie-produits-info": "/fr/besoins-photographie-produit",
+      "/photographie-de-produits-comment-presenter-vos-vetements-13": "/fr/blog/photographie-de-produits-comment-presenter-vos-vetements",
+      "/portal/signin": "/fr/contact",
+      "/collections/360-product-photography/products/packshot-diamond-360-photography": "/fr/studio-photo/alphashot-micro-v2",
+      "/studio-fotografie-ringe-360": "/de-ch/branchen/schmuck",
+      "/schmuckfotografie": "/de-ch/branchen/schmuck",
+      "/brillen-onlinehandel-fotografieren": "/de-ch/branchen/brillen",
+      "/product/alphashot-micro": "/de-ch/fotostudio/alphashot-micro-v2",
+      "/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360": "/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg",
+      "/les-visuels-au-service-du-referencement-de-votre-e-commerce": "/fr/blog/les-visuels-au-service-du-referencement-de-votre-e-commerce",
+      "/industry/bijoux": "/fr/industrie/bijoux-joaillerie",
+      "/secteur/bouteilles/exemples-photos-bouteilles-vins": "/fr/industrie/vin-spiritueux",
+      "/studio-photo/alphashot-g2": "/fr/studio-photo/alphashot-xl-g2",
+      "/studio-photo/alphashot-micro": "/fr/studio-photo/alphashot-micro-v2",
+      "/studio-photo/alphashot-xl": "/fr/studio-photo/alphashot-xl-v2",
+      "/studio-photo/alphastudio-compact": "/fr/studio-photo/alphastudio-compact-v2",
+      "/studio-photo/alphatable-v2": "/fr/studio-photo/alphatable",
+      "/studio-photo/e-comm-studio": "/fr/studio-photo/e-comm-studio-plus",
+      "/studio-photo/tocadiscos-orbitvu-g2": "/fr/studio-photo/alphashot-xl-g2",
+      "/studio-photo/360-drehtische": "/fr/studio-photo/selecteur-machines",
+      "/studio-photo/alphashot-360-kleine-producten": "/fr/studio-photo/alphashot-360",
+      "/studio-photo/studio-photo-360-alphastudio-xxl": "/fr/studio-photo/alphastudio-xxl-v2",
+      "/studio-photo/orbitvu-kit-mini-midi": "/fr/studio-photo/selecteur-machines"
     };
-    if (LEGACY_REDIRECTS[pathname]) {
-      return Response.redirect(`${url.origin}${LEGACY_REDIRECTS[pathname]}`, 301);
+    const legacyHit = LEGACY_REDIRECTS[pathname] || (pathname.length > 1 && pathname.endsWith("/") ? LEGACY_REDIRECTS[pathname.slice(0, -1)] : void 0);
+    if (legacyHit) {
+      return Response.redirect(`${url.origin}${legacyHit}`, 301);
     }
-
     if (pathname === "/blog") {
       return Response.redirect(`${url.origin}/fr/blog`, 301);
     }
@@ -1511,7 +1587,6 @@ var index_default = {
     if (pathname === "/academy") {
       return Response.redirect(`${url.origin}/fr/academy`, 301);
     }
-
     if (pathname.startsWith("/industrie/")) {
       return Response.redirect(`${url.origin}/fr${pathname}`, 301);
     }
@@ -1524,7 +1599,6 @@ var index_default = {
     if (pathname.startsWith("/accessoires")) {
       return Response.redirect(`${url.origin}/fr/studios-photo-automatises`, 301);
     }
-
     if (pathname.startsWith("/secteur/") && pathname.includes("/exemples-")) {
       return new Response(
         `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
@@ -1542,7 +1616,6 @@ var index_default = {
       const slug = pathname.replace(/^\/secteur\//, "").replace(/\/$/, "");
       return Response.redirect(`${url.origin}/fr/industrie/${slug}`, 301);
     }
-
     const PRODUIT_REDIRECTS = {
       "/produit/bike-studio": "/en/studio-photo/bike-studio",
       "/produit/e-comm-studio": "/fr/studio-photo/e-comm-studio-plus",
@@ -1552,7 +1625,6 @@ var index_default = {
     if (PRODUIT_REDIRECTS[pathname]) {
       return Response.redirect(`${url.origin}${PRODUIT_REDIRECTS[pathname]}`, 301);
     }
-
     const PRODUCT_REDIRECTS = {
       "/product/360-photo-studio-diamonds-gemstones": "/en/studio-photo/alphashot-micro-v2",
       "/product/bike-studio": "/en/studio-photo/bike-studio",
@@ -1564,13 +1636,13 @@ var index_default = {
       "/product/packshotmacro-dl-gemstones": "/en/studio-photo/alphashot-micro-v2",
       "/product/packshotspin-jewelry": "/en/studio-photo/alphashot-micro-v2",
       "/product/packshotstudio-modular-lighting": "/en/studios-photo-automatises",
-      "/product/photo-studio-r3": "/en/studio-photo/alphashot-xl-v2"
+      "/product/photo-studio-r3": "/en/studio-photo/alphashot-xl-v2",
+      "/product/photo-studio-packshotstart": "/en/studio-photo/alphashot-360"
     };
     const productPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
     if (PRODUCT_REDIRECTS[productPath]) {
       return Response.redirect(`${url.origin}${PRODUCT_REDIRECTS[productPath]}`, 301);
     }
-
     const HOWTO_REDIRECTS = {
       "/how-to/360-animaties-schoenen": "/en",
       "/how-to/360-brillanzansicht-diamanten": "/en",
@@ -1695,7 +1767,6 @@ var index_default = {
     if (HOWTO_REDIRECTS[howtoPath]) {
       return Response.redirect(`${url.origin}${HOWTO_REDIRECTS[howtoPath]}`, 301);
     }
-
     if (pathname.startsWith("/blog/") && !shouldReturn410(pathname)) {
       const slug = pathname.slice(6).replace(/\/$/, "");
       if (BLOG_EN_REDIRECTS.has(slug)) {
@@ -1703,7 +1774,6 @@ var index_default = {
       }
       return Response.redirect(`${url.origin}/fr/blog/${slug}`, 301);
     }
-
     if (pathname.startsWith("/guide/") && !shouldReturn410(pathname)) {
       const slug = pathname.slice(7).replace(/\/$/, "");
       if (GUIDE_EN_REDIRECTS.has(slug)) {
@@ -1711,12 +1781,10 @@ var index_default = {
       }
       return Response.redirect(`${url.origin}/fr/guide/${slug}`, 301);
     }
-
     if (pathname.startsWith("/academy/") && !shouldReturn410(pathname)) {
       const slug = pathname.slice(9).replace(/\/$/, "");
       return Response.redirect(`${url.origin}/fr/academy/${slug}`, 301);
     }
-
     if (pathname.startsWith("/industry/") && /\/(examples?|ejemplos|beispiele)-/.test(pathname)) {
       return new Response(
         `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
@@ -1733,7 +1801,6 @@ var index_default = {
     if (pathname.startsWith("/industry/") || pathname === "/industry") {
       return Response.redirect(`${url.origin}/en/industrie`, 301);
     }
-
     const LANG_SPECIFIC_REDIRECTS = {
       "/es/automatiser": "/en/studios-photo-automatises",
       "/es/besoins": "/en/besoins-photographie-produit",
@@ -1879,7 +1946,6 @@ var index_default = {
       const target = LANG_SPECIFIC_REDIRECTS[pathname] || "/en";
       return Response.redirect(`${url.origin}${target}`, 301);
     }
-
     if (shouldReturn410(pathname)) {
       return new Response(
         `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Gone | PackshotCreator</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="5;url=${url.origin}/fr"></head><body><p>This page has been permanently removed.</p><p>Redirecting to <a href="${url.origin}/fr">packshot-creator.com</a>\u2026</p></body></html>`,
@@ -1893,15 +1959,15 @@ var index_default = {
         }
       );
     }
-
+    // P0 : un host legacy qui n'a matche aucune regle ne doit JAMAIS servir le contenu
+    // (sinon duplicate content sur le sous-domaine). On le renvoie vers www.
+    if (isLegacyHost) {
+      return Response.redirect(`${url.origin}${pathname}${url.search}`, 301);
+    }
     const origin = env.NEXTJS_ORIGIN;
     const targetUrl = new URL(pathname + url.search, origin);
     const headers = new Headers(request.headers);
-
-    const isCacheableHTML = request.method === "GET" && url.search === "" &&
-      !pathname.startsWith("/api/") && !pathname.startsWith("/_next/") &&
-      !request.headers.get("cookie")?.match(/(__vercel|__next_preview|session=|token=)/i);
-
+    const isCacheableHTML = request.method === "GET" && url.search === "" && !pathname.startsWith("/api/") && !pathname.startsWith("/_next/") && !request.headers.get("cookie")?.match(/(__vercel|__next_preview|session=|token=)/i);
     const response = await fetch(targetUrl.toString(), {
       method: request.method,
       headers,
@@ -1909,14 +1975,12 @@ var index_default = {
       redirect: "manual",
       cf: isCacheableHTML ? { cacheTtl: 60, cacheEverything: true, cacheTtlByStatus: { "200-299": 60, "301-399": 86400, "404": 10, "500-599": 0 } } : void 0
     });
-
     const newResponse = new Response(response.body, {
       status: response.status,
       statusText: response.statusText,
       headers: new Headers(response.headers)
     });
     newResponse.headers.set("X-Served-By", "nextjs");
-
     const linkHeader = newResponse.headers.get("link");
     if (linkHeader && /https?:\/\/[a-z0-9-]+\.vercel\.app/i.test(linkHeader)) {
       newResponse.headers.set(

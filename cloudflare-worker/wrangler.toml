@@ -11,6 +11,13 @@ zone_id = "b51d039e5159fc409b22cd37c0221475"
 pattern = "packshot-creator.com/*"
 zone_id = "b51d039e5159fc409b22cd37c0221475"
 
+# Rapatriement des sous-domaines legacy (fr., de., news., eu., …) — ajoutée au
+# dashboard par Laurent le 23/07/2026. Les hosts à ne PAS rediriger (videos.,
+# books., trail.) sont exclus dans le code via PASSTHROUGH_HOSTS.
+[[routes]]
+pattern = "*.packshot-creator.com/*"
+zone_id = "b51d039e5159fc409b22cd37c0221475"
+
 [vars]
 WEBFLOW_ORIGIN = "https://packshot-creator-staging.webflow.io"
 NEXTJS_ORIGIN = "https://sysnext.vercel.app"
