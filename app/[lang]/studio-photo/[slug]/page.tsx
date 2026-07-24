@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema, videoSchema } from '@/components/seo/SchemaOrg';
+import { currencyForLang, leasingMonthly, formatLeasingMonthly, LEASING_MONTHS, PRICE_VALID_UNTIL } from '@/lib/leasing';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
@@ -524,6 +525,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const machineImage = getMachineImage(machine.id);
   const iaReady = isIAReady(machine.id);
   const gallery = getProductGallery(machine.id);
+  // Prix public = mensualité leasing (décision 24/07/2026) ; null si machine sur devis.
+  const priceCurrency = currencyForLang(lang);
+  const monthly = leasingMonthly(machine.prix, priceCurrency);
 
   const similarMachines = getSimilarMachines(machine);
   const faqItems = machine.faqItems || [];
@@ -631,6 +635,15 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             <div className="font-bold text-white">{machine.spaceRequired}</div>
           </div>
         </div>
+
+        {/* Prix leasing — le balisage Offer reprend exactement cette valeur */}
+        {monthly !== null && (
+          <p className="mt-6 flex flex-wrap items-baseline gap-x-2">
+            <span className="text-future-dusk-200 text-sm">{tx(lang, 'À partir de', 'From', 'Ab')}</span>
+            <span className="font-heading font-bold text-2xl text-white">{formatLeasingMonthly(monthly, lang)}</span>
+            <span className="text-future-dusk-200 text-sm">{tx(lang, 'en leasing*', 'on lease*', 'im Leasing*')}</span>
+          </p>
+        )}
       </HeroSection>
 
       {/* IA Ready Banner */}
@@ -1314,6 +1327,20 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Mention légale leasing */}
+      {monthly !== null && (
+        <section className="bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <p className="text-xs text-gray-400 leading-relaxed">
+              {tx(lang,
+                `* Mensualité indicative pour un financement en location financière (leasing) sur ${LEASING_MONTHS} mois, hors taxes, hors assurances et prestations optionnelles, sous réserve d'étude et d'acceptation du dossier par l'organisme de financement. Offre réservée aux professionnels. Le coût total du financement est supérieur au prix d'achat comptant. Devis personnalisé sur demande.`,
+                `* Indicative monthly payment for a ${LEASING_MONTHS}-month lease financing, excluding VAT, insurance and optional services, subject to review and approval by the financing provider. Offer for business customers only. The total cost of financing exceeds the outright purchase price. Custom quote on request.`,
+                `* Unverbindliche Monatsrate für eine Leasing-Finanzierung über ${LEASING_MONTHS} Monate, exkl. MwSt., Versicherungen und optionale Leistungen, vorbehältlich der Prüfung und Annahme des Dossiers durch die Finanzierungsgesellschaft. Angebot nur für Geschäftskunden. Die Gesamtkosten der Finanzierung liegen über dem Barkaufpreis. Personalisierte Offerte auf Anfrage.`)}
+            </p>
+          </div>
+        </section>
+      )}
+
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
@@ -1324,6 +1351,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
           brand: 'Orbitvu',
           category: tx(lang, 'Studio Photo Automatisé', 'Automated Photo Studio', 'Automatisiertes Fotostudio'),
+          ...(monthly !== null
+            ? { leasingOffer: { monthly, priceCurrency, priceValidUntil: PRICE_VALID_UNTIL } }
+            : {}),
         }),
         ...(faqItems.length > 0
           ? [faqSchema(faqItems.map((faq) => ({

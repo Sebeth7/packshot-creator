@@ -119,6 +119,17 @@ export function productSchema(product: {
   url: string;
   brand?: string;
   category?: string;
+  /**
+   * Mensualité de leasing affichée sur la page (« à partir de X €/mois »).
+   * Exigence Google : le prix du balisage doit correspondre au prix visible —
+   * d'où une UnitPriceSpecification par mois (unitCode MON) et non un prix sec
+   * qui serait lu comme un prix d'achat.
+   */
+  leasingOffer?: {
+    monthly: number;
+    priceCurrency: 'EUR' | 'CHF';
+    priceValidUntil: string;
+  };
 }) {
   return {
     '@context': 'https://schema.org',
@@ -136,6 +147,29 @@ export function productSchema(product: {
       '@type': 'Organization',
       name: 'Orbitvu',
     },
+    ...(product.leasingOffer
+      ? {
+          offers: {
+            '@type': 'Offer',
+            url: product.url,
+            availability: 'https://schema.org/InStock',
+            itemCondition: 'https://schema.org/NewCondition',
+            priceCurrency: product.leasingOffer.priceCurrency,
+            priceValidUntil: product.leasingOffer.priceValidUntil,
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: product.leasingOffer.monthly,
+              priceCurrency: product.leasingOffer.priceCurrency,
+              referenceQuantity: {
+                '@type': 'QuantitativeValue',
+                value: 1,
+                unitCode: 'MON',
+              },
+            },
+            seller: { '@id': ORG_ID },
+          },
+        }
+      : {}),
   };
 }
 
@@ -376,6 +410,16 @@ export function serviceSchema(service: {
   url: string;
   areaServed?: string[];
   category?: string;
+  /**
+   * Fourchette de la gamme (pages de gamme). Doit refléter des prix visibles
+   * sur la page (ex. FAQ « de 12 000 € à 150 000 € HT » de studios-photo-automatises).
+   */
+  aggregateOffer?: {
+    lowPrice: number;
+    highPrice: number;
+    priceCurrency: 'EUR' | 'CHF';
+    offerCount: number;
+  };
 }) {
   return {
     '@context': 'https://schema.org',
@@ -390,5 +434,18 @@ export function serviceSchema(service: {
       name: code,
     })),
     category: service.category,
+    ...(service.aggregateOffer
+      ? {
+          offers: {
+            '@type': 'AggregateOffer',
+            lowPrice: service.aggregateOffer.lowPrice,
+            highPrice: service.aggregateOffer.highPrice,
+            priceCurrency: service.aggregateOffer.priceCurrency,
+            offerCount: service.aggregateOffer.offerCount,
+            availability: 'https://schema.org/InStock',
+            seller: { '@id': ORG_ID },
+          },
+        }
+      : {}),
   };
 }

@@ -2360,7 +2360,7 @@
       "heading": "Options de financement",
       "body": "L'investissement dans un studio photo automatisé peut être lissé dans le temps. Plusieurs options existent pour adapter le financement à votre trésorerie.",
       "f1": {
-        "title": "Leasing à partir de 344 €/mois",
+        "title": "Leasing à partir de 445 €/mois",
         "description": "Pour l'Alphashot Pro G2, notre modèle le plus vendu. Mensualité fixe, budget maîtrisé."
       },
       "f2": {
@@ -2384,7 +2384,7 @@
       },
       "q2": {
         "question": "Quel est le studio le plus vendu ?",
-        "answer": "L'Alphashot Pro G2 est notre best-seller. C'est le premier studio photo doté d'intelligence artificielle au monde. Il convient à la majorité des produits de moins de 40 cm et démarre à 344 € par mois en leasing."
+        "answer": "L'Alphashot Pro G2 est notre best-seller. C'est le premier studio photo doté d'intelligence artificielle au monde. Il convient à la majorité des produits de moins de 40 cm et démarre à 445 € par mois en leasing sur 60 mois."
       },
       "q3": {
         "question": "Le logiciel est-il inclus dans le prix ?",
@@ -2539,7 +2539,7 @@
       "criteria4detail": "Si vos fiches produit nécessitent du 360° interactif, de la vidéo, du ghost mannequin ou du focus stacking, seul un studio automatisé avec turntable physique le permet.",
       "criteria5": "Différenciation et exigence créative.",
       "criteria5detail": "Avec les solutions grand public, vous utilisez les mêmes templates que tout le monde. Impossible de se démarquer. Notre solution est pensée pour les professionnels avec un haut niveau d'exigence : vous créez vos propres styles, vous définissez votre direction artistique, vous pilotez finement la création de vos visuels. C'est la différence entre ressembler à tout le monde et affirmer votre identité de marque.",
-      "body2": "L'investissement de départ est plus élevé (à partir de 12 450 euros pour un Alphashot 360, soit 344 euros par mois en leasing). Mais pour une PME e-commerce qui produit 5 000 photos par an, le break-even se situe typiquement entre 8 et 12 mois, avec une réduction des coûts de 60 à 85 % par rapport à la prestation externe."
+      "body2": "L'investissement de départ est plus élevé (à partir de 12 450 euros pour un Alphashot 360, soit 270 euros par mois en leasing sur 60 mois). Mais pour une PME e-commerce qui produit 5 000 photos par an, le break-even se situe typiquement entre 8 et 12 mois, avec une réduction des coûts de 60 à 85 % par rapport à la prestation externe."
     },
     "faq": {
       "heading": "Questions fréquentes",
@@ -2561,7 +2561,7 @@
       },
       "q5": {
         "question": "Quel budget pour démarrer avec un studio + IA ?",
-        "answer": "L'Alphashot 360 (entrée de gamme) démarre à 12 450 euros HT, soit 344 euros par mois en leasing. Pour une PME qui externalise 2 000 photos à 20 euros, le studio économise plus de 37 000 euros par an. Le break-even se situe généralement entre 6 et 12 mois. BlendAI.studio est disponible à partir de 75 euros par mois, et un pack découverte de 3 crédits est offert."
+        "answer": "L'Alphashot 360 (entrée de gamme) démarre à 12 450 euros HT, soit 270 euros par mois en leasing sur 60 mois. Pour une PME qui externalise 2 000 photos à 20 euros, le studio économise plus de 37 000 euros par an. Le break-even se situe généralement entre 6 et 12 mois. BlendAI.studio est disponible à partir de 75 euros par mois, et un pack découverte de 3 crédits est offert."
       },
       "q6": {
         "question": "Les visuels IA sont-ils légaux pour le e-commerce ?",

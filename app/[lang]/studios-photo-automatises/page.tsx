@@ -438,6 +438,9 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           serviceType: tx(lang, 'Studio photo automatisé', 'Automated photo studio', 'Automatisiertes Fotostudio'),
           url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
           category: tx(lang, 'Équipement studio photo', 'Photo studio equipment', 'Fotostudio-Ausrüstung'),
+          // Fourchette identique à celle affichée dans la FAQ de la page (q1),
+          // toutes locales : « de 12 000 € à 150 000 € HT » — exigence de cohérence Google.
+          aggregateOffer: { lowPrice: 12000, highPrice: 150000, priceCurrency: 'EUR', offerCount: 15 },
         }),
         faqSchema(studioFaqs),
       ]} />
