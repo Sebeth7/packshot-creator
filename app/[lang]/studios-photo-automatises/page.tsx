@@ -440,7 +440,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           category: tx(lang, 'Équipement studio photo', 'Photo studio equipment', 'Fotostudio-Ausrüstung'),
           // Fourchette identique à celle affichée dans la FAQ de la page (q1),
           // toutes locales : « de 12 000 € à 150 000 € HT » — exigence de cohérence Google.
-          aggregateOffer: { lowPrice: 12000, highPrice: 150000, priceCurrency: 'EUR', offerCount: 15 },
+          aggregateOffer: { lowPrice: 12000, highPrice: 150000, priceCurrency: 'EUR', offerCount: 16 },
         }),
         faqSchema(studioFaqs),
       ]} />

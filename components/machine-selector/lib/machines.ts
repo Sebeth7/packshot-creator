@@ -88,8 +88,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'alphashot-xl-g2',
     nom: 'Alphashot XL G2',
-    prix: 0, // Orbitvu n'affiche pas de prix public ("sur devis"). Pas d'estimation interne publiée : voir prixSurDevis.
-    prixSurDevis: true,
+    prix: 38450, // Prix confirmé par Seb le 04/08/2026 (variante MDC).
     capaciteJour: 250,
     tailleMax: '60×40×70 cm',
     poidsMax: '25 kg',
