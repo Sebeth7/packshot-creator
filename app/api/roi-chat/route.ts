@@ -144,7 +144,18 @@ export async function POST(request: NextRequest) {
             }
           }
 
-          if (stopReason !== 'tool_use' || toolCalls.length === 0) break;
+          // Exécute les tools dès qu'il y en a, même si le tour a été tronqué
+          // (stop_reason max_tokens) : ne jamais laisser un tour muet — les
+          // blocs tool_use présents dans finalMessage sont complets.
+          if (toolCalls.length === 0) {
+            if (stopReason === 'max_tokens') {
+              sse(controller, encoder, {
+                type: 'text',
+                text: 'Ma réponse a été interrompue par une limite de longueur. Envoyez « continuez » pour que je reprenne.',
+              });
+            }
+            break;
+          }
 
           // Exécution des tools (tous les résultats dans UN message user)
           const results = toolCalls.map((call) => {

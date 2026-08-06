@@ -22,8 +22,14 @@ export const PUBLIC_RATE_LIMIT_PER_HOUR = 20;
 export const PUBLIC_MAX_MESSAGES = 60;
 /** Taille max d'un message utilisateur (collage d'un brief complet accepté) */
 export const PUBLIC_MAX_INPUT_CHARS = 4000;
-/** max_tokens par tour assistant en public (interne : défaut provider 4096) */
-export const PUBLIC_MAX_TOKENS_PER_TURN = 2048;
+/**
+ * max_tokens par tour assistant en public (= défaut provider). ⚠ Ne pas
+ * redescendre à 2 048 : un tour qui enchaîne update_dossier complet +
+ * compare_machines + calculate dépasse ce plafond (les INPUTS de tools
+ * comptent dans max_tokens) → stop_reason max_tokens et tour vide
+ * (bug constaté en prod le 06/08).
+ */
+export const PUBLIC_MAX_TOKENS_PER_TURN = 4096;
 /** Tours de tools max par requête en public (interne : 8) */
 export const PUBLIC_MAX_TOOL_ROUNDS = 6;
 
