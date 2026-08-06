@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { TrendingUp } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
 import { tx } from '@/lib/locale-text';
+import RoiPublicChat from '@/components/roiChat/public/RoiPublicChat';
 
 const ROICalculator = dynamic(
   () => import('@/components/calculators/ROICalculator/ROICalculatorWizard'),
@@ -13,6 +14,12 @@ const ROICalculator = dynamic(
 
 export default function CalculateurROIPage() {
   const locale = useLocale();
+
+  // FR : conseiller ROI conversationnel (remplacement du wizard, GO Seb 06/08).
+  // EN/DE-CH : wizard conservé jusqu'à l'extension multilingue du chat.
+  if (locale === 'fr') {
+    return <RoiPublicChat />;
+  }
 
   return (
     <>
