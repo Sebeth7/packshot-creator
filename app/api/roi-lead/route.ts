@@ -45,6 +45,8 @@ interface RoiLeadRequest {
   dossier?: RoiPublicDossier;
   /** Derniers résultats calculés (déjà filtrés côté serveur — PublicRoiResults) */
   results?: PublicRoiResults | null;
+  /** Études épinglées (arbitrage multi-modèles) — prime sur `results` si présent */
+  studies?: PublicRoiResults[];
   /** Fil de conversation affiché (textes uniquement) pour le résumé qualifié */
   transcript?: Array<{ role: 'user' | 'assistant'; text: string }>;
   attribution?: Parameters<typeof formatAttributionLines>[0];
@@ -136,7 +138,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email invalide' }, { status: 400 });
     }
     const dossier = body.dossier ?? {};
-    const results = body.results ?? null;
+    const studies =
+      Array.isArray(body.studies) && body.studies.length > 0
+        ? body.studies.slice(0, 3)
+        : body.results
+          ? [body.results]
+          : [];
+    const results = studies[0] ?? null;
     const machineNom =
       results?.machine.machineNom ?? dossier.machineEnvisagee ?? 'Analyse ROI';
 
@@ -236,8 +244,14 @@ export async function POST(request: NextRequest) {
         if (qualification.length > 0) {
           noteLines.push(``, `--- QUALIFICATION (dossier) ---`, ...qualification);
         }
-        if (results) {
-          noteLines.push(``, `--- RÉSULTATS ROI (moteur) ---`, ...resultsLines(results));
+        for (const [i, study] of studies.entries()) {
+          noteLines.push(
+            ``,
+            studies.length > 1
+              ? `--- RÉSULTATS ROI (moteur) — Étude ${i + 1} : ${study.machine.machineNom ?? 'analyse'} ---`
+              : `--- RÉSULTATS ROI (moteur) ---`,
+            ...resultsLines(study)
+          );
         }
         if (conversationSummary) {
           noteLines.push(``, `--- RÉSUMÉ DE LA CONVERSATION ---`, conversationSummary);

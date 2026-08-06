@@ -112,6 +112,49 @@ export const MACHINES: Machine[] = [
     ],
   },
   {
+    // Réintroduite le 07/08/2026 (Seb) comme REPLI ÉCONOMIQUE du Pro G2 pour
+    // le conseiller ROI conversationnel uniquement : `delisted: true` la
+    // cache du wizard/comparateur (dont le tri par prix la mettrait en tête,
+    // contre la hiérarchie commerciale) — le chat l'inclut via sa liste de
+    // replis (lib/roiChat/tools.ts). Différences vs Pro G2 : pas de fonctions
+    // IA, pas de laser de centrage, pas d'éclairage par le haut.
+    // ⚠ Specs physiques reprises de la plateforme Pro G2 — à VALIDER par Seb.
+    id: 'alphashot-g2',
+    nom: 'Alphashot G2',
+    prix: 15450, // Prix HT confirmé par Seb le 07/08/2026.
+    delisted: true,
+    capaciteJour: 200,
+    tailleMax: '35×35×40 cm',
+    poidsMax: '10 kg',
+    tailleCategories: ['petit'],
+    useCases: ['Cosmétiques', 'Électronique', 'Petits objets'],
+    maintenanceAnnuelle: 0,
+    consommablesAnnuels: 500,
+    dimensionsMax: { l: 35, w: 35, h: 40 },
+    poidsMaxKg: 10,
+    features: ['packshot', '360', 'video'],
+    automationLevel: 'full-auto',
+    idealSectors: ['cosmetics', 'electronics', 'general', 'health', 'industrial'],
+    volumeRange: { min: 2000, max: 40000 },
+    keyAdvantages: [
+      {
+        fr: 'Automatisation complète à coût maîtrisé',
+        en: 'Full automation at a controlled cost',
+        'de-ch': 'Vollautomatisierung zu kontrollierten Kosten',
+        description: {
+          fr: 'Packshots, vues 360° et vidéos automatisés sur la plateforme G2, sans compétence photo — l\'alternative économique quand le budget prime.',
+          en: 'Automated packshots, 360° views and videos on the G2 platform, no photography skills required — the economical alternative when budget comes first.',
+          'de-ch': 'Automatisierte Packshots, 360°-Ansichten und Videos auf der G2-Plattform, ohne Fotokenntnisse — die wirtschaftliche Alternative, wenn das Budget im Vordergrund steht.',
+        },
+      },
+    ],
+    limitations: [
+      { fr: 'Sans assistant IA, laser de centrage ni éclairage par le haut (voir Alphashot Pro G2)', en: 'No AI assistant, centering laser or top lighting (see Alphashot Pro G2)', 'de-ch': 'Ohne KI-Assistent, Zentrierlaser und Oberlicht (siehe Alphashot Pro G2)' },
+      { fr: 'Taille produit limitée à 35×35×40 cm', en: 'Product size limited to 35×35×40 cm', 'de-ch': 'Produktgrösse auf 35×35×40 cm begrenzt' },
+    ],
+    spaceRequired: 'Sol/Table robuste',
+  },
+  {
     id: 'alphashot-xl-g2',
     nom: 'Alphashot XL G2',
     prix: 38450, // Prix confirmé par Seb le 04/08/2026 (variante MDC).

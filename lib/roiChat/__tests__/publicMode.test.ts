@@ -6,6 +6,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
+import { selectEligibleMachines } from '@/components/calculators/ROICalculator/lib/machineSelector';
 import { computeRoi, filterResultsForPublic } from '@/lib/roiEngine';
 import { rehydratePublicResults, buildHypotheses } from '../publicDisplay';
 import { SYSTEM_PROMPT_PUBLIC, SYSTEM_PROMPT_INTERNE } from '../systemPrompt';
@@ -183,5 +184,53 @@ describe('Éligibilité XL G2 en taille moyenne (Seb 07/08)', () => {
     );
     expect(r.isError).toBe(false);
     expect(r.content).toContain('Alphashot XL G2');
+  });
+});
+
+describe('Hiérarchie commerciale de proposition (Seb 07/08)', () => {
+  it('compare_machines (petit) inclut le repli Alphashot G2 avec son positionnement', () => {
+    const r = executeTool(
+      'compare_machines',
+      { volumeAnnuel: 5000, tailleProduitsCategory: 'petit' },
+      'public'
+    );
+    expect(r.isError).toBe(false);
+    expect(r.content).toContain('Alphashot G2');
+    expect(r.content).toContain('positionnementCommercial');
+    expect(r.content).toContain('Repli économique');
+    expect(r.content).toContain("PAS un ordre de recommandation");
+  });
+
+  it('la G2 reste invisible du sélecteur wizard (délistée)', () => {
+    const eligible = selectEligibleMachines({ annualVolume: 5000, contentTypes: ['packshot'] }, 'petit');
+    expect(eligible.map((e) => e.machine.id)).not.toContain('alphashot-g2');
+  });
+
+  it('le moteur sait calculer un ROI sur la G2 (repli)', () => {
+    const r = computeRoi({
+      mode: 'vs-existant',
+      volumeAnnuel: 5000,
+      machine: { source: 'catalogue', machineId: 'alphashot-g2', mode: 'achat' },
+      cashLines: [
+        { id: 'p', label: 'Presta', frequence: 'recurrent', montantAnnuel: 30_000, pourcentageSupprimable: 100, source: 'client' },
+      ],
+      timeLines: [],
+    });
+    expect(r.machine.machineNom).toBe('Alphashot G2');
+    expect(r.machine.prixMachine).toBe(15450);
+  });
+
+  it('prompt public : hiérarchie, mise en scène → solutions IA, machine déjà conseillée', () => {
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('hiérarchie commerciale');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('positionnementCommercial');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('MISE EN SCÈNE');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('solutions IA');
+    expect(SYSTEM_PROMPT_PUBLIC).not.toMatch(/renvoie vers un photographe/);
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('équipe commerciale');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('DEUX études ROI');
+    // Régression 07/08 : la section OCR/MDC avait atterri dans le prompt interne
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('DISPONIBLE UNIQUEMENT');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('XL G2 MDC');
+    expect(SYSTEM_PROMPT_PUBLIC).toContain('porte de sortie');
   });
 });

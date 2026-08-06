@@ -11,7 +11,7 @@
 
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import {
-  selectEligibleMachines,
+  evaluateMachine,
   CONTENT_TYPE_LABELS,
 } from '@/components/calculators/ROICalculator/lib/machineSelector';
 import type {
@@ -26,6 +26,34 @@ import { sanitizeDossierUpdate, type RoiPublicDossier } from './dossier';
 import type { ChatToolDefinition } from './provider';
 
 export type ChatMode = 'interne' | 'public';
+
+// ===== Hiérarchie commerciale de proposition (règles Seb 07/08/2026) =====
+
+/**
+ * Machines délistées du wizard mais proposables par le conseiller comme
+ * REPLI (le tri par prix du wizard contredirait la hiérarchie commerciale).
+ */
+const CHAT_FALLBACK_IDS = new Set(['alphashot-g2']);
+
+/**
+ * Positionnement commercial par modèle, joint aux specs retournées par
+ * compare_machines — le tri par prix croissant n'est PAS un ordre de
+ * recommandation, ces règles priment.
+ */
+const POSITIONNEMENT_COMMERCIAL: Record<string, string> = {
+  'alphashot-micro-v2':
+    'RÉSERVÉ aux bijoux, montres et très petits objets précieux — ne pas le proposer hors de ce périmètre.',
+  'alphashot-360':
+    "Entrée de gamme historique : ne le proposer QUE si le ROI des modèles supérieurs est insuffisant (dernier recours).",
+  'alphashot-pro-g2':
+    'PREMIER CHOIX pour les produits petits à moyens dès que le ROI le permet (studio IA, laser de centrage, éclairage par le haut).',
+  'alphashot-g2':
+    "Repli économique si le ROI du Pro G2 est insuffisant — même plateforme mais sans fonctions IA, sans laser de centrage, sans éclairage par le haut. Ne le proposer qu'en solution de repli.",
+  'alphashot-xl-pro-v2':
+    'Choix SYSTÉMATIQUE pour les vins, spiritueux et bouteilles.',
+  'alphashot-xl-g2':
+    "Évolution de la gamme XL : à toujours présenter comme la solution de pointe face à la XL Pro v2 (nombreux avantages au-delà du coût). La variante MDC est réservée aux besoins de mesure poids/dimensions.",
+};
 
 // ===== Schéma JSON du dossier de modélisation (miroir de roiDossierSchema) =====
 
@@ -222,6 +250,7 @@ function machineSpecs(m: (typeof MACHINES)[number], mode: ChatMode) {
   return {
     id: m.id,
     nom: m.nom,
+    positionnementCommercial: POSITIONNEMENT_COMMERCIAL[m.id] ?? null,
     capaciteJour: m.capaciteJour,
     tailleMax: m.tailleMax,
     poidsMax: m.poidsMax,
@@ -279,16 +308,27 @@ export function executeTool(name: string, input: unknown, mode: ChatMode): ToolE
           typesContenu?: ContentType[];
           poidsKg?: number;
         };
-        const eligible = selectEligibleMachines(
-          {
-            annualVolume: q.volumeAnnuel,
-            contentTypes: q.typesContenu ?? ['packshot'],
-            productWeight: q.poidsKg,
-          },
-          q.tailleProduitsCategory
+        // Comme selectEligibleMachines, mais en incluant les replis réservés
+        // au conseiller (CHAT_FALLBACK_IDS, délistés du wizard).
+        const candidates = MACHINES.filter(
+          (m) =>
+            m.tailleCategories.includes(q.tailleProduitsCategory) &&
+            !m.prixSurDevis &&
+            (!m.delisted || CHAT_FALLBACK_IDS.has(m.id))
         );
+        const eligible = candidates
+          .map((machine) =>
+            evaluateMachine(machine, {
+              annualVolume: q.volumeAnnuel,
+              contentTypes: q.typesContenu ?? ['packshot'],
+              productWeight: q.poidsKg,
+            })
+          )
+          .filter((e) => e.isEligible)
+          .sort((a, b) => a.machine.prix - b.machine.prix || b.score - a.score);
         return {
           content: JSON.stringify({
+            note: "Liste triée par coût croissant — ce n'est PAS un ordre de recommandation : appliquer le positionnementCommercial de chaque modèle.",
             machines: eligible.map((e) => ({
               ...machineSpecs(e.machine, mode),
               score: e.score,
