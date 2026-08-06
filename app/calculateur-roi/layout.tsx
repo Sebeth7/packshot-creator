@@ -14,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Calculateur ROI - Studios Photo PackshotCreator',
-  description: 'Calculez gratuitement le retour sur investissement d\'un studio photo automatisé. Comparez achat et leasing.',
+  description: 'Décrivez votre production photo, notre conseiller construit votre analyse de rentabilité personnalisée. Comparez achat et leasing.',
   robots: { index: false, follow: false },
 };
 
@@ -25,7 +25,7 @@ export default function CalculateurROILayout({
 }) {
   return (
     <html lang="fr" className={inter.variable}>
-      <body className="font-body text-text-dark antialiased overflow-x-hidden">
+      <body className="font-body text-text-dark antialiased overflow-x-hidden bg-neutral-50">
         {children}
         <LemlistTracker />
         <AttributionTracker />
