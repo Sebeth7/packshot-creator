@@ -55,6 +55,7 @@ function LeadCapture({
 }) {
   const results = studies[0];
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [optIn, setOptIn] = useState(false);
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
@@ -71,6 +72,7 @@ function LeadCapture({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: email.trim(),
+          phone: phone.trim() || undefined,
           optInRecontact: optIn,
           dossier,
           results,
@@ -154,6 +156,16 @@ function LeadCapture({
         />
         Je souhaite être recontacté(e) par un expert PackshotCreator
       </label>
+      {optIn && (
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Téléphone (optionnel)"
+          className="w-full text-sm rounded-lg border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-very-peri-500 bg-white"
+          aria-label="Votre téléphone (optionnel)"
+        />
+      )}
       <button
         type="button"
         onClick={submit}
