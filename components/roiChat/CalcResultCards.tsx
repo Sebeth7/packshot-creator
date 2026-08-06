@@ -15,7 +15,9 @@ import HeroMetrics from '@/components/calculators/ROICalculator/results/HeroMetr
 import BreakEvenTimeline from '@/components/calculators/ROICalculator/results/BreakEvenTimeline';
 import { formatEuro } from '@/components/calculators/ROICalculator/lib/calculations';
 import { adaptEngineResults } from '@/lib/roiChat/adaptResults';
+import { filterResultsForPublic } from '@/lib/roiEngine';
 import type { RoiEngineResults } from '@/lib/roiEngine';
+import PdfReport from './public/PdfReport';
 
 const EvolutionChart = dynamic(
   () => import('@/components/calculators/ROICalculator/results/EvolutionChart'),
@@ -160,6 +162,11 @@ export default function CalcResultCards({ results }: { results: RoiEngineResults
   const [generating, setGenerating] = useState(false);
   const adapted =
     results.differentiel || results.coutRevient ? null : adaptEngineResults(results);
+  // PDF CLIENT (demande Seb 07/08) : même rendu riche que le mode public,
+  // et surtout mêmes garde-fous — les résultats passent par le filtre public
+  // AVANT le rendu : aucun prix catalogue dans un PDF destiné au client,
+  // même exporté depuis le mode interne.
+  const clientView = filterResultsForPublic(results);
 
   async function downloadPdf() {
     if (generating) return;
@@ -225,17 +232,26 @@ export default function CalcResultCards({ results }: { results: RoiEngineResults
 
   return (
     <div className="my-3">
-      <div ref={pdfRef}>{content}</div>
-      <div className="flex justify-end mt-2" data-pdf-exclude>
+      {content}
+      <div className="flex justify-end mt-2">
         <button
           type="button"
           onClick={downloadPdf}
           disabled={generating}
           className="flex items-center gap-1.5 text-sm text-very-peri-600 hover:text-very-peri-800 disabled:opacity-50 transition-colors"
+          title="Rendu client complet (métriques, graphique, atouts) — sans prix catalogue"
         >
           {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileDown className="w-4 h-4" />}
-          {generating ? 'Génération…' : 'Télécharger le PDF'}
+          {generating ? 'Génération…' : 'Télécharger le PDF client'}
         </button>
+      </div>
+      {/* Rendu dédié à l'export (parité mode public), hors écran */}
+      <div
+        ref={pdfRef}
+        aria-hidden="true"
+        className="fixed top-0 -left-[2000px] w-[794px] pointer-events-none"
+      >
+        <PdfReport studies={[clientView]} dossier={{}} />
       </div>
     </div>
   );

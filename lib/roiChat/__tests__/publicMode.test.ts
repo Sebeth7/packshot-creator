@@ -233,4 +233,11 @@ describe('Hiérarchie commerciale de proposition (Seb 07/08)', () => {
     expect(SYSTEM_PROMPT_PUBLIC).toContain('XL G2 MDC');
     expect(SYSTEM_PROMPT_PUBLIC).toContain('porte de sortie');
   });
+
+  it('prompt interne : les trois règles publiques reportées (Seb 07/08)', () => {
+    expect(SYSTEM_PROMPT_INTERNE).toContain('MISE EN SCÈNE');
+    expect(SYSTEM_PROMPT_INTERNE).toContain('solutions IA');
+    expect(SYSTEM_PROMPT_INTERNE).toContain('Cohérence secteur / taille');
+    expect(SYSTEM_PROMPT_INTERNE).toContain('à valider par notre service commercial');
+  });
 });
