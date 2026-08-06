@@ -8,7 +8,9 @@
  */
 
 import dynamic from 'next/dynamic';
-import { Scale, Timer, TrendingUp, Calculator } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Scale, Timer, TrendingUp, Calculator, FileDown, Loader2 } from 'lucide-react';
+import type { CalculationResults } from '@/components/calculators/ROICalculator/lib/types';
 import HeroMetrics from '@/components/calculators/ROICalculator/results/HeroMetrics';
 import BreakEvenTimeline from '@/components/calculators/ROICalculator/results/BreakEvenTimeline';
 import { formatEuro } from '@/components/calculators/ROICalculator/lib/calculations';
@@ -154,19 +156,87 @@ function CoutRevientCard({ results }: { results: RoiEngineResults }) {
 }
 
 export default function CalcResultCards({ results }: { results: RoiEngineResults }) {
+  const pdfRef = useRef<HTMLDivElement>(null);
+  const [generating, setGenerating] = useState(false);
+  const adapted =
+    results.differentiel || results.coutRevient ? null : adaptEngineResults(results);
+
+  async function downloadPdf() {
+    if (generating) return;
+    setGenerating(true);
+    try {
+      // Chargement à la demande : jsPDF + html2canvas sont lourds
+      const { generatePDF } = await import(
+        '@/components/calculators/ROICalculator/results/PDFGenerator'
+      );
+      // generatePDF n'utilise CalculationResults que pour le nom machine
+      // (fichier + CTA) — un stub suffit pour les modes sans adaptation
+      const forPdf =
+        adapted ??
+        ({
+          machine: { nom: results.machine.machineNom ?? 'Analyse ROI' },
+        } as CalculationResults);
+      const blob = await generatePDF(pdfRef, forPdf, 'fr');
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `ROI-${(results.machine.machineNom ?? 'analyse').replace(/\s+/g, '-')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('[roi-chat] PDF:', err);
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  let content: React.ReactNode;
   if (results.differentiel) {
-    return <DifferentielCard results={results} />;
+    content = (
+      <div data-pdf-section>
+        <DifferentielCard results={results} />
+      </div>
+    );
+  } else if (results.coutRevient) {
+    content = (
+      <div data-pdf-section>
+        <CoutRevientCard results={results} />
+      </div>
+    );
+  } else if (adapted) {
+    content = (
+      <div className="space-y-4">
+        <div data-pdf-section>
+          <HeroMetrics results={adapted} locale="fr" />
+        </div>
+        <div data-pdf-section data-pdf-exclude-chart-animation>
+          <EvolutionChart results={adapted} locale="fr" />
+        </div>
+        <div data-pdf-section>
+          <BreakEvenTimeline results={adapted} locale="fr" />
+        </div>
+      </div>
+    );
+  } else {
+    return null;
   }
-  if (results.coutRevient) {
-    return <CoutRevientCard results={results} />;
-  }
-  const adapted = adaptEngineResults(results);
-  if (!adapted) return null;
+
   return (
-    <div className="my-3 space-y-4">
-      <HeroMetrics results={adapted} locale="fr" />
-      <EvolutionChart results={adapted} locale="fr" />
-      <BreakEvenTimeline results={adapted} locale="fr" />
+    <div className="my-3">
+      <div ref={pdfRef}>{content}</div>
+      <div className="flex justify-end mt-2" data-pdf-exclude>
+        <button
+          type="button"
+          onClick={downloadPdf}
+          disabled={generating}
+          className="flex items-center gap-1.5 text-sm text-very-peri-600 hover:text-very-peri-800 disabled:opacity-50 transition-colors"
+        >
+          {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileDown className="w-4 h-4" />}
+          {generating ? 'Génération…' : 'Télécharger le PDF'}
+        </button>
+      </div>
     </div>
   );
 }
