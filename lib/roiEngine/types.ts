@@ -258,6 +258,15 @@ export type PublicRoiResults = Omit<
     coutTotalInvestissement: number | null;
     prixMachine: number | null;
   };
+  /** Baseline du mode différentiel — identité et specs uniquement, jamais de prix */
+  baselineMachineResolved: {
+    machineId: string | null;
+    machineNom: string | null;
+    mode: 'achat' | 'leasing';
+    prixSource: 'catalogue' | 'fourni';
+    capaciteJour: number | null;
+    nbMois: number;
+  } | null;
   differentiel: (Omit<DifferentielResults, 'deltaInvestissement' | 'deltaInvestissementNetIS'> & {
     deltaInvestissement: number | null;
     deltaInvestissementNetIS: number | null;

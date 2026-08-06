@@ -22,6 +22,7 @@ import { computeRoi, filterResultsForPublic, roiDossierSchema } from '@/lib/roiE
 import type { RoiDossier } from '@/lib/roiEngine';
 import { leasingMonthly, LEASING_MONTHS } from '@/lib/leasing';
 import { getMarketCosts, getFunctionGains } from './referentiels';
+import { sanitizeDossierUpdate, type RoiPublicDossier } from './dossier';
 import type { ChatToolDefinition } from './provider';
 
 export type ChatMode = 'interne' | 'public';
@@ -176,6 +177,33 @@ export function buildToolDefinitions(mode: ChatMode): ChatToolDefinition[] {
     },
   ];
 
+  if (mode === 'public') {
+    tools.push({
+      name: 'update_dossier',
+      description:
+        "Met à jour le panneau « Votre dossier » affiché au client. Appelle-le à CHAQUE information de qualification nouvelle ou corrigée (uniquement les champs concernés — ils écrasent l'existant). N'y mets jamais de montant lié aux prix des studios.",
+      input_schema: {
+        type: 'object',
+        properties: {
+          secteur: { type: 'string', description: "Secteur d'activité" },
+          situation: {
+            type: 'string',
+            description: 'Situation actuelle (production interne / prestataire / mixte / création d\'activité)',
+          },
+          volumeAnnuel: { type: 'number', description: 'Produits/an visés' },
+          croissance: { type: 'string', description: 'Croissance prévue' },
+          typesContenu: { type: 'array', items: { type: 'string' }, description: 'packshot, 360°, vidéo…' },
+          tailleProduits: { type: 'string', description: 'petit / moyen / grand / très grand (+ précision)' },
+          prestataire: { type: 'string', description: 'Budget ou prix/photo du prestataire, part du flux' },
+          tempsInterne: { type: 'string', description: 'Personnes, part du temps, coût employeur' },
+          financement: { type: 'string', description: 'Achat ou leasing (mensualité/durée si connues)' },
+          machineEnvisagee: { type: 'string', description: 'Modèle envisagé ou recommandé' },
+          autres: { type: 'array', items: { type: 'string' }, description: 'Autres informations notables' },
+        },
+      },
+    });
+  }
+
   if (mode === 'interne') {
     tools.push({
       name: 'price_list',
@@ -219,6 +247,8 @@ export interface ToolExecutionResult {
   isError: boolean;
   /** Résultats de calcul complets pour l'UI (affichage composants) */
   calcResults?: unknown;
+  /** Mise à jour du dossier vivant (mode public) à relayer en SSE */
+  dossierUpdate?: Partial<RoiPublicDossier>;
 }
 
 export function executeTool(name: string, input: unknown, mode: ChatMode): ToolExecutionResult {
@@ -267,6 +297,15 @@ export function executeTool(name: string, input: unknown, mode: ChatMode): ToolE
             })),
           }),
           isError: false,
+        };
+      }
+
+      case 'update_dossier': {
+        const update = sanitizeDossierUpdate(input);
+        return {
+          content: JSON.stringify({ ok: true, champsPrisEnCompte: Object.keys(update) }),
+          isError: false,
+          dossierUpdate: update,
         };
       }
 

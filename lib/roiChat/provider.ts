@@ -29,6 +29,8 @@ export type ProviderEvent =
       /** Contenu assistant complet (texte + tool_use) à réinjecter dans l'historique */
       content: Anthropic.ContentBlock[];
       toolCalls: Array<{ id: string; name: string; input: unknown }>;
+      /** Tokens consommés par ce tour (suivi budget anti-abus) */
+      usage: { inputTokens: number; outputTokens: number };
     };
 
 let _client: Anthropic | null = null;
@@ -87,7 +89,33 @@ export async function* streamAssistantTurn(params: {
     stopReason: message.stop_reason,
     content: message.content,
     toolCalls,
+    usage: {
+      inputTokens: message.usage.input_tokens,
+      outputTokens: message.usage.output_tokens,
+    },
   };
+}
+
+/**
+ * Appel non-streaming, sans tools — utilisé pour le résumé qualifié de
+ * conversation joint à la note CRM (route roi-lead). Retourne le texte brut.
+ */
+export async function completeText(params: {
+  system: string;
+  prompt: string;
+  maxTokens?: number;
+}): Promise<string> {
+  const message = await client().messages.create({
+    model: ROI_CHAT_MODEL,
+    max_tokens: params.maxTokens ?? 600,
+    system: params.system,
+    messages: [{ role: 'user', content: params.prompt }],
+  });
+  return message.content
+    .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+    .map((b) => b.text)
+    .join('\n')
+    .trim();
 }
 
 /** Construit le message user contenant les résultats de tools du tour. */

@@ -43,6 +43,8 @@ export function filterResultsForPublic(results: RoiEngineResults): PublicRoiResu
       }
     : null;
 
+  const b = results.baselineMachineResolved;
+
   return {
     mode: results.mode,
     baselineLabel: results.baselineLabel,
@@ -58,6 +60,17 @@ export function filterResultsForPublic(results: RoiEngineResults): PublicRoiResu
       coutTotalInvestissement: pricingVisible ? m.coutTotalInvestissement : null,
       prixMachine: isUserSuppliedPricing(m) ? m.prixMachine : null,
     },
+    // Identité/specs de la baseline (différentiel) — jamais de champ prix
+    baselineMachineResolved: b
+      ? {
+          machineId: b.machineId,
+          machineNom: b.machineNom,
+          mode: b.mode,
+          prixSource: b.prixSource,
+          capaciteJour: b.capaciteJour,
+          nbMois: b.nbMois,
+        }
+      : null,
     cashSupprimeAnnuel: results.cashSupprimeAnnuel,
     cashSupprimePonctuel: results.cashSupprimePonctuel,
     economieAnnuelle: results.economieAnnuelle,
