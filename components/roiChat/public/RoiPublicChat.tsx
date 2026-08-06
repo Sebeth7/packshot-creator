@@ -141,6 +141,17 @@ export default function RoiPublicChat() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur réseau — votre analyse reprend où elle en était, réessayez.');
     } finally {
+      // Jamais de bulle assistant muette : repli si le flux s'est terminé sans texte
+      setUiMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role !== 'assistant' || last.text.trim() !== '') return prev;
+        const next = [...prev];
+        next[next.length - 1] = {
+          ...last,
+          text: 'Je n’ai pas pu terminer ma réponse. Pouvez-vous renvoyer votre message ou écrire « continuez » ?',
+        };
+        return next;
+      });
       setStreaming(false);
       setToolStatus(null);
     }
