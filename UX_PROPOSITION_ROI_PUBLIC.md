@@ -1,6 +1,6 @@
 # Calculateur ROI conversationnel — proposition UX/UI du mode client (public)
 
-**Statut : proposition à valider par Seb — cadrage du chantier public (remplacement du wizard).**
+**Statut : VALIDÉE par Seb le 06/08/2026 — cahier des charges UX du chantier public (remplacement du wizard).**
 Demandes actées le 06/08 : PDF téléchargeable contre email (comme le wizard), transparence
 IA vs calculs codés en dur, expérience niveau grands comptes, pédagogie et réponses aux questions.
 
