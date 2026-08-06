@@ -30,6 +30,7 @@ import {
 import { getAttribution } from '@/lib/attribution';
 import type { PublicRoiResults } from '@/lib/roiEngine';
 import PublicCalcCards from './PublicCalcCards';
+import PdfReport from './PdfReport';
 
 interface DossierPanelProps {
   dossier: RoiPublicDossier;
@@ -91,7 +92,7 @@ function LeadCapture({
             } as CalculationResults)
           : adaptEngineResults(rehydratePublicResults(results));
       if (pdfRef.current && adapted) {
-        const blob = await generatePDF(pdfRef, adapted, 'fr');
+        const blob = await generatePDF(pdfRef, adapted, 'fr', email.trim());
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
@@ -257,14 +258,23 @@ export default function DossierPanel({
             </p>
           </div>
 
-          <div ref={pdfRef}>
-            <PublicCalcCards
-              results={results}
-              onEditHypothese={(label, value) => onCorrect(label, value)}
-            />
-          </div>
+          <PublicCalcCards
+            results={results}
+            onEditHypothese={(label, value) => onCorrect(label, value)}
+          />
 
           <LeadCapture dossier={dossier} results={results} transcript={transcript} pdfRef={pdfRef} />
+
+          {/* Rendu dédié à l'export PDF — pleine largeur A4, hors écran.
+              Monté en permanence pour que les graphiques soient prêts au
+              moment de la capture. */}
+          <div
+            ref={pdfRef}
+            aria-hidden="true"
+            className="fixed top-0 -left-[2000px] w-[794px] pointer-events-none"
+          >
+            <PdfReport results={results} dossier={dossier} />
+          </div>
         </div>
       )}
 

@@ -84,9 +84,11 @@ export function resolveMachineCost(input: MachineCostInput): ResolvedMachineCost
         nbMois: CONSTANTES.dureeAmortissement * 12,
       };
     }
-    // Leasing catalogue : mensualité fournie, sinon règle publique ×1,3/60
+    // Leasing catalogue : mensualité fournie, sinon estimation par la règle
+    // prix × 1,3 ÷ nombre de mensualités (Seb 07/08) — à présenter comme une
+    // estimation à valider par le service commercial.
     const nbMois = input.nbMois ?? LEASING_MONTHS;
-    const mensualite = input.mensualite ?? leasingMonthly(machine.prix);
+    const mensualite = input.mensualite ?? leasingMonthly(machine.prix, 'EUR', nbMois);
     if (!mensualite) {
       throw new Error(`Mensualité leasing introuvable pour ${machine.nom}.`);
     }

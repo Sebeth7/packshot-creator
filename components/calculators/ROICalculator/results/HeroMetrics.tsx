@@ -8,6 +8,8 @@ import type { CalculationResults } from '../lib/types';
 interface HeroMetricsProps {
   results: CalculationResults;
   locale: 'fr' | 'en' | 'de-ch';
+  /** 2 pour les conteneurs étroits (panneau du chat ROI) — défaut 4 (wizard) */
+  columns?: 2 | 4;
 }
 
 const LABELS = {
@@ -88,7 +90,7 @@ const LABELS = {
   },
 };
 
-export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
+export default function HeroMetrics({ results, locale, columns = 4 }: HeroMetricsProps) {
   const t = LABELS[locale] ?? LABELS.en;
 
   // Si non rentable, ne pas afficher ces métriques
@@ -177,7 +179,12 @@ export default function HeroMetrics({ results, locale }: HeroMetricsProps) {
         {isLeasing ? t.titleLeasing : t.title}
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div
+        className={cn(
+          'grid grid-cols-1 sm:grid-cols-2 gap-4',
+          columns === 4 && 'lg:grid-cols-4'
+        )}
+      >
         {metrics.map((metric, index) => (
           <div
             key={index}

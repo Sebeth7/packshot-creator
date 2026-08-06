@@ -46,7 +46,7 @@ function Tile({
 }
 
 /** Variante publique de la carte différentielle : écarts de prix « sur devis ». */
-function PublicDifferentielCard({ results }: { results: PublicRoiResults }) {
+export function PublicDifferentielCard({ results }: { results: PublicRoiResults }) {
   const d = results.differentiel!;
   return (
     <div className="bg-gradient-to-br from-very-peri-100 to-very-peri-50 rounded-2xl p-6">
@@ -113,7 +113,7 @@ function PublicDifferentielCard({ results }: { results: PublicRoiResults }) {
   );
 }
 
-function CoutRevientCard({ results }: { results: PublicRoiResults }) {
+export function CoutRevientCard({ results }: { results: PublicRoiResults }) {
   const c = results.coutRevient!;
   return (
     <div className="bg-gradient-to-br from-very-peri-100 to-very-peri-50 rounded-2xl p-6">
@@ -173,7 +173,7 @@ export default function PublicCalcCards({
     if (!adapted) return null;
     cards = (
       <div className="space-y-4">
-        <HeroMetrics results={adapted} locale="fr" />
+        <HeroMetrics results={adapted} locale="fr" columns={2} />
         <div data-pdf-exclude-chart-animation>
           <EvolutionChart results={adapted} locale="fr" />
         </div>

@@ -23,10 +23,19 @@ export function currencyForLang(lang: string): PriceCurrency {
   return lang === 'de-ch' ? 'CHF' : 'EUR';
 }
 
-/** Mensualité de leasing arrondie, ou null si machine sur devis (prix absent/0). */
-export function leasingMonthly(prixAchat: number, currency: PriceCurrency = 'EUR'): number | null {
-  if (!prixAchat || prixAchat <= 0) return null;
-  const monthlyEur = (prixAchat * LEASING_RATIO) / LEASING_MONTHS;
+/**
+ * Mensualité de leasing arrondie, ou null si machine sur devis (prix absent/0).
+ * Règle Seb 07/08/2026 : prix × 1,3 ÷ nombre de mensualités (60 par défaut
+ * pour l'affichage public des fiches) — toujours présentée comme une
+ * estimation à faire valider par le service commercial.
+ */
+export function leasingMonthly(
+  prixAchat: number,
+  currency: PriceCurrency = 'EUR',
+  months: number = LEASING_MONTHS
+): number | null {
+  if (!prixAchat || prixAchat <= 0 || months <= 0) return null;
+  const monthlyEur = (prixAchat * LEASING_RATIO) / months;
   const monthly = currency === 'CHF' ? monthlyEur * EUR_CHF_RATE : monthlyEur;
   return Math.ceil(monthly / 5) * 5;
 }
