@@ -1,10 +1,15 @@
 /**
  * Référentiels serveur du calculateur ROI conversationnel (CDC §6).
  *
- * ⚠ STATUT : les entrées `status: 'draft'` sont des DRAFTS sourcés par
- * benchmarks web (août 2026) — NE PAS présenter comme des chiffres validés
- * tant que Seb ne les a pas approuvés. Seule l'entrée mesure/pesée est
- * VALIDÉE (actée par Seb le 02/08/2026, sources vMeasure/Cubiscan).
+ * ⚠ STATUT : les entrées `status: 'draft'` sont des estimations NON validées
+ * — ne jamais les présenter comme des chiffres certifiés.
+ * État au 06/08/2026 (validation Seb) :
+ *  - Coûts de marché : TOUS VALIDÉS, y compris les 4 entrées sectorielles
+ *    (horlogerie-joaillerie 60 €, cosmétique 50 €, vins 35 €, mobilier 40 €
+ *    — données Seb). La ligne « journée shooting presta » a été retirée.
+ *  - Gains par fonction : seule mesure/pesée (8 min/4 €) est validée
+ *    (Seb 02/08, vMeasure/Cubiscan) ; les 4 autres restent en draft
+ *    pendant le rodage, sur décision Seb.
  *
  * Les tools market_reference et function_gains exposent ces données en
  * lecture seule, statut inclus — le system prompt impose d'étiqueter tout
@@ -18,6 +23,8 @@ export type ReferentielStatus = 'valide' | 'draft';
 export interface MarketCostEntry {
   id: string;
   label: string;
+  /** Secteur d'activité si l'entrée est sectorielle (sinon : généraliste) */
+  secteur?: string;
   /** €/unité — fourchette basse (volume) */
   prixMin: number;
   /** €/unité — fourchette haute (unité/complexe) */
@@ -33,15 +40,66 @@ export interface MarketCostEntry {
 export const MARKET_COSTS: MarketCostEntry[] = [
   {
     id: 'packshot-fond-blanc',
-    label: 'Packshot fond blanc (prestataire)',
+    label: 'Packshot fond blanc (prestataire, généraliste)',
     prixMin: 15,
     prixMax: 40,
     prixMedian: 25,
     unite: 'photo',
     notes:
-      "10-40 €/photo à l'unité ; dégressif en lot (100 photos : 15-20 €). Retouche basique incluse, retouche créative +5-20 €/image.",
-    sources: ['brique-lab.fr/shooting-photo-prix', 'packshot-paris.fr', 'atelierb9.com'],
-    status: 'draft',
+      "10-40 €/photo à l'unité ; dégressif en lot (100 photos : 15-20 €). Retouche basique incluse, retouche créative +5-20 €/image. Pour les secteurs listés plus bas, préférer l'entrée sectorielle.",
+    sources: ['brique-lab.fr/shooting-photo-prix', 'packshot-paris.fr', 'atelierb9.com', 'Validé Seb 06/08/2026'],
+    status: 'valide',
+  },
+  {
+    id: 'packshot-horlogerie-joaillerie',
+    label: 'Packshot horlogerie / joaillerie / luxe (prestataire)',
+    secteur: 'horlogerie-joaillerie',
+    prixMin: 30,
+    prixMax: 90,
+    prixMedian: 60,
+    unite: 'photo',
+    notes:
+      'Médian 60 €/photo, rapport ×0,5 à ×1,5 selon le niveau de qualité attendu (macro, gestion des reflets, exigence retouche).',
+    sources: ['Données Seb 06/08/2026'],
+    status: 'valide',
+  },
+  {
+    id: 'packshot-cosmetique',
+    label: 'Packshot cosmétique (prestataire)',
+    secteur: 'cosmetique',
+    prixMin: 40,
+    prixMax: 75,
+    prixMedian: 50,
+    unite: 'photo',
+    notes: 'Médian 50 €/photo, rapport ×0,8 à ×1,5 selon le niveau de qualité attendu.',
+    sources: ['Données Seb 06/08/2026'],
+    status: 'valide',
+  },
+  {
+    id: 'packshot-vins',
+    label: 'Packshot vins & spiritueux (prestataire)',
+    secteur: 'vins',
+    prixMin: 28,
+    prixMax: 53,
+    prixMedian: 35,
+    unite: 'photo',
+    notes:
+      'Médian 35 €/photo (validé). Fourchette indicative ×0,8-1,5 non actée — raisonner sur le médian.',
+    sources: ['Données Seb 06/08/2026'],
+    status: 'valide',
+  },
+  {
+    id: 'packshot-mobilier',
+    label: 'Packshot mobilier / gros produits (prestataire)',
+    secteur: 'mobilier',
+    prixMin: 32,
+    prixMax: 60,
+    prixMedian: 40,
+    unite: 'photo',
+    notes:
+      'Médian 40 €/photo (validé). Fourchette indicative ×0,8-1,5 non actée — raisonner sur le médian.',
+    sources: ['Données Seb 06/08/2026'],
+    status: 'valide',
   },
   {
     id: 'packshot-creatif',
@@ -52,7 +110,7 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     unite: 'photo',
     notes: 'Fond travaillé, composition, ombres réalistes.',
     sources: ['brique-lab.fr/shooting-photo-prix'],
-    status: 'draft',
+    status: 'valide',
   },
   {
     id: 'ghost-mannequin',
@@ -63,7 +121,7 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     unite: 'photo',
     notes: 'Dégressif dès 24 €/photo en volume (studios parisiens spécialisés).',
     sources: ['lestudiohonore.fr/packshot-ecommerce', 'eshopstudio.com/photos-ghost'],
-    status: 'draft',
+    status: 'valide',
   },
   {
     id: 'photo-360',
@@ -75,7 +133,7 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     notes:
       'Plancher constaté ~150 € HT/produit à l’unité, dégressif en volume. Quasi impossible à produire manuellement en interne sans équipement dédié.',
     sources: ['photographe-360.com/les-tarifs-des-photographies-360'],
-    status: 'draft',
+    status: 'valide',
   },
   {
     id: 'lifestyle-mannequin',
@@ -86,7 +144,7 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     unite: 'look',
     notes: 'Journée studio avec mannequin : 2 000-5 000 €/jour, soit 80-200 €/look.',
     sources: ['brique-lab.fr/shooting-photo-prix'],
-    status: 'draft',
+    status: 'valide',
   },
   // (Ligne « journée de shooting prestataire » RETIRÉE — décision Seb 06/08 :
   // baseline trop peu sourcée, on raisonne en prix/photo et coût salarié.)
@@ -100,7 +158,7 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     notes:
       'Salaire moyen photographe France 2026 : ~2 210 € net/mois (33 500 € brut/an) → coût employeur ~3 500-4 800 €/mois. Cohérent avec la constante 4 000 €/mois du calculateur.',
     sources: ['hellowork.com/salaires/photographe', 'francecv.com/salaire/photographe', 'jooble.org'],
-    status: 'draft',
+    status: 'valide',
   },
 ];
 
