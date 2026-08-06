@@ -88,17 +88,8 @@ export const MARKET_COSTS: MarketCostEntry[] = [
     sources: ['brique-lab.fr/shooting-photo-prix'],
     status: 'draft',
   },
-  {
-    id: 'journee-studio-presta',
-    label: 'Journée de shooting prestataire (hors mannequin)',
-    prixMin: 800,
-    prixMax: 2000,
-    prixMedian: 1200,
-    unite: 'jour',
-    notes: 'Forfait journée photographe + studio, volume de packshots variable selon produits.',
-    sources: ['brique-lab.fr/shooting-photo-prix', 'la-photo-prod.com'],
-    status: 'draft',
-  },
+  // (Ligne « journée de shooting prestataire » RETIRÉE — décision Seb 06/08 :
+  // baseline trop peu sourcée, on raisonne en prix/photo et coût salarié.)
   {
     id: 'photographe-salarie',
     label: 'Photographe salarié dédié (coût employeur)',

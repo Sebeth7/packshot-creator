@@ -22,7 +22,7 @@ photographe-360.com, lestudiohonore.fr, eshopstudio.com ; salaires : Hellowork, 
 | Ghost mannequin / piqué (presta) | 24-80 € | **40 €** | photo | DRAFT |
 | Vue 360° (presta) | 80-150 € | **120 €** | produit | DRAFT |
 | Lifestyle avec mannequin | 80-200 € | **120 €** (journée studio 2 000-5 000 €) | look | DRAFT |
-| Journée shooting presta (hors mannequin) | 800-2 000 € | **1 200 €** | jour | DRAFT |
+| ~~Journée shooting presta (hors mannequin)~~ | — | — | — | RETIRÉE (Seb 06/08) |
 | Photographe salarié (coût employeur) | 3 500-4 800 € | **4 000 €** | mois | DRAFT |
 
 Notes :
