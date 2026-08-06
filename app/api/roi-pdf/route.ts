@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-
-const PIPEDRIVE_PIPELINE_ID = 3;
-const PIPEDRIVE_STAGE_ID = 54; // "Calculs ROI"
+import {
+  findOrCreatePipedrivePerson,
+  createPipedriveDealWithNote,
+  formatAttributionLines,
+} from '@/lib/pipedrive';
 
 interface ROIPDFRequest {
   email?: string;
@@ -50,77 +52,14 @@ interface ROIPDFRequest {
   };
 }
 
-/** Lignes lisibles pour la note Pipedrive (attribution de la demande). */
-function formatAttributionLines(attribution: ROIPDFRequest['attribution']): string[] {
-  if (!attribution) return [];
-  const lines: string[] = [];
-  if (attribution.utmSource) lines.push(`🎯 Source : ${attribution.utmSource}`);
-  if (attribution.utmMedium) lines.push(`📡 Medium : ${attribution.utmMedium}`);
-  if (attribution.utmCampaign) lines.push(`📣 Campagne : ${attribution.utmCampaign}`);
-  if (attribution.utmTerm) lines.push(`🔑 Terme : ${attribution.utmTerm}`);
-  if (attribution.utmContent) lines.push(`🧩 Contenu : ${attribution.utmContent}`);
-  if (attribution.referrer) lines.push(`🌐 Referrer : ${attribution.referrer}`);
-  if (attribution.landingPage) lines.push(`🛬 Landing : ${attribution.landingPage}`);
-  return lines;
-}
-
-async function createPipedrivePerson(
-  apiToken: string,
-  email?: string,
-  phone?: string,
-  company?: string
-): Promise<number | null> {
-  try {
-    const searchTerm = email || phone || '';
-    const searchField = email ? 'email' : 'phone';
-
-    // Check if person already exists
-    if (searchTerm) {
-      const searchRes = await fetch(
-        `https://api.pipedrive.com/v1/persons/search?term=${encodeURIComponent(searchTerm)}&fields=${searchField}&limit=1&api_token=${apiToken}`
-      );
-      const searchData = await searchRes.json();
-
-      if (searchData.data?.items?.length > 0) {
-        return searchData.data.items[0].item.id;
-      }
-    }
-
-    // Create new person
-    const personData: Record<string, unknown> = {
-      name: company || (email ? email.split('@')[0] : phone || 'Contact ROI Calculator'),
-    };
-    if (email) personData.email = [{ value: email, primary: true, label: 'work' }];
-    if (phone) personData.phone = [{ value: phone, primary: true, label: 'work' }];
-
-    const res = await fetch(
-      `https://api.pipedrive.com/v1/persons?api_token=${apiToken}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(personData),
-      }
-    );
-    const data = await res.json();
-    return data.data?.id || null;
-  } catch (error) {
-    console.error('Pipedrive person creation error:', error);
-    return null;
-  }
-}
-
-async function createPipedriveDeal(
-  personId: number,
+function buildDealNote(
   calculatorData: ROIPDFRequest['calculatorData'],
   email: string,
-  apiToken: string,
   phone?: string,
   company?: string,
   attribution?: ROIPDFRequest['attribution']
-): Promise<number | null> {
-  try {
+): string {
     const mode = calculatorData.isLeasing ? 'Leasing' : 'Achat';
-    const title = `ROI Calculator - ${calculatorData.machineNom} - ${email}`;
 
     const contactLines = [`👤 Contact : ${email}`];
     if (phone) contactLines.push(`📱 Téléphone : ${phone}`);
@@ -173,43 +112,7 @@ async function createPipedriveDeal(
       `Coût machine/an : ${calculatorData.coutTotalMachine.toLocaleString('fr-FR')}€`
     );
 
-    const res = await fetch(
-      `https://api.pipedrive.com/v1/deals?api_token=${apiToken}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title,
-          person_id: personId,
-          pipeline_id: PIPEDRIVE_PIPELINE_ID,
-          stage_id: PIPEDRIVE_STAGE_ID,
-        }),
-      }
-    );
-    const data = await res.json();
-    const dealId = data.data?.id;
-
-    if (dealId) {
-      // Add note with all calculator data
-      await fetch(
-        `https://api.pipedrive.com/v1/notes?api_token=${apiToken}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            deal_id: dealId,
-            content: noteLines.join('\n'),
-            pinned_to_deal_flag: true,
-          }),
-        }
-      );
-    }
-
-    return dealId;
-  } catch (error) {
-    console.error('Pipedrive deal creation error:', error);
-    return null;
-  }
+    return noteLines.join('\n');
 }
 
 export async function POST(request: NextRequest) {
@@ -336,9 +239,13 @@ export async function POST(request: NextRequest) {
     const contactIdentifier = email || phone || 'unknown';
 
     if (PIPEDRIVE_API_TOKEN) {
-      const personId = await createPipedrivePerson(PIPEDRIVE_API_TOKEN, email, phone, company);
+      const personId = await findOrCreatePipedrivePerson(PIPEDRIVE_API_TOKEN, { email, phone, company });
       if (personId) {
-        const dealId = await createPipedriveDeal(personId, calculatorData, contactIdentifier, PIPEDRIVE_API_TOKEN, phone, company, attribution);
+        const dealId = await createPipedriveDealWithNote(PIPEDRIVE_API_TOKEN, {
+          personId,
+          title: `ROI Calculator - ${calculatorData.machineNom} - ${contactIdentifier}`,
+          noteContent: buildDealNote(calculatorData, contactIdentifier, phone, company, attribution),
+        });
         pipedriveResult = { personId, dealId };
       }
     }
