@@ -36,6 +36,9 @@ interface Step3ResultsProps {
 const LABELS = {
   fr: {
     methodology: 'Méthode de calcul',
+    surcapaciteTitle: 'Vérifiez votre volume annuel',
+    surcapaciteBody: (capacite: number, volume: number) =>
+      `Avec vos réponses, vos équipes peuvent produire environ ${Math.round(capacite).toLocaleString('fr-FR')} produits/an, mais votre objectif saisi est de ${volume.toLocaleString('fr-FR')} produits/an. Si vous avez indiqué un volume mensuel, corrigez-le en volume annuel : les résultats ci-dessous en dépendent directement.`,
     capacityWarningTitle: 'Volume supérieur à la capacité de cette machine',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
       `La ${machineName} peut produire jusqu'à ${capaciteMax.toLocaleString('fr-FR')} produits/an (${Math.round(capaciteMax / 230)} produits/jour × 230 jours). Votre besoin de ${demande.toLocaleString('fr-FR')} produits/an dépasse cette capacité.`,
@@ -47,6 +50,9 @@ const LABELS = {
   },
   en: {
     methodology: 'Calculation method',
+    surcapaciteTitle: 'Check your annual volume',
+    surcapaciteBody: (capacite: number, volume: number) =>
+      `Based on your answers, your team can produce about ${Math.round(capacite).toLocaleString('en-US')} products/year, yet your stated goal is ${volume.toLocaleString('en-US')} products/year. If you entered a monthly volume, correct it to an annual volume: the results below depend directly on it.`,
     capacityWarningTitle: 'Volume exceeds this machine\'s capacity',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
       `The ${machineName} can produce up to ${capaciteMax.toLocaleString('en-US')} products/year (${Math.round(capaciteMax / 230)} products/day × 230 days). Your need of ${demande.toLocaleString('en-US')} products/year exceeds this capacity.`,
@@ -58,6 +64,9 @@ const LABELS = {
   },
   'de-ch': {
     methodology: 'Berechnungsmethode',
+    surcapaciteTitle: 'Überprüfen Sie Ihr Jahresvolumen',
+    surcapaciteBody: (capacite: number, volume: number) =>
+      `Gemäss Ihren Angaben kann Ihr Team etwa ${Math.round(capacite).toLocaleString('de-CH')} Produkte/Jahr produzieren, Ihr angegebenes Ziel liegt jedoch bei ${volume.toLocaleString('de-CH')} Produkte/Jahr. Falls Sie ein Monatsvolumen eingegeben haben, korrigieren Sie es auf ein Jahresvolumen: Die nachstehenden Ergebnisse hängen direkt davon ab.`,
     capacityWarningTitle: 'Volumen übersteigt die Kapazität dieser Maschine',
     capacityWarningBody: (machineName: string, capaciteMax: number, demande: number) =>
       `Die ${machineName} kann bis zu ${capaciteMax.toLocaleString('de-CH')} Produkte/Jahr produzieren (${Math.round(capaciteMax / 230)} Produkte/Tag × 230 Tage). Ihr Bedarf von ${demande.toLocaleString('de-CH')} Produkte/Jahr übersteigt diese Kapazität.`,
@@ -117,6 +126,8 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           machineNom: results.machine.nom,
           machineId: results.machine.id,
           economieAnnuelle: results.economieAnnuelle,
+          tempsLibereJours: Math.round(results.tempsLibereJours),
+          valeurTempsLibere: Math.round(results.valeurTempsLibere),
           roi5ans: results.roi5ans,
           breakEvenMois: results.breakEvenMois,
           economie5ans: results.economie5ans,
@@ -150,6 +161,23 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
           <div data-pdf-section="hero">
             <HeroMetrics results={results} locale={locale} />
           </div>
+
+          {/* Alerte saisie suspecte : capacité interne déclarée très supérieure à l'objectif */}
+          {results.inputsSurcapacite && (
+            <div className="bg-sky-50 border-2 border-sky-300 rounded-xl p-5 mb-6" data-pdf-exclude>
+              <div className="flex gap-3">
+                <Info className="w-6 h-6 text-sky-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-heading font-bold text-sky-800 mb-2">
+                    {t.surcapaciteTitle}
+                  </h4>
+                  <p className="text-sm text-sky-700">
+                    {t.surcapaciteBody(results.capaciteAnnuelleActuelle, inputs.photosAnnuelles)}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Alerte capacité insuffisante */}
           {results.capaciteInsuffisante && (

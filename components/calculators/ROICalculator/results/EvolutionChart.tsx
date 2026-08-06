@@ -47,6 +47,7 @@ interface EvolutionChartProps {
 const LABELS = {
   fr: {
     title: 'Évolution des Coûts sur 5 Ans',
+    titleLeasing: (mois: number) => `Évolution des Coûts sur la Durée du Contrat (${mois} mois)`,
     current: 'Situation actuelle',
     orbitvu: 'Avec PackshotCreator',
     breakeven: 'Break-even',
@@ -57,6 +58,7 @@ const LABELS = {
   },
   en: {
     title: 'Cost Evolution Over 5 Years',
+    titleLeasing: (mois: number) => `Cost Evolution Over the Contract Duration (${mois} months)`,
     current: 'Current situation',
     orbitvu: 'With PackshotCreator',
     breakeven: 'Break-even',
@@ -67,6 +69,7 @@ const LABELS = {
   },
   'de-ch': {
     title: 'Kostenentwicklung über 5 Jahre',
+    titleLeasing: (mois: number) => `Kostenentwicklung über die Vertragslaufzeit (${mois} Monate)`,
     current: 'Aktuelle Situation',
     orbitvu: 'Mit PackshotCreator',
     breakeven: 'Break-even',
@@ -84,7 +87,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
       <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-6">
-        {t.title}
+        {results.isLeasing ? t.titleLeasing(results.dureeAnalyseMois) : t.title}
       </h3>
 
       <div className="h-80">

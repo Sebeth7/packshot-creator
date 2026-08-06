@@ -75,7 +75,8 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
   }
 
   const breakEvenMonths = Math.round(results.breakEvenMois);
-  const progressPercent = Math.min((breakEvenMonths / 60) * 100, 100);
+  const dureeMois = results.dureeAnalyseMois;
+  const progressPercent = Math.min((breakEvenMonths / dureeMois) * 100, 100);
 
   const isLeasing = results.isLeasing;
 
@@ -102,14 +103,12 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
       icon: TrendingUp,
       label: t.year1,
       description: isLeasing ? t.year1DescLeasing : t.year1Desc,
-      value: results.roiAn1 > 0
-        ? `+${formatEuro(isLeasing
-            ? results.economieAnnuelle + results.avantageFiscalAnnuel
-            : results.economieOperationnelle + results.avantageFiscalAnnuel - results.machine.prix)}`
+      value: results.economieAn1 > 0
+        ? `+${formatEuro(results.economieAn1)}`
         : '-',
-      position: (12 / 60) * 100,
-      color: results.roiAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-400',
-      textColor: results.roiAn1 > 0 ? 'text-purple-500' : 'text-future-dusk-500',
+      position: (12 / dureeMois) * 100,
+      color: results.economieAn1 > 0 ? 'bg-purple-500' : 'bg-neutral-400',
+      textColor: results.economieAn1 > 0 ? 'text-purple-500' : 'text-future-dusk-500',
     },
     {
       icon: Rocket,
@@ -174,13 +173,11 @@ export default function BreakEvenTimeline({ results, locale }: BreakEvenTimeline
         </div>
       </div>
 
-      {/* Indicateur de mois */}
+      {/* Indicateur de mois — gradué sur la durée réelle d'analyse (contrat ou 5 ans) */}
       <div className="mt-8 flex justify-between text-xs text-future-dusk-500">
-        <span>{t.month} 0</span>
-        <span>{t.month} 15</span>
-        <span>{t.month} 30</span>
-        <span>{t.month} 45</span>
-        <span>{t.month} 60</span>
+        {[0, 0.25, 0.5, 0.75, 1].map((frac) => (
+          <span key={frac}>{t.month} {Math.round(dureeMois * frac)}</span>
+        ))}
       </div>
     </div>
   );

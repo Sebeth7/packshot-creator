@@ -27,6 +27,8 @@ interface ROIPDFRequest {
     machineId: string;
     // Résultats
     economieAnnuelle: number;
+    tempsLibereJours?: number;
+    valeurTempsLibere?: number;
     roi5ans: number;
     breakEvenMois: number | null;
     economie5ans: number;
@@ -160,9 +162,12 @@ async function createPipedriveDeal(
       ``,
       `--- RÉSULTATS ROI ---`,
       `Rentable : ${calculatorData.isRentable ? 'Oui' : 'Non'}`,
-      `Économie annuelle : ${calculatorData.economieAnnuelle.toLocaleString('fr-FR')}€`,
-      `ROI 5 ans : ${calculatorData.roi5ans.toLocaleString('fr-FR')}%`,
-      `Économie sur 5 ans : ${calculatorData.economie5ans.toLocaleString('fr-FR')}€`,
+      `Économie directe annuelle (cash) : ${calculatorData.economieAnnuelle.toLocaleString('fr-FR')}€`,
+      ...(calculatorData.tempsLibereJours != null
+        ? [`Temps interne libéré : ${calculatorData.tempsLibereJours.toLocaleString('fr-FR')} jours/an (≈ ${(calculatorData.valeurTempsLibere ?? 0).toLocaleString('fr-FR')}€/an)`]
+        : []),
+      `ROI (durée d'analyse) : ${calculatorData.roi5ans.toLocaleString('fr-FR')}%`,
+      `Économie nette cumulée : ${calculatorData.economie5ans.toLocaleString('fr-FR')}€`,
       `Break-even : ${calculatorData.breakEvenMois ? `${calculatorData.breakEvenMois} mois` : 'N/A'}`,
       `Coût actuel/an : ${calculatorData.coutTotalActuel.toLocaleString('fr-FR')}€`,
       `Coût machine/an : ${calculatorData.coutTotalMachine.toLocaleString('fr-FR')}€`
@@ -242,8 +247,9 @@ export async function POST(request: NextRequest) {
               <p>Merci d'avoir utilisé notre calculateur ROI pour le studio <strong>${calculatorData.machineNom}</strong>.</p>
               <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="margin-top: 0; color: #333;">Résumé</h3>
-                <p>💰 Économie annuelle estimée : <strong>${calculatorData.economieAnnuelle.toLocaleString('fr-FR')}€</strong></p>
-                <p>📈 ROI sur 5 ans : <strong>${calculatorData.roi5ans.toLocaleString('fr-FR')}%</strong></p>
+                ${calculatorData.economieAnnuelle > 0 ? `<p>💰 Économie directe annuelle estimée : <strong>${Math.round(calculatorData.economieAnnuelle).toLocaleString('fr-FR')}€</strong></p>` : ''}
+                ${calculatorData.tempsLibereJours ? `<p>🕐 Temps interne libéré : <strong>${calculatorData.tempsLibereJours.toLocaleString('fr-FR')} jours/an</strong></p>` : ''}
+                ${calculatorData.economieAnnuelle > 0 ? `<p>📈 ROI estimé : <strong>${Math.round(calculatorData.roi5ans).toLocaleString('fr-FR')}%</strong></p>` : ''}
                 ${calculatorData.breakEvenMois ? `<p>⏱ Retour sur investissement en <strong>${calculatorData.breakEvenMois} mois</strong></p>` : ''}
               </div>
               <p>Pour aller plus loin, notre équipe se tient à votre disposition.</p>
@@ -263,8 +269,9 @@ export async function POST(request: NextRequest) {
               <p>Thank you for using our ROI calculator for the <strong>${calculatorData.machineNom}</strong> studio.</p>
               <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="margin-top: 0; color: #333;">Summary</h3>
-                <p>💰 Estimated annual savings: <strong>€${calculatorData.economieAnnuelle.toLocaleString('en-US')}</strong></p>
-                <p>📈 5-year ROI: <strong>${calculatorData.roi5ans.toLocaleString('en-US')}%</strong></p>
+                ${calculatorData.economieAnnuelle > 0 ? `<p>💰 Estimated direct annual savings: <strong>€${Math.round(calculatorData.economieAnnuelle).toLocaleString('en-US')}</strong></p>` : ''}
+                ${calculatorData.tempsLibereJours ? `<p>🕐 In-house time freed up: <strong>${calculatorData.tempsLibereJours.toLocaleString('en-US')} days/year</strong></p>` : ''}
+                ${calculatorData.economieAnnuelle > 0 ? `<p>📈 Estimated ROI: <strong>${Math.round(calculatorData.roi5ans).toLocaleString('en-US')}%</strong></p>` : ''}
                 ${calculatorData.breakEvenMois ? `<p>⏱ Break-even in <strong>${calculatorData.breakEvenMois} months</strong></p>` : ''}
               </div>
               <p>To take the next step, our team is at your disposal.</p>

@@ -17,26 +17,26 @@ const CONTENT = {
     sections: [
       {
         icon: Calculator,
-        title: 'Coût de votre solution actuelle',
-        body: 'Nous calculons le coût annuel de votre production en additionnant : le salaire chargé de vos opérateurs (au prorata du temps consacré à la photographie produit), votre budget équipement annuel, et vos éventuels prestataires externes.',
-      },
-      {
-        icon: TrendingDown,
-        title: 'Coût avec un studio PackshotCreator',
-        body: 'Le temps opérateur avec la machine est calculé en fonction de la capacité réelle de production de chaque modèle (produits/jour) rapportée à votre volume annuel. Plus la machine est productive, moins elle mobilise vos équipes.',
+        title: 'Économie directe (trésorerie)',
+        body: 'L\'économie directe ne compte que les dépenses réellement supprimées par le studio : vos prestataires externes et votre budget équipement annuel, moins le coût de la machine (loyers en leasing, ou amortissement, maintenance et consommables en achat). Les salaires de vos équipes n\'y sont volontairement pas inclus : ils ne disparaissent pas avec l\'arrivée du studio.',
       },
       {
         icon: Clock,
+        title: 'Temps interne libéré',
+        body: 'Le temps que vos opérateurs consacrent aujourd\'hui à la photographie produit est comparé au temps nécessaire avec le studio, calculé d\'après la capacité réelle de chaque modèle (produits/jour) rapportée à votre volume annuel. Le résultat est exprimé en jours par an, avec une valorisation indicative au coût employeur : c\'est du temps de travail réaffectable à d\'autres missions, pas une économie de trésorerie.',
+      },
+      {
+        icon: TrendingDown,
         title: 'Retour sur investissement (break-even)',
-        body: 'Le break-even indique le mois à partir duquel vos économies cumulées dépassent le prix d\'achat de la machine. Chaque mois, la différence entre votre coût actuel et le coût opérationnel avec machine s\'accumule jusqu\'à couvrir l\'investissement initial. Ce calcul intègre l\'avantage fiscal lié à l\'amortissement de la machine (Impôt sur les Sociétés au taux de 25%).',
+        body: 'Le break-even est calculé en trésorerie pure : il indique le mois à partir duquel les dépenses supprimées cumulées couvrent le prix d\'achat de la machine (en leasing, dès le premier mois si les loyers sont inférieurs aux coûts supprimés). La valorisation du temps libéré n\'y est pas comptée.',
       },
       {
         icon: Target,
-        title: 'ROI sur 1 an et 5 ans',
-        body: 'Le ROI compare vos économies réelles au prix de la machine. Il intègre : l\'économie opérationnelle (réduction du temps opérateur et suppression des coûts externes), ainsi que l\'avantage fiscal IS à 25% sur l\'amortissement de la machine (sur 5 ans). Sur 1 an : économies totales moins le prix d\'achat. Sur 5 ans : économies cumulées sur la durée d\'amortissement.',
+        title: 'ROI',
+        body: 'Le ROI compare l\'économie directe nette cumulée au coût total de la machine : sur la durée du contrat en leasing, sur 5 ans (durée d\'amortissement) en achat. Tous les montants sont présentés avant impôt ; loyers de leasing et amortissement restent par ailleurs déductibles du résultat imposable.',
       },
     ],
-    note: 'Ces calculs sont des estimations basées sur vos données et un taux d\'IS de 25%. Contactez notre équipe pour une analyse personnalisée adaptée à votre situation fiscale.',
+    note: 'Ces calculs sont des estimations basées sur vos données, présentées avant impôt. Contactez notre équipe pour une analyse personnalisée adaptée à votre situation.',
   },
   en: {
     title: 'How are your results calculated?',
@@ -44,26 +44,26 @@ const CONTENT = {
     sections: [
       {
         icon: Calculator,
-        title: 'Cost of your current solution',
-        body: 'We calculate the annual cost of your production by adding: the loaded salary of your operators (proportional to time spent on product photography), your annual equipment budget, and any external providers.',
-      },
-      {
-        icon: TrendingDown,
-        title: 'Cost with a PackshotCreator studio',
-        body: 'Operator time with the machine is calculated based on the actual production capacity of each model (products/day) relative to your annual volume. The more productive the machine, the less it ties up your teams.',
+        title: 'Direct savings (cash)',
+        body: 'Direct savings only count expenses actually eliminated by the studio: your external providers and annual equipment budget, minus the machine cost (lease payments in leasing, or depreciation, maintenance and consumables when purchasing). Your team\'s salaries are deliberately excluded: they do not disappear when the studio arrives.',
       },
       {
         icon: Clock,
+        title: 'In-house time freed up',
+        body: 'The time your operators currently spend on product photography is compared to the time needed with the studio, based on each model\'s actual production capacity (products/day) relative to your annual volume. The result is expressed in days per year, with an indicative valuation at employer cost: it is working time that can be redeployed to other tasks, not a cash saving.',
+      },
+      {
+        icon: TrendingDown,
         title: 'Return on investment (break-even)',
-        body: 'The break-even point shows the month when your cumulative savings exceed the machine\'s purchase price. Each month, the difference between your current cost and the operational cost with the machine accumulates until it covers the initial investment. This calculation includes the tax benefit from machine depreciation (Corporate Tax at 25%).',
+        body: 'Break-even is calculated on pure cash flow: it shows the month when cumulative eliminated expenses cover the machine\'s purchase price (in leasing, from month one if lease payments are lower than eliminated costs). The freed-time valuation is not counted here.',
       },
       {
         icon: Target,
-        title: 'ROI over 1 year and 5 years',
-        body: 'ROI compares your actual savings to the machine price. It includes: operational savings (reduced operator time and eliminated external costs), plus the 25% Corporate Tax benefit on machine depreciation (over 5 years). Over 1 year: total savings minus purchase price. Over 5 years: cumulative savings over the full depreciation period.',
+        title: 'ROI',
+        body: 'ROI compares cumulative net direct savings to the total machine cost: over the contract duration in leasing, over 5 years (depreciation period) when purchasing. All amounts are shown pre-tax; lease payments and depreciation remain tax-deductible.',
       },
     ],
-    note: 'These calculations are estimates based on your data and a 25% corporate tax rate. Contact our team for a personalized analysis adapted to your tax situation.',
+    note: 'These calculations are estimates based on your data, shown pre-tax. Contact our team for a personalized analysis adapted to your situation.',
   },
   'de-ch': {
     title: 'Wie werden Ihre Ergebnisse berechnet?',
@@ -71,26 +71,26 @@ const CONTENT = {
     sections: [
       {
         icon: Calculator,
-        title: 'Kosten Ihrer aktuellen Lösung',
-        body: 'Wir berechnen die jährlichen Kosten Ihrer Produktion, indem wir Folgendes addieren: das Bruttogehalt Ihrer Mitarbeitenden (anteilig zur Zeit, die für die Produktfotografie aufgewendet wird), Ihr jährliches Ausrüstungsbudget sowie allfällige externe Dienstleister.',
-      },
-      {
-        icon: TrendingDown,
-        title: 'Kosten mit einem PackshotCreator-Studio',
-        body: 'Die Bedienzeit mit der Maschine wird auf Basis der realen Produktionskapazität jedes Modells (Produkte/Tag) im Verhältnis zu Ihrem Jahresvolumen berechnet. Je produktiver die Maschine, desto weniger bindet sie Ihre Teams.',
+        title: 'Direkte Einsparung (Liquidität)',
+        body: 'Die direkte Einsparung zählt nur Ausgaben, die durch das Studio tatsächlich wegfallen: Ihre externen Dienstleister und Ihr jährliches Ausrüstungsbudget, abzüglich der Maschinenkosten (Leasingraten im Leasing bzw. Abschreibung, Wartung und Verbrauchsmaterial beim Kauf). Die Gehälter Ihrer Teams sind bewusst nicht enthalten: Sie fallen mit der Ankunft des Studios nicht weg.',
       },
       {
         icon: Clock,
+        title: 'Freigesetzte interne Zeit',
+        body: 'Die Zeit, die Ihre Mitarbeitenden heute für die Produktfotografie aufwenden, wird mit der benötigten Zeit mit dem Studio verglichen, basierend auf der realen Produktionskapazität jedes Modells (Produkte/Tag) im Verhältnis zu Ihrem Jahresvolumen. Das Ergebnis wird in Tagen pro Jahr ausgedrückt, mit einer indikativen Bewertung zu Arbeitgeberkosten: Es ist umverteilbare Arbeitszeit, keine Liquiditätseinsparung.',
+      },
+      {
+        icon: TrendingDown,
         title: 'Rentabilität der Investition (Break-even)',
-        body: 'Der Break-even zeigt den Monat an, ab dem Ihre kumulierten Einsparungen den Kaufpreis der Maschine übersteigen. Jeden Monat summiert sich die Differenz zwischen Ihren aktuellen Kosten und den Betriebskosten mit der Maschine, bis die anfängliche Investition gedeckt ist. Diese Berechnung berücksichtigt den steuerlichen Vorteil aus der Abschreibung der Maschine (Unternehmenssteuer zum Satz von 25%).',
+        body: 'Der Break-even wird rein liquiditätsbasiert berechnet: Er zeigt den Monat, ab dem die kumulierten wegfallenden Ausgaben den Kaufpreis der Maschine decken (im Leasing ab dem ersten Monat, wenn die Raten unter den wegfallenden Kosten liegen). Die Bewertung der freigesetzten Zeit fliesst hier nicht ein.',
       },
       {
         icon: Target,
-        title: 'ROI über 1 Jahr und 5 Jahre',
-        body: 'Der ROI vergleicht Ihre realen Einsparungen mit dem Maschinenpreis. Er umfasst: die betrieblichen Einsparungen (Reduktion der Bedienzeit und Wegfall externer Kosten) sowie den steuerlichen Vorteil von 25% Unternehmenssteuer auf die Abschreibung der Maschine (über 5 Jahre). Über 1 Jahr: Gesamteinsparungen abzüglich Kaufpreis. Über 5 Jahre: kumulierte Einsparungen über die Abschreibungsdauer.',
+        title: 'ROI',
+        body: 'Der ROI vergleicht die kumulierte direkte Netto-Einsparung mit den Gesamtkosten der Maschine: über die Vertragslaufzeit im Leasing, über 5 Jahre (Abschreibungsdauer) beim Kauf. Alle Beträge werden vor Steuern ausgewiesen; Leasingraten und Abschreibung bleiben steuerlich absetzbar.',
       },
     ],
-    note: 'Diese Berechnungen sind Schätzungen auf Basis Ihrer Daten und eines Unternehmenssteuersatzes von 25%. Kontaktieren Sie unser Team für eine persönliche Analyse, die auf Ihre steuerliche Situation abgestimmt ist.',
+    note: 'Diese Berechnungen sind Schätzungen auf Basis Ihrer Daten, ausgewiesen vor Steuern. Kontaktieren Sie unser Team für eine persönliche Analyse, die auf Ihre Situation abgestimmt ist.',
   },
 };
 

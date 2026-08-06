@@ -144,12 +144,12 @@ export interface SelectionCriteria {
 // Résultats des calculs
 export interface CalculationResults {
   // Situation actuelle
-  coutEmployeurAnnuel: number;
+  coutEmployeurAnnuel: number;       // Salaires internes déclarés (valorisés en temps, pas en cash)
   coutEquipementAnnuel: number;
   coutExterneAnnuel: number;
+  coutCashActuel: number;            // Décaissements supprimables : équipement + prestataires externes
   investissementInitialMontant: number; // Montant cash de l'investissement initial envisagé (mois 0)
-  coutTotalActuel: number;
-  coutParPhotoActuel: number;
+  coutTotalActuel: number;           // Informatif (CRM) — inclut les salaires, jamais présenté comme économisable
   tempsParPhotoHeures: number;
   joursProductionActuels: number;
   capaciteAnnuelleActuelle: number;
@@ -161,21 +161,22 @@ export interface CalculationResults {
   tcoAnnuel: number;
   coutOperateurMachine: number;
   coutTotalMachine: number;
-  coutParPhotoMachine: number;
   tempsParPhotoMachine: number;
   joursProductionMachine: number;
   capaciteAnnuelleMachine: number;
 
   // Comparaison
-  economieOperationnelle: number;    // Économie cash-flow annuelle (hors amortissement)
-  economieAnnuelle: number;          // Économie comptable annuelle (avec amortissement)
-  avantageFiscalAnnuel: number;      // Économie d'IS liée à l'amortissement (taux 25%)
-  breakEvenMois: number | null;      // null si pas rentable
+  economieAnnuelle: number;          // Économie directe cash avant impôt : coutCashActuel - tcoAnnuel
+  tempsLibereJours: number;          // Jours-homme internes libérés par an
+  valeurTempsLibere: number;         // Valorisation indicative du temps libéré (coût employeur) — pas du cash
+  gainTotalAnnuel: number;           // economieAnnuelle + valeurTempsLibere (pilote isRentable)
+  avantageFiscalAnnuel: number;      // Informatif : déductibilité loyers/amortissement (IS 25%)
+  breakEvenMois: number | null;      // Break-even trésorerie, null si le cash seul ne couvre pas
+  dureeAnalyseMois: number;          // Durée du contrat en leasing, 60 mois en achat
   roiAn1: number;
-  roi5ans: number;
-  economie5ans: number;
-  economieParPhoto: number;
-  economieParPhotoPourcent: number;
+  economieAn1: number;               // Économie cash nette année 1
+  roi5ans: number;                   // ROI cash sur dureeAnalyseMois
+  economie5ans: number;              // Économie cash nette cumulée sur dureeAnalyseMois
   joursEconomises: number;
   gainTempsPourcent: number;
   capaciteResiduelle: number;
@@ -184,6 +185,7 @@ export interface CalculationResults {
   // Flags
   isRentable: boolean;
   capaciteInsuffisante: boolean;       // true si le volume dépasse la capacité max de la machine
+  inputsSurcapacite: boolean;          // true si la capacité interne déclarée ≥ 2× l'objectif (saisie suspecte)
   isLeasing: boolean;                  // true si calcul en mode leasing
 }
 
