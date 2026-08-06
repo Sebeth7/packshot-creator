@@ -118,7 +118,9 @@ export const MACHINES: Machine[] = [
     capaciteJour: 250,
     tailleMax: '60×40×70 cm',
     poidsMax: '25 kg',
-    tailleCategories: ['grand'],
+    // 'moyen' ajouté 07/08 (Seb) : la chambre 60×40×70 couvre les produits
+    // 30-60 cm — la XL G2 doit apparaître dans les recommandations 'moyen'.
+    tailleCategories: ['moyen', 'grand'],
     useCases: ['Électroménager', 'Industrie', 'Automobile', 'Mode', 'Électronique'],
     maintenanceAnnuelle: 0,
     consommablesAnnuels: 800,

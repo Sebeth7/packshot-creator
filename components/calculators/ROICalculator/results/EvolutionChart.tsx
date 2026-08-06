@@ -42,6 +42,9 @@ function LeasingTooltip({ active, payload, label, locale }: LeasingTooltipProps)
 interface EvolutionChartProps {
   results: CalculationResults;
   locale: 'fr' | 'en' | 'de-ch';
+  /** false pour les rendus capturés (export PDF) : l'animation d'entrée
+   *  laisse des courbes invisibles quand le graphique est monté hors écran */
+  animate?: boolean;
 }
 
 const LABELS = {
@@ -80,7 +83,7 @@ const LABELS = {
   },
 };
 
-export default function EvolutionChart({ results, locale }: EvolutionChartProps) {
+export default function EvolutionChart({ results, locale, animate = true }: EvolutionChartProps) {
   const t = LABELS[locale] ?? LABELS.en;
   const data = generateChartData(results);
 
@@ -161,6 +164,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorActuel)"
+              isAnimationActive={animate}
             />
 
             <Area
@@ -171,6 +175,7 @@ export default function EvolutionChart({ results, locale }: EvolutionChartProps)
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorOrbitvu)"
+              isAnimationActive={animate}
             />
           </AreaChart>
         </ResponsiveContainer>

@@ -98,9 +98,15 @@ export function buildHypotheses(pub: PublicRoiResults): Hypothese[] {
     { label: "Durée d'analyse", value: `${pub.dureeAnalyseMois} mois` }
   );
   if (pub.isLeasing && pub.machine.tcoAnnuel !== null) {
+    // Mensualité issue de la règle catalogue (prix × 1,3 ÷ nb mensualités) :
+    // toujours étiquetée comme estimation. Une mensualité fournie par le
+    // client arrive en prixSource 'fourni'.
+    const estimation = pub.machine.prixSource === 'catalogue';
     list.push({
       label: 'Leasing',
-      value: `${Math.round(pub.machine.tcoAnnuel / 12).toLocaleString('fr-FR')} €/mois sur ${pub.machine.nbMois} mois`,
+      value: `${Math.round(pub.machine.tcoAnnuel / 12).toLocaleString('fr-FR')} €/mois sur ${pub.machine.nbMois} mois${
+        estimation ? ' — estimation indicative, à valider par notre service commercial' : ''
+      }`,
     });
   }
   return list;

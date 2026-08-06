@@ -18,7 +18,13 @@ export default function CalculateurROIPage() {
   // FR : conseiller ROI conversationnel (remplacement du wizard, GO Seb 06/08).
   // EN/DE-CH : wizard conservé jusqu'à l'extension multilingue du chat.
   if (locale === 'fr') {
-    return <RoiPublicChat />;
+    // Le header sticky du site fait 4rem (h-16) : l'app cale sa hauteur dessus
+    // pour garder la barre de saisie visible sans défilement.
+    return (
+      <div className="[--roi-offset:4rem]">
+        <RoiPublicChat />
+      </div>
+    );
   }
 
   return (

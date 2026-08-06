@@ -131,3 +131,57 @@ describe('Réhydratation affichage public (statu quo wizard)', () => {
     expect(labels).toContain("Durée d'analyse 60 mois");
   });
 });
+
+describe('Leasing — règle prix × 1,3 ÷ nb mensualités (Seb 07/08)', () => {
+  const leasing36 = {
+    mode: 'vs-existant' as const,
+    volumeAnnuel: 5000,
+    machine: {
+      source: 'catalogue' as const,
+      machineId: m1.id,
+      mode: 'leasing' as const,
+      nbMois: 36,
+    },
+    cashLines: [],
+    timeLines: [],
+  };
+
+  it('la mensualité estimée suit la durée demandée (arrondie aux 5 € sup.)', () => {
+    const r = computeRoi(leasing36);
+    const attendu = Math.ceil((m1.prix * 1.3) / 36 / 5) * 5;
+    expect(r.machine.tcoAnnuel).toBe(attendu * 12);
+    expect(r.machine.nbMois).toBe(36);
+  });
+
+  it('hypothèse leasing catalogue étiquetée « estimation à valider »', () => {
+    const pub = filterResultsForPublic(computeRoi(leasing36));
+    const leasingHyp = buildHypotheses(pub).find((h) => h.label === 'Leasing');
+    expect(leasingHyp?.value).toContain('36 mois');
+    expect(leasingHyp?.value).toContain('estimation indicative');
+    expect(leasingHyp?.value).toContain('service commercial');
+  });
+
+  it('mensualité FOURNIE par le client : pas de mention estimation', () => {
+    const pub = filterResultsForPublic(
+      computeRoi({
+        ...leasing36,
+        machine: { source: 'fourni', mode: 'leasing', mensualite: 710, nbMois: 36 },
+      })
+    );
+    const leasingHyp = buildHypotheses(pub).find((h) => h.label === 'Leasing');
+    expect(leasingHyp?.value).toContain('710');
+    expect(leasingHyp?.value).not.toContain('estimation');
+  });
+});
+
+describe('Éligibilité XL G2 en taille moyenne (Seb 07/08)', () => {
+  it('compare_machines liste la XL G2 pour des produits 30-60 cm', () => {
+    const r = executeTool(
+      'compare_machines',
+      { volumeAnnuel: 3000, tailleProduitsCategory: 'moyen' },
+      'public'
+    );
+    expect(r.isError).toBe(false);
+    expect(r.content).toContain('Alphashot XL G2');
+  });
+});

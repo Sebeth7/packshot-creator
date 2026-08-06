@@ -34,7 +34,6 @@ const TOOL_LABELS: Record<string, string> = {
 const EXAMPLES = [
   'Nous produisons 3 000 photos par an avec un prestataire à 25 €/photo, et une personne en interne prépare les produits.',
   'Nous lançons une marque de cosmétiques : 800 produits à photographier par an, rien d\'existant.',
-  'Tout est sous-traité aujourd\'hui : 4 500 €/mois de prestataire, aucune photo en interne.',
 ];
 
 export default function RoiPublicChat() {
@@ -48,15 +47,21 @@ export default function RoiPublicChat() {
   const [toolStatus, setToolStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     captureAttribution();
   }, []);
 
+  // Suivi du fil : on ne fait défiler QUE le conteneur de messages (jamais la
+  // page entière), et seulement si l'utilisateur est déjà proche du bas — pas
+  // de saut forcé quand il relit le début de la conversation.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const el = listRef.current;
+    if (!el || el.scrollHeight <= el.clientHeight) return;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 250;
+    if (nearBottom) el.scrollTop = el.scrollHeight;
   }, [uiMessages, toolStatus]);
 
   async function send(rawText?: string) {
@@ -185,7 +190,10 @@ export default function RoiPublicChat() {
   const isCalcRunning = toolStatus === TOOL_LABELS.calculate;
 
   return (
-    <main className="min-h-screen flex flex-col max-w-7xl mx-auto lg:h-screen">
+    // --roi-offset : hauteur du chrome au-dessus de l'app (header sticky du
+    // site sur /fr/calculateur-roi) — garantit la barre de saisie visible
+    // sans défilement. 0 par défaut (pages standalone).
+    <main className="min-h-[calc(100dvh-var(--roi-offset,0px))] flex flex-col max-w-7xl mx-auto lg:h-[calc(100dvh-var(--roi-offset,0px))]">
       {/* En-tête : badge permanent de transparence (UX §3) */}
       <header className="flex items-center justify-between gap-3 py-4 px-4 border-b border-neutral-200">
         <div className="min-w-0">
@@ -211,7 +219,7 @@ export default function RoiPublicChat() {
       <div className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden">
         {/* ===== Volet conversation (~60 %) ===== */}
         <section className="flex-1 lg:w-3/5 flex flex-col lg:overflow-hidden" aria-label="Conversation">
-          <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+          <div ref={listRef} className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
             {uiMessages.length === 0 && (
               <div className="max-w-xl mx-auto text-center mt-10 space-y-5">
                 <p className="text-2xl font-heading font-bold text-future-dusk-900">
@@ -222,15 +230,16 @@ export default function RoiPublicChat() {
                   temps libéré, retour sur investissement — à votre rythme, en quelques questions.
                 </p>
                 <div className="space-y-2 text-left">
+                  <p className="text-xs font-medium text-future-dusk-400 uppercase tracking-wide">
+                    Exemples de description
+                  </p>
                   {EXAMPLES.map((ex) => (
-                    <button
+                    <p
                       key={ex}
-                      type="button"
-                      onClick={() => send(ex)}
-                      className="w-full text-left text-sm text-future-dusk-700 bg-white border border-neutral-200 hover:border-very-peri-400 hover:bg-very-peri-50 rounded-xl px-4 py-3 transition-colors"
+                      className="text-sm italic text-future-dusk-500 bg-white border border-neutral-100 rounded-xl px-4 py-3"
                     >
-                      {ex}
-                    </button>
+                      « {ex} »
+                    </p>
                   ))}
                 </div>
                 <p className="text-xs text-future-dusk-400 leading-relaxed">
@@ -302,7 +311,6 @@ export default function RoiPublicChat() {
             {error && (
               <div className="bg-red-50 text-red-700 text-sm rounded-lg p-3">{error}</div>
             )}
-            <div ref={bottomRef} />
           </div>
 
           {/* Tiroir dossier mobile (UX §2) */}
