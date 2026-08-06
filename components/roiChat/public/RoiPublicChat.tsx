@@ -40,8 +40,9 @@ export default function RoiPublicChat() {
   const [uiMessages, setUiMessages] = useState<UiMessage[]>([]);
   const [apiMessages, setApiMessages] = useState<unknown[]>([]);
   const [dossier, setDossier] = useState<RoiPublicDossier>({});
-  const [results, setResults] = useState<PublicRoiResults | null>(null);
-  const [calcCount, setCalcCount] = useState(0);
+  // Études épinglées : une par modèle étudié (arbitrage entre machines
+  // possible) — un recalcul du même modèle remplace son étude, max 3.
+  const [studies, setStudies] = useState<PublicRoiResults[]>([]);
   const [input, setInput] = useState('');
   const [streaming, setStreaming] = useState(false);
   const [toolStatus, setToolStatus] = useState<string | null>(null);
@@ -127,10 +128,17 @@ export default function RoiPublicChat() {
             case 'tool':
               setToolStatus(TOOL_LABELS[event.name as string] ?? 'Analyse en cours…');
               break;
-            case 'calc':
-              setResults(event.results as PublicRoiResults);
-              setCalcCount((n) => n + 1);
+            case 'calc': {
+              const study = event.results as PublicRoiResults;
+              const keyOf = (s: PublicRoiResults) =>
+                `${s.machine.machineId ?? s.machine.machineNom ?? 'analyse'}|${s.mode}`;
+              setStudies((prev) => {
+                const next = prev.filter((s) => keyOf(s) !== keyOf(study));
+                next.push(study);
+                return next.slice(-3);
+              });
               break;
+            }
             case 'dossier':
               setDossier((prev) => mergeDossier(prev, event.update as Partial<RoiPublicDossier>));
               break;
@@ -167,8 +175,7 @@ export default function RoiPublicChat() {
     setUiMessages([]);
     setApiMessages([]);
     setDossier({});
-    setResults(null);
-    setCalcCount(0);
+    setStudies([]);
     setError(null);
   }
 
@@ -219,7 +226,7 @@ export default function RoiPublicChat() {
       <div className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden">
         {/* ===== Volet conversation (~60 %) ===== */}
         <section className="flex-1 lg:w-3/5 flex flex-col lg:overflow-hidden" aria-label="Conversation">
-          <div ref={listRef} className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+          <div ref={listRef} className="flex-1 overflow-y-auto overscroll-contain px-4 py-6 space-y-4">
             {uiMessages.length === 0 && (
               <div className="max-w-xl mx-auto text-center mt-10 space-y-5">
                 <p className="text-2xl font-heading font-bold text-future-dusk-900">
@@ -324,9 +331,9 @@ export default function RoiPublicChat() {
               <span className="flex items-center gap-2">
                 <FolderOpen className="w-4 h-4 text-very-peri-600" />
                 Votre dossier
-                {results && (
+                {studies.length > 0 && (
                   <span className="text-[11px] bg-very-peri-100 text-very-peri-700 rounded-full px-2 py-0.5">
-                    résultats
+                    {studies.length > 1 ? `${studies.length} études` : 'résultats'}
                   </span>
                 )}
               </span>
@@ -335,11 +342,10 @@ export default function RoiPublicChat() {
               />
             </button>
             {drawerOpen && (
-              <div className="max-h-[60vh] overflow-y-auto px-4 pb-4">
+              <div className="max-h-[60vh] overflow-y-auto overscroll-contain px-4 pb-4">
                 <DossierPanel
                   dossier={dossier}
-                  results={results}
-                  calcCount={calcCount}
+                  studies={studies}
                   transcript={transcript}
                   onCorrect={correctFromPanel}
                 />
@@ -381,13 +387,12 @@ export default function RoiPublicChat() {
 
         {/* ===== Volet dossier (~40 %, desktop) ===== */}
         <aside
-          className="hidden lg:block lg:w-2/5 border-l border-neutral-200 bg-bg-warm-white overflow-y-auto px-5 py-6"
+          className="hidden lg:block lg:w-2/5 border-l border-neutral-200 bg-bg-warm-white overflow-y-auto overscroll-contain px-5 py-6"
           aria-label="Votre dossier"
         >
           <DossierPanel
             dossier={dossier}
-            results={results}
-            calcCount={calcCount}
+            studies={studies}
             transcript={transcript}
             onCorrect={correctFromPanel}
           />

@@ -34,10 +34,8 @@ import PdfReport from './PdfReport';
 
 interface DossierPanelProps {
   dossier: RoiPublicDossier;
-  /** Derniers résultats calculés (épinglés), null avant le premier calcul */
-  results: PublicRoiResults | null;
-  /** Nombre de calculs effectués (mention « mis à jour ») */
-  calcCount: number;
+  /** Études épinglées (une par modèle — arbitrage possible), vides avant le premier calcul */
+  studies: PublicRoiResults[];
   /** Textes du fil (pour le résumé CRM côté serveur) */
   transcript: Array<{ role: 'user' | 'assistant'; text: string }>;
   /** Clic sur une donnée du dossier ou une hypothèse → reprise en conversation */
@@ -46,15 +44,16 @@ interface DossierPanelProps {
 
 function LeadCapture({
   dossier,
-  results,
+  studies,
   transcript,
   pdfRef,
 }: {
   dossier: RoiPublicDossier;
-  results: PublicRoiResults;
+  studies: PublicRoiResults[];
   transcript: DossierPanelProps['transcript'];
   pdfRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const results = studies[0];
   const [email, setEmail] = useState('');
   const [optIn, setOptIn] = useState(false);
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
@@ -75,6 +74,7 @@ function LeadCapture({
           optInRecontact: optIn,
           dossier,
           results,
+          studies,
           transcript: transcript.map((t) => ({ role: t.role, text: t.text.slice(0, 2000) })),
           attribution: getAttribution() ?? undefined,
         }),
@@ -181,8 +181,7 @@ function LeadCapture({
 
 export default function DossierPanel({
   dossier,
-  results,
-  calcCount,
+  studies,
   transcript,
   onCorrect,
 }: DossierPanelProps) {
@@ -233,16 +232,16 @@ export default function DossierPanel({
         </ul>
       </div>
 
-      {/* Résultats épinglés */}
-      {results && (
+      {/* Études épinglées */}
+      {studies.length > 0 && (
         <div className="border-t border-neutral-200 pt-4 space-y-3">
           <div className="flex items-baseline justify-between gap-2">
             <h2 className="text-sm font-heading font-bold text-future-dusk-900 uppercase tracking-wide">
               Résultats
             </h2>
-            {calcCount > 1 && (
+            {studies.length > 1 && (
               <span className="text-[11px] text-future-dusk-400">
-                mis à jour — calcul n°{calcCount}
+                {studies.length} études comparées
               </span>
             )}
           </div>
@@ -258,12 +257,22 @@ export default function DossierPanel({
             </p>
           </div>
 
-          <PublicCalcCards
-            results={results}
-            onEditHypothese={(label, value) => onCorrect(label, value)}
-          />
+          {studies.map((study, i) => (
+            <div key={`${study.machine.machineId ?? study.machine.machineNom ?? i}|${study.mode}`}>
+              {studies.length > 1 && (
+                <p className="text-xs font-medium text-future-dusk-700 mb-2">
+                  Étude {i + 1} — {study.machine.machineNom ?? 'analyse'}
+                  {study.isLeasing ? ' (leasing)' : ' (achat)'}
+                </p>
+              )}
+              <PublicCalcCards
+                results={study}
+                onEditHypothese={(label, value) => onCorrect(label, value)}
+              />
+            </div>
+          ))}
 
-          <LeadCapture dossier={dossier} results={results} transcript={transcript} pdfRef={pdfRef} />
+          <LeadCapture dossier={dossier} studies={studies} transcript={transcript} pdfRef={pdfRef} />
 
           {/* Rendu dédié à l'export PDF — pleine largeur A4, hors écran.
               Monté en permanence pour que les graphiques soient prêts au
@@ -273,7 +282,7 @@ export default function DossierPanel({
             aria-hidden="true"
             className="fixed top-0 -left-[2000px] w-[794px] pointer-events-none"
           >
-            <PdfReport results={results} dossier={dossier} />
+            <PdfReport studies={studies} dossier={dossier} />
           </div>
         </div>
       )}
