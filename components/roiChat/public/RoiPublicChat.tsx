@@ -13,10 +13,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { Send, Loader2, Cog, RotateCcw, Bot, ChevronDown, FolderOpen } from 'lucide-react';
 import { parseAssistantText } from '@/lib/roiChat/chips';
-import { mergeDossier, type RoiPublicDossier } from '@/lib/roiChat/dossier';
+import { dossierCompletion, mergeDossier, type RoiPublicDossier } from '@/lib/roiChat/dossier';
+import {
+  buildOnboardingDossier,
+  buildOnboardingMessage,
+  type OnboardingAnswers,
+} from '@/lib/roiChat/onboarding';
 import { captureAttribution } from '@/lib/attribution';
 import type { PublicRoiResults } from '@/lib/roiEngine';
 import DossierPanel from './DossierPanel';
+import OnboardingFlow from './OnboardingFlow';
 
 interface UiMessage {
   role: 'user' | 'assistant';
@@ -44,6 +50,9 @@ export default function RoiPublicChat() {
   // possible) — un recalcul du même modèle remplace son étude, max 3.
   const [studies, setStudies] = useState<PublicRoiResults[]>([]);
   const [input, setInput] = useState('');
+  // Cadrage structuré pré-conversation (chantier UX 07/08) — remplacé par
+  // l'accueil libre si l'utilisateur le passe ou écrit directement.
+  const [onboarding, setOnboarding] = useState(true);
   const [streaming, setStreaming] = useState(false);
   const [toolStatus, setToolStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -68,6 +77,7 @@ export default function RoiPublicChat() {
   async function send(rawText?: string) {
     const text = (rawText ?? input).trim();
     if (!text || streaming) return;
+    setOnboarding(false); // écrire librement vaut « passer le cadrage »
     setInput('');
     setError(null);
     setStreaming(true);
@@ -177,6 +187,13 @@ export default function RoiPublicChat() {
     setDossier({});
     setStudies([]);
     setError(null);
+    setOnboarding(true);
+  }
+
+  /** Fin du cadrage : dossier pré-rempli immédiatement, profil envoyé au conseiller. */
+  function completeOnboarding(answers: OnboardingAnswers) {
+    setDossier((prev) => mergeDossier(prev, buildOnboardingDossier(answers)));
+    send(buildOnboardingMessage(answers));
   }
 
   /** Correction depuis le dossier ou une hypothèse (UX §2 et §5). */
@@ -195,6 +212,7 @@ export default function RoiPublicChat() {
     .filter((m) => m.text.trim() !== '');
   const lastIndex = uiMessages.length - 1;
   const isCalcRunning = toolStatus === TOOL_LABELS.calculate;
+  const completion = dossierCompletion(dossier);
 
   return (
     // --roi-offset : hauteur du chrome au-dessus de l'app (header sticky du
@@ -234,7 +252,14 @@ export default function RoiPublicChat() {
             data-lenis-prevent
             className="roi-scrollbar flex-1 overflow-y-auto overscroll-contain px-4 py-6 space-y-4"
           >
-            {uiMessages.length === 0 && (
+            {uiMessages.length === 0 && onboarding && (
+              <OnboardingFlow
+                onComplete={completeOnboarding}
+                onSkip={() => setOnboarding(false)}
+              />
+            )}
+
+            {uiMessages.length === 0 && !onboarding && (
               <div className="max-w-xl mx-auto text-center mt-10 space-y-5">
                 <p className="text-2xl font-heading font-bold text-future-dusk-900">
                   Décrivez votre production photo
@@ -335,13 +360,26 @@ export default function RoiPublicChat() {
               className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-future-dusk-700"
               aria-expanded={drawerOpen}
             >
-              <span className="flex items-center gap-2">
-                <FolderOpen className="w-4 h-4 text-very-peri-600" />
+              <span className="flex items-center gap-2 min-w-0">
+                <FolderOpen className="w-4 h-4 text-very-peri-600 shrink-0" />
                 Votre dossier
-                {studies.length > 0 && (
+                {studies.length > 0 ? (
                   <span className="text-[11px] bg-very-peri-100 text-very-peri-700 rounded-full px-2 py-0.5">
                     {studies.length > 1 ? `${studies.length} études` : 'résultats'}
                   </span>
+                ) : (
+                  completion > 0 && (
+                    /* Progression visible sans ouvrir le tiroir (UX mobile 07/08) */
+                    <span className="flex items-center gap-1.5 text-[11px] text-future-dusk-400">
+                      <span className="w-16 h-1 rounded-full bg-neutral-200 overflow-hidden">
+                        <span
+                          className="block h-full rounded-full bg-very-peri-500 transition-all duration-300"
+                          style={{ width: `${Math.round(completion * 100)}%` }}
+                        />
+                      </span>
+                      {Math.round(completion * 100)} %
+                    </span>
+                  )
                 )}
               </span>
               <ChevronDown

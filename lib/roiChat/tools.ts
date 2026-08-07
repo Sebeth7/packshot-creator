@@ -221,6 +221,11 @@ export function buildToolDefinitions(mode: ChatMode): ChatToolDefinition[] {
           volumeAnnuel: { type: 'number', description: 'Produits/an visés' },
           croissance: { type: 'string', description: 'Croissance prévue' },
           typesContenu: { type: 'array', items: { type: 'string' }, description: 'packshot, 360°, vidéo…' },
+          casUsage: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Destination des visuels : e-commerce, catalogue/doc technique, contrôle qualité, marketing…',
+          },
           tailleProduits: { type: 'string', description: 'petit / moyen / grand / très grand (+ précision)' },
           prestataire: { type: 'string', description: 'Budget ou prix/photo du prestataire, part du flux' },
           tempsInterne: { type: 'string', description: 'Personnes, part du temps, coût employeur' },

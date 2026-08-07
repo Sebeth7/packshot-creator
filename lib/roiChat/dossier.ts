@@ -19,6 +19,8 @@ export interface RoiPublicDossier {
   croissance?: string;
   /** Types de contenu : packshot, 360°, vidéo… */
   typesContenu?: string[];
+  /** Cas d'usage des visuels : e-commerce, catalogue/doc technique, contrôle qualité, marketing */
+  casUsage?: string[];
   /** Taille des produits (petit / moyen / grand / très grand + précision) */
   tailleProduits?: string;
   /** Prestataire externe : budget, prix/photo, part du flux */
@@ -33,17 +35,49 @@ export interface RoiPublicDossier {
   autres?: string[];
 }
 
-/** Checklist affichée dans le panneau — ordre de la proposition UX. */
-export const DOSSIER_CHECKLIST: Array<{ key: keyof RoiPublicDossier; label: string }> = [
-  { key: 'secteur', label: 'Secteur' },
-  { key: 'situation', label: 'Situation actuelle' },
-  { key: 'volumeAnnuel', label: 'Volume annuel' },
-  { key: 'typesContenu', label: 'Types de contenu' },
-  { key: 'tailleProduits', label: 'Taille des produits' },
-  { key: 'prestataire', label: 'Prestataire externe' },
-  { key: 'tempsInterne', label: 'Temps interne' },
-  { key: 'financement', label: 'Financement' },
+/** Checklist du panneau, groupée par thématique (chantier UX 07/08) —
+ *  donne au client une lecture d'avancement par étape. */
+export const DOSSIER_GROUPS: Array<{
+  titre: string;
+  items: Array<{ key: keyof RoiPublicDossier; label: string }>;
+}> = [
+  {
+    titre: 'Votre projet',
+    items: [
+      { key: 'secteur', label: 'Secteur' },
+      { key: 'situation', label: 'Situation actuelle' },
+      { key: 'casUsage', label: 'Destination des visuels' },
+    ],
+  },
+  {
+    titre: 'Votre production',
+    items: [
+      { key: 'volumeAnnuel', label: 'Volume annuel' },
+      { key: 'typesContenu', label: 'Types de contenu' },
+      { key: 'tailleProduits', label: 'Taille des produits' },
+    ],
+  },
+  {
+    titre: 'Coûts & financement',
+    items: [
+      { key: 'prestataire', label: 'Prestataire externe' },
+      { key: 'tempsInterne', label: 'Temps interne' },
+      { key: 'financement', label: 'Financement' },
+    ],
+  },
 ];
+
+/** Checklist à plat (dérivée des groupes) — complétion, compat tests. */
+export const DOSSIER_CHECKLIST: Array<{ key: keyof RoiPublicDossier; label: string }> =
+  DOSSIER_GROUPS.flatMap((g) => g.items);
+
+/** Avancement du dossier : part des champs de la checklist renseignés (0..1). */
+export function dossierCompletion(dossier: RoiPublicDossier): number {
+  const filled = DOSSIER_CHECKLIST.filter(
+    ({ key }) => formatDossierValue(dossier, key) !== null
+  ).length;
+  return filled / DOSSIER_CHECKLIST.length;
+}
 
 /** Champs additionnels affichés seulement s'ils sont renseignés. */
 export const DOSSIER_EXTRAS: Array<{ key: keyof RoiPublicDossier; label: string }> = [
@@ -102,6 +136,10 @@ export function sanitizeDossierUpdate(input: unknown): Partial<RoiPublicDossier>
   if (Array.isArray(raw.typesContenu)) {
     const list = raw.typesContenu.filter((v): v is string => typeof v === 'string').map((v) => v.slice(0, 50));
     if (list.length > 0) out.typesContenu = list.slice(0, 10);
+  }
+  if (Array.isArray(raw.casUsage)) {
+    const list = raw.casUsage.filter((v): v is string => typeof v === 'string').map((v) => v.slice(0, 60));
+    if (list.length > 0) out.casUsage = list.slice(0, 6);
   }
   if (Array.isArray(raw.autres)) {
     const list = raw.autres.filter((v): v is string => typeof v === 'string').map((v) => v.slice(0, 200));
