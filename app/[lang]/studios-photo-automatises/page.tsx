@@ -314,6 +314,18 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
               <p className="mt-6 text-sm font-semibold text-very-peri-600">
                 {t('roiTeaser.stat')}
               </p>
+              {/* Référentiels publiés (FR/EN uniquement — pas de version de-ch) */}
+              {lang !== 'de-ch' && (
+                <p className="mt-4 text-sm text-neutral-medium">
+                  <Link href="/methodologie-calculateur-roi" className="text-primary-orbitvu font-medium hover:underline">
+                    {tx(lang, 'Méthodologie publiée', 'Published methodology', '')}
+                  </Link>
+                  {' · '}
+                  <Link href="/prix-packshot-photo-produit" className="text-primary-orbitvu font-medium hover:underline">
+                    {tx(lang, 'Prix de référence 2026 du packshot', '2026 packshot reference prices', '')}
+                  </Link>
+                </p>
+              )}
             </div>
           </ScrollReveal>
         </div>

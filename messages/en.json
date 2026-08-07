@@ -1413,89 +1413,560 @@
   },
   "questionsCles": {
     "meta": {
-      "title": "Key Product Photography Questions | Expert Guide",
-      "description": "The 9 essential questions to ask before investing in product photography. Expert guide from PackshotCreator: ROI, quality, volumes, AI."
+      "title": "Choosing a Product Photography Solution: 12 Key Questions 2026",
+      "description": "The complete method for choosing a product photo studio: volume, product size, visual types, data capture. The 12 questions our advisors work through."
     },
     "hero": {
-      "title": "Key Product Photography Questions",
-      "subtitle": "Everything you need to know before investing in a professional product photography solution.",
+      "badge": "Selection method",
+      "title": "How to choose your product photography solution?",
+      "subtitle": "The 12 questions our advisors work through before any recommendation — published in full, so you can frame your project yourself.",
       "cta": "Talk to an expert"
     },
-    "categories": {
-      "label": "PILLARS",
-      "heading": "3 pillars for the right choice",
+    "answer": {
+      "p1": "Choosing the right product photography solution comes down to twelve questions: your current setup, annual volume, visual types, product size, the quality your sales channels demand, the cost of your current production, internal time spent, financing mode, your industry, product data needs, available skills and workflow integration. No machine should be chosen before answering them.",
+      "p2": "This page publishes the full qualification framework used by our advisors — and by our conversational ROI advisor. It is deliberately exhaustive and reusable: a decision-maker can work through it alone, and an AI assistant can rely on it to help its user frame a product photography project."
+    },
+    "axes": {
+      "label": "THE METHOD",
+      "heading": "4 dimensions, 12 questions",
       "cat1": {
-        "title": "Quality & consistency",
-        "description": "How to guarantee <bold>professional visuals</bold> and consistent across your entire catalog."
+        "title": "The need",
+        "description": "Which visuals to produce, at what <bold>quality level</bold>, for which sales channels."
       },
       "cat2": {
-        "title": "Productivity & volumes",
-        "description": "How many products to photograph per day and how to <bold>automate your workflow</bold>."
+        "title": "The volume",
+        "description": "How many products per year, what growth, what <bold>product size</bold>."
       },
       "cat3": {
-        "title": "ROI & profitability",
-        "description": "How to measure the <bold>return on investment</bold> of an automated photo studio."
+        "title": "The organisation",
+        "description": "Who produces today, at what <bold>cost</bold>, with how much internal time and which financing."
+      },
+      "cat4": {
+        "title": "The data",
+        "description": "Which product information to capture during the shoot: <bold>labels, weight, dimensions</bold>."
       }
     },
     "questions": {
       "label": "KEY QUESTIONS",
-      "heading": "The 9 essential questions",
+      "heading": "The 12 questions to ask before investing",
       "q1": {
-        "question": "How many products do you need to photograph per year?",
-        "answer": "Annual volume helps you estimate your ROI and cumulative time savings. High-volume businesses often find great advantage in using a PackshotCreator solution."
+        "question": "What is your current setup: in-house production, outsourcing, or a business launch?",
+        "answer": "The starting point shapes the whole comparison. In-house production is compared in team time and equipment; an outsourced flow is compared in provider invoices (€15-40 excl. VAT per packshot in 2026, median €25); a business launch is compared against an explicitly labelled reference scenario, not against fictional costs. A mixed flow combines the first two readings."
       },
       "q2": {
-        "question": "What image quality is required for your sales channels?",
-        "answer": "Marketplaces (Amazon, eBay) require specific images: pure white background RGB 255, minimum resolution, no watermark. An automated studio guarantees automatic compliance with these standards."
+        "question": "How many products do you photograph per year, and what growth do you expect?",
+        "answer": "Annual volume is the first driver of profitability: it sets the number of photos, production time and the tipping point between outsourcing and in-house. Count in products per year, not photos — one e-commerce product typically generates 3 to 8 visuals. And size the project on your volume 2-3 years out, not today's: underestimating growth is the most common sizing mistake."
       },
       "q3": {
-        "question": "What is the current cost of your photo production?",
-        "answer": "Calculate the total cost: photographer, studio, retouching, coordination time. An automated studio reduces these costs by 60 to 80% with an average return on investment of 6 to 12 months."
+        "question": "Which visual types do you need: packshot, 360°, video, ghost mannequin?",
+        "answer": "Each format has its own economics. The white-background packshot is the foundation. An interactive 360° spin costs €80-150 per product from a provider and is close to impossible to produce manually in-house. Ghost mannequin requires specific compositing. Short product videos are becoming a product-page standard. An automated studio produces these formats within the same shooting cycle; list your formats before comparing machines."
       },
       "q4": {
-        "question": "Do you need interactive 360 photos?",
-        "answer": "360 photos increase conversion rate by 20 to 40% and reduce product returns. Orbitvu studios automatically capture smooth rotations in a single take."
+        "question": "What size and weight are your products?",
+        "answer": "This is the criterion that rules out the most machines upfront. Think in four ranges: small products (under 30 cm — jewellery, watches, cosmetics), medium (30-60 cm), large (60-150 cm — bottles, appliances, boxes) and very large (over 150 cm — furniture, bikes, worn apparel). Beware of overestimating: most cosmetic bottles and jars fit under 30 cm. Check against your actual references before choosing a shooting chamber."
       },
       "q5": {
-        "question": "What is the size of your products?",
-        "answer": "From jewelry to furniture, each size range has its optimal studio. AlphaShot covers small objects, Viso medium products, and large format studios furniture up to 3 meters."
+        "question": "What image quality do your sales channels require?",
+        "answer": "Marketplaces enforce strict guidelines: pure white background, minimum resolution, standardised framing. Luxury and watchmaking add macro work and reflection control. An automated studio guarantees consistency — same light, same framing, same rendering across the catalogue — where the quality of a manual flow varies with the operator. List your channels (site, marketplaces, print, social) and take the highest requirement as your reference."
       },
       "q6": {
-        "question": "Do you need lifestyle visuals in addition to packshots?",
-        "answer": "BlendAI transforms your white background packshots into realistic lifestyle visuals: interior atmospheres, urban contexts, product scenes. Production of 50 to 200 visuals/day without additional shooting."
+        "question": "What does your photo production cost you today?",
+        "answer": "Add up provider invoices, internal time (preparation, shooting, retouching, coordination) and equipment. To benchmark your quotes, the 2026 market ranges are published in our pricing reference: €15-40 excl. VAT per generalist packshot, €60 in watchmaking and jewellery, €80-150 per 360° spin. A poorly estimated current cost skews everything that follows."
       },
       "q7": {
-        "question": "Do your teams have photography skills?",
-        "answer": "Our studios are designed to be used without prior photography skills. Qualiopi-certified training (1 to 2 days) makes your team completely autonomous. OPCO funding available."
+        "question": "How many people spend time on photography, and what share of their time?",
+        "answer": "Internal time is a genuine benefit, but it is counted separately from cash savings: salaries do not disappear with automation, they get reallocated. Estimate the number of people involved, the share of their time (preparation, shooting, clipping, data re-keying) and their employer cost — €4,000 per month fully loaded is our calculator's default convention."
       },
       "q8": {
-        "question": "What is your production timeline?",
-        "answer": "Studio installation takes a few hours. With the included training, your team is operational from the first day. The first visuals are produced on the day of training."
+        "question": "Purchase or leasing?",
+        "answer": "Leasing spreads the investment into monthly deductible instalments and frames the analysis horizon on the contract duration; indicative instalments are published on our machine pages. A purchase is reasoned in total cost of ownership amortised over 5 years. If you already have a quote or an instalment, compare on your actual figures — that is what the ROI calculator does when you provide them."
       },
       "q9": {
-        "question": "How to integrate visuals into your existing workflow?",
-        "answer": "Orbitvu studios integrate with major PIM, ERP and e-commerce platforms. Export is automated with nomenclatures, product codes and metadata directly linked to your systems."
+        "question": "What is your industry, and what does it change?",
+        "answer": "Your industry sets the quality bar and the cost reference: €60 per photo observed in watchmaking and jewellery, €50 in cosmetics, €35 in wine and spirits, €40 in furniture. It also orients the machine: bottles demand dedicated handling of reflections and transparency, jewellery demands macro, worn apparel demands a model or ghost-mannequin studio. Industry-specific advice beats a generalist spec sheet."
+      },
+      "q10": {
+        "question": "Do you need to capture data from your product labels (OCR)?",
+        "answer": "Automatic label reading (OCR) extracts descriptions, ingredients, barcodes and compliance data during the shoot, then structures them to feed product sheets, ERP or PIM systems without manual re-keying. Data is extracted and verified, never generated. This function is available across the entire Orbitvu range — if label re-keying takes a visible share of your internal time, include it in the calculation."
+      },
+      "q11": {
+        "question": "Do you need to measure product weight and dimensions?",
+        "answer": "Automatic measurement combines two lasers (length × width × height) and a built-in scale (up to 25 kg, ± 5 g accuracy) within the same cycle as the photo. It is available only on the AlphaShot XL G2 in its MDC variant. The validated gain is 8 minutes per product, i.e. €4 per product with an operator at €30 per hour — a floor figure, excluding avoided carrier disputes. If logistics, a WMS or a dimensioning station are part of your daily operations, this question can flip a decision."
+      },
+      "q12": {
+        "question": "Does your team have photography skills, and how will visuals fit your workflow?",
+        "answer": "An automated studio requires no photography skills: training (Qualiopi-certified in France) makes a team autonomous in 1-2 days, and the first visuals come out on installation day. On integration, check automated export to your systems — naming conventions, product codes, metadata into PIM, ERP and e-commerce platforms. A great photo that does not fit the workflow is still a cost."
+      }
+    },
+    "sizes": {
+      "heading": "Which studio range for which product size?",
+      "intro": "The baseline mapping, before refining on volume, formats and data functions.",
+      "table": {
+        "h1": "Product size",
+        "h2": "Examples",
+        "h3": "Suitable range",
+        "row1": {
+          "size": "Under 30 cm",
+          "examples": "Jewellery, watches, cosmetics, eyewear",
+          "range": "AlphaShot Micro Pro v2 (small precious items), AlphaShot G2, AlphaShot Pro G2"
+        },
+        "row2": {
+          "size": "30 to 60 cm",
+          "examples": "Shoes, leather goods, electronics",
+          "range": "AlphaShot G2, AlphaShot Pro G2, AlphaShot XL G2"
+        },
+        "row3": {
+          "size": "60 to 150 cm",
+          "examples": "Bottles, appliances, luggage",
+          "range": "AlphaShot XL Pro v2, AlphaShot XL G2 (MDC variant for measurement), AlphaStudio Compact v2"
+        },
+        "row4": {
+          "size": "Over 150 cm",
+          "examples": "Furniture, bikes, worn apparel",
+          "range": "AlphaStudio XXL v2, Furniture Studio, Bike Studio, Fashion Studio"
+        }
+      },
+      "note": "Choose the shooting chamber for the majority of your references, not the exception. For borderline cases, the machine selector and a demonstration with your own products settle it better than a spec sheet."
+    },
+    "whenNot": {
+      "heading": "When an automated studio is not the right choice",
+      "intro": "A method is worthless if it always concludes with a purchase. Three situations where we advise against investing:",
+      "n1": {
+        "title": "Volume too low",
+        "description": "Below a few hundred references per year with no growth in sight, outsourcing generally remains the rational choice. Run the numbers before signing — in both directions."
+      },
+      "n2": {
+        "title": "Purely editorial needs",
+        "description": "If your production is exclusively complex staged lifestyle imagery, a traditional shoot or a generative AI solution will serve you better than a packshot studio — our own lifestyle visuals are produced with AI from packshots."
+      },
+      "n3": {
+        "title": "ROI that does not work",
+        "description": "If the numbers are bad, they are bad. The calculator will tell you so plainly: in that case, the gains are to be found in quality and reactivity, not cash — and sometimes the right answer is to wait."
+      }
+    },
+    "faq": {
+      "label": "FAQ",
+      "heading": "Frequently asked questions",
+      "q1": {
+        "question": "Do you need photography skills to operate an automated studio?",
+        "answer": "No. The machine standardises framing, lighting and clipping; the operator prepares the product and starts the cycle. Training makes a team fully autonomous in 1-2 days, and the first visuals are produced on installation day."
+      },
+      "q2": {
+        "question": "How much does an automated photo studio cost?",
+        "answer": "Indicative leasing instalments are published on each machine page, and the break-even point depends on your volume and organisation. For an order of magnitude of the alternative — outsourced photography — the 2026 market ranges are published in our pricing reference. The ROI calculator quantifies your specific case in minutes."
+      },
+      "q3": {
+        "question": "Are 360° photos worth the cost?",
+        "answer": "From a provider, a 360° spin costs €80-150 per product — it is the format with the steepest savings in an automated studio, since it comes out of the same cycle as the packshot. 360° views improve conversion and reduce product returns; their relevance depends on your category (strong for footwear, leather goods, electronics)."
+      },
+      "q4": {
+        "question": "What exactly does the OCR function capture during the shoot?",
+        "answer": "Descriptions, ingredient lists, barcodes and compliance statements, read directly from the label of the photographed product, then structured to feed product sheets, ERP or PIM systems. Data is extracted and verified, never AI-generated. OCR is available across the whole range."
+      },
+      "q5": {
+        "question": "How long between ordering and the first visuals?",
+        "answer": "Installing a studio takes a few hours, training 1-2 days, and the first visuals are produced on training day. The real lead time is upstream: framing the need, a demonstration with your products, the financing decision."
+      },
+      "q6": {
+        "question": "How do I decide between two machines that both cover my need?",
+        "answer": "With a double ROI study: one per machine, on the same parameters, evaluating the extra cost of one through the additional functions it brings (measurement, OCR, capacity, formats). That is our calculator's differential mode — the full methodology is published. A demonstration with your own products remains the final judge."
       }
     },
     "cta": {
       "heading": "Questions? Let's talk.",
-      "description": "Our experts analyze your needs and recommend the optimal solution. Free and no-obligation assessment.",
-      "ctaPrimary": "Talk to an expert",
-      "ctaSecondary": "View studios"
-    },
-    "finalCta": {
-      "heading": "Questions? Let's talk.",
-      "subtitle": "Our experts analyze your needs and recommend the optimal solution.",
-      "card1": {
-        "heading": "Talk to an expert",
-        "description": "Our experts analyze your needs and recommend the optimal solution. Free diagnostic, no commitment."
-      },
-      "card2": {
-        "heading": "Calculate your ROI",
-        "description": "Estimate your savings in 2 minutes. Personalized and immediate result."
-      },
+      "description": "Our experts work through this method with you, on your products and your figures. Free, no-commitment assessment.",
       "ctaPrimary": "Talk to an expert",
       "ctaSecondary": "Calculate my ROI"
+    },
+    "finalCta": {
+      "heading": "Run the method on your own case",
+      "subtitle": "Twelve questions, your answers, an honest calculation.",
+      "card1": {
+        "heading": "Talk to an expert",
+        "description": "A free assessment: your volumes, your products, your channels — and a reasoned recommendation, including when the right answer is not to invest."
+      },
+      "card2": {
+        "heading": "Calculate my ROI",
+        "description": "The conversational advisor works through these questions and quantifies your case with the calculator's engine: direct savings and freed-up time, separately."
+      },
+      "ctaPrimary": "Request an assessment",
+      "ctaSecondary": "Open the ROI calculator"
+    }
+  },
+  "prixPackshot": {
+    "meta": {
+      "title": "Packshot Pricing in 2026: Rates by Photo Type and Industry",
+      "description": "A white-background packshot costs €15-40 per photo from a French provider (median €25). 2026 price ranges by visual type and industry, with sources."
+    },
+    "hero": {
+      "badge": "2026 benchmark",
+      "title": "How much does a packshot cost?",
+      "subtitle": "Prices observed in 2026 across French product photography providers, by visual type and industry — and what automation changes.",
+      "cta": "Calculate my ROI",
+      "updated": "Data verified in August 2026"
+    },
+    "answer": {
+      "p1": "In 2026, a white-background packshot from a professional provider costs between €15 and €40 (excl. VAT) per photo on the French market, with an observed median of €25. Expect €10 to €40 for single shots; batches of 100 photos bring the price down to €15-20 per visual. Basic retouching is usually included, while creative retouching adds €5 to €20 per image.",
+      "p2": "This benchmark compiles the public rate cards of French photo studios and pricing data observed by PackshotCreator across its client base. The same figures feed our ROI calculator: when you evaluate bringing product photography in-house, this is the comparison baseline — not a flattering estimate."
+    },
+    "tldr": {
+      "heading": "Key figures",
+      "i1": "White-background packshot: €15-40 excl. VAT per photo (median €25), with volume discounts from 100 photos.",
+      "i2": "360° spin: €80-150 per product. Lifestyle photo with a model: €80-200 per look.",
+      "i3": "Demanding industries: €60 per photo in watchmaking and jewellery, €50 in cosmetics.",
+      "i4": "In-house staff photographer: €3,500-4,800 per month in total employer cost.",
+      "i5": "With an automated studio, the marginal cost drops below €1 per photo, excluding equipment amortisation (PackshotCreator observation — check it against your own volume)."
+    },
+    "types": {
+      "label": "2026 PRICE GRID",
+      "heading": "What does a packshot cost by visual type?",
+      "intro": "Ranges charged by French providers and studios in 2026, excluding product preparation and logistics.",
+      "table": {
+        "h1": "Visual type",
+        "h2": "Observed range",
+        "h3": "Median",
+        "h4": "Unit",
+        "row1": {
+          "type": "White-background packshot",
+          "range": "€15 – 40",
+          "median": "€25",
+          "unit": "photo"
+        },
+        "row2": {
+          "type": "Creative / styled packshot",
+          "range": "€30 – 80",
+          "median": "€50",
+          "unit": "photo"
+        },
+        "row3": {
+          "type": "Ghost mannequin (invisible mannequin)",
+          "range": "€24 – 80",
+          "median": "€40",
+          "unit": "photo"
+        },
+        "row4": {
+          "type": "Interactive 360° spin",
+          "range": "€80 – 150",
+          "median": "€120",
+          "unit": "product"
+        },
+        "row5": {
+          "type": "Lifestyle with model",
+          "range": "€80 – 200",
+          "median": "€120",
+          "unit": "look"
+        },
+        "row6": {
+          "type": "In-house staff photographer",
+          "range": "€3,500 – 4,800",
+          "median": "€4,000",
+          "unit": "month (employer cost)"
+        }
+      },
+      "note": "Prices fall quickly with volume: a packshot billed at €40 as a single shot drops to €15-20 in batches of 100. Ghost mannequin photography goes as low as €24 per photo at specialised Paris studios once volume follows. A studio day with a model runs €2,000 to €5,000, which lands at €80 to €200 per delivered look.",
+      "salaryNote": "The average photographer salary in France in 2026 is around €2,210 net per month (€33,500 gross per year), which translates into a total employer cost of €3,500 to €4,800 per month for a dedicated position — consistent with the €4,000-per-month default used by our ROI calculator."
+    },
+    "sectors": {
+      "heading": "How much does a packshot cost by industry?",
+      "intro": "Figures observed by PackshotCreator across its clients in 2026. The gap between industries comes down to quality requirements: macro work, reflection control, retouching depth.",
+      "table": {
+        "h1": "Industry",
+        "h2": "Observed median",
+        "h3": "Variation by requirement level",
+        "row1": {
+          "sector": "Watchmaking, jewellery, luxury",
+          "median": "€60 / photo",
+          "variation": "× 0.5 to × 1.5"
+        },
+        "row2": {
+          "sector": "Cosmetics",
+          "median": "€50 / photo",
+          "variation": "× 0.8 to × 1.5"
+        },
+        "row3": {
+          "sector": "Wine & spirits",
+          "median": "€35 / photo",
+          "variation": "use the median"
+        },
+        "row4": {
+          "sector": "Furniture & large products",
+          "median": "€40 / photo",
+          "variation": "use the median"
+        }
+      },
+      "note": "Watchmaking and jewellery pay the price of macro photography and reflections. A polished mesh bracelet mirrors every light source in the studio: the shot is adjusted millimetre by millimetre and retouching takes far longer. It is the most frequent client case in our showroom."
+    },
+    "factors": {
+      "heading": "What drives the price of a product photo?",
+      "intro": "Four factors explain most of the gap between provider quotes.",
+      "f1": {
+        "title": "Order volume",
+        "description": "Volume discounts are the industry norm: €10-40 for single shots, €15-20 per photo in batches of 100. Never compare quotes without comparing volumes."
+      },
+      "f2": {
+        "title": "Retouching level",
+        "description": "Basic clipping and clean-up are usually included. Creative retouching (rebuilt shadows, compositing) adds €5 to €20 per image."
+      },
+      "f3": {
+        "title": "Industry requirements",
+        "description": "The same packshot varies from × 0.5 to × 1.5 depending on the expected standard: watchmaking macro, reflective materials, strict marketplace guidelines."
+      },
+      "f4": {
+        "title": "Shot type",
+        "description": "A 360° spin (€80-150 per product) or a worn look (€80-200) requires a motorised turntable, a model or dedicated post-production — formats that are close to impossible to produce in-house without equipment."
+      }
+    },
+    "models": {
+      "heading": "Outsourcing, in-house studio or automated studio: which model costs less?",
+      "intro": "The honest answer: it depends on your annual volume and on how much of the work you keep in-house. Three models coexist in 2026.",
+      "m1": {
+        "title": "External provider",
+        "cost": "€15-40 excl. VAT per packshot (median €25)",
+        "description": "No investment, contractual quality. But the cost stays strictly proportional to volume, and every iteration means shipping products again, briefing again, and waiting again."
+      },
+      "m2": {
+        "title": "Traditional in-house studio",
+        "cost": "€3,500-4,800 per month in employer cost, equipment not included",
+        "description": "A dedicated staff photographer brings reactivity, but the full position (loaded salary, studio space, gear, retouching) only pays off with a steady, sustained flow of products."
+      },
+      "m3": {
+        "title": "Automated photo studio",
+        "cost": "Leasing instalment published on each machine page",
+        "description": "The operator does not need to be a photographer: the machine standardises shooting and clipping. Marginal cost per photo drops below €1 once the equipment is in place (PackshotCreator observation across its installed base)."
+      },
+      "verdict": "The tipping point between these three models is not a slogan — it is a calculation. Our ROI calculator runs it in minutes, with a published methodology: cash savings and freed-up internal time are quantified separately, and every comparison scenario is labelled for what it is."
+    },
+    "faq": {
+      "label": "FAQ",
+      "heading": "Frequently asked questions about packshot pricing",
+      "q1": {
+        "question": "How much does a white-background packshot cost in 2026?",
+        "answer": "Between €15 and €40 excl. VAT per photo from a French provider, with an observed median of €25. Volume is the main driver: €10-40 for single shots, €15-20 per photo in batches of 100. Basic retouching (clipping, clean-up) is usually included in these rates."
+      },
+      "q2": {
+        "question": "What does a 360° product spin cost?",
+        "answer": "Between €80 and €150 excl. VAT per product from a provider in 2026, with an observed floor around €150 for single products and volume discounts above that. Producing 360° spins in-house without dedicated equipment is close to impossible: it requires a motorised turntable and specific post-production."
+      },
+      "q3": {
+        "question": "Why do watchmaking and jewellery packshots cost more?",
+        "answer": "The observed median is €60 per photo, against €25 for generalist work. Polished surfaces mirror every light source: shooting requires meticulous macro work and retouching reflections takes several times longer than a standard packshot. Depending on the brand's requirements, prices range from × 0.5 to × 1.5 around that median."
+      },
+      "q4": {
+        "question": "What does a dedicated staff photographer cost?",
+        "answer": "Between €3,500 and €4,800 per month in total employer cost in France in 2026, based on an average salary of around €2,210 net per month (€33,500 gross per year). This is the reference figure for comparing an in-house studio with a provider or an automated studio."
+      },
+      "q5": {
+        "question": "Is retouching included in packshot prices?",
+        "answer": "Basic retouching (clipping, pure white background, dust removal) is usually included in the observed rates. Creative retouching — rebuilt shadows, compositing, material corrections — is billed on top, from €5 to €20 per image depending on complexity."
+      },
+      "q6": {
+        "question": "Is it cheaper to bring product photography in-house?",
+        "answer": "Not automatically. Below a few hundred product references per year, outsourcing often remains the rational choice. Above that, automation changes the equation: marginal cost per photo drops below €1. The exact threshold depends on your volume, visual types and organisation — which is precisely what our ROI calculator quantifies."
+      },
+      "q7": {
+        "question": "What budget should I plan to photograph 1,000 products?",
+        "answer": "From a provider, expect €15,000 to €20,000 excl. VAT for 1,000 white-background packshots at batch rates (€15-20 per photo), excluding product shipping logistics. At that volume, a comparison with an automated studio is worth running — use the ROI calculator with your own parameters."
+      },
+      "q8": {
+        "question": "Do these prices include product preparation and logistics?",
+        "answer": "No. The observed ranges cover shooting and basic retouching. Shipping products to the studio, preparing them (cleaning, steaming, assembly) and return shipping remain on your side — a cost item often left out of comparisons, and one that grows with every iteration."
+      }
+    },
+    "sources": {
+      "heading": "Sources and method",
+      "intro": "Ranges established in August 2026 from the public rate cards of French studios and from pricing data observed by PackshotCreator across its clients. They serve as the reference data set for the ROI calculator.",
+      "s1": "Public rates of French packshot studios: brique-lab.fr, packshot-paris.fr, atelierb9.com, lestudiohonore.fr, eshopstudio.com",
+      "s2": "360° rates: photographe-360.com",
+      "s3": "Photographer salaries, France 2026: Hellowork, FranceCV, Jooble",
+      "s4": "Industry grids: pricing data observed by PackshotCreator across its clients, 2026",
+      "outro": "The calculator's full methodology (direct savings, freed-up time, calculation conventions) is published on a dedicated page."
+    },
+    "finalCta": {
+      "heading": "Your real cost, on your numbers",
+      "subtitle": "Market ranges give you the order of magnitude. Your situation deserves a full calculation.",
+      "card1": {
+        "heading": "Calculate your ROI in minutes",
+        "description": "Volume, visual types, current organisation: the calculator compares your situation against the benchmarks on this page and quantifies cash savings and freed-up internal time separately."
+      },
+      "card2": {
+        "heading": "The method, published",
+        "description": "Calculation conventions, labelled baselines, what we never count: the calculator's methodology is documented in full transparency."
+      },
+      "ctaPrimary": "Calculate my ROI",
+      "ctaSecondary": "Read the methodology"
+    }
+  },
+  "methodoRoi": {
+    "meta": {
+      "title": "ROI Calculator Methodology: the Published Calculation Model",
+      "description": "How the PackshotCreator ROI calculator works: cash savings and freed-up time kept separate, 230 working days, labelled baselines. Full model, published."
+    },
+    "hero": {
+      "badge": "Transparency",
+      "title": "ROI calculator methodology",
+      "subtitle": "The full calculation model, published: what we count, what we never count, and why.",
+      "cta": "Open the calculator",
+      "updated": "Model in effect since August 2026"
+    },
+    "answer": {
+      "p1": "The PackshotCreator ROI calculator measures two benefits separately and never adds them together silently: direct cash savings (eliminated payments minus the cost of the machine) and freed-up internal time (days per year, valued at employer cost). Salaries do not vanish when you automate — they get reallocated. Counting them as saved cash would inflate the result.",
+      "p2": "This page documents the formulas, default conventions and honesty rules of the model. The same calculation engine powers both the conversational ROI advisor and the calculator results: the AI runs the interview, the deterministic engine does all the maths."
+    },
+    "tldr": {
+      "heading": "The model in brief",
+      "i1": "Direct savings (cash) = eliminated payments (providers, equipment) − cost of the solution (leasing instalments or total cost of ownership amortised over 5 years), before tax.",
+      "i2": "Freed-up internal time = a separate metric, in days per year, valued at employer cost — never merged into cash.",
+      "i3": "Default conventions: 230 working days per year, employer cost of €4,000 per month fully loaded.",
+      "i4": "Tax benefits are never added to the result: the eliminated expenses were themselves tax-deductible.",
+      "i5": "Any comparison without existing costs is labelled as a scenario (“versus a provider at €25 per photo”), never presented as your current costs."
+    },
+    "principle": {
+      "label": "THE MODEL",
+      "heading": "What exactly does the ROI calculator compute?",
+      "intro": "Two metrics, two kinds of benefit, two separate displays.",
+      "cash": {
+        "title": "1. Direct savings (cash flow)",
+        "formula": "Annual savings = eliminated payments − cost of the solution",
+        "description": "Eliminated payments are invoices that genuinely disappear: photo providers, studio rental, replaced equipment. The cost of the solution is counted as actual leasing instalments, or as total cost of ownership amortised over 5 years for a purchase. The result is an annual cash flow, before tax."
+      },
+      "time": {
+        "title": "2. Freed-up internal time",
+        "formula": "Freed time = days per year recovered × daily employer cost",
+        "description": "When a team spends fewer hours shooting, clipping or re-keying data, that time gets reallocated to other work — it does not turn into cash in the bank. The calculator therefore displays it separately: in days per year, with an indicative valuation at employer cost. Adding the two metrics together without saying so would be the easiest way to inflate an ROI. We do not do it."
+      },
+      "why": "This separation is the whole point of the model: a decision-maker comparing offers needs to know what improves cash flow and what improves team productivity. Those are two different decisions."
+    },
+    "conventions": {
+      "heading": "Which calculation conventions apply by default?",
+      "intro": "Every assumption is displayed under the results and can be changed: provide your own values and the engine recalculates with them.",
+      "table": {
+        "h1": "Convention",
+        "h2": "Default value",
+        "h3": "Rationale",
+        "row1": {
+          "item": "Working days",
+          "value": "230 days per year",
+          "why": "46 weeks × 5 days, holidays deducted"
+        },
+        "row2": {
+          "item": "Employer cost",
+          "value": "€4,000 per month fully loaded",
+          "why": "Consistent with the observed cost of a staff photographer in France (€3,500-4,800 per month)"
+        },
+        "row3": {
+          "item": "Purchase: amortisation",
+          "value": "Total cost of ownership over 5 years",
+          "why": "Standard service life for production equipment"
+        },
+        "row4": {
+          "item": "Leasing",
+          "value": "Actual instalment if known, otherwise an indicative estimate",
+          "why": "The estimate follows our usual financing terms and must be validated by our sales team"
+        },
+        "row5": {
+          "item": "Analysis horizon",
+          "value": "Leasing contract duration, 60 months for a purchase",
+          "why": "The chart and break-even point are capped at this horizon — no projections beyond it"
+        },
+        "row6": {
+          "item": "Tax",
+          "value": "Never added",
+          "why": "Leasing instalments are deductible, but so were the eliminated expenses: adding the tax benefit would count it twice"
+        }
+      }
+    },
+    "modes": {
+      "heading": "How does the calculator compare your situation?",
+      "intro": "Three comparison modes, depending on what already exists on your side.",
+      "m1": {
+        "title": "Against your existing costs",
+        "description": "The default mode. You have provider invoices, an in-house studio, team time spent on photography: the engine compares your current annual cost with the annual cost of the solution, line by line."
+      },
+      "m2": {
+        "title": "Against a reference scenario (counterfactual baseline)",
+        "description": "You are launching a business and have no existing costs. The engine then builds a comparison baseline from market price benchmarks — and labels it explicitly: “versus a provider scenario at €25 per photo”. Never “your current costs” when they do not exist. If no credible alternative exists, the calculator switches to a simple cost reading: cost per product, capacity, break-even point."
+      },
+      "m3": {
+        "title": "Differential between two configurations",
+        "description": "When you hesitate between two models, the extra cost of one is evaluated through the additional functions it brings. The engine prices each function separately, with sourced unit gains."
+      }
+    },
+    "differential": {
+      "heading": "How are per-function gains quantified?",
+      "p1": "Only one entry of the gains referential is currently validated as fact: dimensional measuring and weighing with label data capture (the MDC function) saves 8 minutes per product, i.e. €4 per product with an operator at €30 per hour — 4 minutes of measuring, weighing and reporting, plus 4 minutes of label re-keying. This figure is presented as a floor: it includes neither avoided carrier disputes nor the dimensioning station it makes redundant.",
+      "example": "Concrete example: a €16,900 equipment gap between a configuration with integrated measurement and one without pays for itself from 4,225 measured products, at €4 saved per product.",
+      "p2": "Gains for the other functions (automated packshot, 360°, video, ghost mannequin) are market estimates still being consolidated: whenever the advisor uses them, they are systematically flagged as estimates to be confirmed, never as certified figures."
+    },
+    "engine": {
+      "heading": "Who does the maths: the AI or an engine?",
+      "p1": "A deterministic calculation engine, server-side. The conversational advisor runs the qualification interview, collects your parameters and plays them back to you — but it is not allowed to do the arithmetic itself. Every figure comes from the same engine as the calculator, with the same formulas and the same safeguards.",
+      "p2": "The engine also raises alerts: production capacity too low for your target, or a declared volume inconsistent with capacity (monthly/annual confusion is common). These alerts are displayed even when they do not help the sales pitch."
+    },
+    "honesty": {
+      "heading": "What the model never does",
+      "intro": "Four fixed rules, designed against inflated marketing ROI claims.",
+      "h1": {
+        "title": "No silent addition",
+        "description": "Cash and freed-up time are never merged into a single figure without an explicit “total valued gain” label."
+      },
+      "h2": {
+        "title": "No double tax counting",
+        "description": "The tax benefit (25% corporate tax) is never added to the savings: the eliminated expenses were already deductible."
+      },
+      "h3": {
+        "title": "No fictional baseline",
+        "description": "A reference scenario is always labelled as such, with its assumptions visible."
+      },
+      "h4": {
+        "title": "No figure outside the engine",
+        "description": "No result is ever produced by the AI itself; non-validated referential data is flagged as an estimate."
+      }
+    },
+    "faq": {
+      "label": "FAQ",
+      "heading": "Frequently asked questions about the methodology",
+      "q1": {
+        "question": "Why not add freed-up time to cash savings?",
+        "answer": "Because salaries do not disappear when you automate: recovered time gets reallocated to other work, it does not credit your bank account. Adding it to cash would count as savings a cost that still exists. The calculator therefore displays two separate metrics, and only speaks of a “total valued gain” when it says so explicitly."
+      },
+      "q2": {
+        "question": "Why is the tax benefit not counted in the savings?",
+        "answer": "Leasing instalments are deductible from taxable income, true. But the eliminated expenses (provider invoices, equipment) were just as deductible. Adding a 25% tax benefit to the savings would count the same effect twice. The model reasons before tax, which keeps scenarios comparable."
+      },
+      "q3": {
+        "question": "Where do the reference prices used in comparisons come from?",
+        "answer": "From a published market cost referential: prices observed in 2026 across French providers (white-background packshot €15-40 per photo, median €25) and industry data observed by PackshotCreator across its clients. The full referential, with sources, is published on the “Packshot pricing” page."
+      },
+      "q4": {
+        "question": "What is a counterfactual baseline?",
+        "answer": "The comparison basis used when you have no existing costs — typically a business launch. The engine builds a reference scenario from market prices and labels it explicitly: “versus a provider scenario at €25 per photo”. The result then reads as the gap between two possible futures, not as savings on current spending."
+      },
+      "q5": {
+        "question": "How is the leasing instalment estimated?",
+        "answer": "If you already have an instalment or a quote, the engine uses your figures. Otherwise it displays an indicative estimate based on our usual financing terms, systematically flagged as such and to be validated by our sales team. Indicative instalments are also published on each machine page."
+      },
+      "q6": {
+        "question": "Can the ROI advisor's AI get the maths wrong?",
+        "answer": "The AI does not calculate: it collects your parameters in conversation and passes them to a deterministic server-side engine, which applies the formulas documented on this page. The same engine raises consistency alerts (insufficient capacity, inconsistent volume). The figures displayed are the engine's, with no creative rounding."
+      },
+      "q7": {
+        "question": "Is the calculator's result a commercial commitment?",
+        "answer": "No. It is a decision-support study based on your inputs and published conventions. Estimated instalments must be validated by our sales team, and talking to an expert remains the right next step to turn the study into a quoted project."
+      }
+    },
+    "finalCta": {
+      "heading": "The method is published. Test it on your numbers.",
+      "subtitle": "The calculator applies exactly this model — editable assumptions, labelled scenarios.",
+      "card1": {
+        "heading": "Run an ROI study",
+        "description": "Describe your situation: volume, visual types, current organisation. The engine quantifies direct savings and freed-up time, separately."
+      },
+      "card2": {
+        "heading": "The reference prices",
+        "description": "The 2026 market ranges used as baselines — packshot, 360°, lifestyle, salaries — with their sources."
+      },
+      "ctaPrimary": "Open the ROI calculator",
+      "ctaSecondary": "See the reference prices"
     }
   },
   "packshotAmazon": {
@@ -2275,33 +2746,33 @@
     },
     "costPerPhoto": {
       "heading": "What does a product photo really cost?",
-      "body": "A studio price means nothing if it is disconnected from the real cost per photo. It is this unit cost that determines the profitability of the investment. Here is a comparison based on prices observed in the market.",
+      "body": "A studio's price means nothing if it is disconnected from the real cost per photo. That unit cost is what determines the profitability of the investment. Here are the orders of magnitude observed in France in 2026 — the full ranges, by visual type and industry, are published in our packshot price benchmark.",
       "table": {
         "headerMethod": "Production method",
         "headerCost": "Cost per photo",
         "headerVolume": "Typical volume",
         "row1": {
-          "method": "External provider (small volumes)",
-          "cost": "EUR 19 to 50",
-          "volume": "< 500 photos/year"
+          "method": "External provider (single shots)",
+          "cost": "€10 to €40",
+          "volume": "Small series"
         },
         "row2": {
-          "method": "External provider (high volumes)",
-          "cost": "EUR 5 to 15",
-          "volume": "> 1,000 photos/year"
+          "method": "External provider (batches)",
+          "cost": "€15 to €20",
+          "volume": "Batches of 100+ photos"
         },
         "row3": {
           "method": "In-house photographer without automation",
-          "cost": "EUR 5 to 15",
+          "cost": "€3,500 to €4,800 per month in employer cost, spread over output volume",
           "volume": "Variable"
         },
         "row4": {
-          "method": "Orbitvu automated studio (amortized)",
-          "cost": "EUR 0.50 to 3",
+          "method": "Automated Orbitvu studio (amortised equipment)",
+          "cost": "Under €1",
           "volume": "> 2,000 photos/year"
         }
       },
-      "highlight": "With an automated studio, the cost per photo is divided by 5 to 10 compared to external providers."
+      "highlight": "At sustained volume, marginal cost drops below €1 per photo with an automated studio, against €15 to €40 per photo with an external provider (observed median: €25)."
     },
     "roi": {
       "heading": "Return on investment: the numbers",

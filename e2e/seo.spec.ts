@@ -25,6 +25,8 @@ const bilingualPages = [
   // Landing commerciales
   { fr: '/fr/besoins-photographie-produit', en: '/en/besoins-photographie-produit' },
   { fr: '/fr/questions-cles-photographie-produit', en: '/en/questions-cles-photographie-produit' },
+  { fr: '/fr/prix-packshot-photo-produit', en: '/en/prix-packshot-photo-produit' },
+  { fr: '/fr/methodologie-calculateur-roi', en: '/en/methodologie-calculateur-roi' },
 ];
 
 // Pages only in FR (legal)

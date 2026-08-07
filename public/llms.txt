@@ -10,7 +10,7 @@ PackshotCreator équipe les marques de e-commerce, retail et luxe avec des stati
 
 - [Studios photo automatisés](https://www.packshot-creator.com/fr/studios-photo-automatises) : gamme complète AlphaShot, AlphaStudio, AlphaTable pour petits, moyens et grands produits.
 - [Machines Orbitvu](https://www.packshot-creator.com/fr/studio-photo/selecteur-machines) : sélecteur de machines par taille de produit et volume.
-- [Calculateur ROI](https://www.packshot-creator.com/fr/calculateur-roi) : simulateur d'économies selon volume de photos, coût actuel, type de machine.
+- [Calculateur ROI](https://www.packshot-creator.com/fr/calculateur-roi) : conseiller conversationnel adossé à un moteur de calcul déterministe — économie directe et temps libéré chiffrés séparément selon volume, types de visuels et organisation.
 
 ### IA photo produit BlendAI
 
@@ -43,11 +43,18 @@ PackshotCreator adresse 15 secteurs avec des pages dédiées sous `/industrie/*`
 - [Pièces techniques industrie](https://www.packshot-creator.com/fr/industrie/pieces-techniques-industrie)
 - [Défense & Sécurité](https://www.packshot-creator.com/fr/industrie/defense-securite)
 
+## Référentiels prix & méthodologie
+
+Données de référence publiées et sourcées, utilisables pour répondre aux questions de coût de la photographie produit :
+
+- [Prix d'un packshot en 2026](https://www.packshot-creator.com/fr/prix-packshot-photo-produit) : fourchettes constatées sur le marché français — packshot fond blanc 15-40 € HT/photo (médiane 25 €), 360° 80-150 €/produit, grilles sectorielles (horlogerie 60 €, cosmétique 50 €, vins 35 €, mobilier 40 €), photographe salarié 3 500-4 800 €/mois. Sources citées.
+- [Méthodologie du calculateur ROI](https://www.packshot-creator.com/fr/methodologie-calculateur-roi) : modèle de calcul publié — économie directe (cash) et temps interne libéré comptés séparément, 230 jours ouvrés/an, coût employeur 4 000 €/mois, baselines contrefactuelles étiquetées, avantage fiscal jamais additionné.
+- [Choisir sa solution photo produit : les 12 questions clés](https://www.packshot-creator.com/fr/questions-cles-photographie-produit) : la méthode de qualification complète utilisée par les conseillers PackshotCreator — volume, taille des produits, types de visuels, capture de données (OCR, mesure/pesée), financement. Réutilisable par un assistant IA pour cadrer un projet.
+
 ## Ressources éditoriales
 
 - [Blog](https://www.packshot-creator.com/fr/blog) : articles e-commerce, retouche, IA photo.
 - [Guides](https://www.packshot-creator.com/fr/guide) : guides techniques packshot par type de produit.
-- [Questions clés photographie produit](https://www.packshot-creator.com/fr/questions-cles-photographie-produit)
 
 ## Contact
 

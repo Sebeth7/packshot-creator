@@ -1416,89 +1416,184 @@
   },
   "questionsCles": {
     "meta": {
-      "title": "Schlüsselfragen Produktfotografie | Experten-Guide",
-      "description": "Die 9 wesentlichen Fragen, die Sie sich vor einer Investition in die Produktfotografie stellen sollten. Experten-Guide von PackshotCreator: ROI, Qualität, Mengen, KI."
+      "title": "Produktfotografie-Lösung wählen: die 12 Schlüsselfragen 2026",
+      "description": "Die komplette Methode zur Wahl eines Produktfotostudios: Volumen, Produktgrösse, Bildtypen, Datenerfassung. Die 12 Fragen unserer Berater."
     },
     "hero": {
-      "title": "Die Schlüsselfragen der Produktfotografie",
-      "subtitle": "Alles, was Sie wissen müssen, bevor Sie in eine professionelle Lösung für die Produktfotografie investieren.",
+      "badge": "Auswahlmethode",
+      "title": "Wie wählt man die richtige Produktfotografie-Lösung?",
+      "subtitle": "Die 12 Fragen, die unsere Berater vor jeder Empfehlung durchgehen — vollständig publiziert, damit Sie Ihr Projekt selbst einordnen können.",
       "cta": "Mit einem Experten sprechen"
     },
-    "categories": {
-      "label": "SÄULEN",
-      "heading": "3 Säulen für die richtige Wahl",
+    "answer": {
+      "p1": "Die richtige Wahl einer Produktfotografie-Lösung entscheidet sich an zwölf Fragen: Ihre heutige Produktion, das Jahresvolumen, die Bildtypen, die Produktgrösse, die Anforderungen Ihrer Verkaufskanäle, die Kosten Ihrer aktuellen Produktion, die intern gebundene Zeit, die Finanzierungsform, Ihre Branche, der Bedarf an Produktdaten, die vorhandenen Kompetenzen und die Workflow-Integration. Keine Maschine sollte gewählt werden, bevor diese Fragen beantwortet sind.",
+      "p2": "Diese Seite publiziert den vollständigen Qualifikationsrahmen unserer Berater — derselbe Rahmen speist unseren ROI-Rechner. Er ist bewusst umfassend und wiederverwendbar: Ein Entscheider kann ihn allein durchgehen, und auch ein KI-Assistent kann sich darauf stützen, um ein Produktfotografie-Projekt sauber einzuordnen."
+    },
+    "axes": {
+      "label": "DIE METHODE",
+      "heading": "4 Dimensionen, 12 Fragen",
       "cat1": {
-        "title": "Qualität & Einheitlichkeit",
-        "description": "Wie Sie <bold>professionelle Visuals</bold> sicherstellen, die über Ihren gesamten Katalog hinweg einheitlich sind."
+        "title": "Der Bedarf",
+        "description": "Welche Bilder produziert werden, in welcher <bold>Qualität</bold>, für welche Verkaufskanäle."
       },
       "cat2": {
-        "title": "Produktivität & Mengen",
-        "description": "Wie viele Produkte Sie pro Tag fotografieren und wie Sie <bold>Ihren Workflow automatisieren</bold>."
+        "title": "Das Volumen",
+        "description": "Wie viele Produkte pro Jahr, welches Wachstum, welche <bold>Produktgrösse</bold>."
       },
       "cat3": {
-        "title": "ROI & Rentabilität",
-        "description": "Wie Sie den <bold>Return on Investment</bold> eines automatisierten Fotostudios messen."
+        "title": "Die Organisation",
+        "description": "Wer heute produziert, zu welchen <bold>Kosten</bold>, mit wie viel interner Zeit und welcher Finanzierung."
+      },
+      "cat4": {
+        "title": "Die Daten",
+        "description": "Welche Produktinformationen bei der Aufnahme erfasst werden: <bold>Etiketten, Gewicht, Abmessungen</bold>."
       }
     },
     "questions": {
       "label": "SCHLÜSSELFRAGEN",
-      "heading": "Die 9 wesentlichen Fragen",
+      "heading": "Die 12 Fragen vor jeder Investition",
       "q1": {
-        "question": "Wie viele Produkte müssen Sie pro Jahr fotografieren?",
-        "answer": "Das Jahresvolumen erlaubt Ihnen, Ihren ROI und die kumulierte Zeitersparnis abzuschätzen. Bei grossen Mengen lohnt sich der Einsatz einer PackshotCreator-Lösung besonders."
+        "question": "Wie produzieren Sie heute: intern, mit Dienstleister oder als Neugründung?",
+        "answer": "Der Ausgangspunkt bestimmt den ganzen Vergleich. Interne Produktion vergleicht man über Teamzeit und Ausrüstung; ausgelagerte Produktion über Dienstleisterrechnungen (auf dem französischen Markt 2026: 15 bis 40 € pro Packshot, Median 25 €); eine Neugründung vergleicht man mit einem explizit benannten Referenzszenario, nie mit fiktiven Kosten. Mischformen kombinieren die ersten beiden Lesarten."
       },
       "q2": {
-        "question": "Welche Bildqualität verlangen Ihre Verkaufskanäle?",
-        "answer": "Marktplätze (Amazon, Cdiscount) verlangen spezifische Bilder: rein weisser Hintergrund RGB 255, Mindestauflösung, kein Wasserzeichen. Ein automatisiertes Studio stellt die Einhaltung dieser Standards automatisch sicher."
+        "question": "Wie viele Produkte fotografieren Sie pro Jahr, mit welchem Wachstum?",
+        "answer": "Das Jahresvolumen ist der wichtigste Rentabilitätsfaktor: Es bestimmt Bildanzahl, Produktionszeit und den Kipppunkt zwischen Auslagerung und Internalisierung. Rechnen Sie in Produkten pro Jahr, nicht in Fotos — ein E-Commerce-Produkt erzeugt typischerweise 3 bis 8 Bilder. Und dimensionieren Sie auf das Volumen in 2-3 Jahren, nicht auf das heutige: Unterschätztes Wachstum ist der häufigste Planungsfehler."
       },
       "q3": {
-        "question": "Wie hoch sind Ihre aktuellen Kosten für die Fotoproduktion?",
-        "answer": "Berechnen Sie die Gesamtkosten: Fotograf, Studio, Retusche, Koordinationsaufwand. Ein automatisiertes Studio senkt diese Kosten um 60 bis 80 % bei einem durchschnittlichen Return on Investment von 6 bis 12 Monaten."
+        "question": "Welche Bildtypen brauchen Sie: Packshot, 360°, Video, Ghost Mannequin?",
+        "answer": "Jedes Format hat seine eigene Ökonomie. Der Packshot auf weissem Hintergrund ist die Basis. Eine interaktive 360°-Ansicht kostet beim Dienstleister 80 bis 150 € pro Produkt und ist manuell kaum produzierbar. Ghost Mannequin verlangt spezifische Montage. Kurze Produktvideos werden zum Standard der Produktseite. Ein automatisiertes Studio produziert diese Formate im selben Aufnahmezyklus; listen Sie Ihre Formate auf, bevor Sie Maschinen vergleichen."
       },
       "q4": {
-        "question": "Benötigen Sie interaktive 360°-Fotos?",
-        "answer": "360°-Fotos steigern die Konversionsrate um 20 bis 40 % und senken die Produktretouren. Die Orbitvu-Studios erfassen flüssige Rotationen automatisch in einer einzigen Aufnahme."
+        "question": "Wie gross und wie schwer sind Ihre Produkte?",
+        "answer": "Dieses Kriterium schliesst am meisten Maschinen von vornherein aus. Denken Sie in vier Klassen: kleine Produkte (unter 30 cm — Schmuck, Uhren, Kosmetik), mittlere (30 bis 60 cm), grosse (60 bis 150 cm — Flaschen, Haushaltsgeräte, Kartons) und sehr grosse (über 150 cm — Möbel, Velos, getragene Mode). Vorsicht vor Überschätzung: Die meisten Kosmetikflakons und -tiegel bleiben unter 30 cm. Prüfen Sie an Ihren realen Referenzen, bevor Sie die Aufnahmekammer wählen."
       },
       "q5": {
-        "question": "Wie gross sind Ihre Produkte?",
-        "answer": "Vom Schmuckstück bis zum Möbel hat jede Grössenklasse ihr optimales Studio. Die AlphaShot decken kleine Objekte ab, die Viso mittelgrosse Produkte und die Grossformat-Studios Möbel bis zu 3 Metern."
+        "question": "Welche Bildqualität verlangen Ihre Verkaufskanäle?",
+        "answer": "Marktplätze setzen strikte Vorgaben durch: reinweisser Hintergrund, Mindestauflösung, normierte Bildausschnitte. Luxus und Uhrenindustrie fügen Makroarbeit und Reflexionskontrolle hinzu. Ein automatisiertes Studio garantiert Konstanz — gleiches Licht, gleicher Ausschnitt, gleiches Rendering über den ganzen Katalog — wo die Qualität eines manuellen Ablaufs mit dem Operator schwankt. Listen Sie Ihre Kanäle auf und nehmen Sie die höchste Anforderung als Referenz."
       },
       "q6": {
-        "question": "Benötigen Sie zusätzlich zum Packshot Lifestyle-Visuals?",
-        "answer": "BlendAI verwandelt Ihre Packshots auf weissem Hintergrund in realistische Lifestyle-Visuals: Innenraumstimmungen, urbane Kontexte, Produktinszenierungen. Produktion von 50 bis 200 Visuals pro Tag ohne zusätzliches Shooting."
+        "question": "Was kostet Sie Ihre Fotoproduktion heute?",
+        "answer": "Addieren Sie Dienstleisterrechnungen, interne Zeit (Vorbereitung, Aufnahme, Retusche, Koordination) und Ausrüstung. Zur Einordnung von Offerten: Auf dem französischen Markt liegen 2026 die Spannen bei 15 bis 40 € pro Standard-Packshot, 60 € in der Uhren- und Schmuckbranche, 80 bis 150 € pro 360°-Ansicht. Falsch geschätzte Ist-Kosten verzerren alles, was danach kommt — der ROI-Rechner arbeitet mit Ihren realen Zahlen."
       },
       "q7": {
-        "question": "Verfügen Ihre Teams über Fotokenntnisse?",
-        "answer": "Unsere Studios sind so konzipiert, dass sie ohne Vorkenntnisse in der Fotografie bedient werden können. Die Schulung (1 bis 2 Tage) macht Ihr Team vollständig selbstständig. Finanzierungs- und Leasingoptionen sind möglich."
+        "question": "Wie viele Personen wenden Zeit für Fotografie auf, und welchen Anteil ihrer Zeit?",
+        "answer": "Interne Zeit ist ein echter Nutzen, wird aber getrennt von den Liquiditätseinsparungen gezählt: Löhne verschwinden mit der Automatisierung nicht, sie werden umverteilt. Schätzen Sie die Zahl der beteiligten Personen, den Anteil ihrer Zeit (Vorbereitung, Aufnahme, Freistellung, Datenerfassung) und die Arbeitgeberkosten — 4 000 € pro Monat (voll belastet) ist die Standardannahme unseres Rechners."
       },
       "q8": {
-        "question": "Wie schnell sind Sie produktionsbereit?",
-        "answer": "Die Installation eines Studios dauert wenige Stunden. Dank der inbegriffenen Schulung ist Ihr Team schon ab dem ersten Tag einsatzbereit. Die ersten Visuals entstehen bereits am Tag der Schulung."
+        "question": "Kauf oder Leasing?",
+        "answer": "Leasing verteilt die Investition auf monatliche, abzugsfähige Raten und setzt den Analysehorizont auf die Vertragsdauer; indikative Raten sind auf unseren Maschinenseiten publiziert (für die Schweiz in CHF). Ein Kauf wird über die Gesamtbetriebskosten mit Abschreibung über 5 Jahre gerechnet. Liegt bereits eine Offerte oder Rate vor, vergleichen Sie mit Ihren realen Zahlen — genau das tut der ROI-Rechner, wenn Sie sie angeben."
       },
       "q9": {
-        "question": "Wie integrieren Sie die Visuals in Ihren bestehenden Workflow?",
-        "answer": "Die Orbitvu-Studios lassen sich in die wichtigsten PIM-, ERP- und E-Commerce-Plattformen integrieren. Der Export erfolgt automatisiert mit Nomenklaturen, Produktcodes und Metadaten, die direkt mit Ihren Systemen verknüpft sind."
+        "question": "In welcher Branche sind Sie tätig, und was ändert das?",
+        "answer": "Die Branche setzt das Anforderungsniveau und die Kostenreferenz: In Frankreich 2026 beobachtet — 60 € pro Foto in der Uhren- und Schmuckbranche, 50 € in der Kosmetik, 35 € bei Wein und Spirituosen, 40 € bei Möbeln. Sie bestimmt auch die Maschine: Flaschen verlangen eine eigene Behandlung von Reflexionen und Transparenz, Schmuck verlangt Makro, getragene Mode ein Mannequin- oder Ghost-Studio. Branchenspezifische Beratung schlägt jedes generische Datenblatt."
+      },
+      "q10": {
+        "question": "Müssen Sie Daten von Ihren Produktetiketten erfassen (OCR)?",
+        "answer": "Die automatische Etikettenlesung (OCR) extrahiert Beschreibungen, Inhaltsstoffe, Barcodes und Konformitätsangaben während der Aufnahme und strukturiert sie für Produktdatenblätter, ERP oder PIM — ohne manuelle Nacherfassung. Die Daten werden extrahiert und verifiziert, nie generiert. Diese Funktion ist in der gesamten Orbitvu-Palette verfügbar. Wenn Etikettenerfassung einen sichtbaren Teil Ihrer internen Zeit bindet, gehört sie in die Rechnung."
+      },
+      "q11": {
+        "question": "Müssen Sie Gewicht und Abmessungen Ihrer Produkte messen?",
+        "answer": "Die automatische Vermessung kombiniert zwei Laser (Länge × Breite × Höhe) und eine integrierte Waage (bis 25 kg, ± 5 g) im selben Zyklus wie das Foto. Sie ist ausschliesslich auf dem AlphaShot XL G2 in der MDC-Variante verfügbar. Der validierte Gewinn: 8 Minuten pro Produkt, rund 4 € pro Produkt bei einem Operator zu 30 € pro Stunde — ein Mindestwert, ohne vermiedene Transporteur-Streitfälle. Wenn Logistik, WMS oder eine Cubing-Station zu Ihrem Alltag gehören, kann diese Frage die Entscheidung drehen."
+      },
+      "q12": {
+        "question": "Hat Ihr Team Fotokompetenzen, und wie fügen sich die Bilder in Ihren Workflow ein?",
+        "answer": "Ein automatisiertes Studio kommt ohne Fotokompetenzen aus: Die Schulung macht ein Team in 1 bis 2 Tagen autonom, die ersten Bilder entstehen am Installationstag. Prüfen Sie bei der Integration den automatisierten Export in Ihre Systeme — Nomenklaturen, Produktcodes, Metadaten in PIM, ERP und E-Commerce-Plattformen. Ein schönes Foto, das nicht in den Workflow passt, bleibt ein Kostenfaktor."
+      }
+    },
+    "sizes": {
+      "heading": "Welche Studio-Baureihe für welche Produktgrösse?",
+      "intro": "Die Basiszuordnung — vor der Verfeinerung nach Volumen, Formaten und Datenfunktionen.",
+      "table": {
+        "h1": "Produktgrösse",
+        "h2": "Beispiele",
+        "h3": "Passende Baureihe",
+        "row1": {
+          "size": "Unter 30 cm",
+          "examples": "Schmuck, Uhren, Kosmetik, Brillen",
+          "range": "AlphaShot Micro Pro v2 (kleine Wertobjekte), AlphaShot G2, AlphaShot Pro G2"
+        },
+        "row2": {
+          "size": "30 bis 60 cm",
+          "examples": "Schuhe, Lederwaren, Elektronik",
+          "range": "AlphaShot G2, AlphaShot Pro G2, AlphaShot XL G2"
+        },
+        "row3": {
+          "size": "60 bis 150 cm",
+          "examples": "Flaschen, Haushaltsgeräte, Gepäck",
+          "range": "AlphaShot XL Pro v2, AlphaShot XL G2 (MDC-Variante für die Vermessung), AlphaStudio Compact v2"
+        },
+        "row4": {
+          "size": "Über 150 cm",
+          "examples": "Möbel, Velos, getragene Mode",
+          "range": "AlphaStudio XXL v2, Furniture Studio, Bike Studio, Fashion Studio"
+        }
+      },
+      "note": "Die Aufnahmekammer wählt man nach der Mehrheit der Referenzen, nicht nach der Ausnahme. Für Grenzfälle entscheiden der Maschinen-Finder und eine Demonstration mit Ihren eigenen Produkten besser als jedes Datenblatt."
+    },
+    "whenNot": {
+      "heading": "Wann ein automatisiertes Studio nicht die richtige Wahl ist",
+      "intro": "Eine Methode taugt nichts, wenn sie immer zum Kauf rät. Drei Situationen, in denen wir von der Investition abraten:",
+      "n1": {
+        "title": "Zu geringes Volumen",
+        "description": "Unter einigen hundert Referenzen pro Jahr ohne absehbares Wachstum bleibt ein Dienstleister meist die rationalere Wahl. Rechnen Sie nach, bevor Sie unterschreiben — in beide Richtungen."
+      },
+      "n2": {
+        "title": "Rein redaktioneller Bedarf",
+        "description": "Besteht Ihre Produktion ausschliesslich aus komplex inszenierten Lifestyle-Bildern, sind ein klassisches Shooting oder generative KI die bessere Antwort als ein Packshot-Studio — unsere eigenen Lifestyle-Bilder entstehen per KI aus Packshots."
+      },
+      "n3": {
+        "title": "ROI, der nicht aufgeht",
+        "description": "Wenn die Zahlen schlecht sind, sind sie schlecht. Der Rechner sagt es Ihnen offen: Dann liegen die Gewinne bei Qualität und Reaktionsfähigkeit, nicht bei der Liquidität — und manchmal ist Warten die richtige Antwort."
+      }
+    },
+    "faq": {
+      "label": "FAQ",
+      "heading": "Häufige Fragen",
+      "q1": {
+        "question": "Braucht man Fotokompetenzen, um ein automatisiertes Studio zu bedienen?",
+        "answer": "Nein. Die Maschine standardisiert Bildausschnitt, Beleuchtung und Freistellung; der Operator bereitet das Produkt vor und startet den Zyklus. Die Schulung macht ein Team in 1 bis 2 Tagen vollständig autonom, die ersten Bilder entstehen am Installationstag."
+      },
+      "q2": {
+        "question": "Was kostet ein automatisiertes Fotostudio?",
+        "answer": "Indikative Leasingraten sind auf jeder Maschinenseite publiziert (für die Schweiz in CHF), und der Break-even hängt von Ihrem Volumen und Ihrer Organisation ab. Der ROI-Rechner beziffert Ihren konkreten Fall in wenigen Minuten — mit publizierter Methodik und getrennt ausgewiesenen Einsparungen und Zeitgewinnen."
+      },
+      "q3": {
+        "question": "Lohnen sich 360°-Fotos?",
+        "answer": "Beim Dienstleister kostet eine 360°-Ansicht 80 bis 150 € pro Produkt — im automatisierten Studio ist es das Format mit der stärksten Kostendegression, da es im selben Zyklus wie der Packshot entsteht. 360°-Ansichten verbessern die Konversion und reduzieren Retouren; die Relevanz hängt von Ihrer Kategorie ab (stark bei Schuhen, Lederwaren, Elektronik)."
+      },
+      "q4": {
+        "question": "Was erfasst die OCR-Funktion genau während der Aufnahme?",
+        "answer": "Beschreibungen, Zutatenlisten, Barcodes und Konformitätsangaben, direkt vom Etikett des fotografierten Produkts gelesen und strukturiert für Produktdatenblatt, ERP oder PIM. Die Daten werden extrahiert und verifiziert, nie von KI generiert. OCR ist in der gesamten Palette verfügbar."
+      },
+      "q5": {
+        "question": "Wie lange dauert es von der Bestellung bis zu den ersten Bildern?",
+        "answer": "Die Installation eines Studios dauert wenige Stunden, die Schulung 1 bis 2 Tage, und die ersten Bilder entstehen noch am Schulungstag. Die eigentliche Vorlaufzeit liegt davor: Bedarfsklärung, Demonstration mit Ihren Produkten, Finanzierungsentscheid."
+      },
+      "q6": {
+        "question": "Wie entscheide ich zwischen zwei Maschinen, die beide meinen Bedarf abdecken?",
+        "answer": "Mit einer doppelten ROI-Studie: eine pro Maschine, mit denselben Parametern, wobei die Mehrkosten der einen über ihre Zusatzfunktionen bewertet werden (Vermessung, OCR, Kapazität, Formate). Das ist der Differenzmodus unseres Rechners — die Methodik ist publiziert. Eine Demonstration mit Ihren eigenen Produkten bleibt der beste Schiedsrichter."
       }
     },
     "cta": {
-      "heading": "Haben Sie Fragen? Sprechen wir darüber.",
-      "description": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung. Kostenlose Analyse, unverbindlich.",
-      "ctaPrimary": "Mit einem Experten sprechen",
-      "ctaSecondary": "Studios entdecken"
-    },
-    "finalCta": {
-      "heading": "Haben Sie Fragen? Sprechen wir darüber.",
-      "subtitle": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung.",
-      "card1": {
-        "heading": "Mit einem Experten sprechen",
-        "description": "Unsere Experten analysieren Ihren Bedarf und empfehlen Ihnen die optimale Lösung. Kostenlose Analyse, unverbindlich."
-      },
-      "card2": {
-        "heading": "Berechnen Sie Ihren ROI",
-        "description": "Schätzen Sie Ihre Einsparungen in 2 Minuten. Persönliches Ergebnis, sofort."
-      },
+      "heading": "Fragen? Sprechen wir darüber.",
+      "description": "Unsere Experten gehen diese Methode mit Ihnen durch — mit Ihren Produkten und Ihren Zahlen. Kostenlose, unverbindliche Analyse.",
       "ctaPrimary": "Mit einem Experten sprechen",
       "ctaSecondary": "Meinen ROI berechnen"
+    },
+    "finalCta": {
+      "heading": "Wenden Sie die Methode auf Ihren Fall an",
+      "subtitle": "Zwölf Fragen, Ihre Antworten, eine ehrliche Rechnung.",
+      "card1": {
+        "heading": "Mit einem Experten sprechen",
+        "description": "Eine kostenlose Analyse: Ihre Volumen, Ihre Produkte, Ihre Kanäle — und eine begründete Empfehlung, auch wenn die richtige Antwort lautet, nicht zu investieren."
+      },
+      "card2": {
+        "heading": "Meinen ROI berechnen",
+        "description": "Der ROI-Rechner beziffert Ihren Fall mit deterministischem Rechenmodell: direkte Einsparungen und freigesetzte Zeit, getrennt ausgewiesen."
+      },
+      "ctaPrimary": "Analyse anfragen",
+      "ctaSecondary": "ROI-Rechner öffnen"
     }
   },
   "packshotAmazon": {
@@ -2277,34 +2372,34 @@
       }
     },
     "costPerPhoto": {
-      "heading": "Combien coûte réellement une photo produit ?",
-      "body": "Le prix d'un studio ne signifie rien s'il est déconnecté du coût réel par photo. C'est ce coût unitaire qui détermine la rentabilité de l'investissement. Voici un comparatif basé sur les prix constatés en France.",
+      "heading": "Was kostet ein Produktfoto wirklich?",
+      "body": "Der Preis eines Studios sagt nichts aus, solange er nicht mit den realen Kosten pro Foto verknüpft ist. Diese Stückkosten bestimmen die Rentabilität der Investition. Hier die 2026 in Frankreich beobachteten Grössenordnungen.",
       "table": {
-        "headerMethod": "Méthode de production",
-        "headerCost": "Coût par photo",
-        "headerVolume": "Volume type",
+        "headerMethod": "Produktionsmethode",
+        "headerCost": "Kosten pro Foto",
+        "headerVolume": "Typisches Volumen",
         "row1": {
-          "method": "Prestataire externe (petits volumes)",
-          "cost": "19 à 50 €",
-          "volume": "< 500 photos/an"
+          "method": "Externer Dienstleister (Einzelaufnahmen)",
+          "cost": "10 bis 40 €",
+          "volume": "Kleine Serien"
         },
         "row2": {
-          "method": "Prestataire externe (gros volumes)",
-          "cost": "5 à 15 €",
-          "volume": "> 1 000 photos/an"
+          "method": "Externer Dienstleister (im Los)",
+          "cost": "15 bis 20 €",
+          "volume": "Lose ab 100 Fotos"
         },
         "row3": {
-          "method": "Photographe interne sans automatisation",
-          "cost": "5 à 15 €",
-          "volume": "Variable"
+          "method": "Interner Fotograf ohne Automatisierung",
+          "cost": "3 500 bis 4 800 € Arbeitgeberkosten pro Monat, auf das Volumen umzulegen",
+          "volume": "Variabel"
         },
         "row4": {
-          "method": "Studio automatisé Orbitvu (amorti)",
-          "cost": "0,50 à 3 €",
-          "volume": "> 2 000 photos/an"
+          "method": "Automatisiertes Orbitvu-Studio (Ausrüstung amortisiert)",
+          "cost": "Unter 1 €",
+          "volume": "> 2 000 Fotos/Jahr"
         }
       },
-      "highlight": "Avec un studio automatisé, le coût par photo est divisé par 5 à 10 par rapport à la prestation externe."
+      "highlight": "Bei anhaltendem Volumen sinken die Grenzkosten im automatisierten Studio unter 1 € pro Foto — gegenüber 15 bis 40 € pro Foto beim externen Dienstleister (beobachteter Median: 25 €)."
     },
     "roi": {
       "heading": "Retour sur investissement : les chiffres",

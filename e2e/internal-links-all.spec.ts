@@ -14,6 +14,9 @@ const pages = [
   '/fr/a-propos',
   '/fr/studio-photo/alphashot-pro-g2',
   '/fr/industrie/chaussures',
+  '/fr/prix-packshot-photo-produit',
+  '/fr/methodologie-calculateur-roi',
+  '/fr/questions-cles-photographie-produit',
 ];
 
 test.describe('Internal links - All pages', () => {

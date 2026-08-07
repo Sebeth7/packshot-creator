@@ -69,6 +69,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ROI Calculator
     { path: '/fr/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
+    // Référentiels prix & méthodologie (chantier GEO 2026-08)
+    { path: '/fr/prix-packshot-photo-produit', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/en/prix-packshot-photo-produit', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/fr/methodologie-calculateur-roi', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/en/methodologie-calculateur-roi', priority: 0.7, changeFrequency: 'monthly' as const },
     // Outil de comparaison financement (FR-only — contenu non traduit)
     { path: '/fr/outil-financement', priority: 0.4, changeFrequency: 'monthly' as const },
     // Machine selector

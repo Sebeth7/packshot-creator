@@ -43,6 +43,8 @@ export const routing = defineRouting({
     '/studios-photo-automatises': '/studios-photo-automatises',
     '/ia-photo-produit': '/ia-photo-produit',
     '/calculateur-roi': { fr: '/calculateur-roi', en: '/calculateur-roi', 'de-ch': '/roi-rechner' },
+    '/prix-packshot-photo-produit': '/prix-packshot-photo-produit',
+    '/methodologie-calculateur-roi': '/methodologie-calculateur-roi',
     '/calculateur': '/calculateur',
     '/contact': { fr: '/contact', en: '/contact', 'de-ch': '/kontakt' },
     '/blog': '/blog',

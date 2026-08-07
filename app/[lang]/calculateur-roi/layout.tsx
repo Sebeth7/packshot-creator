@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Link } from '@/i18n/routing';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx } from '@/lib/locale-text';
@@ -52,6 +53,22 @@ export default async function CalculateurROILayout({
   return (
     <>
       {children}
+      {/* Maillage référentiels (pages FR/EN uniquement — pas de version de-ch) */}
+      {lang !== 'de-ch' && (
+        <nav aria-label={tx(lang, 'Références du calculateur', 'Calculator references', '')} className="bg-future-dusk-0 border-t border-neutral-100">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm">
+            <span className="text-neutral-medium">
+              {tx(lang, 'Ce calculateur applique une méthode publiée :', 'This calculator applies a published method:', '')}
+            </span>
+            <Link href="/methodologie-calculateur-roi" className="text-primary-orbitvu font-medium hover:underline">
+              {tx(lang, 'Méthodologie du calculateur ROI', 'ROI calculator methodology', '')}
+            </Link>
+            <Link href="/prix-packshot-photo-produit" className="text-primary-orbitvu font-medium hover:underline">
+              {tx(lang, 'Prix de référence 2026 du packshot', '2026 packshot reference prices', '')}
+            </Link>
+          </div>
+        </nav>
+      )}
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs)]} />
     </>
   );
