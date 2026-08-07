@@ -226,7 +226,14 @@ export default function RoiPublicChat() {
       <div className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden">
         {/* ===== Volet conversation (~60 %) ===== */}
         <section className="flex-1 lg:w-3/5 flex flex-col lg:overflow-hidden" aria-label="Conversation">
-          <div ref={listRef} className="flex-1 overflow-y-auto overscroll-contain px-4 py-6 space-y-4">
+          {/* data-lenis-prevent : sur /fr le smooth scroll Lenis du site intercepte
+              la molette (preventDefault) et anime la page à la place des volets —
+              l'attribut rend le défilement natif aux zones internes */}
+          <div
+            ref={listRef}
+            data-lenis-prevent
+            className="roi-scrollbar flex-1 overflow-y-auto overscroll-contain px-4 py-6 space-y-4"
+          >
             {uiMessages.length === 0 && (
               <div className="max-w-xl mx-auto text-center mt-10 space-y-5">
                 <p className="text-2xl font-heading font-bold text-future-dusk-900">
@@ -342,7 +349,7 @@ export default function RoiPublicChat() {
               />
             </button>
             {drawerOpen && (
-              <div className="max-h-[60vh] overflow-y-auto overscroll-contain px-4 pb-4">
+              <div data-lenis-prevent className="roi-scrollbar max-h-[60vh] overflow-y-auto overscroll-contain px-4 pb-4">
                 <DossierPanel
                   dossier={dossier}
                   studies={studies}
@@ -387,7 +394,8 @@ export default function RoiPublicChat() {
 
         {/* ===== Volet dossier (~40 %, desktop) ===== */}
         <aside
-          className="hidden lg:block lg:w-2/5 border-l border-neutral-200 bg-bg-warm-white overflow-y-auto overscroll-contain px-5 py-6"
+          data-lenis-prevent
+          className="roi-scrollbar hidden lg:block lg:w-2/5 border-l border-neutral-200 bg-bg-warm-white overflow-y-auto overscroll-contain px-5 py-6"
           aria-label="Votre dossier"
         >
           <DossierPanel

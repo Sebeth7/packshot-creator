@@ -188,10 +188,12 @@ export async function generatePDF(
       currentY = 20;
     }
 
-    // Ajouter l'image de la section
+    // Ajouter l'image de la section — JPEG compressé : le fond est forcé en
+    // blanc (pas de transparence à préserver) et le PNG non compressé faisait
+    // des PDF de 15-20 Mo
     const imgWidth = pdfWidth - 20;
-    const imgData = canvas.toDataURL('image/png');
-    pdf.addImage(imgData, 'PNG', 10, currentY, imgWidth, height);
+    const imgData = canvas.toDataURL('image/jpeg', 0.82);
+    pdf.addImage(imgData, 'JPEG', 10, currentY, imgWidth, height, undefined, 'FAST');
 
     currentY += height + 5; // 5mm de marge entre sections
   }
@@ -341,14 +343,18 @@ async function generatePDFLegacy(
     const sliceCtx = sliceCanvas.getContext('2d');
 
     if (sliceCtx) {
+      // Fond blanc explicite : le JPEG n'a pas d'alpha, une zone non peinte
+      // sortirait noire
+      sliceCtx.fillStyle = '#ffffff';
+      sliceCtx.fillRect(0, 0, sliceCanvas.width, sliceCanvas.height);
       sliceCtx.drawImage(
         canvas,
         0, sourceY, canvas.width, sourceHeight,
         0, 0, canvas.width, sourceHeight
       );
 
-      const sliceData = sliceCanvas.toDataURL('image/png');
-      pdf.addImage(sliceData, 'PNG', 10, yOffset, imgWidth, sliceHeight);
+      const sliceData = sliceCanvas.toDataURL('image/jpeg', 0.82);
+      pdf.addImage(sliceData, 'JPEG', 10, yOffset, imgWidth, sliceHeight, undefined, 'FAST');
     }
 
     remainingHeight -= sliceHeight;

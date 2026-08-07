@@ -345,3 +345,18 @@
 }
 .prose .article-signature p { margin: 0; font-size: 0.95rem; color: var(--future-dusk-7); }
 .prose .article-signature strong { color: var(--future-dusk-9); }
+
+/* Chat ROI — scrollbar toujours visible sur les volets à défilement interne :
+   macOS/overlay masque les barres au repos, les utilisateurs ne voient pas
+   que les colonnes défilent */
+.roi-scrollbar {
+  scrollbar-width: thin;                        /* Firefox */
+  scrollbar-color: var(--future-dusk-3) transparent;
+}
+.roi-scrollbar::-webkit-scrollbar { width: 8px; }
+.roi-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.roi-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--future-dusk-3);
+  border-radius: 4px;
+}
+.roi-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--future-dusk-5); }
