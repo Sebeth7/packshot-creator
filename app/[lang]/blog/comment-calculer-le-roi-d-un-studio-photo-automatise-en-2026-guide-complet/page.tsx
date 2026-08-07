@@ -388,6 +388,12 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h3 id="methodologie-de-calcul-la-formule-roi-complete" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
                   5. Méthodologie de Calcul : La Formule ROI Complète
                 </h3>
+                <Callout type="info" title="La méthodologie officielle du calculateur est publiée">
+                  Depuis août 2026, notre calculateur ROI applique un modèle plus strict que la formule classique ci-dessous : économie de trésorerie et temps interne libéré sont chiffrés séparément (les salaires ne disparaissent pas, ils se réaffectent), et l'avantage fiscal n'est jamais additionné.{' '}
+                  <Link href="/methodologie-calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
+                    Lire la méthodologie du calculateur ROI →
+                  </Link>
+                </Callout>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   Maintenant que nous avons identifié les 8 facteurs, appliquons la formule ROI classique adaptée aux studios photo.
                 </p>

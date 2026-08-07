@@ -293,6 +293,18 @@ export default async function BudgetStudioPage({ params }: { params: Promise<{ l
                 </p>
               </div>
             </SpringCard>
+            {/* Renvoi vers le référentiel prix (pages FR/EN uniquement) */}
+            {lang !== 'de-ch' && (
+              <p className="mt-6 text-future-dusk-600 leading-relaxed">
+                {lang === 'fr'
+                  ? 'Fourchettes détaillées par type de visuel (packshot, 360°, ghost mannequin, lifestyle) et par secteur, avec sources : '
+                  : 'Detailed ranges by visual type (packshot, 360°, ghost mannequin, lifestyle) and industry, with sources: '}
+                <Link href="/prix-packshot-photo-produit" className="text-primary-orbitvu font-medium hover:underline">
+                  {lang === 'fr' ? 'référentiel des prix du packshot 2026' : '2026 packshot price benchmark'}
+                </Link>
+                .
+              </p>
+            )}
           </ScrollReveal>
 
           {/* ── ROI ── */}
