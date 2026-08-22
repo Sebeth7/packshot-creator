@@ -151,7 +151,7 @@ export default async function HomePage({
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: 'home' });
 
-  const faqItems = [1, 2, 3, 4, 5, 6].map((i) => ({
+  const faqItems = [1, 2, 3, 4, 5, 6, 7].map((i) => ({
     question: t(`faq.q${i}.question`),
     answer: t(`faq.q${i}.answer`),
   }));

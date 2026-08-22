@@ -31,6 +31,11 @@ interface PageProps {
 
 const FAQ = [
   {
+    question: 'Qui est le distributeur officiel des studios photo Orbitvu en Suisse ?',
+    answer:
+      'PackshotCreator, marque de la société française Sysnext, est le distributeur officiel des studios photo automatisés Orbitvu pour la Suisse et la France. L\'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025 : les entreprises suisses s\'adressent aujourd\'hui directement à PackshotCreator pour le conseil, la démonstration, la livraison, l\'installation, la formation et le SAV, en français comme en allemand. Contact Suisse : +41 44 580 43 84.',
+  },
+  {
     question: 'Où acheter un studio Orbitvu en Suisse ?',
     answer:
       'PackshotCreator est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse. Les entreprises suisses commandent directement auprès de PackshotCreator : conseil, démonstration, livraison, installation et formation sont assurés sur l\'ensemble du territoire suisse. Contact Suisse : +41 44 580 43 84.',

@@ -54,7 +54,8 @@ export function organizationSchema() {
         availableLanguage: ['French', 'English'],
       },
       {
-        // Point de contact suisse (marché CH, locale de-ch — Workstream B). Numéro +41.
+        // Point de contact suisse (marché CH, locale de-ch — Workstream B). Numéro +41
+        // réel (renvoi vers la ligne France), vérifié par Seb le 22/08/2026.
         '@type': 'ContactPoint',
         telephone: '+41445804384',
         email: 'sales@sysnext.com',
