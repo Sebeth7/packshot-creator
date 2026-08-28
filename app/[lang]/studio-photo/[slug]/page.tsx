@@ -18,31 +18,11 @@ import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL } from '@/lib/locale-text';
+import { getMachineImage } from '@/lib/machine-images';
 
 // Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
 // Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
 const DE_CH_MACHINES = new Set(MACHINES.map((m) => m.id));
-
-// Map machine IDs to local image files
-function getMachineImage(id: string): string {
-  const imageMap: Record<string, string> = {
-    'alphashot-micro-v2': '/images/machines/alphashot-micro-v2.avif',
-    'alphashot-360': '/images/machines/alphashot-360.avif',
-    'alphashot-xl-g2': '/images/machines/alphashot-xl-g2.avif',
-    'alphashot-pro-g2': '/images/machines/alphashot-pro-g2.avif',
-    'alphashot-xl-v2': '/images/machines/alphashot-xl.avif',
-    'alphadesk': '/images/machines/alphatable-alphadesk.avif',
-    'alphatable': '/images/machines/alphatable-alphadesk.avif',
-    'alphastudio-compact-v2': '/images/machines/alphastudio-compact.avif',
-    'alphastudio-xxl-v2': '/images/machines/alphastudio-xxl.avif',
-    'fashion-studio-basic': '/images/machines/fashion-studio.avif',
-    'fashion-studio': '/images/machines/fashion-studio.avif',
-    'bike-studio': '/images/machines/bike-studio.avif',
-    'furniture-studio': '/images/machines/furniture-studio.avif',
-    'e-comm-studio-plus': '/images/machines/ecomm-studio-plus.avif',
-  };
-  return imageMap[id] || '/images/machines/placeholder-medium.svg';
-}
 
 // Base publique des vidéos démo auto-hébergées (Cloudflare R2, bucket packshot-videos).
 // Fichiers nommés `<youtubeId>.mp4`. Domaine custom = videos.packshot-creator.com.
@@ -401,6 +381,10 @@ function getProductGallery(id: string): ProductGallery {
       ],
     },
   };
+  // XL Pro v2 et XL Wine v2 n'ont pas de shoot dédié : elles partagent les visuels
+  // du XL v2 (même châssis). Sans ce fallback la fiche sort sans aucune image
+  // (hero placeholder, galerie et vidéo absentes, schema Product sur le SVG).
+  if (id === 'alphashot-xl-wine-v2' || id === 'alphashot-xl-pro-v2') return galleries['alphashot-xl-v2'] || {};
   return galleries[id] || {};
 }
 
