@@ -16,6 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     alternates: {
       canonical: 'https://www.packshot-creator.com/fr/outil-financement',
     },
+    // Widget JS (93 mots rendus) : noindex,follow — décision Seb 04/09/2026
+    // (audit Laurent, addendum A4). Retirée du sitemap en parallèle.
+    robots: { index: false, follow: true },
   };
 }
 

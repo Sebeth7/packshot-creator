@@ -1,5 +1,7 @@
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
+// NavLink (épinglage de-ch) : le Link brut rendait /de-ch/academy (404) depuis les
+// landings suisses — audit Laurent 03/09/2026 (addendum A3).
+import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';

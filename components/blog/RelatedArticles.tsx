@@ -64,7 +64,7 @@ export async function RelatedArticles({ currentSlug, category, lang }: RelatedAr
                       </span>
                     )}
                     <span className="text-future-dusk-400">
-                      {new Date(article.date).toLocaleDateString(isFr ? 'fr-FR' : 'en-US', {
+                      {new Date(article.date).toLocaleDateString(isFr ? 'fr-FR' : lang === 'de-ch' ? 'de-CH' : 'en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',

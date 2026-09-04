@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+// NavLink (épinglage de-ch) : le Link brut produisait /de-ch/industrie/<slug-fr>
+// → 307 → 404 (audit Laurent 03/09/2026, addendum A2).
+import { NavLink as Link } from '@/components/layout/NavLink';
+import { deChSectorSlug } from '@/i18n/deChCoverage';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
@@ -57,6 +60,14 @@ const NEED_ICONS = [Camera, Box, RotateCw, Sparkles];
 
 export default async function BesoinsPhotographieProduitPage({ params }: PageProps) {
   const { lang } = await params;
+  // Les hrefs secteurs des messages sont des chemins FR (/industrie/<slug-fr>). En de-ch,
+  // les secteurs traduits sont servis sous leur slug allemand (/de-ch/branchen/schmuck) ;
+  // les autres sont épinglés par NavLink (fr, la version /en étant noindex).
+  const sectorHref = (path: string) => {
+    const frSlug = path.replace(/^\/industrie\//, '');
+    const slug = lang === 'de-ch' ? (deChSectorSlug(frSlug) ?? frSlug) : frSlug;
+    return { pathname: '/industrie/[slug]' as const, params: { slug } };
+  };
   const t = await getTranslations({ locale: lang, namespace: 'besoinsPhoto' });
   const isFr = lang === 'fr';
 
@@ -188,7 +199,7 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <StaggerItem key={i}>
                 <Link
-                  href={t(`sectors.item${i}.href`) as '/industrie'}
+                  href={sectorHref(t(`sectors.item${i}.href`))}
                   className="group flex items-center gap-3 bg-white rounded-xl p-4 border border-neutral-100 hover:border-very-peri-300 hover:shadow-sm transition-all"
                 >
                   <span className="text-sm font-medium text-heading-dark group-hover:text-very-peri-600 transition-colors">

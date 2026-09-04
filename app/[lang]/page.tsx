@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { getPathname } from '@/i18n/routing';
-import { navPinLocale } from '@/i18n/deChCoverage';
+import { resolveNavHref } from '@/i18n/deChCoverage';
 
 // Type étroit commun à <Link href>, navPinLocale et getPathname (le type large
 // LinkHref admet un UrlObject dont `query` est incompatible avec getPathname).
@@ -11,7 +11,6 @@ import SchemaOrg, {
   organizationSchema,
   websiteSchema,
   faqSchema,
-  productSchema,
   itemListSchema,
 } from '@/components/seo/SchemaOrg';
 import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
@@ -732,26 +731,25 @@ export default async function HomePage({
           organizationSchema(),
           websiteSchema(lang as 'fr' | 'en'),
           faqSchema(faqItems),
-          productSchema({
-            name: 'Alphashot Pro G2',
-            description: 'Studio photo automatisé compact. Packshot en 3 secondes, 360°, vidéo, détourage automatique, IA BlendAI intégrée.',
-            image: 'https://www.packshot-creator.com/images/machines/alphashot-pro-g2.avif',
-            url: `https://www.packshot-creator.com/${lang}/studio-photo/alphashot-pro-g2`,
-            brand: 'Orbitvu',
-            category: 'Photo Studio Equipment',
-          }),
+          // Product isolé (sans Offer) retiré : erreur critique « Product snippets »
+          // sur les 3 homes (audit Laurent 03/09/2026, §4.3). Aucun prix n'est
+          // visible sur la home ; le Product+Offer vit sur la fiche machine.
           itemListSchema(
             // Même résolution d'URL que les liens visibles (NavLink) :
             // épinglage de-ch → fr/en pour les cibles non couvertes,
             // puis chemin localisé préfixé via getPathname.
-            INDUSTRIES.map((ind, i) => ({
-              name: t(`industries.${ind.key}`),
-              url: `https://www.packshot-creator.com${getPathname({
-                locale: navPinLocale(lang, ind.href) ?? (lang as 'fr' | 'en' | 'de-ch'),
-                href: ind.href,
-              })}`,
-              position: i + 1,
-            }))
+            INDUSTRIES.map((ind, i) => {
+              const nav = resolveNavHref(lang, ind.href);
+              return {
+                name: t(`industries.${ind.key}`),
+                url: `https://www.packshot-creator.com${getPathname({
+                  locale: nav.locale ?? (lang as 'fr' | 'en' | 'de-ch'),
+                  // resolveNavHref ne change que le slug de ce même pathname : cast sûr
+                  href: nav.href as IndustryHref,
+                })}`,
+                position: i + 1,
+              };
+            })
           ),
         ]}
       />

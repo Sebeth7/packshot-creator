@@ -490,7 +490,7 @@ export const MACHINES: Machine[] = [
   {
     id: 'e-comm-studio-plus',
     nom: 'E-Comm Studio+',
-    prix: 150000,
+    prix: 130000, // Prix HT confirmé par Seb le 04/09/2026 (précédemment 150 000).
     capaciteJour: 150,
     tailleMax: '300×300×200 cm',
     poidsMax: '1000 kg (4000 kg option)',

@@ -70,7 +70,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/fr/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     // Outil de comparaison financement (FR-only — contenu non traduit)
-    { path: '/fr/outil-financement', priority: 0.4, changeFrequency: 'monthly' as const },
     // Machine selector
     { path: '/fr/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/en/studio-photo/selecteur-machines', priority: 0.7, changeFrequency: 'monthly' as const },

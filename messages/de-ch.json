@@ -431,7 +431,9 @@
       "packshotAmazon": "Packshot Amazon",
       "packshotMode": "Packshot Mode",
       "packshotIndustriel": "Packshot Industrie",
-      "packshotDefense": "Industrie & Verteidigung"
+      "packshotDefense": "Industrie & Verteidigung",
+      "studiosRange": "Unsere Studios",
+      "allStudios": "Alle Studios"
     }
   },
   "iaPhotoProduit": {
@@ -648,19 +650,19 @@
     }
   },
   "blog": {
-    "metaTitle": "Blog Photo Produit | Guides & Comparatifs | PackshotCreator",
-    "metaDescription": "Guides pratiques, comparatifs studios photo, IA photo produit, formations. Expertise photo e-commerce depuis 25 ans.",
+    "metaTitle": "Blog Produktfotografie | Ratgeber & Vergleiche | PackshotCreator",
+    "metaDescription": "Praxisratgeber, Vergleiche automatisierter Fotostudios, KI-Produktfotografie, Schulungen. Expertise für Produktfotos im E-Commerce und in der Industrie.",
     "heading": "Blog",
-    "subtitle": "Guides, comparatifs et actualités photo produit e-commerce",
-    "cta": "Lire l'article",
-    "noArticles": "Aucun article disponible pour le moment.",
-    "ctaHeading": "Besoin d'aide pour votre projet photo ?",
-    "ctaDescription": "Nos experts sont là pour vous accompagner dans le choix de vos solutions.",
-    "ctaContact": "Nous contacter",
-    "ctaFormation": "Découvrir nos formations",
-    "filterAll": "Tous",
-    "showMore": "Voir plus d'articles",
-    "latestArticle": "Article à la une"
+    "subtitle": "Ratgeber, Vergleiche und News zur Produktfotografie im E-Commerce",
+    "cta": "Artikel lesen",
+    "noArticles": "Derzeit sind keine Artikel verfügbar.",
+    "ctaHeading": "Brauchen Sie Unterstützung bei Ihrem Fotoprojekt?",
+    "ctaDescription": "Unsere Experten begleiten Sie bei der Wahl Ihrer Lösung.",
+    "ctaContact": "Kontakt aufnehmen",
+    "ctaFormation": "Unsere Schulungen entdecken",
+    "filterAll": "Alle",
+    "showMore": "Weitere Artikel anzeigen",
+    "latestArticle": "Artikel im Fokus"
   },
   "blogArticle": {
     "toc": "Inhaltsverzeichnis",
