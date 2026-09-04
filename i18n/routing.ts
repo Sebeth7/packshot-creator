@@ -99,5 +99,5 @@ export const routing = defineRouting({
 });
 
 // Navigation helpers légèrement typés
-export const { Link, redirect, usePathname, useRouter } =
+export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);

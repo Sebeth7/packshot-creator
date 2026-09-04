@@ -5,6 +5,11 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
   images: {
+    // Nos assets locaux sont immuables (un changement de visuel = un nouveau
+    // nom de fichier) : cache long côté optimiseur Vercel pour limiter les
+    // réoptimisations répétées (/_next/image représente une part majeure des
+    // 504 constatés dans cf_traffic_daily depuis juillet 2026).
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: 'https',

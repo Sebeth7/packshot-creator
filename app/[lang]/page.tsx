@@ -1,5 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
+import { navPinLocale, type LinkHref } from '@/i18n/deChCoverage';
 import Image from 'next/image';
 import SchemaOrg, {
   organizationSchema,
@@ -90,7 +92,7 @@ const TESTIMONIALS = [
 ] as const;
 
 
-const INDUSTRIES = [
+const INDUSTRIES: { key: string; icon: string; href: LinkHref }[] = [
   { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'bijoux-joaillerie' } } },
   { key: 'mode', icon: '/images/secteurs/mode-accessoires.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'mode-textile' } } },
   { key: 'cosmetiques', icon: '/images/secteurs/skincare-cosmetiques.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'cosmetiques-beaute' } } },
@@ -194,7 +196,7 @@ export default async function HomePage({
             size="lg"
             className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-14 text-base rounded-lg"
           >
-            <Link href="/calculateur">
+            <Link href="/calculateur-roi">
               {t('hero.ctaSecondary')}
             </Link>
           </Button>
@@ -712,7 +714,7 @@ export default async function HomePage({
                 <h3 className="text-2xl font-heading font-bold mb-4">{t('finalCta.card2.heading')}</h3>
                 <p className="text-neutral-400 mb-8 leading-relaxed flex-1">{t('finalCta.card2.description')}</p>
                 <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-8 h-12 text-base w-fit">
-                  <Link href="/calculateur">{t('finalCta.ctaSecondary')}</Link>
+                  <Link href="/calculateur-roi">{t('finalCta.ctaSecondary')}</Link>
                 </Button>
               </div>
             </SpringCard>
@@ -735,9 +737,15 @@ export default async function HomePage({
             category: 'Photo Studio Equipment',
           }),
           itemListSchema(
+            // Même résolution d'URL que les liens visibles (NavLink) :
+            // épinglage de-ch → fr/en pour les cibles non couvertes,
+            // puis chemin localisé préfixé via getPathname.
             INDUSTRIES.map((ind, i) => ({
               name: t(`industries.${ind.key}`),
-              url: `https://www.packshot-creator.com/${lang}${ind.href}`,
+              url: `https://www.packshot-creator.com${getPathname({
+                locale: navPinLocale(lang, ind.href) ?? (lang as 'fr' | 'en' | 'de-ch'),
+                href: ind.href,
+              })}`,
               position: i + 1,
             }))
           ),
