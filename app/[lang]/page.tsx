@@ -1,7 +1,11 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { getPathname } from '@/i18n/routing';
-import { navPinLocale, type LinkHref } from '@/i18n/deChCoverage';
+import { navPinLocale } from '@/i18n/deChCoverage';
+
+// Type étroit commun à <Link href>, navPinLocale et getPathname (le type large
+// LinkHref admet un UrlObject dont `query` est incompatible avec getPathname).
+type IndustryHref = { pathname: '/industrie/[slug]'; params: { slug: string } };
 import Image from 'next/image';
 import SchemaOrg, {
   organizationSchema,
@@ -92,7 +96,7 @@ const TESTIMONIALS = [
 ] as const;
 
 
-const INDUSTRIES: { key: string; icon: string; href: LinkHref }[] = [
+const INDUSTRIES: { key: string; icon: string; href: IndustryHref }[] = [
   { key: 'bijoux', icon: '/images/secteurs/horlogerie-bijouterie.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'bijoux-joaillerie' } } },
   { key: 'mode', icon: '/images/secteurs/mode-accessoires.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'mode-textile' } } },
   { key: 'cosmetiques', icon: '/images/secteurs/skincare-cosmetiques.svg', href: { pathname: '/industrie/[slug]', params: { slug: 'cosmetiques-beaute' } } },
