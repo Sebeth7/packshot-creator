@@ -25,6 +25,44 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D14 · 2026-09-16 · L'accès Vercel de Laurent reste à l'échelle de l'équipe
+
+**Décidé par** : Sébastien
+**Statut** : en vigueur
+
+**La décision** — Laurent garde le rôle `Member` sur l'équipe Vercel
+`sebs-projects-ca1e93a7`, donc l'accès aux 8 projets qu'elle contient. Arbitrage
+rendu en connaissance de cause : « tant pis on lui laisse l'accès total Vercel,
+pas très risqué ».
+
+**Le contexte** — Question posée à l'origine sur GitHub, où la réponse est
+nette : `Sebeth7` est un compte personnel, l'accès collaborateur y est par
+dépôt, et Laurent n'a que `packshot-creator`. Rien à corriger.
+
+Sur Vercel en revanche, l'équipe héberge `sysnext`, `jade-tdb`, `frontend`,
+`packshot-art`, `packshot-art-next`, `packshot-evolution`, `sebjourdanphoto` et
+`recraft-studio-backend`. Le rôle `Member` porte sur les huit : créer des
+déploiements, gérer intégrations et domaines.
+
+**Pourquoi c'est resté ainsi** — Le cloisonnement par projet est réservé au plan
+Enterprise ; les cinq rôles du plan Pro sont tous à l'échelle de l'équipe. Les
+seules sorties réelles étaient de le passer en `Viewer`, de migrer `sysnext`
+dans une équipe dédiée, ou de le retirer. Aucune n'a paru justifiée au regard du
+risque.
+
+À noter : Laurent a présidé cette société. Son accès Vercel est vraisemblablement
+hérité de l'ancienne configuration, pas accordé récemment.
+
+**Ce qu'elle ferme** — Ne pas rouvrir ce sujet sans élément nouveau. Si un
+cloisonnement devenait nécessaire, la migration de `sysnext` vers une équipe
+dédiée est un chantier à part : re-liaison GitHub, domaines à revérifier, et un
+abonnement supplémentaire.
+
+**Non vérifié** — Si le rôle `Viewer` donne accès à Observability sur le plan
+Pro. Sans objet tant que D14 tient, mais à savoir si la question revient.
+
+---
+
 ## D13 · 2026-09-16 · Quartier libre — le risque à écarter est celui des conséquences non mesurées
 
 **Décidé par** : Sébastien

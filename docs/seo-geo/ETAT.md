@@ -60,7 +60,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Accès | État réel |
 |---|---|
 | Dépôt GitHub `Sebeth7/packshot-creator` | **Écriture**, déjà en place |
-| Équipe Vercel `sebs-projects-ca1e93a7` | **Déjà membre** — `laurent.wainberg@sysnext.com`, rôle Member, 2FA active |
+| Équipe Vercel `sebs-projects-ca1e93a7` | **Déjà membre** — `laurent.wainberg@sysnext.com`, rôle Member, 2FA active. Portée : les 8 projets de l'équipe, arbitré et assumé (D14) |
 | Jeton de contournement des Preview | **Créé le 16/09** — reste à lui transmettre |
 | Cloudflare | En place |
 | Supabase `gsc-crawl-seo` | Sa propre base |
@@ -70,7 +70,11 @@ Rien ne bloque son démarrage, une fois le jeton transmis et
 
 L'attribution de rôles **par projet** sur Vercel est réservée au plan
 Enterprise ; sur le plan Pro, l'accès est au niveau de l'équipe. C'est donc
-l'accès équipe qui fait foi.
+l'accès équipe qui fait foi — voir D14.
+
+Côté GitHub, `Sebeth7` est un compte personnel : l'accès collaborateur y est
+strictement par dépôt. Laurent n'a que `packshot-creator`, vérifié le 16/09 sur
+les 9 dépôts.
 
 ---
 
