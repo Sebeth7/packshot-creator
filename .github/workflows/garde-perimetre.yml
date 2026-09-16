@@ -1,0 +1,31 @@
+name: Garde-périmètre
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  perimetre:
+    name: La zone rouge n'est pas touchée
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lister les fichiers modifiés
+        id: diff
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          BASE=$(git merge-base HEAD "origin/${{ github.base_ref }}")
+          git diff --name-only "$BASE" HEAD > /tmp/fichiers-modifies.txt
+          echo "--- fichiers modifiés ---"
+          cat /tmp/fichiers-modifies.txt
+
+      - name: Vérifier le périmètre
+        env:
+          # Un libellé posé par Sébastien sur la PR lève la garde.
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: node scripts/seo/verifier-perimetre.mjs /tmp/fichiers-modifies.txt

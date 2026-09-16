@@ -1,0 +1,53 @@
+name: Garde-journal
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  journal:
+    name: Le journal est à jour
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Vérifier qu'une entrée a été ajoutée au journal
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          BASE=$(git merge-base HEAD "origin/${{ github.base_ref }}")
+          MODIFIES=$(git diff --name-only "$BASE" HEAD)
+
+          # Les changements qui ne touchent que la documentation, le journal
+          # lui-même ou l'outillage n'exigent pas d'entrée.
+          SITE_TOUCHE=$(echo "$MODIFIES" | grep -vE '^(docs/|\.github/|scripts/|README\.md$|CLAUDE\.md$)' || true)
+
+          if [ -z "$SITE_TOUCHE" ]; then
+            echo "Aucun fichier de site modifié — le journal n'est pas exigé."
+            exit 0
+          fi
+
+          echo "Fichiers de site modifiés :"
+          echo "$SITE_TOUCHE"
+          echo ""
+
+          if ! echo "$MODIFIES" | grep -q '^docs/seo-geo/JOURNAL\.md$'; then
+            echo "ÉCHEC — cette PR modifie le site sans ajouter d'entrée au journal."
+            echo ""
+            echo "Ajoute une entrée en haut de docs/seo-geo/JOURNAL.md."
+            echo "Le gabarit est dans le fichier. Les rubriques Vérifié /"
+            echo "Supposé / Non regardé ne sont pas facultatives."
+            exit 1
+          fi
+
+          AJOUTS=$(git diff --numstat "$BASE" HEAD -- docs/seo-geo/JOURNAL.md | cut -f1)
+          if [ "${AJOUTS:-0}" -lt 5 ]; then
+            echo "ÉCHEC — le journal a été touché, mais trop peu (${AJOUTS:-0} lignes ajoutées)."
+            echo "Une entrée complète fait au moins une dizaine de lignes."
+            exit 1
+          fi
+
+          echo "Journal à jour : ${AJOUTS} lignes ajoutées."

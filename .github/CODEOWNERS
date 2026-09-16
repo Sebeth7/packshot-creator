@@ -1,0 +1,40 @@
+# CODEOWNERS — packshot-creator
+#
+# Indicatif : la protection de branche n'exige pas de revue. Ce fichier sert à
+# ce que GitHub propose automatiquement le bon relecteur, et à rendre lisible
+# qui répond de quoi.
+#
+# Le périmètre qui fait foi est docs/seo-geo/01-PERIMETRE.md ; il est appliqué
+# mécaniquement par .github/workflows/garde-perimetre.yml.
+
+# Par défaut : Sébastien
+*                                   @Sebeth7
+
+# ── Zone verte SEO/GEO — Laurent ──────────────────────────────────
+/lib/seo-config.ts                  @lwainberg @Sebeth7
+/lib/hreflang.ts                    @lwainberg @Sebeth7
+/app/sitemap.ts                     @lwainberg @Sebeth7
+/public/robots.txt                  @lwainberg @Sebeth7
+/public/llms.txt                    @lwainberg @Sebeth7
+/components/seo/                    @lwainberg @Sebeth7
+/components/maillage/               @lwainberg @Sebeth7
+/data/content-maillage.ts           @lwainberg @Sebeth7
+/i18n/deChCoverage.ts               @lwainberg @Sebeth7
+/cloudflare-worker/                 @lwainberg @Sebeth7
+/content/blog/alternates.json       @lwainberg @Sebeth7
+/content/guides/alternates.json     @lwainberg @Sebeth7
+/docs/seo-geo/                      @lwainberg @Sebeth7
+
+# ── Zone rouge — Sébastien seul ───────────────────────────────────
+/lib/roiChat/                       @Sebeth7
+/lib/roiEngine/                     @Sebeth7
+/app/calculateur-roi/               @Sebeth7
+/app/roi-pro/                       @Sebeth7
+/app/roi-preview/                   @Sebeth7
+/app/api/                           @Sebeth7
+/app/etude-clients-2026/            @Sebeth7
+/components/forms/                  @Sebeth7
+/middleware.ts                      @Sebeth7
+/i18n/routing.ts                    @Sebeth7
+/package.json                       @Sebeth7
+/package-lock.json                  @Sebeth7
