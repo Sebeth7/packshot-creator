@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Accès de Laurent vérifiés — deux prérequis n'en étaient pas · Claude de Sébastien
+
+**Chantier** : gouvernance | **PR** : #5
+
+**Quoi** — Contrôle au dashboard des accès listés comme prérequis au démarrage
+de Laurent. Deux des trois étaient déjà satisfaits.
+
+| Prérequis annoncé | État réel |
+|---|---|
+| Ajouter `lwainberg` à l'équipe Vercel | **Déjà membre** — `laurent.wainberg@sysnext.com`, rôle Member, 2FA active |
+| Créer le jeton de contournement des Preview | **Créé** le 16/09 |
+| Transmettre le jeton à Laurent | Reste à faire, canal privé |
+
+**Pourquoi** — J'avais inscrit « ajouter `lwainberg` à l'équipe Vercel » sans
+l'avoir vérifié. C'est la règle R7 retournée contre moi : une affirmation se
+vérifie contre le réel, y compris quand c'est moi qui l'écris. Un `ETAT.md` qui
+demande un geste déjà fait perd sa valeur de source de vérité.
+
+**Vérifié** — Page Members de l'équipe Vercel, page Deployment Protection,
+collaborateurs du dépôt GitHub.
+
+**Non regardé** — Ce que le rôle « Member » de Vercel autorise exactement en
+matière d'Observability sur le plan Pro. À confirmer avec Laurent quand il
+ouvrira le chantier 504.
+
+---
+
 ## 2026-09-16 · Clôture de C1 et piège de la traduction Chrome · Claude de Sébastien
 
 **Chantier** : C1 | **PR** : #4
