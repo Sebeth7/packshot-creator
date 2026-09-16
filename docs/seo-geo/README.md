@@ -96,7 +96,7 @@ désynchroniser.
 | `00-BRIEFING.md` | Le site, l'entreprise, la stack, les acteurs, l'histoire du chantier |
 | `01-RAYON-ACTION.md` | **La carte des dépendances : ce qui déborde du fichier qu'on touche** |
 | `02-PROCEDURE.md` | Branche → PR → merge → contrôle. Commandes exactes |
-| `03-PIEGES.md` | Les 26 pièges, chacun avec l'incident qui l'a prouvé |
+| `03-PIEGES.md` | Les 32 pièges, chacun avec l'incident qui l'a prouvé |
 | `05-INFRA.md` | Vercel, Cloudflare, Worker, Supabase, GSC |
 | `04-SURFACES-SEO.md` | Quel fichier pilote quelle sortie SEO |
 | `07-VERIFICATION.md` | Comment prouver qu'un changement marche |

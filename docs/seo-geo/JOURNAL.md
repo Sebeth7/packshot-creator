@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Dénombrement des pièges corrigé · Claude de Sébastien
+
+**Chantier** : gouvernance | **PR** : #6
+
+**Quoi** — Le `README.md` annonçait « 26 pièges ». Il y en a **32**. Corrigé, et
+le décompte est désormais posé dans l'en-tête de `03-PIEGES.md` avec les sept
+familles, pour qu'un écart se voie.
+
+**Pourquoi** — Chiffre écrit de mémoire, jamais compté. Repéré en rédigeant le
+mail à Laurent, qui annonçait encore un troisième chiffre. Un document qui donne
+un nombre faux sur lui-même entame la confiance dans les autres nombres qu'il
+donne — et celui-ci en donne beaucoup.
+
+**Vérifié** — `grep -cE "^### [A-G][0-9]+ —"` sur `03-PIEGES.md` : 32.
+Répartition : A1-A5, B1-B5, C1-C5, D1-D3, E1-E6, F1-F5, G1-G3.
+
+**Non regardé** — Les autres chiffres de la documentation n'ont pas été
+re-comptés un à un.
+
+---
+
 ## 2026-09-16 · Accès de Laurent vérifiés — deux prérequis n'en étaient pas · Claude de Sébastien
 
 **Chantier** : gouvernance | **PR** : #5
