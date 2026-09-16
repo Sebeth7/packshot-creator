@@ -25,8 +25,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | Merger `feat/audit-laurent-0309` (`0e8949f`) | Laurent, via l'audit du 03/09 | 04/09 | Correctif du sélecteur de langue = cause structurelle n°1. Rebaser et rebuilder avant merge. Voir `06-CHANTIERS.md` C1 |
-| Débloquer les 7 crawlers IA au dashboard Cloudflare | Mesure de Laurent | 04/09 | ~10 min. GPTBot et Perplexity-User bloqués à 100 % |
-| Vérifier et renouveler le jeton `psc-n8n-publisher` | — | 10/09 | Expiré. Le pipeline n8n de Laurent est probablement à l'arrêt |
+| Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | **Diagnostic corrigé le 16/09** : les AI bot policies sont déjà sur Allow. La cause est Super Bot Fight Mode + Javascript Detections. Correctif = règle WAF de Skip. Remesurer d'abord — voir `05-INFRA.md` |
+| Renouveler le jeton `psc-n8n-publisher` | — | 10/09 | **Confirmé expiré** le 16/09 au dashboard GitHub. Le pipeline n8n de Laurent est à l'arrêt |
 | Créer le jeton « Protection Bypass for Automation » sur Vercel | Claude de Sébastien | 16/09 | **Prérequis à l'autonomie de Laurent** : sans lui, les Preview sont inaccessibles en script (302 SSO). Vercel → `sysnext` → Settings → Deployment Protection. À transmettre à Laurent |
 | Ajouter `lwainberg` à l'équipe Vercel `sebs-projects-ca1e93a7` | Claude de Sébastien | 16/09 | Sans quoi il ne peut pas ouvrir un Preview dans son navigateur, ni lire Observability pour le chantier 504 |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |

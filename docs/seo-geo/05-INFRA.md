@@ -94,8 +94,54 @@ Mesuré par Laurent sur sept jours (04/09/2026) :
 | Bingbot | 2,3 % |
 | Amazonbot | 97 % (18 946 requêtes) |
 
-Correctif : Cloudflare → Security → Bots, allowlist explicite des sept bots IA.
-Estimé à 10 minutes.
+**Le correctif prescrit par Laurent — « allowlist explicite des sept bots IA
+dans Security → Bots, 10 minutes » — ne s'applique pas tel quel.** Vérifié au
+dashboard le 16/09/2026 :
+
+| Réglage | État réel |
+|---|---|
+| AI bot policies → Search | **Allow (do not block)** |
+| AI bot policies → Agent | **Allow (do not block)** |
+| AI bot policies → Training | **Allow (do not block)** |
+| AI Labyrinth | désactivé |
+| Bot Preference Sync | désactivé |
+
+L'allowlist est donc **déjà ouverte**. Le blocage vient d'ailleurs :
+
+**Super Bot Fight Mode** → « Definitely automated traffic » → **Managed
+Challenge**, avec **Javascript Detections activé**. Un crawler IA n'exécute pas
+de JavaScript : il est classé « automated » et reçoit un challenge qu'il ne peut
+pas résoudre. D'où le 403.
+
+Les règles WAF personnalisées (4 sur 20) confirment le mécanisme :
+
+| Ordre | Nom | Condition | Action | État |
+|---|---|---|---|---|
+| 1 | Autoriser bots vérifiés (Skip-first) | `Known Bots equals true` | Skip | Active |
+| 2 | Défier bots inconnus ou suspects | `Known Bots ≠ true` sauf Screaming Frog | Non-Interactive Challenge | **Désactivée** |
+| 3 | Bloquer chemins sensibles | URI contient `/wp-`, `/admin`… | Block | Active |
+| 4 | Skip SBFM videos R2 | `hostname = videos.packshot-creator.com` | Skip | Active |
+
+La règle 1 ne laisse passer que les **Known Bots**, c'est-à-dire la liste de bots
+vérifiés par Cloudflare, qui repose sur une vérification d'adresse IP. Googlebot
+en fait partie — 0,2 % de blocage. Les crawlers IA qui n'y sont pas tombent dans
+Super Bot Fight Mode.
+
+**Le correctif réel** : une règle personnalisée supplémentaire, ordonnée avant
+l'évaluation de Super Bot Fight Mode, qui fait un Skip des règles SBFM pour les
+user-agents des sept crawlers. La règle 4 en fournit le modèle exact.
+
+**Deux réserves avant d'agir**, et elles comptent :
+
+1. **Un user-agent se falsifie.** Autoriser sur la seule chaîne de user-agent
+   ouvre une porte aux scrapers qui se déclarent GPTBot. Les 156 780 requêtes
+   sans user-agent et les 26 569 requêtes curl actuellement bloquées montrent
+   qu'il y a du trafic qui cherche à entrer.
+2. **Les chiffres de Laurent datent du 04/09.** Les AI bot policies étant
+   aujourd'hui sur Allow, il se peut qu'elles aient été changées depuis, et que
+   les taux aient déjà bougé. **Remesurer avant de modifier une règle WAF** —
+   c'est une modification de règle WAF qui a cassé toutes les vidéos produit le
+   23/07/2026.
 
 **Décisions déjà prises** : Amazonbot **reste bloqué** tant que durent les 504
 (Sébastien, 04/09/2026). Les 156 780 requêtes sans user-agent et les 26 569

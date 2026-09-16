@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Vérification au dashboard — le diagnostic bots IA était faux · Claude de Sébastien
+
+**Chantier** : C2 | **PR** : #2
+
+**Quoi** — Contrôle de la configuration Cloudflare et GitHub avant de prescrire
+quoi que ce soit à Laurent. Deux corrections.
+
+**① Le correctif « allowlist des 7 bots IA, 10 minutes » ne s'applique pas.**
+Les AI bot policies sont **déjà toutes sur Allow** (Search, Agent, Training),
+AI Labyrinth désactivé. Le blocage vient de Super Bot Fight Mode — « Definitely
+automated traffic » → Managed Challenge, avec Javascript Detections actif : un
+crawler IA n'exécute pas de JS, donc il est classé automated et reçoit un
+challenge insoluble. La règle WAF n°1 ne fait un Skip que sur `Known Bots`, la
+liste vérifiée par IP de Cloudflare, où les crawlers IA ne figurent pas tous.
+Le vrai correctif est une règle WAF de Skip, sur le modèle de la règle n°4
+« Skip SBFM videos R2 ».
+
+**② Le jeton `psc-n8n-publisher` est bien expiré** — confirmé au dashboard
+GitHub, dernier usage il y a moins de trois semaines. Le pipeline n8n de Laurent
+est à l'arrêt. Quatre autres jetons (Jade) n'ont aucune date d'expiration.
+
+**Pourquoi** — Règle R7 : une instruction humaine se vérifie contre le réel.
+Laurent a écrit cette prescription sans accès au dashboard. Envoyer son Claude
+ouvrir une allowlist déjà ouverte lui aurait fait perdre une session.
+
+**Vérifié** — Au dashboard, le 16/09 : AI bot policies (3 sur Allow), AI
+Labyrinth off, Bot Preference Sync off, Super Bot Fight Mode (Definitely
+automated = Managed Challenge, JS Detections on, Static resource protection off,
+Verified bots on), les 4 règles WAF personnalisées avec leur ordre et leur état,
+et l'expiration du jeton GitHub.
+
+**Supposé** — Que les taux de blocage mesurés par Laurent le 04/09 valent
+encore. Les AI bot policies étant aujourd'hui permissives, elles ont pu changer
+depuis.
+
+**Non regardé** — Les analytics de bots de Cloudflare sur les 7 derniers jours,
+qui trancheraient. C'est le premier geste du chantier C2 : remesurer.
+
+**Suite** — Aucune règle WAF n'a été modifiée. C'est une modification de règle
+WAF qui a cassé toutes les vidéos produit le 23/07 : ce geste demande une mesure
+fraîche et une main humaine.
+
+---
+
 ## 2026-09-16 · Reprise du mandat — de la permission à la conséquence · Claude de Sébastien
 
 **Chantier** : gouvernance | **PR** : #2

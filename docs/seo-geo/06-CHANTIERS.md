@@ -44,7 +44,7 @@ C'est aussi le test que Laurent attend pour mesurer : Link Score `/fr` contre
 
 | | |
 |---|---|
-| Effort | ~10 minutes au dashboard |
+| Effort | Plus que les « 10 minutes » annoncées — le diagnostic de départ est faux |
 | Rayon | Infrastructure Cloudflare — voir `05-INFRA.md` |
 
 GPTBot bloqué à 100 %, Perplexity-User à 100 %, PerplexityBot à 77 %. Le
@@ -52,8 +52,18 @@ GPTBot bloqué à 100 %, Perplexity-User à 100 %, PerplexityBot à 77 %. Le
 contredit la politique du site.** Tout l'investissement GEO est amputé tant que
 ce point tient.
 
-Allowlist des sept bots IA. Amazonbot reste bloqué (décision du 04/09).
-Les requêtes sans user-agent et curl restent bloquées.
+**Attention : le correctif prescrit ne s'applique pas tel quel.** Vérifié au
+dashboard le 16/09/2026, les AI bot policies sont **déjà toutes sur Allow**. Le
+blocage vient de Super Bot Fight Mode (« Definitely automated » → Managed
+Challenge, avec Javascript Detections actif), et le vrai correctif est une règle
+WAF de Skip. Le détail, les règles existantes et les deux réserves sont dans
+`05-INFRA.md`.
+
+Premier geste : **remesurer**. Les chiffres datent du 04/09 et la configuration
+a peut-être bougé depuis.
+
+Amazonbot reste bloqué (décision du 04/09). Les requêtes sans user-agent et curl
+restent bloquées.
 
 ### C3 · Instruire les 504
 
