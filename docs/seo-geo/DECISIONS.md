@@ -25,23 +25,55 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D12 · 2026-09-16 · Laurent merge lui-même la zone verte
+## D13 · 2026-09-16 · Quartier libre — le risque à écarter est celui des conséquences non mesurées
 
 **Décidé par** : Sébastien
-**Statut** : en vigueur
+**Statut** : en vigueur — **remplace le cadre de permissions initial de D12**
 
-**La décision** — Le Claude de Laurent merge ses propres pull requests sur la
-zone verte, dès lors que le contrôle d'intégration est vert et le Preview
-contrôlé. La zone orange exige l'arbitrage de Sébastien. La zone rouge est
-fermée.
+**La décision** — Laurent a quartier libre sur le site. Le mandat ne se définit
+pas par ce qu'il a le droit de toucher, mais par ce dont il doit avoir mesuré
+les conséquences avant d'agir. Dans ses mots :
+
+> Laurent est l'ancien propriétaire de la société, c'est une personne de
+> confiance. Le seul risque qu'il faut ôter est celui d'une dégradation de
+> l'existant par des actions dont les pleines conséquences n'auraient pas été
+> prises en compte. Pour le reste il a quartier libre.
+
+**Le contexte** — La première version de cette gouvernance découpait le dépôt en
+zones verte, orange et rouge, avec une liste d'interdits. Le modèle était
+calibré sur un prestataire extérieur inconnu. Il ne correspondait pas à la
+réalité : Laurent a dirigé cette société et la connaît mieux que quiconque.
+
+**Ce qu'elle change** — Il n'y a plus de zone interdite. `01-PERIMETRE.md`
+devient `01-RAYON-ACTION.md` : une carte des dépendances, pas une clôture. Le
+contrôle `garde-perimetre`, qui bloquait des fichiers, devient
+`garde-consequences`, qui affiche ce qui dépend de ce qui est touché et exige
+que la PR le déclare. Il ne juge pas la réponse : il s'assure que la question a
+été posée.
+
+**Ce qui reste fermé** — Quatre choses, dont aucune ne tient à la confiance :
+un secret dans un dépôt public (irréversible) ; les prix affichés (conformité
+distributeur Orbitvu) ; le copywriting français client-facing (la voix de
+Sébastien) ; la suppression d'une URL portant des backlinks.
+
+---
+
+## D12 · 2026-09-16 · Laurent merge ses propres pull requests
+
+**Décidé par** : Sébastien
+**Statut** : en vigueur, dans les termes révisés par D13
+
+**La décision** — Le Claude de Laurent merge ses propres pull requests dès lors
+que le contrôle d'intégration est vert et le Preview contrôlé. Seul ce qui
+engage l'entreprise vis-à-vis d'un tiers passe par Sébastien.
 
 **Le contexte** — `main` était figé depuis douze jours, le correctif de la cause
 structurelle n°1 attendant en branche. Le filet humain était devenu le goulot.
-Il est remplacé par des filets techniques : périmètre appliqué par le CI, porte
-d'intégration, journal obligatoire.
+Il est remplacé par des filets techniques : carte des dépendances rappelée par
+le CI, porte d'intégration, journal obligatoire.
 
-**Ce qu'elle interdit** — Pousser directement sur `main`. Merger une PR touchant
-la zone orange ou rouge. Merger avec un contrôle d'intégration rouge.
+**Ce qu'elle interdit** — Pousser directement sur `main` : un push sur `main`
+est un déploiement en production. Merger avec un contrôle d'intégration rouge.
 
 ---
 
@@ -60,7 +92,11 @@ constatées : une liste de travaux « à faire » dont la moitié était livrée
 veille ; un pont de données gelé le jour où il était décidé de le relancer.
 
 **Ce qu'elle interdit** — Coordonner par mail sans trace dans le dépôt. Livrer
-sans entrée au journal. Trancher seul un doute de zone orange.
+sans entrée au journal.
+
+**Ce qu'elle ouvre** — Le canal est symétrique. Le Claude de Sébastien y pose
+aussi ses questions : Laurent a dirigé cette société et sait des choses sur
+l'historique du site qui ne sont écrites nulle part.
 
 ---
 

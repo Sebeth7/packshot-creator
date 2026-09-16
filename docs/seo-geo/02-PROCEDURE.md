@@ -52,7 +52,7 @@ git push -u origin seo/<sujet>-<date>
 ```
 
 Cette inscription est ta réservation. Elle évite la collision avec le Claude de
-Sébastien (voir `01-PERIMETRE.md`).
+Sébastien (voir `01-RAYON-ACTION.md`).
 
 ---
 
@@ -125,8 +125,7 @@ exige cinq rubriques :
 | **Quoi** | Ce qui change, en une phrase |
 | **Pourquoi** | Le constat ou la mesure qui le justifie |
 | **Effet SEO attendu** | Ce qui devrait bouger, et sous quel délai |
-| **Risque** | Ce qui peut casser, et comment on le verrait |
-| **Rollback** | La commande exacte pour revenir en arrière |
+| **Rayon d'action** | Obligatoire seulement si le diff déborde du fichier touché. Quatre questions — voir `01-RAYON-ACTION.md` |
 
 Une PR sans « Effet SEO attendu » mesurable n'est pas prête. Si tu ne sais pas
 ce que le changement doit produire, tu ne sais pas non plus s'il a marché.
@@ -142,11 +141,15 @@ Trois workflows se déclenchent. Tous doivent être verts.
 | Workflow | Ce qu'il vérifie |
 |---|---|
 | `pr-checks` | `tsc --noEmit`, `next build`, validité des JSON, lint |
-| `garde-perimetre` | Le diff ne touche pas la zone rouge |
+| `garde-consequences` | Rappelle ce qui dépend des fichiers touchés ; exige la section « Rayon d'action » si le diff déborde |
 | `garde-journal` | `JOURNAL.md` a bien une entrée nouvelle |
 
-Si `garde-perimetre` échoue : tu as touché la zone rouge. Ce n'est pas un bug du
-CI. Retire le changement, ou écris dans `BOITE-AUX-LETTRES.md`.
+Si `garde-consequences` échoue, il ne t'interdit rien : il te dit que le diff
+touche un fichier dont d'autres choses dépendent, et que la description de la PR
+ne dit pas lesquelles. Il affiche la carte. Ajoute la section « Rayon d'action »
+et relance.
+
+Ce contrôle ne juge pas ta réponse. Il s'assure que la question a été posée.
 
 ### Porte 2 : le Preview Vercel
 
@@ -183,14 +186,17 @@ testable. Voir `05-INFRA.md`.
 
 ## Étape 6 — Merger
 
-**Zone verte, CI verte, Preview contrôlée → tu merges toi-même.**
+**CI verte, Preview contrôlée → tu merges toi-même.** C'est le cas courant.
 
 ```bash
 gh pr merge --squash --delete-branch
 ```
 
-**Zone orange → tu ne merges pas.** Tu inscris dans `ETAT.md` :
-`en attente d'arbitrage de Sébastien — PR #<n>`, et tu passes à autre chose.
+**Une seule exception** : ce qui engage l'entreprise vis-à-vis d'un tiers — prix
+affichés, copywriting français, suppression d'une URL à backlinks. La liste
+complète, courte, est dans `01-RAYON-ACTION.md`. Dans ce cas tu inscris dans
+`ETAT.md` : `en attente d'arbitrage de Sébastien — PR #<n>`, et tu passes à
+autre chose.
 
 Le merge déclenche la production. Il n'y a pas d'autre confirmation.
 

@@ -1,6 +1,6 @@
 <!--
-Gabarit imposé. Une PR incomplète n'est pas relisible et ne se merge pas.
 Procédure complète : docs/seo-geo/02-PROCEDURE.md
+Carte des dépendances : docs/seo-geo/01-RAYON-ACTION.md
 -->
 
 ## Quoi
@@ -15,25 +15,27 @@ Procédure complète : docs/seo-geo/02-PROCEDURE.md
 ## Effet SEO attendu
 
 <!-- Ce qui devrait bouger, et sous quel délai.
-     Une PR sans effet mesurable attendu n'est pas prête : si on ne sait pas ce
-     que le changement doit produire, on ne saura pas non plus s'il a marché. -->
+     Si on ne sait pas ce que le changement doit produire, on ne saura pas non
+     plus s'il a marché. -->
 
-## Risque
+## Rayon d'action
 
-<!-- Ce qui peut casser, et comment on le verrait. -->
+<!-- OBLIGATOIRE seulement si le diff touche un fichier à rayon large — le
+     contrôle garde-consequences te dira lesquels, et ce qui en dépend.
+     Un changement purement local peut supprimer cette section.
 
-## Rollback
+     Il ne s'agit pas de demander une permission : il s'agit d'avoir regardé
+     avant d'agir. Quatre questions, quelques lignes chacune. -->
 
-<!-- La commande exacte pour revenir en arrière.
-     git revert <sha> -m 1 && git push origin main -->
+**Ce qui dépend de ce que je touche** —
+
+**Ce qui casserait si je me trompe** —
+
+**Comment je le verrais, et sous quel délai** —
+
+**Comment je reviens en arrière** —
 
 ---
-
-## Zone
-
-- [ ] **Verte** — je merge après CI verte et Preview contrôlée
-- [ ] **Orange** — j'attends l'arbitrage de Sébastien, je ne merge pas
-- [ ] **Rouge** — ne devrait pas arriver : passer par `docs/seo-geo/BOITE-AUX-LETTRES.md`
 
 ## Contrôles
 
@@ -43,6 +45,10 @@ Procédure complète : docs/seo-geo/02-PROCEDURE.md
 - [ ] Pages modifiées ouvertes dans un navigateur sur le Preview
 - [ ] Entrée ajoutée à `docs/seo-geo/JOURNAL.md`
 - [ ] `docs/seo-geo/ETAT.md` à jour
+
+<!-- Si le changement touche la capture de leads (app/api, components/forms) :
+     aucun test automatique ne la couvre. Envoyer un vrai formulaire depuis le
+     Preview. Un lead perdu ne laisse aucune trace. -->
 
 ## Après le merge
 

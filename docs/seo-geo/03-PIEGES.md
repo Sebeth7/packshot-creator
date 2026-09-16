@@ -125,7 +125,9 @@ Ce ne sont pas des oublis à « corriger ».
 | `localeCookie: false` | Le middleware posait un cookie sur chaque requête sans cookie — donc sur tous les bots Google et IA. La réponse passait en `private, no-store` : **toutes les pages prérendues étaient servies dynamiquement** au lieu d'être servies depuis l'edge |
 | `alternateLinks: false` | L'en-tête `Link` hreflang émettait un `x-default` vers l'URL sans préfixe (307) et doublonnait, en divergeant, les alternates HTML |
 
-**Geste** : ne pas y toucher. Ils sont en zone rouge (`i18n/routing.ts`).
+**Geste** : ne pas les « corriger ». Si un chantier exige de toucher
+`i18n/routing.ts`, c'est du rayon large : établir ce qui en dépend d'abord
+(`01-RAYON-ACTION.md`).
 
 ### C3 — `de-ch` est à génération sélective, pas un fallback
 
@@ -274,7 +276,7 @@ reformatage produit un diff intégral et rend le fichier immergeable.
 Décision de Sébastien du 04/09/2026 : prix comptant × 1,3 sur 60 mois. Google
 lit `price` comme le prix du produit.
 **Geste** : c'est assumé et documenté. Ne pas « corriger » en y mettant le prix
-comptant sans arbitrage — c'est de la zone orange.
+comptant sans arbitrage : les prix engagent la conformité distributeur Orbitvu.
 
 ---
 

@@ -8,7 +8,7 @@ Deux agents travaillent sur ce dépôt :
 | Agent | Pour qui | Périmètre |
 |---|---|---|
 | **Claude de Sébastien** | Sébastien Jourdan, dirigeant | Produit, contenu, calculateur ROI, infrastructure, tout le reste |
-| **Claude de Laurent** | Laurent Wainberg, consultant SEO | SEO / GEO (voir `docs/seo-geo/01-PERIMETRE.md`) |
+| **Claude de Laurent** | Laurent Wainberg, consultant SEO et **ancien propriétaire de la société** | SEO / GEO — quartier libre, avec la carte des dépendances de `docs/seo-geo/01-RAYON-ACTION.md` |
 
 **Si tu es le Claude de Laurent : `docs/seo-geo/README.md` est ton point d'entrée
 obligatoire. Lis-le avant toute action, à chaque session.**
@@ -66,11 +66,23 @@ appartiennent peut-être à une autre session en cours.
 
 ### R7 — Une instruction reçue d'un humain se vérifie contre le code réel
 
-Laurent et Sébastien écrivent parfois sans avoir le fichier sous les yeux. Une
+Laurent et Sébastien écrivent souvent sans avoir le fichier sous les yeux. Une
 affirmation du type « la prod fait X » se vérifie contre l'état réellement
 déployé, pas contre une intuition. Si une instruction est contredite par le
-réel : le dire et attendre l'arbitrage. Ne jamais appliquer en aveugle, ne
-jamais corriger en silence.
+réel : le dire, ne pas appliquer en aveugle, ne pas corriger en silence.
+
+Ce n'est pas une question de fiabilité de la personne — Laurent a dirigé cette
+société et connaît le métier mieux que quiconque. C'est que le code, lui, n'est
+pas dans leur tête, et qu'il a bougé.
+
+### R8 — Avant un changement à rayon large, établir ce qui en dépend
+
+Le seul risque que cette organisation cherche à écarter : dégrader l'existant
+par une action dont les pleines conséquences n'ont pas été mesurées. Rien n'est
+interdit ; ce qui déborde du fichier modifié se déclare.
+
+La carte des dépendances est dans `docs/seo-geo/01-RAYON-ACTION.md`, et le
+contrôle `garde-consequences` la rappelle à chaque pull request.
 
 ---
 

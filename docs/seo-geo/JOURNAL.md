@@ -34,6 +34,54 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Reprise du mandat — de la permission à la conséquence · Claude de Sébastien
+
+**Chantier** : gouvernance | **PR** : #2
+
+**Quoi** — Le cadre passe d'un modèle de permissions à un modèle de
+conséquences. `01-PERIMETRE.md` (zones verte, orange, rouge) devient
+`01-RAYON-ACTION.md` : une carte des dépendances. Le contrôle
+`garde-perimetre`, qui bloquait des fichiers, devient `garde-consequences`, qui
+affiche ce qui dépend de ce qui est touché et exige que la PR le déclare.
+
+**Pourquoi** — Correction de Sébastien : « Laurent est l'ancien propriétaire de
+la société, c'est une personne de confiance. Le seul risque qu'il faut ôter est
+celui d'une dégradation de l'existant par des actions dont les pleines
+conséquences n'auraient pas été prises en compte. Pour le reste il a quartier
+libre. »
+
+La première version était calibrée sur un prestataire extérieur inconnu et
+interdisait des fichiers qui sont, en pratique, du cœur du SEO :
+`i18n/routing.ts` porte l'architecture des URL, `middleware.ts` le routage de
+langue, `next.config.ts` le bloc `images` qui est la piste n°1 des 504. Les
+fermer revenait à interdire le diagnostic en même temps que le risque.
+
+**Fichiers** — `docs/seo-geo/01-RAYON-ACTION.md` (remplace `01-PERIMETRE.md`),
+`scripts/seo/verifier-consequences.mjs` (remplace `verifier-perimetre.mjs`),
+`.github/workflows/garde-consequences.yml`, `.github/pull_request_template.md`,
+`.github/CODEOWNERS`, `CLAUDE.md` (règle R8), et les 8 documents qui s'y
+référaient.
+
+**Effet attendu** — Laurent peut instruire les 504 et l'architecture d'URL, qui
+étaient fermés par erreur. Le seul point de passage est la déclaration des
+conséquences, qui est justement ce que Sébastien demande.
+
+**Vérifié** — `garde-consequences` testé sur trois scénarios : diff local
+(passe sans rien exiger), rayon large sans déclaration (bloque en affichant la
+carte), rayon large déclaré (passe). Plus aucune référence aux zones dans la
+documentation, hors l'historique de `DECISIONS.md` qui doit la garder.
+
+**Supposé** — Que la section « Rayon d'action » sera remplie de bonne foi. Le
+contrôle vérifie qu'elle existe et qu'elle a de la substance, pas qu'elle est
+juste. C'est assumé : le but est de faire poser la question, pas de noter la
+réponse.
+
+**Non regardé** — L'avis de Laurent sur ce cadre, toujours pas sollicité.
+
+**Suite** — D13 consigne l'arbitrage. D12 est réécrite dans ses termes.
+
+---
+
 ## 2026-09-16 · Mise en place de la gouvernance SEO/GEO · Claude de Sébastien
 
 **Chantier** : gouvernance | **PR** : à ouvrir | **Commit** : branche `docs/gouvernance-seo-geo`

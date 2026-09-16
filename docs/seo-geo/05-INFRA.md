@@ -35,7 +35,6 @@ Vercel. Un blocage en amont rend invisible tout ce qui est en aval.
 ● Lire la configuration, les règles, les analytics
 ● Modifier la configuration WAF et bots **après** l'avoir écrit dans
   `JOURNAL.md`, avec ce que la règle protège
-● Déployer le Worker **depuis le dépôt**, après resynchronisation
 
 ### Interdit
 
@@ -187,8 +186,9 @@ d'exécution, optimisation d'images. **Les 504 sur des pages HTML ne s'expliquen
 pas par les images** — une seconde hypothèse porte sur un dépassement de délai
 dans la chaîne Worker Cloudflare → Vercel.
 
-`next.config.ts`, bloc `images` : **zone rouge**. Une proposition passe par
-`BOITE-AUX-LETTRES.md`.
+`next.config.ts`, bloc `images` : **rayon large**, et une mesure est en cours
+depuis le 04/09. Déclare les conséquences dans la PR, et n'empile pas un second
+changement sur une mesure non terminée.
 
 ---
 
@@ -205,7 +205,7 @@ La base Sysnext contient des **données personnelles**. Lecture pour diagnostic.
 Aucune écriture sans demande explicite.
 
 Le code du site n'accède qu'à la base Sysnext, via `lib/supabase.ts`
-(zone rouge).
+(rayon large — voir `01-RAYON-ACTION.md`).
 
 ### Le pont geo-ultimate
 
@@ -268,12 +268,15 @@ publication de Laurent, **expirait le 10/09/2026**. Il est probablement expiré.
 
 ## Tableau de synthèse
 
-| Système | Propriétaire | Laurent peut | Laurent ne peut pas |
-|---|---|---|---|
-| Dépôt GitHub | Sébastien | Brancher, PR, merger la zone verte | Pousser sur `main`, toucher la zone rouge |
-| Vercel | Sébastien | Lire logs et Observability | CLI, variables d'environnement, déclencher un déploiement |
-| Cloudflare WAF / bots | Laurent + Sébastien | Configurer, en journalisant | Supprimer une règle sans en vérifier l'objet |
-| Worker | Le **dépôt** | Commiter puis déployer, après resync | Éditer au dashboard |
-| Supabase `gsc-crawl-seo` | Laurent | Tout | — |
-| Supabase Sysnext | Sébastien | Lire pour diagnostic | Écrire sans demande |
-| Search Console | Sébastien | Mesurer, inspecter, valider | — |
+| Système | Accès Laurent | La seule réserve |
+|---|---|---|
+| Dépôt GitHub | Écriture, merge de ses PR | On merge une PR, on ne pousse pas sur `main` : `main` = production |
+| Vercel | Observability et logs | Pas de CLI (il vise un projet obsolète), pas de variables d'environnement |
+| Cloudflare WAF / bots | Configuration | Journaliser ce que protège une règle avant de la retirer — le 23/07, une suppression a cassé toutes les vidéos |
+| Worker `packshot-router` | Commit puis déploiement depuis le dépôt | Resynchroniser d'abord ; pas d'édition dashboard (sa propre décision du 24/07) |
+| Supabase `gsc-crawl-seo` | Complet — c'est sa base | — |
+| Supabase Sysnext | Lecture pour diagnostic | Données personnelles : pas d'écriture sans demande |
+| Search Console | Complet | — |
+
+Aucune de ces réserves n'est une question de confiance. Chacune correspond à un
+effet qui survit à un `git revert`.

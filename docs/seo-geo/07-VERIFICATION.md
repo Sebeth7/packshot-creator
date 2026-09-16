@@ -159,8 +159,8 @@ chaîne de requête neuve, sinon les 301 en cache mentent (piège B2).
 **2. La pertinence sémantique.** Une redirection 301 peut être techniquement
 parfaite et pointer vers la mauvaise page. Un `noindex` peut être posé sur la
 bonne page pour la mauvaise raison. Aucun contrôle automatique ne voit cela :
-c'est la part qui reste irréductiblement humaine, et c'est pourquoi la zone
-orange existe.
+c'est la part qui reste irréductiblement humaine, et c'est pourquoi la section
+« Rayon d'action » d'une PR vaut mieux qu'un test de plus.
 
 Si un résultat paraît anormal, **ouvre la page dans Chrome avant de conclure**.
 Une page classée « cassée » par un outil a déjà été trouvée parfaitement

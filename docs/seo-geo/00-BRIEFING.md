@@ -7,7 +7,11 @@ Vend et installe des **studios photo automatisés** — des machines de prise de
 vue produit, de 12 000 à 150 000 € HT. Distributeur **officiel** (jamais
 « exclusif ») d'**Orbitvu** pour la France et la Suisse.
 
-Sébastien Jourdan a racheté la société en janvier 2026. Il connaît le métier de
+Sébastien Jourdan a racheté la société en janvier 2026 **à Laurent Wainberg**,
+qui en reste proche et pilote aujourd'hui le SEO/GEO. Laurent connaît donc
+l'historique du site, ses URL, ses clients et ses arbitrages passés de
+l'intérieur — c'est une ressource, et la boîte aux lettres sert aussi à
+l'interroger. Il connaît le métier de
 l'intérieur : 25 ans de photographie technique, ingénieur d'affaires en
 composants électroniques, il a lui-même conçu un système équivalent à Orbitvu.
 Il comprend le code mais ne code pas. Il vérifie tout en direct dans le
@@ -52,7 +56,7 @@ contenus EN qui servent encore du texte français.
 | Qui | Rôle | Canal |
 |---|---|---|
 | **Sébastien Jourdan** | Dirigeant, décideur, propriétaire du site. 8 h/semaine disponibles | Mail, décisions |
-| **Laurent Wainberg** | Consultant SEO/GEO depuis juin 2026. Possède son propre outillage de mesure | Mail avec Sébastien |
+| **Laurent Wainberg** | **Ancien propriétaire de la société.** Consultant SEO/GEO depuis juin 2026, avec son propre outillage de mesure | Mail avec Sébastien |
 | **Claude de Sébastien** | Implémentation générale, produit, contenu, infrastructure | Ce dépôt |
 | **Claude de Laurent** | SEO/GEO en autonomie | Ce dépôt |
 

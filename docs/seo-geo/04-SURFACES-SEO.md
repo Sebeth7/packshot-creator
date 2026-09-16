@@ -8,27 +8,27 @@ de les modifier page par page produit des divergences.
 
 ## Tableau de correspondance
 
-| Sortie SEO | Fichier qui la pilote | Zone |
+| Sortie SEO | Fichier qui la pilote | Rayon |
 |---|---|---|
-| `<title>`, `<meta description>` | `generateMetadata` de chaque page (**46 fichiers**) + `messages/*.json` + les JSON d'articles | Verte |
-| `<link rel="canonical">` | `generateMetadata`, via `alternates.canonical` | Verte |
-| `<link rel="alternate" hreflang>` | **`lib/hreflang.ts`** → `buildLanguages`, appelé dans chaque `generateMetadata` | Verte |
-| `<meta robots>` (noindex) | **`lib/seo-config.ts`** (sets `NOINDEX_EN_*`), lu par 4 gabarits de page | Verte |
-| `sitemap.xml` | **`app/sitemap.ts`** | Verte |
-| `robots.txt` | **`public/robots.txt`** (fichier statique) | Verte |
-| `llms.txt` | **`public/llms.txt`** (fichier statique) | Verte |
-| JSON-LD (Organization, Product, Offer, FAQPage, ItemList) | **`components/seo/SchemaOrg.tsx`** | Verte |
-| Correspondances entre langues | `content/blog/alternates.json` (61), `content/guides/alternates.json` (22) | Verte |
-| Sélecteur de langue | **`i18n/deChCoverage.ts`** → `localeSwitchHref` | Verte |
-| Couverture `de-ch` | `i18n/deChCoverage.ts` | Verte |
-| Maillage interne (tunnels, hubs) | **`data/content-maillage.ts`** + `components/maillage/MaillageSections.tsx` | Verte |
-| Liens de navigation, footer | `components/layout/Footer.tsx`, `Header.tsx`, `NavLink.tsx` | Verte |
-| Redirections avec préfixe de langue | `next.config.ts`, bloc `redirects()` | Verte |
-| Redirections sans préfixe, legacy, sous-domaines | **`cloudflare-worker/src/index.js`** | Verte, avec resync |
-| Contenu des pages secteurs | `data/secteurs.ts`, `secteurs-de-ch.ts` | Verte |
-| Rattachement secteur ↔ machine | `data/sector-machine-map.ts`, `sector-related-map.ts` | Verte |
-| Routage de locale | `i18n/routing.ts`, `middleware.ts` | **Rouge** |
-| Optimisation d'images | `next.config.ts`, bloc `images` | **Rouge** |
+| `<title>`, `<meta description>` | `generateMetadata` de chaque page (**46 fichiers**) + `messages/*.json` + les JSON d'articles | local |
+| `<link rel="canonical">` | `generateMetadata`, via `alternates.canonical` | local |
+| `<link rel="alternate" hreflang>` | **`lib/hreflang.ts`** → `buildLanguages`, appelé dans chaque `generateMetadata` | **large** |
+| `<meta robots>` (noindex) | **`lib/seo-config.ts`** (sets `NOINDEX_EN_*`), lu par 4 gabarits de page | **large** |
+| `sitemap.xml` | **`app/sitemap.ts`** | **large** |
+| `robots.txt` | **`public/robots.txt`** (fichier statique) | **large** |
+| `llms.txt` | **`public/llms.txt`** (fichier statique) | local |
+| JSON-LD (Organization, Product, Offer, FAQPage, ItemList) | **`components/seo/SchemaOrg.tsx`** | **large** |
+| Correspondances entre langues | `content/blog/alternates.json` (61), `content/guides/alternates.json` (22) | **large** |
+| Sélecteur de langue | **`i18n/deChCoverage.ts`** → `localeSwitchHref` | **large** |
+| Couverture `de-ch` | `i18n/deChCoverage.ts` | **large** |
+| Maillage interne (tunnels, hubs) | **`data/content-maillage.ts`** + `components/maillage/MaillageSections.tsx` | local |
+| Liens de navigation, footer | `components/layout/Footer.tsx`, `Header.tsx`, `NavLink.tsx` | local |
+| Redirections avec préfixe de langue | `next.config.ts`, bloc `redirects()` | local |
+| Redirections sans préfixe, legacy, sous-domaines | **`cloudflare-worker/src/index.js`** | **large** — resync d'abord |
+| Contenu des pages secteurs | `data/secteurs.ts`, `secteurs-de-ch.ts` | local |
+| Rattachement secteur ↔ machine | `data/sector-machine-map.ts`, `sector-related-map.ts` | local |
+| Routage de locale | `i18n/routing.ts`, `middleware.ts` | **large** |
+| Optimisation d'images | `next.config.ts`, bloc `images` | **large** |
 
 ---
 
@@ -131,3 +131,17 @@ fiches machines 28. Le footer ne contenait **aucun** lien vers une fiche machine
 **Quand tu touches une surface, ajoute ou étends la spec correspondante.** Le
 test est ce qui empêche la régression de revenir dans six mois, quand personne
 ne se souviendra pourquoi c'était comme ça.
+
+---
+
+## Lire la colonne « Rayon »
+
+**local** : l'effet ne sort pas du fichier ou de la page. Tu fais, tu
+journalises, tu merges.
+
+**large** : d'autres choses en dépendent, ou l'effet survit à un `git revert`.
+Tu établis ce qui en dépend avant d'agir, et tu le déclares dans la PR. Le
+détail fichier par fichier — ce qui casse, comment on le voit, sous quel délai —
+est dans `01-RAYON-ACTION.md`.
+
+Aucune ligne de ce tableau n'est interdite.

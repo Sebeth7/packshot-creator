@@ -1,16 +1,17 @@
 # CODEOWNERS — packshot-creator
 #
-# Indicatif : la protection de branche n'exige pas de revue. Ce fichier sert à
-# ce que GitHub propose automatiquement le bon relecteur, et à rendre lisible
+# Indicatif, jamais bloquant : la protection de branche n'exige pas de revue.
+# Ce fichier sert à ce que GitHub propose le bon relecteur, et à rendre lisible
 # qui répond de quoi.
 #
-# Le périmètre qui fait foi est docs/seo-geo/01-PERIMETRE.md ; il est appliqué
-# mécaniquement par .github/workflows/garde-perimetre.yml.
+# Il ne définit AUCUNE permission. La carte des dépendances est dans
+# docs/seo-geo/01-RAYON-ACTION.md ; .github/workflows/garde-consequences.yml la
+# rappelle à chaque pull request.
 
 # Par défaut : Sébastien
 *                                   @Sebeth7
 
-# ── Zone verte SEO/GEO — Laurent ──────────────────────────────────
+# ── SEO / GEO — Laurent pilote ────────────────────────────────────
 /lib/seo-config.ts                  @lwainberg @Sebeth7
 /lib/hreflang.ts                    @lwainberg @Sebeth7
 /app/sitemap.ts                     @lwainberg @Sebeth7
@@ -25,16 +26,11 @@
 /content/guides/alternates.json     @lwainberg @Sebeth7
 /docs/seo-geo/                      @lwainberg @Sebeth7
 
-# ── Zone rouge — Sébastien seul ───────────────────────────────────
+# ── Chantiers actifs de Sébastien — signalement de collision ──────
+# Pas une interdiction : une alerte, pour que les deux ne se marchent pas dessus.
 /lib/roiChat/                       @Sebeth7
 /lib/roiEngine/                     @Sebeth7
 /app/calculateur-roi/               @Sebeth7
 /app/roi-pro/                       @Sebeth7
 /app/roi-preview/                   @Sebeth7
-/app/api/                           @Sebeth7
 /app/etude-clients-2026/            @Sebeth7
-/components/forms/                  @Sebeth7
-/middleware.ts                      @Sebeth7
-/i18n/routing.ts                    @Sebeth7
-/package.json                       @Sebeth7
-/package-lock.json                  @Sebeth7

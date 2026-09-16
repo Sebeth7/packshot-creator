@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Gouvernance SEO/GEO | Claude de Sébastien | PR ouverte | `CLAUDE.md`, `docs/seo-geo/**`, `.github/**`, `scripts/seo/**`, `playwright.config.ts` | 16/09 |
+| Gouvernance SEO/GEO | Claude de Sébastien | PR #2 ouverte | `CLAUDE.md`, `docs/seo-geo/**`, `.github/**`, `scripts/seo/**`, `playwright.config.ts` | 16/09 |
 
 *(aucun autre chantier ouvert à ce jour)*
 
@@ -29,7 +29,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Vérifier et renouveler le jeton `psc-n8n-publisher` | — | 10/09 | Expiré. Le pipeline n8n de Laurent est probablement à l'arrêt |
 | Créer le jeton « Protection Bypass for Automation » sur Vercel | Claude de Sébastien | 16/09 | **Prérequis à l'autonomie de Laurent** : sans lui, les Preview sont inaccessibles en script (302 SSO). Vercel → `sysnext` → Settings → Deployment Protection. À transmettre à Laurent |
 | Ajouter `lwainberg` à l'équipe Vercel `sebs-projects-ca1e93a7` | Claude de Sébastien | 16/09 | Sans quoi il ne peut pas ouvrir un Preview dans son navigateur, ni lire Observability pour le chantier 504 |
-| Créer le libellé `zone-rouge-autorisee` dans le dépôt | Claude de Sébastien | 16/09 | Seul moyen de lever le garde-périmètre quand un chantier SEO l'exige |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
 | Réponse à Laurent sur l'audit du 03/09 | Laurent | 04/09 | Aucune envoyée à ce jour |
 | Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
@@ -72,5 +71,8 @@ Voir `BOITE-AUX-LETTRES.md`. Aucune question en attente à ce jour.
 
 États possibles : `en cours` · `PR #<n>` · `en attente d'arbitrage` ·
 `bloqué (raison)` · `en attente de mesure`.
+
+Rappel : « en attente d'arbitrage » ne concerne que ce qui engage l'entreprise
+vis-à-vis d'un tiers (`01-RAYON-ACTION.md`). Le reste se merge sans attendre.
 
 Un chantier terminé **sort de ce tableau** et entre dans `JOURNAL.md`.
