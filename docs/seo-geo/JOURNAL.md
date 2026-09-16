@@ -34,6 +34,36 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Audit des accès de Laurent, GitHub et Vercel · Claude de Sébastien
+
+**Chantier** : gouvernance | **PR** : #7
+
+**Quoi** — Contrôle du périmètre réel des accès de Laurent, sur les deux
+systèmes. Décision **D14** consignée.
+
+**GitHub — rien à corriger.** `Sebeth7` est un compte personnel : l'accès
+collaborateur y est strictement par dépôt, sans appartenance globale qui
+pourrait fuir. Sur les 9 dépôts, `lwainberg` n'a que `packshot-creator`, en
+écriture. Aucune invitation en attente.
+
+**Vercel — exposition réelle, assumée.** L'équipe `sebs-projects-ca1e93a7`
+héberge 8 projets et le rôle `Member` porte sur tous. Le cloisonnement par
+projet est réservé au plan Enterprise. Trois sorties existaient — passer en
+`Viewer`, migrer `sysnext` dans une équipe dédiée, ou retirer l'accès —
+aucune retenue. Arbitrage de Sébastien, consigné en D14.
+
+**Pourquoi** — Question posée par Sébastien sur GitHub. La réponse y était
+nette, mais la même préoccupation valait sur Vercel sans avoir été posée. Un
+périmètre d'accès qu'on croit cloisonné et qui ne l'est pas vaut mieux su.
+
+**Vérifié** — Collaborateurs et invitations des 9 dépôts via l'API GitHub. Liste
+des projets de l'équipe Vercel et rôles disponibles, au dashboard.
+
+**Non regardé** — Si le rôle `Viewer` donne accès à Observability sur le plan
+Pro. Sans objet tant que D14 tient.
+
+---
+
 ## 2026-09-16 · Dénombrement des pièges corrigé · Claude de Sébastien
 
 **Chantier** : gouvernance | **PR** : #6
