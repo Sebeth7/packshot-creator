@@ -106,6 +106,38 @@ JS de 613 URL — le crawl fabriquait une partie des erreurs qu'il mesurait.
 
 ---
 
+### B5 — Chrome traduit automatiquement les pages `de-ch` et fausse la lecture
+
+Chrome propose, puis applique, une traduction automatique des pages allemandes
+vers la langue du navigateur. La page est alors **réécrite dans le DOM** : le
+texte, la navigation, et jusqu'au `<title>` de l'onglet.
+
+**Incident (16/09/2026)** : contrôle visuel de `/de-ch/branchen/schmuck` après
+déploiement. Le haut de la page en allemand, puis la FAQ, le formulaire et la
+navigation en français, et le titre de l'onglet qui bascule en cours de
+défilement. Diagnostic initial : une locale `de-ch` qui dégrade vers le français.
+
+**C'était faux.** Le serveur renvoyait du 100 % allemand — `<title>` allemand,
+« Häufige Fragen », « Vorname », « Demo anfragen », et **zéro** marqueur
+français dans les 314 Ko de HTML.
+
+**Ce qui aurait dû mettre la puce à l'oreille** : le vocabulaire. « Entraînement »
+pour *Schulungen* là où le site dit « Formations », « Courriel professionnel » là
+où le site dit « Email professionnel ». Une traduction automatique ne retrouve
+pas la copie réelle du site.
+
+**Geste** : avant de conclure sur la langue d'une page, comparer avec le HTML
+**serveur** :
+
+```bash
+curl -s https://sysnext.vercel.app/de-ch/branchen/schmuck | grep -c "Häufige Fragen"
+```
+
+Et désactiver la traduction automatique de Chrome pour ce domaine avant toute
+recette `de-ch`. Un `find` sur « translate bar » confirme sa présence.
+
+---
+
 ## C. Routage et internationalisation
 
 ### C1 — `pathnames` dans `i18n/routing.ts` retype `Link` dans tout le projet

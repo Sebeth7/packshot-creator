@@ -65,10 +65,9 @@ const TEMOINS = [
   { url: '/en/blog',                             attendu: 200, indexable: true },
   // Pages volontairement non indexables — un « indexable: false » qui devient
   // indexable est une régression aussi grave que l'inverse.
-  // Le noindex de cette page vit dans la branche feat/audit-laurent-0309,
-  // non mergée au 16/09/2026 (chantier C1). Tant que C1 n'est pas mergé,
-  // l'écart est attendu et ne fait pas échouer le contrôle.
-  { url: '/fr/outil-financement',                attendu: 200, indexable: false, enAttenteDe: 'C1' },
+  // Noindex posé par le chantier C1, en production depuis le 16/09/2026.
+  // Contrôle ferme : si cette page redevient indexable, c'est une régression.
+  { url: '/fr/outil-financement',                attendu: 200, indexable: false },
 ];
 
 const RESSOURCES = ['/sitemap.xml', '/robots.txt', '/llms.txt'];

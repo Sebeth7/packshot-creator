@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Clôture de C1 et piège de la traduction Chrome · Claude de Sébastien
+
+**Chantier** : C1 | **PR** : #4
+
+**Quoi** — Trois suites du déploiement de C1. `/fr/outil-financement` passe
+d'« écart attendu » à **contrôle ferme** dans `smoke.mjs` : le `noindex` étant
+en production, une page redevenue indexable serait désormais une régression.
+Nouveau piège **B5** sur la traduction automatique de Chrome. `ETAT.md` clôturé.
+
+**Pourquoi** — Une attente qu'on ne referme pas devient un contrôle qui ne
+contrôle plus rien. Et le piège B5 a coûté un faux diagnostic dans l'heure : il
+en coûtera d'autres à qui fera une recette `de-ch` sans le savoir.
+
+**Vérifié** — Smoke test post-déploiement, 17 pages, 3 ressources, 0 écart.
+HTML serveur de `/de-ch/branchen/schmuck` : 314 Ko, zéro marqueur français,
+barre de traduction Chrome confirmée par `find`.
+
+**Non regardé** — Le rendu mobile de la nouvelle colonne de footer. Les
+redirections du Worker, qui ne sont couvertes par aucun de ces contrôles.
+
+---
+
 ## 2026-09-16 · Correctifs de l'audit du 03/09 — sélecteur de langue, rich results, footer · Claude de Sébastien
 
 **Chantier** : C1 | **PR** : #3 | **Commit** : `0e8949f`, livré le 04/09, mergé le 16/09
@@ -84,6 +106,21 @@ sélecteur. Le diff n'a pas été relu ligne à ligne dans cette session.
 
 **Non regardé** — Le rendu visuel de la nouvelle colonne de footer sur mobile.
 L'effet réel sur le Link Score, qui dépend du prochain crawl de Laurent.
+
+**Résultat du contrôle post-déploiement, 16/09** — `smoke.mjs` sur l'origine de
+production, les quatre signaux attendus sont là :
+
+| Signal | Avant | Après |
+|---|---|---|
+| `/fr/outil-financement` | `index` | **`noindex`** |
+| Sitemap | 323 URL | **322 URL** |
+| JSON-LD page d'accueil | 26 blocs | **24 blocs** (Product isolé retiré) |
+| Écarts attendus | 1 | **0** |
+
+17 pages témoins vertes sur les trois locales. Contrôle visuel de
+`/de-ch/branchen/schmuck` en production : rendu allemand correct — voir le piège
+B5, la traduction automatique de Chrome a d'abord fait croire à une dégradation
+vers le français.
 
 **Suite** — Laurent doit lancer le contrôle post-déploiement L.3 : recrawl
 Screaming Frog (liens d'en-tête non-200 ramenés à 0, Link Score `/fr` > `/en`)
