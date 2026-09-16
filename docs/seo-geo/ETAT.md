@@ -14,9 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Correctifs audit 03/09 (C1) | Claude de Sébastien | PR #3 | `i18n/deChCoverage.ts`, `components/seo/SchemaOrg.tsx`, `app/sitemap.ts`, `components/layout/**`, `messages/*.json` | 16/09 |
-
-*(la gouvernance est mergée — PR #2, `3b97908`)*
+*(aucun chantier ouvert — C1 est en production depuis le 16/09)*
 
 ---
 
@@ -52,6 +50,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Ce qu'on mesure | Déployé le | Lisible à partir du | Où |
 |---|---|---|---|
 | Effet de `images.minimumCacheTTL` sur les 504 | 04/09 | 05/09 — **donc lisible maintenant, personne ne l'a lu** | `cf_traffic_daily` |
+| Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
 | Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
 
 ---
