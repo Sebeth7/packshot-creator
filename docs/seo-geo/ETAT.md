@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-16 — Claude de Sébastien (mise en place de la gouvernance)**
+**Dernière mise à jour : 2026-09-16 — Claude de Sébastien (accès vérifiés au dashboard)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -52,6 +52,25 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Effet de `images.minimumCacheTTL` sur les 504 | 04/09 | 05/09 — **donc lisible maintenant, personne ne l'a lu** | `cf_traffic_daily` |
 | Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
 | Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
+
+---
+
+## Accès de Laurent — vérifiés au dashboard le 16/09
+
+| Accès | État réel |
+|---|---|
+| Dépôt GitHub `Sebeth7/packshot-creator` | **Écriture**, déjà en place |
+| Équipe Vercel `sebs-projects-ca1e93a7` | **Déjà membre** — `laurent.wainberg@sysnext.com`, rôle Member, 2FA active |
+| Jeton de contournement des Preview | **Créé le 16/09** — reste à lui transmettre |
+| Cloudflare | En place |
+| Supabase `gsc-crawl-seo` | Sa propre base |
+
+Rien ne bloque son démarrage, une fois le jeton transmis et
+`docs/seo-geo/README.md` partagé.
+
+L'attribution de rôles **par projet** sur Vercel est réservée au plan
+Enterprise ; sur le plan Pro, l'accès est au niveau de l'équipe. C'est donc
+l'accès équipe qui fait foi.
 
 ---
 
