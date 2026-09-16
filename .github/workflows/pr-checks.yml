@@ -1,0 +1,60 @@
+name: Contrôles de PR
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pr-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualite:
+    name: Types, build et intégrité des données
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    env:
+      # Valeurs factices : le build ne contacte aucun service, mais
+      # lib/supabase.ts lève au chargement du module si l'URL est absente
+      # (cf docs/seo-geo/03-PIEGES.md, piège A2).
+      NEXT_PUBLIC_SUPABASE_URL: https://exemple.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: factice-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: factice-service-role-key
+      NEXT_TELEMETRY_DISABLED: '1'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Type-check strict
+        # next dev ne le fait pas — c'est ici qu'on attrape ce qui casserait
+        # le build Vercel après le merge (piège A1).
+        run: npx tsc --noEmit
+
+      - name: Intégrité des JSON
+        run: node scripts/seo/verifier-json.mjs
+
+      - name: Lint
+        run: npx eslint --max-warnings=0 .
+        continue-on-error: true
+
+      - name: Cache Next.js
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**/*.ts','**/*.tsx') }}
+          restore-keys: |
+            next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            next-${{ runner.os }}-
+
+      - name: Build de production
+        run: npx next build
