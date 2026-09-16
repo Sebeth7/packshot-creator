@@ -8,7 +8,15 @@ cher, à parcourir dans l'ordre.
 | 1 | `tsc` + `next build` | secondes à minutes | Le code compile et se génère |
 | 2 | Playwright sur le Preview | minutes | Le rendu est correct |
 | 3 | Navigateur sur le Preview | minutes | Ce qu'un test ne voit pas |
-| 4 | Smoke test en production | minutes | Le déploiement réel est sain |
+| 4 | Smoke test sur l'origine | minutes | Le déploiement réel est sain |
+
+Deux protections se mettent en travers d'un contrôle automatisé. Aucune n'est
+une panne, les deux se reconnaissent à leur signature :
+
+| Symptôme | Cause | Cible à utiliser |
+|---|---|---|
+| **403** sur les pages, statiques OK | Cloudflare, empreinte TLS | `sysnext.vercel.app`, ou Chrome |
+| **302** vers `vercel.com/sso-api` | Protection de déploiement Vercel | Jeton de contournement, ou navigateur connecté |
 
 Puis la **mesure**, qui vient des semaines plus tard et n'est pas une
 vérification : c'est un résultat.
@@ -51,6 +59,11 @@ Sans cela : `browserType.launch: Executable doesn't exist`. Ce n'est pas une
 panne du site ni des tests.
 
 L'URL du Preview apparaît en commentaire de la pull request.
+
+**Les Preview sont protégés par le SSO Vercel** (vérifié le 16/09/2026 :
+20 requêtes sur 20 redirigées). Dans un navigateur connecté au compte de
+l'équipe, cela se règle tout seul. En script, il faut le jeton de contournement
+— voir `05-INFRA.md`.
 
 ```bash
 PLAYWRIGHT_BASE_URL=https://<preview>.vercel.app \

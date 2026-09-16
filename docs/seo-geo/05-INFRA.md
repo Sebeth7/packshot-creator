@@ -129,6 +129,33 @@ Cloudflare — sinon le `robots.txt` ne sert à rien.
 | Push sur une branche | Déploiement **Preview**, URL automatique en commentaire de PR |
 | Push ou merge sur `main` | **PRODUCTION**, ~3 minutes, sans confirmation |
 
+### La protection de déploiement — à connaître avant le premier Preview
+
+**Les Preview sont protégés par le SSO Vercel.** Toute requête sans
+authentification est redirigée (302) vers `vercel.com/sso-api`. Vérifié le
+16/09/2026 : 20 requêtes sur 20, pages et fichiers statiques compris.
+
+Conséquences :
+
+| Pour | Effet |
+|---|---|
+| Ouvrir un Preview dans un navigateur | Nécessite d'être membre de l'équipe Vercel `sebs-projects-ca1e93a7` |
+| Contrôler un Preview par script | Nécessite un **jeton de contournement** |
+
+Le jeton se crée dans Vercel → projet `sysnext` → Settings → Deployment
+Protection → **Protection Bypass for Automation**. Il s'utilise ainsi :
+
+```bash
+VERCEL_AUTOMATION_BYPASS_SECRET=<jeton> \
+  node scripts/seo/smoke.mjs https://<preview>.vercel.app
+```
+
+Le smoke test détecte la protection et l'explique au lieu de faire croire à une
+panne.
+
+**Sans ce jeton, la porte « Preview contrôlée » de `02-PROCEDURE.md` ne peut pas
+être franchie.** C'est un prérequis à l'autonomie, pas un confort.
+
 ### L'origine, outil de contrôle
 
 `https://sysnext.vercel.app` sert le déploiement de production **sans passer par

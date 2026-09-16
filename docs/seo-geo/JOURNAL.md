@@ -85,6 +85,38 @@ Worker déployé · la base Supabase de Laurent · le comportement réel des tro
 workflows d'intégration continue, qui ne peuvent s'exécuter qu'une fois la
 première pull request ouverte.
 
-**Suite** — La première pull request qui passera dans ce cadre en sera aussi le
-test. Les workflows peuvent demander un ajustement au premier passage. Le
-document `06-CHANTIERS.md` liste treize chantiers, dont trois en P0.
+**Suite** — Le document `06-CHANTIERS.md` liste treize chantiers, dont trois en
+P0.
+
+---
+
+### Complément du 16/09 — le cadre a été testé sur lui-même
+
+La PR #2 a servi de premier passage. **Les trois workflows sont verts** :
+garde-périmètre 8 s, garde-journal 7 s, contrôles de PR 1 min 48 s — `npm ci`,
+`tsc`, intégrité des 186 JSON, lint et `next build` complet avec variables
+d'environnement factices.
+
+Deux protections ont été découvertes en écrivant, et closes :
+
+**1. Cloudflare bloque les scripts par empreinte TLS.** Sur
+`www.packshot-creator.com`, 17 pages HTML sur 17 répondent 403 malgré un
+user-agent Chrome complet ; seuls les fichiers statiques passent, ce qui donne
+l'illusion que le site répond. La cible de contrôle automatisé est donc
+`https://sysnext.vercel.app`, origine du déploiement de production — même HTML,
+sans l'étage Cloudflare.
+
+**2. Les Preview Vercel sont protégés par SSO.** 20 requêtes sur 20 redirigées
+vers `vercel.com/sso-api`. Sans jeton de contournement, la porte « Preview
+contrôlée » de la procédure ne peut pas être franchie. Le smoke test accepte
+désormais `VERCEL_AUTOMATION_BYPASS_SECRET` et reconnaît les deux protections
+au lieu de les signaler comme des pannes.
+
+Trois gestes deviennent des prérequis à l'autonomie de Laurent, inscrits dans
+`ETAT.md` : créer le jeton de contournement Vercel, ajouter `lwainberg` à
+l'équipe Vercel, créer le libellé `zone-rouge-autorisee`.
+
+**Écart réel remonté par le premier contrôle** : `/fr/outil-financement` n'est
+pas en `noindex` en production — le correctif attend dans
+`feat/audit-laurent-0309` (chantier C1). Marqué comme écart attendu dans le
+script, à repasser en contrôle ferme au merge de C1.

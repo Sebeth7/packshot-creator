@@ -26,6 +26,22 @@ const UA =
   '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
 /**
+ * Les déploiements Preview sont protégés par le SSO Vercel : sans jeton, toute
+ * page répond 302 vers vercel.com/sso-api. Le jeton se crée dans le dashboard
+ * Vercel, projet sysnext → Settings → Deployment Protection → Protection Bypass
+ * for Automation. Voir docs/seo-geo/05-INFRA.md.
+ */
+const BYPASS = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+
+const ENTETES = {
+  'user-agent': UA,
+  accept: 'text/html',
+  ...(BYPASS
+    ? { 'x-vercel-protection-bypass': BYPASS, 'x-vercel-set-bypass-cookie': 'true' }
+    : {}),
+};
+
+/**
  * Les URL témoins. Couvrent les trois locales, les six familles de gabarit
  * (home, hub, secteur, machine, article, page suisse) et les pathnames
  * localisés de-ch.
@@ -77,6 +93,7 @@ const echecs = [];
 const avertissements = [];
 const attentes = [];
 const bloques = [];
+const protegees = [];
 
 async function controler({ url, attendu, indexable, enAttenteDe }) {
   /** Un écart attendu tant qu'un chantier n'est pas livré n'est pas un échec. */
@@ -88,7 +105,7 @@ async function controler({ url, attendu, indexable, enAttenteDe }) {
   let reponse;
   try {
     reponse = await fetch(complet, {
-      headers: { 'user-agent': UA, accept: 'text/html' },
+      headers: ENTETES,
       redirect: 'manual',
     });
   } catch (e) {
@@ -98,6 +115,10 @@ async function controler({ url, attendu, indexable, enAttenteDe }) {
 
   if (reponse.status === 403) {
     bloques.push(url);
+    return;
+  }
+  if (reponse.status === 302 && (reponse.headers.get('location') ?? '').includes('vercel.com/sso-api')) {
+    protegees.push(url);
     return;
   }
   if (reponse.status !== attendu) {
@@ -154,7 +175,15 @@ async function controler({ url, attendu, indexable, enAttenteDe }) {
 async function controlerRessource(chemin) {
   const complet = `${base}${chemin}`;
   try {
-    const reponse = await fetch(complet, { headers: { 'user-agent': UA } });
+    const reponse = await fetch(complet, { headers: ENTETES, redirect: 'manual' });
+    if (reponse.status === 302 && (reponse.headers.get('location') ?? '').includes('vercel.com/sso-api')) {
+      protegees.push(chemin);
+      return;
+    }
+    if (reponse.status === 403) {
+      bloques.push(chemin);
+      return;
+    }
     if (!reponse.ok) {
       echecs.push(`${chemin} — statut ${reponse.status}`);
       return;
@@ -193,6 +222,22 @@ for (const temoin of TEMOINS) {
 console.log('\nRessources :');
 for (const ressource of RESSOURCES) {
   await controlerRessource(ressource);
+}
+
+if (protegees.length >= 3) {
+  console.error(`\nDÉPLOIEMENT PROTÉGÉ — ${protegees.length} page(s) redirigée(s) vers le SSO Vercel.\n`);
+  console.error("Ce n'est pas une panne : la protection de déploiement Vercel est");
+  console.error('active sur les Preview. Toute requête sans jeton est renvoyée');
+  console.error('vers vercel.com/sso-api.\n');
+  console.error('Deux façons de contrôler un Preview :');
+  console.error('  · Dans un navigateur, connecté au compte Vercel de l\'équipe');
+  console.error('  · En script, avec le jeton de contournement :\n');
+  console.error('      VERCEL_AUTOMATION_BYPASS_SECRET=<jeton> \\');
+  console.error('        node scripts/seo/smoke.mjs <url-du-preview>\n');
+  console.error('Le jeton se crée dans Vercel → projet sysnext → Settings →');
+  console.error('Deployment Protection → Protection Bypass for Automation.');
+  console.error('Voir docs/seo-geo/05-INFRA.md.');
+  process.exit(2);
 }
 
 if (bloques.length >= 3) {

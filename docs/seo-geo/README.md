@@ -23,6 +23,13 @@ Aucun fichier `.env.local` n'est nécessaire pour travailler sur le SEO/GEO. Pou
 que `npx next build` aboutisse, des valeurs factices suffisent — voir
 `02-PROCEDURE.md`, étape 2.
 
+Il te faut aussi, de Sébastien :
+
+| Quoi | Pourquoi |
+|---|---|
+| Accès à l'équipe Vercel `sebs-projects-ca1e93a7` | Ouvrir les Preview, lire Observability |
+| Le jeton `VERCEL_AUTOMATION_BYPASS_SECRET` | Contrôler un Preview par script — sans lui, 302 SSO |
+
 Contrôle que tout est en place :
 
 ```bash

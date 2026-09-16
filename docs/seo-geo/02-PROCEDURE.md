@@ -153,12 +153,24 @@ CI. Retire le changement, ou écris dans `BOITE-AUX-LETTRES.md`.
 Vercel publie automatiquement une URL de prévisualisation sur chaque branche.
 Le lien apparaît en commentaire de la PR.
 
+**Les Preview sont protégés par le SSO Vercel** : sans authentification, toute
+requête est redirigée vers `vercel.com/sso-api`. Il faut donc, au choix, être
+connecté au compte de l'équipe Vercel dans le navigateur, ou disposer du jeton
+de contournement :
+
+```bash
+VERCEL_AUTOMATION_BYPASS_SECRET=<jeton> \
+  node scripts/seo/smoke.mjs https://<preview>.vercel.app
+```
+
+Voir `05-INFRA.md` pour la création du jeton.
+
 **Contrôle obligatoire sur le Preview** — voir `07-VERIFICATION.md` pour le
 détail. Au minimum :
 
 ```bash
-npx playwright test e2e/seo.spec.ts --project=chromium
-# avec PLAYWRIGHT_BASE_URL pointant sur l'URL du Preview
+PLAYWRIGHT_BASE_URL=https://<preview>.vercel.app \
+  npx playwright test e2e/seo.spec.ts --project=chromium
 ```
 
 Plus un contrôle visuel dans le navigateur des pages que tu as touchées.
