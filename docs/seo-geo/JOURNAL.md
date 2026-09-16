@@ -34,6 +34,64 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-16 · Correctifs de l'audit du 03/09 — sélecteur de langue, rich results, footer · Claude de Sébastien
+
+**Chantier** : C1 | **PR** : #3 | **Commit** : `0e8949f`, livré le 04/09, mergé le 16/09
+
+**Quoi** — Mise en production des correctifs de l'audit SEO du 03/09, livrés en
+branche le 04/09 et restés douze jours sans merge.
+
+● **Sélecteur de langue**, article par article via `alternates.json` : une ancre
+  DE-CH ne pointe plus jamais vers `/en`, et aucune ancre ne pointe vers une page
+  `/en` en `noindex` — repli sur le hub EN indexable
+● `resolveNavHref` réécrit les 8 secteurs traduits en slug allemand
+● Couverture `de-ch` blog et guides dérivée d'`alternates.json`, ce qui répare
+  les « articles liés » en DE
+● `besoins-photographie-produit` et `PackshotLandingTemplate` passés en `NavLink`
+  — c'étaient les `Link` bruts à l'origine des chaînes 307→404 sur les secteurs
+  DE-CH et du 404 sur `/de-ch/academy`
+● Messages blog `de-ch` et listing des guides en allemand, au lieu de copies FR
+● `price` au niveau `Offer` sur 42 fiches — mensualité de leasing, décision D7
+● E-Comm Studio+ à 130 000 € HT dans les deux catalogues
+● Product isolé retiré de la page d'accueil
+● Footer : colonne « Nos studios », 13 fiches machines plus le sélecteur
+● `/fr/outil-financement` en `noindex,follow` et hors sitemap
+
+**Pourquoi** — L'audit du 03/09 identifie le sélecteur de langue comme **cause
+structurelle n°1** du recul : il déversait le Link Score sur des pages `/en` en
+`noindex`. 20 pages `/en` à 99-100 contre 86 pour `/fr`, et des fiches machines
+à 5-30. Trafic organique : 1 857 clics/mois en janvier, 524 en août.
+
+**Fichiers** — 16 : `i18n/deChCoverage.ts`, `components/seo/SchemaOrg.tsx`,
+`app/sitemap.ts`, `components/layout/{Footer,NavLink}.tsx`,
+`components/blog/RelatedArticles.tsx`,
+`components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`,
+`app/[lang]/besoins-photographie-produit/page.tsx`, `app/[lang]/guide/page.tsx`,
+`app/[lang]/outil-financement/layout.tsx`, les 2 catalogues de machines, et
+`messages/{fr,en,de-ch}.json`.
+
+**Effet attendu** — Link Score `/fr` supérieur à `/en` au prochain crawl
+Screaming Frog. Position sur « packshot creator » : `/fr` à 28,9 contre `/en` à
+1,9 aujourd'hui, à mesurer sur 4 à 6 semaines. Retour des rich results Product
+avec un `Offer` valide. Fin des 404 sur les secteurs DE-CH.
+
+**Vérifié** — `tsc` vert, 183 JSON valides, merge de `main` sans conflit, CI de
+la PR vert avant merge. 23 URL avaient été contrôlées en local à la livraison du
+04/09. Smoke test sur l'origine après déploiement.
+
+**Supposé** — Que les 23 URL contrôlées le 04/09 couvrent les cas de bord du
+sélecteur. Le diff n'a pas été relu ligne à ligne dans cette session.
+
+**Non regardé** — Le rendu visuel de la nouvelle colonne de footer sur mobile.
+L'effet réel sur le Link Score, qui dépend du prochain crawl de Laurent.
+
+**Suite** — Laurent doit lancer le contrôle post-déploiement L.3 : recrawl
+Screaming Frog (liens d'en-tête non-200 ramenés à 0, Link Score `/fr` > `/en`)
+et inspection d'URL sur les 17 URL de l'annexe L.1. C'est son test, il l'attend
+depuis le 04/09.
+
+---
+
 ## 2026-09-16 · Vérification au dashboard — le diagnostic bots IA était faux · Claude de Sébastien
 
 **Chantier** : C2 | **PR** : #2

@@ -14,9 +14,9 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Gouvernance SEO/GEO | Claude de Sébastien | PR #2 ouverte | `CLAUDE.md`, `docs/seo-geo/**`, `.github/**`, `scripts/seo/**`, `playwright.config.ts` | 16/09 |
+| Correctifs audit 03/09 (C1) | Claude de Sébastien | PR #3 | `i18n/deChCoverage.ts`, `components/seo/SchemaOrg.tsx`, `app/sitemap.ts`, `components/layout/**`, `messages/*.json` | 16/09 |
 
-*(aucun autre chantier ouvert à ce jour)*
+*(la gouvernance est mergée — PR #2, `3b97908`)*
 
 ---
 
@@ -24,9 +24,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Merger `feat/audit-laurent-0309` (`0e8949f`) | Laurent, via l'audit du 03/09 | 04/09 | Correctif du sélecteur de langue = cause structurelle n°1. Rebaser et rebuilder avant merge. Voir `06-CHANTIERS.md` C1 |
 | Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | **Diagnostic corrigé le 16/09** : les AI bot policies sont déjà sur Allow. La cause est Super Bot Fight Mode + Javascript Detections. Correctif = règle WAF de Skip. Remesurer d'abord — voir `05-INFRA.md` |
-| Renouveler le jeton `psc-n8n-publisher` | — | 10/09 | **Confirmé expiré** le 16/09 au dashboard GitHub. Le pipeline n8n de Laurent est à l'arrêt |
+| Transmettre le nouveau jeton `psc-n8n-publisher` à Laurent | — | 16/09 | Régénéré le 16/09. À lui faire parvenir par un canal privé — **jamais dans le dépôt, qui est public** |
 | Créer le jeton « Protection Bypass for Automation » sur Vercel | Claude de Sébastien | 16/09 | **Prérequis à l'autonomie de Laurent** : sans lui, les Preview sont inaccessibles en script (302 SSO). Vercel → `sysnext` → Settings → Deployment Protection. À transmettre à Laurent |
 | Ajouter `lwainberg` à l'équipe Vercel `sebs-projects-ca1e93a7` | Claude de Sébastien | 16/09 | Sans quoi il ne peut pas ouvrir un Preview dans son navigateur, ni lire Observability pour le chantier 504 |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
@@ -41,6 +40,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | Transmettre le fichier Worker **de production** | Claude de Sébastien | 03/09 | Promis, jamais reçu. **Bloque C4, donc C6 et 15 réparations de 404** |
+| Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
+| Remesurer les 403 par user-agent | Claude de Sébastien | 16/09 | Ses chiffres datent du 04/09 et la config Cloudflare a changé depuis — voir `05-INFRA.md` |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
 | Répartition horaire des 5xx | Laurent l'a proposée | 04/09 | Aide à cibler C3 |
 
