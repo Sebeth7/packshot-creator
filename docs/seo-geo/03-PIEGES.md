@@ -7,6 +7,10 @@ fait perdre des jours.
 **Lis ce fichier avant ton premier chantier. Relis la section concernée avant
 d'attaquer un nouveau domaine.**
 
+32 pièges au 16/09/2026, en sept familles : build et déploiement (A), ce qui
+ment à la vérification (B), routage et internationalisation (C), indexation (D),
+Worker et infrastructure (E), contenu et données (F), collaboration (G).
+
 ---
 
 ## A. Build et déploiement
