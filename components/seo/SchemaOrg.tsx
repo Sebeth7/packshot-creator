@@ -155,6 +155,11 @@ export function productSchema(product: {
             url: product.url,
             availability: 'https://schema.org/InStock',
             itemCondition: 'https://schema.org/NewCondition',
+            // `price` au niveau de l'Offer : exigé par Google Merchant Listings
+            // (audit Laurent 03/09/2026, erreur « Champ price manquant » sur les
+            // 42 fiches). Valeur = mensualité leasing publique (prix HT × 1,3 ÷ 60),
+            // identique à priceSpecification ci-dessous (décision Seb 04/09/2026).
+            price: product.leasingOffer.monthly,
             priceCurrency: product.leasingOffer.priceCurrency,
             priceValidUntil: product.leasingOffer.priceValidUntil,
             priceSpecification: {

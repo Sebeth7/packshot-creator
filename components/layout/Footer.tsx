@@ -4,6 +4,27 @@ import { useTranslations } from 'next-intl';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
 
+// Fiches machines listées en pied de page (audit Laurent 03/09/2026, §1.4 1.c :
+// 28 liens entrants par fiche contre 163 pour les hubs). Hors machines `delisted`
+// du catalogue ROI — à garder synchronisé avec
+// components/calculators/ROICalculator/lib/machines.ts. Import direct évité : le
+// catalogue complet (FAQ, specs trilingues) alourdirait le bundle de chaque page.
+const FOOTER_STUDIOS: { id: string; nom: string }[] = [
+  { id: 'alphashot-micro-v2', nom: 'Alphashot Micro Pro v2' },
+  { id: 'alphashot-360', nom: 'Alphashot 360' },
+  { id: 'alphashot-xl-g2', nom: 'Alphashot XL G2' },
+  { id: 'alphashot-pro-g2', nom: 'Alphashot Pro G2' },
+  { id: 'alphashot-xl-pro-v2', nom: 'Alphashot XL Pro v2' },
+  { id: 'alphatable', nom: 'Alphatable v2' },
+  { id: 'alphastudio-compact-v2', nom: 'Alphastudio Compact Pro v2' },
+  { id: 'alphastudio-xxl-v2', nom: 'Alphastudio XXL Pro v2' },
+  { id: 'fashion-studio-basic', nom: 'Fashion Studio Basic' },
+  { id: 'fashion-studio', nom: 'Fashion Studio Pro v2' },
+  { id: 'bike-studio', nom: 'Bike Studio' },
+  { id: 'furniture-studio', nom: 'Furniture Studio' },
+  { id: 'e-comm-studio-plus', nom: 'E-Comm Studio+' },
+];
+
 export default function Footer() {
   const t = useTranslations('common.footer');
   const currentYear = new Date().getFullYear();
@@ -12,7 +33,7 @@ export default function Footer() {
     <footer className="bg-future-dusk-900 text-future-dusk-300">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-6">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
@@ -237,6 +258,27 @@ export default function Footer() {
               <li>
                 <Link href="/industrie-defense" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
                   {t('packshotDefense')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Studios (fiches machines) */}
+          <div>
+            <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">
+              {t('studiosRange')}
+            </h3>
+            <ul className="space-y-2.5">
+              {FOOTER_STUDIOS.map((m) => (
+                <li key={m.id}>
+                  <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: m.id } }} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                    {m.nom}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/studio-photo/selecteur-machines" className="text-sm font-medium text-very-peri-300 hover:text-white transition-colors">
+                  {t('allStudios')} &rarr;
                 </Link>
               </li>
             </ul>

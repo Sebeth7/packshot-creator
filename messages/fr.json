@@ -431,7 +431,9 @@
       "packshotAmazon": "Packshot Amazon",
       "packshotMode": "Packshot Mode",
       "packshotIndustriel": "Packshot Industriel",
-      "packshotDefense": "Industrie & Défense"
+      "packshotDefense": "Industrie & Défense",
+      "studiosRange": "Nos studios",
+      "allStudios": "Tous les studios"
     }
   },
   "iaPhotoProduit": {

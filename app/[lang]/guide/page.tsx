@@ -7,6 +7,7 @@ import SchemaOrg, { breadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { buildLanguages } from '@/lib/hreflang';
+import { tx } from '@/lib/locale-text';
 
 export const revalidate = 3600;
 
@@ -22,12 +23,16 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
-  const title = lang === 'fr'
-    ? 'Guides Photo Produit | Tutoriels PackshotCreator'
-    : 'Product Photography Guides | PackshotCreator Tutorials';
-  const description = lang === 'fr'
-    ? 'Guides pratiques et tutoriels pour maîtriser la photographie de produit. Techniques de prise de vue, 360°, focus stacking et retouche.'
-    : 'Practical guides and tutorials for mastering product photography. Shooting techniques, 360°, focus stacking and editing.';
+  // de-ch : title/meta en allemand (le listing servait ceux de /en/guide — audit
+  // Laurent 03/09/2026, addendum A1).
+  const title = tx(lang,
+    'Guides Photo Produit | Tutoriels PackshotCreator',
+    'Product Photography Guides | PackshotCreator Tutorials',
+    'Produktfotografie-Ratgeber | PackshotCreator Anleitungen');
+  const description = tx(lang,
+    'Guides pratiques et tutoriels pour maîtriser la photographie de produit. Techniques de prise de vue, 360°, focus stacking et retouche.',
+    'Practical guides and tutorials for mastering product photography. Shooting techniques, 360°, focus stacking and editing.',
+    'Praktische Ratgeber und Anleitungen für professionelle Produktfotografie. Aufnahmetechniken, 360°, Focus Stacking und Bildbearbeitung.');
 
   return {
     title,
@@ -52,8 +57,8 @@ export default async function GuidesPage({ params }: PageProps) {
   const guides = getAllGuides(lang as Lang);
 
   const breadcrumbs = breadcrumbSchema([
-    { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Guides', url: `https://www.packshot-creator.com/${lang}/guide` },
+    { name: tx(lang, 'Accueil', 'Home', 'Startseite'), url: `https://www.packshot-creator.com/${lang}` },
+    { name: tx(lang, 'Guides', 'Guides', 'Ratgeber'), url: `https://www.packshot-creator.com/${lang}/guide` },
   ]);
 
   return (
@@ -66,15 +71,16 @@ export default async function GuidesPage({ params }: PageProps) {
           <FadeInView>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-very-peri-500/20 rounded-full text-very-peri-200 text-sm font-medium mb-6">
               <BookOpen className="w-4 h-4" />
-              {guides.length} {lang === 'fr' ? 'guides disponibles' : 'guides available'}
+              {guides.length} {tx(lang, 'guides disponibles', 'guides available', 'Ratgeber verfügbar')}
             </div>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-              {lang === 'fr' ? 'Guides Photo Produit' : 'Product Photography Guides'}
+              {tx(lang, 'Guides Photo Produit', 'Product Photography Guides', 'Produktfotografie-Ratgeber')}
             </h1>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              {lang === 'fr'
-                ? 'Tutoriels pas-à-pas pour maîtriser la photographie de produit professionnelle avec les solutions PackshotCreator.'
-                : 'Step-by-step tutorials to master professional product photography with PackshotCreator solutions.'}
+              {tx(lang,
+                'Tutoriels pas-à-pas pour maîtriser la photographie de produit professionnelle avec les solutions PackshotCreator.',
+                'Step-by-step tutorials to master professional product photography with PackshotCreator solutions.',
+                'Schritt-für-Schritt-Anleitungen für professionelle Produktfotografie mit den Lösungen von PackshotCreator.')}
             </p>
           </FadeInView>
         </div>
@@ -123,7 +129,7 @@ export default async function GuidesPage({ params }: PageProps) {
                           )}
                           {guide.steps.length > 0 && (
                             <span className="text-xs text-future-dusk-400">
-                              {guide.steps.length} {lang === 'fr' ? 'étapes' : 'steps'}
+                              {guide.steps.length} {tx(lang, 'étapes', 'steps', 'Schritte')}
                             </span>
                           )}
                         </div>
@@ -143,19 +149,20 @@ export default async function GuidesPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <FadeInView>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-              {lang === 'fr' ? 'Envie de progresser davantage ?' : 'Want to progress further?'}
+              {tx(lang, 'Envie de progresser davantage ?', 'Want to progress further?', 'Möchten Sie weiterkommen?')}
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              {lang === 'fr'
-                ? 'Découvrez nos formations certifiées Qualiopi pour maîtriser la photographie produit professionnelle.'
-                : 'Discover our Qualiopi-certified training courses to master professional product photography.'}
+              {tx(lang,
+                'Découvrez nos formations certifiées Qualiopi pour maîtriser la photographie produit professionnelle.',
+                'Discover our Qualiopi-certified training courses to master professional product photography.',
+                'Entdecken Sie unsere Qualiopi-zertifizierten Schulungen für professionelle Produktfotografie.')}
             </p>
             <Link
               href="/academy"
               locale={lang === 'de-ch' ? 'en' : undefined}
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-very-peri-700 font-bold rounded-xl hover:bg-neutral-100 transition-colors"
             >
-              {lang === 'fr' ? 'Voir les formations' : 'View courses'}
+              {tx(lang, 'Voir les formations', 'View courses', 'Schulungen ansehen')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </FadeInView>

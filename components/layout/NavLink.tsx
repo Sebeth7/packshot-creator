@@ -3,7 +3,7 @@
 import { type ComponentProps } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { navPinLocale, type LinkHref } from '@/i18n/deChCoverage';
+import { resolveNavHref, type LinkHref } from '@/i18n/deChCoverage';
 
 type LinkProps = ComponentProps<typeof Link>;
 
@@ -18,6 +18,8 @@ type LinkProps = ComponentProps<typeof Link>;
 export function NavLink({ href, locale, ...props }: LinkProps) {
   const current = useLocale();
   // Une locale explicitement fournie (rare) a priorité sur l'épinglage auto.
-  const resolved = locale ?? navPinLocale(current, href as LinkHref);
-  return <Link href={href} locale={resolved} {...props} />;
+  if (locale) return <Link href={href} locale={locale} {...props} />;
+  // de-ch : secteur traduit → slug allemand ; sinon épinglage fr/en (cf deChCoverage).
+  const resolved = resolveNavHref(current, href as LinkHref);
+  return <Link href={resolved.href as LinkProps['href']} locale={resolved.locale} {...props} />;
 }

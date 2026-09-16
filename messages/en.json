@@ -428,7 +428,9 @@
       "packshotAmazon": "Amazon Packshot",
       "packshotMode": "Fashion Packshot",
       "packshotIndustriel": "Industrial Packshot",
-      "packshotDefense": "Industry & Defense"
+      "packshotDefense": "Industry & Defense",
+      "studiosRange": "Our studios",
+      "allStudios": "All studios"
     }
   },
   "iaPhotoProduit": {
