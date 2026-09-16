@@ -1,0 +1,36 @@
+# CODEOWNERS — packshot-creator
+#
+# Indicatif, jamais bloquant : la protection de branche n'exige pas de revue.
+# Ce fichier sert à ce que GitHub propose le bon relecteur, et à rendre lisible
+# qui répond de quoi.
+#
+# Il ne définit AUCUNE permission. La carte des dépendances est dans
+# docs/seo-geo/01-RAYON-ACTION.md ; .github/workflows/garde-consequences.yml la
+# rappelle à chaque pull request.
+
+# Par défaut : Sébastien
+*                                   @Sebeth7
+
+# ── SEO / GEO — Laurent pilote ────────────────────────────────────
+/lib/seo-config.ts                  @lwainberg @Sebeth7
+/lib/hreflang.ts                    @lwainberg @Sebeth7
+/app/sitemap.ts                     @lwainberg @Sebeth7
+/public/robots.txt                  @lwainberg @Sebeth7
+/public/llms.txt                    @lwainberg @Sebeth7
+/components/seo/                    @lwainberg @Sebeth7
+/components/maillage/               @lwainberg @Sebeth7
+/data/content-maillage.ts           @lwainberg @Sebeth7
+/i18n/deChCoverage.ts               @lwainberg @Sebeth7
+/cloudflare-worker/                 @lwainberg @Sebeth7
+/content/blog/alternates.json       @lwainberg @Sebeth7
+/content/guides/alternates.json     @lwainberg @Sebeth7
+/docs/seo-geo/                      @lwainberg @Sebeth7
+
+# ── Chantiers actifs de Sébastien — signalement de collision ──────
+# Pas une interdiction : une alerte, pour que les deux ne se marchent pas dessus.
+/lib/roiChat/                       @Sebeth7
+/lib/roiEngine/                     @Sebeth7
+/app/calculateur-roi/               @Sebeth7
+/app/roi-pro/                       @Sebeth7
+/app/roi-preview/                   @Sebeth7
+/app/etude-clients-2026/            @Sebeth7

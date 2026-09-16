@@ -1,0 +1,29 @@
+name: Garde-conséquences
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  consequences:
+    name: Les conséquences ont été regardées
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lister les fichiers modifiés
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          BASE=$(git merge-base HEAD "origin/${{ github.base_ref }}")
+          git diff --name-only "$BASE" HEAD > /tmp/fichiers-modifies.txt
+          echo "--- fichiers modifiés ---"
+          cat /tmp/fichiers-modifies.txt
+
+      - name: Carte des dépendances, et contrôle de déclaration
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: node scripts/seo/verifier-consequences.mjs /tmp/fichiers-modifies.txt
