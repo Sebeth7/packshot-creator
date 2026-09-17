@@ -108,21 +108,21 @@ technique). Résultats dans `SITE WEB/audits/`, hors dépôt. Dernier run : #5 d
 
 ### Les trois pistes identifiées, par ordre de force
 
-**1. Erreurs 504 chroniques.** 8 à 23 % des requêtes par jour, sur toute la
-fenêtre observable (depuis au moins le 05/07/2026), pages HTML comprises.
-Requalifié par Laurent le 04/09 de « exogène » à « cause interne candidate P0 ».
-Un correctif partiel a été déployé le 04/09 (`images.minimumCacheTTL`). Le
-diagnostic complet exige le dashboard Vercel.
+**1. Erreurs 504 — requalifiées le 17/09.** La mesure du 18/08 au 16/09 montre
+que 100 % des 504 portent le user-agent `nginx-ssl early hints` (requêtes
+internes de Cloudflare liées à Early Hints) : aucune 504 servie aux navigateurs
+ni à Googlebot sur la fenêtre mesurée. Ce n'est plus une piste démontrée du
+recul. Voir `06-CHANTIERS.md` C3.
 
 **2. Sélecteur de langue qui déverse l'autorité sur des pages `noindex`.**
 20 pages `/en` à 99-100 de Link Score contre 86 pour `/fr`, et des fiches
 machines à 5-30. Correctif **livré mais non mergé** (branche
 `feat/audit-laurent-0309`).
 
-**3. Crawlers IA bloqués par Cloudflare.** GPTBot 100 % bloqué (233/233),
-Perplexity-User 100 %, PerplexityBot 77 %, ClaudeBot 36 %, Claude-User 31 %,
-ChatGPT-User 30 %, OAI-SearchBot 22 %. Le SEO classique passe (Googlebot 0,2 %).
-Correctif estimé à 10 minutes au dashboard Cloudflare. Enjeu GEO direct.
+**3. Crawlers IA bloqués par Cloudflare — requalifié le 17/09.** La mesure par
+ASN montre que les 403 visent surtout des user-agents usurpés émis depuis Google
+Cloud ; depuis les réseaux des éditeurs, 0 à 2 % de 403, sauf PerplexityBot
+(AS14618, 383 sur 519), à qualifier. Voir `06-CHANTIERS.md` C2.
 
 Note mesurée : Perplexity cite malgré tout PackshotCreator bien que
 PerplexityBot soit bloqué à 77 % — les citations passent par des index tiers.

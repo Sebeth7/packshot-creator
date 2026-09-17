@@ -222,24 +222,21 @@ legacy, 410, sous-domaines, racine `/`. Pour ça, un navigateur sur `www`.
   un projet obsolète nommé `packshot-creator` (piège A3)
 ● Modifier les variables d'environnement
 
-### Le chantier 504 — pourquoi l'accès Observability
+### Le chantier 504 — requalifié le 17/09
 
-Les 504 représentent 8 à 23 % des requêtes par jour depuis au moins le
-05/07/2026, **pages HTML comprises**. C'est la piste n°1 du recul de trafic
-(1 857 → 524 clics/mois).
+La mesure du 18/08 au 16/09 attribue 100 % des 504 au user-agent
+`nginx-ssl early hints` : requêtes internes de Cloudflare liées à la fonction
+Early Hints de la zone. Aucune 504 servie aux navigateurs déclarés ni à
+Googlebot (AS15169) sur la fenêtre. Les 504 ne sont plus la piste n°1 du recul
+de trafic ; le détail est dans `06-CHANTIERS.md` C3 et `JOURNAL.md` (17/09).
 
-Un correctif partiel a été déployé le 04/09 : `images.minimumCacheTTL` porté à
-un an, sur l'hypothèse que `/_next/image` représentait une part majeure des
-timeouts. L'effet est lisible dans `cf_traffic_daily` à partir du 05/09.
+L'accès Observability reste utile pour d'autres questions : durées d'exécution
+par route (gabarits `[slug]` rendus dynamiquement, constaté en production le
+17/09 : `no-store`, `MISS`, exécution `iad1`), firewall Vercel.
 
-Ce qui reste à instruire dans Observability : erreurs par route, durées
-d'exécution, optimisation d'images. **Les 504 sur des pages HTML ne s'expliquent
-pas par les images** — une seconde hypothèse porte sur un dépassement de délai
-dans la chaîne Worker Cloudflare → Vercel.
-
-`next.config.ts`, bloc `images` : **rayon large**, et une mesure est en cours
-depuis le 04/09. Déclare les conséquences dans la PR, et n'empile pas un second
-changement sur une mesure non terminée.
+`next.config.ts`, bloc `images` : **rayon large**. Le commentaire attribuant une
+part majeure des 504 à `/_next/image` est dépassé ; il sera corrigé dans la
+prochaine PR qui touche ce fichier, pas dans une PR dédiée.
 
 ---
 
