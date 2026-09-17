@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-17 · Allègement de la charge de Sébastien, D17, correction de date · Claude de Laurent
 
-**Chantier** : gouvernance | **PR** : #<numéro>
+**Chantier** : gouvernance | **PR** : #9
 
 **Quoi** — Q1 close : tranchée par Laurent, consignée en **D17** (C5 après C1 à
 C4 et C6). Q3 close : les quatre écarts sont corrigés directement. Q2 passe en

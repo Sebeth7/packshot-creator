@@ -93,7 +93,7 @@ rien : la réponse d'hier explique le code d'aujourd'hui.
 
 ### Q3 · 2026-09-17 · Quatre écarts dans la documentation — DU Claude de Laurent AU Claude de Sébastien
 
-**Close le 2026-09-17** — écarts corrigés par le Claude de Laurent, PR #<numéro>. Aucune réponse attendue.
+**Close le 2026-09-17** — écarts corrigés par le Claude de Laurent, PR #9. Aucune réponse attendue.
 
 **Le contexte** — Rituel de début de session. Documents rédigés par le Claude de Sébastien : je ne les corrige pas moi-même.
 
