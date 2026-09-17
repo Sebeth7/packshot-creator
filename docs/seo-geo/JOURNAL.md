@@ -34,7 +34,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-09-18 · Cadrage du pilotage SEO/GEO — questions Q1-Q3, décisions D15-D16 · Claude de Laurent
+## 2026-09-17 · Allègement de la charge de Sébastien, D17, correction de date · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #9
+
+**Quoi** — Q1 close : tranchée par Laurent, consignée en **D17** (C5 après C1 à
+C4 et C6). Q3 close : les quatre écarts sont corrigés directement. Q2 passe en
+régime tacite au 24/09. Les dates de la PR #8 sont ramenées du 18/09 au 17/09.
+
+**Pourquoi** — Sébastien est surchargé et la PR #8 lui laissait trois réponses à
+fournir ; il n'en reste aucune. La PR #8 datait ses ajouts du 18/09 sur la foi
+de son prompt, alors que la date réelle est le 17/09.
+
+**Fichiers** — `docs/seo-geo/BOITE-AUX-LETTRES.md`,
+`docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`,
+`docs/seo-geo/06-CHANTIERS.md`, `docs/seo-geo/README.md`, `CLAUDE.md`
+
+**Effet attendu** — Aucun effet SEO : documentation seule. Zéro action requise
+côté Sébastien, hors objection éventuelle sur Q2 avant le 24/09.
+
+**Vérifié** — Les quatre écarts de Q3, corrigés ligne à ligne :
+
+| Écart | Avant | Après |
+|---|---|---|
+| `06-CHANTIERS.md` C1, ligne 17 | « Livrée, poussée, **non mergée depuis le 04/09/2026** » | « Mergée le 16/09/2026 (PR #3), en production — mesure en attente » |
+| `ETAT.md`, « Balle chez Sébastien » | 2 lignes d'accès Vercel (équipe, jeton de contournement) | retirées — faites, section « Accès de Laurent » du même fichier |
+| `CLAUDE.md` ligne 18, `README.md` ligne 60 | « sept règles dures » | « huit règles dures » — R1 à R8, `CLAUDE.md` lignes 23 à 78 |
+| `README.md` ligne 7 | « rachetée en janvier 2026 » | « rachetée fin 2025 » |
+
+Dates : les cinq titres datés du 18/09 par la PR #8 (Q1, Q2, Q3, D15, D16) plus
+l'en-tête et les lignes d'`ETAT.md` et l'entrée de journal correspondante sont
+au 17/09. Aucune autre date du dépôt n'est touchée. D1 à D14 ne sont pas
+modifiées, D9 non plus : D17 ne change que le rang de C5 dans l'ordre d'attaque.
+
+**Supposé** — La date de cession de la société, « fin 2025 » selon Laurent :
+fait externe, non vérifiable dans le dépôt.
+
+**Non regardé** — Les fichiers de cadre non cités : `00-BRIEFING.md`,
+`01-RAYON-ACTION.md`, `02-PROCEDURE.md`, `03-PIEGES.md`, `04-SURFACES-SEO.md`,
+`05-INFRA.md`, `07-VERIFICATION.md`.
+
+**Suite** — Réponse courte de Laurent au mail de Sébastien du 16/09 ; mesures C2
+et C3 côté données.
+
+---
+
+## 2026-09-17 · Cadrage du pilotage SEO/GEO — questions Q1-Q3, décisions D15-D16 · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #8
 
@@ -42,7 +87,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 contenu) et Q3 (écarts de documentation) dans la boîte aux lettres. D16 en
 vigueur (amende D5), D15 proposée, en attente de confirmation de Sébastien.
 
-**Pourquoi** — Cadrage de Laurent des 17-18/09, après le transfert du pilotage
+**Pourquoi** — Cadrage de Laurent du 17/09, après le transfert du pilotage
 SEO/GEO annoncé par le mail de Sébastien du 16/09.
 
 **Fichiers** — `docs/seo-geo/BOITE-AUX-LETTRES.md`,

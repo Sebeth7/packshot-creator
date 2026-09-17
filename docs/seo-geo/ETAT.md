@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-18 — Claude de Laurent (cadrage, Q1-Q3, D15-D16)**
+**Dernière mise à jour : 2026-09-17 — Claude de Laurent (allègement : Q1 et Q3 closes, D17, Q2 tacite)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -24,15 +24,11 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | **Diagnostic corrigé le 16/09** : les AI bot policies sont déjà sur Allow. La cause est Super Bot Fight Mode + Javascript Detections. Correctif = règle WAF de Skip. Remesurer d'abord — voir `05-INFRA.md` |
 | Transmettre le nouveau jeton `psc-n8n-publisher` à Laurent | — | 16/09 | Régénéré le 16/09. À lui faire parvenir par un canal privé — **jamais dans le dépôt, qui est public** |
-| Créer le jeton « Protection Bypass for Automation » sur Vercel | Claude de Sébastien | 16/09 | **Prérequis à l'autonomie de Laurent** : sans lui, les Preview sont inaccessibles en script (302 SSO). Vercel → `sysnext` → Settings → Deployment Protection. À transmettre à Laurent |
-| Ajouter `lwainberg` à l'équipe Vercel `sebs-projects-ca1e93a7` | Claude de Sébastien | 16/09 | Sans quoi il ne peut pas ouvrir un Preview dans son navigateur, ni lire Observability pour le chantier 504 |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
 | Réponse à Laurent sur l'audit du 03/09 | Laurent | 04/09 | Aucune envoyée à ce jour |
 | Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | Vrai numéro ou reliquat ? Sélecteur machines et calendrier Academy |
-| Répondre à Q1 (priorité de C5) | Laurent | 18/09 | Recommandation : C5 après C1-C4 et C6 |
-| Répondre à Q2 (production et validation du contenu) ; confirmer ou non D15 | Laurent | 18/09 | Bloque C7 et les réécritures |
-| Répondre à Q3 (quatre écarts de documentation) | Laurent | 18/09 | Non bloquant |
+| Pour information — Q2 (prose rédigée côté Laurent, validation par Sébastien) | Laurent | 17/09 | Aucune action requise. Objection éventuelle avant le 24/09 ; sans réponse, (b) et D15 s'appliquent |
 
 ---
 
@@ -83,7 +79,7 @@ les 9 dépôts.
 
 ## Questions ouvertes
 
-Q1, Q2, Q3 — voir BOITE-AUX-LETTRES.md.
+Q2 (régime tacite jusqu'au 24/09) — voir BOITE-AUX-LETTRES.md. Q1 et Q3 closes le 17/09.
 
 ---
 

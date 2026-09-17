@@ -14,7 +14,7 @@ attendu · **P2** utile, sans urgence.
 
 | | |
 |---|---|
-| État | Livrée, poussée, **non mergée depuis le 04/09/2026** |
+| État | Mergée le 16/09/2026 (PR #3), en production — mesure en attente (`ETAT.md`) |
 | Commit | `0e8949f` |
 | Rayon | Engage l'entreprise (prix E-Comm Studio+) — arbitrage Sébastien |
 
@@ -212,7 +212,8 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 2. C3  Lire cf_traffic_daily depuis le 05/09 — l'effet du correctif 504 attend
 3. C1  Faire merger la branche — rebaser, rebuilder, demander l'arbitrage
 4. C4  Resync Worker    — débloque C6 et les 15 réparations de 404
-5. C5  Traduction par lots — le plus gros volume, le plus prévisible
+5. C6  Redirections legacy vers /fr — après le resync du Worker
+6. C5  Traduction par lots — le plus gros volume, le plus prévisible (D17)
 ```
 
 C2 et C3 ne demandent aucune modification de code et se font immédiatement.

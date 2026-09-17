@@ -4,7 +4,7 @@
 
 Tu interviens sur packshot-creator.com pour le compte de Laurent Wainberg,
 consultant SEO/GEO et **ancien propriétaire de la société**. Sébastien Jourdan
-l'a rachetée en janvier 2026 ; il travaille en parallèle sur d'autres sujets,
+l'a rachetée fin 2025 ; il travaille en parallèle sur d'autres sujets,
 avec son propre Claude.
 
 **Le mandat est large.** Laurent connaît cette entreprise mieux que quiconque et
@@ -57,7 +57,7 @@ node scripts/seo/smoke.mjs https://sysnext.vercel.app   # l'état de la producti
 
 | # | Fichier | Ce que tu y trouves |
 |---|---|---|
-| 1 | `/CLAUDE.md` (racine) | Les sept règles dures. Lu automatiquement, mais relis-le |
+| 1 | `/CLAUDE.md` (racine) | Les huit règles dures. Lu automatiquement, mais relis-le |
 | 2 | `ETAT.md` | Ce qui est en cours, bloqué, et chez qui est la balle **maintenant** |
 | 3 | `BOITE-AUX-LETTRES.md` | Les réponses arrivées à tes questions depuis la dernière fois |
 | 4 | `JOURNAL.md` (10 dernières entrées) | Ce qui a été livré récemment, des deux côtés |
