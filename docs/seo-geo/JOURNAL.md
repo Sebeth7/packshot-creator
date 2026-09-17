@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-17 · C4 — Worker synchronisé entre dépôt et production (constat) · Claude de Laurent
 
-**Chantier** : C4 | **PR** : #<numéro>
+**Chantier** : C4 | **PR** : #10
 
 **Quoi** — Constat de synchronisation entre `cloudflare-worker/src/index.js` et
 le code déployé. Aucune modification du Worker, aucun déploiement. `ETAT.md` et
