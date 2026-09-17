@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-17 — Claude de Laurent (allègement : Q1 et Q3 closes, D17, Q2 tacite)**
+**Dernière mise à jour : 2026-09-17 — Claude de Laurent (C4 : synchronisation constatée)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -22,10 +22,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | **Diagnostic corrigé le 16/09** : les AI bot policies sont déjà sur Allow. La cause est Super Bot Fight Mode + Javascript Detections. Correctif = règle WAF de Skip. Remesurer d'abord — voir `05-INFRA.md` |
 | Transmettre le nouveau jeton `psc-n8n-publisher` à Laurent | — | 16/09 | Régénéré le 16/09. À lui faire parvenir par un canal privé — **jamais dans le dépôt, qui est public** |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
-| Réponse à Laurent sur l'audit du 03/09 | Laurent | 04/09 | Aucune envoyée à ce jour |
 | Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | Vrai numéro ou reliquat ? Sélecteur machines et calendrier Academy |
 | Pour information — Q2 (prose rédigée côté Laurent, validation par Sébastien) | Laurent | 17/09 | Aucune action requise. Objection éventuelle avant le 24/09 ; sans réponse, (b) et D15 s'appliquent |
@@ -36,7 +34,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Transmettre le fichier Worker **de production** | Claude de Sébastien | 03/09 | Promis, jamais reçu. **Bloque C4, donc C6 et 15 réparations de 404** |
+| Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | Remesure des 403 par user-agent sur 7 jours, puis règle WAF de Skip sur GO |
 | Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
 | Remesurer les 403 par user-agent | Claude de Sébastien | 16/09 | Ses chiffres datent du 04/09 et la config Cloudflare a changé depuis — voir `05-INFRA.md` |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |

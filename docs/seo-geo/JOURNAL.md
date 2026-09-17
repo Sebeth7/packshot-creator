@@ -34,6 +34,63 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-17 · C4 — Worker synchronisé entre dépôt et production (constat) · Claude de Laurent
+
+**Chantier** : C4 | **PR** : #<numéro>
+
+**Quoi** — Constat de synchronisation entre `cloudflare-worker/src/index.js` et
+le code déployé. Aucune modification du Worker, aucun déploiement. `ETAT.md` et
+`06-CHANTIERS.md` nettoyés en conséquence.
+
+**Pourquoi** — C4 était bloqué depuis le 03/09 sur un « fichier Worker de
+production » promis et jamais transmis. La lecture directe du code déployé par
+le connecteur Cloudflare rend ce fichier inutile : le blocage n'a plus d'objet.
+
+**Fichiers** — `docs/seo-geo/05-INFRA.md`, `docs/seo-geo/06-CHANTIERS.md`,
+`docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun effet en production : rien n'est déployé ni modifié
+hors documentation. L'annexe K est débloquée.
+
+**Vérifié** — Le 17/09/2026, par lecture seule via le connecteur Cloudflare
+Developer Platform. Worker `packshot-router`, id `dba3dfacdbc14d698ecd8033e2cb79ca`,
+`modified_on` au 2026-07-24T05:20:47Z. Comptes de clés identiques en production
+et sur `main` pour les 11 tables :
+
+| Table | Clés |
+|---|---|
+| `LEGACY_REDIRECTS` | 749 |
+| `GONE_PATHS` | 648 |
+| `LANG_SPECIFIC_REDIRECTS` | 139 |
+| `HOWTO_REDIRECTS` | 118 |
+| `DE_CH_MAP` | 33 |
+| `BLOG_EN_REDIRECTS` | 33 |
+| `HOST_HOME_MAP` | 19 |
+| `PRODUCT_REDIRECTS` | 12 |
+| `GUIDE_EN_REDIRECTS` | 4 |
+| `PRODUIT_REDIRECTS` | 4 |
+| `PASSTHROUGH_HOSTS` | 3 |
+
+Comparaison intégrale des deux fichiers : **7 blocs de différence, tous
+cosmétiques** — commentaires français retirés au bundling, plus les helpers
+`__defProp22` / `__name22` d'un double bundling. Aucune différence de règle, de
+table ni de logique. Les deux fichiers sont des bundles esbuild ; la source non
+bundlée ne vit pas dans le dépôt.
+
+**Supposé** — Que le compte Cloudflare lu est bien
+`a51802d1e09d29095ca7ba45d63bf0f2` : le connecteur n'expose aucun identifiant de
+compte, et `packshot-router` y est le seul Worker visible.
+
+**Non regardé** — L'identifiant du déploiement actif, non exposé par le
+connecteur. Les règles WAF. L'unicité des clés dans les tables (piège E4) : le
+comptage porte sur les entrées écrites, pas sur les clés distinctes — un doublon
+passerait inaperçu des deux côtés à la fois.
+
+**Suite** — Établir la procédure de déploiement du Worker avant d'ouvrir la PR
+de l'annexe K ; puis l'annexe K ; puis C6.
+
+---
+
 ## 2026-09-17 · Allègement de la charge de Sébastien, D17, correction de date · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #9
