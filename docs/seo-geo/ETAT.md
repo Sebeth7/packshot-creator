@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-*(aucun chantier ouvert — C1 est en production depuis le 16/09)*
+| Redirections legacy landings + anciens slugs FR (C6) | Claude de Laurent | PR ouverte, non fusionnée — **Worker non déployé, GO Laurent requis** | `cloudflare-worker/src/index.js`, `cloudflare-worker/test/legacy-redirects.test.ts`, `vitest.config.ts` | 17/09 |
 
 ---
 
