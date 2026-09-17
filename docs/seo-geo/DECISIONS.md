@@ -25,6 +25,34 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D16 · 2026-09-18 · Amendement de D5 : création d'articles sur critère SEO
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **amende D5** (qui reste valable hors critère)
+
+**La décision** — Un nouvel article de blog peut être créé si trois conditions sont réunies : (1) aucune page existante ne couvre l'intention — similarité d'embedding inférieure à 0,85 avec le corpus FR ; (2) une demande est mesurée en France ou en Suisse — impressions GSC FR+CH ou volume DataForSEO non nul ; (3) l'intention est commerciale ou transactionnelle, ou comble une lacune de citation GEO mesurée. Sinon, D5 s'applique : fusion, optimisation, réécriture. La création de pages hors blog (verticaux, landings, pages commerciales FR/CH) n'est pas visée par D5.
+
+**Le contexte** — D5 (03/09) répondait à la cannibalisation : 94 articles, 29 paires à plus de 0,95 de similarité. Le trafic FR+CH est en baisse continue et le pilotage SEO/GEO est passé à Laurent le 16/09. Un gel total de la création empêche de couvrir une demande réelle non servie.
+
+**Ce qu'elle ferme** — Créer un article sans avoir documenté les trois mesures dans la PR. Créer un article dont l'intention est déjà couverte au-delà du seuil de similarité. Fusionner une création sans validation explicite de Sébastien.
+
+**Non vérifié** — Le seuil de 0,85 n'est pas calibré sur la cannibalisation réelle du corpus ; à réviser après les premières créations.
+
+---
+
+## D15 · 2026-09-18 · Validation tacite des réécritures de contenu
+
+**Décidé par** : Laurent — **en attente de confirmation de Sébastien (Q2)**
+**Statut** : proposée
+
+**La décision** — Une PR qui réécrit ou fusionne du contenu existant, sans prix affiché et sans suppression d'URL portant des backlinks, est fusionnée par le Claude de Laurent si Sébastien n'a pas formulé d'objection dans les 5 jours ouvrés suivant son ouverture. La création de page ou d'article, les prix affichés, la suppression d'une URL à backlinks et tout engagement vis-à-vis d'un tiers restent en validation explicite de Sébastien.
+
+**Le contexte** — Sébastien a transféré le pilotage SEO/GEO à Laurent le 16/09 au motif explicite du manque de temps. Une validation explicite sur toute PR de contenu rétablit le filet humain que D12 avait remplacé par des filets techniques, après douze jours de blocage de C1.
+
+**Ce qu'elle ferme** — Fusionner par validation tacite une PR touchant un prix, une URL à backlinks ou une création. Décompter le délai avant que la CI soit verte et le Preview contrôlé.
+
+---
+
 ## D14 · 2026-09-16 · L'accès Vercel de Laurent reste à l'échelle de l'équipe
 
 **Décidé par** : Sébastien

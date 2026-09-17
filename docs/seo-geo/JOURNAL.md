@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-18 · Cadrage du pilotage SEO/GEO — questions Q1-Q3, décisions D15-D16 · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #<numéro>
+
+**Quoi** — Dépôt de Q1 (priorité de C5), Q2 (production et validation du
+contenu) et Q3 (écarts de documentation) dans la boîte aux lettres. D16 en
+vigueur (amende D5), D15 proposée, en attente de confirmation de Sébastien.
+
+**Pourquoi** — Cadrage de Laurent des 17-18/09, après le transfert du pilotage
+SEO/GEO annoncé par le mail de Sébastien du 16/09.
+
+**Fichiers** — `docs/seo-geo/BOITE-AUX-LETTRES.md`,
+`docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun effet SEO : documentation seule. Réponses de Sébastien
+attendues sous quelques jours.
+
+**Vérifié** — Numérotation libre avant dépôt : `BOITE-AUX-LETTRES.md` ne
+contenait aucune question (« *(aucune)* », ligne 70) et `DECISIONS.md` s'arrêtait
+à D14 (ligne 28). Les écarts de Q3 constatés dans les fichiers sur `main` à la
+date du dépôt :
+
+| Écart | Où |
+|---|---|
+| C1 « non mergée depuis le 04/09/2026 » | `06-CHANTIERS.md` ligne 17, contre `JOURNAL.md` (PR #3, 16/09) et `ETAT.md` ligne 17 |
+| Accès Vercel demandés alors que faits | `ETAT.md` lignes 27 et 28, contre les lignes 63 et 64 du même fichier |
+| « sept règles dures » pour huit règles | `CLAUDE.md` ligne 18 et `README.md` ligne 60, contre `CLAUDE.md` lignes 23 à 78 (R1 à R8) |
+
+**Supposé** — La date de cession de la société (décembre 2025, selon Laurent,
+contre « janvier 2026 » au `README.md` ligne 7) : fait externe, non vérifiable
+dans le dépôt.
+
+**Non regardé** — `00-BRIEFING.md`, `02-PROCEDURE.md`, `04-SURFACES-SEO.md`,
+`07-VERIFICATION.md`.
+
+**Suite** — Réponse de Laurent au mail de Sébastien du 16/09 ; mesures C2 et C3
+côté données.
+
+---
+
 ## 2026-09-16 · Audit des accès de Laurent, GitHub et Vercel · Claude de Sébastien
 
 **Chantier** : gouvernance | **PR** : #7
