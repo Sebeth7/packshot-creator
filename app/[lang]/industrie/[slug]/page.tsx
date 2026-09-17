@@ -801,7 +801,9 @@ export default async function SecteurPage({ params }: PageProps) {
       {/* ═══════════════════════════════════════════════════════════
           RESSOURCES — guides & articles du secteur (maillage P1.A)
           ═══════════════════════════════════════════════════════════ */}
-      <SectorResources slug={slug} lang={lang} />
+      {/* Les tables de maillage sont indexées par slug FR : en de-ch, le slug
+          d'URL est allemand, il faut donc repasser par son équivalent FR. */}
+      <SectorResources slug={lang === 'de-ch' ? frSlugForDeCh(slug) : slug} lang={lang} />
 
       {/* ═══════════════════════════════════════════════════════════
           CROSS-LINKS — fond white, autres secteurs

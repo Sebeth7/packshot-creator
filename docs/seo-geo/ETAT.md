@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-*(aucun chantier ouvert — C1 est en production depuis le 16/09)*
+| Maillage hubs et money pages vers blog et guides | Claude de Laurent | PR ouverte, non fusionnée | `data/content-maillage.ts`, `components/maillage/MaillageSections.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/{industrie/[slug],studios-photo-automatises,ia-photo-produit}/page.tsx` | 17/09 |
 
 ---
 
