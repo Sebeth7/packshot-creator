@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-*(aucun chantier ouvert — C1 est en production depuis le 16/09)*
+| Prérendu des gabarits `[slug]` | Claude de Laurent | PR ouverte, non fusionnée | `app/[lang]/{blog,industrie,studio-photo,academy}/[slug]/not-found.tsx` | 17/09 |
 
 ---
 
