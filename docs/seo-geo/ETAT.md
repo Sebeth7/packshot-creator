@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-16 — Claude de Sébastien (accès vérifiés au dashboard)**
+**Dernière mise à jour : 2026-09-18 — Claude de Laurent (cadrage, Q1-Q3, D15-D16)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -30,6 +30,9 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Réponse à Laurent sur l'audit du 03/09 | Laurent | 04/09 | Aucune envoyée à ce jour |
 | Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | Vrai numéro ou reliquat ? Sélecteur machines et calendrier Academy |
+| Répondre à Q1 (priorité de C5) | Laurent | 18/09 | Recommandation : C5 après C1-C4 et C6 |
+| Répondre à Q2 (production et validation du contenu) ; confirmer ou non D15 | Laurent | 18/09 | Bloque C7 et les réécritures |
+| Répondre à Q3 (quatre écarts de documentation) | Laurent | 18/09 | Non bloquant |
 
 ---
 
@@ -80,7 +83,7 @@ les 9 dépôts.
 
 ## Questions ouvertes
 
-Voir `BOITE-AUX-LETTRES.md`. Aucune question en attente à ce jour.
+Q1, Q2, Q3 — voir BOITE-AUX-LETTRES.md.
 
 ---
 
