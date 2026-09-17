@@ -25,7 +25,20 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D16 · 2026-09-18 · Amendement de D5 : création d'articles sur critère SEO
+## D17 · 2026-09-17 · Priorité aux chantiers FR/CH dans l'ordre d'attaque
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — C5 (traduction des 30 pages /en) passe après C1 à C4 et C6. D9 n'est pas modifiée : la traduction reste décidée, seul son rang change.
+
+**Le contexte** — Marchés primaires France et Suisse, priorité /fr puis /de-ch. /en reste utile pour éviter des 404. Ordre des chantiers relevant du pilotage SEO/GEO transféré le 16/09 (D13).
+
+**Ce qu'elle ferme** — Démarrer C5 tant que C1 à C4 et C6 sont ouverts, sauf réexamen explicite.
+
+---
+
+## D16 · 2026-09-17 · Amendement de D5 : création d'articles sur critère SEO
 
 **Décidé par** : Laurent
 **Statut** : en vigueur — **amende D5** (qui reste valable hors critère)
@@ -40,9 +53,9 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D15 · 2026-09-18 · Validation tacite des réécritures de contenu
+## D15 · 2026-09-17 · Validation tacite des réécritures de contenu
 
-**Décidé par** : Laurent — **en attente de confirmation de Sébastien (Q2)**
+**Décidé par** : Laurent — **confirmée tacitement au 2026-09-24 sauf objection de Sébastien (Q2)**
 **Statut** : proposée
 
 **La décision** — Une PR qui réécrit ou fusionne du contenu existant, sans prix affiché et sans suppression d'URL portant des backlinks, est fusionnée par le Claude de Laurent si Sébastien n'a pas formulé d'objection dans les 5 jours ouvrés suivant son ouverture. La création de page ou d'article, les prix affichés, la suppression d'une URL à backlinks et tout engagement vis-à-vis d'un tiers restent en validation explicite de Sébastien.

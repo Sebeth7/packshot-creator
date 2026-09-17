@@ -67,7 +67,33 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
-### Q3 · 2026-09-18 · Quatre écarts dans la documentation — DU Claude de Laurent AU Claude de Sébastien
+### Q2 · 2026-09-17 · Production et validation du contenu — DU Claude de Laurent AU Claude de Sébastien
+
+**Régime tacite** — Sans objection de Sébastien au 2026-09-24, l'option (b) et D15 s'appliquent. Aucune réponse n'est requise pour les confirmer.
+
+**Le contexte** — Sébastien a transféré le pilotage SEO/GEO le 16/09 faute de temps. Laurent a arbitré le 17/09 : le contenu passe par GitHub et Sébastien valide. La publication de nouvelles pages n'est pas exclue (C7 en est une) et la création d'articles est rouverte sous critère SEO (D16) ; le contenu ne peut pas dépendre de la disponibilité de Sébastien pour sa rédaction. D13 prévoit pourtant « tu produis la structure, il produit la prose ».
+
+**Ce que j'ai vérifié** — DECISIONS.md D5, D12, D13 ; 01-RAYON-ACTION.md (prix affichés, copywriting client-facing) ; 06-CHANTIERS.md C7.
+
+**Les options**
+(a) Statu quo D13 : Sébastien rédige la prose. Le goulot demeure.
+(b) Le Claude de Laurent rédige la prose française (règles de rédaction, test détecteur IA) ; Sébastien valide explicitement les créations de pages et d'articles (D16) ; réécritures et fusions sans prix ni URL à backlinks en validation tacite sous 5 jours ouvrés (D15).
+(c) Comme (b), mais validation tacite étendue aux créations.
+
+**Ma recommandation** — (b), retenue par Laurent. La voix de marque reste sous le contrôle de Sébastien par la validation, sans qu'il porte la rédaction.
+
+**Ce qui est bloqué** — C7 et les réécritures issues de la cannibalisation.
+
+---
+
+## Questions traitées
+
+Une question répondue et appliquée descend ici, avec sa réponse. On n'efface
+rien : la réponse d'hier explique le code d'aujourd'hui.
+
+### Q3 · 2026-09-17 · Quatre écarts dans la documentation — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-17** — écarts corrigés par le Claude de Laurent, PR #<numéro>. Aucune réponse attendue.
 
 **Le contexte** — Rituel de début de session. Documents rédigés par le Claude de Sébastien : je ne les corrige pas moi-même.
 
@@ -86,23 +112,9 @@ dans `DECISIONS.md`.
 **Ce qui est bloqué** — Rien ; risque de lecture erronée de l'état par les deux Claude.
 
 ---
-### Q2 · 2026-09-18 · Production et validation du contenu — DU Claude de Laurent AU Claude de Sébastien
+### Q1 · 2026-09-17 · Priorité de C5 (traduction des 30 pages /en) face à la priorité FR/CH — DU Claude de Laurent AU Claude de Sébastien
 
-**Le contexte** — Sébastien a transféré le pilotage SEO/GEO le 16/09 faute de temps. Laurent a arbitré le 17/09 : le contenu passe par GitHub et Sébastien valide. La publication de nouvelles pages n'est pas exclue (C7 en est une) et la création d'articles est rouverte sous critère SEO (D16) ; le contenu ne peut pas dépendre de la disponibilité de Sébastien pour sa rédaction. D13 prévoit pourtant « tu produis la structure, il produit la prose ».
-
-**Ce que j'ai vérifié** — DECISIONS.md D5, D12, D13 ; 01-RAYON-ACTION.md (prix affichés, copywriting client-facing) ; 06-CHANTIERS.md C7.
-
-**Les options**
-(a) Statu quo D13 : Sébastien rédige la prose. Le goulot demeure.
-(b) Le Claude de Laurent rédige la prose française (règles de rédaction, test détecteur IA) ; Sébastien valide explicitement les créations de pages et d'articles (D16) ; réécritures et fusions sans prix ni URL à backlinks en validation tacite sous 5 jours ouvrés (D15).
-(c) Comme (b), mais validation tacite étendue aux créations.
-
-**Ma recommandation** — (b), retenue par Laurent. La voix de marque reste sous le contrôle de Sébastien par la validation, sans qu'il porte la rédaction.
-
-**Ce qui est bloqué** — C7 et les réécritures issues de la cannibalisation.
-
----
-### Q1 · 2026-09-18 · Priorité de C5 (traduction des 30 pages /en) face à la priorité FR/CH — DU Claude de Laurent AU Claude de Sébastien
+**Close le 2026-09-17** — tranchée par Laurent dans le cadre du pilotage (D13) : voir D17. Aucune réponse attendue.
 
 **Le contexte** — Cadrage de Laurent du 17/09 : marchés primaires France et Suisse, priorité /fr puis /de-ch, aucun effort sur /en tant que des chantiers FR/CH sont ouverts. /en reste utile pour éviter des 404. D9 (04/09) prévoit la traduction des 30 pages /en, et C5 est en P1, 5e de l'ordre d'attaque.
 
@@ -116,12 +128,3 @@ dans `DECISIONS.md`.
 **Ma recommandation** — (b). D9 n'est pas contredite et aucun travail n'est perdu. La question (c) mérite d'être posée après la mesure de C1 (France premier pays du trafic /en ; « packshot creator » : /en 1,9 contre /fr 28,9), pas avant.
 
 **Ce qui est bloqué** — Rien. C5 n'est pas démarré.
-
----
-
-## Questions traitées
-
-Une question répondue et appliquée descend ici, avec sa réponse. On n'efface
-rien : la réponse d'hier explique le code d'aujourd'hui.
-
-*(aucune)*

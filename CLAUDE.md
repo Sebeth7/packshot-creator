@@ -15,7 +15,7 @@ obligatoire. Lis-le avant toute action, à chaque session.**
 
 ---
 
-## 1. Les sept règles dures
+## 1. Les huit règles dures
 
 Elles ne se discutent pas et ne se contournent pas. Chacune a été payée par un
 incident réel, documenté dans `docs/seo-geo/03-PIEGES.md`.
