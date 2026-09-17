@@ -59,8 +59,23 @@ Challenge, avec Javascript Detections actif), et le vrai correctif est une règl
 WAF de Skip. Le détail, les règles existantes et les deux réserves sont dans
 `05-INFRA.md`.
 
-Premier geste : **remesurer**. Les chiffres datent du 04/09 et la configuration
-a peut-être bougé depuis.
+**Remesuré le 17/09/2026** (10-16/09, hôtes www, apex et fr) — taux de 403 (hors
+3xx) : GPTBot 77,9 % (96,3), Perplexity-User 75,7 % (95,0), PerplexityBot 74,9 %
+(91,9), ChatGPT-User 64,6 % (80,1), ClaudeBot 59,1 % (86,8), OAI-SearchBot 51,0 %
+(60,9), Claude-SearchBot 45,9 % (59,8), Googlebot 11,7 %, Amazonbot 31,4 %. Le
+blocage persiste et s'étend à ClaudeBot, ChatGPT-User et OAI-SearchBot.
+
+Événements de sécurité (15-16/09, rétention de 3 jours) : les challenges viennent
+d'une **règle managée**, les blocages d'une règle personnalisée ; aucun événement
+Super Bot Fight Mode. Environ 20 % seulement des 403 de GPTBot et Perplexity-User
+laissent un événement. Une règle de Skip limitée à Super Bot Fight Mode risque
+donc de ne pas suffire.
+
+Prochain geste : mesure 403 × ASN (part de user-agents usurpés), puis décision de
+Laurent sur la règle (GO).
+
+Amazonbot n'est plus bloqué qu'à 31,4 % (583 réponses 200 en 7 jours) : écart à D8
+à signaler. Les requêtes sans user-agent et curl restent bloquées.
 
 Amazonbot reste bloqué (décision du 04/09). Les requêtes sans user-agent et curl
 restent bloquées.
@@ -69,15 +84,18 @@ restent bloquées.
 
 | | |
 |---|---|
-| État | Correctif partiel déployé le 04/09, effet non mesuré |
+| État | Correctif partiel du 04/09 lu le 17/09 : aucun effet mesurable |
 | Rayon | Large — `next.config.ts` bloc `images`, en cours de mesure |
 
 8 à 23 % des requêtes par jour depuis au moins le 05/07/2026, pages HTML
 comprises. Piste n°1 du recul de 1 857 à 524 clics/mois.
 
-Fait : `images.minimumCacheTTL` porté à un an (04/09). Lisible dans
-`cf_traffic_daily` à partir du 05/09 — **à lire maintenant, personne ne l'a
-fait.**
+Fait : `images.minimumCacheTTL` porté à un an (04/09). **Lu le 17/09** : médiane
+journalière 10,9 % avant (26-31/08) contre 11,0 % après (05-16/09), jours de
+crawl exclus ; socle de 9-11 % inchangé depuis juillet. Répartition horaire
+(10-16/09) : aucune heure dominante (4,4 à 15,3 %) ; le crawl Screaming Frog du
+dimanche (2,0 %) et la fenêtre n8n du lundi (10,1 %) ne produisent pas de 504.
+Épisode non expliqué du 14/09 17h UTC au 15/09 13h UTC à 18,2 %.
 
 À instruire dans Vercel Observability : erreurs par route, durées, optimisation
 d'images. Les 504 sur pages HTML ne s'expliquent pas par les images. Seconde
@@ -208,12 +226,12 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 ## Ordre d'attaque conseillé
 
 ```
-1. C2  Bots IA          — 10 minutes, débloque tout l'investissement GEO
-2. C3  Lire cf_traffic_daily depuis le 05/09 — l'effet du correctif 504 attend
+1. C2  Mesure 403 × ASN, puis décision WAF (GO Laurent) — pas « 10 minutes »
+2. C3  Vercel Observability + 504 par chemin (épisode 14-15/09) — le correctif du 04/09 est sans effet mesurable
 3. C1  Mesurer le correctif (contrôle L.3) — Laurent
 4. C4  Annexe K — le resync est acquis (17/09) ; débloque C6 et les 15 réparations de 404
 5. C6  Redirections legacy vers /fr — après le resync du Worker
 6. C5  Traduction par lots — le plus gros volume, le plus prévisible (D17)
 ```
 
-C2 et C3 ne demandent aucune modification de code et se font immédiatement.
+C2 et C3 sont en phase de mesure : aucune modification de code avant les résultats.

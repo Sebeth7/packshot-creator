@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-17 — Claude de Laurent (jeton n8n testé, fusion C2)**
+**Dernière mise à jour : 2026-09-17 — Claude de Laurent (mesures C2, C3, 5xx horaires)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -33,10 +33,10 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Débloquer les 7 crawlers IA (C2) | Mesure de Laurent | 04/09 | Remesure des 403 par user-agent sur 7 jours (config Cloudflare changée depuis le 04/09), puis règle WAF de Skip sur GO — voir `05-INFRA.md` |
+| Décider la règle WAF de Skip des 7 crawlers IA (C2) | Mesure de Laurent | 04/09 | Remesuré le 17/09 : GPTBot 77,9 %, Perplexity-User 75,7 %, PerplexityBot 74,9 %, ChatGPT-User 64,6 %, ClaudeBot 59,1 %, OAI-SearchBot 51,0 %, Claude-SearchBot 45,9 % de 403. Challenges issus d'une règle managée, pas de Super Bot Fight Mode. GO requis ; mesure 403 × ASN recommandée avant. Amazonbot à 31,4 % (écart à D8) — voir `JOURNAL.md` 17/09 |
 | Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
-| Répartition horaire des 5xx | Laurent l'a proposée | 04/09 | Aide à cibler C3 |
+| Planificateur n8n à l'arrêt | Constat du 17/09 | 15/09 | Aucune exécution planifiée depuis le 15/09 05:01 UTC ; `cf_traffic_daily` arrêtée au 13/09 ; Heartbeat muet |
 
 ---
 
@@ -44,7 +44,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Ce qu'on mesure | Déployé le | Lisible à partir du | Où |
 |---|---|---|---|
-| Effet de `images.minimumCacheTTL` sur les 504 | 04/09 | 05/09 — **donc lisible maintenant, personne ne l'a lu** | `cf_traffic_daily` |
 | Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
 | Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
 
