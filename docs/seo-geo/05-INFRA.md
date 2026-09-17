@@ -45,9 +45,14 @@ Vercel. Un blocage en amont rend invisible tout ce qui est en aval.
 
 ### La procédure de resynchronisation du Worker — à faire avant tout mapping
 
-La production a divergé du dépôt. Au 04/09/2026 : environ 1 053 mappings en
-production contre 1 143 selon Laurent, et le fichier de production promis le
-03/09 n'a jamais été transmis.
+**Constat du 17/09/2026** — dépôt et production synchronisés (11 tables, comptes
+de clés identiques ; différences cosmétiques seules ; production modifiée pour la
+dernière fois le 24/07/2026). Le fichier du dépôt est un bundle esbuild : toute
+modification de table se fait sans reformater le fichier. Refaire la comparaison
+avant chaque nouveau déploiement.
+
+Au 04/09/2026, une divergence était supposée ; elle est levée par le constat du
+17/09/2026.
 
 ```
 1. Récupérer le code réellement déployé (dashboard Cloudflare, ou demander

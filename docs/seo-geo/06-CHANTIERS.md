@@ -95,7 +95,7 @@ un second changement sur une mesure non terminée.
 
 | | |
 |---|---|
-| État | Bloqué : le fichier de production promis le 03/09 n'a jamais été transmis |
+| État | Dépôt et production synchronisés — constat du 17/09/2026 (comptes de clés identiques sur 11 tables, différences cosmétiques seules). Annexe K à ouvrir. |
 
 Procédure complète dans `05-INFRA.md`. **Rien ne doit être mappé avant la
 resynchronisation.**
@@ -210,11 +210,10 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 ```
 1. C2  Bots IA          — 10 minutes, débloque tout l'investissement GEO
 2. C3  Lire cf_traffic_daily depuis le 05/09 — l'effet du correctif 504 attend
-3. C1  Faire merger la branche — rebaser, rebuilder, demander l'arbitrage
-4. C4  Resync Worker    — débloque C6 et les 15 réparations de 404
+3. C1  Mesurer le correctif (contrôle L.3) — Laurent
+4. C4  Annexe K — le resync est acquis (17/09) ; débloque C6 et les 15 réparations de 404
 5. C6  Redirections legacy vers /fr — après le resync du Worker
 6. C5  Traduction par lots — le plus gros volume, le plus prévisible (D17)
 ```
 
 C2 et C3 ne demandent aucune modification de code et se font immédiatement.
-C1 attend un geste de Sébastien — le réclamer dans `ETAT.md`.
