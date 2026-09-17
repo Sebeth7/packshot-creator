@@ -53,11 +53,10 @@ contredit la politique du site.** Tout l'investissement GEO est amputé tant que
 ce point tient.
 
 **Attention : le correctif prescrit ne s'applique pas tel quel.** Vérifié au
-dashboard le 16/09/2026, les AI bot policies sont **déjà toutes sur Allow**. Le
-blocage vient de Super Bot Fight Mode (« Definitely automated » → Managed
-Challenge, avec Javascript Detections actif), et le vrai correctif est une règle
-WAF de Skip. Le détail, les règles existantes et les deux réserves sont dans
-`05-INFRA.md`.
+dashboard le 16/09/2026, les AI bot policies sont **déjà toutes sur Allow**.
+Diagnostic du 16/09 (Super Bot Fight Mode) infirmé par la mesure du 17/09 : les
+challenges viennent d'une règle managée — voir ci-dessous. Le détail, les règles
+existantes et les deux réserves sont dans `05-INFRA.md`.
 
 **Remesuré le 17/09/2026** (10-16/09, hôtes www, apex et fr) — taux de 403 (hors
 3xx) : GPTBot 77,9 % (96,3), Perplexity-User 75,7 % (95,0), PerplexityBot 74,9 %
@@ -74,11 +73,8 @@ donc de ne pas suffire.
 Prochain geste : mesure 403 × ASN (part de user-agents usurpés), puis décision de
 Laurent sur la règle (GO).
 
-Amazonbot n'est plus bloqué qu'à 31,4 % (583 réponses 200 en 7 jours) : écart à D8
-à signaler. Les requêtes sans user-agent et curl restent bloquées.
-
-Amazonbot reste bloqué (décision du 04/09). Les requêtes sans user-agent et curl
-restent bloquées.
+Amazonbot : D8 (04/09) prévoit son blocage tant que durent les 504 ; mesuré à
+31,4 % de 403 le 17/09. Les requêtes sans user-agent et curl restent bloquées.
 
 ### C3 · Instruire les 504
 
