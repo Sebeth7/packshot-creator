@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-18 · Cadrage du pilotage SEO/GEO — questions Q1-Q3, décisions D15-D16 · Claude de Laurent
 
-**Chantier** : gouvernance | **PR** : #<numéro>
+**Chantier** : gouvernance | **PR** : #8
 
 **Quoi** — Dépôt de Q1 (priorité de C5), Q2 (production et validation du
 contenu) et Q3 (écarts de documentation) dans la boîte aux lettres. D16 en
