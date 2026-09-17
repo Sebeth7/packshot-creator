@@ -40,66 +40,49 @@ C'est aussi le test que Laurent attend pour mesurer : Link Score `/fr` contre
 `/en` (86 contre 93), position sur « packshot creator » (`/fr` 28,9 contre
 `/en` 1,9), clics français atterrissant sur `/en` (48/mois).
 
-### C2 · Débloquer les crawlers IA au niveau Cloudflare
+### C2 · Accès des crawlers IA — requalifié par la mesure ASN (17/09)
 
 | | |
 |---|---|
-| Effort | Plus que les « 10 minutes » annoncées — le diagnostic de départ est faux |
+| État | Mesure 403 × ASN faite le 17/09 (18/08-16/09) : le blocage massif mesuré jusqu'ici vise surtout des user-agents usurpés. Aucune règle WAF justifiée en l'état ; deux points à qualifier |
 | Rayon | Infrastructure Cloudflare — voir `05-INFRA.md` |
 
-GPTBot bloqué à 100 %, Perplexity-User à 100 %, PerplexityBot à 77 %. Le
-`robots.txt` du site les autorise explicitement : **la configuration Cloudflare
-contredit la politique du site.** Tout l'investissement GEO est amputé tant que
-ce point tient.
+**Ce que la mesure établit** (hôtes www, apex et fr, 30 jours) :
 
-**Attention : le correctif prescrit ne s'applique pas tel quel.** Vérifié au
-dashboard le 16/09/2026, les AI bot policies sont **déjà toutes sur Allow**.
-Diagnostic du 16/09 (Super Bot Fight Mode) infirmé par la mesure du 17/09 : les
-challenges viennent d'une règle managée — voir ci-dessous. Le détail, les règles
-existantes et les deux réserves sont dans `05-INFRA.md`.
+| Crawler | Depuis le réseau de l'éditeur | Depuis Google Cloud (AS396982) |
+|---|---|---|
+| Googlebot | AS15169 : 17 210 requêtes, 2 réponses 403, 0 réponse 504 | 696 requêtes, 382 réponses 403 (usurpés) |
+| ChatGPT-User | Microsoft : 0 réponse 403 sur 2 002 | 4 117 réponses 403 sur 4 852 |
+| OAI-SearchBot | Microsoft : 68 sur 3 216 | 2 597 sur 3 086 |
+| ClaudeBot / Claude-SearchBot | Amazon : 0 sur 506 / 0 sur 2 429 | 1 853 sur 2 350 / 1 165 sur 1 423 |
+| Applebot | Apple : 0 sur 4 655 | 1 192 sur 1 540 |
+| GPTBot, Perplexity-User | aucune requête hors Google Cloud | 100 % des requêtes, 403 majoritaires |
+| **PerplexityBot** | **AS14618 (Amazon) : 383 sur 519** | 1 777 sur 2 241 |
 
-**Remesuré le 17/09/2026** (10-16/09, hôtes www, apex et fr) — taux de 403 (hors
-3xx) : GPTBot 77,9 % (96,3), Perplexity-User 75,7 % (95,0), PerplexityBot 74,9 %
-(91,9), ChatGPT-User 64,6 % (80,1), ClaudeBot 59,1 % (86,8), OAI-SearchBot 51,0 %
-(60,9), Claude-SearchBot 45,9 % (59,8), Googlebot 11,7 %, Amazonbot 31,4 %. Le
-blocage persiste et s'étend à ClaudeBot, ChatGPT-User et OAI-SearchBot.
+Les 403 des crawlers IA portent une action de sécurité Cloudflare dans 99,9 % des cas (ensemble managé : challenge ; règle personnalisée : blocage). Le constat « environ 20 % des 403 laissent un événement » est retiré : il tenait à la rétention de 3 jours des événements de sécurité.
 
-Événements de sécurité (15-16/09, rétention de 3 jours) : les challenges viennent
-d'une **règle managée**, les blocages d'une règle personnalisée ; aucun événement
-Super Bot Fight Mode. Environ 20 % seulement des 403 de GPTBot et Perplexity-User
-laissent un événement. Une règle de Skip limitée à Super Bot Fight Mode risque
-donc de ne pas suffire.
+**À qualifier** :
+1. PerplexityBot depuis AS14618 : comparer les IP à la liste publiée par Perplexity avant toute règle.
+2. Amazonbot : 0 réponse 403 sur 2 626 requêtes au libellé exact depuis AS14618, mais 34 620 réponses 403 sur l'ensemble des variantes du libellé, dont 21 656 sans action Cloudflare et sans règle correspondante dans le Worker. ASN non ventilé : mesure à faire. D8 (04/09) prévoit son blocage tant que durent les 504 ; voir C3.
 
-Prochain geste : mesure 403 × ASN (part de user-agents usurpés), puis décision de
-Laurent sur la règle (GO).
+Réserve : l'ASN est un indice d'authenticité, pas une preuve ; les plages d'IP publiées n'ont pas été comparées.
 
-Amazonbot : D8 (04/09) prévoit son blocage tant que durent les 504 ; mesuré à
-31,4 % de 403 le 17/09. Les requêtes sans user-agent et curl restent bloquées.
-
-### C3 · Instruire les 504
+### C3 · 504 — requalifiés en artefact de mesure (17/09)
 
 | | |
 |---|---|
-| État | Correctif partiel du 04/09 lu le 17/09 : aucun effet mesurable |
-| Rayon | Large — `next.config.ts` bloc `images`, en cours de mesure |
+| État | Mesure du 17/09 (18/08-16/09) : les 504 ne sont servis ni aux visiteurs ni aux robots mesurés. Confirmation côté Google en attente (statistiques d'exploration GSC) |
+| Rayon | Mesure seulement — aucun changement de code attendu à ce titre |
 
-8 à 23 % des requêtes par jour depuis au moins le 05/07/2026, pages HTML
-comprises. Piste n°1 du recul de 1 857 à 524 clics/mois.
+213 490 réponses 504 en 30 jours, **toutes avec le user-agent `nginx-ssl early hints`** : requêtes internes de Cloudflare liées à la fonction Early Hints (réglage de zone), statut d'origine 0, cache miss. Sur 9 pages HTML témoins, les navigateurs déclarés (45 951 requêtes) ne reçoivent aucune 504 ; Googlebot depuis AS15169 non plus (17 210 requêtes).
 
-Fait : `images.minimumCacheTTL` porté à un an (04/09). **Lu le 17/09** : médiane
-journalière 10,9 % avant (26-31/08) contre 11,0 % après (05-16/09), jours de
-crawl exclus ; socle de 9-11 % inchangé depuis juillet. Répartition horaire
-(10-16/09) : aucune heure dominante (4,4 à 15,3 %) ; le crawl Screaming Frog du
-dimanche (2,0 %) et la fenêtre n8n du lundi (10,1 %) ne produisent pas de 504.
-Épisode non expliqué du 14/09 17h UTC au 15/09 13h UTC à 18,2 %.
+Conséquences :
+● Les 504 ne sont plus une piste démontrée du recul de trafic. Le chiffre de 1 857 clics/mois (janvier 2026) correspond à `gsc_metrics_page`, tous pays, sans filtre ; août 2026 vaut 547 sur la même base (et non 524). Comparaison à travers les migrations d'avril et de mai : décomposition en cours.
+● Le taux de 504 de `cf_traffic_daily` mesure ces requêtes internes, pas la disponibilité : à lire en excluant ce user-agent.
+● Le correctif `images.minimumCacheTTL` (04/09) est conservé, sans effet attendu sur ce taux.
+● Période antérieure au 18/08 : non vérifiable (rétention GraphQL de 31 jours).
 
-À instruire dans Vercel Observability : erreurs par route, durées, optimisation
-d'images. Les 504 sur pages HTML ne s'expliquent pas par les images. Seconde
-hypothèse : dépassement de délai dans la chaîne Worker → Vercel.
-
-`next.config.ts` bloc `images` est à rayon large, et la mesure du correctif du
-04/09 est encore en cours : déclare les conséquences dans la PR, et n'empile pas
-un second changement sur une mesure non terminée.
+Reste ouvert, sans lien avec les 504 : les gabarits `[slug]` des secteurs, fiches machines et articles JSON (et formations, d'après le build) sont rendus dynamiquement. Constaté en production le 17/09 sur `sysnext.vercel.app` : `Cache-Control: private, no-cache, no-store`, `x-vercel-cache: MISS` à deux passages, exécution `iad1`. Cause identifiée en build local : `not-found.tsx` au niveau du segment `[slug]`. Effet sur l'exploration en cours d'instruction.
 
 ---
 
@@ -222,12 +205,12 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 ## Ordre d'attaque conseillé
 
 ```
-1. C2  Mesure 403 × ASN, puis décision WAF (GO Laurent) — pas « 10 minutes »
-2. C3  Vercel Observability + 504 par chemin (épisode 14-15/09) — le correctif du 04/09 est sans effet mesurable
+1. C2  Qualifier PerplexityBot (IP publiées) et Amazonbot (ASN) — aucune règle WAF justifiée en l'état
+2. C3  Confirmer côté Google (statistiques d'exploration GSC) — 504 requalifiés en requêtes internes Early Hints
 3. C1  Mesurer le correctif (contrôle L.3) — Laurent
 4. C4  Annexe K — le resync est acquis (17/09) ; débloque C6 et les 15 réparations de 404
 5. C6  Redirections legacy vers /fr — après le resync du Worker
 6. C5  Traduction par lots — le plus gros volume, le plus prévisible (D17)
 ```
 
-C2 et C3 sont en phase de mesure : aucune modification de code avant les résultats.
+C2 et C3 sont en phase de qualification : aucune modification de code ni de règle Cloudflare avant les résultats.

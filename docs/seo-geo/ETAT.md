@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-17 — Claude de Laurent (mesures C2, C3, 5xx horaires)**
+**Dernière mise à jour : 2026-09-17 — Claude de Laurent (requalification C2 et C3, planificateur n8n)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -33,10 +33,10 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Décider la règle WAF de Skip des 7 crawlers IA (C2) | Mesure de Laurent | 04/09 | Remesuré le 17/09 : GPTBot 77,9 %, Perplexity-User 75,7 %, PerplexityBot 74,9 %, ChatGPT-User 64,6 %, ClaudeBot 59,1 %, OAI-SearchBot 51,0 %, Claude-SearchBot 45,9 % de 403. Challenges issus d'une règle managée, pas de Super Bot Fight Mode. GO requis ; mesure 403 × ASN recommandée avant. Amazonbot à 31,4 % (écart à D8) — voir `JOURNAL.md` 17/09 |
+| Qualifier C2 : PerplexityBot (IP publiées) et Amazonbot (ASN) | Mesure de Laurent | 17/09 | Mesure ASN du 17/09 : 403 des crawlers IA concentrés sur des user-agents usurpés (Google Cloud) ; depuis les réseaux des éditeurs 0 à 2 %, sauf PerplexityBot AS14618 (383 sur 519). Amazonbot : 34 620 réponses 403 sur les variantes du libellé, ASN non ventilé. Aucune règle WAF justifiée en l'état — voir `JOURNAL.md` 17/09 |
 | Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
-| Planificateur n8n à l'arrêt | Constat du 17/09 | 15/09 | Aucune exécution planifiée depuis le 15/09 05:01 UTC ; `cf_traffic_daily` arrêtée au 13/09 ; Heartbeat muet |
+| Planificateur n8n : cause de l'arrêt du 15/09 | Constat du 17/09 | 17/09 | Exécutions planifiées reprises le 17/09 à 07:00 UTC ; `cf_traffic_daily` complète jusqu'au 16/09 ; données GSC disponibles jusqu'au 14/09 après la reprise du 17/09 ; cause de l'arrêt non établie |
 
 ---
 
@@ -46,6 +46,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
 | Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
+| 504 requalifiés (C3) : confirmation côté Google | 17/09 (mesure) | Dès lecture des statistiques d'exploration GSC | GSC, Cloudflare (Early Hints) |
 
 ---
 
