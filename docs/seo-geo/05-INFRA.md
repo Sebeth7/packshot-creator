@@ -309,11 +309,14 @@ semaines** avant de pouvoir conclure sur un effet de trafic.
 Le dépôt étant public : **jamais de secret, de jeton, de mot de passe ni de
 donnée personnelle dans un commit, un message de commit, ou le journal.**
 
-### Point ouvert au 16/09/2026
+### Jeton n8n au 17/09/2026
 
-Le jeton fine-grained `psc-n8n-publisher`, utilisé par le pipeline n8n de
-publication de Laurent, **expirait le 10/09/2026**. Il est probablement expiré.
-À vérifier et renouveler — geste de Sébastien.
+Jeton fine-grained `psc-n8n-publisher` renouvelé le 16/09/2026, installé dans le
+credential n8n « PSC - GitHub site (SJ) » (`El17IlM75qXppo9D`) et testé le
+17/09/2026 (lecture du dépôt : OK — `full_name` renvoyé, `permissions.push: true`).
+Seul consommateur identifié : le workflow `M0 · Test connexions`
+(`HPZw7pblQrhFQTLc`, manuel, inactif). Aucun workflow de publication n'existe à ce
+jour. Date d'expiration : non relevée.
 
 ---
 

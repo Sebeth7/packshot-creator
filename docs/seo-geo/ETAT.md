@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-17 — Claude de Laurent (C4 : synchronisation constatée)**
+**Dernière mise à jour : 2026-09-17 — Claude de Laurent (jeton n8n testé, fusion C2)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -22,7 +22,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Transmettre le nouveau jeton `psc-n8n-publisher` à Laurent | — | 16/09 | Régénéré le 16/09. À lui faire parvenir par un canal privé — **jamais dans le dépôt, qui est public** |
 | Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
 | Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | Vrai numéro ou reliquat ? Sélecteur machines et calendrier Academy |
@@ -34,9 +33,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Débloquer les 7 crawlers IA | Mesure de Laurent | 04/09 | Remesure des 403 par user-agent sur 7 jours, puis règle WAF de Skip sur GO |
+| Débloquer les 7 crawlers IA (C2) | Mesure de Laurent | 04/09 | Remesure des 403 par user-agent sur 7 jours (config Cloudflare changée depuis le 04/09), puis règle WAF de Skip sur GO — voir `05-INFRA.md` |
 | Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
-| Remesurer les 403 par user-agent | Claude de Sébastien | 16/09 | Ses chiffres datent du 04/09 et la config Cloudflare a changé depuis — voir `05-INFRA.md` |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
 | Répartition horaire des 5xx | Laurent l'a proposée | 04/09 | Aide à cibler C3 |
 
