@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Maillage hubs et money pages vers blog et guides | Claude de Laurent | PR ouverte, non fusionnée | `data/content-maillage.ts`, `components/maillage/MaillageSections.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/{industrie/[slug],studios-photo-automatises,ia-photo-produit}/page.tsx` | 17/09 |
+| Redirections legacy landings + anciens slugs FR (C6) | Claude de Laurent | PR ouverte, non fusionnée — **Worker non déployé, GO Laurent requis** | `cloudflare-worker/src/index.js`, `cloudflare-worker/test/legacy-redirects.test.ts`, `vitest.config.ts` | 17/09 |
 
 ---
 
