@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Prérendu des gabarits `[slug]` | Claude de Laurent | PR ouverte, non fusionnée | `app/[lang]/{blog,industrie,studio-photo,academy}/[slug]/not-found.tsx` | 17/09 |
+| URL `/en/blog/` en 404 dans GSC — cartographie | Claude de Laurent | PR ouverte, non fusionnée — aucune source d'exposition trouvée dans le code | `app/[lang]/page.tsx` | 17/09 |
 
 ---
 
