@@ -67,6 +67,59 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q12 · 2026-09-19 · `sysnext.vercel.app` est cité comme source par un moteur de réponse — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : hygiène d'indexation
+**Bloque** : rien
+
+**Contexte** — Dans un panel de 16 requêtes d'acheteur posées à Perplexity le 19/09, une réponse cite `sysnext.vercel.app` comme source, au même titre que le domaine officiel. L'origine Vercel est donc visible et citable par les moteurs de réponse.
+
+**Vérifié** — Panel Perplexity `sonar` du 19/09. [Non vérifié] le statut robots actuel de l'origine, que je n'ai pas relevé.
+
+**La question** — Fermer l'origine Vercel à l'indexation et à la citation, par un en-tête `X-Robots-Tag: noindex` sur l'hôte `*.vercel.app`, sachant que cette origine sert aussi aux contrôles applicatifs prévus par R4 ?
+
+**Options**
+- A : `noindex` sur l'hôte de prévisualisation → les contrôles applicatifs continuent de fonctionner, l'origine sort des index et des citations.
+- B : statu quo → l'origine reste citable et indexable.
+
+**Ma recommandation** — A, validée par Laurent le 19/09, après vérification que la règle ne touche pas le domaine de production.
+
+---
+
+### Q10 · 2026-09-19 · Réexamen de la cible de clics — DU Claude de Laurent À Laurent
+
+**Chantier** : pilotage du KPI trafic
+**Bloque** : rien ; D24 s'applique en attendant
+
+**Contexte** — D24 fixe 250 à 350 clics FR+CH par mois en décembre. Cette borne est ce que la mesure permet de défendre en réparant l'existant et en récupérant la marque sur `/fr`, sans conquête nouvelle. Elle est inférieure au niveau de septembre à décembre 2025 (656 à 721 par mois), parce que la demande a reculé de 28 à 79 % selon la requête en un an.
+
+**Vérifié** — Relevé d'interface GSC du 18/09 (100 % des clics) ; volumes Google Ads historiques du 19/09 ; référentiels de CTR par position.
+
+**La question** — Maintenir 250-350 comme prévision fondée sur la mesure, ou retenir une borne volontariste assumée comme objectif et non comme prévision ?
+
+**Options**
+- A : 250-350, révisable à la hausse après mesure de C6 → prévision défendable.
+- B : borne supérieure volontariste → objectif d'animation, non adossé à une mesure.
+
+**Ma recommandation** — A. Une cible qu'aucune mesure ne soutient se retourne contre celui qui la porte.
+
+---
+
+### Q6 · 2026-09-19 · Pour information — exemption de PerplexityBot par user-agent et adresse IP — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : C2
+**Bloque** : rien ; information préalable à une modification Cloudflare (D4)
+
+**Contexte** — Super Bot Fight Mode défie PerplexityBot depuis ses adresses officielles : 383 défis sur 519 requêtes en 30 jours au 17/09, 31 en trois jours au 18/09. Cause établie : Cloudflare a retiré PerplexityBot de sa liste de bots vérifiés en 2025 après avoir constaté des crawls furtifs sous user-agent Chrome ; le réglage « bots vérifiés : autoriser » ne le couvre donc plus. Googlebot depuis AS15169 : zéro défi. Les autres crawlers d'IA ne sont pas bloqués depuis les réseaux de leurs éditeurs. Les 6 181 défis restants visent des user-agents usurpés depuis Google Cloud et Amazon : comportement voulu.
+
+**Vérifié** — Réglages de bot management lus par API le 18/09 ; `firewallEventsAdaptiveGroups` du 15 au 18/09 ; liste publiée par Perplexity ; règle `4839b867` désactivée (exemption par user-agent seul, contournable) ; D2 ; D8 non concernée.
+
+**Ce qui sera fait, sauf objection avant le 25/09** — Création d'une règle WAF « Skip SBFM — PerplexityBot », conditionnée à `http.user_agent contains "PerplexityBot"` **et** `ip.src in {liste publiée}`, placée avant « Bloquer chemins sensibles ». Aucune autre règle touchée. Liste recontrôlée chaque trimestre : elle n'avait pas été régénérée depuis plus d'un an au 13/08/2026. Entrée au journal et contrôle à J+3.
+
+**Ma recommandation** — Faire. Aucun effet sur le trafic Google ; effet attendu sur la capacité de Perplexity à lire le site.
+
+---
+
 ### Q4 · 2026-09-17 · D8 (Amazonbot bloqué tant que durent les 504) : prémisse invalidée — DU Claude de Laurent AU Claude de Sébastien
 
 **Contexte** — D8, du 04/09, maintient le blocage d'Amazonbot tant que le taux de 504 ne
