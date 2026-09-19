@@ -25,6 +25,92 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D26 · 2026-09-19 · Arbitrages de cadrage du mandat
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Cinq points arbitrés le 19/09, sans passer par la boîte aux lettres :
+
+1. **Le mandat porte sur le trafic**, pas sur la qualification des demandes. Avec une limite portée dans chaque livrable : vingt mois de `deal_events` montrent une à deux affaires gagnées par mois quel que soit le trafic, et les clics France sont passés de 684 à 86 sur la même période. On pilote le trafic faute d'un indicateur mesurable plus proche du résultat, pas parce qu'il prédit le résultat.
+2. **La Belgique n'est pas une zone.** Le cadre « jamais la Belgique, fr-BE, nl-BE, nl » est confirmé et non révisable, bien que la Belgique ait produit 722 clics sur 16 mois contre 703 pour la Suisse.
+3. **Aucune règle de qualification des devis n'est établie** : l'échantillon est trop faible. Le KPI final reste non mesurable proprement, et c'est assumé.
+4. **Budget de mesure** : 20 $ par trimestre, avec GO au-delà de 2 $ par exécution.
+5. **Les prix affichés du site** relèvent exclusivement des données structurées (D7) : le balisage `Offer` des 42 fiches est conforme et la mention visible « À partir de X €/mois en leasing » est imposée par le format. Aucune remise en cause de D7, D13 ni D25.
+
+**Le contexte** — Ces cinq points avaient été formulés en questions (Q5, Q7, Q8, Q9, Q11) dans le bilan d'audit, et arbitrés par Laurent avant tout dépôt dans la boîte aux lettres. Ils sont consignés ici plutôt qu'en questions closes, puisqu'ils n'ont jamais été posés.
+
+**Ce qu'elle ferme** — Rouvrir la Belgique, la règle de qualification des devis, ou l'affichage des prix, sans élément nouveau. La numérotation Q5, Q7, Q8, Q9 et Q11 reste inutilisée : ne pas la réattribuer.
+
+---
+
+## D25 · 2026-09-18 · Pas de prix dans un comparatif concurrentiel
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Aucun prix, ni celui de PackshotCreator ni celui d'un concurrent, ne figure dans une page de comparaison concurrentielle. La comparaison porte sur des caractéristiques objectives et vérifiables : cadence, formats et dimensions acceptés, automatisation du détourage, intégrations, logiciel, support, lieu de fabrication, formation.
+
+**Le contexte** — Un prix concurrent cité et devenu faux expose à un contentieux, et la charge de le maintenir à jour sur quatre concurrents est disproportionnée. Le prix reste par ailleurs réservé aux formats techniques qui l'imposent (D7) et à la validation de Sébastien (D13).
+
+**Ce qu'elle ferme** — Publier un tableau comparatif chiffré en euros. Reprendre un prix concurrent lu sur un forum ou un site tiers.
+
+---
+
+## D24 · 2026-09-19 · Cible de clics FR+CH et sa mesure
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Le KPI trafic est le nombre de clics Google Search Console, pays France et Suisse, toutes pages, lu dans l'interface (dimension Pays) tant que la table `gsc_metrics_page_country` n'existe pas. Point de départ : 190 clics par mois (août 2026). Cible : **250 à 350 clics par mois en décembre 2026**, révisable à la hausse après mesure de l'effet de C6. L'ordre de grandeur de 1 200 à 1 500 clics avancé le 17/09 est un plafond théorique à douze mois, pas une cible.
+
+**Le contexte** — Une première cible de 350 à 450 avait été calculée le 18/09 sur trois hypothèses que les mesures du 19/09 ont démenties : une base de 55 000 impressions mensuelles (la base réelle France est d'environ 22 000), un gisement de CTR de +400 à 600 clics par mois (le CTR français est de 1,41 % à la position 14,4, soit **au-dessus** de la norme pour cette position), et une demande stable (les volumes Google Ads reculent de 28 à 79 % selon la requête sur un an).
+
+**Ce qu'elle ferme** — Comparer des clics tous pays à cette cible. Prendre un chiffre suisse dans `gsc_metrics_country` seul, dont la couverture varie de 9 à 50 % selon le mois. Bâtir un plan sur la récupération du CTR. Créer des articles informationnels pour atteindre la cible : D16 reste le critère.
+
+---
+
+## D23 · 2026-09-18 · R4 amendée : la production est testable depuis le poste de Laurent
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **amende R4 (`CLAUDE.md`) et B1 (`03-PIEGES.md`)**
+
+**La décision** — « La production n'est pas testable par un script » reste vrai pour Claude Code, la CI, les Preview et tout client distant. Ce n'est pas vrai depuis le poste Windows de Laurent ni depuis le NAS : leur préfixe IPv6 est en liste blanche Cloudflare (règle d'accès `966dd862`, /64, « W11 + NAS crawler », 20/06) et `curl.exe` y renvoie les codes réels, Worker et WAF compris.
+
+**Le contexte** — R4 avait été rédigée le 16/09 sur une mesure faite hors liste blanche : 17 pages sur 17 en 403. Elle a conduit à qualifier de « divergence du Worker » un comportement conforme.
+
+**Ce qu'elle ferme** — Conclure à un défaut de production depuis un 403 obtenu hors liste blanche. Faire passer une vérification de production par Claude Code quand un `curl.exe` depuis le poste de Laurent est possible.
+
+**Ce qu'elle n'ouvre pas** — L'adresse en liste blanche ne reçoit ni les défis Super Bot Fight Mode ni la règle « chemins sensibles ». Pour ce que reçoit un visiteur ordinaire, le contrôle dans Chrome reste la référence.
+
+---
+
+## D22 · 2026-09-18 · Super Bot Fight Mode est la source des défis ; PerplexityBot n'est plus un bot vérifié ; exemption par user-agent et adresse IP combinés
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **remplace la section « bots » de `05-INFRA.md`**
+
+**La décision** — Super Bot Fight Mode est actif (`sbfm_definitely_automated = managed_challenge`, détection JavaScript, `sbfm_verified_bots = allow`) et produit les défis attribués le 17/09 à « une règle managée » : 54 167 en trois jours. Googlebot depuis AS15169 : zéro défi. PerplexityBot est défié depuis ses adresses publiées — 383 défis sur 519 requêtes en 30 jours au 17/09, 31 en trois jours au 18/09 — parce que **Cloudflare l'a retiré de sa liste de bots vérifiés en 2025** après avoir constaté des crawls furtifs sous user-agent Chrome : `verified_bots = allow` ne le couvre plus. Les autres crawlers d'IA ne sont pas bloqués depuis les réseaux de leurs éditeurs ; les 6 181 défis restants visent des user-agents usurpés depuis Google Cloud et Amazon, et c'est le comportement voulu.
+
+Correctif retenu : une règle WAF « Skip Super Bot Fight Mode » conditionnée à `http.user_agent contains "PerplexityBot"` **et** `ip.src in {liste publiée}`, la liste étant recontrôlée chaque trimestre — elle n'avait pas été régénérée depuis plus d'un an au 13/08/2026 et ne comptait que huit adresses.
+
+**Ce qu'elle ferme** — Toute exemption fondée sur le user-agent seul. Toute règle par plage d'adresses figée sans recontrôle périodique. Toute mesure « pourcentage de robot bloqué » fondée sur le user-agent seul. Réactiver la règle `54a4b8c2` « Skip SBFM videos R2 », désactivée depuis le 23/07, sans contrôle visiteur préalable des vidéos produit.
+
+---
+
+## D21 · 2026-09-18 · Divergence Worker dépôt/production : close
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Le Worker `packshot-router` déployé le 24/07/2026 se comporte comme `cloudflare-worker/src/index.js` de `main` : zéro écart sur les 14 URL du lot C (5 × 410, 5 × 301 vers la cible attendue, 3 × 404 sans règle, 1 × 307 produit par next-intl à l'origine). Codes confirmés par `curl.exe` depuis le poste de Laurent, dont l'adresse est en liste blanche Cloudflare.
+
+**Le contexte** — Le constat « synchronisé » du 17/09 (PR #10) reposait sur une comparaison de tables. Il a été rouvert le 18/09 sur l'hypothèse que Google recevait des 404 là où le dépôt sert des 301 et des 410. La mesure de comportement du 18/09 tranche dans le sens « synchronisé ».
+
+**Ce qu'elle ferme** — Rouvrir la divergence sans mesure de comportement. Elle ne lève pas R5 : tout déploiement part du dépôt, jamais du dashboard, et reste précédé d'un contrôle d'unicité des clés (piège E4 ; le doublon `/en/blog/orbitvu-vs-ortery-vs-styleshoots-2026` entre `LEGACY_REDIRECTS` l. 1006 et `GONE_PATHS` l. 282 est à retirer au lot F).
+
+---
+
 ## D20 · 2026-09-17 · Rééquilibrage vers /de-ch à instruire
 **Statut** : proposée, en attente de validation de Laurent
 Le marché suisse pèse 10 700 recherches mensuelles sur le périmètre pertinent, contre environ
