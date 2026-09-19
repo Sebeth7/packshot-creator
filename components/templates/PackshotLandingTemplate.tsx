@@ -14,6 +14,7 @@ import type { LucideIcon } from 'lucide-react';
 import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { tx, pickL } from '@/lib/locale-text';
+import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
@@ -575,6 +576,8 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           </div>
         </div>
       </section>
+
+      <MoneyPageResources slug={slug} lang={lang} />
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(faqs)]} />
     </>

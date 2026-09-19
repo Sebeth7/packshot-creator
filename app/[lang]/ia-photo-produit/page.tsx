@@ -19,6 +19,7 @@ import FeaturesTabs from './_components/FeaturesTabs';
 import TestimonialCarousel from './_components/TestimonialCarousel';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx } from '@/lib/locale-text';
+import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 
 /* ──────── Static data ──────── */
 
@@ -707,6 +708,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           },
         ]}
       />
+
+      <MoneyPageResources slug="ia-photo-produit" lang={lang} />
     </>
   );
 }

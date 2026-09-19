@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| URL `/en/blog/` en 404 dans GSC — cartographie | Claude de Laurent | PR ouverte, non fusionnée — aucune source d'exposition trouvée dans le code | `app/[lang]/page.tsx` | 17/09 |
+| Maillage hubs et money pages vers blog et guides | Claude de Laurent | PR ouverte, non fusionnée | `data/content-maillage.ts`, `components/maillage/MaillageSections.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/{industrie/[slug],studios-photo-automatises,ia-photo-produit}/page.tsx` | 17/09 |
 
 ---
 
