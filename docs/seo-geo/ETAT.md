@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-17 — Claude de Laurent (requalification C2 et C3, planificateur n8n)**
+**Dernière mise à jour : 2026-09-19 — Claude de Laurent (nettoyage du suivi, fusion des lots A à E)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -14,7 +14,12 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Redirections legacy landings + anciens slugs FR (C6) | Claude de Laurent | PR ouverte, non fusionnée — **Worker non déployé, GO Laurent requis** | `cloudflare-worker/src/index.js`, `cloudflare-worker/test/legacy-redirects.test.ts`, `vitest.config.ts` | 17/09 |
+| C6 — liste du lot pilote « redirections legacy → /fr » | Claude de Laurent | **priorité 1**, GO du 19/09 pour constituer la liste ; déploiement en porte séparée | `cloudflare-worker/src/index.js` | 04/09 |
+| Lot F — annexe K, 3 URL du lot C, 6 verticales de-ch, doublon l. 282, `/fr/blog/[slug]` littéral, 6 articles perdus, 10 entrées ciblant `alphashot-xl-v2` | Claude de Laurent | à ouvrir après #16 | `cloudflare-worker/src/index.js` | 19/09 |
+| Accents et champs marchands | Claude de Laurent | à ouvrir | `messages/fr.json`, FAQ des fiches machines, `lib/seo-config.ts` | 19/09 |
+| Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à ouvrir | `messages/de-ch.json`, `content/**` | 19/09 |
+| Renverser l'axe GEO | Claude de Laurent | à instruire | `content/**` | 19/09 |
+| Consolidation du cluster comparatif | Claude de Laurent | **bloqué** — contrôle des backlinks par URL requis avant toute fusion de pages | `content/**` | 19/09 |
 
 ---
 
@@ -22,10 +27,10 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Envoyer les 3 brouillons Gmail du dossier suisse | — | 22/08 | Orbitvu (le coup décisif), fotointern.ch, booster-magazine.ch. Conditionne la mesure C12 |
-| Export mensuel geo-ultimate → Supabase PSC | Laurent | ~10/08 | En retard. Le dashboard affiche des P0 obsolètes |
-| Clarifier le `03 20 19 90 90` | — | 20/08 | Vrai numéro ou reliquat ? Sélecteur machines et calendrier Academy |
-| Pour information — Q2 (prose rédigée côté Laurent, validation par Sébastien) | Laurent | 17/09 | Aucune action requise. Objection éventuelle avant le 24/09 ; sans réponse, (b) et D15 s'appliquent |
+| Clarifier le `03 20 19 90 90` | — | 20/08 | Sélecteur de machines et calendrier Academy. Le JSON-LD de production du 19/09 ne porte que `+33147426666` et `+41445804384` : vérifier si le numéro subsiste ailleurs, sinon clore |
+| Pour information — Q6, règle WAF d'exemption de PerplexityBot par user-agent et adresse IP | Laurent | 19/09 | Aucune action requise. Objection éventuelle avant le 25/09 |
+| Pour information — Q12, `sysnext.vercel.app` fermé à l'indexation | Laurent | 19/09 | Aucune action requise |
+| Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | `feat/schema-markup-overhaul` (399), `feat/sysnext-industrial` (372), `feature/brandbook-2025-foundations` (51), `feat/de-ch-locale` (5), `feat/geo-referentiels-prix` (2). Hors périmètre de Laurent, non touchées |
 
 ---
 
@@ -33,11 +38,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Qualifier C2 : PerplexityBot (IP publiées) et Amazonbot (ASN) | Mesure de Laurent | 17/09 | Mesure ASN du 17/09 : 403 des crawlers IA concentrés sur des user-agents usurpés (Google Cloud) ; depuis les réseaux des éditeurs 0 à 2 %, sauf PerplexityBot AS14618 (383 sur 519). Amazonbot authentique passe (0 × 403, action skip) ; les 403 « amazonbot » visent Amzn-SearchBot, trafic non authentifié (aucune IP dans la liste Amazon). Aucune règle WAF justifiée en l'état — voir `JOURNAL.md` 17/09 |
-| Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
-| Planificateur n8n : cause de l'arrêt du 15/09 | Constat du 17/09 | 17/09 | Exécutions planifiées reprises le 17/09 à 07:00 UTC ; `cf_traffic_daily` complète jusqu'au 16/09 ; données GSC disponibles jusqu'au 14/09 après la reprise du 17/09 ; cause de l'arrêt non établie |
-
-- L.3 soldé au crawl du 17/09 : liens d'en-tête vers des non-200 546 → 0, pages 404/410 39 → 1.
+| Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6, devenu priorité 1. GO donné le 19/09 pour la constituer : parmi les 548 URL routées vers `/en`, celles dont le contenu cible est français et qui portent des impressions ou des backlinks |
+| Contrôle des backlinks par URL des 4 landings et des 4 comparatifs | Mesure du 19/09 | 19/09 | `backlinks/backlinks` DataForSEO, ≈ 0,08 $. Bloque la consolidation du cluster comparatif : la conclusion « 0 backlink » est redevenue [Non vérifié] |
 
 ---
 
@@ -83,7 +85,8 @@ les 9 dépôts.
 
 ## Questions ouvertes
 
-Q2 (régime tacite jusqu'au 24/09) — voir BOITE-AUX-LETTRES.md. Q1 et Q3 closes le 17/09.
+Q10 (cible D24) — voir BOITE-AUX-LETTRES.md. Q6 et Q12 déposées pour information.
+Q1, Q3 closes le 17/09 ; Q2 close le 24/09 par régime tacite ; Q5, Q7, Q8, Q9 et Q11 arbitrées par Laurent le 19/09 sans dépôt, consignées en D26.
 
 ---
 

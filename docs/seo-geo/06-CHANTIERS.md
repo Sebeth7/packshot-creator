@@ -1,6 +1,6 @@
 # 06 — Chantiers SEO / GEO
 
-Le backlog, arrêté au **16/09/2026**. `ETAT.md` dit ce qui est en cours
+Le backlog, arrêté au **19/09/2026**. `ETAT.md` dit ce qui est en cours
 maintenant ; ce fichier dit ce qu'il y a à faire et pourquoi.
 
 Priorités : **P0** bloque ou coûte du trafic tous les jours · **P1** effet fort
@@ -14,7 +14,7 @@ attendu · **P2** utile, sans urgence.
 
 | | |
 |---|---|
-| État | Mergée le 16/09/2026 (PR #3), en production — mesure en attente (`ETAT.md`) |
+| État | **Clos le 19/09.** Mergée le 16/09/2026 (PR #3), en production. La mesure vit dans « En attente de mesure » d'`ETAT.md`, pas ici |
 | Commit | `0e8949f` |
 | Rayon | Engage l'entreprise (prix E-Comm Studio+) — arbitrage Sébastien |
 
@@ -44,7 +44,7 @@ C'est aussi le test que Laurent attend pour mesurer : Link Score `/fr` contre
 
 | | |
 |---|---|
-| État | Mesure 403 × ASN faite le 17/09 (18/08-16/09) : le blocage massif mesuré jusqu'ici vise surtout des user-agents usurpés. Aucune règle WAF justifiée en l'état ; deux points à qualifier |
+| État | **Clos le 19/09, tranché par D22.** Super Bot Fight Mode est la source des défis ; PerplexityBot a été retiré de la liste des bots vérifiés de Cloudflare en 2025, d'où les défis depuis ses adresses publiées. Ce qui reste est une action Cloudflare sous GO (Q6), pas un chantier de qualification |
 | Rayon | Infrastructure Cloudflare — voir `05-INFRA.md` |
 
 **Ce que la mesure établit** (hôtes www, apex et fr, 30 jours) :
@@ -62,15 +62,17 @@ C'est aussi le test que Laurent attend pour mesurer : Link Score `/fr` contre
 Les 403 des crawlers IA portent une action de sécurité Cloudflare dans 99,9 % des cas (ensemble managé : challenge ; règle personnalisée : blocage). Le constat « environ 20 % des 403 laissent un événement » est retiré : il tenait à la rétention de 3 jours des événements de sécurité.
 
 **Statut** :
-Qualifié le 17/09. Seul blocage réel d'un robot légitime : PerplexityBot authentique,
-383 challenges managés sur 519 requêtes. Exception WAF à instruire (GO Laurent).
-Amazonbot authentique n'est pas bloqué ; D8 repose sur une prémisse invalidée.
+Clos le 19/09 par **D22**, qui fait foi et remplace la section « bots » de `05-INFRA.md`.
+Seul blocage réel d'un robot légitime : PerplexityBot authentique, 383 défis sur
+519 requêtes. Correctif retenu : règle WAF conditionnée au user-agent **et** à
+l'adresse IP publiée, déposée pour information en Q6. Amazonbot authentique n'est
+pas bloqué ; D8 repose sur une prémisse invalidée.
 
 ### C3 · 504 — requalifiés en artefact de mesure (17/09)
 
 | | |
 |---|---|
-| État | Mesure du 17/09 (18/08-16/09) : les 504 ne sont servis ni aux visiteurs ni aux robots mesurés. Confirmation côté Google en attente (statistiques d'exploration GSC) |
+| État | **Clos le 19/09.** Les 504 sont un artefact de mesure : requêtes internes Cloudflare liées aux Early Hints, servies ni aux visiteurs ni aux robots. Confirmation côté Google suivie dans « En attente de mesure » d'`ETAT.md` |
 | Rayon | Mesure seulement — aucun changement de code attendu à ce titre |
 
 213 490 réponses 504 en 30 jours, **toutes avec le user-agent `nginx-ssl early hints`** : requêtes internes de Cloudflare liées à la fonction Early Hints (réglage de zone), statut d'origine 0, cache miss. Sur 9 pages HTML témoins, les navigateurs déclarés (45 951 requêtes) ne reçoivent aucune 504 ; Googlebot depuis AS15169 non plus (17 210 requêtes).
@@ -81,20 +83,38 @@ Conséquences :
 ● Le correctif `images.minimumCacheTTL` (04/09) est conservé, sans effet attendu sur ce taux.
 ● Période antérieure au 18/08 : non vérifiable (rétention GraphQL de 31 jours).
 
-Reste ouvert, sans lien avec les 504 : les gabarits `[slug]` des secteurs, fiches machines et articles JSON (et formations, d'après le build) sont rendus dynamiquement. Constaté en production le 17/09 sur `sysnext.vercel.app` : `Cache-Control: private, no-cache, no-store`, `x-vercel-cache: MISS` à deux passages, exécution `iad1`. Cause identifiée en build local : `not-found.tsx` au niveau du segment `[slug]`. Effet sur l'exploration en cours d'instruction.
+**Soldé le 19/09, sans lien avec les 504.** Les gabarits `[slug]` étaient rendus dynamiquement à cause d'un `not-found.tsx` au niveau du segment. La PR #15 les a retirés : la table des routes de `next build` du 19/09 donne `blog/[slug]`, `industrie/[slug]` et `studio-photo/[slug]` en `●` SSG. Seul `academy/[slug]` reste en `ƒ`, parce que sa feuille ne déclare pas de `generateStaticParams` — documenté dans la PR #15, à instruire séparément. L'hypothèse `setRequestLocale` est écartée : il est absent des cinq gabarits, y compris des quatre prérendus.
+
+---
+
+### C14 · Accents et champs marchands
+
+| | |
+|---|---|
+| État | À ouvrir — **P0**, effort faible |
+| Rayon | `messages/fr.json` (partagé avec Sébastien), FAQ des fiches machines, `lib/seo-config.ts` |
+
+Ouvert le 19/09. Absorbe **C8** (retrait de « PackshotCreator » des `title`
+d'articles, 25 JSON ou une règle de suppression) et **C13** (coquille « en sur
+la zone EMEA » dans l'article Ortery) : même famille de défauts, même PR.
+
+`messages/fr.json` est partagé avec le Claude de Sébastien : modifications
+chirurgicales, jamais de reformatage global (piège F4), et réservation dans
+`ETAT.md` avant d'ouvrir.
 
 ---
 
 ## P1 — Effet fort attendu
 
-### C4 · Resynchroniser le Worker, puis appliquer l'annexe K
+### C4 · Lot F — annexe K
 
 | | |
 |---|---|
-| État | Dépôt et production synchronisés — constat du 17/09/2026 (comptes de clés identiques sur 11 tables, différences cosmétiques seules). Annexe K à ouvrir. |
+| État | Le Worker est **synchronisé (D21)**, mesuré par comportement le 18/09 : zéro écart sur les 14 URL du lot C. Il ne reste que l'annexe K et les correctifs du lot F |
 
-Procédure complète dans `05-INFRA.md`. **Rien ne doit être mappé avant la
-resynchronisation.**
+Procédure complète dans `05-INFRA.md`. La resynchronisation est acquise (D21) ;
+R5 reste entière : tout déploiement part du dépôt, jamais du dashboard, et reste
+précédé d'un contrôle d'unicité des clés (piège E4).
 
 Ensuite, l'annexe K : 21 mappings — 2 bascules `/en` → `/fr`, 15 réparations de
 404, 2 sorties en 410, et une fusion `industrie-defense` **à revoir** : le
@@ -105,6 +125,7 @@ automobile le 04/09.
 
 | | |
 |---|---|
+| État | **Gelé (D17)** — aucun effort sur `/en` tant que des chantiers FR/CH sont ouverts. D9 n'est pas modifiée : la traduction reste décidée, seul son rang change |
 | Décidé | 04/09/2026 |
 | Rayon | Large — les sets `NOINDEX_EN_*` réactivent partout à la fois |
 
@@ -150,9 +171,25 @@ et SEO côté Claude, prose côté Sébastien.
 
 ---
 
+### C15 · Renverser l'axe GEO
+
+| | |
+|---|---|
+| État | À instruire — **P1** |
+| Rayon | `content/**` |
+
+Ouvert le 19/09. Piloté par un indicateur de citation en réponse générative,
+pas par une position ni par un volume de clics — **D19**. Les contenus IA
+visent l'intention prestataire avec un angle d'internalisation (**D18**), et
+la création d'articles reste soumise au critère de **D16**.
+
+---
+
 ## P2 — Utile, sans urgence
 
-### C8 · Retirer « PackshotCreator » des `title` d'articles
+### C8 · Retirer « PackshotCreator » des `title` d'articles — fusionné avec « accents et champs marchands »
+
+**Fusionné le 19/09** dans le chantier « accents et champs marchands » : même famille de défauts, mêmes fichiers, même PR.
 
 Point 2.b de l'audit du 03/09. **Piège** : le `title` provient du champ
 `metaTitle` de chaque JSON d'article — ce n'est pas un gabarit centralisé. Donc
@@ -178,15 +215,17 @@ Claude, publication par un humain.
 Relevé par l'audit GEO du 20/08 : la page d'accueil ne porte aucun lien sortant
 vers une source d'autorité. Signal E-E-A-T faible.
 
-### C12 · Mesure de bascule du dossier suisse
+### C12 · Mesure de bascule du dossier suisse — clos
+
+**Clos le 19/09** : dépendait des trois courriels suisses, sortis du plan le 19/09.
 
 Environ six semaines après l'envoi des mails à Orbitvu, `fotointern.ch` et
 `booster-magazine.ch` — donc **début octobre 2026 au plus tôt**, à condition que
 les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse ».
 
-### C13 · Coquille dans l'article Ortery
+### C13 · Coquille dans l'article Ortery — clos
 
-« en sur la zone EMEA ». Mineure, jamais corrigée.
+« en sur la zone EMEA ». **Clos le 19/09** : traité par la PR « accents et champs marchands », même famille de défauts.
 
 ---
 
@@ -206,12 +245,13 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 ## Ordre d'attaque conseillé
 
 ```
-1. C2  Qualifier PerplexityBot (IP publiées) et Amazonbot (ASN) — aucune règle WAF justifiée en l'état
-2. C3  Confirmer côté Google (statistiques d'exploration GSC) — 504 requalifiés en requêtes internes Early Hints
-3. C1  Mesurer le correctif (contrôle L.3) — Laurent
-4. C4  Annexe K — le resync est acquis (17/09) ; débloque C6 et les 15 réparations de 404
-5. C6  Redirections legacy vers /fr — après le resync du Worker
-6. C5  Traduction par lots — le plus gros volume, le plus prévisible (D17)
+1. C6  Liste du lot pilote « redirections legacy → /fr » — priorité 1, GO du 19/09
+2. C14 Accents et champs marchands — P0, effort faible, absorbe C8 et C13
+3. C4  Lot F — annexe K et correctifs ; le resync est acquis (D21)
+4. C15 Renverser l'axe GEO — P1, à instruire (D18, D19)
+5. C7  Vertical industrie / aéronautique / automobile
+6. C5  Traduction par lots — gelé tant que des chantiers FR/CH sont ouverts (D17)
 ```
 
-C2 et C3 sont en phase de qualification : aucune modification de code ni de règle Cloudflare avant les résultats.
+C1, C2, C3, C12 et C13 sont clos le 19/09. Le déploiement du Worker reste une
+porte séparée (D4) : il ne suit pas la fusion d'une PR.
