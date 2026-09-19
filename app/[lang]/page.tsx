@@ -497,7 +497,7 @@ export default async function HomePage({
                 { name: 'Fashion Studio', image: '/images/machines/fashion-studio.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'fashion-studio' } } as const },
                 { name: 'Alphashot 360', image: '/images/machines/alphashot-360.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-360' } } as const },
                 { name: 'Bike Studio', image: '/images/machines/bike-studio.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'bike-studio' } } as const },
-                { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphatable-v2' } } as const },
+                { name: 'Alphatable', image: '/images/machines/alphatable-alphadesk.avif', href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphatable' } } as const },
               ].map((machine) => (
                 <Link key={machine.name} href={machine.href} className="group flex-shrink-0 w-[200px] sm:w-[240px] snap-start">
                   <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-neutral-100 group-hover:border-very-peri-200 transition-colors duration-300">

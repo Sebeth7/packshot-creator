@@ -5,11 +5,19 @@
 
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { ArrowRight, BookOpen, Camera, Compass } from 'lucide-react';
-import { getGuide, getArticle, type Lang } from '@/lib/content';
+import {
+  getGuide,
+  getArticle,
+  getGuideAlternates,
+  getBlogAlternates,
+  type Lang,
+} from '@/lib/content';
+import { NOINDEX_EN_BLOG_SLUGS } from '@/lib/seo-config';
 import { tx } from '@/lib/locale-text';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import {
   SECTOR_RESOURCES_MAP,
+  MONEY_PAGE_RESOURCES_MAP,
   CONTENT_PRODUCT_MAP,
   GUIDE_RELATED_MAP,
 } from '@/data/content-maillage';
@@ -24,40 +32,85 @@ interface ResourceLink {
   description: string;
 }
 
+/**
+ * URL a ne jamais emettre : GSC les liste en 404 au 17/09 et aucune n'a de
+ * version dans la locale /en. La resolution par alternates.json ne devrait
+ * jamais les produire — cette liste est la ceinture, pas les bretelles.
+ */
+const URLS_INTERDITES: ReadonlySet<string> = new Set([
+  '/en/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
+  '/en/blog/financement-formation-opco-guide-complet-pour-studios-photo-2026',
+  '/en/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026',
+  '/en/blog/orbitvu-vs-concurrents',
+  '/en/blog/orbitvu-vs-ortery-vs-styleshoots-2026',
+  '/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie',
+  '/en/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
+  '/en/blog/ecommerce-jewelry-photography-tutorial',
+  '/en/blog/homemade-photo-studio-product-photography',
+  '/en/blog/e-commerce-8-elements-indispensables-pour-reussir',
+  '/en/blog/lancement-dune-serie-debooks-dediee-au-ecommerce',
+]);
+
+/**
+ * Les tables de maillage sont ecrites en slugs FR. Les slugs EN et de-ch sont
+ * differents : on les resout par `alternates.json`, la meme source que le
+ * selecteur de langue. Sans correspondance traduite, le lien est omis — c'est
+ * ce qui fait qu'un bloc se masque tout seul dans une locale non couverte.
+ */
 function resolveGuides(slugs: string[], lang: Lang): ResourceLink[] {
   return slugs
-    .map((s) => {
-      const g = getGuide(s, lang);
-      return g
-        ? { href: { pathname: '/guide/[slug]' as const, params: { slug: s } }, title: g.title, description: g.description }
-        : null;
+    .map((slugFr) => {
+      const fr = getGuide(slugFr, 'fr');
+      if (!fr) return null;
+      const slug = lang === 'fr' ? slugFr : getGuideAlternates(fr.webflowItemId)[lang];
+      if (!slug) return null;
+      const g = getGuide(slug, lang);
+      if (!g) return null;
+      if (URLS_INTERDITES.has(`/${lang}/guide/${slug}`)) return null;
+      return {
+        href: { pathname: '/guide/[slug]' as const, params: { slug } },
+        title: g.title,
+        description: g.description,
+      };
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 }
 
 function resolveArticles(slugs: string[], lang: Lang): ResourceLink[] {
   return slugs
-    .map((s) => {
-      const a = getArticle(s, lang);
-      return a
-        ? { href: { pathname: '/blog/[slug]' as const, params: { slug: s } }, title: a.title, description: a.description }
-        : null;
+    .map((slugFr) => {
+      const fr = getArticle(slugFr, 'fr');
+      if (!fr) return null;
+      const slug = lang === 'fr' ? slugFr : getBlogAlternates(fr.webflowItemId)[lang];
+      if (!slug) return null;
+      const a = getArticle(slug, lang);
+      if (!a) return null;
+      // Jamais de lien vers une URL noindex : l'autorite s'y deverserait en pure perte.
+      if (lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug)) return null;
+      if (URLS_INTERDITES.has(`/${lang}/blog/${slug}`)) return null;
+      return {
+        href: { pathname: '/blog/[slug]' as const, params: { slug } },
+        title: a.title,
+        description: a.description,
+      };
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 }
 
 /* ─────────────────────────────────────────────────────────────
-   P1.A — Ressources sur la page hub /industrie/[slug]
-   Le hub irrigue ses guides et articles (anti cul-de-sac).
+   Bloc de ressources contextuelles — rendu partagé
+   Utilisé par les 17 hubs secteurs et par les 6 money pages.
+   Se masque entièrement si aucun contenu n'est disponible dans la locale.
    ───────────────────────────────────────────────────────────── */
-export function SectorResources({ slug, lang }: { slug: string; lang: string }) {
-  const map = SECTOR_RESOURCES_MAP[slug];
-  if (!map) return null;
-
-  const items = [
-    ...resolveGuides(map.guides, lang as Lang),
-    ...resolveArticles(map.articles, lang as Lang),
-  ];
+function ResourcesSection({
+  items,
+  surtitre,
+  titre,
+}: {
+  items: ResourceLink[];
+  surtitre: string;
+  titre: string;
+}) {
   if (items.length === 0) return null;
 
   return (
@@ -65,10 +118,10 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
-            {tx(lang, 'GUIDES & RESSOURCES', 'GUIDES & RESOURCES', 'RATGEBER & RESSOURCEN')}
+            {surtitre}
           </span>
           <h3 className="text-3xl lg:text-4xl font-heading font-bold text-heading-dark">
-            {tx(lang, 'Pour réussir vos visuels', 'To master your visuals', 'Für überzeugende Produktbilder')}
+            {titre}
           </h3>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,6 +147,53 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   P1.A — Ressources sur la page hub /industrie/[slug]
+   Le hub irrigue ses guides et articles (anti cul-de-sac).
+   ───────────────────────────────────────────────────────────── */
+export function SectorResources({ slug, lang }: { slug: string; lang: string }) {
+  const map = SECTOR_RESOURCES_MAP[slug];
+  if (!map) return null;
+
+  const items = [
+    ...resolveGuides(map.guides, lang as Lang),
+    ...resolveArticles(map.articles, lang as Lang),
+  ];
+
+  return (
+    <ResourcesSection
+      items={items}
+      surtitre={tx(lang, 'GUIDES & RESSOURCES', 'GUIDES & RESOURCES', 'RATGEBER & RESSOURCEN')}
+      titre={tx(lang, 'Pour réussir vos visuels', 'To master your visuals', 'Für überzeugende Produktbilder')}
+    />
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2026-09 — Ressources sur les money pages
+   Les 4 landings packshot-*, /studios-photo-automatises et
+   /ia-photo-produit irriguent le blog et les guides de leur univers.
+   Constat du crawl du 17/09 : Link Score blog et guides = 1, contre
+   84 pour les money pages, qui ne leur renvoyaient rien.
+   ───────────────────────────────────────────────────────────── */
+export function MoneyPageResources({ slug, lang }: { slug: string; lang: string }) {
+  const map = MONEY_PAGE_RESOURCES_MAP[slug];
+  if (!map) return null;
+
+  const items = [
+    ...resolveGuides(map.guides, lang as Lang),
+    ...resolveArticles(map.articles, lang as Lang),
+  ];
+
+  return (
+    <ResourcesSection
+      items={items}
+      surtitre={tx(lang, 'GUIDES & RESSOURCES', 'GUIDES & RESOURCES', 'RATGEBER & RESSOURCEN')}
+      titre={tx(lang, 'Pour aller plus loin', 'Go further', 'Mehr erfahren')}
+    />
   );
 }
 

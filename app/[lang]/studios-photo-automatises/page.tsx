@@ -19,6 +19,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx } from '@/lib/locale-text';
+import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 
 const MachineSelector = dynamic(
   () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
@@ -444,6 +445,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         }),
         faqSchema(studioFaqs),
       ]} />
+
+      <MoneyPageResources slug="studios-photo-automatises" lang={lang} />
     </>
   );
 }

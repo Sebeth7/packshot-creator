@@ -6,13 +6,26 @@
 //   - SECTOR_RESOURCES_MAP  : hub /industrie/[slug] -> guides & articles      (P1.A / P5.B)
 //   - CONTENT_PRODUCT_MAP   : guide|article -> studio recommandé (tunnel)     (P1.B / P1.D / P5.A)
 //   - GUIDE_RELATED_MAP     : guide -> guides & articles « pour aller plus loin » (P1.C)
+//   - MONEY_PAGE_RESOURCES_MAP : money page -> guides & articles du même univers
 //
 // Tous les slugs sont vérifiés présents dans content/{guides,blog}/fr et
 // components/calculators/ROICalculator/lib/machines.ts.
 
 // P1.A / P5.B — Ressources affichées sur la page hub /industrie/[slug]
 export const SECTOR_RESOURCES_MAP: Record<string, { guides: string[]; articles: string[] }> = {
-  // P1.A — vertical bijoux/horlogerie
+  // 2026-09 — Couverture étendue aux 17 hubs. Crawl du 17/09 : Link Score du
+  // blog et des guides = 1, contre 84 à 89 pour les pages commerciales, avec
+  // 5,8 et 6,9 liens entrants uniques en moyenne. Les hubs irriguent désormais
+  // 2 à 4 contenus de leur propre univers.
+  'automobile-pieces-detachees': {
+    guides: [
+      'comment-creer-vues-multi-angles-automatique-objet',
+    ],
+    articles: [
+      'oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg',
+      'orbitvu-lautomatisation-au-service-de-la-photographie-3d-360deg',
+    ],
+  },
   'bijoux-joaillerie': {
     guides: [
       'quel-equipement-choisir-pour-photo-bijoux',
@@ -23,34 +36,145 @@ export const SECTOR_RESOURCES_MAP: Record<string, { guides: string[]; articles: 
       'photographier-une-bague-comme-un-professionnel-en-8-etapes',
     ],
   },
+  'chaussures': {
+    guides: [
+      'comment-faire-photos-multi-angles-chaussures',
+      'comment-faire-video-chaussures',
+      'realiser-animation-360-professionnelle-chaussures',
+    ],
+    articles: [
+      'la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator',
+    ],
+  },
+  'cosmetiques-beaute': {
+    guides: [
+      'comment-sublimer-texture-rouge-a-levres-photo-avec-ia',
+      'comment-mettre-en-valeur-textures-produits-packshot',
+    ],
+    articles: [
+      'ia-lumieres-virtuelles-revolution-packshot',
+    ],
+  },
+  'defense-securite': {
+    guides: [
+      'comment-creer-vues-multi-angles-automatique-objet',
+      'comment-obtenir-couleurs-fideles-photographie-produit',
+    ],
+    articles: [
+      'alphashot-xl-g2-photo-mesures-donnees-produit',
+    ],
+  },
+  'electronique-hightech': {
+    guides: [
+      'comment-obtenir-fond-blanc-parfait-sans-detourage-produit',
+      'comment-mettre-en-valeur-textures-produits-packshot',
+    ],
+    articles: [
+      'comment-avoir-meilleures-images-amazon',
+      'photographie-360-amazon',
+    ],
+  },
+  'food-alimentaire': {
+    guides: [
+      'comment-obtenir-couleurs-fideles-photographie-produit',
+      'visuels-collection-produits-homogenes',
+    ],
+    articles: [
+      'alphashot-xl-g2-photo-mesures-donnees-produit',
+    ],
+  },
   'horlogerie': {
     guides: [
       'comment-positionner-montre-avant-shooting-photo',
       'comment-nettoyer-montre-avant-shooting',
+      'comment-prendre-photo-nette-bijoux-sans-fond',
     ],
-    articles: [],
+    articles: [
+      'joailliers-nos-conseils-pour-reussir-vos-visuels-produits',
+    ],
   },
-  // P5.B — guides verticaux sous-maillés reconnectés à leur hub
-  'mode-textile': {
-    guides: [],
-    articles: ['photographie-de-produits-comment-presenter-vos-vetements'],
+  'industrie-manufacturiere': {
+    guides: [
+      'comment-creer-vues-multi-angles-automatique-objet',
+      'visuels-collection-produits-homogenes',
+    ],
+    articles: [
+      'alphashot-xl-g2-photo-mesures-donnees-produit',
+      'est-il-utile-dinternaliser-sa-production-de-photos-packshot',
+    ],
   },
-  'chaussures': {
-    guides: ['comment-faire-photos-multi-angles-chaussures'],
-    articles: [],
+  'jouets-puericulture': {
+    guides: [
+      'comment-mettre-en-valeur-textures-produits-packshot',
+      'visuels-collection-produits-homogenes',
+    ],
+    articles: [
+      'comment-avoir-meilleure-photo-produit-e-commerce',
+    ],
   },
   'lunetterie': {
-    guides: ['comment-photographier-lunettes-e-commerce'],
-    articles: [],
+    guides: [
+      'comment-photographier-lunettes-e-commerce',
+      'comment-faire-animation-360-objet-transparent',
+    ],
+    articles: [
+      'eclairage-photos-produits',
+    ],
   },
-  // 2026-07 — Liens entrants vers l'article machine Alphashot XL G2 (photo + mesures + données)
-  'food-alimentaire': {
-    guides: [],
-    articles: ['alphashot-xl-g2-photo-mesures-donnees-produit'],
+  'mobilier-decoration': {
+    guides: [
+      'comment-obtenir-couleurs-fideles-photographie-produit',
+    ],
+    articles: [
+      'meubles-decorations-comment-etre-plus-visibles-sur-le-web',
+      'eclairage-packshots-360-3d-produits',
+    ],
+  },
+  'mode-textile': {
+    guides: [
+      'visuels-collection-produits-homogenes',
+    ],
+    articles: [
+      'photographie-de-produits-comment-presenter-vos-vetements',
+      'promod-revolutionne-ses-shootings-photos-de-mode',
+      'comment-shotflow-permet-accelerer-production-contenus-visuels-mode',
+    ],
   },
   'pieces-techniques-industrie': {
-    guides: [],
-    articles: ['alphashot-xl-g2-photo-mesures-donnees-produit'],
+    guides: [
+      'comment-creer-vues-multi-angles-automatique-objet',
+      'comment-obtenir-couleurs-fideles-photographie-produit',
+    ],
+    articles: [
+      'alphashot-xl-g2-photo-mesures-donnees-produit',
+    ],
+  },
+  'sante-medical': {
+    guides: [
+      'comment-obtenir-fond-blanc-parfait-sans-detourage-produit',
+      'comment-obtenir-couleurs-fideles-photographie-produit',
+    ],
+    articles: [
+      'quel-studio-photo-type-pour-vos-shootings-produits-en-interne',
+    ],
+  },
+  'sport-outdoor': {
+    guides: [
+      'comment-faire-photos-multi-angles-chaussures',
+      'realiser-animation-360-professionnelle-chaussures',
+    ],
+    articles: [
+      'revolution-e-commerce-les-animations-3d-spheriques-de-produits-pour-le-sport',
+    ],
+  },
+  'vin-spiritueux': {
+    guides: [
+      'comment-faire-animation-360-objet-transparent',
+      'comment-obtenir-fond-blanc-parfait-sans-detourage-produit',
+    ],
+    articles: [
+      'eclairage-photos-produits',
+    ],
   },
 };
 
@@ -115,5 +239,67 @@ export const GUIDE_RELATED_MAP: Record<string, { guides: string[]; articles: str
   'comment-faire-focus-stacking-pour-photographier-bague': {
     guides: [],
     articles: ['photographier-une-bague-comme-un-professionnel-en-8-etapes'],
+  },
+};
+
+// 2026-09 — Ressources affichées sur les 6 money pages : les 4 landings
+// packshot-*, /studios-photo-automatises et /ia-photo-produit. Même principe
+// que SECTOR_RESOURCES_MAP — rendu côté template, aucune prose modifiée.
+export const MONEY_PAGE_RESOURCES_MAP: Record<string, { guides: string[]; articles: string[] }> = {
+  'packshot-amazon': {
+    guides: [
+      'comment-obtenir-fond-blanc-parfait-sans-detourage-produit',
+    ],
+    articles: [
+      'comment-avoir-meilleures-images-amazon',
+      'photographie-360-amazon',
+    ],
+  },
+  'packshot-e-commerce': {
+    guides: [
+      'visuels-collection-produits-homogenes',
+    ],
+    articles: [
+      'comment-avoir-meilleure-photo-produit-e-commerce',
+      'e-commerce-comment-mettre-en-place-votre-studio-photo',
+      'taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
+    ],
+  },
+  'packshot-mode': {
+    guides: [
+      'comment-faire-photos-multi-angles-chaussures',
+    ],
+    articles: [
+      'photographie-de-produits-comment-presenter-vos-vetements',
+      'promod-revolutionne-ses-shootings-photos-de-mode',
+    ],
+  },
+  'packshot-industriel': {
+    guides: [
+      'comment-creer-vues-multi-angles-automatique-objet',
+    ],
+    articles: [
+      'alphashot-xl-g2-photo-mesures-donnees-produit',
+      'est-il-utile-dinternaliser-sa-production-de-photos-packshot',
+    ],
+  },
+  'studios-photo-automatises': {
+    guides: [],
+    articles: [
+      'quel-retour-sur-investissement-avec-un-studio-photo-en-interne',
+      'quel-studio-photo-type-pour-vos-shootings-produits-en-interne',
+      'votre-studio-photo-interne-3-bonnes-pratiques-pour-lorganiser',
+      'acheter-studio-photo-packshot-occasion',
+    ],
+  },
+  'ia-photo-produit': {
+    guides: [
+      'comment-creer-animation-360-avec-assistant-ia-orbitvu',
+    ],
+    articles: [
+      'generer-images-produit-ia',
+      'ia-lumieres-virtuelles-revolution-packshot',
+      'comment-ia-revolutionne-production-visuelle',
+    ],
   },
 };
