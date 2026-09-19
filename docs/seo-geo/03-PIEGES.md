@@ -7,7 +7,7 @@ fait perdre des jours.
 **Lis ce fichier avant ton premier chantier. Relis la section concernée avant
 d'attaquer un nouveau domaine.**
 
-32 pièges au 16/09/2026, en sept familles : build et déploiement (A), ce qui
+33 pièges au 17/09/2026, en sept familles : build et déploiement (A), ce qui
 ment à la vérification (B), routage et internationalisation (C), indexation (D),
 Worker et infrastructure (E), contenu et données (F), collaboration (G).
 
@@ -48,6 +48,14 @@ d'échec.
 
 Pas de confirmation, pas d'étape intermédiaire. ~3 minutes.
 **Geste** : on ne pousse jamais sur `main`. On merge une PR.
+
+### A6 — Un `not-found.tsx` de segment force le rendu dynamique
+
+Un fichier `not-found.tsx` placé au niveau d'un segment `[slug]` fait basculer tout le
+gabarit en rendu dynamique, même quand `generateStaticParams` couvre tous les cas.
+Symptômes : `x-vercel-cache: MISS` systématique, `Cache-Control: no-store`, absence du
+chemin dans les fonctions ISR. Le comportement 404 est déjà garanti par
+`dynamicParams = false` dans `app/[lang]/layout.tsx` : ces fichiers sont inutiles.
 
 ---
 

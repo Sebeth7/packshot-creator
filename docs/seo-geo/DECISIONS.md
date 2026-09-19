@@ -25,6 +25,34 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D20 · 2026-09-17 · Rééquilibrage vers /de-ch à instruire
+**Statut** : proposée, en attente de validation de Laurent
+Le marché suisse pèse 10 700 recherches mensuelles sur le périmètre pertinent, contre environ
+190 000 en France, mais avec un CPC médian de 3,36 $ en allemand et des pointes à 35 $, et des
+verticales identifiées (horlogerie, bijouterie). L'effort marginal sur /de-ch peut être plus
+rentable qu'en France ; arbitrage à rendre avant le prochain lot de contenu.
+
+---
+
+## D19 · 2026-09-17 · L'IA est un objectif de citation, pas de position
+**Statut** : proposée, en attente de validation de Laurent
+« photo produit ia » et « packshot ia » cumulent 70 recherches par mois en France ; aucune
+requête de cette famille n'apparaît dans les 905 requêtes GSC. En revanche un AI Overview
+s'affiche sur 4 des 15 requêtes mesurées. Les contenus IA sont donc pilotés par un indicateur
+de citation en réponse générative, pas par une position ni par un volume de clics.
+
+---
+
+## D18 · 2026-09-17 · Cible SEO = intention prestataire, angle internalisation
+**Statut** : proposée, en attente de validation de Laurent
+La demande d'achat d'équipement mesurée en France est de 1 620 recherches par mois, toutes
+formulations confondues, à 0,53 $ de CPC. L'intention prestataire pèse 13 760 recherches à
+1,93 $, et l'univers « packshot » 4 810 recherches avec des CPC de 5 à 11,63 $. Le SEO vise
+donc les entreprises qui font faire leurs visuels, avec un angle d'internalisation, et non
+des requêtes d'achat de machine qui n'existent pas en volume.
+
+---
+
 ## D17 · 2026-09-17 · Priorité aux chantiers FR/CH dans l'ordre d'attaque
 
 **Décidé par** : Laurent

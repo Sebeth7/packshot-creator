@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-17 · Maillage contextuel des hubs et money pages vers le blog et les guides · Claude de Laurent
 
-**Chantier** : maillage interne | **PR** : #<n>
+**Chantier** : maillage interne | **PR** : #18 | **Circuit** : (a) — les ancres reprennent les titres existants des contenus, lus dans leur JSON ; aucune prose nouvelle
 
 **Quoi** — Extension du dispositif de maillage existant : `SECTOR_RESOURCES_MAP` passe de 8 à **17 hubs** secteurs, et une table `MONEY_PAGE_RESOURCES_MAP` couvre **6 money pages** (les 4 landings `packshot-*`, `/studios-photo-automatises`, `/ia-photo-produit`). Le rendu est extrait dans un composant partagé `ResourcesSection`. Aucune prose, aucune page, aucune URL créée.
 
@@ -55,6 +55,108 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Les fiches machines (Link Score 84, déjà irriguées). Les hubs `/en/industrie/*`, tous `noindex` : le bloc s'y affiche et pointe vers des cibles indexables, mais l'apport d'autorité y est nul. La couverture de-ch reste très mince (4 liens au total) faute de contenus traduits. L'effet sur le temps de rendu des 23 pages.
 
 **Suite** — Recrawl Screaming Frog à J+7 pour mesurer le Link Score du blog et des guides. Étendre la couverture de-ch quand des traductions arriveront.
+## 2026-09-17 · URL `/en/blog/` en 404 dans GSC — cartographie du mécanisme d'exposition · Claude de Laurent
+
+**Chantier** : couverture / budget d'exploration | **PR** : #17
+
+**Quoi** — Recherche de la source d'exposition des 11 URL `/en/blog/…` listées « Introuvable (404) » par GSC au 17/09, plus `/fr/solutions`, `/en/solutions/niveau-1-fondation-presentiel` et `/de-ch/industrie/mode-textile`. **Aucune des 14 n'est exposée par le code actuel.** Une seule correction appliquée, hors de ce lot de 14 : un lien de la page d'accueil vers un slug machine inexistant.
+
+**Pourquoi** — Consigne du lot : corriger la source de l'exposition, pas le symptôme. Il fallait d'abord établir s'il y avait une source dans le code.
+
+**Fichiers** — `app/[lang]/page.tsx` (ligne 500)
+
+**Effet attendu** — Un lien de moins, depuis les trois pages d'accueil, vers une URL qui n'existe pas et que seul le Worker rattrape en 301. Lisible au prochain crawl.
+
+**Vérifié** — Build local puis `next start` sur le port 3018, crawl des 322 URL du sitemap plus 12 pages de listing, collecte de tous les `<a href>` et de tous les `<link rel="alternate">`. Pour chacune des 14 URL : **absente du sitemap** (322 `<loc>`, aucune correspondance), **aucun lien interne**, **aucun hreflang**, absente de `llms.txt`. `content/blog/alternates.json` : 4 des 11 slugs y figurent, mais toujours du **côté `fr` ou `de-ch`** de la correspondance, jamais du côté `en` — ils ne peuvent donc pas produire d'URL `/en/blog/<slug>`. Pas de pagination sur `/en/blog`.
+
+Comportement réel du Worker du dépôt, simulé en important `cloudflare-worker/src/index.js` et en interceptant le proxy d'origine : 5 URL en **410** (`GONE_PATHS`), 5 en **301** vers leur équivalent anglais réel (`LEGACY_REDIRECTS`), 4 passent à l'origine Next.js dont 3 y répondent 404 et 1 en 307. Onze des quatorze sont donc déjà traitées **dans le dépôt**.
+
+Le crawl a par ailleurs relevé 7 liens internes vers des non-200 : 6 sont rattrapés en 301 par le Worker, 1 seul vient du code (`app/[lang]/page.tsx:500`, slug `alphatable-v2` au lieu d'`alphatable`, présent dans `machines.ts` et au sitemap). C'est la seule correction appliquée.
+
+**Supposé** — [Inférence] Que GSC range un 410 sous « Introuvable (404) ». [Inférence] Que l'écart entre le comportement du Worker du dépôt (410 ou 301 sur 11 des 14) et le symptôme rapporté (404) s'explique par une divergence entre le Worker déployé et le dépôt — même constat que dans le lot des redirections legacy, et exactement ce que R5 annonce comme possible.
+
+**Non regardé** — L'historique : anciens sitemaps, liens externes, soumissions manuelles. Ce sont des sources d'exposition plausibles qu'aucune lecture du dépôt ne peut confirmer. Les 6 liens internes cassés qui vivent dans `content/**` (`introText`, `content`) : c'est la prose de Sébastien, et le Worker les rattrape déjà. La date d'entrée des 14 URL dans GSC. Le 307 de `/de-ch/industrie/mode-textile` vers `/de-ch/branchen/mode-textile`, qui aboutit lui-même à un 404.
+
+**Suite** — Resynchroniser le Worker déployé avec le dépôt, puis recontrôler ces 14 URL : la majorité devrait sortir d'elle-même. Trois points restent ouverts et sont décrits dans la PR : `/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie`, `/fr/solutions` et `/en/solutions/niveau-1-fondation-presentiel`, qui tombent en 404 sans règle Worker.
+## 2026-09-17 · Prérendu des gabarits `[slug]` — retrait des `not-found.tsx` de segment · Claude de Laurent
+
+**Chantier** : rendu / budget d'exploration | **PR** : #15
+
+**Quoi** — Suppression des quatre `not-found.tsx` placés au niveau du segment `[slug]` de `blog`, `industrie`, `studio-photo` et `academy`. Chacun ne contenait qu'un ré-export d'une ligne du `not-found` parent. Aucun `generateStaticParams`, `dynamic`, `revalidate` ou `dynamicParams` modifié.
+
+**Pourquoi** — Mesure du 17/09 en production : ces quatre gabarits répondent `Cache-Control: private, no-cache, no-store`, `x-vercel-cache: MISS` aux deux passages, exécution `iad1`, alors que leurs paramètres sont connus à la compilation. 87 000 requêtes CDN en MISS sur 30 jours.
+
+**Fichiers** — `app/[lang]/blog/[slug]/not-found.tsx`, `app/[lang]/industrie/[slug]/not-found.tsx`, `app/[lang]/studio-photo/[slug]/not-found.tsx`, `app/[lang]/academy/[slug]/not-found.tsx` (supprimés)
+
+**Effet attendu** — Prérendu et mise en cache CDN de `blog/[slug]`, `industrie/[slug]` et `studio-photo/[slug]` : baisse des MISS et du temps de réponse vu par Googlebot. Lisible dans les statistiques d'exploration GSC et le cache Vercel à J+7 à J+14.
+
+**Vérifié** — `npx next build` vert avant et après. Tableau des routes dans la sortie du build :
+
+| Route | Avant | Après |
+|---|---|---|
+| `/[lang]/blog/[slug]` | `ƒ` Dynamic | `●` SSG |
+| `/[lang]/industrie/[slug]` | `ƒ` Dynamic | `●` SSG |
+| `/[lang]/studio-photo/[slug]` | `ƒ` Dynamic | `●` SSG |
+| `/[lang]/academy/[slug]` | `ƒ` Dynamic | `ƒ` Dynamic — inchangé |
+| `/[lang]/guide/[slug]` (témoin, n'avait pas de `not-found.tsx`) | `●` SSG | `●` SSG |
+
+Serveur `next start` local (port 3017, PID écrit dans un fichier, arrêté par ce PID) :
+`/fr/industrie/vin-spiritueux` 200 · `/fr/industrie/slug-inexistant-xyz` **404** ·
+`/fr/blog/generer-images-produit-ia` 200 · `/fr/studio-photo/alphashot-360` 200 ·
+`/fr/blog/slug-inexistant-xyz` 404 · `/fr/studio-photo/slug-inexistant-xyz` 404 ·
+`/fr/academy/elearning-autonome-niveau-1` 200 · `/fr/academy/slug-inexistant-xyz` 404.
+Le corps du 404 rend bien `app/[lang]/not-found.tsx` (`<h1>Page introuvable</h1>`).
+`node scripts/seo/smoke.mjs http://localhost:3017` : 17 pages, 3 ressources, tout vert, 322 URL au sitemap.
+`node scripts/seo/verifier-consequences.mjs` : effet local, rien qui déborde.
+
+**Supposé** — Que le comportement de cache observé en local (`next start`) se reproduira sur Vercel. Seul le classement `●` du build est directement vérifiable ici ; les en-têtes `x-vercel-cache` ne se contrôlent qu'en Preview ou en production.
+
+**Non regardé** — `academy/[slug]` reste dynamique : ce gabarit n'a pas de `generateStaticParams` sur sa feuille, et la consigne du lot interdit d'en ajouter un. Le `Cache-Control` réel en Preview. Le rendu `de-ch` des trois gabarits passés en SSG. L'effet sur le temps de build.
+
+**Suite** — Contrôler `x-vercel-cache` sur le Preview de la branche, puis sur `sysnext.vercel.app` après fusion. Ouvrir séparément la question du `generateStaticParams` d'`academy/[slug]`.
+## 2026-09-17 — Diagnostic de la baisse de trafic : requalifications et socle de mots clés
+
+**Quoi** — Mesures Cloudflare GraphQL, relevés GSC, Vercel et Cloudflare, crawl Screaming Frog,
+exports de couverture, SERP DataForSEO et référentiel de mots clés France et Suisse.
+
+**Pourquoi** — Le diagnostic reposait sur des constats non vérifiés : 504 subis, blocage de
+Googlebot et des crawlers IA, pénalité de liens.
+
+**Fichiers** — aucun fichier de code modifié dans cette PR.
+
+**Effet attendu** — un diagnostic reposant sur des mesures, et un plan hiérarchisé.
+
+**Vérifié**
+- 504 : 213 490 réponses sur 30 jours, toutes avec la source de requête `earlyHintsCache`.
+  0 réponse 504 pour les visiteurs et robots réels, chacun des 30 jours. GSC ne montre
+  aucune ligne 5xx sur 90 jours.
+- Googlebot AS15169 : 2 réponses 403 sur 17 210 requêtes.
+- Les 34 620 réponses 403 « amazonbot » portent à 94 % l'user-agent Amzn-SearchBot, dont
+  aucune IP ne figure dans la liste publiée par Amazon ; trafic concentré du 27 au 29/08.
+- Amazonbot authentique (AS14618) : 0 réponse 403, action `skip`.
+- PerplexityBot authentique : 9 IP sur 9 dans la liste publiée, 383 challenges managés
+  sur 519 requêtes.
+- Browser Integrity Check : 13 réponses 403 sur 30 jours.
+- Vercel : aucun blocage, aucun 5xx, plan Pro sans limite approchée ; 4 gabarits `[slug]`
+  rendus dynamiquement, 87 000 requêtes en MISS sur 30 jours, exécution `iad1`.
+- Crawl du 17/09 : liens d'en-tête vers des non-200 546 → 0 ; pages 404/410 39 → 1 ;
+  Link Score blog et guides = 1 contre 84 à 89 pour les pages commerciales.
+- Trois landings `packshot-*` ont une canonique Google pointant vers l'URL racine legacy.
+- Référentiel de mots clés France : 554 mots clés pertinents ; intention d'achat
+  d'équipement = 1 620 recherches/mois ; univers packshot = 4 810 ; marque = 80.
+- Suisse : 2 630 recherches/mois en français, 8 110 en allemand, CPC médian 2,20 et 3,36 $,
+  pointes à 20 et 35 $.
+
+**Supposé**
+- Le trafic Amzn-SearchBot n'est pas authentique : la liste d'IP consultée date du 08/09 et
+  le trafic observé du 27/08.
+- L'origine des 403 sans action Cloudflare (54 728 sur 30 jours) n'est pas établie.
+
+**Non regardé**
+- Règles WAF actuelles et règle d'accès IP du 20/06.
+- Demandes de devis Pipedrive sur la période.
+
+**Suite** — PR de prérendu, de redirections legacy, de maillage, puis mesure à J+14.
 
 ---
 
