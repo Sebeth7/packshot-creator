@@ -61,11 +61,10 @@ C'est aussi le test que Laurent attend pour mesurer : Link Score `/fr` contre
 
 Les 403 des crawlers IA portent une action de sécurité Cloudflare dans 99,9 % des cas (ensemble managé : challenge ; règle personnalisée : blocage). Le constat « environ 20 % des 403 laissent un événement » est retiré : il tenait à la rétention de 3 jours des événements de sécurité.
 
-**À qualifier** :
-1. PerplexityBot depuis AS14618 : comparer les IP à la liste publiée par Perplexity avant toute règle.
-2. Amazonbot : 0 réponse 403 sur 2 626 requêtes au libellé exact depuis AS14618, mais 34 620 réponses 403 sur l'ensemble des variantes du libellé, dont 21 656 sans action Cloudflare et sans règle correspondante dans le Worker. ASN non ventilé : mesure à faire. D8 (04/09) prévoit son blocage tant que durent les 504 ; voir C3.
-
-Réserve : l'ASN est un indice d'authenticité, pas une preuve ; les plages d'IP publiées n'ont pas été comparées.
+**Statut** :
+Qualifié le 17/09. Seul blocage réel d'un robot légitime : PerplexityBot authentique,
+383 challenges managés sur 519 requêtes. Exception WAF à instruire (GO Laurent).
+Amazonbot authentique n'est pas bloqué ; D8 repose sur une prémisse invalidée.
 
 ### C3 · 504 — requalifiés en artefact de mesure (17/09)
 
@@ -136,6 +135,8 @@ semaines, puis généralisation.
 Réserve à connaître : le lot pilote `/fr` est quasi inexistant — 2 URL legacy
 seulement. Le Worker route déjà 69 % des backlinks de valeur vers `/fr`. Le
 vrai test est le correctif du sélecteur de langue (C1).
+
+Lot pilote proposé : les 3 landings packshot-* et les 13 anciens slugs FR (PR en cours).
 
 ### C7 · Créer la page du vertical industrie / aéronautique / automobile
 

@@ -33,10 +33,11 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Qualifier C2 : PerplexityBot (IP publiées) et Amazonbot (ASN) | Mesure de Laurent | 17/09 | Mesure ASN du 17/09 : 403 des crawlers IA concentrés sur des user-agents usurpés (Google Cloud) ; depuis les réseaux des éditeurs 0 à 2 %, sauf PerplexityBot AS14618 (383 sur 519). Amazonbot : 34 620 réponses 403 sur les variantes du libellé, ASN non ventilé. Aucune règle WAF justifiée en l'état — voir `JOURNAL.md` 17/09 |
-| Lancer le contrôle post-déploiement L.3 | Claude de Sébastien | 16/09 | Les correctifs du sélecteur sont en production. Recrawl Screaming Frog (liens d'en-tête non-200 → 0, Link Score `/fr` > `/en`) + inspection des 17 URL de l'annexe L.1 |
+| Qualifier C2 : PerplexityBot (IP publiées) et Amazonbot (ASN) | Mesure de Laurent | 17/09 | Mesure ASN du 17/09 : 403 des crawlers IA concentrés sur des user-agents usurpés (Google Cloud) ; depuis les réseaux des éditeurs 0 à 2 %, sauf PerplexityBot AS14618 (383 sur 519). Amazonbot authentique passe (0 × 403, action skip) ; les 403 « amazonbot » visent Amzn-SearchBot, trafic non authentifié (aucune IP dans la liste Amazon). Aucune règle WAF justifiée en l'état — voir `JOURNAL.md` 17/09 |
 | Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6 |
 | Planificateur n8n : cause de l'arrêt du 15/09 | Constat du 17/09 | 17/09 | Exécutions planifiées reprises le 17/09 à 07:00 UTC ; `cf_traffic_daily` complète jusqu'au 16/09 ; données GSC disponibles jusqu'au 14/09 après la reprise du 17/09 ; cause de l'arrêt non établie |
+
+- L.3 soldé au crawl du 17/09 : liens d'en-tête vers des non-200 546 → 0, pages 404/410 39 → 1.
 
 ---
 
@@ -47,6 +48,13 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
 | Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
 | 504 requalifiés (C3) : confirmation côté Google | 17/09 (mesure) | Dès lecture des statistiques d'exploration GSC | GSC, Cloudflare (Early Hints) |
+
+---
+
+## Prochaines actions
+
+- Déployer le Worker après fusion de la PR de redirections legacy (GO Laurent requis).
+- Mesurer à J+14 : part des 404 et 301 dans les statistiques d'exploration, cache des gabarits.
 
 ---
 
