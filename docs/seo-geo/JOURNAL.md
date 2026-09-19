@@ -34,6 +34,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-17 — Diagnostic de la baisse de trafic : requalifications et socle de mots clés
+
+**Quoi** — Mesures Cloudflare GraphQL, relevés GSC, Vercel et Cloudflare, crawl Screaming Frog,
+exports de couverture, SERP DataForSEO et référentiel de mots clés France et Suisse.
+
+**Pourquoi** — Le diagnostic reposait sur des constats non vérifiés : 504 subis, blocage de
+Googlebot et des crawlers IA, pénalité de liens.
+
+**Fichiers** — aucun fichier de code modifié dans cette PR.
+
+**Effet attendu** — un diagnostic reposant sur des mesures, et un plan hiérarchisé.
+
+**Vérifié**
+- 504 : 213 490 réponses sur 30 jours, toutes avec la source de requête `earlyHintsCache`.
+  0 réponse 504 pour les visiteurs et robots réels, chacun des 30 jours. GSC ne montre
+  aucune ligne 5xx sur 90 jours.
+- Googlebot AS15169 : 2 réponses 403 sur 17 210 requêtes.
+- Les 34 620 réponses 403 « amazonbot » portent à 94 % l'user-agent Amzn-SearchBot, dont
+  aucune IP ne figure dans la liste publiée par Amazon ; trafic concentré du 27 au 29/08.
+- Amazonbot authentique (AS14618) : 0 réponse 403, action `skip`.
+- PerplexityBot authentique : 9 IP sur 9 dans la liste publiée, 383 challenges managés
+  sur 519 requêtes.
+- Browser Integrity Check : 13 réponses 403 sur 30 jours.
+- Vercel : aucun blocage, aucun 5xx, plan Pro sans limite approchée ; 4 gabarits `[slug]`
+  rendus dynamiquement, 87 000 requêtes en MISS sur 30 jours, exécution `iad1`.
+- Crawl du 17/09 : liens d'en-tête vers des non-200 546 → 0 ; pages 404/410 39 → 1 ;
+  Link Score blog et guides = 1 contre 84 à 89 pour les pages commerciales.
+- Trois landings `packshot-*` ont une canonique Google pointant vers l'URL racine legacy.
+- Référentiel de mots clés France : 554 mots clés pertinents ; intention d'achat
+  d'équipement = 1 620 recherches/mois ; univers packshot = 4 810 ; marque = 80.
+- Suisse : 2 630 recherches/mois en français, 8 110 en allemand, CPC médian 2,20 et 3,36 $,
+  pointes à 20 et 35 $.
+
+**Supposé**
+- Le trafic Amzn-SearchBot n'est pas authentique : la liste d'IP consultée date du 08/09 et
+  le trafic observé du 27/08.
+- L'origine des 403 sans action Cloudflare (54 728 sur 30 jours) n'est pas établie.
+
+**Non regardé**
+- Règles WAF actuelles et règle d'accès IP du 20/06.
+- Demandes de devis Pipedrive sur la période.
+
+**Suite** — PR de prérendu, de redirections legacy, de maillage, puis mesure à J+14.
+
+---
+
 ## 2026-09-17 · C2, C3 — Requalification par la mesure 403 × ASN et 504 × client · Claude de Laurent
 
 **Chantier** : C2, C3 | **PR** : #14

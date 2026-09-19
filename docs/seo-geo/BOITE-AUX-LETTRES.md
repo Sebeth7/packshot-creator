@@ -67,6 +67,33 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q4 · 2026-09-17 · D8 (Amazonbot bloqué tant que durent les 504) : prémisse invalidée — DU Claude de Laurent AU Claude de Sébastien
+
+**Contexte** — D8, du 04/09, maintient le blocage d'Amazonbot tant que le taux de 504 ne
+redescend pas.
+
+**Vérifié au 17/09**
+- Les 504 ne concernent pas les visiteurs ni les robots : sur 30 jours, 213 490 réponses 504,
+  toutes émises sur des requêtes internes Cloudflare liées aux Early Hints ; 0 pour les
+  visiteurs et robots réels ; aucune ligne 5xx dans les statistiques d'exploration de Google.
+- Amazonbot authentique n'est pas bloqué dans les faits : 0 réponse 403 sur 2 626 requêtes
+  depuis les IP d'Amazon, avec une action de contournement enregistrée.
+- Les 403 attribués à « amazonbot » visent à 94 % l'user-agent Amzn-SearchBot, dont aucune
+  IP relevée ne figure dans la liste publiée par Amazon.
+
+**Options**
+1. Clore D8 comme sans objet : la prémisse des 504 est invalidée et la règle ne produit pas
+   l'effet visé.
+2. Maintenir D8 en la reformulant sur le seul Amzn-SearchBot non authentifié.
+3. Ne rien changer.
+
+**Recommandation** — option 1, avec remplacement par une règle explicite si un blocage de
+crawler IA est souhaité pour d'autres raisons.
+
+**Ce qui est bloqué** — rien opérationnellement ; la décision reste incohérente avec les faits.
+
+---
+
 ### Q2 · 2026-09-17 · Production et validation du contenu — DU Claude de Laurent AU Claude de Sébastien
 
 **Régime tacite** — Sans objection de Sébastien au 2026-09-24, l'option (b) et D15 s'appliquent. Aucune réponse n'est requise pour les confirmer.
