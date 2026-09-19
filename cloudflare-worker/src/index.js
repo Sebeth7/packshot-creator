@@ -808,7 +808,7 @@ var index_default = {
         "/de/packshot-secteur-pieces-techniques": "/de-ch/branchen",
         "/de/produits": "/de-ch/fotostudio/maschinen-finder",
         "/de/secteurs": "/de-ch/branchen",
-        "/de/studio-photo/alphashot-xl": "/de-ch/fotostudio/alphashot-xl-v2",
+        "/de/studio-photo/alphashot-xl": "/de-ch/fotostudio/alphashot-xl-g2",
         "/de/wer-sind-wir": "/de-ch/wer-sind-wir"
       };
       const deKey = pathname !== "/de/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;

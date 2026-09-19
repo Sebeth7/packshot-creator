@@ -125,3 +125,21 @@ describe('LEGACY_REDIRECTS — anciens slugs FR, préfixés et non préfixés', 
     });
   }
 });
+
+/**
+ * DE_CH_MAP est une table distincte, consultee avant LEGACY_REDIRECTS pour tout
+ * chemin commencant par /de. Une seule entree y est corrigee par ce lot.
+ */
+describe('DE_CH_MAP — cible de l ancienne fiche Alphashot XL', () => {
+  it('/de/studio-photo/alphashot-xl redirige vers /de-ch/fotostudio/alphashot-xl-g2', () => {
+    const source = readFileSync(SOURCE, 'utf-8');
+    expect(source).toContain(
+      '"/de/studio-photo/alphashot-xl": "/de-ch/fotostudio/alphashot-xl-g2"',
+    );
+  });
+
+  it('ne cible plus alphashot-xl-v2, machine « delisted » hors sitemap et hors pied de page', () => {
+    const source = readFileSync(SOURCE, 'utf-8');
+    expect(source).not.toContain('"/de-ch/fotostudio/alphashot-xl-v2"');
+  });
+});
