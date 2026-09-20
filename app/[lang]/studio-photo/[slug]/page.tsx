@@ -438,7 +438,7 @@ const seoOverrides: Record<string, { fr: { title: string; description: string };
   'alphashot-360': {
     fr: {
       title: 'Photo 360 Produit | Alphashot 360 — Studio Automatisé Orbitvu',
-      description: 'Creez des photos 360 produit automatisees avec l\'Alphashot 360 Orbitvu. Rotation interactive, fond blanc, detourage automatique. Demandez une demo gratuite.',
+      description: 'Créez des photos 360 produit automatisées avec l\'Alphashot 360 Orbitvu. Rotation interactive, fond blanc, détourage automatique. Demandez une démo gratuite.',
     },
     en: {
       title: '360 Product Photography | Alphashot 360 — Automated Orbitvu Studio',
