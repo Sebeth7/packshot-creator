@@ -118,6 +118,17 @@ export function productSchema(product: {
   description: string;
   image: string;
   url: string;
+  /**
+   * Identifiant produit du vendeur, exigé par Google Merchant Listings
+   * (« Fiches marchand » non valides, relevé du 19/09/2026). Valeur = `id` de
+   * la machine dans components/calculators/ROICalculator/lib/machines.ts :
+   * stable, unique, et déjà le segment d'URL de la fiche.
+   *
+   * Pas de `mpn` ni de `gtin` : aucune référence constructeur Orbitvu n'existe
+   * dans `machines.ts` (le type `Machine` n'a pas de champ pour cela). On ne
+   * l'invente pas — un identifiant faux vaut moins qu'un identifiant absent.
+   */
+  sku: string;
   brand?: string;
   category?: string;
   /**
@@ -139,6 +150,7 @@ export function productSchema(product: {
     description: product.description,
     image: product.image,
     url: product.url,
+    sku: product.sku,
     brand: {
       '@type': 'Brand',
       name: product.brand || 'Orbitvu',

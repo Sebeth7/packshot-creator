@@ -7,15 +7,26 @@
  *
  * La grille des prix d'achat (source) vit dans
  * components/calculators/ROICalculator/lib/machines.ts (champ `prix`) et est
- * maintenue par Seb — comme PRICE_VALID_UNTIL, exigé par Google dans le
- * balisage Offer et à repousser avant expiration.
+ * maintenue par Seb. PRICE_VALID_UNTIL, exigé par Google dans le balisage
+ * Offer, n'est plus une date figée : il glisse de lui-même à chaque build.
  */
 
 export const LEASING_RATIO = 1.3;
 export const LEASING_MONTHS = 60;
 /** Moyenne EUR→CHF constatée juillet 2026 (0,9155 le 01/07 → 0,929 le 23/07). */
 export const EUR_CHF_RATE = 0.93;
-export const PRICE_VALID_UNTIL = '2026-12-31';
+/**
+ * Fin de validité du prix affiché, exigée par Google dans le balisage `Offer` :
+ * 31 décembre de l'année suivant celle du build.
+ *
+ * Calculée au chargement du module — donc au build pour les pages prérendues —
+ * et non écrite en dur : une date figée expire en silence et les fiches
+ * passent en avertissement dans Search Console sans que rien ne le signale.
+ * Un build du 20/09/2026 produit `2027-12-31`.
+ *
+ * Aucun prix, aucune devise, aucune mensualité n'est touché par ce calcul.
+ */
+export const PRICE_VALID_UNTIL = `${new Date().getFullYear() + 1}-12-31`;
 
 export type PriceCurrency = 'EUR' | 'CHF';
 
