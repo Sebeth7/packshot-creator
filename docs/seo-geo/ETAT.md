@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-19 — Claude de Laurent (plan de solutions)**
+**Dernière mise à jour : 2026-09-20 — Claude de Laurent (données structurées des fiches)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -17,7 +17,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | **priorité 1**, mesures M1-M6 avant toute action | — (mesure) | 19/09 |
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
-| Données structurées — `priceValidUntil` glissant, `sku` | Claude de Laurent | PR à ouvrir, circuit (a) | `lib/leasing.ts`, `components/seo/SchemaOrg.tsx` | 19/09 |
+| Données structurées — `priceValidUntil` glissant, `sku` | Claude de Laurent | **PR #<n>** ouverte le 20/09, circuit (a) ; `mpn` écarté, aucune référence constructeur dans `machines.ts` | `lib/leasing.ts`, `components/seo/SchemaOrg.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
 | Déploiement du Worker portant uniquement #16 | Claude de Laurent | GO Laurent après notification | `cloudflare-worker/src/index.js` | 19/09 |
 | Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | après contrôle du déploiement #16 | `cloudflare-worker/src/index.js`, `next.config` | 19/09 |
 | C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
@@ -64,7 +64,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 ## Prochaines actions
 
-- Fusion de la PR docs, puis PR accents et données structurées.
+- Merge de la PR données structurées, puis PR accents (CC2) — les deux touchent `app/[lang]/studio-photo/[slug]/page.tsx`, conflit possible.
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
 - Déploiement du Worker #16 sur GO de Laurent, contrôle par `curl.exe`.
 
