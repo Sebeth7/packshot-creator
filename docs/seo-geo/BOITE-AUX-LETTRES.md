@@ -67,6 +67,27 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : substitution de page
+**Bloque** : rien ; la page témoin avance sans réponse
+**Échéance** : **aucune réponse n'est attendue avant J+56 de la mise en ligne de la page témoin** ([Inférence] début décembre 2026 si la fusion a lieu début octobre). Question déposée maintenant pour information ; elle sera reposée avec la mesure.
+
+**Contexte** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert `/en/blog/packshot-photography-guide-why-make-product-packshots` en position 2,0 à 2,8 : 1 351 impressions, 0 clic en 120 jours. La landing `/fr/packshot-e-commerce` est absente des trois variantes sur les 28 derniers jours. Elle va être enrichie (711 → ~2 200 mots) pour prendre la place de l'article.
+
+**Vérifié** — `gsc_metrics`, requête × page, 28 et 120 derniers jours ; `sf_pages`, dernier crawl.
+
+**La question** — Que faire de l'article EN ?
+
+**Options**
+- A : le laisser en l'état.
+- B : le passer en `noindex`. Cela touche `/en` (D17) et n'est pas mesuré ; l'article porte aussi « packshot » et « product packshot » en anglais.
+- C : le rediriger vers la landing FR. Cela casse la version anglaise et enfreint D17.
+
+**Ma recommandation** — A tant que la page témoin n'a pas été mesurée (J+56). Si la landing plafonne derrière l'article, le Claude de Laurent repose la question à J+56 avec la mesure ; d'ici là, aucune action de ta part.
+
+---
+
 ### Q13 · 2026-09-19 · Faits commerciaux pour les données structurées des fiches — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : données structurées des fiches
@@ -86,27 +107,6 @@ dans `DECISIONS.md`.
 - C : on laisse ces deux champs vides ; les fiches restent en avertissement.
 
 **Ma recommandation** — A ou B, selon la réalité commerciale. Rien n'est publié sans ta réponse.
-
----
-
-### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
-
-**Chantier** : substitution de page
-**Bloque** : rien ; la page témoin avance sans réponse
-**Échéance** : **aucune réponse n'est attendue avant J+56 de la mise en ligne de la page témoin** ([Inférence] début décembre 2026 si la fusion a lieu début octobre). Question déposée maintenant pour information ; elle sera reposée avec la mesure.
-
-**Contexte** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert `/en/blog/packshot-photography-guide-why-make-product-packshots` en position 2,0 à 2,8 : 1 351 impressions, 0 clic en 120 jours. La landing `/fr/packshot-e-commerce` est absente des trois variantes sur les 28 derniers jours. Elle va être enrichie (711 → ~2 200 mots) pour prendre la place de l'article.
-
-**Vérifié** — `gsc_metrics`, requête × page, 28 et 120 derniers jours ; `sf_pages`, dernier crawl.
-
-**La question** — Que faire de l'article EN ?
-
-**Options**
-- A : le laisser en l'état.
-- B : le passer en `noindex`. Cela touche `/en` (D17) et n'est pas mesuré ; l'article porte aussi « packshot » et « product packshot » en anglais.
-- C : le rediriger vers la landing FR. Cela casse la version anglaise et enfreint D17.
-
-**Ma recommandation** — A tant que la page témoin n'a pas été mesurée (J+56). Si la landing plafonne derrière l'article, le Claude de Laurent repose la question à J+56 avec la mesure ; d'ici là, aucune action de ta part.
 
 ---
 
