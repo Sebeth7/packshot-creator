@@ -1333,6 +1333,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           description: `${machine.nom}: ${machine.useCases.join(', ')}`,
           image: `https://www.packshot-creator.com${machineImage}`,
           url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
+          // Identifiant produit du vendeur : l'`id` de la machine, déjà le slug
+          // de l'URL. Même valeur sur les trois locales, comme l'attend Google.
+          sku: machine.id,
           brand: 'Orbitvu',
           category: tx(lang, 'Studio Photo Automatisé', 'Automated Photo Studio', 'Automatisiertes Fotostudio'),
           ...(monthly !== null
