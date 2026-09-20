@@ -13,6 +13,27 @@ const CONFIG: PackshotLandingConfig = {
   benefitIcons: [Package, Eraser, RotateCw, TrendingDown, Calculator],
   machineIds: ['alphashot-360', 'alphashot-xl-g2', 'alphashot-micro-v2'],
   faqCount: 3,
+  // Contenu approfondi : FR seulement (D17). Les cles vivent dans
+  // messages/fr.json, sous packshotEcommerce.longform.
+  longform: {
+    locales: ['fr'],
+    // /en et /de-ch restent a 3 questions : les cles q4-q8 n'existent qu'en fr.
+    faqCount: 8,
+    sections: [
+      { paragraphes: 3, puces: 3, liens: [{ cible: 'blog', slug: 'guide-photographie-packshot-pourquoi-faire-packshots' }] },
+      { paragraphes: 3, liens: [{ cible: 'blog', slug: 'comment-avoir-meilleure-photo-produit-e-commerce' }] },
+      { paragraphes: 4, puces: 3, liens: [{ cible: 'blog', slug: 'est-il-utile-dinternaliser-sa-production-de-photos-packshot' }] },
+      { paragraphes: 3 },
+      { paragraphes: 3, liens: [{ cible: 'blog', slug: 'e-commerce-comment-mettre-en-place-votre-studio-photo' }] },
+      {
+        paragraphes: 3,
+        liens: [
+          { cible: 'roi' },
+          { cible: 'blog', slug: 'quel-retour-sur-investissement-avec-un-studio-photo-en-interne' },
+        ],
+      },
+    ],
+  },
 };
 
 interface PageProps {

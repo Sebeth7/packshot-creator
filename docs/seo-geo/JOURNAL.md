@@ -79,6 +79,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Suite** — Q13 pour les deux champs restants (`hasMerchantReturnPolicy`, `shippingDetails`). CC2 (accents) touche le même fichier `app/[lang]/studio-photo/[slug]/page.tsx` : rebaser CC2 sur `main` après ce merge. Relever le rapport « Fiches marchand » de Search Console à J+7 et J+14.
 
 
+## 2026-09-20 · Page témoin — `/fr/packshot-e-commerce` portée de 819 à 2 380 mots rendus · Claude de Laurent
+
+**Chantier** : substitution de page (page témoin F5) | **PR** : `content/f5-packshot-e-commerce` | **Circuit** : (b), validation tacite sous 5 jours ouvrés (D15), sous réserve de Q2 | **Aucun déploiement**
+
+**Quoi** — `PackshotLandingTemplate` reçoit un bloc « contenu approfondi » **optionnel** : il n'est rendu que si la config de la landing le déclare et que la locale courante figure dans `longform.locales`. `/fr/packshot-e-commerce` l'active pour `fr` seulement : 6 sections H2, 2 listes à puces, 5 liens sortants contextuels, FAQ portée de 3 à 8 questions (JSON-LD `FAQPage` compris). `/en` et `/de-ch` de la même page, et les 3 autres landings, rendent un DOM inchangé.
+
+**Pourquoi** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert l'article `/en/blog/packshot-photography-guide-why-make-product-packshots` (3 297 mots) en position 2,0 à 3,2 ; la landing FR (711 mots au crawl `sf_pages`) est absente des trois variantes sur 28 jours. L'écart de volume de contenu est la seule variable que ce chantier fait bouger.
+
+**Fichiers** — `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx`, `messages/fr.json` (ajout de `packshotEcommerce.longform.*` et `packshotEcommerce.faq.q4`-`q8`, 72 lignes, 0 suppression), `docs/seo-geo/{JOURNAL,ETAT}.md`
+
+**Effet attendu** — [Inférence] La landing se met à servir les trois variantes ; critère de succès unique à J+56 : elle devance l'article EN en position pondérée sur les trois, même fenêtre de 28 jours. Sinon arrêt — les trois autres landings ne sont pas enrichies. Référence : 14,9 en position pondérée sur les 3 variantes. Cela repose sur des schémas observés.
+
+**Vérifié** — `npx tsc --noEmit` vert. `npx next build` vert (R1). `npm run test:unit` : 122 tests passés. `node scripts/seo/verifier-json.mjs` : 183 fichiers valides. `npx eslint` vert sur les deux fichiers touchés. **Contrôle (a), bloquant** : HTML des 3 autres landings × 3 locales et des `/en` et `/de-ch` de la page témoin, rendu par `next build` + `next start` avant et après — **11 pages sur 11 à DOM strictement identique**. Trois écarts résiduels hors DOM, tracés dans la PR : l'identifiant de build Next (change à chaque build), le hash du bundle CSS (le bloc introduit des classes utilitaires nouvelles) et un `null` de plus dans la charge utile RSC, qui est l'emplacement vide du bloc optionnel. Aucun n'a de sortie DOM ; un HTML identique à l'octet près n'était atteignable par aucune implémentation. Ce contrôle a rattrapé une régression réelle : `faqCount` porté à 8 au niveau de la landing faisait rendre `packshotEcommerce.faq.q4.question` en clair sur `/en` et `/de-ch`, dans la page **et** dans le `FAQPage` ; le compte de FAQ est désormais porté par `longform.faqCount`, donc par locale. Mots rendus du contenu de `<main>` : 819 → **2 380**. `FAQPage` : 8 questions en `fr`, 3 en `en` et `de-ch`, structure valide, aucun chemin de clé en clair, réponses de 37 à 50 mots. Typographie : 34 espaces insécables posées sur les clés ajoutées, 0 espace ordinaire restante devant une ponctuation double ; apostrophe droite, conforme au reste du fichier (554 contre 5).
+
+**Supposé** — Que le comptage de mots de `sf_pages` (711) et le comptage local du contenu de `<main>` (819) mesurent la même chose à un facteur près : le rapport 0,868 place la page à ≈ 2 070 mots sur l'échelle Screaming Frog, dans la fourchette visée de 2 000 à 2 400. À confirmer au prochain crawl.
+
+**Non regardé** — Preview Vercel : le jeton de contournement n'a pas été transmis (ETAT du 19/09), les contrôles sont locaux. Test des résultats enrichis de Google : pas d'URL publique, la validation du `FAQPage` est structurelle et hors ligne. Détecteurs d'IA : aucun outil disponible dans la session, et sans objet tant que la prose est un premier jet. `REGLES_REDACTION_BLOG` est introuvable dans le dépôt : §4, §5.2 et §5.4 n'ont pas pu être appliquées telles quelles.
+
+**Suite** — La prose est un **premier jet de modèle** : elle doit être réécrite par Laurent avant fusion. Incohérence de chiffres soumise à Sébastien dans la PR (meta « 4-8 mois », « 80 % », « 500+/jour » contre REGLES §4 « 12-15 mois », « -86 % », « jusqu'à 300/jour ») : le contenu ajouté ne porte aucun de ces trois chiffres, pour que l'arbitrage n'oblige pas à le retoucher. Figer le point de départ GSC (requête du brief, à exécuter par Laurent) à la fusion. Aucun lien entrant vers la page jusqu'à J+56.
+
 ## 2026-09-20 · Déploiement du Worker — #16 seul, canonique des 3 landings · Claude de Laurent
 
 **Chantier** : déploiement du Worker portant uniquement #16 | **Commit déployé** : `287caee` | **Version Cloudflare** : `167d7a15-c673-4cd2-a538-bd65f8e80145`
