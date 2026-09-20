@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-20 · Données structurées des fiches — `priceValidUntil` glissant et `sku` · Claude de Laurent
 
-**Chantier** : données structurées des fiches | **PR** : #<n> | **Circuit** : (a) — aucun texte visible, aucun prix, aucune devise, aucune mensualité
+**Chantier** : données structurées des fiches | **PR** : #22 | **Circuit** : (a) — aucun texte visible, aucun prix, aucune devise, aucune mensualité
 
 **Quoi** — (1) `PRICE_VALID_UNTIL` n'est plus la constante `'2026-12-31'` : elle vaut le 31 décembre de l'année suivant celle du build, calculée au chargement du module. (2) Le `productSchema` porte désormais `sku`, alimenté par l'`id` de la machine dans `machines.ts`. Pas de `mpn` ni de `gtin`.
 
