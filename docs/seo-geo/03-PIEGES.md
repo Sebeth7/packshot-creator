@@ -355,3 +355,19 @@ détruit le travail en cours d'une autre session.
 Tu viens d'en découvrir un ? Ajoute-le ici, dans la section qui convient, avec :
 le symptôme, la date de l'incident, et le geste qui l'évite. Un piège non écrit
 sera repayé.
+
+---
+
+## H. Pièges de mesure
+
+### H1 — `sf_inlinks.type` en français
+
+Les exports Screaming Frog sont slugifiés en français : la valeur est `Hyperlien`, pas `Hyperlink`. Un filtre anglais renvoie zéro ligne sans erreur.
+
+### H2 — DataForSEO : cible de page sans schéma
+
+Une cible `www.site.com/page` sans `https://` renvoie `Ok` avec `result: null`, qui se lit comme un zéro alors que c'est une absence. 8 appels perdus le 19/09 (0,192 $). Toujours le schéma, et un témoin de réponse connue.
+
+### H3 — Relevés SERP non archivés
+
+La liste des 40 SERP du 19/09 (« AI Overview sur 7 requêtes sur 20 ») n'est pas récupérable. Toute mesure citée dans un livrable garde sa sortie brute au projet.

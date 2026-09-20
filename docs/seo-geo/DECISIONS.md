@@ -25,6 +25,32 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D28 · 2026-09-19 · C6 reclassé en hygiène ; ouverture du chantier « choix de page sur la marque »
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Traiter C6 (redirections legacy vers `/fr`) comme de l'hygiène de locale, effet attendu sur les clics proche de zéro : pilote de 25 URL déployé dans un cycle distinct du lot F. Ouvrir comme chantier de fond prioritaire le choix de page par Google sur les requêtes de marque, instruit par la mesure (M1-M6) avant toute action.
+
+**Le contexte** — Les 103 URL legacy à contenu français routées vers `/en` portent 0 impression attribuable et 0 backlink dans l'échantillon. Sur la marque, `/en` est en position 1,7 ; `/fr` est absent des 8 premières URL. Côté français, la marque a été servie par la racine `/` jusqu'en juin 2026 ; elle est passée de 50-118 clics par mois à 16 en juillet et 5 en août ; `/fr` a glissé de la position 4,7 (avril) à 28,9 (juillet). `x-default` pointe déjà vers `/fr`. Historique du Worker : la racine faisait une redirection conditionnelle par langue jusqu'au 14/07, puis une 301 inconditionnelle vers `/fr` depuis cette date.
+
+**Ce qu'elle interdit** — Présenter C6 comme le levier de la marque ; agir sur la marque (racine, canonique, données structurées `Organization`, fiche d'établissement Google) avant les mesures M1 à M6.
+
+---
+
+## D27 · 2026-09-19 · D16 amendée : la similarité se mesure sur le brief rédigé
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — amende le critère 1 de D16
+
+**La décision** — La similarité d'embedding < 0,85 avec l'existant se calcule sur le **brief rédigé** de l'article (titre, angle, plan, questions traitées), comparé aux pages du corpus FR. Elle ne se calcule jamais sur un mot-clé ou un titre seul.
+
+**Le contexte** — Mesure du 19/09 sur les 53 idées d'`editorial_calendar` : similarité maximale au corpus FR de 0,466 à 0,720. Un mot-clé comparé à une page entière passe toujours sous 0,85 : le critère ne triait rien. Le seuil est calibré de page à page (les paires article/offre culminent à 0,97).
+
+**Ce qu'elle interdit** — Valider le critère 1 sur un mot-clé ; créer un article sans brief mesuré.
+
+---
+
 ## D26 · 2026-09-19 · Arbitrages de cadrage du mandat
 
 **Décidé par** : Laurent
