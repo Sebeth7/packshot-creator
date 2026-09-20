@@ -141,10 +141,10 @@ slug du set → la page se réactive partout (voir `04-SURFACES-SEO.md`).
 
 | | |
 |---|---|
-| État | En attente de la liste du lot pilote, côté Laurent |
+| État | Liste du pilote constituée (25 URL, 16 destinations) — hygiène de locale (D28) |
 | Rayon | Large — backlinks et autorité |
 
-Le Worker route aujourd'hui 556 URL legacy vers `/fr` et 548 vers `/en`.
+542 entrées vers `/en` hors hôtes, 550 avec les 8 hôtes de `HOST_HOME_MAP` (parsing du 19/09).
 Constat : sur « packshot creator », `/en` est en position 1,9 avec 98 clics,
 `/fr` en position 28,9 avec 0 — et la France est le premier pays du trafic
 `/en`.
@@ -242,15 +242,32 @@ les mails soient partis. Sonde ciblée sur les thèmes « distributeur suisse »
 
 ---
 
+## Chantiers de fond — hors nomenclature C
+
+Ouverts le 19/09 par D28. Ils ne portent pas de numéro `C<n>` : la lettre `F` est
+déjà prise par la famille de pièges de `03-PIEGES.md`.
+
+### Chantier — Choix de page sur la marque
+
+Marque — choix de page sur « packshot creator », mesures M1-M6.
+
+### Chantier — Substitution de page sur les requêtes commerciales
+
+Substitution de page sur les requêtes commerciales, page témoin `/fr/packshot-e-commerce`.
+
+---
+
 ## Ordre d'attaque conseillé
 
 ```
-1. C6  Liste du lot pilote « redirections legacy → /fr » — priorité 1, GO du 19/09
-2. C14 Accents et champs marchands — P0, effort faible, absorbe C8 et C13
-3. C4  Lot F — annexe K et correctifs ; le resync est acquis (D21)
-4. C15 Renverser l'axe GEO — P1, à instruire (D18, D19)
-5. C7  Vertical industrie / aéronautique / automobile
-6. C5  Traduction par lots — gelé tant que des chantiers FR/CH sont ouverts (D17)
+1. Marque, bloquée par ses mesures
+2. Substitution de page, premier chantier exécutable
+3. C14 Accents et champs marchands
+4. C4 Lot F
+5. C15 Renverser l'axe GEO
+6. C6 pilote (hygiène)
+7. C7 Vertical industrie
+8. C5 Traduction (gelé, D17)
 ```
 
 C1, C2, C3, C12 et C13 sont clos le 19/09. Le déploiement du Worker reste une

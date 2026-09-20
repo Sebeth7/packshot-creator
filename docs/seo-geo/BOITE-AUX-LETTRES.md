@@ -67,6 +67,49 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : substitution de page
+**Bloque** : rien ; la page témoin avance sans réponse
+**Échéance** : **aucune réponse n'est attendue avant J+56 de la mise en ligne de la page témoin** ([Inférence] début décembre 2026 si la fusion a lieu début octobre). Question déposée maintenant pour information ; elle sera reposée avec la mesure.
+
+**Contexte** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert `/en/blog/packshot-photography-guide-why-make-product-packshots` en position 2,0 à 2,8 : 1 351 impressions, 0 clic en 120 jours. La landing `/fr/packshot-e-commerce` est absente des trois variantes sur les 28 derniers jours. Elle va être enrichie (711 → ~2 200 mots) pour prendre la place de l'article.
+
+**Vérifié** — `gsc_metrics`, requête × page, 28 et 120 derniers jours ; `sf_pages`, dernier crawl.
+
+**La question** — Que faire de l'article EN ?
+
+**Options**
+- A : le laisser en l'état.
+- B : le passer en `noindex`. Cela touche `/en` (D17) et n'est pas mesuré ; l'article porte aussi « packshot » et « product packshot » en anglais.
+- C : le rediriger vers la landing FR. Cela casse la version anglaise et enfreint D17.
+
+**Ma recommandation** — A tant que la page témoin n'a pas été mesurée (J+56). Si la landing plafonne derrière l'article, le Claude de Laurent repose la question à J+56 avec la mesure ; d'ici là, aucune action de ta part.
+
+---
+
+### Q13 · 2026-09-19 · Faits commerciaux pour les données structurées des fiches — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : données structurées des fiches
+**Bloque** : 2 des 4 champs manquants des « Fiches marchand » (10 fiches non valides)
+
+**Contexte** — Google signale 10 fiches marchand non valides. Le prix n'est pas en cause (balisage `Offer` conforme D7). Il manque `sku`, `gtin`/`mpn`, `hasMerchantReturnPolicy`, `shippingDetails`. `sku` et `mpn` (s'il existe) sont traités sans toi. Les deux autres décrivent des engagements commerciaux.
+
+**Vérifié** — Relevé HTML de production du 19/09 (`alphashot-pro-g2`) ; code `components/seo/SchemaOrg.tsx`.
+
+**La question** — Pour une offre de leasing B2B livrée et installée :
+1. Existe-t-il une politique de retour (délai, conditions) ou aucune ?
+2. La livraison et l'installation sont-elles incluses, facturées, avec quel délai, en France et en Suisse ?
+
+**Options**
+- A : tu fournis les faits, le balisage les reflète.
+- B : on déclare « pas de retour » et « livraison sur devis », si c'est exact.
+- C : on laisse ces deux champs vides ; les fiches restent en avertissement.
+
+**Ma recommandation** — A ou B, selon la réalité commerciale. Rien n'est publié sans ta réponse.
+
+---
+
 ### Q12 · 2026-09-19 · `sysnext.vercel.app` est cité comme source par un moteur de réponse — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : hygiène d'indexation
@@ -102,6 +145,21 @@ dans `DECISIONS.md`.
 - B : borne supérieure volontariste → objectif d'animation, non adossé à une mesure.
 
 **Ma recommandation** — A. Une cible qu'aucune mesure ne soutient se retourne contre celui qui la porte.
+
+**Élément nouveau du 19/09 — la question devient décidable**
+
+- Chiffrage des 20 quick wins du plan de solutions : [Inférence] 5 à 50 clics FR+CH par mois. Écart à combler pour D24 depuis la base d'août (190) : 60 à 160. Plafond théorique du gisement CTR : 81,6 clics métier par 28 jours, tous pays. Cela repose sur des schémas observés.
+- L'option A reposait sur « récupérer la marque sur `/fr` via C6 ». La mesure l'invalide : les URL de C6 ne portent ni impression ni backlink (D28).
+- La marque côté français est passée de 50-118 clics par mois (février-juin 2026) à 16 en juillet et 5 en août. Elle fait l'objet du chantier « choix de page sur la marque », non instruit à ce jour.
+- Chantier de substitution de page sur les requêtes commerciales : [Inférence] 10 à 35 clics par mois s'il réussit, lisible à 8-12 semaines, sous réserve d'une page témoin. Cumul quick wins + substitution : 15 à 85. L'extension au-delà de la page témoin n'intervient qu'après J+56, soit pas avant début décembre : sa contribution à D24 en décembre est donc faible, voire nulle.
+- Conséquence : sans le chantier marque, même la borne basse de 250 est incertaine.
+
+**Options révisées**
+- A' : maintenir 250-350 comme prévision **conditionnée** au chantier marque, réexaminée après les mesures M1-M6 et la lecture de C1 (fin octobre).
+- B : borne volontariste, assumée comme objectif.
+- C : ramener la prévision à la base + quick wins, soit [Inférence] 195-240, et traiter la marque comme un bonus.
+
+**Ma recommandation** — A', renforcée. 250-350 est défendable si le chantier marque et le chantier de substitution de page produisent tous les deux. Avec la substitution seule, elle reste incertaine. Deux dates de décision : fin octobre (M1-M6 et lecture de C1) et J+56 de la page témoin.
 
 ---
 

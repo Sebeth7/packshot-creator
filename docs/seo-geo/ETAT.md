@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-19 — Claude de Laurent (nettoyage du suivi, fusion des lots A à E)**
+**Dernière mise à jour : 2026-09-19 — Claude de Laurent (plan de solutions)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -14,12 +14,17 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| C6 — liste du lot pilote « redirections legacy → /fr » | Claude de Laurent | **priorité 1**, GO du 19/09 pour constituer la liste ; déploiement en porte séparée | `cloudflare-worker/src/index.js` | 04/09 |
-| Lot F — annexe K, 3 URL du lot C, 6 verticales de-ch, doublon l. 282, `/fr/blog/[slug]` littéral, 6 articles perdus, 10 entrées ciblant `alphashot-xl-v2` | Claude de Laurent | à ouvrir après #16 | `cloudflare-worker/src/index.js` | 19/09 |
-| Accents et champs marchands | Claude de Laurent | à ouvrir | `messages/fr.json`, FAQ des fiches machines, `lib/seo-config.ts` | 19/09 |
-| Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à ouvrir | `messages/de-ch.json`, `content/**` | 19/09 |
-| Renverser l'axe GEO | Claude de Laurent | à instruire | `content/**` | 19/09 |
-| Consolidation du cluster comparatif | Claude de Laurent | **bloqué** — contrôle des backlinks par URL requis avant toute fusion de pages | `content/**` | 19/09 |
+| Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | **priorité 1**, mesures M1-M6 avant toute action | — (mesure) | 19/09 |
+| Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
+| Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
+| Données structurées — `priceValidUntil` glissant, `sku` | Claude de Laurent | PR à ouvrir, circuit (a) | `lib/leasing.ts`, `components/seo/SchemaOrg.tsx` | 19/09 |
+| Déploiement du Worker portant uniquement #16 | Claude de Laurent | GO Laurent après notification | `cloudflare-worker/src/index.js` | 19/09 |
+| Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | après contrôle du déploiement #16 | `cloudflare-worker/src/index.js`, `next.config` | 19/09 |
+| C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
+| Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
+| Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
+| Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à instruire | `messages/de-ch.json`, `content/**` | 19/09 |
+| Maillage article → offre (Q3) | Claude de Laurent | 23 liens listés, circuit (b) | `content/**` | 19/09 |
 
 ---
 
@@ -27,10 +32,13 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Clarifier le `03 20 19 90 90` | — | 20/08 | Sélecteur de machines et calendrier Academy. Le JSON-LD de production du 19/09 ne porte que `+33147426666` et `+41445804384` : vérifier si le numéro subsiste ailleurs, sinon clore |
-| Pour information — Q6, règle WAF d'exemption de PerplexityBot par user-agent et adresse IP | Laurent | 19/09 | Aucune action requise. Objection éventuelle avant le 25/09 |
+| **Pour information — déploiement du Worker portant uniquement #16, cette semaine** | Laurent | 19/09 | Aucune action requise. Objection éventuelle avant le déploiement. Contrôle par URL témoins, rollback par redéploiement |
+| Q13 — faits commerciaux pour `hasMerchantReturnPolicy` et `shippingDetails` | Laurent | 19/09 | Voir BOITE-AUX-LETTRES |
+| Pour information — Q14, article EN en position 2 sur une requête française | Laurent | 19/09 | Aucune réponse attendue avant J+56 de la page témoin ; recommandation : ne rien faire |
+| Clarifier le `03 20 19 90 90` | — | 20/08 | inchangé |
+| Pour information — Q6, règle WAF PerplexityBot UA + IP | Laurent | 19/09 | Objection éventuelle avant le 25/09 |
 | Pour information — Q12, `sysnext.vercel.app` fermé à l'indexation | Laurent | 19/09 | Aucune action requise |
-| Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | `feat/schema-markup-overhaul` (399), `feat/sysnext-industrial` (372), `feature/brandbook-2025-foundations` (51), `feat/de-ch-locale` (5), `feat/geo-referentiels-prix` (2). Hors périmètre de Laurent, non touchées |
+| Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | inchangé |
 
 ---
 
@@ -38,8 +46,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| Liste du lot pilote « redirections legacy → /fr » | Sébastien | 04/09 | Bloque C6, devenu priorité 1. GO donné le 19/09 pour la constituer : parmi les 548 URL routées vers `/en`, celles dont le contenu cible est français et qui portent des impressions ou des backlinks |
-| Contrôle des backlinks par URL des 4 landings et des 4 comparatifs | Mesure du 19/09 | 19/09 | `backlinks/backlinks` DataForSEO, ≈ 0,08 $. Bloque la consolidation du cluster comparatif : la conclusion « 0 backlink » est redevenue [Non vérifié] |
+| Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
+| GO déploiement du Worker #16 | Claude de Laurent | 19/09 | Après fusion de la PR de notification |
 
 ---
 
@@ -47,16 +55,18 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Ce qu'on mesure | Déployé le | Lisible à partir du | Où |
 |---|---|---|---|
-| Effet du correctif de sélecteur de langue (C1) | 16/09 | Link Score au prochain crawl hebdomadaire ; position « packshot creator » à 4-6 semaines | Crawl Screaming Frog, GSC |
-| Bascule des réponses IA sur le dossier suisse | 22/08 (site) | ~début octobre, **et seulement si les mails sont partis** | Sondes `geo-ultimate` |
-| 504 requalifiés (C3) : confirmation côté Google | 17/09 (mesure) | Dès lecture des statistiques d'exploration GSC | GSC, Cloudflare (Early Hints) |
+| Correctif du sélecteur de langue (C1) sur la position de marque de `/fr` | 16/09 | 14/10-28/10 | GSC, requête « packshot creator », pays France |
+| Canonique des 3 landings après #16 | à venir | J+14 | GSC, inspection d'URL, motif 8 |
+| Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` |
+| Page témoin substitution — critère de succès unique (landing devant l'article EN) | à venir | J+56 | `gsc_metrics`, requête × page, 28 jours glissants |
 
 ---
 
 ## Prochaines actions
 
-- Déployer le Worker après fusion de la PR de redirections legacy (GO Laurent requis).
-- Mesurer à J+14 : part des 404 et 301 dans les statistiques d'exploration, cache des gabarits.
+- Fusion de la PR docs, puis PR accents et données structurées.
+- Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
+- Déploiement du Worker #16 sur GO de Laurent, contrôle par `curl.exe`.
 
 ---
 
