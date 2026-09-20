@@ -52,6 +52,43 @@ function getMachineImage(id: string): string {
   return MACHINE_IMAGE_MAP[id] || '/images/machines/placeholder-medium.svg';
 }
 
+/**
+ * Lien contextuel d'une section de contenu approfondi.
+ * Union discriminee : le `slug` n'existe que la ou une route dynamique l'attend.
+ */
+export type PackshotLongformLink =
+  | { cible: 'blog'; slug: string }
+  | { cible: 'machine'; slug: string }
+  | { cible: 'roi' };
+
+/** Une section H2 du bloc de contenu approfondi. */
+export interface PackshotLongformSection {
+  /** Nombre de cles `longform.s<i>.p<j>` a rendre. */
+  paragraphes: number;
+  /** Nombre de cles `longform.s<i>.b<k>` a rendre en liste. */
+  puces?: number;
+  /** Liens contextuels de fin de section ; libelles en `longform.s<i>.l<n>`. */
+  liens?: PackshotLongformLink[];
+}
+
+/**
+ * Bloc de contenu approfondi, OPTIONNEL.
+ * Rendu uniquement si la config le declare ET si la locale courante est listee.
+ * Une landing sans `longform`, ou une locale absente de `locales`, rend
+ * exactement le meme HTML qu'avant l'ajout de ce bloc.
+ */
+export interface PackshotLongformConfig {
+  locales: string[];
+  sections: PackshotLongformSection[];
+  /**
+   * Nombre de questions FAQ rendues SUR LES LOCALES LISTEES uniquement.
+   * Les autres locales gardent `faqCount` : sans cela, une locale sans les
+   * cles `faq.q<n>` rendrait le chemin de cle en clair, dans la page comme
+   * dans le JSON-LD FAQPage.
+   */
+  faqCount?: number;
+}
+
 export interface PackshotLandingConfig {
   namespace: string;
   slug: string;
@@ -62,6 +99,8 @@ export interface PackshotLandingConfig {
   benefitIcons: LucideIcon[];
   machineIds: string[];
   faqCount: number;
+  /** Contenu approfondi par locale ; absent = comportement historique. */
+  longform?: PackshotLongformConfig;
 }
 
 interface Props {
@@ -86,7 +125,9 @@ function parseStatValue(value: string): { end: number; prefix: string; suffix: s
 }
 
 export default function PackshotLandingTemplate({ config, lang, t }: Props) {
-  const { slug, benefitImageSlug, heroIcon: HeroIcon, heroBadge, benefitIcons, machineIds, faqCount } = config;
+  const { slug, benefitImageSlug, heroIcon: HeroIcon, heroBadge, benefitIcons, machineIds, faqCount, longform } = config;
+  // Contenu approfondi : rendu seulement si la config le declare ET si la locale est listee.
+  const sectionsLongform = longform?.locales.includes(lang) ? longform.sections : null;
   const machines = machineIds.map(getMachineById).filter(Boolean);
 
   const breadcrumbs = [
@@ -94,7 +135,10 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
     { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/${slug}` },
   ];
 
-  const faqs = Array.from({ length: faqCount }, (_, i) => ({
+  // FAQ etendue seulement la ou les cles existent (cf PackshotLongformConfig.faqCount).
+  const nombreFaq = sectionsLongform ? longform?.faqCount ?? faqCount : faqCount;
+
+  const faqs = Array.from({ length: nombreFaq }, (_, i) => ({
     question: t(`faq.q${i + 1}.question`),
     answer: t(`faq.q${i + 1}.answer`),
   }));
@@ -433,6 +477,86 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4c. CONTENU APPROFONDI — optionnel, par locale
+          Rendu uniquement si `config.longform` existe et liste la locale
+          courante. Sans cela, rien n'est emis : le HTML des autres landings
+          et des autres locales reste identique.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {sectionsLongform && (
+        <section className="py-20 lg:py-32 bg-white">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            <ScrollReveal>
+              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-10 block">
+                {t('longform.kicker')}
+              </span>
+            </ScrollReveal>
+            {sectionsLongform.map((section, index) => {
+              const n = index + 1;
+              return (
+                <ScrollReveal key={n}>
+                  <div className="mb-14 last:mb-0">
+                    <h2 className="text-2xl lg:text-4xl font-heading font-bold text-future-dusk-900 leading-[1.15] mb-5">
+                      {t(`longform.s${n}.title`)}
+                    </h2>
+                    {Array.from({ length: section.paragraphes }, (_, j) => (
+                      <p key={j} className="text-future-dusk-600 leading-relaxed mb-4 last:mb-0">
+                        {renderBold(t(`longform.s${n}.p${j + 1}`))}
+                      </p>
+                    ))}
+                    {section.puces ? (
+                      <ul className="mt-5 space-y-3">
+                        {Array.from({ length: section.puces }, (_, k) => (
+                          <li key={k} className="flex gap-3 text-future-dusk-600 leading-relaxed">
+                            <CheckCircle className="h-5 w-5 text-very-peri-500 shrink-0 mt-0.5" strokeWidth={1.75} />
+                            <span>{renderBold(t(`longform.s${n}.b${k + 1}`))}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    {section.liens?.length ? (
+                      <ul className="mt-6 space-y-2">
+                        {section.liens.map((lien, l) => {
+                          const libelle = t(`longform.s${n}.l${l + 1}`);
+                          const classe =
+                            'inline-flex items-center gap-2 text-sm font-semibold text-very-peri-700 hover:text-very-peri-800 transition-colors';
+                          return (
+                            <li key={l}>
+                              {lien.cible === 'roi' ? (
+                                <Link href="/calculateur-roi" className={classe}>
+                                  {libelle}
+                                  <ArrowRight className="h-4 w-4 shrink-0" />
+                                </Link>
+                              ) : lien.cible === 'machine' ? (
+                                <Link
+                                  href={{ pathname: '/studio-photo/[slug]', params: { slug: lien.slug } }}
+                                  className={classe}
+                                >
+                                  {libelle}
+                                  <ArrowRight className="h-4 w-4 shrink-0" />
+                                </Link>
+                              ) : (
+                                <Link
+                                  href={{ pathname: '/blog/[slug]', params: { slug: lien.slug } }}
+                                  className={classe}
+                                >
+                                  {libelle}
+                                  <ArrowRight className="h-4 w-4 shrink-0" />
+                                </Link>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : null}
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. FAQ — Two-column: heading left, accordion right

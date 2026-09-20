@@ -1282,6 +1282,78 @@
       "q3": {
         "question": "Quels formats d'image pour les marketplaces ?",
         "answer": "Amazon exige un fond blanc pur (RGB 255,255,255), 1000px minimum, format JPEG. Nos studios exportent directement dans les formats requis par chaque marketplace : Amazon, Shopify, Zalando, Cdiscount. Le détourage IQ Mask garantit un fond blanc conforme."
+      },
+        "q4": {
+          "question": "Quelle différence entre un packshot et une photo produit ?",
+          "answer": "Le packshot est une photo de catalogue : objet détouré, fond neutre, cadrage constant d'une référence à l'autre. La photo produit englobe aussi la mise en scène et le visuel lifestyle, qui cherchent à susciter le désir. Le packshot, lui, cherche la comparabilité entre les articles d'une même grille."
+        },
+        "q5": {
+          "question": "Combien de vues par produit faut-il en e-commerce ?",
+          "answer": "Une vue principale détourée sur fond blanc, puis autant de vues secondaires qu'il existe d'objections à lever : dos, dessous, matière, mise à l'échelle, détail de finition. Les catégories à fort taux de retour en demandent davantage. Chaque plateforme publie son propre maximum, à vérifier dans sa documentation."
+        },
+        "q6": {
+          "question": "Faut-il un photographe pour utiliser un studio photo automatisé ?",
+          "answer": "Non. L'éclairage, la position de l'appareil et les réglages sont enregistrés dans un préréglage : l'opérateur pose l'objet et lance la séquence. La compétence demandée porte sur la préparation du produit et sur la rigueur du nommage, pas sur la photographie. Une formation courte suffit à la prise en main."
+        },
+        "q7": {
+          "question": "Comment obtenir un fond blanc sans détourage manuel ?",
+          "answer": "Dans un dispositif clos, le fond est éclairé indépendamment de l'objet et le masque de détourage est calculé pendant la capture. Le visuel sort déjà détouré, avec le même blanc d'une série à l'autre. Il n'y a ni aller-retour avec un retoucheur, ni reprise référence par référence."
+        },
+        "q8": {
+          "question": "Peut-on photographier tous les formats de produits dans le même studio ?",
+          "answer": "Non, le gabarit commande. Un studio de taille courante couvre la majorité des références ; les objets volumineux ou lourds demandent un plateau renforcé, les très petits objets un dispositif macro. Chaque fiche produit précise les dimensions et les charges admises par le modèle concerné."
+        }
+    },
+    "longform": {
+      "kicker": "Le packshot e-commerce en pratique",
+      "s1": {
+        "title": "Qu'est-ce qu'un packshot e-commerce, et en quoi diffère-t-il d'une photo produit ?",
+        "p1": "Un packshot e-commerce est une photo de catalogue : l'objet est détouré sur fond neutre et cadré pour rester lisible dans une vignette de quelques centimètres. Il ne raconte rien, il décrit. Sa qualité ne se juge pas image par image, mais sur la série entière — c'est la régularité qui fait le résultat.",
+        "p2": "La photo produit, au sens large, couvre aussi la mise en scène, le lookbook et le visuel de campagne. Elle cherche le désir. Le packshot cherche la comparabilité : sur une page de listing, une vingtaine de références se lisent d'un coup d'œil, et une seule photographiée plus près, ou sur un blanc légèrement différent, casse la lecture de la grille entière.",
+        "p3": "Réussir une photo est un problème de photographe. En réussir plusieurs centaines d'identiques, avec des opérateurs différents et des arrivages hétérogènes, est un problème de <bold>procédé</bold> : c'est là que se joue la difficulté réelle du packshot e-commerce. Trois invariants le séparent d'une bonne photo produit isolée.",
+        "b1": "Le fond — uniforme et reproductible, sans dégradé ni salissure, pour que le détourage reste fiable et que la vignette tienne aussi bien sur un fond clair que sur un fond sombre.",
+        "b2": "Le cadrage — même axe, même distance, même marge autour de l'objet, quelle que soit sa taille réelle.",
+        "b3": "La cohérence de catalogue — un rendu stable dans le temps, d'un opérateur à l'autre et d'une série à l'autre, y compris à plusieurs mois d'écart.",
+        "l1": "Pourquoi faire des packshots : le guide de la photographie packshot"
+      },
+      "s2": {
+        "title": "Ce que les marketplaces et les boutiques attendent d'un visuel",
+        "p1": "Chaque place de marché publie ses propres règles d'image, et elles évoluent. Le fond blanc est l'exigence la plus répandue pour la photo principale d'une fiche ; viennent ensuite une résolution minimale, un ratio, un poids de fichier, parfois un nombre maximal de visuels. Les seuils exacts se lisent dans la documentation de la plateforme concernée, jamais dans un article de blog : ils changent sans préavis.",
+        "p2": "Au-delà de la photo principale, la demande va toujours dans le même sens : plus de vues, et des vues qui répondent à une objection précise. Un dos, un dessous, une matière vue de près, une mise à l'échelle, un détail de finition. Sur les catégories où le retour produit coûte cher — le textile, la chaussure, la maroquinerie — ce sont ces vues secondaires qui emportent la décision, pas la première.",
+        "p3": "La rotation à 360° et la vidéo courte sont acceptées par un nombre croissant de plateformes et par la plupart des solutions de boutique en ligne. Elles ne remplacent pas le packshot, elles s'y ajoutent. Et elles ne tiennent que si la prise de vue est déjà industrialisée : une vue de plus par référence n'a de sens que si elle coûte quelques secondes, pas une séance supplémentaire.",
+        "l1": "Comment obtenir la meilleure photo produit e-commerce"
+      },
+      "s3": {
+        "title": "Internaliser ou externaliser sa production de photos produit e-commerce",
+        "p1": "La question ne se tranche pas en principe. Elle se tranche sur trois grandeurs — le volume, le délai, la cohérence attendue — et la réponse change dès que l'une d'elles bouge.",
+        "p2": "Un prestataire reste pertinent quand la valeur est dans l'image elle-même : campagne, lookbook, direction artistique. Il l'est aussi pour un pic ponctuel qu'un studio interne ne justifierait pas, ou pour une catégorie hors gabarit qu'aucun dispositif de série ne couvre.",
+        "p3": "Le calcul d'internalisation ne se limite pas au coût de la prise de vue. Il faut y compter la préparation et le transport des produits, les allers-retours de retouche, les visuels refaits parce qu'une référence a changé de packaging, le temps passé à relancer une livraison. Ces postes-là, rarement facturés comme tels, pèsent souvent plus lourd que la facture elle-même.",
+        "p4": "Les trois grandeurs, dans le détail :",
+        "b1": "Le volume — en dessous de quelques dizaines de références nouvelles par an, le studio interne ne s'amortit pas et le prestataire reste la réponse la plus simple.",
+        "b2": "Le délai — une nouveauté photographiée le jour de sa réception est en ligne le lendemain. Passer par un prestataire ajoute un aller-retour logistique et un cycle de validation.",
+        "b3": "La cohérence — un prestataire livre une série homogène ; il livre plus difficilement une série homogène avec celle de l'an dernier, faite par un autre opérateur sur un autre plateau.",
+        "l1": "Est-il utile d'internaliser sa production de photos packshot ?"
+      },
+      "s4": {
+        "title": "Du packshot au 360° et à la vidéo : ce que change l'automatisation",
+        "p1": "Un studio photo automatisé enferme la prise de vue dans un dispositif clos : éclairage fixe, plateau motorisé, appareil piloté par le logiciel. L'opérateur pose l'objet, choisit un préréglage, lance la séquence. Le résultat ne dépend plus de son œil mais du préréglage — ce qui est exactement l'effet recherché quand il faut obtenir la même chose mille fois.",
+        "p2": "Un seul passage produit alors plusieurs livrables : le packshot détouré, les vues secondaires, une rotation à 360°, et selon les modèles une courte vidéo. Ils sortent d'une même manipulation et du même éclairage, donc sans écart de teinte entre l'image fixe et l'animation. C'est ce qui rend la vue supplémentaire abordable.",
+        "p3": "Le choix du système dépend du gabarit des produits plus que du secteur. L'Alphashot 360 couvre les références de taille courante, l'Alphashot XL G2 les objets volumineux ou lourds, l'Alphashot Micro v2 les très petits objets et le rendu macro. Chaque fiche précise les dimensions et les charges admises."
+      },
+      "s5": {
+        "title": "Intégrer le studio dans le flux e-commerce",
+        "p1": "Un studio qui produit vite mais livre mal ne fait pas gagner de temps : il déplace le goulot vers la personne qui renomme les fichiers. Le nommage se règle donc en premier. La règle utile tient en une ligne : le nom du fichier porte la référence du catalogue et le rang de la vue, rien d'autre. Le libellé commercial, la date et l'opérateur vivent dans les métadonnées.",
+        "p2": "Vient l'export. Une fiche produit ne consomme jamais un seul format : une vignette de liste, une image de fiche, un fichier haute définition pour le zoom, parfois un dérivé au ratio imposé par une place de marché. Ces déclinaisons se produisent en une fois, à partir du même original. Les refaire à la main, référence par référence, est le poste de travail qui disparaît en premier.",
+        "p3": "Le fond blanc, enfin, se gagne à la prise de vue. Dans un dispositif clos, le fond est éclairé indépendamment de l'objet et le masque de détourage est calculé pendant la capture. Le visuel sort déjà détouré : pas de détourage manuel à commander, pas d'aller-retour avec un retoucheur, pas d'écart de blanc entre deux séries photographiées à six mois d'intervalle.",
+        "l1": "E-commerce : comment mettre en place votre studio photo"
+      },
+      "s6": {
+        "title": "Mesurer la rentabilité d'un studio photo e-commerce",
+        "p1": "La rentabilité d'un studio e-commerce se mesure sur le coût complet du visuel publié, pas sur le prix d'une séance. Au numérateur : l'équipement, la formation, le temps opérateur, l'espace occupé. Au dénominateur : le nombre de visuels réellement mis en ligne sur une année, pas le nombre de photos prises. Les deux termes dépendent du catalogue et de son rythme de renouvellement.",
+        "p2": "Ce calcul ne se fait pas de tête, et une moyenne de marché n'y répond pas. Le calculateur de retour sur investissement reprend ces paramètres et rend une estimation propre à un catalogue donné ; une analyse de rentabilité personnalisée affine ensuite les hypothèses avec les volumes réels et les postes déjà externalisés.",
+        "p3": "Deux leviers modifient le plan de financement sans changer le calcul lui-même. Le leasing étale l'investissement sur la durée d'usage du matériel et le transforme en charge d'exploitation. La formation des opérateurs peut, selon la situation de l'entreprise, être prise en charge par un OPCO. L'un comme l'autre s'étudient au cas par cas.",
+        "l1": "Calculer le retour sur investissement d'un studio interne",
+        "l2": "Quel retour sur investissement avec un studio photo en interne ?"
       }
     },
     "cta": {
