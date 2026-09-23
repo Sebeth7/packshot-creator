@@ -3,6 +3,20 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
+// Secteurs servis en de-ch : slug FR → slug allemand. Réciproque exacte de
+// DE_CH_SECTOR_MAP (app/[lang]/industrie/[slug]/page.tsx) ; l'égalité des deux
+// tables est contrôlée par cloudflare-worker/test/lot-f.test.ts.
+const DE_CH_BRANCHEN_PAR_SLUG_FR: Record<string, string> = {
+  'bijoux-joaillerie': 'schmuck',
+  'horlogerie': 'uhren',
+  'lunetterie': 'brillen',
+  'cosmetiques-beaute': 'schoenheit',
+  'electronique-hightech': 'elektronik',
+  'sport-outdoor': 'sport',
+  'mode-textile': 'mode',
+  'vin-spiritueux': 'wein',
+};
+
 const nextConfig: NextConfig = {
   images: {
     // Nos assets locaux sont immuables (un changement de visuel = un nouveau
@@ -135,6 +149,28 @@ const nextConfig: NextConfig = {
       // Le guide a un équivalent EN re-migré (alternates: webflowItemId 67ee4fe74bff9cef22954f2e)
       // Préserver le PageRank de l'ancienne URL Webflow EN qui héritait du slug FR.
       { source: '/en/guide/modifier-couleur-produit-photo', destination: '/en/guide/change-product-photo-color', statusCode: 301 },
+
+      // ============================================================
+      // /de-ch/industrie/<slug> → /de-ch/branchen/<slug allemand>
+      // En de-ch, le segment est /branchen et le slug est allemand
+      // (i18n/routing.ts). Sans ces règles, next-intl répond 307 vers
+      // /de-ch/branchen/<slug FR>, qui n'existe pas (404). Les règles
+      // next.config passent avant le middleware.
+      // ============================================================
+      // Slug FR → slug allemand.
+      ...Object.entries(DE_CH_BRANCHEN_PAR_SLUG_FR).map(([fr, de]) => ({
+        source: `/de-ch/industrie/${fr}`,
+        destination: `/de-ch/branchen/${de}`,
+        statusCode: 301 as const,
+      })),
+      // Slug déjà allemand : même destination que le 307 actuel de next-intl, en 301.
+      ...Object.values(DE_CH_BRANCHEN_PAR_SLUG_FR).map((de) => ({
+        source: `/de-ch/industrie/${de}`,
+        destination: `/de-ch/branchen/${de}`,
+        statusCode: 301 as const,
+      })),
+      // Tout autre secteur n'est pas servi en de-ch : repli sur le hub.
+      { source: '/de-ch/industrie/:slug', destination: '/de-ch/branchen', statusCode: 301 },
     ];
   },
 };
