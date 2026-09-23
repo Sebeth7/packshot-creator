@@ -224,7 +224,15 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Polyvalence maximale</li>
-                  <li className="text-future-dusk-600">80% des produits e-commerce compatibles</li>
+                  <li className="text-future-dusk-600">
+                    {lang === 'fr' ? (
+                      <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-xl-g2' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                        80% des produits e-commerce compatibles
+                      </Link>
+                    ) : (
+                      '80% des produits e-commerce compatibles'
+                    )}
+                  </li>
                   <li className="text-future-dusk-600">Évolutivité (modules 360°, vidéo)</li>
                   <li className="text-future-dusk-600">Rapport qualité/prix optimal</li>
                 </ul>
@@ -381,7 +389,15 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Packshots Simples (Fond Blanc) : AlphaShot G2</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Fiches produits e-commerce standards</li>
+                  <li className="text-future-dusk-600">
+                    {lang === 'fr' ? (
+                      <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                        Fiches produits e-commerce standards
+                      </Link>
+                    ) : (
+                      'Fiches produits e-commerce standards'
+                    )}
+                  </li>
                   <li className="text-future-dusk-600">Catalogues imprimés</li>
                   <li className="text-future-dusk-600">Marketplaces (Amazon, Cdiscount, eBay)</li>
                 </ul>

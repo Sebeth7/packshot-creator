@@ -346,7 +346,15 @@ export default async function FormationPhotoProduitPage({
                 Les 3 Niveaux de Formation Photo Produit
               </h2>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                Nos formations sont structurées en <strong>3 niveaux progressifs</strong> pour s&apos;adapter
+                Nos formations sont structurées en{' '}
+                {lang === 'fr' ? (
+                  <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                    <strong>3 niveaux progressifs</strong>
+                  </Link>
+                ) : (
+                  <strong>3 niveaux progressifs</strong>
+                )}{' '}
+                pour s&apos;adapter
                 à votre profil et à vos objectifs. Chaque niveau est certifié <strong>Qualiopi</strong> et
                 éligible au <strong>financement OPCO à 100 %</strong>.
               </p>

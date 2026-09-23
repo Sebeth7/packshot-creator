@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-23 · Maillage article → offre (Q3) — 14 liens contextuels · Claude de Laurent
+
+**Chantier** : maillage article → offre (Q3) | **PR** : branche `content/maillage-q3` | **Circuit** : (b) — lien posé dans une phrase existante de la prose
+
+**Quoi** — 14 liens ajoutés dans le corps de 12 articles et guides FR, une ancre par paire, sur une phrase existante ; aucun mot ajouté, retiré ou reformulé. 2 paires non réalisées (signalées). Aucun bloc « articles liés », aucune page `/en` ou `/de-ch` modifiée.
+
+**Pourquoi** — Les pages d'offre reçoivent peu de liens depuis les articles qui captent le trafic FR ; liste des paires arrêtée par Laurent le 23/09.
+
+**Fichiers** — 9 JSON de `content/blog/fr/` et `content/guides/fr/` ; `app/[lang]/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026/page.tsx`, `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` ; `messages/fr.json` (2 clés `blogBudget`, balises `t.rich`)
+
+**Effet attendu** — Link Score des 8 pages cibles en hausse au prochain crawl ; effet de position à 2-6 semaines.
+
+**Vérifié** — `npx tsc --noEmit` et `npx next build` verts. HTML prérendu : **14 liens sur 14 présents**, ancre et cible exactes, chacun en un seul exemplaire. Liens vers `/fr/packshot-e-commerce` et `/fr/packshot-industriel` dans `<article>`/`<main>` des 13 pages sources : **0** ; les 12 occurrences relevées sur la page entière viennent du pied de page (« Packshot par secteur »), identiques avant et après. Pages `/en` des 4 articles rendus en `/en` : HTML identique avant/après hors identifiant de build ; les 3 gabarits TSX conditionnent le lien à `lang === 'fr'`, et les balises `t.rich` n'existent que dans `fr.json`. Aucune page `/de-ch` prérendue pour ces sources.
+
+**Écarts entre la consigne et le dépôt (R7)** — La consigne annonce 23 liens ; la liste fournie contient **16 paires**. Aucune paire n'a été inventée. 2 non réalisées : `meubles-decorations-comment-etre-plus-visibles-sur-le-web` → `/fr/packshot-mode` (aucune phrase ne traite de mode ; une phrase ajoutée serait hors sujet) ; `budget-studio-photo-automatise` → `alphastudio-xxl-v2` (le modèle n'est cité nulle part ; les phrases « grand format » parlent de 3 m et d'autres modèles, et le texte porte des prix). Déjà présent, non touché : dans le guide montre, « réussir la photographie de vos montres » pointe vers `/fr/industrie/bijoux-joaillerie`. Le guide d'achat parle d'« AlphaShot G2 » sans distinguer Pro G2 et XL G2, avec des dimensions (100×80×80 cm) qui ne correspondent à aucune fiche : lien XL G2 posé dans la section « Produits moyens », Pro G2 dans « Packshots simples ».
+
+**Supposé** — Que les ancres choisies décrivent assez la cible pour Google ; choix éditorial, non mesuré.
+
+**Non regardé** — Le Preview Vercel (jeton de contournement non transmis). Le rendu visuel des liens.
+
+**Suite** — Validation de Sébastien (circuit b). Recrawl à J+7 pour le Link Score des cibles.
+
 ## 2026-09-23 · Déploiement du Worker — lot F · Claude de Laurent
 
 **Chantier** : C4 (lot F) | **PR** : #26, fusionnée (`29ca657`) | **Commit déployé** : `29ca657` | **Version Cloudflare** : `05c5c47c-4b60-41af-9acd-b3778be1e508`
@@ -54,9 +76,15 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Supposé** — Que le comportement simulé en test (import du module, 38 chemins) se reproduit en production : le Worker n'est pas testable par script sur `www` (R4, B1).
 
-**Non regardé** — Contrôle `curl.exe` depuis le poste de Laurent, à faire : les 4 chemins par catégorie, le chemin de-ch et les 5 témoins obligatoires listés dans la PR #26, chaîne de requête neuve (B2).
+**Contrôle post-déploiement** — Par Laurent, `curl.exe` depuis son poste, 23/09 07:45-07:46 UTC, chaîne de requête neuve (B2) : **tout conforme**.
+- Annexe K, ex-410, `alphashot-xl-v2` et lot C : 301 vers les cibles attendues.
+- Témoins : `/` → `/fr` ; `/de/studio-photo/alphashot-xl` → `/de-ch/fotostudio/alphashot-xl-g2` ; `videos.` 404 servi par R2, `books.` 302 servi par sa propre origine, `trail.` 200 servi par sa propre origine — aucun sous-domaine renvoyé vers `www`.
+- de-ch (`next.config.ts`, en production depuis la fusion) : `/de-ch/industrie/mode-textile` → 301 `/de-ch/branchen/mode` → 200 (07:29 UTC).
+- Jeton de déploiement révoqué.
 
-**Suite** — `curl.exe` par Laurent, résultat à reporter ici. Révocation du jeton Cloudflare fourni pour ce seul déploiement. Rollback si besoin : redéploiement de la version `167d7a15`. Pilote C6 au cycle suivant.
+**Non regardé** — Couverture GSC, lisible à J+14.
+
+**Suite** — Relevé de la couverture GSC à J+14. Rollback si besoin : redéploiement de la version `167d7a15`. Pilote C6 au cycle suivant.
 
 ## 2026-09-23 · Lot F — annexe K, lot C, `alphashot-xl-v2`, doublon D21, verticale de-ch · Claude de Laurent
 

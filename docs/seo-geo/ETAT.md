@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-23 — Claude de Laurent (lot F en PR, Worker non déployé)**
+**Dernière mise à jour : 2026-09-23 — Claude de Laurent (lot F déployé et contrôlé ; maillage Q3 en PR)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -17,12 +17,11 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | **priorité 1**, mesures M1-M6 avant toute action | — (mesure) | 19/09 |
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
-| Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR `fix/worker-lot-f` ouverte ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js`, `next.config.ts` | 19/09 |
 | C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
 | Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
 | Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
 | Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à instruire | `messages/de-ch.json`, `content/**` | 19/09 |
-| Maillage article → offre (Q3) | Claude de Laurent | 23 liens listés, circuit (b) | `content/**` | 19/09 |
+| Maillage article → offre (Q3) | Claude de Laurent | PR `content/maillage-q3`, circuit (b) : 14 liens posés sur 16 paires listées, 2 signalées | `content/**`, `messages/fr.json` (`blogBudget`), 3 articles TSX | 19/09 |
 
 ---
 
@@ -45,7 +44,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
-| GO déploiement du Worker — lot F | Claude de Laurent | 23/09 | Après fusion de la PR `fix/worker-lot-f` ; témoins `curl.exe` listés dans la PR |
 
 ---
 
@@ -55,7 +53,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Correctif du sélecteur de langue (C1) sur la position de marque de `/fr` | 16/09 | 14/10-28/10 | GSC, requête « packshot creator », pays France |
 | Canonique des 3 landings après #16 | à venir | J+14 | GSC, inspection d'URL, motif 8 |
-| Lot F — 18 chemins de l'annexe K et `/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie` sortis des 404/410 | à venir (GO Worker) | J+14 après déploiement | GSC, couverture |
+| Lot F — 18 chemins de l'annexe K et `/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie` sortis des 404/410 | 23/09 (Worker `05c5c47c`, contrôle `curl.exe` conforme) | 07/10 | GSC, couverture |
 | Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` |
 | Page témoin substitution — critère de succès unique (landing devant l'article EN) | à venir | J+56 | `gsc_metrics`, requête × page, 28 jours glissants |
 | `sku` et `priceValidUntil` des 51 fiches — passage des « Fiches marchand » de non valides à valides | 20/09 | J+7 à J+14 | GSC, rapport « Fiches marchand » ; 2 des 4 champs manquants comblés, Q13 pour les 2 autres |
@@ -67,7 +65,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 - PR accents (CC2) : rebaser sur `main` après le merge de #22 — les deux touchent `app/[lang]/studio-photo/[slug]/page.tsx`.
 - Contrôle de #22 dans Chrome sur `www.packshot-creator.com` et test des résultats enrichis de Google sur 3 fiches : à faire par Laurent (R4).
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
-- Déploiement du Worker lot F sur GO de Laurent, contrôle par `curl.exe` (liste dans la PR). Le lot de `next.config.ts` part en production à la fusion, sans attendre ce GO.
+- Maillage Q3 : validation de Sébastien (circuit b), puis recrawl à J+7.
 
 ---
 
