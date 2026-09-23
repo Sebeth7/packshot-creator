@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
+**Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,
+en lecture seule ; modification de la fiche Google France par Laurent.
+**Vérifié** — M1 : /fr indexée, canonique Google = canonique déclarée ;
+/ non indexée (« Page avec redirection »), canonique /fr. La 301 du
+14/07 est consolidée (H1 écartée). M2, France, P1 = 01/04-30/06,
+P2 = 01/07-20/09 : « packshot creator » impressions 321 → 191, clics
+90 → 43, page servie /en (position 1,2), /fr à 23,6 ; « packshotcreator »
+impressions 417 → 104, clics 38 → 19, /fr position 1. Total marque
+France : impressions -60 % (738 → 295), clics 128 → 62. M6 : fiche
+France « PackshotCreator - Orbitvu », bouton Site Web vers la racine /
+(redirigée). Fiche modifiée par Laurent le 23/09 : Site Web → /fr,
+téléphone principal → 01 47 42 66 66, en attente de validation Google.
+Fiche « Location du packshot creator » (Lausanne) : n'appartient pas à
+Sysnext ; décision de Laurent : aucune action.
+**Supposé** — [Inférence] La baisse de la marque vient d'abord d'une
+baisse de la demande (recherches), que le SEO ne recrée pas ; Google
+préfère /en sur la requête en deux mots (H3).
+**Non regardé** — M5 (lecture du correctif C1, 14-28/10) ; anomalie
+« Erreur de traitement temporaire » sur la ligne Sitemaps des deux URL.
+**Suite** — Q15 ; correction du chiffrage du chantier marque dans ETAT ;
+Q10 mise à jour.
+
 ## 2026-09-23 · Déploiement du Worker — lot F · Claude de Laurent
 
 **Chantier** : C4 (lot F) | **PR** : #26, fusionnée (`29ca657`) | **Commit déployé** : `29ca657` | **Version Cloudflare** : `05c5c47c-4b60-41af-9acd-b3778be1e508`
