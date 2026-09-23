@@ -92,14 +92,18 @@ describe('alphashot-xl-v2 → alphashot-xl-g2 dans LEGACY_REDIRECTS', () => {
     '/commun/packshot-pro-3d-hd.html': '/en/studio-photo/alphashot-xl-g2',
   });
 
-  it('LEGACY_REDIRECTS ne cible plus alphashot-xl-v2', () => {
+  it('le Worker ne cible plus alphashot-xl-v2, dans aucune table', () => {
     const source = readFileSync(path.resolve(import.meta.dirname, '..', 'src', 'index.js'), 'utf-8');
-    const lignes = source.split('\n');
-    const debut = lignes.findIndex((l) => l.includes('const LEGACY_REDIRECTS = {'));
-    let fin = debut;
-    while (!/^\s*};\s*$/.test(lignes[fin])) fin++;
-    const restantes = lignes.slice(debut, fin).filter((l) => l.includes('alphashot-xl-v2'));
+    const restantes = source.split('\n').filter((l) => l.includes('alphashot-xl-v2'));
     expect(restantes).toEqual([]);
+  });
+});
+
+describe('alphashot-xl-v2 → alphashot-xl-g2 hors LEGACY_REDIRECTS (accord de Laurent du 23/09)', () => {
+  verifier({
+    '/product/photo-studio-r3': '/en/studio-photo/alphashot-xl-g2',
+    '/es/studio-photo/alphashot-xl': '/en/studio-photo/alphashot-xl-g2',
+    '/nl/studio-photo/alphashot-xl': '/en/studio-photo/alphashot-xl-g2',
   });
 });
 

@@ -1654,7 +1654,7 @@ var index_default = {
       "/product/packshotmacro-dl-gemstones": "/en/studio-photo/alphashot-micro-v2",
       "/product/packshotspin-jewelry": "/en/studio-photo/alphashot-micro-v2",
       "/product/packshotstudio-modular-lighting": "/en/studios-photo-automatises",
-      "/product/photo-studio-r3": "/en/studio-photo/alphashot-xl-v2",
+      "/product/photo-studio-r3": "/en/studio-photo/alphashot-xl-g2",
       "/product/photo-studio-packshotstart": "/en/studio-photo/alphashot-360"
     };
     const productPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
@@ -1898,7 +1898,7 @@ var index_default = {
       "/es/packshot-secteur-pieces-techniques": "/en/industrie/pieces-techniques-industrie",
       "/es/photo-studio/360-turntables": "/en/studio-photo/selecteur-machines",
       "/es/produits": "/en/studio-photo/selecteur-machines",
-      "/es/studio-photo/alphashot-xl": "/en/studio-photo/alphashot-xl-v2",
+      "/es/studio-photo/alphashot-xl": "/en/studio-photo/alphashot-xl-g2",
       "/nl/automatiser": "/en/studios-photo-automatises",
       "/nl/blog/360-photos-marketplaces": "/en/blog/360-photos-marketplaces",
       "/nl/blog/4-miljoen-internetgebruikers-verleiden-honderden-productfotos": "/en/blog/potential-advantages-e-commerce-businesses",
@@ -1958,7 +1958,7 @@ var index_default = {
       "/nl/packshot-secteur-meuble": "/en/industrie/mobilier-decoration",
       "/nl/packshot-secteur-mode-accessoires": "/en/industrie/mode-textile",
       "/nl/packshot-secteur-pieces-techniques": "/en/industrie/pieces-techniques-industrie",
-      "/nl/studio-photo/alphashot-xl": "/en/studio-photo/alphashot-xl-v2"
+      "/nl/studio-photo/alphashot-xl": "/en/studio-photo/alphashot-xl-g2"
     };
     if (/^\/(de|es|nl)(\/|$)/.test(pathname)) {
       const target = LANG_SPECIFIC_REDIRECTS[pathname] || "/en";

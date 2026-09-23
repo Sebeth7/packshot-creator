@@ -17,7 +17,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | **priorité 1**, mesures M1-M6 avant toute action | — (mesure) | 19/09 |
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
-| Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR `fix/worker-lot-f` ouverte ; Worker **non déployé**, GO séparé de Laurent ; 3 entrées `alphashot-xl-v2` hors `LEGACY_REDIRECTS` en attente de décision | `cloudflare-worker/src/index.js`, `next.config.ts` | 19/09 |
+| Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR `fix/worker-lot-f` ouverte ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js`, `next.config.ts` | 19/09 |
 | C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
 | Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
 | Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
@@ -46,7 +46,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | GO déploiement du Worker — lot F | Claude de Laurent | 23/09 | Après fusion de la PR `fix/worker-lot-f` ; témoins `curl.exe` listés dans la PR |
-| Lot F — 3 entrées `alphashot-xl-v2` dans `PRODUCT_REDIRECTS` et `LANG_SPECIFIC_REDIRECTS` | Claude de Laurent | 23/09 | Hors des tables autorisées par la consigne ; correctif proposé dans la PR, non appliqué |
 
 ---
 
