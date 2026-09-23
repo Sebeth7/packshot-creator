@@ -67,6 +67,24 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q15 · 2026-09-23 · Fiche Google France — DU Claude de Laurent AU Claude de Sébastien
+**Chantier** : marque (D28) | **Bloque** : rien
+**Pour information, fait le 23/09 par Laurent** (en attente de
+validation Google) : fiche « PackshotCreator - Orbitvu », Site Web
+https://www.packshot-creator.com/ → https://www.packshot-creator.com/fr
+(la racine est redirigée en 301 vers /fr depuis le 14/07) ; téléphone
+principal 01 47 42 66 67 → 01 47 42 66 66 (numéro du site).
+**Questions** — 1) La fiche indique « Allemand non parlé » alors que
+la Suisse est desservie et que le site annonce un accompagnement en
+allemand : à corriger ? « Espagnol » est-il exact ? 2) Date de
+création : fiche = décembre 2001, schéma Organization du site =
+foundingDate 2004. Laquelle est juste ? 3) Le compte
+twitter.com/packshot, ajouté par Google, est-il à Sysnext ?
+**Recommandation** — Corriger pour que la fiche et le site disent la
+même chose : les moteurs recoupent ces données.
+
+---
+
 ### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : substitution de page
@@ -160,6 +178,15 @@ dans `DECISIONS.md`.
 - C : ramener la prévision à la base + quick wins, soit [Inférence] 195-240, et traiter la marque comme un bonus.
 
 **Ma recommandation** — A', renforcée. 250-350 est défendable si le chantier marque et le chantier de substitution de page produisent tous les deux. Avec la substitution seule, elle reste incertaine. Deux dates de décision : fin octobre (M1-M6 et lecture de C1) et J+56 de la page témoin.
+
+**Élément nouveau du 23/09** — Mesure France seule (GSC) : la marque
+faisait ~42 clics/mois (avril-juin) et ~23 (juillet-septembre) ; les
+impressions de marque ont baissé de 60 %. Le gain du chantier marque est
+réévalué à [Inférence] 10 à 20 clics/mois (contre 45-100 estimés sur des
+chiffres tous pays). La borne haute de D24 n'est plus défendable ; la
+borne basse devient incertaine. Recommandation inchangée sur la forme
+(A', décision après M5 fin octobre), revue sur le fond : viser la borne
+basse.
 
 ---
 

@@ -14,7 +14,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | **priorité 1**, mesures M1-M6 avant toute action | — (mesure) | 19/09 |
+| Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | M1, M2, M6 faits le 23/09 ; H1 écartée ; gain réévalué 10-20 clics/mois ; M5 le 14-28/10 ; fiche Google France corrigée par Laurent | — (mesure) | 19/09 |
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
 | Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR `fix/worker-lot-f` ouverte ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js`, `next.config.ts` | 19/09 |
@@ -37,6 +37,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Pour information — Q6, règle WAF PerplexityBot UA + IP | Laurent | 19/09 | Objection éventuelle avant le 25/09 |
 | Pour information — Q12, `sysnext.vercel.app` fermé à l'indexation | Laurent | 19/09 | Aucune action requise |
 | Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | inchangé |
+| Q15 — fiche Google France : langues, date de création, compte Twitter | Laurent | 23/09 | Voir BOITE-AUX-LETTRES |
 
 ---
 
