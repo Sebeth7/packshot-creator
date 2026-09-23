@@ -2268,7 +2268,7 @@
         "title": "Polyvalent",
         "badge": "Le plus demandé",
         "price": "De 18 950 à 46 450 € HT",
-        "description": "Studios multi-formats pour produits moyens à grands. Plusieurs types de visuels (packshot, flat-lay, 360°, vidéo) dans un seul système.",
+        "description": "Studios multi-formats pour <lienCompact>produits moyens à grands</lienCompact>. Plusieurs types de visuels (packshot, flat-lay, 360°, vidéo) dans un seul système.",
         "l1": "Modèles : Alphashot XL, Alphadesk, Alphastudio Compact",
         "l2": "Capacité : 180 à 300 visuels par jour selon le modèle",
         "l3": "Fonctions : multi-caméra, ghost mannequin, flat-lay textile"
@@ -2367,7 +2367,7 @@
       "body": "L'investissement dans un studio photo automatisé peut être lissé dans le temps. Plusieurs options existent pour adapter le financement à votre trésorerie.",
       "f1": {
         "title": "Leasing à partir de 445 €/mois",
-        "description": "Pour l'Alphashot Pro G2, notre modèle le plus vendu. Mensualité fixe, budget maîtrisé."
+        "description": "Pour l'Alphashot Pro G2, <lienProG2>notre modèle le plus vendu</lienProG2>. Mensualité fixe, budget maîtrisé."
       },
       "f2": {
         "title": "Financement OPCO (jusqu'à 100 %)",

@@ -202,7 +202,13 @@ export default async function BudgetStudioPage({ params }: { params: Promise<{ l
                     {t('ranges.polyvalent.price')}
                   </p>
                   <p className="text-sm text-future-dusk-600 leading-relaxed mb-4">
-                    {t('ranges.polyvalent.description')}
+                    {t.rich('ranges.polyvalent.description', {
+                      lienCompact: (chunks) => (
+                        <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphastudio-compact-v2' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                          {chunks}
+                        </Link>
+                      ),
+                    })}
                   </p>
                   <ul className="space-y-2">
                     {(['l1', 'l2', 'l3'] as const).map((key) => (
@@ -373,7 +379,15 @@ export default async function BudgetStudioPage({ params }: { params: Promise<{ l
                     <CreditCard className="h-5 w-5 text-very-peri-500 mt-0.5 shrink-0" />
                     <div>
                       <p className="font-medium text-future-dusk-900">{t(`financing.${key}.title`)}</p>
-                      <p className="text-sm text-future-dusk-500 mt-1">{t(`financing.${key}.description`)}</p>
+                      <p className="text-sm text-future-dusk-500 mt-1">
+                        {t.rich(`financing.${key}.description`, {
+                          lienProG2: (chunks) => (
+                            <Link href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                              {chunks}
+                            </Link>
+                          ),
+                        })}
+                      </p>
                     </div>
                   </div>
                 </StaggerItem>
