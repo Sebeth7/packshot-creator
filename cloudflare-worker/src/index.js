@@ -788,7 +788,6 @@ var index_default = {
         "/de/fotostudio/alphashot-360": "/de-ch/fotostudio/alphashot-360",
         "/de/fotostudio/alphashot-g2": "/de-ch/fotostudio/alphashot-xl-g2",
         "/de/fotostudio/alphashot-micro": "/de-ch/fotostudio/alphashot-micro-v2",
-        "/de/fotostudio/alphashot-xl": "/de-ch/fotostudio/alphashot-xl-g2",
         "/de/fotostudio/alphastudio-compact": "/de-ch/fotostudio/alphastudio-compact-v2",
         "/de/fotostudio/alphastudio-xxl": "/de-ch/fotostudio/alphastudio-xxl-v2",
         "/de/fotostudio/alphatable": "/de-ch/fotostudio/alphatable",

@@ -78,9 +78,9 @@ describe('Variante /amp du doublon « -22 » — 410 conservé', () => {
   }
 });
 
-describe('D29 — successeur de l\'Alphashot XL v2 : XL G2 (décision de Laurent du 24/09/2026)', () => {
+describe('REVIEW_PRODUCT_MAPPING — inchangé : Alphashot XL v2 et XL G2 coexistent (D29 annulée le 24/09/2026)', () => {
   verifier({
-    '/de/fotostudio/alphashot-xl': '/de-ch/fotostudio/alphashot-xl-g2',
+    '/de/fotostudio/alphashot-xl': '/de-ch/fotostudio/maschinen-finder',
   });
 });
 
