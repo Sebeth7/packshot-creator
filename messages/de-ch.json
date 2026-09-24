@@ -538,10 +538,7 @@
       "stat2": "5 000+",
       "stat2Label": "erstellte Bilder",
       "stat3": "4.9/5",
-      "stat3Label": "Kundenzufriedenheit",
-      "quote": "Einfach, schnell und super effizient, eine echte Zeitersparnis im Alltag.",
-      "quoteName": "Team Marketing - Grosfilley",
-      "quoteCompany": "Premium-Accessoires-Marke"
+      "stat3Label": "Kundenzufriedenheit"
     },
     "compatible": {
       "heading": "Kompatibel mit allen Orbitvu-Systemen",
@@ -1068,11 +1065,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Schmuckfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Die Makroqualität des Super Focus hat unseren Online-Katalog verändert. Unsere Kunden sehen endlich jedes Detail unserer Kreationen.",
-      "author": "Thomas D.",
-      "role": "Gründer, Pariser Juwelierhaus"
     }
   },
   "packshotMode": {
@@ -1148,11 +1140,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer Demonstration mit einem Experten für Textilfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Wir fotografieren 200 Artikel pro Tag mit nur einem Bediener. Die Taktung hat sich seit der Installation verachtfacht.",
-      "author": "Alexandre M.",
-      "role": "Produktionsleiter, Prêt-à-porter-Marke"
     }
   },
   "packshotEcommerce": {
@@ -1228,11 +1215,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Produktfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Seit wir mit PackshotCreator intern produzieren, erstellen wir 400 Visuals pro Tag statt 30. Der ROI wurde nach 5 Monaten erreicht.",
-      "author": "Marie L.",
-      "role": "E-Commerce-Leiterin, internationale Kosmetikmarke"
     }
   },
   "besoinsPhoto": {
@@ -1519,11 +1501,6 @@
       "description": "Entdecken Sie, wie unsere automatisierten Studios Amazon-taugliche Fotos in grossen Mengen erstellen.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Seit 18 Monaten keine einzige Amazon-Ablehnung. Das Freistellen mit IQ Mask erzeugt jedes Mal einen konformen weissen Hintergrund, ganz ohne Retusche.",
-      "author": "Sophie R.",
-      "role": "Marktplatz-Verantwortliche, Handelsgruppe"
     }
   },
   "packshotIndustriel": {
@@ -1599,11 +1576,6 @@
       "description": "Entdecken Sie, wie unsere automatisierten Studios die technische Dokumentation Ihrer Industrieprodukte verändern.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Die Reproduzierbarkeit ist vollständig. Jedes Teil unseres Katalogs mit 15'000 Artikeln hat exakt dasselbe Resultat.",
-      "author": "Philippe B.",
-      "role": "Leiter technische Dokumentation, Automobilzulieferer"
     }
   },
   "industrieDefense": {
