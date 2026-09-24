@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-24 · Gouvernance P0 — D29 à D31, état des P0 · Claude de Laurent
 
-**Chantier** : clôture technique P0 du 24/09 | **PR** : branche `docs/gouvernance-p0-2026-09-24` (documentation seule) | **Non fusionnée**
+**Chantier** : clôture technique P0 du 24/09 | **PR** : #33, branche `docs/gouvernance-p0-2026-09-24` (documentation seule) | **Fusionnée en dernier**, après #29, #30 et #32
 
 **Quoi** — `DECISIONS.md` : D29 (`SUSPENDED / REVIEW_PRODUCT_MAPPING` — mapping produit Alphashot XL v2 / XL G2 à valider, aucun changement XL d'ici là), D30 (mensualités de-ch hors périmètre, aucun changement), D31 (aucun témoignage ni avis client sur `/de-ch`, `Review` et `aggregateRating` compris ; l'`aggregateRating` de `/de-ch/ia-photo-produit` est retiré dans la PR #32, `1c52eb7`). `ETAT.md` : lignes P0-A, P0-D/E, D29, D31, P0-I, P0-F ; lot F fusionné et déployé le 23/09 ; P0-H en attente de mesure ; nouvelle section « P0 du 24/09 — état ».
 
@@ -68,11 +68,18 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - la redirection `/de/fotostudio/alphashot-xl` → XL G2 est retirée de la PR #30 (`e112460`) ;
 - les 13 redirections en production vers XL G2 et les 2 règles de `next.config.ts` vers XL v2 sont laissées en l'état, sans rollback automatique.
 
+**Fusion du 24/09** — GO de Laurent, ordre strict, `main` fusionnée dans chaque PR suivante avant sa fusion ; seul conflit rencontré : `JOURNAL.md`, résolu en gardant toutes les entrées :
+- #29 (P0-A) → `6c16108` ;
+- #30 (P0-D/E) → `665f5ef` ; le Worker de production **n'est pas déployé** ;
+- #32 (D31) → `c9f8aa5` ;
+- #31 reste fermée sans fusion ; aucun de ses commits n'est sur `main`.
+P0-I non appliqué. `ETAT.md` mis à jour dans cette PR pour refléter cet état.
+
 **Supposé** — Le verdict `MIXED` de P0-B et les constats de marque de P0-C, tels que déclarés par Laurent : leurs livrables ne sont pas dans le dépôt.
 
 **Non regardé** — `BOITE-AUX-LETTRES.md` n'est pas modifié : le texte de Q16 à Q18 n'a pas été transmis et n'est pas reconstitué. Les 5 autres requêtes du test SERP. Les Security Events Cloudflare (P0-F, pas d'accès).
 
-**Suite** — Fusion des PR #29, #30 et #32, puis de cette PR, sur GO de Laurent. Validation du mapping produit XL v2 / XL G2 avant tout changement de redirection XL. Clore Q16 à Q18 dans `BOITE-AUX-LETTRES.md` dès réception de leur texte. Archiver le workflow jetable ; à l'avenir, dupliquer un workflow avant tout usage temporaire.
+**Suite** — Contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome). Déploiement du Worker de #30 sur GO séparé de Laurent, après resynchronisation. GO P0-I. Validation du mapping produit XL v2 / XL G2 avant tout changement de redirection XL. Q16 à Q18 : absence acceptée par Laurent, aucune entrée reconstituée. Archiver le workflow jetable ; à l'avenir, dupliquer un workflow avant tout usage temporaire.
 
 ## 2026-09-24 · D31 — aucun témoignage ni avis client sur `/de-ch` · Claude de Laurent
 
