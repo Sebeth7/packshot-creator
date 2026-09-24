@@ -95,28 +95,6 @@
         "furniture": "Möbel im Grossformat"
       }
     },
-    "testimonials": {
-      "label": "Kundenergebnisse",
-      "heading": "Was unsere Kunden sagen",
-      "t1": {
-        "stat": "65%",
-        "statLabel": "weniger Produktionszeit",
-        "description": "Die Automatisierung von Aufnahme, Freistellen und Postproduktion reduziert die Produktionszeit der Bilder um mehr als die Hälfte. Manuelle Arbeitsschritte entfallen, der Workflow ist standardisiert, die Freigabe beschleunigt.",
-        "source": "Kundenstudie PackshotCreator 2025"
-      },
-      "t2": {
-        "stat": "8 Monate",
-        "statLabel": "bis zum ROI",
-        "description": "Die Kosten pro Bild sinken im Vergleich zu einer externen Dienstleistung oder einem klassischen internen Studio auf ein Fünftel. Der Return on Investment stellt sich je nach intern produziertem Volumen im Schnitt nach 6 bis 12 Monaten ein.",
-        "source": "Kundenstudie PackshotCreator 2025"
-      },
-      "t3": {
-        "stat": "90%",
-        "statLabel": "Produktivitätsgewinn",
-        "description": "Das Orbitvu-Studio deckt die automatisierte Aufnahme ab, BlendAI erzeugt die Lifestyle-Varianten. Ein und dasselbe Team bewältigt bis zu zehnmal mehr Produktion, ohne den Personalbestand aufzustocken.",
-        "source": "Kundenstudie PackshotCreator 2025"
-      }
-    },
     "whyAutomate": {
       "label": "Der entscheidende Vorteil",
       "heading": "3 Gründe für die Automatisierung",
@@ -204,7 +182,6 @@
     "finalCta": {
       "heading": "Ihr nächster Packshot könnte in 3 Sekunden fertig sein",
       "subtitle": "Buchen Sie eine Demo mit einem PackshotCreator-Experten. 30 Minuten, um unsere Studios in Aktion zu sehen.",
-      "microTestimonial": "«PackshotCreator hat uns 65 % Zeit bei der Fotoproduktion eingespart.» — Marketingleitung, Industrieprodukte",
       "ctaPrimary": "Meine Demo buchen",
       "ctaSecondary": "Meinen ROI berechnen",
       "card1": {
@@ -459,44 +436,6 @@
       "ctrLabel": "Klickrate Werbung",
       "source": "Bei unseren aktiven Kunden gemessene Leistungen"
     },
-    "testimonials": {
-      "t1": {
-        "quote": "Mit BlendAI konnten wir unsere Shooting-Kosten um 60% senken und gleichzeitig die Anzahl der Produktbilder vervierfachen.",
-        "name": "Sophie Laurent",
-        "title": "Leiterin E-Commerce",
-        "company": "Pariser Luxushaus"
-      },
-      "t2": {
-        "quote": "Einfach, schnell und super effizient. Eine echte Zeitersparnis im Alltag für das gesamte Marketingteam.",
-        "name": "Team Marketing",
-        "title": "Marketingteam",
-        "company": "Grosfilley — Premium-Accessoires"
-      },
-      "t3": {
-        "quote": "Die Originaltreue der Ergebnisse ist beeindruckend. Unsere Kunden erkennen keinen Unterschied zu einem echten Lifestyle-Shooting.",
-        "name": "Marc Dubois",
-        "title": "Produktmanager",
-        "company": "Schweizer Uhrenmarke"
-      },
-      "t4": {
-        "quote": "Wir haben BlendAI in unseren E-Commerce-Workflow integriert. 500 Produktseiten in einer Woche statt in zwei Monaten aktualisiert.",
-        "name": "Camille Renard",
-        "title": "Content-Verantwortliche",
-        "company": "Mode-Marktplatz"
-      },
-      "t5": {
-        "quote": "Die Stapelverarbeitung ist ein Gamechanger. Wir wenden einen Stil in wenigen Minuten auf eine ganze Kollektion an.",
-        "name": "Jean-Pierre Morel",
-        "title": "Art Director",
-        "company": "Schmuckmanufaktur"
-      },
-      "t6": {
-        "quote": "Endlich eine KI-Lösung, die die Integrität unserer Produkte respektiert. Null Halluzinationen, null Überraschungen.",
-        "name": "Isabelle Dumont",
-        "title": "Brand Managerin",
-        "company": "Internationale Kosmetikgruppe"
-      }
-    },
     "manifeste": {
       "heading": "Die KI ersetzt das Foto nicht, sie erweitert es",
       "subtitle": "Die Qualität Ihrer Varianten hängt von der Qualität Ihres <bold>Ausgangsfotos</bold> ab. BlendAI garantiert die <bold>Originaltreue</bold> jedes Bildes.",
@@ -599,10 +538,7 @@
       "stat2": "5 000+",
       "stat2Label": "erstellte Bilder",
       "stat3": "4.9/5",
-      "stat3Label": "Kundenzufriedenheit",
-      "quote": "Einfach, schnell und super effizient, eine echte Zeitersparnis im Alltag.",
-      "quoteName": "Team Marketing - Grosfilley",
-      "quoteCompany": "Premium-Accessoires-Marke"
+      "stat3Label": "Kundenzufriedenheit"
     },
     "compatible": {
       "heading": "Kompatibel mit allen Orbitvu-Systemen",
@@ -1129,11 +1065,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Schmuckfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Die Makroqualität des Super Focus hat unseren Online-Katalog verändert. Unsere Kunden sehen endlich jedes Detail unserer Kreationen.",
-      "author": "Thomas D.",
-      "role": "Gründer, Pariser Juwelierhaus"
     }
   },
   "packshotMode": {
@@ -1209,11 +1140,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer Demonstration mit einem Experten für Textilfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Wir fotografieren 200 Artikel pro Tag mit nur einem Bediener. Die Taktung hat sich seit der Installation verachtfacht.",
-      "author": "Alexandre M.",
-      "role": "Produktionsleiter, Prêt-à-porter-Marke"
     }
   },
   "packshotEcommerce": {
@@ -1289,11 +1215,6 @@
       "description": "Entdecken Sie unsere Lösungen bei einer persönlichen Demonstration mit einem Experten für Produktfotografie.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Seit wir mit PackshotCreator intern produzieren, erstellen wir 400 Visuals pro Tag statt 30. Der ROI wurde nach 5 Monaten erreicht.",
-      "author": "Marie L.",
-      "role": "E-Commerce-Leiterin, internationale Kosmetikmarke"
     }
   },
   "besoinsPhoto": {
@@ -1580,11 +1501,6 @@
       "description": "Entdecken Sie, wie unsere automatisierten Studios Amazon-taugliche Fotos in grossen Mengen erstellen.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Seit 18 Monaten keine einzige Amazon-Ablehnung. Das Freistellen mit IQ Mask erzeugt jedes Mal einen konformen weissen Hintergrund, ganz ohne Retusche.",
-      "author": "Sophie R.",
-      "role": "Marktplatz-Verantwortliche, Handelsgruppe"
     }
   },
   "packshotIndustriel": {
@@ -1660,11 +1576,6 @@
       "description": "Entdecken Sie, wie unsere automatisierten Studios die technische Dokumentation Ihrer Industrieprodukte verändern.",
       "ctaPrimary": "Demo anfragen",
       "ctaSecondary": "Meinen ROI berechnen"
-    },
-    "testimonial": {
-      "quote": "Die Reproduzierbarkeit ist vollständig. Jedes Teil unseres Katalogs mit 15'000 Artikeln hat exakt dasselbe Resultat.",
-      "author": "Philippe B.",
-      "role": "Leiter technische Dokumentation, Automobilzulieferer"
     }
   },
   "industrieDefense": {

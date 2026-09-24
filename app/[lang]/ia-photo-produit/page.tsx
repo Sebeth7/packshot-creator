@@ -132,7 +132,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   ];
 
   /* Testimonials data for TestimonialCarousel */
-  const testimonials = [1, 2, 3, 4, 5, 6].map((i) => ({
+  // D31 : pas de témoignages sur /de-ch (clés absentes de messages/de-ch.json).
+  const testimonials = lang === 'de-ch' ? [] : [1, 2, 3, 4, 5, 6].map((i) => ({
     quote: t(`testimonials.t${i}.quote`),
     name: t(`testimonials.t${i}.name`),
     title: t(`testimonials.t${i}.title`),
@@ -268,10 +269,12 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {t('stats.source')}
           </p>
 
-          {/* Testimonial carousel */}
-          <FadeInView delay={0.2}>
-            <TestimonialCarousel testimonials={testimonials} />
-          </FadeInView>
+          {/* Testimonial carousel — D31 : masqué sur /de-ch */}
+          {lang !== 'de-ch' && (
+            <FadeInView delay={0.2}>
+              <TestimonialCarousel testimonials={testimonials} />
+            </FadeInView>
+          )}
         </div>
       </section>
 
@@ -695,12 +698,17 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
             },
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: 4.9,
-              reviewCount: 100,
-              bestRating: 5,
-            },
+            // D31 : aucune note agrégée d'avis clients sur /de-ch.
+            ...(lang !== 'de-ch'
+              ? {
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: 4.9,
+                    reviewCount: 100,
+                    bestRating: 5,
+                  },
+                }
+              : {}),
             provider: {
               '@type': 'Organization',
               name: 'PackshotCreator',

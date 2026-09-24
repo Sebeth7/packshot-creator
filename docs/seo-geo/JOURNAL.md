@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-24 · D31 — aucun témoignage ni avis client sur `/de-ch` · Claude de Laurent
+
+**Chantier** : D31 (décision de Laurent du 24/09 : aucun témoignage ou avis client sur `/de-ch` ; les avis français ne sont ni traduits ni remplacés) | **PR** : branche `fix/de-ch-masquer-temoignages-2026-09` | **Commits** : `ba7b0fe`, `06f493c`, `9f6ca60` | **Non fusionnée** — fusion sur GO de Laurent
+
+**Quoi** — Sur `/de-ch` uniquement, plus aucun des éléments suivants n'est rendu :
+- `TestimonialsSection` (avis Google et leurs JSON-LD `Review`) ;
+- la section témoignages de la home et son micro-témoignage ;
+- le carrousel de `/ia-photo-produit` ;
+- la citation des landings `packshot-*`.
+
+Les clés correspondantes sont retirées de `messages/de-ch.json`. Patch `PSC_PATCH_DECH_TEMOIGNAGES_2026-09-24.patch` (3 commits) appliqué tel quel par `git am`, empreinte SHA-256 `170c377f…b09492c5a` vérifiée.
+
+**Pourquoi** — Relevé sur `sysnext.vercel.app` le 24/09 : `/de-ch` rendait « What our clients say », « Reviews published on Google », 6 avis Google en français et 8 blocs JSON-LD `Review`. `TestimonialsSection` n'acceptait que `'fr' | 'en'`.
+
+**Fichiers** — `components/testimonials/TestimonialsSection.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `app/[lang]/academy/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `messages/de-ch.json`
+
+**Effet attendu** — À la fusion (Vercel, ~3 min) : plus aucun texte FR ou EN de témoignage sur `/de-ch`, plus aucun bloc `Review` en de-ch. `/fr` et `/en` inchangés.
+
+**Vérifié** —
+- Tests et build : `npx vitest run` 186/186 ; `npx tsc --noEmit` 0 erreur ; `node scripts/seo/verifier-json.mjs` 183 fichiers valides ; `npx next build` vert (R1), 380 pages, **0 `MISSING_MESSAGE`**.
+- *`/fr` et `/en` inchangés* : les 316 pages prérendues sont comparées au build de `main`, après neutralisation de l'identifiant de build et des empreintes des ressources `/_next/static`.
+  - DOM (HTML hors charge utile RSC) identique sur **316/316**.
+  - Charge utile RSC identique sur 314/316.
+  - Écart sur `/fr` et `/en/studios-photo-automatises` : numérotation et ordre des références de composants client (`$L61`/`$L62`), dans un sens opposé entre `/fr` et `/en`. [Inférence] Ordre de sérialisation d'un build à l'autre, sans rapport avec le patch. Cela repose sur des schémas observés.
+  - **F5 `/fr/packshot-e-commerce` : identique, DOM et charge utile RSC.**
+- *48 pages `/de-ch`*, recherche de 22 fragments (titres, sources, auteurs et JSON-LD des témoignages et avis). Sur `main` : 7 pages concernées, dont 16 blocs `Review`. Après : 0 texte de témoignage, 0 bloc `Review`. Restent deux occurrences :
+  - « Kundenstudie PackshotCreator 2025 » : source d'une statistique de la home, pas un témoignage ;
+  - le JSON-LD `SoftwareApplication` de `/de-ch/ia-photo-produit`, qui porte `aggregateRating` (4,9, `reviewCount` 100), comme en `/fr` et `/en`. Non traité par le patch.
+
+**Supposé** — Que les données agrégées d'avis de BlendAI (`aggregateRating`) relèvent ou non de D31 : question laissée à Laurent.
+
+**Non regardé** — Le Preview Vercel : jeton de contournement non transmis. Le rendu dans Chrome sur `www` (R4).
+
+**Suite** — Fusion sur GO de Laurent. Contrôle visiteur dans Chrome (traduction automatique désactivée, piège B5) sur `/de-ch`, `/de-ch/studios-photo-automatises`, `/de-ch/ia-photo-produit` et une landing de-ch. Décision de Laurent sur l'`aggregateRating` de `/de-ch/ia-photo-produit`.
+
+**Ajout du 24/09 — `aggregateRating` retiré sur `/de-ch`** — Décision de Laurent : l'`aggregateRating` de BlendAI (4,9, `reviewCount` 100) relève aussi des avis clients (D31). Dans `app/[lang]/ia-photo-produit/page.tsx`, la propriété n'est plus émise dans le JSON-LD `SoftwareApplication` quand `lang === 'de-ch'`. En `/fr` et `/en`, même objet, mêmes clés, même ordre.
+- *Vérifié* : `npx vitest run` 186/186 ; `npx tsc --noEmit` 0 erreur ; `npx next build` vert (R1), 380 pages, 0 `MISSING_MESSAGE`.
+- *48 pages `/de-ch`*, HTML complet charge utile RSC comprise : 0 bloc `Review`, 0 `aggregateRating`, `AggregateRating`, `reviewCount` ou `ratingValue`, 0 texte de témoignage.
+- *`/fr` et `/en`*, comparés au build de `main` : DOM identique sur 316/316. `/fr/packshot-e-commerce`, `/fr/ia-photo-produit` et `/en/ia-photo-produit` sont identiques, charge utile RSC comprise, et l'`aggregateRating` y est toujours émis.
+
 ## 2026-09-24 · P0-D/E — héritage `/de` → `/de-ch`, chaînes à un saut, doublon « -22 » · Claude de Laurent
 
 **Chantier** : P0-D/E (Master SEO/GEO V3, hors dépôt) | **PR** : branche `fix/p0-de-ch-heritage-chaines-2026-09` | **Commit** : `c5eaa86` | **Circuit** : (a) | **Non fusionnée**, **Worker non déployé** — deux GO séparés de Laurent (D4, R5)

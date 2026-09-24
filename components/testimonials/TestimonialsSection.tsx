@@ -4,12 +4,15 @@ import { GMB_URL, GMB_AGGREGATE, type Testimonial } from '@/data/testimonials';
 
 interface Props {
   items: Testimonial[];
-  lang: 'fr' | 'en';
+  lang: 'fr' | 'en' | 'de-ch';
   headline?: string;
   subhead?: string;
 }
 
 export default function TestimonialsSection({ items, lang, headline, subhead }: Props) {
+  // D31 (24/09/2026) : aucun témoignage sur /de-ch. Les avis Google sont en français ;
+  // ils ne sont ni traduits ni remplacés. Rien n'est rendu, JSON-LD Review compris.
+  if (lang === 'de-ch') return null;
   const isFr = lang === 'fr';
   const defaultHeadline = isFr ? 'Ce que disent nos clients' : 'What our clients say';
   const defaultSub = isFr

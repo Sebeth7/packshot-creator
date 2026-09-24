@@ -476,7 +476,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ lang: 
 
       <TestimonialsSection
         items={getTestimonialsByCategory('formation')}
-        lang={lang as 'fr' | 'en'}
+        lang={lang as 'fr' | 'en' | 'de-ch'}
         headline={isFr ? 'Avis de nos stagiaires' : 'What our trainees say'}
         subhead={isFr
           ? 'Une sélection d\'avis publiés sur Google par les participants à nos formations.'
