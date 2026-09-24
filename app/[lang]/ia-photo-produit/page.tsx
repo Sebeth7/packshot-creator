@@ -132,7 +132,8 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   ];
 
   /* Testimonials data for TestimonialCarousel */
-  const testimonials = [1, 2, 3, 4, 5, 6].map((i) => ({
+  // D31 : pas de témoignages sur /de-ch (clés absentes de messages/de-ch.json).
+  const testimonials = lang === 'de-ch' ? [] : [1, 2, 3, 4, 5, 6].map((i) => ({
     quote: t(`testimonials.t${i}.quote`),
     name: t(`testimonials.t${i}.name`),
     title: t(`testimonials.t${i}.title`),
