@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-24 · D29 — anciennes URL XL et G2 `/en` vers `alphashot-xl-g2` · Claude de Laurent
+
+**Chantier** : D29 (décision de Laurent du 24/09 : le successeur commercial de l'Alphashot XL v2 est l'Alphashot XL G2) | **PR** : branche `fix/alphashot-xl-g2-next-config-2026-09` | **Commit** : `f817fa6` | **Circuit** : (a) | **Non fusionnée** — fusion sur GO de Laurent
+
+**Quoi** — `next.config.ts`, bloc `redirects()` :
+- `/en/photo-studio/alphashot-xl` et `/en/studio-photo/alphashot-xl` visent désormais `/en/studio-photo/alphashot-xl-g2` au lieu de `alphashot-xl-v2`.
+- Nouvelle règle `/en/photo-studio/alphashot-g2` → `alphashot-xl-g2`, placée avant le catch-all : un saut au lieu de deux.
+- Nouveau test `cloudflare-worker/test/alphashot-xl-g2.test.ts` (8 cas).
+
+Patch `PSC_PATCH_XL_G2_NEXTCONFIG_2026-09-24.patch` appliqué tel quel par `git am`, empreinte SHA-256 `4a2f2bdc…4bf695a6` vérifiée. La fiche `alphashot-xl-v2` n'est pas touchée.
+
+**Pourquoi** — Deux redirections de `next.config.ts` ciblaient encore la fiche `alphashot-xl-v2` (`delisted: true`). Relevé sur `sysnext.vercel.app` le 24/09 : `/en/studio-photo/alphashot-xl` et `/en/photo-studio/alphashot-xl` → 301 vers `alphashot-xl-v2`. Le Worker ne les capte pas : elles atteignent l'origine.
+
+**Fichiers** — `next.config.ts`, `cloudflare-worker/test/alphashot-xl-g2.test.ts` (nouveau)
+
+**Effet attendu** — À la fusion (Vercel, ~3 min), les 3 URL mènent à la fiche XL G2 en un seul saut. Lisible dans GSC (pages de destination) à J+14.
+
+**Vérifié** —
+- `npx vitest run` : 11 fichiers, **194/194**, dont `alphashot-xl-g2` 8/8. `npx tsc --noEmit` : 0 erreur. `npx next build` vert (R1), 380 pages.
+- `next start` (port 3025, arrêté ensuite) :
+  - `/en/photo-studio/alphashot-xl`, `/en/studio-photo/alphashot-xl` et `/en/photo-studio/alphashot-g2` → un seul 301 vers `/en/studio-photo/alphashot-xl-g2` ;
+  - la cible répond 200, canonique auto-référente, aucune balise `robots` ;
+  - `/en/studio-photo/alphashot-xl-v2` répond toujours 200 (fiche non touchée).
+- `next.config.ts` : 0 occurrence de `alphashot-xl-v2`.
+
+**Supposé** — Que les règles `redirects()` passent avant le middleware next-intl sur Vercel comme en local.
+
+**Non regardé** — `e2e/redirections.spec.ts` l. 65 et 75 attend encore `alphashot-xl-v2` pour ces deux sources. Le patch ne le couvre pas, et la spec n'est pas lancée par la CI. Elle est à aligner avant tout passage Playwright. Le Preview Vercel : jeton de contournement non transmis.
+
+**Suite** — Fusion sur GO de Laurent, puis `curl.exe -sI` sur les 3 URL depuis le poste de Laurent (R4), avec une chaîne de requête neuve.
+
 ## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
 **Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,
 en lecture seule ; modification de la fiche Google France par Laurent.
