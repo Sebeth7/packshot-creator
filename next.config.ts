@@ -58,7 +58,10 @@ const nextConfig: NextConfig = {
       // /en/photo-studio/* (ancien namespace Webflow) → /en/studio-photo/* (Next.js)
       // Slugs renommés AVANT le catch-all
       { source: '/en/photo-studio/alphashot-micro', destination: '/en/studio-photo/alphashot-micro-v2', statusCode: 301 },
-      { source: '/en/photo-studio/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-v2', statusCode: 301 },
+      // Alphashot G2 remplacé par l'Alphashot XL G2 (d8b4156) : un saut au lieu de deux (catch-all puis Worker).
+      { source: '/en/photo-studio/alphashot-g2', destination: '/en/studio-photo/alphashot-xl-g2', statusCode: 301 },
+      // Successeur commercial de l'Alphashot XL v2 = Alphashot XL G2 (décision LW 24/09/2026, D29).
+      { source: '/en/photo-studio/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-g2', statusCode: 301 },
       { source: '/en/photo-studio/alphastudio-compact', destination: '/en/studio-photo/alphastudio-compact-v2', statusCode: 301 },
       { source: '/en/photo-studio/alphastudio-xxl', destination: '/en/studio-photo/alphastudio-xxl-v2', statusCode: 301 },
       { source: '/en/photo-studio/e-comm-studio', destination: '/en/studio-photo/e-comm-studio-plus', statusCode: 301 },
@@ -67,7 +70,7 @@ const nextConfig: NextConfig = {
 
       // Accès directs à /en/studio-photo/ avec anciens slugs
       { source: '/en/studio-photo/alphashot-micro', destination: '/en/studio-photo/alphashot-micro-v2', statusCode: 301 },
-      { source: '/en/studio-photo/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-v2', statusCode: 301 },
+      { source: '/en/studio-photo/alphashot-xl', destination: '/en/studio-photo/alphashot-xl-g2', statusCode: 301 },
       { source: '/en/studio-photo/alphastudio-compact', destination: '/en/studio-photo/alphastudio-compact-v2', statusCode: 301 },
       { source: '/en/studio-photo/alphastudio-xxl', destination: '/en/studio-photo/alphastudio-xxl-v2', statusCode: 301 },
       { source: '/en/studio-photo/e-comm-studio', destination: '/en/studio-photo/e-comm-studio-plus', statusCode: 301 },
