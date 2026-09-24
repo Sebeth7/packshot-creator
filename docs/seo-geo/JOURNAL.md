@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-24 · P0-D/E — héritage `/de` → `/de-ch`, chaînes à un saut, doublon « -22 » · Claude de Laurent
+
+**Chantier** : P0-D/E (Master SEO/GEO V3, hors dépôt) | **PR** : branche `fix/p0-de-ch-heritage-chaines-2026-09` | **Commit** : `c5eaa86` | **Circuit** : (a) | **Non fusionnée**, **Worker non déployé** — deux GO séparés de Laurent (D4, R5)
+
+**Quoi** — `cloudflare-worker/src/index.js` : 17 clés ajoutées à `DE_CH_MAP` ; 2 clés ajoutées à `LEGACY_REDIRECTS` (doublon « -22 », `packshot-mannequin`) ; 1 clé retirée de `GONE_PATHS` (« -22 ») ; préfixes `/industrie/` et `/studio-photo/` : la cible `/fr<chemin>` est d'abord cherchée dans `LEGACY_REDIRECTS`, un saut au lieu de deux. Nouveau test `p0-de-ch-heritage.test.ts` (32 cas). Patch V2 appliqué tel quel par `git am`, empreinte SHA-256 `8d3017ed…894e68b` vérifiée avant application.
+
+**Pourquoi** — Sur `main`, 17 URL `/de/*` tombent sur un hub (`/de-ch`, `/de-ch/blog`, `/de-ch/guide`, `/de-ch/branchen`, `maschinen-finder`) alors qu'un équivalent exact ou un successeur documenté existe en de-ch ; `packshot-mannequin` tombe sur `/fr` ; les chaînes `/industrie/<x>` → `/fr/industrie/<x>` → cible font deux sauts ; `/blog/…-22` répond 410 alors que `/…-22` redirige vers l'article (l. 1519).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/test/p0-de-ch-heritage.test.ts` (nouveau)
+
+**Effet attendu** — Après déploiement du Worker seulement : 30 chemins changent de premier saut (60 avec la barre finale). Lisible dans la couverture GSC et les pages de destination à J+14.
+
+**Vérifié** —
+- `node --check` vert. `npx vitest run` : 11 fichiers, **218/218** ; `lot-f` 44/44, `unicite-tables` 20/20, `legacy-redirects` 31/31, `p0-de-ch-heritage` 32/32.
+- *Contrôle négatif* : le nouveau test lancé sur le Worker de `main` donne 23 rouges (13 EXACT_EQUIVALENT, 5 DOCUMENTED_SUCCESSOR, 5 déterministes) et 9 verts (8 REVIEW, `/industrie/lunetterie`).
+- *Simulation différentielle `main` → branche* (import des deux modules, origine interceptée) sur 3 691 chemins : toutes les chaînes du fichier commençant par `/`, plus les variantes `/industrie/<x>` et `/studio-photo/<x>` dérivées des clés `/fr/…`, avec et sans barre finale. **30 chemins** changent de premier saut : 17 `/de/*`, `packshot-mannequin`, « -22 », **10** chaînes `/industrie/*`, **1** chaîne `/studio-photo/*`. Chaînes raccourcies : destination finale identique dans les 22 cas (11 avec et sans barre finale), 2 sauts → 1.
+- *REVIEW* : les 8 chemins, avec et sans barre finale, gardent premier saut et chaîne complète.
+- *Cibles* : `next build` puis `next start` (build de la branche P0-A, pages cibles identiques à `main`) : 28 cibles sur 28 en 200, canonique auto-référente, aucune balise `robots`.
+- `git status` avant commit : aucun fichier sous `node_modules`, aucun cache de test.
+
+**Écarts entre la consigne et le patch (R7)** — patch appliqué sans correction, conformément à la consigne.
+1. La consigne annonce 23 changements, dont 4 chaînes `/industrie/*`. La règle du patch est générique : elle raccourcit **toute** chaîne `/industrie/<x>` dont `/fr/industrie/<x>` est une clé de `LEGACY_REDIRECTS`. La simulation en relève 10, soit 30 changements au total. [Inférence] L'échantillon de 637 URL du bac à sable n'en contenait que 4. Cela repose sur des schémas observés.
+2. Le patch modifie aussi le préfixe `/studio-photo/`, absent de la consigne : 1 chaîne raccourcie, `/studio-photo/360-draaitafels` → `/fr/studio-photo/selecteur-machines`, destination inchangée.
+3. La consigne parle de 6 mappings REVIEW ; le patch en teste 8 (7 lignes du tableau, la dernière couvrant 2 URL). Les 8 sont inchangés.
+
+**Supposé** — Que la production porte encore `main` au 23/09 (`29ca657`, version `05c5c47c`) : la resynchronisation reste à faire avant déploiement (D4, R5, `05-INFRA.md`). Que le comportement simulé se reproduit en production (R4, B1).
+
+**Non regardé** — Variante `/amp` : `/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22/amp` passait en 410 via `shouldReturn410` ; elle fera 301 vers `/fr/blog/…-22/amp`, qui répond 404 sur `next start`. Même nature que le constat du lot F sur les clés retirées de `GONE_PATHS`. Les requêtes GSC citées par la consigne (« weinflaschen fotografieren », « brille fotografieren », « packshot mannequin ») : non relevées ici. Backlinks des 30 chemins. `ETAT.md` : non modifié, pour ne pas créer de conflit avec la PR P0-A ouverte le même jour.
+
+**Suite** — Fusion sur GO de Laurent. Puis GO séparé de déploiement du Worker : resynchronisation, `wrangler deploy` depuis `main`, témoins `curl.exe` listés dans la PR, résultat à reporter ici.
+
 ## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
 **Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,
 en lecture seule ; modification de la fiche Google France par Laurent.
