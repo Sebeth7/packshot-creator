@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-24 · Gouvernance P0 — D29 à D31, état des P0 · Claude de Laurent
+
+**Chantier** : clôture technique P0 du 24/09 | **PR** : branche `docs/gouvernance-p0-2026-09-24` (documentation seule) | **Non fusionnée**
+
+**Quoi** — `DECISIONS.md` : D29 (XL v2 → XL G2), D30 (mensualités de-ch hors périmètre, aucun changement), D31 (aucun témoignage ni avis client sur `/de-ch`). `ETAT.md` : lignes P0-A, P0-D/E, D29, D31, P0-I, P0-F ; lot F fusionné et déployé le 23/09 ; P0-H en attente de mesure ; nouvelle section « P0 du 24/09 — état ».
+
+**Pourquoi** — Contrôle de clôture du 24/09 : aucun des points P0 du jour n'était reflété sur `main` dans `ETAT.md`, `DECISIONS.md`, `JOURNAL.md` ou `BOITE-AUX-LETTRES.md`, et `ETAT.md` présentait encore le lot F comme non déployé.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site.
+
+**Vérifié** (le 24/09, en lecture seule) —
+- *P0-H* :
+  - migration `20260924135212_p0h_gsc_pull_bornes_index_backward_20260924` présente ; la fonction déployée est identique à son texte ;
+  - sortie identique à l'ancienne requête, rejouée en `SELECT` ; `EXPLAIN ANALYZE` 2,9 ms ; bornes au 21/09 sur les 6 couples ;
+  - M5 #3399 en succès le 24/09 à 13:52 UTC ; la définition précédente est conservée dans la migration `20260721144023`.
+- *P0-I* : les 8 fonctions (`gsc_quick_wins_json`, `gsc_tracking_weekly_json`, `gsc_candidates_vertical`, `app_gsc_top_queries`, `app_kpi_loop`, `app_page_conversion_loop`, `app_gsc_opportunities`, `app_blog_reconversion_list`) excluent encore `amazon` ; aucune ne filtre `site:`. Aucune migration P0-I.
+- *P1-Q* : 0 commit touchant `content/blog` sur `main` depuis le 01/08, 0 fichier supprimé.
+- *Workflow n8n `mXBXhmlutu26YMTY`* (jetable du test SERP) :
+  - l'historique ne garde que « TEMP P0-B » (14:03) et « Restauration jsCode 23/09 » (14:05) ;
+  - les 53 tâches générées par le code restauré sont identiques, par lecture élément par élément, à la sortie de l'exécution #3379 du 23/09 faite avec la version d'origine ;
+  - le workflow est inactif et non archivé.
+- *Test SERP* : exécution #3400 (5 requêtes sur 10). AI Overview sur 3, PSC hors top 10 sur 5, orbitvu.fr dans le top 10 sur 3 et devant PSC à chaque fois.
+- *Worker de production* : comportement identique à `main` sur 3 691 chemins ; P0-D/E non déployé.
+- *Origine de production* (`sysnext.vercel.app`) : `/de-ch` sort encore `inLanguage` `en-US` et rend les témoignages.
+
+**Supposé** — Le verdict `MIXED` de P0-B et les constats de marque de P0-C, tels que déclarés par Laurent : leurs livrables ne sont pas dans le dépôt.
+
+**Non regardé** — `BOITE-AUX-LETTRES.md` n'est pas modifié : le texte de Q16 à Q18 n'a pas été transmis et n'est pas reconstitué. Les 5 autres requêtes du test SERP. Les Security Events Cloudflare (P0-F, pas d'accès).
+
+**Suite** — Fusion des PR #29 à #32, puis de cette PR, sur GO de Laurent. Clore Q16 à Q18 dans `BOITE-AUX-LETTRES.md` dès réception de leur texte. Archiver le workflow jetable ; à l'avenir, dupliquer un workflow avant tout usage temporaire.
+
 ## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
 **Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,
 en lecture seule ; modification de la fiche Google France par Laurent.

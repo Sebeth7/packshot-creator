@@ -25,6 +25,45 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D31 · 2026-09-24 · Aucun témoignage ni avis client sur `/de-ch`
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Sur `/de-ch`, aucun témoignage ni avis client n'est rendu : avis Google (`TestimonialsSection` et JSON-LD `Review`), section clients de la home, micro-témoignage du CTA final, carrousel de `/ia-photo-produit`, citations des landings `packshot-*`. `/fr` et `/en` ne changent pas.
+
+**Le contexte** — Relevé du 24/09 sur `sysnext.vercel.app` : `/de-ch` rendait « What our clients say » et « Reviews published on Google » en anglais, 6 avis Google en français et 8 blocs JSON-LD `Review`. Les avis existants sont en français ; ils ne sont ni traduits ni remplacés. Mise en œuvre : PR #32.
+
+**Ce qu'elle interdit** — Traduire un avis ; rédiger ou inventer un témoignage en allemand ; réintroduire un bloc d'avis sur `/de-ch` sans nouvelle décision. Point laissé ouvert : l'`aggregateRating` du JSON-LD de BlendAI sur `/de-ch/ia-photo-produit`.
+
+---
+
+## D30 · 2026-09-24 · Mensualités de-ch : hors périmètre, aucun changement
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — `OUT_OF_SCOPE_NO_CHANGE`. Le chantier SEO/GEO ne modifie aucun prix ni aucune devise. Pas de PR sur les mensualités de-ch, pas de modification de `lib/leasing.ts`, du JSON-LD `Offer` lié aux mensualités, de la FAQ Wine ni du calculateur ROI, pas de sollicitation de Sébastien au titre de ce chantier.
+
+**Le contexte** — Les prix affichés sont l'un des quatre sujets qui engagent l'entreprise (`01-RAYON-ACTION.md`, D13). Un passage des mensualités de-ch en euros a été préparé le 24/09 ; il n'est pas retenu dans ce chantier. D30 ne statue pas sur la devise : elle sort le sujet du chantier.
+
+**Ce qu'elle interdit** — Toute modification de prix, de devise ou de mensualité au titre du chantier SEO/GEO ; présenter la conclusion « CHF décidé » du Master V3 comme une décision de référence de ce chantier.
+
+---
+
+## D29 · 2026-09-24 · Le successeur de l'Alphashot XL v2 est l'Alphashot XL G2
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — étend l'accord du 23/09 sur trois entrées du Worker (lot F, PR #26)
+
+**La décision** — Toute redirection qui visait l'Alphashot XL v2, ou l'ancien slug `alphashot-xl`, vise l'Alphashot XL G2 : `/<locale>/studio-photo/alphashot-xl-g2`, `/de-ch/fotostudio/alphashot-xl-g2`. La fiche `alphashot-xl-v2` (`delisted: true`) n'est pas modifiée.
+
+**Le contexte** — Au 24/09, `next.config.ts` renvoyait encore `/en/studio-photo/alphashot-xl` et `/en/photo-studio/alphashot-xl` vers `alphashot-xl-v2`, et le Worker envoyait `/de/fotostudio/alphashot-xl` vers `maschinen-finder`. Mise en œuvre : PR #30 (Worker) et PR #31 (`next.config.ts`).
+
+**Ce qu'elle interdit** — Créer ou conserver une redirection vers `alphashot-xl-v2` ; envoyer une ancienne URL XL vers un hub quand la fiche XL G2 existe.
+
+---
+
 ## D28 · 2026-09-19 · C6 reclassé en hygiène ; ouverture du chantier « choix de page sur la marque »
 
 **Décidé par** : Laurent
