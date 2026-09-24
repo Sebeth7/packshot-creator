@@ -180,7 +180,6 @@ var GONE_PATHS = /* @__PURE__ */ new Set([
   "/blog/une-seconde-vie-pour-vos-photos-de-produits-avec-pinterest",
   "/blog/unscharfe-produktabbildungen-vermeiden",
   "/blog/usa-estudio-foto-hacer-realidad-virtual",
-  "/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22",
   "/blog/vergleich-von-automatisierten-fotografie-loesungen",
   "/blog/vollstange-anleitung-packshot-fotoausrustung",
   "/blog/von-2d-fotografie-zu-3d-modellen-ihrer-produkte-einfuhrung-in-die-photogrammetrie",
@@ -775,14 +774,31 @@ var index_default = {
       const DE_CH_MAP = {
         "/de/automatiser": "/de-ch/studios-photo-automatises",
         "/de/besoins-photographie-produit": "/de-ch/produktfotografie-bedarf",
+        "/de/blog-produits": "/de-ch/blog",
+        "/de/blog/leitfaden-packshot-fotografie-warum-packshots-machen": "/de-ch/blog/leitfaden-packshot-fotografie-warum-packshots-machen",
+        "/de/blog/produkt-vorstellen-leitfaden-packshot-fotografie": "/de-ch/blog/produkt-vorstellen-leitfaden-packshot-fotografie",
         "/de/blog/welches-bildformat-ist-das-beste-fur-das-web": "/de-ch/blog/welches-bildformat-ist-das-beste-fur-das-web",
+        "/de/branchen/flaschen": "/de-ch/branchen/wein",
+        "/de/branchen/mode": "/de-ch/branchen/mode",
+        "/de/branchen/produktansichten-ihrer-brillen-ganz-einfach-selbst-produzieren": "/de-ch/branchen/brillen",
         "/de/branchen/schmuck": "/de-ch/branchen/schmuck",
+        "/de/branchen/schoenheit": "/de-ch/branchen/schoenheit",
         "/de/createur-des-studios-photos-connectes": "/de-ch/wer-sind-wir",
         "/de/fotostudio/alphashot-360": "/de-ch/fotostudio/alphashot-360",
         "/de/fotostudio/alphashot-g2": "/de-ch/fotostudio/alphashot-xl-g2",
+        "/de/fotostudio/alphashot-micro": "/de-ch/fotostudio/alphashot-micro-v2",
+        "/de/fotostudio/alphastudio-compact": "/de-ch/fotostudio/alphastudio-compact-v2",
+        "/de/fotostudio/alphastudio-xxl": "/de-ch/fotostudio/alphastudio-xxl-v2",
+        "/de/fotostudio/alphatable": "/de-ch/fotostudio/alphatable",
+        "/de/fotostudio/bike-studio": "/de-ch/fotostudio/bike-studio",
+        "/de/fotostudio/fashion-studio": "/de-ch/fotostudio/fashion-studio",
+        "/de/fotostudio/furniture-studio": "/de-ch/fotostudio/furniture-studio",
         "/de/gestion-workflow-shotflow": "/de-ch/ia-photo-produit",
+        "/de/guide/quel-equipement-choisir-pour-photo-bijoux": "/de-ch/guide/welche-ausrustung-fur-schmuckfotografie-wahlen",
         "/de/guide/welche-ausrustung-fur-schmuckfotografie-wahlen": "/de-ch/guide/welche-ausrustung-fur-schmuckfotografie-wahlen",
         "/de/guide/welche-einstellungen-zum-fotografieren-von-schmuck": "/de-ch/guide/welche-einstellungen-zum-fotografieren-von-schmuck",
+        "/de/guide/wie-uhr-vor-fotoshooting-positionieren": "/de-ch/guide/wie-uhr-vor-fotoshooting-positionieren",
+        "/de/guides": "/de-ch/guide",
         "/de/impressum-copy": "/fr/mentions-legales",
         "/de/industrie/schmuck": "/de-ch/branchen/schmuck",
         "/de/kontakt": "/de-ch/kontakt",
@@ -1590,7 +1606,9 @@ var index_default = {
       "/2018-guide-e-commerce-photos": "/fr/blog/lancement-dune-serie-debooks-dediee-au-ecommerce",
       "/range-pro/foto-studio-enterprise-packshot-creator-x2/prasentation": "/de-ch/studios-photo-automatises",
       "/range-studio/studio-photo-without-clipping-packshot-r3/presentation": "/en/studio-photo/alphashot-360",
-      "/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie": "/fr/blog/comment-mettre-en-valeur-un-produit-guide-photographie-packshot"
+      "/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie": "/fr/blog/comment-mettre-en-valeur-un-produit-guide-photographie-packshot",
+      "/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22": "/fr/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle",
+      "/packshot-packshotcreator/packshot-mannequin": "/fr/studio-photo/fashion-studio"
     };
     const legacyHit = LEGACY_REDIRECTS[pathname] || (pathname.length > 1 && pathname.endsWith("/") ? LEGACY_REDIRECTS[pathname.slice(0, -1)] : void 0);
     if (legacyHit) {
@@ -1606,13 +1624,17 @@ var index_default = {
       return Response.redirect(`${url.origin}/fr/academy`, 301);
     }
     if (pathname.startsWith("/industrie/")) {
-      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+      const frPath = `/fr${pathname}`;
+      const frHit = LEGACY_REDIRECTS[frPath] || (frPath.endsWith("/") ? LEGACY_REDIRECTS[frPath.slice(0, -1)] : void 0);
+      return Response.redirect(`${url.origin}${frHit || frPath}`, 301);
     }
     if (pathname.startsWith("/packshot-packshotcreator")) {
       return Response.redirect(`${url.origin}/fr`, 301);
     }
     if (pathname.startsWith("/studio-photo/")) {
-      return Response.redirect(`${url.origin}/fr${pathname}`, 301);
+      const frPath = `/fr${pathname}`;
+      const frHit = LEGACY_REDIRECTS[frPath] || (frPath.endsWith("/") ? LEGACY_REDIRECTS[frPath.slice(0, -1)] : void 0);
+      return Response.redirect(`${url.origin}${frHit || frPath}`, 301);
     }
     if (pathname.startsWith("/accessoires")) {
       return Response.redirect(`${url.origin}/fr/studios-photo-automatises`, 301);
