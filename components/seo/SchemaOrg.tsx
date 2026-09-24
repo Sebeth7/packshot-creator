@@ -1,3 +1,5 @@
+import { schemaInLanguage, type SiteLocale } from '@/lib/seo/locale-schema';
+
 const SITE_URL = 'https://www.packshot-creator.com';
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
@@ -73,14 +75,14 @@ export function organizationSchema() {
   };
 }
 
-export function websiteSchema(lang: 'fr' | 'en' = 'fr') {
+export function websiteSchema(lang: SiteLocale = 'fr') {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': SITE_ID,
     name: 'PackshotCreator',
     url: SITE_URL,
-    inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
+    inLanguage: schemaInLanguage(lang),
     publisher: { '@id': ORG_ID },
   };
 }
