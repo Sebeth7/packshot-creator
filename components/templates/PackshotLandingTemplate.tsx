@@ -414,6 +414,8 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           4b. TESTIMONIAL — Social proof quote
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {/* D31 : aucun témoignage sur /de-ch */}
+      {lang !== 'de-ch' && (
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
@@ -433,6 +435,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
           </ScrollReveal>
         </div>
       </section>
+      )}
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. FAQ — Two-column: heading left, accordion right

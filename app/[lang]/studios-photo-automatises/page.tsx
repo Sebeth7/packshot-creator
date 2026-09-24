@@ -422,7 +422,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
 
       <TestimonialsSection
         items={getTestimonialsByCategory('studios')}
-        lang={lang as 'fr' | 'en'}
+        lang={lang as 'fr' | 'en' | 'de-ch'}
       />
 
       <SchemaOrg schema={[

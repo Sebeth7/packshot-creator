@@ -524,6 +524,8 @@ export default async function HomePage({
           6. TESTIMONIALS — Dark premium, asymmetric layout
           1 featured (col-span-7) + 2 stacked (col-span-5)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {/* D31 : aucun bloc témoignages sur /de-ch */}
+      {lang !== 'de-ch' && (
       <section className="py-20 lg:py-32 bg-future-dusk-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-very-peri-800/20 to-future-dusk-900" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -583,6 +585,7 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+      )}
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           7. INDUSTRIES — Grid with improved spacing
@@ -676,7 +679,7 @@ export default async function HomePage({
 
       <TestimonialsSection
         items={getTestimonialsByCategory('general')}
-        lang={lang as 'fr' | 'en'}
+        lang={lang as 'fr' | 'en' | 'de-ch'}
       />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -694,9 +697,11 @@ export default async function HomePage({
               <p className="mt-6 text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
                 {t('finalCta.subtitle')}
               </p>
-              <p className="mt-4 text-sm text-neutral-500 italic max-w-xl mx-auto">
-                {t('finalCta.microTestimonial')}
-              </p>
+              {lang !== 'de-ch' && (
+                <p className="mt-4 text-sm text-neutral-500 italic max-w-xl mx-auto">
+                  {t('finalCta.microTestimonial')}
+                </p>
+              )}
             </div>
           </ScrollReveal>
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
@@ -729,7 +734,7 @@ export default async function HomePage({
       <SchemaOrg
         schema={[
           organizationSchema(),
-          websiteSchema(lang as 'fr' | 'en'),
+          websiteSchema(lang as 'fr' | 'en' | 'de-ch'),
           faqSchema(faqItems),
           // Product isolé (sans Offer) retiré : erreur critique « Product snippets »
           // sur les 3 homes (audit Laurent 03/09/2026, §4.3). Aucun prix n'est
