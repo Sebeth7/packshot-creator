@@ -698,12 +698,17 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
             },
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: 4.9,
-              reviewCount: 100,
-              bestRating: 5,
-            },
+            // D31 : aucune note agrégée d'avis clients sur /de-ch.
+            ...(lang !== 'de-ch'
+              ? {
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: 4.9,
+                    reviewCount: 100,
+                    bestRating: 5,
+                  },
+                }
+              : {}),
             provider: {
               '@type': 'Organization',
               name: 'PackshotCreator',
