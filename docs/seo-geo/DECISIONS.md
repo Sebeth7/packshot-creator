@@ -30,11 +30,17 @@ Append-only. Plus récent en haut.
 **Décidé par** : Laurent
 **Statut** : en vigueur
 
-**La décision** — Sur `/de-ch`, aucun témoignage ni avis client n'est rendu : avis Google (`TestimonialsSection` et JSON-LD `Review`), section clients de la home, micro-témoignage du CTA final, carrousel de `/ia-photo-produit`, citations des landings `packshot-*`. `/fr` et `/en` ne changent pas.
+**La décision** — Sur `/de-ch`, aucun témoignage ni avis client n'est rendu, en texte comme en données structurées :
+- avis Google (`TestimonialsSection`) et leurs JSON-LD `Review` ;
+- section clients de la home et micro-témoignage du CTA final ;
+- carrousel de `/ia-photo-produit` et `aggregateRating` du JSON-LD `SoftwareApplication` de BlendAI ;
+- citations des landings `packshot-*`.
 
-**Le contexte** — Relevé du 24/09 sur `sysnext.vercel.app` : `/de-ch` rendait « What our clients say » et « Reviews published on Google » en anglais, 6 avis Google en français et 8 blocs JSON-LD `Review`. Les avis existants sont en français ; ils ne sont ni traduits ni remplacés. Mise en œuvre : PR #32.
+`/fr` et `/en` ne changent pas.
 
-**Ce qu'elle interdit** — Traduire un avis ; rédiger ou inventer un témoignage en allemand ; réintroduire un bloc d'avis sur `/de-ch` sans nouvelle décision. Point laissé ouvert : l'`aggregateRating` du JSON-LD de BlendAI sur `/de-ch/ia-photo-produit`.
+**Le contexte** — Relevé du 24/09 sur `sysnext.vercel.app` : `/de-ch` rendait « What our clients say » et « Reviews published on Google » en anglais, 6 avis Google en français et 8 blocs JSON-LD `Review`. `/de-ch/ia-photo-produit` portait un `aggregateRating` (4,9 sur 100 avis). Les avis existants sont en français ; ils ne sont ni traduits ni remplacés. Mise en œuvre : PR #32.
+
+**Ce qu'elle interdit** — Traduire un avis ; rédiger ou inventer un témoignage en allemand ; réintroduire sur `/de-ch` un bloc d'avis, un `Review` ou un `aggregateRating` dérivé d'avis clients sans nouvelle décision.
 
 ---
 
@@ -56,10 +62,10 @@ Append-only. Plus récent en haut.
 **Décidé par** : Laurent
 **Statut** : `SUSPENDED / REVIEW_PRODUCT_MAPPING` — n'est **pas** en vigueur. L'orientation initiale du 24/09 (« le successeur de l'Alphashot XL v2 est l'Alphashot XL G2 ») est suspendue le jour même.
 
-**La décision** — Aucun nouveau changement de redirection XL avant validation du mapping produit. Aucun rollback automatique de l'existant.
+**La décision** — Aucune redirection automatique Alphashot XL v2 → XL G2 n'est validée. Aucun nouveau changement de redirection XL avant validation du mapping produit. Aucun rollback automatique de l'existant.
 
 **Le contexte** — L'Alphashot XL ancienne génération et l'Alphashot XL G2 coexistent ; PackshotCreator appelle encore l'ancienne génération « Alphashot XL v2 ». La fiche existe toujours : `/de-ch/fotostudio/alphashot-xl-v2` répond 200, avec une canonique auto-référente et sans balise `robots`, mais elle est `delisted: true` et absente du sitemap (relevé du 24/09 sur `sysnext.vercel.app`). En conséquence :
-- la PR #31 (`next.config.ts`) est fermée sans fusion ;
+- la PR #31 (`next.config.ts`) est fermée sans fusion, `SUPERSEDED / REVIEW_PRODUCT_MAPPING`, et aucune de ses règles n'est conservée ;
 - dans la PR #30, `/de/fotostudio/alphashot-xl` garde son état de `main` (301 → `/de-ch/fotostudio/maschinen-finder`).
 
 **Classées `REVIEW_PRODUCT_MAPPING`, laissées en l'état** :
