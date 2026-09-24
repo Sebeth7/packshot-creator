@@ -734,7 +734,7 @@ export default async function HomePage({
       <SchemaOrg
         schema={[
           organizationSchema(),
-          websiteSchema(lang as 'fr' | 'en'),
+          websiteSchema(lang as 'fr' | 'en' | 'de-ch'),
           faqSchema(faqItems),
           // Product isolé (sans Offer) retiré : erreur critique « Product snippets »
           // sur les 3 homes (audit Laurent 03/09/2026, §4.3). Aucun prix n'est
