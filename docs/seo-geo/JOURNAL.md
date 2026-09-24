@@ -38,7 +38,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Chantier** : clôture technique P0 du 24/09 | **PR** : branche `docs/gouvernance-p0-2026-09-24` (documentation seule) | **Non fusionnée**
 
-**Quoi** — `DECISIONS.md` : D29 (XL v2 → XL G2), D30 (mensualités de-ch hors périmètre, aucun changement), D31 (aucun témoignage ni avis client sur `/de-ch`). `ETAT.md` : lignes P0-A, P0-D/E, D29, D31, P0-I, P0-F ; lot F fusionné et déployé le 23/09 ; P0-H en attente de mesure ; nouvelle section « P0 du 24/09 — état ».
+**Quoi** — `DECISIONS.md` : D29 (`SUSPENDED / REVIEW_PRODUCT_MAPPING` — mapping produit Alphashot XL v2 / XL G2 à valider, aucun changement XL d'ici là), D30 (mensualités de-ch hors périmètre, aucun changement), D31 (aucun témoignage ni avis client sur `/de-ch`). `ETAT.md` : lignes P0-A, P0-D/E, D29, D31, P0-I, P0-F ; lot F fusionné et déployé le 23/09 ; P0-H en attente de mesure ; nouvelle section « P0 du 24/09 — état ».
 
 **Pourquoi** — Contrôle de clôture du 24/09 : aucun des points P0 du jour n'était reflété sur `main` dans `ETAT.md`, `DECISIONS.md`, `JOURNAL.md` ou `BOITE-AUX-LETTRES.md`, et `ETAT.md` présentait encore le lot F comme non déployé.
 
@@ -60,12 +60,19 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - *Test SERP* : exécution #3400 (5 requêtes sur 10). AI Overview sur 3, PSC hors top 10 sur 5, orbitvu.fr dans le top 10 sur 3 et devant PSC à chaque fois.
 - *Worker de production* : comportement identique à `main` sur 3 691 chemins ; P0-D/E non déployé.
 - *Origine de production* (`sysnext.vercel.app`) : `/de-ch` sort encore `inLanguage` `en-US` et rend les témoignages.
+- *D29, XL v2* : `/de-ch/fotostudio/alphashot-xl-v2` répond 200, titre et H1 « Alphashot XL v2 », canonique auto-référente, aucune balise `robots`, absente du sitemap (`delisted: true`). Worker de `main` : 13 entrées sont passées de `alphashot-xl-v2` à `alphashot-xl-g2` entre le 17/09 et le 23/09, et 0 entrée ne vise plus `alphashot-xl-v2`. `next.config.ts` de `main` : 2 règles vers `alphashot-xl-v2`.
+
+**Correction du 24/09 — D29 suspendue** — Laurent : l'Alphashot XL ancienne génération et l'Alphashot XL G2 coexistent. En conséquence :
+- D29 passe de « en vigueur » à `SUSPENDED / REVIEW_PRODUCT_MAPPING` ;
+- la PR #31 est fermée sans fusion ;
+- la redirection `/de/fotostudio/alphashot-xl` → XL G2 est retirée de la PR #30 (`e112460`) ;
+- les 13 redirections en production vers XL G2 et les 2 règles de `next.config.ts` vers XL v2 sont laissées en l'état, sans rollback automatique.
 
 **Supposé** — Le verdict `MIXED` de P0-B et les constats de marque de P0-C, tels que déclarés par Laurent : leurs livrables ne sont pas dans le dépôt.
 
 **Non regardé** — `BOITE-AUX-LETTRES.md` n'est pas modifié : le texte de Q16 à Q18 n'a pas été transmis et n'est pas reconstitué. Les 5 autres requêtes du test SERP. Les Security Events Cloudflare (P0-F, pas d'accès).
 
-**Suite** — Fusion des PR #29 à #32, puis de cette PR, sur GO de Laurent. Clore Q16 à Q18 dans `BOITE-AUX-LETTRES.md` dès réception de leur texte. Archiver le workflow jetable ; à l'avenir, dupliquer un workflow avant tout usage temporaire.
+**Suite** — Fusion des PR #29, #30 et #32, puis de cette PR, sur GO de Laurent. Validation du mapping produit XL v2 / XL G2 avant tout changement de redirection XL. Clore Q16 à Q18 dans `BOITE-AUX-LETTRES.md` dès réception de leur texte. Archiver le workflow jetable ; à l'avenir, dupliquer un workflow avant tout usage temporaire.
 
 ## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
 **Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,

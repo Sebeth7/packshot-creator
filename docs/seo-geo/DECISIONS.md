@@ -51,16 +51,33 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D29 · 2026-09-24 · Le successeur de l'Alphashot XL v2 est l'Alphashot XL G2
+## D29 · 2026-09-24 · Alphashot XL v2 et Alphashot XL G2 : mapping produit à valider
 
 **Décidé par** : Laurent
-**Statut** : en vigueur — étend l'accord du 23/09 sur trois entrées du Worker (lot F, PR #26)
+**Statut** : `SUSPENDED / REVIEW_PRODUCT_MAPPING` — n'est **pas** en vigueur. L'orientation initiale du 24/09 (« le successeur de l'Alphashot XL v2 est l'Alphashot XL G2 ») est suspendue le jour même.
 
-**La décision** — Toute redirection qui visait l'Alphashot XL v2, ou l'ancien slug `alphashot-xl`, vise l'Alphashot XL G2 : `/<locale>/studio-photo/alphashot-xl-g2`, `/de-ch/fotostudio/alphashot-xl-g2`. La fiche `alphashot-xl-v2` (`delisted: true`) n'est pas modifiée.
+**La décision** — Aucun nouveau changement de redirection XL avant validation du mapping produit. Aucun rollback automatique de l'existant.
 
-**Le contexte** — Au 24/09, `next.config.ts` renvoyait encore `/en/studio-photo/alphashot-xl` et `/en/photo-studio/alphashot-xl` vers `alphashot-xl-v2`, et le Worker envoyait `/de/fotostudio/alphashot-xl` vers `maschinen-finder`. Mise en œuvre : PR #30 (Worker) et PR #31 (`next.config.ts`).
+**Le contexte** — L'Alphashot XL ancienne génération et l'Alphashot XL G2 coexistent ; PackshotCreator appelle encore l'ancienne génération « Alphashot XL v2 ». La fiche existe toujours : `/de-ch/fotostudio/alphashot-xl-v2` répond 200, avec une canonique auto-référente et sans balise `robots`, mais elle est `delisted: true` et absente du sitemap (relevé du 24/09 sur `sysnext.vercel.app`). En conséquence :
+- la PR #31 (`next.config.ts`) est fermée sans fusion ;
+- dans la PR #30, `/de/fotostudio/alphashot-xl` garde son état de `main` (301 → `/de-ch/fotostudio/maschinen-finder`).
 
-**Ce qu'elle interdit** — Créer ou conserver une redirection vers `alphashot-xl-v2` ; envoyer une ancienne URL XL vers un hub quand la fiche XL G2 existe.
+**Classées `REVIEW_PRODUCT_MAPPING`, laissées en l'état** :
+
+| Ensemble | État au 24/09 |
+|---|---|
+| **13 redirections du Worker déjà en production vers `alphashot-xl-g2`** | Visaient `alphashot-xl-v2` le 17/09, basculées entre le 17/09 et le 23/09. Liste ci-dessous |
+| 2 règles de `next.config.ts` : `/en/photo-studio/alphashot-xl` et `/en/studio-photo/alphashot-xl` | → `/en/studio-photo/alphashot-xl-v2`, **inchangées** |
+| `/de/fotostudio/alphashot-xl` (Worker) | → `/de-ch/fotostudio/maschinen-finder`, **inchangé** |
+
+Les 13 redirections du Worker :
+
+| Groupe | Chemins |
+|---|---|
+| `DE_CH_MAP` et racine | `/de/studio-photo/alphashot-xl`, `/fr/studio-photo/alphashot-xl`, `/studio-photo/alphashot-xl` |
+| Lot F, PR #26, accord du 23/09 | `/commun/packshot-3d.html`, `/commun/packshot-pro-3d-hd.html`, `/gamme-studio/studio-photo-sans-detourage-packshot-r3/specifications`, `/product/maestrobot-studio-3d`, `/product/photo-studio-r3`, `/produit/alphashot-xl`, `/produit/packshotcreator-r3`, `/produit/studio-photo-sans-detourage-packshot-r3`, `/es/studio-photo/alphashot-xl`, `/nl/studio-photo/alphashot-xl` |
+
+**Ce qu'elle interdit** — Toute nouvelle redirection vers `alphashot-xl-g2` ou vers `alphashot-xl-v2` pour une ancienne URL XL ; tout retour en arrière automatique des 13 redirections en production ; toute modification des 2 règles de `next.config.ts`. Ces gestes restent fermés tant que le mapping produit XL v2 / XL G2 n'est pas validé. Note : les tests `lot-f` et `legacy-redirects` vérifient qu'aucune entrée du Worker ne cible `alphashot-xl-v2`. Un retour vers la v2, s'il est décidé, les modifiera.
 
 ---
 

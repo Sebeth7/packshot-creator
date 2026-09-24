@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-24 — Claude de Laurent (P0 : PR #29 à #32 ouvertes, rien fusionné ; D29-D31)**
+**Dernière mise à jour : 2026-09-24 — Claude de Laurent (P0 : PR #29, #30, #32 ouvertes, #31 fermée, rien fusionné ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -19,8 +19,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
 | Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR #26 fusionnée et Worker déployé le 23/09 (version `05c5c47c`) ; reste le contrôle `curl.exe` de Laurent à reporter au journal | — | 19/09 |
 | P0-A — `WebSite.inLanguage` de-CH sur `/de-ch` | Claude de Laurent | PR #29, CI verte, **non fusionnée** | `components/seo/SchemaOrg.tsx`, `app/[lang]/page.tsx`, `lib/seo/locale-schema.ts` | 24/09 |
-| P0-D/E — héritage `/de` → `/de-ch`, chaînes `/industrie/*` à un saut, doublon « -22 » (variante `/amp` en 410), `/de/fotostudio/alphashot-xl` → XL G2 (D29) | Claude de Laurent | PR #30, CI verte, **non fusionnée** ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js` | 24/09 |
-| D29 — anciennes URL XL et G2 `/en` vers `alphashot-xl-g2` (`next.config.ts`) | Claude de Laurent | PR #31, **non fusionnée** ; `e2e/redirections.spec.ts` l. 65 et 75 attend encore `alphashot-xl-v2` | `next.config.ts` | 24/09 |
+| P0-D/E — héritage `/de` → `/de-ch`, chaînes `/industrie/*` à un saut, doublon « -22 » (variante `/amp` en 410) ; `/de/fotostudio/alphashot-xl` inchangé (REVIEW_PRODUCT_MAPPING) | Claude de Laurent | PR #30, CI verte, **non fusionnée** ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js` | 24/09 |
+| D29 — mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | **SUSPENDED / REVIEW_PRODUCT_MAPPING**. PR #31 fermée sans fusion. 13 redirections du Worker en production vers `alphashot-xl-g2` et 2 règles de `next.config.ts` vers `alphashot-xl-v2` laissées en l'état ; aucun rollback automatique ; aucun changement XL avant validation du mapping | — | 24/09 |
 | D31 — aucun témoignage ni avis client sur `/de-ch` | Claude de Laurent | PR #32, **non fusionnée** ; `aggregateRating` de `/de-ch/ia-photo-produit` non traité, décision de Laurent attendue | `components/testimonials/TestimonialsSection.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `messages/de-ch.json` | 24/09 |
 | P0-I — filtre pollution des requêtes GSC (8 fonctions SQL : exclusion générique de `amazon` retirée, opérateurs `site:` exclus) | Claude de Laurent | **READY_FOR_GO, non appliqué** : les 8 fonctions portent encore l'exclusion `amazon` (relu le 24/09) | Supabase `gsc-crawl-seo` | 24/09 |
 | P0-F — crawlers IA | Claude de Laurent | **BLOCKED_ACCESS** : pas d'accès aux Security Events Cloudflare ; aucune modification WAF ou SBFM sans mesure | — | 24/09 |
@@ -53,10 +53,11 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
-| GO fusion — PR #29 (P0-A), #30 (P0-D/E), #31 (D29), #32 (D31) | Claude de Laurent | 24/09 | CI verte ; chaque PR ajoute une entrée en tête de `JOURNAL.md` : à partir de la deuxième fusion, fusionner `main` dans la branche et garder les deux entrées |
+| GO fusion — PR #29 (P0-A), #30 (P0-D/E), #32 (D31) | Claude de Laurent | 24/09 | CI verte ; chaque PR ajoute une entrée en tête de `JOURNAL.md` : à partir de la deuxième fusion, fusionner `main` dans la branche et garder les deux entrées |
 | GO déploiement du Worker — PR #30 | Claude de Laurent | 24/09 | Après fusion ; resynchronisation préalable (D4, R5) ; témoins `curl.exe` listés dans la PR |
 | GO P0-I | Claude de Laurent | 24/09 | Application des 8 fonctions SQL ; rien n'est appliqué sans ce GO |
 | D31 — `aggregateRating` de BlendAI sur `/de-ch/ia-photo-produit` | Claude de Laurent | 24/09 | Relève-t-il de « aucun avis client sur `/de-ch` » ? Non traité par la PR #32 |
+| D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
 
@@ -79,9 +80,9 @@ périmée ici coûte plus cher qu'une ligne absente.
 - PR accents (CC2) : rebaser sur `main` après le merge de #22 — les deux touchent `app/[lang]/studio-photo/[slug]/page.tsx`.
 - Contrôle de #22 dans Chrome sur `www.packshot-creator.com` et test des résultats enrichis de Google sur 3 fiches : à faire par Laurent (R4).
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
-- Fusion des PR #29 à #32 sur GO de Laurent, une à une, avec le contrôle post-déploiement de chacune (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
+- Fusion des PR #29, #30 et #32 sur GO de Laurent, une à une, avec le contrôle post-déploiement de chacune (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
 - Déploiement du Worker de la PR #30 sur GO séparé de Laurent, après resynchronisation ; contrôle par `curl.exe`.
-- Aligner `e2e/redirections.spec.ts` l. 65 et 75 sur `alphashot-xl-g2` (D29) avant tout passage Playwright.
+- Aucun changement de redirection XL avant la validation du mapping produit (D29).
 
 ---
 
@@ -96,7 +97,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | P0-F | BLOCKED_ACCESS |
 | P0-H | Appliqué le 24/09 ; fenêtre de mesure ouverte jusqu'au 08/10 |
 | P0-I | READY_FOR_GO, non appliqué |
-| D29 | PR #30 (Worker) et PR #31 (`next.config.ts`) |
+| D29 | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; PR #31 fermée sans fusion ; aucun rollback automatique |
 | D30 | **OUT_OF_SCOPE_NO_CHANGE** : aucun prix ni aucune devise modifiés dans ce chantier |
 | D31 | PR #32 |
 
