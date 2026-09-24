@@ -66,9 +66,26 @@ describe('Déterministe — chaînes et doublon', () => {
   });
 });
 
+describe('Variante /amp du doublon « -22 » — 410 conservé', () => {
+  // Sans entrée propre, la variante passait de 410 à 301 vers /fr/blog/…-22/amp, qui répond 404.
+  for (const chemin of [
+    '/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22/amp',
+    '/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22/amp/',
+  ]) {
+    it(`${chemin} → 410`, async () => {
+      expect(await repondre(chemin)).toEqual({ statut: 410, cible: null });
+    });
+  }
+});
+
+describe('D29 — successeur de l\'Alphashot XL v2 : XL G2 (décision de Laurent du 24/09/2026)', () => {
+  verifier({
+    '/de/fotostudio/alphashot-xl': '/de-ch/fotostudio/alphashot-xl-g2',
+  });
+});
+
 describe('REVIEW — inchangés dans cette PR', () => {
   verifier({
-    '/de/fotostudio/alphashot-xl': '/de-ch/fotostudio/maschinen-finder',
     '/de/workflow-management-shotflow': '/de-ch',
     '/de/altes-fotostudio': '/de-ch',
     '/de/automatisieren-produktfotografie-packshotcreator': '/de-ch',

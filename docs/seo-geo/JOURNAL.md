@@ -65,6 +65,11 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — Fusion sur GO de Laurent. Puis GO séparé de déploiement du Worker : resynchronisation, `wrangler deploy` depuis `main`, témoins `curl.exe` listés dans la PR, résultat à reporter ici.
 
+**Ajout du 24/09, seconde passe (batch final P0)** — Deux changements sur la même branche, sur consigne de Laurent.
+- *Variante `/amp` du « -22 »* : `"/blog/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle-22/amp"` est ajoutée à `GONE_PATHS`, selon la convention des 9 entrées `/amp` déjà présentes. `/amp` et `/amp/` répondent de nouveau 410, comme sur `main`. Le « Non regardé » ci-dessus est levé.
+- *D29* : `"/de/fotostudio/alphashot-xl": "/de-ch/fotostudio/alphashot-xl-g2"` est ajoutée à `DE_CH_MAP`. Ce chemin sort de REVIEW, qui compte désormais 7 chemins.
+- *Vérifié* : `node --check` vert ; `npx vitest run` 220/220, dont `p0-de-ch-heritage` 34/34 (+2 cas `/amp`, +1 cas D29, −1 cas REVIEW), `lot-f` 44/44, `legacy-redirects` 31/31, `unicite-tables` 20/20. Simulation différentielle sur 5 533 chemins, dont les variantes `/amp` : 4 écarts avec la tête précédente `699872d` (les 2 variantes `/amp`, `/de/fotostudio/alphashot-xl` avec et sans barre finale) ; 31 chemins modifiés par rapport à `main` (62 avec la barre finale), aucune variante `/amp`. Cible `/de-ch/fotostudio/alphashot-xl-g2` sur `sysnext.vercel.app` : 200, canonique auto-référente, aucune balise `robots`. Worker de production : 0 écart de comportement avec `main`.
+
 ## 2026-09-23 · Chantier marque — mesures M1, M2, M6 · Claude de Laurent
 **Quoi** — Relevés GSC (propriété de domaine) et Google Maps du 23/09,
 en lecture seule ; modification de la fiche Google France par Laurent.
