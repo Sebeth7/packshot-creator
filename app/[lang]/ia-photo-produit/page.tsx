@@ -268,10 +268,12 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             {t('stats.source')}
           </p>
 
-          {/* Testimonial carousel */}
-          <FadeInView delay={0.2}>
-            <TestimonialCarousel testimonials={testimonials} />
-          </FadeInView>
+          {/* Testimonial carousel — D31 : masqué sur /de-ch */}
+          {lang !== 'de-ch' && (
+            <FadeInView delay={0.2}>
+              <TestimonialCarousel testimonials={testimonials} />
+            </FadeInView>
+          )}
         </div>
       </section>
 
