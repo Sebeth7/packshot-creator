@@ -25,6 +25,68 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D31 · 2026-09-24 · Aucun témoignage ni avis client sur `/de-ch`
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Sur `/de-ch`, aucun témoignage ni avis client n'est rendu, en texte comme en données structurées :
+- avis Google (`TestimonialsSection`) et leurs JSON-LD `Review` ;
+- section clients de la home et micro-témoignage du CTA final ;
+- carrousel de `/ia-photo-produit` et `aggregateRating` du JSON-LD `SoftwareApplication` de BlendAI ;
+- citations des landings `packshot-*`.
+
+`/fr` et `/en` ne changent pas.
+
+**Le contexte** — Relevé du 24/09 sur `sysnext.vercel.app` : `/de-ch` rendait « What our clients say » et « Reviews published on Google » en anglais, 6 avis Google en français et 8 blocs JSON-LD `Review`. `/de-ch/ia-photo-produit` portait un `aggregateRating` (4,9 sur 100 avis). Les avis existants sont en français ; ils ne sont ni traduits ni remplacés. Mise en œuvre : PR #32.
+
+**Ce qu'elle interdit** — Traduire un avis ; rédiger ou inventer un témoignage en allemand ; réintroduire sur `/de-ch` un bloc d'avis, un `Review` ou un `aggregateRating` dérivé d'avis clients sans nouvelle décision.
+
+---
+
+## D30 · 2026-09-24 · Mensualités de-ch : hors périmètre, aucun changement
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — `OUT_OF_SCOPE_NO_CHANGE`. Le chantier SEO/GEO ne modifie aucun prix ni aucune devise. Pas de PR sur les mensualités de-ch, pas de modification de `lib/leasing.ts`, du JSON-LD `Offer` lié aux mensualités, de la FAQ Wine ni du calculateur ROI, pas de sollicitation de Sébastien au titre de ce chantier.
+
+**Le contexte** — Les prix affichés sont l'un des quatre sujets qui engagent l'entreprise (`01-RAYON-ACTION.md`, D13). Un passage des mensualités de-ch en euros a été préparé le 24/09 ; il n'est pas retenu dans ce chantier. D30 ne statue pas sur la devise : elle sort le sujet du chantier.
+
+**Ce qu'elle interdit** — Toute modification de prix, de devise ou de mensualité au titre du chantier SEO/GEO ; présenter la conclusion « CHF décidé » du Master V3 comme une décision de référence de ce chantier.
+
+---
+
+## D29 · 2026-09-24 · Alphashot XL v2 et Alphashot XL G2 : mapping produit à valider
+
+**Décidé par** : Laurent
+**Statut** : `SUSPENDED / REVIEW_PRODUCT_MAPPING` — n'est **pas** en vigueur. L'orientation initiale du 24/09 (« le successeur de l'Alphashot XL v2 est l'Alphashot XL G2 ») est suspendue le jour même.
+
+**La décision** — Aucune redirection automatique Alphashot XL v2 → XL G2 n'est validée. Aucun nouveau changement de redirection XL avant validation du mapping produit. Aucun rollback automatique de l'existant.
+
+**Le contexte** — L'Alphashot XL ancienne génération et l'Alphashot XL G2 coexistent ; PackshotCreator appelle encore l'ancienne génération « Alphashot XL v2 ». La fiche existe toujours : `/de-ch/fotostudio/alphashot-xl-v2` répond 200, avec une canonique auto-référente et sans balise `robots`, mais elle est `delisted: true` et absente du sitemap (relevé du 24/09 sur `sysnext.vercel.app`). En conséquence :
+- la PR #31 (`next.config.ts`) est fermée sans fusion, `SUPERSEDED / REVIEW_PRODUCT_MAPPING`, et aucune de ses règles n'est conservée ;
+- dans la PR #30, `/de/fotostudio/alphashot-xl` garde son état de `main` (301 → `/de-ch/fotostudio/maschinen-finder`).
+
+**Classées `REVIEW_PRODUCT_MAPPING`, laissées en l'état** :
+
+| Ensemble | État au 24/09 |
+|---|---|
+| **13 redirections du Worker déjà en production vers `alphashot-xl-g2`** | Visaient `alphashot-xl-v2` le 17/09, basculées entre le 17/09 et le 23/09. Liste ci-dessous |
+| 2 règles de `next.config.ts` : `/en/photo-studio/alphashot-xl` et `/en/studio-photo/alphashot-xl` | → `/en/studio-photo/alphashot-xl-v2`, **inchangées** |
+| `/de/fotostudio/alphashot-xl` (Worker) | → `/de-ch/fotostudio/maschinen-finder`, **inchangé** |
+
+Les 13 redirections du Worker :
+
+| Groupe | Chemins |
+|---|---|
+| `DE_CH_MAP` et racine | `/de/studio-photo/alphashot-xl`, `/fr/studio-photo/alphashot-xl`, `/studio-photo/alphashot-xl` |
+| Lot F, PR #26, accord du 23/09 | `/commun/packshot-3d.html`, `/commun/packshot-pro-3d-hd.html`, `/gamme-studio/studio-photo-sans-detourage-packshot-r3/specifications`, `/product/maestrobot-studio-3d`, `/product/photo-studio-r3`, `/produit/alphashot-xl`, `/produit/packshotcreator-r3`, `/produit/studio-photo-sans-detourage-packshot-r3`, `/es/studio-photo/alphashot-xl`, `/nl/studio-photo/alphashot-xl` |
+
+**Ce qu'elle interdit** — Toute nouvelle redirection vers `alphashot-xl-g2` ou vers `alphashot-xl-v2` pour une ancienne URL XL ; tout retour en arrière automatique des 13 redirections en production ; toute modification des 2 règles de `next.config.ts`. Ces gestes restent fermés tant que le mapping produit XL v2 / XL G2 n'est pas validé. Note : les tests `lot-f` et `legacy-redirects` vérifient qu'aucune entrée du Worker ne cible `alphashot-xl-v2`. Un retour vers la v2, s'il est décidé, les modifiera.
+
+---
+
 ## D28 · 2026-09-19 · C6 reclassé en hygiène ; ouverture du chantier « choix de page sur la marque »
 
 **Décidé par** : Laurent
