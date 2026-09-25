@@ -34,6 +34,124 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · P0-I — filtre pollution GSC appliqué (8 fonctions SQL) · Claude de Laurent
+
+**Chantier** : P0-I | **Supabase** : `gsc-crawl-seo`, migration `20260925061338` `p0i_filtre_pollution_gsc_site_20260925` | **PR** : documentation seule | **P0-I = APPLIED**
+
+**Quoi** — Le 25/09/2026 à 06:13:38 UTC, sur `GO_P0_I` de Laurent : dans les 8 fonctions, le littéral `amazon` est retiré des motifs d'exclusion et remplacé par `(^|\s)site:`. Aucun autre changement. Les 8 fonctions :
+- `app_blog_reconversion_list`
+- `app_gsc_opportunities`
+- `app_gsc_top_queries`
+- `app_kpi_loop`
+- `app_page_conversion_loop`
+- `gsc_candidates_vertical`
+- `gsc_quick_wins_json`
+- `gsc_tracking_weekly_json`
+
+Motifs modifiés, 10 occurrences :
+- `vercel|todovirtual|amazon|orbitvu.nl` (ou `orbitvu\.nl`) devient `vercel|todovirtual|(^|\s)site:|orbitvu.nl` ;
+- dans `gsc_quick_wins_json`, `p_brand_regex` `(creator|ortery|orbitvu|vercel|todovirtual|amazon)` devient `(creator|ortery|orbitvu|vercel|todovirtual|(^|\s)site:)`.
+
+Application en une seule transaction, gardée par md5 avant et après écriture. Aucun changement n8n, applicatif ni Cloudflare.
+
+**Pourquoi** — P0-I, dry-run validé. La marque `amazon` écartait des requêtes légitimes, alors que les requêtes opérateur `site:` gonflaient les impressions.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. En base : les 8 fonctions ci-dessus.
+
+**Effet attendu** — Immédiat dans les RPC de pilotage :
+- les requêtes contenant « amazon » sans autre motif de pollution sont réadmises ;
+- les requêtes `site:` sont exclues ;
+- aucun clic n'est gagné ni perdu.
+
+**Vérifié** —
+- *Snapshot avant écriture* :
+  - les 8 définitions sont relues par `pg_get_functiondef` et sont dans l'état audité le 24/09 (`amazon` présent, 0 `site:`) ;
+  - elles sont copiées hors dépôt, et les 8 copies sont identiques à la production par md5 ;
+  - une seule version de chaque fonction.
+- *Dry-run rejoué avant écriture*, logique identique à la validation, fenêtre `data_date >= ancre − 90`, 0 clic dans chaque cas :
+
+| Mesure | Ancre du dry-run (21/09) | Ancre actuelle (22/09) |
+|---|---|---|
+| PSC, requêtes réadmises | 40 / 1 694 impressions | 41 / 1 684 |
+| PSC, nouvelles filtrées `site:` | 3 / 2 239 | 3 / 2 239 |
+| PSC, pollution filtrée après changement | 71 / 5 595 | 71 / 5 608 |
+| Orbitvu, requêtes Amazon réadmises | 15 / 45 | 15 / 45 |
+
+  Les valeurs du dry-run sont reproduites **exactement**. L'écart avec l'ancre actuelle ne vient que du jour de données du 22/09, récupéré le 25/09. Aucune ligne antérieure n'a été réécrite : chaque jour n'est récupéré qu'une fois.
+- *Après écriture* :
+  - 8/8 md5 conformes, 0 occurrence d'`amazon`, 10 occurrences de `(^|\s)site:` ;
+  - propriétaire, droits, `SECURITY DEFINER`, `search_path`, volatilité et commentaires inchangés ;
+  - aucune fonction dupliquée ;
+  - le remplacement inverse redonne exactement les md5 d'origine.
+- *Contrôle fonctionnel avant/après* :
+  - **clics inchangés partout** (452, 314 + 127, 17, 16, 99, 7, 2), conversions et `global_web` inchangés ;
+  - `app_gsc_top_queries` et `app_gsc_opportunities` inchangés ;
+  - `gsc_quick_wins_json` : 2 requêtes Amazon ajoutées (+279 impressions), aucune requête `site:` avant ni après ;
+  - `gsc_candidates_vertical` : 2 requêtes Amazon ajoutées (+14) ;
+  - `gsc_tracking_weekly_json` : `site:www.packshot-creator.com` exclue, « 360 images for amazon » réadmise ;
+  - écarts d'impressions **égaux au calcul attendu** : `app_page_conversion_loop` −864, `app_kpi_loop` −307 et −557, `app_blog_reconversion_list` +23.
+- *Dépendants* :
+  - `app_recommendations` (appelle `app_gsc_opportunities`) s'exécute sans erreur ;
+  - `r3_measure_article` (appelle `gsc_tracking_weekly_json`) écrit en base : non appelé, sa dépendance a été testée directement.
+- *n8n, lecture seule* : le nœud `Init` de « M6 · Scoring MICRO » (`3FtFKh8649fi03TZ`) ne porte que le lexique, pas le filtre de pollution : aucune synchronisation n'est requise. Workflow non modifié (dernière mise à jour le 02/07).
+
+**Écart avec la référence du dry-run** — Orbitvu : la référence annonçait « 1 requête Amazon reste filtrée ». En réalité, les 15 requêtes Amazon sont réadmises. La seule requête Orbitvu qui reste filtrée est `orbitvu.nl` (8 impressions), sans « amazon », et elle l'était déjà avant. C'est un écart de formulation, pas de logique.
+
+**Supposé** — Que les workflows n8n appelant ces RPC par REST gardent le même contrat : les signatures et types de retour sont inchangés.
+
+**Non regardé** — Les prochaines exécutions des workflows consommateurs, dont M6, et de `r3_measure_article`. L'effet sur les tableaux de bord au-delà des RPC testées.
+
+**Suite** — Rollback disponible. Le bloc ci-dessous restaure exactement les 8 définitions d'origine. Il est gardé par md5 et refuse de s'exécuter si une fonction a divergé depuis le 25/09. Les 8 définitions d'origine en clair ont aussi été transmises à Laurent, hors dépôt.
+
+```sql
+-- ROLLBACK P0-I · restaure exactement les 8 définitions d'avant le 25/09/2026.
+-- Remplacement inverse '(^|\s)site:' → 'amazon', gardé par md5 avant et après : tout écart annule la transaction.
+DO $p0i_rb$
+DECLARE
+  r record;
+  v_actuel constant jsonb := '{
+    "app_blog_reconversion_list":"1e6d513cd29a0369b5d67caff8f7b2e5",
+    "app_gsc_opportunities":"ed590889d54f3acd785f425585fa851a",
+    "app_gsc_top_queries":"6611063a0688c1a5c5ad947f60cc3ec1",
+    "app_kpi_loop":"b521c4aaca83e47ffbae9dd6c346cde0",
+    "app_page_conversion_loop":"0136e49c080af368be89a38332cdddb7",
+    "gsc_candidates_vertical":"3b97141a28ccd1026ab264c96e707a3a",
+    "gsc_quick_wins_json":"0c01cf57a4b7ba7f30ca8159e9341e05",
+    "gsc_tracking_weekly_json":"f7f648bcaae09f184067621525e459c0"}';
+  v_origine constant jsonb := '{
+    "app_blog_reconversion_list":"f14f0f4f0310e5ae48a826d3a4337915",
+    "app_gsc_opportunities":"84453d8df1589d76ff897c9685edff46",
+    "app_gsc_top_queries":"b9f3268c367be551bf3f8f92ae1374a6",
+    "app_kpi_loop":"b409b2fab018d311740a0320ed85e6bd",
+    "app_page_conversion_loop":"d9865c4fd75347825070a496d13e1118",
+    "gsc_candidates_vertical":"03e1ef08dc09627520004f6e70100513",
+    "gsc_quick_wins_json":"7a7716d53582b70f5e6b099c476b1e4a",
+    "gsc_tracking_weekly_json":"44a01ea21784b5eaedc79025002a2261"}';
+  n int := 0;
+BEGIN
+  FOR r IN SELECT p.oid, p.proname, md5(pg_get_functiondef(p.oid)) AS m
+           FROM pg_proc p JOIN pg_namespace ns ON ns.oid = p.pronamespace
+           WHERE ns.nspname = 'public' AND p.proname IN (SELECT jsonb_object_keys(v_actuel))
+  LOOP
+    IF r.m IS DISTINCT FROM v_actuel->>r.proname THEN
+      RAISE EXCEPTION 'Rollback P0-I refusé : % a divergé (md5 %)', r.proname, r.m;
+    END IF;
+    EXECUTE replace(pg_get_functiondef(r.oid), '(^|\s)site:', 'amazon');
+    n := n + 1;
+  END LOOP;
+  IF n <> 8 THEN RAISE EXCEPTION 'Rollback P0-I : % fonctions au lieu de 8', n; END IF;
+  FOR r IN SELECT p.proname, md5(pg_get_functiondef(p.oid)) AS m
+           FROM pg_proc p JOIN pg_namespace ns ON ns.oid = p.pronamespace
+           WHERE ns.nspname = 'public' AND p.proname IN (SELECT jsonb_object_keys(v_origine))
+  LOOP
+    IF r.m IS DISTINCT FROM v_origine->>r.proname THEN
+      RAISE EXCEPTION 'Rollback P0-I : md5 inattendu pour % (%)', r.proname, r.m;
+    END IF;
+  END LOOP;
+END
+$p0i_rb$;
+```
+
 ## 2026-09-25 · Arbitrages de Laurent — Q2, Q4, Q6, Q12 à Q15 · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #34, branche `claude/lucid-mayer-tz2mk8` (documentation seule) | **Non fusionnée**

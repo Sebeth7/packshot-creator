@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-25 — Claude de Laurent (arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-25 — Claude de Laurent (P0-I APPLIED le 25/09, migration `p0i_filtre_pollution_gsc_site_20260925` ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -21,7 +21,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | P0-A — `WebSite.inLanguage` de-CH sur `/de-ch` | Claude de Laurent | PR #29 **fusionnée** le 24/09 (`6c16108`) ; contrôle post-déploiement à faire | `components/seo/SchemaOrg.tsx`, `app/[lang]/page.tsx`, `lib/seo/locale-schema.ts` | 24/09 |
 | D29 — mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée. PR #31 fermée sans fusion (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`), aucune de ses règles conservée. 13 redirections du Worker en production vers `alphashot-xl-g2` et 2 règles de `next.config.ts` vers `alphashot-xl-v2` laissées en l'état ; aucun rollback automatique ; aucun changement XL avant validation du mapping | — | 24/09 |
 | D31 — aucun témoignage ni avis client sur `/de-ch`, `Review` et `aggregateRating` compris | Claude de Laurent | PR #32 **fusionnée** le 24/09 (`c9f8aa5`), appliquée ; `aggregateRating` de `/de-ch/ia-photo-produit` retiré (`1c52eb7`) ; `/fr` et `/en` inchangés | `components/testimonials/TestimonialsSection.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `messages/de-ch.json` | 24/09 |
-| P0-I — filtre pollution des requêtes GSC (8 fonctions SQL : exclusion générique de `amazon` retirée, opérateurs `site:` exclus) | Claude de Laurent | **READY_FOR_GO, non appliqué** : les 8 fonctions portent encore l'exclusion `amazon` (relu le 24/09) | Supabase `gsc-crawl-seo` | 24/09 |
 | P0-F — crawlers IA | Claude de Laurent | **BLOCKED_ACCESS** : pas d'accès aux Security Events Cloudflare ; aucune modification WAF ou SBFM sans mesure | — | 24/09 |
 | C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
 | Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
@@ -48,7 +47,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle post-déploiement de #29 et #32 dans Chrome (R4) | Claude de Laurent | 24/09 | `/de-ch` : `WebSite.inLanguage` = `de-CH`, aucun témoignage, `Review` ni `aggregateRating` ; `/fr` et `/en` inchangés |
-| GO P0-I | Claude de Laurent | 24/09 | Application des 8 fonctions SQL ; rien n'est appliqué sans ce GO |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -95,7 +93,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | P0-D/E | **CLOSED** le 25/09. PR #30 fusionnée (`665f5ef`) ; Worker déployé depuis `main` (`69cd647`), version `27b0153c-5516-432a-91a4-20cddce250ca`, vérifié depuis le poste de Laurent (16 témoins PASS, aucun rollback). Rollback disponible : `05c5c47c-4b60-41af-9acd-b3778be1e508`. Mappings XL existants inchangés, `REVIEW_PRODUCT_MAPPING` |
 | P0-F | BLOCKED_ACCESS |
 | P0-H | Appliqué le 24/09 ; fenêtre de mesure ouverte jusqu'au 08/10 |
-| P0-I | READY_FOR_GO, non appliqué |
+| P0-I | **APPLIED** le 25/09 à 06:13 UTC. Migration `p0i_filtre_pollution_gsc_site_20260925` : `amazon` retiré des motifs de pollution des 8 fonctions, `(^|\s)site:` ajouté ; clics inchangés, dry-run reproduit exactement. Rollback gardé par md5 consigné au JOURNAL du 25/09 |
 | D29 | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée ; PR #31 fermée sans fusion (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`) ; aucun rollback automatique |
 | D30 | **OUT_OF_SCOPE_NO_CHANGE** : aucun prix ni aucune devise modifiés dans ce chantier |
 | D31 | Appliquée : PR #32 fusionnée le 24/09 (`c9f8aa5`) ; aucun témoignage, `Review` ni `aggregateRating` sur `/de-ch` |
