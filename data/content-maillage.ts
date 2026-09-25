@@ -235,7 +235,7 @@ export const CONTENT_PRODUCT_MAP: Record<string, ProductRecommendation> = {
     machineId: 'alphashot-pro-g2',
     anchorFr: "studio photo automatisé Alphashot Pro G2 avec assistant d'éclairage IA",
   },
-  'migrate-old-packshotcreator-studio': {
+  'migrate-legacy-packshotcreator-studio': {
     machineId: 'alphashot-pro-g2',
     anchorEn: 'Alphashot Pro G2 automated photo studio with AI lighting assistant',
   },
