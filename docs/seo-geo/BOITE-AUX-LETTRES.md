@@ -67,86 +67,6 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
-### Q15 · 2026-09-23 · Fiche Google France — DU Claude de Laurent AU Claude de Sébastien
-**Chantier** : marque (D28) | **Bloque** : rien
-**Pour information, fait le 23/09 par Laurent** (en attente de
-validation Google) : fiche « PackshotCreator - Orbitvu », Site Web
-https://www.packshot-creator.com/ → https://www.packshot-creator.com/fr
-(la racine est redirigée en 301 vers /fr depuis le 14/07) ; téléphone
-principal 01 47 42 66 67 → 01 47 42 66 66 (numéro du site).
-**Questions** — 1) La fiche indique « Allemand non parlé » alors que
-la Suisse est desservie et que le site annonce un accompagnement en
-allemand : à corriger ? « Espagnol » est-il exact ? 2) Date de
-création : fiche = décembre 2001, schéma Organization du site =
-foundingDate 2004. Laquelle est juste ? 3) Le compte
-twitter.com/packshot, ajouté par Google, est-il à Sysnext ?
-**Recommandation** — Corriger pour que la fiche et le site disent la
-même chose : les moteurs recoupent ces données.
-
----
-
-### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
-
-**Chantier** : substitution de page
-**Bloque** : rien ; la page témoin avance sans réponse
-**Échéance** : **aucune réponse n'est attendue avant J+56 de la mise en ligne de la page témoin** ([Inférence] début décembre 2026 si la fusion a lieu début octobre). Question déposée maintenant pour information ; elle sera reposée avec la mesure.
-
-**Contexte** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert `/en/blog/packshot-photography-guide-why-make-product-packshots` en position 2,0 à 2,8 : 1 351 impressions, 0 clic en 120 jours. La landing `/fr/packshot-e-commerce` est absente des trois variantes sur les 28 derniers jours. Elle va être enrichie (711 → ~2 200 mots) pour prendre la place de l'article.
-
-**Vérifié** — `gsc_metrics`, requête × page, 28 et 120 derniers jours ; `sf_pages`, dernier crawl.
-
-**La question** — Que faire de l'article EN ?
-
-**Options**
-- A : le laisser en l'état.
-- B : le passer en `noindex`. Cela touche `/en` (D17) et n'est pas mesuré ; l'article porte aussi « packshot » et « product packshot » en anglais.
-- C : le rediriger vers la landing FR. Cela casse la version anglaise et enfreint D17.
-
-**Ma recommandation** — A tant que la page témoin n'a pas été mesurée (J+56). Si la landing plafonne derrière l'article, le Claude de Laurent repose la question à J+56 avec la mesure ; d'ici là, aucune action de ta part.
-
----
-
-### Q13 · 2026-09-19 · Faits commerciaux pour les données structurées des fiches — DU Claude de Laurent AU Claude de Sébastien
-
-**Chantier** : données structurées des fiches
-**Bloque** : 2 des 4 champs manquants des « Fiches marchand » (10 fiches non valides)
-
-**Contexte** — Google signale 10 fiches marchand non valides. Le prix n'est pas en cause (balisage `Offer` conforme D7). Il manque `sku`, `gtin`/`mpn`, `hasMerchantReturnPolicy`, `shippingDetails`. `sku` et `mpn` (s'il existe) sont traités sans toi. Les deux autres décrivent des engagements commerciaux.
-
-**Vérifié** — Relevé HTML de production du 19/09 (`alphashot-pro-g2`) ; code `components/seo/SchemaOrg.tsx`.
-
-**La question** — Pour une offre de leasing B2B livrée et installée :
-1. Existe-t-il une politique de retour (délai, conditions) ou aucune ?
-2. La livraison et l'installation sont-elles incluses, facturées, avec quel délai, en France et en Suisse ?
-
-**Options**
-- A : tu fournis les faits, le balisage les reflète.
-- B : on déclare « pas de retour » et « livraison sur devis », si c'est exact.
-- C : on laisse ces deux champs vides ; les fiches restent en avertissement.
-
-**Ma recommandation** — A ou B, selon la réalité commerciale. Rien n'est publié sans ta réponse.
-
----
-
-### Q12 · 2026-09-19 · `sysnext.vercel.app` est cité comme source par un moteur de réponse — DU Claude de Laurent AU Claude de Sébastien
-
-**Chantier** : hygiène d'indexation
-**Bloque** : rien
-
-**Contexte** — Dans un panel de 16 requêtes d'acheteur posées à Perplexity le 19/09, une réponse cite `sysnext.vercel.app` comme source, au même titre que le domaine officiel. L'origine Vercel est donc visible et citable par les moteurs de réponse.
-
-**Vérifié** — Panel Perplexity `sonar` du 19/09. [Non vérifié] le statut robots actuel de l'origine, que je n'ai pas relevé.
-
-**La question** — Fermer l'origine Vercel à l'indexation et à la citation, par un en-tête `X-Robots-Tag: noindex` sur l'hôte `*.vercel.app`, sachant que cette origine sert aussi aux contrôles applicatifs prévus par R4 ?
-
-**Options**
-- A : `noindex` sur l'hôte de prévisualisation → les contrôles applicatifs continuent de fonctionner, l'origine sort des index et des citations.
-- B : statu quo → l'origine reste citable et indexable.
-
-**Ma recommandation** — A, validée par Laurent le 19/09, après vérification que la règle ne touche pas le domaine de production.
-
----
-
 ### Q10 · 2026-09-19 · Réexamen de la cible de clics — DU Claude de Laurent À Laurent
 
 **Chantier** : pilotage du KPI trafic
@@ -190,7 +110,141 @@ basse.
 
 ---
 
+## Questions traitées
+
+Une question répondue et appliquée descend ici, avec sa réponse. On n'efface
+rien : la réponse d'hier explique le code d'aujourd'hui.
+
+### Q15 · 2026-09-23 · Fiche Google France — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — réponse de Laurent consignée en D33. Les alignements à faire sont suivis dans `ETAT.md`.
+
+**Chantier** : marque (D28) | **Bloque** : rien
+**Pour information, fait le 23/09 par Laurent** (en attente de
+validation Google) : fiche « PackshotCreator - Orbitvu », Site Web
+https://www.packshot-creator.com/ → https://www.packshot-creator.com/fr
+(la racine est redirigée en 301 vers /fr depuis le 14/07) ; téléphone
+principal 01 47 42 66 67 → 01 47 42 66 66 (numéro du site).
+**Questions** — 1) La fiche indique « Allemand non parlé » alors que
+la Suisse est desservie et que le site annonce un accompagnement en
+allemand : à corriger ? « Espagnol » est-il exact ? 2) Date de
+création : fiche = décembre 2001, schéma Organization du site =
+foundingDate 2004. Laquelle est juste ? 3) Le compte
+twitter.com/packshot, ajouté par Google, est-il à Sysnext ?
+**Recommandation** — Corriger pour que la fiche et le site disent la
+même chose : les moteurs recoupent ces données.
+
+---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+1. Allemand : **un peu parlé**. PackshotCreator peut assurer un accompagnement commercial en allemand en Suisse ; l'équipe n'est présentée ni comme bilingue, ni comme germanophone native. Espagnol : **non parlé**. *(Précision de Laurent du 25/09, avant fusion : remplace « allemand non parlé ».)*
+2. Date de création de PackshotCreator/Sysnext à retenir : **2001**. Le `foundingDate` du site, actuellement à 2004, devra être aligné.
+3. `twitter.com/packshot` appartient à Sysnext ; le compte est **inactif**.
+
+**Action** — D33. Cette réponse ne modifie rien dans le site. Relevé du 25/09 dans le dépôt (R7) :
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, à aligner sur 2001 dans une PR applicative distincte.
+- Les mentions actuelles d'accompagnement en allemand sont conservées : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`, ainsi que le `ContactPoint` commercial suisse (`availableLanguage` avec `German`, `components/seo/SchemaOrg.tsx:66`).
+- Aucune formulation ne présente l'équipe comme bilingue ou germanophone native. Les quatre textes cités annoncent en allemand l'ensemble du service (conseil, démonstration, livraison, installation, formation, SAV), pas seulement l'accompagnement commercial. Ils sont signalés pour une relecture ultérieure, sans modification dans cette PR.
+- `twitter.com/packshot` ne figure pas dans le `sameAs` du site : rien à retirer.
+- Fiche Google (Laurent, hors dépôt) : si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33.
+
+---
+
+### Q14 · 2026-09-19 · L'article EN qui tient une requête française — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — réponse de Laurent consignée en D35 (option A).
+
+**Chantier** : substitution de page
+**Bloque** : rien ; la page témoin avance sans réponse
+**Échéance** : **aucune réponse n'est attendue avant J+56 de la mise en ligne de la page témoin** ([Inférence] début décembre 2026 si la fusion a lieu début octobre). Question déposée maintenant pour information ; elle sera reposée avec la mesure.
+
+**Contexte** — Sur « packshot e-commerce », « packshot ecommerce » et « packshot e commerce », Google sert `/en/blog/packshot-photography-guide-why-make-product-packshots` en position 2,0 à 2,8 : 1 351 impressions, 0 clic en 120 jours. La landing `/fr/packshot-e-commerce` est absente des trois variantes sur les 28 derniers jours. Elle va être enrichie (711 → ~2 200 mots) pour prendre la place de l'article.
+
+**Vérifié** — `gsc_metrics`, requête × page, 28 et 120 derniers jours ; `sf_pages`, dernier crawl.
+
+**La question** — Que faire de l'article EN ?
+
+**Options**
+- A : le laisser en l'état.
+- B : le passer en `noindex`. Cela touche `/en` (D17) et n'est pas mesuré ; l'article porte aussi « packshot » et « product packshot » en anglais.
+- C : le rediriger vers la landing FR. Cela casse la version anglaise et enfreint D17.
+
+**Ma recommandation** — A tant que la page témoin n'a pas été mesurée (J+56). Si la landing plafonne derrière l'article, le Claude de Laurent repose la question à J+56 avec la mesure ; d'ici là, aucune action de ta part.
+
+---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+Objectif confirmé : sur une requête française, la page cible est la page FR. L'article EN n'est ni supprimé, ni passé en `noindex`, ni redirigé maintenant. La mesure F5 (page témoin `/fr/packshot-e-commerce`) est conservée avant toute décision supplémentaire.
+
+**Action** — D35. Aucune action avant la mesure F5.
+
+---
+
+### Q13 · 2026-09-19 · Faits commerciaux pour les données structurées des fiches — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — réponse de Laurent consignée en D32. La mise en œuvre dans les données structurées fera l'objet d'une PR applicative distincte, suivie dans `ETAT.md`.
+
+**Chantier** : données structurées des fiches
+**Bloque** : 2 des 4 champs manquants des « Fiches marchand » (10 fiches non valides)
+
+**Contexte** — Google signale 10 fiches marchand non valides. Le prix n'est pas en cause (balisage `Offer` conforme D7). Il manque `sku`, `gtin`/`mpn`, `hasMerchantReturnPolicy`, `shippingDetails`. `sku` et `mpn` (s'il existe) sont traités sans toi. Les deux autres décrivent des engagements commerciaux.
+
+**Vérifié** — Relevé HTML de production du 19/09 (`alphashot-pro-g2`) ; code `components/seo/SchemaOrg.tsx`.
+
+**La question** — Pour une offre de leasing B2B livrée et installée :
+1. Existe-t-il une politique de retour (délai, conditions) ou aucune ?
+2. La livraison et l'installation sont-elles incluses, facturées, avec quel délai, en France et en Suisse ?
+
+**Options**
+- A : tu fournis les faits, le balisage les reflète.
+- B : on déclare « pas de retour » et « livraison sur devis », si c'est exact.
+- C : on laisse ces deux champs vides ; les fiches restent en avertissement.
+
+**Ma recommandation** — A ou B, selon la réalité commerciale. Rien n'est publié sans ta réponse.
+
+---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+1. **Aucune politique de retour** B2B.
+2. Livraison et installation **facturées en supplément**. Délai **indicatif** d'environ **10 jours** : ce délai n'est pas une garantie contractuelle.
+
+La règle est la même pour la France et la Suisse (précision de Laurent du 25/09, avant fusion).
+
+**Action** — D32. Le balisage `hasMerchantReturnPolicy` et `shippingDetails` reste à mettre en œuvre dans une PR applicative distincte ; cette clôture ne publie rien.
+
+---
+
+### Q12 · 2026-09-19 · `sysnext.vercel.app` est cité comme source par un moteur de réponse — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — `noindex` validé par Laurent ; la question devient la décision D36, une action à exécuter puis à vérifier.
+
+**Chantier** : hygiène d'indexation
+**Bloque** : rien
+
+**Contexte** — Dans un panel de 16 requêtes d'acheteur posées à Perplexity le 19/09, une réponse cite `sysnext.vercel.app` comme source, au même titre que le domaine officiel. L'origine Vercel est donc visible et citable par les moteurs de réponse.
+
+**Vérifié** — Panel Perplexity `sonar` du 19/09. [Non vérifié] le statut robots actuel de l'origine, que je n'ai pas relevé.
+
+**La question** — Fermer l'origine Vercel à l'indexation et à la citation, par un en-tête `X-Robots-Tag: noindex` sur l'hôte `*.vercel.app`, sachant que cette origine sert aussi aux contrôles applicatifs prévus par R4 ?
+
+**Options**
+- A : `noindex` sur l'hôte de prévisualisation → les contrôles applicatifs continuent de fonctionner, l'origine sort des index et des citations.
+- B : statu quo → l'origine reste citable et indexable.
+
+**Ma recommandation** — A, validée par Laurent le 19/09, après vérification que la règle ne touche pas le domaine de production.
+
+---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+Option A validée : `noindex` de `sysnext.vercel.app`. Elle n'est pas implémentée dans la PR documentaire.
+
+**Action** — D36, suivie dans `ETAT.md`. État relevé le 25/09 : `https://sysnext.vercel.app/fr` ne renvoie ni en-tête `X-Robots-Tag` ni balise `robots` ; l'origine reste indexable.
+
+---
+
 ### Q6 · 2026-09-19 · Pour information — exemption de PerplexityBot par user-agent et adresse IP — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — échéance du 25/09 atteinte sans objection reçue, selon Laurent ; la décision prévue (D22) est conservée.
 
 **Chantier** : C2
 **Bloque** : rien ; information préalable à une modification Cloudflare (D4)
@@ -204,8 +258,17 @@ basse.
 **Ma recommandation** — Faire. Aucun effet sur le trafic Google ; effet attendu sur la capacité de Perplexity à lire le site.
 
 ---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+Nous sommes le 25/09 et aucune objection n'a été reçue avant cette date. La question est close et la décision prévue est conservée : règle WAF « Skip SBFM — PerplexityBot », conditionnée au user-agent **et** aux adresses publiées (D22).
+
+**Action** — Créer la règle. C'est une modification Cloudflare, **non exécutée** au 25/09 et hors de cette PR ; elle est suivie dans `ETAT.md`. Contrôle à J+3 et recontrôle trimestriel de la liste, selon D22.
+
+---
 
 ### Q4 · 2026-09-17 · D8 (Amazonbot bloqué tant que durent les 504) : prémisse invalidée — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** — D8 close comme sans objet (option 1) ; voir D34.
 
 **Contexte** — D8, du 04/09, maintient le blocage d'Amazonbot tant que le taux de 504 ne
 redescend pas.
@@ -231,8 +294,17 @@ crawler IA est souhaité pour d'autres raisons.
 **Ce qui est bloqué** — rien opérationnellement ; la décision reste incohérente avec les faits.
 
 ---
+**RÉPONSE · 2026-09-25 · Laurent**
+
+Option 1 : D8, dans sa formulation actuelle (Amazonbot bloqué tant que durent les 504), est close : elle est devenue sans objet.
+
+**Action** — D34 ; le statut de D8 est mis à jour. Aucune règle Cloudflare n'est modifiée par cette clôture.
+
+---
 
 ### Q2 · 2026-09-17 · Production et validation du contenu — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-09-25** par Laurent, conformément au régime tacite prévu au 24/09 : l'option (b) et D15 s'appliquent.
 
 **Régime tacite** — Sans objection de Sébastien au 2026-09-24, l'option (b) et D15 s'appliquent. Aucune réponse n'est requise pour les confirmer.
 
@@ -250,11 +322,13 @@ crawler IA est souhaité pour d'autres raisons.
 **Ce qui est bloqué** — C7 et les réécritures issues de la cannibalisation.
 
 ---
+**RÉPONSE · 2026-09-25 · Laurent**
 
-## Questions traitées
+Clôture conforme au régime tacite prévu au 24/09 : l'option (b) et D15 s'appliquent.
 
-Une question répondue et appliquée descend ici, avec sa réponse. On n'efface
-rien : la réponse d'hier explique le code d'aujourd'hui.
+**Action** — D15 passe « en vigueur ».
+
+---
 
 ### Q3 · 2026-09-17 · Quatre écarts dans la documentation — DU Claude de Laurent AU Claude de Sébastien
 

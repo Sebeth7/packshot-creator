@@ -34,6 +34,101 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · Arbitrages de Laurent — Q2, Q4, Q6, Q12 à Q15 · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #34, branche `claude/lucid-mayer-tz2mk8` (documentation seule) | **Non fusionnée**
+
+**Quoi** — Sept questions de la boîte aux lettres sont closes sur décision de Laurent du 25/09. Quatre deviennent des décisions nouvelles (D32, D33, D35, D36), une en clôt une ancienne (D34 clôt D8), et deux confirment des décisions existantes :
+
+| Question | Réponse | Consignée en |
+|---|---|---|
+| Q13 | Aucune politique de retour B2B ; livraison et installation facturées en supplément ; délai indicatif d'environ 10 jours, jamais présenté comme une garantie contractuelle ; même règle en France et en Suisse | D32 |
+| Q15 | Allemand un peu parlé : accompagnement commercial en allemand possible en Suisse, équipe ni bilingue ni germanophone native ; espagnol non parlé ; `twitter.com/packshot` à Sysnext, inactif ; date de création 2001, `foundingDate` à aligner | D33 |
+| Q4 | D8 close comme devenue sans objet | D34, statut de D8 |
+| Q14 | Requête française → page FR ; article EN inchangé ; mesure F5 conservée | D35 |
+| Q12 | `noindex` de `sysnext.vercel.app` validé, à exécuter puis à vérifier | D36 |
+| Q6 | Aucune objection reçue avant le 25/09 : décision prévue conservée | D22 |
+| Q2 | Close selon le régime tacite prévu au 24/09 | D15, désormais « en vigueur » |
+
+`ETAT.md` :
+- les questions closes sortent de « Balle chez Sébastien » ;
+- les actions à exécuter entrent dans « Prochaines actions » ;
+- seule Q10 reste ouverte.
+
+**Précisions de Laurent du 25/09, avant fusion** — D33 : « allemand non parlé » est remplacé par « un peu parlé ». L'accompagnement commercial en allemand en Suisse est possible, sans présenter l'équipe comme bilingue ni germanophone native, et les mentions actuelles sont conservées. D32 : la règle est la même pour la France et la Suisse. L'écart R7 sur l'allemand, consigné dans une première version de cette PR, est levé.
+
+**Pourquoi** — Arbitrages rendus par Laurent le 25/09, à consigner avant toute mise en œuvre.
+
+**Fichiers** — `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site : aucun fichier applicatif touché, aucune règle Cloudflare modifiée.
+
+**Vérifié** (le 25/09, R7) —
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`.
+- `components/seo/SchemaOrg.tsx:69-71` : le `sameAs` de l'organisation ne contient que LinkedIn, pas `twitter.com/packshot`.
+- Mentions d'accompagnement en allemand, compatibles avec D33 et conservées : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`, et `components/seo/SchemaOrg.tsx:66` (`availableLanguage` avec `German` sur le `ContactPoint` commercial suisse).
+- Recherche de formulations « bilingue », « germanophone », « natif », « couramment », et de leurs équivalents allemands et anglais, dans `messages/`, `app/`, `components/` et `content/` : aucune ne vise la langue de l'équipe. Les quatre textes ci-dessus annoncent en allemand l'ensemble du service, formation et SAV compris : ils sont signalés pour une relecture ultérieure.
+- `https://sysnext.vercel.app/fr` : ni en-tête `X-Robots-Tag` ni balise `robots`, l'origine est indexable.
+- `scripts/seo/smoke.mjs` ne lit que la balise `robots`.
+- Aucun texte d'origine perdu dans `BOITE-AUX-LETTRES.md` : 0 ligne manquante après déplacement.
+
+**Supposé** — Les faits commerciaux et d'entreprise (Q13, Q15) sont ceux déclarés par Laurent ; le dépôt ne permet pas de les vérifier. L'absence d'objection avant le 25/09 (Q6) et au 24/09 (Q2) est tenue pour acquise sur la déclaration de Laurent.
+
+**Non regardé** — La fiche Google elle-même, en particulier ses mentions « Espagnol » et « Allemand non parlé ». Les règles WAF actuelles (P0-F sans accès).
+
+**Suite** —
+- Q10 est la seule question encore ouverte.
+- Relecture éventuelle des quatre textes qui annoncent en allemand l'ensemble du service (D33), sans modification dans cette PR.
+- Mises en œuvre distinctes, hors de cette PR : D32 (données structurées des fiches) ; D33 (`foundingDate` 2001) ; D36 (`noindex` de l'origine) ; D22 (règle WAF PerplexityBot).
+- P0-I et P1 ne sont pas touchés.
+
+## 2026-09-25 · Déploiement du Worker — P0-D/E · Claude de Laurent
+
+**Chantier** : P0-D/E | **PR** : #30, fusionnée (`665f5ef`) | **Commit déployé** : `69cd647` (`main`) | **Version Cloudflare** : `27b0153c-5516-432a-91a4-20cddce250ca` | **P0-D/E WORKER = CLOSED**
+
+**Quoi** — `packshot-router` déployé depuis `main` par `wrangler deploy` (wrangler 4.136.3), le 25/09/2026 à 05:07:25 UTC, sur GO de Laurent (`GO_WORKER_DEPLOY`). Le déploiement porte la PR #30 et rien d'autre. Aucune édition au dashboard (D4, R5). Ni P0-I, ni P1.
+
+**Pourquoi** — P0-D/E, fusionné le 24/09 : héritage `/de` → `/de-ch`, chaînes `/industrie/*` et `/studio-photo/*` à un saut, doublon « -22 », `packshot-mannequin`. Vercel ne déploie pas le Worker.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Déployé : `cloudflare-worker/src/index.js` de `69cd647`.
+
+**Effet attendu** — Immédiat côté Worker : 30 chemins changent de premier saut (60 avec la barre finale), vers une page 200 à canonique auto-référente. Lisible dans la couverture GSC et les pages de destination à J+14 (09/10).
+
+**Vérifié** —
+- *Contrôle post-fusion du 24/09*, sur `sysnext.vercel.app` : Vercel, P0-A et D31 PASS ; `smoke.mjs` vert, 17 pages et 3 ressources.
+- *Avant déploiement* :
+  - code de production relu par l'API, identique octet pour octet aux relevés du 24/09 : **aucune divergence** ;
+  - version `05c5c47c-4b60-41af-9acd-b3778be1e508` à 100 % (déploiement `3c88c9cb` du 23/09) ;
+  - routes (`www.packshot-creator.com/*`, `packshot-creator.com/*`, `*.packshot-creator.com/*`) et réglages (`compatibility_date` 2024-01-01, `NEXTJS_ORIGIN`, `WEBFLOW_ORIGIN`) identiques à `wrangler.toml` ;
+  - bundle construit à blanc depuis `main` : 0 écart de comportement avec le source sur 5 530 chemins ;
+  - écart production → `main` : 30 premiers sauts (60 avec la barre finale), la liste validée dans la PR #30 ; 0 chemin Alphashot XL ; variante `/amp` du « -22 » en 410 ; 30 destinations finales sur 30 en 200, en un saut, canonique auto-référente, sur `sysnext.vercel.app` ;
+  - `npm run test:unit` : 223/223.
+- *Après déploiement, par l'API* :
+  - déploiement `80f41b94-d560-4a9a-91a1-60f577ef4535`, version `27b0153c` à 100 % ;
+  - code relu identique octet pour octet au bundle de `main`, 0 écart de comportement avec `main` sur 5 530 chemins ;
+  - par rapport à `05c5c47c`, exactement les 30 changements validés ;
+  - routes et réglages identiques avant et après.
+- *Témoins en production*, depuis le poste de Laurent : `curl.exe` sous PowerShell, chaîne `v=p0de-5`, 16 témoins et 3 variantes avec barre finale. **Verdict de Laurent : PASS, aucun rollback.**
+  - Redirections P0-D/E → destinations finales en 200, canoniques cohérentes.
+  - `/amp` du « -22 » : 410 avec et sans barre finale.
+  - `/de/fotostudio/alphashot-xl` → `/de-ch/fotostudio/maschinen-finder` : D29 non réintroduite.
+  - `/de/studio-photo/alphashot-xl` → XL G2 : comportement antérieur, `REVIEW_PRODUCT_MAPPING`, inchangé par ce déploiement.
+  - `videos.` : 404, sans redirection vers `www`. `books.` : 302 sur le même hôte puis 200, sans redirection vers `www`. `trail.` : 200.
+- *Depuis le conteneur* : `www.` et `videos.` en 403 `cf-mitigated: challenge` (R4) ; `books.` et `trail.` en 200, sans redirection vers `www`.
+
+**Supposé** — Que le 404 de la racine de `videos.` vient de son origine : le Worker laisse passer cet hôte (`PASSTHROUGH_HOSTS`), et la simulation donne le même passage avant et après ce déploiement.
+
+**Non regardé** — L'état de la racine de `videos.` avant ce déploiement, depuis le poste de Laurent. Les 30 chemins un par un en production (19 témoins seulement). GSC, à J+14.
+
+**Suite** —
+- Mesure à J+14 (09/10), dans GSC.
+- Rollback si besoin, depuis `cloudflare-worker/` : `npx wrangler@4.136.3 rollback 05c5c47c-4b60-41af-9acd-b3778be1e508`. Jamais au dashboard.
+- Mappings XL existants maintenus en `REVIEW_PRODUCT_MAPPING` (D29 suspendue) : aucun changement XL avant validation du mapping produit.
+- P0-I : opération indépendante, sur GO séparé, avec son rollback SQL.
+- Hors P0, nettoyage ultérieur (classement de Laurent) :
+  - phrase anglaise en dur sur `/de-ch/wichtige-fragen-produktfotografie` ;
+  - deux chaînes de satisfaction dans `messages/de-ch.json`, non rendues.
+
 ## 2026-09-24 · Gouvernance P0 — D29 à D31, état des P0 · Claude de Laurent
 
 **Chantier** : clôture technique P0 du 24/09 | **PR** : #33, branche `docs/gouvernance-p0-2026-09-24` (documentation seule) | **Fusionnée en dernier**, après #29, #30 et #32
