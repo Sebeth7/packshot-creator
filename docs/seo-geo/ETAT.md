@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-25 — Claude de Laurent (P0 : PR #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E déployé le 25/09, version `27b0153c`, vérifié : CLOSED ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-25 — Claude de Laurent (arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -36,13 +36,8 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | **Pour information — déploiement du Worker portant uniquement #16, cette semaine** | Laurent | 19/09 | Aucune action requise. Objection éventuelle avant le déploiement. Contrôle par URL témoins, rollback par redéploiement |
-| Q13 — faits commerciaux pour `hasMerchantReturnPolicy` et `shippingDetails` | Laurent | 19/09 | Voir BOITE-AUX-LETTRES |
-| Pour information — Q14, article EN en position 2 sur une requête française | Laurent | 19/09 | Aucune réponse attendue avant J+56 de la page témoin ; recommandation : ne rien faire |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | inchangé |
-| Pour information — Q6, règle WAF PerplexityBot UA + IP | Laurent | 19/09 | Objection éventuelle avant le 25/09 |
-| Pour information — Q12, `sysnext.vercel.app` fermé à l'indexation | Laurent | 19/09 | Aucune action requise |
 | Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | inchangé |
-| Q15 — fiche Google France : langues, date de création, compte Twitter | Laurent | 23/09 | Voir BOITE-AUX-LETTRES |
 
 ---
 
@@ -54,6 +49,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle post-déploiement de #29 et #32 dans Chrome (R4) | Claude de Laurent | 24/09 | `/de-ch` : `WebSite.inLanguage` = `de-CH`, aucun témoignage, `Review` ni `aggregateRating` ; `/fr` et `/en` inchangés |
 | GO P0-I | Claude de Laurent | 24/09 | Application des 8 fonctions SQL ; rien n'est appliqué sans ce GO |
+| Écart R7 sur D33 — « allemand non parlé » contre l'accompagnement en allemand annoncé en Suisse | Claude de Laurent | 25/09 | Mentions : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` ; `availableLanguage` du `ContactPoint` suisse (`components/seo/SchemaOrg.tsx:66`). Aucune correction avant arbitrage |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -69,7 +65,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | P0-H — `gsc_pull_bornes` en parcours d'index inversé (migration `p0h_gsc_pull_bornes_index_backward_20260924`) : critère 0 échec de M5 | 24/09 | 08/10 (fenêtre du 25/09 au 08/10) | n8n, exécutions de `M5 · GSC pull` (`Sqdk2jygOSt9XEjL`) |
 | Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` |
 | Page témoin substitution — critère de succès unique (landing devant l'article EN) | à venir | J+56 | `gsc_metrics`, requête × page, 28 jours glissants |
-| `sku` et `priceValidUntil` des 51 fiches — passage des « Fiches marchand » de non valides à valides | 20/09 | J+7 à J+14 | GSC, rapport « Fiches marchand » ; 2 des 4 champs manquants comblés, Q13 pour les 2 autres |
+| `sku` et `priceValidUntil` des 51 fiches — passage des « Fiches marchand » de non valides à valides | 20/09 | J+7 à J+14 | GSC, rapport « Fiches marchand » ; 2 des 4 champs manquants comblés ; les 2 autres relèvent de D32, mise en œuvre à faire |
 
 ---
 
@@ -80,6 +76,12 @@ périmée ici coûte plus cher qu'une ligne absente.
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
 - #29, #30 et #32 fusionnées le 24/09 (`6c16108`, `665f5ef`, `c9f8aa5`), #33 ensuite (`69cd647`) ; contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
+- D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation en supplément, délai indicatif d'environ 10 jours, jamais garanti), dans une PR applicative distincte.
+- D33 :
+  - aligner `foundingDate` de 2004 sur 2001 (`components/seo/SchemaOrg.tsx:72`), dans une PR applicative distincte ;
+  - fiche Google : si elle déclare l'espagnol parlé, la corriger (Laurent, hors dépôt).
+- D36 : `noindex` de `sysnext.vercel.app`, à exécuter puis à vérifier, sans toucher `www` ; tenir compte de `smoke.mjs`, qui lit la balise `robots` et non l'en-tête.
+- D22 (Q6 close) : créer la règle WAF « Skip SBFM — PerplexityBot », conditionnée au user-agent et aux adresses publiées ; contrôle à J+3. Modification Cloudflare, non exécutée au 25/09.
 
 ---
 
@@ -125,8 +127,14 @@ les 9 dépôts.
 
 ## Questions ouvertes
 
-Q10 (cible D24) — voir BOITE-AUX-LETTRES.md. Q6 et Q12 déposées pour information.
-Q1, Q3 closes le 17/09 ; Q2 close le 24/09 par régime tacite ; Q5, Q7, Q8, Q9 et Q11 arbitrées par Laurent le 19/09 sans dépôt, consignées en D26.
+**Seule question ouverte : Q10** (cible D24), voir BOITE-AUX-LETTRES.md.
+
+Questions closes :
+- Q1 et Q3, le 17/09.
+- Q2, Q4, Q6, Q12, Q13, Q14 et Q15, par Laurent le 25/09. Q2 selon le régime tacite prévu au 24/09 ; les réponses sont consignées en D15, D22 et D32 à D36.
+- Q5, Q7, Q8, Q9 et Q11 : arbitrées par Laurent le 19/09 sans dépôt, consignées en D26.
+
+Q16 à Q18 n'ont jamais été déposées ; leur absence a été acceptée par Laurent le 24/09.
 
 ---
 

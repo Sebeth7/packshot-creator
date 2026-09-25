@@ -34,6 +34,54 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · Arbitrages de Laurent — Q2, Q4, Q6, Q12 à Q15 · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #34, branche `claude/lucid-mayer-tz2mk8` (documentation seule) | **Non fusionnée**
+
+**Quoi** — Sept questions de la boîte aux lettres sont closes sur décision de Laurent du 25/09. Quatre deviennent des décisions nouvelles (D32, D33, D35, D36), une en clôt une ancienne (D34 clôt D8), et deux confirment des décisions existantes :
+
+| Question | Réponse | Consignée en |
+|---|---|---|
+| Q13 | Aucune politique de retour B2B ; livraison et installation en supplément ; délai indicatif d'environ 10 jours, jamais présenté comme une garantie contractuelle | D32 |
+| Q15 | Allemand et espagnol non parlés ; `twitter.com/packshot` à Sysnext, inactif ; date de création 2001, `foundingDate` à aligner | D33 |
+| Q4 | D8 close comme devenue sans objet | D34, statut de D8 |
+| Q14 | Requête française → page FR ; article EN inchangé ; mesure F5 conservée | D35 |
+| Q12 | `noindex` de `sysnext.vercel.app` validé, à exécuter puis à vérifier | D36 |
+| Q6 | Aucune objection reçue avant le 25/09 : décision prévue conservée | D22 |
+| Q2 | Close selon le régime tacite prévu au 24/09 | D15, désormais « en vigueur » |
+
+`ETAT.md` :
+- les questions closes sortent de « Balle chez Sébastien » ;
+- les actions à exécuter entrent dans « Prochaines actions » ;
+- l'écart relevé sur l'allemand entre dans « Balle chez Laurent » ;
+- seule Q10 reste ouverte.
+
+**Pourquoi** — Arbitrages rendus par Laurent le 25/09, à consigner avant toute mise en œuvre.
+
+**Fichiers** — `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site : aucun fichier applicatif touché, aucune règle Cloudflare modifiée.
+
+**Vérifié** (le 25/09, R7) —
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`.
+- `components/seo/SchemaOrg.tsx:69-71` : le `sameAs` de l'organisation ne contient que LinkedIn, pas `twitter.com/packshot`.
+- Mentions d'allemand qui contredisent « allemand non parlé » :
+  - `components/seo/SchemaOrg.tsx:66` : `availableLanguage: ['German', 'French', 'English']` sur le `ContactPoint` suisse ;
+  - `messages/fr.json:189`, `messages/de-ch.json:167` et `messages/en.json:93` : la FAQ annonce un accompagnement en allemand en Suisse.
+- `https://sysnext.vercel.app/fr` : ni en-tête `X-Robots-Tag` ni balise `robots`, l'origine est indexable.
+- `scripts/seo/smoke.mjs` ne lit que la balise `robots`.
+- Aucun texte d'origine perdu dans `BOITE-AUX-LETTRES.md` : 0 ligne manquante après déplacement.
+
+**Supposé** — Les faits commerciaux et d'entreprise (Q13, Q15) sont ceux déclarés par Laurent ; le dépôt ne permet pas de les vérifier. L'absence d'objection avant le 25/09 (Q6) et au 24/09 (Q2) est tenue pour acquise sur la déclaration de Laurent.
+
+**Non regardé** — La fiche Google elle-même, en particulier sa mention « Espagnol ». Les règles WAF actuelles (P0-F sans accès). La distinction France / Suisse pour Q13 : la réponse ne la fait pas.
+
+**Suite** —
+- Q10 est la seule question encore ouverte.
+- L'écart sur l'allemand (D33) reste à arbitrer.
+- Mises en œuvre distinctes, hors de cette PR : D32 (données structurées des fiches) ; D33 (`foundingDate` 2001) ; D36 (`noindex` de l'origine) ; D22 (règle WAF PerplexityBot).
+- P0-I et P1 ne sont pas touchés.
+
 ## 2026-09-25 · Déploiement du Worker — P0-D/E · Claude de Laurent
 
 **Chantier** : P0-D/E | **PR** : #30, fusionnée (`665f5ef`) | **Commit déployé** : `69cd647` (`main`) | **Version Cloudflare** : `27b0153c-5516-432a-91a4-20cddce250ca` | **P0-D/E WORKER = CLOSED**

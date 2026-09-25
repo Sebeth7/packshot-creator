@@ -25,6 +25,92 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D36 · 2026-09-25 · `noindex` de l'origine `sysnext.vercel.app` : validé, à exécuter
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **non exécutée** au 25/09 : action à exécuter puis à vérifier
+
+**La décision** — Fermer l'origine `sysnext.vercel.app` à l'indexation et à la citation par un `noindex`, sans toucher le domaine de production `www.packshot-creator.com`. L'origine continue de servir aux contrôles applicatifs (R4, D23).
+
+**Le contexte** — Q12 : le 19/09, une réponse de Perplexity citait `sysnext.vercel.app` comme source. L'option A, en-tête `X-Robots-Tag: noindex` sur l'hôte Vercel, avait été validée par Laurent le 19/09 ; la validation est confirmée le 25/09.
+- État relevé le 25/09 : ni en-tête `X-Robots-Tag` ni balise `robots` sur `https://sysnext.vercel.app/fr`.
+- Dépendance (R8) : `scripts/seo/smoke.mjs` lit la balise `<meta name="robots">`, pas l'en-tête. Une mise en œuvre par balise sur l'origine ferait échouer le smoke des pages indexables sur `sysnext.vercel.app`.
+
+**Ce qu'elle interdit** — Une règle qui atteindrait `www.packshot-creator.com`. Une mise en œuvre qui empêcherait les contrôles sur l'origine. Tenir l'action pour faite sans vérification, sur l'origine comme sur le domaine de production.
+
+---
+
+## D35 · 2026-09-25 · Requête française : la page cible est la page FR ; l'article EN reste en l'état jusqu'à la mesure F5
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Sur une requête française, la page cible est la page FR. L'article EN `/en/blog/packshot-photography-guide-why-make-product-packshots` n'est ni supprimé, ni passé en `noindex`, ni redirigé maintenant. La mesure F5 (page témoin `/fr/packshot-e-commerce`) est conservée : aucune décision supplémentaire avant elle.
+
+**Le contexte** — Q14 : sur « packshot e-commerce » et ses variantes, Google sert cet article EN en position 2,0 à 2,8 (1 351 impressions, 0 clic en 120 jours). La landing FR est absente de ces requêtes. Option A de Q14.
+
+**Ce qu'elle interdit** — Supprimer, passer en `noindex` ou rediriger l'article EN avant la mesure F5 et sans nouvelle décision.
+
+---
+
+## D34 · 2026-09-25 · D8 close : blocage d'Amazonbot, décision devenue sans objet
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **clôt D8**
+
+**La décision** — D8, dans sa formulation actuelle (« Amazonbot reste bloqué tant que le taux de 504 ne redescend pas »), est close : elle est devenue sans objet. Cette clôture ne modifie aucune règle Cloudflare.
+
+**Le contexte** — Q4, vérifications du 17/09 :
+- les 504 sont toutes émises sur des requêtes internes Cloudflare liées aux Early Hints, et aucune ne touche les visiteurs ni les robots réels ;
+- Amazonbot authentique n'est pas bloqué dans les faits : 0 réponse 403 sur 2 626 requêtes depuis les IP d'Amazon ;
+- les 403 attribués à « amazonbot » visent à 94 % l'user-agent Amzn-SearchBot, depuis des IP absentes de la liste publiée par Amazon.
+
+**Ce qu'elle interdit** — Invoquer D8 pour justifier un blocage d'Amazonbot. Un blocage de crawler d'IA pour une autre raison passe par une nouvelle décision explicite.
+
+---
+
+## D33 · 2026-09-25 · Faits de référence de l'entreprise : langues, date de création, compte Twitter
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — alignement du site à faire
+
+**La décision** — Faits de référence de PackshotCreator/Sysnext :
+- allemand : non parlé ;
+- espagnol : non parlé ;
+- `twitter.com/packshot` : appartient à Sysnext, inactif ;
+- date de création : 2001.
+
+Le `foundingDate` du schéma `Organization` du site, actuellement à 2004, doit être aligné sur 2001.
+
+**Le contexte** — Q15 : la fiche Google France indique « Allemand non parlé » et une création en décembre 2001, alors que le site déclare `foundingDate` 2004. Écarts relevés le 25/09 dans le dépôt (R7), non corrigés :
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'` ;
+- `components/seo/SchemaOrg.tsx:66` : le `ContactPoint` suisse déclare `availableLanguage: ['German', 'French', 'English']` ;
+- `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` : la FAQ annonce un accompagnement en allemand en Suisse.
+
+Ces mentions d'allemand contredisent le fait retenu ; leur sort reste à arbitrer. `twitter.com/packshot` ne figure pas dans le `sameAs` du site.
+
+**Ce qu'elle interdit** — Ajouter au site ou aux données structurées une nouvelle mention contraire à ces faits : date de création autre que 2001, espagnol ou allemand parlés. Présenter `twitter.com/packshot` comme un canal actif.
+
+---
+
+## D32 · 2026-09-25 · Faits commerciaux des fiches : aucun retour, livraison et installation en supplément, délai indicatif
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — mise en œuvre dans les données structurées à faire
+
+**La décision** — Pour l'offre de leasing B2B livrée et installée :
+- aucune politique de retour ;
+- livraison et installation en supplément ;
+- délai indicatif d'environ 10 jours.
+
+Ce délai reste indicatif : il n'est jamais présenté comme une garantie contractuelle.
+
+**Le contexte** — Q13 : 10 fiches marchand sont signalées non valides par Google. Il leur manque `hasMerchantReturnPolicy` et `shippingDetails`, qui décrivent des engagements commerciaux. La réponse ne distingue pas la France et la Suisse.
+
+**Ce qu'elle interdit** — Déclarer une politique de retour. Déclarer la livraison ou l'installation incluses. Présenter le délai d'environ 10 jours comme garanti, en texte comme en données structurées.
+
+---
+
 ## D31 · 2026-09-24 · Aucun témoignage ni avis client sur `/de-ch`
 
 **Décidé par** : Laurent
@@ -258,7 +344,7 @@ des requêtes d'achat de machine qui n'existent pas en volume.
 ## D15 · 2026-09-17 · Validation tacite des réécritures de contenu
 
 **Décidé par** : Laurent — **confirmée tacitement au 2026-09-24 sauf objection de Sébastien (Q2)**
-**Statut** : proposée
+**Statut** : en vigueur — Q2 close le 2026-09-25 selon le régime tacite prévu au 24/09
 
 **La décision** — Une PR qui réécrit ou fusionne du contenu existant, sans prix affiché et sans suppression d'URL portant des backlinks, est fusionnée par le Claude de Laurent si Sébastien n'a pas formulé d'objection dans les 5 jours ouvrés suivant son ouverture. La création de page ou d'article, les prix affichés, la suppression d'une URL à backlinks et tout engagement vis-à-vis d'un tiers restent en validation explicite de Sébastien.
 
@@ -412,7 +498,7 @@ avant que la traduction soit en ligne.
 ## D8 · 2026-09-04 · Amazonbot reste bloqué
 
 **Décidé par** : Sébastien
-**Statut** : en vigueur, tant que durent les 504
+**Statut** : **close le 2026-09-25**, devenue sans objet — voir D34 (Q4)
 
 **La décision** — Amazonbot (97 % bloqué, 18 946 requêtes sur sept jours) reste
 bloqué tant que le taux de 504 ne redescend pas. Les sept autres crawlers IA
