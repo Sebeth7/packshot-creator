@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · Article blog « Migrer un ancien studio PackshotCreator vers Orbitvu » (FR, EN, DE-CH) · Claude de Sébastien
+
+**Chantier** : contenu blog (hors chantier numéroté) | **PR** : #36 | **Commit** : `b60f7b1`
+
+**Quoi** — Nouvel article natif en trois langues (FR rédigé par Sébastien, EN et DE-CH adaptés), 5 visuels AVIF, entrée hreflang, tunnel Alphashot Pro G2 et liens entrants depuis 2 hubs secteurs et 1 money page.
+
+**Pourquoi** — Les utilisateurs historiques de PackshotCreator appellent chaque semaine sur la fin de support des anciens logiciels (31/12/2024) ; aucune page ne traitait la migration vers la gamme Orbitvu actuelle.
+
+**Fichiers** — `content/blog/{fr,en,de-ch}/*.json` (3 nouveaux), `content/blog/alternates.json` (1 entrée ajoutée), `data/content-maillage.ts` (ajouts seulement : CONTENT_PRODUCT_MAP ×3, SECTOR_RESOURCES_MAP cosmetiques-beaute + jouets-puericulture, MONEY_PAGE_RESOURCES_MAP studios-photo-automatises), `public/images/blog/migrer-ancien-packshotcreator/` (5 AVIF, 236 Ko).
+
+**Effet attendu** — Indexation des 3 URL sous quelques jours ; requêtes « ancien studio PackshotCreator », « logiciel PackshotCreator Windows 11 » et équivalents EN/DE.
+
+**Vérifié** — `next build` vert, 3 pages prérendues ; en local : HTTP 200, canonical, hreflang (fr, fr-CH, en, de-CH, x-default) croisés, FAQPage, tunnel « Studio recommandé » dans les 3 langues, listing blog, sitemap, liens entrants sur les 2 hubs et la money page, 5 images servies. Prix leasing recalculés contre `lib/leasing.ts` (EUR et CHF).
+**Supposé** — Rendu mobile de l'image portrait XL G2 (limitée à 60 % de largeur) : seul l'affichage bureau a été contrôlé.
+**Non regardé** — Test détecteur IA et relecture native des versions EN et DE-CH (à faire par Sébastien avant fusion) ; rendu derrière Cloudflare.
+
+**Suite** — Couverture à remplacer par une photo du showroom (Sébastien) ; transmettre URL et date de mise en ligne à Laurent ; supprimer l'ancien brouillon non suivi du 04/09 dans le checkout principal.
+
+---
+
 ## 2026-09-25 · P0-K — resynchronisation documentaire P0 ; P0-J différé · Claude de Laurent
 
 **Chantier** : P0-K (et état de P0-J) | **PR** : #35 (documentation seule) | **Non fusionnée**
