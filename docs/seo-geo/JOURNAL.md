@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · Correctif : slug EN de l'article migration renvoyé en 410 par le Worker · Claude de Sébastien
+
+**Chantier** : correctif de la PR #36 | **PR** : #37 | **Commit** : voir PR
+
+**Quoi** — Le slug EN `migrate-old-packshotcreator-studio` devient `migrate-legacy-packshotcreator-studio` (fichier, `alternates.json`, `CONTENT_PRODUCT_MAP`).
+
+**Pourquoi** — Sur www, la page EN répondait 410 « Gone » alors que sysnext.vercel.app la servait en 200 : `shouldReturn410()` du Worker renvoie 410 pour tout chemin contenant `-old-` (nettoyage de l'ancien site). Signalé par Sébastien le 25/09, constaté dans Chrome (status 410, titre « Gone | PackshotCreator »).
+
+**Fichiers** — `content/blog/en/migrate-legacy-packshotcreator-studio.json` (renommé), `content/blog/alternates.json`, `data/content-maillage.ts`.
+
+**Effet attendu** — Page EN en 200 sur www dès le déploiement ; hreflang croisés FR/EN/DE-CH vers la nouvelle URL.
+
+**Vérifié** — Nouveau slug et slugs FR/DE-CH testés contre la fonction `shouldReturn410` extraite de `cloudflare-worker/src/index.js` (main) : ancien slug `true`, nouveau `false`, FR et DE-CH `false`. Plus aucune référence à l'ancien slug dans le dépôt (hors journal).
+**Supposé** — Qu'aucune autre règle du Worker (redirections, GONE_PATHS) ne touche le nouveau chemin : le slug n'apparaît nulle part dans le Worker.
+**Non regardé** — La version du Worker réellement déployée (le dépôt fait foi mais la prod peut avoir divergé, R5) ; le Worker n'est pas modifié ici.
+
+**Suite** — Avant tout nouveau slug, le tester contre `shouldReturn410` : le motif `-old-` et le suffixe `-mod` sont réservés au nettoyage de l'ancien site. L'ancienne URL EN n'a été servie en 410 qu'environ une heure, sans lien entrant externe connu : pas de redirection prévue (elle serait de toute façon interceptée par le 410).
+
+---
+
 ## 2026-09-25 · Article blog « Migrer un ancien studio PackshotCreator vers Orbitvu » (FR, EN, DE-CH) · Claude de Sébastien
 
 **Chantier** : contenu blog (hors chantier numéroté) | **PR** : #36 | **Commit** : `b60f7b1`
