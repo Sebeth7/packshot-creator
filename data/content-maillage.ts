@@ -53,6 +53,7 @@ export const SECTOR_RESOURCES_MAP: Record<string, { guides: string[]; articles: 
     ],
     articles: [
       'ia-lumieres-virtuelles-revolution-packshot',
+      'migrer-ancien-packshotcreator',
     ],
   },
   'defense-securite': {
@@ -110,6 +111,7 @@ export const SECTOR_RESOURCES_MAP: Record<string, { guides: string[]; articles: 
     ],
     articles: [
       'comment-avoir-meilleure-photo-produit-e-commerce',
+      'migrer-ancien-packshotcreator',
     ],
   },
   'lunetterie': {
@@ -227,6 +229,20 @@ export const CONTENT_PRODUCT_MAP: Record<string, ProductRecommendation> = {
     machineId: 'alphashot-xl-g2',
     anchorDe: 'Alphashot XL G2 — automatisiertes Foto-, Mess- und Datenstudio',
   },
+  // 2026-09 — Article migration des anciens studios PackshotCreator -> tunnel Alphashot Pro G2
+  // (le studio dont l'assistant d'éclairage IA porte l'argument de l'article) (FR/EN/DE)
+  'migrer-ancien-packshotcreator': {
+    machineId: 'alphashot-pro-g2',
+    anchorFr: "studio photo automatisé Alphashot Pro G2 avec assistant d'éclairage IA",
+  },
+  'migrate-old-packshotcreator-studio': {
+    machineId: 'alphashot-pro-g2',
+    anchorEn: 'Alphashot Pro G2 automated photo studio with AI lighting assistant',
+  },
+  'altes-packshotcreator-studio-migrieren': {
+    machineId: 'alphashot-pro-g2',
+    anchorDe: 'Automatisiertes Fotostudio Alphashot Pro G2 mit KI-Lichtassistent',
+  },
 };
 
 // P1.C — « Pour aller plus loin » sur les guides (reconnecte notamment
@@ -290,6 +306,7 @@ export const MONEY_PAGE_RESOURCES_MAP: Record<string, { guides: string[]; articl
       'quel-studio-photo-type-pour-vos-shootings-produits-en-interne',
       'votre-studio-photo-interne-3-bonnes-pratiques-pour-lorganiser',
       'acheter-studio-photo-packshot-occasion',
+      'migrer-ancien-packshotcreator',
     ],
   },
   'ia-photo-produit': {

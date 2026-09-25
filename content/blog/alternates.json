@@ -1,4 +1,9 @@
 {
+  "native-2026-09-25-migration-packshotcreator": {
+    "fr": "migrer-ancien-packshotcreator",
+    "en": "migrate-old-packshotcreator-studio",
+    "de-ch": "altes-packshotcreator-studio-migrieren"
+  },
   "native-2026-07-14-alphashot-xl-g2": {
     "fr": "alphashot-xl-g2-photo-mesures-donnees-produit",
     "en": "alphashot-xl-g2-product-photos-measurements-data",
