@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-24 — Claude de Laurent (P0 : PR #29, #30, #32 fusionnées, #33 gouvernance, #31 fermée sans fusion ; Worker non déployé ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-25 — Claude de Laurent (P0 : PR #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E déployé le 25/09, version `27b0153c`, vérifié : CLOSED ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -19,7 +19,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
 | Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR #26 fusionnée et Worker déployé le 23/09 (version `05c5c47c`) ; reste le contrôle `curl.exe` de Laurent à reporter au journal | — | 19/09 |
 | P0-A — `WebSite.inLanguage` de-CH sur `/de-ch` | Claude de Laurent | PR #29 **fusionnée** le 24/09 (`6c16108`) ; contrôle post-déploiement à faire | `components/seo/SchemaOrg.tsx`, `app/[lang]/page.tsx`, `lib/seo/locale-schema.ts` | 24/09 |
-| P0-D/E — héritage `/de` → `/de-ch`, chaînes `/industrie/*` à un saut, doublon « -22 » (variante `/amp` en 410) ; `/de/fotostudio/alphashot-xl` inchangé (REVIEW_PRODUCT_MAPPING) | Claude de Laurent | PR #30 **fusionnée** le 24/09 (`665f5ef`) ; Worker **non déployé**, GO séparé de Laurent | `cloudflare-worker/src/index.js` | 24/09 |
 | D29 — mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée. PR #31 fermée sans fusion (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`), aucune de ses règles conservée. 13 redirections du Worker en production vers `alphashot-xl-g2` et 2 règles de `next.config.ts` vers `alphashot-xl-v2` laissées en l'état ; aucun rollback automatique ; aucun changement XL avant validation du mapping | — | 24/09 |
 | D31 — aucun témoignage ni avis client sur `/de-ch`, `Review` et `aggregateRating` compris | Claude de Laurent | PR #32 **fusionnée** le 24/09 (`c9f8aa5`), appliquée ; `aggregateRating` de `/de-ch/ia-photo-produit` retiré (`1c52eb7`) ; `/fr` et `/en` inchangés | `components/testimonials/TestimonialsSection.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `messages/de-ch.json` | 24/09 |
 | P0-I — filtre pollution des requêtes GSC (8 fonctions SQL : exclusion générique de `amazon` retirée, opérateurs `site:` exclus) | Claude de Laurent | **READY_FOR_GO, non appliqué** : les 8 fonctions portent encore l'exclusion `amazon` (relu le 24/09) | Supabase `gsc-crawl-seo` | 24/09 |
@@ -54,7 +53,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle post-déploiement de #29 et #32 dans Chrome (R4) | Claude de Laurent | 24/09 | `/de-ch` : `WebSite.inLanguage` = `de-CH`, aucun témoignage, `Review` ni `aggregateRating` ; `/fr` et `/en` inchangés |
-| GO déploiement du Worker — PR #30 | Claude de Laurent | 24/09 | PR fusionnée, Worker non déployé ; resynchronisation préalable (D4, R5) ; témoins `curl.exe` listés dans la PR |
 | GO P0-I | Claude de Laurent | 24/09 | Application des 8 fonctions SQL ; rien n'est appliqué sans ce GO |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
@@ -67,6 +65,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Correctif du sélecteur de langue (C1) sur la position de marque de `/fr` | 16/09 | 14/10-28/10 | GSC, requête « packshot creator », pays France |
 | Canonique des 3 landings après #16 | à venir | J+14 | GSC, inspection d'URL, motif 8 |
 | Lot F — 18 chemins de l'annexe K et `/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie` sortis des 404/410 | 23/09 | 07/10 | GSC, couverture |
+| P0-D/E — Worker `27b0153c` : 30 premiers sauts vers une page de-ch équivalente, un successeur documenté ou une chaîne à un saut | 25/09 | 09/10 | GSC, couverture et pages de destination |
 | P0-H — `gsc_pull_bornes` en parcours d'index inversé (migration `p0h_gsc_pull_bornes_index_backward_20260924`) : critère 0 échec de M5 | 24/09 | 08/10 (fenêtre du 25/09 au 08/10) | n8n, exécutions de `M5 · GSC pull` (`Sqdk2jygOSt9XEjL`) |
 | Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` |
 | Page témoin substitution — critère de succès unique (landing devant l'article EN) | à venir | J+56 | `gsc_metrics`, requête × page, 28 jours glissants |
@@ -79,8 +78,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 - PR accents (CC2) : rebaser sur `main` après le merge de #22 — les deux touchent `app/[lang]/studio-photo/[slug]/page.tsx`.
 - Contrôle de #22 dans Chrome sur `www.packshot-creator.com` et test des résultats enrichis de Google sur 3 fiches : à faire par Laurent (R4).
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
-- #29, #30 et #32 fusionnées le 24/09 (`6c16108`, `665f5ef`, `c9f8aa5`), #33 en dernier ; contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome). La fusion de #30 ne déploie pas le Worker.
-- Déploiement du Worker de la PR #30 sur GO séparé de Laurent, après resynchronisation ; contrôle par `curl.exe`.
+- #29, #30 et #32 fusionnées le 24/09 (`6c16108`, `665f5ef`, `c9f8aa5`), #33 ensuite (`69cd647`) ; contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
 
 ---
@@ -92,7 +90,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | P0-A | PR #29 fusionnée le 24/09 (`6c16108`) |
 | P0-B | Verdict `MIXED` retenu par Laurent, livrable hors dépôt ; aucune preuve de pénalité liée au contenu IA |
 | P1-Q (réécriture ou suppression du blog) | **Non ouvert.** Aucun commit touchant `content/blog` sur `main` depuis le 01/08 |
-| P0-D/E | PR #30 fusionnée le 24/09 (`665f5ef`) ; Worker non déployé |
+| P0-D/E | **CLOSED** le 25/09. PR #30 fusionnée (`665f5ef`) ; Worker déployé depuis `main` (`69cd647`), version `27b0153c-5516-432a-91a4-20cddce250ca`, vérifié depuis le poste de Laurent (16 témoins PASS, aucun rollback). Rollback disponible : `05c5c47c-4b60-41af-9acd-b3778be1e508`. Mappings XL existants inchangés, `REVIEW_PRODUCT_MAPPING` |
 | P0-F | BLOCKED_ACCESS |
 | P0-H | Appliqué le 24/09 ; fenêtre de mesure ouverte jusqu'au 08/10 |
 | P0-I | READY_FOR_GO, non appliqué |
