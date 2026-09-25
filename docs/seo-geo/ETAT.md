@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-25 — Claude de Laurent (P0-I APPLIED le 25/09, migration `p0i_filtre_pollution_gsc_site_20260925` ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-25 — Claude de Laurent (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -18,10 +18,9 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
 | Lot F — annexe K, lot C, verticale de-ch, doublon l. 282/1006, 10 entrées `alphashot-xl-v2`, l. 1134 et 1139 vers le FR | Claude de Laurent | PR #26 fusionnée et Worker déployé le 23/09 (version `05c5c47c`) ; reste le contrôle `curl.exe` de Laurent à reporter au journal | — | 19/09 |
-| P0-A — `WebSite.inLanguage` de-CH sur `/de-ch` | Claude de Laurent | PR #29 **fusionnée** le 24/09 (`6c16108`) ; contrôle post-déploiement à faire | `components/seo/SchemaOrg.tsx`, `app/[lang]/page.tsx`, `lib/seo/locale-schema.ts` | 24/09 |
 | D29 — mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée. PR #31 fermée sans fusion (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`), aucune de ses règles conservée. 13 redirections du Worker en production vers `alphashot-xl-g2` et 2 règles de `next.config.ts` vers `alphashot-xl-v2` laissées en l'état ; aucun rollback automatique ; aucun changement XL avant validation du mapping | — | 24/09 |
-| D31 — aucun témoignage ni avis client sur `/de-ch`, `Review` et `aggregateRating` compris | Claude de Laurent | PR #32 **fusionnée** le 24/09 (`c9f8aa5`), appliquée ; `aggregateRating` de `/de-ch/ia-photo-produit` retiré (`1c52eb7`) ; `/fr` et `/en` inchangés | `components/testimonials/TestimonialsSection.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `messages/de-ch.json` | 24/09 |
-| P0-F — crawlers IA | Claude de Laurent | **BLOCKED_ACCESS** : pas d'accès aux Security Events Cloudflare ; aucune modification WAF ou SBFM sans mesure | — | 24/09 |
+| P0-F — crawlers IA | Claude de Laurent | **DEFERRED_BLOCKED_ACCESS** : différé faute d'accès aux Security Events Cloudflare ; aucune modification WAF ou SBFM sans mesure | — | 24/09 |
+| P0-J — device + watchdog | Claude de Laurent | **OPEN, différé** : `gsc_metrics_device` figée au 20/06/2026 (sites 2 et 3) ; aucune collecte active (M5 ne collecte que requête, pays et page) ; aucun watchdog (absente de `data_freshness_expected`). Exécution après la fin de la fenêtre P0-H le 08/10 ; M5 et `gsc_pull_bornes` ne sont pas modifiés d'ici là | — (n8n M5 `Sqdk2jygOSt9XEjL`, Supabase `gsc_pull_bornes`, `data_freshness_expected`) | 25/09 |
 | C6 — pilote de 25 URL, **hygiène de locale** (D28), effet clics ≈ 0 | Claude de Laurent | liste constituée, cycle distinct du lot F | `cloudflare-worker/src/index.js` | 04/09 |
 | Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
 | Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
@@ -34,7 +33,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
-| **Pour information — déploiement du Worker portant uniquement #16, cette semaine** | Laurent | 19/09 | Aucune action requise. Objection éventuelle avant le déploiement. Contrôle par URL témoins, rollback par redéploiement |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | inchangé |
 | Pour information — 5 branches distantes portant des commits absents de `main` | Laurent | 19/09 | inchangé |
 
@@ -46,7 +44,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 |---|---|---|---|
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
-| Contrôle post-déploiement de #29 et #32 dans Chrome (R4) | Claude de Laurent | 24/09 | `/de-ch` : `WebSite.inLanguage` = `de-CH`, aucun témoignage, `Review` ni `aggregateRating` ; `/fr` et `/en` inchangés |
+| Contrôle visuel Chrome sur `www` de #29 et #32 (R4) : `/fr`, `/en`, `/de-ch` | Claude de Laurent | 24/09 | Seul contrôle restant. Le site charge normalement ; sur `/de-ch`, aucun bloc d'avis ni de témoignages. Le JSON-LD `inLanguage` a déjà été contrôlé sur `sysnext.vercel.app` le 24/09 |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -56,10 +54,10 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Ce qu'on mesure | Déployé le | Lisible à partir du | Où |
 |---|---|---|---|
 | Correctif du sélecteur de langue (C1) sur la position de marque de `/fr` | 16/09 | 14/10-28/10 | GSC, requête « packshot creator », pays France |
-| Canonique des 3 landings après #16 | à venir | J+14 | GSC, inspection d'URL, motif 8 |
+| Canonique des 3 landings après #16 (Worker déployé le 20/09, version `167d7a15`) | 20/09 | ~04/10 (J+14) | GSC, inspection d'URL, motif 8 |
 | Lot F — 18 chemins de l'annexe K et `/en/blog/produkt-vorstellen-leitfaden-packshot-fotografie` sortis des 404/410 | 23/09 | 07/10 | GSC, couverture |
 | P0-D/E — Worker `27b0153c` : 30 premiers sauts vers une page de-ch équivalente, un successeur documenté ou une chaîne à un saut | 25/09 | 09/10 | GSC, couverture et pages de destination |
-| P0-H — `gsc_pull_bornes` en parcours d'index inversé (migration `p0h_gsc_pull_bornes_index_backward_20260924`) : critère 0 échec de M5 | 24/09 | 08/10 (fenêtre du 25/09 au 08/10) | n8n, exécutions de `M5 · GSC pull` (`Sqdk2jygOSt9XEjL`) |
+| P0-H — `gsc_pull_bornes` en parcours d'index inversé (migration `p0h_gsc_pull_bornes_index_backward_20260924`) : critère 0 échec de M5. M5 et `gsc_pull_bornes` sont gelés jusqu'au 08/10 | 24/09 | 08/10 (fenêtre du 25/09 au 08/10) | n8n, exécutions de `M5 · GSC pull` (`Sqdk2jygOSt9XEjL`) |
 | Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` |
 | Page témoin substitution — critère de succès unique (landing devant l'article EN) | à venir | J+56 | `gsc_metrics`, requête × page, 28 jours glissants |
 | `sku` et `priceValidUntil` des 51 fiches — passage des « Fiches marchand » de non valides à valides | 20/09 | J+7 à J+14 | GSC, rapport « Fiches marchand » ; 2 des 4 champs manquants comblés ; les 2 autres relèvent de D32, mise en œuvre à faire |
@@ -71,7 +69,13 @@ périmée ici coûte plus cher qu'une ligne absente.
 - PR accents (CC2) : rebaser sur `main` après le merge de #22 — les deux touchent `app/[lang]/studio-photo/[slug]/page.tsx`.
 - Contrôle de #22 dans Chrome sur `www.packshot-creator.com` et test des résultats enrichis de Google sur 3 fiches : à faire par Laurent (R4).
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
-- #29, #30 et #32 fusionnées le 24/09 (`6c16108`, `665f5ef`, `c9f8aa5`), #33 ensuite (`69cd647`) ; contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
+- #29 et #32 : `smoke.mjs` et contrôle sur `sysnext.vercel.app` faits le 24/09 (PASS). Reste le contrôle visuel Chrome sur `www` (`/fr`, `/en`, `/de-ch`), par Laurent.
+- P0-J, **après le 08/10** (fin de la fenêtre P0-H) et sur GO :
+  - ajouter la dimension device à M5 (brouillon n8n, puis publication) ;
+  - ajouter la borne device à `gsc_pull_bornes` ;
+  - reprendre l'historique depuis le 21/06 ;
+  - inscrire `gsc_metrics_device` (sites 2 et 3) dans `data_freshness_expected`, pour que M0 alerte en cas de retard.
+  - Une dernière PR documentaire fermera ensuite le P0.
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
 - D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation facturées en supplément, délai indicatif d'environ 10 jours, jamais garanti ; même règle en France et en Suisse), dans une PR applicative distincte.
 - D33 :
@@ -87,16 +91,21 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Élément | État |
 |---|---|
-| P0-A | PR #29 fusionnée le 24/09 (`6c16108`) |
+| P0-A | **APPLIED** : PR #29 fusionnée le 24/09 (`6c16108`). Contrôlé sur `sysnext.vercel.app` le 24/09 : `inLanguage` `fr-FR`, `en-US` et `de-CH`, smoke vert. Reste le contrôle visuel Chrome sur `www` |
 | P0-B | Verdict `MIXED` retenu par Laurent, livrable hors dépôt ; aucune preuve de pénalité liée au contenu IA |
 | P1-Q (réécriture ou suppression du blog) | **Non ouvert.** Aucun commit touchant `content/blog` sur `main` depuis le 01/08 |
 | P0-D/E | **CLOSED** le 25/09. PR #30 fusionnée (`665f5ef`) ; Worker déployé depuis `main` (`69cd647`), version `27b0153c-5516-432a-91a4-20cddce250ca`, vérifié depuis le poste de Laurent (16 témoins PASS, aucun rollback). Rollback disponible : `05c5c47c-4b60-41af-9acd-b3778be1e508`. Mappings XL existants inchangés, `REVIEW_PRODUCT_MAPPING` |
-| P0-F | BLOCKED_ACCESS |
-| P0-H | Appliqué le 24/09 ; fenêtre de mesure ouverte jusqu'au 08/10 |
-| P0-I | **APPLIED** le 25/09 à 06:13 UTC. Migration `p0i_filtre_pollution_gsc_site_20260925` : `amazon` retiré des motifs de pollution des 8 fonctions, `(^|\s)site:` ajouté ; clics inchangés, dry-run reproduit exactement. Rollback gardé par md5 consigné au JOURNAL du 25/09 |
-| D29 | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée ; PR #31 fermée sans fusion (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`) ; aucun rollback automatique |
+| P0-F | **DEFERRED_BLOCKED_ACCESS** : différé faute d'accès aux Security Events Cloudflare |
+| P0-H | **APPLIED / MEASUREMENT WINDOW OPEN** jusqu'au 08/10 (critère : 0 échec de M5) ; M5 et `gsc_pull_bornes` gelés d'ici là |
+| P0-I | **APPLIED / PASS** le 25/09 à 06:13 UTC. Migration `p0i_filtre_pollution_gsc_site_20260925` : `amazon` retiré des motifs de pollution des 8 fonctions, `(^|\s)site:` ajouté ; clics inchangés, dry-run reproduit exactement. Rollback gardé par md5 consigné au JOURNAL du 25/09 |
+| P0-J | **OPEN, différé** : `gsc_metrics_device` figée au 20/06/2026 (sites 2 et 3) ; aucune collecte active ; aucun watchdog. Exécution après la fin de la fenêtre P0-H, le 08/10, pour ne modifier ni M5 ni `gsc_pull_bornes` pendant la mesure |
+| P0-K | Resynchronisation documentaire du 25/09 dans la PR #35 : `ETAT`, `JOURNAL`, boîte aux lettres et `DECISIONS` sont mis en cohérence. Effective à la fusion de #35 |
+| D29 | **SUSPENDED / REVIEW_PRODUCT_MAPPING** ; aucune redirection automatique XL v2 → XL G2 validée ; aucun rollback automatique |
+| #31 | **CLOSED / NOT MERGED** (`SUPERSEDED / REVIEW_PRODUCT_MAPPING`) ; aucune de ses règles conservée |
 | D30 | **OUT_OF_SCOPE_NO_CHANGE** : aucun prix ni aucune devise modifiés dans ce chantier |
-| D31 | Appliquée : PR #32 fusionnée le 24/09 (`c9f8aa5`) ; aucun témoignage, `Review` ni `aggregateRating` sur `/de-ch` |
+| D31 | **APPLIED** : PR #32 fusionnée le 24/09 (`c9f8aa5`). Aucun témoignage, `Review` ni `aggregateRating` sur `/de-ch`, contrôlé sur `sysnext.vercel.app` le 24/09 (48 pages de-ch) |
+
+P0-C et P0-G sont hors de cette resynchronisation : leur état n'est pas établi par les sources du dépôt. Pour P0-C, il s'agit de constats de marque déclarés par Laurent, dont le livrable n'est pas dans le dépôt (JOURNAL du 24/09).
 
 ---
 

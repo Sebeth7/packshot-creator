@@ -34,6 +34,53 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-25 · P0-K — resynchronisation documentaire P0 ; P0-J différé · Claude de Laurent
+
+**Chantier** : P0-K (et état de P0-J) | **PR** : #35 (documentation seule) | **Non fusionnée**
+
+**Quoi** — `ETAT.md` remis dans l'état réel, sans aucun changement en base, dans n8n ni sur le site :
+- P0-I passe à **APPLIED / PASS**, P0-H à **APPLIED / MEASUREMENT WINDOW OPEN** jusqu'au 08/10, et P0-F à **DEFERRED_BLOCKED_ACCESS**.
+- P0-J (device + watchdog) et P0-K entrent dans le tableau P0. P0-J est aussi ajouté aux chantiers ouverts, en **OPEN, différé**.
+- P0-A et D31, appliqués, sortent des chantiers ouverts. Le contrôle post-déploiement de #29 et #32 est scindé :
+  - `smoke.mjs` et `sysnext.vercel.app` : faits le 24/09 ;
+  - contrôle visuel Chrome sur `www` : seul restant.
+- La ligne « déploiement du Worker portant uniquement #16 » est retirée : ce déploiement a eu lieu le 20/09. La mesure « Canonique des 3 landings après #16 » est datée : déployée le 20/09, lisible vers le 04/10.
+- #31 figure explicitement en **CLOSED / NOT MERGED**.
+- P0-C et P0-G sont signalés hors de cette resynchronisation : aucune source du dépôt n'établit leur état.
+
+**Pourquoi** — Contrôle final ciblé P0-J / P0-K du 25/09. Laurent a décidé de faire P0-K maintenant et de différer P0-J après la fenêtre P0-H. Modifier M5 et `gsc_pull_bornes` pendant la mesure P0-H, dont le critère est « 0 échec de M5 », affaiblirait cette preuve.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site. À la fusion de #35, `main` décrit l'état réel pendant la fenêtre de mesure.
+
+**Vérifié** (le 25/09, lecture seule) —
+- *P0-J* :
+  - `gsc_metrics_device` : dernière `data_date` au 20/06/2026 pour les sites 2 et 3, dernière récupération le 23/06. `gsc_metrics` est à jour au 22/09.
+  - M5 (`Sqdk2jygOSt9XEjL`, actif, dernière modification le 21/07) ne collecte que les dimensions `query`, `country` et `page`. `gsc_pull_bornes()` ne renvoie aucune borne `device`.
+  - La fonction `upsert_gsc_device(jsonb)` existe, mais aucun workflow n8n ne l'appelle : la recherche « device » ne renvoie rien.
+  - Watchdog M0 (`Uxpnp2YDkYVAq52L`, actif, tous les jours à 08h) : il lit `data_freshness_expected`, qui liste 14 sources dont `gsc_metrics_device` ne fait pas partie. `m0_watchdog_json`, `data_freshness` et `gsc_freshness` ne mentionnent pas le device.
+- *#16* : Worker déployé le 20/09 à 06:40:14 UTC, version `167d7a15` (entrée du 20/09).
+- *Cohérence* :
+  - `DECISIONS.md` et la boîte aux lettres ne mentionnent aucun P0 et ne contredisent pas l'ETAT ;
+  - seule Q10 est ouverte ;
+  - Q16 à Q18 ne sont pas reconstituées ;
+  - D29, D30 et D31 sont conformes.
+
+**Supposé** — Rien.
+
+**Non regardé** — Le contrôle visuel Chrome sur `www`, fait par Laurent. Les définitions de P0-C et P0-G dans le Master, qui est hors dépôt.
+
+**Suite** —
+- Contrôle visuel Chrome sur `www` (`/fr`, `/en`, `/de-ch`), par Laurent.
+- Fusion de #35 sur GO.
+- Après le 08/10, P0-J sur GO :
+  - dimension device dans M5 ;
+  - borne device dans `gsc_pull_bornes` ;
+  - reprise de l'historique depuis le 21/06 ;
+  - inscription de `gsc_metrics_device` dans `data_freshness_expected`.
+- Ensuite, une dernière PR documentaire fermera le P0.
+
 ## 2026-09-25 · P0-I — filtre pollution GSC appliqué (8 fonctions SQL) · Claude de Laurent
 
 **Chantier** : P0-I | **Supabase** : `gsc-crawl-seo`, migration `20260925061338` `p0i_filtre_pollution_gsc_site_20260925` | **PR** : documentation seule | **P0-I = APPLIED**
