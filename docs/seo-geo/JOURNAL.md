@@ -42,8 +42,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 | Question | Réponse | Consignée en |
 |---|---|---|
-| Q13 | Aucune politique de retour B2B ; livraison et installation en supplément ; délai indicatif d'environ 10 jours, jamais présenté comme une garantie contractuelle | D32 |
-| Q15 | Allemand et espagnol non parlés ; `twitter.com/packshot` à Sysnext, inactif ; date de création 2001, `foundingDate` à aligner | D33 |
+| Q13 | Aucune politique de retour B2B ; livraison et installation facturées en supplément ; délai indicatif d'environ 10 jours, jamais présenté comme une garantie contractuelle ; même règle en France et en Suisse | D32 |
+| Q15 | Allemand un peu parlé : accompagnement commercial en allemand possible en Suisse, équipe ni bilingue ni germanophone native ; espagnol non parlé ; `twitter.com/packshot` à Sysnext, inactif ; date de création 2001, `foundingDate` à aligner | D33 |
 | Q4 | D8 close comme devenue sans objet | D34, statut de D8 |
 | Q14 | Requête française → page FR ; article EN inchangé ; mesure F5 conservée | D35 |
 | Q12 | `noindex` de `sysnext.vercel.app` validé, à exécuter puis à vérifier | D36 |
@@ -53,8 +53,9 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 `ETAT.md` :
 - les questions closes sortent de « Balle chez Sébastien » ;
 - les actions à exécuter entrent dans « Prochaines actions » ;
-- l'écart relevé sur l'allemand entre dans « Balle chez Laurent » ;
 - seule Q10 reste ouverte.
+
+**Précisions de Laurent du 25/09, avant fusion** — D33 : « allemand non parlé » est remplacé par « un peu parlé ». L'accompagnement commercial en allemand en Suisse est possible, sans présenter l'équipe comme bilingue ni germanophone native, et les mentions actuelles sont conservées. D32 : la règle est la même pour la France et la Suisse. L'écart R7 sur l'allemand, consigné dans une première version de cette PR, est levé.
 
 **Pourquoi** — Arbitrages rendus par Laurent le 25/09, à consigner avant toute mise en œuvre.
 
@@ -65,20 +66,19 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Vérifié** (le 25/09, R7) —
 - `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`.
 - `components/seo/SchemaOrg.tsx:69-71` : le `sameAs` de l'organisation ne contient que LinkedIn, pas `twitter.com/packshot`.
-- Mentions d'allemand qui contredisent « allemand non parlé » :
-  - `components/seo/SchemaOrg.tsx:66` : `availableLanguage: ['German', 'French', 'English']` sur le `ContactPoint` suisse ;
-  - `messages/fr.json:189`, `messages/de-ch.json:167` et `messages/en.json:93` : la FAQ annonce un accompagnement en allemand en Suisse.
+- Mentions d'accompagnement en allemand, compatibles avec D33 et conservées : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`, et `components/seo/SchemaOrg.tsx:66` (`availableLanguage` avec `German` sur le `ContactPoint` commercial suisse).
+- Recherche de formulations « bilingue », « germanophone », « natif », « couramment », et de leurs équivalents allemands et anglais, dans `messages/`, `app/`, `components/` et `content/` : aucune ne vise la langue de l'équipe. Les quatre textes ci-dessus annoncent en allemand l'ensemble du service, formation et SAV compris : ils sont signalés pour une relecture ultérieure.
 - `https://sysnext.vercel.app/fr` : ni en-tête `X-Robots-Tag` ni balise `robots`, l'origine est indexable.
 - `scripts/seo/smoke.mjs` ne lit que la balise `robots`.
 - Aucun texte d'origine perdu dans `BOITE-AUX-LETTRES.md` : 0 ligne manquante après déplacement.
 
 **Supposé** — Les faits commerciaux et d'entreprise (Q13, Q15) sont ceux déclarés par Laurent ; le dépôt ne permet pas de les vérifier. L'absence d'objection avant le 25/09 (Q6) et au 24/09 (Q2) est tenue pour acquise sur la déclaration de Laurent.
 
-**Non regardé** — La fiche Google elle-même, en particulier sa mention « Espagnol ». Les règles WAF actuelles (P0-F sans accès). La distinction France / Suisse pour Q13 : la réponse ne la fait pas.
+**Non regardé** — La fiche Google elle-même, en particulier ses mentions « Espagnol » et « Allemand non parlé ». Les règles WAF actuelles (P0-F sans accès).
 
 **Suite** —
 - Q10 est la seule question encore ouverte.
-- L'écart sur l'allemand (D33) reste à arbitrer.
+- Relecture éventuelle des quatre textes qui annoncent en allemand l'ensemble du service (D33), sans modification dans cette PR.
 - Mises en œuvre distinctes, hors de cette PR : D32 (données structurées des fiches) ; D33 (`foundingDate` 2001) ; D36 (`noindex` de l'origine) ; D22 (règle WAF PerplexityBot).
 - P0-I et P1 ne sont pas touchés.
 

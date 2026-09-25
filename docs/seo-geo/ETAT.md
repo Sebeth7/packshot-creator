@@ -49,7 +49,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle post-déploiement de #29 et #32 dans Chrome (R4) | Claude de Laurent | 24/09 | `/de-ch` : `WebSite.inLanguage` = `de-CH`, aucun témoignage, `Review` ni `aggregateRating` ; `/fr` et `/en` inchangés |
 | GO P0-I | Claude de Laurent | 24/09 | Application des 8 fonctions SQL ; rien n'est appliqué sans ce GO |
-| Écart R7 sur D33 — « allemand non parlé » contre l'accompagnement en allemand annoncé en Suisse | Claude de Laurent | 25/09 | Mentions : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` ; `availableLanguage` du `ContactPoint` suisse (`components/seo/SchemaOrg.tsx:66`). Aucune correction avant arbitrage |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -76,10 +75,11 @@ périmée ici coûte plus cher qu'une ligne absente.
 - Mesures M1-M6 du chantier marque (Chrome, `git log`, DataForSEO ≈ 0,02 $, fiche Google Business Profile).
 - #29, #30 et #32 fusionnées le 24/09 (`6c16108`, `665f5ef`, `c9f8aa5`), #33 ensuite (`69cd647`) ; contrôle post-déploiement de #29 et #32 (`smoke.mjs`, `sysnext.vercel.app`, Chrome).
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
-- D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation en supplément, délai indicatif d'environ 10 jours, jamais garanti), dans une PR applicative distincte.
+- D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation facturées en supplément, délai indicatif d'environ 10 jours, jamais garanti ; même règle en France et en Suisse), dans une PR applicative distincte.
 - D33 :
   - aligner `foundingDate` de 2004 sur 2001 (`components/seo/SchemaOrg.tsx:72`), dans une PR applicative distincte ;
-  - fiche Google : si elle déclare l'espagnol parlé, la corriger (Laurent, hors dépôt).
+  - relire les quatre textes qui annoncent en allemand l'ensemble du service, formation et SAV compris : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`. Reformulation éventuelle vers « accompagnement commercial en allemand », sans aucune modification dans #34 ;
+  - fiche Google (Laurent, hors dépôt) : si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33.
 - D36 : `noindex` de `sysnext.vercel.app`, à exécuter puis à vérifier, sans toucher `www` ; tenir compte de `smoke.mjs`, qui lit la balise `robots` et non l'en-tête.
 - D22 (Q6 close) : créer la règle WAF « Skip SBFM — PerplexityBot », conditionnée au user-agent et aux adresses publiées ; contrôle à J+3. Modification Cloudflare, non exécutée au 25/09.
 

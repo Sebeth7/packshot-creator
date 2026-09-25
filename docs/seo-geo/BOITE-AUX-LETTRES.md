@@ -137,15 +137,16 @@ même chose : les moteurs recoupent ces données.
 ---
 **RÉPONSE · 2026-09-25 · Laurent**
 
-1. Allemand : **non parlé**. Espagnol : **non parlé**.
+1. Allemand : **un peu parlé**. PackshotCreator peut assurer un accompagnement commercial en allemand en Suisse ; l'équipe n'est présentée ni comme bilingue, ni comme germanophone native. Espagnol : **non parlé**. *(Précision de Laurent du 25/09, avant fusion : remplace « allemand non parlé ».)*
 2. Date de création de PackshotCreator/Sysnext à retenir : **2001**. Le `foundingDate` du site, actuellement à 2004, devra être aligné.
 3. `twitter.com/packshot` appartient à Sysnext ; le compte est **inactif**.
 
-**Action** — D33. Cette réponse ne modifie rien dans le site. Écarts relevés le 25/09 dans le dépôt (R7), à traiter dans une PR applicative distincte :
-- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, à aligner sur 2001.
-- Le site annonce un accompagnement en allemand en Suisse : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93`. Le `ContactPoint` suisse déclare `availableLanguage: ['German', 'French', 'English']` (`components/seo/SchemaOrg.tsx:66`). Ces mentions contredisent « allemand non parlé » ; aucune correction avant arbitrage.
+**Action** — D33. Cette réponse ne modifie rien dans le site. Relevé du 25/09 dans le dépôt (R7) :
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, à aligner sur 2001 dans une PR applicative distincte.
+- Les mentions actuelles d'accompagnement en allemand sont conservées : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`, ainsi que le `ContactPoint` commercial suisse (`availableLanguage` avec `German`, `components/seo/SchemaOrg.tsx:66`).
+- Aucune formulation ne présente l'équipe comme bilingue ou germanophone native. Les quatre textes cités annoncent en allemand l'ensemble du service (conseil, démonstration, livraison, installation, formation, SAV), pas seulement l'accompagnement commercial. Ils sont signalés pour une relecture ultérieure, sans modification dans cette PR.
 - `twitter.com/packshot` ne figure pas dans le `sameAs` du site : rien à retirer.
-- Fiche Google : si elle déclare l'espagnol parlé, la corriger (Laurent, hors dépôt).
+- Fiche Google (Laurent, hors dépôt) : si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33.
 
 ---
 
@@ -205,9 +206,9 @@ Objectif confirmé : sur une requête française, la page cible est la page FR. 
 **RÉPONSE · 2026-09-25 · Laurent**
 
 1. **Aucune politique de retour** B2B.
-2. Livraison et installation **en supplément**. Délai **indicatif** d'environ **10 jours** : ce délai ne devient pas une garantie contractuelle.
+2. Livraison et installation **facturées en supplément**. Délai **indicatif** d'environ **10 jours** : ce délai n'est pas une garantie contractuelle.
 
-La réponse ne distingue pas la France et la Suisse.
+La règle est la même pour la France et la Suisse (précision de Laurent du 25/09, avant fusion).
 
 **Action** — D32. Le balisage `hasMerchantReturnPolicy` et `shippingDetails` reste à mettre en œuvre dans une PR applicative distincte ; cette clôture ne publie rien.
 

@@ -75,21 +75,21 @@ Append-only. Plus récent en haut.
 **Statut** : en vigueur — alignement du site à faire
 
 **La décision** — Faits de référence de PackshotCreator/Sysnext :
-- allemand : non parlé ;
+- allemand : un peu parlé. PackshotCreator peut assurer un accompagnement commercial en allemand en Suisse. L'équipe n'est présentée ni comme bilingue, ni comme germanophone native ;
 - espagnol : non parlé ;
 - `twitter.com/packshot` : appartient à Sysnext, inactif ;
 - date de création : 2001.
 
 Le `foundingDate` du schéma `Organization` du site, actuellement à 2004, doit être aligné sur 2001.
 
-**Le contexte** — Q15 : la fiche Google France indique « Allemand non parlé » et une création en décembre 2001, alors que le site déclare `foundingDate` 2004. Écarts relevés le 25/09 dans le dépôt (R7), non corrigés :
-- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'` ;
-- `components/seo/SchemaOrg.tsx:66` : le `ContactPoint` suisse déclare `availableLanguage: ['German', 'French', 'English']` ;
-- `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` : la FAQ annonce un accompagnement en allemand en Suisse.
+**Le contexte** — Q15 portait sur les langues déclarées par la fiche Google France, sur le compte Twitter et sur la date de création : décembre 2001 sur la fiche, `foundingDate` 2004 sur le site. Le 25/09, avant fusion, Laurent a précisé le fait « allemand » ; la formulation initiale de cette décision est remplacée. Relevé du 25/09 dans le dépôt (R7), sans modification :
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, à aligner ;
+- mentions actuelles d'accompagnement en allemand, conservées : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93` et `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`, et le `ContactPoint` commercial suisse (`availableLanguage` avec `German`, `components/seo/SchemaOrg.tsx:66`) ;
+- aucune formulation ne présente l'équipe comme bilingue ou germanophone native. Les quatre textes cités annoncent en allemand l'ensemble du service, formation et SAV compris : ils sont signalés pour une relecture ultérieure.
 
-Ces mentions d'allemand contredisent le fait retenu ; leur sort reste à arbitrer. `twitter.com/packshot` ne figure pas dans le `sameAs` du site.
+`twitter.com/packshot` ne figure pas dans le `sameAs` du site.
 
-**Ce qu'elle interdit** — Ajouter au site ou aux données structurées une nouvelle mention contraire à ces faits : date de création autre que 2001, espagnol ou allemand parlés. Présenter `twitter.com/packshot` comme un canal actif.
+**Ce qu'elle interdit** — Présenter l'équipe comme bilingue ou germanophone native. Retirer les mentions actuelles d'accompagnement en allemand pour ce seul motif. Déclarer l'espagnol parlé ou une date de création autre que 2001. Présenter `twitter.com/packshot` comme un canal actif.
 
 ---
 
@@ -98,14 +98,14 @@ Ces mentions d'allemand contredisent le fait retenu ; leur sort reste à arbitre
 **Décidé par** : Laurent
 **Statut** : en vigueur — mise en œuvre dans les données structurées à faire
 
-**La décision** — Pour l'offre de leasing B2B livrée et installée :
+**La décision** — Pour l'offre de leasing B2B livrée et installée, en France comme en Suisse, la règle est la même :
 - aucune politique de retour ;
-- livraison et installation en supplément ;
+- livraison et installation facturées en supplément ;
 - délai indicatif d'environ 10 jours.
 
 Ce délai reste indicatif : il n'est jamais présenté comme une garantie contractuelle.
 
-**Le contexte** — Q13 : 10 fiches marchand sont signalées non valides par Google. Il leur manque `hasMerchantReturnPolicy` et `shippingDetails`, qui décrivent des engagements commerciaux. La réponse ne distingue pas la France et la Suisse.
+**Le contexte** — Q13 : 10 fiches marchand sont signalées non valides par Google. Il leur manque `hasMerchantReturnPolicy` et `shippingDetails`, qui décrivent des engagements commerciaux. Le 25/09, avant fusion, Laurent a précisé que la règle vaut pour la France et pour la Suisse.
 
 **Ce qu'elle interdit** — Déclarer une politique de retour. Déclarer la livraison ou l'installation incluses. Présenter le délai d'environ 10 jours comme garanti, en texte comme en données structurées.
 
