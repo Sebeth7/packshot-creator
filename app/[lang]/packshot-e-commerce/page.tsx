@@ -1,50 +1,64 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/components/templates/PackshotLandingTemplate';
-import { ShoppingCart, Package, Eraser, RotateCw, TrendingDown, Calculator } from 'lucide-react';
+import PackshotEcommerce from '@/components/landings/PackshotEcommerce';
 import { buildLanguages } from '@/lib/hreflang';
 
-const CONFIG: PackshotLandingConfig = {
-  namespace: 'packshotEcommerce',
-  slug: 'packshot-e-commerce',
-  benefitImageSlug: 'ecommerce',
-  heroIcon: ShoppingCart,
-  heroBadge: { fr: 'E-commerce & Marketplaces', en: 'E-commerce & Marketplaces' },
-  benefitIcons: [Package, Eraser, RotateCw, TrendingDown, Calculator],
-  machineIds: ['alphashot-360', 'alphashot-xl-g2', 'alphashot-micro-v2'],
-  faqCount: 3,
-};
+// Landing F5, trilingue depuis le 28/09/2026 (décision de Laurent) : FR, EN et de-ch
+// partagent le composant page-scopé PackshotEcommerce ; PackshotLandingTemplate n'est
+// plus utilisé pour cette page.
+const SLUG = 'packshot-e-commerce';
+const NAMESPACE = 'packshotEcommerce';
+const LANGUES = ['fr', 'en', 'de-ch'] as const;
+type Langue = (typeof LANGUES)[number];
+
+// Même convention que les autres pages du site (fr_FR, en_US, de_CH).
+const OG_LOCALE: Record<Langue, string> = { fr: 'fr_FR', en: 'en_US', 'de-ch': 'de_CH' };
 
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+function langue(lang: string): Langue {
+  return (LANGUES as readonly string[]).includes(lang) ? (lang as Langue) : 'fr';
+}
+
 export function generateStaticParams() {
-  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+  return LANGUES.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
-  const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
+  const lang = langue((await params).lang);
+  const t = await getTranslations({ locale: lang, namespace: NAMESPACE });
+  const url = `https://www.packshot-creator.com/${lang}/${SLUG}`;
+  const ogImage = `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`;
 
   return {
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
-      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}`, deCh: `/de-ch/${CONFIG.slug}` }),
+      canonical: url,
+      languages: buildLanguages(`/fr/${SLUG}`, { en: `/en/${SLUG}`, deCh: `/de-ch/${SLUG}` }),
     },
+    // L'openGraph de la page remplace celui du layout : url, locale et type sont redonnés ici.
     openGraph: {
       title: t('meta.title'),
       description: t('meta.description'),
-      images: [{ url: `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+      url,
+      siteName: 'PackshotCreator',
+      locale: OG_LOCALE[lang],
+      type: 'website',
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('meta.title'),
+      description: t('meta.description'),
+      images: [ogImage],
     },
   };
 }
 
 export default async function PackshotEcommercePage({ params }: PageProps) {
-  const { lang } = await params;
-  const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
-
-  return <PackshotLandingTemplate config={CONFIG} lang={lang} t={t} />;
+  const lang = langue((await params).lang);
+  return <PackshotEcommerce lang={lang} />;
 }
