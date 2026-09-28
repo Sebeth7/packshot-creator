@@ -2313,7 +2313,7 @@
   },
   "cookies": {
     "title": "Cookie settings",
-    "description": "This site uses cookies to measure its audience and improve your experience. Essential cookies are required for the site to function. Analytics cookies help us understand how you use the site.",
+    "description": "This site uses cookies to measure its audience and improve your experience. Essential cookies are required for the site to function. Analytics cookies help us understand how you use the site. YouTube videos in articles are loaded only with your consent.",
     "close": "Close",
     "acceptAll": "Accept all",
     "rejectAll": "Reject all",
@@ -2322,7 +2322,9 @@
     "necessary": "Essential cookies",
     "necessaryDesc": "Session, language preferences. Always active.",
     "analytics": "Analytics cookies",
-    "analyticsDesc": "Google Analytics: anonymous audience measurement."
+    "analyticsDesc": "Google Analytics: anonymous audience measurement.",
+    "externalMedia": "External content",
+    "externalMediaDesc": "YouTube videos: player loaded when you click a video. YouTube (Google) may then use its own cookies."
   },
   "about": {
     "meta": {
@@ -2667,6 +2669,22 @@
       "before": "Before",
       "after": "After"
     }
+  },
+  "externalVideo": {
+    "facadeLabel": "Play video: {title}",
+    "facadeLabelUntitled": "Play the YouTube video",
+    "untitled": "YouTube video",
+    "notice": "YouTube video · plays after your consent",
+    "dialogTitle": "Play a YouTube video",
+    "dialogVideo": "Video: {title}",
+    "dialogBody": "This video is hosted by YouTube (Google). Nothing has been loaded from YouTube yet. If you start playback, the player will be loaded from youtube-nocookie.com: YouTube will then receive your IP address and technical information about your browser, and may use cookies or similar technologies.",
+    "accept": "Allow and play the video",
+    "cancel": "Cancel",
+    "close": "Close",
+    "openOnYoutube": "Open the video on YouTube (new tab)",
+    "googlePrivacy": "Google Privacy Policy (new tab)",
+    "manageHint": "This permission applies to this video only. To allow external content permanently, use the cookie manager:",
+    "managePreferences": "manage my preferences"
   },
   "blogBudget": {
     "meta": {

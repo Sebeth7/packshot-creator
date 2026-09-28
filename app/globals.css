@@ -335,6 +335,89 @@
 .prose .table-wrap tbody tr:last-child td { border-bottom: 0; }
 .prose .table-wrap td:first-child { font-weight: 600; color: var(--future-dusk-9); }
 
+/* Vidéos YouTube — façade locale (lib/youtube.ts) puis lecteur après accord
+   (components/blog/YouTubeConsent.tsx). Boîte 16:9 réservée dès le rendu :
+   pas de décalage de mise en page, pas d'espace vide, pas de débordement. */
+.prose .pkc-yt { margin: 2rem 0; }
+.prose .pkc-yt--center { max-width: 36rem; margin-inline: auto; }
+.prose .pkc-yt__facade,
+.prose .pkc-yt__player {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.prose .pkc-yt__player { background: #000; }
+.prose .pkc-yt__facade {
+  background: linear-gradient(135deg, var(--future-dusk-9), var(--very-peri-8));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+}
+.prose .pkc-yt__facade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0) 60%);
+}
+.prose .pkc-yt__facade:focus-visible { outline: 3px solid var(--very-peri-4); outline-offset: 3px; }
+.prose .pkc-yt__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.prose .pkc-yt__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 4rem;
+  height: 4rem;
+  transform: translate(-50%, -50%);
+  color: rgb(15 15 30 / 0.78);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.prose .pkc-yt__play svg { display: block; width: 100%; height: 100%; }
+.prose .pkc-yt__facade:hover .pkc-yt__play,
+.prose .pkc-yt__facade:focus-visible .pkc-yt__play { transform: translate(-50%, -50%) scale(1.08); color: var(--very-peri-6); }
+.prose .pkc-yt__meta {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  line-height: 1.3;
+}
+.prose .pkc-yt__title {
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prose .pkc-yt__notice { font-size: 0.78rem; color: rgb(255 255 255 / 0.85); }
+@media (max-width: 480px) {
+  .prose .pkc-yt__play { width: 3rem; height: 3rem; }
+  .prose .pkc-yt__meta { padding: 0.5rem 0.75rem; }
+  .prose .pkc-yt__title { font-size: 0.85rem; }
+  .prose .pkc-yt__notice { font-size: 0.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prose .pkc-yt__play { transition: none; }
+}
+
 /* Signature auteur en clôture d'article — signal E-E-A-T visible */
 .prose .article-signature {
   margin-top: 2.75rem;

@@ -52,18 +52,44 @@ test.describe('Cookie Banner RGPD', () => {
     await page.getByRole('button', { name: /Personnaliser/ }).click();
     await expect(page.getByText('Cookies essentiels', { exact: true })).toBeVisible();
     await expect(page.getByText('Cookies analytiques', { exact: true })).toBeVisible();
+    // Catégorie ajoutée le 28/09/2026 : lecteur YouTube des articles (lib/youtube.ts).
+    await expect(page.getByText('Contenus externes', { exact: true })).toBeVisible();
     // Catégorie marketing retirée le 28/09/2026 : aucun traceur ne l'utilisait.
     await expect(page.getByText('Cookies marketing', { exact: true })).toHaveCount(0);
   });
 
-  test('should show 2 cookie categories with essentiels always enabled', async ({ page }) => {
+  test('should show 3 cookie categories with essentiels always enabled', async ({ page }) => {
     await page.getByRole('button', { name: /Personnaliser/ }).click();
     const checkboxes = page.locator('input[type="checkbox"]');
     const count = await checkboxes.count();
-    expect(count).toBe(2);
+    expect(count).toBe(3);
     // First checkbox (essentiels) should be checked and disabled
     await expect(checkboxes.first()).toBeChecked();
     await expect(checkboxes.first()).toBeDisabled();
+    // Analytiques et contenus externes : décochés par défaut
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+  });
+
+  test('should store externalMedia with the choice (accept all / reject all / custom)', async ({ page, context }) => {
+    const stored = async () => {
+      const c = (await context.cookies()).find((x) => x.name === 'cookie-consent');
+      return c ? JSON.parse(decodeURIComponent(c.value)) : null;
+    };
+    await page.getByRole('button', { name: /Tout accepter/ }).click();
+    expect(await stored()).toMatchObject({ necessary: true, analytics: true, externalMedia: true });
+
+    await context.clearCookies();
+    await page.reload();
+    await page.getByRole('button', { name: /Tout refuser/ }).click();
+    expect(await stored()).toMatchObject({ necessary: true, analytics: false, externalMedia: false });
+
+    await context.clearCookies();
+    await page.reload();
+    await page.getByRole('button', { name: /Personnaliser/ }).click();
+    await page.locator('label', { hasText: 'Contenus externes' }).locator('input[type="checkbox"]').check();
+    await page.getByRole('button', { name: /Enregistrer mes choix/ }).click();
+    expect(await stored()).toMatchObject({ necessary: true, analytics: false, externalMedia: true });
   });
 
   test('should not show banner again after choice (cookie persists)', async ({ page }) => {

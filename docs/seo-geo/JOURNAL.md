@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · Vidéos YouTube des articles — façade locale et consentement contextuel · Claude de Laurent
+
+**Chantier** : résidu de l'audit de nettoyage #40/#41 (iframes YouTube chargées sans consentement) | **PR** : brouillon, **non fusionnée** | **Branche** : `claude/admiring-hypatia-7pir8f` | **Base** : `96489d9`
+
+**Quoi** — Au rendu, les 57 iframes `youtube.com/embed` des 49 articles (FR/EN) deviennent une façade locale : lien vers la page YouTube (utilisable sans JavaScript), vignette locale ou fond neutre, icône de lecture générique. Au clic, sans accord, une fenêtre d'information s'ouvre avant tout appel tiers ; le lecteur `youtube-nocookie.com` n'est créé qu'après « Autoriser et lire la vidéo », ou directement si la nouvelle catégorie « Contenus externes » du gestionnaire de cookies est acceptée. Aucun fichier `content/` modifié.
+
+**Pourquoi** — Mesure « avant » du 28/09 (build local, 6 articles témoins) : toutes les mesures appelaient `www.youtube.com` dès l'affichage, cookies refusés compris ; en nouvelle visite, 12 mesures : 132 requêtes `youtube.com`, 26 `doubleclick.net`, 40 cookies YouTube. Iframe de 300 × 150 px dans une figure de 662 × 570 px.
+
+**Fichiers** — `lib/youtube.ts` (nouveau), `lib/blog-utils.ts`, `components/blog/YouTubeConsent.tsx` (nouveau), `components/cookies/CookieBanner.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `app/[lang]/confidentialite/page.tsx`, `app/globals.css`, `messages/{fr,en,de-ch}.json` (`cookies`, `externalVideo`, `privacy.article6`), `lib/__tests__/youtube.test.ts` (nouveau), `e2e/youtube-consent.spec.ts` (nouveau), `e2e/cookie-banner.spec.ts`.
+
+**Choix de conception** — L'accord donné dans la fenêtre vaut pour la vidéo cliquée, sans être mémorisé ; l'accord durable passe par le gestionnaire (lien dans la fenêtre). « Tout accepter » inclut désormais les contenus externes, « Tout refuser » les exclut ; un cookie de consentement antérieur sans la catégorie vaut refus. Retirer la catégorie retire les lecteurs ouverts et remet les façades. Tout clic sur la façade, clic du milieu compris, passe par la fenêtre ; seul le menu contextuel du navigateur ouvre encore le lien directement. Titre de la vidéo : attribut `title` de l'iframe (17), sinon texte de la légende (6), sinon nom accessible générique (34). Vignette locale pour la seule vidéo déjà illustrée sur le site (`tR-6RBucmWw`, affiche de la fiche Alphashot Pro G2) ; aucune vignette téléchargée depuis YouTube.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `npx next build` vert ; `node scripts/seo/verifier-json.mjs` : 186 JSON valides ; ESLint sur les fichiers touchés : aucune nouvelle alerte (3 erreurs et 1 avertissement préexistants dans `CookieBanner.tsx`, `lib/blog-utils.ts` et la page article).
+- Vitest : 13 tests YouTube sur le corpus réel — 57 intégrations, 49 fichiers, 23 vidéos ; 0 iframe YouTube restante ; 8 `start` conservés (1, 1, 5, 5, 5, 5, 8, 8) ; 6 légendes identiques ; 17 titres d'iframe ; alignement centré ou pleine largeur ; titres h2/h3 et nombre de mots inchangés ; aucune référence ytimg, Google ou DoubleClick.
+- Playwright `e2e/youtube-consent.spec.ts` : 16/16 (Desktop Chrome et Pixel 5) — façades, fenêtre, Annuler, Échap, croix, lecteur et attributs, accord non mémorisé, catégorie acceptée, retrait, clavier (Espace sans défilement, Entrée), sans JavaScript.
+- Playwright `cookie-banner` + `seo` sur le build final : 245 réussis, 9 échecs. Les 9 mêmes échouent sur un build local de `origin/main` (`96489d9`) : test GA4 (`NEXT_PUBLIC_GA_MEASUREMENT_ID` absente au build local, `GoogleAnalytics.tsx:47`) et 8 contrôles de longueur de title / meta description ou de hreflang sur des pages non touchées.
+- Preuve réseau, build local, réseau réel, 51 mesures (6 articles à vidéos, `/fr/contact` et un article sans vidéo en témoins) : en nouvelle visite (1440 et 390 px), cookies refusés, analytics accepté et contenus externes refusés, contenus externes acceptés sans clic : 0 requête `youtube.com`, `youtube-nocookie.com`, `ytimg.com`/`ggpht.com`, `doubleclick.net`, `googlevideo.com` ; 0 cookie YouTube ou Google ; CLS 0 ; débordement horizontal 0. Clic sans accord : fenêtre affichée, 0 requête YouTube pendant son affichage ; Annuler : 0.
+- Après « Autoriser et lire » (4 mesures dédiées, 1440 et 390 px) : iframe `https://www.youtube-nocookie.com/embed/<id>?autoplay=1&rel=0[&start=N]`, `referrerpolicy="strict-origin-when-cross-origin"`, `allowfullscreen`, titre ; domaines contactés : `www.youtube-nocookie.com`, `i.ytimg.com`, `yt3.ggpht.com`, `*.googlevideo.com`, `jnn-pa.googleapis.com`, `www.google.com`, `www.gstatic.com`, `ssl.gstatic.com`, `fonts.gstatic.com` ; 0 requête `youtube.com`, 0 `doubleclick.net` ; 0 cookie tiers relevé ; aucune erreur console hors visionneuses 360 Orbitvu (préexistantes).
+- Géométrie : façade 662 × 372 px (pleine largeur) et 576 × 324 px (centrée) à 1440 px ; 358 × 201 px à 390 px ; fenêtre d'information contenue dans l'écran aux deux largeurs.
+
+**Supposé** — Le comportement mesuré sur Chromium local vaut pour la production (même code, même build) ; non contrôlé sur Preview ni sur `www`.
+
+**Non regardé** — Lecture effective : YouTube affiche « Video unavailable » dans le conteneur (4/4 après activation) ; lecture automatique, départ à `start`, cookies et stockage après une lecture réelle : non mesurés, à contrôler dans Chrome sur le Preview. Firefox et Safari. `www.packshot-creator.com` (R4). Qualification juridique du texte de politique de confidentialité et de la fenêtre : aucune.
+
+**Suite** —
+- Texte de la politique de confidentialité (article 6, « Contenus externes ») : proposition à valider par Laurent avant fusion ; il remplace « Aucun cookie marketing n'est utilisé actuellement sur ce site. » en FR, EN et de-ch.
+- **GOOGLE_MAPS_PRIVACY_AUDIT_REQUIRED = YES** : iframe Google Maps de `/contact` chargée à l'affichage (`app/[lang]/contact/page.tsx:154`), audit séparé.
+- 6 autres iframes tierces se chargent à l'affichage : Vimeo (2), Sketchfab (2), saasphoto.com (2) ; non couvertes par la catégorie, qui ne vise que YouTube.
+- Contenu : deux paragraphes vides (`<p>‍</p>`) hérités de Webflow séparent certaines figures (prose de Sébastien, non touchée).
+
+---
+
 ## 2026-09-28 · F5 — #39 fusionnée et contrôlée en production (FR, EN, de-ch) · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 fusionnée ; #24 fermée | **Commit de fusion** : `04919f8` (`main`), le 28/09/2026 à 18:42:03 UTC | **Tête fusionnée** : `55ea992` | **Base avant fusion** : `b26f6e9`

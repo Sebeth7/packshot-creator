@@ -2232,7 +2232,7 @@
   },
   "cookies": {
     "title": "Cookie-Einstellungen",
-    "description": "Diese Website verwendet Cookies, um die Reichweite zu messen und Ihr Erlebnis zu verbessern. Essenzielle Cookies sind für den Betrieb der Website notwendig. Analyse-Cookies helfen uns zu verstehen, wie Sie die Website nutzen.",
+    "description": "Diese Website verwendet Cookies, um die Reichweite zu messen und Ihr Erlebnis zu verbessern. Essenzielle Cookies sind für den Betrieb der Website notwendig. Analyse-Cookies helfen uns zu verstehen, wie Sie die Website nutzen. YouTube-Videos in Artikeln werden nur mit Ihrer Zustimmung geladen.",
     "close": "Schliessen",
     "acceptAll": "Alle akzeptieren",
     "rejectAll": "Alle ablehnen",
@@ -2241,7 +2241,9 @@
     "necessary": "Essenzielle Cookies",
     "necessaryDesc": "Sitzung, Spracheinstellungen. Immer aktiv.",
     "analytics": "Analyse-Cookies",
-    "analyticsDesc": "Google Analytics: anonymisierte Reichweitenmessung."
+    "analyticsDesc": "Google Analytics: anonymisierte Reichweitenmessung.",
+    "externalMedia": "Externe Inhalte",
+    "externalMediaDesc": "YouTube-Videos: Player wird beim Klick auf ein Video geladen. YouTube (Google) kann dann eigene Cookies verwenden."
   },
   "about": {
     "meta": {
@@ -2586,6 +2588,22 @@
       "before": "Vorher",
       "after": "Nachher"
     }
+  },
+  "externalVideo": {
+    "facadeLabel": "Video abspielen: {title}",
+    "facadeLabelUntitled": "YouTube-Video abspielen",
+    "untitled": "YouTube-Video",
+    "notice": "YouTube-Video · Wiedergabe nach Ihrer Zustimmung",
+    "dialogTitle": "YouTube-Video abspielen",
+    "dialogVideo": "Video: {title}",
+    "dialogBody": "Dieses Video wird von YouTube (Google) bereitgestellt. Bisher wurde nichts von YouTube geladen. Wenn Sie die Wiedergabe starten, wird der Player von youtube-nocookie.com geladen: YouTube erhält dann Ihre IP-Adresse und technische Informationen über Ihren Browser und kann Cookies oder ähnliche Technologien verwenden.",
+    "accept": "Zulassen und Video abspielen",
+    "cancel": "Abbrechen",
+    "close": "Schliessen",
+    "openOnYoutube": "Video auf YouTube öffnen (neuer Tab)",
+    "googlePrivacy": "Datenschutzerklärung von Google (neuer Tab)",
+    "manageHint": "Diese Zustimmung gilt nur für dieses Video. Um externe Inhalte dauerhaft zuzulassen, verwenden Sie die Cookie-Verwaltung:",
+    "managePreferences": "Einstellungen verwalten"
   },
   "blogBudget": {
     "meta": {

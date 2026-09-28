@@ -2,6 +2,8 @@
  * Utility functions for blog content processing
  */
 
+import { transformYouTubeEmbeds, type YouTubeFacadeLabels } from './youtube';
+
 export interface HeadingData {
   id: string;
   text: string;
@@ -25,11 +27,17 @@ export function slugify(text: string): string {
  * - Add IDs to h2/h3 elements for ToC navigation
  * - Extract headings for ToC
  * - Count words for reading time
+ * - Remplacer les iframes YouTube par une façade locale (lib/youtube.ts) :
+ *   aucun appel à YouTube avant l'accord de l'internaute
  */
-export function processHtmlContent(html: string): {
+export function processHtmlContent(
+  html: string,
+  options: { youtubeLabels?: YouTubeFacadeLabels } = {},
+): {
   processedHtml: string;
   headings: HeadingData[];
   wordCount: number;
+  videoCount: number;
 } {
   const headings: HeadingData[] = [];
   const usedIds = new Set<string>();
@@ -67,10 +75,12 @@ export function processHtmlContent(html: string): {
     '<img$1loading="lazy"$2'
   );
 
+  const videos = transformYouTubeEmbeds(withLazyImages, options.youtubeLabels);
+
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withLazyImages, headings, wordCount };
+  return { processedHtml: videos.html, headings, wordCount, videoCount: videos.count };
 }
 
 /**

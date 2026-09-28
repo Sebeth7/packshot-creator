@@ -14,6 +14,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '
 import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import { RecommendedStudio } from '@/components/maillage/MaillageSections';
+import YouTubeConsent from '@/components/blog/YouTubeConsent';
 import {
   processHtmlContent,
   calculateReadingTime,
@@ -102,11 +103,19 @@ const articleProseClasses = [
 export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
+  const tVideo = await getTranslations({ locale: lang, namespace: 'externalVideo' });
 
   const article = getArticle(slug, lang as Lang);
   if (!article) notFound();
 
-  const processed = processHtmlContent(article.content || '');
+  // Vidéos YouTube : façade locale au rendu, lecteur après accord (lib/youtube.ts)
+  const processed = processHtmlContent(article.content || '', {
+    youtubeLabels: {
+      play: (title) => tVideo('facadeLabel', { title }),
+      playUntitled: tVideo('facadeLabelUntitled'),
+      notice: tVideo('notice'),
+    },
+  });
   const title = article.h1 || article.title;
   const description = article.description;
   const date = article.date;
@@ -223,6 +232,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
         </section>
       </FadeInView>
+
+      {processed.videoCount > 0 && <YouTubeConsent />}
 
       {article.faqs.length > 0 && (
         <section className="py-16 bg-neutral-50">

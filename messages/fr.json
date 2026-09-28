@@ -2316,7 +2316,7 @@
   },
   "cookies": {
     "title": "Gestion des cookies",
-    "description": "Ce site utilise des cookies pour mesurer son audience et améliorer votre expérience. Les cookies essentiels sont nécessaires au fonctionnement du site. Les cookies analytiques nous aident à comprendre comment vous utilisez le site.",
+    "description": "Ce site utilise des cookies pour mesurer son audience et améliorer votre expérience. Les cookies essentiels sont nécessaires au fonctionnement du site. Les cookies analytiques nous aident à comprendre comment vous utilisez le site. Les vidéos YouTube des articles ne sont chargées qu'avec votre accord.",
     "close": "Fermer",
     "acceptAll": "Tout accepter",
     "rejectAll": "Tout refuser",
@@ -2325,7 +2325,9 @@
     "necessary": "Cookies essentiels",
     "necessaryDesc": "Session, préférences de langue. Toujours actifs.",
     "analytics": "Cookies analytiques",
-    "analyticsDesc": "Google Analytics : mesure d'audience anonymisée."
+    "analyticsDesc": "Google Analytics : mesure d'audience anonymisée.",
+    "externalMedia": "Contenus externes",
+    "externalMediaDesc": "Vidéos YouTube : lecteur chargé au clic sur une vidéo. YouTube (Google) peut alors utiliser ses propres cookies."
   },
   "about": {
     "meta": {
@@ -2670,6 +2672,22 @@
       "before": "Avant",
       "after": "Après"
     }
+  },
+  "externalVideo": {
+    "facadeLabel": "Lire la vidéo : {title}",
+    "facadeLabelUntitled": "Lire la vidéo YouTube",
+    "untitled": "Vidéo YouTube",
+    "notice": "Vidéo YouTube · lecture après votre accord",
+    "dialogTitle": "Lire une vidéo YouTube",
+    "dialogVideo": "Vidéo : {title}",
+    "dialogBody": "Cette vidéo est hébergée par YouTube (Google). Rien n'a encore été chargé depuis YouTube. Si vous lancez la lecture, le lecteur sera chargé depuis youtube-nocookie.com : YouTube recevra alors votre adresse IP et des informations techniques sur votre navigateur, et pourra utiliser des cookies ou des technologies similaires.",
+    "accept": "Autoriser et lire la vidéo",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "openOnYoutube": "Ouvrir la vidéo sur YouTube (nouvel onglet)",
+    "googlePrivacy": "Règles de confidentialité de Google (nouvel onglet)",
+    "manageHint": "Cet accord vaut pour cette vidéo uniquement. Pour autoriser durablement les contenus externes, utilisez le gestionnaire de cookies :",
+    "managePreferences": "gérer mes préférences"
   },
   "blogBudget": {
     "meta": {
