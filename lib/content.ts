@@ -1,5 +1,9 @@
-// lib/content.ts — Source locale pour blog et guides migrés de Webflow.
-// Lit les JSON produits par scripts/extract-webflow-content.mjs.
+// lib/content.ts — Source locale pour blog et guides (content/**).
+// Importés de Webflow au printemps 2026, puis maintenus à la main : le script
+// d'extraction et l'intégration API Webflow ont été supprimés le 28/09/2026.
+// `webflowItemId` (clé d'appariement des langues dans alternates.json) et
+// `source: 'webflow'` sont des champs de schéma hérités, portés aussi par les
+// contenus natifs : conservés tels quels, aucun appel à Webflow n'en dépend.
 
 import fs from 'node:fs';
 import path from 'node:path';

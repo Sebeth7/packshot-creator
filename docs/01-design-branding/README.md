@@ -927,6 +927,8 @@ The PackshotCreator logo is available in two colors only:
 />
 ```
 
+> Note du 28/09/2026 : cette URL pointe vers le CDN de l'ancien site Webflow, hors dépôt, et `cdn.prod.website-files.com` n'est plus autorisé dans `next.config.ts`. Le Header sert `/images/logos/packshot-creator-logo.png` (`components/layout/Header.tsx`).
+
 **White Logo**: Use on dark backgrounds (not currently implemented in CDN, would require local asset)
 
 **Critical Rule**: The logo must ONLY be black or white. Never apply brand colors to the logo.
