@@ -7,7 +7,6 @@ import { Settings, X } from 'lucide-react';
 type ConsentCategories = {
   necessary: boolean;
   analytics: boolean;
-  marketing: boolean;
 };
 
 const COOKIE_NAME = 'cookie-consent';
@@ -50,7 +49,6 @@ export default function CookieBanner() {
   const [consent, setConsent] = useState<ConsentCategories>({
     necessary: true,
     analytics: false,
-    marketing: false,
   });
 
   useEffect(() => {
@@ -72,11 +70,11 @@ export default function CookieBanner() {
   }, []);
 
   const acceptAll = useCallback(() => {
-    saveConsent({ necessary: true, analytics: true, marketing: true });
+    saveConsent({ necessary: true, analytics: true });
   }, [saveConsent]);
 
   const rejectAll = useCallback(() => {
-    saveConsent({ necessary: true, analytics: false, marketing: false });
+    saveConsent({ necessary: true, analytics: false });
   }, [saveConsent]);
 
   const saveCustom = useCallback(() => {
@@ -145,20 +143,6 @@ export default function CookieBanner() {
                 type="checkbox"
                 checked={consent.analytics}
                 onChange={(e) => setConsent(prev => ({ ...prev, analytics: e.target.checked }))}
-                className="h-4 w-4 rounded accent-very-peri-500"
-              />
-            </label>
-
-            {/* Marketing */}
-            <label className="flex items-center justify-between rounded-xl bg-neutral-50 border border-neutral-100 p-4 cursor-pointer">
-              <div>
-                <p className="text-sm font-semibold text-future-dusk-900">{t('marketing')}</p>
-                <p className="text-xs text-future-dusk-500 mt-0.5">{t('marketingDesc')}</p>
-              </div>
-              <input
-                type="checkbox"
-                checked={consent.marketing}
-                onChange={(e) => setConsent(prev => ({ ...prev, marketing: e.target.checked }))}
                 className="h-4 w-4 rounded accent-very-peri-500"
               />
             </label>
