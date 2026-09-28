@@ -8,33 +8,37 @@
  *
  * Données machines : valeurs publiées par Orbitvu (fiches orbitvu.com relevées le
  * 28/09/2026), pas celles de machines.ts. Les écarts sont consignés dans
- * docs/seo-geo/JOURNAL.md (entrée F5 du 28/09/2026).
+ * docs/seo-geo/JOURNAL.md (entrées F5 du 28/09/2026).
+ *
+ * Reprise du 28/09/2026 (retour de Sébastien) : hero local plutôt que HeroSection,
+ * dont le mode split place le média avant le H1 sur mobile ; photos de lunettes
+ * fournies par Sébastien dans #fiche-produit ; passage de terrain validé dans
+ * #automatisation ; bouton de démonstration relié au formulaire de la page.
  */
 import type { ComponentProps, ReactNode } from 'react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
-import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import {
   ArrowRight,
-  Box,
+  ArrowUp,
   Calculator,
   Camera,
   Check,
   ChevronDown,
   Clapperboard,
   Crop,
+  Database,
   Eye,
+  FolderOutput,
   GraduationCap,
   Handshake,
-  Image as ImageIcon,
   Info,
-  Layers,
-  Lightbulb,
+  KeyRound,
   PackageOpen,
   Palette,
   Ruler,
@@ -42,10 +46,11 @@ import {
   ScanSearch,
   Send,
   ShoppingCart,
+  SlidersHorizontal,
   Sparkles,
-  Truck,
+  Store,
+  UserCheck,
   Wallet,
-  Wrench,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -53,6 +58,7 @@ type Href = ComponentProps<typeof Link>['href'];
 
 const SLUG = 'packshot-e-commerce';
 const URL_PAGE = `https://www.packshot-creator.com/fr/${SLUG}`;
+const ANCRE_DEMO = 'demande-demo';
 
 // Même liste que le bandeau du gabarit partagé (logos déjà publiés sur le site).
 const CLIENT_LOGOS = [
@@ -83,23 +89,39 @@ const SERIE = [
 ] as const;
 
 const SOMMAIRE = [
-  { id: 'serie', key: 'r1' },
-  { id: 'fiche-produit', key: 'r2' },
-  { id: 'marketplaces', key: 'r3' },
-  { id: 'choisir', key: 'r4' },
-  { id: 'automatisation', key: 'r5' },
-  { id: 'workflow', key: 'r6' },
-  { id: 'studios', key: 'r7' },
-  { id: 'cout-complet', key: 'r8' },
+  { id: 'serie', key: 'serie' },
+  { id: 'fiche-produit', key: 'ficheProduit' },
+  { id: 'marketplaces', key: 'marketplaces' },
+  { id: 'choisir', key: 'choisir' },
+  { id: 'automatisation', key: 'automatisation' },
+  { id: 'workflow', key: 'workflow' },
+  { id: 'studios', key: 'studios' },
+  { id: 'cout-complet', key: 'coutComplet' },
+  { id: 'faq', key: 'faq' },
 ] as const;
 
-const VUES: { key: string; icon: LucideIcon }[] = [
-  { key: 'principale', icon: ImageIcon },
-  { key: 'angles', icon: Box },
-  { key: 'detail', icon: ScanSearch },
+const REPERES: { key: string; icon: LucideIcon }[] = [
+  { key: 'vues', icon: Camera },
+  { key: 'reglages', icon: SlidersHorizontal },
+  { key: 'exports', icon: Send },
+  { key: 'operateur', icon: UserCheck },
+];
+
+// Photos fournies par Sébastien (28/09/2026) : une seule monture, cinq vues.
+// Conversion AVIF depuis les JPEG d'origine (1.jpg, 21.jpg, 15.jpg, 20.jpg, 6.jpg).
+const LUNETTES_PRINCIPALE = { key: 'troisQuarts', src: '/images/packshot-e-commerce/lunettes-vue-trois-quarts.avif', w: 1600, h: 1600 };
+const LUNETTES_VUES = [
+  { key: 'face', src: '/images/packshot-e-commerce/lunettes-vue-face.avif', w: 1200, h: 1200 },
+  { key: 'profil', src: '/images/packshot-e-commerce/lunettes-vue-profil.avif', w: 1200, h: 1200 },
+  { key: 'repliees', src: '/images/packshot-e-commerce/lunettes-face-branches-repliees.avif', w: 1200, h: 1200 },
+  { key: 'charniere', src: '/images/packshot-e-commerce/lunettes-detail-charniere.avif', w: 1200, h: 1200 },
+] as const;
+
+const COMPLEMENTS: { key: string; icon: LucideIcon }[] = [
   { key: 'echelle', icon: Ruler },
   { key: 'variantes', icon: Palette },
   { key: 'colis', icon: PackageOpen },
+  { key: 'zoom', icon: ScanSearch },
   { key: 'mouvement', icon: Clapperboard },
 ];
 
@@ -108,7 +130,6 @@ const SOURCES_UX = [
   { label: 'Nielsen Norman Group, photos en liste produits (2022)', href: 'https://www.nngroup.com/articles/product-photos-listing-pages/' },
   { label: 'Baymard Institute, résolution et zoom', href: 'https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom' },
   { label: 'Baymard Institute, accessoires inclus', href: 'https://baymard.com/research-articles/included-accessories-image' },
-  { label: 'De, Hu et Rahman, Information Systems Research (2013)', href: 'https://doi.org/10.1287/isre.2013.0487' },
 ];
 
 const PRINCIPES = ['fidelite', 'entier', 'ajout', 'definition', 'fond', 'ia'] as const;
@@ -125,24 +146,32 @@ const SOURCES_PLATEFORMES = [
 
 const OPTIONS: { key: string; icon: LucideIcon; accent: string }[] = [
   { key: 'prestataire', icon: Handshake, accent: 'bg-neutral-100 text-future-dusk-700' },
-  { key: 'ia', icon: Sparkles, accent: 'bg-very-peri-50 text-very-peri-600' },
   { key: 'interne', icon: Camera, accent: 'bg-very-peri-500 text-white' },
 ];
 
-const CRITERES = ['volume', 'rotation', 'delai', 'coherence', 'produits', 'ressources', 'cout'] as const;
+const CRITERES = ['volume', 'renouvellement', 'delai', 'coherence', 'logistique', 'equipe', 'cout'] as const;
 
 const ETAPES_AUTO = ['preparation', 'reglages', 'capture', 'detourage', 'miseEnForme', 'export'] as const;
 
 const FLUX: { key: string; icon: LucideIcon }[] = [
-  { key: 'reception', icon: Truck },
-  { key: 'preparation', icon: Wrench },
-  { key: 'capture', icon: ScanBarcode },
+  { key: 'identification', icon: ScanBarcode },
+  { key: 'capture', icon: Camera },
   { key: 'controle', icon: Eye },
   { key: 'declinaisons', icon: Crop },
   { key: 'publication', icon: Send },
 ];
 
-const INTEGRATIONS = ['boutiques', 'outils', 'amazon'] as const;
+const INTEGRATIONS: { key: string; icon: LucideIcon }[] = [
+  { key: 'export', icon: FolderOutput },
+  { key: 'modules', icon: Store },
+  { key: 'conditions', icon: KeyRound },
+  { key: 'outils', icon: Database },
+];
+
+const SOURCES_INTEGRATIONS = [
+  { label: 'plateformes e-commerce prises en charge', href: 'https://public.manuals.orbitvu.com/m/68548/l/746645-supported-ecommerce-shop-platforms-and-demo-shops' },
+  { label: 'types de modules e-commerce', href: 'https://public.manuals.orbitvu.com/m/68548/l/746592-types-of-orbitvu-ecommerce-plugins' },
+];
 
 const STUDIOS: { key: string; slug: string; img: string; w: number; h: number }[] = [
   { key: 'micro', slug: 'alphashot-micro-v2', img: '/images/machines/alphashot-micro-v2.avif', w: 1000, h: 1000 },
@@ -155,7 +184,7 @@ const STUDIOS: { key: string; slug: string; img: string; w: number; h: number }[
   { key: 'furniture', slug: 'furniture-studio', img: '/images/machines/furniture-studio.avif', w: 1000, h: 1000 },
 ];
 
-const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'] as const;
+const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'] as const;
 
 const CLASSE_LIEN =
   'font-medium text-very-peri-600 underline decoration-very-peri-200 underline-offset-4 hover:decoration-very-peri-500 transition-colors';
@@ -169,6 +198,10 @@ function lien(href: Href) {
     );
   }
   return LienRiche;
+}
+
+function gras(chunks: ReactNode) {
+  return <strong className="font-semibold text-future-dusk-900">{chunks}</strong>;
 }
 
 /** Empêche la coupure de ligne au trait d'union de « e-commerce » dans les titres. */
@@ -188,10 +221,26 @@ function LienExterne({ href, children }: { href: string; children: ReactNode }) 
   );
 }
 
-function EnTete({ eyebrow, heading, intro, centre = false }: { eyebrow: string; heading: string; intro?: string; centre?: boolean }) {
+/** Lien discret vers le sommaire, en tête de section : aucun élément fixe ne double l'en-tête du site. */
+function RetourSommaire({ label }: { label: string }) {
   return (
-    <div className={centre ? 'max-w-3xl mx-auto text-center' : 'max-w-3xl'}>
-      <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">{eyebrow}</span>
+    <a
+      href="#sommaire"
+      className="inline-flex min-h-6 shrink-0 items-center gap-1 text-xs font-medium text-future-dusk-500 hover:text-very-peri-600 transition-colors"
+    >
+      <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+      {label}
+    </a>
+  );
+}
+
+function EnTete({ eyebrow, heading, intro, retour }: { eyebrow: string; heading: string; intro?: string; retour: string }) {
+  return (
+    <div className="max-w-3xl">
+      <div className="flex items-center justify-between gap-4 mb-4">
+        <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em]">{eyebrow}</span>
+        <RetourSommaire label={retour} />
+      </div>
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-5">
         {sansCesure(heading)}
       </h2>
@@ -207,6 +256,7 @@ function LibelleMobile({ children }: { children: ReactNode }) {
 
 export default async function PackshotEcommerceFr() {
   const t = await getTranslations({ locale: 'fr', namespace: 'packshotEcommerce' });
+  const retour = t('sommaire.retour');
 
   const faqs = FAQ_KEYS.map((k) => ({ question: t(`faq.${k}.question`), answer: t(`faq.${k}.answer`) }));
 
@@ -217,72 +267,94 @@ export default async function PackshotEcommerceFr() {
 
   return (
     <>
-      {/* ━━ HERO ━━ */}
-      <HeroSection
-        layout="split"
-        badge={{
-          icon: <ShoppingCart className="h-4 w-4" />,
-          label: t('hero.badge'),
-          colorClass: 'bg-white/10 text-very-peri-200',
-        }}
-        title={sansCesure(t('hero.title'))}
-        subtitle={t('hero.subtitle')}
-        ctas={[
-          { label: t('hero.ctaPrimary'), href: '/contact', variant: 'primary' },
-          { label: t('hero.ctaSecondary'), href: '/studio-photo/selecteur-machines', variant: 'secondary' },
-        ]}
-        media={
-          <figure>
-            <div className="grid grid-cols-4 lg:grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
-              {HERO_MOSAIQUE.map((img, i) => (
-                <div key={img.key} className="bg-white rounded-xl lg:rounded-2xl p-1.5 sm:p-3 lg:p-4 shadow-xl shadow-black/20 aspect-square flex items-center justify-center">
-                  <Image
-                    src={img.src}
-                    alt={t(`hero.alts.${img.key}`)}
-                    width={img.w}
-                    height={img.h}
-                    sizes="(min-width: 1024px) 280px, 25vw"
-                    className="w-full h-full object-contain"
-                    priority={i < 2}
-                  />
-                </div>
-              ))}
+      {/* ━━ HERO ━━ Mêmes styles que HeroSection (split), mais le texte précède la galerie sur mobile. */}
+      <section className="relative overflow-hidden text-white bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-white/10 text-very-peri-200">
+                <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+                {t('hero.badge')}
+              </span>
+              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-heading font-bold text-white leading-[1.1] tracking-tight">
+                {sansCesure(t('hero.title'))}
+              </h1>
+              <p className="mt-6 text-lg lg:text-xl text-future-dusk-200 max-w-xl leading-relaxed">{t('hero.subtitle')}</p>
+              <p className="mt-4 text-base text-future-dusk-200 max-w-xl leading-relaxed">{t('hero.role')}</p>
+              <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-12 text-base font-semibold rounded-lg shadow-lg shadow-very-peri-500/25"
+                >
+                  <a href={`#${ANCRE_DEMO}`}>{t('hero.ctaPrimary')}</a>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg"
+                >
+                  <Link href="/studio-photo/selecteur-machines">{t('hero.ctaSecondary')}</Link>
+                </Button>
+              </div>
             </div>
-            <figcaption className="mt-3 lg:mt-4 text-xs sm:text-sm text-future-dusk-300 text-center">{t('hero.mosaicCaption')}</figcaption>
-          </figure>
-        }
-      />
+            <figure>
+              <div className="grid grid-cols-2 gap-3 lg:gap-4">
+                {HERO_MOSAIQUE.map((img, i) => (
+                  <div key={img.key} className="bg-white rounded-xl lg:rounded-2xl p-3 lg:p-4 shadow-xl shadow-black/20 aspect-square flex items-center justify-center">
+                    <Image
+                      src={img.src}
+                      alt={t(`hero.alts.${img.key}`)}
+                      width={img.w}
+                      height={img.h}
+                      sizes="(min-width: 1024px) 280px, 45vw"
+                      className="w-full h-full object-contain"
+                      priority={i < 2}
+                    />
+                  </div>
+                ))}
+              </div>
+              <figcaption className="mt-3 lg:mt-4 text-sm text-future-dusk-200 text-center">{t('hero.mosaicCaption')}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
 
       {/* ━━ EN BREF + SOMMAIRE ━━ */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12">
             <div className="lg:col-span-7">
               <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">{t('bref.label')}</span>
-              <p className="text-xl lg:text-2xl text-future-dusk-900 leading-relaxed font-medium">{t('bref.definition')}</p>
-              <p className="mt-6 text-future-dusk-500 leading-relaxed">{t('bref.positionnement')}</p>
-              <p className="mt-4 text-future-dusk-500 leading-relaxed">
+              <p className="text-xl lg:text-2xl text-future-dusk-900 leading-relaxed font-medium">{t('bref.lead')}</p>
+              <ul className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-5">
+                {REPERES.map(({ key, icon: Icon }) => (
+                  <li key={key} className="flex gap-3">
+                    <Icon className="h-5 w-5 mt-0.5 shrink-0 text-very-peri-500" aria-hidden="true" />
+                    <p className="text-future-dusk-600 leading-relaxed">
+                      <span className="font-semibold text-future-dusk-900">{t(`bref.reperes.${key}.titre`)}.</span>{' '}
+                      {t(`bref.reperes.${key}.texte`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 text-future-dusk-500 leading-relaxed">
                 {t.rich('bref.guide', {
                   lien: lien({ pathname: '/blog/[slug]', params: { slug: 'guide-photographie-packshot-pourquoi-faire-packshots' } }),
                 })}
               </p>
             </div>
-            <nav aria-label="Sommaire" className="lg:col-span-5 lg:pl-8 lg:border-l border-neutral-100">
-              <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-6 gap-y-1">
+            <nav id="sommaire" aria-label={t('sommaire.titre')} className="lg:col-span-5 lg:pl-8 lg:border-l border-neutral-100 scroll-mt-24">
+              <p className="text-xs font-semibold text-future-dusk-500 uppercase tracking-[0.2em] mb-3">{t('sommaire.titre')}</p>
+              <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-6">
                 {SOMMAIRE.map((s, i) => (
                   <li key={s.id}>
                     <a href={`#${s.id}`} className="group flex items-baseline gap-3 py-2 text-future-dusk-700 hover:text-very-peri-600 transition-colors">
                       <span className="text-xs font-semibold text-very-peri-500 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                      <span className="font-medium">{t(`${s.key}.eyebrow`)}</span>
+                      <span className="font-medium">{t(`sommaire.${s.key}`)}</span>
                     </a>
                   </li>
                 ))}
-                <li>
-                  <a href="#faq" className="group flex items-baseline gap-3 py-2 text-future-dusk-700 hover:text-very-peri-600 transition-colors">
-                    <span className="text-xs font-semibold text-very-peri-500">09</span>
-                    <span className="font-medium">FAQ</span>
-                  </a>
-                </li>
               </ol>
             </nav>
           </div>
@@ -316,12 +388,10 @@ export default async function PackshotEcommerceFr() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-6">
-              <EnTete eyebrow={t('r1.eyebrow')} heading={t('r1.heading')} />
+              <EnTete eyebrow={t('r1.eyebrow')} heading={t('r1.heading')} retour={retour} />
               <div className="space-y-5 text-future-dusk-600 leading-relaxed">
                 <p>{t('r1.p1')}</p>
                 <p>{t('r1.p2')}</p>
-                <p>{t('r1.p3')}</p>
-                <p>{t.rich('r1.lienIa', { lien: lien('/ia-photo-produit') })}</p>
               </div>
             </div>
             <figure className="lg:col-span-6">
@@ -348,22 +418,59 @@ export default async function PackshotEcommerceFr() {
       {/* ━━ R2 — CE QU'UNE FICHE PRODUIT DOIT MONTRER ━━ */}
       <section id="fiche-produit" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r2.eyebrow')} heading={t('r2.heading')} intro={t('r2.intro')} />
-          <ul className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {VUES.map(({ key, icon: Icon }) => (
-              <li key={key} className="rounded-2xl border border-neutral-100 bg-neutral-50 p-5 lg:p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-very-peri-500 border border-neutral-100 mb-4">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <h3 className="font-heading font-bold text-future-dusk-900 mb-2">{t(`r2.cards.${key}.title`)}</h3>
-                <p className="text-sm text-future-dusk-500 leading-relaxed">{t(`r2.cards.${key}.text`)}</p>
-              </li>
-            ))}
-            <li className="rounded-2xl bg-future-dusk-900 text-white p-5 lg:p-6 sm:col-span-2 lg:col-span-1">
-              <Lightbulb className="h-6 w-6 text-very-peri-300 mb-4" aria-hidden="true" />
-              <p className="text-sm text-future-dusk-100 leading-relaxed">{t('r2.nuance')}</p>
-            </li>
-          </ul>
+          <EnTete eyebrow={t('r2.eyebrow')} heading={t('r2.heading')} intro={t('r2.intro')} retour={retour} />
+
+          {/* Cinq vues d'une même monture, en chargement différé (aucun préchargement). */}
+          <div className="mt-12 grid lg:grid-cols-12 gap-6">
+            <figure className="lg:col-span-7">
+              <div className="rounded-2xl overflow-hidden border border-neutral-100">
+                <Image
+                  src={LUNETTES_PRINCIPALE.src}
+                  alt={t(`r2.vues.${LUNETTES_PRINCIPALE.key}.alt`)}
+                  width={LUNETTES_PRINCIPALE.w}
+                  height={LUNETTES_PRINCIPALE.h}
+                  sizes="(min-width: 1280px) 700px, (min-width: 1024px) 56vw, 92vw"
+                  className="w-full h-auto"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-future-dusk-600 leading-relaxed">
+                <span className="font-semibold text-future-dusk-900">{t(`r2.vues.${LUNETTES_PRINCIPALE.key}.titre`)}</span> : {t(`r2.vues.${LUNETTES_PRINCIPALE.key}.texte`)}
+              </figcaption>
+            </figure>
+            <div className="lg:col-span-5 grid grid-cols-2 gap-x-4 gap-y-6 content-start">
+              {LUNETTES_VUES.map((v) => (
+                <figure key={v.key}>
+                  <div className="rounded-2xl overflow-hidden border border-neutral-100">
+                    <Image
+                      src={v.src}
+                      alt={t(`r2.vues.${v.key}.alt`)}
+                      width={v.w}
+                      height={v.h}
+                      sizes="(min-width: 1280px) 240px, (min-width: 1024px) 19vw, 45vw"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-sm text-future-dusk-600 leading-snug">
+                    <span className="font-semibold text-future-dusk-900">{t(`r2.vues.${v.key}.titre`)}</span> : {t(`r2.vues.${v.key}.texte`)}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14">
+            <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-5">{t('r2.complementsTitre')}</h3>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
+              {COMPLEMENTS.map(({ key, icon: Icon }) => (
+                <li key={key} className="flex gap-3">
+                  <Icon className="h-5 w-5 mt-0.5 shrink-0 text-very-peri-500" aria-hidden="true" />
+                  <p className="text-sm text-future-dusk-600 leading-relaxed">
+                    <span className="font-semibold text-future-dusk-900">{t(`r2.complements.${key}.titre`)}</span> : {t(`r2.complements.${key}.texte`)}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
           <details className="group mt-8 text-xs text-future-dusk-500">
             <summary className="inline-flex min-h-6 items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
               {t('r2.sources')} ({SOURCES_UX.length})
@@ -380,10 +487,10 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ R3 — MARKETPLACES ━━ */}
+      {/* ━━ R3 — PLATEFORMES ━━ */}
       <section id="marketplaces" className="py-20 lg:py-28 bg-future-dusk-0 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r3.eyebrow')} heading={t('r3.heading')} intro={t('r3.intro')} />
+          <EnTete eyebrow={t('r3.eyebrow')} heading={t('r3.heading')} intro={t('r3.intro')} retour={retour} />
           <ul className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
             {PRINCIPES.map((k) => (
               <li key={k} className="flex gap-4">
@@ -445,11 +552,11 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ R4 — PRESTATAIRE, IA OU STUDIO INTERNE ━━ */}
+      {/* ━━ R4 — INTERNE OU PRESTATAIRE ━━ */}
       <section id="choisir" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r4.eyebrow')} heading={t('r4.heading')} intro={t('r4.intro')} />
-          <ul className="mt-12 grid md:grid-cols-3 gap-4 lg:gap-6">
+          <EnTete eyebrow={t('r4.eyebrow')} heading={t('r4.heading')} intro={t('r4.intro')} retour={retour} />
+          <ul className="mt-12 grid md:grid-cols-2 gap-4 lg:gap-6">
             {OPTIONS.map(({ key, icon: Icon, accent }) => (
               <li key={key} className="rounded-2xl border border-neutral-100 p-6 lg:p-8 bg-white shadow-sm">
                 <span className={`inline-flex h-11 w-11 items-center justify-center rounded-xl mb-5 ${accent}`}>
@@ -460,6 +567,16 @@ export default async function PackshotEcommerceFr() {
               </li>
             ))}
           </ul>
+          <div className="mt-4 lg:mt-6 rounded-2xl bg-very-peri-50 border border-very-peri-100 p-6 lg:p-8 flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-very-peri-600">
+              <Sparkles className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">{t('r4.ia.title')}</h3>
+              <p className="text-future-dusk-600 leading-relaxed">{t('r4.ia.text')}</p>
+              <p className="mt-3 text-future-dusk-600">{t.rich('r4.ia.lien', { lien: lien('/ia-photo-produit') })}</p>
+            </div>
+          </div>
 
           <div className="mt-14">
             <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">{t('r4.grilleTitle')}</h3>
@@ -469,7 +586,7 @@ export default async function PackshotEcommerceFr() {
                   <tr>
                     <th scope="col" className="px-6 py-3 font-semibold w-1/4">{t('r4.columns.critere')}</th>
                     <th scope="col" className="px-6 py-3 font-semibold">{t('r4.columns.prestataire')}</th>
-                    <th scope="col" className="px-6 py-3 font-semibold bg-very-peri-600">{t('r4.columns.interne')}</th>
+                    <th scope="col" className="px-6 py-3 font-semibold">{t('r4.columns.interne')}</th>
                   </tr>
                 </thead>
                 <tbody className="block md:table-row-group">
@@ -482,7 +599,7 @@ export default async function PackshotEcommerceFr() {
                         <LibelleMobile>{t('r4.columns.prestataire')}</LibelleMobile>
                         {t(`r4.rows.${c}.prestataire`)}
                       </td>
-                      <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-900 align-top py-1 md:bg-very-peri-50/60">
+                      <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-600 align-top py-1">
                         <LibelleMobile>{t('r4.columns.interne')}</LibelleMobile>
                         {t(`r4.rows.${c}.interne`)}
                       </td>
@@ -502,21 +619,22 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ R5 — AUTOMATISÉ / OPÉRATEUR ━━ */}
+      {/* ━━ R5 — AUTOMATISÉ / OPÉRATEUR, PUIS PASSAGE DE TERRAIN ━━ */}
       <section id="automatisation" className="py-20 lg:py-28 bg-future-dusk-0 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-              <EnTete eyebrow={t('r5.eyebrow')} heading={t('r5.heading')} intro={t('r5.intro')} />
+              <EnTete eyebrow={t('r5.eyebrow')} heading={t('r5.heading')} intro={t('r5.intro')} retour={retour} />
             </div>
-            <figure className="lg:col-span-5 rounded-3xl bg-white border border-neutral-100 p-4 sm:p-6">
-              <div className="relative aspect-[16/9] overflow-hidden">
+            {/* Photo 1920 × 946 dont seule la moitié gauche est utile : recadrage carré ancré à gauche, d'où des sizes doublées. */}
+            <figure className="lg:col-span-5">
+              <div className="relative aspect-square overflow-hidden rounded-3xl bg-black">
                 <Image
-                  src="/images/machines/alphashot-360/soft-bg-removal.avif"
+                  src="/images/machines/alphashot-pro-g2/session.avif"
                   alt={t('r5.imageAlt')}
                   fill
-                  sizes="(min-width: 1024px) 460px, 92vw"
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 960px, 190vw"
+                  className="object-cover object-left"
                 />
               </div>
               <figcaption className="mt-3 text-sm text-future-dusk-500 text-center">{t('r5.imageCaption')}</figcaption>
@@ -553,7 +671,22 @@ export default async function PackshotEcommerceFr() {
             </table>
           </div>
 
-          <div className="mt-8 grid md:grid-cols-2 gap-4 lg:gap-6">
+          {/* Passage validé par Sébastien (28/09/2026) : repères de terrain, chiffres et conditions dans le même paragraphe. */}
+          <div className="mt-16 max-w-3xl">
+            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 leading-tight mb-6">{t('r5.terrain.titre')}</h3>
+            <div className="space-y-5 text-lg text-future-dusk-700 leading-relaxed">
+              <p>{t('r5.terrain.p1')}</p>
+              <p>{t('r5.terrain.p2')}</p>
+              <p>{t.rich('r5.terrain.p3', { b: gras })}</p>
+              <p>{t('r5.terrain.p4')}</p>
+              <p>{t('r5.terrain.p5')}</p>
+              <p>{t.rich('r5.terrain.p6', { b: gras })}</p>
+              <p>{t('r5.terrain.p7')}</p>
+            </div>
+            <p className="mt-6 pl-4 border-l-2 border-very-peri-300 text-sm text-future-dusk-500 leading-relaxed">{t('r5.terrain.attribution')}</p>
+          </div>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-4 lg:gap-6">
             <div className="rounded-2xl bg-white border border-neutral-100 p-6">
               <GraduationCap className="h-6 w-6 text-very-peri-500 mb-3" aria-hidden="true" />
               <p className="text-future-dusk-600 leading-relaxed">{t('r5.savoirFaire')}</p>
@@ -571,11 +704,11 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ R6 — WORKFLOW ━━ */}
+      {/* ━━ R6 — EXPORTS ━━ */}
       <section id="workflow" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r6.eyebrow')} heading={t('r6.heading')} intro={t('r6.intro')} />
-          <ol className="mt-12 grid sm:grid-cols-2 lg:grid-cols-6 gap-4">
+          <EnTete eyebrow={t('r6.eyebrow')} heading={t('r6.heading')} intro={t('r6.intro')} retour={retour} />
+          <ol className="mt-12 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {FLUX.map(({ key, icon: Icon }, i) => (
               <li key={key} className="relative rounded-2xl border border-neutral-100 bg-neutral-50 p-5">
                 <div className="flex items-center justify-between mb-4">
@@ -590,34 +723,42 @@ export default async function PackshotEcommerceFr() {
             ))}
           </ol>
 
-          <div className="mt-12 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <figure className="lg:col-span-7 rounded-3xl overflow-hidden border border-neutral-100 bg-neutral-50">
-              <Image
-                src="/images/machines/alphashot-xl-g2/soft-station-capture.avif"
-                alt={t('r6.imageAlt')}
-                width={1400}
-                height={875}
-                sizes="(min-width: 1024px) 680px, 92vw"
-                className="w-full h-auto"
-              />
-              <figcaption className="px-5 py-3 text-sm text-future-dusk-500">{t('r6.imageCaption')}</figcaption>
-            </figure>
-            <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-2xl border border-neutral-200 p-6">
-                <h3 className="font-heading font-bold text-future-dusk-900 mb-4 flex items-center gap-2">
-                  <Layers className="h-5 w-5 text-very-peri-500" aria-hidden="true" />
-                  {t('r6.integrationsTitle')}
-                </h3>
-                <ul className="space-y-3">
-                  {INTEGRATIONS.map((k) => (
-                    <li key={k} className="flex gap-3 text-sm text-future-dusk-600 leading-relaxed">
-                      <Check className="h-4 w-4 mt-0.5 shrink-0 text-very-peri-500" aria-hidden="true" />
-                      <span>{t(`r6.integrations.${k}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="mt-14 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-7">
+              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">{t('r6.integrationsTitle')}</h3>
+              <ul className="grid sm:grid-cols-2 gap-4">
+                {INTEGRATIONS.map(({ key, icon: Icon }) => (
+                  <li key={key} className="rounded-2xl border border-neutral-200 p-5">
+                    <p className="flex items-center gap-2 font-heading font-bold text-future-dusk-900 mb-2">
+                      <Icon className="h-5 w-5 text-very-peri-500" aria-hidden="true" />
+                      {t(`r6.integrations.${key}.titre`)}
+                    </p>
+                    <p className="text-sm text-future-dusk-600 leading-relaxed">{t(`r6.integrations.${key}.texte`)}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-future-dusk-500 leading-relaxed">
+                <span className="font-semibold uppercase tracking-wider mr-2">{t('r6.sourcesIntegrations')}</span>
+                {SOURCES_INTEGRATIONS.map((s, i) => (
+                  <span key={s.href}>
+                    <LienExterne href={s.href}>{s.label}</LienExterne>
+                    {i < SOURCES_INTEGRATIONS.length - 1 ? ' · ' : ''}
+                  </span>
+                ))}
+              </p>
             </div>
+            <figure className="lg:col-span-5 rounded-3xl bg-neutral-50 border border-neutral-100 p-4 sm:p-6">
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <Image
+                  src="/images/machines/alphashot-360/soft-bg-removal.avif"
+                  alt={t('r6.imageAlt')}
+                  fill
+                  sizes="(min-width: 1024px) 460px, 92vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-future-dusk-500 text-center">{t('r6.imageCaption')}</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -625,7 +766,7 @@ export default async function PackshotEcommerceFr() {
       {/* ━━ R7 — QUEL STUDIO POUR QUELS PRODUITS ━━ */}
       <section id="studios" className="py-20 lg:py-28 bg-future-dusk-0 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r7.eyebrow')} heading={t('r7.heading')} intro={t('r7.intro')} />
+          <EnTete eyebrow={t('r7.eyebrow')} heading={t('r7.heading')} intro={t('r7.intro')} retour={retour} />
           <div className="mt-12 rounded-3xl bg-white border border-neutral-200 overflow-hidden">
             <table className="w-full text-sm text-left">
               <thead className="hidden md:table-header-group bg-future-dusk-900 text-white">
@@ -683,10 +824,10 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ R8 — COÛT, FINANCEMENT, FORMATION, ACCOMPAGNEMENT ━━ */}
+      {/* ━━ R8 — BUDGET, FINANCEMENT, FORMATION, ACCOMPAGNEMENT ━━ */}
       <section id="cout-complet" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <EnTete eyebrow={t('r8.eyebrow')} heading={t('r8.heading')} />
+          <EnTete eyebrow={t('r8.eyebrow')} heading={t('r8.heading')} retour={retour} />
           <div className="mt-12 grid md:grid-cols-2 gap-4 lg:gap-6">
             <div className="rounded-3xl bg-future-dusk-900 text-white p-6 lg:p-8 flex flex-col">
               <Calculator className="h-7 w-7 text-very-peri-300 mb-4" aria-hidden="true" />
@@ -731,7 +872,10 @@ export default async function PackshotEcommerceFr() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12">
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-              <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em] mb-4 block">FAQ</span>
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <span className="text-xs font-semibold text-very-peri-500 uppercase tracking-[0.2em]">FAQ</span>
+                <RetourSommaire label={retour} />
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1]">{sansCesure(t('faq.heading'))}</h2>
             </div>
             <div className="lg:col-span-8 space-y-4">
@@ -756,31 +900,25 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      {/* ━━ CTA FINAL ━━ */}
-      <section className="py-20 lg:py-28 bg-black text-white relative overflow-hidden">
+      {/* ━━ DEMANDE DE DÉMONSTRATION ━━ Cible du bouton du hero ; le CTA de l'en-tête du site n'est pas modifié. */}
+      <section id={ANCRE_DEMO} className="py-20 lg:py-28 bg-black text-white relative overflow-hidden scroll-mt-16">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-center mb-12 lg:mb-16">{t('cta.heading')}</h2>
-          <div className="grid lg:grid-cols-5 gap-4 lg:gap-8">
+          <div className="grid lg:grid-cols-5 gap-4 lg:gap-8 items-start">
             <div className="lg:col-span-3 bg-white text-future-dusk-900 rounded-3xl p-4 sm:p-6 lg:p-10">
-              <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-6">{t('cta.formTitle')}</h3>
-              <ContactForm locale="fr" compact defaultRequestType="demo" />
+              <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('cta.formTitle')}</h3>
+              <p className="mt-2 mb-6 text-sm text-future-dusk-600 leading-relaxed">{t('cta.demoNote')}</p>
+              <ContactForm locale="fr" compact defaultRequestType="demo" hideRequestType />
             </div>
-            <div className="lg:col-span-2 flex flex-col gap-4 lg:gap-8">
-              <div className="bg-white/5 rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">{t('cta.roiTitle')}</h3>
-                  <p className="text-future-dusk-300 mb-8 leading-relaxed">{t('cta.roiText')}</p>
-                </div>
-                <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-6 h-11 text-sm sm:text-base w-fit">
-                  <Link href="/calculateur-roi">
-                    {t('cta.roiCta')} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="bg-gradient-to-br from-very-peri-500/20 to-very-peri-600/10 rounded-3xl p-5 sm:p-8 border border-very-peri-400/20">
-                <p className="text-very-peri-200 text-sm leading-relaxed">{t('cta.demoNote')}</p>
-              </div>
+            <div className="lg:col-span-2 bg-white/5 rounded-3xl p-5 sm:p-8 border border-white/10">
+              <h3 className="text-xl font-heading font-bold mb-3">{t('cta.roiTitle')}</h3>
+              <p className="text-sm text-future-dusk-200 mb-6 leading-relaxed">{t('cta.roiText')}</p>
+              <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-6 h-11 text-sm sm:text-base w-fit">
+                <Link href="/calculateur-roi">
+                  {t('cta.roiCta')} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

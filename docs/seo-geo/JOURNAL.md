@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — intégration du retour de Sébastien sur `/fr/packshot-e-commerce` · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR | **Base** : `main` `b26f6e9` (post-#40/#41), fusionnée dans la branche en `4683dfa`
+
+**Quoi** — Retour de Sébastien (fichier `2026-09-28-instructions-claude-packshot-e-commerce.md` et 5 photos) intégré dans la version FR : nouveau H1, hero local (texte avant galerie sur mobile), repères « En bref », sommaire reformulé avec retour au sommaire par section, galerie des 5 vues de lunettes dans `#fiche-produit`, section interne / prestataire réécrite (IA transversale, option mixte), passage de terrain validé dans `#automatisation` avec photo de studio en situation, exports (export, module, abonnement, configuration), unités de cadence, budget, FAQ (9 questions), bouton de démonstration relié au formulaire de la page. Correction ciblée de l'Alphastudio Compact dans les données machines.
+
+**Pourquoi** — Retour de Sébastien du 28/09 sur la Preview ; consignes de Laurent (« GO — reprise F5 après fusion #40 et #41 ») : aucune caricature du prestataire, chiffres de terrain attribués et conditionnés, « Google Merchant Center » en toutes lettres, règle Amazon `contains-synthetic-performer` limitée aux personnes photoréalistes entièrement synthétiques.
+
+**Fichiers** — `messages/fr.json` (bloc `packshotEcommerce` seul, lignes 1219-1741), `components/landings/PackshotEcommerceFr.tsx`, `components/forms/ContactForm.tsx` (prop optionnelle `hideRequestType`, défaut `false`), `components/calculators/ROICalculator/lib/machines.ts` et `components/machine-selector/lib/machines.ts` (entrée `alphastudio-compact-v2` seule), `components/calculators/ROICalculator/lib/machineSelector.ts` (commentaire), `public/images/packshot-e-commerce/` (5 AVIF, 70 Ko au total).
+
+**Décisions sur le retour** —
+- Passage de terrain repris mot pour mot, une seule substitution demandée par Laurent : « studio PackshotCreator-Orbitvu » devient « studio automatisé Orbitvu ». Attribution : « photographe et président de Sysnext (PackshotCreator) » ; « directeur » ne figure nulle part dans le dépôt, « Président » figure dans les mentions légales. Aucune relecture de toute la page n'est attribuée à Sébastien.
+- 5 photos : une seule monture ; trois quarts en vue principale, puis face, profil, branches repliées, gros plan de la charnière. Lazy, aucun préchargement.
+- Étude De, Hu et Rahman retirée (corrélation sans décision applicable) ; la source et le compteur passent de 5 à 4.
+- Sommaire compact fixe écarté : l'en-tête du site est déjà `sticky` ; un lien « Retour au sommaire » par section le remplace.
+- Formulaire : type de demande fixé à « démonstration » par une prop optionnelle ; les autres usages de `ContactForm` sont inchangés (valeur par défaut `false`).
+
+**Corrections factuelles** —
+- Alphastudio Compact : 80 × 70 × 130 cm et 150 produits par jour (orbitvu.com et orbitvu.fr, relevé du 28/09) au lieu de 100 × 70 × 190 cm (plus haut que l'appareil, 183 cm) et 180. Axes non précisés par Orbitvu : ordre de publication conservé dans `dimensionsMax` (l, w, h). Rayon : fiche `/studio-photo/alphastudio-compact-v2` FR, EN, de-ch (FAQ visible et JSON-LD, statistiques clés), sélecteur `/studio-photo/selecteur-machines`, moteur et assistant ROI (`capaciteJour`), `lib/roiChat/*`, pages `/solutions/[slug]` et `/industrie-defense` qui lisent `machines.ts`. La catégorie « grand » du sélecteur reste compatible (comparaison triée : [80, 70, 60] contre [130, 80, 70]).
+- Amazon : le minimum de 500 px vaut pour toutes les images (G1881), le fond blanc et les 85 % pour l'image principale ; « bordures de l'image principale » retiré (page US G75, non citée). FAQ : « plusieurs images en plus de l'image principale, ainsi qu'une vidéo » (G1881 FR : « au moins six images supplémentaires » ; blog US : « at least six » au total).
+- Zalando (mis à jour le 31/08/2026) : fond gris clair ajouté par Zalando, 20 Mo, exception marques de créateurs (1 800 × 2 600 px). Shopify : jusqu'à 5 000 × 5 000 px, « pas de minimum » retiré (non écrit par la source).
+- Modules Orbitvu (manuel mis à jour le 11/09/2026) : Magento 2 ≥ 2.2.0, PrestaShop 1.7.x, WooCommerce en SUN ou auto-hébergé ; Shopware 6 et Shopify en SUN seulement ; modules SUN inclus dès la formule 6G, Shopify payant à part ; auto-hébergé sans vidéo, licence du lecteur ou version de base gratuite.
+
+**Vérifié** — `npx tsc --noEmit` ; eslint des 6 fichiers modifiés ; `node scripts/seo/verifier-json.mjs` (186 fichiers) ; 309 messages ICU compilés ; vitest 223/223 ; `npx next build`. Build local (Chromium, 1440 × 900 et 390 × 844) : un H1, ordre mobile H1 → intro → galerie, 0 ancre cassée, 9 titres ciblés visibles sous l'en-tête, FAQ visible = JSON-LD (9/9), 0 erreur console, 0 réponse 4xx, CLS 0, aucun débordement, cibles ≥ 24 px, contrastes ≥ 5,9:1, aucun claim interdit. Performance (médiane de 3) : desktop LCP 340 ms (324 avant), mobile bridé 1 408 ms (1 448 avant), poids initial mobile 618 Ko (606 avant). e2e : 11 échecs sur des pages non touchées (titres et descriptions EN, `/fr/industrie`, hreflang `packshot-bijoux`, débordement de `/fr`), plus `machine-selector.spec.ts` qui attend des textes absents du code.
+**Supposé** — Le libellé « président » convient pour une attribution éditoriale [non vérifié auprès de Sébastien, qui n'est pas sollicité] ; la page Shopify FR (403 au script) dit la même chose que la page EN contrôlée.
+**Non regardé** — Rendu derrière Cloudflare ; Preview (SSO) ; envoi réel du formulaire ; versions EN et de-ch de la landing (gabarit partagé non modifié).
+
+**Suite** — Ouverts hors périmètre : Alphastudio XXL affiché 100 × 70 × 190 cm dans `machines.ts` et `messages/*.json` contre 190 × 90 × 100 cm chez Orbitvu (non corrigé par analogie) ; fiche Compact : « Hauteur un peu juste pour mannequins vivants adultes » et « retour sur investissement en 12 à 18 mois » inchangés ; le sélecteur affiche `capaciteJour` en « photos/j » alors qu'Orbitvu parle de produits par jour ; Zalando publie aussi une politique d'étiquetage des contenus générés par IA, non ajoutée (consigne : aucun autre contenu IA modifié).
+
+---
+
 ## 2026-09-28 · #40 fusionnée et contrôlée en production (intégrations obsolètes) · Claude de Laurent
 
 **Chantier** : nettoyage, hors chantier numéroté | **PR** : #40 fusionnée | **Commit de fusion** : `15469e5` (`main`), le 28/09/2026 à 15:51:29 UTC | **Base avant fusion** : `809f61f`

@@ -158,8 +158,8 @@ function categoryToDimensions(category: ProductSizeCategory): Dimensions {
       // Machines: Alphashot Pro G2 (35×35×40), XL (50×30×70)
       return { l: 35, w: 30, h: 40 };
     case 'grand':
-      // Machines: Alphastudio Compact/XXL (100×70×190)
-      // Dimensions compatibles avec tri [80, 70, 60] vs machine [190, 100, 70]
+      // Machines: Alphastudio Compact (80×70×130), XXL
+      // Dimensions compatibles avec tri [80, 70, 60] vs Compact trié [130, 80, 70]
       return { l: 80, w: 60, h: 70 };
     case 'tres-grand':
       // Machines: Fashion Studio (200×100×200), E-Comm (300×300×200)

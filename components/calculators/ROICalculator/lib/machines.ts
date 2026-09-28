@@ -615,14 +615,14 @@ export const MACHINES: Machine[] = [
     id: 'alphastudio-compact-v2',
     nom: 'Alphastudio Compact Pro v2',
     prix: 36350,
-    capaciteJour: 180,
-    tailleMax: '100×70×190 cm',
+    capaciteJour: 150,
+    tailleMax: '80×70×130 cm',
     poidsMax: '100 kg',
     tailleCategories: ['grand'],
     useCases: ['Valises', 'Petits meubles', 'Sacs', 'Outils'],
     maintenanceAnnuelle: 0,
     consommablesAnnuels: 800,
-    dimensionsMax: { l: 100, w: 70, h: 190 },
+    dimensionsMax: { l: 80, w: 70, h: 130 },
     poidsMaxKg: 100,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
@@ -641,7 +641,7 @@ export const MACHINES: Machine[] = [
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphastudio Compact Pro v2 ?', en: 'What types of products can be photographed with the Alphastudio Compact Pro v2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphastudio Compact Pro v2 fotografieren?' },
-        answer: { fr: 'L\'Alphastudio Compact Pro v2 accueille des produits jusqu\'à 100x70x190 cm et 100 kg : valises, petits meubles, sacs de grande taille, outils et équipements sportifs. Grâce à la Magic Table, les produits peuvent être suspendus sans fond visible pour un rendu professionnel. Il produit packshots, vues 360 et vidéos avec un éclairage studio complet.', en: 'The Alphastudio Compact Pro v2 accommodates products up to 100x70x190 cm and 100 kg: suitcases, small furniture, large bags, tools and sports equipment. Thanks to the Magic Table, products can be suspended without a visible background for a professional result. It produces packshots, 360 views and videos with complete studio lighting.', 'de-ch': 'Der Alphastudio Compact Pro v2 nimmt Produkte bis 100x70x190 cm und 100 kg auf: Koffer, kleine Möbel, grosse Taschen, Werkzeuge und Sportgeräte. Dank der Magic Table lassen sich Produkte ohne sichtbaren Hintergrund schweben lassen, für ein professionelles Ergebnis. Er erzeugt Packshots, 360-Grad-Ansichten und Videos mit vollständiger Studiobeleuchtung.' },
+        answer: { fr: 'L\'Alphastudio Compact Pro v2 accueille des produits jusqu\'à 80x70x130 cm et 100 kg : valises, petits meubles, sacs de grande taille, outils et équipements sportifs. Grâce à la Magic Table, les produits peuvent être suspendus sans fond visible pour un rendu professionnel. Il produit packshots, vues 360 et vidéos avec un éclairage studio complet.', en: 'The Alphastudio Compact Pro v2 accommodates products up to 80x70x130 cm and 100 kg: suitcases, small furniture, large bags, tools and sports equipment. Thanks to the Magic Table, products can be suspended without a visible background for a professional result. It produces packshots, 360 views and videos with complete studio lighting.', 'de-ch': 'Der Alphastudio Compact Pro v2 nimmt Produkte bis 80x70x130 cm und 100 kg auf: Koffer, kleine Möbel, grosse Taschen, Werkzeuge und Sportgeräte. Dank der Magic Table lassen sich Produkte ohne sichtbaren Hintergrund schweben lassen, für ein professionelles Ergebnis. Er erzeugt Packshots, 360-Grad-Ansichten und Videos mit vollständiger Studiobeleuchtung.' },
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphastudio Compact Pro v2 ?', en: 'How much space is needed to install the Alphastudio Compact Pro v2?', 'de-ch': 'Wie viel Platz wird für die Installation des Alphastudio Compact Pro v2 benötigt?' },
@@ -653,11 +653,11 @@ export const MACHINES: Machine[] = [
       },
       {
         question: { fr: 'Quelles sont les options de financement pour l\'Alphastudio Compact Pro v2 ?', en: 'What are the financing options for the Alphastudio Compact Pro v2?', 'de-ch': 'Welche Finanzierungsmöglichkeiten gibt es für den Alphastudio Compact Pro v2?' },
-        answer: { fr: 'L\'Alphastudio Compact Pro v2 est disponible en leasing, location avec option d\'achat ou acquisition directe. Avec 180 produits par jour et la capacité de traiter des objets de grande taille et lourds, il représente un investissement stratégique. Le retour sur investissement est souvent atteint en 12 à 18 mois pour les entreprises traitant plus de 5 000 références par an.', en: 'The Alphastudio Compact Pro v2 is available through leasing, rental with purchase option or direct acquisition. With 180 products per day and the ability to handle large and heavy objects, it represents a strategic investment. Return on investment is often achieved in 12 to 18 months for businesses processing more than 5,000 references per year.', 'de-ch': 'Der Alphastudio Compact Pro v2 ist per Leasing, Miete mit Kaufoption oder Direktkauf erhältlich. Mit 180 Produkten pro Tag und der Fähigkeit, grosse und schwere Objekte zu verarbeiten, ist er eine strategische Investition. Der Return on Investment wird bei Unternehmen mit über 5 000 Artikeln pro Jahr oft in 12 bis 18 Monaten erreicht.' },
+        answer: { fr: 'L\'Alphastudio Compact Pro v2 est disponible en leasing, location avec option d\'achat ou acquisition directe. Avec 150 produits par jour et la capacité de traiter des objets de grande taille et lourds, il représente un investissement stratégique. Le retour sur investissement est souvent atteint en 12 à 18 mois pour les entreprises traitant plus de 5 000 références par an.', en: 'The Alphastudio Compact Pro v2 is available through leasing, rental with purchase option or direct acquisition. With 150 products per day and the ability to handle large and heavy objects, it represents a strategic investment. Return on investment is often achieved in 12 to 18 months for businesses processing more than 5,000 references per year.', 'de-ch': 'Der Alphastudio Compact Pro v2 ist per Leasing, Miete mit Kaufoption oder Direktkauf erhältlich. Mit 150 Produkten pro Tag und der Fähigkeit, grosse und schwere Objekte zu verarbeiten, ist er eine strategische Investition. Der Return on Investment wird bei Unternehmen mit über 5 000 Artikeln pro Jahr oft in 12 bis 18 Monaten erreicht.' },
       },
     ],
     keyStats: [
-      { value: '180', label: { fr: 'produits/jour', en: 'products/day', 'de-ch': 'Produkte/Tag' }, description: { fr: 'Capacité de production quotidienne pour grands produits', en: 'Daily production capacity for large products', 'de-ch': 'Tägliche Produktionskapazität für grosse Produkte' } },
+      { value: '150', label: { fr: 'produits/jour', en: 'products/day', 'de-ch': 'Produkte/Tag' }, description: { fr: 'Capacité de production quotidienne pour grands produits', en: 'Daily production capacity for large products', 'de-ch': 'Tägliche Produktionskapazität für grosse Produkte' } },
       { value: '100kg', label: { fr: 'charge max', en: 'max load', 'de-ch': 'max. Last' }, description: { fr: 'Plateau tournant supportant jusqu\'à 100 kg', en: 'Turntable supporting up to 100 kg', 'de-ch': 'Drehteller mit Tragfähigkeit bis 100 kg' } },
       { value: '100%', label: { fr: 'automatisé', en: 'automated', 'de-ch': 'automatisiert' }, description: { fr: 'Automatisation complète avec Magic Table intégrée', en: 'Full automation with integrated Magic Table', 'de-ch': 'Vollständige Automatisierung mit integrierter Magic Table' } },
     ],
