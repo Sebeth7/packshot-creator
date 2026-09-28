@@ -2557,9 +2557,10 @@
         "title": "Cookies analytiques (Google Analytics 4)",
         "description": "Mesure d'audience anonymisee via Google Analytics (_ga, _ga_*). IP anonymisee. Duree : 13 mois max. Charges uniquement apres votre consentement."
       },
-      "marketing": {
-        "title": "Cookies marketing",
-        "description": "Aucun cookie marketing n'est utilise actuellement sur ce site."
+      "externalMedia": {
+        "title": "Contenus externes (vidéos YouTube)",
+        "description": "Certains articles du blog intègrent des vidéos hébergées par YouTube (Google). À l'affichage de la page, seule une vignette locale est présentée : aucune ressource n'est chargée depuis YouTube. Le lecteur, servi depuis youtube-nocookie.com, n'est chargé qu'après votre accord : au clic sur « Autoriser et lire la vidéo », ou au clic sur une vidéo si vous avez accepté la catégorie « Contenus externes » dans le gestionnaire de cookies. Une fois le lecteur chargé, YouTube reçoit votre adresse IP et peut utiliser des cookies ou des technologies similaires. Leur usage est décrit dans les règles de confidentialité de Google.",
+        "linkLabel": "Règles de confidentialité de Google"
       },
       "managePreferences": "Vous pouvez modifier vos preferences a tout moment via le lien \"Gerer les cookies\" en bas de chaque page."
     },
