@@ -1882,9 +1882,7 @@
     "necessary": "Cookies essentiels",
     "necessaryDesc": "Session, préférences de langue. Toujours actifs.",
     "analytics": "Cookies analytiques",
-    "analyticsDesc": "Google Analytics : mesure d'audience anonymisée.",
-    "marketing": "Cookies marketing",
-    "marketingDesc": "Aucun cookie marketing n'est utilisé actuellement."
+    "analyticsDesc": "Google Analytics : mesure d'audience anonymisée."
   },
   "about": {
     "meta": {
