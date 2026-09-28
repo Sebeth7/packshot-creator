@@ -1215,82 +1215,525 @@
   },
   "packshotEcommerce": {
     "meta": {
-      "title": "E-commerce Packshot | Professional Product Photos at Scale",
-      "description": "Automated e-commerce photo studio. 500+ products/day, Amazon-ready white background, interactive 360° photos. ROI in 4-8 months. 80% cost reduction."
+      "title": "E-commerce Packshots: Consistent Product Photos at Scale",
+      "description": "Producing consistent e-commerce packshots in-house: automated studio, workflow to the product page, marketplace requirements and full cost."
     },
+    "breadcrumb": "E-commerce packshots",
     "hero": {
-      "title": "E-commerce Packshot: Professional Product Photos at Scale",
-      "subtitle": "Produce thousands of studio-quality product visuals in-house, at a fraction of the cost.",
-      "cta": "Get a quote",
-      "ctaSecondary": "View studios"
-    },
-    "benefits": {
-      "heading": "Why bring your e-commerce photo production in-house?",
-      "item1": {
-        "title": "Volume production: 500+ products/day",
-        "description": "Complete photo workflow automation: positioning, lighting, capture, clipping and export in <bold>seconds</bold>."
-      },
-      "item2": {
-        "title": "Amazon-ready white background",
-        "description": "<bold>IQ Mask</bold> automatic clipping: visuals compliant with Amazon, Zalando, and <bold>all marketplace</bold> requirements."
-      },
-      "item3": {
-        "title": "Interactive 360° photography",
-        "description": "Boost <bold>conversions</bold> with 360° visuals your customers can rotate on your site."
-      },
-      "item4": {
-        "title": "80% cost reduction",
-        "description": "Go from EUR 5-15 per photo with an external studio to <bold>less than EUR 1</bold> per image in-house with an automated studio."
-      },
-      "item5": {
-        "title": "Measurable ROI",
-        "description": "Return on investment in <bold>4 to 8 months</bold>. Use our ROI calculator for a personalized estimate."
+      "badge": "E-commerce and marketplaces",
+      "title": "E-commerce packshots: producing consistent product photos",
+      "subtitle": "An e-commerce packshot shows the product as it is sold, on a neutral background. Across a catalog, every new product must get the same lighting, the same framing and faithful color rendering. This consistency is what makes items easy to compare.",
+      "role": "PackshotCreator supports companies that organize this production in-house: we distribute Orbitvu automated studios in France and Switzerland, install them on your premises and train your teams. We do not provide photography services.",
+      "ctaPrimary": "Request a demo",
+      "ctaSecondary": "Find the right studio",
+      "mosaicCaption": "Orbitvu examples: cosmetics (Alphashot Pro G2), tools (Alphastudio Compact), furniture (Furniture Studio).",
+      "alts": {
+        "mascara": "Red mascara photographed on a white background",
+        "karcher": "Pressure washer photographed on a white background",
+        "eyeshadow": "Eyeshadow palette photographed on a white background",
+        "chair": "Red armchair with gold legs photographed on a white background"
       }
     },
-    "stats": {
-      "stat1": {
-        "value": "500+",
-        "label": "products photographed per day"
+    "bref": {
+      "label": "In brief",
+      "lead": "A consistent series is prepared before the shoot: choice of angles, saved settings, quality check and export formats suited to each platform.",
+      "reperes": {
+        "vues": {
+          "titre": "Views",
+          "texte": "A main view of the whole product, then the angles, details and size references that answer the shopper's questions."
+        },
+        "reglages": {
+          "titre": "Settings",
+          "texte": "Lighting, framing and processing saved once, then reused for every product in the same family."
+        },
+        "exports": {
+          "titre": "Exports",
+          "texte": "Each channel receives its own dimensions, background and file naming, prepared by export profiles rather than by hand."
+        },
+        "operateur": {
+          "titre": "The operator",
+          "texte": "They prepare the product, choose the right settings and check the result; the studio runs the planned shots and processing."
+        }
       },
-      "stat2": {
-        "value": "80%",
-        "label": "cost reduction"
-      },
-      "stat3": {
-        "value": "4-8",
-        "label": "months to return on investment"
+      "guide": "Detailed definition, uses and conventions of packshots: read our <lien>packshot photography guide</lien>.",
+      "logos": "They produce their packshots with us"
+    },
+    "sommaire": {
+      "titre": "Contents",
+      "retour": "Back to contents",
+      "serie": "Keeping photos consistent",
+      "ficheProduit": "Which views to plan?",
+      "marketplaces": "Platform requirements",
+      "choisir": "In-house or outsourced",
+      "automatisation": "What the studio automates",
+      "workflow": "Exporting to your tools",
+      "studios": "Choosing your studio",
+      "coutComplet": "Budget and support",
+      "faq": "Frequently asked questions"
+    },
+    "r1": {
+      "eyebrow": "The series",
+      "heading": "An e-commerce packshot is judged on the series, not on a single photo",
+      "p1": "On a category page, shoppers compare. According to the Nielsen Norman Group, consistent images (background, orientation, lighting, scale) are easy to scan and compare. It is the consistency of the whole set, more than one attractive photo, that makes a catalog easy to read.",
+      "p2": "With a manual workflow, this consistency relies on documented settings applied at every session. An automated studio saves them in a template (lighting, camera settings, processing) that is replayed at every shot: the same result is easier to reproduce over time and from one operator to another.",
+      "serieCaption": "A flat-lay series: same background, same light and same framing from one garment to the next.",
+      "alts": {
+        "blouse": "Pale yellow children's sweatshirt photographed flat on a white background",
+        "coat": "Pink coat photographed flat on a white background",
+        "dress": "Yellow dress photographed flat on a white background",
+        "dungarees": "Denim playsuit photographed flat on a white background"
       }
     },
-    "machines": {
-      "heading": "Recommended systems for e-commerce",
-      "subtitle": "<bold>Versatile</bold> studios for all product types",
-      "cta": "Request a quote"
+    "r2": {
+      "eyebrow": "The product page",
+      "heading": "What a product page should show",
+      "intro": "A single view rarely answers a shopper's questions (Nielsen Norman Group). It is better to think in types of views than in number of images. Example with a single pair of glasses photographed from five angles: each view answers a different question.",
+      "vues": {
+        "troisQuarts": {
+          "titre": "Main view, three-quarter angle",
+          "texte": "the shape of the front and the volume of the temples, in a single image.",
+          "alt": "Sunglasses with a black frame and orange lenses, three-quarter view, temples open"
+        },
+        "face": {
+          "titre": "Front view",
+          "texte": "the width, symmetry and shape of the lenses.",
+          "alt": "The same pair of glasses seen from the front, temples open"
+        },
+        "profil": {
+          "titre": "Side view",
+          "texte": "the length and design of the temple.",
+          "alt": "The same pair of glasses seen from the side, temple open"
+        },
+        "repliees": {
+          "titre": "Temples folded",
+          "texte": "the closed frame; the measurements engraved inside the temple appear through the lens.",
+          "alt": "The same pair of glasses seen from the front, temples folded, with the measurements engraved on the temple appearing through the lens"
+        },
+        "charniere": {
+          "titre": "Close-up",
+          "texte": "the metal hinge, the logo and the finish of the frame.",
+          "alt": "Close-up of the metal hinge and the X-shaped logo on the frame"
+        }
+      },
+      "complementsTitre": "Depending on the product, also plan for",
+      "complements": {
+        "echelle": {
+          "titre": "Scale",
+          "texte": "product in hand, worn, next to a familiar object, or a dimensioned image."
+        },
+        "variantes": {
+          "titre": "Variants",
+          "texte": "each color or finish must match the item sold; a recolored variant is only relevant if that accuracy is checked."
+        },
+        "colis": {
+          "titre": "Box contents",
+          "texte": "without an image of the accessories supplied, many participants in Baymard Institute tests did not know whether they were included."
+        },
+        "zoom": {
+          "titre": "Zoom",
+          "texte": "in Baymard Institute tests, insufficient resolution or zoom led participants to abandon a product."
+        },
+        "mouvement": {
+          "titre": "360° and video",
+          "texte": "useful when the shape or the way a product works is easier to understand in motion; for the Nielsen Norman Group, 360° is only worthwhile if it is flawless."
+        }
+      },
+      "sources": "Sources for the studies cited"
+    },
+    "r3": {
+      "eyebrow": "Platforms",
+      "heading": "Which images for Amazon, Google and Zalando?",
+      "intro": "Background, dimensions, framing: requirements vary by platform. Here are the points to check before export.",
+      "principes": {
+        "fidelite": {
+          "title": "Accuracy",
+          "portee": "Amazon, Google Merchant Center",
+          "text": "Images show the product actually sold, in its real color and finish."
+        },
+        "entier": {
+          "title": "Whole product",
+          "portee": "Main image · Amazon, Google Merchant Center",
+          "text": "The entire product, as a single unit (except bundles). Google Merchant Center also asks for little or no staging."
+        },
+        "ajout": {
+          "title": "Nothing added",
+          "portee": "Google Merchant Center; Amazon in part",
+          "text": "Google Merchant Center rejects promotional elements, watermarks, added logos and borders on the main image. Amazon excludes claims and badges from all images."
+        },
+        "definition": {
+          "title": "Resolution",
+          "portee": "Amazon, Google Merchant Center",
+          "text": "Enough pixels for zoom, without artificially enlarging a small image."
+        },
+        "fond": {
+          "title": "White background",
+          "portee": "Amazon, Zalando",
+          "text": "Required for the Amazon main image and for Zalando packshots; recommended, but not required, by Google Merchant Center."
+        },
+        "ia": {
+          "title": "AI-generated images",
+          "portee": "Google Merchant Center, Amazon",
+          "text": "Google Merchant Center requires any image created with generative AI to contain metadata indicating this. Amazon asks for the contains-synthetic-performer tag only for images showing photorealistic people entirely generated by AI."
+        }
+      },
+      "tableTitle": "Figures checked on September 28, 2026",
+      "tableNote": "These values change: check the source before each publication.",
+      "columns": {
+        "plateforme": "Platform",
+        "fond": "Background",
+        "definition": "Resolution",
+        "noter": "Notes"
+      },
+      "rows": {
+        "amazon": {
+          "nom": "Amazon",
+          "fond": "Main image: pure white (RGB 255, 255, 255), required",
+          "definition": "All images: minimum 500 px on the longest side, required; over 1,000 px recommended, to enable zoom",
+          "noter": "Main image: product fills 85% of the image. JPEG recommended; TIFF, PNG and non-animated GIF accepted"
+        },
+        "google": {
+          "nom": "Google Merchant Center",
+          "fond": "Solid white or transparent, recommended",
+          "definition": "Minimum 500 × 500 px from January 31, 2027; around 1,500 × 1,500 px recommended",
+          "noter": "Product fills 75 to 90% of the image, advised"
+        },
+        "zalando": {
+          "nom": "Zalando",
+          "fond": "Packshots: white #FFFFFF, required; Zalando then adds a light gray background",
+          "definition": "Portrait 1:1.44; minimum 762 × 1,100 px, 1,801 × 2,600 px advised (minimum 1,800 × 2,600 px for designer brands)",
+          "noter": "JPEG, sRGB, 20 MB maximum; guidelines updated on August 31, 2026"
+        },
+        "shopify": {
+          "nom": "Shopify",
+          "fond": "No requirement",
+          "definition": "Up to 5,000 × 5,000 px; 2,048 × 2,048 px advised for a square image",
+          "noter": "Same aspect ratio advised for main images"
+        }
+      },
+      "sources": "Official sources",
+      "lienAmazon": "Selling mainly on Amazon? See our guidelines for <lien>Amazon packshots</lien>."
+    },
+    "r4": {
+      "eyebrow": "Organization",
+      "heading": "Producing packshots in-house or using a service provider?",
+      "intro": "A service provider and an in-house team can both produce well-crafted packshots. The choice depends mainly on how often new products arrive, on product logistics and on the resources available.",
+      "options": {
+        "prestataire": {
+          "title": "Using a service provider",
+          "text": "The provider organizes production according to your specifications: scheduled sessions, visual references, checks on each series. This setup works well for campaigns, on-model photos and occasional or irregular needs. Products are shipped, collected or photographed on site, depending on the provider."
+        },
+        "interne": {
+          "title": "Producing in-house",
+          "text": "New products are photographed as they arrive, with saved settings and a trained operator. This setup suits a steady flow and products you prefer to keep on site. It requires a workspace and equipment that is purchased or financed."
+        }
+      },
+      "ia": {
+        "title": "AI plays a role in both setups",
+        "text": "Background removal, retouching, variants, staged scenes: service providers and in-house teams can both rely on AI tools. A real photo remains the reference for the product; the more an image is generated, the more its accuracy to the item sold must be checked.",
+        "lien": "See how <lien>AI applies to product photography</lien>."
+      },
+      "grilleTitle": "Comparing the two setups",
+      "columns": {
+        "critere": "Criterion",
+        "prestataire": "Service provider",
+        "interne": "In-house production"
+      },
+      "rows": {
+        "volume": {
+          "critere": "Volume",
+          "prestataire": "Capacity and production terms agreed with the provider",
+          "interne": "A steady flow that makes it possible to set up a production station"
+        },
+        "renouvellement": {
+          "critere": "Catalog renewal",
+          "prestataire": "Sessions or campaigns to schedule around new products",
+          "interne": "New products added as they arrive"
+        },
+        "delai": {
+          "critere": "Lead time",
+          "prestataire": "Agreed lead time and production slots",
+          "interne": "Schedule managed by the team, based on its availability"
+        },
+        "coherence": {
+          "critere": "Consistency",
+          "prestataire": "Specifications, visual references and checks on each series",
+          "interne": "Saved settings, consistent positioning and quality checks"
+        },
+        "logistique": {
+          "critere": "Logistics",
+          "prestataire": "Shipping, collection or on-site work, depending on the provider",
+          "interne": "Products stay on site, which helps especially if they are fragile, heavy or confidential"
+        },
+        "equipe": {
+          "critere": "Team and space",
+          "prestataire": "Production organized by the provider",
+          "interne": "Workspace and a trained operator to plan for"
+        },
+        "cout": {
+          "critere": "Cost",
+          "prestataire": "Agreed price, logistics and any reshoots",
+          "interne": "Equipment or financing, operator time, software, training and space"
+        }
+      },
+      "note": "No threshold applies to everyone: it is the combination of criteria that decides. A mixed setup is possible: routine packshots in-house, campaigns or specific shoots handled by a service provider.",
+      "liens": "More on this choice: <lien>packshot service provider or in-house studio</lien>. To put figures on your situation: the <lien2>return-on-investment calculator</lien2>."
+    },
+    "r5": {
+      "eyebrow": "Automation",
+      "heading": "What the studio automates, what stays with the operator",
+      "intro": "An Orbitvu studio combines software-controlled lighting, a remotely controlled camera, a platform (rotating on most models) and the Orbitvu Station software.",
+      "columns": {
+        "etape": "Step",
+        "auto": "What the studio does",
+        "humain": "What the operator does"
+      },
+      "rows": {
+        "preparation": {
+          "etape": "Preparation",
+          "auto": "Nothing: this step remains manual",
+          "humain": "Unpack, clean, remove creases, shape the product"
+        },
+        "reglages": {
+          "etape": "Settings",
+          "auto": "Lighting and camera parameters recalled by the template",
+          "humain": "Choose the template suited to the product"
+        },
+        "capture": {
+          "etape": "Shooting",
+          "auto": "Triggering, platform rotation, series of angles; 360° or video depending on the studio",
+          "humain": "Place the product and start the sequence"
+        },
+        "detourage": {
+          "etape": "Background removal",
+          "auto": "Background removed at capture on backlit studios, or by AI in the software",
+          "humain": "Check difficult cases: glass, reflections, fine elements"
+        },
+        "miseEnForme": {
+          "etape": "Formatting",
+          "auto": "Cropping, alignment, margins and dimensions applied automatically",
+          "humain": "Approve the result in preview"
+        },
+        "export": {
+          "etape": "Naming and export",
+          "auto": "File name taken from the product code, export to the planned destinations",
+          "humain": "Check before publication"
+        }
+      },
+      "imageAlt": "An operator places a pair of sunglasses in an Orbitvu automated photo studio",
+      "imageCaption": "At the shooting station, the operator places the product in the Orbitvu studio, which then runs through the planned angles.",
+      "terrain": {
+        "titre": "Where does an automated studio really save time?",
+        "p1": "Taking a photo takes less than a second. What makes producing a packshot take longer is mostly the work around it: preparing the product, repositioning it, adjusting the lighting, then processing the images and preparing the files.",
+        "p2": "Unpacking, dusting, removing creases or shaping the product remains manual work. But each new angle can also require adjusting the settings again. A watch, for example, can be perfectly lit from the front. Switch to a three-quarter view without changing the light, and a reflection appears on the dial, hiding the details you wanted to show.",
+        "p3": "<b>This is where 360° rotation and saved shooting templates come into their own.</b> With an Orbitvu automated studio, you prepare your sequence of views and its lighting settings, then save them. For products in the same family, the operator recalls this configuration: they position the product for the first view, start the sequence and let the studio run through the planned angles. Meanwhile, they can prepare the next product.",
+        "p4": "The gain continues after capture. AI tools have made some retouching easier, but background removal and file preparation can still take two to three times as long as the shooting itself. Images also need to be named, margins adjusted and the dimensions required by each sales channel produced.",
+        "p5": "The studio automates this sequence according to the configured profiles: background removal, cropping, size and format variants, then export to a local folder, a server or a compatible online store. The operator keeps control of the result, especially for delicate products.",
+        "p6": "<b>In practice, a well-organized production can reach 200 to 300 photos taken and finalized per day with an automated studio.</b> In a self-built studio where these operations are carried out separately, going beyond 50 photos per day, processing included, is often difficult. These field benchmarks from PackshotCreator vary with the products, their preparation and the views required. They nonetheless give a measure of the possible gain: four to six times the daily volume.",
+        "p7": "This time saving comes from all the handling the team no longer has to repeat for every product, every angle and every file.",
+        "attribution": "Field benchmarks shared by Sébastien Jourdan, photographer and president of Sysnext (PackshotCreator)."
+      },
+      "savoirFaire": "The know-how stays in the company: your templates are used by the whole team and can be copied from one Orbitvu studio to another. According to Orbitvu, basic training is enough for routine packshots, with no prior photography experience.",
+      "ia": "According to Orbitvu documentation, the AI features in Station require a subscription; the AI photo assistant is limited to the Alphashot Pro G2 and XL G2.",
+      "lienGuide": "Detailed method: <lien>getting consistent photos across a whole collection</lien>."
+    },
+    "r6": {
+      "eyebrow": "Exports",
+      "heading": "From shooting to the product page",
+      "intro": "The time saved in the studio is lost if files are then renamed, resized and uploaded by hand.",
+      "steps": {
+        "identification": {
+          "title": "Identification",
+          "text": "The product arrives with its reference (SKU, EAN or internal code). Scanned from the barcode, it names the files, with no retyping."
+        },
+        "capture": {
+          "title": "Shooting",
+          "text": "The product is photographed with the settings saved for its family; each view is added to the session for its reference."
+        },
+        "controle": {
+          "title": "Check",
+          "text": "The 1:1 preview shows the final result before approval."
+        },
+        "declinaisons": {
+          "title": "Variants",
+          "text": "Publishing profiles produce the formats for each channel: dimensions, background, margins, file type."
+        },
+        "publication": {
+          "title": "Publishing",
+          "text": "To a local folder, a server, your digital asset management (DAM) or product information management (PIM) tool, or directly to a compatible online store."
+        }
+      },
+      "integrationsTitle": "How to send photos to your tools",
+      "integrations": {
+        "export": {
+          "titre": "File export",
+          "texte": "Without a connector, Orbitvu Station saves files in the planned formats to a local folder or a server; you then upload them with your usual tools. This is the case for Amazon, for which Orbitvu does not offer a module."
+        },
+        "modules": {
+          "titre": "Store modules",
+          "texte": "Orbitvu offers modules for Magento 2 (version 2.2.0 and later), PrestaShop 1.7.x and WooCommerce, in SUN or self-hosted versions, and for Shopware 6 and Shopify in the SUN version only. They are tested on a basic configuration: a heavily customized store may require adaptation."
+        },
+        "conditions": {
+          "titre": "Subscription and license",
+          "texte": "The SUN version hosts images on Orbitvu SUN and requires a subscription: its modules are included from the 6G plan, the Shopify module is paid separately. The self-hosted version stores images on your server, without a SUN subscription, with an Orbitvu viewer license or its free basic version; it does not support Orbitvu videos."
+        },
+        "outils": {
+          "titre": "DAM, PIM and ERP",
+          "texte": "Connections with a digital asset management tool, a product information management tool or an ERP are configured: custom attributes, barcodes, scripts or API, depending on your tools."
+        }
+      },
+      "sourcesIntegrations": "Orbitvu sources",
+      "imageAlt": "Orbitvu Station: a camera with its background removed, shown on a transparent background and then on a white background",
+      "imageCaption": "The same product with its background removed, output on a transparent or a white background depending on the channel."
+    },
+    "r7": {
+      "eyebrow": "Range",
+      "heading": "Which studio for which products",
+      "intro": "The choice depends first on the size of the largest product to photograph. Maximum product dimensions are those published by Orbitvu, in the order used on its product pages, which do not specify the axes.",
+      "columns": {
+        "studio": "Studio",
+        "produits": "Typical products",
+        "gabarit": "Max product size and weight",
+        "cadence": "Throughput stated by the manufacturer"
+      },
+      "rows": {
+        "micro": {
+          "nom": "Alphashot Micro Pro v2",
+          "produits": "Jewelry, watches, small parts",
+          "gabarit": "Up to 18 cm, 1 kg",
+          "cadence": "Not stated"
+        },
+        "a360": {
+          "nom": "Alphashot 360",
+          "produits": "Small items: accessories, electronics, cosmetics",
+          "gabarit": "30 × 30 × 30 cm, 3 kg",
+          "cadence": "150 products per day"
+        },
+        "prog2": {
+          "nom": "Alphashot Pro G2",
+          "produits": "Cosmetics, electronics, accessories",
+          "gabarit": "35 × 35 × 40 cm, 10 kg",
+          "cadence": "250 products per day"
+        },
+        "xlg2": {
+          "nom": "Alphashot XL G2",
+          "produits": "Shoes, bags, small appliances: anything that fits in a cabin suitcase",
+          "gabarit": "60 × 40 × 70 cm, 25 kg",
+          "cadence": "Up to 250 products per day"
+        },
+        "compact": {
+          "nom": "Alphastudio Compact",
+          "produits": "Small appliances, tools, sporting goods",
+          "gabarit": "80 × 70 × 130 cm, 100 kg",
+          "cadence": "150 products per day"
+        },
+        "xxl": {
+          "nom": "Alphastudio XXL",
+          "produits": "Large items, mannequins, live models",
+          "gabarit": "190 × 90 × 100 cm, 100 kg",
+          "cadence": "150 products per day"
+        },
+        "alphatable": {
+          "nom": "Alphatable",
+          "produits": "Clothing, textiles and flat items, shot from above",
+          "gabarit": "165 × 112 × 5 cm, 80 kg",
+          "cadence": "15 seconds per flat-lay packshot"
+        },
+        "furniture": {
+          "nom": "Furniture Studio",
+          "produits": "Furniture and bulky products",
+          "gabarit": "1,000 kg platform, 4,000 kg version",
+          "cadence": "Under 3 minutes per 360° rotation"
+        }
+      },
+      "voirFiche": "View studio",
+      "note": "Throughput figures stated by Orbitvu, with no published measurement protocol. The units differ (products per day, seconds per packshot, minutes per 360° rotation): these values cannot be compared with each other and do not allow the studios to be ranked. The actual pace depends on the product, its preparation and the number of views.",
+      "liens": "Not sure which model is right? The <lien>studio selector</lien> guides you based on your products. See also <lien2>the full range of automated studios</lien2>."
+    },
+    "r8": {
+      "eyebrow": "Investment",
+      "heading": "What budget should you plan for in-house production?",
+      "cout": {
+        "title": "Full cost",
+        "text": "Compare the cost of a published visual, not the price of a photo. In-house: equipment purchased or financed, operator time, software, training and space. With a service provider: agreed price, logistics and any reshoots. The break-even point depends on your volume and on how often your catalog changes; no return-on-investment period applies to everyone.",
+        "cta": "Estimate with the calculator"
+      },
+      "financement": {
+        "title": "Financing",
+        "text": "Purchase or professional leasing (financial lease), over 60 months or from 36 months, subject to approval of your application. In Switzerland, leasing through Swiss institutions is possible."
+      },
+      "formation": {
+        "title": "Training",
+        "text": "PackshotCreator Academy, a Qualiopi-certified training organization (a French quality certification), offers packshot training on Orbitvu studios at several levels. In France, funding by your OPCO (a French training fund) may be possible depending on your situation.",
+        "cta": "View packshot training",
+        "cta2": "Simulate OPCO funding (France)"
+      },
+      "accompagnement": {
+        "title": "Support",
+        "text": "As Orbitvu's official distributor in France and Switzerland, PackshotCreator advises you, organizes the demonstration, delivers, installs, trains your operators and provides support in French. Delivery and installation are charged separately; indicative delivery time of about 10 days, not contractual.",
+        "migration": "Using an older PackshotCreator studio? Read our article on <lien>migrating to Orbitvu</lien>."
+      }
     },
     "faq": {
-      "heading": "Frequently asked questions about e-commerce photography",
+      "heading": "Frequently asked questions about e-commerce packshots",
       "q1": {
-        "question": "Which photo studio for e-commerce in 2026?",
-        "answer": "Orbitvu automated studios are the reference for high-volume e-commerce photography. The Alphashot 360 and Alphashot G2 cover most needs with integrated packshot, 360° and video. For small objects, the Alphashot Micro Pro v2 offers exceptional macro rendering."
+        "question": "Which Orbitvu studio should you choose for e-commerce products?",
+        "answer": "Start with the largest product to photograph: its dimensions and weight determine the possible range. Then come the views required (flat-lay, 360°, video), the volume to produce and the space available. The “Which studio for which products” table on this page lists the dimensions published by Orbitvu for each model, and PackshotCreator's studio selector narrows down the choice."
       },
       "q2": {
-        "question": "How to reduce product photo costs?",
-        "answer": "In-house production with an automated studio reduces cost per image by 80% vs external studio. Automation eliminates the need for a specialized photographer and retoucher. An operator with no photography skills produces professional visuals in seconds."
+        "question": "How many photos do you need per product?",
+        "answer": "There is no ideal number: the images need to answer the shopper's questions. In practice: a main view, angles, details, a scale view, each variant and, where useful, the box contents. On Amazon, the Seller Central help recommends several images in addition to the main image, as well as a video."
       },
       "q3": {
-        "question": "What image formats for marketplaces?",
-        "answer": "Amazon requires a pure white background (RGB 255,255,255), minimum 1000px, JPEG format. Our studios export directly in the formats required by each marketplace: Amazon, Shopify, Zalando. IQ Mask clipping guarantees a compliant white background."
+        "question": "Is a white background mandatory?",
+        "answer": "Not everywhere. It is required for the main image on Amazon (pure white, RGB 255, 255, 255) and for packshots on Zalando. Google Merchant Center recommends it without requiring it; Shopify imposes nothing. A consistent white background remains the simplest way to publish the same files on several channels."
+      },
+      "q4": {
+        "question": "When should you bring packshot production in-house?",
+        "answer": "There is no single threshold. In-house production makes sense when several criteria add up: a steady flow of new products, publishing as products arrive, products you prefer to keep on site, space and an operator available. A mixed setup remains possible. PackshotCreator's calculator compares the two options based on your volumes."
+      },
+      "q5": {
+        "question": "How many photos can be produced per day with an automated studio?",
+        "answer": "According to PackshotCreator's field benchmarks, a well-organized production can reach 200 to 300 photos taken and finalized per day with an automated studio, whereas going beyond 50 photos per day, processing included, is often difficult in a self-built studio where these operations are carried out separately. These benchmarks vary with the products, their preparation and the views required; they are neither independent measurements nor a throughput commitment."
+      },
+      "q6": {
+        "question": "Do you need to be a photographer to use an automated studio?",
+        "answer": "Not for routine packshots: Orbitvu states that basic training is enough, with no prior photography experience (for jewelry, some knowledge of photography is useful). The operator prepares the product, chooses a saved shooting template and checks the result. A photographer remains valuable for campaigns."
+      },
+      "q7": {
+        "question": "Does an automated studio also produce 360° views and video?",
+        "answer": "Yes: according to Orbitvu, Alphashot and Alphastudio studios produce photos, 360° views and video. Amazon has not accepted new 360° images since December 14, 2023 (those already online remain displayed, unless a 3D model is added). The 360° view that Google generates from still photos is limited to merchants based in the United States."
+      },
+      "q8": {
+        "question": "How do photos get to the online store, the PIM or the DAM?",
+        "answer": "The Orbitvu Station software exports files according to publishing profiles (dimensions, format, naming by reference) to a local folder or a server. Orbitvu modules exist for Magento 2, PrestaShop 1.7.x and WooCommerce, in a SUN version (subscription) or self-hosted; Shopify and Shopware 6 use the SUN version. Connections with a DAM, PIM or ERP are configured: attributes, barcodes, scripts or API."
+      },
+      "q9": {
+        "question": "How long does it take to install a studio and get started?",
+        "answer": "At PackshotCreator, the indicative delivery time for an Orbitvu studio is about 10 days, not contractual. Installation and training time depends on the system and configuration. Delivery and installation are charged separately. A demonstration is possible beforehand, at the showroom near Lyon or by video call."
       }
     },
     "cta": {
-      "heading": "Ready to boost your e-commerce photo production?",
-      "description": "Discover our solutions during a personalized demo with a product photography expert.",
-      "ctaPrimary": "Request a demo",
-      "ctaSecondary": "Calculate my ROI"
+      "heading": "See a studio in action on your products",
+      "formTitle": "Request a demo",
+      "roiTitle": "Estimate your full cost",
+      "roiText": "Annual savings, time freed up, break-even point: an estimate calculated from your volumes.",
+      "roiCta": "Open the calculator",
+      "demoNote": "30 minutes with an advisor, by video call or at the showroom near Lyon, where you can test your most difficult products."
     },
-    "testimonial": {
-      "quote": "Since we internalized with PackshotCreator, we produce 400 visuals per day instead of 30. ROI was reached in 5 months.",
-      "author": "Marie L.",
-      "role": "E-commerce Director, international cosmetics brand"
+    "explore": {
+      "label": "Explore our solutions",
+      "studios": {
+        "title": "Automated photo studios",
+        "desc": "The Orbitvu range distributed by PackshotCreator, from jewelry to furniture."
+      },
+      "ia": {
+        "title": "AI product photography",
+        "desc": "Create staged scenes from your packshots."
+      },
+      "academy": {
+        "title": "Academy",
+        "desc": "Training from a Qualiopi-certified organization, for your operators."
+      }
     }
   },
   "besoinsPhoto": {

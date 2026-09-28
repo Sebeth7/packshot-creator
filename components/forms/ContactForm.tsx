@@ -122,6 +122,8 @@ interface ContactFormProps {
   compact?: boolean;
   /** Pré-sélectionner le type de demande */
   defaultRequestType?: 'demo' | 'quote' | 'support' | 'training' | 'other';
+  /** Masquer le choix du type de demande : `defaultRequestType` est alors envoyé tel quel */
+  hideRequestType?: boolean;
   /** Pré-sélectionner le secteur */
   defaultSector?: string;
   /** Contexte machine (affiché dans la note Pipedrive) */
@@ -135,6 +137,7 @@ export function ContactForm({
   className = '',
   compact = false,
   defaultRequestType = 'demo',
+  hideRequestType = false,
   defaultSector,
   machineContext,
 }: ContactFormProps) {
@@ -287,28 +290,32 @@ export function ContactForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className} noValidate>
-      {/* Request type — radio pills */}
-      <fieldset className="mb-6">
-        <legend className={labelBase}>{t.requestType}</legend>
-        <div className={`grid gap-2 ${compact ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
-          {(REQUEST_TYPES[locale] ?? REQUEST_TYPES.en).map((type) => (
-            <label
-              key={type.value}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-sm border
-                ${compact ? 'px-2 py-2 text-xs' : ''}
-              `}
-            >
-              <input
-                type="radio"
-                value={type.value}
-                {...register('requestType')}
-                className="accent-very-peri-600"
-              />
-              <span>{type.label}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      {/* Request type — radio pills (ou valeur fixe si hideRequestType) */}
+      {hideRequestType ? (
+        <input type="hidden" value={defaultRequestType} {...register('requestType')} />
+      ) : (
+        <fieldset className="mb-6">
+          <legend className={labelBase}>{t.requestType}</legend>
+          <div className={`grid gap-2 ${compact ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
+            {(REQUEST_TYPES[locale] ?? REQUEST_TYPES.en).map((type) => (
+              <label
+                key={type.value}
+                className={`flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-sm border
+                  ${compact ? 'px-2 py-2 text-xs' : ''}
+                `}
+              >
+                <input
+                  type="radio"
+                  value={type.value}
+                  {...register('requestType')}
+                  className="accent-very-peri-600"
+                />
+                <span>{type.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
 
       {/* Name row */}
       <div className={`grid gap-4 mb-4 ${compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
