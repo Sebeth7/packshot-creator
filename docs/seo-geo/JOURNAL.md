@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — nouvelle version FR de la landing `/fr/packshot-e-commerce` · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : voir PR (brouillon) | **Commit** : voir PR
+
+**Quoi** — Version FR réécrite en entier : chapeau citable, 8 H2 (série, fiche produit, marketplaces, choix prestataire / IA / studio interne, automatisé et opérateur, workflow, studio par gabarit, coût complet et accompagnement), FAQ de 8 questions, tableaux et cartes. Rendue par un composant page-scopé ; EN et de-ch restent sur le gabarit partagé, non modifié.
+
+**Pourquoi** — Brief sourcé du 28/09 (`PSC_BRIEF_SOURCES_PACKSHOT_ECOMMERCE_2026-09-28.md`, hors dépôt) : 603 mots, 109 impressions et 0 clic en 120 jours ; chiffres contradictoires avec le reste du site (500+ produits/jour, -80 %, ROI 4-8 mois) ; FAQ Amazon fausse (« 1000px minimum ») ; Alphashot G2 délistée citée ; intention « définition » déjà couverte par `/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots`. La landing prend l'intention « produire en série en interne ».
+
+**Fichiers** — `components/landings/PackshotEcommerceFr.tsx` (nouveau), `app/[lang]/packshot-e-commerce/page.tsx` (FR vers le nouveau composant), `messages/fr.json` (bloc `packshotEcommerce` seul, lignes 1219-1298 d'origine ; aller-retour JSON identique à l'octet hors de ce bloc).
+
+**Claims retirés de la version FR** — 500+ produits/jour, -80 % de coûts, ROI 4-8 mois et tout délai de retour générique, « moins de 1 € par image », « le 360° augmente les conversions », « toutes les marketplaces », « zéro compétence photo », « élimine le photographe et le retoucheur », « Amazon exige 1000px minimum, format JPEG », « IQ Mask garantit un fond blanc conforme », Alphashot G2, témoignage « Marie L. », bandeau de statistiques. Aucun prix en prose (D7, D13, D25).
+
+**Écarts Orbitvu / données PSC, non corrigés ici (rayon large)** — La prose suit Orbitvu (fiches relevées le 28/09) ; `machines.ts` et les autres pages ne sont pas modifiés :
+1. Alphashot 360 : vidéo annoncée par Orbitvu, absente de `machines.ts` (`['packshot','360']`) ; 150 produits/jour (Orbitvu) contre 200 (`capaciteJour`).
+2. Alphastudio Compact : 80 × 70 × 130 cm (Orbitvu) contre 100 × 70 × 190 cm (PSC, « Compact Pro v2 »).
+3. Alphastudio XXL : 190 × 90 × 100 cm (Orbitvu) contre 100 × 70 × 190 cm (PSC).
+4. Furniture Studio : plateforme 1 000 kg, version 4 000 kg (Orbitvu) contre 500 kg (PSC).
+5. Nombre de systèmes : 14 au catalogue Orbitvu, « 20 systèmes » sur le site PSC, 13 fiches PSC actives.
+6. Abonnement : `fr.json:2397` dit Orbitvu Station « sans abonnement … toutes les mises à jour » ; la documentation Orbitvu décrit un plan gratuit sans IA ni mises à jour.
+7. Garantie : 12 mois extensible à 3 ans (Orbitvu) contre 2 ans extensible à 5 ans (guide d'achat PSC).
+8. `fr.json:900` : « livraison, installation … incluses », contraire à D32.
+
+**Effet attendu** — Sortie de la cannibalisation avec l'article définition ; positions sur « packshot e-commerce », « studio photo e-commerce », « photo produit e-commerce en interne » à mesurer à J+28 et J+56 après mise en production. Aucun lien entrant ajouté (gel J+56).
+
+**Vérifié** — `npx tsc --noEmit` OK ; eslint `--max-warnings=0` OK sur les 2 fichiers TSX ; `node scripts/seo/verifier-json.mjs` OK (186 fichiers) ; `npx vitest run` 223/223 ; `npx next build` vert (variables factices de la CI), `/fr`, `/en`, `/de-ch/packshot-e-commerce` prérendues ; `e2e/seo.spec.ts` filtré sur la page, 13/13, contre `next start` local. Rendu local desktop 1440 px et mobile 390 px : 1 H1, hiérarchie H2/H3, 36 images chargées avec alt, 0 débordement horizontal, 0 ancre cassée, JSON-LD Organization + BreadcrumbList + FAQPage (8 questions), 24 liens internes en 200, 10 liens externes en `target="_blank"` et `rel="noopener noreferrer"`. Recherche des claims retirés et des prix dans le texte, la meta et le JSON-LD : aucun (seuls restent les titres d'articles de `MoneyPageResources`, inchangés).
+**Supposé** — Les sources DOI (INFORMS) et Shopify FR répondent 403 à `curl` mais sont publiques dans un navigateur (brief du 28/09). Les valeurs marketplaces sont celles du 28/09 : bloc daté, à revalider à la mise en ligne.
+**Non regardé** — Versions EN et de-ch (anciens claims toujours présents) ; rendu derrière Cloudflare ; Preview Vercel protégée par SSO (contrôle visuel fait en local) ; les articles liés par `MoneyPageResources`, dont « Taux de conversion : boostez-le… », non relus.
+
+**Suite** — Validation de Sébastien sur la Preview. Puis : réécriture EN et de-ch ; arbitrage des 8 écarts ci-dessus dans `machines.ts` et `fr.json` ; mise à jour de la FAQ de `/fr/packshot-amazon` si elle porte encore le « 1000px » ; J0 de mesure F5 = date de mise en production.
+
+---
+
 ## 2026-09-25 · Correctif : slug EN de l'article migration renvoyé en 410 par le Worker · Claude de Sébastien
 
 **Chantier** : correctif de la PR #36 | **PR** : #37 | **Commit** : voir PR

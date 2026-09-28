@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/components/templates/PackshotLandingTemplate';
+import PackshotEcommerceFr from '@/components/landings/PackshotEcommerceFr';
 import { ShoppingCart, Package, Eraser, RotateCw, TrendingDown, Calculator } from 'lucide-react';
 import { buildLanguages } from '@/lib/hreflang';
 
@@ -44,6 +45,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PackshotEcommercePage({ params }: PageProps) {
   const { lang } = await params;
+
+  // FR : version dédiée (chantier F5, 28/09/2026). EN et de-ch restent sur le
+  // gabarit partagé, inchangé, en attendant leur propre réécriture.
+  if (lang === 'fr') return <PackshotEcommerceFr />;
+
   const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
 
   return <PackshotLandingTemplate config={CONFIG} lang={lang} t={t} />;
