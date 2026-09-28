@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — audit final de la version FR de `/fr/packshot-e-commerce` · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Audit éditorial, factuel, SEO/GEO, UX et performance du commit `074189a`, corrections appliquées dans le même composant page-scopé et le même bloc `packshotEcommerce` de `messages/fr.json`.
+
+**Pourquoi** — Formulations trop absolues ou non démontrées relevées par Laurent (photographe, recolorisation, « règles qui ne changent pas », principes marketplaces non attribués, prestataire, IA générative) ; claims à revérifier sur source primaire ; 9 préchargements d'images inutiles.
+
+**Corrections** —
+1. R1 : « workflow manuel documenté » face à « procédé enregistré », sans opposer le photographe.
+2. R2 : variantes fidèles, recolorisation acceptable si la fidélité est contrôlée (Orbitvu documente la recolorisation sélective) ; étude De, Hu et Rahman ramenée à son périmètre exact (consultation du zoom et des photos alternatives, marque de vêtements pour femmes, corrélation) ; 5 sources UX dans un bloc repliable.
+3. R3 : titre « les principes durables et les seuils à vérifier » ; chaque principe porte sa portée (toutes plateformes, Amazon, Google, Zalando) ; « six semaines » retiré, remplacé dans le tableau Google par le cadrage conseillé de 75 à 90 %.
+4. R4 : prestataire « peut impliquer » envoi et attente ; IA générative décrite par le contrôle de fidélité, sans formule rhétorique.
+5. R5 : formation de base attribuée à Orbitvu. R6 : astuce « nouvelle URL » retirée. R7 : Alphastudio XXL à 150 produits/jour (fiche Orbitvu).
+6. R8 : financement limité à l'achat et au leasing (60 mois, dès 36 mois) ; « location avec option d'achat » retirée (seule source : FAQ de `machines.ts`, non validée).
+7. FAQ : 360° Amazon (arrêt des ajouts le 14/12/2023, images déjà en ligne conservées sauf ajout d'un modèle 3D) ; vue 360° Google réservée aux marchands basés aux États-Unis ; durée d'installation « selon le système et la configuration » (le « un à trois jours » ne venait que de l'article migration) ; nuance bijoux d'Orbitvu.
+8. Logos clients en chargement différé ; contrastes WCAG des petits textes (portée, notes, sources, numéros).
+
+**Performance, build local, 3 passages** — Desktop 1440 : LCP médian 440 → 292 ms, élément LCP = H1 (texte) ; 67 → 66 requêtes. Mobile 390, réseau bridé à 1,6 Mbit/s et CPU ×4 : LCP médian 1 456 → 1 408 ms (H1) ; 54 → 45 requêtes, 661 → 605 Ko, images au chargement initial 14 → 5 (84 → 29 Ko), logos 9 → 0. Préchargements d'images dans le `<head>` : 12 → 3. Les écarts de LCP restent dans la variabilité entre passages ; le gain mesurable porte sur les requêtes, le poids et les préchargements. Variante « une seule image prioritaire » dans le hero mesurée (mobile 1 468 ms, desktop 332 ms) : pas de gain, deux images prioritaires conservées.
+
+**Vérifié** — Sources relues le 28/09 : Amazon G1881 FR et EN (six images supplémentaires et une vidéo recommandées, 500 px, zoom à 1 000 px, 85 %, formats, fond RVB 255, une seule unité, allégations et badges, marquage des personnes générées par IA), Amazon G75PWC4THA8J269P (bordures), annonce Amazon Seller Central du 14/12/2023 (360°), Google Merchant Center 6324350 (500 × 500 au 31/01/2027, 1 500 × 1 500, produit entier sans mise en scène, éléments promotionnels, bordures, métadonnées IA, 75 à 90 %, six semaines), 13671720 (vue 360° : États-Unis), résumé Crossref de De, Hu et Rahman 2013, orbitvu.com (Alphastudio XXL, Micro Pro v2, Orbitvu Station, how-it-works). Contrôles : `tsc`, eslint `--max-warnings=0` sur les 2 fichiers TSX, JSON (186), vitest 223/223, `next build` vert, `e2e/seo.spec.ts` 13/13 sur la page, 1 H1, 36 images avec alt, 0 débordement, 0 ancre cassée, 24 liens internes en 200, 10 externes en `_blank` + `noopener noreferrer`, Organization + BreadcrumbList + FAQPage (8), libellés du formulaire à 18,86:1 sur desktop et mobile. `messages/en.json`, `messages/de-ch.json`, `PackshotLandingTemplate.tsx`, `components/forms/` et `app/[lang]/layout.tsx` inchangés par rapport à `main`.
+**Supposé** — Les 4 packshots de vêtements du dossier `alphatable-alphadesk/` ont été réalisés sur Alphatable (visuels d'exemple de la fiche). La page Amazon sur le 360° est une annonce du forum vendeurs d'Amazon.com ; son application à Amazon.fr n'est pas documentée séparément.
+**Non regardé** — Rendu derrière Cloudflare ; Preview Vercel protégée par SSO (contrôle visuel sur le build local) ; articles liés par `MoneyPageResources`.
+
+**Constat hors périmètre** — `app/[lang]/layout.tsx` passe tout `messages/fr.json` à `NextIntlClientProvider` : environ 370 Ko de messages, dont les anciens claims d'autres pages (500+, -80 %, « 20 systèmes », « sans abonnement »…), figurent dans le flux RSC du HTML de chaque page. Le bloc `packshotEcommerce` qu'il contient est bien le nouveau. Chantier transversal à ouvrir (rayon large : toutes les pages).
+
+**Écarts Orbitvu / données PSC, toujours non corrigés** (chantier transversal séparé) — Alphashot 360 (vidéo, cadence) ; Alphastudio Compact (dimensions) ; Alphastudio XXL (dimensions) ; Furniture Studio (charge) ; Orbitvu Station (« sans abonnement » contre plan gratuit sans IA ni mises à jour) ; garantie (12 mois extensible à 3 ans contre 2 ans extensible à 5) ; livraison et installation « incluses » (`fr.json:900`, contraire à D32). Détail dans l'entrée F5 précédente.
+
+**Suite** — Validation de Sébastien sur la Preview ; réécriture EN et de-ch ; chantier transversal sur les écarts ci-dessus et sur les messages sérialisés dans le RSC.
+
+---
+
 ## 2026-09-28 · F5 — nouvelle version FR de la landing `/fr/packshot-e-commerce` · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : voir PR (brouillon) | **Commit** : voir PR

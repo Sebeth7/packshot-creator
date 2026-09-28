@@ -271,14 +271,14 @@ export default async function PackshotEcommerceFr() {
                 {SOMMAIRE.map((s, i) => (
                   <li key={s.id}>
                     <a href={`#${s.id}`} className="group flex items-baseline gap-3 py-2 text-future-dusk-700 hover:text-very-peri-600 transition-colors">
-                      <span className="text-xs font-semibold text-very-peri-400 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="text-xs font-semibold text-very-peri-500 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
                       <span className="font-medium">{t(`${s.key}.eyebrow`)}</span>
                     </a>
                   </li>
                 ))}
                 <li>
                   <a href="#faq" className="group flex items-baseline gap-3 py-2 text-future-dusk-700 hover:text-very-peri-600 transition-colors">
-                    <span className="text-xs font-semibold text-very-peri-400">09</span>
+                    <span className="text-xs font-semibold text-very-peri-500">09</span>
                     <span className="font-medium">FAQ</span>
                   </a>
                 </li>
@@ -287,7 +287,8 @@ export default async function PackshotEcommerceFr() {
           </div>
 
           <div className="mt-14 pt-10 border-t border-neutral-100">
-            <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-6">{t('bref.logos')}</p>
+            <p className="text-center text-xs font-semibold text-future-dusk-500 uppercase tracking-[0.15em] mb-6">{t('bref.logos')}</p>
+            {/* Logos en chargement différé : en eager, React émettait 9 <link rel="preload"> dans le <head> (mesure du 28/09). */}
             <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
               <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
                 {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
@@ -300,7 +301,6 @@ export default async function PackshotEcommerceFr() {
                       height={logo.h}
                       sizes="120px"
                       className="w-full h-full object-contain"
-                      loading="eager"
                     />
                   </div>
                 ))}
@@ -363,15 +363,19 @@ export default async function PackshotEcommerceFr() {
               <p className="text-sm text-future-dusk-100 leading-relaxed">{t('r2.nuance')}</p>
             </li>
           </ul>
-          <div className="mt-8 text-xs text-future-dusk-400 leading-relaxed">
-            <span className="font-semibold uppercase tracking-wider mr-2">{t('r2.sources')}</span>
-            {SOURCES_UX.map((s, i) => (
-              <span key={s.href}>
-                <LienExterne href={s.href}>{s.label}</LienExterne>
-                {i < SOURCES_UX.length - 1 ? ' · ' : ''}
-              </span>
-            ))}
-          </div>
+          <details className="group mt-8 text-xs text-future-dusk-500">
+            <summary className="inline-flex items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
+              {t('r2.sources')} ({SOURCES_UX.length})
+              <ChevronDown className="h-3.5 w-3.5 group-open:rotate-180 transition-transform" aria-hidden="true" />
+            </summary>
+            <ul className="mt-3 space-y-1.5 leading-relaxed">
+              {SOURCES_UX.map((s) => (
+                <li key={s.href}>
+                  <LienExterne href={s.href}>{s.label}</LienExterne>
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
       </section>
 
@@ -387,7 +391,8 @@ export default async function PackshotEcommerceFr() {
                 </span>
                 <div>
                   <h3 className="font-heading font-bold text-future-dusk-900">{t(`r3.principes.${k}.title`)}</h3>
-                  <p className="mt-1 text-sm text-future-dusk-500 leading-relaxed">{t(`r3.principes.${k}.text`)}</p>
+                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-wider text-very-peri-600">{t(`r3.principes.${k}.portee`)}</p>
+                  <p className="mt-1.5 text-sm text-future-dusk-500 leading-relaxed">{t(`r3.principes.${k}.text`)}</p>
                 </div>
               </li>
             ))}
@@ -425,7 +430,7 @@ export default async function PackshotEcommerceFr() {
                 ))}
               </tbody>
             </table>
-            <div className="px-5 sm:px-8 py-4 border-t border-neutral-100 bg-neutral-50 text-xs text-future-dusk-400 leading-relaxed">
+            <div className="px-5 sm:px-8 py-4 border-t border-neutral-100 bg-neutral-50 text-xs text-future-dusk-500 leading-relaxed">
               <span className="font-semibold uppercase tracking-wider mr-2">{t('r3.sources')}</span>
               {SOURCES_PLATEFORMES.map((s, i) => (
                 <span key={s.href}>
@@ -530,7 +535,7 @@ export default async function PackshotEcommerceFr() {
                 {ETAPES_AUTO.map((e, i) => (
                   <tr key={e} className="block md:table-row border-t border-neutral-100 px-5 py-4 md:p-0">
                     <th scope="row" className="block md:table-cell md:px-6 md:py-4 font-heading font-bold text-future-dusk-900 align-top mb-2 md:mb-0">
-                      <span className="text-very-peri-400 tabular-nums mr-2">{i + 1}.</span>
+                      <span className="text-very-peri-500 tabular-nums mr-2">{i + 1}.</span>
                       {t(`r5.rows.${e}.etape`)}
                     </th>
                     <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-900 align-top py-1 md:bg-very-peri-50/60">
@@ -576,7 +581,7 @@ export default async function PackshotEcommerceFr() {
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-future-dusk-900 text-white">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span className="text-2xl font-heading font-bold text-very-peri-200 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-2xl font-heading font-bold text-very-peri-200 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 <h3 className="font-heading font-bold text-future-dusk-900 mb-2">{t(`r6.steps.${key}.title`)}</h3>
                 <p className="text-sm text-future-dusk-500 leading-relaxed">{t(`r6.steps.${key}.text`)}</p>
@@ -610,10 +615,6 @@ export default async function PackshotEcommerceFr() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="rounded-2xl bg-very-peri-50 border border-very-peri-100 p-6 flex gap-3">
-                <Lightbulb className="h-5 w-5 mt-0.5 shrink-0 text-very-peri-600" aria-hidden="true" />
-                <p className="text-sm text-future-dusk-700 leading-relaxed">{t('r6.astuce')}</p>
               </div>
             </div>
           </div>
@@ -671,7 +672,7 @@ export default async function PackshotEcommerceFr() {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-sm text-future-dusk-400 leading-relaxed">{t('r7.note')}</p>
+          <p className="mt-4 text-sm text-future-dusk-500 leading-relaxed">{t('r7.note')}</p>
           <p className="mt-6 text-future-dusk-600">
             {t.rich('r7.liens', {
               lien: lien('/studio-photo/selecteur-machines'),
