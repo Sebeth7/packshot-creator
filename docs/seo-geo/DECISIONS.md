@@ -25,6 +25,32 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D38 · 2026-09-28 · Tout nouvel article se publie en FR, EN et de-ch de façon coordonnée
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Pour tout nouvel article : 1. rédaction et validation factuelle en FR ; 2. traduction EN ; 3. adaptation de-ch ; 4. contrôle SEO, hreflang, données structurées et FAQ des trois langues ; 5. publication coordonnée. La traduction part de la version FR validée, jamais d'une ancienne version ou d'un ancien brief, et ne renforce aucun claim. Pour un sujet juridique ou réglementaire, la version de-ch est adaptée au périmètre suisse et ne suppose jamais qu'une règle de l'UE s'applique directement à la Suisse (s'applique notamment au futur article AI Act).
+
+**Le contexte** — Publication trilingue de F5 (D37) : les versions EN et de-ch de la landing portaient encore les claims retirés du FR (500+ produits/jour, -80 %, ROI 4-8 mois).
+
+**Ce qu'elle interdit** — Publier un nouvel article dans une seule langue sans décision contraire. Traduire depuis une autre source que la version FR validée. Transposer en de-ch une règle UE ou un dispositif français (OPCO, Qualiopi) comme s'il valait en Suisse.
+
+---
+
+## D37 · 2026-09-28 · F5 publiée simultanément en FR, EN et de-ch
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — **modifie le périmètre du brief F5** (FR seulement)
+
+**La décision** — La nouvelle landing `/packshot-e-commerce` est publiée en même temps en FR, EN et de-ch, par un seul composant page-scopé ; les versions EN et de-ch sont traduites de la version FR validée (commit `315bc5c`) et remplacent les anciennes. Aucune nouvelle validation de Sébastien n'est demandée : la version FR intègre son retour. La mesure F5 principale reste celle de la landing FR ; les règles de mesure historiques ne sont pas modifiées rétroactivement ; J0 = mise en production de la landing FR ; aucun lien entrant vers F5 avant J+56.
+
+**Le contexte** — Les namespaces EN et de-ch `packshotEcommerce` servaient l'ancienne landing et ses claims non sourcés (500+ produits/jour, -80 % de coûts, ROI 4-8 mois, moins de 1 € par image, « toutes les marketplaces », témoignage non validé).
+
+**Ce qu'elle interdit** — Conserver l'ancienne landing EN ou de-ch. Utiliser les résultats EN ou de-ch comme mesure principale de F5. Ajouter du maillage entrant vers F5 avant J+56.
+
+---
+
 ## D36 · 2026-09-25 · `noindex` de l'origine `sysnext.vercel.app` : validé, à exécuter
 
 **Décidé par** : Laurent

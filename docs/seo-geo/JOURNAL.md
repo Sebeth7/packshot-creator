@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — landing traduite en EN et de-ch, publication trilingue · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 | **Commit** : voir PR | **Décisions** : D37 (périmètre trilingue), D38 (règle de traduction)
+
+**Changement de périmètre** — Le brief F5 prévoyait le FR seulement. Laurent décide le 28/09 une publication simultanée en FR, EN et de-ch (D37), sans nouvelle validation de Sébastien. La mesure principale reste celle de la landing FR ; J0 = mise en production ; gel des liens entrants jusqu'à J+56.
+
+**Quoi** — `PackshotEcommerceFr.tsx` devient `PackshotEcommerce.tsx`, servi dans les trois langues ; `page.tsx` n'utilise plus `PackshotLandingTemplate` (non modifié, toujours utilisé par les autres landings). Blocs `packshotEcommerce` de `messages/en.json` et `messages/de-ch.json` remplacés par la traduction du FR du commit `315bc5c` : 309 messages, structure de clés identique. Métadonnées complètes dans les trois langues (canonical, hreflang, OG `fr_FR` / `en_US` / `de_CH`, Twitter) ; le traitement « FR seulement » est supprimé.
+
+**Pourquoi** — Les anciennes versions EN et de-ch affichaient 500+ produits/jour, -80 % de coûts, ROI 4-8 mois, moins de 1 € par image, « all marketplaces » / « alle Marktplätze », un témoignage non validé. Ils disparaissent avec les anciens namespaces.
+
+**Fichiers** — `components/landings/PackshotEcommerce.tsx` (renommé), `app/[lang]/packshot-e-commerce/page.tsx`, `messages/en.json` et `messages/de-ch.json` (bloc `packshotEcommerce` seul), `docs/seo-geo/DECISIONS.md`, `JOURNAL.md`, `ETAT.md`.
+
+**Choix de traduction** — EN américain (usage du dépôt : color, catalog, jewelry), « packshot » gardé pour le concept de la page. de-ch sans « ß », séparateur de milliers en espace insécable (usage majoritaire de `de-ch.json`), guillemets « ». Portées conservées : Qualiopi et OPCO présentés comme français, « support en français » traduit tel quel (aucun claim sur l'allemand, D33), leasing suisse tel que le FR le formule. Repères de terrain de Sébastien traduits avec leurs conditions et leur attribution ; `session.avif` sans nom de modèle. Dates : `September 28, 2026` en EN, `28.09.2026` en de-ch.
+
+**Liens et sources** — En de-ch, cibles non traduites épinglées sur /en par `navPinLocale` (Academy, simulateur OPCO) ; articles au slug de chaque langue (`alternates.json`), avec repli vers l'anglais, signalé « (auf Englisch) », pour « prestataire » et le guide « collection ». Sources : URL inchangées pour Amazon (amazon.fr, libellé explicite), NN/g, Baymard, Zalando, Orbitvu ; Google `6324350?hl=en` (EN et de-ch) et `16989427?hl=en` / `?hl=de`, Shopify `/en/` : versions contrôlées le 28/09 (`6324350?hl=de` : 429, non utilisée).
+
+**Vérifié** — Parité des clés : `MISSING_KEYS_EN = 0`, `EXTRA_KEYS_EN = 0`, `MISSING_KEYS_DE_CH = 0`, `EXTRA_KEYS_DE_CH = 0` ; 309 × 3 messages ICU compilés ; `npx tsc --noEmit` ; eslint des 2 fichiers de code ; `verifier-json.mjs` (186) ; vitest 223/223 ; `npx next build` (3 routes pré-rendues). Build local, 3 langues × 1440 et 390 px : statut 200, 1 H1, `lang` correct, canonical, 5 hreflang, OG et Twitter localisés, fil d'Ariane à la bonne locale, FAQ visible = JSON-LD (9/9), 0 texte FR résiduel en EN et de-ch, 0 clé manquante, 0 claim interdit, 0 erreur console, 0 réponse 4xx, 0 ancre cassée, 0 débordement, images chargées, formulaire en type « demo » masqué ; liens internes : 21 (FR, EN) et 20 (de-ch) en 200. Recherche de claims dans les 3 namespaces : seules occurrences restantes, identiques dans les trois langues, « moins d'une seconde » (déclenchement), « 15 secondes par packshot » (unité Orbitvu), 200 à 300 photos par jour (passage attribué et FAQ 5).
+**Supposé** — Aucun.
+**Non regardé** — Relecture par un locuteur natif EN et germanophone suisse ; Preview (SSO) ; rendu derrière Cloudflare.
+
+**Suite** — Fusion de #39 si CI verte et Preview prête, puis contrôle de production (entrée suivante).
+
+---
+
 ## 2026-09-28 · F5 — photo de studio : modèle retiré de l'alt et de la légende · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR

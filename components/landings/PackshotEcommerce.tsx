@@ -1,24 +1,25 @@
 /**
- * Landing /fr/packshot-e-commerce — version FR dédiée (chantier F5, 28/09/2026).
+ * Landing /[lang]/packshot-e-commerce — composant page-scopé du chantier F5 (28/09/2026),
+ * servi en FR, EN et de-ch depuis la publication trilingue décidée par Laurent le 28/09/2026.
  *
- * Composant page-scopé : seule la version FR l'utilise. EN et de-ch restent sur
- * PackshotLandingTemplate, partagé par quatre landings × trois langues, qui n'est
- * pas modifié. Le texte vit dans messages/fr.json (namespace packshotEcommerce) ;
- * ce fichier ne porte que la mise en page, les images et les cibles de liens.
+ * Le texte vit dans messages/{fr,en,de-ch}.json (namespace packshotEcommerce, clés
+ * identiques dans les trois langues) ; ce fichier ne porte que la mise en page, les
+ * images, les sources et les cibles de liens. PackshotLandingTemplate, partagé par les
+ * autres landings, n'est plus utilisé pour cette page et n'est pas modifié.
  *
  * Données machines : valeurs publiées par Orbitvu (fiches orbitvu.com relevées le
- * 28/09/2026), pas celles de machines.ts. Les écarts sont consignés dans
- * docs/seo-geo/JOURNAL.md (entrées F5 du 28/09/2026).
+ * 28/09/2026). Les écarts sont consignés dans docs/seo-geo/JOURNAL.md (entrées F5).
  *
- * Reprise du 28/09/2026 (retour de Sébastien) : hero local plutôt que HeroSection,
- * dont le mode split place le média avant le H1 sur mobile ; photos de lunettes
- * fournies par Sébastien dans #fiche-produit ; passage de terrain validé dans
- * #automatisation ; bouton de démonstration relié au formulaire de la page.
+ * Liens internes : en de-ch, une cible non traduite est épinglée sur /en ou /fr par
+ * navPinLocale (i18n/deChCoverage) ; les articles utilisent le slug de chaque langue
+ * (alternates.json des blogs et des guides), avec repli explicite si la traduction manque.
  */
 import type { ComponentProps, ReactNode } from 'react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import { navPinLocale } from '@/i18n/deChCoverage';
+import { tx } from '@/lib/locale-text';
 import { Button } from '@/components/ui/button';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
@@ -57,7 +58,7 @@ import type { LucideIcon } from 'lucide-react';
 type Href = ComponentProps<typeof Link>['href'];
 
 const SLUG = 'packshot-e-commerce';
-const URL_PAGE = `https://www.packshot-creator.com/fr/${SLUG}`;
+const SITE = 'https://www.packshot-creator.com';
 const ANCRE_DEMO = 'demande-demo';
 
 // Même liste que le bandeau du gabarit partagé (logos déjà publiés sur le site).
@@ -125,24 +126,31 @@ const COMPLEMENTS: { key: string; icon: LucideIcon }[] = [
   { key: 'mouvement', icon: Clapperboard },
 ];
 
-const SOURCES_UX = [
-  { label: 'Nielsen Norman Group, pages produit (2019)', href: 'https://www.nngroup.com/articles/ecommerce-product-pages/' },
-  { label: 'Nielsen Norman Group, photos en liste produits (2022)', href: 'https://www.nngroup.com/articles/product-photos-listing-pages/' },
-  { label: 'Baymard Institute, résolution et zoom', href: 'https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom' },
-  { label: 'Baymard Institute, accessoires inclus', href: 'https://baymard.com/research-articles/included-accessories-image' },
-];
+// Libellés localisés ; URL primaires identiques dans les trois langues.
+function sourcesUx(lang: string) {
+  return [
+    { label: tx(lang, 'Nielsen Norman Group, pages produit (2019)', 'Nielsen Norman Group, product pages (2019)', 'Nielsen Norman Group, Produktseiten (2019)'), href: 'https://www.nngroup.com/articles/ecommerce-product-pages/' },
+    { label: tx(lang, 'Nielsen Norman Group, photos en liste produits (2022)', 'Nielsen Norman Group, photos on listing pages (2022)', 'Nielsen Norman Group, Fotos in Produktlisten (2022)'), href: 'https://www.nngroup.com/articles/product-photos-listing-pages/' },
+    { label: tx(lang, 'Baymard Institute, résolution et zoom', 'Baymard Institute, resolution and zoom', 'Baymard Institute, Auflösung und Zoom'), href: 'https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom' },
+    { label: tx(lang, 'Baymard Institute, accessoires inclus', 'Baymard Institute, included accessories', 'Baymard Institute, mitgeliefertes Zubehör'), href: 'https://baymard.com/research-articles/included-accessories-image' },
+  ];
+}
 
 const PRINCIPES = ['fidelite', 'entier', 'ajout', 'definition', 'fond', 'ia'] as const;
 
 const PLATEFORMES = ['amazon', 'google', 'zalando', 'shopify'] as const;
 
-const SOURCES_PLATEFORMES = [
-  { label: 'Amazon Seller Central, exigences relatives aux images (G1881)', href: 'https://sellercentral.amazon.fr/help/hub/reference/external/G1881' },
-  { label: 'Google Merchant Center, lien image', href: 'https://support.google.com/merchants/answer/6324350?hl=fr' },
-  { label: 'Google Merchant Center, mise à jour 2026 des spécifications', href: 'https://support.google.com/merchants/answer/16989427?hl=fr' },
-  { label: 'Zalando Partner University, consignes images', href: 'https://partner.zalando.com/university/article/zalando-image-guidelines' },
-  { label: 'Shopify, types de médias produit', href: 'https://help.shopify.com/fr/manual/products/product-media/product-media-types' },
-];
+// Amazon : page amazon.fr (seule version contrôlée) dans les trois langues. Google et Shopify :
+// version linguistique contrôlée le 28/09/2026 (6324350 en ; 16989427 en et de ; Shopify en).
+function sourcesPlateformes(lang: string) {
+  return [
+    { label: tx(lang, 'Amazon Seller Central, exigences relatives aux images (G1881)', 'Amazon Seller Central (amazon.fr), product image requirements (G1881)', 'Amazon Seller Central (amazon.fr), Anforderungen an Produktbilder (G1881)'), href: 'https://sellercentral.amazon.fr/help/hub/reference/external/G1881' },
+    { label: tx(lang, 'Google Merchant Center, lien image', 'Google Merchant Center, image link', 'Google Merchant Center, Bildlink (Englisch)'), href: tx(lang, 'https://support.google.com/merchants/answer/6324350?hl=fr', 'https://support.google.com/merchants/answer/6324350?hl=en', 'https://support.google.com/merchants/answer/6324350?hl=en') },
+    { label: tx(lang, 'Google Merchant Center, mise à jour 2026 des spécifications', 'Google Merchant Center, 2026 specification update', 'Google Merchant Center, Aktualisierung der Spezifikationen 2026'), href: tx(lang, 'https://support.google.com/merchants/answer/16989427?hl=fr', 'https://support.google.com/merchants/answer/16989427?hl=en', 'https://support.google.com/merchants/answer/16989427?hl=de') },
+    { label: tx(lang, 'Zalando Partner University, consignes images', 'Zalando Partner University, image guidelines', 'Zalando Partner University, Bildrichtlinien'), href: 'https://partner.zalando.com/university/article/zalando-image-guidelines' },
+    { label: tx(lang, 'Shopify, types de médias produit', 'Shopify, product media types', 'Shopify, Produktmedientypen (Englisch)'), href: tx(lang, 'https://help.shopify.com/fr/manual/products/product-media/product-media-types', 'https://help.shopify.com/en/manual/products/product-media/product-media-types', 'https://help.shopify.com/en/manual/products/product-media/product-media-types') },
+  ];
+}
 
 const OPTIONS: { key: string; icon: LucideIcon; accent: string }[] = [
   { key: 'prestataire', icon: Handshake, accent: 'bg-neutral-100 text-future-dusk-700' },
@@ -168,10 +176,42 @@ const INTEGRATIONS: { key: string; icon: LucideIcon }[] = [
   { key: 'outils', icon: Database },
 ];
 
-const SOURCES_INTEGRATIONS = [
-  { label: 'plateformes e-commerce prises en charge', href: 'https://public.manuals.orbitvu.com/m/68548/l/746645-supported-ecommerce-shop-platforms-and-demo-shops' },
-  { label: 'types de modules e-commerce', href: 'https://public.manuals.orbitvu.com/m/68548/l/746592-types-of-orbitvu-ecommerce-plugins' },
-];
+function sourcesIntegrations(lang: string) {
+  return [
+    { label: tx(lang, 'plateformes e-commerce prises en charge', 'supported e-commerce platforms', 'unterstützte E-Commerce-Plattformen'), href: 'https://public.manuals.orbitvu.com/m/68548/l/746645-supported-ecommerce-shop-platforms-and-demo-shops' },
+    { label: tx(lang, 'types de modules e-commerce', 'types of e-commerce plugins', 'Arten von E-Commerce-Modulen'), href: 'https://public.manuals.orbitvu.com/m/68548/l/746592-types-of-orbitvu-ecommerce-plugins' },
+  ];
+}
+
+// Articles liés : slug de chaque langue relevé dans content/blog/alternates.json et
+// content/guides/alternates.json (28/09/2026). « prestataire » est un article statique
+// bilingue fr/en (i18n/deChCoverage, STATIC_BILINGUAL_BLOG). Sans version de-ch, le lien
+// de-ch pointe vers la version anglaise, signalée « (auf Englisch) » dans le texte.
+type Langue = 'fr' | 'en' | 'de-ch';
+const ARTICLES: Record<string, { gabarit: '/blog/[slug]' | '/guide/[slug]'; slugs: Partial<Record<Langue, string>> }> = {
+  guidePackshot: {
+    gabarit: '/blog/[slug]',
+    slugs: { fr: 'guide-photographie-packshot-pourquoi-faire-packshots', en: 'packshot-photography-guide-why-make-product-packshots', 'de-ch': 'leitfaden-packshot-fotografie-warum-packshots-machen' },
+  },
+  prestataire: {
+    gabarit: '/blog/[slug]',
+    slugs: { fr: 'prestataire-packshot-vs-studio-interne', en: 'prestataire-packshot-vs-studio-interne' },
+  },
+  collection: {
+    gabarit: '/guide/[slug]',
+    slugs: { fr: 'visuels-collection-produits-homogenes', en: 'consistent-product-image-collection' },
+  },
+  migration: {
+    gabarit: '/blog/[slug]',
+    slugs: { fr: 'migrer-ancien-packshotcreator', en: 'migrate-legacy-packshotcreator-studio', 'de-ch': 'altes-packshotcreator-studio-migrieren' },
+  },
+};
+
+function cibleArticle(cle: keyof typeof ARTICLES, lang: Langue): { href: Href; locale: Langue } {
+  const { gabarit, slugs } = ARTICLES[cle];
+  const locale: Langue = slugs[lang] ? lang : slugs.en ? 'en' : 'fr';
+  return { href: { pathname: gabarit, params: { slug: slugs[locale] as string } }, locale };
+}
 
 const STUDIOS: { key: string; slug: string; img: string; w: number; h: number }[] = [
   { key: 'micro', slug: 'alphashot-micro-v2', img: '/images/machines/alphashot-micro-v2.avif', w: 1000, h: 1000 },
@@ -189,15 +229,21 @@ const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'] as const
 const CLASSE_LIEN =
   'font-medium text-very-peri-600 underline decoration-very-peri-200 underline-offset-4 hover:decoration-very-peri-500 transition-colors';
 
-function lien(href: Href) {
+/** Lien interne d'un texte riche. En de-ch, une cible non traduite est épinglée sur /en ou /fr. */
+function lien(lang: string, href: Href, locale?: Langue) {
   function LienRiche(chunks: ReactNode) {
     return (
-      <Link href={href} className={CLASSE_LIEN}>
+      <Link href={href} locale={locale ?? navPinLocale(lang, href)} className={CLASSE_LIEN}>
         {chunks}
       </Link>
     );
   }
   return LienRiche;
+}
+
+function lienArticle(lang: Langue, cle: keyof typeof ARTICLES) {
+  const { href, locale } = cibleArticle(cle, lang);
+  return lien(lang, href, locale);
 }
 
 function gras(chunks: ReactNode) {
@@ -206,11 +252,9 @@ function gras(chunks: ReactNode) {
 
 /** Empêche la coupure de ligne au trait d'union de « e-commerce » dans les titres. */
 function sansCesure(texte: string): ReactNode {
-  const morceaux = texte.split('e-commerce');
+  const morceaux = texte.split(/(e-commerce)/i);
   if (morceaux.length === 1) return texte;
-  return morceaux.flatMap((m, i) =>
-    i === 0 ? [m] : [<span key={i} className="whitespace-nowrap">e-commerce</span>, m],
-  );
+  return morceaux.map((m, i) => (i % 2 === 1 ? <span key={i} className="whitespace-nowrap">{m}</span> : m));
 }
 
 function LienExterne({ href, children }: { href: string; children: ReactNode }) {
@@ -254,15 +298,17 @@ function LibelleMobile({ children }: { children: ReactNode }) {
   return <span className="md:hidden block text-[11px] font-semibold uppercase tracking-wider text-future-dusk-400 mb-1">{children}</span>;
 }
 
-export default async function PackshotEcommerceFr() {
-  const t = await getTranslations({ locale: 'fr', namespace: 'packshotEcommerce' });
+export default async function PackshotEcommerce({ lang }: { lang: Langue }) {
+  const t = await getTranslations({ locale: lang, namespace: 'packshotEcommerce' });
+  const urlPage = `${SITE}/${lang}/${SLUG}`;
+  const epingle = (href: Href) => navPinLocale(lang, href);
   const retour = t('sommaire.retour');
 
   const faqs = FAQ_KEYS.map((k) => ({ question: t(`faq.${k}.question`), answer: t(`faq.${k}.answer`) }));
 
   const breadcrumbs = [
-    { name: 'PackshotCreator', url: 'https://www.packshot-creator.com/fr' },
-    { name: t('breadcrumb'), url: URL_PAGE },
+    { name: 'PackshotCreator', url: `${SITE}/${lang}` },
+    { name: t('breadcrumb'), url: urlPage },
   ];
 
   return (
@@ -294,7 +340,7 @@ export default async function PackshotEcommerceFr() {
                   size="lg"
                   className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-12 text-base rounded-lg"
                 >
-                  <Link href="/studio-photo/selecteur-machines">{t('hero.ctaSecondary')}</Link>
+                  <Link href="/studio-photo/selecteur-machines" locale={epingle('/studio-photo/selecteur-machines')}>{t('hero.ctaSecondary')}</Link>
                 </Button>
               </div>
             </div>
@@ -340,7 +386,7 @@ export default async function PackshotEcommerceFr() {
               </ul>
               <p className="mt-8 text-future-dusk-500 leading-relaxed">
                 {t.rich('bref.guide', {
-                  lien: lien({ pathname: '/blog/[slug]', params: { slug: 'guide-photographie-packshot-pourquoi-faire-packshots' } }),
+                  lien: lienArticle(lang, 'guidePackshot'),
                 })}
               </p>
             </div>
@@ -473,11 +519,11 @@ export default async function PackshotEcommerceFr() {
           </div>
           <details className="group mt-8 text-xs text-future-dusk-500">
             <summary className="inline-flex min-h-6 items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
-              {t('r2.sources')} ({SOURCES_UX.length})
+              {t('r2.sources')} ({sourcesUx(lang).length})
               <ChevronDown className="h-3.5 w-3.5 group-open:rotate-180 transition-transform" aria-hidden="true" />
             </summary>
             <ul className="mt-3 space-y-1.5 leading-relaxed">
-              {SOURCES_UX.map((s) => (
+              {sourcesUx(lang).map((s) => (
                 <li key={s.href}>
                   <LienExterne href={s.href}>{s.label}</LienExterne>
                 </li>
@@ -540,15 +586,15 @@ export default async function PackshotEcommerceFr() {
             </table>
             <div className="px-5 sm:px-8 py-4 border-t border-neutral-100 bg-neutral-50 text-xs text-future-dusk-500 leading-relaxed">
               <span className="font-semibold uppercase tracking-wider mr-2">{t('r3.sources')}</span>
-              {SOURCES_PLATEFORMES.map((s, i) => (
+              {sourcesPlateformes(lang).map((s, i, liste) => (
                 <span key={s.href}>
                   <LienExterne href={s.href}>{s.label}</LienExterne>
-                  {i < SOURCES_PLATEFORMES.length - 1 ? ' · ' : ''}
+                  {i < liste.length - 1 ? ' · ' : ''}
                 </span>
               ))}
             </div>
           </div>
-          <p className="mt-6 text-future-dusk-600">{t.rich('r3.lienAmazon', { lien: lien('/packshot-amazon') })}</p>
+          <p className="mt-6 text-future-dusk-600">{t.rich('r3.lienAmazon', { lien: lien(lang, '/packshot-amazon') })}</p>
         </div>
       </section>
 
@@ -574,7 +620,7 @@ export default async function PackshotEcommerceFr() {
             <div>
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">{t('r4.ia.title')}</h3>
               <p className="text-future-dusk-600 leading-relaxed">{t('r4.ia.text')}</p>
-              <p className="mt-3 text-future-dusk-600">{t.rich('r4.ia.lien', { lien: lien('/ia-photo-produit') })}</p>
+              <p className="mt-3 text-future-dusk-600">{t.rich('r4.ia.lien', { lien: lien(lang, '/ia-photo-produit') })}</p>
             </div>
           </div>
 
@@ -611,8 +657,8 @@ export default async function PackshotEcommerceFr() {
             <p className="mt-6 text-future-dusk-600 leading-relaxed max-w-4xl">{t('r4.note')}</p>
             <p className="mt-3 text-future-dusk-600 leading-relaxed max-w-4xl">
               {t.rich('r4.liens', {
-                lien: lien({ pathname: '/blog/[slug]', params: { slug: 'prestataire-packshot-vs-studio-interne' } }),
-                lien2: lien('/calculateur-roi'),
+                lien: lienArticle(lang, 'prestataire'),
+                lien2: lien(lang, '/calculateur-roi'),
               })}
             </p>
           </div>
@@ -698,7 +744,7 @@ export default async function PackshotEcommerceFr() {
           </div>
           <p className="mt-6 text-future-dusk-600">
             {t.rich('r5.lienGuide', {
-              lien: lien({ pathname: '/guide/[slug]', params: { slug: 'visuels-collection-produits-homogenes' } }),
+              lien: lienArticle(lang, 'collection'),
             })}
           </p>
         </div>
@@ -739,10 +785,10 @@ export default async function PackshotEcommerceFr() {
               </ul>
               <p className="mt-4 text-xs text-future-dusk-500 leading-relaxed">
                 <span className="font-semibold uppercase tracking-wider mr-2">{t('r6.sourcesIntegrations')}</span>
-                {SOURCES_INTEGRATIONS.map((s, i) => (
+                {sourcesIntegrations(lang).map((s, i, liste) => (
                   <span key={s.href}>
                     <LienExterne href={s.href}>{s.label}</LienExterne>
-                    {i < SOURCES_INTEGRATIONS.length - 1 ? ' · ' : ''}
+                    {i < liste.length - 1 ? ' · ' : ''}
                   </span>
                 ))}
               </p>
@@ -782,6 +828,7 @@ export default async function PackshotEcommerceFr() {
                     <th scope="row" className="block md:table-cell md:px-6 md:py-4 align-middle mb-3 md:mb-0">
                       <Link
                         href={{ pathname: '/studio-photo/[slug]', params: { slug: s.slug } }}
+                        locale={epingle({ pathname: '/studio-photo/[slug]', params: { slug: s.slug } })}
                         className="group flex items-center gap-4"
                       >
                         <span className="h-16 w-16 shrink-0 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center justify-center p-1">
@@ -817,8 +864,8 @@ export default async function PackshotEcommerceFr() {
           <p className="mt-4 text-sm text-future-dusk-500 leading-relaxed">{t('r7.note')}</p>
           <p className="mt-6 text-future-dusk-600">
             {t.rich('r7.liens', {
-              lien: lien('/studio-photo/selecteur-machines'),
-              lien2: lien('/studios-photo-automatises'),
+              lien: lien(lang, '/studio-photo/selecteur-machines'),
+              lien2: lien(lang, '/studios-photo-automatises'),
             })}
           </p>
         </div>
@@ -834,7 +881,7 @@ export default async function PackshotEcommerceFr() {
               <h3 className="text-2xl font-heading font-bold mb-3">{t('r8.cout.title')}</h3>
               <p className="text-future-dusk-200 leading-relaxed flex-1">{t('r8.cout.text')}</p>
               <Button asChild className="mt-6 w-fit bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-6 h-11">
-                <Link href="/calculateur-roi">
+                <Link href="/calculateur-roi" locale={epingle('/calculateur-roi')}>
                   {t('r8.cout.cta')} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
               </Button>
@@ -849,8 +896,8 @@ export default async function PackshotEcommerceFr() {
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">{t('r8.formation.title')}</h3>
               <p className="text-future-dusk-600 leading-relaxed">{t('r8.formation.text')}</p>
               <div className="mt-5 flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm">
-                <Link href="/academy/formations-packshot" className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta')}</Link>
-                <Link href="/academy/simulateur-opco" className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta2')}</Link>
+                <Link href="/academy/formations-packshot" locale={epingle('/academy/formations-packshot')} className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta')}</Link>
+                <Link href="/academy/simulateur-opco" locale={epingle('/academy/simulateur-opco')} className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta2')}</Link>
               </div>
             </div>
             <div className="rounded-3xl border border-neutral-100 bg-neutral-50 p-6 lg:p-8">
@@ -859,7 +906,7 @@ export default async function PackshotEcommerceFr() {
               <p className="text-future-dusk-600 leading-relaxed">{t('r8.accompagnement.text')}</p>
               <p className="mt-4 text-sm text-future-dusk-600">
                 {t.rich('r8.accompagnement.migration', {
-                  lien: lien({ pathname: '/blog/[slug]', params: { slug: 'migrer-ancien-packshotcreator' } }),
+                  lien: lienArticle(lang, 'migration'),
                 })}
               </p>
             </div>
@@ -909,13 +956,13 @@ export default async function PackshotEcommerceFr() {
             <div className="lg:col-span-3 bg-white text-future-dusk-900 rounded-3xl p-4 sm:p-6 lg:p-10">
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900">{t('cta.formTitle')}</h3>
               <p className="mt-2 mb-6 text-sm text-future-dusk-600 leading-relaxed">{t('cta.demoNote')}</p>
-              <ContactForm locale="fr" compact defaultRequestType="demo" hideRequestType />
+              <ContactForm locale={lang} compact defaultRequestType="demo" hideRequestType />
             </div>
             <div className="lg:col-span-2 bg-white/5 rounded-3xl p-5 sm:p-8 border border-white/10">
               <h3 className="text-xl font-heading font-bold mb-3">{t('cta.roiTitle')}</h3>
               <p className="text-sm text-future-dusk-200 mb-6 leading-relaxed">{t('cta.roiText')}</p>
               <Button asChild className="bg-transparent border border-white/25 text-white hover:bg-white/10 rounded-xl px-6 h-11 text-sm sm:text-base w-fit">
-                <Link href="/calculateur-roi">
+                <Link href="/calculateur-roi" locale={epingle('/calculateur-roi')}>
                   {t('cta.roiCta')} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
               </Button>
@@ -934,7 +981,7 @@ export default async function PackshotEcommerceFr() {
               { key: 'ia', href: '/ia-photo-produit' as const, icon: <Sparkles className="h-5 w-5" aria-hidden="true" /> },
               { key: 'academy', href: '/academy' as const, icon: <GraduationCap className="h-5 w-5" aria-hidden="true" /> },
             ].map((l) => (
-              <Link key={l.key} href={l.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
+              <Link key={l.key} href={l.href} locale={epingle(l.href)} className="group block px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-very-peri-500">{l.icon}</span>
                   <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">{t(`explore.${l.key}.title`)}</h3>
@@ -951,7 +998,7 @@ export default async function PackshotEcommerceFr() {
           contredisent la page (audit du 28/09/2026 consigné dans JOURNAL.md). */}
       <MoneyPageResources
         slug={SLUG}
-        lang="fr"
+        lang={lang}
         exclure={['taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques', 'comment-avoir-meilleure-photo-produit-e-commerce']}
       />
 
