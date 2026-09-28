@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-28 · Article AI Act et images produit, Preview à valider · Claude de Laurent
 
-**Chantier** : AI Act et images produit (D15, D16 PASS, Q2 option b) | **PR** : brouillon, numéro reporté dans `ETAT.md` à la création ; ne pas fusionner sans le GO de Sébastien | **Base** : `b26f6e9`
+**Chantier** : AI Act et images produit (D15, D16 PASS, Q2 option b) | **PR** : #43 (brouillon ; ne pas fusionner sans le GO de Sébastien ni avant les versions EN et de-ch de D38) | **Base** : `b26f6e9`, puis `04919f8` fusionné
 
 **Quoi** — Nouvel article FR `/fr/blog/ai-act-images-produit` (environ 4 900 mots, tableau des 20 cas, 12 FAQ, 15 liens de sources) ; corrections E1/E2 (`generer-images-produit-ia`), E3 à E7 (`migrer-ancien-packshotcreator`, FR, EN, de-ch) ; `twitter` et `og:url`, `og:site_name`, `og:locale` dans le gabarit des articles.
 
