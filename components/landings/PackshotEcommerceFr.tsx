@@ -67,11 +67,12 @@ const CLIENT_LOGOS = [
   { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
 ];
 
+// Visuels présents sur les fiches orbitvu.com du modèle cité en légende (contrôle du 28/09/2026).
 const HERO_MOSAIQUE = [
-  { key: 'coat', src: '/images/machines/alphatable-alphadesk/packshot-coat.avif', w: 1200, h: 1200 },
   { key: 'mascara', src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080 },
-  { key: 'bag', src: '/images/machines/alphastudio-compact/packshot-bag.avif', w: 1080, h: 1080 },
-  { key: 'chair', src: '/images/machines/alphastudio-compact/packshot-chair.avif', w: 1080, h: 1080 },
+  { key: 'karcher', src: '/images/machines/alphastudio-compact/packshot-karcher.avif', w: 1080, h: 1080 },
+  { key: 'eyeshadow', src: '/images/machines/alphashot-pro-g2/packshot-eyeshadow.avif', w: 1080, h: 1080 },
+  { key: 'chair', src: '/images/machines/furniture-studio/packshot-chair.avif', w: 1081, h: 1081 },
 ] as const;
 
 const SERIE = [
@@ -364,7 +365,7 @@ export default async function PackshotEcommerceFr() {
             </li>
           </ul>
           <details className="group mt-8 text-xs text-future-dusk-500">
-            <summary className="inline-flex items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
+            <summary className="inline-flex min-h-6 items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
               {t('r2.sources')} ({SOURCES_UX.length})
               <ChevronDown className="h-3.5 w-3.5 group-open:rotate-180 transition-transform" aria-hidden="true" />
             </summary>
@@ -642,8 +643,8 @@ export default async function PackshotEcommerceFr() {
                         href={{ pathname: '/studio-photo/[slug]', params: { slug: s.slug } }}
                         className="group flex items-center gap-4"
                       >
-                        <span className="h-14 w-14 shrink-0 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center justify-center p-1">
-                          <Image src={s.img} alt="" width={s.w} height={s.h} sizes="56px" className="max-h-full w-auto object-contain" />
+                        <span className="h-16 w-16 shrink-0 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center justify-center p-1">
+                          <Image src={s.img} alt="" width={s.w} height={s.h} sizes="64px" className="max-h-full w-auto object-contain" />
                         </span>
                         <span>
                           <span className="block font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
@@ -707,8 +708,8 @@ export default async function PackshotEcommerceFr() {
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">{t('r8.formation.title')}</h3>
               <p className="text-future-dusk-600 leading-relaxed">{t('r8.formation.text')}</p>
               <div className="mt-5 flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm">
-                <Link href="/academy/formations-packshot" className={CLASSE_LIEN}>{t('r8.formation.cta')}</Link>
-                <Link href="/academy/simulateur-opco" className={CLASSE_LIEN}>{t('r8.formation.cta2')}</Link>
+                <Link href="/academy/formations-packshot" className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta')}</Link>
+                <Link href="/academy/simulateur-opco" className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('r8.formation.cta2')}</Link>
               </div>
             </div>
             <div className="rounded-3xl border border-neutral-100 bg-neutral-50 p-6 lg:p-8">
@@ -788,7 +789,7 @@ export default async function PackshotEcommerceFr() {
       {/* ━━ EXPLOREZ ━━ */}
       <section className="py-20 bg-white border-t border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] block mb-10">{t('explore.label')}</span>
+          <h2 className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-10">{t('explore.label')}</h2>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
               { key: 'studios', href: '/studios-photo-automatises' as const, icon: <Camera className="h-5 w-5" aria-hidden="true" /> },
@@ -808,7 +809,13 @@ export default async function PackshotEcommerceFr() {
         </div>
       </section>
 
-      <MoneyPageResources slug={SLUG} lang="fr" />
+      {/* Exclus ici : deux articles dont les chiffres de conversion et de retours, ou le titre absolu,
+          contredisent la page (audit du 28/09/2026 consigné dans JOURNAL.md). */}
+      <MoneyPageResources
+        slug={SLUG}
+        lang="fr"
+        exclure={['taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques', 'comment-avoir-meilleure-photo-produit-e-commerce']}
+      />
 
       <SchemaOrg schema={[organizationSchema(), breadcrumbSchema(breadcrumbs), faqSchema(faqs)]} />
     </>

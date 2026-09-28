@@ -179,13 +179,23 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
    Constat du crawl du 17/09 : Link Score blog et guides = 1, contre
    84 pour les money pages, qui ne leur renvoyaient rien.
    ───────────────────────────────────────────────────────────── */
-export function MoneyPageResources({ slug, lang }: { slug: string; lang: string }) {
+export function MoneyPageResources({
+  slug,
+  lang,
+  exclure = [],
+}: {
+  slug: string;
+  lang: string;
+  /** Slugs FR à ne pas afficher sur cette page seulement ; la table partagée reste inchangée. */
+  exclure?: readonly string[];
+}) {
   const map = MONEY_PAGE_RESOURCES_MAP[slug];
   if (!map) return null;
 
+  const garder = (slugFr: string) => !exclure.includes(slugFr);
   const items = [
-    ...resolveGuides(map.guides, lang as Lang),
-    ...resolveArticles(map.articles, lang as Lang),
+    ...resolveGuides(map.guides.filter(garder), lang as Lang),
+    ...resolveArticles(map.articles.filter(garder), lang as Lang),
   ];
 
   return (

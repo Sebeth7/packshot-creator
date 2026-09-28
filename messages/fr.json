@@ -1228,17 +1228,17 @@
       "subtitle": "Sur un catalogue qui vit, la difficulté n'est pas de réussir une photo, mais d'obtenir le même rendu sur des centaines de références, saison après saison. Voici comment organiser cette production en interne.",
       "ctaPrimary": "Demander une démonstration",
       "ctaSecondary": "Trouver le studio adapté",
-      "mosaicCaption": "Packshots réalisés avec des studios Orbitvu, du textile à plat au mobilier.",
+      "mosaicCaption": "Exemples Orbitvu : cosmétique (Alphashot Pro G2), outillage (Alphastudio Compact), mobilier (Furniture Studio).",
       "alts": {
-        "coat": "Manteau rose photographié à plat sur fond blanc",
         "mascara": "Mascara rouge photographié sur fond blanc",
-        "bag": "Sac à main jaune photographié sur fond blanc",
-        "chair": "Fauteuil jaune photographié sur fond blanc"
+        "karcher": "Nettoyeur haute pression photographié sur fond blanc",
+        "eyeshadow": "Palette de fards à paupières photographiée sur fond blanc",
+        "chair": "Fauteuil rouge à pieds dorés photographié sur fond blanc"
       }
     },
     "bref": {
       "label": "En bref",
-      "definition": "Un packshot e-commerce est une photo du produit entier, sur fond uniforme, cadrée et éclairée selon des règles constantes, fidèle à l'article livré. Sur une boutique ou une marketplace, sa valeur tient à la répétition : chaque référence est photographiée de la même façon, pour être comparée d'un coup d'œil.",
+      "definition": "Un packshot e-commerce est une photo du produit entier, sur fond uniforme, cadrée et éclairée selon des règles constantes, fidèle à l'article vendu. Sur une boutique ou une marketplace, sa valeur tient à la répétition : chaque référence est photographiée de la même façon, pour être comparée d'un coup d'œil.",
       "positionnement": "PackshotCreator ne réalise pas de prestation photo. Distributeur officiel d'Orbitvu en France et en Suisse, nous installons des studios photo automatisés dans vos locaux et formons vos équipes à les utiliser.",
       "guide": "Définition détaillée, usages et codes du packshot : lisez notre <lien>guide de la photographie packshot</lien>.",
       "logos": "Ils produisent leurs packshots avec nous"
@@ -1250,7 +1250,7 @@
       "p2": "Avec un workflow manuel, cette régularité repose sur des réglages documentés, appliqués à chaque séance. Un studio automatisé les enregistre dans un modèle (éclairage, réglages de l'appareil, traitements) rejoué à chaque prise de vue : le même rendu se reproduit plus facilement dans le temps et d'un opérateur à l'autre.",
       "p3": "La photo réelle est aussi le bon point de départ pour l'IA : elle reste la référence fidèle du produit, et l'IA assiste la retouche ou crée des déclinaisons à partir de cette base.",
       "lienIa": "Voir comment <lien>l'IA s'applique à la photo produit</lien>.",
-      "serieCaption": "Quatre vêtements photographiés à plat avec un Alphatable Orbitvu : fond, lumière et cadrage identiques.",
+      "serieCaption": "Une série à plat : même fond, même lumière et même cadrage d'un vêtement à l'autre.",
       "alts": {
         "blouse": "Sweat enfant jaune pâle photographié à plat sur fond blanc",
         "coat": "Manteau rose photographié à plat sur fond blanc",
@@ -1383,7 +1383,7 @@
         },
         "interne": {
           "title": "Studio interne automatisé",
-          "text": "Adapté à un flux régulier de nouvelles références et à un besoin de cohérence dans la durée. Suppose un espace, un opérateur formé et un investissement de départ."
+          "text": "Adapté à un flux régulier de nouvelles références et à un besoin de cohérence dans la durée. Suppose un espace, un opérateur formé, et un achat ou un financement."
         }
       },
       "grilleTitle": "Grille de décision",
@@ -1568,7 +1568,7 @@
         "alphatable": {
           "nom": "Alphatable",
           "produits": "Vêtements, textiles et objets plats, vus de dessus",
-          "gabarit": "165 × 112 cm, à plat",
+          "gabarit": "165 × 112 × 5 cm, 80 kg",
           "cadence": "15 secondes par packshot à plat"
         },
         "furniture": {
@@ -1596,7 +1596,7 @@
       },
       "formation": {
         "title": "Formation",
-        "text": "PackshotCreator Academy est un organisme de formation certifié Qualiopi. La formation Packshot professionnel dure deux jours (14 heures). En France, une prise en charge par votre OPCO est possible selon votre situation.",
+        "text": "PackshotCreator Academy, organisme de formation certifié Qualiopi, propose des formations packshot sur studio Orbitvu, sur plusieurs niveaux. En France, une prise en charge par votre OPCO est possible selon votre situation.",
         "cta": "Voir la formation packshot",
         "cta2": "Simuler une prise en charge OPCO"
       },
@@ -1609,8 +1609,8 @@
     "faq": {
       "heading": "Questions fréquentes sur le packshot e-commerce",
       "q1": {
-        "question": "Qu'est-ce qu'un packshot e-commerce ?",
-        "answer": "Une photo du produit entier, sur fond uniforme (souvent blanc), cadrée et éclairée selon des règles constantes, fidèle à l'article vendu. Elle sert d'image principale sur une fiche produit ou une marketplace, et se juge sur la série : toutes les références photographiées de la même façon."
+        "question": "Quel studio Orbitvu choisir pour ses produits e-commerce ?",
+        "answer": "Le choix dépend d'abord du plus grand produit à photographier. Selon les dimensions publiées par Orbitvu : Alphashot Micro Pro v2 jusqu'à 18 cm et 1 kg (bijoux, montres) ; Alphashot 360 jusqu'à 30 × 30 × 30 cm et 3 kg ; Alphashot Pro G2 jusqu'à 35 × 35 × 40 cm et 10 kg ; Alphashot XL G2 jusqu'à 60 × 40 × 70 cm et 25 kg ; Alphastudio Compact ou XXL au-delà ; Alphatable pour le textile à plat ; Furniture Studio pour le mobilier."
       },
       "q2": {
         "question": "Combien de photos faut-il par produit ?",
@@ -1634,11 +1634,11 @@
       },
       "q7": {
         "question": "Comment les photos arrivent-elles sur la boutique, le PIM ou le DAM ?",
-        "answer": "Orbitvu Station exporte selon des profils de publication (dimensions, formats, nommage par référence). Des modules couvrent Magento 2, PrestaShop 1.7 et WooCommerce ; Shopify et Shopware 6 passent par Orbitvu SUN. DAM, PIM et ERP se connectent par attributs, codes-barres, scripts ou API."
+        "answer": "Le logiciel Orbitvu Station exporte selon des profils de publication (dimensions, formats, nommage par référence). Des modules couvrent Magento 2, PrestaShop 1.7 et WooCommerce ; Shopify et Shopware 6 passent par Orbitvu SUN. DAM, PIM et ERP se connectent par attributs, codes-barres, scripts ou API."
       },
       "q8": {
         "question": "Quel délai pour installer un studio et démarrer ?",
-        "answer": "Le délai de livraison indicatif est d'environ 10 jours, non contractuel. La durée d'installation et de formation dépend du système et de la configuration. Livraison et installation sont facturées en supplément. Une démonstration est possible avant, au showroom près de Lyon ou en visioconférence."
+        "answer": "Chez PackshotCreator, le délai de livraison indicatif d'un studio Orbitvu est d'environ 10 jours, non contractuel. La durée d'installation et de formation dépend du système et de la configuration. Livraison et installation sont facturées en supplément. Une démonstration est possible avant, au showroom près de Lyon ou en visioconférence."
       }
     },
     "cta": {
@@ -1647,7 +1647,7 @@
       "roiTitle": "Estimer votre coût complet",
       "roiText": "Économies annuelles, temps libéré, point d'équilibre : une estimation calculée à partir de vos volumes.",
       "roiCta": "Ouvrir le calculateur",
-      "demoNote": "30 minutes avec un conseiller, au showroom près de Lyon ou en visioconférence. Apportez vos produits les plus difficiles."
+      "demoNote": "30 minutes avec un conseiller, en visioconférence ou au showroom près de Lyon, où vous pouvez tester vos produits les plus difficiles."
     },
     "explore": {
       "label": "Explorez nos solutions",
@@ -1661,7 +1661,7 @@
       },
       "academy": {
         "title": "Academy",
-        "desc": "Formations certifiées Qualiopi pour vos opérateurs."
+        "desc": "Formations d'un organisme certifié Qualiopi, pour vos opérateurs."
       }
     }
   },

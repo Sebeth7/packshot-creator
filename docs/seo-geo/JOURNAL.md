@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — audit exhaustif de la Preview de `/fr/packshot-e-commerce` · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Audit contenu, SEO, GEO, UX, visuels et technique du commit `5070d6a` (build local ; Preview protégée par SSO), corrections appliquées.
+
+**Problèmes trouvés et corrigés** —
+1. Hero : 2 visuels sur 4 absents des fiches orbitvu.com (sac jaune, fauteuil jaune) et manteau en doublon avec la série R1. Remplacés par des visuels présents sur les fiches Orbitvu du modèle cité : mascara et palette (Alphashot Pro G2), nettoyeur haute pression (Alphastudio Compact), fauteuil rouge (Furniture Studio) ; légende nommant chaque modèle.
+2. R1 : légende « photographiés avec un Alphatable » invérifiable pour 3 vêtements sur 4 (seul le manteau figure sur la fiche Alphatable) ; attribution retirée.
+3. R7 : Alphatable complété selon la fiche Orbitvu (165 × 112 × 5 cm, 80 kg).
+4. R8 : « formation Packshot professionnel de deux jours (14 heures) » non établie : 2 jours sur `/academy`, niveau 1 à 14 h sur `/academy/formations-packshot`, 7 h dans `content/formations/`. Durée retirée.
+5. FAQ : Q1 « Qu'est-ce qu'un packshot e-commerce ? » remplacée par « Quel studio Orbitvu choisir pour ses produits e-commerce ? » (intention décisionnelle ; la définition relève du guide `/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots`, lié depuis « En bref ») ; Q7 et Q8 rendues autonomes (sujet explicite).
+6. Petites contradictions : « investissement de départ » face au leasing ; démonstration en visioconférence « avec vos produits » ; « formations certifiées Qualiopi » (c'est l'organisme qui l'est) ; « article livré » et « article vendu ».
+7. Métadonnées FR : `og:url`, `og:locale`, `og:type` absents (l'openGraph de la page remplace celui du layout) et `twitter:title` hérité du titre générique sans accents. Ajoutés pour le FR seulement.
+8. Hiérarchie : les 3 cartes H3 « Explorez » tombaient sous le H2 du CTA ; le libellé devient un H2.
+9. Accessibilité : 3 cibles tactiles sous 24 px (sources, liens formation) portées à 24 px.
+10. Maillage : le bloc « Pour aller plus loin » affichait l'article « Taux de conversion » (+35 % de conversion avec le 360°, -35 % de retours) et « Les 10 astuces infaillibles ». Exclus de cette page seulement, par une prop optionnelle `exclure` ajoutée à `MoneyPageResources` (valeur par défaut vide : aucun changement pour les autres pages ni pour EN et de-ch).
+
+**Vérifié** — Fiches orbitvu.com des 8 studios (dimensions, poids, unités, cadences, noms actuels ; aucun modèle délisté cité) ; orbitvu.com/software/ai (assistant photo IA : Pro G2 et XL G2) ; manuel Orbitvu « Subscriptions & Billing » (plan Free sans IA ni mises à jour) ; manuel des plateformes e-commerce (Magento 2, PrestaShop 1.7.x, WooCommerce, Shopware 6 et Shopify via SUN) ; provenance des visuels par comparaison avec les médias des fiches Orbitvu ; calculateur ROI (économie directe annuelle, temps interne libéré, seuil de rentabilité). Aucune duplication avec le guide définitionnel (1 6-gramme commun sur 3 093). Contrôles : `tsc`, eslint sur 3 fichiers, JSON (186), vitest 223/223, `next build`, `e2e/seo.spec.ts` 13/13 sur la page et 51/51 sur 4 autres money pages utilisant `MoneyPageResources`, CLS 0, aucune réponse 4xx, 36 images avec alt, 22 liens internes en 200, 10 externes conformes, FAQPage (8), claims interdits absents du rendu (texte, meta, JSON-LD, bloc `packshotEcommerce` du RSC) et du code de la page.
+**Supposé** — L'erreur console `ERR_CERT_AUTHORITY_INVALID` vient du traceur lemlist, bloqué par le proxy de l'environnement de test ; non reproductible hors de ce bac à sable [non vérifié].
+**Non regardé** — Rendu derrière Cloudflare ; Preview SSO ; versions EN et de-ch.
+
+**Ouverts, hors périmètre** — `organizationSchema()` (partagé) publie `foundingDate` 2004, contraire à D33 (2001) ; le layout sérialise tout `fr.json` dans le RSC (≈ 370 Ko, anciens claims d'autres pages, HTML de 580 Ko) ; le guide définitionnel lié contient « ROI typique entre 6 et 12 mois » et « 60 à 80 % » ; incohérence des durées de formation entre `/academy`, `/academy/formations-packshot` et `content/formations/`.
+
+---
+
 ## 2026-09-28 · F5 — audit final de la version FR de `/fr/packshot-e-commerce` · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR

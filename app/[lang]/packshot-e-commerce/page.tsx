@@ -27,19 +27,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
+  const url = `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`;
+  const ogImage = `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`;
 
   return {
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
-      canonical: `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`,
+      canonical: url,
       languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}`, deCh: `/de-ch/${CONFIG.slug}` }),
     },
     openGraph: {
       title: t('meta.title'),
       description: t('meta.description'),
-      images: [{ url: `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`, width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+      // FR seulement (F5) : l'openGraph de la page remplace celui du layout, qui fournissait url, locale et type.
+      ...(lang === 'fr' ? { url, siteName: 'PackshotCreator', locale: 'fr_FR', type: 'website' as const } : {}),
     },
+    // FR seulement (F5) : sans ce bloc, twitter:title reprend le titre générique du layout.
+    ...(lang === 'fr'
+      ? { twitter: { card: 'summary_large_image' as const, title: t('meta.title'), description: t('meta.description'), images: [ogImage] } }
+      : {}),
   };
 }
 
