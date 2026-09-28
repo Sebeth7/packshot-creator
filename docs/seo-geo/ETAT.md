@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-28 — Claude de Laurent (PR #40 fusionnée — `15469e5` — et contrôlée sur `sysnext.vercel.app` : Lemlist, Pipedrive WebForms, iframes legacy et Webflow API retirés, GA4 inchangé ; contrôle Chrome sur `www` à faire). Mise à jour précédente : 2026-09-25 (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-28 — Claude de Laurent (ouverture du chantier AI Act et images produit, branche `seo/ai-act-images-produit-2026-09-28`). Mise à jour précédente : 2026-09-28 — Claude de Laurent (PR #40 fusionnée — `15469e5` — et contrôlée sur `sysnext.vercel.app` : Lemlist, Pipedrive WebForms, iframes legacy et Webflow API retirés, GA4 inchangé ; contrôle Chrome sur `www` à faire). Mise à jour précédente : 2026-09-25 (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -26,6 +26,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
 | Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à instruire | `messages/de-ch.json`, `content/**` | 19/09 |
 | Maillage article → offre (Q3) | Claude de Laurent | 23 liens listés, circuit (b) | `content/**` | 19/09 |
+| AI Act et images produit — article `/fr/blog/ai-act-images-produit` (D16 PASS) et corrections liées E1 à E7 | Claude de Laurent | branche `seo/ai-act-images-produit-2026-09-28`, PR en brouillon ; **en attente de validation explicite de Sébastien sur le Preview (D15, D16, Q2 option b)** ; ne pas fusionner sans son GO | `content/blog/fr/ai-act-images-produit.json` (nouveau), `content/blog/fr/generer-images-produit-ia.json`, `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `app/[lang]/blog/[slug]/page.tsx` | 28/09 |
 
 ---
 
