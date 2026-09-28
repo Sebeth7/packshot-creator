@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-28 — Claude de Laurent (ouverture de la PR #40 de suppression des intégrations obsolètes : Lemlist, Pipedrive WebForms, iframes legacy, Webflow API ; non fusionnée). Mise à jour précédente : 2026-09-25 (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-28 — Claude de Laurent (PR #40 fusionnée — `15469e5` — et contrôlée sur `sysnext.vercel.app` : Lemlist, Pipedrive WebForms, iframes legacy et Webflow API retirés, GA4 inchangé ; contrôle Chrome sur `www` à faire). Mise à jour précédente : 2026-09-25 (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -14,7 +14,6 @@ périmée ici coûte plus cher qu'une ligne absente.
 
 | Chantier | Qui | État | Fichiers réservés | Depuis |
 |---|---|---|---|---|
-| Suppression des intégrations obsolètes — Lemlist, Pipedrive WebForms, iframes `iframe.packshot-creator.com`, Webflow API ; catégorie cookies `marketing` retirée | Claude de Laurent | PR #40 ouverte le 28/09 (brouillon), branche `claude/admiring-hypatia-7pir8f`, **non fusionnée, non déployée** ; détail au JOURNAL du 28/09 | `components/cookies/CookieBanner.tsx`, `app/[lang]/layout.tsx`, `next.config.ts`, `package.json`, `cloudflare-worker/wrangler.toml` ; clés `cookies.*` de `messages/{fr,en,de-ch}.json` | 28/09 |
 | Marque — choix de page sur « packshot creator » (D28) | Claude de Laurent | M1, M2, M6 faits le 23/09 ; H1 écartée ; gain réévalué 10-20 clics/mois ; M5 le 14-28/10 ; fiche Google France corrigée par Laurent | — (mesure) | 19/09 |
 | Substitution de page — page témoin `/fr/packshot-e-commerce` (711 → ~2 200 mots) | Claude de Laurent | brief CC5, circuit (b) ; aucun lien entrant ajouté avant J+56 | `messages/fr.json` (`packshotEcommerce.longform`), `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/packshot-e-commerce/page.tsx` | 19/09 |
 | Accents — `fr.json` (211 clés), `machines.ts` (FAQ + JSON-LD) et meta `alphashot-360` | Claude de Laurent | PR à ouvrir, circuit (a) | `messages/fr.json`, `components/calculators/ROICalculator/lib/machines.ts`, `app/[lang]/studio-photo/[slug]/page.tsx` | 19/09 |
@@ -46,6 +45,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle visuel Chrome sur `www` de #29 et #32 (R4) : `/fr`, `/en`, `/de-ch` | Claude de Laurent | 24/09 | Seul contrôle restant. Le site charge normalement ; sur `/de-ch`, aucun bloc d'avis ni de témoignages. Le JSON-LD `inLanguage` a déjà été contrôlé sur `sysnext.vercel.app` le 24/09 |
+| Contrôle Chrome sur `www` de #40 (R4) : `/fr`, `/fr/contact`, `/fr/studio-photo/alphashot-pro-g2`, `/calculateur-roi`, `/etude-clients-2026` et les 5 articles nettoyés | Claude de Laurent | 28/09 | Onglet Réseau : aucune requête `lemlist` ni `iframe.packshot-creator.com`. `sysnext.vercel.app` contrôlé le 28/09 : PASS (JOURNAL) |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -78,7 +78,7 @@ périmée ici coûte plus cher qu'une ligne absente.
   - inscrire `gsc_metrics_device` (sites 2 et 3) dans `data_freshness_expected`, pour que M0 alerte en cas de retard.
   - Une dernière PR documentaire fermera ensuite le P0.
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
-- Après fusion de la PR #40 (nettoyage du 28/09), hors dépôt : supprimer les variables `WEBFLOW_*` du projet Vercel `sysnext` si elles existent et révoquer la clé Webflow ; désactiver le tracking visiteurs dans Lemlist ; supprimer l'enregistrement DNS `iframe.` s'il existe. `trail.packshot-creator.com` (domaine de suivi des e-mails Lemlist) reste en `PASSTHROUGH_HOSTS` tant que l'usage e-mail de Lemlist n'est pas tranché.
+- Suites de #40 (fusionnée le 28/09), hors dépôt, non exécutées : vérifier puis supprimer les variables `WEBFLOW_*` du projet Vercel `sysnext` si elles existent ; révoquer la clé API Webflow si elle existe ; désactiver le tracking visiteurs côté compte Lemlist ; vérifier puis supprimer l'enregistrement DNS `iframe.`. `trail.packshot-creator.com` reste en `PASSTHROUGH_HOSTS` tant que l'usage e-mail de Lemlist n'est pas explicitement abandonné. `.env.example` : 4 lignes `WEBFLOW_*` à retirer par une PR dédiée (garde-conséquences).
 - D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation facturées en supplément, délai indicatif d'environ 10 jours, jamais garanti ; même règle en France et en Suisse), dans une PR applicative distincte.
 - D33 :
   - aligner `foundingDate` de 2004 sur 2001 (`components/seo/SchemaOrg.tsx:72`), dans une PR applicative distincte ;
