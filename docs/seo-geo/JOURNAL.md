@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · Article AI Act et images produit, Preview à valider · Claude de Laurent
+
+**Chantier** : AI Act et images produit (D15, D16 PASS, Q2 option b) | **PR** : brouillon, numéro reporté dans `ETAT.md` à la création ; ne pas fusionner sans le GO de Sébastien | **Base** : `b26f6e9`
+
+**Quoi** — Nouvel article FR `/fr/blog/ai-act-images-produit` (environ 4 900 mots, tableau des 20 cas, 12 FAQ, 15 liens de sources) ; corrections E1/E2 (`generer-images-produit-ia`), E3 à E7 (`migrer-ancien-packshotcreator`, FR, EN, de-ch) ; `twitter` et `og:url`, `og:site_name`, `og:locale` dans le gabarit des articles.
+
+**Pourquoi** — Consigne GO de Laurent du 28/09 : passer de la recherche (brief, addendum phase 3, préparation) à une Preview complète que Sébastien valide d'un GO ou d'une courte liste de modifications. D16 : similarité maximale 0,697 avec l'existant ; « article 50 ai act » 90 recherches (260 en août) ; PSC absent des réponses IA mesurées (0/5 Perplexity). Deux pages existantes contredisaient l'article : l'AI Act présenté comme interdisant les images trompeuses (E1/E2), et une mention lisible par machine imposée à l'entreprise qui publie (E3).
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json` (nouveau), `content/blog/fr/generer-images-produit-ia.json`, `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `app/[lang]/blog/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Après fusion seulement : page indexable (sitemap automatique), requête principale « AI Act image produit » ; citations dans les réponses IA à mesurer à partir de J+28, sondes à ajouter après la fin du gel M5 (08/10). Partage des 126 pages rendues par le gabarit d'articles : titre, description et image propres à l'article au lieu du titre générique du site.
+
+**Vérifié**
+- `origin/main` = `b26f6e9` avant la création de la branche ; PR #39 non touchée.
+- Worker du dépôt (`cloudflare-worker/src/index.js`) : `/fr/blog/ai-act-images-produit` relayé tel quel vers l'origine, ni 301 ni 410 (exécution locale, `fetch` simulé).
+- `npx tsc --noEmit` OK ; `verifier-json` 187 JSON valides ; eslint du gabarit : 0 avertissement (import `HeadingData` inutilisé retiré) ; Vitest 223/223 ; `next build` 384 pages (383 sur `main`).
+- HTML servi par `next start` : 1 H1 ; title 57 caractères ; description 155 ; canonical ; `og:url`, `og:site_name`, `og:locale`, `og:image` ; `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image` ; JSON-LD Organization, BreadcrumbList, Article, FAQPage ; 12 FAQ visibles et 12 en JSON-LD, questions et réponses identiques ; 15 liens externes en `target="_blank"` et `rel="noopener noreferrer"` ; 4 liens internes en 200 ; 27 ancres H2/H3 sans doublon.
+- Chromium à 1440 et 390 px : aucun débordement horizontal ; 5 tableaux dans `.table-wrap`, tous contenus dans la colonne sur desktop, défilement interne sur mobile ; FAQ dépliable ; sommaire desktop : le H2 visé arrive à 96 px du haut.
+- Playwright `seo`, `mobile-overflow`, `external-links`, `anchors` (chromium, build de production local) : 262 réussis, 10 échecs identiques test par test sur `main` `b26f6e9` construit dans un worktree séparé, donc sans lien avec cette PR.
+- Contrôle éditorial : 20 cas ; les 12 cas non tranchés de l'addendum (14 cellules) portent « Les textes consultés ne tranchent pas explicitement ce cas. » (22 occurrences au total avec la prose et la FAQ) ; aucune des formules proscrites par la consigne ; citations et listes des lignes directrices relues contre le texte final (pt (92), p. 28-29 et 36, pt (116), (117), (154), p. 7).
+**Supposé** — [Non vérifié] L121-2 du Code de la consommation : lu par un outil de lecture web, Légifrance refusant le conteneur ; l'article et E1/E2 le paraphrasent sans citation. Cela repose sur des schémas observés.
+**Non regardé** — `www.packshot-creator.com` (R4). Preview Vercel : protégée par SSO, à ouvrir dans Chrome. Défauts préexistants relevés, hors PR : styles `prose` inactifs sur tout le blog (marges de paragraphes, puces et numéros absents : `@tailwindcss/typography` déclaré dans `tailwind.config.ts` mais non chargé par `globals.css`) ; sommaire mobile qui dépasse sa cible après un clic (334 à 810 px sur `main`, 928 px ici) ; liens externes en `rel="noopener"` seul sur d'autres articles.
+
+**Suite** — GO de Sébastien sur la Preview, ou liste de modifications. À la fusion : ajuster `date` si la publication n'a pas lieu le 28/09, et la ligne « Vérifié le » si les sources sont revérifiées. D25 reste ouvert, sans effet sur l'article, qui ne qualifie aucun acteur nommé.
+
+---
+
 ## 2026-09-28 · #40 fusionnée et contrôlée en production (intégrations obsolètes) · Claude de Laurent
 
 **Chantier** : nettoyage, hors chantier numéroté | **PR** : #40 fusionnée | **Commit de fusion** : `15469e5` (`main`), le 28/09/2026 à 15:51:29 UTC | **Base avant fusion** : `809f61f`

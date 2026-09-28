@@ -17,7 +17,6 @@ import { RecommendedStudio } from '@/components/maillage/MaillageSections';
 import {
   processHtmlContent,
   calculateReadingTime,
-  type HeadingData,
 } from '@/lib/blog-utils';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -60,23 +59,36 @@ export async function generateMetadata({ params }: PageProps) {
     if (languages.fr) languages['x-default'] = languages.fr;
 
     const isNoindex = lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug);
+    const canonical = `https://www.packshot-creator.com/${lang}/blog/${slug}`;
+    // Un .mp4 n'est pas une og:image valide → fallback image OG générée
+    const shareImages = article.image && !article.image.endsWith('.mp4')
+      ? [article.image]
+      : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }];
 
     return {
       title: pageTitle,
       description: article.description,
       ...(isNoindex && { robots: { index: false, follow: true } }),
       alternates: {
-        canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
+        canonical,
         languages,
       },
+      // openGraph et twitter de la page remplacent ceux du layout : url, siteName
+      // et locale sont redonnés ici, sinon le partage affiche le titre générique du site.
       openGraph: {
         title: pageTitle,
         description: article.description,
-        // Un .mp4 n'est pas une og:image valide → fallback image OG générée
-        images: article.image && !article.image.endsWith('.mp4')
-          ? [article.image]
-          : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
+        url: canonical,
+        siteName: 'PackshotCreator',
+        locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
+        images: shareImages,
         type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: pageTitle,
+        description: article.description,
+        images: shareImages,
       },
     };
   }
