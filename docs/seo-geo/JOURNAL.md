@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — #39 fusionnée et contrôlée en production (FR, EN, de-ch) · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 fusionnée ; #24 fermée | **Commit de fusion** : `04919f8` (`main`), le 28/09/2026 à 18:42:03 UTC | **Tête fusionnée** : `55ea992` | **Base avant fusion** : `b26f6e9`
+
+**Quoi** — Fusion de #39 par commit de fusion (méthode de #40 et #41), après sortie du brouillon. Avant fusion : CI verte sur `55ea992` (types, build et intégrité des données ; journal ; conséquences ; Vercel), Preview « Ready », PR sans conflit. PR #24 fermée sans fusion, commentaire « SUPERSEDED BY #39 ». PR #27 non touchée.
+
+**J0 de mesure F5** — Nouvelle landing servie par `https://sysnext.vercel.app` à partir du 28/09/2026 à 18:43:35 UTC (première observation, contrôle toutes les 15 s depuis la fusion). J+28 = 26/10/2026 ; J+56 = 23/11/2026. Aucun lien entrant vers F5 avant J+56 (D37).
+
+**Vérifié** —
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 18:43:51 UTC, moins de 2 minutes après la fusion : vert, 17 pages et 3 ressources (sitemap 325 URL, robots.txt, llms.txt).
+- `/fr`, `/en` et `/de-ch/packshot-e-commerce` sur `sysnext.vercel.app`, contrôle HTTP du HTML servi : statut 200, `lang` correct, un H1 (nouveau), title et canonical de la langue, 5 hreflang (fr, fr-CH, en, de-CH, x-default), OG (`fr_FR`, `en_US`, `de_CH`) et Twitter localisés, fil d'Ariane à la bonne locale, FAQ visible = JSON-LD (9/9, identiques), aucun claim interdit, alt de la photo de studio sans nom de modèle ; liens internes 21 (FR), 21 (EN), 20 (de-ch), tous en 200. Les seuls textes identiques au FR trouvés en EN et de-ch sont des libellés de portée composés de noms propres (« Amazon, Google Merchant Center »).
+- Dépôt : le Worker Cloudflare (`cloudflare-worker/src/index.js`) ne porte que des redirections d'anciennes URL vers ces pages, aucune règle sur les trois URL.
+
+**Supposé** — La version servie par `www.packshot-creator.com` est celle de `sysnext.vercel.app` (même projet `sysnext`) ; le Worker déployé n'a pas re-divergé du dépôt sur ces URL (R5, non resynchronisé ici).
+
+**Non regardé** — `www.packshot-creator.com` : aucun contrôle par script (R4, Cloudflare renvoie 403 aux clients non navigateurs) ; contrôle à faire dans Chrome. Rendu navigateur en production : Chromium de l'environnement ne reconnaît pas l'autorité du proxy et la vérification TLS n'a pas été désactivée ; le rendu (console, 4xx des ressources, débordement, captures) a été contrôlé sur le build local identique avant fusion. Point de départ GSC du jour de la fusion : à figer par Laurent dans Supabase.
+
+**Suite** — Contrôle Chrome des trois URL sur `www` ; relevé GSC à J+28 et J+56 sur la landing FR ; D38 à appliquer aux prochains articles, dont l'article AI Act.
+
+---
+
 ## 2026-09-28 · F5 — landing traduite en EN et de-ch, publication trilingue · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 | **Commit** : voir PR | **Décisions** : D37 (périmètre trilingue), D38 (règle de traduction)
