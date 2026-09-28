@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · F5 — photo de studio : modèle retiré de l'alt et de la légende · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Alt et légende de `machines/alphashot-pro-g2/session.avif` dans `#automatisation` : « Alphashot Pro G2 » retiré. Alt : « Une opératrice positionne une paire de lunettes de soleil dans un studio photo automatisé Orbitvu ». Légende : « Au poste de prise de vue, l'opératrice place le produit dans le studio Orbitvu, qui enchaîne ensuite les angles prévus. » Fichier ni renommé ni déplacé.
+
+**Pourquoi** — Décision de Laurent : le chemin du fichier et son usage sur la fiche Pro G2 ne suffisent pas à identifier visuellement le modèle photographié.
+
+**Fichiers** — `messages/fr.json` (2 lignes, `packshotEcommerce.r5.imageAlt` et `imageCaption`).
+
+**Vérifié** — `npx tsc --noEmit` ; `node scripts/seo/verifier-json.mjs` (186) ; 309 messages ICU compilés ; `npx next build` ; rendu local du bloc à 1440 × 900 et 390 × 844 : image chargée, nouveaux alt et légende, aucune mention « Pro G2 » dans le bloc, 0 débordement, 0 erreur console. Attribution du passage de terrain inchangée : « photographe » figure dans la proposition d'attribution du fichier de passation transmis pour Sébastien et dans deux articles du dépôt.
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; rendu derrière Cloudflare.
+
+**Rectificatif de compte rendu (hors page)** — Mesures de longueur mobile établies : nouvelle page complète 38,4 écrans ; ancienne page complète 32,9 écrans ; nouvelle page avant formulaire 32,4 écrans ; ancienne page avant formulaire non mesurée (≈ 26 écrans selon l'observation de Sébastien, estimation non comparable). HTML local de la nouvelle version : 626 243 octets ; hausse d'environ 47 à 49 Ko selon la référence, méthode de l'ancienne mesure non entièrement vérifiable. Les marquages des lunettes apparaissent sur les photos et ne sont lisibles que sur le fichier pleine résolution agrandi.
+
+---
+
 ## 2026-09-28 · F5 — intégration du retour de Sébastien sur `/fr/packshot-e-commerce` · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR | **Base** : `main` `b26f6e9` (post-#40/#41), fusionnée dans la branche en `4683dfa`
