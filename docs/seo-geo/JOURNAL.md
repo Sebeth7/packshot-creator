@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · Article AI Act : passe de style et E6 dans la FAQ « migrer » · Claude de Laurent
+
+**Chantier** : AI Act et images produit | **PR** : #43 (brouillon, ne pas fusionner) | **Base** : `96489d9`
+
+**Quoi** — Passe de style sur l'article FR `/fr/blog/ai-act-images-produit`, sur le ton de l'article de Sébastien du 25/09 (`migrer-ancien-packshotcreator`), direction validée par Laurent sur 5 passages ; conclusion courte ajoutée (« En cas de doute, trois questions »). Correctif E6 dans la réponse n° 3 de la FAQ « migrer », en FR, EN et de-ch (JSON-LD compris) : retoucheur décrit selon Orbitvu, « sans altérer ses caractéristiques » et « Elle ne génère pas de produit fictif » retirés.
+
+**Pourquoi** — Le brouillon se lisait comme un texte institutionnel ; la FAQ « migrer » contredisait encore la correction E6 du corps de l'article, et affirmait sans source que l'IA « ne génère pas de produit fictif ».
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun effet en production avant la publication coordonnée prévue par D38.
+
+**Vérifié**
+- Invariants de l'article, comparés à la version précédente : FAQ (12 questions et réponses) identiques ; 5 tableaux identiques, dont les 20 cas ; aucune citation retirée ; liens identiques ; title, H1, description, date, auteur et slug inchangés ; 22 occurrences de « Les textes consultés ne tranchent pas explicitement ce cas. » avant comme après.
+- Trois alignements de fond, tous vers plus de prudence : « ce sont les seules à donner des exemples précis » devient « elles donnent notamment des exemples précis » ; détourage, « ni mention par la marque » devient « une mention n'a probablement pas lieu d'être » (le tableau le classe en interprétation) et « le cas le plus fréquent » est retiré ; décor généré, l'exemple de la Commission est situé « dans une publicité », la fiche produit relevant de l'interprétation.
+- Aucune formule proscrite ; aucun « je » ; « nous » limité à un conseil et à la recherche documentaire ; mots « obligation » 13 → 9.
+- Introduction 219 mots ; corps 5 237 mots (4 888 avant) ; 28 ancres H2/H3 sans doublon.
+- `tsc` OK ; 187 JSON valides ; Vitest 223/223 ; `next build` 384 pages ; `next start` : FAQ visible = JSON-LD sur l'article (12/12) et sur « migrer » FR, EN, de-ch (8/8) ; plus aucune formule E6 servie ; aucun débordement à 1440 et 390 px.
+**Supposé** — [Inférence] Les formulations EN et de-ch du correctif E6 rendent fidèlement la source Orbitvu (« remove reflections, clean up imperfections, adjust color grading and add shadow »). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www.packshot-creator.com` (R4) ; relecture par Sébastien du ton et de la signature.
+
+**Suite** — GO de Sébastien sur la Preview FR, puis EN et de-ch selon D38, puis publication coordonnée.
+
+---
+
 ## 2026-09-28 · Article AI Act et images produit, Preview à valider · Claude de Laurent
 
 **Chantier** : AI Act et images produit (D15, D16 PASS, Q2 option b) | **PR** : #43 (brouillon ; ne pas fusionner sans le GO de Sébastien ni avant les versions EN et de-ch de D38) | **Base** : `b26f6e9`, puis `04919f8` fusionné

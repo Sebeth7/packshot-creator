@@ -25,7 +25,7 @@
     },
     {
       "question": "What does the AI built into Orbitvu Station do?",
-      "answer": "It works during and just after the shoot, on the real photo of the product. On the Alphashot Pro G2, the AI lighting assistant automatically suggests the light and camera settings suited to the object. Since version 26.2 of June 2026, Orbitvu Station removes the background with AI during capture, keeping the natural shadow if needed, and reads the product's references and labels by OCR (in beta). Its AI retoucher corrects product defects (scratches, dust, dented packaging) and shows the product at its best like a professional retoucher, without altering its features. Further features are planned before the end of 2026. It does not generate fictitious products."
+      "answer": "It works during and just after the shoot, on the real photo of the product. On the Alphashot Pro G2, the AI lighting assistant automatically suggests the light and camera settings suited to the object. Since version 26.2 of June 2026, Orbitvu Station removes the background with AI during capture, keeping the natural shadow if needed, and reads the product's references and labels by OCR (in beta). According to Orbitvu, its AI retoucher removes reflections, cleans up imperfections, adjusts colour grading and adds shadows. Further features are planned before the end of 2026."
     },
     {
       "question": "Can PackshotCreator shooting profiles be imported into Orbitvu Station?",

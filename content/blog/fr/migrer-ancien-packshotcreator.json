@@ -25,7 +25,7 @@
     },
     {
       "question": "Que fait l'intelligence artificielle intégrée à Orbitvu Station ?",
-      "answer": "Elle intervient pendant et juste après la prise de vue, sur la photo réelle du produit. Sur l'Alphashot Pro G2, l'assistant d'éclairage IA propose automatiquement les réglages de lumière et d'appareil adaptés à l'objet. Depuis la version 26.2 de juin 2026, Orbitvu Station détoure par IA pendant la capture en gardant si besoin l'ombre naturelle, et lit par OCR les références et étiquettes du produit (en bêta). Son retoucheur IA corrige les défauts du produit (rayures, poussières, emballage corné) et le met en valeur comme un retoucheur professionnel, sans altérer ses caractéristiques. D'autres fonctions sont prévues d'ici fin 2026. Elle ne génère pas de produit fictif."
+      "answer": "Elle intervient pendant et juste après la prise de vue, sur la photo réelle du produit. Sur l'Alphashot Pro G2, l'assistant d'éclairage IA propose automatiquement les réglages de lumière et d'appareil adaptés à l'objet. Depuis la version 26.2 de juin 2026, Orbitvu Station détoure par IA pendant la capture en gardant si besoin l'ombre naturelle, et lit par OCR les références et étiquettes du produit (en bêta). Selon Orbitvu, son retoucheur IA retire des reflets, nettoie des imperfections, ajuste l'étalonnage des couleurs et ajoute des ombres. D'autres fonctions sont prévues d'ici fin 2026."
     },
     {
       "question": "Peut-on importer ses profils de prise de vue PackshotCreator dans Orbitvu Station ?",

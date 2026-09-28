@@ -25,7 +25,7 @@
     },
     {
       "question": "Was leistet die in Orbitvu Station integrierte künstliche Intelligenz?",
-      "answer": "Sie arbeitet während und direkt nach der Aufnahme, am echten Foto des Produkts. Beim Alphashot Pro G2 schlägt der KI-Beleuchtungsassistent automatisch die passenden Licht- und Kameraeinstellungen für das Objekt vor. Seit der Version 26.2 vom Juni 2026 stellt Orbitvu Station während der Aufnahme per KI frei, bei Bedarf mit dem natürlichen Schatten, und liest per OCR die Referenzen und Etiketten des Produkts (in der Beta). Der KI-Retuscheur korrigiert Produktmängel (Kratzer, Staub, eine Verpackung mit Eselsohren) und setzt das Produkt wie ein professioneller Retuscheur in Szene, ohne seine Merkmale zu verändern. Weitere Funktionen sind bis Ende 2026 geplant. Ein fiktives Produkt erzeugt sie nicht."
+      "answer": "Sie arbeitet während und direkt nach der Aufnahme, am echten Foto des Produkts. Beim Alphashot Pro G2 schlägt der KI-Beleuchtungsassistent automatisch die passenden Licht- und Kameraeinstellungen für das Objekt vor. Seit der Version 26.2 vom Juni 2026 stellt Orbitvu Station während der Aufnahme per KI frei, bei Bedarf mit dem natürlichen Schatten, und liest per OCR die Referenzen und Etiketten des Produkts (in der Beta). Laut Orbitvu entfernt sein KI-Retuscheur Reflexe, bereinigt Unvollkommenheiten, passt die Farbabstimmung an und fügt Schatten hinzu. Weitere Funktionen sind bis Ende 2026 geplant."
     },
     {
       "question": "Lassen sich PackshotCreator-Aufnahmeprofile in Orbitvu Station importieren?",
