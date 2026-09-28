@@ -19,5 +19,4 @@ pattern = "*.packshot-creator.com/*"
 zone_id = "b51d039e5159fc409b22cd37c0221475"
 
 [vars]
-WEBFLOW_ORIGIN = "https://packshot-creator-staging.webflow.io"
 NEXTJS_ORIGIN = "https://sysnext.vercel.app"

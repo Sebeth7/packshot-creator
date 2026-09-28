@@ -34,6 +34,86 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-28 · #40 fusionnée et contrôlée en production (intégrations obsolètes) · Claude de Laurent
+
+**Chantier** : nettoyage, hors chantier numéroté | **PR** : #40 fusionnée | **Commit de fusion** : `15469e5` (`main`), le 28/09/2026 à 15:51:29 UTC | **Base avant fusion** : `809f61f`
+
+**Quoi** — Fusion de #40 (commit de fusion, méthode habituelle du dépôt), puis contrôle de la production sur `sysnext.vercel.app`. PR #39 (F5) non touchée : tête `dc01234` inchangée.
+
+**Pourquoi** — Consigne de Laurent du 28/09 : finaliser, fusionner et contrôler #40 avant la reprise de F5.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Plus aucun appel à `app.lemlist.com` ni à `iframe.packshot-creator.com` sur le site ; GA4 inchangé.
+
+**Vérifié**
+- Avant fusion : `main` toujours sur `809f61f`, aucune review, CI verte sur `252ba17` (4 contrôles), `mergeable_state` `clean` ; recontrôle local : `tsc`, 186 JSON, Vitest 223/223, build 383 pages.
+- Déploiement : la production sert le nouveau code à partir de 15:53:14 UTC (disparition du marqueur `lemlist` du HTML de `/fr`, sondage toutes les 10 s). Le SHA servi n'est pas exposé par la réponse ; identifiant Vercel de la requête de contrôle : `iad1::cf6p7-1790610795146-76af8128c9eb`.
+- `smoke.mjs https://sysnext.vercel.app` à 15:53:42 UTC : tout vert, 17 pages, 3 ressources, sitemap 325 URL (identique au relevé d'avant fusion).
+- Réseau, `sysnext.vercel.app`, 11 pages × 3 scénarios (nouvelle visite, analytics accepté, cookies refusés), Chromium ; requêtes vers les collecteurs GA4 et vers Lemlist enregistrées puis abandonnées, pour n'envoyer aucun hit ni aucune visite. Avant → après fusion : requêtes Lemlist (`/api/visitors/tracking`) 33 → 0 ; balises `#lemlist-tracker` 33 → 0 ; requêtes `iframe.packshot-creator.com` 21 → 0 ; `webforms.pipedrive.com` 0 → 0 ; hôtes Webflow 0 → 0 ; 33/33 chargements en 200 des deux côtés.
+- GA4 : script chargé sur les 9 pages `[lang]` avec consentement analytics, sur 0 page sans consentement ou après refus, avant comme après. `/calculateur-roi` et `/etude-clients-2026` ne le chargent dans aucun cas, avant comme après.
+- Formulaire natif sur `/fr/contact`, `/fr/studio-photo/alphashot-pro-g2`, `/fr/packshot-e-commerce` : affiché, 14 à 15 champs, envoi à vide bloqué (6 messages), aucun appel à `/api/contact` (interception de sécurité), aucune trace WebForms.
+- Blog et guides : 191 URL du sitemap, 191 en 200. Redirections historiques de `next.config.ts` : 7 témoins, 7 en 301 vers la cible attendue.
+- Chargement de page : dans le conteneur, Chromium perd une partie des requêtes parallèles vers `sysnext.vercel.app` (`ERR_TOO_MANY_RETRIES` du proxy) ; les requêtes vers l'hôte contrôlé ont été relayées par Node avec relance, sans quoi la page ne s'hydrate pas et GA4 paraît absent à tort.
+**Supposé** — [Inférence] Que `www.packshot-creator.com` sert le même déploiement que `sysnext.vercel.app` : le Worker proxifie vers `NEXTJS_ORIGIN`. Cela repose sur des schémas observés.
+**Non regardé** — `www.packshot-creator.com` : 403 `cf-mitigated: challenge` depuis le conteneur (R4), contrôle à faire dans Chrome. Redirections du Worker (non modifiées, non redéployées). Envoi réel du formulaire : non déclenché. Double `page_view` GA4 : hors périmètre, chantier séparé.
+
+**Anomalie hors périmètre** — `/fr/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques` contient une balise `<img>` dont la source est une vidéo (`/images/blog/67dbae80b8c0e26556f4ebeb.mp4`, servie en 200) : elle ne peut pas s'afficher. Balise identique dans `809f61f`, héritée de Webflow, non modifiée par #40.
+
+**Corrections de l'entrée précédente (28/09)** — Correction : affirmations non vérifiées, qui auraient dû être étiquetées. « Les iframes pointaient vers un hôte injoignable » : constaté depuis le conteneur seulement (502 du proxy) ; [Non vérifié] depuis un navigateur ordinaire. « `trail.` est le domaine de suivi des e-mails Lemlist » : seul le domaine personnalisé Lemlist est vérifié ; [Inférence] l'usage e-mail. « `WEBFLOW_ORIGIN` reste dans la configuration du Worker déployé » : [Non vérifié] au 28/09, tiré du relevé du 23-25/09. Le message du commit `85cfdbe` affirme que la mention « aucun cookie marketing » de la politique de confidentialité « reste exacte » : [Non vérifié], 57 intégrations `youtube.com/embed` et une carte Google Maps restent sur le site.
+
+**Suite**
+- Laurent, dans Chrome sur `www` : `/fr`, `/fr/contact`, `/fr/studio-photo/alphashot-pro-g2`, `/calculateur-roi`, `/etude-clients-2026` et les 5 articles nettoyés ; onglet Réseau : aucune requête `lemlist` ni `iframe.packshot-creator.com`.
+- Hors dépôt, non exécuté : variables `WEBFLOW_*` du projet Vercel `sysnext` (à vérifier, puis supprimer si elles existent) ; clé API Webflow à révoquer si elle existe ; tracking visiteurs Lemlist à désactiver côté compte ; enregistrement DNS `iframe.` à vérifier, puis supprimer s'il existe. `trail.packshot-creator.com` conservé tant que l'usage e-mail de Lemlist n'est pas explicitement abandonné.
+- `.env.example` : 4 lignes `WEBFLOW_*` à retirer par une PR dédiée, avec l'accord du propriétaire du garde-conséquences.
+- F5 (#39) peut reprendre : conflits attendus uniquement dans `JOURNAL.md` et `ETAT.md`.
+
+---
+
+## 2026-09-28 · Suppression des intégrations obsolètes : Lemlist, Pipedrive WebForms, iframes legacy, Webflow API · Claude de Laurent
+
+**Chantier** : nettoyage, hors chantier numéroté (décision métier du 28/09/2026 : les quatre éléments sont obsolètes) | **PR** : #40 (branche `claude/admiring-hypatia-7pir8f`) | **Base** : `809f61f` | **Non fusionnée, non déployée**
+
+**Quoi** — Supprimés le 28/09/2026 : le tracking visiteurs Lemlist (composant et 3 montages), le composant legacy Pipedrive WebForms, les 7 iframes `iframe.packshot-creator.com` de 5 articles, l'intégration API Webflow (clients, scripts d'extraction, `WEBFLOW_ORIGIN`, CDN autorisé, dépendances `puppeteer` et `dotenv`). Catégorie `marketing` retirée du bandeau cookies.
+
+**Pourquoi** — Lemlist chargeait `app.lemlist.com` sur toutes les pages, **sans condition de consentement**, alors que le bandeau annonçait « aucun cookie marketing ». Les iframes pointaient vers un hôte injoignable. WebForms et le client Webflow n'étaient plus importés nulle part. L'audit `AUDIT_TRACEURS_CODES_INJECTES_2026-09-28.md` cité par la demande n'est pas dans le dépôt : inventaire refait par `git grep`.
+
+**Fichiers**
+- Supprimés : `components/analytics/LemlistTracker.tsx`, `components/forms/PipedriveContactForm.tsx`, `lib/webflow.ts`, `lib/webflow-guides.ts`, `scripts/extract-webflow-content.mjs`, `extract-guides.js`, `extract-guides-puppeteer.cjs`, `QUICK_START_FORMS.md`, `FORMS_MIGRATION_GUIDE.md`, `FORMS_SUMMARY.md`, `Webflow_Forms_Inventory.md`.
+- Code : `app/[lang]/layout.tsx`, `app/calculateur-roi/layout.tsx`, `app/etude-clients-2026/layout.tsx`, `components/forms/index.ts`, `components/cookies/CookieBanner.tsx`, `lib/content.ts` (commentaire), `next.config.ts` (`cdn.prod.website-files.com` retiré de `remotePatterns`), `cloudflare-worker/wrangler.toml` (`WEBFLOW_ORIGIN`), `package.json`, `package-lock.json` (81 paquets retirés, aucune version modifiée).
+- Contenu : 4 articles FR et 1 article EN (liste ci-dessous) ; `messages/{fr,en,de-ch}.json` : clés `cookies.marketing` et `cookies.marketingDesc` seulement.
+- Tests et documentation : `e2e/cookie-banner.spec.ts` (2 catégories), `cloudflare-worker/README.md` (réécrit : il décrivait un routage vers Webflow), note datée en tête de `docs/README.md`, `docs/02-technical-developer/README.md`, `docs/03-cms-content/README.md`, `docs/05-architecture-integrations/README.md`, `docs/06-seo-performance/README.md`, `PROJECT_GUIDELINES.md` ; note sous l'exemple de logo de `docs/01-design-branding/README.md`.
+
+**Articles nettoyés de `iframe.packshot-creator.com`** — la `<figure>` entière est retirée (iframe, conteneur, légende vide), aucun texte réécrit : aucune transition ne dépendait du média.
+- `/fr/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : 2 (animations `saw_hemispherical`, `Gold_bag_hemispherical`)
+- `/en/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : 2 (mêmes animations)
+- `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` : 1 (animation 360° `Motor_360`)
+- `/fr/blog/boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter` : 1 (`MarbleStatue_Hemispherical` ; l'exemple Orbitvu qui suit reste en place)
+- `/fr/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques` : 1 (`couch_360`, en fin d'article)
+
+**Effet attendu** — Au déploiement : plus aucun appel à `app.lemlist.com` ni à `iframe.packshot-creator.com` ; bandeau cookies à deux catégories ; installation des dépendances sans `puppeteer` (qui télécharge un Chromium à l'installation). Aucun effet sur GA4, les formulaires, le blog ni les guides.
+
+**Vérifié**
+- `git grep` : `LemlistTracker`, `app.lemlist.com`, `lemlist-tracker`, `/api/visitors`, `iframe.packshot-creator.com` = 0. `webforms.pipedrive.com` (4) et `PipedriveContactForm` (21) ne subsistent que dans des archives datées (`livrables/`, `sessions/`, `PROMPT_SESSION_PHASE2*.md`, `PLAN_ACTION_MASTER.md`, audit du 26/09), non réécrites.
+- Aucun import de `lib/webflow.ts` ni de `lib/webflow-guides.ts` avant suppression ; `lib/content.ts` lit uniquement `content/**`. `env.WEBFLOW_ORIGIN` n'est lu nulle part dans `cloudflare-worker/src/index.js`. Aucun contenu ne référence `cdn.prod.website-files.com`.
+- `npx tsc --noEmit` vert ; `verifier-json.mjs` : 186 JSON valides ; Vitest 223/223 ; `npx next build` vert, 383 pages, table des routes identique à la base ; `npm ci` vert sur le nouveau lockfile ; ESLint : 267 → 258 erreurs, 70 → 68 avertissements, écart dû aux seuls fichiers supprimés (l'erreur `set-state-in-effect` de `CookieBanner.tsx` préexiste).
+- Réseau, build local, 11 pages × 2 scénarios de consentement (Chromium, certificats du proxy acceptés) : requêtes Lemlist 38 → 0 (dont 16 `POST /api/visitors`), requêtes `iframe.packshot-creator.com` 14 → 0, balises `#lemlist-tracker` 22 → 0, `webforms.pipedrive.com` 0 → 0. GA4 : chargé sur les 9 pages `[lang]` après consentement et absent sans consentement, avant comme après ; `/calculateur-roi` et `/etude-clients-2026` n'ont jamais monté GA4.
+- Playwright en local sur build de production (Chromium) : `cookie-banner` 10/10 et `contact-form` 11/11 sur la branche. Sur la base `809f61f`, l'ancienne spec `contact-form` échouait déjà sur ses 5 tests `.pipedriveWebForms` (conteneur absent depuis le passage au formulaire natif) : ils visent désormais le formulaire natif. `roi-calculator` (23 échecs), `seo` (8) et `language-switch` (1) : échecs identiques, test par test, sur la base et sur la branche, donc sans lien avec cette PR.
+- Formulaire natif sur `/fr/contact`, une fiche machine et `/fr/packshot-e-commerce` : affiché, envoi à vide bloqué (6 messages, aucun appel à `/api/contact`), à l'identique de la base ; `/api/contact` rejette un envoi invalide à l'identique. Aucun envoi réel (il aurait déclenché des appels sortants sans secrets).
+- Captures d'écran avant/après de 3 articles : le vide de 150 à 200 px laissé par chaque iframe cassée a disparu ; aucun conteneur ni légende orphelins. Blog et guides : 202 routes prérendues, identiques à la base.
+- `trail.packshot-creator.com` répond la page « Custom domain check » de Lemlist : c'est le domaine de suivi des e-mails Lemlist, pas le tracker du site (qui appelait `app.lemlist.com`).
+**Supposé** — Que les campagnes e-mail Lemlist peuvent encore utiliser `trail.` : d'où son maintien dans `PASSTHROUGH_HOSTS`.
+**Non regardé** — La production derrière Cloudflare (R4) ; les variables d'environnement Vercel `WEBFLOW_*` (dashboard) ; le compte Lemlist ; le DNS de `iframe.` et `trail.`. Les erreurs console des pages portant un visualiseur Orbitvu (CORS vers `cdn360v2.orbitvu.cloud`), identiques avant et après, hors périmètre.
+
+**Suite**
+- Hors dépôt, non exécuté : supprimer les variables `WEBFLOW_API_KEY`, `WEBFLOW_SITE_ID`, `WEBFLOW_BLOG_COLLECTION_ID`, `WEBFLOW_GUIDE_COLLECTION_ID` du projet Vercel `sysnext` si elles existent, et révoquer la clé côté Webflow ; désactiver le tracking visiteurs dans Lemlist.
+- `trail.packshot-creator.com` : si Lemlist est abandonné aussi pour l'e-mail, retirer le domaine personnalisé dans Lemlist, l'enregistrement DNS `trail.`, puis l'entrée de `PASSTHROUGH_HOSTS` (resynchronisation R5 d'abord).
+- `iframe.packshot-creator.com` : enregistrement DNS à supprimer s'il existe encore.
+- `.env.example` conserve ses 4 lignes `WEBFLOW_*` (sans valeur réelle) : le contrôle `garde-consequences` interdit toute modification d'un fichier `.env*`. À retirer par une PR dédiée, avec l'accord du propriétaire du garde.
+- `WEBFLOW_ORIGIN` reste dans la configuration du Worker déployé jusqu'au prochain déploiement depuis le dépôt ; sans effet, le code ne la lit pas.
+
+---
+
 ## 2026-09-28 · F5 — audit exhaustif de la Preview de `/fr/packshot-e-commerce` · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/fr/packshot-e-commerce` (F5) | **PR** : #39 (brouillon) | **Commit** : voir PR

@@ -1,6 +1,6 @@
 # ÉTAT — qui fait quoi, maintenant
 
-**Dernière mise à jour : 2026-09-28 — Claude de Laurent (F5 : version FR de `/fr/packshot-e-commerce` en PR brouillon, attente de la Preview ; resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
+**Dernière mise à jour : 2026-09-28 — Claude de Laurent (F5 : PR #39 mise à jour sur `main` post-#40/#41, retour de Sébastien en cours d'intégration ; PR #40 fusionnée — `15469e5` — et contrôlée sur `sysnext.vercel.app` : Lemlist, Pipedrive WebForms, iframes legacy et Webflow API retirés, GA4 inchangé ; contrôle Chrome sur `www` à faire). Mise à jour précédente : 2026-09-25 (resynchronisation P0-K ; P0-I APPLIED / PASS le 25/09 ; P0-J OPEN, différé après la fenêtre P0-H du 08/10 ; arbitrages de Laurent du 25/09 : Q2, Q4, Q6, Q12 à Q15 closes, D32 à D36 ; seule Q10 reste ouverte. P0 : #29, #30, #32, #33 fusionnées, #31 fermée sans fusion ; Worker P0-D/E CLOSED, version `27b0153c` ; D29 suspendue, D30, D31)**
 
 Ce fichier est **écrasé**, pas complété. Il décrit l'état du monde à l'instant.
 L'historique vit dans `JOURNAL.md`.
@@ -45,6 +45,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Q10 — cible de clics : décision | Claude de Laurent | 19/09 | Élément nouveau : les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque |
 | `curl.exe` du lot F (Worker déployé le 23/09) | Claude de Laurent | 23/09 | Témoins listés dans la PR #26 ; résultat à reporter au journal |
 | Contrôle visuel Chrome sur `www` de #29 et #32 (R4) : `/fr`, `/en`, `/de-ch` | Claude de Laurent | 24/09 | Seul contrôle restant. Le site charge normalement ; sur `/de-ch`, aucun bloc d'avis ni de témoignages. Le JSON-LD `inLanguage` a déjà été contrôlé sur `sysnext.vercel.app` le 24/09 |
+| Contrôle Chrome sur `www` de #40 (R4) : `/fr`, `/fr/contact`, `/fr/studio-photo/alphashot-pro-g2`, `/calculateur-roi`, `/etude-clients-2026` et les 5 articles nettoyés | Claude de Laurent | 28/09 | Onglet Réseau : aucune requête `lemlist` ni `iframe.packshot-creator.com`. `sysnext.vercel.app` contrôlé le 28/09 : PASS (JOURNAL) |
 | D29 — validation du mapping produit Alphashot XL v2 / XL G2 | Claude de Laurent | 24/09 | Préalable à tout changement de redirection XL ; périmètre dans D29 |
 
 ---
@@ -77,6 +78,7 @@ périmée ici coûte plus cher qu'une ligne absente.
   - inscrire `gsc_metrics_device` (sites 2 et 3) dans `data_freshness_expected`, pour que M0 alerte en cas de retard.
   - Une dernière PR documentaire fermera ensuite le P0.
 - Aucun changement de redirection XL avant la validation du mapping produit (D29).
+- Suites de #40 (fusionnée le 28/09), hors dépôt, non exécutées : vérifier puis supprimer les variables `WEBFLOW_*` du projet Vercel `sysnext` si elles existent ; révoquer la clé API Webflow si elle existe ; désactiver le tracking visiteurs côté compte Lemlist ; vérifier puis supprimer l'enregistrement DNS `iframe.`. `trail.packshot-creator.com` reste en `PASSTHROUGH_HOSTS` tant que l'usage e-mail de Lemlist n'est pas explicitement abandonné. `.env.example` : 4 lignes `WEBFLOW_*` à retirer par une PR dédiée (garde-conséquences).
 - D32 : balisage `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation facturées en supplément, délai indicatif d'environ 10 jours, jamais garanti ; même règle en France et en Suisse), dans une PR applicative distincte.
 - D33 :
   - aligner `foundingDate` de 2004 sur 2001 (`components/seo/SchemaOrg.tsx:72`), dans une PR applicative distincte ;

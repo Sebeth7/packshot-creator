@@ -1,5 +1,7 @@
 # PackshotCreator Migration Guidelines
 
+> **Note du 28/09/2026 — document historique.** La migration depuis Webflow décrite ici est terminée : Webflow est débranché depuis le 24/05/2026, et `lib/webflow.ts`, `lib/webflow-guides.ts`, le script d'extraction et `WEBFLOW_ORIGIN` (`cloudflare-worker/wrangler.toml`) ont été supprimés le 28/09/2026 ; plus aucun code ne lit de variable `WEBFLOW_*`. Le blog et les guides sont servis depuis `content/**` par `lib/content.ts`. Ce document ne décrit pas l'état actuel du site.
+
 ## Design System Reference
 
 **PRIMARY DESIGN REFERENCE**: `design_system_final.md`

@@ -9,19 +9,17 @@ test.describe('Contact Form (Pipedrive)', () => {
     await expect(page.locator('h1')).toBeVisible();
   });
 
-  test('should display Pipedrive form container', async ({ page }) => {
-    // The Pipedrive form container should be present
-    const formContainer = page.locator('.pipedriveWebForms');
-    await expect(formContainer).toBeVisible();
+  // Formulaire natif (components/forms/ContactForm.tsx, API /api/contact) :
+  // l'embed Pipedrive WebForms (.pipedriveWebForms) a été supprimé le 28/09/2026.
+  test('should display native contact form', async ({ page }) => {
+    const form = page.locator('form:has(#cf-email)');
+    await expect(form).toBeVisible();
   });
 
-  test('should load Pipedrive form script', async ({ page }) => {
-    // Wait for the script to be loaded
-    await page.waitForTimeout(3000);
-
-    // Check if the form container has been populated
-    const formContainer = page.locator('.pipedriveWebForms');
-    await expect(formContainer).toBeVisible();
+  test('should display email field and submit button', async ({ page }) => {
+    const form = page.locator('form:has(#cf-email)');
+    await expect(form.locator('#cf-email')).toBeVisible();
+    await expect(form.locator('button[type="submit"]')).toBeVisible();
   });
 
   test('should display contact info section', async ({ page }) => {
@@ -68,9 +66,9 @@ test.describe('Contact Form - English Version', () => {
   test('should display English content', async ({ page }) => {
     await page.goto('/en/contact');
 
-    // Check for Pipedrive form container
-    const formContainer = page.locator('.pipedriveWebForms');
-    await expect(formContainer).toBeVisible();
+    // Check for native contact form
+    const form = page.locator('form:has(#cf-email)');
+    await expect(form).toBeVisible();
   });
 });
 
@@ -82,9 +80,9 @@ test.describe('Contact Form - Responsive', () => {
     // Page should load
     await expect(page.locator('h1')).toBeVisible();
 
-    // Form container should be visible
-    const formContainer = page.locator('.pipedriveWebForms');
-    await expect(formContainer).toBeVisible();
+    // Form should be visible
+    const form = page.locator('form:has(#cf-email)');
+    await expect(form).toBeVisible();
   });
 
   test('should stack columns on mobile', async ({ page }) => {
@@ -93,7 +91,7 @@ test.describe('Contact Form - Responsive', () => {
 
     // On mobile, content should be stacked (single column)
     // The form should come first, then contact info
-    const formContainer = page.locator('.pipedriveWebForms');
-    await expect(formContainer).toBeVisible();
+    const form = page.locator('form:has(#cf-email)');
+    await expect(form).toBeVisible();
   });
 });

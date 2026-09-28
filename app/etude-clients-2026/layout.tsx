@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import '../globals.css';
-import LemlistTracker from '@/components/analytics/LemlistTracker';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,7 +26,6 @@ export default function EtudeClientsLayout({
     <html lang="fr" className={inter.variable}>
       <body className="font-body text-[var(--text-dark)] antialiased overflow-x-hidden bg-[var(--bg-warm-white)]">
         {children}
-        <LemlistTracker />
       </body>
     </html>
   );

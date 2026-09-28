@@ -1,6 +1,5 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
-import LemlistTracker from '@/components/analytics/LemlistTracker';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
 
 const inter = Inter({
@@ -27,7 +26,6 @@ export default function CalculateurROILayout({
     <html lang="fr" className={inter.variable}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden bg-neutral-50">
         {children}
-        <LemlistTracker />
         <AttributionTracker />
       </body>
     </html>

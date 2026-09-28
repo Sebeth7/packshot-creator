@@ -2,86 +2,30 @@
 
 ## Description
 
-Ce Worker Cloudflare agit comme un routeur intelligent pour la migration progressive de Webflow vers Next.js.
+Le Worker `packshot-router` s'exécute devant le site (routes déclarées dans
+`wrangler.toml`). Il porte :
 
-**Principe :** Le Worker intercepte les requêtes vers packshot-creator.com et les route soit vers :
-- **Next.js (Vercel)** — pour les pages déjà migrées
-- **Webflow** — pour les pages non encore migrées
+- les redirections des anciennes URL (site Webflow débranché le 24/05/2026,
+  anciens sous-domaines `fr.`, `de.`, `news.`…) ;
+- les réponses 410 (`GONE_PATHS`) ;
+- le passage direct des sous-domaines servis par un tiers (`PASSTHROUGH_HOSTS`) ;
+- le proxy de tout le reste vers `NEXTJS_ORIGIN` (Vercel, projet `sysnext`).
 
-**Avantages :**
-- ✅ Migration progressive page par page
-- ✅ Zéro impact SEO (même domaine)
-- ✅ Rollback instantané (modifier Worker)
-- ✅ Zéro downtime
+Il n'existe plus d'origine Webflow : la variable `WEBFLOW_ORIGIN`, inutilisée
+par le code, a été retirée de `wrangler.toml` le 28/09/2026.
 
-## Installation
+## Source de vérité et déploiement
 
-```bash
-# Installer Wrangler CLI
-npm install -g wrangler
+`src/index.js` fait foi (CLAUDE.md, règle R5). Aucune édition au dashboard
+Cloudflare. Avant tout nouveau mapping : resynchroniser le dépôt avec la version
+déployée, puis déployer depuis le dépôt et contrôler les URL témoins.
+Procédure complète : `docs/seo-geo/05-INFRA.md`.
 
-# Login Cloudflare
-wrangler login
-```
+## Tests
 
-## Configuration
-
-1. Mettre à jour `wrangler.toml` avec l'URL Vercel correcte
-2. Mettre à jour `src/index.js` avec les routes migrées
-
-## Déploiement
-
-```bash
-# Dev local (test)
-wrangler dev
-
-# Déployer en production
-wrangler deploy
-
-# Voir les logs
-wrangler tail
-```
-
-## Mise à jour des routes
-
-Après chaque migration de page :
-
-1. Ouvrir `src/index.js`
-2. Ajouter la route dans `MIGRATED_ROUTES`
-3. Déployer : `wrangler deploy`
-
-Exemple :
-```javascript
-const MIGRATED_ROUTES = [
-  '/',
-  '/en',
-  '/blog/quel-format-d-image-pour-le-web',
-  // etc.
-];
-```
-
-## Rollback
-
-Si une page migrée pose problème :
-
-1. Retirer la route de `MIGRATED_ROUTES`
-2. Déployer : `wrangler deploy`
-3. Le trafic revient immédiatement vers Webflow
+`test/*.test.ts` (Vitest) : redirections legacy, lot F, héritage de-ch,
+unicité des clés des tables.
 
 ## Debug
 
-Chaque réponse contient un header `X-Served-By` :
-- `nextjs` — servi par Next.js (Vercel)
-- `webflow` — servi par Webflow
-
-Vérifier :
-```bash
-curl -I https://packshot-creator.com/
-# Voir le header X-Served-By
-```
-
-## Notes
-
-- Ne PAS déployer le Worker avant d'avoir l'URL Vercel
-- Mettre à jour `NEXTJS_ORIGIN` dans `wrangler.toml`
-- Tracker les routes migrées dans `src/routes.json` (documentation)
+Les réponses proxifiées vers Next.js portent l'en-tête `X-Served-By: nextjs`.

@@ -52,14 +52,15 @@ test.describe('Cookie Banner RGPD', () => {
     await page.getByRole('button', { name: /Personnaliser/ }).click();
     await expect(page.getByText('Cookies essentiels', { exact: true })).toBeVisible();
     await expect(page.getByText('Cookies analytiques', { exact: true })).toBeVisible();
-    await expect(page.getByText('Cookies marketing', { exact: true })).toBeVisible();
+    // Catégorie marketing retirée le 28/09/2026 : aucun traceur ne l'utilisait.
+    await expect(page.getByText('Cookies marketing', { exact: true })).toHaveCount(0);
   });
 
-  test('should show 3 cookie categories with essentiels always enabled', async ({ page }) => {
+  test('should show 2 cookie categories with essentiels always enabled', async ({ page }) => {
     await page.getByRole('button', { name: /Personnaliser/ }).click();
     const checkboxes = page.locator('input[type="checkbox"]');
     const count = await checkboxes.count();
-    expect(count).toBe(3);
+    expect(count).toBe(2);
     // First checkbox (essentiels) should be checked and disabled
     await expect(checkboxes.first()).toBeChecked();
     await expect(checkboxes.first()).toBeDisabled();
