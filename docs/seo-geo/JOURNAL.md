@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Article AI Act : trois schémas et un exemple BlendAI · Claude de Laurent
+
+**Chantier** : AI Act et images produit, illustrations | **PR** : empilée sur #43 (brouillon, base `seo/ai-act-images-produit-2026-09-28`) | **Base** : `175a9d5`
+
+**Quoi** — Trois blocs HTML originaux dans l'article FR : « Deux obligations, deux acteurs » (sous le H2 « Deux obligations… »), parcours en quatre questions « faut-il la signaler ? » (fin de la section hypertrucage), « Les 20 cas en six familles » (avant le tableau). Dans un commit séparé, à arbitrer : figure BlendAI existante `avant-apres-2.avif` sous le H3 « Mannequins virtuels ».
+
+**Pourquoi** — Demande de Laurent du 29/09 : rendre l'article concret et lisible sans toucher au fond juridique. Constat : 27 minutes de lecture, aucune image, pas de couverture, tableau des 20 cas dense.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json` (insertions seules : texte existant intact, contrôlé par `difflib`), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Lecture plus rapide de l'article une fois publié. Aucun effet SEO mesurable séparément : l'article n'est pas publié.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx next build` vert (variables factices) ; `verifier-json.mjs` : 187 fichiers valides ; `next start` local, 1440 et 390 px : 4 figures rendues, aucun débordement horizontal (`scrollWidth` = `clientWidth`), colonne de 662 px en desktop et 358 px en mobile ; aucun `h2`/`h3` ajouté (sommaire inchangé) ; les 12 cas non tranchés de la carte des familles (6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 20) sont ceux du tableau.
+**Supposé** — Que les personnes de `avant-apres-2.avif` sont entièrement générées : c'est ce que dit le site (« mannequins virtuels », article « générer »), sans confirmation de Sébastien.
+**Non regardé** — Preview Vercel (SSO, jeton de contournement non transmis) ; specs Playwright du dépôt non relancées (aucune ancre, aucun lien, aucun titre ajouté) ; EN et de-ch (D38 : après GO sur le FR).
+
+**Suite** — À arbitrer : (1) prose ajoutée, par Sébastien ; (2) figure BlendAI : droits sur les produits (montre, bijoux) ; (3) non intégrés : paire Vichy (cas 11 exact, marque tierce visible), paire canapé (le canapé change d'angle entre l'avant et l'après : elle ne montre pas un simple décor généré), `avant-apres-1.avif` (marque Lancel lisible) ; (4) plus tard : couverture, recolorisation, mise en forme standard en quatre états (prise de vue à planifier).
+
+---
+
 ## 2026-09-28 · Article AI Act : passe de style et E6 dans la FAQ « migrer » · Claude de Laurent
 
 **Chantier** : AI Act et images produit | **PR** : #43 (brouillon, ne pas fusionner) | **Base** : `96489d9`
