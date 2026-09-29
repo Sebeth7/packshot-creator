@@ -68,7 +68,7 @@ test.describe('Vidéos YouTube — consentement', () => {
     await expect(dialog.getByRole('link', { name: /Ouvrir la vidéo sur YouTube/ })).toHaveAttribute('target', '_blank');
     await expect(dialog.getByRole('link', { name: /Règles de confidentialité de Google/ })).toHaveAttribute(
       'href',
-      'https://policies.google.com/privacy',
+      'https://policies.google.com/privacy?hl=fr',
     );
     expect(yt).toEqual([]);
 

@@ -23,7 +23,12 @@ const YOUTUBE_ID_RE = /^[A-Za-z0-9_-]{11}$/;
 /** Hôtes d'intégration reconnus : youtube.com (www., m.) et youtube-nocookie.com. */
 const YOUTUBE_EMBED_SRC_RE = /^(?:https?:)?\/\/(?:[a-z0-9-]+\.)*youtube(?:-nocookie)?\.com\/embed\//i;
 
-export const GOOGLE_PRIVACY_URL = 'https://policies.google.com/privacy';
+/** Règles de confidentialité de Google, dans la langue de la page (de-ch → allemand). */
+const GOOGLE_PRIVACY_HL: Record<string, string> = { fr: 'fr', en: 'en', 'de-ch': 'de' };
+
+export function googlePrivacyUrl(locale: string): string {
+  return `https://policies.google.com/privacy?hl=${GOOGLE_PRIVACY_HL[locale] ?? 'fr'}`;
+}
 
 /**
  * Vignettes locales à usage déjà établi sur le site. Aucune vignette n'est

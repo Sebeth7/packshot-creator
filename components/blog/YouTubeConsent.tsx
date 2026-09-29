@@ -16,10 +16,10 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
 import { hasExternalMediaConsent } from '@/components/cookies/CookieBanner';
-import { GOOGLE_PRIVACY_URL, isYouTubeId, youtubeNocookieEmbedUrl, youtubeWatchUrl } from '@/lib/youtube';
+import { googlePrivacyUrl, isYouTubeId, youtubeNocookieEmbedUrl, youtubeWatchUrl } from '@/lib/youtube';
 
 const FACADE_SELECTOR = 'a.pkc-yt__facade[data-yt-id]';
 
@@ -34,6 +34,7 @@ function readFacade(facade: HTMLAnchorElement): Video | null {
 
 export default function YouTubeConsent() {
   const t = useTranslations('externalVideo');
+  const locale = useLocale();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const players = useRef(new Map<HTMLIFrameElement, HTMLAnchorElement>());
   const [pending, setPending] = useState<Video | null>(null);
@@ -192,7 +193,7 @@ export default function YouTubeConsent() {
             </li>
             <li>
               <a
-                href={GOOGLE_PRIVACY_URL}
+                href={googlePrivacyUrl(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-very-peri-600 underline underline-offset-2 hover:text-very-peri-700"

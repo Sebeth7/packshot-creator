@@ -53,7 +53,7 @@ test.describe('Cookie Banner RGPD', () => {
     await expect(page.getByText('Cookies essentiels', { exact: true })).toBeVisible();
     await expect(page.getByText('Cookies analytiques', { exact: true })).toBeVisible();
     // Catégorie ajoutée le 28/09/2026 : lecteur YouTube des articles (lib/youtube.ts).
-    await expect(page.getByText('Contenus externes', { exact: true })).toBeVisible();
+    await expect(page.getByText('Vidéos YouTube', { exact: true })).toBeVisible();
     // Catégorie marketing retirée le 28/09/2026 : aucun traceur ne l'utilisait.
     await expect(page.getByText('Cookies marketing', { exact: true })).toHaveCount(0);
   });
@@ -66,7 +66,7 @@ test.describe('Cookie Banner RGPD', () => {
     // First checkbox (essentiels) should be checked and disabled
     await expect(checkboxes.first()).toBeChecked();
     await expect(checkboxes.first()).toBeDisabled();
-    // Analytiques et contenus externes : décochés par défaut
+    // Analytiques et vidéos YouTube : décochés par défaut
     await expect(checkboxes.nth(1)).not.toBeChecked();
     await expect(checkboxes.nth(2)).not.toBeChecked();
   });
@@ -87,7 +87,7 @@ test.describe('Cookie Banner RGPD', () => {
     await context.clearCookies();
     await page.reload();
     await page.getByRole('button', { name: /Personnaliser/ }).click();
-    await page.locator('label', { hasText: 'Contenus externes' }).locator('input[type="checkbox"]').check();
+    await page.locator('label', { hasText: 'Vidéos YouTube' }).locator('input[type="checkbox"]').check();
     await page.getByRole('button', { name: /Enregistrer mes choix/ }).click();
     expect(await stored()).toMatchObject({ necessary: true, analytics: false, externalMedia: true });
   });

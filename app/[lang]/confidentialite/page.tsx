@@ -6,7 +6,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/se
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/hero';
 import { buildLanguages } from '@/lib/hreflang';
-import { GOOGLE_PRIVACY_URL } from '@/lib/youtube';
+import { googlePrivacyUrl } from '@/lib/youtube';
 
 export const revalidate = 86400;
 
@@ -72,7 +72,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
       key: 'externalMedia',
       title: t('article6.externalMedia.title'),
       description: t('article6.externalMedia.description'),
-      link: { href: GOOGLE_PRIVACY_URL, label: t('article6.externalMedia.linkLabel') },
+      link: { href: googlePrivacyUrl(lang), label: t('article6.externalMedia.linkLabel') },
     },
   ];
 

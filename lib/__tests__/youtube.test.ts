@@ -7,6 +7,7 @@ import {
   transformYouTubeEmbeds,
   youtubeNocookieEmbedUrl,
   youtubeWatchUrl,
+  googlePrivacyUrl,
   YOUTUBE_LOCAL_POSTERS,
 } from '@/lib/youtube';
 
@@ -151,6 +152,12 @@ describe('façade YouTube — cas unitaires', () => {
     expect(parseYouTubeEmbed('https://www.youtube.com/embed/abc')).toBeNull();
     expect(parseYouTubeEmbed('https://player.vimeo.com/video/123')).toBeNull();
     expect(parseYouTubeEmbed('https://evil.example/www.youtube.com/embed/8uq7kD1DoEM')).toBeNull();
+  });
+
+  it('règles de confidentialité de Google dans la langue de la page', () => {
+    expect(googlePrivacyUrl('fr')).toBe('https://policies.google.com/privacy?hl=fr');
+    expect(googlePrivacyUrl('en')).toBe('https://policies.google.com/privacy?hl=en');
+    expect(googlePrivacyUrl('de-ch')).toBe('https://policies.google.com/privacy?hl=de');
   });
 
   it('URL du lecteur : youtube-nocookie, autoplay, rel=0, start', () => {

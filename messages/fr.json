@@ -2326,8 +2326,8 @@
     "necessaryDesc": "Session, préférences de langue. Toujours actifs.",
     "analytics": "Cookies analytiques",
     "analyticsDesc": "Google Analytics : mesure d'audience anonymisée.",
-    "externalMedia": "Contenus externes",
-    "externalMediaDesc": "Vidéos YouTube : lecteur chargé au clic sur une vidéo. YouTube (Google) peut alors utiliser ses propres cookies."
+    "externalMedia": "Vidéos YouTube",
+    "externalMediaDesc": "Vidéos YouTube : autorise le chargement du lecteur lorsque vous ouvrez une vidéo. YouTube (Google) peut alors utiliser des cookies ou des technologies similaires."
   },
   "about": {
     "meta": {
@@ -2642,8 +2642,8 @@
         "description": "Mesure d'audience anonymisee via Google Analytics (_ga, _ga_*). IP anonymisee. Duree : 13 mois max. Charges uniquement apres votre consentement."
       },
       "externalMedia": {
-        "title": "Contenus externes (vidéos YouTube)",
-        "description": "Certains articles du blog intègrent des vidéos hébergées par YouTube (Google). À l'affichage de la page, seule une vignette locale est présentée : aucune ressource n'est chargée depuis YouTube. Le lecteur, servi depuis youtube-nocookie.com, n'est chargé qu'après votre accord : au clic sur « Autoriser et lire la vidéo », ou au clic sur une vidéo si vous avez accepté la catégorie « Contenus externes » dans le gestionnaire de cookies. Une fois le lecteur chargé, YouTube reçoit votre adresse IP et peut utiliser des cookies ou des technologies similaires. Leur usage est décrit dans les règles de confidentialité de Google.",
+        "title": "Vidéos YouTube",
+        "description": "Certains articles du blog intègrent des vidéos hébergées par YouTube (Google). À l'affichage de la page, seule une façade locale est présentée : aucune ressource n'est chargée depuis YouTube. Le lecteur, servi depuis youtube-nocookie.com, n'est chargé qu'après votre accord : au clic sur « Autoriser et lire la vidéo », ou au clic sur une vidéo si vous avez accepté la catégorie « Vidéos YouTube » dans le gestionnaire de cookies. Une fois le lecteur chargé, YouTube reçoit votre adresse IP et peut utiliser des cookies ou des technologies similaires. Leur usage est décrit dans les règles de confidentialité de Google.",
         "linkLabel": "Règles de confidentialité de Google"
       },
       "managePreferences": "Vous pouvez modifier vos preferences a tout moment via le lien \"Gerer les cookies\" en bas de chaque page."
@@ -2681,13 +2681,13 @@
     "notice": "Vidéo YouTube · lecture après votre accord",
     "dialogTitle": "Lire une vidéo YouTube",
     "dialogVideo": "Vidéo : {title}",
-    "dialogBody": "Cette vidéo est hébergée par YouTube (Google). Rien n'a encore été chargé depuis YouTube. Si vous lancez la lecture, le lecteur sera chargé depuis youtube-nocookie.com : YouTube recevra alors votre adresse IP et des informations techniques sur votre navigateur, et pourra utiliser des cookies ou des technologies similaires.",
+    "dialogBody": "Cette vidéo est hébergée par YouTube (Google). Rien n'a encore été chargé depuis YouTube. Si vous autorisez la lecture, le lecteur sera chargé depuis youtube-nocookie.com. YouTube recevra alors notamment votre adresse IP et des informations techniques sur votre navigateur, afin de fournir et sécuriser le lecteur et de mesurer son utilisation. Selon les paramètres et services de Google, d'autres traitements peuvent également intervenir.",
     "accept": "Autoriser et lire la vidéo",
     "cancel": "Annuler",
     "close": "Fermer",
     "openOnYoutube": "Ouvrir la vidéo sur YouTube (nouvel onglet)",
     "googlePrivacy": "Règles de confidentialité de Google (nouvel onglet)",
-    "manageHint": "Cet accord vaut pour cette vidéo uniquement. Pour autoriser durablement les contenus externes, utilisez le gestionnaire de cookies :",
+    "manageHint": "Cet accord vaut pour cette vidéo uniquement. Pour autoriser durablement les vidéos YouTube, utilisez le gestionnaire de cookies :",
     "managePreferences": "gérer mes préférences"
   },
   "blogBudget": {

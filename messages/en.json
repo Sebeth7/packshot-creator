@@ -2323,8 +2323,8 @@
     "necessaryDesc": "Session, language preferences. Always active.",
     "analytics": "Analytics cookies",
     "analyticsDesc": "Google Analytics: anonymous audience measurement.",
-    "externalMedia": "External content",
-    "externalMediaDesc": "YouTube videos: player loaded when you click a video. YouTube (Google) may then use its own cookies."
+    "externalMedia": "YouTube videos",
+    "externalMediaDesc": "YouTube videos: allows the player to load when you open a video. YouTube (Google) may then use cookies or similar technologies."
   },
   "about": {
     "meta": {
@@ -2639,8 +2639,8 @@
         "description": "Anonymous audience measurement via Google Analytics (_ga, _ga_*). Anonymized IP. Duration: 13 months max. Loaded only after your consent."
       },
       "externalMedia": {
-        "title": "External content (YouTube videos)",
-        "description": "Some blog articles embed videos hosted by YouTube (Google). When the page is displayed, only a local thumbnail is shown: nothing is loaded from YouTube. The player, served from youtube-nocookie.com, is loaded only after your consent: when you click \"Allow and play the video\", or when you click a video if you have accepted the \"External content\" category in the cookie manager. Once the player is loaded, YouTube receives your IP address and may use cookies or similar technologies. Their use is described in Google's Privacy Policy.",
+        "title": "YouTube videos",
+        "description": "Some blog articles embed videos hosted by YouTube (Google). When the page is displayed, only a local placeholder is shown: nothing is loaded from YouTube. The player, served from youtube-nocookie.com, is loaded only after your consent: when you click \"Allow and play the video\", or when you click a video if you have accepted the \"YouTube videos\" category in the cookie manager. Once the player is loaded, YouTube receives your IP address and may use cookies or similar technologies. Their use is described in Google's Privacy Policy.",
         "linkLabel": "Google Privacy Policy"
       },
       "managePreferences": "You can change your preferences at any time via the \"Manage cookies\" link at the bottom of each page."
@@ -2678,13 +2678,13 @@
     "notice": "YouTube video · plays after your consent",
     "dialogTitle": "Play a YouTube video",
     "dialogVideo": "Video: {title}",
-    "dialogBody": "This video is hosted by YouTube (Google). Nothing has been loaded from YouTube yet. If you start playback, the player will be loaded from youtube-nocookie.com: YouTube will then receive your IP address and technical information about your browser, and may use cookies or similar technologies.",
+    "dialogBody": "This video is hosted by YouTube (Google). Nothing has been loaded from YouTube yet. If you allow playback, the player will be loaded from youtube-nocookie.com. YouTube will then receive, in particular, your IP address and technical information about your browser, in order to provide and secure the player and to measure its use. Depending on Google's settings and services, other processing may also take place.",
     "accept": "Allow and play the video",
     "cancel": "Cancel",
     "close": "Close",
     "openOnYoutube": "Open the video on YouTube (new tab)",
     "googlePrivacy": "Google Privacy Policy (new tab)",
-    "manageHint": "This permission applies to this video only. To allow external content permanently, use the cookie manager:",
+    "manageHint": "This permission applies to this video only. To allow YouTube videos permanently, use the cookie manager:",
     "managePreferences": "manage my preferences"
   },
   "blogBudget": {
