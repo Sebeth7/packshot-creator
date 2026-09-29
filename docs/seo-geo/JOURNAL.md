@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · JSON-LD techniques — fils d'Ariane de-ch et solutions, Organization distributeur, `dateModified` · Claude de Laurent
 
-**Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD », périmètre strict | **PR** : brouillon, non fusionnée, branche `ccr-28357f20-j8452h` | **Base** : `main` `2854c27`
+**Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD », périmètre strict | **PR** : #55, brouillon, non fusionnée, branche `ccr-28357f20-j8452h` | **Base** : `main` `2854c27`
 
 **Quoi** — Quatre corrections de données structurées, rien d'autre :
 - A. `BreadcrumbList` de-ch : l'élément qui visait un segment FR est résolu par `getPathname` (`i18n/routing.ts`) dans 9 fichiers. Aucune table ajoutée.
