@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · YouTube erreur 153 — `referrerpolicy` sur les iframes YouTube du blog · Claude de Laurent
 
-**Chantier** : correctif ponctuel, hors `06-CHANTIERS.md` (erreur YouTube 153 signalée par Laurent) | **PR** : brouillon, voir la branche `claude/youtube-153-referrer-policy-ykjqx9` | **Base** : `96489d9` (`main`) | **Merge et déploiement** : aucun sans GO explicite de Laurent
+**Chantier** : correctif ponctuel, hors `06-CHANTIERS.md` (erreur YouTube 153 signalée par Laurent) | **PR** : #46, brouillon (branche `claude/youtube-153-referrer-policy-ykjqx9`) | **Commit** : `7e4b5cb` | **Base** : `96489d9` (`main`) | **Merge et déploiement** : aucun sans GO explicite de Laurent
 
 **Quoi** — `processHtmlContent` (`lib/blog-utils.ts`) ajoute `referrerpolicy="strict-origin-when-cross-origin"` aux seules iframes d'embed YouTube (`youtube.com` ou `youtube-nocookie.com`, avec ou sans `www`, chemin `/embed/`) qui n'en portent pas déjà. Aucun JSON de contenu, aucune URL de vidéo, aucun texte, aucun en-tête global ni réglage Cloudflare modifiés.
 
