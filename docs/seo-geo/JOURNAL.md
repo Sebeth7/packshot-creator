@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · `llms.txt` — « officiel » (D6), assertion de date retirée, 16 secteurs · Claude de Laurent
 
-**Chantier** : audit SEO/GEO du 29/09, PR technique 1 (constat P0-1) | **PR** : à ouvrir, brouillon | **Base** : `main` `9ced920`
+**Chantier** : audit SEO/GEO du 29/09, PR technique 1 (constat P0-1) | **PR** : #54, brouillon, non fusionnée | **Base** : `main` `9ced920`
 
 **Quoi** — Trois modifications dans `public/llms.txt`, rien d'autre :
 - l. 3 : « Distributeur exclusif France & Suisse » → « Distributeur officiel France & Suisse » ;
