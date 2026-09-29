@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · #50 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : phase 1 structurelle du blog (F1, F16, F19, F11, F2 limité aux 2 Vimeo) | **PR** : #50, fusionnée sur GO final de Laurent | **Commit de fusion** : `28a1169` (`main`), le 29/09/2026 à 10:33:42 UTC | **Tête fusionnée** : `a9aae77` | **Base avant fusion** : `2de576a`
+
+**Quoi** — GO final donné par Laurent après son contrôle visuel du Preview : desktop validé ; contrôle mobile complet « PASS_WITH_NOTES », 18 combinaisons page × profil sans débordement ni régression de #50.
+
+Contrôles préalables à 10:33 UTC :
+- `main` inchangé (`2de576a`) ;
+- tête #50 `a9aae77`, 1 commit ;
+- PR fusionnable (`clean`) ;
+- 4 checks et Vercel en succès ;
+- #48 fermée sans fusion.
+
+La PR a été sortie du brouillon, puis fusionnée par commit de fusion. Aucune autre modification de code. #43, #27, `content/**` et Cloudflare non touchés.
+
+**Vérifié** —
+- `main` = `28a1169`, parents `2de576a` et `a9aae77` ; l'arbre de `main` est identique à celui de `a9aae77`, la tête testée.
+- Production hors Cloudflare : `sysnext.vercel.app` sert le nouveau build à partir de 10:35:02 UTC (première observation, relevé toutes les 10 s : classe `blog-article` présente). À 10:34:52 UTC, l'ancien build était encore servi.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 10:35:07 UTC : vert, 17 pages et 3 ressources (sitemap 325 URL, robots.txt, llms.txt).
+- Chromium sur `sysnext.vercel.app`, 125 articles en 1440 et 390 px (10:35 à 10:37 UTC) :
+  - 250 réponses 200 ;
+  - 57 façades YouTube par largeur, 0 iframe YouTube brute ;
+  - 0 paragraphe vide dans le DOM ;
+  - 0 « &amp; » dans le sommaire ;
+  - débordement horizontal : les 3 mêmes pages à 19 px en 390 qu'avant #50 (`boostez-votre-taux-de-conversion…` FR, `photographie-2d-de-produits` FR et EN), aucune nouvelle.
+- Tous les indicateurs mesurés sont identiques à ceux du build testé avant fusion : statut, paragraphes vides, façades, iframes, sommaire, classe, styles calculés et figures.
+  - Seule différence : la hauteur totale de page, sur 41 relevés sur 250. Elle vient du chargement différé des images au moment du relevé : `avantages-toplight-photographie-produits` (FR) mesure 9 490 px en local comme en production dans les mêmes conditions, et l'écart de 2 706 px observé correspond à la hauteur de ses images.
+- Pages demandées, en 1440 et 390 :
+  - `/en/blog/8-steps-to-professional-jewelry-photography` : paragraphes 20 px, puces `disc` et retrait 26 px, listes imbriquées `circle`, liens soulignés, façade 662×372 et 358×201 ;
+  - `/fr/blog/optimiser-collaboration-equipe-success-story-shotflow` et `/en/blog/optimize-team-collaboration-success-story-shotflow` : Vimeo 662×373 et 358×202, vide 0 ;
+  - `/fr/blog/generer-images-produit-ia` : paragraphe du `.tldr` à 0 px, inchangé ; listes et liens corrigés ;
+  - `/en/blog/5-cameras-realistic-3d-animation` : 2 façades intactes (662×372 et 358×201), 0 débordement.
+
+**Supposé** — `www` sert le même HTML que `sysnext.vercel.app` (même projet, le Worker relaie le HTML sans le réécrire).
+
+**Non regardé** — `www` (R4) ; e2e contre la production (les specs ont été passées avant fusion sur les builds locaux de `main` et de la branche, d'arbre identique à la production : mêmes 25 échecs préexistants, aucun nouveau).
+
+**Suite** —
+- Laurent, dans Chrome sur `www`, desktop puis mobile : un article Webflow, un natif et un article Vimeo.
+- Anomalie séparée, signalée par le contrôle mobile de Laurent et présente à l'identique sur `main` avant #50 : à 390 px, après un clic dans le sommaire, le `h2` visé reste partiellement masqué. Ce n'est pas une régression de #50, qui ne l'a pas corrigée ; je ne l'ai pas reproduite moi-même.
+- Restent hors phase : F10, F22, saasphoto, Sketchfab, rendu des guides, chantier éditorial et traductions des anciens articles Webflow.
+
+---
+
 ## 2026-09-29 · Phase 1 structurelle du blog — typographie, paragraphes vides, sommaire, 2 figures Vimeo · Claude de Laurent
 
 **Chantier** : phase 1 structurelle du blog (F1, F16, F19, F11, F2 limité aux 2 Vimeo), GO d'implémentation de Laurent du 29/09 | **PR** : brouillon, branche `fix/blog-structure-phase1-2026-09`, non fusionnée | **Base** : `main` `2de576a` | Remplace le seul correctif encore utile de #48
