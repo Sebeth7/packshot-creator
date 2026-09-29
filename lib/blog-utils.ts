@@ -41,14 +41,62 @@ export function addYouTubeReferrerPolicy(html: string): string {
   });
 }
 
+// Caractères sans rendu visible : espaces (\s couvre aussi U+00A0 et U+FEFF),
+// espaces et liants de largeur nulle (U+200B à U+200D), U+2060.
+const INVISIBLE_CHARS = /[\s\u200b\u200c\u200d\u2060]/g;
+const INVISIBLE_CODE_POINTS = new Set([0x09, 0x0a, 0x0c, 0x0d, 0x20, 0xa0, 0x200b, 0x200c, 0x200d, 0x2060, 0xfeff]);
+// <p> sans attribut, ou avec seulement id="" (export Webflow), sans balise dedans.
+const BARE_PARAGRAPH = /<p(?:\s+id\s*=\s*(?:""|''))?\s*>([^<]*)<\/p>/gi;
+
+function isBlank(text: string): boolean {
+  const withoutEntities = text.replace(/&(?:nbsp|zwj|zwnj);|&#(\d+);|&#[xX]([0-9a-fA-F]+);/g, (entity, dec?: string, hex?: string) => {
+    if (dec === undefined && hex === undefined) return '';
+    const codePoint = dec !== undefined ? parseInt(dec, 10) : parseInt(hex as string, 16);
+    return INVISIBLE_CODE_POINTS.has(codePoint) ? '' : entity;
+  });
+  return withoutEntities.replace(INVISIBLE_CHARS, '') === '';
+}
+
+/**
+ * Les exports Webflow espacent les blocs par des paragraphes vides
+ * (`<p id="">\u200d</p>`, un ZWJ seul). Avec les marges de paragraphe du gabarit blog
+ * (app/globals.css, .blog-article), ils doubleraient l'espacement : on retire au
+ * rendu les seuls <p> sans attribut (ou avec id="" seul), sans balise, dont le
+ * contenu n'est fait que d'espaces et de caractères invisibles, bruts ou en
+ * entités. Un paragraphe avec une balise (<br>, image, lien, <strong>…), un
+ * caractère visible, un id non vide, une classe ou un style est conservé.
+ */
+export function removeEmptyParagraphs(html: string): string {
+  return html.replace(BARE_PARAGRAPH, (paragraph, content: string) => (isBlank(content) ? '' : paragraph));
+}
+
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0',
+};
+
+/**
+ * Décode, en un seul passage, les entités HTML d'un texte destiné à React (texte
+ * du sommaire) : « Gad &amp; Co » → « Gad & Co ». Entité inconnue ou code
+ * invalide : laissés tels quels. « &amp;amp; » donne « &amp; » (un seul décodage).
+ */
+export function decodeHtmlEntities(text: string): string {
+  return text.replace(/&(?:#(\d+)|#[xX]([0-9a-fA-F]+)|([a-zA-Z]+));/g, (entity, dec?: string, hex?: string, name?: string) => {
+    if (name !== undefined) return NAMED_ENTITIES[name] ?? entity;
+    const codePoint = dec !== undefined ? parseInt(dec, 10) : parseInt(hex as string, 16);
+    const valid = codePoint > 0 && codePoint <= 0x10ffff && (codePoint < 0xd800 || codePoint > 0xdfff);
+    return valid ? String.fromCodePoint(codePoint) : entity;
+  });
+}
+
 /**
  * Process Webflow HTML content:
  * - Add IDs to h2/h3 elements for ToC navigation
- * - Extract headings for ToC
+ * - Extract headings for ToC (texte décodé, id calculé sur la source : ancres inchangées)
  * - Count words for reading time
  * - Remplacer les iframes YouTube par une façade locale (lib/youtube.ts) :
  *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
+ * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
  */
 export function processHtmlContent(
   html: string,
@@ -79,7 +127,8 @@ export function processHtmlContent(
       usedIds.add(id);
 
       const level = parseInt(tag.charAt(1));
-      headings.push({ id, text, level });
+      // L'id reste calculé sur le texte source : les ancres existantes ne bougent pas.
+      headings.push({ id, text: decodeHtmlEntities(text).trim(), level });
 
       const cleanAttrs = attrs.replace(/\s*id="[^"]*"/gi, '');
       return `<${tag}${cleanAttrs} id="${id}">${content}</${tag}>`;
@@ -100,11 +149,12 @@ export function processHtmlContent(
   // (#46) ne modifie rien aujourd'hui. Elle reste en garde pour toute iframe
   // YouTube qui échapperait à la façade (erreur 153 sans Referer).
   const withYouTubeReferrer = addYouTubeReferrerPolicy(videos.html);
+  const withoutEmptyParagraphs = removeEmptyParagraphs(withYouTubeReferrer);
 
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withYouTubeReferrer, headings, wordCount, videoCount: videos.count };
+  return { processedHtml: withoutEmptyParagraphs, headings, wordCount, videoCount: videos.count };
 }
 
 /**
