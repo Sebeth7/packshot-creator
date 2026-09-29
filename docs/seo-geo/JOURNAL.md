@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · `llms.txt` — « officiel » (D6), assertion de date retirée, 16 secteurs · Claude de Laurent
+
+**Chantier** : audit SEO/GEO du 29/09, PR technique 1 (constat P0-1) | **PR** : à ouvrir, brouillon | **Base** : `main` `9ced920`
+
+**Quoi** — Trois modifications dans `public/llms.txt`, rien d'autre :
+- l. 3 : « Distributeur exclusif France & Suisse » → « Distributeur officiel France & Suisse » ;
+- l. 5 : « Packshot Creator existe depuis 2004, » retiré ; aucune date ni ancienneté ajoutée ;
+- l. 27 : « 15 secteurs » → « 16 secteurs », soit le nombre d'entrées listées l. 29-44.
+
+**Pourquoi** — D6 proscrit « exclusif » dans toute revendication de distribution. La date de création est contradictoire dans le dépôt : 2004 dans le schéma `Organization` et sur `/a-propos`, 2001 dans D33, « 20 ans » et « 25 ans » dans les textes. Aucune date n'est choisie ici. Le fichier listait 16 secteurs et en annonçait 15.
+
+**Fichiers** — `public/llms.txt`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après fusion, `/llms.txt` ne revendique plus d'exclusivité ni de date de création. Aucun effet sur les pages, le sitemap, `robots.txt` ou les données structurées.
+
+**Vérifié** —
+- `main` distant = `9ced920` avant modification ; branche partie de ce commit.
+- Diff : 1 fichier du site, 3 lignes remplacées. `git diff --word-diff` : seuls « exclusif » → « officiel », « Packshot Creator existe depuis 2004, » retiré et « 15 » → « 16 ».
+- Mesures sur le fichier : « exclusi » 1 → 0 ; année, « depuis » ou « N ans » 1 → 0 ; secteurs annoncés 15 → 16, secteurs listés 16.
+- `npx tsc --noEmit` vert ; `verifier-json` : 186 JSON valides ; `npx next build` vert, variables factices.
+- `next start` local : `/llms.txt` en 200 `text/plain; charset=UTF-8`, identique octet pour octet au fichier ; `smoke.mjs http://localhost:3031` vert, 17 pages et 3 ressources (`llms.txt` 3 779 octets).
+- `verifier-consequences.mjs` sur la liste des fichiers : « Effet local ».
+- `sysnext.vercel.app/llms.txt` était identique au dépôt avant modification (relevé du 29/09).
+
+**Supposé** — [Inférence] `www` sert le même `llms.txt` que `sysnext.vercel.app` ; non contrôlable depuis le conteneur (R4).
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4). Hors périmètre de cette PR, sans modification : les autres occurrences de « exclusive » du dépôt (`lib/lead-enrichment.ts`, articles) et la date de création ailleurs (schéma `Organization`, `/a-propos`, textes), suivies par l'audit du 29/09 (D33).
+
+**Suite** — GO de Laurent, fusion, `smoke.mjs` sur `sysnext.vercel.app`, puis `https://www.packshot-creator.com/llms.txt` dans Chrome. Aucune date de création ne sera réintroduite dans `llms.txt` avant l'alignement D33 du schéma et de `/a-propos`.
+
+---
+
 ## 2026-09-29 · Phase 2A — règle UX finale : liens internes dans le même onglet · Claude de Laurent
 
 **Chantier** : phase 2A du blog | **PR** : #52, brouillon, non fusionnée | **Base** : `main` `06483a3`

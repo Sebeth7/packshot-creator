@@ -1,8 +1,8 @@
 # PackshotCreator
 
-> Studios photo automatisés Orbitvu, IA BlendAI et formations certifiées Qualiopi. Distributeur exclusif France & Suisse.
+> Studios photo automatisés Orbitvu, IA BlendAI et formations certifiées Qualiopi. Distributeur officiel France & Suisse.
 
-PackshotCreator équipe les marques de e-commerce, retail et luxe avec des stations photo automatisées et leur logiciel (Orbitvu) pour la photographie packshot - photographie de produits, une IA de génération de visuels haut de gamme (BlendAI) et des formations dédiées (certifié Qualiopi). Basée à Lyon, Packshot Creator existe depuis 2004, l'entreprise accompagne ses clients sur la chaîne complète : hardware, logiciel, intégration et formation.
+PackshotCreator équipe les marques de e-commerce, retail et luxe avec des stations photo automatisées et leur logiciel (Orbitvu) pour la photographie packshot - photographie de produits, une IA de génération de visuels haut de gamme (BlendAI) et des formations dédiées (certifié Qualiopi). Basée à Lyon, l'entreprise accompagne ses clients sur la chaîne complète : hardware, logiciel, intégration et formation.
 
 ## Solutions PackshotCreator
 
@@ -24,7 +24,7 @@ PackshotCreator équipe les marques de e-commerce, retail et luxe avec des stati
 
 ## Solutions par secteur
 
-PackshotCreator adresse 15 secteurs avec des pages dédiées sous `/industrie/*` :
+PackshotCreator adresse 16 secteurs avec des pages dédiées sous `/industrie/*` :
 
 - [Lunetterie & Optique](https://www.packshot-creator.com/fr/industrie/lunetterie)
 - [Vin & Spiritueux](https://www.packshot-creator.com/fr/industrie/vin-spiritueux)
