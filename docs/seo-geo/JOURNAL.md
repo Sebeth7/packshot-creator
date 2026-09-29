@@ -85,6 +85,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · F5 — contrôle visuel sur `www` et retour de Sébastien · Claude de Laurent
+
+**Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 (fusionnée le 28/09, `04919f8`) | **Commit** : voir PR
+
+**Quoi** — Clôture du point « contrôle Chrome sur `www` » de l'entrée du 28/09. Aucun fichier du site modifié.
+
+**Vérifié** — Déclarations reçues, non contrôlées par script :
+- Laurent a ouvert le 29/09/2026 les trois URL sur `www.packshot-creator.com` (`/fr/packshot-e-commerce`, `/en/packshot-e-commerce`, `/de-ch/packshot-e-commerce`). Son retour, verbatim : « j'ai ouvert rapidement les 3 pages, cela semble ok ». Navigateur non précisé.
+- Sébastien a répondu par courriel au message de Laurent du 28/09/2026 à 21:01 (« Mise en ligne de la nouvelle page Packshot e-commerce ») : « c'est parfait !! à suivre pour voir les retombées, la page est canon ! ». Date et heure de sa réponse non transmises. Ce retour ne précise pas quelles langues il a consultées.
+
+**Supposé** — Les balises vues sur `sysnext.vercel.app` le 28/09 (canonical, hreflang, OG, données structurées) sont servies à l'identique par `www` : même projet Vercel, et le Worker du dépôt n'a aucune règle sur ces URL [non vérifié sur `www`].
+
+**Non regardé** — Canonical, hreflang, données structurées et console côté `www` (R4 : pas de contrôle par script ; le contrôle de Laurent a été visuel et rapide).
+
+**Suite** — Relevé GSC sur la landing FR à J+28 (26/10/2026) et J+56 (23/11/2026) ; point de départ GSC du jour de la fusion à figer par Laurent ; aucun lien entrant vers F5 avant J+56.
+
+---
+
 ## 2026-09-28 · F5 — #39 fusionnée et contrôlée en production (FR, EN, de-ch) · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 fusionnée ; #24 fermée | **Commit de fusion** : `04919f8` (`main`), le 28/09/2026 à 18:42:03 UTC | **Tête fusionnée** : `55ea992` | **Base avant fusion** : `b26f6e9`
