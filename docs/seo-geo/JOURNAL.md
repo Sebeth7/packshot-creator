@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · YouTube 153 — #46 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : correctif ponctuel de l'erreur YouTube 153 | **PR** : #46, fusionnée sur GO de Laurent | **Commit de fusion** : `cd17aeb` (`main`), le 29/09/2026 à 05:31:57 UTC | **Tête fusionnée** : `870b3a1` | **Base avant fusion** : `e3197e0`
+
+**Quoi** — La PR #46 est sortie du brouillon, puis fusionnée par commit de fusion, après CI verte sur `870b3a1` (types, build et intégrité des données ; journal ; conséquences ; Vercel) et une PR sans conflit. PR #44 non touchée. Cloudflare non modifié.
+
+**Décision de Laurent (29/09)** — #46 d'abord, comme correctif ponctuel. Ensuite, #44 sera remise à jour depuis `main` en conservant son architecture façade et consentement, et en retirant le traitement de #46 s'il est devenu inutile. #44 n'est pas fusionnée maintenant.
+
+**Vérifié** —
+- `main` = `cd17aeb` ; `870b3a1` en est un ancêtre ; `addYouTubeReferrerPolicy` est présent dans `lib/blog-utils.ts` de `main`.
+- `sysnext.vercel.app` sert le HTML corrigé à partir de 05:33:29 UTC (première observation, relevé toutes les 10 s). Avant fusion, à 05:31:49 UTC, les iframes n'avaient pas l'attribut.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 05:33:35 UTC, moins de 2 minutes après la fusion : vert, 17 pages et 3 ressources (sitemap 325 URL, robots.txt, llms.txt).
+- `sysnext.vercel.app`, 51 articles portant une iframe (26 FR, 25 EN), tous en 200 : iframes YouTube avec `referrerpolicy="strict-origin-when-cross-origin"` FR 29/29 et EN 28/28 ; 0 attribut en double ; les 6 iframes non YouTube sans attribut.
+- Reproduction Playwright sur le HTML de production réel (`sysnext.vercel.app`), servi avec l'en-tête `Referrer-Policy: same-origin` ajouté comme devant `www`. Pages : `/en/blog/5-cameras-realistic-3d-animation` et son équivalent FR. Profils : desktop 1440 px, iPhone 13 et Pixel 7 (émulation, moteur Chromium). Pour la vidéo `VssNUk1qsXg` :
+  - Referer présent (`https://sysnext.vercel.app/`) dans les 6 cas ; erreur 153 dans aucun cas ;
+  - lecteur prêt dans les 6 cas, `playing-mode` après clic en desktop EN et FR et en Pixel 7 EN et FR ;
+  - en iPhone 13, le clic émulé ne lance pas la lecture ;
+  - desktop EN et Pixel 7 FR ont été relancés une fois, le lecteur restant illisible au premier passage (réseau du conteneur).
+
+**Supposé** — `www.packshot-creator.com` sert le même HTML que `sysnext.vercel.app` (même projet `sysnext`, le Worker relaie le HTML sans le réécrire). Le Referer envoyé depuis `www` sera `https://www.packshot-creator.com/`.
+
+**Non regardé** — `www.packshot-creator.com` (R4) :
+- `curl` reçoit un 403 de challenge Cloudflare ;
+- le Chromium du conteneur refuse le certificat du proxy (`ERR_CERT_AUTHORITY_INVALID`, y compris avec les erreurs HTTPS ignorées) ; la vérification TLS n'a pas été désactivée.
+
+La disparition de l'erreur 153 sur `www` n'est donc pas constatée : contrôle dans Chrome à faire par Laurent. Non regardés non plus : Safari et WebKit réels, appareils mobiles réels, rendu effectif des images vidéo (`currentTime` à 0).
+
+**Suite** —
+- Laurent, dans Chrome sur `www`, sur les deux articles, desktop puis mobile réel :
+  - onglet Réseau, requête `youtube.com/embed/VssNUk1qsXg` : en-tête `Referer: https://www.packshot-creator.com/` ;
+  - lecteur affiché, lecture après clic, aucune erreur 153 ;
+  - en-tête `referrer-policy` de la page, pour confirmer la source.
+- Cloudflare : vérification séparée de la Managed Transform « Add security headers », sans modification.
+- #44 : reprise séparée sur le nouveau `main`.
+
+---
+
 ## 2026-09-29 · YouTube erreur 153 — `referrerpolicy` sur les iframes YouTube du blog · Claude de Laurent
 
 **Chantier** : correctif ponctuel, hors `06-CHANTIERS.md` (erreur YouTube 153 signalée par Laurent) | **PR** : #46, brouillon (branche `claude/youtube-153-referrer-policy-ykjqx9`) | **Commit** : `7e4b5cb` | **Base** : `96489d9` (`main`) | **Merge et déploiement** : aucun sans GO explicite de Laurent
