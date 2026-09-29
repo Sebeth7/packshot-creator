@@ -1,4 +1,5 @@
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import {
@@ -73,7 +74,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Industries', url: `https://www.packshot-creator.com/${lang}/industrie` },
+    { name: 'Industries', url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/industrie' })}` },
   ];
 
   /* ── Featured sectors (large cards) ── */

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Link } from '@/i18n/routing';
+import { Link, getPathname } from '@/i18n/routing';
 import { MachineSelector } from '@/components/machine-selector';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, ArrowRight, Phone, Mail } from 'lucide-react';
@@ -58,7 +58,7 @@ export default async function MachineSelectorPage({ params }: PageProps) {
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
-    { name: tx(lang, 'Sélecteur', 'Selector', 'Finder'), url: `https://www.packshot-creator.com/${lang}/studio-photo/selecteur-machines` },
+    { name: tx(lang, 'Sélecteur', 'Selector', 'Finder'), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/studio-photo/selecteur-machines' })}` },
   ];
 
   const categories = [

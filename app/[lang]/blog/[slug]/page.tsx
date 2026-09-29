@@ -275,6 +275,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           url: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
           image: imageUrl || undefined,
           datePublished: date,
+          dateModified: article.dateModified,
           category: category ?? undefined,
           author: article.author ?? undefined,
         }),
