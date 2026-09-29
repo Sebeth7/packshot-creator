@@ -2,7 +2,13 @@
  * Utility functions for blog content processing
  */
 
-import { transformYouTubeEmbeds, type YouTubeFacadeLabels } from './youtube';
+import {
+  DEFAULT_YOUTUBE_LABELS,
+  isYouTubeId,
+  renderFacade,
+  transformYouTubeEmbeds,
+  type YouTubeFacadeLabels,
+} from './youtube';
 
 export interface HeadingData {
   id: string;
@@ -88,15 +94,178 @@ export function decodeHtmlEntities(text: string): string {
   });
 }
 
+/** Durée YouTube « 90 », « 90s », « 1m30s », « 1h2m3s » → secondes ; sinon null. */
+function parseYouTubeTime(raw: string | null): number | null {
+  if (!raw) return null;
+  const m = raw.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$/i);
+  if (!m) return null;
+  const seconds = Number(m[1] ?? 0) * 3600 + Number(m[2] ?? 0) * 60 + Number(m[3] ?? 0);
+  return seconds > 0 ? seconds : null;
+}
+
+const YOUTU_BE_HOST = /^(?:www\.)?youtu\.be$/i;
+const YOUTUBE_HOST = /^(?:[a-z0-9-]+\.)*youtube(?:-nocookie)?\.com$/i;
+
+/**
+ * Identifiant et point de départ d'une URL de vidéo YouTube : youtu.be/<id>,
+ * youtube.com/watch?v=<id>, youtube.com/embed/<id>. Toute autre URL : null.
+ */
+export function parseYouTubeUrl(raw: string): { id: string; start: number | null } | null {
+  let url: URL;
+  try {
+    url = new URL(raw.startsWith('//') ? `https:${raw}` : raw);
+  } catch {
+    return null;
+  }
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+  let id: string | null = null;
+  if (YOUTU_BE_HOST.test(url.hostname)) id = url.pathname.split('/')[1] ?? null;
+  else if (YOUTUBE_HOST.test(url.hostname)) {
+    if (url.pathname === '/watch') id = url.searchParams.get('v');
+    else id = url.pathname.match(/^\/embed\/([^/]+)/)?.[1] ?? null;
+  }
+  if (!isYouTubeId(id)) return null;
+  return { id, start: parseYouTubeTime(url.searchParams.get('t') ?? url.searchParams.get('start')) };
+}
+
+const VOID_ELEMENTS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+
+/** Vrai si chaque balise ouverte du fragment y est refermée (hors éléments vides). */
+function hasBalancedTags(fragment: string): boolean {
+  const open: string[] = [];
+  for (const [, closing, name] of fragment.matchAll(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)\b(?:[^>"']|"[^"]*"|'[^']*')*>/g)) {
+    const tag = name.toLowerCase();
+    if (VOID_ELEMENTS.has(tag)) continue;
+    if (!closing) open.push(tag);
+    else if (open.pop() !== tag) return false;
+  }
+  return open.length === 0;
+}
+
+// Shortcode WordPress `[embed]<URL>[/embed]`, resté en texte brut dans des
+// paragraphes des anciens articles Webflow. Un paragraphe ne contient pas d'autre <p>.
+const EMBED_SHORTCODE = /\[embed\]\s*([^\s<>[\]]+?)\s*\[\/embed\]/gi;
+const PARAGRAPH = /<p\b((?:[^>"']|"[^"]*"|'[^']*')*)>((?:(?!<\/p>)[\s\S])*?)<\/p>/gi;
+
+/**
+ * Remplace chaque shortcode `[embed]<URL YouTube>[/embed]` d'un paragraphe par la
+ * façade des vidéos YouTube (lib/youtube.ts) : aucune iframe, lecteur créé après
+ * accord par components/blog/YouTubeConsent.tsx. Le texte du paragraphe situé
+ * avant ou après le shortcode reste dans un paragraphe aux mêmes attributs ; une
+ * partie vide n'est pas émise. Un shortcode non YouTube, ou pris dans une balise
+ * en ligne non refermée (<strong>…), est laissé tel quel. Deux passages donnent la
+ * même sortie.
+ */
+export function transformEmbedShortcodes(
+  html: string,
+  labels: YouTubeFacadeLabels = DEFAULT_YOUTUBE_LABELS,
+): { html: string; count: number } {
+  let count = 0;
+  const out = html.replace(PARAGRAPH, (paragraph, attrs: string, inner: string) => {
+    const parts: string[] = [];
+    let pending = '';
+    let cursor = 0;
+    for (const m of inner.matchAll(EMBED_SHORTCODE)) {
+      const before = pending + inner.slice(cursor, m.index);
+      cursor = m.index + m[0].length;
+      const video = parseYouTubeUrl(decodeHtmlEntities(m[1]));
+      if (!video || !hasBalancedTags(before)) {
+        pending = before + m[0];
+        continue;
+      }
+      if (!isBlank(before)) parts.push(`<p${attrs}>${before}</p>`);
+      parts.push(renderFacade({ ...video, title: '', captionHtml: null, align: 'fullwidth' }, labels));
+      count++;
+      pending = '';
+    }
+    if (parts.length === 0) return paragraph;
+    const after = pending + inner.slice(cursor);
+    if (!isBlank(after)) parts.push(`<p${attrs}>${after}</p>`);
+    return parts.join('');
+  });
+  return { html: out, count };
+}
+
+const ANCHOR_OPEN_TAG = /<a\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi;
+const ATTRIBUTE = /([^\s"'>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+const SITE_ORIGIN = 'https://www.packshot-creator.com/';
+const SITE_HOSTS = new Set(['packshot-creator.com', 'www.packshot-creator.com']);
+
+/**
+ * Lien interne : href résolu, depuis le site, vers packshot-creator.com ou
+ * www.packshot-creator.com en http(s). Couvre les chemins relatifs (/…, …),
+ * les ancres (#…), les requêtes (?…) et les URL absolues du site. Tout le reste
+ * est externe : autres domaines, sous-domaines (videos., trail.…), mailto:, tel:,
+ * href absent ou illisible. Au 29/09, le corpus ne contient ni mailto:, ni tel:,
+ * ni sous-domaine, ni lien sans href en target="_blank".
+ */
+export function isInternalHref(href: string | null): boolean {
+  if (href === null) return false;
+  let url: URL;
+  try {
+    url = new URL(decodeHtmlEntities(href).trim(), SITE_ORIGIN);
+  } catch {
+    return false;
+  }
+  return (url.protocol === 'https:' || url.protocol === 'http:') && SITE_HOSTS.has(url.hostname);
+}
+
+/**
+ * F22 et règle UX de Laurent du 29/09, pour les liens `target="_blank"` :
+ * - lien interne (isInternalHref) : `target="_blank"` retiré, le lien s'ouvre
+ *   dans le même onglet ; aucun rel ajouté, un rel existant est conservé tel quel ;
+ * - lien externe sans noopener ni noreferrer : target conservé, jetons existants
+ *   conservés (guillemets et place compris), `noopener noreferrer` ajoutés ;
+ * - lien externe déjà protégé : inchangé.
+ * Les autres cibles (_self, _new…) ne sont pas touchées. Jamais de second
+ * attribut rel ; href et texte du lien intacts ; deux passages, même sortie.
+ */
+export function addRelToBlankTargets(html: string): string {
+  return html.replace(ANCHOR_OPEN_TAG, (tag, attrs: string) => {
+    const targets: { start: number; end: number; value: string }[] = [];
+    let href: string | null = null;
+    let rel: { start: number; end: number; value: string; quote: string } | null = null;
+    for (const m of attrs.matchAll(ATTRIBUTE)) {
+      const name = m[1].toLowerCase();
+      const value = m[2] ?? m[3] ?? m[4] ?? '';
+      if (name === 'target') targets.push({ start: m.index, end: m.index + m[0].length, value });
+      else if (name === 'href' && href === null) href = value;
+      else if (name === 'rel' && rel === null) {
+        rel = { start: m.index, end: m.index + m[0].length, value, quote: m[3] !== undefined ? "'" : '"' };
+      }
+    }
+    if (targets.length === 0 || targets[0].value.toLowerCase() !== '_blank') return tag;
+    const open = tag.slice(0, 2); // « <a » ou « <A », tel quel
+    if (isInternalHref(href)) {
+      // Chaque attribut target est retiré avec l'espace qui le précède.
+      let kept = attrs;
+      for (const t of [...targets].reverse()) {
+        const from = kept.slice(0, t.start).replace(/\s+$/, '').length;
+        kept = kept.slice(0, from) + kept.slice(t.end);
+      }
+      return `${open}${kept}>`;
+    }
+    if (!rel) return `${open}${attrs.trimEnd()} rel="noopener noreferrer">`;
+    const tokens = rel.value.split(/[\t\n\f\r ]+/).filter(Boolean);
+    const lower = tokens.map((t) => t.toLowerCase());
+    if (lower.includes('noopener') || lower.includes('noreferrer')) return tag;
+    const value = [...tokens, 'noopener', 'noreferrer'].join(' ');
+    return `${open}${attrs.slice(0, rel.start)}rel=${rel.quote}${value}${rel.quote}${attrs.slice(rel.end)}>`;
+  });
+}
+
 /**
  * Process Webflow HTML content:
  * - Add IDs to h2/h3 elements for ToC navigation
  * - Extract headings for ToC (texte décodé, id calculé sur la source : ancres inchangées)
  * - Count words for reading time
- * - Remplacer les iframes YouTube par une façade locale (lib/youtube.ts) :
+ * - Remplacer les shortcodes `[embed]` YouTube (transformEmbedShortcodes) et les
+ *   iframes YouTube par une façade locale (lib/youtube.ts) :
  *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
+ * - Liens target="_blank" (addRelToBlankTargets) : internes rouverts dans le
+ *   même onglet, externes protégés par rel="noopener noreferrer"
  */
 export function processHtmlContent(
   html: string,
@@ -144,17 +313,24 @@ export function processHtmlContent(
     '<img$1loading="lazy"$2'
   );
 
-  const videos = transformYouTubeEmbeds(withLazyImages, options.youtubeLabels);
+  const shortcodes = transformEmbedShortcodes(withLazyImages, options.youtubeLabels);
+  const videos = transformYouTubeEmbeds(shortcodes.html, options.youtubeLabels);
   // Après la façade, aucune iframe YouTube ne subsiste : addYouTubeReferrerPolicy
   // (#46) ne modifie rien aujourd'hui. Elle reste en garde pour toute iframe
   // YouTube qui échapperait à la façade (erreur 153 sans Referer).
   const withYouTubeReferrer = addYouTubeReferrerPolicy(videos.html);
   const withoutEmptyParagraphs = removeEmptyParagraphs(withYouTubeReferrer);
+  const withSafeBlankTargets = addRelToBlankTargets(withoutEmptyParagraphs);
 
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withoutEmptyParagraphs, headings, wordCount, videoCount: videos.count };
+  return {
+    processedHtml: withSafeBlankTargets,
+    headings,
+    wordCount,
+    videoCount: shortcodes.count + videos.count,
+  };
 }
 
 /**

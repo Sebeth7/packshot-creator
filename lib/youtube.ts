@@ -115,7 +115,7 @@ function getAttr(attrs: string, name: string): string | null {
 const PLAY_ICON =
   '<svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="31" fill="currentColor"/><path d="M26 20v24l19-12z" fill="#fff"/></svg>';
 
-interface FacadeInput {
+export interface FacadeInput {
   id: string;
   start: number | null;
   title: string;
@@ -123,7 +123,8 @@ interface FacadeInput {
   align: 'fullwidth' | 'center';
 }
 
-function renderFacade({ id, start, title, captionHtml, align }: FacadeInput, labels: YouTubeFacadeLabels): string {
+/** Façade d'une vidéo. Exportée pour les shortcodes `[embed]` (lib/blog-utils.ts). */
+export function renderFacade({ id, start, title, captionHtml, align }: FacadeInput, labels: YouTubeFacadeLabels): string {
   const poster = YOUTUBE_LOCAL_POSTERS[id];
   const t = escapeHtml(title);
   const label = title ? labels.play(title) : labels.playUntitled;

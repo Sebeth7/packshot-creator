@@ -1,11 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import {
+  addRelToBlankTargets,
   addYouTubeReferrerPolicy,
   decodeHtmlEntities,
+  isInternalHref,
+  parseYouTubeUrl,
   processHtmlContent,
   removeEmptyParagraphs,
   slugify,
+  transformEmbedShortcodes,
 } from '../blog-utils';
+import { transformYouTubeEmbeds } from '../youtube';
 
 const ATTR = 'referrerpolicy="strict-origin-when-cross-origin"';
 
@@ -286,5 +291,364 @@ describe('processHtmlContent — sommaire décodé (F11) et paragraphes vides (F
     const html = `<h2>A &amp; B</h2><p id="">${ZWJ}</p><p>x</p>` + WEBFLOW_YT + `<p> </p>`;
     const une = out(html);
     expect(out(une)).toBe(une);
+  });
+});
+
+// Formes réelles (content/blog/fr/photographie-2d-de-produits.json et
+// content/blog/fr/boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter.json)
+const SHORTCODE_SEUL = '<p id="">[embed]https://youtu.be/HVmUF6Mjan8[/embed]</p>';
+const SHORTCODE_EN_FIN =
+  '<p id="">Selon une étude, les photos représentent le premier facteur d’incitation à l’achat, ' +
+  'puis par les avis clients en ligne.[embed]https://youtu.be/HVmUF6Mjan8[/embed]</p>';
+
+const shortcodes = (html: string) => transformEmbedShortcodes(html);
+// Façade de référence : celle que #44 produit pour une iframe YouTube hors figure.
+const facade = (id: string, start: number | null = null) =>
+  transformYouTubeEmbeds(`<iframe src="https://www.youtube.com/embed/${id}${start ? `?start=${start}` : ''}"></iframe>`).html;
+
+describe('parseYouTubeUrl — URL des shortcodes [embed]', () => {
+  it('youtu.be, watch et embed : identifiant lu', () => {
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8')).toEqual({ id: 'HVmUF6Mjan8', start: null });
+    expect(parseYouTubeUrl('https://www.youtube.com/watch?v=xZ_lJM-ClSs')).toEqual({ id: 'xZ_lJM-ClSs', start: null });
+    expect(parseYouTubeUrl('https://m.youtube.com/watch?feature=share&v=xZ_lJM-ClSs')).toEqual({ id: 'xZ_lJM-ClSs', start: null });
+    expect(parseYouTubeUrl('https://youtube.com/embed/VssNUk1qsXg')).toEqual({ id: 'VssNUk1qsXg', start: null });
+    expect(parseYouTubeUrl('//youtu.be/HVmUF6Mjan8')).toEqual({ id: 'HVmUF6Mjan8', start: null });
+  });
+
+  it('paramètres : t et start en secondes, formats 1m30s ; autres paramètres ignorés', () => {
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8?t=42')?.start).toBe(42);
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8?si=abc123&t=90s')?.start).toBe(90);
+    expect(parseYouTubeUrl('https://www.youtube.com/watch?v=HVmUF6Mjan8&t=1m30s')?.start).toBe(90);
+    expect(parseYouTubeUrl('https://www.youtube.com/watch?v=HVmUF6Mjan8&t=1h2m3s')?.start).toBe(3723);
+    expect(parseYouTubeUrl('https://www.youtube.com/embed/HVmUF6Mjan8?start=15&rel=0')?.start).toBe(15);
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8?t=abc')?.start).toBeNull();
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8?t=0')?.start).toBeNull();
+    expect(parseYouTubeUrl('https://youtu.be/HVmUF6Mjan8?feature=shared')).toEqual({ id: 'HVmUF6Mjan8', start: null });
+  });
+
+  it('URL non YouTube, identifiant illisible ou protocole non web : null', () => {
+    for (const url of [
+      'https://vimeo.com/123456',
+      'https://www.youtube.com.example.com/watch?v=HVmUF6Mjan8',
+      'https://notyoutube.com/watch?v=HVmUF6Mjan8',
+      'https://youtu.be/court',
+      'https://www.youtube.com/watch?v=',
+      'https://www.youtube.com/channel/UC123',
+      'javascript:alert(1)',
+      'pas une url',
+    ]) {
+      expect(parseYouTubeUrl(url)).toBeNull();
+    }
+  });
+});
+
+describe('transformEmbedShortcodes — shortcodes [embed] YouTube hérités de Webflow', () => {
+  it('youtu.be seul dans son paragraphe : paragraphe remplacé par la façade de #44, sans iframe', () => {
+    const res = shortcodes(SHORTCODE_SEUL);
+    expect(res.html).toBe(facade('HVmUF6Mjan8'));
+    expect(res.count).toBe(1);
+    expect(res.html).not.toContain('[embed]');
+    expect(res.html).not.toMatch(/<iframe/i);
+    expect(res.html).not.toMatch(/youtu\.be|ytimg|youtube\.com\/embed/);
+  });
+
+  it('URL watch : même façade que la forme youtu.be', () => {
+    expect(shortcodes('<p>[embed]https://www.youtube.com/watch?v=HVmUF6Mjan8[/embed]</p>').html).toBe(facade('HVmUF6Mjan8'));
+  });
+
+  it('paramètres : point de départ conservé, autres paramètres ignorés, entités décodées', () => {
+    expect(shortcodes('<p>[embed]https://youtu.be/HVmUF6Mjan8?t=42[/embed]</p>').html).toBe(facade('HVmUF6Mjan8', 42));
+    expect(shortcodes('<p>[embed]https://www.youtube.com/watch?v=HVmUF6Mjan8&amp;t=42&amp;si=x[/embed]</p>').html).toBe(
+      facade('HVmUF6Mjan8', 42),
+    );
+    expect(shortcodes('<p>[embed] https://youtu.be/HVmUF6Mjan8?si=abc [/embed]</p>').html).toBe(facade('HVmUF6Mjan8'));
+    expect(shortcodes('<p>[EMBED]https://youtu.be/HVmUF6Mjan8[/EMBED]</p>').html).toBe(facade('HVmUF6Mjan8'));
+  });
+
+  it('shortcode en fin de paragraphe (forme réelle) : texte conservé à l\'identique dans son paragraphe, façade après', () => {
+    const res = shortcodes(SHORTCODE_EN_FIN);
+    expect(res.html).toBe(
+      '<p id="">Selon une étude, les photos représentent le premier facteur d’incitation à l’achat, ' +
+        'puis par les avis clients en ligne.</p>' +
+        facade('HVmUF6Mjan8'),
+    );
+  });
+
+  it('shortcode entouré de paragraphes et au milieu d\'un paragraphe : voisins intacts, aucune partie vide émise', () => {
+    const html = `<p>Avant</p>${SHORTCODE_SEUL}<h3 id="">Après</h3>`;
+    expect(shortcodes(html).html).toBe(`<p>Avant</p>${facade('HVmUF6Mjan8')}<h3 id="">Après</h3>`);
+    const milieu = '<p class="x">Début <strong>gras</strong>[embed]https://youtu.be/HVmUF6Mjan8[/embed]fin <a href="/fr">lien</a></p>';
+    expect(shortcodes(milieu).html).toBe(
+      `<p class="x">Début <strong>gras</strong></p>${facade('HVmUF6Mjan8')}<p class="x">fin <a href="/fr">lien</a></p>`,
+    );
+    const invisibles = '<p id="">‍[embed]https://youtu.be/HVmUF6Mjan8[/embed] </p>';
+    expect(shortcodes(invisibles).html).toBe(facade('HVmUF6Mjan8'));
+  });
+
+  it('plusieurs shortcodes, dans un ou plusieurs paragraphes : une façade chacun, dans l\'ordre', () => {
+    const deuxParagraphes = `${SHORTCODE_SEUL}<p>Texte</p><p id="">[embed]https://youtu.be/xZ_lJM-ClSs[/embed]</p>`;
+    const res = shortcodes(deuxParagraphes);
+    expect(res.html).toBe(`${facade('HVmUF6Mjan8')}<p>Texte</p>${facade('xZ_lJM-ClSs')}`);
+    expect(res.count).toBe(2);
+    const memeParagraphe = '<p>a[embed]https://youtu.be/HVmUF6Mjan8[/embed]b[embed]https://youtu.be/xZ_lJM-ClSs[/embed]c</p>';
+    expect(shortcodes(memeParagraphe).html).toBe(
+      `<p>a</p>${facade('HVmUF6Mjan8')}<p>b</p>${facade('xZ_lJM-ClSs')}<p>c</p>`,
+    );
+  });
+
+  it('non YouTube, URL illisible, hors paragraphe ou dans une balise non refermée : laissé tel quel', () => {
+    const intacts = [
+      '<p>[embed]https://vimeo.com/123456[/embed]</p>',
+      '<p>[embed]https://youtu.be/court[/embed]</p>',
+      '<p>[embed]pas une url[/embed]</p>',
+      '<div>[embed]https://youtu.be/HVmUF6Mjan8[/embed]</div>',
+      '<p><strong>Voir [embed]https://youtu.be/HVmUF6Mjan8[/embed]</strong></p>',
+      '<p>Texte sans shortcode</p><pre>[embed]https://youtu.be/HVmUF6Mjan8[/embed]</pre>',
+    ];
+    for (const html of intacts) {
+      expect(shortcodes(html)).toEqual({ html, count: 0 });
+    }
+    // Un shortcode non YouTube reste dans le texte, à côté d'un shortcode YouTube transformé.
+    expect(shortcodes('<p>[embed]https://vimeo.com/1[/embed] puis [embed]https://youtu.be/HVmUF6Mjan8[/embed]</p>').html).toBe(
+      `<p>[embed]https://vimeo.com/1[/embed] puis </p>${facade('HVmUF6Mjan8')}`,
+    );
+  });
+
+  it('deux passages : sortie identique', () => {
+    const html = `<p>Avant</p>${SHORTCODE_SEUL}${SHORTCODE_EN_FIN}<p>[embed]https://vimeo.com/1[/embed]</p>`;
+    const une = shortcodes(html);
+    expect(shortcodes(une.html)).toEqual({ html: une.html, count: 0 });
+  });
+});
+
+describe('processHtmlContent — shortcodes [embed] YouTube', () => {
+  it('façade à la place du shortcode, compteur vidéo incrémenté (YouTubeConsent monté), aucune iframe ni shortcode', () => {
+    const res = processHtmlContent(`<p>Intro</p>${SHORTCODE_SEUL}${WEBFLOW_YT}`);
+    expect(res.videoCount).toBe(2);
+    expect(count(res.processedHtml, /class="pkc-yt /g)).toBe(2);
+    expect(count(res.processedHtml, IFRAME_YOUTUBE)).toBe(0);
+    expect(res.processedHtml).not.toContain('[embed]');
+  });
+
+  it('libellés de la page transmis à la façade', () => {
+    const res = processHtmlContent(SHORTCODE_SEUL, {
+      youtubeLabels: { play: (t) => `Play: ${t}`, playUntitled: 'Play the YouTube video', notice: 'YouTube video' },
+    });
+    expect(res.processedHtml).toContain('aria-label="Play the YouTube video"');
+    expect(res.processedHtml).toContain('<span class="pkc-yt__notice">YouTube video</span>');
+  });
+
+  it('nombre de mots et sommaire calculés sur la source, comme avant', () => {
+    const html = `<h2>Vidéo</h2>${SHORTCODE_EN_FIN}`;
+    const res = processHtmlContent(html);
+    const plain = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    expect(res.wordCount).toBe(plain.split(/\s+/).length);
+    expect(res.headings).toEqual([{ id: 'video', text: 'Vidéo', level: 2 }]);
+  });
+
+  it('deux passages : même sortie', () => {
+    const une = out(`${SHORTCODE_SEUL}${SHORTCODE_EN_FIN}${WEBFLOW_YT}`);
+    expect(out(une)).toBe(une);
+  });
+});
+
+describe('isInternalHref — liens internes au site (F22)', () => {
+  it('internes : chemin relatif, ancre, requête, URL absolue du site (avec ou sans www, http ou https, //)', () => {
+    for (const href of [
+      '/fr/a-propos',
+      '/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots',
+      '#ancre',
+      '?q=1',
+      'page-voisine',
+      'https://www.packshot-creator.com/fr/ia-photo-produit',
+      'https://packshot-creator.com/fr',
+      'http://www.packshot-creator.com/en',
+      '//www.packshot-creator.com/fr',
+      'https://WWW.Packshot-Creator.com/fr',
+      '/fr/contact?x=1&amp;y=2',
+    ]) {
+      expect(isInternalHref(href), href).toBe(true);
+    }
+  });
+
+  it('externes : autres domaines, sous-domaines, domaine imitant, mailto, tel, href absent ou vide de sens', () => {
+    for (const href of [
+      'https://orbitvu.com/',
+      '//orbitvu.com/',
+      'https://videos.packshot-creator.com/x.mp4',
+      'https://trail.packshot-creator.com/',
+      'https://www.packshot-creator.com.example.com/',
+      'https://notpackshot-creator.com/',
+      'mailto:contact@packshot-creator.com',
+      'tel:+33147426666',
+      'javascript:void(0)',
+      null,
+    ]) {
+      expect(isInternalHref(href), String(href)).toBe(false);
+    }
+  });
+});
+
+describe('addRelToBlankTargets — liens target="_blank" (F22, règle UX du 29/09)', () => {
+  const rel = addRelToBlankTargets;
+
+  it('interne relatif en _blank (forme réelle) : target retiré, aucun rel ajouté, href, id et texte intacts', () => {
+    expect(rel('<a href="/fr/a-propos" target="_blank" id="">À propos</a>')).toBe('<a href="/fr/a-propos" id="">À propos</a>');
+    expect(rel('<a href="/fr/contact" target="_blank">Contact</a>')).toBe('<a href="/fr/contact">Contact</a>');
+    expect(rel('<a target="_blank" href="/fr/contact">Contact</a>')).toBe('<a href="/fr/contact">Contact</a>');
+    expect(rel('<a href="#tarifs" target="_blank">x</a>')).toBe('<a href="#tarifs">x</a>');
+    expect(rel('<a href="?q=1" target="_blank">x</a>')).toBe('<a href="?q=1">x</a>');
+  });
+
+  it('interne absolu packshot-creator.com (avec ou sans www) en _blank : target retiré', () => {
+    expect(rel('<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank">x</a>')).toBe(
+      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit">x</a>',
+    );
+    expect(rel('<a href="https://packshot-creator.com/fr" target="_blank" id="">x</a>')).toBe(
+      '<a href="https://packshot-creator.com/fr" id="">x</a>',
+    );
+  });
+
+  it('interne avec rel existant (forme réelle) : target retiré, rel conservé tel quel', () => {
+    expect(rel('<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank" rel="noopener">x</a>')).toBe(
+      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit" rel="noopener">x</a>',
+    );
+    expect(rel('<a href="/fr" rel="nofollow" target="_blank">x</a>')).toBe('<a href="/fr" rel="nofollow">x</a>');
+  });
+
+  it('interne : casse, espaces, guillemets simples, sans guillemets, target en double', () => {
+    expect(rel('<A TARGET="_BLANK" HREF="/FR/Contact">x</A>')).toBe('<A HREF="/FR/Contact">x</A>');
+    expect(rel('<a\nhref="/fr"\ntarget = "_blank" >x</a>')).toBe('<a\nhref="/fr" >x</a>');
+    expect(rel("<a href='/fr' target='_blank' title='l\"offre'>x</a>")).toBe("<a href='/fr' title='l\"offre'>x</a>");
+    expect(rel('<a href=/fr/contact target=_blank>x</a>')).toBe('<a href=/fr/contact>x</a>');
+    expect(rel('<a href="/fr" target="_blank" target="_blank">x</a>')).toBe('<a href="/fr">x</a>');
+  });
+
+  it('externe en _blank sans rel (forme réelle) : target conservé, rel="noopener noreferrer" ajouté', () => {
+    expect(rel('<a href="https://orbitvu.com/" target="_blank" id="">Orbitvu</a>')).toBe(
+      '<a href="https://orbitvu.com/" target="_blank" id="" rel="noopener noreferrer">Orbitvu</a>',
+    );
+    expect(rel('<a target="_blank" href="https://x.fr/" id="">x</a>')).toBe(
+      '<a target="_blank" href="https://x.fr/" id="" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<A HREF="https://x.fr/" TARGET="_BLANK">x</A>')).toBe(
+      '<A HREF="https://x.fr/" TARGET="_BLANK" rel="noopener noreferrer">x</A>',
+    );
+    expect(rel('<a href=https://x.fr/ target=_blank>x</a>')).toBe(
+      '<a href=https://x.fr/ target=_blank rel="noopener noreferrer">x</a>',
+    );
+  });
+
+  it('sous-domaines, mailto, tel, href absent : externes (aucun cas dans le corpus au 29/09)', () => {
+    expect(rel('<a href="https://videos.packshot-creator.com/x.mp4" target="_blank">x</a>')).toBe(
+      '<a href="https://videos.packshot-creator.com/x.mp4" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<a href="mailto:contact@packshot-creator.com" target="_blank">x</a>')).toBe(
+      '<a href="mailto:contact@packshot-creator.com" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<a href="tel:+33147426666" target="_blank">x</a>')).toBe(
+      '<a href="tel:+33147426666" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<a target="_blank">x</a>')).toBe('<a target="_blank" rel="noopener noreferrer">x</a>');
+  });
+
+  it('externe déjà protégé par noopener ou noreferrer : strictement inchangé', () => {
+    const deja = [
+      // Forme réelle : 28 liens externes portent rel="noopener".
+      '<a href="https://www.gs1.org/standards/gs1-global-data-model" target="_blank" rel="noopener">x</a>',
+      '<a href="https://x.fr/" target="_blank" rel="noreferrer">x</a>',
+      '<a href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
+      '<a rel="nofollow NoOpener" href="https://x.fr/" target="_blank">x</a>',
+      '<a href="https://x.fr/" target="_blank" rel=\'noreferrer external\'>x</a>',
+    ];
+    for (const html of deja) expect(rel(html)).toBe(html);
+  });
+
+  it('externe avec rel sans noopener ni noreferrer : autres jetons, guillemets et position conservés', () => {
+    expect(rel('<a href="https://x.fr/" rel="nofollow" target="_blank">x</a>')).toBe(
+      '<a href="https://x.fr/" rel="nofollow noopener noreferrer" target="_blank">x</a>',
+    );
+    expect(rel('<a href="https://x.fr/" target="_blank" rel="nofollow  sponsored ugc">x</a>')).toBe(
+      '<a href="https://x.fr/" target="_blank" rel="nofollow sponsored ugc noopener noreferrer">x</a>',
+    );
+    expect(rel('<a href=\'https://x.fr/\' target=\'_blank\' rel=\'external\'>x</a>')).toBe(
+      '<a href=\'https://x.fr/\' target=\'_blank\' rel=\'external noopener noreferrer\'>x</a>',
+    );
+    expect(rel('<a href="https://x.fr/" target="_blank" rel="">x</a>')).toBe(
+      '<a href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<a href="https://x.fr/" target="_blank" rel=nofollow>x</a>')).toBe(
+      '<a href="https://x.fr/" target="_blank" rel="nofollow noopener noreferrer">x</a>',
+    );
+  });
+
+  it('apostrophes et guillemets dans les valeurs : ni « rel= », « href= » ni « target= » en texte pris pour un attribut', () => {
+    expect(rel('<a href="https://x.fr/?q=l\'objectif" title=\'Le "guide" rel=x > y\' target="_blank">l\'objectif</a>')).toBe(
+      '<a href="https://x.fr/?q=l\'objectif" title=\'Le "guide" rel=x > y\' target="_blank" rel="noopener noreferrer">l\'objectif</a>',
+    );
+    expect(rel('<a title=\'href="/fr"\' href="https://x.fr/" target="_blank">x</a>')).toBe(
+      '<a title=\'href="/fr"\' href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<a title=\'target="_blank"\' href="/fr" target="_blank">x</a>')).toBe('<a title=\'target="_blank"\' href="/fr">x</a>');
+    const leurre = '<a href="https://x.fr/" title="target=_blank">x</a>';
+    expect(rel(leurre)).toBe(leurre);
+    expect(rel('<a data-rel="noopener" data-target="_blank" data-href="/fr" href="https://x.fr/" target="_blank">x</a>')).toBe(
+      '<a data-rel="noopener" data-target="_blank" data-href="/fr" href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
+    );
+  });
+
+  it('jamais deux attributs rel ; aucun lien interne ne garde target="_blank"', () => {
+    const html = [
+      '<a href="/a" target="_blank">a</a>',
+      '<a href="https://x.fr/" target="_blank">b</a>',
+      '<a href="/b" target="_blank" rel="nofollow">c</a>',
+      '<a href="https://www.packshot-creator.com/c" target="_blank" rel="noopener">d</a>',
+      '<a href="https://x.fr/" rel="" target="_blank">e</a>',
+    ].join('');
+    const res = rel(html);
+    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) {
+      expect(count(tag, /\srel\s*=/gi)).toBeLessThanOrEqual(1);
+      if (/href="(\/|https:\/\/www\.packshot-creator\.com)/.test(tag)) expect(tag).not.toContain('target=');
+      else expect(tag).toMatch(/target="_blank" rel="noopener noreferrer"|rel="noopener noreferrer" target="_blank"/);
+    }
+    expect(res.replace(/<[^>]*>/g, '')).toBe('abcde');
+  });
+
+  it('autres cibles, liens sans target et autres balises : inchangés', () => {
+    const intacts = [
+      '<a target="_new" href="https://gnpp.wordpress.com/" id="">x</a>',
+      '<a target="_new" href="/fr/a-propos">x</a>',
+      '<a href="/fr" target="_self">x</a>',
+      '<a href="https://x.fr/" target="blank">x</a>',
+      '<a href="https://x.fr/">x</a>',
+      '<a href="/fr/contact">x</a>',
+      '<a id="ancre"></a>',
+      '<abbr title="x" target="_blank">x</abbr>',
+      '<area href="/x" target="_blank">',
+      '<form target="_blank"></form>',
+    ];
+    for (const html of intacts) expect(rel(html)).toBe(html);
+  });
+
+  it('idempotence : deux passages, même sortie', () => {
+    const html =
+      '<a href="https://x.fr/" target="_blank" id="">x</a><a href="/y" rel="nofollow" target="_blank">y</a>' +
+      '<a href="/z" target="_blank" id="">z</a><a href="https://z.fr/" target="_blank" rel="noopener">z</a>' +
+      '<a href="https://www.packshot-creator.com/fr" target="_blank" rel="noopener">w</a>';
+    const une = rel(html);
+    expect(rel(une)).toBe(une);
+  });
+
+  it('processHtmlContent : interne dans le même onglet, externe protégé, façades YouTube inchangées', () => {
+    const res = out(
+      `<p><a href="https://orbitvu.com/" target="_blank" id="">Orbitvu</a> <a href="/fr/a-propos" target="_blank" id="">À propos</a></p>` +
+        `${WEBFLOW_YT}${SHORTCODE_SEUL}`,
+    );
+    expect(res).toContain('<a href="https://orbitvu.com/" target="_blank" id="" rel="noopener noreferrer">Orbitvu</a>');
+    expect(res).toContain('<a href="/fr/a-propos" id="">À propos</a>');
+    expect(count(res, /\srel="noopener noreferrer"/g)).toBe(3);
+    expect(count(res, /target="_blank"/g)).toBe(3);
+    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) expect(count(tag, /\srel\s*=/gi)).toBeLessThanOrEqual(1);
+    expect(out(res)).toBe(res);
   });
 });
