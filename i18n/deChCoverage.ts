@@ -293,6 +293,19 @@ export function localeSwitchHref(
   currentLocale: string,
   target: AppLocale,
 ): SwitchTarget {
+  // Hubs de-ch : /de-ch/branchen/<slug allemand> est prérendu sous son chemin
+  // interne réécrit (/de-ch/industrie/<slug>), que next-intl ne rattache pas au
+  // motif de-ch /branchen/[slug] : usePathname() renvoie alors le chemin concret
+  // « /industrie/schmuck », sans slug. Sans cette normalisation, le sélecteur
+  // passait par la branche des pages statiques et recopiait le slug allemand sous
+  // /fr et /en (26 liens en 404, 6 en 301 — audit de maillage du 29/09/2026).
+  if (currentLocale === 'de-ch') {
+    const secteurConcret = /^\/industrie\/([^/[\]]+)$/.exec(pathname);
+    if (secteurConcret) {
+      return localeSwitchHref('/industrie/[slug]', secteurConcret[1], currentLocale, target);
+    }
+  }
+
   // Secteurs /industrie/[slug] (slugs traduits fr↔de)
   if (pathname === '/industrie/[slug]' && slug) {
     const frSlug = DE_CH_TO_FR_SECTOR[slug] ?? slug;
