@@ -28,6 +28,8 @@ export interface MigratedArticle {
   metaTitle: string | null;
   description: string;
   date: string;
+  /** Présent dans quelques fichiers seulement ; jamais calculé. */
+  dateModified?: string;
   image: string | null;
   imageSource: string | null;
   category: string | null;

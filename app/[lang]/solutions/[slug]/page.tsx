@@ -67,9 +67,9 @@ export default async function SolutionPage({ params }: PageProps) {
 
   const isFr = lang === 'fr';
 
+  // Pas d'étape « Solutions » : aucune page /solutions n'existe (404).
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Solutions', url: `https://www.packshot-creator.com/${lang}/solutions` },
     { name: solution.hero.badge, url: `https://www.packshot-creator.com/${lang}/solutions/${slug}` },
   ];
 

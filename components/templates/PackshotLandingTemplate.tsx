@@ -2,6 +2,7 @@ import Image from 'next/image';
 // NavLink (épinglage de-ch) : le Link brut rendait /de-ch/academy (404) depuis les
 // landings suisses — audit Laurent 03/09/2026 (addendum A3).
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -54,7 +55,8 @@ function getMachineImage(id: string): string {
 
 export interface PackshotLandingConfig {
   namespace: string;
-  slug: string;
+  /** Pathnames déclarés dans i18n/routing.ts (résolus par getPathname). */
+  slug: 'packshot-amazon' | 'packshot-industriel' | 'packshot-mode';
   /** Short identifier for benefit illustration: bijoux, mode, ecommerce, amazon, industriel */
   benefitImageSlug: string;
   heroIcon: LucideIcon;
@@ -91,7 +93,7 @@ export default function PackshotLandingTemplate({ config, lang, t }: Props) {
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/${slug}` },
+    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: `/${slug}` })}` },
   ];
 
   const faqs = Array.from({ length: faqCount }, (_, i) => ({

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator/lib/machines';
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
@@ -520,7 +521,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
-    { name: machine.nom, url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}` },
+    // Chemin localisé (de-ch : /fotostudio/…) : l'URL /de-ch/studio-photo/… répond 307.
+    { name: machine.nom, url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}` },
   ];
 
   const featureLabels: Record<string, { fr: string; en: string }> = {

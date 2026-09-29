@@ -34,6 +34,64 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · JSON-LD techniques — fils d'Ariane de-ch et solutions, Organization distributeur, `dateModified` · Claude de Laurent
+
+**Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD », périmètre strict | **PR** : brouillon, non fusionnée, branche `ccr-28357f20-j8452h` | **Base** : `main` `2854c27`
+
+**Quoi** — Quatre corrections de données structurées, rien d'autre :
+- A. `BreadcrumbList` de-ch : l'élément qui visait un segment FR est résolu par `getPathname` (`i18n/routing.ts`) dans 9 fichiers. Aucune table ajoutée.
+- B. `solutions/[slug]` : l'étape « Solutions » (`/fr/solutions`, `/en/solutions`, en 404) est retirée. Aucune page créée.
+- C. `distributeur-orbitvu-suisse` : la variante `distributorOrganizationSchema` est supprimée ; la page émet `organizationSchema()`. `SchemaOrg.tsx` n'est pas modifié.
+- D. `blog/[slug]` transmet à `articleSchema` le `dateModified` du fichier source quand il existe. `datePublished` inchangé ; aucune date générée ; repli existant sur `datePublished` conservé.
+
+**Pourquoi** — Mesure AVANT sur un build local de `main` `2854c27`, 402 pages : les 325 du sitemap et les routes prérendues. Statuts relevés sans suivre les redirections.
+- 21 pages de-ch avec un élément de fil d'Ariane en 307. La consigne en annonçait 22 ; j'en mesure 21, soit les pages de l'annexe 2.e du rapport maître du 26/09 : 13 fiches `fotostudio`, `maschinen-finder`, `branchen`, `kontakt`, `packshot-industrie`, `produktfotografie-bedarf`, `roi-rechner`, `wer-sind-wir`, `wichtige-fragen-produktfotografie`.
+- 6 pages avec un élément en 404, et non 4 : 3 slugs (`documentation-technique-visuelle`, `documentation-qualite-produit`, `documentation-probatoire`) en FR, dans le sitemap, et en EN, `noindex, follow`, hors sitemap.
+- 2 variantes d'`Organization` : la commune sur 289 pages, la divergente sur `/fr` et `/en/distributeur-orbitvu-suisse`.
+- 3 fichiers source portent `dateModified` (`2026-05-02`) : le même article en FR, EN et de-ch. Aucun `Article` ne l'émettait : sur les 149 `Article`, `dateModified` = `datePublished`.
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/studio-photo/selecteur-machines/page.tsx`, `app/[lang]/a-propos/page.tsx`, `app/[lang]/besoins-photographie-produit/page.tsx`, `app/[lang]/calculateur-roi/layout.tsx`, `app/[lang]/contact/page.tsx`, `app/[lang]/industrie/page.tsx`, `app/[lang]/questions-cles-photographie-produit/page.tsx`, `components/templates/PackshotLandingTemplate.tsx` (type de `slug` restreint aux 3 pathnames déclarés), `app/[lang]/solutions/[slug]/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `lib/content.ts` (champ optionnel `dateModified`), `lib/seo/__tests__/json-ld-techniques.test.ts` (nouveau), `vitest.config.ts` (`next-intl` transformé par Vite), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Les fils d'Ariane des 27 pages ne visent plus que des URL en 200 direct ; une seule `Organization` sur le site ; les 3 articles déclarent leur date de modification. Aucun effet sur le contenu visible, canonical, hreflang, `lang`, robots ou sitemap. [Inférence] Effet lisible dans GSC, rapport « Fils d'Ariane », après recrawl, soit une à deux semaines.
+
+**Vérifié** —
+- `main` distant = `2854c27` avant modification ; branche partie de ce commit.
+- Mesure APRÈS, build local de la branche, mêmes 402 pages : pages de-ch à élément redirigé 21 → 0 ; pages à élément 404 6 → 0 ; toutes locales, éléments non 200 : 27 pages → 0 ; variantes d'`Organization` 2 → 1 (291 pages, dont les 2 pages distributeur, identiques au nœud de `/fr`) ; `Article` émettant le `dateModified` de la source : 0 → 3 sur 3.
+- Comparaison `main` / branche, page par page, 402 pages :
+  - 32 différences JSON-LD, toutes classées : A 21, B 6, C 2, D 3 ; 0 non classée ;
+  - HTML hors scripts identique sur les 402 pages, identifiant de build neutralisé ;
+  - `<head>` identique : canonical, alternates, robots, `lang`, `title`, description, `og:*` ;
+  - statuts et redirections identiques ; `sitemap.xml` (`lastmod` neutralisé), `robots.txt` et `llms.txt` identiques.
+- Crawl ciblé des 32 pages concernées : 32 en 200, tous leurs éléments de fil d'Ariane en 200 sans redirection.
+- `npx tsc --noEmit` vert. Vitest 297/297 (290 sur `main`, 7 nouveaux). Rejoués contre les sources de `main`, 3 des nouveaux tests échouent et signalent les 9 défauts (8 fichiers de-ch et l'étape « Solutions ») et la variante d'`Organization`. Avertissement de source map du Worker à l'identique sur `main`.
+- `verifier-json` : 186 JSON valides. ESLint complet : 326 messages sur `main` (258 erreurs, 68 alertes), 326 sur la branche, 0 nouveau, 0 disparu.
+- `npx next build` vert, variables factices de la CI.
+- `smoke.mjs` sur `next start` local de `main` et de la branche : vert, 17 pages et 3 ressources, sorties identiques hors URL.
+- `e2e/seo.spec.ts`, Chromium : 235 réussis et 8 échecs, les mêmes 8 sur `main` (longueur de `title` et de description, hreflang de `/fr/packshot-bijoux`) ; 0 nouvel échec. Exécuté avec le Chromium préinstallé du conteneur (`executablePath`), Playwright 1.58 attendant une version de navigateur absente.
+- `verifier-consequences.mjs` sur la liste des fichiers : « Effet local ».
+
+**Écart émis sur la page distributeur (C)** — La page émet désormais le nœud commun. Par rapport à la variante supprimée :
+- `description` : « … pour la France et la Suisse. … » → « … France & Suisse. … » ;
+- téléphones : mêmes numéros, format E.164 sans séparateurs (`+33147426666`, `+41445804384`) ;
+- `email` `sales@sysnext.com` ajouté aux deux `ContactPoint` ;
+- `availableLanguage` du `ContactPoint` CH : `German` ajouté, valeur centrale que D33 conserve.
+
+Aucune donnée n'est modifiée dans `SchemaOrg.tsx`.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`, comme pour les PR précédentes.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4). Test des résultats enrichis de Google : non lancé. Le contrôle source des fils d'Ariane ne couvre pas un suffixe réduit à `/${…}` ; le gabarit des landings est couvert par le test `getPathname` et par le type de `slug`.
+
+**Backlog** — Relevé pendant la PR, rien corrigé, consigne « BACKLOG seulement » :
+- `Product.url` et `Offer.url` des 13 fiches de-ch visent encore `/de-ch/studio-photo/<slug>` (307) : zone Product/Offer exclue ;
+- `Service.url` des 8 pages `branchen/*` en `/de-ch/industrie/<slug>` (301) et `author.url` en `/fr/a-propos` sur les articles de-ch (annexe 2.e du rapport maître) : hors des 4 défauts ;
+- `ia-photo-produit` : nœud `provider` `Organization` réduit à `name`, sans `@id`, dans le bloc `SoftwareApplication` à `AggregateRating` : zone exclue ;
+- `ETAT.md` présente encore #54 comme non fusionnée, alors que `main` `2854c27` en est la fusion.
+
+**Suite** — GO de Laurent, puis fusion, `smoke.mjs` sur `sysnext.vercel.app` et relevé des fils d'Ariane d'une fiche `fotostudio`, d'une page `solutions` et de la page distributeur.
+
+---
+
 ## 2026-09-29 · `llms.txt` — « officiel » (D6), assertion de date retirée, 16 secteurs · Claude de Laurent
 
 **Chantier** : audit SEO/GEO du 29/09, PR technique 1 (constat P0-1) | **PR** : #54, brouillon, non fusionnée | **Base** : `main` `9ced920`

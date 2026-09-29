@@ -57,33 +57,6 @@ const FAQ = [
   },
 ];
 
-/* Organization étendue pour cette page : areaServed FR+CH et double contactPoint,
-   sans modifier le schema global partagé (SchemaOrg.tsx). */
-function distributorOrganizationSchema() {
-  return {
-    ...organizationSchema(),
-    description:
-      'Distributeur officiel Orbitvu pour la France et la Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
-    areaServed: ['FR', 'CH'],
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        telephone: '+33-1-47-42-66-66',
-        contactType: 'sales',
-        areaServed: 'FR',
-        availableLanguage: ['French', 'English'],
-      },
-      {
-        '@type': 'ContactPoint',
-        telephone: '+41-44-580-43-84',
-        contactType: 'sales',
-        areaServed: 'CH',
-        availableLanguage: ['French', 'English'],
-      },
-    ],
-  };
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
 
@@ -310,7 +283,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
 
       <SchemaOrg
         schema={[
-          distributorOrganizationSchema(),
+          organizationSchema(),
           breadcrumbSchema(breadcrumbs),
           faqSchema(FAQ),
         ]}
