@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Cluster AI Act — article Suisse (S), PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : brouillon, `DO_NOT_MERGE` (numéro reporté au commit suivant) | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29`, indépendante du pilier A | **Base** : `main` `e2e1027`
+
+**Quoi** — Création de `content/blog/fr/images-ia-ecommerce-suisse.json` depuis `main`, à partir du texte transmis par Laurent le 29/09 (3 301 mots de corps éditorial, 8 cas pratiques, 5 marqueurs `[TERRAIN SÉBASTIEN — …]` conservés tels quels, aucune FAQ). Micro-corrections seulement :
+- S1 (chapeau) ; S2 (Zalando) et S3 (Amazon) alignés sur les pages vérifiées ; S4 (« NO EVIDENCE FOUND » remplacé, prose et tableau) ;
+- renvois « dossier » et « corpus » : 20 → 1 (la formulation S4 imposée garde « corpus analysé ») ;
+- Google Merchant Center (« toutes les images créées par IA générative », et non « certaines ») ;
+- titre officiel de la Convention-cadre ; calendrier suisse ramené à la lettre de la source du SECO (avant-projet destiné à la consultation élaboré au printemps 2027) ; définition du déployeur alignée sur l'art. 3(4) ;
+- lien vers le pilier A remplacé par un renvoi sans `href`.
+
+Section « Sources » ajoutée, limitée aux sources utilisées (16 liens : droit suisse, guidance officielle suisse, cadre européen, plateformes, standards).
+
+**Pourquoi** — Mission « cluster AI Act » de Laurent (29/09) : l'article Suisse donne les couches de règles à vérifier, dans l'ordre Suisse → fidélité produit → personnes → UE → plateformes.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38 ; version de-ch à adapter juridiquement, pas à traduire). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Revue juridique ciblée des 7 points sur les sources primaires du 29/09 (Fedlex, SECO/Portail PME, ChF, OFJ, DETEC, PFPDT, règlement (UE) 2024/1689, lignes directrices). Point 3 (CO) : OMIT ; les autres sont confirmés, avec le calendrier ajusté à la lettre de la source.
+- Plateformes et standards : Google Merchant Center (14743464, 6324350, 17231950), Amazon (G1881, GFXHCHYZRGJRBZA5, GGW8U76SSNTRTBX7, lus par l'API du Help Hub), Zalando (image et vidéo, mises à jour le 31/08/2026), IPTC Digital Source Type, C2PA 2.4.
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; ESLint sans objet sur le fichier modifié (JSON) ; `next build` vert, 384 pages.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/images-ia-ecommerce-suisse`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList et Article (`datePublished` = `dateModified` = 2026-09-29), pas de FAQPage (pas de FAQ), URL présente au sitemap (326 URL), 5 marqueurs visibles, 0 débordement en 1440 et 390 px, aucun lien vers `/fr/blog/ai-act-images-produit` ni vers `/fr/packshot-e-commerce`.
+- Liens : 0 interne ; 16 externes, 15 en 200, EUR-Lex 202 (défi anti-robots, non concluant). `e2e/seo.spec.ts` et `e2e/internal-links-all.spec.ts` en local : 243 réussis, les 8 mêmes échecs préexistants que sur `main`.
+**Supposé** — [Inférence] La page SECO du 23/09/2026 (texte : « au printemps 2027 ») prime sur les pages de la ChF, de l'OFJ et de l'OFCOM, qui disent encore « d'ici à la fin 2026 ». Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; version de-ch (DSG, UWG, OR, EDÖB) ; visuels ; tableau des signatures du traité n° 225 (coe.int répond 403) ; relecture de la prose et de la signature par Sébastien.
+
+**Suite** — Réponses terrain de Sébastien sur les 5 marqueurs (passe ciblée) ; revue visuelle ; maillage entrant au moment de la publication coordonnée ; lien vers le pilier A à activer à sa publication.
+
+---
+
 ## 2026-09-29 · R01 — sélecteur de langue des 8 hubs de-ch · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 (seul P0 du rapport) | **PR** : #58, brouillon, branche `claude/gracious-dijkstra-efzyen`, non fusionnée | **Base** : `main` `37146c2`

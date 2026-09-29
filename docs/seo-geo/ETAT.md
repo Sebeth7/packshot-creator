@@ -25,6 +25,7 @@ périmée ici coûte plus cher qu'une ligne absente.
 | Consolidation du cluster comparatif | Claude de Laurent | **débloquée** — 0 backlink mesuré le 19/09 avec témoin | `content/**` | 19/09 |
 | Renverser l'axe GEO | Claude de Laurent | 3 pages en circuit (b) | `content/**`, `messages/fr.json` | 19/09 |
 | Suisse — A1, A3, 8 `branchen` | Claude de Laurent | à instruire | `messages/de-ch.json`, `content/**` | 19/09 |
+| Cluster AI Act — article Suisse `/fr/blog/images-ia-ecommerce-suisse` | Claude de Laurent | PR brouillon, `DO_NOT_MERGE` ; revue juridique ciblée des 7 points faite le 29/09 ; en attente : réponses terrain de Sébastien (5 marqueurs), relecture de la prose, visuels, maillage final, adaptation de-ch (pas une traduction) ; lien vers le pilier A différé | `content/blog/fr/images-ia-ecommerce-suisse.json` | 29/09 |
 | Maillage article → offre (Q3) | Claude de Laurent | 23 liens listés, circuit (b) | `content/**` | 19/09 |
 | `llms.txt` — « officiel » (D6), assertion de date retirée, 16 secteurs (PR technique 1 de l'audit du 29/09) | Claude de Laurent | PR #54, brouillon, non fusionnée, en attente du GO de Laurent | `public/llms.txt` | 29/09 |
 | R01 — sélecteur de langue des 8 hubs `/de-ch/branchen/*` (audit de maillage du 29/09) | Claude de Laurent | PR #58, brouillon, non fusionnée, en attente du GO de Laurent ; avant : 26 liens en 404, 6 en 301 ; après : 0 et 0 | `i18n/deChCoverage.ts`, `lib/__tests__/locale-switch-de-ch.test.ts` | 29/09 |
