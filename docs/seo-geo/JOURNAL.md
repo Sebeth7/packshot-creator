@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · Phase 2A — shortcodes `[embed]` YouTube en façade et `rel` des liens `target="_blank"` (F22), au rendu · Claude de Laurent
 
-**Chantier** : phase 2A du blog, correctifs runtime des anciens contenus Webflow, sur consigne de Laurent du 29/09 | **PR** : brouillon, branche `claude/awesome-dirac-j9uvw1`, non fusionnée | **Base** : `main` `06483a3`
+**Chantier** : phase 2A du blog, correctifs runtime des anciens contenus Webflow, sur consigne de Laurent du 29/09 | **PR** : #52, brouillon, branche `claude/awesome-dirac-j9uvw1`, non fusionnée | **Base** : `main` `06483a3`
 
 **Quoi** —
 - **Shortcodes** : `transformEmbedShortcodes` (`lib/blog-utils.ts`) remplace au rendu chaque `[embed]<URL YouTube>[/embed]` d'un paragraphe par la façade de #44 (`renderFacade`, désormais exportée de `lib/youtube.ts`, sans autre changement). Aucune iframe, aucun appel YouTube avant accord ; le texte du paragraphe autour du shortcode reste dans un paragraphe aux mêmes attributs, une partie vide n'est pas émise. Le compteur vidéo inclut ces façades : `YouTubeConsent` est monté sur les 3 pages concernées.
