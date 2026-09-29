@@ -63,7 +63,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
   - `<head>` identique : canonical, alternates, robots, `lang`, `title`, description, `og:*` ;
   - statuts et redirections identiques ; `sitemap.xml` (`lastmod` neutralisé), `robots.txt` et `llms.txt` identiques.
 - Crawl ciblé des 32 pages concernées : 32 en 200, tous leurs éléments de fil d'Ariane en 200 sans redirection.
-- `npx tsc --noEmit` vert. Vitest 297/297 (290 sur `main`, 7 nouveaux). Rejoués contre les sources de `main`, 3 des nouveaux tests échouent et signalent les 9 défauts (8 fichiers de-ch et l'étape « Solutions ») et la variante d'`Organization`. Avertissement de source map du Worker à l'identique sur `main`.
+- `npx tsc --noEmit` vert. Correction : au premier push (`fa16b1c`), la CI a échoué sur `tsc` : erreur de type dans le fichier de test, écrit après mon passage local de `tsc`. Corrigé au commit suivant ; `tsc`, Vitest, ESLint et build relancés en local avant de pousser. Vitest 297/297 (290 sur `main`, 7 nouveaux). Rejoués contre les sources de `main`, 3 des nouveaux tests échouent et signalent les 9 défauts (8 fichiers de-ch et l'étape « Solutions ») et la variante d'`Organization`. Avertissement de source map du Worker à l'identique sur `main`.
 - `verifier-json` : 186 JSON valides. ESLint complet : 326 messages sur `main` (258 erreurs, 68 alertes), 326 sur la branche, 0 nouveau, 0 disparu.
 - `npx next build` vert, variables factices de la CI.
 - `smoke.mjs` sur `next start` local de `main` et de la branche : vert, 17 pages et 3 ressources, sorties identiques hors URL.

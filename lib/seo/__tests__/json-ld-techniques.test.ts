@@ -43,20 +43,20 @@ function breadcrumbStaticUrls(): { file: string; suffix: string }[] {
 
 describe('BreadcrumbList — URL résolues par les routes localisées', () => {
   it('getPathname donne le segment de-ch des 9 pathnames corrigés, et le chemin inchangé en fr et en', () => {
-    const cas: [Parameters<typeof getPathname>[0]['href'], string][] = [
-      [{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }, '/fotostudio/alphashot-pro-g2'],
-      ['/studio-photo/selecteur-machines', '/fotostudio/maschinen-finder'],
-      ['/a-propos', '/wer-sind-wir'],
-      ['/besoins-photographie-produit', '/produktfotografie-bedarf'],
-      ['/calculateur-roi', '/roi-rechner'],
-      ['/contact', '/kontakt'],
-      ['/industrie', '/branchen'],
-      ['/packshot-industriel', '/packshot-industrie'],
-      ['/questions-cles-photographie-produit', '/wichtige-fragen-produktfotografie'],
+    // [href, chemin fr et en, chemin de-ch]
+    const cas: [Parameters<typeof getPathname>[0]['href'], string, string][] = [
+      [{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }, '/studio-photo/alphashot-pro-g2', '/fotostudio/alphashot-pro-g2'],
+      ['/studio-photo/selecteur-machines', '/studio-photo/selecteur-machines', '/fotostudio/maschinen-finder'],
+      ['/a-propos', '/a-propos', '/wer-sind-wir'],
+      ['/besoins-photographie-produit', '/besoins-photographie-produit', '/produktfotografie-bedarf'],
+      ['/calculateur-roi', '/calculateur-roi', '/roi-rechner'],
+      ['/contact', '/contact', '/kontakt'],
+      ['/industrie', '/industrie', '/branchen'],
+      ['/packshot-industriel', '/packshot-industriel', '/packshot-industrie'],
+      ['/questions-cles-photographie-produit', '/questions-cles-photographie-produit', '/wichtige-fragen-produktfotografie'],
     ];
-    for (const [href, deCh] of cas) {
+    for (const [href, fr, deCh] of cas) {
       expect(getPathname({ locale: 'de-ch', href })).toBe(`/de-ch${deCh}`);
-      const fr = typeof href === 'string' ? href : href.pathname.replace('[slug]', href.params.slug);
       expect(getPathname({ locale: 'fr', href })).toBe(`/fr${fr}`);
       expect(getPathname({ locale: 'en', href })).toBe(`/en${fr}`);
     }
