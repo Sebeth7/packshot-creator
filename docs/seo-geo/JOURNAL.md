@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · Cluster AI Act — pilier A restructuré, PR brouillon · Claude de Laurent
 
-**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : brouillon, `DO_NOT_MERGE` (numéro reporté au commit suivant) | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `e2e1027` (post-#55 et #58 ; `37146c2` au début de la mission)
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `e2e1027` (post-#55 et #58 ; `37146c2` au début de la mission)
 
 **Quoi** — Création de `content/blog/fr/ai-act-images-produit.json` depuis `main`, à partir du texte restructuré transmis par Laurent le 29/09 (≈ 3 644 mots FAQ comprise, 5 FAQ), qui remplace éditorialement la version longue de #43. Balisage adapté au format du corpus (`tldr`, `table-wrap`, FAQ dans `faqs`). Micro-corrections seulement : 6 renvois au document de travail (« article source », « article actuel ») ; section « Et en Suisse ? » réduite à une passerelle prudente (art. 2(1)(c)), sans lien actif vers l'article Suisse non publié ; 4 précisions exigées par les sources primaires (art. 3(3) « ou en service » ; art. 3(60) liste fermée ; lignes directrices §92, changements extrêmes « qui modifient le sens » ; Code, interopérabilité « des mécanismes de détection »). Liens ajoutés sur les 8 sources officielles déjà nommées.
 
