@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
 import Image from 'next/image';
 import { ArrowRight, Lightbulb, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -56,7 +57,7 @@ export default async function AProposPage({ params }: PageProps) {
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: t('breadcrumb'), url: `https://www.packshot-creator.com/${lang}/a-propos` },
+    { name: t('breadcrumb'), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/a-propos' })}` },
   ];
 
   const heroValue = VALUES[0];

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { Link, getPathname } from '@/i18n/routing';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
@@ -59,7 +59,7 @@ export default async function QuestionsClesPhotographieProduitPage({ params }: P
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/questions-cles-photographie-produit` },
+    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/questions-cles-photographie-produit' })}` },
   ];
 
   const faqs = (['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'] as const).map((key) => ({

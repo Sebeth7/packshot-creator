@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 // NavLink (épinglage de-ch) : le Link brut produisait /de-ch/industrie/<slug-fr>
 // → 307 → 404 (audit Laurent 03/09/2026, addendum A2).
 import { NavLink as Link } from '@/components/layout/NavLink';
+import { getPathname } from '@/i18n/routing';
 import { deChSectorSlug } from '@/i18n/deChCoverage';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -73,7 +74,7 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com/${lang}/besoins-photographie-produit` },
+    { name: t('hero.title').split(':')[0].trim(), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/besoins-photographie-produit' })}` },
   ];
 
   const faqs = [

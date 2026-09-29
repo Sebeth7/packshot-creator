@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { getPathname } from '@/i18n/routing';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx } from '@/lib/locale-text';
 
@@ -46,7 +47,7 @@ export default async function CalculateurROILayout({
   const { lang } = await params;
   const breadcrumbs = [
     { name: tx(lang, 'Accueil', 'Home', 'Startseite'), url: `https://www.packshot-creator.com/${lang}` },
-    { name: tx(lang, 'Calculateur ROI', 'ROI Calculator', 'ROI-Rechner'), url: `https://www.packshot-creator.com/${lang}/calculateur-roi` },
+    { name: tx(lang, 'Calculateur ROI', 'ROI Calculator', 'ROI-Rechner'), url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/calculateur-roi' })}` },
   ];
 
   return (

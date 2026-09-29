@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/routing';
+import { Link, getPathname } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Phone, Clock, MapPin, ChevronRight, Shield, Users, Zap } from 'lucide-react';
@@ -54,7 +54,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'Contact', url: `https://www.packshot-creator.com/${lang}/contact` },
+    { name: 'Contact', url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: '/contact' })}` },
   ];
 
   const faqs = ([1, 2, 3, 4, 5, 6] as const).map((n) => ({
