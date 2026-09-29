@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · R01 — sélecteur de langue des 8 hubs de-ch · Claude de Laurent
+
+**Chantier** : R01 de l'audit de maillage du 29/09 (seul P0 du rapport) | **PR** : brouillon, branche `claude/gracious-dijkstra-efzyen`, non fusionnée | **Base** : `main` `37146c2`
+
+**Quoi** — `localeSwitchHref` (`i18n/deChCoverage.ts`) : en de-ch seulement, le chemin concret `/industrie/<slug>` est ramené au motif `/industrie/[slug]` avant résolution. La table existante `DE_CH_TO_FR_SECTOR` fait le reste : aucun mapping ajouté. Test de non-régression `lib/__tests__/locale-switch-de-ch.test.ts` (47 cas).
+
+**Pourquoi** — Sur les 8 hubs `/de-ch/branchen/<slug allemand>`, le sélecteur recopiait le slug allemand sous `/fr/industrie/` et `/en/industrie/` : 26 liens vers 13 URL en 404, 6 liens vers 3 URL en 301 (`/fr/industrie/mode`, `schoenheit`, `sport`). Cause vérifiée avant modification : la page est prérendue sous son chemin interne réécrit (charge utile `"c":["","de-ch","industrie","schmuck"]`). `usePathname()` de next-intl 4.6.1 ne rattache pas ce chemin au motif de-ch `/branchen/[slug]` (`getRoute`) et renvoie `/industrie/schmuck`, sans slug. Le sélecteur passait alors par la branche des pages statiques.
+
+**Fichiers** — `i18n/deChCoverage.ts`, `lib/__tests__/locale-switch-de-ch.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Sur les 8 hubs, « FR » mène au hub FR du secteur, la même cible que leur hreflang `fr`. « EN » mène à `/en/studios-photo-automatises` : c'est la règle existante, les 17 hubs `/en/industrie/*` étant `noindex` (D9, non modifiée), et le bouton EN des hubs FR fait déjà de même.
+
+**Vérifié** —
+- Avant, sur le build local de `main` `37146c2`, Worker du dépôt rejoué en local : 8 hubs, 2 sélecteurs par page (desktop, mobile), 26 liens en 404, 6 en 301. Identique à l'audit.
+- Après, même méthode : 16 cibles sur 16 en 200, 0 lien en 404, 0 redirection.
+- Correspondances : `schmuck` → `bijoux-joaillerie`, `uhren` → `horlogerie`, `brillen` → `lunetterie`, `schoenheit` → `cosmetiques-beaute`, `elektronik` → `electronique-hightech`, `sport` → `sport-outdoor`, `mode` → `mode-textile`, `wein` → `vin-spiritueux`.
+- HTML prérendu, `main` contre branche : 371 fichiers, 8 diffèrent (les 8 hubs), et seules les 4 balises `<a>` du sélecteur y changent. Sélecteur et hreflang identiques sur les 359 autres pages.
+- Chromium, après hydratation : `/de-ch/branchen/schmuck` et `/uhren` conformes. Échantillon hors secteurs (`/de-ch/fotostudio/alphashot-360`, `/de-ch/kontakt`, `/de-ch/blog/altes-packshotcreator-studio-migrieren`, `/fr/industrie/horlogerie`, `/en/studios-photo-automatises`) identique à `main`. 0 erreur de page. Clic réel : « FR » sur `uhren` mène à `/fr/industrie/horlogerie`, « EN » sur `schmuck` à `/en/studios-photo-automatises`.
+- Le nouveau test échoue sur le code de `main` (16 cas : 8 hubs × FR et EN, chemin concret) et passe sur la branche.
+- `npx tsc --noEmit` vert ; Vitest 337/337 (290 sur `main`) ; `verifier-json` : 186 JSON valides ; ESLint : 0 problème sur les 2 fichiers, 0 sur la version `main` ; `npx next build` vert.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`. Le Worker déployé correspond au Worker du dépôt (R5) pour les 16 cibles.
+
+**Non regardé** — `www` (R4), Preview Vercel (SSO), Safari et appareils réels. Les autres recommandations du rapport de maillage (R02 à R19).
+
+**Suite** — GO de Laurent, fusion, `smoke.mjs` sur `sysnext.vercel.app`, contrôle Chrome sur `www` de `/de-ch/branchen/uhren`. Backlog, hors périmètre, rien de modifié :
+- [Inférence] `GoogleAnalytics.tsx` (`page_path`) et `ContactForm.tsx` (`pageSource`) lisent le même `usePathname()` et pourraient recevoir le chemin interne sur les 29 pages de-ch localisées ;
+- en local, `next start` répond 307 vers lui-même sur ces 29 chemins, alors que `sysnext.vercel.app` répond 200 : outillage de contrôle seulement.
+
+---
+
 ## 2026-09-29 · #52 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : phase 2A du blog | **PR** : #52, fusionnée sur GO final de Laurent | **Commit de fusion** : `9ced920` (`main`), le 29/09/2026 à 15:25:54 UTC | **Tête fusionnée** : `4ff2f07` | **Base avant fusion** : `06483a3`
