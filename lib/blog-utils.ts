@@ -2,6 +2,8 @@
  * Utility functions for blog content processing
  */
 
+import { transformYouTubeEmbeds, type YouTubeFacadeLabels } from './youtube';
+
 export interface HeadingData {
   id: string;
   text: string;
@@ -30,7 +32,7 @@ const YOUTUBE_EMBED_SRC = /^(?:https?:)?\/\/(?:www\.)?youtube(?:-nocookie)?\.com
  * Une iframe qui porte déjà un referrerpolicy, ou qui n'est pas un embed YouTube,
  * est rendue telle quelle.
  */
-function addYouTubeReferrerPolicy(html: string): string {
+export function addYouTubeReferrerPolicy(html: string): string {
   return html.replace(/<iframe\b[^>]*>/gi, (tag) => {
     const src = tag.match(/\ssrc\s*=\s*(["'])(.*?)\1/i)?.[2];
     if (!src || !YOUTUBE_EMBED_SRC.test(src)) return tag;
@@ -44,12 +46,18 @@ function addYouTubeReferrerPolicy(html: string): string {
  * - Add IDs to h2/h3 elements for ToC navigation
  * - Extract headings for ToC
  * - Count words for reading time
+ * - Remplacer les iframes YouTube par une façade locale (lib/youtube.ts) :
+ *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  */
-export function processHtmlContent(html: string): {
+export function processHtmlContent(
+  html: string,
+  options: { youtubeLabels?: YouTubeFacadeLabels } = {},
+): {
   processedHtml: string;
   headings: HeadingData[];
   wordCount: number;
+  videoCount: number;
 } {
   const headings: HeadingData[] = [];
   const usedIds = new Set<string>();
@@ -87,12 +95,16 @@ export function processHtmlContent(html: string): {
     '<img$1loading="lazy"$2'
   );
 
-  const withYouTubeReferrer = addYouTubeReferrerPolicy(withLazyImages);
+  const videos = transformYouTubeEmbeds(withLazyImages, options.youtubeLabels);
+  // Après la façade, aucune iframe YouTube ne subsiste : addYouTubeReferrerPolicy
+  // (#46) ne modifie rien aujourd'hui. Elle reste en garde pour toute iframe
+  // YouTube qui échapperait à la façade (erreur 153 sans Referer).
+  const withYouTubeReferrer = addYouTubeReferrerPolicy(videos.html);
 
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withYouTubeReferrer, headings, wordCount };
+  return { processedHtml: withYouTubeReferrer, headings, wordCount, videoCount: videos.count };
 }
 
 /**

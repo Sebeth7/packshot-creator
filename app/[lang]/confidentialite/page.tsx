@@ -6,6 +6,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema } from '@/components/se
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/hero';
 import { buildLanguages } from '@/lib/hreflang';
+import { googlePrivacyUrl } from '@/lib/youtube';
 
 export const revalidate = 86400;
 
@@ -64,10 +65,15 @@ export default async function ConfidentialitePage({ params }: PageProps) {
     t('article5.right6'),
   ];
 
-  const cookies = [
+  const cookies: { key: string; title: string; description: string; link?: { href: string; label: string } }[] = [
     { key: 'essential', title: t('article6.essential.title'), description: t('article6.essential.description') },
     { key: 'analytics', title: t('article6.analytics.title'), description: t('article6.analytics.description') },
-    { key: 'marketing', title: t('article6.marketing.title'), description: t('article6.marketing.description') },
+    {
+      key: 'externalMedia',
+      title: t('article6.externalMedia.title'),
+      description: t('article6.externalMedia.description'),
+      link: { href: googlePrivacyUrl(lang), label: t('article6.externalMedia.linkLabel') },
+    },
   ];
 
   return (
@@ -185,6 +191,16 @@ export default async function ConfidentialitePage({ params }: PageProps) {
                   <div key={cookie.key} className="rounded-xl bg-neutral-50 p-4 border border-neutral-100">
                     <p className="font-heading font-bold text-future-dusk-900 text-sm mb-1">{cookie.title}</p>
                     <p className="text-sm text-future-dusk-500">{cookie.description}</p>
+                    {cookie.link && (
+                      <a
+                        href={cookie.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-block text-sm text-very-peri-600 underline underline-offset-2 hover:text-very-peri-700"
+                      >
+                        {cookie.link.label}
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>

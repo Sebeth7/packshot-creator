@@ -7,6 +7,8 @@ import { Settings, X } from 'lucide-react';
 type ConsentCategories = {
   necessary: boolean;
   analytics: boolean;
+  /** Contenus externes (vidéos YouTube des articles) : lecteur chargé au clic seulement. */
+  externalMedia: boolean;
 };
 
 const COOKIE_NAME = 'cookie-consent';
@@ -26,7 +28,13 @@ function getConsent(): ConsentCategories | null {
   const raw = getCookie(COOKIE_NAME);
   if (!raw) return null;
   try {
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // Cookie antérieur à la catégorie « contenus externes » : absente = refusée.
+    return {
+      necessary: true,
+      analytics: parsed?.analytics === true,
+      externalMedia: parsed?.externalMedia === true,
+    };
   } catch {
     return null;
   }
@@ -35,6 +43,11 @@ function getConsent(): ConsentCategories | null {
 export function hasAnalyticsConsent(): boolean {
   const consent = getConsent();
   return consent?.analytics === true;
+}
+
+export function hasExternalMediaConsent(): boolean {
+  const consent = getConsent();
+  return consent?.externalMedia === true;
 }
 
 /** Dispatch a custom event so GoogleAnalytics component can react */
@@ -49,6 +62,7 @@ export default function CookieBanner() {
   const [consent, setConsent] = useState<ConsentCategories>({
     necessary: true,
     analytics: false,
+    externalMedia: false,
   });
 
   useEffect(() => {
@@ -70,11 +84,11 @@ export default function CookieBanner() {
   }, []);
 
   const acceptAll = useCallback(() => {
-    saveConsent({ necessary: true, analytics: true });
+    saveConsent({ necessary: true, analytics: true, externalMedia: true });
   }, [saveConsent]);
 
   const rejectAll = useCallback(() => {
-    saveConsent({ necessary: true, analytics: false });
+    saveConsent({ necessary: true, analytics: false, externalMedia: false });
   }, [saveConsent]);
 
   const saveCustom = useCallback(() => {
@@ -143,6 +157,20 @@ export default function CookieBanner() {
                 type="checkbox"
                 checked={consent.analytics}
                 onChange={(e) => setConsent(prev => ({ ...prev, analytics: e.target.checked }))}
+                className="h-4 w-4 rounded accent-very-peri-500"
+              />
+            </label>
+
+            {/* Contenus externes (vidéos YouTube) */}
+            <label className="flex items-center justify-between rounded-xl bg-neutral-50 border border-neutral-100 p-4 cursor-pointer">
+              <div>
+                <p className="text-sm font-semibold text-future-dusk-900">{t('externalMedia')}</p>
+                <p className="text-xs text-future-dusk-500 mt-0.5">{t('externalMediaDesc')}</p>
+              </div>
+              <input
+                type="checkbox"
+                checked={consent.externalMedia}
+                onChange={(e) => setConsent(prev => ({ ...prev, externalMedia: e.target.checked }))}
                 className="h-4 w-4 rounded accent-very-peri-500"
               />
             </label>
