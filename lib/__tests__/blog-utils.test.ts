@@ -489,32 +489,60 @@ describe('isInternalHref — liens internes au site (F22)', () => {
   });
 });
 
-describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/09)', () => {
+describe('addRelToBlankTargets — liens target="_blank" (F22, règle UX du 29/09)', () => {
   const rel = addRelToBlankTargets;
 
-  it('interne relatif sans rel (forme réelle) : rel="noopener" seul, reste de la balise intact', () => {
-    expect(rel('<a href="/fr/a-propos" target="_blank" id="">À propos</a>')).toBe(
-      '<a href="/fr/a-propos" target="_blank" id="" rel="noopener">À propos</a>',
-    );
-    expect(rel('<a href="#tarifs" target="_blank">x</a>')).toBe('<a href="#tarifs" target="_blank" rel="noopener">x</a>');
+  it('interne relatif en _blank (forme réelle) : target retiré, aucun rel ajouté, href, id et texte intacts', () => {
+    expect(rel('<a href="/fr/a-propos" target="_blank" id="">À propos</a>')).toBe('<a href="/fr/a-propos" id="">À propos</a>');
+    expect(rel('<a href="/fr/contact" target="_blank">Contact</a>')).toBe('<a href="/fr/contact">Contact</a>');
+    expect(rel('<a target="_blank" href="/fr/contact">Contact</a>')).toBe('<a href="/fr/contact">Contact</a>');
+    expect(rel('<a href="#tarifs" target="_blank">x</a>')).toBe('<a href="#tarifs">x</a>');
+    expect(rel('<a href="?q=1" target="_blank">x</a>')).toBe('<a href="?q=1">x</a>');
   });
 
-  it('interne absolu packshot-creator.com sans rel : rel="noopener" seul', () => {
+  it('interne absolu packshot-creator.com (avec ou sans www) en _blank : target retiré', () => {
     expect(rel('<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank">x</a>')).toBe(
-      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank" rel="noopener">x</a>',
+      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit">x</a>',
+    );
+    expect(rel('<a href="https://packshot-creator.com/fr" target="_blank" id="">x</a>')).toBe(
+      '<a href="https://packshot-creator.com/fr" id="">x</a>',
     );
   });
 
-  it('externe sans rel (forme réelle) : rel="noopener noreferrer"', () => {
+  it('interne avec rel existant (forme réelle) : target retiré, rel conservé tel quel', () => {
+    expect(rel('<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank" rel="noopener">x</a>')).toBe(
+      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit" rel="noopener">x</a>',
+    );
+    expect(rel('<a href="/fr" rel="nofollow" target="_blank">x</a>')).toBe('<a href="/fr" rel="nofollow">x</a>');
+  });
+
+  it('interne : casse, espaces, guillemets simples, sans guillemets, target en double', () => {
+    expect(rel('<A TARGET="_BLANK" HREF="/FR/Contact">x</A>')).toBe('<A HREF="/FR/Contact">x</A>');
+    expect(rel('<a\nhref="/fr"\ntarget = "_blank" >x</a>')).toBe('<a\nhref="/fr" >x</a>');
+    expect(rel("<a href='/fr' target='_blank' title='l\"offre'>x</a>")).toBe("<a href='/fr' title='l\"offre'>x</a>");
+    expect(rel('<a href=/fr/contact target=_blank>x</a>')).toBe('<a href=/fr/contact>x</a>');
+    expect(rel('<a href="/fr" target="_blank" target="_blank">x</a>')).toBe('<a href="/fr">x</a>');
+  });
+
+  it('externe en _blank sans rel (forme réelle) : target conservé, rel="noopener noreferrer" ajouté', () => {
     expect(rel('<a href="https://orbitvu.com/" target="_blank" id="">Orbitvu</a>')).toBe(
       '<a href="https://orbitvu.com/" target="_blank" id="" rel="noopener noreferrer">Orbitvu</a>',
     );
-    expect(rel('<a href="https://videos.packshot-creator.com/x.mp4" target="_blank">x</a>')).toBe(
-      '<a href="https://videos.packshot-creator.com/x.mp4" target="_blank" rel="noopener noreferrer">x</a>',
+    expect(rel('<a target="_blank" href="https://x.fr/" id="">x</a>')).toBe(
+      '<a target="_blank" href="https://x.fr/" id="" rel="noopener noreferrer">x</a>',
+    );
+    expect(rel('<A HREF="https://x.fr/" TARGET="_BLANK">x</A>')).toBe(
+      '<A HREF="https://x.fr/" TARGET="_BLANK" rel="noopener noreferrer">x</A>',
+    );
+    expect(rel('<a href=https://x.fr/ target=_blank>x</a>')).toBe(
+      '<a href=https://x.fr/ target=_blank rel="noopener noreferrer">x</a>',
     );
   });
 
-  it('mailto, tel, href absent : traités comme externes (noopener noreferrer), aucun cas dans le corpus', () => {
+  it('sous-domaines, mailto, tel, href absent : externes (aucun cas dans le corpus au 29/09)', () => {
+    expect(rel('<a href="https://videos.packshot-creator.com/x.mp4" target="_blank">x</a>')).toBe(
+      '<a href="https://videos.packshot-creator.com/x.mp4" target="_blank" rel="noopener noreferrer">x</a>',
+    );
     expect(rel('<a href="mailto:contact@packshot-creator.com" target="_blank">x</a>')).toBe(
       '<a href="mailto:contact@packshot-creator.com" target="_blank" rel="noopener noreferrer">x</a>',
     );
@@ -524,30 +552,10 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
     expect(rel('<a target="_blank">x</a>')).toBe('<a target="_blank" rel="noopener noreferrer">x</a>');
   });
 
-  it('ordre des attributs différent, casse, espaces : rel ajouté, target et href intacts', () => {
-    expect(rel('<a target="_blank" href="https://x.fr/" id="">x</a>')).toBe(
-      '<a target="_blank" href="https://x.fr/" id="" rel="noopener noreferrer">x</a>',
-    );
-    expect(rel('<A HREF="https://x.fr/" TARGET="_BLANK">x</A>')).toBe(
-      '<A HREF="https://x.fr/" TARGET="_BLANK" rel="noopener noreferrer">x</A>',
-    );
-    expect(rel('<A TARGET="_BLANK" HREF="/FR/Contact">x</A>')).toBe('<A TARGET="_BLANK" HREF="/FR/Contact" rel="noopener">x</A>');
-    expect(rel('<a\nhref="https://x.fr/"\ntarget = "_blank" >x</a>')).toBe(
-      '<a\nhref="https://x.fr/"\ntarget = "_blank" rel="noopener noreferrer">x</a>',
-    );
-    expect(rel('<a href=https://x.fr/ target=_blank>x</a>')).toBe(
-      '<a href=https://x.fr/ target=_blank rel="noopener noreferrer">x</a>',
-    );
-    expect(rel('<a href=/fr/contact target=_blank>x</a>')).toBe('<a href=/fr/contact target=_blank rel="noopener">x</a>');
-  });
-
-  it('rel contenant déjà noopener ou noreferrer, interne ou externe : lien strictement inchangé', () => {
+  it('externe déjà protégé par noopener ou noreferrer : strictement inchangé', () => {
     const deja = [
-      // Formes réelles : 1 interne absolu et 28 externes portent rel="noopener".
-      '<a href="https://www.packshot-creator.com/fr/ia-photo-produit" target="_blank" rel="noopener">x</a>',
+      // Forme réelle : 28 liens externes portent rel="noopener".
       '<a href="https://www.gs1.org/standards/gs1-global-data-model" target="_blank" rel="noopener">x</a>',
-      '<a href="/fr/a-propos" target="_blank" rel="noopener">x</a>',
-      '<a href="/fr/a-propos" target="_blank" rel="noreferrer">x</a>',
       '<a href="https://x.fr/" target="_blank" rel="noreferrer">x</a>',
       '<a href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
       '<a rel="nofollow NoOpener" href="https://x.fr/" target="_blank">x</a>',
@@ -556,12 +564,9 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
     for (const html of deja) expect(rel(html)).toBe(html);
   });
 
-  it('rel sans noopener ni noreferrer : jetons, guillemets et position conservés, protection ajoutée selon la cible', () => {
+  it('externe avec rel sans noopener ni noreferrer : autres jetons, guillemets et position conservés', () => {
     expect(rel('<a href="https://x.fr/" rel="nofollow" target="_blank">x</a>')).toBe(
       '<a href="https://x.fr/" rel="nofollow noopener noreferrer" target="_blank">x</a>',
-    );
-    expect(rel('<a href="/fr/contact" rel="nofollow" target="_blank">x</a>')).toBe(
-      '<a href="/fr/contact" rel="nofollow noopener" target="_blank">x</a>',
     );
     expect(rel('<a href="https://x.fr/" target="_blank" rel="nofollow  sponsored ugc">x</a>')).toBe(
       '<a href="https://x.fr/" target="_blank" rel="nofollow sponsored ugc noopener noreferrer">x</a>',
@@ -569,13 +574,9 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
     expect(rel('<a href=\'https://x.fr/\' target=\'_blank\' rel=\'external\'>x</a>')).toBe(
       '<a href=\'https://x.fr/\' target=\'_blank\' rel=\'external noopener noreferrer\'>x</a>',
     );
-    expect(rel('<a href=\'/fr\' target=\'_blank\' rel=\'bookmark\'>x</a>')).toBe(
-      '<a href=\'/fr\' target=\'_blank\' rel=\'bookmark noopener\'>x</a>',
-    );
     expect(rel('<a href="https://x.fr/" target="_blank" rel="">x</a>')).toBe(
       '<a href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
     );
-    expect(rel('<a href="/fr" target="_blank" rel="">x</a>')).toBe('<a href="/fr" target="_blank" rel="noopener">x</a>');
     expect(rel('<a href="https://x.fr/" target="_blank" rel=nofollow>x</a>')).toBe(
       '<a href="https://x.fr/" target="_blank" rel="nofollow noopener noreferrer">x</a>',
     );
@@ -588,6 +589,7 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
     expect(rel('<a title=\'href="/fr"\' href="https://x.fr/" target="_blank">x</a>')).toBe(
       '<a title=\'href="/fr"\' href="https://x.fr/" target="_blank" rel="noopener noreferrer">x</a>',
     );
+    expect(rel('<a title=\'target="_blank"\' href="/fr" target="_blank">x</a>')).toBe('<a title=\'target="_blank"\' href="/fr">x</a>');
     const leurre = '<a href="https://x.fr/" title="target=_blank">x</a>';
     expect(rel(leurre)).toBe(leurre);
     expect(rel('<a data-rel="noopener" data-target="_blank" data-href="/fr" href="https://x.fr/" target="_blank">x</a>')).toBe(
@@ -595,22 +597,28 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
     );
   });
 
-  it('jamais deux attributs rel : un seul par lien après traitement', () => {
+  it('jamais deux attributs rel ; aucun lien interne ne garde target="_blank"', () => {
     const html = [
       '<a href="/a" target="_blank">a</a>',
       '<a href="https://x.fr/" target="_blank">b</a>',
       '<a href="/b" target="_blank" rel="nofollow">c</a>',
-      '<a href="/c" target="_blank" rel="noopener">d</a>',
+      '<a href="https://www.packshot-creator.com/c" target="_blank" rel="noopener">d</a>',
       '<a href="https://x.fr/" rel="" target="_blank">e</a>',
     ].join('');
     const res = rel(html);
-    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) expect(count(tag, /\srel\s*=/gi)).toBe(1);
+    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) {
+      expect(count(tag, /\srel\s*=/gi)).toBeLessThanOrEqual(1);
+      if (/href="(\/|https:\/\/www\.packshot-creator\.com)/.test(tag)) expect(tag).not.toContain('target=');
+      else expect(tag).toMatch(/target="_blank" rel="noopener noreferrer"|rel="noopener noreferrer" target="_blank"/);
+    }
+    expect(res.replace(/<[^>]*>/g, '')).toBe('abcde');
   });
 
   it('autres cibles, liens sans target et autres balises : inchangés', () => {
     const intacts = [
       '<a target="_new" href="https://gnpp.wordpress.com/" id="">x</a>',
-      '<a href="https://x.fr/" target="_self">x</a>',
+      '<a target="_new" href="/fr/a-propos">x</a>',
+      '<a href="/fr" target="_self">x</a>',
       '<a href="https://x.fr/" target="blank">x</a>',
       '<a href="https://x.fr/">x</a>',
       '<a href="/fr/contact">x</a>',
@@ -625,21 +633,22 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, arbitrage du 29/0
   it('idempotence : deux passages, même sortie', () => {
     const html =
       '<a href="https://x.fr/" target="_blank" id="">x</a><a href="/y" rel="nofollow" target="_blank">y</a>' +
-      '<a href="/z" target="_blank" id="">z</a><a href="https://z.fr/" target="_blank" rel="noopener">z</a>';
+      '<a href="/z" target="_blank" id="">z</a><a href="https://z.fr/" target="_blank" rel="noopener">z</a>' +
+      '<a href="https://www.packshot-creator.com/fr" target="_blank" rel="noopener">w</a>';
     const une = rel(html);
     expect(rel(une)).toBe(une);
   });
 
-  it('processHtmlContent : interne en noopener, externe en noopener noreferrer, façades YouTube inchangées', () => {
+  it('processHtmlContent : interne dans le même onglet, externe protégé, façades YouTube inchangées', () => {
     const res = out(
       `<p><a href="https://orbitvu.com/" target="_blank" id="">Orbitvu</a> <a href="/fr/a-propos" target="_blank" id="">À propos</a></p>` +
         `${WEBFLOW_YT}${SHORTCODE_SEUL}`,
     );
     expect(res).toContain('<a href="https://orbitvu.com/" target="_blank" id="" rel="noopener noreferrer">Orbitvu</a>');
-    expect(res).toContain('<a href="/fr/a-propos" target="_blank" id="" rel="noopener">À propos</a>');
+    expect(res).toContain('<a href="/fr/a-propos" id="">À propos</a>');
     expect(count(res, /\srel="noopener noreferrer"/g)).toBe(3);
-    expect(count(res, /\srel="noopener"/g)).toBe(1);
-    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) expect(count(tag, /\srel\s*=/gi)).toBe(1);
+    expect(count(res, /target="_blank"/g)).toBe(3);
+    for (const tag of res.match(/<a\b[^>]*>/g) ?? []) expect(count(tag, /\srel\s*=/gi)).toBeLessThanOrEqual(1);
     expect(out(res)).toBe(res);
   });
 });

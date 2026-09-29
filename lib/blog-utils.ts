@@ -196,7 +196,8 @@ const SITE_HOSTS = new Set(['packshot-creator.com', 'www.packshot-creator.com'])
  * www.packshot-creator.com en http(s). Couvre les chemins relatifs (/…, …),
  * les ancres (#…), les requêtes (?…) et les URL absolues du site. Tout le reste
  * est externe : autres domaines, sous-domaines (videos., trail.…), mailto:, tel:,
- * href absent ou illisible.
+ * href absent ou illisible. Au 29/09, le corpus ne contient ni mailto:, ni tel:,
+ * ni sous-domaine, ni lien sans href en target="_blank".
  */
 export function isInternalHref(href: string | null): boolean {
   if (href === null) return false;
@@ -210,37 +211,45 @@ export function isInternalHref(href: string | null): boolean {
 }
 
 /**
- * F22 : un lien `target="_blank"` sans protection ouvre un onglet qui peut
- * atteindre la page d'origine (window.opener). Arbitrage de Laurent du 29/09 :
- * - lien sans rel, interne (isInternalHref) : `rel="noopener"`, le Referer est conservé ;
- * - lien sans rel, externe : `rel="noopener noreferrer"` ;
- * - rel existant contenant noopener ou noreferrer : lien inchangé ;
- * - rel existant sans l'un ni l'autre : jetons, guillemets et place conservés,
- *   jetons de protection ajoutés à la suite selon la même règle.
- * Jamais de second attribut rel ; href, target et texte du lien intacts.
+ * F22 et règle UX de Laurent du 29/09, pour les liens `target="_blank"` :
+ * - lien interne (isInternalHref) : `target="_blank"` retiré, le lien s'ouvre
+ *   dans le même onglet ; aucun rel ajouté, un rel existant est conservé tel quel ;
+ * - lien externe sans noopener ni noreferrer : target conservé, jetons existants
+ *   conservés (guillemets et place compris), `noopener noreferrer` ajoutés ;
+ * - lien externe déjà protégé : inchangé.
+ * Les autres cibles (_self, _new…) ne sont pas touchées. Jamais de second
+ * attribut rel ; href et texte du lien intacts ; deux passages, même sortie.
  */
 export function addRelToBlankTargets(html: string): string {
   return html.replace(ANCHOR_OPEN_TAG, (tag, attrs: string) => {
-    let target: string | null = null;
+    const targets: { start: number; end: number; value: string }[] = [];
     let href: string | null = null;
     let rel: { start: number; end: number; value: string; quote: string } | null = null;
     for (const m of attrs.matchAll(ATTRIBUTE)) {
       const name = m[1].toLowerCase();
       const value = m[2] ?? m[3] ?? m[4] ?? '';
-      if (name === 'target' && target === null) target = value;
+      if (name === 'target') targets.push({ start: m.index, end: m.index + m[0].length, value });
       else if (name === 'href' && href === null) href = value;
       else if (name === 'rel' && rel === null) {
         rel = { start: m.index, end: m.index + m[0].length, value, quote: m[3] !== undefined ? "'" : '"' };
       }
     }
-    if (target === null || target.toLowerCase() !== '_blank') return tag;
-    const protection = isInternalHref(href) ? ['noopener'] : ['noopener', 'noreferrer'];
+    if (targets.length === 0 || targets[0].value.toLowerCase() !== '_blank') return tag;
     const open = tag.slice(0, 2); // « <a » ou « <A », tel quel
-    if (!rel) return `${open}${attrs.trimEnd()} rel="${protection.join(' ')}">`;
+    if (isInternalHref(href)) {
+      // Chaque attribut target est retiré avec l'espace qui le précède.
+      let kept = attrs;
+      for (const t of [...targets].reverse()) {
+        const from = kept.slice(0, t.start).replace(/\s+$/, '').length;
+        kept = kept.slice(0, from) + kept.slice(t.end);
+      }
+      return `${open}${kept}>`;
+    }
+    if (!rel) return `${open}${attrs.trimEnd()} rel="noopener noreferrer">`;
     const tokens = rel.value.split(/[\t\n\f\r ]+/).filter(Boolean);
     const lower = tokens.map((t) => t.toLowerCase());
     if (lower.includes('noopener') || lower.includes('noreferrer')) return tag;
-    const value = [...tokens, ...protection].join(' ');
+    const value = [...tokens, 'noopener', 'noreferrer'].join(' ');
     return `${open}${attrs.slice(0, rel.start)}rel=${rel.quote}${value}${rel.quote}${attrs.slice(rel.end)}>`;
   });
 }
@@ -255,8 +264,8 @@ export function addRelToBlankTargets(html: string): string {
  *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
- * - rel sur les liens target="_blank" non protégés : noopener (internes),
- *   noopener noreferrer (externes) (addRelToBlankTargets)
+ * - Liens target="_blank" (addRelToBlankTargets) : internes rouverts dans le
+ *   même onglet, externes protégés par rel="noopener noreferrer"
  */
 export function processHtmlContent(
   html: string,

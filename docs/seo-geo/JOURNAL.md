@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Phase 2A — règle UX finale : liens internes dans le même onglet · Claude de Laurent
+
+**Chantier** : phase 2A du blog | **PR** : #52, brouillon, non fusionnée | **Base** : `main` `06483a3`
+
+**Quoi** — `addRelToBlankTargets` (`lib/blog-utils.ts`) applique la règle UX finale de Laurent du 29/09, qui remplace l'arbitrage précédent (`noopener` seul sur les liens internes) :
+- lien interne (`isInternalHref`) en `target="_blank"` : `target` retiré, ouverture dans le même onglet ; aucun `rel` ajouté, un `rel` existant conservé tel quel ;
+- lien externe en `_blank` sans protection : `target` conservé, `rel="noopener noreferrer"` ajouté ;
+- lien externe déjà protégé, et toute autre cible (`_new`, `_self`…) : inchangés.
+
+Liens internes : `/…`, `#…`, `?…`, et URL absolues vers `packshot-creator.com` ou `www.packshot-creator.com`. Les sous-domaines, `mailto:`, `tel:` et les liens sans `href` sont externes. Aucun de ces cas n'existe dans le corpus : aucun `mailto:` ni `tel:`, même hors `_blank`.
+
+**Pourquoi** — Règle UX de Laurent du 29/09 : un lien interne PackshotCreator reste dans le même onglet ; les liens externes gardent `_blank`, protégés.
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Les 41 liens internes des articles s'ouvrent dans l'onglet courant. Les liens externes gardent leur comportement, avec la protection `window.opener`.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 290/290 (260 sur `main`) ; `verifier-json` : 186 JSON valides ; `npx next build` vert ; ESLint : seules les 2 alertes `no-explicit-any` de `getBlockText`, déjà présentes sur `main`.
+- HTML prérendu, `main` contre branche, 375 fichiers : 83 articles modifiés, rien d'autre. `fr/blog/generer-images-produit-ia` s'ajoute aux 82 précédents : c'est la page du lien interne absolu qui portait déjà `rel="noopener"`.
+- Sur les 125 articles, 0 différence non classée. La transformation attendue a été réappliquée à `main` par un code Python indépendant : 41 `target` retirés, 266 `rel` ajoutés.
+- Liens des articles, façades exclues, de `main` à la branche :
+  - 1 078 liens des deux côtés : aucun lien supprimé ;
+  - 0 `href`, 0 texte de lien et 0 autre attribut modifié ;
+  - `_blank` : 335 → 294 ; internes en `_blank` : 41 → 0 ; externes en `_blank` : 294 → 294, dont 0 sans `rel` (266 sur `main`) ;
+  - les 28 externes déjà en `rel="noopener"` sont identiques ; l'interne en `rel="noopener"` perd `target` et garde son `rel` ;
+  - 2 `target="_new"`, 6 balises `img` vers un `.mp4` et 62 façades inchangés.
+- E2E : 6 specs, build local de la branche, Chromium et Pixel 5, résolution DNS externe coupée : 557 réussis et 25 échecs, les mêmes 25 que sur `main` ; 0 nouvel échec.
+- Chromium, 125 articles, 1440 et 390 px, comparés aux mesures de `main` : aucune différence hors champs attendus ; 250 réponses 200 ; 0 lien interne relatif en `_blank` ; 0 lien `_blank` sans `rel` ; 0 requête YouTube au chargement ; débordement à 390 : 0 page.
+- Clic réel, Chromium : « À propos » (`/fr/a-propos`, `focus-sur-lhyperfocus`) et le lien absolu `https://www.packshot-creator.com/fr/ia-photo-produit` (`generer-images-produit-ia`) naviguent dans l'onglet courant, sans nouvel onglet ; un lien externe (`lesnumeriques.com`) ouvre un nouvel onglet.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`.
+
+**Non regardé** — `www` (R4), Preview Vercel (SSO), Safari et appareils réels. MP4 : aucune modification (`MP4_SAFE_TO_FIX = NO`), backlog « intégrations legacy à traiter avec preuve ».
+
+**Suite** — GO final de Laurent, puis fusion, `smoke.mjs` sur `sysnext.vercel.app` et contrôle Chrome sur `www`. Sur `www`, vérifier qu'un lien interne d'article, par exemple « À propos » dans `/fr/blog/focus-sur-lhyperfocus`, s'ouvre dans le même onglet.
+
+---
+
 ## 2026-09-29 · Phase 2A — arbitrage F22 de Laurent : `noopener` seul sur les liens internes · Claude de Laurent
 
 **Chantier** : phase 2A du blog | **PR** : #52, brouillon, non fusionnée | **Base** : `main` `06483a3`
