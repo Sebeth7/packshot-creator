@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-29 · R01 — sélecteur de langue des 8 hubs de-ch · Claude de Laurent
 
-**Chantier** : R01 de l'audit de maillage du 29/09 (seul P0 du rapport) | **PR** : brouillon, branche `claude/gracious-dijkstra-efzyen`, non fusionnée | **Base** : `main` `37146c2`
+**Chantier** : R01 de l'audit de maillage du 29/09 (seul P0 du rapport) | **PR** : #58, brouillon, branche `claude/gracious-dijkstra-efzyen`, non fusionnée | **Base** : `main` `37146c2`
 
 **Quoi** — `localeSwitchHref` (`i18n/deChCoverage.ts`) : en de-ch seulement, le chemin concret `/industrie/<slug>` est ramené au motif `/industrie/[slug]` avant résolution. La table existante `DE_CH_TO_FR_SECTOR` fait le reste : aucun mapping ajouté. Test de non-régression `lib/__tests__/locale-switch-de-ch.test.ts` (47 cas).
 
