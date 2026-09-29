@@ -83,6 +83,11 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - dans Chrome sur `www` : en-tête `Referer: https://www.packshot-creator.com/` sur la requête `embed/…`, lecture sans erreur 153, desktop puis Safari iOS et Chrome Android réels ;
 - vérification séparée de la Managed Transform « Add security headers » ; aucune modification Cloudflare décidée.
 
+Chevauchement avec la PR #44 (brouillon, `claude/admiring-hypatia-7pir8f`, vue après l'ouverture de #46). #44 remplace les mêmes 57 iframes par une façade locale dans `processHtmlContent`. Son lecteur, créé après « Autoriser et lire la vidéo », porte déjà `referrerPolicy = 'strict-origin-when-cross-origin'` (`components/blog/YouTubeConsent.tsx`).
+- Les deux PR modifient les mêmes lignes de `lib/blog-utils.ts` : conflit textuel pour la seconde fusionnée.
+- Si #44 est fusionnée, #46 devient sans objet sur le blog.
+- La réservation de `lib/blog-utils.ts` par #44 n'existe que sur sa branche, pas sur `main` : elle n'était pas visible au rituel de lecture.
+
 ---
 
 ## 2026-09-29 · F5 — contrôle visuel sur `www` et retour de Sébastien · Claude de Laurent
