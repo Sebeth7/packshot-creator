@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · #44 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : vidéos YouTube des articles, façade locale et consentement contextuel | **PR** : #44, fusionnée sur GO final de Laurent | **Commit de fusion** : `b10bb5e` (`main`), le 29/09/2026 à 08:17:25 UTC | **Tête fusionnée** : `cfb271d` | **Base avant fusion** : `a1771be`
+
+**Quoi** — Laurent a validé le Preview et le texte de la page de confidentialité. Contrôles préalables à 08:17 UTC :
+- `main` inchangé (`a1771be`) ;
+- tête #44 `cfb271d` ;
+- PR fusionnable (`clean`) ;
+- 4 checks et Vercel en succès ;
+- 4 commits, tous connus.
+
+La PR a été sortie du brouillon, « NE PAS FUSIONNER » retiré du titre et de la description, puis fusionnée par commit de fusion. PR #48 non touchée, phase 1 non lancée, aucun changement dans `content/**` ni côté Cloudflare.
+
+**Vérifié** —
+- `main` = `b10bb5e`, parents `a1771be` et `cfb271d` ; l'arbre de `main` est identique à celui de `cfb271d`, la tête testée.
+- Production hors Cloudflare : `sysnext.vercel.app` sert les façades à partir de 08:18:53 UTC (première observation, relevé toutes les 10 s). À 08:16:49 UTC, avant fusion, l'article cible avait encore 2 iframes YouTube brutes.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 08:18:58 UTC : vert, 17 pages et 3 ressources (sitemap 325 URL, robots.txt, llms.txt).
+- Les 49 articles à vidéo répondent 200 : 57 façades (FR 29, EN 28), 0 iframe YouTube brute.
+- `/fr/confidentialite` et `/en/confidentialite` répondent 200. Le nouveau texte de l'article 6 (« Vidéos YouTube ») est présent, et l'ancienne phrase « Aucun cookie marketing n'est utilisé actuellement sur ce site. » ne l'est plus. `/de-ch/confidentialite` répond 404 : les pages légales sont en français seulement (`DE_CH_PIN_FR` dans `i18n/deChCoverage.ts`), et #44 ne modifie pas ce fichier.
+
+**Supposé** — `www` sert le même HTML que `sysnext.vercel.app` (même projet, le Worker relaie le HTML sans le réécrire).
+
+**Non regardé** — `www` (R4 : 403 de challenge Cloudflare pour les scripts, certificat du proxy refusé par le Chromium du conteneur) ; parcours de consentement en production réelle ; Safari et appareils réels.
+
+**Suite** —
+- Laurent, dans Chrome sur `www`, un article à vidéo, desktop puis mobile :
+  - aucune requête YouTube avant le clic ;
+  - fenêtre d'information, puis « Autoriser et lire la vidéo » : lecture sans erreur 153 ;
+  - catégorie « Vidéos YouTube » dans le bandeau cookies.
+- Points restés ouverts : vide Webflow sous les 2 figures Vimeo ; clic « Personnaliser » en Pixel 5 (existe déjà sur `main`) ; 3 iframes sans `title` (saasphoto 2, Vimeo 1) ; audit de la carte Google Maps de `/contact` ; garde `addYouTubeReferrerPolicy` retirable sur décision ; #48 ne concerne plus que les 2 figures Vimeo.
+
+---
+
 ## 2026-09-29 · #44 — reprise technique sur `main` (vidéos YouTube en façade, correctif 153 de #46 conservé) · Claude de Laurent
 
 **Chantier** : vidéos YouTube des articles, façade locale et consentement contextuel | **PR** : #44, brouillon, non fusionnée | **Branche** : `claude/admiring-hypatia-7pir8f` | **Tête avant reprise** : `c304f5d` | **Base intégrée** : `main` `a1771be`, par commit de fusion (pas de rebase)
