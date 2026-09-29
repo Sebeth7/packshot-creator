@@ -34,6 +34,62 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · YouTube erreur 153 — `referrerpolicy` sur les iframes YouTube du blog · Claude de Laurent
+
+**Chantier** : correctif ponctuel, hors `06-CHANTIERS.md` (erreur YouTube 153 signalée par Laurent) | **PR** : #46, brouillon (branche `claude/youtube-153-referrer-policy-ykjqx9`) | **Commit** : `7e4b5cb` | **Base** : `96489d9` (`main`) | **Merge et déploiement** : aucun sans GO explicite de Laurent
+
+**Quoi** — `processHtmlContent` (`lib/blog-utils.ts`) ajoute `referrerpolicy="strict-origin-when-cross-origin"` aux seules iframes d'embed YouTube (`youtube.com` ou `youtube-nocookie.com`, avec ou sans `www`, chemin `/embed/`) qui n'en portent pas déjà. Aucun JSON de contenu, aucune URL de vidéo, aucun texte, aucun en-tête global ni réglage Cloudflare modifiés.
+
+**Pourquoi** — Erreur 153 (« Erreur de configuration du lecteur vidéo ») constatée par Laurent sur plusieurs articles en production, dont `/en/blog/5-cameras-realistic-3d-animation`. YouTube exige le Referer pour identifier le site intégrant (Required Minimum Functionality : https://developers.google.com/youtube/terms/required-minimum-functionality). Chaîne établie :
+- la réponse de `www` porte `referrer-policy: same-origin` ; l'origine Vercel (`sysnext.vercel.app`) n'envoie ni cet en-tête ni balise `<meta name="referrer">`, et le Worker déployé (`packshot-router`, lu par l'API Cloudflare) ne contient aucune occurrence de « referrer » ;
+- avec `same-origin`, le navigateur n'envoie aucun Referer vers YouTube ;
+- les 57 iframes issues de Webflow n'ont aucun `referrerpolicy` et héritent de la politique de la page ;
+- les deux façades qui portaient déjà ce correctif (07/08, `components/video/YouTubeFacade.tsx`, `components/media/VideoFacade.tsx`) ne sont importées nulle part.
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Dès la mise en production : lecture des vidéos YouTube de 49 articles (25 FR, 24 EN, 57 iframes) sans erreur 153 sur `www`. Aucun effet SEO direct attendu : texte, liens, balises meta, canonical, hreflang et JSON-LD inchangés. [Inférence] Effet indirect possible sur l'engagement de ces pages, non mesurable séparément.
+
+**Vérifié** —
+- `npx tsc --noEmit` : OK. `npx vitest run` : 232/232, dont 9 nouveaux (Vitest n'est pas lancé par la CI). Les 9 nouveaux tests, lancés contre la version `main` de `blog-utils.ts` : 5 échouent, 4 passent (ce sont les invariants « inchangé »). `npx eslint --max-warnings=0` sur les 2 fichiers : aucune erreur nouvelle ; 2 erreurs `no-explicit-any` préexistantes dans `getBlockText`, non touchée (étape Lint de la CI en `continue-on-error`). `node scripts/seo/verifier-json.mjs` : 186 fichiers valides. `npx next build` (valeurs factices de la CI) : vert.
+- HTML prérendu du build :
+  - FR : 29/29 iframes YouTube avec l'attribut, sur 25 pages ;
+  - EN : 28/28, sur 24 pages ;
+  - de-ch : 0 iframe YouTube sur 48 pages ;
+  - aucun attribut en double ; les 6 iframes non YouTube (Vimeo, Sketchfab, saasphoto, 1 FR et 1 EN chacune) sans attribut.
+- De-ch : les vidéos affichées sont des MP4 servis par `videos.packshot-creator.com` (fiches produit, article Alphashot XL G2) ou par le site (`/images/gallery-ia/*.mp4`), hors YouTube. Elles ne dépendent pas du Referer, ce qui explique qu'elles fonctionnent. Aucun embed YouTube de-ch à corriger.
+- Sortie de `processHtmlContent`, `main` contre branche, sur les 125 JSON de `content/` qui portent un champ `content` : 76 identiques ; 49 qui ne diffèrent que par l'attribut (29 FR, 28 EN) ; iframes non YouTube, sommaire et nombre de mots identiques.
+- Playwright (Chromium du conteneur). Page servie sous l'origine `sysnext.vercel.app` avec l'en-tête `Referrer-Policy: same-origin` ajouté, comme devant `www`. Cas A : HTML de production, sans correctif. Cas B : HTML du build local, avec correctif. Pages : l'article EN ci-dessus et son équivalent FR. Profils : desktop 1440 px, iPhone 13 et Pixel 7 (émulation, moteur Chromium).
+  - Referer reçu par `youtube.com/embed/VssNUk1qsXg` : absent dans tous les passages A, `https://sysnext.vercel.app/` dans tous les passages B.
+  - État du lecteur, lu dans le DOM de l'iframe YouTube (`.ytp-error`, classes de `#movie_player`) :
+
+    | Profil | Page | A, sans correctif | B, avec correctif |
+    |---|---|---|---|
+    | desktop 1440 | EN | erreur 153 | lecteur prêt, puis `playing-mode` après clic |
+    | desktop 1440 | FR | erreur 153 | lecteur prêt, puis `playing-mode` après clic |
+    | iPhone 13 | EN | erreur 153 | lecteur prêt (titre et chaîne affichés) |
+    | iPhone 13 | FR | erreur 153 | lecteur prêt |
+    | Pixel 7 | EN | erreur 153 | lecteur prêt, puis `playing-mode` après clic |
+    | Pixel 7 | FR | erreur 153 | lecteur prêt, puis `playing-mode` après clic |
+
+  - Erreur 153 jamais affichée en B. Certains passages ont été relancés : YouTube restait injoignable depuis le conteneur (page d'erreur réseau de Chromium, ou lecteur absent). Ces passages sont écartés du tableau, pas comptés comme des succès. En iPhone 13, le clic émulé ne lance pas la lecture : lecteur prêt, sans erreur. `currentTime` reste à 0 dans tous les cas B : la lecture effective des images n'est pas vérifiée (Chromium sans affichage, réseau du conteneur).
+
+**Supposé** — La source de `referrer-policy: same-origin` : [Inférence] la Managed Transform Cloudflare « Add security headers ». Sa documentation liste exactement `referrer-policy: same-origin`, `x-frame-options: SAMEORIGIN` et `x-content-type-options: nosniff`, relevés devant `www` (https://developers.cloudflare.com/rules/transform/managed-transforms/reference/). Non vérifié : les réglages de la zone ne sont pas lisibles depuis la session, et le relevé a été fait sur une réponse 403 de challenge (R4).
+
+**Non regardé** — Réglages Cloudflare (Managed Transforms, Transform Rules) : rien modifié, à vérifier séparément. Safari et WebKit réels : l'émulation iPhone tourne sur le moteur Chromium. Appareils mobiles réels. Preview Vercel : protégé par le SSO, jeton non transmis ; l'erreur n'y est de toute façon pas reproductible, Cloudflare n'étant pas devant. `www` dans Chrome (R4). Champ `introMedia` des guides (10 iframes embedly Orbitvu), non rendu par le site. Autres tiers soumis au même en-tête `same-origin`.
+
+**Suite** — GO de Laurent pour sortir la PR du brouillon et fusionner. Après fusion :
+- `smoke.mjs` sur `sysnext.vercel.app` ;
+- dans Chrome sur `www` : en-tête `Referer: https://www.packshot-creator.com/` sur la requête `embed/…`, lecture sans erreur 153, desktop puis Safari iOS et Chrome Android réels ;
+- vérification séparée de la Managed Transform « Add security headers » ; aucune modification Cloudflare décidée.
+
+Chevauchement avec la PR #44 (brouillon, `claude/admiring-hypatia-7pir8f`, vue après l'ouverture de #46). #44 remplace les mêmes 57 iframes par une façade locale dans `processHtmlContent`. Son lecteur, créé après « Autoriser et lire la vidéo », porte déjà `referrerPolicy = 'strict-origin-when-cross-origin'` (`components/blog/YouTubeConsent.tsx`).
+- Les deux PR modifient les mêmes lignes de `lib/blog-utils.ts` : conflit textuel pour la seconde fusionnée.
+- Si #44 est fusionnée, #46 devient sans objet sur le blog.
+- La réservation de `lib/blog-utils.ts` par #44 n'existe que sur sa branche, pas sur `main` : elle n'était pas visible au rituel de lecture.
+
+---
+
 ## 2026-09-29 · F5 — contrôle visuel sur `www` et retour de Sébastien · Claude de Laurent
 
 **Chantier** : substitution de page, page témoin `/packshot-e-commerce` (F5) | **PR** : #39 (fusionnée le 28/09, `04919f8`) | **Commit** : voir PR

@@ -20,11 +20,31 @@ export function slugify(text: string): string {
     .replace(/(^-|-$)+/g, '');
 }
 
+// Embed YouTube : youtube.com ou youtube-nocookie.com, avec ou sans www.
+const YOUTUBE_EMBED_SRC = /^(?:https?:)?\/\/(?:www\.)?youtube(?:-nocookie)?\.com\/embed\//i;
+
+/**
+ * YouTube identifie le site intégrant par le Referer (erreur 153 sans lui). Le
+ * Referrer-Policy servi devant le site (same-origin) le supprime en cross-origin :
+ * on envoie l'origin pour les seules iframes d'embed YouTube, comme YouTubeFacade.
+ * Une iframe qui porte déjà un referrerpolicy, ou qui n'est pas un embed YouTube,
+ * est rendue telle quelle.
+ */
+function addYouTubeReferrerPolicy(html: string): string {
+  return html.replace(/<iframe\b[^>]*>/gi, (tag) => {
+    const src = tag.match(/\ssrc\s*=\s*(["'])(.*?)\1/i)?.[2];
+    if (!src || !YOUTUBE_EMBED_SRC.test(src)) return tag;
+    if (/\sreferrerpolicy\b/i.test(tag)) return tag;
+    return tag.replace(/^<iframe\b/i, '<iframe referrerpolicy="strict-origin-when-cross-origin"');
+  });
+}
+
 /**
  * Process Webflow HTML content:
  * - Add IDs to h2/h3 elements for ToC navigation
  * - Extract headings for ToC
  * - Count words for reading time
+ * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  */
 export function processHtmlContent(html: string): {
   processedHtml: string;
@@ -67,10 +87,12 @@ export function processHtmlContent(html: string): {
     '<img$1loading="lazy"$2'
   );
 
+  const withYouTubeReferrer = addYouTubeReferrerPolicy(withLazyImages);
+
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withLazyImages, headings, wordCount };
+  return { processedHtml: withYouTubeReferrer, headings, wordCount };
 }
 
 /**
