@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Phase 2A — arbitrage F22 de Laurent : `noopener` seul sur les liens internes · Claude de Laurent
+
+**Chantier** : phase 2A du blog | **PR** : #52, brouillon, non fusionnée | **Base** : `main` `06483a3`
+
+**Quoi** — `addRelToBlankTargets` distingue désormais la cible du lien (`isInternalHref`, `lib/blog-utils.ts`) :
+- lien `target="_blank"` interne sans `rel` : `rel="noopener"` seul ;
+- lien externe sans `rel` : `rel="noopener noreferrer"`, inchangé par rapport à l'entrée précédente ;
+- `rel` contenant déjà `noopener` ou `noreferrer` : lien inchangé.
+
+Interne signifie : `href` résolu depuis `https://www.packshot-creator.com/` vers `packshot-creator.com` ou `www.packshot-creator.com`, en http ou https. Cela couvre les chemins relatifs, les ancres, les requêtes et les URL absolues du site. Tout le reste est externe : autres domaines, sous-domaines (`videos.`, `trail.`…), `mailto:`, `tel:`, `href` absent. Aucun `mailto:`, `tel:`, sous-domaine ni lien sans `href` dans le corpus.
+
+**Pourquoi** — Arbitrage de Laurent du 29/09 sur les deux points laissés ouverts :
+- les 29 liens `rel="noopener"` restent tels quels : `noopener` protège déjà `window.opener` en conservant le Referer ;
+- les 40 liens internes n'ont pas besoin de `noreferrer`, qui supprimerait le Referer d'une navigation interne sans nécessité.
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Identique à l'entrée précédente, sauf pour les 40 liens internes `_blank`, qui gardent leur Referer.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 289/289 (260 sur `main`) ; `verifier-json` : 186 JSON valides ; `npx next build` vert ; ESLint : seules les 2 alertes `no-explicit-any` de `getBlockText`, déjà présentes sur `main`.
+- HTML prérendu, `main` contre branche, 375 fichiers : seuls les 82 articles déjà attendus diffèrent. Sur les 125 articles, 0 différence non classée. Les 306 `rel` ajoutés sont conformes à la règle, vérifiée par un classement indépendant du code (`urllib` Python) : 40 internes en `noopener`, 266 externes en `noopener noreferrer`.
+- Corpus rendu, façades exclues :
+  - 335 liens `_blank`, dont 0 sans `rel` (306 sur `main`) ;
+  - 41 internes, tous en `noopener`, aucun en `noreferrer` : les 40 corrigés et 1 déjà en `rel="noopener"` ;
+  - 294 externes : 266 en `noopener noreferrer` et 28 déjà en `rel="noopener"` ;
+  - les 29 liens `rel` existants identiques octet pour octet ;
+  - 62 façades, 2 `target="_new"` et 6 balises `img` vers un `.mp4` inchangés.
+- E2E : mêmes 6 specs, build local de la branche, Chromium et Pixel 5, résolution DNS externe coupée : 557 réussis et 25 échecs, les mêmes 25 que sur `main` (passage précédent, mêmes conditions) ; 0 nouvel échec.
+- Chromium, 125 articles, 1440 et 390 px, comparés aux mesures de `main` : aucune différence hors champs attendus ; 250 réponses 200 ; 40 liens internes relatifs en `noopener`, aucun en `noreferrer` ; liens `rel="noopener"` seul : 29 → 69 ; 0 lien `_blank` sans `rel` ; 0 requête YouTube au chargement ; débordement à 390 : 0 page.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`.
+
+**Non regardé** — `www` (R4), Preview Vercel (SSO), Safari et appareils réels. MP4 : aucune modification (`MP4_SAFE_TO_FIX = NO`). Ils rejoignent, sur décision de Laurent, le backlog « intégrations legacy à traiter avec preuve », avec saasphoto, Sketchfab, F10, les `alt` Webflow et les traductions.
+
+**Suite** — GO final de Laurent, puis fusion, `smoke.mjs` sur `sysnext.vercel.app` et contrôle Chrome sur `www` des 3 pages à shortcode.
+
+---
+
 ## 2026-09-29 · Phase 2A — shortcodes `[embed]` YouTube en façade et `rel` des liens `target="_blank"` (F22), au rendu · Claude de Laurent
 
 **Chantier** : phase 2A du blog, correctifs runtime des anciens contenus Webflow, sur consigne de Laurent du 29/09 | **PR** : #52, brouillon, branche `claude/awesome-dirac-j9uvw1`, non fusionnée | **Base** : `main` `06483a3`

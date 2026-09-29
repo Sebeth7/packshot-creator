@@ -188,34 +188,59 @@ export function transformEmbedShortcodes(
 
 const ANCHOR_OPEN_TAG = /<a\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi;
 const ATTRIBUTE = /([^\s"'>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+const SITE_ORIGIN = 'https://www.packshot-creator.com/';
+const SITE_HOSTS = new Set(['packshot-creator.com', 'www.packshot-creator.com']);
+
+/**
+ * Lien interne : href résolu, depuis le site, vers packshot-creator.com ou
+ * www.packshot-creator.com en http(s). Couvre les chemins relatifs (/…, …),
+ * les ancres (#…), les requêtes (?…) et les URL absolues du site. Tout le reste
+ * est externe : autres domaines, sous-domaines (videos., trail.…), mailto:, tel:,
+ * href absent ou illisible.
+ */
+export function isInternalHref(href: string | null): boolean {
+  if (href === null) return false;
+  let url: URL;
+  try {
+    url = new URL(decodeHtmlEntities(href).trim(), SITE_ORIGIN);
+  } catch {
+    return false;
+  }
+  return (url.protocol === 'https:' || url.protocol === 'http:') && SITE_HOSTS.has(url.hostname);
+}
 
 /**
  * F22 : un lien `target="_blank"` sans protection ouvre un onglet qui peut
- * atteindre la page d'origine (window.opener). Ajoute `rel="noopener noreferrer"`
- * aux liens `target="_blank"` qui n'ont pas de rel. Un rel existant garde tous ses
- * jetons, ses guillemets et sa place : s'il contient déjà noopener ou noreferrer,
- * le lien est inchangé ; sinon, noopener et noreferrer sont ajoutés à la suite.
+ * atteindre la page d'origine (window.opener). Arbitrage de Laurent du 29/09 :
+ * - lien sans rel, interne (isInternalHref) : `rel="noopener"`, le Referer est conservé ;
+ * - lien sans rel, externe : `rel="noopener noreferrer"` ;
+ * - rel existant contenant noopener ou noreferrer : lien inchangé ;
+ * - rel existant sans l'un ni l'autre : jetons, guillemets et place conservés,
+ *   jetons de protection ajoutés à la suite selon la même règle.
  * Jamais de second attribut rel ; href, target et texte du lien intacts.
  */
 export function addRelToBlankTargets(html: string): string {
   return html.replace(ANCHOR_OPEN_TAG, (tag, attrs: string) => {
     let target: string | null = null;
+    let href: string | null = null;
     let rel: { start: number; end: number; value: string; quote: string } | null = null;
     for (const m of attrs.matchAll(ATTRIBUTE)) {
       const name = m[1].toLowerCase();
       const value = m[2] ?? m[3] ?? m[4] ?? '';
       if (name === 'target' && target === null) target = value;
+      else if (name === 'href' && href === null) href = value;
       else if (name === 'rel' && rel === null) {
         rel = { start: m.index, end: m.index + m[0].length, value, quote: m[3] !== undefined ? "'" : '"' };
       }
     }
     if (target === null || target.toLowerCase() !== '_blank') return tag;
+    const protection = isInternalHref(href) ? ['noopener'] : ['noopener', 'noreferrer'];
     const open = tag.slice(0, 2); // « <a » ou « <A », tel quel
-    if (!rel) return `${open}${attrs.trimEnd()} rel="noopener noreferrer">`;
+    if (!rel) return `${open}${attrs.trimEnd()} rel="${protection.join(' ')}">`;
     const tokens = rel.value.split(/[\t\n\f\r ]+/).filter(Boolean);
     const lower = tokens.map((t) => t.toLowerCase());
     if (lower.includes('noopener') || lower.includes('noreferrer')) return tag;
-    const value = [...tokens, 'noopener', 'noreferrer'].join(' ');
+    const value = [...tokens, ...protection].join(' ');
     return `${open}${attrs.slice(0, rel.start)}rel=${rel.quote}${value}${rel.quote}${attrs.slice(rel.end)}>`;
   });
 }
@@ -230,7 +255,8 @@ export function addRelToBlankTargets(html: string): string {
  *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
- * - rel="noopener noreferrer" sur les liens target="_blank" non protégés (addRelToBlankTargets)
+ * - rel sur les liens target="_blank" non protégés : noopener (internes),
+ *   noopener noreferrer (externes) (addRelToBlankTargets)
  */
 export function processHtmlContent(
   html: string,
