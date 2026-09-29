@@ -34,6 +34,56 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Phase 2A — shortcodes `[embed]` YouTube en façade et `rel` des liens `target="_blank"` (F22), au rendu · Claude de Laurent
+
+**Chantier** : phase 2A du blog, correctifs runtime des anciens contenus Webflow, sur consigne de Laurent du 29/09 | **PR** : brouillon, branche `claude/awesome-dirac-j9uvw1`, non fusionnée | **Base** : `main` `06483a3`
+
+**Quoi** —
+- **Shortcodes** : `transformEmbedShortcodes` (`lib/blog-utils.ts`) remplace au rendu chaque `[embed]<URL YouTube>[/embed]` d'un paragraphe par la façade de #44 (`renderFacade`, désormais exportée de `lib/youtube.ts`, sans autre changement). Aucune iframe, aucun appel YouTube avant accord ; le texte du paragraphe autour du shortcode reste dans un paragraphe aux mêmes attributs, une partie vide n'est pas émise. Le compteur vidéo inclut ces façades : `YouTubeConsent` est monté sur les 3 pages concernées.
+- **F22** : `addRelToBlankTargets` ajoute `rel="noopener noreferrer"` aux liens `target="_blank"` sans `rel`. Un `rel` existant garde ses jetons, ses guillemets et sa place ; s'il contient déjà `noopener` ou `noreferrer`, le lien est inchangé, sinon les deux jetons sont ajoutés à la suite. `target`, `href` et texte intacts, jamais de second `rel`.
+- **MP4** : non traités (`MP4_SAFE_TO_FIX = NO`, voir « Non regardé »).
+
+**Pourquoi** — Audit phase 2 : 5 shortcodes affichés en texte brut sur 3 pages, avec 19 px de débordement horizontal à 390 px ; 306 liens `target="_blank"` sans `rel` sur 79 pages.
+
+**Micro-audit avant code** —
+- 5 shortcodes, tous `https://youtu.be/<id>` : `HVmUF6Mjan8` ×3 et `xZ_lJM-ClSs` ×2, dans `content/blog/fr/photographie-2d-de-produits.json`, `content/blog/en/photographie-2d-de-produits.json` (2 chacun, paragraphe seul) et `content/blog/fr/boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter.json` (1, en fin de paragraphe après du texte). Aucune iframe YouTube sur ces 3 pages avant correction.
+- 6 `<img src="*.mp4">` sur 6 pages, 4 fichiers présents (235 à 301 Ko, piste vidéo seule, aucune piste audio, 1,8 à 2,4 s, 7 à 19 images). Ce ne sont pas des vidéos Webflow : balisage Webflow `data-rt-type="image"`, et le script de migration historique (`scripts/extract-webflow-content.mjs`, lu dans `061e05d`, l. 380-393) convertissait tout GIF en MP4 par ffmpeg sans changer la balise `<img>`.
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/youtube.ts` (mot-clé `export` sur `renderFacade` et `FacadeInput`), `lib/__tests__/blog-utils.test.ts`, `lib/__tests__/youtube.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier de `content/**`, `messages/*`, #27, #43, ni Cloudflare touché.
+
+**Effet attendu** — Dès la mise en production : 3 pages sans shortcode visible ni débordement mobile, 5 vidéos lisibles après accord ; 306 liens protégés contre `window.opener`. Aucun effet SEO direct attendu : textes, titres, `href`, JSON-LD et sitemap inchangés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 284/284 (14 fichiers) ; `verifier-json` : 186 JSON valides ; `npx next build` vert (valeurs factices de la CI) ; ESLint sur les fichiers modifiés : 2 alertes `no-explicit-any` de `getBlockText`, déjà présentes sur `main`.
+- Test corpus de #44 (`youtube.test.ts`) adapté sans affaiblissement : 57 façades issues d'iframes (inchangé), 5 issues de shortcodes, total 62, aucune iframe YouTube.
+- HTML prérendu, build de `main` contre build de la branche, 125 articles (DOM et flux RSC), identifiants de build neutralisés, chaque différence classée automatiquement :
+  - 82 pages modifiées : 79 par F22 seul, 3 par les shortcodes seuls ;
+  - 306 attributs `rel="noopener noreferrer"` ajoutés, rien d'autre sur ces liens ;
+  - 5 shortcodes remplacés par 5 façades ; 4 paragraphes réduits au shortcode retirés, 1 paragraphe conservé avec son texte ;
+  - hors article, sur les 3 pages à shortcode : `<dialog>` de `YouTubeConsent` inséré, identique octet pour octet à celui des pages vidéo existantes, et sa référence dans le flux RSC ;
+  - 0 différence non classée. Hors articles : 375 fichiers prérendus comparés, seules différences les 82 articles et les `lastmod` du sitemap (heure de build, 325 URL des deux côtés).
+- Comptages sur les articles rendus, `main` → branche : shortcodes 5 → 0 ; liens `target="_blank"` sans `rel` 306 → 0 ; liens `_blank` hors façades 335 → 335 ; 29 liens `rel="noopener"` identiques ; façades 57 → 62 ; iframes YouTube 0 → 0 ; `<img src="*.mp4">` 6 → 6 ; `__wf_reserved_inherit` 167 → 167 ; iframes sans `title` 3 → 3 ; `h2` 706, `h3` 838, `h4` 147, `li` 2 232, `ul` 647, `ol` 30, `.tldr` 7 : inchangés ; `p` 2 465 → 2 461.
+- Chromium, 1440 et 390 px, `main` contre branche :
+  - 3 pages à shortcode : débordement 19 px → 0 à 390 px ; façades 662×372 et 358×201 (ratio 1,78), écart de 32 px avant et après, comme les façades existantes ; styles de paragraphes et de listes identiques ; 0 requête YouTube au chargement ; au clic, fenêtre d'information, toujours 0 requête ; « Autoriser et lire la vidéo » : lecteur `youtube-nocookie.com/embed/<id>?autoplay=1&rel=0`, `title` et `referrerpolicy="strict-origin-when-cross-origin"`, comme sur une façade existante.
+  - 125 articles, 1440 et 390 : 250 réponses 200 par cible ; aucune différence hors champs attendus (texte hors shortcodes, titres, listes, TL;DR, liens du sommaire, Vimeo, Sketchfab, saasphoto, scripts Orbitvu, images, MP4) ; 0 requête YouTube ; débordement à 390 : 3 pages sur `main`, 0 sur la branche.
+- E2E : 6 specs (`anchors`, `seo`, `mobile-overflow`, `external-links`, `youtube-consent`, `cookie-banner`), builds locaux de `main` et de la branche, Chromium et Pixel 5, résolution DNS externe coupée : 557 réussis et 25 échecs de chaque côté, les mêmes 25 qu'à la phase 1 (SEO 16, bandeau cookies 5, ancre `#calculateur-roi` 2, débordement de `/fr` 2), aucun sur un article ; 0 nouvel échec.
+  - Premier passage écarté : 91 échecs sur `main`, 108 sur la branche, presque tous des dépassements de délai. Cause établie : 3 requêtes `/_next/image` (logos `.avif`) bloquées sur le serveur local de la branche après l'interruption d'un passage, les 17 échecs supplémentaires portant sur `/fr` et `/en/studios-photo-automatises`, dont le HTML est identique entre `main` et la branche. Relance complète après redémarrage des deux serveurs.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`, comme pour #44 et #50.
+
+**Non regardé** —
+- **MP4 (`MP4_SAFE_TO_FIX = NO`)** : origine GIF établie, mais le nombre de boucles du GIF d'origine est perdu à la conversion et les GIF ne sont pas dans le dépôt (archive web injoignable depuis le conteneur : 429 puis connexion réinitialisée). Le nom accessible des 4 vidéos dont l'`alt` vaut `__wf_reserved_inherit` relève de l'arbitrage réservé à ces `alt`. Aucune modification.
+- F10, `alt="__wf_reserved_inherit"`, saasphoto, Sketchfab, Vimeo, consentement Orbitvu, sommaire mobile, traductions : hors périmètre sur consigne de Laurent.
+- 2 liens `target="_new"` (gnpp.wordpress.com, FR et EN) : hors du périmètre `_blank`, inchangés.
+- `www` (R4), Preview Vercel (SSO), Safari et appareils réels.
+
+**Suite** — Deux interprétations à confirmer par Laurent avant fusion :
+- les 29 liens `rel="noopener"` sont laissés inchangés, alors que la consigne « ajouter les jetons manquants » donnerait `noopener noreferrer`, comme l'exige `e2e/external-links.spec.ts` sur les pages hors blog ;
+- les 40 liens internes `target="_blank"` reçoivent `rel` (condition de « WITHOUT_REL = 0 »), sans changement de `target` ni de `href`.
+Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis contrôle Chrome sur `www` des 3 pages à shortcode.
+
+---
+
 ## 2026-09-29 · #50 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : phase 1 structurelle du blog (F1, F16, F19, F11, F2 limité aux 2 Vimeo) | **PR** : #50, fusionnée sur GO final de Laurent | **Commit de fusion** : `28a1169` (`main`), le 29/09/2026 à 10:33:42 UTC | **Tête fusionnée** : `a9aae77` | **Base avant fusion** : `2de576a`

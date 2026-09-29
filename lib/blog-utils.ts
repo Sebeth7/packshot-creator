@@ -2,7 +2,13 @@
  * Utility functions for blog content processing
  */
 
-import { transformYouTubeEmbeds, type YouTubeFacadeLabels } from './youtube';
+import {
+  DEFAULT_YOUTUBE_LABELS,
+  isYouTubeId,
+  renderFacade,
+  transformYouTubeEmbeds,
+  type YouTubeFacadeLabels,
+} from './youtube';
 
 export interface HeadingData {
   id: string;
@@ -88,15 +94,143 @@ export function decodeHtmlEntities(text: string): string {
   });
 }
 
+/** Durée YouTube « 90 », « 90s », « 1m30s », « 1h2m3s » → secondes ; sinon null. */
+function parseYouTubeTime(raw: string | null): number | null {
+  if (!raw) return null;
+  const m = raw.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$/i);
+  if (!m) return null;
+  const seconds = Number(m[1] ?? 0) * 3600 + Number(m[2] ?? 0) * 60 + Number(m[3] ?? 0);
+  return seconds > 0 ? seconds : null;
+}
+
+const YOUTU_BE_HOST = /^(?:www\.)?youtu\.be$/i;
+const YOUTUBE_HOST = /^(?:[a-z0-9-]+\.)*youtube(?:-nocookie)?\.com$/i;
+
+/**
+ * Identifiant et point de départ d'une URL de vidéo YouTube : youtu.be/<id>,
+ * youtube.com/watch?v=<id>, youtube.com/embed/<id>. Toute autre URL : null.
+ */
+export function parseYouTubeUrl(raw: string): { id: string; start: number | null } | null {
+  let url: URL;
+  try {
+    url = new URL(raw.startsWith('//') ? `https:${raw}` : raw);
+  } catch {
+    return null;
+  }
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+  let id: string | null = null;
+  if (YOUTU_BE_HOST.test(url.hostname)) id = url.pathname.split('/')[1] ?? null;
+  else if (YOUTUBE_HOST.test(url.hostname)) {
+    if (url.pathname === '/watch') id = url.searchParams.get('v');
+    else id = url.pathname.match(/^\/embed\/([^/]+)/)?.[1] ?? null;
+  }
+  if (!isYouTubeId(id)) return null;
+  return { id, start: parseYouTubeTime(url.searchParams.get('t') ?? url.searchParams.get('start')) };
+}
+
+const VOID_ELEMENTS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+
+/** Vrai si chaque balise ouverte du fragment y est refermée (hors éléments vides). */
+function hasBalancedTags(fragment: string): boolean {
+  const open: string[] = [];
+  for (const [, closing, name] of fragment.matchAll(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)\b(?:[^>"']|"[^"]*"|'[^']*')*>/g)) {
+    const tag = name.toLowerCase();
+    if (VOID_ELEMENTS.has(tag)) continue;
+    if (!closing) open.push(tag);
+    else if (open.pop() !== tag) return false;
+  }
+  return open.length === 0;
+}
+
+// Shortcode WordPress `[embed]<URL>[/embed]`, resté en texte brut dans des
+// paragraphes des anciens articles Webflow. Un paragraphe ne contient pas d'autre <p>.
+const EMBED_SHORTCODE = /\[embed\]\s*([^\s<>[\]]+?)\s*\[\/embed\]/gi;
+const PARAGRAPH = /<p\b((?:[^>"']|"[^"]*"|'[^']*')*)>((?:(?!<\/p>)[\s\S])*?)<\/p>/gi;
+
+/**
+ * Remplace chaque shortcode `[embed]<URL YouTube>[/embed]` d'un paragraphe par la
+ * façade des vidéos YouTube (lib/youtube.ts) : aucune iframe, lecteur créé après
+ * accord par components/blog/YouTubeConsent.tsx. Le texte du paragraphe situé
+ * avant ou après le shortcode reste dans un paragraphe aux mêmes attributs ; une
+ * partie vide n'est pas émise. Un shortcode non YouTube, ou pris dans une balise
+ * en ligne non refermée (<strong>…), est laissé tel quel. Deux passages donnent la
+ * même sortie.
+ */
+export function transformEmbedShortcodes(
+  html: string,
+  labels: YouTubeFacadeLabels = DEFAULT_YOUTUBE_LABELS,
+): { html: string; count: number } {
+  let count = 0;
+  const out = html.replace(PARAGRAPH, (paragraph, attrs: string, inner: string) => {
+    const parts: string[] = [];
+    let pending = '';
+    let cursor = 0;
+    for (const m of inner.matchAll(EMBED_SHORTCODE)) {
+      const before = pending + inner.slice(cursor, m.index);
+      cursor = m.index + m[0].length;
+      const video = parseYouTubeUrl(decodeHtmlEntities(m[1]));
+      if (!video || !hasBalancedTags(before)) {
+        pending = before + m[0];
+        continue;
+      }
+      if (!isBlank(before)) parts.push(`<p${attrs}>${before}</p>`);
+      parts.push(renderFacade({ ...video, title: '', captionHtml: null, align: 'fullwidth' }, labels));
+      count++;
+      pending = '';
+    }
+    if (parts.length === 0) return paragraph;
+    const after = pending + inner.slice(cursor);
+    if (!isBlank(after)) parts.push(`<p${attrs}>${after}</p>`);
+    return parts.join('');
+  });
+  return { html: out, count };
+}
+
+const ANCHOR_OPEN_TAG = /<a\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi;
+const ATTRIBUTE = /([^\s"'>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+
+/**
+ * F22 : un lien `target="_blank"` sans protection ouvre un onglet qui peut
+ * atteindre la page d'origine (window.opener). Ajoute `rel="noopener noreferrer"`
+ * aux liens `target="_blank"` qui n'ont pas de rel. Un rel existant garde tous ses
+ * jetons, ses guillemets et sa place : s'il contient déjà noopener ou noreferrer,
+ * le lien est inchangé ; sinon, noopener et noreferrer sont ajoutés à la suite.
+ * Jamais de second attribut rel ; href, target et texte du lien intacts.
+ */
+export function addRelToBlankTargets(html: string): string {
+  return html.replace(ANCHOR_OPEN_TAG, (tag, attrs: string) => {
+    let target: string | null = null;
+    let rel: { start: number; end: number; value: string; quote: string } | null = null;
+    for (const m of attrs.matchAll(ATTRIBUTE)) {
+      const name = m[1].toLowerCase();
+      const value = m[2] ?? m[3] ?? m[4] ?? '';
+      if (name === 'target' && target === null) target = value;
+      else if (name === 'rel' && rel === null) {
+        rel = { start: m.index, end: m.index + m[0].length, value, quote: m[3] !== undefined ? "'" : '"' };
+      }
+    }
+    if (target === null || target.toLowerCase() !== '_blank') return tag;
+    const open = tag.slice(0, 2); // « <a » ou « <A », tel quel
+    if (!rel) return `${open}${attrs.trimEnd()} rel="noopener noreferrer">`;
+    const tokens = rel.value.split(/[\t\n\f\r ]+/).filter(Boolean);
+    const lower = tokens.map((t) => t.toLowerCase());
+    if (lower.includes('noopener') || lower.includes('noreferrer')) return tag;
+    const value = [...tokens, 'noopener', 'noreferrer'].join(' ');
+    return `${open}${attrs.slice(0, rel.start)}rel=${rel.quote}${value}${rel.quote}${attrs.slice(rel.end)}>`;
+  });
+}
+
 /**
  * Process Webflow HTML content:
  * - Add IDs to h2/h3 elements for ToC navigation
  * - Extract headings for ToC (texte décodé, id calculé sur la source : ancres inchangées)
  * - Count words for reading time
- * - Remplacer les iframes YouTube par une façade locale (lib/youtube.ts) :
+ * - Remplacer les shortcodes `[embed]` YouTube (transformEmbedShortcodes) et les
+ *   iframes YouTube par une façade locale (lib/youtube.ts) :
  *   aucun appel à YouTube avant l'accord de l'internaute
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
+ * - rel="noopener noreferrer" sur les liens target="_blank" non protégés (addRelToBlankTargets)
  */
 export function processHtmlContent(
   html: string,
@@ -144,17 +278,24 @@ export function processHtmlContent(
     '<img$1loading="lazy"$2'
   );
 
-  const videos = transformYouTubeEmbeds(withLazyImages, options.youtubeLabels);
+  const shortcodes = transformEmbedShortcodes(withLazyImages, options.youtubeLabels);
+  const videos = transformYouTubeEmbeds(shortcodes.html, options.youtubeLabels);
   // Après la façade, aucune iframe YouTube ne subsiste : addYouTubeReferrerPolicy
   // (#46) ne modifie rien aujourd'hui. Elle reste en garde pour toute iframe
   // YouTube qui échapperait à la façade (erreur 153 sans Referer).
   const withYouTubeReferrer = addYouTubeReferrerPolicy(videos.html);
   const withoutEmptyParagraphs = removeEmptyParagraphs(withYouTubeReferrer);
+  const withSafeBlankTargets = addRelToBlankTargets(withoutEmptyParagraphs);
 
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
-  return { processedHtml: withoutEmptyParagraphs, headings, wordCount, videoCount: videos.count };
+  return {
+    processedHtml: withSafeBlankTargets,
+    headings,
+    wordCount,
+    videoCount: shortcodes.count + videos.count,
+  };
 }
 
 /**

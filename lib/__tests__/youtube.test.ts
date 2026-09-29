@@ -53,11 +53,18 @@ describe('façade YouTube — corpus content/blog', () => {
     expect(all.reduce((n, f) => n + count(f.content, YT_IFRAME), 0)).toBe(57);
   });
 
-  it('57 façades produites, aucune iframe YouTube restante', () => {
-    expect(all.reduce((n, f) => n + f.after.videoCount, 0)).toBe(57);
+  // Shortcodes [embed] YouTube (lib/blog-utils.ts) : 5, dans 3 fichiers sans iframe YouTube.
+  const shortcodes = (s: string) => count(s, /\[embed\]https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}\[\/embed\]/g);
+
+  it('57 façades produites depuis les iframes, 5 depuis les shortcodes [embed], aucune iframe YouTube restante', () => {
+    expect(all.reduce((n, f) => n + shortcodes(f.content), 0)).toBe(5);
+    expect(withVideos.filter((f) => shortcodes(f.content) > 0)).toHaveLength(0);
+    expect(withVideos.reduce((n, f) => n + f.after.videoCount, 0)).toBe(57);
+    expect(all.reduce((n, f) => n + f.after.videoCount, 0)).toBe(57 + 5);
     for (const f of all) {
       expect(count(f.after.processedHtml, YT_IFRAME), f.file).toBe(0);
-      expect(count(f.after.processedHtml, /class="pkc-yt__facade"/g), f.file).toBe(f.before.length);
+      expect(count(f.after.processedHtml, /class="pkc-yt__facade"/g), f.file).toBe(f.before.length + shortcodes(f.content));
+      expect(f.after.videoCount, f.file).toBe(f.before.length + shortcodes(f.content));
     }
   });
 
