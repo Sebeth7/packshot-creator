@@ -34,6 +34,44 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · #55 — périmètre ajusté par Laurent : correction C (Organization distributeur) retirée · Claude de Laurent
+
+**Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD » | **PR** : #55, brouillon, non fusionnée, branche `ccr-28357f20-j8452h` | **Base** : `main` `2854c27`
+
+**Quoi** — Sur consigne de Laurent, avant fusion, la correction C est retirée de #55 :
+- `app/[lang]/distributeur-orbitvu-suisse/page.tsx` est restauré à l'identique de `main` `2854c27` ; `distributorOrganizationSchema` y est de nouveau émis ;
+- les 2 tests Organization sont retirés de `lib/seo/__tests__/json-ld-techniques.test.ts`.
+
+A (fils d'Ariane de-ch), B (étape « Solutions » en 404 retirée) et D (`dateModified` des sources) sont conservés sans changement. Cette entrée remplace, pour C, l'entrée ci-dessous.
+
+**Pourquoi** — Arbitrage de Laurent du 29/09. Aucune donnée source n'était modifiée, mais la sortie publiée sur les 2 pages distributeur changeait sur plusieurs attributs : format des téléphones, `email`, `German` dans le `ContactPoint` CH. Cela relève du chantier D33, pas encore validé.
+
+**Fichiers** — `app/[lang]/distributeur-orbitvu-suisse/page.tsx` (retour à `main`), `lib/seo/__tests__/json-ld-techniques.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Identique à l'entrée ci-dessous pour A, B et D. Aucun effet sur les 2 pages distributeur : leur JSON-LD reste celui de `main`, soit 2 variantes d'`Organization`.
+
+**Vérifié** —
+- `git diff 2854c27` sur le fichier distributeur : vide.
+- `npx tsc --noEmit` vert. Vitest 295/295 : 290 sur `main` et 5 nouveaux, pour A, B et D. `verifier-json` : 186 JSON valides.
+- ESLint complet : 326 messages sur `main` (258 erreurs, 68 alertes) comme sur la branche ; 0 nouveau, 0 disparu.
+- `npx next build` vert pour `main` et pour la branche, variables factices de la CI.
+- Mesure sur les 402 pages, `main` → branche :
+  - pages de-ch à élément de fil d'Ariane redirigé : 21 → 0 ;
+  - pages à élément 404 : 6 → 0 ;
+  - variantes d'`Organization` : 2 → 2, inchangé ;
+  - `Article` émettant le `dateModified` de la source : 0 → 3.
+- Comparaison page par page : 30 différences JSON-LD, toutes classées (A 21, B 6, D 3), 0 non classée. JSON-LD des 2 pages distributeur identique à `main`. HTML hors scripts, `<head>`, statuts, `sitemap.xml`, `robots.txt` et `llms.txt` identiques.
+- Crawl ciblé : les 32 pages concernées (30 corrigées et les 2 pages distributeur) répondent 200, et tous leurs éléments de fil d'Ariane répondent 200.
+- `smoke.mjs` local vert sur `main` et sur la branche, 17 pages et 3 ressources. `e2e/seo.spec.ts`, Chromium : 235 réussis ; 8 échecs, les mêmes 8 sur `main`.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4).
+
+**Suite** — La variante d'`Organization` de la page distributeur rejoint le backlog D33. GO de Laurent, puis fusion, `smoke.mjs` sur `sysnext.vercel.app` et relevé des fils d'Ariane d'une fiche `fotostudio` et d'une page `solutions`.
+
+---
+
 ## 2026-09-29 · JSON-LD techniques — fils d'Ariane de-ch et solutions, Organization distributeur, `dateModified` · Claude de Laurent
 
 **Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD », périmètre strict | **PR** : #55, brouillon, non fusionnée, branche `ccr-28357f20-j8452h` | **Base** : `main` `2854c27`

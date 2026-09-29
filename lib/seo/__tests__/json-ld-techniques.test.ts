@@ -6,7 +6,7 @@ import { articleSchema } from '@/components/seo/SchemaOrg';
 import { getArticle } from '@/lib/content';
 
 // Corrections JSON-LD techniques du 29/09/2026 : fil d'Ariane de-ch (307),
-// étape « Solutions » (404), Organization unique, dateModified des sources.
+// étape « Solutions » (404), dateModified des sources.
 
 const ROOT = process.cwd();
 const SITE = 'https://www.packshot-creator.com';
@@ -84,18 +84,6 @@ describe('BreadcrumbList — URL résolues par les routes localisées', () => {
       return deChPath(route.p) !== route.p; // localisé : 307 en de-ch
     });
     expect(fautes).toEqual([]);
-  });
-});
-
-describe('Organization — une seule définition', () => {
-  it('aucune page ne dérive une variante de organizationSchema()', () => {
-    const variantes = FILES.filter((f) => /\.\.\.organizationSchema\(/.test(fs.readFileSync(path.join(ROOT, f), 'utf8')));
-    expect(variantes).toEqual([]);
-  });
-
-  it('la page distributeur Suisse émet le schéma commun', () => {
-    const src = fs.readFileSync(path.join(ROOT, 'app/[lang]/distributeur-orbitvu-suisse/page.tsx'), 'utf8');
-    expect(src).toMatch(/schema=\{\[\s*organizationSchema\(\),/);
   });
 });
 
