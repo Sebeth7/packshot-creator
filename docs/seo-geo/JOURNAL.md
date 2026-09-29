@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · #52 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : phase 2A du blog | **PR** : #52, fusionnée sur GO final de Laurent | **Commit de fusion** : `9ced920` (`main`), le 29/09/2026 à 15:25:54 UTC | **Tête fusionnée** : `4ff2f07` | **Base avant fusion** : `06483a3`
+
+**Quoi** — La PR #52 a été sortie du brouillon puis fusionnée par commit de fusion, après CI verte sur `4ff2f07` (4 checks et Vercel) et sans fil de revue. Corrections embarquées, au rendu seulement :
+- les 5 shortcodes `[embed]` YouTube passent en façade avec consentement (#44) ;
+- les liens `target="_blank"` des articles sont normalisés : les 41 internes s'ouvrent dans le même onglet, les 266 externes sans protection reçoivent `rel="noopener noreferrer"`.
+
+Aucune autre correction SEO/GEO n'est embarquée, et aucun fichier de `content/**` n'est modifié. Les 6 `<img src="*.mp4">` restent volontairement hors périmètre (backlog « intégrations legacy à traiter avec preuve »).
+
+**Vérifié** —
+- `main` = `9ced920`, parents `06483a3` et `4ff2f07` ; l'arbre de `main` est identique à celui de `4ff2f07`, la tête testée.
+- Production hors Cloudflare : `sysnext.vercel.app` sert le nouveau build à partir de 15:27:22 UTC (relevé toutes les 10 s). À 15:27:01 UTC, l'ancien build était encore servi.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 15:27:26 UTC : vert, 17 pages et 3 ressources (sitemap 325 URL).
+- Les 125 articles, récupérés par `curl` : 125 réponses 200 ; le contenu de l'article est identique à celui du build testé sur les 125. Les mesures Chromium faites sur ce build (125 articles, 1440 et 390 px) valent donc pour la production.
+- HTML de production, 125 articles :
+  - 0 shortcode et 62 façades, 0 iframe YouTube ;
+  - 1 078 liens hors façades ;
+  - 0 lien interne en `_blank` ; 294 liens externes en `_blank`, dont 0 sans protection ;
+  - 2 `target="_new"` et 6 balises `img` vers un `.mp4`, inchangés.
+- Chromium sur `sysnext.vercel.app`, les réponses de production étant relayées par `curl` : le transport de Chromium échouait par intermittence dans le conteneur (`ERR_TOO_MANY_RETRIES`), alors que `curl` ne donnait aucune erreur.
+  - 3 pages à shortcode, en 1440 et 390 px : débordement 0 ; façades 662×372 et 358×201 ; 0 requête YouTube au chargement et après le clic sur la façade ; fenêtre d'information ouverte, aucun nouvel onglet.
+  - `/fr/a-propos` (lien relatif) et `https://www.packshot-creator.com/fr/ia-photo-produit` (lien absolu) : navigation dans l'onglet courant.
+  - Deux liens externes (`lesnumeriques.com`, `shotflow.com`) : nouvel onglet. Un premier essai, avec une interception limitée à la page, n'avait observé aucun onglet ; il a été refait avec une interception au niveau du contexte.
+- Aucune régression constatée.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app` (même projet, le Worker relaie le HTML sans le réécrire).
+
+**Non regardé** — `www` (R4) ; Safari et appareils réels ; balayage Chromium des 125 articles directement en production, remplacé par l'identité du contenu avec le build testé.
+
+**Suite** — Laurent, dans Chrome sur `www`, desktop puis mobile : deux pages à shortcode, un lien interne et un lien externe d'article (détail dans `ETAT.md`). Backlog inchangé : MP4, saasphoto, Sketchfab, F10, `alt` Webflow, traductions.
+
+---
+
 ## 2026-09-29 · `llms.txt` — « officiel » (D6), assertion de date retirée, 16 secteurs · Claude de Laurent
 
 **Chantier** : audit SEO/GEO du 29/09, PR technique 1 (constat P0-1) | **PR** : #54, brouillon, non fusionnée | **Base** : `main` `9ced920`
