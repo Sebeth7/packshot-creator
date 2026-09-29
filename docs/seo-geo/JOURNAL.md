@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Hotfix CSS — anciens blocs vidéo Webflow du blog (grands vides sous les vidéos) · Claude de Laurent
+
+**Chantier** : hotfix de mise en page, hors `06-CHANTIERS.md` (défaut signalé par Laurent sur `/en/blog/5-cameras-realistic-3d-animation`) | **PR** : brouillon, branche `claude/youtube-153-referrer-policy-ykjqx9` | **Base** : `a1771be` (`main`) | **Merge et déploiement** : aucun sans GO explicite de Laurent
+
+**Quoi** — Règles CSS dans `app/globals.css`, limitées aux figures vidéo Webflow du blog (`.prose figure.w-richtext-figure-type-video`) :
+- sans légende : le `padding-bottom` existant porte le ratio, le `<div>` et l'`<iframe>` occupent la boîte ;
+- avec légende : le ratio passe au `<div>` (`aspect-ratio: 854 / 480`, d'après `data-rt-dimensions`), la légende reste sous la vidéo ;
+- `padding-bottom` vide : rendu inchangé.
+
+Aucun JSON de contenu, aucune URL de vidéo, aucun `referrerpolicy`, aucun en-tête, aucun fichier de #44 modifiés.
+
+**Pourquoi** — Webflow réservait le ratio par un `padding-bottom` en ligne sur la `<figure>` et positionnait `div` et `iframe` en absolu dans sa propre feuille de style, absente du site Next. Mesure avant correctif (build local = `main`) : les 61 iframes vidéo du blog en 300 × 150 px ; figure de 662 × 522 px en 1440 px, soit 372 px de vide sous chaque vidéo ; 358 × 351 px en 390 px, soit 201 px de vide. Défaut antérieur à #46 : #46 n'ajoute qu'un attribut `referrerpolicy`, sans effet sur les dimensions.
+
+**Fichiers** — `app/globals.css`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Dès la mise en production : vidéos à pleine largeur de la colonne, sans vide dessous, sur 49 articles (25 FR, 24 EN). Aucun effet SEO direct : texte, liens, balises et JSON-LD inchangés.
+
+**Vérifié** —
+- Inventaire de `content/blog` :
+  - FR : 31 figures `w-richtext-figure-type-video` sur 26 articles ;
+  - EN : 30 figures sur 25 articles ;
+  - de-ch : 0 ;
+  - toutes portent `data-rt-type="video"` ;
+  - iframes : 57 YouTube, 2 Vimeo, 2 saasphoto.com ;
+  - 8 figures ont une légende, dont 6 avec du texte ;
+  - 4 figures ont un `padding-bottom:` vide.
+  - Hors rendu : 10 figures Webflow dans le champ `introMedia` des guides, que le site n'affiche pas.
+- `npx tsc --noEmit` OK ; `npx vitest run` 232/232 ; `node scripts/seo/verifier-json.mjs` 186 fichiers valides ; `npx next build` vert (valeurs factices de la CI) ; les 6 règles sont présentes dans le CSS compilé.
+- Mesure navigateur (Chromium), build local avant et après, 51 articles × 2 largeurs (1440 et 390 px), tous en 200, iframes tierces bloquées pendant la mesure :
+  - 57 figures corrigées (29 FR, 28 EN, sur 49 articles), 0 px de vide sous la vidéo dans les deux largeurs ;
+  - article cible EN et FR, vidéo `VssNUk1qsXg` et vidéo Pompéi `8uq7kD1DoEM` : figure 662 × 522 → 662 × 372 et iframe 300 × 150 → 662 × 372 en 1440 px ; figure 358 × 351 → 358 × 201 et iframe 300 × 150 → 358 × 201 en 390 px ; ratio 1,78 ;
+  - 6 figures avec légende (`orbitvu-automation…`, FR et EN, dont Pompéi) : iframe pleine largeur au ratio 1,78, légende entière, visible, sous la vidéo ;
+  - 4 figures à `padding-bottom:` vide (`photographie-de-produits-a-360-degres-en-interne`, FR et EN) : dimensions strictement inchangées ;
+  - débordement horizontal : 0 px sur les 102 mesures, avant comme après.
+- Correctif 153 intact : 29/29 (FR) et 28/28 (EN) iframes YouTube portent un seul `referrerpolicy="strict-origin-when-cross-origin"` dans le HTML du build. Reproduction avec l'en-tête `Referrer-Policy: same-origin` sur l'article cible EN et FR, desktop 1440 et Pixel 7 (émulation) : Referer présent dans les 4 cas, lecteur prêt. En desktop, le lecteur passe de `ytp-small-mode` à `ytp-large-width-mode`, puis `playing-mode` après clic. Le premier passage desktop, lancé en parallèle, n'a pas chargé le lecteur (réseau du conteneur) ; il a été relancé seul.
+
+**Supposé** — Les deux figures centrées à `padding-bottom:33.72…%` (`ai-virtual-lights…` / `ia-lumieres-virtuelles…`) : [Inférence] Webflow les affichait à 60 % de largeur (33,72 = 0,6 × 56,21). Le correctif applique le ratio du wrapper à pleine largeur : boîte de 662 × 223 px (ratio 2,97), dans laquelle le lecteur YouTube affiche une vidéo 16:9 avec des bandes latérales. Non vérifié visuellement avec le vrai lecteur.
+
+**Non regardé** — Safari et WebKit réels, appareils mobiles réels, `www` (R4). Specs Playwright du dépôt : aucune ne couvre un article à vidéo, non lancées. Le rendu du lecteur saasphoto.com et de Vimeo au-delà des dimensions.
+
+**Suite** — GO de Laurent pour la fusion. Décision à prendre sur les deux figures centrées à 33,72 % : pleine largeur au ratio du wrapper (état de cette PR), largeur 60 % centrée, ou ratio 16:9 à pleine largeur. Chevauchement avec #44 : aucun sur les lignes de `app/globals.css` (#44 insère après `.table-wrap`, ce correctif après `.article-signature`). Si #44 est fusionnée, ses façades remplacent les iframes YouTube : ces règles ne s'appliqueront plus qu'aux 2 figures Vimeo (celles de saasphoto.com ont un `padding-bottom:` vide et sont exclues).
+
+---
+
 ## 2026-09-29 · YouTube 153 — #46 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : correctif ponctuel de l'erreur YouTube 153 | **PR** : #46, fusionnée sur GO de Laurent | **Commit de fusion** : `cd17aeb` (`main`), le 29/09/2026 à 05:31:57 UTC | **Tête fusionnée** : `870b3a1` | **Base avant fusion** : `e3197e0`
