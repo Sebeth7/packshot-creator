@@ -429,6 +429,74 @@
 .prose .article-signature p { margin: 0; font-size: 0.95rem; color: var(--future-dusk-7); }
 .prose .article-signature strong { color: var(--future-dusk-9); }
 
+/* Rendu structurel des articles (gabarit app/[lang]/blog/[slug], classe
+   .blog-article). Le plugin @tailwindcss/typography n'est pas chargé : Tailwind v4
+   ignore tailwind.config.ts sans @config ni @plugin, les classes prose-* ne
+   produisent rien et la réinitialisation de Tailwind laisse des paragraphes sans
+   marge, des listes sans puce et des liens de la couleur du texte.
+   @layer components et :where() : ces règles ne priment que sur cette
+   réinitialisation. Les utilitaires du gabarit ([&_h2], [&_h3], [&_img],
+   [&_blockquote]) et les règles hors couche (.tldr, .table-wrap, .pkc-yt,
+   .article-signature) gardent la main ; l'encadré .tldr est exclu des marges
+   de paragraphe et de la couleur des puces. h2 et h3 inchangés ; h4 à h6
+   ajoutés sous h3. Les paragraphes vides de Webflow sont retirés au rendu
+   (removeEmptyParagraphs, lib/blog-utils.ts). */
+@layer components {
+  :where(.blog-article p:not(.tldr p)) { margin-block: 1.25em; }
+
+  :where(.blog-article) :where(ul, ol) { margin-block: 1.25em; padding-inline-start: 1.625em; }
+  :where(.blog-article) :where(ul) { list-style-type: disc; }
+  :where(.blog-article) :where(ol) { list-style-type: decimal; }
+  :where(.blog-article) :where(li) { margin-block: 0.5em; }
+  :where(.blog-article li:not(.tldr li))::marker { color: var(--future-dusk-5); }
+  :where(.blog-article) :where(li) :where(ul, ol) { margin-block: 0.5em; }
+  :where(.blog-article) :where(li) :where(ul) { list-style-type: circle; }
+  :where(.blog-article) :where(li) :where(ol) { list-style-type: lower-alpha; }
+
+  /* Liens du texte ; hors façade vidéo et hors crédits Sketchfab (styles en ligne) */
+  :where(.blog-article a:not(.pkc-yt__facade, .sketchfab-embed-wrapper a)) {
+    color: var(--very-peri-6);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+  }
+  :where(.blog-article a:not(.pkc-yt__facade, .sketchfab-embed-wrapper a)):hover { color: var(--very-peri-7); }
+
+  :where(.blog-article) :where(h4) { margin-block: 1.5em 0.5em; font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+  :where(.blog-article) :where(h5) { margin-block: 1.25em 0.5em; font-size: 1rem; line-height: 1.5rem; font-weight: 600; }
+  :where(.blog-article) :where(h6) {
+    margin-block: 1.25em 0.5em;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Anciens blocs vidéo Webflow sans légende (aujourd'hui les 2 figures Vimeo ;
+   les figures YouTube sont remplacées par la façade de lib/youtube.ts) :
+   <figure style="padding-bottom:N%"><div><iframe></iframe></div></figure>.
+   Webflow réserve le ratio par ce padding et attend div et iframe en position
+   absolue ; sans ces règles, l'iframe garde 300 × 150 et le padding laisse un
+   grand vide dessous. padding-bottom vide ou légende présente : non concernés,
+   rendu inchangé. Règle reprise de la PR #48. */
+.blog-article figure.w-richtext-figure-type-video[style*="padding-bottom:"]:not([style$="padding-bottom:"]):not(:has(> figcaption)) {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+.blog-article figure.w-richtext-figure-type-video[style*="padding-bottom:"]:not([style$="padding-bottom:"]):not(:has(> figcaption)) > div {
+  position: absolute;
+  inset: 0;
+}
+.blog-article figure.w-richtext-figure-type-video[style*="padding-bottom:"]:not([style$="padding-bottom:"]):not(:has(> figcaption)) iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Chat ROI — scrollbar toujours visible sur les volets à défilement interne :
    macOS/overlay masque les barres au repos, les utilisateurs ne voient pas
    que les colonnes défilent */

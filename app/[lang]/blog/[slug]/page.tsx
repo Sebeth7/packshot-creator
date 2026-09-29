@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 // Prose classes for Webflow HTML content styling
 const articleProseClasses = [
-  'prose prose-lg max-w-none',
+  'blog-article prose prose-lg max-w-none',
   'prose-headings:font-heading prose-headings:text-future-dusk-900',
   'prose-p:text-future-dusk-600 prose-p:leading-relaxed',
   'prose-li:text-future-dusk-600',

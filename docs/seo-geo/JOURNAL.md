@@ -34,6 +34,97 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-29 · Phase 1 structurelle du blog — typographie, paragraphes vides, sommaire, 2 figures Vimeo · Claude de Laurent
+
+**Chantier** : phase 1 structurelle du blog (F1, F16, F19, F11, F2 limité aux 2 Vimeo), GO d'implémentation de Laurent du 29/09 | **PR** : brouillon, branche `fix/blog-structure-phase1-2026-09`, non fusionnée | **Base** : `main` `2de576a` | Remplace le seul correctif encore utile de #48
+
+**Quoi** —
+- **F1 et F16** : règles CSS limitées au gabarit `app/[lang]/blog/[slug]` (classe `blog-article` sur `<article>`), en `@layer components` et `:where()`.
+  - Paragraphes : marges de 20 px.
+  - Listes : puces et numéros, retrait de 26 px, listes imbriquées en `circle` ou `lower-alpha`.
+  - Liens : soulignés, couleur `--very-peri-6`.
+  - Titres : `h4` 18 px/600, `h5` 16 px/600, `h6` 14 px/600 en majuscules.
+  - Inchangés : `h2`, `h3`, `.tldr` (paragraphe et puces exclus explicitement), `.table-wrap`, `.article-signature`, `.pkc-yt*`, crédits Sketchfab.
+- **F19** : `removeEmptyParagraphs`, appliquée au rendu dans `processHtmlContent`, retire les `<p>` sans attribut (ou avec `id=""` seul), sans balise, faits seulement d'espaces ou de caractères invisibles. 998 paragraphes retirés sur 107 pages (984 ZWJ, 14 espaces). Aucun JSON modifié.
+- **F11** : texte du sommaire décodé (`decodeHtmlEntities`). 7 titres concernés ; l'`id` reste calculé sur la source, les ancres ne bougent pas.
+- **F2** : la règle de #48 « figure vidéo Webflow sans légende, `padding-bottom` renseigné », reprise à l'identique, préfixe `.prose` remplacé par `.blog-article`. Elle ne cible aujourd'hui que les 2 figures Vimeo.
+
+**Pourquoi** —
+- Le plugin `@tailwindcss/typography` n'est pas chargé (Tailwind v4 ignore `tailwind.config.ts` sans `@config` ni `@plugin`). Résultat mesuré sur `main` : paragraphes sans marge, listes sans puce ni retrait, liens de la couleur du texte, `h4` à `h6` rendus comme le texte courant (16 px, graisse 400).
+- Les 2 figures Vimeo laissent 373 px de vide en 1440 et 201 px en 390.
+- Le sommaire affiche « Gad &amp; Co ».
+
+**Fichiers** — `app/globals.css`, `app/[lang]/blog/[slug]/page.tsx` (1 ligne), `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. `lib/blog-html.ts` n'a pas été créé : sans F22, il ne resterait que deux fonctions, placées avec les autres transformations HTML de `lib/blog-utils.ts`, qu'aucune PR ouverte ne modifie. Aucun fichier de `content/**`, de #44 (`lib/youtube.ts`, `YouTubeConsent.tsx`, règles `.pkc-yt*`), `CookieBanner.tsx`, `messages/*`, #43, #27 ni Cloudflare touché.
+
+**Effet attendu** — Dès la mise en production, sur les 125 articles du gabarit (natifs compris) : paragraphes espacés, listes lisibles, liens visibles ; les 2 vidéos Vimeo sans vide dessous. Aucun effet SEO direct : textes, liens, balises et JSON-LD sont identiques dans le HTML servi, hors transformations visées.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert.
+- Vitest : 260/260, dont 10 nouveaux tests.
+- ESLint sur les fichiers modifiés : 3 alertes, toutes déjà présentes sur `main` (2 `no-explicit-any` dans `getBlockText`, import `HeadingData` inutilisé).
+- `verifier-json` : 186 JSON valides.
+- `npx next build` vert (valeurs factices de la CI).
+- CSS compilé (lecture par postcss) : règles F1 dans `@layer components` ; règle Vimeo, `.tldr`, `.pkc-yt` et `.article-signature` hors couche.
+- HTML servi des 125 pages, build de `main` contre build de la branche : identique après les seules transformations visées :
+  - 998 paragraphes vides retirés ;
+  - 7 titres du sommaire décodés ;
+  - classe `blog-article` sur les 125 `<article>`.
+- Chromium, 1440 et 390 px, 125 pages :
+  - 250 réponses 200 ;
+  - 0 paragraphe vide dans le DOM (1 996 sur `main`) ;
+  - 57 façades et 0 iframe YouTube brute par largeur ;
+  - 0 « &amp; » dans le sommaire (7 par largeur sur `main`) ;
+  - débordement horizontal : 3 pages à 19 px en 390, identiques sur `main` (`boostez-votre-taux-de-conversion…` FR, `photographie-2d-de-produits` FR et EN).
+- Styles calculés, `main` → branche :
+
+  | Élément | `main` | Branche |
+  |---|---|---|
+  | Paragraphe | marges 0 px | marges 20 px |
+  | `ul` | pas de puce, retrait 0 px | `disc`, retrait 26 px |
+  | Liste imbriquée | pas de puce | `circle` |
+  | `ol` | pas de numéro | `decimal` |
+  | Lien | rgb(13,23,26), non souligné | rgb(82,82,185), souligné |
+  | `h2`, `h3` | — | identiques |
+  | `h4` | 16/400 | 18/600 |
+  | `h5` | 16/400 | 16/600 |
+  | `h6` | 16/400 | 14/600, majuscules |
+
+- Vimeo, FR et EN :
+
+  | Largeur | `main` | Branche |
+  |---|---|---|
+  | 1440 | 662×523, iframe 300×150, vide 373 | 662×373, vide 0 |
+  | 390 | 358×352, vide 201 | 358×202, vide 0 |
+
+  Paragraphe suivant à 20 px.
+- Inchangés, par mesure :
+  - les 40 autres figures des pages détaillées : façades pleine largeur 662×372 et 358×201, façades centrées 576×324, légendes Orbitvu, saasphoto 662×174 avec iframe 300×150, Sketchfab 662×175 avec iframe 300×150 ;
+  - encadrés `.tldr` (225, 377 et 353 px), signature (111 px), crédits Sketchfab (#1CAAD9, sans soulignement, graisse 700), couleurs de `h2` et `h3`, comparés à `sysnext.vercel.app`.
+- Specs e2e (`anchors`, `seo`, `mobile-overflow`, `external-links`, `youtube-consent`, `cookie-banner`), sur le build local, en Chromium et Pixel 5 : 557 réussies et 25 échecs, les mêmes 25 que sur `main`, aucun sur un article :
+  - SEO title, description et hreflang : 16 ;
+  - bandeau cookies : 5 ;
+  - ancre `#calculateur-roi` : 2 ;
+  - débordement de `/fr` : 2.
+
+**Supposé** — [Non vérifié] Les navigateurs récents appliquent `:has()` (règle Vimeo) et `:not()` avec sélecteur complexe (exclusions de F1). Sinon, la règle concernée est ignorée et le rendu reste celui d'aujourd'hui.
+
+**Non regardé** —
+- `www` (R4), Preview Vercel (SSO), Safari et appareils réels.
+- Les autres usages de `.prose` (guides, CGU, mentions légales, distributeur, articles statiques, `Callout`) : hors périmètre, « blog uniquement ».
+- F10, F22, saasphoto et Sketchfab : hors phase 1, sur décision de Laurent.
+
+**Suite** —
+- Espacement autour des blocs : les paragraphes vides servaient d'espaceurs ; les marges normales les remplacent.
+  - Sous une façade : 32 px avant un paragraphe, un `h3` ou une liste, 48 px avant un `h2` (marge actuelle du titre).
+  - Sous Sketchfab : le `h2` suivant est à 73 px du bas de l'iframe en 1440 (92 px en 390), sans le paragraphe vide intercalé.
+- #48 fermée sans fusion après l'ouverture de cette PR : rendue obsolète par #44 pour YouTube, son correctif Vimeo est repris ici.
+- Après fusion :
+  - `node scripts/seo/smoke.mjs https://sysnext.vercel.app` ;
+  - contrôle Chrome sur `www` d'un article Webflow, d'un natif et d'un article Vimeo.
+- Restent hors phase : F10 (3 iframes sans `title`), F22 (306 liens `_blank` sans `rel`), saasphoto (302 puis 402 depuis le conteneur), Sketchfab (iframe 300×150), rendu des guides.
+
+---
+
 ## 2026-09-29 · #44 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : vidéos YouTube des articles, façade locale et consentement contextuel | **PR** : #44, fusionnée sur GO final de Laurent | **Commit de fusion** : `b10bb5e` (`main`), le 29/09/2026 à 08:17:25 UTC | **Tête fusionnée** : `cfb271d` | **Base avant fusion** : `a1771be`
