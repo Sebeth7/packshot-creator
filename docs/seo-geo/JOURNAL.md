@@ -34,6 +34,44 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Inter auto-hébergée : le build ne dépend plus de Google Fonts · Claude de Laurent
+
+**Chantier** : hors chantier SEO — fiabilité du build, demande de Sébastien relayée par Laurent | **PR** : #72, brouillon, non fusionnée | **Commit** : `2a587ad` | **Base** : `main` `a8c85ca` (#69)
+
+**Quoi** — Les 5 appels `next/font/google` (Inter) remplacés par `next/font/local` sur les fichiers officiels Inter 4.1, versionnés dans `app/fonts/inter/` avec leur licence. `--font-inter`, `--font-heading` et la pile système du corps inchangés.
+
+**Pourquoi** — Incident du 30/09 : build Next.js/Vercel en échec intermittent (`Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'`), contourné par un redéploiement. Ce module interne n'existe que pour le chargeur Google de Turbopack, qui télécharge à chaque build 2 feuilles CSS (`fonts.googleapis.com`) et 14 fichiers `woff2` (`fonts.gstatic.com`). Reproduit : `main` construit sans réseau échoue (« Failed to fetch `Inter` from Google Fonts », 2 erreurs). Le message exact du 30/09 n'a pas été reproduit.
+
+**Constat de périmètre** — La consigne supposait un seul import. Il y en avait 5 : `app/[lang]/layout.tsx`, `app/calculateur-roi/layout.tsx`, `app/roi-preview/layout.tsx`, `app/roi-pro/layout.tsx` (Inter 700) et `app/etude-clients-2026/layout.tsx` (Inter 400, 500, 600, 700). Tous remplacés : un seul restant aurait maintenu la dépendance. Les 4 derniers sont signalés à Sébastien dans `.github/CODEOWNERS` ; changement limité à la déclaration de police.
+
+**Police** — Source : dépôt officiel `rsms/inter`, tag `v4.1`, `docs/font-files/` ; SHA-256 identiques sur `rsms.me/inter/font-files/` ; table `name` : `Version 4.001;git-9221beed3`. Licence : SIL OFL 1.1, `LICENSE.txt` du tag, aucun nom réservé. `Inter-Bold.woff2` 700 normal, 114 840 o, `fa888127…8d95ea` ; `Inter-SemiBold.woff2` 600 normal, 114 812 o, `5cb7103e…78a301` (détail : `app/fonts/inter/PROVENANCE.md`). Fichier statique 700 retenu contre le variable (352 240 o) : plus petit, et il reproduit la règle actuelle (une seule graisse déclarée, tout `font-heading` en Bold). SemiBold ajouté pour `/etude-clients-2026` seulement : `SurveyForm.tsx` l. 110 et 542 y rendent du 600 ; 400 et 500 n'y sont pas rendus.
+
+**Fichiers** — `app/fonts/inter.ts` (nouveau), `app/fonts/inter/{Inter-Bold.woff2, Inter-SemiBold.woff2, LICENSE.txt, PROVENANCE.md}` (nouveaux), `app/[lang]/layout.tsx`, `app/calculateur-roi/layout.tsx`, `app/roi-preview/layout.tsx`, `app/roi-pro/layout.tsx`, `app/etude-clients-2026/layout.tsx`
+
+**Effet attendu** — Aucun effet visible ni SEO recherché. Le build ne fait plus aucune requête de police : ce chemin d'échec disparaît. Une autre cause d'échec intermittent de Vercel resterait possible.
+
+**Vérifié** —
+- Recherche complète : 0 `next/font/google` dans le code après, 5 avant. Aucune requête Google Fonts au runtime ni avant ni après (auto-hébergement déjà fait par `next/font`). Seules références restantes dans `.next` : la bibliothèque `@vercel/og` (route `/api/og`, exécution à la demande), déjà présentes avant.
+- `npx next build` dans un espace de noms réseau vide (`unshare -n`, loopback seul ; Google, npm et DNS injoignables, contrôlé par `curl`) : **vert**, 383/383 pages. `main` dans les mêmes conditions : **échec**.
+- Build : 14 `woff2` émis (316 568 o) avant ; 2 (229 652 o) après. Préchargement : 1 fichier par page avant et après. `/fr`, `/en`, `/de-ch`, blog, ROI : 24 456 o avant (sous-ensemble latin Google), 114 840 o après ; `/etude-clients-2026` : 48 432 o avant, 229 652 o (2 fichiers) après.
+- CSS compilée identique hors `@font-face` et classes de module de police.
+- `unicode-range` : Inter limitée aux 1 622 caractères que les 7 fichiers Google contenaient réellement. Sans cette limite, « → » (4 titres, 5 pages) passait du repli Arial à Inter, et l'espace fine insécable U+202F des prix (« 1 830 €/mois ») changeait de largeur.
+- Parité, `main` (`next start` :3100) contre branche (:3101), Chromium, 1440 et 390 px : `/fr`, `/en`, `/de-ch`, `/fr/blog/photographie-2d-de-produits`, `/fr/blog/8-defis-prodution-contenu-visuel`, `/fr/studio-photo/alphashot-pro-g2`, `/fr/contact`, `/fr/packshot-mode`, `/calculateur-roi`, `/etude-clients-2026`, `/roi-pro`, plus les 8 pages à « → » ou U+202F. Statuts 200 ; police calculée, graisse, taille et hauteur de ligne identiques ; hauteur de document identique partout ; étendue réelle du texte de 1 382 éléments rendus en Inter : écart max 0,02 px (H1/H2 : 290 mesurés, 0,02 px), aucun retour à la ligne modifié.
+- Captures : sur les pages sans animation, 100 % des pixels différents sont dans le texte Inter, écart max 60 à 95/255 (anticrénelage des contours ; les deux versions 4.001 diffèrent par leurs points de contour, avances identiques sur les 230 caractères latins). Sur les accueils, écarts supplémentaires dans le tableau de bord animé et la rangée de logos, présents aussi entre deux rendus de `main`.
+- Façonnage HarfBuzz des 3 188 chaînes rendues en Inter sur les 369 pages prérendues : identique, sauf 2 cas. « → » : traité par la limite `unicode-range` ci-dessus. « 3x3m » (`/fr|en|de-ch/studio-photo/fashion-studio`) : la version Google remplace « x » entre deux chiffres par le glyphe `multiply.case`, Inter 4.1 non ; sur la page, le compteur animé rend « 3 » et « x3m » dans des nœuds séparés, sans substitution dans les deux cas : capture et largeur identiques.
+- Repli (police affichée avant chargement d'Inter, et pour les caractères hors couverture) : `size-adjust` d'Arial 107,12 % avant (métriques Google), 111,36 % après (calculé sur le fichier Bold). Mesuré avec une police « Arial » simulée (Liberation Sans renommée, bac à sable uniquement) : CLS au remplacement, police retardée de 1,5 s, égal ou inférieur sur 8 couples page × largeur (`/fr` 1440 : 0,0161 → 0,0002) ; les flèches des 4 titres concernés, rendues par ce repli, élargissent le titre de 5,06 px (H2 `/fr|en|de-ch/industrie`, 1440), 3,06 px (390), 1,72 px et 0,86 px (H3 `/fr|en/blog/ia-photo-produit-guide-2026`), sans retour à la ligne modifié.
+- `node scripts/seo/verifier-json.mjs` : 186 fichiers valides. `npx tsc --noEmit` : 0 erreur. Vitest : 16 fichiers, 342/342. ESLint sur les 6 fichiers TS/TSX touchés : 0 erreur, 0 avertissement. `node scripts/seo/smoke.mjs` sur les deux serveurs locaux : vert, 17 pages, sortie identique.
+- Playwright, Chromium, `seo`, `responsive`, `mobile-overflow`, `language-switch`, `internal-links`, `roi-calculator` : `main` 287 réussis, 45 échecs ; branche 287 réussis, 45 échecs, listes identiques (échecs préexistants).
+- PR ouvertes : aucune ne touche `globals.css`, les polices ni `package*.json`. #71 (Sébastien, ouverte à 20:32 UTC) modifie `app/[lang]/layout.tsx` l. 31-32 : fusion à trois voies sans conflit (`git merge-tree`).
+
+**Supposé** — [Inférence] Que l'échec observé sur Vercel passait par le chargeur Google de Turbopack : le module `@vercel/turbopack-next/internal/font/google/font` n'appartient qu'à ce chemin (chaîne présente dans le binaire `@next/swc`, à côté de son équivalent `font/local`). Que Chrome sous Windows et macOS rende comme le Chromium de ce conteneur, repli mis à part (mesuré avec une police simulée).
+
+**Non regardé** — Firefox et Safari ; un Preview Vercel (jeton de contournement non transmis) ; `www` derrière Cloudflare ; Lighthouse ; `/roi-preview` en capture (même layout que `/calculateur-roi`) ; les ~360 autres pages en capture (couvertes seulement par le façonnage de leur texte).
+
+**Suite** — Poids : +90 384 o au premier chargement de chaque page (mis en cache ensuite), +181 220 o sur `/etude-clients-2026`. Option documentée, non appliquée : sous-ensemble du fichier officiel limité aux 1 622 caractères (78 372 o) ou au seul latin (31 432 o) — fichier dérivé, SHA-256 différent de la source, à décider par Laurent. Rollback : `git revert <commit de fusion>` puis push sur `main`, aucun réglage Vercel en jeu. Après fusion : contrôle Vercel du build et `smoke.mjs` sur `sysnext.vercel.app` ; dans Chrome sur `www`, onglet Réseau : un seul `Inter_Bold-*.woff2`, aucune requête Google Fonts.
+
+---
+
 ## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
