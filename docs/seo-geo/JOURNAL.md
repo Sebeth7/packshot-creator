@@ -68,7 +68,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Non regardé** — Firefox et Safari ; un Preview Vercel (jeton de contournement non transmis) ; `www` derrière Cloudflare ; Lighthouse ; `/roi-preview` en capture (même layout que `/calculateur-roi`) ; les ~360 autres pages en capture (couvertes seulement par le façonnage de leur texte).
 
-**Suite** — Poids : +90 384 o au premier chargement de chaque page (mis en cache ensuite), +181 220 o sur `/etude-clients-2026`. Option documentée, non appliquée : sous-ensemble du fichier officiel limité aux 1 622 caractères (78 372 o) ou au seul latin (31 432 o) — fichier dérivé, SHA-256 différent de la source, à décider par Laurent. Rollback : `git revert <commit de fusion>` puis push sur `main`, aucun réglage Vercel en jeu. Après fusion : contrôle Vercel du build et `smoke.mjs` sur `sysnext.vercel.app` ; dans Chrome sur `www`, onglet Réseau : un seul `Inter_Bold-*.woff2`, aucune requête Google Fonts.
+**Suite** — Poids : +90 384 o au premier chargement de chaque page (mis en cache ensuite), +181 220 o sur `/etude-clients-2026`. Option documentée, non appliquée : sous-ensemble du fichier officiel limité aux 1 622 caractères (78 372 o) ou au seul latin (31 432 o) — fichier dérivé, SHA-256 différent de la source, à décider par Laurent. Rollback : `git revert -m 1 <commit de fusion de #72>` puis push sur `main` (retour en ~3 minutes), aucun réglage Vercel en jeu. Après fusion : contrôle Vercel du build et `smoke.mjs` sur `sysnext.vercel.app` ; dans Chrome sur `www`, onglet Réseau : un seul `Inter_Bold-*.woff2`, aucune requête Google Fonts.
 
 ---
 
