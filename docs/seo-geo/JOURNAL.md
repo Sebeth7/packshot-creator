@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Mode — réécriture FR de la landing `/fr/packshot-mode` (méthode F5) · Claude de Laurent
 
-**Chantier** : substitution de page, extension à Mode (D39) | **PR** : brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **Base** : `main` `7ad0ca3`
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Version FR de `/fr/packshot-mode` réécrite dans un composant page-scopé, `PackshotMode.tsx` : chapeau, « En bref », sommaire, 9 sections H2 (collection, couleur/matière/tombé, présentations, internalisation, studio et équipe, IA, plateformes, studios, budget et accompagnement) et FAQ de 9 questions. EN et de-ch restent sur `PackshotLandingTemplate` avec leurs anciens messages, jusqu'à la traduction de la version FR validée (D38). Canonical, hreflang, sitemap, robots, Worker : inchangés.
 
