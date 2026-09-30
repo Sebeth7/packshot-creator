@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Cluster AI Act — satellite C (mannequins virtuels et personnes synthétiques), PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, satellite C | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-mannequins-virtuels-2026-09-30`, indépendante de #59, #60 et #61 | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Création de `content/blog/fr/mannequin-virtuel-ia-ecommerce-ai-act.json`, FR seulement, schéma natif, `image: null`. Matière reprise du pilier A et de #43 (cas 15 à 18, matière 19c, FAQ mannequin virtuel), sources primaires revérifiées le 30/09. 2 835 mots de corps, 476 de FAQ ; 11 H2 (dont « En bref » et « Sources »), 6 H3, 6 FAQ ; tableau des 10 situations exigées (mannequin invisible classique ou reconstruit par IA, personne réelle, réelle transformée, entièrement synthétique, dérivée d’images réelles, avatar stylisé, avatar photoréaliste, influenceur synthétique, image fixe ou vidéo) ; 2 marqueurs `[TERRAIN SÉBASTIEN — …]` non remplis ; 0 lien interne ; 9 liens externes ; renvois au pilier A et à l’article « marketplaces » sans `href`.
+
+**Brief SEO / GEO** — slug `mannequin-virtuel-ia-ecommerce-ai-act` ; title `Mannequin virtuel IA en e-commerce : faut-il le signaler ?` (58 caractères) ; meta 155 caractères ; H1 « Mannequin virtuel, avatar, influenceur IA : faut-il signaler les personnes générées en e-commerce ? ». Questions GEO couvertes : mannequin virtuel à signaler sur une fiche produit ; mannequin invisible IA ; mannequin créé à partir d’un vrai modèle ; avatar d’essayage ; influenceur virtuel ; règle Amazon. SERP du 30/09 (« mannequin virtuel IA e-commerce mention obligatoire AI Act ») : question écrite au Sénat, presse, pages anglophones de prestataires ; aucune page FR qui sépare les dix situations. Pas de cannibalisation visée avec A (cas 16 court) ni avec S (volet suisse).
+
+**Pourquoi** — Mission « satellites AI Act B / C / D » de Laurent (30/09). A ne garde que le cas 16 en version courte ; C porte l’analyse détaillée.
+
+**Fichiers** — `content/blog/fr/mannequin-virtuel-ia-ecommerce-ai-act.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant publication coordonnée (D38). La PR n’est pas à fusionner en l’état.
+
+**Vérifié**
+- `main` distant = `7ad0ca3` ; #59 = `81b42c1`, #60 = `6c72482`, non modifiées.
+- Sources primaires relues le 30/09 : règlement (UE) 2024/1689, texte FR du JO via le Cellar (art. 3(60), 50) ; lignes directrices C(2026) 5054 (points 92, 113 à 117, 127 à 129) ; FAQ article 50 ; Code de la consommation L121-2 et Code de la santé publique L2133-2 (éditions codes.droit.org des 25 et 26/09/2026, identifiants Légifrance relevés dans ces éditions) ; loi n° 2023-451, article 5 en version consolidée (Légifrance, lecture outillée) ; Amazon G1881 et GFXHCHYZRGJRBZA5 (API du Help Hub, US et Europe, EN et FR) ; Zalando image guidelines (mises à jour le 31/08/2026).
+- Cas non tranchés conservés : mention visible du mannequin virtuel photoréaliste en image fixe ; avatar photoréaliste ; influenceur synthétique en image fixe ; marquage du mannequin invisible reconstruit ; personne synthétique à dérivation diffuse ; portée d’une autorisation de séance photo. Aucune des affirmations écartées par la consigne n’est faite : « tout mannequin virtuel est un hypertrucage », « tout mannequin virtuel doit recevoir une mention visible » (idée présente dans le corps et dans la FAQ, sous forme négative : « ni que… ni qu’aucun ne le doit »), « une personne synthétique est une personne réelle identifiable » (formule présente une fois, sous forme négative), « un mannequin invisible classique relève de l’AI Act ».
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/mannequin-virtuel-ia-ecommerce-ai-act`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (2026-09-30) et FAQPage (6 = 6), URL au sitemap (326 URL), 2 marqueurs visibles, 0 débordement et 0 erreur de page en 1440 et 390 px. 0 lien vers `/fr/packshot-e-commerce` dans l’article (lien du pied de page existant, inchangé).
+- Proximité lexicale TF-IDF (approximation, pas l’embedding de D16) : maximum 0,437 avec A, 0,358 avec S, 0,356 avec B.
+- GSC (`gsc_metrics`, site 3, depuis le 01/06/2026, lecture seule) : 0 impression sur les requêtes mannequin virtuel / avatar / influenceur IA.
+
+**Supposé** — [Inférence] L’article L2133-2 du Code de la santé publique vise des mannequins au sens du Code du travail, donc des personnes réelles ; son application à un mannequin entièrement synthétique n’est pas affirmée. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; volume de recherche (DataForSEO non disponible) ; réponse du gouvernement à la question écrite du Sénat du 16/04/2026 sur les mannequins générés ; droit d’auteur, droit du travail et données d’entraînement, hors consigne ; relecture de la prose par Sébastien.
+
+**Suite** — Réponses terrain de Sébastien sur les 2 marqueurs ; relecture éditoriale ; validation explicite de la création (D16) ; maillage final et liens vers A et vers l’article « marketplaces » à la publication coordonnée ; EN et de-ch.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
