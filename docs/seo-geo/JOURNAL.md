@@ -64,6 +64,14 @@ Section « Sources » ajoutée, limitée aux sources utilisées (16 liens : droi
 
 **Passe éditoriale du 30/09** (relecture humaine de Laurent, #60) — une micro-correction : seconde occurrence, redondante, de « Une politique de plateforme n’est ni une loi suisse ni, par elle-même, une obligation de l’AI Act. » retirée après le tableau ; la première, avant Google, Amazon et Zalando, est conservée. Aucun autre passage modifié ; 5 marqueurs inchangés. `verifier-json`, `tsc` et `next build` rejoués.
 
+**Micro-corrections du 30/09, mission « fermeture D16 et micro-corrections A/S »** — section « Quand l’AI Act peut concerner une entreprise suisse » seulement, d’après les lignes directrices C(2026) 5054 (PDF relu le 30/09) et le règlement (UE) 2024/1689 :
+- fournisseur défini selon l’art. 3(3) (« développe ou fait développer […] à titre onéreux ou gratuit ») ; déployeur rattaché à l’art. 3(4) ;
+- autorité du déployeur : décision d’utiliser le système et de sa manière, sans exigence de contrôle technique (point 12) ; le « contrôle effectif du système et du workflow » n’est plus présenté comme critère ;
+- territorialité : art. 2(1)(a) ajouté ; points 10 (fournisseur de pays tiers, usage aval fortuit insuffisant) et 13 (déployeur de pays tiers qui prévoit la diffusion dans l’Union, y compris par publication sur l’internet accessible mondialement) ; exemple direct du point 14 (situation B ; prestataires et agence, situation D) ;
+- niveaux explicites ajoutés sur chaque phrase nouvelle : [Texte], [Exemple direct Commission], [Interprétation] ; « NON TRANCHÉ » inchangé ;
+- sources : points 10, 12, 13 et 14 ajoutés à la ligne des lignes directrices.
+Aucun cas terrain inventé : le marqueur « workflow Suisse / UE » reste en place en attente de la question à Sébastien, et sera supprimé à défaut de réponse. Les quatre autres marqueurs sont inchangés. Aucune autre section modifiée.
+
 **Suite** — Réponses terrain de Sébastien sur les 5 marqueurs (passe ciblée) ; revue visuelle ; maillage entrant au moment de la publication coordonnée ; lien vers le pilier A à activer à sa publication.
 
 ---
