@@ -88,6 +88,23 @@ const nextConfig: NextConfig = {
       { source: '/de-ch/packshot-schmuck', destination: '/de-ch/branchen/schmuck', statusCode: 301 },
 
       // ============================================================
+      // Academy réduite au hub FR, qui renvoie au catalogue Qualiopi (30/09/2026).
+      // Sous-pages supprimées (fiches, calendrier, formations IA et packshot,
+      // simulateur OPCO) et versions EN / DE-CH → /fr/academy.
+      // `:path+` (un segment au moins) : /fr/academy lui-même n'est jamais redirigé.
+      // ============================================================
+      { source: '/fr/academy/:path+', destination: '/fr/academy', statusCode: 301 },
+      { source: '/en/academy', destination: '/fr/academy', statusCode: 301 },
+      { source: '/en/academy/:path+', destination: '/fr/academy', statusCode: 301 },
+      { source: '/de-ch/academy', destination: '/fr/academy', statusCode: 301 },
+      { source: '/de-ch/academy/:path+', destination: '/fr/academy', statusCode: 301 },
+      // Articles consacrés à l'ancienne offre (formations IA, blended, 3 niveaux)
+      { source: '/fr/blog/financement-formation-opco-guide-complet-pour-studios-photo-2026', destination: '/fr/academy', statusCode: 301 },
+      { source: '/fr/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026', destination: '/fr/academy', statusCode: 301 },
+      { source: '/en/blog/financement-formation-opco-guide-complet-pour-studios-photo-2026', destination: '/fr/academy', statusCode: 301 },
+      { source: '/en/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026', destination: '/fr/academy', statusCode: 301 },
+
+      // ============================================================
       // Variantes formulaire contact (paramètres pré-remplis)
       // ============================================================
       { source: '/fr/contact/demande-demo', destination: '/fr/contact?subject=demo', statusCode: 301 },
@@ -103,7 +120,7 @@ const nextConfig: NextConfig = {
       { source: '/en/workflow-management-shotflow', destination: '/en/ia-photo-produit', statusCode: 301 },
       { source: '/en/industry', destination: '/en/industrie', statusCode: 301 },
       { source: '/en/key-questions-product-photography', destination: '/en/questions-cles-photographie-produit', statusCode: 301 },
-      { source: '/en/trainings-product-photography', destination: '/en/academy', statusCode: 301 },
+      { source: '/en/trainings-product-photography', destination: '/fr/academy', statusCode: 301 },
       { source: '/en/products', destination: '/en/studio-photo/selecteur-machines', statusCode: 301 },
       { source: '/en/creator-connected-photo-studios', destination: '/en/studios-photo-automatises', statusCode: 301 },
       { source: '/en/automate-product-photography-packshotcreator', destination: '/en/studios-photo-automatises', statusCode: 301 },
