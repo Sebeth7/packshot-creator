@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Cluster AI Act — satellite B (retouche IA de la photo produit), PR brouillon · Claude de Laurent
 
-**Chantier** : cluster éditorial AI Act / images produit, satellite B | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-retouche-image-produit-2026-09-30`, indépendante de #59 et #60 | **Base** : `main` `7ad0ca3`
+**Chantier** : cluster éditorial AI Act / images produit, satellite B | **PR** : #61, brouillon, `DO NOT MERGE` | **Branche** : `seo/ai-act-retouche-image-produit-2026-09-30`, indépendante de #59 et #60 | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Création de `content/blog/fr/retouche-ia-photo-produit-ai-act.json`, FR seulement, schéma natif, `image: null`. Article rédigé à partir de la matière sortie du pilier A (cas 3 à 10, variantes du cas 14, FAQ couleur et détourage) et des sources primaires revérifiées le 30/09. 3 578 mots de corps, 453 de FAQ ; 13 H2 (dont « En bref » et « Sources »), 12 H3, 6 FAQ, 3 tableaux ; 2 marqueurs `[TERRAIN SÉBASTIEN — …]` non remplis ; 0 lien interne ; 4 liens externes ; renvoi au pilier A sans `href`.
 
