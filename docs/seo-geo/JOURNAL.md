@@ -34,6 +34,42 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Cluster AI Act — satellite D (métadonnées, marketplaces, IPTC, XMP, C2PA), PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, satellite D | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-metadonnees-marketplaces-2026-09-30`, indépendante de #59, #60, #61 et #62 | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Création de `content/blog/fr/images-ia-metadonnees-marketplaces.json`, FR seulement, schéma natif, `image: null`. Matière sortie de A et de #43 (tableau plateformes, Google / IPTC, Amazon / XMP, Zalando, C2PA, survie des métadonnées, checklist, FAQ techniques), toutes les règles revérifiées sur les pages officielles du 30/09. 3 332 mots de corps, 436 de FAQ ; 14 H2 (dont « En bref » et « Sources »), 5 H3, 6 FAQ ; 5 tableaux, dont le comparatif à 9 colonnes (plateforme, contenus visés, règle IA, métadonnée ou marquage, mention visible, standard nommé, échéance, source, date de vérification) ; 1 bloc de commandes ExifTool ; 1 marqueur `[TERRAIN SÉBASTIEN — contrainte marketplace / métadonnées]` non rempli ; 0 lien interne ; 14 liens externes ; renvoi au pilier A sans `href`.
+
+**Brief SEO / GEO** — slug `images-ia-metadonnees-marketplaces` ; title `Images IA : IPTC, XMP, C2PA et règles des marketplaces` (54 caractères) ; meta 148 caractères ; H1 « Images IA et marketplaces : métadonnées IPTC, XMP, C2PA et règles de Google, Amazon et Zalando ». Questions GEO couvertes : C2PA ou IPTC obligatoires ; valeur IPTC de Google Merchant Center ; quand utiliser `contains-synthetic-performer` ; mention visible sur Zalando ; suppression des métadonnées par le CMS ou le CDN ; métadonnée et conformité. SERP du 30/09 (« Google Merchant Center image IA métadonnées IPTC », « Amazon contains-synthetic-performer », « C2PA obligatoire AI Act ») : pages d’aide des plateformes, presse anglophone, pages de prestataires présentant C2PA comme obligatoire. Pas de cannibalisation visée avec A (simple rappel) ni avec S (synthèse suisse).
+
+**Pourquoi** — Mission « satellites AI Act B / C / D » de Laurent (30/09). A ne garde qu’un rappel sur les plateformes et la neutralité technologique ; S contient une synthèse qui ne doit pas devenir la référence technique.
+
+**Fichiers** — `content/blog/fr/images-ia-metadonnees-marketplaces.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant publication coordonnée (D38). La PR n’est pas à fusionner en l’état.
+
+**Vérifié**
+- `main` distant = `7ad0ca3` ; #59 = `81b42c1`, #60 = `6c72482`, non modifiées.
+- Google Merchant Center (FR et EN) : 14743464 (toutes les images créées par IA générative, IPTC DigitalSourceType `trainedAlgorithmicMedia` ; `compositeSynthetic` et `algorithmicMedia` à conserver), 14572008 (février 2024), 6324350 (conservation des métadonnées IA parmi les conditions minimales, refus du produit), 17231950 (libellé IA facultatif, SynthID et C2PA appliqués par Google à ses propres sorties).
+- Amazon, via l’API du Help Hub, US et Europe, EN et FR : G1881 (personnes photoréalistes entièrement générées, 4 cas d’exclusion, mention ajoutée par Amazon le cas échéant) et GFXHCHYZRGJRBZA5 (XMP `dc:subject`, `rdf:li` dans `rdf:Bag`) ; coquille du mot-clé dans l’étape macOS de la version FR ; aucune échéance.
+- Zalando image guidelines, mises à jour le 31/08/2026 : aucune étiquette visible sur l’image, pas de contenus exigeant une mention visible (hypertrucages), marquage invisible exigé d’ici décembre 2026, aucun standard nommé.
+- IPTC : vocabulaire Digital Source Type (JSON officiel, 20 codes dont 3 retirés) ; Photo Metadata Standard 2025.1 (propriété `Iptc4xmpExt:DigitalSourceType`, champs IA) ; User Guide de novembre 2025 (DAM, CMS et CDN pouvant retirer les métadonnées). C2PA 2.4 (avril 2026) : liaisons forte et souple, manifeste séparable du fichier.
+- Cadre UE : règlement, art. 50 et considérant 133 (texte FR du JO via le Cellar) ; lignes directrices, points 12, 16, 72, 73, 96, 98, 117 ; Code de bonnes pratiques, mesures 1.1 et 1.2 (ne nomme ni C2PA ni IPTC). Neutralité technologique de l’AI Act conservée : aucune formule présentant C2PA ou IPTC comme obligatoire en droit.
+- Commandes ExifTool de l’article exécutées avec ExifTool 12.76 sur un JPEG de test : écriture et relecture de `XMP-iptcExt:DigitalSourceType` et de `XMP-dc:Subject`.
+- Pipeline PackshotCreator, inspecté sans aucune modification : images servies par `next/image` (Next 16.1.1) et l’optimiseur de Vercel ; `next.config.ts`, bloc `images` : `minimumCacheTTL` et `remotePatterns` seulement. Mesure du 30/09 à 06:27 UTC sur `sysnext.vercel.app` : `/images/hero/hero-studios-wide.avif` (EXIF et XMP Photoshop présents) servi à l’identique en `w=640` et `w=1080`, réencodé en WebP sans XMP ni EXIF en `w=1920` pour les en-têtes `Accept` annonçant WebP (`image/avif,image/webp,*/*` et `image/webp,*/*`) ; avec `Accept: */*`, l’AVIF d’origine, métadonnées comprises. Seul ce constat, limité à cette image et à cette date, est repris dans l’article.
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/images-ia-metadonnees-marketplaces`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (2026-09-30) et FAQPage (6 = 6), URL au sitemap (326 URL), 1 marqueur visible, 0 erreur de page. Premier rendu en 390 px : débordement horizontal (865 px) causé par la commande ExifTool la plus longue en `<code>` ; corrigé par un bloc `<pre>` dans le conteneur `table-wrap` existant ; ensuite 0 débordement en 1440 et 390 px. 0 lien vers `/fr/packshot-e-commerce` dans l’article (lien du pied de page existant, inchangé).
+- Proximité lexicale TF-IDF (approximation, pas l’embedding de D16) : maximum 0,316 avec A, 0,315 avec S, 0,272 avec C, 0,222 avec B.
+- GSC (`gsc_metrics`, site 3, depuis le 01/06/2026, lecture seule) : 0 impression sur les requêtes IPTC, XMP, C2PA, métadonnées ou Merchant Center liées à l’IA.
+
+**Supposé** — [Inférence] Le passage de `w=1080` (original) à `w=1920` (WebP) tient au fonctionnement de l’optimiseur de Vercel, non documenté ici. Cela repose sur des schémas observés. [Non vérifié] Le Worker Cloudflare et les réglages de zone (`www`) peuvent modifier à nouveau les images : non mesuré (R4).
+
+**Non regardé** — `www.packshot-creator.com` (R4) et Cloudflare ; Preview Vercel (SSO) ; Meta, TikTok et autres plateformes ; outils de vérification C2PA (aucun outil nommé dans l’article) ; EN et de-ch (D38) ; visuels ; volume de recherche (DataForSEO non disponible) ; relecture de la prose par Sébastien.
+
+**Suite** — Réponse terrain de Sébastien sur le marqueur ; relecture éditoriale ; validation explicite de la création (D16) ; revérification des trois plateformes à la date de publication, leurs pages évoluant ; maillage final et lien vers A à la publication coordonnée ; EN et de-ch. Hors chantier éditorial : un éventuel audit de la conservation des métadonnées sur `www` relève d’un chantier technique distinct.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
