@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · D33 — patch factuel sûr (showroom, Orbitvu, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu, Qualiopi), PR brouillon · Claude de Laurent
 
-**Chantier** : D33, alignement factuel du site | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3`
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Corrections factuelles sur liste fermée, sans refonte : showroom au 198 allée de la Tour, 01700 Beynost (page contact, mentions légales, `localBusinessSchema`, carte) ; partenariat Orbitvu daté de 2023 (« depuis 2018 », « dès 2008 », « depuis plus de 20 ans » retirés) ; livraison, installation et formation facturées en supplément, délai indicatif d'environ 12 jours, non contractuel ; accompagnement commercial en allemand seulement ; garantie standard d'un an, extension possible ; prix concurrents et prix comparés retirés (D25) ; chiffres non sourcés retirés de `/fr/blog/orbitvu-vs-concurrents` ; « certifié Qualiopi depuis 2017 » remplacé par une mention non datée au périmètre certifié.
 
