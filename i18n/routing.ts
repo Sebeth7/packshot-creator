@@ -50,11 +50,6 @@ export const routing = defineRouting({
     '/guide': '/guide',
     '/guide/[slug]': '/guide/[slug]',
     '/academy': '/academy',
-    '/academy/[slug]': '/academy/[slug]',
-    '/academy/calendrier': '/academy/calendrier',
-    '/academy/formations-ia': '/academy/formations-ia',
-    '/academy/formations-packshot': '/academy/formations-packshot',
-    '/academy/simulateur-opco': '/academy/simulateur-opco',
     '/besoins-photographie-produit': {
       fr: '/besoins-photographie-produit',
       en: '/besoins-photographie-produit',

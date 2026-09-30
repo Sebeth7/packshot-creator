@@ -193,7 +193,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
                 </Link>
               </Button>
               <Button asChild size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl">
-                <Link href="/academy" locale={lang === 'de-ch' ? 'en' : undefined}>
+                <Link href="/academy" locale="fr">
                   {t('ctaFormation')}
                 </Link>
               </Button>
