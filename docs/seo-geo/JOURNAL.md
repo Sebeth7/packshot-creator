@@ -62,6 +62,59 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
+
+**Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
+
+**Quoi** — Mise à jour documentaire seulement :
+- la ligne R01 de `ETAT.md` indiquait encore « PR #58, brouillon, non fusionnée » ; elle passe à « TERMINÉ — FUSIONNÉ » ;
+- aucun code, aucun test fonctionnel refait.
+
+**Vérifié** — `main` = `e2e1027` : commit de fusion de #58, parents `e88e528` et `0e232c2`, daté du 29/09/2026 à 18:48:26 UTC (`git log`).
+
+**Supposé** — Constats de production de #58, rapportés par Laurent le 30/09 d'après la session de #58, et non recontrôlés ici sur sa consigne :
+- `sysnext.vercel.app` sert le build de `e2e1027` ;
+- `smoke.mjs` vert ;
+- les 8 hubs `/de-ch/branchen/*` sont conformes ;
+- 0 lien en 404 et 0 redirection dans le sélecteur de langue (26 et 6 avant) ;
+- suivi GitHub et rappel de #58 supprimés.
+
+**Non regardé** — `www` (R4). R02 à R19, D9, D29, D33, D36 : non concernés, rien de modifié.
+
+**Suite** — Contrôle Chrome sur `www` de `/de-ch/branchen/uhren`, côté Laurent, comme indiqué dans la « Suite » de l'entrée R01 ci-dessous.
+
+---
+
+## 2026-09-29 · #55 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD » (A, B, D) | **PR** : #55, fusionnée sur GO de Laurent | **Commit de fusion** : `e88e528` (`main`), le 29/09/2026 à 18:35:25 UTC | **Tête fusionnée** : `1ceb42a` | **Base avant fusion** : `37146c2`
+
+**Quoi** — Fusion de #55 sur GO de Laurent, après ces contrôles :
+- tête `1ceb42a` et `main` `37146c2` inchangés ;
+- 4 checks verts ;
+- aucun fil ni avis de revue ;
+- PR fusionnable.
+
+La PR est sortie du brouillon puis fusionnée par commit de fusion. Aucune autre modification de code. C (Organization distributeur), D32, D33, D36, R01 (sélecteur de langue de-ch), maillage, AI Act et Suisse non touchés.
+
+**Vérifié** —
+- `main` = `e88e528`, parents `37146c2` et `1ceb42a` ; arbre identique à celui de `1ceb42a`, la tête testée.
+- `sysnext.vercel.app` sert le nouveau build à partir de 18:37:00 UTC : première observation d'un relevé toutes les 10 s, témoin `dateModified` `2026-05-02` sur l'article FR. Avant fusion, la production servait encore `/de-ch/studio-photo/…` dans le fil d'Ariane et `dateModified` = `datePublished`.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 18:37 UTC : vert, 17 pages et 3 ressources.
+- `/de-ch/fotostudio/alphashot-pro-g2` : 200. `BreadcrumbList` : `/de-ch`, `/de-ch/studios-photo-automatises`, `/de-ch/fotostudio/alphashot-pro-g2`, tous en 200 sans redirection.
+- `/fr/solutions/documentation-technique-visuelle` : 200. `BreadcrumbList` à 2 éléments, `/fr` et la page elle-même, en 200. Plus d'étape `/fr/solutions`.
+- `Article` : `datePublished` `2024-01-08T00:00:00.000Z` et `dateModified` `2026-05-02` sur les 3 pages qui portent la valeur source (FR, EN, de-ch). Leurs éléments de fil d'Ariane répondent 200.
+- Éléments de fil d'Ariane contrôlés en 404 ou en redirection : 0.
+- `/fr` et `/en/distributeur-orbitvu-suisse` : Organization inchangée, soit la variante de la page (téléphones à tirets, sans `email`, `ContactPoint` CH en `French`/`English`).
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`, comme pour les PR précédentes.
+
+**Non regardé** — `www` (R4) ; crawl complet de production, non demandé ; rapport « Fils d'Ariane » de GSC, pas encore lisible.
+
+**Suite** — Laurent, dans Chrome sur `www` : `/de-ch/fotostudio/alphashot-pro-g2` et `/fr/solutions/documentation-technique-visuelle`, JSON-LD du fil d'Ariane. GSC, rapport « Fils d'Ariane », à J+7-14. Backlog inchangé, dans `ETAT.md` : Product/Offer de-ch, `Service.url` `branchen`, `author.url` de-ch, Organization distributeur (D33).
+
+---
+
 ## 2026-09-29 · R01 — sélecteur de langue des 8 hubs de-ch · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 (seul P0 du rapport) | **PR** : #58, brouillon, branche `claude/gracious-dijkstra-efzyen`, non fusionnée | **Base** : `main` `37146c2`
