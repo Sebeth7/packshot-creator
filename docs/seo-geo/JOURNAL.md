@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Mode — réécriture FR de la landing `/fr/packshot-mode` (méthode F5) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Version FR de `/fr/packshot-mode` réécrite dans un composant page-scopé, `PackshotMode.tsx` : chapeau, « En bref », sommaire, 9 sections H2 (collection, couleur/matière/tombé, présentations, internalisation, studio et équipe, IA, plateformes, studios, budget et accompagnement) et FAQ de 9 questions. EN et de-ch restent sur `PackshotLandingTemplate` avec leurs anciens messages, jusqu'à la traduction de la version FR validée (D38). Canonical, hreflang, sitemap, robots, Worker : inchangés.
+
+**Pourquoi** — Page de 755 mots visibles (build local de `main`) et 3 FAQ, bandeau « 500+ pièces par jour / 3 s / -80 % » non sourcé et repris par les moteurs IA (dossier Mode du 30/09, hors dépôt), témoignage « Alexandre M. » non validé, Alphadesk (délisté) et Alphashot XL Pro v2 recommandés. Méthode transposée de F5 (`074189a` → `55ea992`), sans reprise de son texte.
+
+**Fichiers** — `components/landings/PackshotMode.tsx` (nouveau), `app/[lang]/packshot-mode/page.tsx`, `messages/fr.json` (bloc `packshotMode` seul, octets identiques hors du bloc), `docs/seo-geo/JOURNAL.md`, `ETAT.md`, `DECISIONS.md`.
+
+**Claims retirés** — 500+ pièces/jour ; 3 s par packshot ; -80 % de coûts ; « centaines de pièces par jour » (meta et bénéfices) ; témoignage « Alexandre M. » (200 références par jour, cadence multipliée par 8) ; « 3 étapes. Zéro compétence photo. » ; « tout est automatisé » ; « reproduction exacte » ; « éliminant les ombres et reflets » ; « détourage instantané » ; « La plupart des marques combinent… » ; « 20 systèmes Orbitvu » ; cartes machines (XL Pro v2, cadences « photos/jour » de `machines.ts`, XXL à 100 × 70 × 190 cm) ; Alphadesk ; image « Showroom PackshotCreator », qui ne représente pas le showroom.
+
+**Faits utilisés** — NN/g, Baymard, Amazon G1881, Google Merchant Center 6324350 et 16989427, Zalando : relevés F5 du 28/09, datés dans la page. Dimensions Orbitvu : fiches relevées le 28/09 pour F5. Limites de l'Alphatable, de l'XXL et du Fashion Studio : fiches du site (`machines.ts`). Faits métier de Sébastien du 30/09, transmis par Laurent (prise de vue réelle, gros volumes, recolorisation, essais IA « mannequin invisible », Fashion Studio) : attribués à « PackshotCreator », sans nom. Financement, formation, accompagnement : faits de F5 (D32 pour la livraison et l'installation). Aucun prix, aucune cadence chiffrée.
+
+**Vérifié** — `npx tsc --noEmit` ; eslint `--max-warnings=0` sur les 2 fichiers de code ; `verifier-json.mjs` (186) ; 249 messages ICU compilés ; Vitest 342/342 ; `npx next build` vert, table des routes identique à `main` (383 pages) ; `e2e/seo.spec.ts` filtré sur `packshot-mode` : 26/26 (Chromium, Pixel 5) ; `smoke.mjs` sur le build local : vert, 17 pages, sitemap 325 URL. Rendu local à 1440 et 390 px : statut 200, 1 H1, `lang="fr"`, canonical et 5 hreflang identiques à `main`, `og:url`, `og:locale`, `og:type` et `twitter:*` ajoutés en FR seulement, Organization + BreadcrumbList + FAQPage (9 questions = FAQ visible), 22 liens internes uniques en 200, 6 externes en `_blank` avec `noopener noreferrer`, aucun débordement horizontal, aucune ancre cassée, aucune erreur console, aucune réponse 4xx, préchargements d'images 10 → 3. Mots visibles du `<main>` : 755 → 3 494. Claims retirés : 0 occurrence dans le texte visible, le `<head>`, le JSON-LD et le bloc `packshotMode` du flux RSC. `/en/packshot-mode`, `/de-ch/packshot-mode` et `/fr/industrie/mode-textile` : HTML hors scripts identique à `main`.
+**Supposé** — Les visuels réutilisés (`public/images/machines/*`) sont des visuels Orbitvu : non recontrôlé sur orbitvu.com, d'où des légendes qui ne nomment aucun modèle, sauf pour les photos de studio dont le nom figure sur l'appareil. Valeurs des plateformes : celles du 28/09, non relues depuis.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; relecture par Sébastien ; hub non modifié ; versions EN et de-ch non traduites.
+
+**Constats hors périmètre** — Le flux RSC de toute page FR contient tout `fr.json`, donc les anciens claims d'autres namespaces (déjà signalé par F5). La PR #64 (D33, ouverte) annonce un délai de livraison d'environ 12 jours, contre environ 10 dans F5 et D32 : chiffre retiré de la page Mode. Le hub `/fr/industrie/mode-textile` porte des chiffres non sourcés (-80 %, 50-100 vêtements par jour, 100-300 visuels IA par jour, cas client « 400 SKUs », délais -75 %). L'article flat lay lié par `MoneyPageResources` cite l'Alphadesk, « 15 secondes » et « 150 prises de vue par heure ». La fiche XXL du site affiche 100 × 70 × 190 cm, Orbitvu 190 × 90 × 100 cm.
+
+**Suite** — Relecture de Laurent ; passe de Sébastien (faits métier, Fashion Studio, délai de livraison) ; visuels à produire séparément après validation (liste dans la PR) ; traduction EN et de-ch depuis la version FR validée (D38) ; calendrier de fusion à décider par Laurent.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
