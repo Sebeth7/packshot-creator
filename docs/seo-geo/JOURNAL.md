@@ -34,6 +34,122 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · D36 — sécurisation avant fusion : retrait du noindex sur www par le Worker · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #67, brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3` | **Commits** : `b7b9808` (Worker), `02c093c` (Next)
+
+**Quoi** — Deuxième protection de `www`, indépendante de Vercel :
+- côté Next, la règle D36 pose en plus le marqueur `X-Packshot-Origin-Noindex: 1` ;
+- côté Worker, dans le seul bloc qui relaie `www` vers l'origine, une réponse marquée perd `X-Robots-Tag` et le marqueur.
+
+Sans marqueur, rien n'est retiré. La première protection, les en-têtes `cf-*` dans `missing`, est conservée. **Rien n'est déployé.**
+
+**Pourquoi** — Dans #67 à `99c1439`, `www` ne restait sans `noindex` que si Vercel transmettait `cf-worker`, `cf-ray` ou `cf-connecting-ip` à son routage, ce qui n'est pas établi. Le test de chaîne le montre : sans ces en-têtes, et sans le retrait du Worker, les 9 pages `www` testées reçoivent `noindex`. Le Worker construit lui-même la réponse servie à `www` (`index.js`, bloc `NEXTJS_ORIGIN`) : le retrait n'y dépend que de son code.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+9, commentaire en ASCII comme le reste du fichier), `cloudflare-worker/test/d36-origine-noindex.test.ts` (15 cas), `next.config.ts`, `lib/seo/__tests__/origine-noindex-d36.test.ts` (67 cas), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun tant que rien n'est déployé. Ordre imposé :
+1. Worker déployé, retrait inerte faute de marqueur ;
+2. `www` contrôlé, inchangé ;
+3. fusion de #67 ;
+4. contrôle.
+
+L'ordre inverse laisserait `www` sous la seule protection non établie.
+
+**Vérifié** —
+- Inventaire, par `curl` en production le 30/09 :
+  - aucun `X-Robots-Tag` sur l'origine (15 chemins) ni sur les fichiers statiques de `www` ;
+  - les noindex existants sont tous des balises `robots` : `/fr/outil-financement`, `/calculateur-roi`, `/etude-clients-2026`, `/roi-pro`, `/roi-preview`, `/en/distributeur-orbitvu-suisse`, `/en/industrie/horlogerie`, 404.
+- Seul `X-Robots-Tag` légitime existant : celui des 3 réponses 410 du Worker (`noindex, nofollow`), rendues avant le bloc d'origine. Test : conservé.
+- Test Worker, 15 cas :
+  - 4 échouent sur le Worker de `99c1439` ;
+  - un retrait aveugle de tout `X-Robots-Tag` échoue sur « en-tête légitime sans marqueur conservé ».
+- Test Next, 67 cas :
+  - chaîne rejouée avec et sans en-têtes Cloudflare transmis : sur `www`, ni noindex ni marqueur, balise `robots` et canonical conservées ;
+  - sans le retrait Worker, 9 échecs dans le pire cas ;
+  - garde : aucune autre source de `X-Robots-Tag` dans `app`, `components`, `lib`, `i18n` et `middleware.ts` (255 fichiers).
+- Chaîne réelle en local, code du Worker du dépôt contre le build `next start`, 22 URL :
+  - origine directe : `noindex` et marqueur sur les 13 URL HTML ;
+  - `www` : 0 en-tête et 0 marqueur dans les deux cas ;
+  - corps, balise `robots`, canonical, statut et `Location` identiques entre origine et `www`.
+- Vitest 424/424. `tsc` vert. ESLint : 0 message sur les 4 fichiers. `node --check` du Worker vert. `verifier-json` : 186 JSON valides. `npx next build` vert : `routes-manifest.json` porte les deux en-têtes.
+- `smoke.mjs` vert sur le build local servi sous l'hôte `sysnext.vercel.app` (17 pages, 3 ressources).
+- `b7b9808` s'applique seul sur `main` `7ad0ca3` : 357/357 tests, `tsc` vert.
+
+**Supposé** — [Non vérifié] La production du Worker est identique au dépôt hors bloc D36 : resynchronisation à faire avant déploiement (R5, `05-INFRA.md`). [Inférence] Vercel transmet au Worker les en-têtes de réponse posés par `next.config` : c'est le fonctionnement documenté de `headers()`, et le retrait n'agit que s'il les reçoit.
+
+**Non regardé** — Cloudflare, dashboards, production : non touchés. `llms.txt` : hors de D36 à ce stade, décision de Laurent attendue.
+
+**Suite** — GO de Laurent sur l'ordre de déploiement :
+- (a) PR séparée ne portant que `b7b9808`, fusionnée puis déployée depuis `main` ;
+- (b) `wrangler deploy` depuis la tête de #67.
+
+Après fusion de #67, un retour arrière du Worker vers une version sans ce retrait exige d'abord le revert de #67.
+
+---
+
+## 2026-09-30 · D36 — `noindex` de l'origine `sysnext.vercel.app`, PR brouillon · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #67, brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Une règle `headers()` dans `next.config.ts` pose `X-Robots-Tag: noindex` sur les documents HTML de l'origine `sysnext.vercel.app`. Elle s'applique si l'hôte est `sysnext.vercel.app` et si aucun des en-têtes `cf-worker`, `cf-ray`, `cf-connecting-ip` n'est présent. Test `lib/seo/__tests__/origine-noindex-d36.test.ts` (47 cas).
+
+**Pourquoi** — D36 (Q12). Avant ce changement, `https://sysnext.vercel.app/fr` et 5 autres pages ne renvoient ni `X-Robots-Tag` ni balise `robots` (`curl -I`, 30/09).
+
+Piège établi avant toute modification : l'hôte seul ne distingue pas les deux publics.
+- Le Worker relaie `www` vers `NEXTJS_ORIGIN = https://sysnext.vercel.app` (`cloudflare-worker/wrangler.toml`, `index.js` l. 2008-2031) et recopie les en-têtes de réponse de l'origine.
+- Le commit `6646787` (09/05) constate que next-intl lisait, pour `www`, « le Host interne Vercel » (`sysnext.vercel.app`).
+- Une règle « hôte = `sysnext.vercel.app` » aurait donc posé `noindex` sur `www`.
+
+Ce qui distingue la requête relayée :
+- Cloudflare ajoute `CF-Worker` (nom de la zone) à toute sous-requête `fetch()` d'un Worker (developers.cloudflare.com/fundamentals/reference/http-headers/) ;
+- le Worker recopie les en-têtes reçus (`new Headers(request.headers)`), dont `cf-ray` et `cf-connecting-ip`.
+
+Un seul de ces en-têtes écarte la règle. Si le discriminant manque, la règle n'agit pas.
+
+**Fichiers** — `next.config.ts`, `lib/seo/__tests__/origine-noindex-d36.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Sur `sysnext.vercel.app`, en accès direct : `X-Robots-Tag: noindex` sur les pages HTML. Rien ne change sur `www`, les Preview, `localhost`, les fichiers statiques, `/_next`, `/_vercel` et `/api`. Sortie progressive de l'origine des index qui respectent l'en-tête, au rythme de leurs recrawls. Des citations déjà faites par les moteurs de réponse peuvent persister un temps : l'effet sur les citations dépend de chaque crawler, de chaque moteur et de leur cache.
+
+**Vérifié** —
+- Sémantique de `has`/`missing` lue dans Next 16.1.1 (`prepare-destination.js`, `matchHas`) :
+  - hôte lu dans `Host`, sans port, en minuscules ;
+  - valeur comparée par une expression régulière ancrée ;
+  - `missing` : aucune condition ne doit correspondre.
+- `routes-manifest.json` du build : la règle y figure, regex `^(?:/((?!_next/|_vercel/|api/)[^.]*))(?:/)?$`.
+- Vitest :
+  - 389/389 sur la branche, 342 sur `main` ;
+  - le nouveau test échoue sur `main` (pas de `headers()`) ;
+  - une règle « hôte seul » échoue sur 25 cas, dont les 9 pages relayées par le Worker.
+- `npx tsc --noEmit` vert. ESLint : 0 problème sur les 2 fichiers. `verifier-json` : 186 JSON valides. `npx next build` vert.
+- Build local (`next start`), 23 URL × 11 profils d'en-têtes :
+  - `noindex` sur les 14 URL HTML de l'origine directe (dont `/fr`, `/en`, `/de-ch`, `/fr/contact`, `/fr/packshot-mode`, un article FR), y compris hôte en majuscules avec port ;
+  - 0 en-tête sur `www`, sur l'origine avec `cf-worker`, `cf-ray` ou `cf-connecting-ip`, sur un hôte de Preview, sur l'alias d'équipe et sur `localhost` ;
+  - 0 en-tête sur `robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.ico`, une image, JS, CSS, police et `/api/og` ;
+  - avant/après : 0 écart sur 253 comparaisons (statut, balise `robots`, canonical, hreflang, title, `Location`, type).
+- 371 HTML prérendus identiques entre `main` et la branche, identifiant de build neutralisé. Seul `sitemap.xml` diffère, par son `lastmod`, qui vaut l'heure du build (`app/sitemap.ts:38`, préexistant).
+- Redirections `next.config` et 307 de next-intl : mêmes `Location` sur les deux hôtes.
+- `smoke.mjs` :
+  - vert sur `https://sysnext.vercel.app` avant patch ;
+  - vert sur le build local servi sous l'hôte `sysnext.vercel.app`, en-tête présent : 17 pages et 3 ressources.
+- Playwright (`seo`, `redirections`, `language-switch`, Chromium), même relais d'hôte : 257 succès, 59 échecs, **liste identique sur `main` et sur la branche**. Échecs préexistants : redirections portées par le Worker (absent en local), `footer` ambigu, metas et titres.
+
+**Supposé** —
+- [Non vérifié] Vercel transmet `cf-worker`, `cf-ray` ou `cf-connecting-ip` à son moteur de routage pour les requêtes relayées par le Worker. Côté Cloudflare, l'ajout de `CF-Worker` est documenté. Côté Vercel, aucune source officielle trouvée, et aucune mesure n'est possible avant fusion : Preview sous SSO, jeton de contournement non transmis, et les Preview ne passent pas par le Worker.
+- [Inférence] Vercel applique les en-têtes de `next.config` à chaque requête, hors cache : une réponse servie à l'origine directe ne serait pas resservie à `www`.
+
+**Non regardé** — `www` (R4). Worker, Cloudflare, dashboard Vercel : non touchés. Balise `robots`, canonical, hreflang, sitemap et `robots.txt` : non modifiés. F5, AI Act, Mode (lecture seule de `/fr/packshot-mode`), D29, D33, TDE : non concernés. Le commentaire du bloc `images` de `next.config.ts`, réputé dépassé (`05-INFRA.md`), n'est pas corrigé ici : la PR reste limitée à D36.
+
+**Suite** — Revue et GO de Laurent. Après fusion, dans cet ordre :
+1. `curl -sI https://sysnext.vercel.app/fr` : `x-robots-tag: noindex` ;
+2. Chrome sur `www` : `/fr?v=<horodatage>`, onglet Réseau, aucun `X-Robots-Tag` sur le document ;
+3. `smoke.mjs` sur l'origine ;
+4. entrée au JOURNAL.
+
+Si `www` porte l'en-tête : `git revert` du commit de fusion, puis push sur `main`.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
