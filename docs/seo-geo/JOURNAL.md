@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Cluster AI Act — article Suisse : visuels S1 (hero), S2 et S3 intégrés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `f3ebb10`
+
+**Quoi** — S1 devient l'image principale (champ `image`) ; S2 est inséré à la fin de « Faut-il signaler une image générée ou retouchée par IA en Suisse ? », après les trois questions (produit, personnes, contexte de diffusion) ; S3 dans « Couleur, matière, finition, dimensions, accessoires et défauts », après le paragraphe sur la matière et la finition. Alt et légendes fixés par la mission. S4 n'est pas intégré. Aucune prose modifiée ; les 5 marqueurs `[TERRAIN SÉBASTIEN — …]` restent en place.
+
+**Pourquoi** — Sélection visuelle verrouillée par Laurent le 30/09 (`AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` : S1, S2, S3 KEEP, S4 HOLD), en vue de la passe de Sébastien sur la Preview.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/cover.avif`, `public/images/blog/images-ia-ecommerce-suisse/suisse-ue-plateforme.avif`, `public/images/blog/images-ia-ecommerce-suisse/fidelite-produit.avif`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). Sur la Preview : hero, `og:image` et image de l'`Article` JSON-LD renseignés.
+
+**Vérifié**
+- Pack `AI_ACT_VISUAL_HANDOFF_2026-09-30.zip` : SHA-256 et tailles des PNG identiques au rapport (S1 `21b3d9d2…92c66`, 485 533 octets ; S2 `e69c2030…3babd`, 239 899 octets ; S3 `34e8b02d…22461`, 398 342 octets). PNG sources conservés hors dépôt, non modifiés.
+- Dérivés AVIF 1600 × 900 sans recadrage, qualité 70, 4:4:4 (même pipeline que le pilier A, convention `/images/blog/<slug>/`) : S1 18 133 octets (PSNR 48,4 dB), S2 11 043 octets (49,3 dB), S3 37 218 octets (45,9 dB) ; comparaison à 1:1 sans différence visible.
+- `next start` local : les trois images en 200 `image/avif`, ratio 16:9 complet en 1440 px (hero 848 × 477, corps 662 × 372) et en 390 px (358 × 201) ; S3 garde ses quatre variantes, S2 ses trois panneaux ; 0 débordement, 0 erreur de page ; pas de FAQPage (0 FAQ) ; canonical et absence de balise `robots` inchangés ; `og:image` = URL absolue de `cover.avif` ; `Article.image` = `/images/blog/images-ia-ecommerce-suisse/cover.avif`.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages ; `e2e/seo.spec.ts` + `internal-links-all.spec.ts` : 243 réussis, les 8 échecs préexistants de `main`, inchangés.
+
+**Supposé** — [Inférence] Provenance : illustrations générées par IA, enregistrées `model_generated=true` le 30/09/2026 selon le rapport (source fournie, non vérifiable dans les fichiers) ; modèle, identifiant de génération et prompt non embarqués ; aucune métadonnée XMP, IPTC ou C2PA. Cela repose sur des schémas observés.
+
+**Non regardé** — Alt du hero : le gabarit impose le titre de l'article ; l'alt demandé pour S1 n'est pas applicable sans modifier ce gabarit commun, non touché. `twitter:image` : image générique du layout, comme tous les articles. AVIF en `og:image` sur les réseaux sociaux : non vérifié. Interprétation ajoutée par `f3ebb10` en situation A (point 13) : non modifiée, à valider avant publication. Preview (SSO). Adaptation de-ch (D38).
+
+**Suite** — Preview de la nouvelle tête à transmettre à Sébastien, avec les 5 marqueurs terrain et la question Suisse / UE ; S4 seulement sur GO de Laurent.
+
+---
+
 ## 2026-09-29 · Cluster AI Act — article Suisse (S), PR brouillon · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29`, indépendante du pilier A | **Base** : `main` `e2e1027`
