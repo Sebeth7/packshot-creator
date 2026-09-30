@@ -7,7 +7,7 @@ import { NavLink as Link } from '@/components/layout/NavLink';
 import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Camera, Sparkles, GraduationCap, Brain, Calculator, CalendarDays, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
@@ -446,37 +446,6 @@ export default function Header() {
     },
   ];
 
-  const academySections: DropdownSection[] = [
-    {
-      items: [
-        {
-          href: '/academy',
-          labelKey: 'academyHub',
-          descKey: 'academyHubDesc',
-          icon: <Sparkles className="h-4 w-4" />,
-        },
-        {
-          href: '/academy/formations-packshot',
-          labelKey: 'formationsPackshot',
-          descKey: 'formationsPackshotDesc',
-          icon: <GraduationCap className="h-4 w-4" />,
-        },
-        {
-          href: '/academy/formations-ia',
-          labelKey: 'formationsIA',
-          descKey: 'formationsIADesc',
-          icon: <Brain className="h-4 w-4" />,
-        },
-        {
-          href: '/academy/calendrier',
-          labelKey: 'calendrier',
-          descKey: 'calendrierDesc',
-          icon: <CalendarDays className="h-4 w-4" />,
-        },
-      ],
-    },
-  ];
-
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -514,11 +483,12 @@ export default function Header() {
               cascading
             />
 
-            <NavDropdown
-              label={t('academy')}
-              sections={academySections}
-              t={t}
-            />
+            <Link
+              href="/academy"
+              className="text-sm font-medium text-future-dusk-700 hover:text-very-peri-600 transition-colors py-2"
+            >
+              {t('academy')}
+            </Link>
 
             <Link
               href="/blog"
@@ -586,12 +556,13 @@ export default function Header() {
                 />
 
                 {/* Academy */}
-                <MobileNavSection
-                  label={t('academy')}
-                  sections={academySections}
-                  t={t}
-                  onClose={() => setMobileMenuOpen(false)}
-                />
+                <Link
+                  href="/academy"
+                  className="block py-3 text-base font-medium text-future-dusk-800 hover:text-very-peri-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('academy')}
+                </Link>
 
                 {/* Blog */}
                 <Link

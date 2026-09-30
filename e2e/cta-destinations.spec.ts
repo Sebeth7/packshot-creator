@@ -59,18 +59,20 @@ test.describe('CTA Destinations - Academy FR', () => {
     await page.goto('/fr/academy', { timeout: 60000 });
   });
 
-  test('formation links -> correct paths', async ({ page }) => {
-    const links = page.locator('a[href*="/fr/academy/formations"]');
-    const count = await links.count();
-    expect(count).toBeGreaterThan(0);
-  });
+  // La page renvoie au catalogue Qualiopi, qui fait foi (audit du 16/10/2026).
+  const catalogue = [
+    { name: /Essential Training, distanciel, 4\sh/, href: 'https://packshotcreator.catalogueformpro.com/0/packshot/3057264/essential-training-distanciel-version-2026' },
+    { name: /Master Training, présentiel, 7\sh/, href: 'https://packshotcreator.catalogueformpro.com/0/packshot/3162813/master-training-presentiel-version-2026' },
+    { name: /Consulter notre catalogue de formation/, href: 'https://packshotcreator.catalogueformpro.com/' },
+  ];
 
-  test('simulator link -> /fr/academy/simulateur-opco', async ({ page }) => {
-    const link = page.locator('a[href*="simulateur-opco"]');
-    if (await link.count() > 0) {
-      await expect(link.first()).toHaveAttribute('href', /\/fr\/academy\/simulateur-opco/);
-    }
-  });
+  for (const { name, href } of catalogue) {
+    test(`${name.source} -> catalogue`, async ({ page }) => {
+      const link = page.locator('main').getByRole('link', { name });
+      await expect(link).toHaveAttribute('href', href);
+      await expect(link).toHaveAttribute('target', '_blank');
+    });
+  }
 });
 
 test.describe('CTA Destinations - Header', () => {

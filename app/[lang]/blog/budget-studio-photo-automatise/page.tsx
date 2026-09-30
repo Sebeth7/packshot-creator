@@ -344,7 +344,7 @@ export default async function BudgetStudioPage({ params }: { params: Promise<{ l
               {t('included.body')}
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
-              {(['i1', 'i2', 'i3', 'i4', 'i5', 'i6'] as const).map((key) => (
+              {(['i1', 'i2', 'i4', 'i5', 'i6'] as const).map((key) => (
                 <FadeInView key={key}>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-future-dusk-50/50">
                     <Check className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />

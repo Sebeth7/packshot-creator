@@ -3,7 +3,6 @@ import { Link } from '@/i18n/routing';
 import blogAlternates from '@/content/blog/alternates.json';
 import guideAlternates from '@/content/guides/alternates.json';
 import {
-  NOINDEX_EN_ACADEMY_SLUGS,
   NOINDEX_EN_BLOG_SLUGS,
   NOINDEX_EN_INDUSTRIE_SLUGS,
   NOINDEX_EN_SOLUTIONS_SLUGS,
@@ -64,8 +63,6 @@ const STATIC_BILINGUAL_BLOG: ReadonlySet<string> = new Set([
   'budget-studio-photo-automatise',
   'comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet',
   'comparatif-orbitvu-ortery-styleshoots-2026',
-  'financement-formation-opco-guide-complet-pour-studios-photo-2026',
-  'formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026',
   'guide-achat-studio-2026',
   'ia-photo-produit-guide-2026',
   'orbitvu-vs-concurrents',
@@ -155,7 +152,6 @@ export function isDeChCovered(href: LinkHref): boolean {
 const EN_NOINDEX_DYNAMIC: Readonly<Record<string, ReadonlySet<string>>> = {
   '/industrie/[slug]': NOINDEX_EN_INDUSTRIE_SLUGS,
   '/solutions/[slug]': NOINDEX_EN_SOLUTIONS_SLUGS,
-  '/academy/[slug]': NOINDEX_EN_ACADEMY_SLUGS,
   '/blog/[slug]': NOINDEX_EN_BLOG_SLUGS,
 };
 // NB : le hub /en/industrie sert aussi du contenu FR mais reste indexable dans le
@@ -183,6 +179,15 @@ export function isEnNoindex(href: LinkHref): boolean {
  * SAUF si la version /en est noindex (cf isEnNoindex) : alors /fr, seule version indexable.
  * Les pages légales sont FR-only dans ce projet (cf feedback no_legal_pages).
  */
+/**
+ * Pages servies UNIQUEMENT en /fr : leurs URL /en et /de-ch redirigent en 301 vers
+ * /fr (next.config.ts). Tout lien, depuis n'importe quelle locale, pointe donc
+ * directement sur /fr, sans passer par la redirection.
+ * - /academy : la formation se résume au catalogue Qualiopi, en français
+ *   (décision Seb 30/09/2026, audit de surveillance du 16/10).
+ */
+const FR_ONLY: ReadonlySet<string> = new Set(['/academy']);
+
 const DE_CH_PIN_FR: ReadonlySet<string> = new Set([
   '/mentions-legales',
   '/cgu',
@@ -192,6 +197,7 @@ const DE_CH_PIN_FR: ReadonlySet<string> = new Set([
 
 /**
  * Locale à forcer sur un `<Link>` de navigation globale (Header/Footer + contenu).
+ * - cible FR-only (cf FR_ONLY) depuis en ou de-ch : 'fr'.
  * - locale courante ≠ de-ch : comportement normal (undefined → locale courante).
  * - locale de-ch + cible couverte : undefined (rendu natif de-ch).
  * - locale de-ch + cible NON couverte : 'en' par défaut (germanophone → anglais),
@@ -199,9 +205,10 @@ const DE_CH_PIN_FR: ReadonlySet<string> = new Set([
  *   toute cible dont la version /en est noindex.
  */
 export function navPinLocale(currentLocale: string, href: LinkHref): 'fr' | 'en' | undefined {
+  const pathname = hrefPathname(href);
+  if (currentLocale !== 'fr' && pathname && FR_ONLY.has(pathname)) return 'fr';
   if (currentLocale !== 'de-ch') return undefined;
   if (isDeChCovered(href)) return undefined;
-  const pathname = hrefPathname(href);
   if (pathname && DE_CH_PIN_FR.has(pathname)) return 'fr';
   if (isEnNoindex(href)) return 'fr';
   return 'en';
@@ -345,15 +352,11 @@ export function localeSwitchHref(
     return { href: { pathname: '/solutions/[slug]', params: { slug } }, locale: target };
   }
 
-  // Fiches formation : non couvertes en de-ch, EN noindex (le hub /academy est traduit)
-  if (pathname === '/academy/[slug]' && slug) {
-    if (target === 'de-ch') return { href: '/academy', locale: navPinLocale('de-ch', '/academy') ?? 'de-ch' };
-    if (target === 'en' && NOINDEX_EN_ACADEMY_SLUGS.has(slug)) return { href: '/academy', locale: 'en' };
-    return { href: { pathname: '/academy/[slug]', params: { slug } }, locale: target };
-  }
-
   // Pages statiques : next-intl localise le segment (contact→kontakt…)
   const href = (pathname || '/') as LinkHref;
+  // Page FR-only : sa version /en ou /de-ch redirige vers /fr, le bouton de langue
+  // mène donc à l'accueil de la locale demandée.
+  if (FR_ONLY.has(href as string) && target !== 'fr') return { href: '/', locale: target };
   if (target === 'de-ch') {
     return { href, locale: navPinLocale('de-ch', href) ?? 'de-ch' };
   }
