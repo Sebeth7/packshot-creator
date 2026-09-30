@@ -113,17 +113,63 @@ describe('D36 — sans marqueur, rien n\'est retiré', () => {
   });
 });
 
+describe('D36 — redirections : inchangées', () => {
+  it('redirection de l\'origine sans marqueur : statut, Location et en-têtes transmis tels quels', async () => {
+    const r = await servir('/fr/contact/demande-demo', () =>
+      new Response(null, { status: 301, headers: { location: '/fr/contact?subject=demo', 'cache-control': 'public, max-age=31536000' } }),
+    );
+    expect(r.status).toBe(301);
+    expect(r.headers.get('location')).toBe('/fr/contact?subject=demo');
+    expect(r.headers.get('cache-control')).toBe('public, max-age=31536000');
+    expect(r.headers.get('x-robots-tag')).toBeNull();
+  });
+
+  it.each([
+    ['/', 'https://www.packshot-creator.com/fr'],
+    ['/de/kontakt', null],
+    ['/secteur/bijoux', 'https://www.packshot-creator.com/fr/industrie/bijoux-joaillerie'],
+  ])('redirection calculée par le Worker (%s) : origine non appelée, aucun X-Robots-Tag', async (chemin, cible) => {
+    const r = await servir(chemin, () => new Response('jamais'));
+    expect(r.status).toBe(301);
+    if (cible) expect(r.headers.get('location')).toBe(cible);
+    expect(r.headers.get('x-robots-tag')).toBeNull();
+    expect(fetchOrigine).not.toHaveBeenCalled();
+  });
+});
+
 describe('D36 — réponses hors origine : non concernées', () => {
-  it('410 du Worker : X-Robots-Tag « noindex, nofollow » conservé, origine non appelée', async () => {
-    const r = await servir('/secteur/bijoux/exemples-bagues', () => new Response('jamais'));
+  it.each([
+    ['/secteur/bijoux/exemples-bagues', 'l. 1643 : /secteur/*/exemples-*'],
+    ['/industry/jewelry/examples-rings', 'l. 1829 : /industry/*/examples-*'],
+    ['/3d-products-models', 'l. 1990 : GONE_PATHS'],
+    ['/ftp/catalogue', 'l. 1990 : préfixe /ftp/'],
+  ])('410 du Worker %s (%s) : X-Robots-Tag « noindex, nofollow » conservé, origine non appelée', async (chemin) => {
+    const r = await servir(chemin, () => new Response('jamais'));
     expect(r.status).toBe(410);
     expect(r.headers.get('x-robots-tag')).toBe('noindex, nofollow');
+    expect(await r.text()).toContain('<meta name="robots" content="noindex">');
     expect(fetchOrigine).not.toHaveBeenCalled();
   });
 
-  it('host en passage direct (videos.) : réponse de son origine renvoyée telle quelle', async () => {
-    const r = await servir('/clip.mp4', () => new Response('video', { headers: D36 }), 'videos.packshot-creator.com');
-    expect(r.headers.get('x-robots-tag')).toBe('noindex');
-    expect(r.headers.get('x-packshot-origin-noindex')).toBe('1');
-  });
+  it.each([['videos.packshot-creator.com'], ['books.packshot-creator.com'], ['trail.packshot-creator.com']])(
+    'host en passage direct (%s) : réponse de son origine renvoyée telle quelle',
+    async (host) => {
+      const r = await servir('/fichier', () => new Response('tiers', { headers: { ...D36, etag: '"t"' } }), host);
+      expect(r.headers.get('x-robots-tag')).toBe('noindex');
+      expect(r.headers.get('x-packshot-origin-noindex')).toBe('1');
+      expect(r.headers.get('etag')).toBe('"t"');
+      expect(fetchOrigine).toHaveBeenCalledTimes(1);
+    },
+  );
+
+  it.each([['fr.packshot-creator.com'], ['packshot-creator.com'], ['news.packshot-creator.com']])(
+    'host legacy (%s) : 301 vers www, origine non appelée',
+    async (host) => {
+      const r = await servir('/une-page', () => new Response('jamais'), host);
+      expect(r.status).toBe(301);
+      expect(r.headers.get('location')).toMatch(/^https:\/\/www\.packshot-creator\.com\//);
+      expect(r.headers.get('x-robots-tag')).toBeNull();
+      expect(fetchOrigine).not.toHaveBeenCalled();
+    },
+  );
 });

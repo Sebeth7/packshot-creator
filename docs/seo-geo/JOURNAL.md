@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · D36 — protection Worker, PR séparée avant #67 (voie a) · Claude de Laurent
+
+**Chantier** : D36 | **PR** : brouillon, non fusionnée, branche `seo/d36-protection-worker-2026-09-30` | **Base** : `main` `7ad0ca3` | **Source** : `b7b9808` (#67)
+
+**Quoi** — Le Worker seul, sans aucun changement Next. Dans le bloc qui relaie `www` vers l'origine, une réponse marquée `X-Packshot-Origin-Noindex` perd ce marqueur et `X-Robots-Tag`. Sans marqueur, rien n'est retiré. La logique de `index.js` est celle de `b7b9808`, octet pour octet. Le test `cloudflare-worker/test/d36-origine-noindex.test.ts` passe de 15 à 27 cas. **Rien n'est déployé.**
+
+**Pourquoi** — Voie (a) retenue par Laurent le 30/09. Le Worker doit savoir retirer le noindex marqué avant que l'origine ne l'émette (fusion de #67). Sinon, `www` ne serait protégé que par l'absence des en-têtes `cf-*`, dont la transmission par Vercel n'est pas établie.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+9), `cloudflare-worker/test/d36-origine-noindex.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun tant que #67 n'est pas fusionnée : l'origine n'émet pas le marqueur.
+
+**Vérifié** —
+- Inertie, avec le Worker de `main` et le Worker patché contre l'origine de production réelle :
+  - 23 URL (pages, noindex existants, 404, redirections, fichiers texte, API, 2 réponses 410) ;
+  - 0 écart de statut, d'en-têtes ou de corps ;
+  - 40 réponses de l'origine reçues, dont 0 marquée et 0 portant `X-Robots-Tag`.
+- `main` ne contient ni le marqueur ni de `headers()` dans `next.config.ts`.
+- Test, 27 cas :
+  - sur le Worker de `main`, seuls les 4 cas de retrait échouent ; les 23 autres passent à l'identique ;
+  - couverts : 410 des trois branches (`noindex, nofollow` conservé), redirections de l'origine et du Worker, `robots.txt`, `sitemap.xml`, `llms.txt`, assets, API, hosts en passage direct et hosts legacy.
+- Vitest, `tsc`, ESLint, `node --check`, `verifier-json` et `npx next build` : voir la PR.
+
+**Supposé** — [Non vérifié] La production du Worker est identique au dépôt hors bloc D36 : resynchronisation R5 à faire avant tout déploiement.
+
+**Non regardé** — Next, Vercel, Cloudflare, #67 : non touchés.
+
+**Suite** — Après GO de Laurent, dans cet ordre :
+1. fusion de cette PR ;
+2. resynchronisation R5 ;
+3. `wrangler deploy` depuis `main` ;
+4. lecture du script déployé : présence de `x-packshot-origin-noindex` ;
+5. contrôle de `www` inchangé ;
+6. seulement ensuite, #67, après fusion de `main` dans sa branche. Deux conflits attendus :
+   - le test Worker, dont #67 porte la version à 15 cas : garder celle de `main` ;
+   - le haut du JOURNAL.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
