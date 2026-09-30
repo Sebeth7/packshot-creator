@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · D36 — `noindex` de l'origine `sysnext.vercel.app`, PR brouillon · Claude de Laurent
 
-**Chantier** : D36 | **PR** : brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3`
+**Chantier** : D36 | **PR** : #67, brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Une règle `headers()` dans `next.config.ts` pose `X-Robots-Tag: noindex` sur les documents HTML de l'origine `sysnext.vercel.app`. Elle s'applique si l'hôte est `sysnext.vercel.app` et si aucun des en-têtes `cf-worker`, `cf-ray`, `cf-connecting-ip` n'est présent. Test `lib/seo/__tests__/origine-noindex-d36.test.ts` (47 cas).
 
