@@ -56,6 +56,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - `verifier-json` 186 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 383 pages.
 - `next start` local, 42 URL (FR, EN, de-ch) : 200, sauf 4 routes de-ch absentes, 404 aussi sur `main` ; aucune formulation corrigée dans le texte visible ni le JSON-LD.
 - Rendu Chromium 390 et 1440 px, 17 pages touchées : 0 erreur de page ; 0 débordement, sauf `/fr` en 390 px (53 px, section « Vos défis »), mesuré à l'identique sur un build de `main` `7ad0ca3`.
+- Playwright local (`seo`, `mobile-overflow`, `anchors`, `responsive` ; Desktop Chrome et Pixel 5) : 571 réussis, 45 en échec ; rejoués sur un build local de `main` `7ad0ca3` : les 45 échouent aussi (46 en échec sur `main`), aucun échec propre à #64. Pages en cause : `/fr` (débordement), `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, `/fr/industrie`, `/en`, `/en/studios-photo-automatises`, `/en/ia-photo-produit`, `/en/industrie`, `/fr/packshot-bijoux`.
 
 **Supposé** — [Non vérifié] Rendu visuel du repère sur la carte dans Chrome (non ouvert dans un navigateur réel). [Inférence] Le showroom de Beynost reste à moins de deux heures de Genève (mention conservée sur la page Suisse). Cela repose sur des schémas observés.
 
