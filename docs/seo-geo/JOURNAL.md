@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Preview Vercel — circuit de validation de Sébastien (D39, proposée) · Claude de Laurent
+
+**Chantier** : gouvernance — `VERCEL_PREVIEW_BEFORE_PUBLICATION = YES` (consigne de Laurent du 30/09) | **PR** : brouillon, branche `claude/busy-gauss-cfe9m8`, non fusionnée | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Documentation seulement :
+- `08-PREVIEW-VALIDATION.md` créé : mécanisme PR → Preview, URL à envoyer, protection, accès, indexation, risques, circuit, phases D38, checklist, gabarit du dossier de validation ;
+- D39 proposée ;
+- renvois dans `README.md` et `02-PROCEDURE.md` (porte 2).
+Aucun fichier du site, aucun réglage Vercel, GitHub ou Cloudflare modifié. #59, #60 et #64 lues, pas touchées.
+
+**Pourquoi** — Permettre à Sébastien de voir la vraie page avant publication, sans fusionner pour la lui montrer.
+
+**Fichiers** — `docs/seo-geo/08-PREVIEW-VALIDATION.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/README.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. À la fusion, D39 s'applique aux PR client-facing substantielles.
+
+**Vérifié** — Le 30/09, entre 15:33 et 15:36 UTC, depuis le conteneur, sans jeton de contournement :
+
+| PR | Tête | Statut `Vercel` | Alias de branche (lien « Preview » du robot) | Réponse sans authentification |
+|---|---|---|---|---|
+| #59 | `be1f8ae` | `success`, 15:22:04 UTC | `sysnext-git-seo-ai-act-images-pro-f5e685-sebs-projects-ca1e93a7.vercel.app` | 302 `vercel.com/sso-api`, `x-robots-tag: noindex` |
+| #60 | `f3ebb10` | `success`, 11:35:52 UTC | `sysnext-git-seo-images-ia-ecommer-ce4f4b-sebs-projects-ca1e93a7.vercel.app` | idem |
+| #64 | `c7e4981` | `success`, 12:16:30 UTC | `sysnext-git-seo-d33-factual-safe-a08548-sebs-projects-ca1e93a7.vercel.app` | idem, `/_next/static` compris |
+
+- Les 3 PR ont leurs 3 contrôles d'intégration verts et le check « Vercel Preview Comments » vert sur la tête.
+- Commentaire `vercel[bot]` créé au premier déploiement, mis à jour sur place au dernier push : #59 créé le 29/09 à 18:57:31, mis à jour le 30/09 à 15:22:04 ; #60 : 29/09 19:03:54, puis 30/09 11:35:52 ; #64 : 30/09 12:15:14, puis 12:16:32. Métadonnées `[vc]` décodées : `previewUrl` = alias de branche, `nextCommitStatus` = `DEPLOYED`.
+- `robots.txt` des Preview : 302 aussi. Paramètre `x-vercel-protection-bypass` factice : 302.
+- `sysnext.vercel.app/fr` : 200, ni `X-Robots-Tag` ni balise `robots` (D36 non exécutée, inchangée).
+- Code : canonical absolu vers `www` (`metadataBase`, `app/layout.tsx`) ; aucune lecture de `VERCEL_ENV` ni `VERCEL_URL` ; pas de `vercel.json`.
+- Documentation Vercel lue le 30/09 : URL générées, Deployment Protection, Vercel Authentication, liens partageables, `X-Robots-Tag` des Preview (liens dans `08-PREVIEW-VALIDATION.md`).
+- Aucune PR « Mode » ni « D36 » ouverte ou fermée ; aucune branche distante correspondante.
+
+**Supposé** — [Inférence] Une Preview est créée à chaque push, comme l'annonce Vercel : vérifié pour la tête des 3 PR seulement, pas pour chaque commit antérieur. [Inférence] L'alias ne change pas d'un push à l'autre : établi par la documentation Vercel et par sa forme (aucun SHA), l'historique du commentaire n'étant pas visible. Cela repose sur des schémas observés.
+
+**Non regardé** — Rendu des Preview (page, assets, console, 390 et 1440 px) : impossible sans jeton ou session Vercel ; `PAGE_RENDERED` non établi. Accès de Sébastien : non établi par les sources du dépôt. Réglage exact de la protection et variables de l'environnement Preview (dashboard). URL de déploiement unique de chaque tête (dans l'inspecteur Vercel). `www` (R4).
+
+**Suite** — GO de Laurent sur D39 et fusion. Premier envoi (#59 ou #60) : vérifier que Sébastien ouvre la Preview ; en cas d'écran « Request access », décision d'accès à Laurent, sans contournement. Script `scripts/seo/preview-pr.mjs` proposé, non créé.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
