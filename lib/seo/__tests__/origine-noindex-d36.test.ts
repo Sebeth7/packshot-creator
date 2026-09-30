@@ -8,11 +8,19 @@
  *
  * Le piège couvert : le Worker Cloudflare relaie `www` vers
  * `https://sysnext.vercel.app` (NEXTJS_ORIGIN). L'application voit donc le même
- * hôte pour les deux publics ; seuls les en-têtes Cloudflare les distinguent.
- * Une règle fondée sur l'hôte seul désindexerait `www`.
+ * hôte pour les deux publics. Une règle fondée sur l'hôte seul désindexerait
+ * `www`.
+ *
+ * Deux protections, testées séparément puis ensemble :
+ * 1. la règle est écartée si la requête porte un en-tête Cloudflare ;
+ * 2. la règle pose un marqueur, et le Worker retire l'en-tête sur `www` quand il
+ *    le voit. Le pire cas (Vercel ne transmet aucun en-tête Cloudflare) est
+ *    rejoué de bout en bout : `www` ne doit toujours rien recevoir.
  */
 import { describe, it, expect, vi, afterAll } from 'vitest';
 import { createRequire } from 'node:module';
+import { readdirSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import nextConfig from '@/next.config';
 import worker from '@/cloudflare-worker/src/index.js';
 
@@ -70,15 +78,52 @@ describe('D36 — la règle', () => {
     expect(regles).toHaveLength(1);
   });
 
-  it('pose exactement X-Robots-Tag: noindex, rien d\'autre', () => {
-    expect(regles[0].headers).toEqual([{ key: 'X-Robots-Tag', value: 'noindex' }]);
+  it('pose X-Robots-Tag: noindex et le marqueur D36, rien d\'autre', () => {
+    expect(regles[0].headers).toEqual([
+      { key: 'X-Robots-Tag', value: 'noindex' },
+      { key: 'X-Packshot-Origin-Noindex', value: '1' },
+    ]);
+  });
+
+  it('marqueur toujours posé avec le noindex, jamais seul', () => {
+    for (const page of [...PAGES, '/robots.txt', '/api/og']) {
+      for (const requete of [ORIGINE, { ...ORIGINE, ...RELAI_WORKER }, { host: 'www.packshot-creator.com' }]) {
+        const a = entetesAjoutes(page, requete);
+        expect(a['x-packshot-origin-noindex'] === '1').toBe(a['x-robots-tag'] === 'noindex');
+      }
+    }
+  });
+});
+
+describe('D36 — seule source de X-Robots-Tag dans l\'application', () => {
+  // Le Worker retire tout X-Robots-Tag d'une réponse marquée. Si une autre
+  // source en posait un sur la même réponse, il serait retiré avec : ce test
+  // oblige à revoir le retrait avant d'en ajouter une.
+  const RACINE = path.resolve(import.meta.dirname, '..', '..', '..');
+  const fichiers = (dossier: string): string[] =>
+    readdirSync(path.join(RACINE, dossier), { recursive: true, withFileTypes: true })
+      .filter((e) => e.isFile() && /\.(ts|tsx|js|mjs)$/.test(e.name) && !(e.parentPath ?? '').includes('__tests__'))
+      .map((e) => path.join(e.parentPath ?? '', e.name));
+
+  it('aucune mention de X-Robots-Tag dans app, components, lib, i18n, middleware', () => {
+    const sources = [...fichiers('app'), ...fichiers('components'), ...fichiers('lib'), ...fichiers('i18n'),
+      path.join(RACINE, 'middleware.ts')];
+    const trouves = sources.filter((f) => /x-robots-tag/i.test(readFileSync(f, 'utf-8')));
+    expect(trouves).toEqual([]);
+  });
+
+  it('dans next.config, X-Robots-Tag n\'apparaît que dans la règle D36', () => {
+    const avecXRobots = regles.filter((r) => r.headers.some((h) => /^x-robots-tag$/i.test(h.key)));
+    expect(avecXRobots).toHaveLength(1);
+    expect(avecXRobots[0].headers.map((h) => h.key.toLowerCase())).toContain('x-packshot-origin-noindex');
   });
 });
 
 describe('D36 — origine sysnext.vercel.app, requête directe', () => {
   for (const page of PAGES) {
-    it(`${page} → noindex`, () => {
+    it(`${page} → noindex et marqueur`, () => {
       expect(xRobots(page, ORIGINE)).toBe('noindex');
+      expect(entetesAjoutes(page, ORIGINE)['x-packshot-origin-noindex']).toBe('1');
     });
   }
 
@@ -145,42 +190,51 @@ describe('D36 — portée : documents HTML seulement', () => {
   });
 });
 
-describe('D36 — chaîne réelle www → Worker du dépôt → origine', () => {
-  const fetchOrigine = vi
-    .spyOn(globalThis, 'fetch')
-    .mockImplementation(async () => new Response('origine', { status: 200 }));
+describe('D36 — chaîne complète www → Worker du dépôt → origine', () => {
+  // L'origine simulée applique la règle de next.config à la requête que le
+  // Worker lui envoie. `transmis` décide de ce que Vercel laisse arriver jusqu'à
+  // son routage : tous les en-têtes, ou aucun en-tête Cloudflare (pire cas).
+  let transmis: 'tous' | 'sans-cloudflare' = 'tous';
+  const fetchOrigine = vi.spyOn(globalThis, 'fetch').mockImplementation(async (cible, init) => {
+    const url = new URL(String(cible));
+    const recue: Record<string, string> = Object.fromEntries(new Headers((init as RequestInit)?.headers).entries());
+    if (transmis === 'sans-cloudflare') for (const cle of Object.keys(recue)) if (cle.startsWith('cf-')) delete recue[cle];
+    recue.host = url.host;
+    const html = '<html><head><meta name="robots" content="noindex, follow"/>' +
+      `<link rel="canonical" href="https://www.packshot-creator.com${url.pathname}"/></head></html>`;
+    return new Response(html, { status: 200, headers: { 'content-type': 'text/html', ...entetesAjoutes(url.pathname, recue) } });
+  });
   afterAll(() => fetchOrigine.mockRestore());
 
-  it('le Worker relaie vers sysnext.vercel.app en recopiant cf-ray et cf-connecting-ip', async () => {
-    fetchOrigine.mockClear();
-    await worker.fetch(
-      new Request('https://www.packshot-creator.com/fr/contact', {
+  const www = (chemin: string) =>
+    worker.fetch(
+      new Request(`https://www.packshot-creator.com${chemin}`, {
         headers: { 'cf-ray': RELAI_WORKER['cf-ray'], 'cf-connecting-ip': RELAI_WORKER['cf-connecting-ip'] },
       }),
       { NEXTJS_ORIGIN: 'https://sysnext.vercel.app' },
     );
-    expect(fetchOrigine).toHaveBeenCalledTimes(1);
-    const [cible, init] = fetchOrigine.mock.calls[0] as [string, RequestInit];
-    const url = new URL(cible);
-    expect(url.host).toBe('sysnext.vercel.app');
 
-    // La requête telle que l'origine la reçoit. L'hôte est celui de l'URL
-    // cible ; CF-Worker, ajouté par le runtime Cloudflare, n'existe pas ici :
-    // le test ne s'appuie que sur ce que le code du Worker transmet.
-    const recue = Object.fromEntries(new Headers(init.headers).entries());
-    recue.host = url.host;
-    expect(xRobots(url.pathname, recue)).toBeUndefined();
-    // Sans les en-têtes Cloudflare, la même requête recevrait le noindex.
-    expect(xRobots(url.pathname, { host: url.host })).toBe('noindex');
-  });
+  for (const cas of ['tous', 'sans-cloudflare'] as const) {
+    for (const page of PAGES) {
+      it(`${page} sur www, en-têtes Cloudflare ${cas === 'tous' ? 'transmis' : 'retirés par Vercel'} → ni noindex ni marqueur`, async () => {
+        transmis = cas;
+        fetchOrigine.mockClear();
+        const r = await www(page);
+        expect(fetchOrigine).toHaveBeenCalledTimes(1);
+        expect(new URL(String(fetchOrigine.mock.calls[0][0])).host).toBe('sysnext.vercel.app');
+        expect(r.headers.get('x-robots-tag')).toBeNull();
+        expect(r.headers.get('x-packshot-origin-noindex')).toBeNull();
+        const html = await r.text();
+        expect(html).toContain('<meta name="robots" content="noindex, follow"/>');
+        expect(html).toContain(`<link rel="canonical" href="https://www.packshot-creator.com${page}"/>`);
+      });
+    }
+  }
 
-  it('le Worker renvoie tel quel un X-Robots-Tag de l\'origine : la garde est à l\'origine', async () => {
-    fetchOrigine.mockImplementationOnce(
-      async () => new Response('origine', { status: 200, headers: { 'x-robots-tag': 'noindex' } }),
-    );
-    const r = await worker.fetch(new Request('https://www.packshot-creator.com/fr'), {
-      NEXTJS_ORIGIN: 'https://sysnext.vercel.app',
-    });
-    expect(r.headers.get('x-robots-tag')).toBe('noindex');
+  it('pire cas : sans le retrait du Worker, www aurait reçu le noindex', async () => {
+    transmis = 'sans-cloudflare';
+    const brute = await fetch('https://sysnext.vercel.app/fr', { headers: RELAI_WORKER });
+    expect(brute.headers.get('x-robots-tag')).toBe('noindex');
+    expect(brute.headers.get('x-packshot-origin-noindex')).toBe('1');
   });
 });

@@ -23,10 +23,16 @@ const DE_CH_BRANCHEN_PAR_SLUG_FR: Record<string, string> = {
 // L'hôte seul ne suffit pas : le Worker Cloudflare relaie `www` vers cette
 // même origine (NEXTJS_ORIGIN, cloudflare-worker/wrangler.toml), et
 // l'application y lit alors l'hôte `sysnext.vercel.app` (commit 6646787).
-// Ce qui distingue une requête relayée : Cloudflare ajoute `CF-Worker` à toute
-// sous-requête d'un Worker, et le Worker recopie les en-têtes reçus, dont
-// `cf-ray` et `cf-connecting-ip`. Un seul de ces en-têtes écarte la règle : dans
-// le doute, pas de noindex.
+// Deux protections indépendantes pour www :
+// 1. ici, la règle est écartée si la requête porte un en-tête Cloudflare
+//    (`cf-worker`, ajouté à toute sous-requête d'un Worker ; `cf-ray` et
+//    `cf-connecting-ip`, recopiés par le Worker). Que Vercel les transmette
+//    jusqu'à ce routage n'est pas établi ;
+// 2. le Worker retire `X-Robots-Tag` de toute réponse qui porte le marqueur
+//    `X-Packshot-Origin-Noindex` (cloudflare-worker/src/index.js). Cette
+//    protection ne dépend que du Worker : il doit être déployé AVANT que cette
+//    règle n'arrive en production, et aucun retour arrière du Worker vers une
+//    version sans ce retrait ne doit précéder le retrait de cette règle.
 //
 // Portée : documents HTML, soit les chemins sans extension hors /_next, /_vercel
 // et /api. Fichiers statiques, assets et API ne reçoivent rien. La balise
@@ -39,7 +45,10 @@ const ORIGINE_VERCEL_NOINDEX = {
     { type: 'header' as const, key: 'cf-ray' },
     { type: 'header' as const, key: 'cf-connecting-ip' },
   ],
-  headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+  headers: [
+    { key: 'X-Robots-Tag', value: 'noindex' },
+    { key: 'X-Packshot-Origin-Noindex', value: '1' },
+  ],
 };
 
 const nextConfig: NextConfig = {
