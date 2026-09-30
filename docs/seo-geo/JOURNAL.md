@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Inter auto-hébergée : le build ne dépend plus de Google Fonts · Claude de Laurent
 
-**Chantier** : hors chantier SEO — fiabilité du build, demande de Sébastien relayée par Laurent | **PR** : #72, brouillon, non fusionnée | **Commit** : `2a587ad` | **Base** : `main` `a8c85ca` (#69)
+**Chantier** : hors chantier SEO — fiabilité du build, demande de Sébastien relayée par Laurent | **PR** : #72, brouillon, non fusionnée | **Commit** : `2a587ad` | **Base** : `main` `a8c85ca` (#69), synchronisée par fusion avec `main` `8ec89c1` (#71)
 
 **Quoi** — Les 5 appels `next/font/google` (Inter) remplacés par `next/font/local` sur les fichiers officiels Inter 4.1, versionnés dans `app/fonts/inter/` avec leur licence. `--font-inter`, `--font-heading` et la pile système du corps inchangés.
 
@@ -52,7 +52,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Vérifié** —
 - Recherche complète : 0 `next/font/google` dans le code après, 5 avant. Aucune requête Google Fonts au runtime ni avant ni après (auto-hébergement déjà fait par `next/font`). Seules références restantes dans `.next` : la bibliothèque `@vercel/og` (route `/api/og`, exécution à la demande), déjà présentes avant.
-- `npx next build` dans un espace de noms réseau vide (`unshare -n`, loopback seul ; Google, npm et DNS injoignables, contrôlé par `curl`) : **vert**, 383/383 pages. `main` dans les mêmes conditions : **échec**.
+- `npx next build` dans un espace de noms réseau vide (`unshare -n`, loopback seul ; Google, npm et DNS injoignables, contrôlé par `curl`) : **vert**, 383/383 pages sur la base `a8c85ca`, 371/371 après fusion de `8ec89c1`. `main` dans les mêmes conditions, `a8c85ca` comme `8ec89c1` : **échec**.
 - Build : 14 `woff2` émis (316 568 o) avant ; 2 (229 652 o) après. Préchargement : 1 fichier par page avant et après. `/fr`, `/en`, `/de-ch`, blog, ROI : 24 456 o avant (sous-ensemble latin Google), 114 840 o après ; `/etude-clients-2026` : 48 432 o avant, 229 652 o (2 fichiers) après.
 - CSS compilée identique hors `@font-face` et classes de module de police.
 - `unicode-range` : Inter limitée aux 1 622 caractères que les 7 fichiers Google contenaient réellement. Sans cette limite, « → » (4 titres, 5 pages) passait du repli Arial à Inter, et l'espace fine insécable U+202F des prix (« 1 830 €/mois ») changeait de largeur.
@@ -60,15 +60,67 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - Captures : sur les pages sans animation, 100 % des pixels différents sont dans le texte Inter, écart max 60 à 95/255 (anticrénelage des contours ; les deux versions 4.001 diffèrent par leurs points de contour, avances identiques sur les 230 caractères latins). Sur les accueils, écarts supplémentaires dans le tableau de bord animé et la rangée de logos, présents aussi entre deux rendus de `main`.
 - Façonnage HarfBuzz des 3 188 chaînes rendues en Inter sur les 369 pages prérendues : identique, sauf 2 cas. « → » : traité par la limite `unicode-range` ci-dessus. « 3x3m » (`/fr|en|de-ch/studio-photo/fashion-studio`) : la version Google remplace « x » entre deux chiffres par le glyphe `multiply.case`, Inter 4.1 non ; sur la page, le compteur animé rend « 3 » et « x3m » dans des nœuds séparés, sans substitution dans les deux cas : capture et largeur identiques.
 - Repli (police affichée avant chargement d'Inter, et pour les caractères hors couverture) : `size-adjust` d'Arial 107,12 % avant (métriques Google), 111,36 % après (calculé sur le fichier Bold). Mesuré avec une police « Arial » simulée (Liberation Sans renommée, bac à sable uniquement) : CLS au remplacement, police retardée de 1,5 s, égal ou inférieur sur 8 couples page × largeur (`/fr` 1440 : 0,0161 → 0,0002) ; les flèches des 4 titres concernés, rendues par ce repli, élargissent le titre de 5,06 px (H2 `/fr|en|de-ch/industrie`, 1440), 3,06 px (390), 1,72 px et 0,86 px (H3 `/fr|en/blog/ia-photo-produit-guide-2026`), sans retour à la ligne modifié.
-- `node scripts/seo/verifier-json.mjs` : 186 fichiers valides. `npx tsc --noEmit` : 0 erreur. Vitest : 16 fichiers, 342/342. ESLint sur les 6 fichiers TS/TSX touchés : 0 erreur, 0 avertissement. `node scripts/seo/smoke.mjs` sur les deux serveurs locaux : vert, 17 pages, sortie identique.
-- Playwright, Chromium, `seo`, `responsive`, `mobile-overflow`, `language-switch`, `internal-links`, `roi-calculator` : `main` 287 réussis, 45 échecs ; branche 287 réussis, 45 échecs, listes identiques (échecs préexistants).
-- PR ouvertes : aucune ne touche `globals.css`, les polices ni `package*.json`. #71 (Sébastien, ouverte à 20:32 UTC) modifie `app/[lang]/layout.tsx` l. 31-32 : fusion à trois voies sans conflit (`git merge-tree`).
+- Après fusion de `8ec89c1` : `node scripts/seo/verifier-json.mjs` : 180 fichiers valides. `npx tsc --noEmit` : 0 erreur. Vitest : 17 fichiers, 346/346. ESLint sur les 6 fichiers TS/TSX touchés : 0 erreur, 0 avertissement. `node scripts/seo/smoke.mjs` sur `main` et sur la branche en local : vert, 17 pages, sortie identique. Étendue du texte rendu en Inter recontrôlée sur cette base : 1 358 éléments, écart max 0,02 px.
+- Playwright, Chromium, `seo`, `responsive`, `mobile-overflow`, `language-switch`, `internal-links`, `roi-calculator` : sur `a8c85ca`, `main` et branche 287 réussis, 45 échecs ; sur `8ec89c1`, `main` et branche 279 réussis, 46 échecs. Listes d'échecs identiques entre `main` et branche à chaque fois (échecs préexistants).
+- PR ouvertes : aucune ne touche `globals.css`, les polices ni `package*.json`. #71 (Sébastien, ouverte à 20:32 UTC, fusionnée ensuite dans `main` `8ec89c1`) modifiait `app/[lang]/layout.tsx` l. 31-32 : fusionnée dans cette branche, fusion automatique de ce fichier, seul conflit au haut de ce journal.
 
 **Supposé** — [Inférence] Que l'échec observé sur Vercel passait par le chargeur Google de Turbopack : le module `@vercel/turbopack-next/internal/font/google/font` n'appartient qu'à ce chemin (chaîne présente dans le binaire `@next/swc`, à côté de son équivalent `font/local`). Que Chrome sous Windows et macOS rende comme le Chromium de ce conteneur, repli mis à part (mesuré avec une police simulée).
 
 **Non regardé** — Firefox et Safari ; un Preview Vercel (jeton de contournement non transmis) ; `www` derrière Cloudflare ; Lighthouse ; `/roi-preview` en capture (même layout que `/calculateur-roi`) ; les ~360 autres pages en capture (couvertes seulement par le façonnage de leur texte).
 
 **Suite** — Poids : +90 384 o au premier chargement de chaque page (mis en cache ensuite), +181 220 o sur `/etude-clients-2026`. Option documentée, non appliquée : sous-ensemble du fichier officiel limité aux 1 622 caractères (78 372 o) ou au seul latin (31 432 o) — fichier dérivé, SHA-256 différent de la source, à décider par Laurent. Rollback : `git revert <commit de fusion>` puis push sur `main`, aucun réglage Vercel en jeu. Après fusion : contrôle Vercel du build et `smoke.mjs` sur `sysnext.vercel.app` ; dans Chrome sur `www`, onglet Réseau : un seul `Inter_Bold-*.woff2`, aucune requête Google Fonts.
+
+---
+
+## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
+
+**Quoi** — `/fr/academy` devient une page simple qui renvoie au catalogue de formation (deux boutons Essential / Master, un lien catalogue, la mention de certification). Elle est servie en FR uniquement. Les sous-pages, le simulateur OPCO et deux articles consacrés à l'ancienne offre sont supprimés et redirigés en 301 vers `/fr/academy`. Les textes du reste du site sont alignés sur l'offre réelle : aucune formation IA ou e-learning, aucune formation incluse à l'achat, plus de prix ni de niveaux, plus de promesse « OPCO 100 % ».
+
+**Pourquoi** — l'auditeur compare le site au catalogue (https://packshotcreator.catalogueformpro.com/), qui fait foi. Le site affichait 6 formations, des durées de 14 h et 21 h et des prix (850 € HT pour 7 h, 1 100 à 1 800 €) qui contredisent les deux seules offres du catalogue : Essential, 4 h à distance, 850 € HT ; Master, 7 h en présentiel, 1 500 € HT. Il annonçait aussi des formations IA et e-learning retirées, et des formations « incluses » alors qu'elles sont toujours facturées à part (Sébastien, 30/09). Trafic GSC sur 90 jours de toutes les pages academy : 7 clics, soit environ 28 par an. Les deux articles redirigés : 0 clic.
+
+**Fichiers** —
+- **Page et redirections :** `app/[lang]/academy/page.tsx` (réécrite) et `next.config.ts` (9 redirections 301 ajoutées, 1 réorientée).
+- **Supprimés :**
+  - pages academy : `app/[lang]/academy/{[slug],calendrier,formations-ia,formations-packshot,simulateur-opco}` ;
+  - données et simulateur : `components/simulators/opco/`, `content/formations/`, `lib/formations.ts` ;
+  - articles : `app/[lang]/blog/{financement-formation-opco-…,formation-photo-produit-professionnelle-…}`.
+- **Navigation et SEO :** `components/layout/{Header,Footer}.tsx`, `i18n/{routing,deChCoverage}.ts`, `app/sitemap.ts`, `lib/{seo-config,blog}.ts`, `components/seo/SchemaOrg.tsx` (`courseSchema` retiré), `public/llms.txt`.
+- **Textes :**
+  - libellés d'interface : `messages/{fr,en,de-ch}.json` ;
+  - FAQ formation des fiches machines : `components/calculators/ROICalculator/lib/machines.ts` (texte seul, aucun calcul touché) ;
+  - pages : `app/[lang]/studio-photo/[slug]`, `ia-photo-produit`, `industrie`, `guide`, `not-found`, `layout`, et `blog/page.tsx` ;
+  - articles : 7 à page dédiée et 23 fichiers JSON ;
+  - `data/secteurs.ts`, `components/landings/PackshotEcommerce.tsx`.
+- **Tests :** `lib/__tests__/academy-fr-only.test.ts` (nouveau), `e2e/{anchors,cta-destinations,redirections,seo}.spec.ts`, `e2e/opco-simulator.spec.ts` (supprimé).
+
+**Effet attendu** — dès le déploiement, plus rien sur le site ne contredit le catalogue. Google remplacera les anciennes URL en quelques jours à quelques semaines. D'ici là, un extrait de recherche peut encore afficher un ancien titre, mais le clic mène à `/fr/academy`.
+
+**Vérifié** :
+- Build et tests : `npx tsc --noEmit` et `npx next build` verts ; Vitest 346 tests sur 346, dont 4 nouveaux sur l'épinglage FR.
+- Redirections sur `next start` local : 25 anciennes URL (FR, EN, DE-CH, sous-pages, fiches, les deux articles, `/en/trainings-product-photography`) répondent en 301 vers `/fr/academy` en un saut, query string conservée. Test e2e `redirections.spec.ts` : bloc academy 12 sur 12.
+- Page : hreflang limité à `fr`, `fr-CH` et `x-default`, canonical `/fr/academy`, aucun noindex, JSON-LD Organization + BreadcrumbList.
+- Liens et contenu rendu :
+  - dans les 359 pages HTML prérendues, aucun lien vers `/en/academy`, `/de-ch/academy`, `/fr/academy/*` ou vers les articles supprimés ; 869 liens pointent directement sur `/fr/academy` ;
+  - dans leur texte, aucune occurrence de « formation incluse », « OPCO 100 % », « formations IA », e-learning ou blended ;
+  - sitemap : 308 URL, `/fr/academy` seule pour la section.
+- Catalogue et rendu visuel : les trois liens catalogue ouvrent la bonne fiche (vérifié le 30/09 : titres « Essential Training Distanciel - Version 2026 » et « Master Training Présentiel - Version 2026 ») ; rendu Playwright à 1440 et 390 px, sans débordement horizontal.
+
+**Supposé** : l'entité certifiée est Sysnext (Sébastien, 30/09). La mention « La certification qualité a été délivrée au titre de la catégorie d'action suivante : ACTIONS DE FORMATION » est reprise telle que fournie. Aucun logo Qualiopi n'est affiché, Sysnext n'en a pas le droit.
+
+**Non regardé** :
+- **Cloudflare :** le Worker n'a pas été modifié. `/academy/<x>` sans langue fait deux sauts (Worker vers `/fr/academy/<x>`, puis Next vers `/fr/academy`), comme les anciennes URL legacy qui visent `/en/academy`. Le comportement sur www n'est pas contrôlé avant déploiement.
+- **Pages légales (hors périmètre) :** les CGU (article 1, article 4, article 5 « PackshotCreator Academy est certifié Qualiopi ») et la politique de confidentialité citent encore le simulateur OPCO ou l'Academy comme entité certifiée.
+- **Formulation « formation(s) certifiée(s) Qualiopi » :** une vingtaine d'occurrences au moins, alors que c'est l'organisme qui est certifié ; à arbitrer avec la consultante.
+- **Garde-fous e2e :** les specs nécessitant un navigateur n'ont pas été lancées (navigateurs Playwright non installés).
+
+**Suite** :
+- Sébastien : corriger la fiche Master du catalogue, qui dit « souhaitant se former à distance » pour une formation en présentiel.
+- À trancher :
+  - le « suivi post-formation » du guide d'achat (hotline, session de suivi, accès formateur) ;
+  - « Formateurs experts 10+ ans » et les témoignages Marie D. et Camille R. (comparatif Orbitvu) ;
+  - l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget).
 
 ---
 

@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     openGraph: {
       title: isFr ? 'PackshotCreator - Studios Photo Automatises' : 'PackshotCreator - Automated Photo Studios',
       description: isFr
-        ? 'Solutions de photographie produit automatisee. Studios photo Orbitvu, IA retouche, formations certifiantes.'
-        : 'Automated product photography solutions. Orbitvu photo studios, AI retouching, certified training.',
+        ? 'Solutions de photographie produit automatisee. Studios photo Orbitvu, IA retouche, formations Qualiopi.'
+        : 'Automated product photography solutions. Orbitvu photo studios, AI retouching, Qualiopi training.',
       url: `https://www.packshot-creator.com/${lang}`,
       siteName: 'PackshotCreator',
       locale: isFr ? 'fr_FR' : 'en_US',
