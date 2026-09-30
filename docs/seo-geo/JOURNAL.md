@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · D33 — revue finale de #64 : une correction ajoutée, aucun retour arrière · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3` | **HEAD avant la revue** : `c7e4981`
+
+**Quoi** — Revue du diff complet de #64 contre `main` (18 fichiers) au regard des faits métier du 30/09. Une seule correction ajoutée : `/fr/blog/guide-achat-studio-2026`, option « Premium : AlphaShot 360 ou XXL », liste « Ce que vous obtenez » : « Formation premium 3 jours » → « Formation premium 3 jours (facturée en supplément) ». Aucune modification de #64 annulée.
+
+**Pourquoi** — #64 retire « Formation 2 jours incluse » des listes « Ce que vous obtenez » des options Entry-Level et Mid-Range ; la troisième liste de la même section présentait encore une formation comme comprise dans l'achat, contraire au fait métier « formation facturée en supplément ». Formulation reprise de `blogBudget.included.i3` de #64.
+
+**Fichiers** — `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- `main` distant = `7ad0ca3` = base de #64 ; HEAD distant de #64 = `c7e4981` avant cette passe ; CI de `c7e4981` : 4 contrôles sur 4 en succès ; aucun fil de revue.
+- Showroom : Beynost seulement dans `contact.showroomAddress`, `legal.article2.showroomValue`, le `Store` (`localBusinessSchema`, `@id` `#showroom`) et la carte ; `organizationSchema` (254 rue Vendôme, 69003 Lyon), `headquartersValue` et `foundingDate` (`2004`) identiques à `main` ; aucune occurrence de Saint-Bonnet-de-Mure, DELTAPARK ou 69720 dans le code servi. L'URL d'intégration de la carte répond 200 et Google la résout en « 198 All. de la Tour, 01700 Beynost, France » (45,82953 ; 4,99895), soit environ 35 m des coordonnées BAN du `Store`.
+- JSON-LD de `/fr/contact`, `/en/contact`, `/de-ch/kontakt` : 4 blocs valides (`Organization`, `BreadcrumbList`, `Store`, `FAQPage`) ; `FAQPage` de `/fr/blog/orbitvu-vs-concurrents` à 5 questions.
+- FR / EN / de-ch : mêmes clés modifiées dans les trois fichiers ; aucune traduction ne promet de support ni de formation en allemand ; livraison, installation et formation en supplément ; délai d'environ 12 jours indicatif et non contractuel ; garantie d'un an sans durée maximale.
+- D25 : aucun prix concurrent restant dans les éléments modifiés.
+- « environ 10 jours » : seulement dans `packshotEcommerce` (F5), non modifié.
+- `verifier-json` 186 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 383 pages.
+- `next start` local, 42 URL (FR, EN, de-ch) : 200, sauf 4 routes de-ch absentes, 404 aussi sur `main` ; aucune formulation corrigée dans le texte visible ni le JSON-LD.
+- Rendu Chromium 390 et 1440 px, 17 pages touchées : 0 erreur de page ; 0 débordement, sauf `/fr` en 390 px (53 px, section « Vos défis »), mesuré à l'identique sur un build de `main` `7ad0ca3`.
+
+**Supposé** — [Non vérifié] Rendu visuel du repère sur la carte dans Chrome (non ouvert dans un navigateur réel). [Inférence] Le showroom de Beynost reste à moins de deux heures de Genève (mention conservée sur la page Suisse). Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4). Claims non sourcés restant dans des fichiers touchés par #64, identiques à ceux que #64 retire de `/fr/blog/orbitvu-vs-concurrents`, non retirés dans cette passe (décision de Laurent) : `guide-achat-studio-2026` (« Satisfaction client 98% (enquête 2025 sur 150+ installations) », hotline < 2 h, intervention 24-48 h, pièces 24 h, « ROI 4-8 mois ») ; `comment-calculer-le-roi-…` (« productivité ×20 »).
+
+**Suite** — Conflit de gouvernance signalé, non tranché : D33 demande d'aligner `foundingDate` sur 2001, le fait métier du 30/09 met ce changement hors périmètre tant que l'entité du nœud `Organization` n'est pas qualifiée. D32 (10 jours) et D1 (Saint-Bonnet-de-Mure) à mettre à jour par leur auteur. Fusion uniquement sur décision explicite de Laurent.
+
+---
+
 ## 2026-09-30 · D33 — patch factuel sûr (showroom, Orbitvu, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu, Qualiopi), PR brouillon · Claude de Laurent
 
 **Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3`

@@ -515,7 +515,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machines haute performance</li>
                   <li className="text-future-dusk-600">Capacités avancées (360°, vidéo, 3D)</li>
-                  <li className="text-future-dusk-600">Formation premium 3 jours</li>
+                  <li className="text-future-dusk-600">Formation premium 3 jours (facturée en supplément)</li>
                   <li className="text-future-dusk-600">Support prioritaire 2 ans</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
