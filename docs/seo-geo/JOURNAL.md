@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Cluster AI Act — satellite B (retouche IA de la photo produit), PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, satellite B | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-retouche-image-produit-2026-09-30`, indépendante de #59 et #60 | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Création de `content/blog/fr/retouche-ia-photo-produit-ai-act.json`, FR seulement, schéma natif, `image: null`. Article rédigé à partir de la matière sortie du pilier A (cas 3 à 10, variantes du cas 14, FAQ couleur et détourage) et des sources primaires revérifiées le 30/09. 3 578 mots de corps, 453 de FAQ ; 13 H2 (dont « En bref » et « Sources »), 12 H3, 6 FAQ, 3 tableaux ; 2 marqueurs `[TERRAIN SÉBASTIEN — …]` non remplis ; 0 lien interne ; 4 liens externes ; renvoi au pilier A sans `href`.
+
+**Brief SEO / GEO** — slug `retouche-ia-photo-produit-ai-act` ; title `Retouche IA d’une photo produit : que faut-il signaler ?` (56 caractères) ; meta 144 caractères ; H1 « Retouche IA d’une photo produit : détourage, couleur, ombres, défauts, que faut-il signaler ? ». Questions GEO couvertes : détourage IA à signaler ; blanc uni contre suppression du fond ; correction vers la couleur réelle ; recolorisation vers une variante vendue ou inexistante ; poussières capteur contre défaut du produit ; reflet retiré, ombre ajoutée ; texture inventée ; outil contre résultat ; documentation. SERP du 30/09 (« détourage IA photo produit faut-il le signaler AI Act », « retouche photo produit IA recolorisation obligation mention ») : pages génériques sur l’article 50, aucune page FR par opération de retouche relevée. Pas de cannibalisation visée avec A : B ne reprend ni le calendrier, ni les sanctions, ni la Suisse, ni les plateformes.
+
+**Pourquoi** — Mission « satellites AI Act B / C / D » de Laurent (30/09). Le pilier A (#59) renvoie à « des dossiers spécialisés » pour la retouche ; B porte cette matière sans dupliquer A.
+
+**Fichiers** — `content/blog/fr/retouche-ia-photo-produit-ai-act.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant publication coordonnée (D38 : EN et de-ch à produire depuis le FR validé). La PR n’est pas à fusionner en l’état.
+
+**Vérifié**
+- `main` distant = `7ad0ca3` au démarrage, identique à la consigne ; #59 = `81b42c1` et #60 = `6c72482`, identiques à la consigne ; aucune des deux modifiée.
+- Sources primaires relues le 30/09 : règlement (UE) 2024/1689, texte FR du JO via le Cellar (art. 3(3), 3(4), 3(60), 50, considérant 133) ; lignes directrices C(2026) 5054, annexe PDF (points 10 à 17, 54 à 98, 111 à 129, 141 à 155) ; FAQ article 50 ; Code de la consommation L121-2 (édition codes.droit.org du 25/09/2026, Légifrance renvoyant 403 aux scripts). Qualifications de A reprises sans changement de niveau pour les cas 3 à 10.
+- Niveaux juridiques : chaque affirmation porte « Texte », « Exemple direct Commission », « Interprétation » ou « Non tranché » ; les exemples de la Commission visant la publicité ou l’emballage sont signalés comme tels, leur transposition à la fiche produit est classée « Interprétation ».
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages, variables factices de la CI.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/retouche-ia-photo-produit-ai-act`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (`datePublished` = `dateModified` = 2026-09-30) et FAQPage (6 = 6 visibles), URL au sitemap (326 URL), 2 marqueurs visibles, 0 débordement et 0 erreur de page en 1440 et 390 px (Chromium du conteneur).
+- Article : 0 lien vers `/fr/packshot-e-commerce` (D37) ; la page en porte un, celui du pied de page existant, inchangé.
+- Proximité lexicale TF-IDF (approximation, pas l’embedding de D16) avec les 63 articles FR, A et S : maximum 0,528 avec A, 0,337 avec S, 0,118 avec le premier article publié.
+- GSC (`gsc_metrics`, site 3, depuis le 01/06/2026, lecture seule) : 0 impression sur les requêtes de retouche IA ciblées ; requête voisine « générer des visuels produits avec l’ia » : 149 impressions, 0 clic.
+
+**Supposé** — [Inférence] Le rattachement de l’authenticité au « processus de création » (point 113) peut fonder une lecture stricte de la recolorisation fidèle ; l’article la présente comme une des deux lectures possibles, sans trancher. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; volume de recherche (DataForSEO non disponible dans cette session) : les conditions (1) et (2) de D16 ne sont donc documentées que par approximation ; relecture de la prose et de la signature par Sébastien (`01-RAYON-ACTION.md` : copywriting FR client-facing).
+
+**Suite** — Réponses terrain de Sébastien sur les 2 marqueurs ; relecture éditoriale ; validation explicite de la création (D16) ; maillage final et lien vers A à activer à la publication coordonnée ; EN et de-ch.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
