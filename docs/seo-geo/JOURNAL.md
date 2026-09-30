@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
+
+**Quoi** — `lg:justify-center` sur le conteneur flex du gabarit d'article : le bloc colonne de lecture + sommaire est centré au lieu d'être collé à gauche. Largeur de lecture (65ch) inchangée.
+
+**Pourquoi** — vide à droite de l'article, mesuré : 377 px à 1440, 617 px à 1920, contre 104 et 344 px à gauche. Le `lg:mx-0` d'origine (90f5d81, 08/02) alignait la colonne à gauche du conteneur de 1280 px.
+
+**Fichiers** — `app/[lang]/blog/[slug]/page.tsx`
+
+**Effet attendu** — marges symétriques dès le déploiement : 240 / 240 px à 1440, 480 / 480 à 1920.
+
+**Vérifié** — `npx next build` vert en local. Mesure Playwright avant (sysnext.vercel.app) / après (build local), 5 articles FR / EN / DE-CH × 7 largeurs de 390 à 1920 : largeur de colonne, largeur du sommaire, hauteur de l'article, bannière identiques ; aucun débordement horizontal ; rendu identique sous 1024 px. Aucun article JSON n'est aujourd'hui sans h2 / h3, donc sans sommaire.
+**Supposé** — les ~120 autres articles JSON se comportent comme les 5 mesurés : même gabarit, la largeur de colonne ne dépend pas du contenu (`flex-1` + `min-w-0` + `max-w-prose`).
+**Non regardé** — les 12 articles à `page.tsx` dédiée (hors gabarit, mises en page propres) ; le hub `/blog` ; le rendu derrière Cloudflare sur www.
+
+**Suite** — rien.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
