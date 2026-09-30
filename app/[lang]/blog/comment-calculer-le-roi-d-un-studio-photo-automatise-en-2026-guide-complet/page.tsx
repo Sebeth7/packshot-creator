@@ -204,7 +204,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation Équipes</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">Un facteur souvent sous-estimé mais crucial pour optimiser votre ROI :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Formation initiale</strong> (2 jours) : Généralement incluse dans l'achat machine</li>
+                  <li className="text-future-dusk-600"><strong>Formation initiale</strong> (2 jours) : facturée en supplément chez PackshotCreator</li>
                   <li className="text-future-dusk-600"><strong>Formation avancée</strong> (3-5 jours) : 1 100 - 1 800€ (certifiée Qualiopi, financement OPCO possible)</li>
                   <li className="text-future-dusk-600"><strong>Support post-formation</strong> : Inclus pendant 3-6 mois selon distributeur</li>
                 </ul>
@@ -535,7 +535,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>Capacité évolutive</strong> : Passer de 500 à 5 000 produits/an sans embauche</li>
                   <li className="text-future-dusk-600"><strong>Modularité</strong> : Ajout d'un second studio identique si besoin (workflow unifié)</li>
-                  <li className="text-future-dusk-600"><strong>Pérennité</strong> : Machines Orbitvu garanties 5-7 ans, mises à jour software gratuites</li>
+                  <li className="text-future-dusk-600"><strong>Pérennité</strong> : Mises à jour software gratuites</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Flexibilité Multi-Produits</h4>

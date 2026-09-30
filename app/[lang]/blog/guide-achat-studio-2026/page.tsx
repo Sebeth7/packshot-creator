@@ -70,11 +70,11 @@ const tocHeadings = [
 const faqItems = [
   {
     question: "Quel délai entre la commande et l'installation d'un studio Orbitvu ?",
-    answer: "Pour les machines en stock France, le délai est de 2 à 3 semaines. Pour un import direct depuis la Pologne, comptez 6 à 10 semaines. En pratique, anticipez 8 à 12 semaines entre la commande et le go-live, en intégrant la livraison, l'installation et la formation initiale.",
+    answer: "Le délai de livraison indicatif est actuellement d'environ 12 jours, non contractuel. La durée d'installation et de formation dépend du système et de la configuration. Livraison, installation et formation sont facturées en supplément.",
   },
   {
     question: "Quelle garantie est incluse avec un studio Orbitvu ?",
-    answer: "La garantie constructeur standard est de 2 ans (pièces et main d'œuvre), extensible jusqu'à 5 ans sur devis. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
+    answer: "La garantie standard est d'un an ; une extension est possible. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
   },
   {
     question: "Peut-on louer un studio Orbitvu plutôt que l'acheter ?",
@@ -476,13 +476,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine complète opérationnelle</li>
-                  <li className="text-future-dusk-600">Formation 2 jours incluse</li>
                   <li className="text-future-dusk-600">Logiciel Orbitvu inclus (vie)</li>
                   <li className="text-future-dusk-600">Support technique 1 an</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce qui n'est PAS inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Installation on-site (sur devis)</li>
+                  <li className="text-future-dusk-600">Livraison, installation on-site et formation (facturées en supplément)</li>
                   <li className="text-future-dusk-600">Formation avancée (+ 650 - 1 100€)</li>
                   <li className="text-future-dusk-600">Maintenance année 2+ (sur devis)</li>
                 </ul>
@@ -495,7 +494,6 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine polyvalente (80% use cases)</li>
                   <li className="text-future-dusk-600">Évolutivité (modules 360°, vidéo)</li>
-                  <li className="text-future-dusk-600">Formation 2 jours incluse</li>
                   <li className="text-future-dusk-600">Support 1 an</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
@@ -659,7 +657,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   Un studio photo automatisé n'est performant que si vos équipes le maîtrisent. Le support technique et la formation sont des critères différenciants majeurs.
                 </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation Incluse (2 Jours)</h4>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation de Base (2 Jours)</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Programme formation de base</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Jour 1 : Installation, calibration, paramétrage</li>
@@ -721,8 +719,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Premium</strong> (sur devis) : + interventions on-site illimitées</li>
                 </ul>
 
-                <Callout type="success" title="Garantie constructeur">
-                  Toutes les machines Orbitvu bénéficient d'une <strong>garantie constructeur 2 ans</strong> (pièces et main d'œuvre). Extension possible jusqu'à 5 ans.
+                <Callout type="success" title="Garantie">
+                  Toutes les machines Orbitvu bénéficient d'une <strong>garantie standard d'un an</strong>. Une extension est possible.
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -881,7 +879,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2 options</strong> :</p>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>Démo on-site chez vous</strong> : Nous venons avec la machine, test vos produits réels</li>
-                  <li className="text-future-dusk-600"><strong>Démo showroom Paris</strong> : Visite showroom + test 5-10 produits</li>
+                  <li className="text-future-dusk-600"><strong>Démo au showroom près de Lyon</strong> : Visite showroom + test 5-10 produits</li>
                 </ol>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Durée</strong> : 2-4h | <strong>Apportez</strong> : 5-10 produits représentatifs (faciles + complexes)</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous validez</strong> :</p>
@@ -924,7 +922,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Paiement comptant</strong> : Remise négociable -3-5%</li>
                   <li className="text-future-dusk-600"><strong>Financement formation OPCO</strong> : 100% pris en charge si certifié Qualiopi</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai livraison</strong> : 4-8 semaines (stock FR ou import Pologne)</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai de livraison</strong> : environ 12 jours actuellement, indicatif et non contractuel</p>
 
                 <hr className="my-6 border-neutral-200" />
 
@@ -938,7 +936,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Formation équipes (Jour 3-4)</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Formation de base (incluse) : 2 jours</li>
+                  <li className="text-future-dusk-600">Formation de base (facturée en supplément) : 2 jours</li>
                   <li className="text-future-dusk-600">Workflows par type de produits</li>
                   <li className="text-future-dusk-600">Best practices secteur</li>
                   <li className="text-future-dusk-600">Troubleshooting courant</li>

@@ -186,7 +186,7 @@
       },
       "q7": {
         "question": "Qui est le distributeur officiel d'Orbitvu en France et en Suisse ?",
-        "answer": "PackshotCreator (société Sysnext) est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse : conseil, démonstration, livraison, installation, formation et SAV. En Suisse, l'accompagnement est assuré en français et en allemand sur l'ensemble du territoire — l'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025. Contact Suisse : +41 44 580 43 84."
+        "answer": "PackshotCreator (société Sysnext) est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse : conseil, démonstration, livraison, installation, formation et SAV. En Suisse, l'accompagnement est assuré sur l'ensemble du territoire, en français ; un accompagnement commercial en allemand est possible — l'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025. Contact Suisse : +41 44 580 43 84."
       }
     },
     "midCta": {
@@ -231,7 +231,7 @@
     },
     "qualiopi": {
       "heading": "Certification Qualiopi",
-      "description": "<bold>PackshotCreator Academy</bold> est certifié Qualiopi depuis 2017, garantissant la qualité de nos formations et l'éligibilité au <bold>financement OPCO</bold>.",
+      "description": "<bold>PackshotCreator Academy</bold> (Sysnext) est un organisme certifié Qualiopi au titre des actions de formation, ce qui rend nos formations éligibles au <bold>financement OPCO</bold>.",
       "feature1": "Formateurs experts (20 ans photo luxe, 3 ans IA)",
       "feature2": "Pédagogie éprouvée (500+ stagiaires formés)",
       "feature3": "Suivi post-formation (30-60 jours)"
@@ -256,7 +256,7 @@
       "name": "Sébastien Jourdan",
       "title": "Expert Photo Produit & IA | Fondateur PackshotCreator",
       "bio1": "20 ans d'expérience en photographie produit pour les plus grandes marques de luxe (Cartier, Rolex, Van Cleef & Arpels).",
-      "bio2": "Pionnier de l'automatisation photo avec les studios Orbitvu dès 2008, puis de l'IA photo produit avec BlendAI en 2024.",
+      "bio2": "Pionnier de l'automatisation photo, avec les studios Orbitvu distribués par PackshotCreator depuis 2023, puis de l'IA photo produit avec BlendAI en 2024.",
       "bio3": "500+ professionnels formés au workflow Photo studio + IA.",
       "cert1": "Certifié Qualiopi (organisme de formation)",
       "cert2": "Distributeur officiel Orbitvu France & Suisse",
@@ -701,7 +701,7 @@
     "hours": "Horaires",
     "hoursValue": "Lun-Ven 9h-18h",
     "showroomTitle": "Showroom Lyon",
-    "showroomAddress": "22 Rue des Frères Lumière DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+    "showroomAddress": "198 allée de la Tour, 01700 Beynost",
     "faqTitle": "Questions fréquentes",
     "faq1Question": "Quel délai de réponse ?",
     "faq1Answer": "Nous vous répondons sous 24h ouvrées.",
@@ -897,7 +897,7 @@
       "step1title": "Conseil personnalisé",
       "step1description": "Nos experts analysent vos <bold>besoins, volumes et contraintes</bold>. Démonstration <bold>gratuite</bold> sur site ou en visio avec vos propres produits.",
       "step2title": "Installation & Formation certifiée",
-      "step2description": "Livraison, installation et <bold>formation Qualiopi</bold> incluses. Vos équipes sont opérationnelles <bold>dès le premier jour</bold>.",
+      "step2description": "Livraison, installation et <bold>formation Qualiopi</bold>, facturées en supplément. Vos équipes sont opérationnelles <bold>dès le premier jour</bold>.",
       "step3title": "Accompagnement continu",
       "step3description": "<bold>Hotline dédiée</bold>. Nous restons à vos côtés pour <bold>maximiser vos résultats</bold>."
     },
@@ -932,7 +932,7 @@
       },
       "q6": {
         "question": "Quel est le délai de livraison ?",
-        "answer": "Comptez 2 entre la commande et la mise en production (jusqu’à 4 semaines pour des gros systèmes). Ce délai inclut la livraison et l'installation de votre système. Nous gérons l'intégralité du déploiement."
+        "answer": "Le délai de livraison indicatif est actuellement d'environ 12 jours, non contractuel. La durée d'installation et de formation dépend du système et de la configuration. Livraison, installation et formation sont facturées en supplément."
       }
     },
     "finalCta": {
@@ -1795,7 +1795,7 @@
       },
       "step3": {
         "title": "Installation & formation",
-        "description": "Installation sur site, <bold>formation certifiée Qualiopi</bold> et accompagnement au démarrage inclus."
+        "description": "Installation sur site et <bold>formation certifiée Qualiopi</bold>, facturées en supplément, puis accompagnement au démarrage."
       }
     },
     "sectors": {
@@ -1839,7 +1839,7 @@
       },
       "q3": {
         "question": "Combien de temps pour être opérationnel ?",
-        "answer": "L'installation du studio prend quelques heures. Avec la formation incluse, vous êtes autonome et productif dès la première journée."
+        "answer": "L'installation du studio prend quelques heures. Avec la formation, facturée en supplément, vous êtes autonome et productif dès la première journée."
       }
     },
     "cta": {
@@ -1922,7 +1922,7 @@
       },
       "q8": {
         "question": "Quel est votre délai de mise en production ?",
-        "answer": "L'installation d'un studio prend quelques heures. Avec la formation incluse, votre équipe est opérationnelle dès la première journée. Les premiers visuels sont produits le jour même de la formation."
+        "answer": "L'installation d'un studio prend quelques heures. Avec la formation, facturée en supplément, votre équipe est opérationnelle dès la première journée. Les premiers visuels sont produits le jour même de la formation."
       },
       "q9": {
         "question": "Comment intégrer les visuels dans votre workflow existant ?",
@@ -2539,7 +2539,7 @@
       "phone": "Téléphone",
       "email": "E-mail",
       "showroom": "Showroom (sur rendez-vous)",
-      "showroomValue": "22 rue des Frères Lumière, DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+      "showroomValue": "198 allée de la Tour, 01700 Beynost",
       "switzerlandNote": "PackshotCreator est distributeur officiel Orbitvu pour la France et la Suisse : livraison, installation et formation assurées sur l'ensemble des deux territoires."
     },
     "article3": {
@@ -2703,7 +2703,7 @@
     },
     "intro": {
       "p1": "Combien coûte un studio photo automatisé ? La question est légitime, et nous allons y répondre avec la transparence que vous méritez. Pas de tarif caché, pas de surprise : voici les ordres de grandeur réels du marché, les facteurs qui influencent le prix, et surtout le calcul qui transforme cette dépense en investissement rentable.",
-      "p2": "Chez PackshotCreator, nous distribuons la gamme Orbitvu depuis plus de 20 ans. Nous connaissons chaque machine, chaque cas d'usage, et nous avons accompagné plus de 500 entreprises dans leur passage à la photo automatisée. Voici ce que nous avons appris."
+      "p2": "Chez PackshotCreator, nous distribuons la gamme Orbitvu depuis 2023. Nous connaissons chaque machine, chaque cas d'usage, et nous avons accompagné plus de 500 entreprises dans leur passage à la photo automatisée. Voici ce que nous avons appris."
     },
     "factors": {
       "heading": "Ce qui influence le prix d'un studio photo automatisé",
@@ -2795,8 +2795,8 @@
       "ctaCalculator": "Calculer mon ROI personnalisé"
     },
     "included": {
-      "heading": "Ce qui est inclus dans le prix",
-      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. Pas de surprise, pas de coût supplémentaire à prévoir.",
+      "heading": "Ce que comprend l'offre",
+      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. La livraison, l'installation et la formation sont facturées en supplément.",
       "i1": {
         "title": "Studio complet",
         "description": "Caisson, éclairage LED, plateau tournant motorisé, caméra (selon configuration)."
@@ -2806,11 +2806,11 @@
         "description": "Capture, détourage automatique (IQ Mask), export multi-formats, mises à jour incluses."
       },
       "i3": {
-        "title": "Formation sur site",
+        "title": "Formation sur site (facturée en supplément)",
         "description": "Prise en main par un formateur certifié. Autonomie en 1 heure pour les opérations courantes."
       },
       "i4": {
-        "title": "Installation et calibration",
+        "title": "Installation et calibration (facturées en supplément)",
         "description": "Mise en service sur site par nos techniciens, calibration couleur et éclairage."
       },
       "i5": {
@@ -2919,7 +2919,7 @@
       "heading": "L'essor de l'IA générative pour la photo produit",
       "body1": "Photoroom mène la danse avec plus de 300 millions de téléchargements, une valorisation de 500 millions de dollars et un ARR de 94 millions fin 2024 (+89 % sur un an). Claid.ai revendique 200 millions d'images traitées pour 10 000 entreprises. Flair.ai attire 577 000 visiteurs mensuels. Pebblely comptabilise 25 millions d'images créées pour plus d'un million d'utilisateurs.",
       "body2": "Les géants ne sont pas en reste. Google Product Studio est intégré à Merchant Center, gratuit pour les marchands. Amazon propose la génération d'images directement dans sa plateforme publicitaire. Adobe Firefly s'enracine dans Photoshop. Le message est limpide : la photo produit par IA n'est plus une curiosité, c'est un standard en devenir.",
-      "body3": "Et les prix défient toute concurrence : de 0,02 à 0,10 dollar par image via API chez Photoroom, des abonnements à partir de 7,50 dollars par mois. Face à un coût moyen de 102 dollars par image en studio traditionnel, l'équation semble réglée. Sauf qu'elle ne l'est pas."
+      "body3": "Et les prix de ces outils défient toute concurrence face au coût d'une image produite en studio traditionnel : l'équation semble réglée. Sauf qu'elle ne l'est pas."
     },
     "aiPure": {
       "heading": "Comment fonctionne l'IA générative pure, et où elle excelle",
@@ -2967,8 +2967,8 @@
       },
       "row4": {
         "label": "Coût par image",
-        "ai": "0,02 à 2 $ selon l'outil et le plan",
-        "studio": "0,50 à 3 € amorti (ROI en 6-12 mois)"
+        "ai": "Faible par image, selon l'outil et le plan",
+        "studio": "Amorti selon le volume produit"
       },
       "row5": {
         "label": "Scalabilité",
@@ -2989,7 +2989,7 @@
     "whoNeedsAiPure": {
       "heading": "Pour qui l'IA générative pure est la bonne réponse",
       "body1": "Soyons honnêtes. Si vous vendez moins de 500 produits par an sur une marketplace, si vos visuels sont destinés aux réseaux sociaux ou aux publicités Meta, si votre budget photo ne dépasse pas quelques centaines d'euros par mois, et si vos produits ne relèvent d'aucun secteur réglementé : l'IA générative pure fait très bien le travail.",
-      "body2": "Photoroom à 7,50 dollars par mois pour un revendeur Shopify qui photographie 10 articles par semaine ? C'est un choix rationnel. Pebblely pour générer rapidement 40 visuels lifestyle d'une nouvelle collection ? Pourquoi pas. Ces outils résolvent un vrai problème pour un vrai segment de marché.",
+      "body2": "Photoroom pour un revendeur Shopify qui photographie 10 articles par semaine ? C'est un choix rationnel. Pebblely pour générer rapidement 40 visuels lifestyle d'une nouvelle collection ? Pourquoi pas. Ces outils résolvent un vrai problème pour un vrai segment de marché.",
       "body3": "Ce n'est pas non plus une question de qualité absolue. Pour des prototypes, des visuels d'étude de marché, des présentations internes ou des tests A/B publicitaires, l'IA générative suffit et offre un avantage de vitesse imbattable."
     },
     "whoNeedsStudio": {
@@ -3015,7 +3015,7 @@
       },
       "q2": {
         "question": "Photoroom suffit-il pour un site e-commerce ?",
-        "answer": "Cela dépend du contexte. Pour un revendeur avec moins de 500 photos par an, des produits simples et des exigences de fidélité limitées, Photoroom (7,50 à 82,50 $/mois) est une solution efficace et économique. Pour un catalogue B2B, du luxe, des secteurs réglementés ou des volumes supérieurs à 500 visuels par an, les limites de cohérence et de fidélité deviennent problématiques."
+        "answer": "Cela dépend du contexte. Pour un revendeur avec moins de 500 photos par an, des produits simples et des exigences de fidélité limitées, Photoroom est une solution efficace et économique. Pour un catalogue B2B, du luxe, des secteurs réglementés ou des volumes supérieurs à 500 visuels par an, les limites de cohérence et de fidélité deviennent problématiques."
       },
       "q3": {
         "question": "Qu'est-ce que BlendAI.studio ?",
@@ -3256,19 +3256,19 @@
     "orbitvu": {
       "heading": "Orbitvu : le généraliste complet",
       "body1": "Fondé en 2010 à Cracovie (Pologne), Orbitvu est passé en 2022 sous le contrôle d'Abris Capital Partners, un fonds d'investissement centre-européen. L'entreprise emploie plus de 150 personnes et dispose de 4 000 m2 d'installations de production en Europe.",
-      "body2": "La gamme actuelle comprend 16 systèmes couvrant l'ensemble du spectre : de l'Alphashot Micro Pro v2 pour la bijouterie (produits de 18 cm max, 15 450 EUR HT) jusqu'au E-Comm Studio+ pour l'industrie (produits de 3 m, capacité 1 tonne, 150 000 EUR HT). Entre les deux, on trouve des solutions pour les chaussures, la mode, le flat-lay, le mobilier et même les vélos.",
+      "body2": "La gamme actuelle comprend 16 systèmes couvrant l'ensemble du spectre : de l'Alphashot Micro Pro v2 pour la bijouterie (produits de 18 cm max) jusqu'au E-Comm Studio+ pour l'industrie (produits de 3 m, capacité 1 tonne). Entre les deux, on trouve des solutions pour les chaussures, la mode, le flat-lay, le mobilier et même les vélos.",
       "body3": "Le logiciel Orbitvu Station, inclus avec chaque machine, intègre l'IA Photo Assistant qui détecte automatiquement la forme, la matière et la brillance du produit pour proposer les réglages optimaux. Le détourage IQ Mask s'exécute en moins d'une seconde. La plateforme cloud Orbitvu Sun permet l'hébergement et la diffusion de contenus 360 avec des codes d'intégration de seulement 2 Ko.",
       "body4": "En France, Orbitvu est distribué par PackshotCreator (société Sysnext) qui assure la vente, l'installation, la formation et le support technique. L'étude comparative de 2023 mesure une productivité de 78 contenus visuels par jour avec Orbitvu.",
-      "priceRange": "De 12 450 à 150 000 EUR HT",
+      "priceRange": "Sur devis",
       "founded": "Fondé en 2010 (Pologne)"
     },
     "ortery": {
       "heading": "Ortery : la gamme la plus large",
       "body1": "Fondé en 2002 à PanChiao (Taiwan) avec un bureau commercial à Irvine (Californie), Ortery est le doyen du marché. L'entreprise a ouvert son QG européen à Capelle aan den IJssel (Rotterdam, Pays-Bas) en juillet 2023, avec un showroom de 289 m2.",
-      "body2": "Avec plus de 30 références produit, Ortery propose la gamme la plus étendue du marché. Elle va du simple plateau tournant PhotoCapture 360 à environ 1 300 USD (le point d'entrée le plus accessible du marché) jusqu'aux systèmes 3D multi-bras comme le 3D MultiArm 900, lancé en 2026. On trouve également des solutions de flat-lay (ClothingPad, StylePad) et des studios fermés (3D PhotoBench, Infinity Studio).",
+      "body2": "Avec plus de 30 références produit, Ortery propose la gamme la plus étendue du marché. Elle va du simple plateau tournant PhotoCapture 360 jusqu'aux systèmes 3D multi-bras comme le 3D MultiArm 900, lancé en 2026. On trouve également des solutions de flat-lay (ClothingPad, StylePad) et des studios fermés (3D PhotoBench, Infinity Studio).",
       "body3": "Le logiciel Ortery Capture gère la caméra, l'éclairage et le plateau. L'IA Background Removal fonctionne via le cloud et permet le détourage pendant la capture ou en post-production. La plateforme Ortery Cloud assure l'hébergement et l'intégration e-commerce.",
       "body4": "Ortery détient environ 20 % de part de marché mondiale (source : Global Growth Insights). Cependant, l'entreprise ne dispose pas de distributeur dédié en France : le support est assuré depuis les Pays-Bas. L'étude comparative de 2023 mesure une productivité de 33 contenus visuels par jour avec Ortery.",
-      "priceRange": "De ~1 300 USD à plusieurs dizaines de milliers USD",
+      "priceRange": "Se renseigner auprès du fabricant",
       "founded": "Fondé en 2002 (Taiwan/USA)"
     },
     "styleshoots": {
@@ -3276,8 +3276,8 @@
       "body1": "Fondé en 2011 à Haarlem (Pays-Bas), StyleShoots a été acquis en avril 2022 par Profoto (Suède) pour 18 millions d'euros. Profoto, référence mondiale de l'éclairage photo professionnel, dispose de filiales à New York, Tokyo, Hambourg, Paris, Londres et en Scandinavie.",
       "body2": "La gamme est délibérément restreinte à quatre machines ultra-spécialisées pour la mode et le e-commerce fashion : le Live (cabine all-in-one pour photo et vidéo on-model avec 3 axes motorisés), le Vertical (mannequin fantôme), l'Horizontal (flat-lay premium) et l'Eclipse (petit objet avec 360 et vidéo cinématique). Toutes sont contrôlées exclusivement via iPad avec l'application ProStudio.",
       "body3": "L'approche est radicalement différente : chaque machine est conçue pour un usage précis. Le Live, le modèle le plus complet, permet à un opérateur et un mannequin de photographier 85 vêtements en 6 heures. L'AutoAlpha assure le détourage automatique du fond et des supports.",
-      "body4": "Les prix ne sont pas communiqués publiquement. L'estimation du secteur les situe à plusieurs dizaines de milliers de dollars par machine, avec le Live comme modèle le plus onéreux. En France, Profoto dispose d'une filiale à Paris qui assure la distribution et le support. Styleshoots ne propose pas de solution pour les gros objets (meubles, machines) ni de 3D multi-lignes.",
-      "priceRange": "Non communiqué (dizaines de milliers USD)",
+      "body4": "Les prix ne sont pas communiqués publiquement. En France, Profoto dispose d'une filiale à Paris qui assure la distribution et le support. Styleshoots ne propose pas de solution pour les gros objets (meubles, machines) ni de 3D multi-lignes.",
+      "priceRange": "Non communiqué",
       "founded": "Fondé en 2011 (Pays-Bas, groupe Profoto)"
     },
     "comparison": {
@@ -3303,7 +3303,7 @@
       },
       "orbitvu": {
         "origin": "Pologne",
-        "priceRange": "12 450 - 150 000 EUR HT",
+        "priceRange": "Sur devis",
         "systemCount": "16 systèmes",
         "maxSize": "300x300x200 cm (E-Comm Studio+), 1 000 kg",
         "rotation360": "Oui (tous modèles)",
@@ -3321,7 +3321,7 @@
       },
       "ortery": {
         "origin": "Taiwan (bureau USA)",
-        "priceRange": "~1 300 - 30 000+ USD",
+        "priceRange": "Se renseigner auprès du fabricant",
         "systemCount": "30+ références",
         "maxSize": "135 cm plateau, 150 kg (Infinity 4000)",
         "rotation360": "Oui (modèles 360)",
@@ -3339,7 +3339,7 @@
       },
       "styleshoots": {
         "origin": "Pays-Bas (groupe suédois Profoto)",
-        "priceRange": "Non communiqué (dizaines de milliers USD)",
+        "priceRange": "Non communiqué",
         "systemCount": "4 machines",
         "maxSize": "On-model (Live) / Petits objets (Eclipse)",
         "rotation360": "Eclipse uniquement",
@@ -3368,14 +3368,14 @@
         "s5": "Support technique local complet via PackshotCreator",
         "s6": "Cloud Orbitvu Sun avec embed ultra-léger (2 Ko)",
         "weaknesses": "Faiblesses",
-        "w1": "Prix d'entrée supérieur à Ortery (~12 450 EUR vs ~1 300 USD)",
+        "w1": "Prix d'entrée supérieur à Ortery",
         "w2": "Pas de solution portable (contrairement à PhotoRobot)",
         "w3": "Gamme moins étendue en références qu'Ortery (16 vs 30+)"
       },
       "ortery": {
         "heading": "Ortery",
         "strengths": "Forces",
-        "s1": "Point d'entrée le plus accessible du marché (~1 300 USD)",
+        "s1": "Point d'entrée le plus accessible du marché",
         "s2": "Gamme la plus large en nombre de références (30+ produits)",
         "s3": "Logiciel avec IA cloud performante pour le détourage",
         "s4": "20 % de part de marché mondiale",
@@ -3414,7 +3414,7 @@
       "reason3": "16 systèmes couvrant des bijoux de 18 cm aux meubles de 2,5 m. Le marché français est diversifié (luxe, cosmétiques, mode, industrie, alimentaire) et nécessite une gamme capable de répondre à tous les secteurs.",
       "reason4title": "Un support local complet",
       "reason4": "Vente, installation, formation certifiée Qualiopi et support technique en français. Ni Ortery ni la plupart des autres fabricants n'offrent ce niveau de proximité en France.",
-      "fairness": "Cela dit, soyons honnêtes : Ortery est un excellent choix si votre budget est très serré (entrée de gamme à ~1 300 USD), et Styleshoots/Profoto excelle pour les entreprises 100 % fashion qui ne photographient que des vêtements portés. Le meilleur choix dépend toujours de votre contexte spécifique."
+      "fairness": "Cela dit, soyons honnêtes : Ortery est un excellent choix si votre budget est très serré, et Styleshoots/Profoto excelle pour les entreprises 100 % fashion qui ne photographient que des vêtements portés. Le meilleur choix dépend toujours de votre contexte spécifique."
     },
     "faq": {
       "heading": "Questions fréquentes",
@@ -3424,7 +3424,7 @@
       },
       "q2": {
         "question": "Ortery est-il moins cher qu'Orbitvu ?",
-        "answer": "En entrée de gamme, oui : le plateau tournant Ortery PhotoCapture 360 démarre à environ 1 300 USD, tandis que l'Alphashot 360 d'Orbitvu commence à 12 450 EUR. Cependant, pour des systèmes de gamme comparable (studio fermé avec éclairage intégré, 360 et 3D), les prix se rapprochent. Le TCO sur 5 ans dépend aussi fortement de la productivité : à 78 vs 33 contenus/jour, le coût par contenu est en faveur d'Orbitvu."
+        "answer": "En entrée de gamme, oui : le plateau tournant Ortery PhotoCapture 360 est moins cher que l'Alphashot 360 d'Orbitvu. Cependant, pour des systèmes de gamme comparable (studio fermé avec éclairage intégré, 360 et 3D), les prix se rapprochent. Le TCO sur 5 ans dépend aussi fortement de la productivité : à 78 vs 33 contenus/jour, le coût par contenu est en faveur d'Orbitvu."
       },
       "q3": {
         "question": "Styleshoots est-il meilleur pour la mode ?",

@@ -151,11 +151,11 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                 </p>
                 <div className="w-full h-[300px] rounded-2xl overflow-hidden shadow-sm border border-neutral-100">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.8876!2d5.0247!3d45.7133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4c1c1c1c1c1c1%3A0x0!2s22%20Rue%20des%20Fr%C3%A8res%20Lumi%C3%A8re%2C%2069720%20Saint-Bonnet-de-Mure!5e0!3m2!1sfr!2sfr!4v1706700000000!5m2!1sfr!2sfr"
+                    src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s198+all%C3%A9e+de+la+Tour,+01700+Beynost!6i15"
                     className="w-full h-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Showroom PackshotCreator Lyon - DELTAPARK"
+                    title="Showroom PackshotCreator - 198 allée de la Tour, 01700 Beynost"
                     allowFullScreen
                   />
                 </div>

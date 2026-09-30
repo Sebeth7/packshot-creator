@@ -226,15 +226,9 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces principales :</strong></p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600"><strong>Simplicité d'usage :</strong> Interface intuitive, résultats immédiats</li>
-                <li className="text-future-dusk-600"><strong>Prix imbattable :</strong> 10-50€/mois (vs 150-500€ solutions professionnelles)</li>
+                <li className="text-future-dusk-600"><strong>Prix imbattable</strong></li>
                 <li className="text-future-dusk-600"><strong>App mobile :</strong> Édition sur smartphone, pratique pour contenus réseaux sociaux</li>
                 <li className="text-future-dusk-600"><strong>Templates riches :</strong> 100+ backgrounds prédéfinis, styles variés</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Tarification :</strong></p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600"><strong>Gratuit :</strong> 10 images/mois, résolution limitée</li>
-                <li className="text-future-dusk-600"><strong>Pro :</strong> 10€/mois (40 images/mois, HD)</li>
-                <li className="text-future-dusk-600"><strong>Business :</strong> 50€/mois (images illimitées, fonctions avancées)</li>
               </ul>
 
               <hr className="my-8 border-neutral-200" />
@@ -526,7 +520,6 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
                   { label: 'Retouche avancée', values: ['Oui (pro)', 'Basique'] },
                   { label: 'API/Intégration', values: ['Oui (REST, plugins)', 'Non'] },
                   { label: 'Intégration Orbitvu', values: ['Native', 'Non'] },
-                  { label: 'Prix mensuel', values: ['150-500€', '10-50€'] },
                   { label: 'Support', values: ['Dédié (accompagnement)', 'Self-service (FAQs)'] },
                   { label: 'Courbe apprentissage', values: ['1-2 jours (formation)', '<1h (intuitif)'] },
                 ]}
@@ -583,7 +576,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               </ul>
               <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
                 <p className="text-future-dusk-600 leading-relaxed italic">
-                  Créatrice Etsy (bijoux artisanaux), 30 nouveaux produits/mois. Budget : 0€ (photos smartphone + Photoroom Pro 10€/mois). <strong>Résultat :</strong> Visuels professionnels à coût minimal, suffisant pour marketplace artisanale.
+                  Créatrice Etsy (bijoux artisanaux), 30 nouveaux produits/mois. Outils : photos smartphone + Photoroom Pro. <strong>Résultat :</strong> Visuels professionnels à coût minimal, suffisant pour marketplace artisanale.
                 </p>
               </div>
 
@@ -743,7 +736,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               </ul>
 
               <Callout type="success" title="Recommandation finale">
-                <p className="mb-2"><strong>Vous êtes TPE/créateur</strong> → <strong>Photoroom</strong> (10€/mois, simplicité maximale)</p>
+                <p className="mb-2"><strong>Vous êtes TPE/créateur</strong> → <strong>Photoroom</strong> (simplicité maximale)</p>
                 <p className="mb-2"><strong>Vous êtes e-commerce professionnel</strong> → <strong>BlendAI</strong> (qualité, automatisation, ROI)</p>
                 <p><strong>Vous voulez l'approche optimale</strong> → <strong>PackshotCreator complet</strong> (Hardware Orbitvu + IA BlendAI + Formation)</p>
               </Callout>

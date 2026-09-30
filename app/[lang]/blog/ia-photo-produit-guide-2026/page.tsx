@@ -78,7 +78,7 @@ const faqItems = [
   },
   {
     question: 'Combien coûte BlendAI pour une entreprise e-commerce ?',
-    answer: "BlendAI propose des forfaits entreprise à partir de 530€/mois pour la production industrielle de catalogues. Photoroom est plus accessible dès 10€/mois pour les TPE/PME à faible volume, tandis que Flair AI se situe entre 30 et 200€/mois pour les usages créatifs.",
+    answer: "BlendAI propose des forfaits entreprise adaptés au volume de production de catalogues ; contactez-nous pour un devis. Photoroom vise plutôt les TPE/PME à faible volume, et Flair AI les usages créatifs.",
   },
   {
     question: "Quel ROI peut-on espérer avec l'IA photo produit ?",
@@ -320,13 +320,6 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600">Après : Flacon dans une salle de bain moderne avec accessoires lifestyle</li>
             </ul>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Pricing indicatif</h4>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>BlendAI Pro</strong> : 150–530€/mois (lifestyle illimité)</li>
-              <li className="text-future-dusk-600"><strong>Photoroom Business</strong> : 10–50€/mois (fonctionnalité basique)</li>
-              <li className="text-future-dusk-600"><strong>Flair AI</strong> : 30–200€/mois (templates lifestyle prédéfinis)</li>
-            </ul>
-
             <Callout type="info" title="Astuce ROI">
               Le Lifestyle Generator permet d'économiser <strong>95% du coût</strong> d'une séance photo mannequin traditionnelle (1 500–5 000€ par shooting).
             </Callout>
@@ -372,13 +365,6 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               Avec le Background Generator, vous générez ces <strong>4 variantes en 2 minutes</strong> à partir du même packshot fond blanc.
             </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Pricing</h4>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>BlendAI</strong> : 75–300€/mois (backgrounds illimités, IA personnalisable)</li>
-              <li className="text-future-dusk-600"><strong>Photoroom</strong> : Inclus dans tous les plans (10–50€/mois)</li>
-              <li className="text-future-dusk-600"><strong>Flair AI</strong> : 30–200€/mois (bibliothèque de templates)</li>
-            </ul>
 
           <hr className="my-8 border-neutral-200" />
 
@@ -538,7 +524,6 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
                 { label: 'Retouche Photo', values: ['✅ Avancée', '⚠️ Basique', '⚠️ Basique'] },
                 { label: 'Batch Processing', values: ['✅ Illimité', '❌ Limité (100)', '⚠️ Moyen (500)'] },
                 { label: 'Intégration photo réelle', values: ['✅ 100%', '⚠️ 70%', '✅ 90%'] },
-                { label: 'Prix mensuel', values: ['75–530€', '10–50€', '30–200€'] },
                 { label: 'Spécialisation packshot', values: ['✅ Oui (bijoux, luxe)', '❌ Généraliste', '⚠️ Partiel'] },
                 { label: 'Compatible studios Orbitvu', values: ['✅ Oui (natif)', '❌ Non', '❌ Non'] },
               ]}
@@ -559,7 +544,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Faiblesses</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Prix élevé</strong> : 530€/mois pour le plan Pro (75€ pour Basic)</li>
+              <li className="text-future-dusk-600"><strong>Prix élevé</strong></li>
               <li className="text-future-dusk-600"><strong>Courbe d'apprentissage</strong> : Interface professionnelle (moins intuitive que Photoroom)</li>
               <li className="text-future-dusk-600"><strong>Overkill pour e-commerce généraliste</strong> : Investissement disproportionné si vous vendez des T-shirts basiques</li>
             </ul>
@@ -580,7 +565,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Prix imbattable</strong> : 10€/mois pour le plan Business (vs 530€ BlendAI)</li>
+              <li className="text-future-dusk-600"><strong>Prix imbattable</strong></li>
               <li className="text-future-dusk-600"><strong>UX exceptionnelle</strong> : App mobile + web, prise en main immédiate</li>
               <li className="text-future-dusk-600"><strong>Background Generator excellent</strong> : Bibliothèque riche, rendu professionnel</li>
               <li className="text-future-dusk-600"><strong>Communauté active</strong> : Tutoriels, templates partagés</li>
@@ -606,7 +591,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Templates lifestyle époustouflants</strong> : Bibliothèque de 500+ scènes prédéfinies</li>
-              <li className="text-future-dusk-600"><strong>Rapport qualité/prix</strong> : 30–200€/mois (entre Photoroom et BlendAI)</li>
+              <li className="text-future-dusk-600"><strong>Rapport qualité/prix</strong> : entre Photoroom et BlendAI</li>
               <li className="text-future-dusk-600"><strong>Génération rapide</strong> : 10–30 sec par image lifestyle</li>
               <li className="text-future-dusk-600"><strong>Bon pour réseaux sociaux</strong> : Output optimisé Instagram/TikTok</li>
             </ul>
@@ -1025,7 +1010,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             </h3>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>L'IA photo produit prolonge la photo, ne la remplace pas</strong> : Vous devez toujours partir d'un packshot studio de qualité</li>
-              <li className="text-future-dusk-600"><strong>BlendAI, Photoroom et Flair répondent à des besoins différents</strong> : BlendAI pour le luxe/précision (530€/mois), Photoroom pour TPE/PME budget serré (10€/mois), Flair pour lifestyle créatif (30–200€/mois)</li>
+              <li className="text-future-dusk-600"><strong>BlendAI, Photoroom et Flair répondent à des besoins différents</strong> : BlendAI pour le luxe/précision, Photoroom pour TPE/PME budget serré, Flair pour lifestyle créatif</li>
               <li className="text-future-dusk-600"><strong>Le ROI est positif dès 40–50 photos/mois</strong> : Pour les catalogues 100+ produits, l'économie est de 75–95% sur 3 ans</li>
               <li className="text-future-dusk-600"><strong>Le workflow optimal intègre studio automatisé + IA</strong> : La combinaison Orbitvu (studio) + BlendAI (IA) offre le meilleur rapport vitesse/qualité/coût</li>
               <li className="text-future-dusk-600"><strong>La formation est essentielle</strong> : Les outils IA sont puissants mais exigent une montée en compétences (formations OPCO disponibles)</li>

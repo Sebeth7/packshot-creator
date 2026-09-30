@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · D33 — patch factuel sûr (showroom, Orbitvu, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu, Qualiopi), PR brouillon · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Corrections factuelles sur liste fermée, sans refonte : showroom au 198 allée de la Tour, 01700 Beynost (page contact, mentions légales, `localBusinessSchema`, carte) ; partenariat Orbitvu daté de 2023 (« depuis 2018 », « dès 2008 », « depuis plus de 20 ans » retirés) ; livraison, installation et formation facturées en supplément, délai indicatif d'environ 12 jours, non contractuel ; accompagnement commercial en allemand seulement ; garantie standard d'un an, extension possible ; prix concurrents et prix comparés retirés (D25) ; chiffres non sourcés retirés de `/fr/blog/orbitvu-vs-concurrents` ; « certifié Qualiopi depuis 2017 » remplacé par une mention non datée au périmètre certifié.
+
+**Pourquoi** — Mission « D33 — patch factuel sûr » de Laurent (30/09) : faits métier de Laurent et Sébastien, D25, D33.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx` (`localBusinessSchema` seul), `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `app/[lang]/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet/page.tsx`, `app/[lang]/blog/blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026/page.tsx`, `app/[lang]/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026/page.tsx`, `app/[lang]/blog/ia-photo-produit-guide-2026/page.tsx`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant fusion. Après fusion : textes et `Store` du showroom alignés sur Beynost ; plus de promesse contraire aux conditions commerciales ; FAQPage de `/fr/blog/orbitvu-vs-concurrents` à 5 questions (6 avant).
+
+**Vérifié**
+- `main` distant = `7ad0ca3` avant la branche.
+- Adresse du showroom : Base Adresse Nationale (`api-adresse.data.gouv.fr`), « 198 Allée de la Tour 01700 Beynost », longitude 4,998587, latitude 45,829766. URL d'intégration Google Maps obtenue par la redirection de Google pour cette adresse ; la page intégrée répond 200 et contient « Beynost ».
+- Qualiopi : liste publique DGEFP des organismes de formation, SYSNEXT (SIREN 805401148), certification au titre des actions de formation.
+- Messages : édition par chemin JSON, formatage d'origine conservé (sérialisation identique au fichier avant édition) ; `organizationSchema` (254 rue Vendôme, 69003 Lyon) et `foundingDate` inchangés.
+- `verifier-json` 186 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 383 pages.
+- `next start` local, 37 URL : toutes en 200 sauf `/de-ch/mentions-legales` (404, route inexistante en de-ch, sans lien avec ce patch) ; canonical et `robots` inchangés ; FAQPage alimentée par le même tableau que les questions affichées ; aucune formulation corrigée ne subsiste dans le HTML ; restent, hors périmètre : « Orbitvu depuis 2018 » (témoignage client, accueil et `/studios-photo-automatises`), « 98 % » et « 4-8 semaines » (validation OPCO) dans `guide-achat-studio-2026`, « EUR 12,450 » (prix PackshotCreator, pages EN).
+- 0 débordement horizontal en 390 et 1440 px, 0 erreur de page, sur les 10 pages dont la structure HTML change.
+
+**Supposé** — [Non vérifié] Rendu visuel du repère sur la carte intégrée : le Chromium de la session refuse le certificat du proxy ; à contrôler dans Chrome sur la Preview. [Inférence] Le showroom de Beynost reste à moins de deux heures de Genève (mention conservée sur la page Suisse). Cela repose sur des schémas observés.
+
+**Non regardé** — Hors liste de la mission, signalé sans modification : `hasMap` (cid de la fiche Google) et intitulés « Showroom Lyon » ; `packshotEcommerce` (F5) et D32 à « environ 10 jours » ; « Satisfaction client 98 % (enquête 2025) » et engagements de service (hotline, 24-48 h, pièces 24 h) de `guide-achat-studio-2026` ; délai « 2 à 4 semaines » de `/industrie` (D10) ; prix PackshotCreator et BlendAI hors éléments comparés ; dates Qualiopi « depuis 2022 » et « 2024 » ; « Formateur agréé Orbitvu depuis 2019 » ; témoignage client « Orbitvu depuis 2018 » ; gamme PackshotCreator « 2004–2018 » ; D1 et `00-BRIEFING.md` citant encore Saint-Bonnet-de-Mure ; `messages/de.json`, `es.json`, `nl.json` (non servis) ; `www` (R4) ; Preview (SSO).
+
+**Suite** — Relecture de Laurent et Sébastien ; décision sur les éléments signalés ; mise à jour de D1 (commune du showroom) et de D32 (12 jours) par leur auteur ; contrôle Chrome de la carte sur la Preview ; fusion uniquement sur décision explicite.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
