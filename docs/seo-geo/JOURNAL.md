@@ -34,6 +34,62 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Audit Ubersuggest trié — `metaTitle` de `/fr/blog/photographie-2d-de-produits`, seule correction sûre · Claude de Laurent
+
+**Chantier** : triage de l'audit Ubersuggest du 30/09 (ZIP de 6 CSV fourni par Laurent) | **PR** : brouillon, branche `seo/ubersuggest-safe-fixes-2026-09-30`, non fusionnée | **Base** : `main` `7ad0ca3`
+
+**Quoi** — `content/blog/fr/photographie-2d-de-produits.json` : `metaTitle` passe de `null` à « Photographie 2D de produits : studios photo automatisés » (55 caractères). Changent le `<title>`, `og:title` et l'URL de l'image OG générée (`/api/og?title=…`, l'article n'a pas d'image). Slug, H1, `title` du JSON, contenu, canonical, balise `robots`, hreflang et JSON-LD sont inchangés. Aucune autre correction.
+
+**Pourquoi** — Seul signal de l'audit qui remplit les 6 critères de correction sûre de la mission :
+- title de 27 caractères confirmé sur `main` (seuil Ubersuggest : 30) ;
+- `metaTitle` absent, aucun choix délibéré ;
+- fichier hors des PR ouvertes ;
+- aucun fait nouveau : le H1 est repris, « studios photo 2D automatisés » figure dans la meta description, « studios automatisés » dans le corps ;
+- aucune URL, redirection ou canonical touchée ;
+- réversible en une ligne.
+
+Le reste de l'audit est en rapport seulement : 31 `noindex` intentionnels (D3, D9, décision de Sébastien du 04/09 pour `/fr/outil-financement`), 57 URL « non friendly » et leur doublon « keywords check », 100 titles longs, 7 « low word count ».
+
+**Fichiers** — `content/blog/fr/photographie-2d-de-produits.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Trafic : effet négligeable. La page a reçu 5 impressions et 0 clic sur les 90 jours au 27/09 (`gsc_metrics_page`, site 3, lecture seule). Le signal « title too short » disparaît du prochain audit Ubersuggest. Google peut réécrire le title affiché. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Rapport :
+  - 6 CSV, 253 lignes, 170 URL uniques ;
+  - `seo_non_friendly_url` et `seo_friendly_url_keywords_check` portent les mêmes 57 URL.
+- `main` `7ad0ca3`, build local servi par `next start` :
+  - 170 URL sur 170 en 200, sans redirection ;
+  - les 100 titles longs et le title court sont identiques au rapport ;
+  - les 31 URL « bloquées » sont en `noindex, follow` par balise ; aucune par `robots.txt` ni par en-tête.
+- PR ouvertes relues le 30/09 (#27, #43, #53, #59 à #69) : aucune ne touche `content/blog/fr/photographie-2d-de-produits.json`.
+- Portée du champ :
+  - `metaTitle` n'est lu que par `generateMetadata` (`app/[lang]/blog/[slug]/page.tsx`) ;
+  - la version EN (`content/blog/en/photographie-2d-de-produits.json`, `noindex`) est un autre fichier, non modifié.
+- `verifier-json` : 186 JSON valides. `npx tsc --noEmit` vert. Vitest 342/342. `npx next build` vert, variables factices de la CI.
+- HTML prérendu, `main` contre branche, identifiant de build neutralisé : 371 fichiers, 4 diffèrent.
+  - `/fr/blog/photographie-2d-de-produits` : seuls `<title>`, `og:title` et l'URL `og:image` changent (22 balises de `<head>` de part et d'autre) ; `<body>` identique hors scripts.
+  - `/fr/blog` : HTML identique hors scripts ; la charge RSC transporte l'objet article, donc le nouveau `metaTitle`.
+  - `/fr` et `/en/studios-photo-automatises` : HTML identique hors scripts. La charge RSC ne diffère que par le découpage d'un même composant (`showFilters`, mêmes propriétés), en sens inverse sur les deux pages. Deux builds successifs de la branche sont identiques octet pour octet (371/371).
+- Chromium, `next start` de la branche, 1440 et 390 px :
+  - `/fr/blog/photographie-2d-de-produits` en 200 ;
+  - title attendu ; canonical sur elle-même ; aucune balise `robots` ; hreflang `fr`, `fr-CH`, `x-default`, identiques à `main` ;
+  - 0 débordement, 0 erreur de page ;
+  - `/api/og` avec le nouveau title : 200 `image/png`.
+- `e2e/seo.spec.ts`, Chromium : 235 réussis et 8 échecs, sur `main` comme sur la branche, **liste d'échecs identique** ; aucun ne porte sur la page modifiée.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`, comme pour les PR précédentes.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4).
+- Contenu de la page, non modifié. Il porte des affirmations non sourcées : « près de 20 ans », « plus de 20.000 utilisateurs dans 35 pays », « leader mondial », « plus de 70 brevets », « plus de 50 000 heures ». Il présente aussi des produits dont la commercialisation actuelle n'est pas établie par le dépôt (LiveStudio, Lumina Pad Mark II, logiciel PackshotCreator). Consigné au backlog factuel du rapport de triage.
+- Gouvernance, non tranché : un `<title>` relève-t-il du « copywriting français client-facing » réservé à Sébastien (D13, `01-RAYON-ACTION.md`) ? À décider par Laurent avant fusion.
+- Découvert hors audit, non corrigé : le gabarit d'article place le fil d'Ariane (« Accueil / Blog / Article ») à l'intérieur du `<h1>`. Le texte du H1 rendu commence donc par ces trois mots. `app/[lang]/blog/[slug]/page.tsx` est modifié par #43 et #69 (ouvertes).
+- Playwright du dépôt (1.58) sans son Chromium dans le conteneur : specs lancées avec une configuration locale hors dépôt pointant sur le Chromium préinstallé ; `playwright.config.ts` non modifié.
+
+**Suite** — Revue de Laurent ; aucune fusion sans son GO. Rapport de triage complet remis hors dépôt : `noindex`, low word count, titles C/D, URL, backlog factuel. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, title contrôlé sur l'origine, puis dans Chrome sur `www`.
+
+---
+
 ## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
 
 **Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
