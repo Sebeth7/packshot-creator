@@ -34,6 +34,60 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · D36 — sécurisation avant fusion : retrait du noindex sur www par le Worker · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #67, brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3` | **Commits** : `b7b9808` (Worker), `02c093c` (Next)
+
+**Quoi** — Deuxième protection de `www`, indépendante de Vercel :
+- côté Next, la règle D36 pose en plus le marqueur `X-Packshot-Origin-Noindex: 1` ;
+- côté Worker, dans le seul bloc qui relaie `www` vers l'origine, une réponse marquée perd `X-Robots-Tag` et le marqueur.
+
+Sans marqueur, rien n'est retiré. La première protection, les en-têtes `cf-*` dans `missing`, est conservée. **Rien n'est déployé.**
+
+**Pourquoi** — Dans #67 à `99c1439`, `www` ne restait sans `noindex` que si Vercel transmettait `cf-worker`, `cf-ray` ou `cf-connecting-ip` à son routage, ce qui n'est pas établi. Le test de chaîne le montre : sans ces en-têtes, et sans le retrait du Worker, les 9 pages `www` testées reçoivent `noindex`. Le Worker construit lui-même la réponse servie à `www` (`index.js`, bloc `NEXTJS_ORIGIN`) : le retrait n'y dépend que de son code.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+9, commentaire en ASCII comme le reste du fichier), `cloudflare-worker/test/d36-origine-noindex.test.ts` (15 cas), `next.config.ts`, `lib/seo/__tests__/origine-noindex-d36.test.ts` (67 cas), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun tant que rien n'est déployé. Ordre imposé :
+1. Worker déployé, retrait inerte faute de marqueur ;
+2. `www` contrôlé, inchangé ;
+3. fusion de #67 ;
+4. contrôle.
+
+L'ordre inverse laisserait `www` sous la seule protection non établie.
+
+**Vérifié** —
+- Inventaire, par `curl` en production le 30/09 :
+  - aucun `X-Robots-Tag` sur l'origine (15 chemins) ni sur les fichiers statiques de `www` ;
+  - les noindex existants sont tous des balises `robots` : `/fr/outil-financement`, `/calculateur-roi`, `/etude-clients-2026`, `/roi-pro`, `/roi-preview`, `/en/distributeur-orbitvu-suisse`, `/en/industrie/horlogerie`, 404.
+- Seul `X-Robots-Tag` légitime existant : celui des 3 réponses 410 du Worker (`noindex, nofollow`), rendues avant le bloc d'origine. Test : conservé.
+- Test Worker, 15 cas :
+  - 4 échouent sur le Worker de `99c1439` ;
+  - un retrait aveugle de tout `X-Robots-Tag` échoue sur « en-tête légitime sans marqueur conservé ».
+- Test Next, 67 cas :
+  - chaîne rejouée avec et sans en-têtes Cloudflare transmis : sur `www`, ni noindex ni marqueur, balise `robots` et canonical conservées ;
+  - sans le retrait Worker, 9 échecs dans le pire cas ;
+  - garde : aucune autre source de `X-Robots-Tag` dans `app`, `components`, `lib`, `i18n` et `middleware.ts` (255 fichiers).
+- Chaîne réelle en local, code du Worker du dépôt contre le build `next start`, 22 URL :
+  - origine directe : `noindex` et marqueur sur les 13 URL HTML ;
+  - `www` : 0 en-tête et 0 marqueur dans les deux cas ;
+  - corps, balise `robots`, canonical, statut et `Location` identiques entre origine et `www`.
+- Vitest 424/424. `tsc` vert. ESLint : 0 message sur les 4 fichiers. `node --check` du Worker vert. `verifier-json` : 186 JSON valides. `npx next build` vert : `routes-manifest.json` porte les deux en-têtes.
+- `smoke.mjs` vert sur le build local servi sous l'hôte `sysnext.vercel.app` (17 pages, 3 ressources).
+- `b7b9808` s'applique seul sur `main` `7ad0ca3` : 357/357 tests, `tsc` vert.
+
+**Supposé** — [Non vérifié] La production du Worker est identique au dépôt hors bloc D36 : resynchronisation à faire avant déploiement (R5, `05-INFRA.md`). [Inférence] Vercel transmet au Worker les en-têtes de réponse posés par `next.config` : c'est le fonctionnement documenté de `headers()`, et le retrait n'agit que s'il les reçoit.
+
+**Non regardé** — Cloudflare, dashboards, production : non touchés. `llms.txt` : hors de D36 à ce stade, décision de Laurent attendue.
+
+**Suite** — GO de Laurent sur l'ordre de déploiement :
+- (a) PR séparée ne portant que `b7b9808`, fusionnée puis déployée depuis `main` ;
+- (b) `wrangler deploy` depuis la tête de #67.
+
+Après fusion de #67, un retour arrière du Worker vers une version sans ce retrait exige d'abord le revert de #67.
+
+---
+
 ## 2026-09-30 · D36 — `noindex` de l'origine `sysnext.vercel.app`, PR brouillon · Claude de Laurent
 
 **Chantier** : D36 | **PR** : #67, brouillon, non fusionnée, branche `claude/keen-maxwell-xdtf23` | **Base** : `main` `7ad0ca3`
