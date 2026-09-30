@@ -32,6 +32,31 @@ test.describe('Redirections 301 - Pages FR sans prefixe', () => {
   }
 });
 
+test.describe('Redirections 301 - Academy réduite au hub FR (30/09/2026)', () => {
+  const redirections = [
+    '/fr/academy/formations-packshot',
+    '/fr/academy/formations-ia',
+    '/fr/academy/calendrier',
+    '/fr/academy/simulateur-opco',
+    '/fr/academy/niveau-1-fondation-presentiel',
+    '/fr/academy/elearning-autonome-niveau-1',
+    '/en/academy',
+    '/en/academy/formations-packshot',
+    '/de-ch/academy',
+    '/de-ch/academy/niveau-2-maitrise-blended',
+    '/fr/blog/financement-formation-opco-guide-complet-pour-studios-photo-2026',
+    '/fr/blog/formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026',
+  ];
+
+  for (const from of redirections) {
+    test(`${from} -> /fr/academy`, async ({ request }) => {
+      const response = await request.get(from, { maxRedirects: 0 });
+      expect(response.status()).toBe(301);
+      expect(new URL(response.headers()['location'], 'http://x').pathname).toBe('/fr/academy');
+    });
+  }
+});
+
 test.describe('Redirections 301 - Anciennes URLs Webflow', () => {
   const redirections = [
     { from: '/packshot-secteur-chaussures', to: '/fr/industrie/chaussures' },

@@ -101,7 +101,7 @@ export const secteurs: Secteur[] = [
     cta: {
       titre: 'Automatisez vos visuels chaussures',
       description:
-        'Devis personnalisé studio Orbitvu + formation BlendAI pour votre catalogue sneakers.',
+        'Devis personnalisé studio Orbitvu + formation Orbitvu pour votre catalogue sneakers.',
     },
     faq: [
       { question: 'Combien de paires de chaussures peut-on photographier par jour ?', answer: 'Avec un studio Orbitvu automatisé, vous pouvez photographier 20 à 30 paires par heure en packshot fond blanc, soit 150 à 200 paires par jour avec les vues latérale, dessus et semelle.' },

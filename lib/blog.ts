@@ -133,28 +133,6 @@ const STATIC_ARTICLES: StaticArticle[] = [
     image: '/images/blog/thumbnail-article-nouveau-2.avif',
     source: 'static',
   },
-  {
-    slug: 'financement-formation-opco-guide-complet-pour-studios-photo-2026',
-    title: 'Financement Formation OPCO : Guide Complet pour Studios Photo 2026',
-    description: 'Guide complet financement OPCO pour formations photo produit et studios automatisés. Procédure, critères éligibilité, montants, délais. Prise en charge 100%.',
-    author: 'Sébastien Jourdan',
-    date: '2026-01-22',
-    category: 'Formation & Academy',
-    readingTime: 10,
-    image: '/images/blog/financement-opco-cover.jpg',
-    source: 'static',
-  },
-  {
-    slug: 'formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026',
-    title: 'Formation Photo Produit Professionnelle : Maîtriser Studios Orbitvu et IA en 2026',
-    description: 'Formation photo produit certifiée Qualiopi. Maîtrise studios Orbitvu, IA BlendAI, workflow e-commerce. Présentiel/blended. Financement OPCO 100%.',
-    author: 'Sébastien Jourdan',
-    date: '2026-01-22',
-    category: 'Formation & Academy',
-    readingTime: 11,
-    image: '/images/blog/thumbnail-article-nouveau-2.avif',
-    source: 'static',
-  },
 ];
 
 /**

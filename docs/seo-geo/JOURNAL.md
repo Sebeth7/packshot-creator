@@ -34,6 +34,58 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
+
+**Quoi** — `/fr/academy` devient une page simple qui renvoie au catalogue de formation (deux boutons Essential / Master, un lien catalogue, la mention de certification). Elle est servie en FR uniquement. Les sous-pages, le simulateur OPCO et deux articles consacrés à l'ancienne offre sont supprimés et redirigés en 301 vers `/fr/academy`. Les textes du reste du site sont alignés sur l'offre réelle : aucune formation IA ou e-learning, aucune formation incluse à l'achat, plus de prix ni de niveaux, plus de promesse « OPCO 100 % ».
+
+**Pourquoi** — l'auditeur compare le site au catalogue (https://packshotcreator.catalogueformpro.com/), qui fait foi. Le site affichait 6 formations, des durées de 14 h et 21 h et des prix (850 € HT pour 7 h, 1 100 à 1 800 €) qui contredisent les deux seules offres du catalogue : Essential, 4 h à distance, 850 € HT ; Master, 7 h en présentiel, 1 500 € HT. Il annonçait aussi des formations IA et e-learning retirées, et des formations « incluses » alors qu'elles sont toujours facturées à part (Sébastien, 30/09). Trafic GSC sur 90 jours de toutes les pages academy : 7 clics, soit environ 28 par an. Les deux articles redirigés : 0 clic.
+
+**Fichiers** —
+- **Page et redirections :** `app/[lang]/academy/page.tsx` (réécrite) et `next.config.ts` (9 redirections 301 ajoutées, 1 réorientée).
+- **Supprimés :**
+  - pages academy : `app/[lang]/academy/{[slug],calendrier,formations-ia,formations-packshot,simulateur-opco}` ;
+  - données et simulateur : `components/simulators/opco/`, `content/formations/`, `lib/formations.ts` ;
+  - articles : `app/[lang]/blog/{financement-formation-opco-…,formation-photo-produit-professionnelle-…}`.
+- **Navigation et SEO :** `components/layout/{Header,Footer}.tsx`, `i18n/{routing,deChCoverage}.ts`, `app/sitemap.ts`, `lib/{seo-config,blog}.ts`, `components/seo/SchemaOrg.tsx` (`courseSchema` retiré), `public/llms.txt`.
+- **Textes :**
+  - libellés d'interface : `messages/{fr,en,de-ch}.json` ;
+  - FAQ formation des fiches machines : `components/calculators/ROICalculator/lib/machines.ts` (texte seul, aucun calcul touché) ;
+  - pages : `app/[lang]/studio-photo/[slug]`, `ia-photo-produit`, `industrie`, `guide`, `not-found`, `layout`, et `blog/page.tsx` ;
+  - articles : 7 à page dédiée et 23 fichiers JSON ;
+  - `data/secteurs.ts`, `components/landings/PackshotEcommerce.tsx`.
+- **Tests :** `lib/__tests__/academy-fr-only.test.ts` (nouveau), `e2e/{anchors,cta-destinations,redirections,seo}.spec.ts`, `e2e/opco-simulator.spec.ts` (supprimé).
+
+**Effet attendu** — dès le déploiement, plus rien sur le site ne contredit le catalogue. Google remplacera les anciennes URL en quelques jours à quelques semaines. D'ici là, un extrait de recherche peut encore afficher un ancien titre, mais le clic mène à `/fr/academy`.
+
+**Vérifié** :
+- Build et tests : `npx tsc --noEmit` et `npx next build` verts ; Vitest 346 tests sur 346, dont 4 nouveaux sur l'épinglage FR.
+- Redirections sur `next start` local : 25 anciennes URL (FR, EN, DE-CH, sous-pages, fiches, les deux articles, `/en/trainings-product-photography`) répondent en 301 vers `/fr/academy` en un saut, query string conservée. Test e2e `redirections.spec.ts` : bloc academy 12 sur 12.
+- Page : hreflang limité à `fr`, `fr-CH` et `x-default`, canonical `/fr/academy`, aucun noindex, JSON-LD Organization + BreadcrumbList.
+- Liens et contenu rendu :
+  - dans les 359 pages HTML prérendues, aucun lien vers `/en/academy`, `/de-ch/academy`, `/fr/academy/*` ou vers les articles supprimés ; 869 liens pointent directement sur `/fr/academy` ;
+  - dans leur texte, aucune occurrence de « formation incluse », « OPCO 100 % », « formations IA », e-learning ou blended ;
+  - sitemap : 308 URL, `/fr/academy` seule pour la section.
+- Catalogue et rendu visuel : les trois liens catalogue ouvrent la bonne fiche (vérifié le 30/09 : titres « Essential Training Distanciel - Version 2026 » et « Master Training Présentiel - Version 2026 ») ; rendu Playwright à 1440 et 390 px, sans débordement horizontal.
+
+**Supposé** : l'entité certifiée est Sysnext (Sébastien, 30/09). La mention « La certification qualité a été délivrée au titre de la catégorie d'action suivante : ACTIONS DE FORMATION » est reprise telle que fournie. Aucun logo Qualiopi n'est affiché, Sysnext n'en a pas le droit.
+
+**Non regardé** :
+- **Cloudflare :** le Worker n'a pas été modifié. `/academy/<x>` sans langue fait deux sauts (Worker vers `/fr/academy/<x>`, puis Next vers `/fr/academy`), comme les anciennes URL legacy qui visent `/en/academy`. Le comportement sur www n'est pas contrôlé avant déploiement.
+- **Pages légales (hors périmètre) :** les CGU (article 1, article 4, article 5 « PackshotCreator Academy est certifié Qualiopi ») et la politique de confidentialité citent encore le simulateur OPCO ou l'Academy comme entité certifiée.
+- **Formulation « formation(s) certifiée(s) Qualiopi » :** une vingtaine d'occurrences au moins, alors que c'est l'organisme qui est certifié ; à arbitrer avec la consultante.
+- **Garde-fous e2e :** les specs nécessitant un navigateur n'ont pas été lancées (navigateurs Playwright non installés).
+
+**Suite** :
+- Sébastien : corriger la fiche Master du catalogue, qui dit « souhaitant se former à distance » pour une formation en présentiel.
+- À trancher :
+  - le « suivi post-formation » du guide d'achat (hotline, session de suivi, accès formateur) ;
+  - « Formateurs experts 10+ ans » et les témoignages Marie D. et Camille R. (comparatif Orbitvu) ;
+  - l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget).
+
+---
+
 ## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
