@@ -17,6 +17,31 @@ const DE_CH_BRANCHEN_PAR_SLUG_FR: Record<string, string> = {
   'vin-spiritueux': 'wein',
 };
 
+// D36 (docs/seo-geo/DECISIONS.md) : `X-Robots-Tag: noindex` sur l'origine
+// Vercel `sysnext.vercel.app`, sans toucher `www.packshot-creator.com`.
+//
+// L'hôte seul ne suffit pas : le Worker Cloudflare relaie `www` vers cette
+// même origine (NEXTJS_ORIGIN, cloudflare-worker/wrangler.toml), et
+// l'application y lit alors l'hôte `sysnext.vercel.app` (commit 6646787).
+// Ce qui distingue une requête relayée : Cloudflare ajoute `CF-Worker` à toute
+// sous-requête d'un Worker, et le Worker recopie les en-têtes reçus, dont
+// `cf-ray` et `cf-connecting-ip`. Un seul de ces en-têtes écarte la règle : dans
+// le doute, pas de noindex.
+//
+// Portée : documents HTML, soit les chemins sans extension hors /_next, /_vercel
+// et /api. Fichiers statiques, assets et API ne reçoivent rien. La balise
+// `<meta name="robots">`, lue par scripts/seo/smoke.mjs, n'est pas modifiée.
+const ORIGINE_VERCEL_NOINDEX = {
+  source: '/:chemin((?!_next/|_vercel/|api/)[^.]*)',
+  has: [{ type: 'host' as const, value: 'sysnext\\.vercel\\.app' }],
+  missing: [
+    { type: 'header' as const, key: 'cf-worker' },
+    { type: 'header' as const, key: 'cf-ray' },
+    { type: 'header' as const, key: 'cf-connecting-ip' },
+  ],
+  headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+};
+
 const nextConfig: NextConfig = {
   images: {
     // Nos assets locaux sont immuables (un changement de visuel = un nouveau
@@ -30,6 +55,10 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
+  },
+
+  async headers() {
+    return [ORIGINE_VERCEL_NOINDEX];
   },
 
   async redirects() {
