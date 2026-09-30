@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Audit Ubersuggest trié — `metaTitle` de `/fr/blog/photographie-2d-de-produits`, seule correction sûre · Claude de Laurent
 
-**Chantier** : triage de l'audit Ubersuggest du 30/09 (ZIP de 6 CSV fourni par Laurent) | **PR** : brouillon, branche `seo/ubersuggest-safe-fixes-2026-09-30`, non fusionnée | **Base** : `main` `7ad0ca3`
+**Chantier** : triage de l'audit Ubersuggest du 30/09 (ZIP de 6 CSV fourni par Laurent) | **PR** : #70, brouillon, branche `seo/ubersuggest-safe-fixes-2026-09-30`, non fusionnée | **Base** : `main` `7ad0ca3`
 
 **Quoi** — `content/blog/fr/photographie-2d-de-produits.json` : `metaTitle` passe de `null` à « Photographie 2D de produits : studios photo automatisés » (55 caractères). Changent le `<title>`, `og:title` et l'URL de l'image OG générée (`/api/og?title=…`, l'article n'a pas d'image). Slug, H1, `title` du JSON, contenu, canonical, balise `robots`, hreflang et JSON-LD sont inchangés. Aucune autre correction.
 
