@@ -1,12 +1,5 @@
-import { Inter } from 'next/font/google';
+import { inter } from '@/app/fonts/inter';
 import type { Metadata } from 'next';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['700'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'ROI Pro — Calculateur interne PackshotCreator',
