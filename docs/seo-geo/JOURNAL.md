@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Cluster AI Act — satellite C (mannequins virtuels et personnes synthétiques), PR brouillon · Claude de Laurent
 
-**Chantier** : cluster éditorial AI Act / images produit, satellite C | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-mannequins-virtuels-2026-09-30`, indépendante de #59, #60 et #61 | **Base** : `main` `7ad0ca3`
+**Chantier** : cluster éditorial AI Act / images produit, satellite C | **PR** : #62, brouillon, `DO NOT MERGE` | **Branche** : `seo/ai-act-mannequins-virtuels-2026-09-30`, indépendante de #59, #60 et #61 | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Création de `content/blog/fr/mannequin-virtuel-ia-ecommerce-ai-act.json`, FR seulement, schéma natif, `image: null`. Matière reprise du pilier A et de #43 (cas 15 à 18, matière 19c, FAQ mannequin virtuel), sources primaires revérifiées le 30/09. 2 835 mots de corps, 476 de FAQ ; 11 H2 (dont « En bref » et « Sources »), 6 H3, 6 FAQ ; tableau des 10 situations exigées (mannequin invisible classique ou reconstruit par IA, personne réelle, réelle transformée, entièrement synthétique, dérivée d’images réelles, avatar stylisé, avatar photoréaliste, influenceur synthétique, image fixe ou vidéo) ; 2 marqueurs `[TERRAIN SÉBASTIEN — …]` non remplis ; 0 lien interne ; 9 liens externes ; renvois au pilier A et à l’article « marketplaces » sans `href`.
 
