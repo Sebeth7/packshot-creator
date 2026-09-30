@@ -1,7 +1,7 @@
 # 08 — Preview Vercel et validation de Sébastien
 
 Le circuit qui permet à Sébastien de voir la vraie page **avant** sa
-publication, sans rien publier pour la lui montrer. Décision : D39.
+publication, sans rien publier pour la lui montrer. Décision : D40.
 
 ```
 branche ──> PR brouillon ──> CI verte ──> Preview « Ready »

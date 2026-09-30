@@ -100,7 +100,7 @@ désynchroniser.
 | `05-INFRA.md` | Vercel, Cloudflare, Worker, Supabase, GSC |
 | `04-SURFACES-SEO.md` | Quel fichier pilote quelle sortie SEO |
 | `07-VERIFICATION.md` | Comment prouver qu'un changement marche |
-| `08-PREVIEW-VALIDATION.md` | Preview Vercel : quelle URL, qui y accède, et le circuit de validation de Sébastien (D39) |
+| `08-PREVIEW-VALIDATION.md` | Preview Vercel : quelle URL, qui y accède, et le circuit de validation de Sébastien (D40) |
 
 ### Vivant — lu et écrit à chaque session
 

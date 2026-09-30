@@ -185,7 +185,7 @@ testable. Voir `05-INFRA.md`.
 **Modification client-facing substantielle** (nouvel article, page, landing,
 refonte, changement éditorial significatif) : après ce contrôle, le lien du
 Preview part chez Sébastien avec un dossier de validation court, avant toute
-fusion (D39). URL à envoyer, accès, gabarit : `08-PREVIEW-VALIDATION.md`.
+fusion (D40). URL à envoyer, accès, gabarit : `08-PREVIEW-VALIDATION.md`.
 
 ---
 

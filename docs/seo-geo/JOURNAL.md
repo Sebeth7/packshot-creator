@@ -34,13 +34,13 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-09-30 · Preview Vercel — circuit de validation de Sébastien (D39, proposée) · Claude de Laurent
+## 2026-09-30 · Preview Vercel — circuit de validation de Sébastien (D40, proposée) · Claude de Laurent
 
 **Chantier** : gouvernance — `VERCEL_PREVIEW_BEFORE_PUBLICATION = YES` (consigne de Laurent du 30/09) | **PR** : #65, brouillon, branche `claude/busy-gauss-cfe9m8`, non fusionnée | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Documentation seulement :
 - `08-PREVIEW-VALIDATION.md` créé : mécanisme PR → Preview, URL à envoyer, protection, accès, indexation, risques, circuit, phases D38, checklist, gabarit du dossier de validation ;
-- D39 proposée ;
+- D40 proposée ;
 - renvois dans `README.md` et `02-PROCEDURE.md` (porte 2).
 Aucun fichier du site, aucun réglage Vercel, GitHub ou Cloudflare modifié. #59, #60 et #64 lues, pas touchées.
 
@@ -48,7 +48,7 @@ Aucun fichier du site, aucun réglage Vercel, GitHub ou Cloudflare modifié. #59
 
 **Fichiers** — `docs/seo-geo/08-PREVIEW-VALIDATION.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/README.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
 
-**Effet attendu** — Aucun sur le site. À la fusion, D39 s'applique aux PR client-facing substantielles.
+**Effet attendu** — Aucun sur le site. À la fusion, D40 s'applique aux PR client-facing substantielles.
 
 **Vérifié** — Le 30/09, entre 15:33 et 15:36 UTC, depuis le conteneur, sans jeton de contournement :
 
@@ -71,7 +71,7 @@ Aucun fichier du site, aucun réglage Vercel, GitHub ou Cloudflare modifié. #59
 
 **Non regardé** — Rendu des Preview (page, assets, console, 390 et 1440 px) : impossible sans jeton ou session Vercel ; `PAGE_RENDERED` non établi. Accès de Sébastien : non établi par les sources du dépôt. Réglage exact de la protection et variables de l'environnement Preview (dashboard). URL de déploiement unique de chaque tête (dans l'inspecteur Vercel). `www` (R4).
 
-**Suite** — GO de Laurent sur D39 et fusion de #65. Premier envoi (#59 ou #60) : vérifier que Sébastien ouvre la Preview ; en cas d'écran « Request access », décision d'accès à Laurent, sans contournement. Script `scripts/seo/preview-pr.mjs` proposé, non créé.
+**Suite** — GO de Laurent sur D40 et fusion de #65. Premier envoi (#59 ou #60) : vérifier que Sébastien ouvre la Preview ; en cas d'écran « Request access », décision d'accès à Laurent, sans contournement. Script `scripts/seo/preview-pr.mjs` proposé, non créé.
 
 ---
 

@@ -25,7 +25,7 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D39 · 2026-09-30 · Toute modification client-facing substantielle passe par une Preview transmise à Sébastien avant publication
+## D40 · 2026-09-30 · Toute modification client-facing substantielle passe par une Preview transmise à Sébastien avant publication
 
 **Décidé par** : Laurent
 **Statut** : proposée dans la PR #65 (brouillon) — en vigueur à sa fusion
