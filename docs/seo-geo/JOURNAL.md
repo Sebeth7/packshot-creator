@@ -56,11 +56,17 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/retouche-ia-photo-produit-ai-act`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (`datePublished` = `dateModified` = 2026-09-30) et FAQPage (6 = 6 visibles), URL au sitemap (326 URL), 2 marqueurs visibles, 0 débordement et 0 erreur de page en 1440 et 390 px (Chromium du conteneur).
 - Article : 0 lien vers `/fr/packshot-e-commerce` (D37) ; la page en porte un, celui du pied de page existant, inchangé.
 - Proximité lexicale TF-IDF (approximation, pas l’embedding de D16) avec les 63 articles FR, A et S : maximum 0,528 avec A, 0,337 avec S, 0,118 avec le premier article publié.
+- Mesures D16 du 30/09, GO payant de Laurent, workflows n8n jetables en lecture seule `EiMBLzt28dSzVzHh` et `KPKz3xyNOnDIxZiX`, aucune écriture en base :
+  - critère 1 : embedding `text-embedding-3-small` du brief rédigé (titre, angle, plan, questions, D27) contre les 178 pages FR embeddées du corpus : maximum 0,690 (`/fr/ia-photo-produit`), 0 page ≥ 0,85, 0 page ≥ 0,70 ; entre briefs : 0,805 avec A, 0,710 avec S, 0,715 avec C, 0,744 avec D ;
+  - critère 2 : DataForSEO Google Ads, France : « retouche photo ia » 3 600 (intention outil), « détourage ia » 90, « article 50 ai act » 90, « image générée par ia mention obligatoire » 50, « mention ia obligatoire » 30, « mention image générée par ia » 20 ; aucune requête « retouche + mention » mesurée ; Suisse (fr) : « retouche photo ia » 70, les autres au seuil de 10 ; GSC site 3 : « correction de couleur dans les images ia », 30 impressions sur 12 mois ;
+  - critère 3 : intention informationnelle ; lacune de citation GEO mesurée sur 27 réponses (Perplexity sonar, ChatGPT gpt-4.1-mini avec recherche web, Gemini 2.5 Flash avec Google Search ; 3 questions, 3 passages) : PackshotCreator nommé 0/27, cité en source 0/27 ; sources récurrentes `pixofix.com`, `orbitvu.com`, `digital-strategy.ec.europa.eu` ; réponses divergentes selon le moteur ;
+  - SERP France : AI Overview présent sur les 2 requêtes exploitables (1 échec DataForSEO), PackshotCreator absent du top 20 ;
+  - les trois critères de D16 sont remplis ; la création reste soumise à la validation explicite de Sébastien.
 - GSC (`gsc_metrics`, site 3, depuis le 01/06/2026, lecture seule) : 0 impression sur les requêtes de retouche IA ciblées ; requête voisine « générer des visuels produits avec l’ia » : 149 impressions, 0 clic.
 
 **Supposé** — [Inférence] Le rattachement de l’authenticité au « processus de création » (point 113) peut fonder une lecture stricte de la recolorisation fidèle ; l’article la présente comme une des deux lectures possibles, sans trancher. Cela repose sur des schémas observés.
 
-**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; volume de recherche (DataForSEO non disponible dans cette session) : les conditions (1) et (2) de D16 ne sont donc documentées que par approximation ; relecture de la prose et de la signature par Sébastien (`01-RAYON-ACTION.md` : copywriting FR client-facing).
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; relecture de la prose et de la signature par Sébastien (`01-RAYON-ACTION.md` : copywriting FR client-facing).
 
 **Suite** — Réponses terrain de Sébastien sur les 2 marqueurs ; relecture éditoriale ; validation explicite de la création (D16) ; maillage final et lien vers A à activer à la publication coordonnée ; EN et de-ch.
 
