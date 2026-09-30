@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · R01 / #58 fusionnée — clôture documentaire · Claude de Laurent
+
+**Chantier** : R01 de l'audit de maillage du 29/09 | **PR** : #58, fusionnée | **Commit de fusion** : `e2e1027` (`main`), le 29/09/2026 à 18:48:26 UTC | **Consigné dans** : #57
+
+**Quoi** — Mise à jour documentaire seulement :
+- la ligne R01 de `ETAT.md` indiquait encore « PR #58, brouillon, non fusionnée » ; elle passe à « TERMINÉ — FUSIONNÉ » ;
+- aucun code, aucun test fonctionnel refait.
+
+**Vérifié** — `main` = `e2e1027` : commit de fusion de #58, parents `e88e528` et `0e232c2`, daté du 29/09/2026 à 18:48:26 UTC (`git log`).
+
+**Supposé** — Constats de production de #58, rapportés par Laurent le 30/09 d'après la session de #58, et non recontrôlés ici sur sa consigne :
+- `sysnext.vercel.app` sert le build de `e2e1027` ;
+- `smoke.mjs` vert ;
+- les 8 hubs `/de-ch/branchen/*` sont conformes ;
+- 0 lien en 404 et 0 redirection dans le sélecteur de langue (26 et 6 avant) ;
+- suivi GitHub et rappel de #58 supprimés.
+
+**Non regardé** — `www` (R4). R02 à R19, D9, D29, D33, D36 : non concernés, rien de modifié.
+
+**Suite** — Contrôle Chrome sur `www` de `/de-ch/branchen/uhren`, côté Laurent, comme indiqué dans la « Suite » de l'entrée R01 ci-dessous.
+
+---
+
 ## 2026-09-29 · #55 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : audit SEO/GEO du 29/09, PR technique « corrections JSON-LD » (A, B, D) | **PR** : #55, fusionnée sur GO de Laurent | **Commit de fusion** : `e88e528` (`main`), le 29/09/2026 à 18:35:25 UTC | **Tête fusionnée** : `1ceb42a` | **Base avant fusion** : `37146c2`
