@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
 
-**Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : à venir | **Commit** : à venir
+**Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
 
 **Quoi** — `/fr/academy` devient une page simple qui renvoie au catalogue de formation (deux boutons Essential / Master, un lien catalogue, la mention de certification). Elle est servie en FR uniquement. Les sous-pages, le simulateur OPCO et deux articles consacrés à l'ancienne offre sont supprimés et redirigés en 301 vers `/fr/academy`. Les textes du reste du site sont alignés sur l'offre réelle : aucune formation IA ou e-learning, aucune formation incluse à l'achat, plus de prix ni de niveaux, plus de promesse « OPCO 100 % ».
 
