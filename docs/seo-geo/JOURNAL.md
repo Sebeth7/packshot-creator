@@ -55,11 +55,17 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
 - `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/mannequin-virtuel-ia-ecommerce-ai-act`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (2026-09-30) et FAQPage (6 = 6), URL au sitemap (326 URL), 2 marqueurs visibles, 0 débordement et 0 erreur de page en 1440 et 390 px. 0 lien vers `/fr/packshot-e-commerce` dans l’article (lien du pied de page existant, inchangé).
 - Proximité lexicale TF-IDF (approximation, pas l’embedding de D16) : maximum 0,437 avec A, 0,358 avec S, 0,356 avec B.
+- Mesures D16 du 30/09, GO payant de Laurent, workflows n8n jetables en lecture seule `EiMBLzt28dSzVzHh` et `KPKz3xyNOnDIxZiX`, aucune écriture en base :
+  - critère 1 : embedding `text-embedding-3-small` du brief rédigé (D27) contre les 178 pages FR embeddées : maximum 0,606 (`/fr/industrie/mode-textile`), 0 page ≥ 0,85, 0 page ≥ 0,70 ; entre briefs : 0,825 avec A, 0,723 avec S, 0,715 avec B, 0,741 avec D ;
+  - critère 2 : DataForSEO Google Ads, France : « influenceuse ia » 480, « mannequin ia » 320, « influenceur ia » 320, « mannequin virtuel » 90, « essayage virtuel » 90, « influenceur virtuel » 50, « mannequin virtuel ia » 10, « mannequin généré par ia » 10 ; suggestions : « mannequin ia gratuit » 210, « ia mannequin vêtement gratuit » 90, « mannequin ia vinted » 70, « ia mannequin vêtement » 30 ; aucune requête de conformité (« mention », « obligatoire ») mesurée ; Suisse (fr) au seuil de 10 ; GSC site 3 : « essayage virtuel bijoux », 44 impressions en 2025 ;
+  - critère 3 : intention informationnelle ; lacune de citation GEO mesurée sur 27 réponses (mêmes moteurs, 3 questions, 3 passages) : PackshotCreator nommé 0/27, cité en source 0/27 ; sources récurrentes `mannequinia.com`, `senat.fr`, `pixofix.com`, `uwear.ai` ; Gemini répond 3/3 que la mention est « fortement recommandée, voire obligatoire » et 3/3 que le mannequin virtuel est un hypertrucage ; Perplexity : « pas automatiquement » ;
+  - SERP France : AI Overview présent ; « mannequin virtuel ia mention obligatoire » renvoie des pages hors sujet ; PackshotCreator absent (1 échec DataForSEO) ;
+  - les trois critères de D16 sont remplis ; la création reste soumise à la validation explicite de Sébastien.
 - GSC (`gsc_metrics`, site 3, depuis le 01/06/2026, lecture seule) : 0 impression sur les requêtes mannequin virtuel / avatar / influenceur IA.
 
 **Supposé** — [Inférence] L’article L2133-2 du Code de la santé publique vise des mannequins au sens du Code du travail, donc des personnes réelles ; son application à un mannequin entièrement synthétique n’est pas affirmée. Cela repose sur des schémas observés.
 
-**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; volume de recherche (DataForSEO non disponible) ; réponse du gouvernement à la question écrite du Sénat du 16/04/2026 sur les mannequins générés ; droit d’auteur, droit du travail et données d’entraînement, hors consigne ; relecture de la prose par Sébastien.
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; EN et de-ch (D38) ; visuels ; réponse du gouvernement à la question écrite du Sénat du 16/04/2026 sur les mannequins générés ; droit d’auteur, droit du travail et données d’entraînement, hors consigne ; relecture de la prose par Sébastien.
 
 **Suite** — Réponses terrain de Sébastien sur les 2 marqueurs ; relecture éditoriale ; validation explicite de la création (D16) ; maillage final et liens vers A et vers l’article « marketplaces » à la publication coordonnée ; EN et de-ch.
 
