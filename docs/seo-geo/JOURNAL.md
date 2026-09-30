@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Audit Ubersuggest trié — `metaTitle` de `/fr/blog/photographie-2d-de-produits`, seule correction sûre · Claude de Laurent
 
-**Chantier** : triage de l'audit Ubersuggest du 30/09 (ZIP de 6 CSV fourni par Laurent) | **PR** : #70, brouillon, branche `seo/ubersuggest-safe-fixes-2026-09-30`, non fusionnée | **Base** : `main` `7ad0ca3`
+**Chantier** : triage de l'audit Ubersuggest du 30/09 (ZIP de 6 CSV fourni par Laurent) | **PR** : #70, brouillon, branche `seo/ubersuggest-safe-fixes-2026-09-30`, non fusionnée | **Base** : `main` `7ad0ca3`, synchronisée par fusion avec `main` `a8c85ca` (#69) ; contrôles de build rejoués après fusion
 
 **Quoi** — `content/blog/fr/photographie-2d-de-produits.json` : `metaTitle` passe de `null` à « Photographie 2D de produits : studios photo automatisés » (55 caractères). Changent le `<title>`, `og:title` et l'URL de l'image OG générée (`/api/og?title=…`, l'article n'a pas d'image). Slug, H1, `title` du JSON, contenu, canonical, balise `robots`, hreflang et JSON-LD sont inchangés. Aucune autre correction.
 
@@ -83,10 +83,30 @@ Le reste de l'audit est en rapport seulement : 31 `noindex` intentionnels (D3, D
 **Non regardé** — Preview Vercel (SSO) et `www` (R4).
 - Contenu de la page, non modifié. Il porte des affirmations non sourcées : « près de 20 ans », « plus de 20.000 utilisateurs dans 35 pays », « leader mondial », « plus de 70 brevets », « plus de 50 000 heures ». Il présente aussi des produits dont la commercialisation actuelle n'est pas établie par le dépôt (LiveStudio, Lumina Pad Mark II, logiciel PackshotCreator). Consigné au backlog factuel du rapport de triage.
 - Gouvernance, non tranché : un `<title>` relève-t-il du « copywriting français client-facing » réservé à Sébastien (D13, `01-RAYON-ACTION.md`) ? À décider par Laurent avant fusion.
-- Découvert hors audit, non corrigé : le gabarit d'article place le fil d'Ariane (« Accueil / Blog / Article ») à l'intérieur du `<h1>`. Le texte du H1 rendu commence donc par ces trois mots. `app/[lang]/blog/[slug]/page.tsx` est modifié par #43 et #69 (ouvertes).
+- Découvert hors audit, non corrigé : le gabarit d'article place le fil d'Ariane (« Accueil / Blog / Article ») à l'intérieur du `<h1>`. Le texte du H1 rendu commence donc par ces trois mots. `app/[lang]/blog/[slug]/page.tsx` est modifié par #43 (ouverte) ; #69, qui le modifiait aussi, a été fusionnée pendant la session (`a8c85ca`).
 - Playwright du dépôt (1.58) sans son Chromium dans le conteneur : specs lancées avec une configuration locale hors dépôt pointant sur le Chromium préinstallé ; `playwright.config.ts` non modifié.
 
 **Suite** — Revue de Laurent ; aucune fusion sans son GO. Rapport de triage complet remis hors dépôt : `noindex`, low word count, titles C/D, URL, backlog factuel. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, title contrôlé sur l'origine, puis dans Chrome sur `www`.
+
+---
+
+## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
+
+**Quoi** — `lg:justify-center` sur le conteneur flex du gabarit d'article : le bloc colonne de lecture + sommaire est centré au lieu d'être collé à gauche. Largeur de lecture (65ch) inchangée.
+
+**Pourquoi** — vide à droite de l'article, mesuré : 377 px à 1440, 617 px à 1920, contre 104 et 344 px à gauche. Le `lg:mx-0` d'origine (90f5d81, 08/02) alignait la colonne à gauche du conteneur de 1280 px.
+
+**Fichiers** — `app/[lang]/blog/[slug]/page.tsx`
+
+**Effet attendu** — marges symétriques dès le déploiement : 240 / 240 px à 1440, 480 / 480 à 1920.
+
+**Vérifié** — `npx next build` vert en local. Mesure Playwright avant (sysnext.vercel.app) / après (build local), 5 articles FR / EN / DE-CH × 7 largeurs de 390 à 1920 : largeur de colonne, largeur du sommaire, hauteur de l'article, bannière identiques ; aucun débordement horizontal ; rendu identique sous 1024 px. Aucun article JSON n'est aujourd'hui sans h2 / h3, donc sans sommaire.
+**Supposé** — les ~120 autres articles JSON se comportent comme les 5 mesurés : même gabarit, la largeur de colonne ne dépend pas du contenu (`flex-1` + `min-w-0` + `max-w-prose`).
+**Non regardé** — les 12 articles à `page.tsx` dédiée (hors gabarit, mises en page propres) ; le hub `/blog` ; le rendu derrière Cloudflare sur www.
+
+**Suite** — rien.
 
 ---
 
