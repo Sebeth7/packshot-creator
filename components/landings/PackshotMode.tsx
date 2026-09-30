@@ -820,8 +820,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
               <h3 className="text-2xl font-heading font-bold text-future-dusk-900 mb-3">{t('accompagnement.formation.title')}</h3>
               <p className="text-future-dusk-600 leading-relaxed">{t('accompagnement.formation.text')}</p>
               <div className="mt-5 flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm">
-                <Link href="/academy/formations-packshot" locale={epingle('/academy/formations-packshot')} className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('accompagnement.formation.cta')}</Link>
-                <Link href="/academy/simulateur-opco" locale={epingle('/academy/simulateur-opco')} className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('accompagnement.formation.cta2')}</Link>
+                <Link href="/academy" locale={epingle('/academy')} className={`inline-flex min-h-6 items-center ${CLASSE_LIEN}`}>{t('accompagnement.formation.cta')}</Link>
               </div>
             </div>
             <div className="rounded-3xl border border-neutral-100 bg-white p-6 lg:p-8">

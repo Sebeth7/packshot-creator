@@ -243,7 +243,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Temps/produit', values: ['1–2 min', '2–3 min'] },
                 { label: 'IA Ready', values: ['✅ Oui (BlendAI natif)', '❌ Non'] },
                 { label: 'Support France', values: ['✅ PackshotCreator officiel', '⚠️ Limité'] },
-                { label: 'Formation incluse', values: ['✅ 2 jours', '✅ 1 jour'] },
+                { label: 'Formation', values: ['En option : Essential (à distance) ou Master (présentiel)', '✅ 1 jour'] },
                 { label: 'Évolutivité', values: ['✅ Excellente (modules)', '⚠️ Moyenne'] },
               ]}
             />
@@ -280,7 +280,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Comparatif vs StyleShoots</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Temps formation Orbitvu</strong> : 2 jours pour autonomie 90%</li>
+              <li className="text-future-dusk-600"><strong>Temps formation Orbitvu</strong> : de 4 h (Essential, à distance) à 1 jour (Master, en présentiel)</li>
               <li className="text-future-dusk-600"><strong>Temps formation StyleShoots</strong> : 3–4 jours (interface complexe, plus de réglages manuels)</li>
             </ul>
             <blockquote className="border-l-4 border-very-peri-300 pl-4 italic text-future-dusk-600 my-4">
@@ -330,11 +330,10 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Stock France (livraison 24h)</li>
               <li className="text-future-dusk-600">vs StyleShoots : Stock Pays-Bas (livraison 3–5 jours)</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Formations avancées</strong> :</p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Formations</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">3 niveaux certifiés Qualiopi</li>
-              <li className="text-future-dusk-600">Financement OPCO 100%</li>
-              <li className="text-future-dusk-600">Sessions mensuelles Paris/Lyon</li>
+              <li className="text-future-dusk-600">Essential Training (à distance) et Master Training (en présentiel)</li>
+              <li className="text-future-dusk-600">Organisme certifié Qualiopi, financement OPCO possible</li>
             </ul>
             <blockquote className="border-l-4 border-very-peri-300 pl-4 italic text-future-dusk-600 my-4">
               "Panne logicielle un vendredi soir, technicien PackshotCreator sur site lundi 10h. Avec StyleShoots, on aurait attendu 1 semaine. Ça fait la différence."
@@ -462,7 +461,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Étape 3 : Formation migration</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">1 journée formation (gratuite pour anciens clients PackshotCreator)</li>
+              <li className="text-future-dusk-600">Formation au catalogue : Essential Training ou Master Training, facturée séparément</li>
               <li className="text-future-dusk-600">Workflows similaires : Courbe apprentissage minimale</li>
             </ul>
             <blockquote className="border-l-4 border-very-peri-300 pl-4 italic text-future-dusk-600 my-4">
@@ -492,7 +491,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Automatisation', values: ['❌ Manuelle', '✅ Complète'] },
                 { label: 'Qualité rendu', values: ['Standard (smartphone/compact)', 'Premium (reflex pro)'] },
                 { label: 'Volume/jour', values: ['20–30', '50–100'] },
-                { label: 'Formation', values: ['❌ Tutoriels YouTube', '✅ 2 jours on-site'] },
+                { label: 'Formation', values: ['❌ Tutoriels YouTube', '✅ Essential (à distance) ou Master (sur site), en option'] },
                 { label: 'Support', values: ['Email (48–72h)', 'Hotline FR (2h)'] },
               ]}
             />
@@ -612,7 +611,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Hotline &lt; 2h ouvrées</li>
               <li className="text-future-dusk-600">Techniciens on-site 24–48h (France métropolitaine)</li>
               <li className="text-future-dusk-600">Stock pièces détachées France (livraison 24h)</li>
-              <li className="text-future-dusk-600">Formations certifiées Qualiopi (financement OPCO 100%)</li>
+              <li className="text-future-dusk-600">Formations Qualiopi (financement OPCO possible)</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Satisfaction client</strong> : 98% (enquête 2025 sur 150+ installations).
@@ -657,8 +656,8 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 3 : Formation (Academy)</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">3 niveaux certifiés Qualiopi</li>
-              <li className="text-future-dusk-600">Financement OPCO 100%</li>
+              <li className="text-future-dusk-600">Essential Training (à distance) et Master Training (en présentiel)</li>
+              <li className="text-future-dusk-600">Organisme certifié Qualiopi, financement OPCO possible</li>
               <li className="text-future-dusk-600">Formateurs experts 10+ ans</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -759,7 +758,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600"><strong>Gamme Orbitvu Complète</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Studios Photo Automatisés</Link></li>
               <li className="text-future-dusk-600"><strong>Intégration IA</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link></li>
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
-              <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
+              <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
             </ul>
 
         </div>

@@ -159,7 +159,7 @@ export default async function GuidesPage({ params }: PageProps) {
             </p>
             <Link
               href="/academy"
-              locale={lang === 'de-ch' ? 'en' : undefined}
+              locale="fr"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-very-peri-700 font-bold rounded-xl hover:bg-neutral-100 transition-colors"
             >
               {tx(lang, 'Voir les formations', 'View courses', 'Schulungen ansehen')}

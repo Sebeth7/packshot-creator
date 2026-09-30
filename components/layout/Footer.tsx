@@ -291,19 +291,19 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/academy/formations-packshot" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                  {t('formationsPackshot')}
+                <Link href="/academy" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  {t('formationsHub')}
                 </Link>
               </li>
               <li>
-                <Link href="/academy/formations-ia" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                  {t('formationsIA')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/academy/calendrier" className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                  {t('calendrier')}
-                </Link>
+                <a
+                  href="https://packshotcreator.catalogueformpro.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-future-dusk-400 hover:text-white transition-colors"
+                >
+                  {t('catalogueFormation')}
+                </a>
               </li>
             </ul>
           </div>
