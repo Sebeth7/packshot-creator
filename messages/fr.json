@@ -1202,12 +1202,20 @@
       "p3": "C'est le premier intérêt d'un studio automatisé pour la mode : les réglages d'éclairage, la séquence d'angles et les traitements sont enregistrés dans un modèle, puis rappelés pour chaque pièce de la même famille. La régularité repose alors sur le modèle enregistré plutôt que sur des réglages refaits à chaque séance.",
       "imageAlt": "Trois vêtements photographiés à plat sur fond blanc : un body vert, un pull rouge et un body imprimé, avec le même cadrage",
       "imageCaption": "Même fond, même lumière, même cadrage : une série se lit comme un ensemble.",
+      "illustration": {
+        "alt": "Illustration d'une série cohérente de pulls de plusieurs coloris présentés avec le même cadrage.",
+        "caption": "Illustration synthétique d'une collection en plusieurs coloris ; elle ne documente pas un shooting réel."
+      },
       "lienGuide": "La méthode dans Orbitvu Station, pas à pas : <lien>des photos homogènes pour toute une collection</lien>."
     },
     "matiere": {
       "eyebrow": "Le produit réel",
       "heading": "Couleur, matière, tombé : ce que la photo doit restituer",
       "intro": "Un vêtement se choisit sur sa couleur, sa matière et sa façon de tomber. La photo doit montrer l'article réellement vendu, ce que demandent aussi Amazon et Google Merchant Center dans leurs consignes. C'est l'autre intérêt de la prise de vue en studio : représenter le vrai produit, ses textures et son tombé, plutôt qu'une interprétation.",
+      "illustration": {
+        "alt": "Gros plans de maille, denim, satin et laine sous une lumière de studio.",
+        "caption": "Illustration synthétique de quatre matières textiles et de leur rendu sous la lumière."
+      },
       "points": {
         "couleur": {
           "titre": "Couleur",
@@ -1237,6 +1245,10 @@
       "eyebrow": "Présentations",
       "heading": "À plat, en volume ou porté : que choisir pour quels articles ?",
       "intro": "Chaque présentation répond à une question différente de l'acheteur et demande une organisation différente. Rien n'oblige à n'en retenir qu'une : le porté peut être réservé aux pièces phares, le reste photographié à plat ou en volume.",
+      "illustration": {
+        "alt": "Illustration d'un même manteau présenté à plat, sur mannequin puis porté.",
+        "caption": "Illustration synthétique des trois modes de présentation d'un même vêtement."
+      },
       "columns": {
         "presentation": "Présentation",
         "montre": "Ce qu'elle montre",
@@ -1338,12 +1350,20 @@
       },
       "imageAlt": "Une opératrice place une botte dans un studio photo automatisé Orbitvu, à côté de l'écran de contrôle",
       "imageCaption": "L'opératrice positionne la pièce ; le studio enchaîne les angles prévus.",
+      "illustration": {
+        "alt": "Illustration d'une opératrice préparant un manteau sur mannequin dans un studio photo.",
+        "caption": "Illustration synthétique d'une étape de préparation manuelle avant la prise de vue."
+      },
       "controle": "L'automatisation ne retire pas le contrôle humain : c'est l'équipe qui juge si la couleur, la matière et le tombé correspondent à la pièce. Selon Orbitvu, une formation de base suffit pour le packshot courant, sans expérience photo préalable. Pour la prise de vue portée, le regard d'un photographe ou d'un styliste reste précieux."
     },
     "ia": {
       "eyebrow": "IA",
       "heading": "IA et photo de mode : où elle aide, où la contrôler",
       "intro": "L'IA fait déjà partie de la production : détourage, retouche, déclinaisons. Plus une image est générée plutôt que photographiée, plus sa fidélité au vêtement vendu doit être vérifiée.",
+      "illustration": {
+        "alt": "Illustration de deux manteaux de coupe proche, camel et anthracite, présentés dans les mêmes conditions.",
+        "caption": "Illustration synthétique de deux variantes colorées."
+      },
       "aide": {
         "titre": "Là où elle aide",
         "items": {

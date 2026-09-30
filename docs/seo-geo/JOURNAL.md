@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Mode — pack visuel V1 à V5 intégré dans `/fr/packshot-mode` · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **HEAD avant** : `ac5698b`
+
+**Quoi** — Cinq illustrations générées (pack du 30/09, `MODE_VISUAL_HANDOFF_2026-09-30.zip`) ajoutées à la version FR, une par section : V3 dans « collection », V2 dans « matière », V1 dans « présentations », V4 dans « au studio » (après le tableau), V5 dans « IA ». Alt et légendes repris du rapport `MODE_VISUAL_FINAL_REVIEW_2026-09-30.md`. V6 (optionnel) non retenu : hero inchangé. Aucun visuel existant retiré, aucun texte existant modifié.
+
+**Pourquoi** — Liste « Visuels à produire » de la PR #66 ; sélection verrouillée par Laurent le 30/09 : V1, V2, V4 KEEP ; V3, V5 KEEP avec réserve ; V6 OPTIONAL.
+
+**Fichiers** — `components/landings/PackshotMode.tsx` (composant `Illustration`, 5 figures), `messages/fr.json` (bloc `packshotMode` : 5 objets `illustration` { alt, caption } ajoutés, rien d'autre ne change), `public/images/packshot-mode/` (5 AVIF, 495 107 octets), `docs/seo-geo/JOURNAL.md`, `ETAT.md`.
+
+**Provenance** — Illustrations générées dans ChatGPT : ni client, ni séance réelle, ni personne de l'équipe, ni preuve de performance. Chaque légende commence par « Illustration synthétique ». Les PNG sources portent un manifeste C2PA (bloc `caBX`) que les dérivés AVIF ne conservent pas ; `next/image` ré-encode de toute façon. PNG conservés hors dépôt.
+
+**Format** — PNG 1672 × 941 → AVIF 1672 × 941 (sharp 0.34.5, qualité 60, effort 6), ratio complet, aucun recadrage. Qualité 50 écartée : grain de la maille et du denim lissé à 100 %. Servi par `next/image` en WebP : à 1440 px (w=1920, image de 1672 px) 52 à 158 Ko, 475 Ko pour les cinq ; à 390 px DPR 3 (w=1080) 27 à 86 Ko, 234 Ko. Chargement différé, aucun préchargement ajouté.
+
+**Écarts au rapport** — Légende V5 : seule la première proposition est publiée (« Illustration synthétique de deux variantes colorées. ») ; la seconde (« ne pas la présenter comme preuve de deux articles physiques photographiés ») est une consigne d'usage, pas une légende. Apostrophes typographiques du rapport converties en apostrophes droites, usage du bloc `packshotMode` (109 droites, 0 typographique). V3 : 7 coloris au lieu de 6, accepté par le rapport. Noms de fichiers repris du pack, y compris `mode-v5-deux-coloris-reels` : le mot « reels » figure dans l'URL de l'image.
+
+**V6** — Comparé dans le DOM du build local, sans modification de code. Desktop : une image 16:9 (576 × 325) à la place de la mosaïque carrée (576 × 576) laisse la colonne à moitié vide. Mobile : plus compact (253 px de haut contre 410). Contenu : un plateau à boîtes à lumière, ni studio Orbitvu ni packshot, alors que le chapeau présente des studios automatisés ; même manteau camel que V1, V4 et V5. Amélioration nette en desktop et en mobile non établie : hero actuel conservé.
+
+**Vérifié** — SHA-256 des 6 PNG et du rapport conformes à `SHA256SUMS.txt` ; `npx tsc --noEmit` ; eslint `--max-warnings=0` sur les 2 fichiers de code ; `verifier-json.mjs` (186) ; Vitest 342/342 ; `npx next build` vert. Build local à 1440 et 390 px : statut 200, 5/5 illustrations chargées au ratio 1,777 (source 1,777), aucun débordement horizontal, 0 erreur console, 0 réponse 4xx/5xx, 0 image sans alt, 0 ancre cassée, 4 tableaux, FAQ 9 visibles = 9 FAQPage, 67 liens internes uniques en 200, aucun claim retiré réintroduit. HTML serveur comparé au build de `ac5698b` : title, meta description, H1, canonical, 5 hreflang, 13 balises OG/Twitter, JSON-LD (octets identiques) et 3 préchargements d'images inchangés. `/en/packshot-mode`, `/de-ch/packshot-mode`, `/fr/industrie/mode-textile`, `/fr/packshot-e-commerce`, `sitemap.xml` (325 URL) : identiques à `ac5698b` hors identifiant de build et `lastmod`. `e2e/seo.spec.ts` filtré `packshot-mode` : 26/26 (Chromium, Pixel 5). `anchors`, `internal-links`, `responsive`, `mobile-overflow` : 107/136 ; les 29 mêmes échecs sur `main` (`7ad0ca3`) et sur `ac5698b`, aucun sur Mode (`/fr`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, `/fr/studios-photo-automatises`). `smoke.mjs` sur le build local : vert, 17 pages.
+**Supposé** — Aucune marque tierce et aucun texte lisible dans les images : constat du rapport ; à l'œil sur les PNG, étiquettes intérieures et sac sans inscription lisible.
+**Non regardé** — Preview (SSO, aucun jeton de contournement dans cette session) ; `www` (R4) ; EN et de-ch (D38) ; hub.
+
+**Suite** — Passe de Sébastien sur la Preview ; arbitrage de Laurent sur la légende V5 et le nom du fichier V5 si besoin.
+
+---
+
 ## 2026-09-30 · Mode — réécriture FR de la landing `/fr/packshot-mode` (méthode F5) · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **Base** : `main` `7ad0ca3`

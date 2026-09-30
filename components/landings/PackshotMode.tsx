@@ -12,7 +12,9 @@
  * Studio et de l'Alphatable viennent des fiches du site (machines.ts). Aucune cadence.
  *
  * Visuels : actifs déjà présents dans public/images/machines/, légendes sans attribution
- * de modèle quand la provenance n'a pas été contrôlée sur orbitvu.com.
+ * de modèle quand la provenance n'a pas été contrôlée sur orbitvu.com. S'y ajoutent cinq
+ * illustrations générées (public/images/packshot-mode/, pack visuel du 30/09/2026) : ni
+ * client, ni séance réelle, ni personne de l'équipe ; alt et légende le disent.
  */
 import type { ComponentProps, ReactNode } from 'react';
 import Image from 'next/image';
@@ -76,6 +78,16 @@ const HERO_MOSAIQUE = [
   { key: 'porte', src: '/images/machines/fashion-studio/packshot-sport-1.avif', w: 720, h: 1080 },
   { key: 'accessoire', src: '/images/machines/alphashot-xl/packshot-shoe-360.avif', w: 600, h: 600 },
 ] as const;
+
+// Illustrations générées, dérivées AVIF des PNG 1672 × 941 du pack (SHA-256 contrôlés, sources
+// conservées hors dépôt). Ratio complet, aucun recadrage : V1 et V3 doivent rester lisibles.
+const ILLUSTRATIONS = {
+  presentations: '/images/packshot-mode/mode-v1-meme-article-trois-presentations.avif',
+  matiere: '/images/packshot-mode/mode-v2-matieres-textures.avif',
+  collection: '/images/packshot-mode/mode-v3-coherence-collection.avif',
+  auStudio: '/images/packshot-mode/mode-v4-preparation-humaine.avif',
+  ia: '/images/packshot-mode/mode-v5-deux-coloris-reels.avif',
+} as const;
 
 const SOMMAIRE = [
   { id: 'collection', key: 'collection' },
@@ -241,6 +253,18 @@ function LibelleMobile({ children }: { children: ReactNode }) {
   return <span className="md:hidden block text-[11px] font-semibold uppercase tracking-wider text-future-dusk-400 mb-1">{children}</span>;
 }
 
+/** Illustration pleine largeur du conteneur, sans recadrage, légende sous l'image. */
+function Illustration({ src, alt, caption, className }: { src: string; alt: string; caption: string; className?: string }) {
+  return (
+    <figure className={className}>
+      <div className="rounded-3xl bg-white border border-neutral-100 overflow-hidden">
+        <Image src={src} alt={alt} width={1672} height={941} sizes="(min-width: 1280px) 1232px, 92vw" className="w-full h-auto" />
+      </div>
+      <figcaption className="mt-3 text-sm text-future-dusk-500 text-center">{caption}</figcaption>
+    </figure>
+  );
+}
+
 function ListeSources({ titre, sources }: { titre: string; sources: { label: string; href: string }[] }) {
   return (
     <p className="text-xs text-future-dusk-500 leading-relaxed">
@@ -260,6 +284,14 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
   const urlPage = `${SITE}/${lang}/${SLUG}`;
   const epingle = (href: Href) => navPinLocale(lang, href);
   const retour = t('sommaire.retour');
+  const illustration = (cle: keyof typeof ILLUSTRATIONS, className: string) => (
+    <Illustration
+      src={ILLUSTRATIONS[cle]}
+      alt={t(`${cle}.illustration.alt`)}
+      caption={t(`${cle}.illustration.caption`)}
+      className={className}
+    />
+  );
 
   const faqs = FAQ_KEYS.map((k) => ({ question: t(`faq.${k}.question`), answer: t(`faq.${k}.answer`) }));
 
@@ -408,6 +440,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
               <figcaption className="mt-4 text-sm text-future-dusk-500 text-center">{t('collection.imageCaption')}</figcaption>
             </figure>
           </div>
+          {illustration('collection', 'mt-12 lg:mt-16')}
         </div>
       </section>
 
@@ -415,6 +448,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
       <section id="matiere" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <EnTete eyebrow={t('matiere.eyebrow')} heading={t('matiere.heading')} intro={t('matiere.intro')} retour={retour} />
+          {illustration('matiere', 'mt-12')}
           <ul className="mt-12 grid sm:grid-cols-2 gap-4 lg:gap-6">
             {POINTS_MATIERE.map(({ key, icon: Icon }) => (
               <li key={key} className="rounded-2xl border border-neutral-100 bg-neutral-50 p-6 lg:p-8">
@@ -456,6 +490,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
       <section id="presentations" className="py-20 lg:py-28 bg-future-dusk-0 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <EnTete eyebrow={t('presentations.eyebrow')} heading={t('presentations.heading')} intro={t('presentations.intro')} retour={retour} />
+          {illustration('presentations', 'mt-12')}
           <div className="mt-12 rounded-3xl bg-white border border-neutral-200 overflow-hidden">
             <table className="w-full text-sm text-left">
               <thead className="hidden md:table-header-group bg-future-dusk-900 text-white">
@@ -573,6 +608,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
               </tbody>
             </table>
           </div>
+          {illustration('auStudio', 'mt-12')}
           <div className="mt-8 max-w-4xl flex gap-4">
             <GraduationCap className="h-6 w-6 mt-0.5 shrink-0 text-very-peri-500" aria-hidden="true" />
             <p className="text-future-dusk-700 leading-relaxed">{t('auStudio.controle')}</p>
@@ -584,6 +620,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
       <section id="ia" className="py-20 lg:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <EnTete eyebrow={t('ia.eyebrow')} heading={t('ia.heading')} intro={t('ia.intro')} retour={retour} />
+          {illustration('ia', 'mt-12')}
           <div className="mt-12 grid md:grid-cols-2 gap-4 lg:gap-6">
             <div className="rounded-2xl border border-neutral-100 bg-very-peri-50 p-6 lg:p-8">
               <h3 className="flex items-center gap-2 text-xl font-heading font-bold text-future-dusk-900 mb-4">
