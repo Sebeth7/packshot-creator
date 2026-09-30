@@ -204,7 +204,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <FadeInView delay={0.2}>
         <section className="py-12 lg:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="lg:flex lg:gap-12">
+            <div className="lg:flex lg:justify-center lg:gap-12">
               <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
                 {headings.length > 0 && (
                   <div className="lg:hidden mb-8">
