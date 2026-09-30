@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-09-30 · Cluster AI Act — article Suisse : passe éditoriale (cadre de rédaction de Sébastien) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `758ad29`, puis fusion de `main` `a8c85ca` (#69, conflit du JOURNAL résolu en gardant les deux entrées ; la PR était en conflit)
+
+**Quoi** — Réécriture de la prose pour la lisibilité, qualifications juridiques inchangées sauf la situation A (f3ebb10), resserrée. Ouverture qui répond et annonce les trois couches (droit suisse, AI Act, plateformes) ; encadré « En bref » ; 22 marqueurs ([Interprétation] 13, [Texte] 5, [Exemple direct Commission] 4) et les « NON TRANCHÉ » intégrés aux phrases ; les 5 marqueurs `[TERRAIN SÉBASTIEN — …]` retirés, aucune réponse terrain n'ayant été transmise ; les 8 cas commencent par le conseil pratique puis donnent la réponse suisse et la réponse UE ; rappel de l'article 50 en deux phrases en tête de la section UE (S reste lisible seul) ; définitions fournisseur/déployeur avant les six situations, doublon du point 12 retiré ; tableau récapitulatif réécrit (réponse d'abord) ; « label » remplacé par « mention », comme dans A ; sigles développés (LCD, LPD, PFPDT, SECO) ; 12 tirets cadratins retirés ; 1 lien de source placé près de l'affirmation (LCD). `readingTime` 18 → 20.
+
+**Pourquoi** — Retour de Sébastien du 30/09 (textes « durs à lire ») et kit `TRANSMISSION_REDACTION_BLOG_2026-09-30`, transmis par Laurent. Situation A : interprétation de f3ebb10 à revoir (mission du 30/09, point 13).
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Point 13 des lignes directrices C(2026) 5054 relu sur le PDF de la Commission le 30/09 : « including by posting deep fakes on the globally accessible internet » ; « channels that are unforeseeable and outside their control ». La situation A vise désormais une image susceptible d'être un hypertrucage ; le rapprochement reste qualifié d'interprétation.
+- Cas 4, côté UE : « La transposition à chaque retouche reste factuelle » devient « les textes consultés ne tranchent pas l'effacement d'une rayure ou d'une usure », aligné sur le cas 14 de A.
+- Mots : corps éditorial 3 763 → 4 100 (même méthode que la PR) ; hausse due à l'encadré « En bref », au rappel de l'article 50 et au tableau.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local, 1440 et 390 px : 200, title et description inchangés, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (pas de FAQ, pas de FAQPage) ; hero 848 × 477 et 358 × 201, S2 et S3 662 × 372 et 358 × 201, légendes présentes ; 0 débordement ; 0 erreur de page ; 0 lien interne, 0 lien vers `/fr/packshot-e-commerce` ; aucun marqueur ni tiret cadratin au rendu.
+- `e2e/seo.spec.ts` + `internal-links-all.spec.ts` en local : 243 réussis, les 8 mêmes échecs que sur `https://sysnext.vercel.app` (production).
+**Supposé** — [Inférence] Le retour de Sébastien se limite à ce que cite la mission ; aucune réponse aux 5 marqueurs terrain n'existe dans les pièces transmises. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; adaptation de-ch (D38) ; relecture par un autre lecteur : aucune ; points déjà listés « à arbitrer » dans #60 (PFPDT du 24.09.2025, labels visibles interdits par Zalando) : non ajoutés.
+
+**Suite** — Seconde passe de Sébastien sur la Preview ; validation de la situation A (f3ebb10) ; réponses terrain éventuelles, à intégrer sans inventer.
+
+---
+
 ## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
