@@ -50,7 +50,8 @@ sur sa tête est le signe à surveiller.
 
 Source : documentation Vercel, « Accessing Deployments through Generated URLs »
 (<https://vercel.com/docs/deployments/generated-urls>) : l'URL de branche
-« won't change if you push new commits to the branch ».
+« won't change if you push new commits to the branch ». Observé le 30/09 sur
+#65 : deux pushes, deux déploiements, un seul alias.
 
 L'alias est tronqué avec un hash quand le nom de branche est long
 (`seo/ai-act-images-produit-pilier-2026-09-29` →

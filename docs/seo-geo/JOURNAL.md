@@ -65,8 +65,9 @@ Aucun fichier du site, aucun réglage Vercel, GitHub ou Cloudflare modifié. #59
 - Code : canonical absolu vers `www` (`metadataBase`, `app/layout.tsx`) ; aucune lecture de `VERCEL_ENV` ni `VERCEL_URL` ; pas de `vercel.json`.
 - Documentation Vercel lue le 30/09 : URL générées, Deployment Protection, Vercel Authentication, liens partageables, `X-Robots-Tag` des Preview (liens dans `08-PREVIEW-VALIDATION.md`).
 - Aucune PR « Mode » ni « D36 » ouverte ou fermée ; aucune branche distante correspondante.
+- Stabilité de l'alias, observée sur #65 elle-même : le commentaire `vercel[bot]` (id 5914657759) est passé du déploiement `6aBuQf8DWogXwa9LSXMNo9x2T1BC` (tête `6ace104`) au déploiement `GCuyD1QC4axdFvM9Ve3hcZQWSz8x` (tête `392f9c5`, statut `Vercel` de cette tête), avec le même `previewUrl` : `sysnext-git-claude-busy-gauss-cfe9m8-sebs-projects-ca1e93a7.vercel.app`.
 
-**Supposé** — [Inférence] Une Preview est créée à chaque push, comme l'annonce Vercel : vérifié pour la tête des 3 PR seulement, pas pour chaque commit antérieur. [Inférence] L'alias ne change pas d'un push à l'autre : établi par la documentation Vercel et par sa forme (aucun SHA), l'historique du commentaire n'étant pas visible. Cela repose sur des schémas observés.
+**Supposé** — [Inférence] Une Preview est créée à chaque push, comme l'annonce Vercel : vérifié pour la tête des 3 PR et pour les 2 pushes de #65, pas pour chaque commit antérieur des autres PR. Cela repose sur des schémas observés.
 
 **Non regardé** — Rendu des Preview (page, assets, console, 390 et 1440 px) : impossible sans jeton ou session Vercel ; `PAGE_RENDERED` non établi. Accès de Sébastien : non établi par les sources du dépôt. Réglage exact de la protection et variables de l'environnement Preview (dashboard). URL de déploiement unique de chaque tête (dans l'inspecteur Vercel). `www` (R4).
 
