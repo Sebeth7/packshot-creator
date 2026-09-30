@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-09-30 · Cluster AI Act — satellite D (métadonnées, marketplaces, IPTC, XMP, C2PA), PR brouillon · Claude de Laurent
 
-**Chantier** : cluster éditorial AI Act / images produit, satellite D | **PR** : brouillon, `DO NOT MERGE` (numéro dans la PR) | **Branche** : `seo/ai-act-metadonnees-marketplaces-2026-09-30`, indépendante de #59, #60, #61 et #62 | **Base** : `main` `7ad0ca3`
+**Chantier** : cluster éditorial AI Act / images produit, satellite D | **PR** : #63, brouillon, `DO NOT MERGE` | **Branche** : `seo/ai-act-metadonnees-marketplaces-2026-09-30`, indépendante de #59, #60, #61 et #62 | **Base** : `main` `7ad0ca3`
 
 **Quoi** — Création de `content/blog/fr/images-ia-metadonnees-marketplaces.json`, FR seulement, schéma natif, `image: null`. Matière sortie de A et de #43 (tableau plateformes, Google / IPTC, Amazon / XMP, Zalando, C2PA, survie des métadonnées, checklist, FAQ techniques), toutes les règles revérifiées sur les pages officielles du 30/09. 3 332 mots de corps, 436 de FAQ ; 14 H2 (dont « En bref » et « Sources »), 5 H3, 6 FAQ ; 5 tableaux, dont le comparatif à 9 colonnes (plateforme, contenus visés, règle IA, métadonnée ou marquage, mention visible, standard nommé, échéance, source, date de vérification) ; 1 bloc de commandes ExifTool ; 1 marqueur `[TERRAIN SÉBASTIEN — contrainte marketplace / métadonnées]` non rempli ; 0 lien interne ; 14 liens externes ; renvoi au pilier A sans `href`.
 
