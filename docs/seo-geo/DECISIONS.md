@@ -28,7 +28,7 @@ Append-only. Plus récent en haut.
 ## D39 · 2026-09-30 · Toute modification client-facing substantielle passe par une Preview transmise à Sébastien avant publication
 
 **Décidé par** : Laurent
-**Statut** : proposée dans la PR brouillon de la branche `claude/busy-gauss-cfe9m8` — en vigueur à sa fusion
+**Statut** : proposée dans la PR #65 (brouillon) — en vigueur à sa fusion
 
 **La décision** — Toute modification client-facing substantielle (nouvel article, nouvelle page ou landing, page commerciale, refonte visible, changement éditorial significatif) passe par une Preview Vercel contrôlée et transmise à Sébastien avant publication globale : branche, PR brouillon, CI verte, Preview « Ready » sur la même tête, contrôle du rendu (desktop, 390 px, SEO), envoi du lien et d'un dossier de validation court, retour de Sébastien, fusion. Le lien transmis est l'alias de branche, accompagné du SHA de tête ; un push après l'envoi est signalé avec la nouvelle tête. Pour un nouvel article, le circuit s'applique au FR avant toute traduction, puis aux trois langues avant la publication coordonnée (D38). Procédure : `08-PREVIEW-VALIDATION.md`.
 
