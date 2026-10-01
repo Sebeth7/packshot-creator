@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D36 — #68 resynchronisée avec `main` après #69 et #71, Worker de production relu (R5) · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #68, brouillon, non fusionnée | **Base** : `main` `8ec89c1` | **Fusion** : `008cee1`
+
+**Quoi** — `main` `8ec89c1` (#69, #71) fusionné dans la branche de #68, sans rebase. Seul conflit : le haut de ce journal, résolu sans perte. Entrées conservées, plus récentes en premier : #71, #69, D36. Le diff net de #68 contre `main` reste de 3 fichiers (+223) : Worker, test Worker (27 cas), JOURNAL. Rien n'est déployé.
+
+**Pourquoi** — Préparer la séquence D36 : Worker d'abord, puis origine (#67).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` (fusion et cette entrée). Worker et test inchangés.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** —
+- R5, lecture seule par l'API Cloudflare :
+  - version déployée `27b0153c-5516-432a-91a4-20cddce250ca`, à 100 %, le 25/09 à 05:07 UTC, par `wrangler` ;
+  - script de production identique à `main`, après retrait des commentaires et de 3 lignes d'assistant `__name22` ajoutées par wrangler au bundling ;
+  - la suite Worker de `main` (176 tests) passe sur le code de production comme sur celui de `main`.
+- Entre `main` et #68, seul écart fonctionnel : le bloc D36 de 4 lignes.
+- Inertie, avec le Worker de `main` et celui de #68 contre l'origine de production réelle :
+  - 39 URL, 0 écart ;
+  - 64 réponses de l'origine, 0 marquée, 0 portant `X-Robots-Tag` ;
+  - les 3 branches 410 conservent `noindex, nofollow`.
+- Academy (#71), identique avec les deux Worker :
+  - sous-pages FR, versions EN et de-ch, articles OPCO et `/en/trainings-product-photography` : 301 vers `/fr/academy` ;
+  - `/academy/<slug>` sans préfixe : 301 vers `/fr/academy/<slug>` par le Worker, puis vers `/fr/academy` par l'origine (deux sauts déjà présents sur `main`, hors périmètre).
+- Contrôles :
+  - Vitest 373/373 (346 sur `main`) ;
+  - `tsc`, `node --check`, ESLint (0 message) ;
+  - `verifier-json` : 180 JSON valides ;
+  - `npx next build` vert, aucun `headers()`.
+
+**Supposé** — Rien.
+
+**Non regardé** — #67 : non modifiée. `www` : pas de contrôle navigateur.
+
+**Suite** — GO de Laurent pour : fusion de #68, déploiement du Worker depuis `main`, contrôle de `www`. Ensuite seulement : resynchronisation de #67 et nouveau GO.
+
+---
+
 ## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
