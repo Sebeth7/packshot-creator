@@ -97,6 +97,45 @@ Aucune autre phrase, aucun visuel, aucune métadonnée modifiés.
 
 ---
 
+## 2026-10-01 · D36 — #68 resynchronisée avec `main` après #69 et #71, Worker de production relu (R5) · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #68, brouillon, non fusionnée | **Base** : `main` `8ec89c1` | **Fusion** : `008cee1`
+
+**Quoi** — `main` `8ec89c1` (#69, #71) fusionné dans la branche de #68, sans rebase. Seul conflit : le haut de ce journal, résolu sans perte. Entrées conservées, plus récentes en premier : #71, #69, D36. Le diff net de #68 contre `main` reste de 3 fichiers (+223) : Worker, test Worker (27 cas), JOURNAL. Rien n'est déployé.
+
+**Pourquoi** — Préparer la séquence D36 : Worker d'abord, puis origine (#67).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` (fusion et cette entrée). Worker et test inchangés.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** —
+- R5, lecture seule par l'API Cloudflare :
+  - version déployée `27b0153c-5516-432a-91a4-20cddce250ca`, à 100 %, le 25/09 à 05:07 UTC, par `wrangler` ;
+  - script de production identique à `main`, après retrait des commentaires et de 3 lignes d'assistant `__name22` ajoutées par wrangler au bundling ;
+  - la suite Worker de `main` (176 tests) passe sur le code de production comme sur celui de `main`.
+- Entre `main` et #68, seul écart fonctionnel : le bloc D36 de 4 lignes.
+- Inertie, avec le Worker de `main` et celui de #68 contre l'origine de production réelle :
+  - 39 URL, 0 écart ;
+  - 64 réponses de l'origine, 0 marquée, 0 portant `X-Robots-Tag` ;
+  - les 3 branches 410 conservent `noindex, nofollow`.
+- Academy (#71), identique avec les deux Worker :
+  - sous-pages FR, versions EN et de-ch, articles OPCO et `/en/trainings-product-photography` : 301 vers `/fr/academy` ;
+  - `/academy/<slug>` sans préfixe : 301 vers `/fr/academy/<slug>` par le Worker, puis vers `/fr/academy` par l'origine (deux sauts déjà présents sur `main`, hors périmètre).
+- Contrôles :
+  - Vitest 373/373 (346 sur `main`) ;
+  - `tsc`, `node --check`, ESLint (0 message) ;
+  - `verifier-json` : 180 JSON valides ;
+  - `npx next build` vert, aucun `headers()`.
+
+**Supposé** — Rien.
+
+**Non regardé** — #67 : non modifiée. `www` : pas de contrôle navigateur.
+
+**Suite** — GO de Laurent pour : fusion de #68, déploiement du Worker depuis `main`, contrôle de `www`. Ensuite seulement : resynchronisation de #67 et nouveau GO.
+
+---
+
 ## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
@@ -261,6 +300,45 @@ Section « Sources » ajoutée, limitée aux sources utilisées (16 liens : droi
 Aucun cas terrain inventé : le marqueur « workflow Suisse / UE » reste en place en attente de la question à Sébastien, et sera supprimé à défaut de réponse. Les quatre autres marqueurs sont inchangés. Aucune autre section modifiée.
 
 **Suite** — Réponses terrain de Sébastien sur les 5 marqueurs (passe ciblée) ; revue visuelle ; maillage entrant au moment de la publication coordonnée ; lien vers le pilier A à activer à sa publication.
+
+---
+
+## 2026-09-30 · D36 — protection Worker, PR séparée avant #67 (voie a) · Claude de Laurent
+
+**Chantier** : D36 | **PR** : brouillon, non fusionnée, branche `seo/d36-protection-worker-2026-09-30` | **Base** : `main` `7ad0ca3` | **Source** : `b7b9808` (#67)
+
+**Quoi** — Le Worker seul, sans aucun changement Next. Dans le bloc qui relaie `www` vers l'origine, une réponse marquée `X-Packshot-Origin-Noindex` perd ce marqueur et `X-Robots-Tag`. Sans marqueur, rien n'est retiré. La logique de `index.js` est celle de `b7b9808`, octet pour octet. Le test `cloudflare-worker/test/d36-origine-noindex.test.ts` passe de 15 à 27 cas. **Rien n'est déployé.**
+
+**Pourquoi** — Voie (a) retenue par Laurent le 30/09. Le Worker doit savoir retirer le noindex marqué avant que l'origine ne l'émette (fusion de #67). Sinon, `www` ne serait protégé que par l'absence des en-têtes `cf-*`, dont la transmission par Vercel n'est pas établie.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+9), `cloudflare-worker/test/d36-origine-noindex.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun tant que #67 n'est pas fusionnée : l'origine n'émet pas le marqueur.
+
+**Vérifié** —
+- Inertie, avec le Worker de `main` et le Worker patché contre l'origine de production réelle :
+  - 23 URL (pages, noindex existants, 404, redirections, fichiers texte, API, 2 réponses 410) ;
+  - 0 écart de statut, d'en-têtes ou de corps ;
+  - 40 réponses de l'origine reçues, dont 0 marquée et 0 portant `X-Robots-Tag`.
+- `main` ne contient ni le marqueur ni de `headers()` dans `next.config.ts`.
+- Test, 27 cas :
+  - sur le Worker de `main`, seuls les 4 cas de retrait échouent ; les 23 autres passent à l'identique ;
+  - couverts : 410 des trois branches (`noindex, nofollow` conservé), redirections de l'origine et du Worker, `robots.txt`, `sitemap.xml`, `llms.txt`, assets, API, hosts en passage direct et hosts legacy.
+- Vitest, `tsc`, ESLint, `node --check`, `verifier-json` et `npx next build` : voir la PR.
+
+**Supposé** — [Non vérifié] La production du Worker est identique au dépôt hors bloc D36 : resynchronisation R5 à faire avant tout déploiement.
+
+**Non regardé** — Next, Vercel, Cloudflare, #67 : non touchés.
+
+**Suite** — Après GO de Laurent, dans cet ordre :
+1. fusion de cette PR ;
+2. resynchronisation R5 ;
+3. `wrangler deploy` depuis `main` ;
+4. lecture du script déployé : présence de `x-packshot-origin-noindex` ;
+5. contrôle de `www` inchangé ;
+6. seulement ensuite, #67, après fusion de `main` dans sa branche. Deux conflits attendus :
+   - le test Worker, dont #67 porte la version à 15 cas : garder celle de `main` ;
+   - le haut du JOURNAL.
 
 ---
 
