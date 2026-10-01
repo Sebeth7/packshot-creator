@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — pilier A : `main` `f1a3491` (#75) intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `f1a3491`, fusionné par `9f81252`
+
+**Quoi** — `main` `f1a3491` fusionné (#75 : UB-04 consignée en production, documentation seule). Aucun fichier de l'article ni image modifiés. A3 reste en place : sa régénération (brief du 01/10, finalisation graphique) se fait hors dépôt, sans bloquer l'article Suisse.
+
+**Pourquoi** — #75 mettait le haut du JOURNAL en conflit avec la branche.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun.
+
+**Vérifié**
+- Seul conflit : le haut de ce journal, résolu par union ; aucune ligne perdue de part ou d'autre ; ETAT fusionné automatiquement.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée en début de ligne, 4 tableaux sans défilement à 1440 et 820 px, 2 images chargées ; `smoke.mjs` vert.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — e2e non rejoués (aucun fichier du site modifié depuis le passage sur `f9e772f`) ; Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Intégration de A3 régénéré : nouveau nom de fichier, `alt` du brief, légende inchangée, ancien fichier supprimé.
+
+---
+
 ## 2026-10-01 · Cluster AI Act — pilier A : `main` `17fc0b3` (#73) intégré, espaces insécables · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `17fc0b3`, fusionné par `1dc9293`
