@@ -34,6 +34,25 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Mode — contrôle final avant transmission à Sébastien, trois micro-corrections · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base contrôlée** : `798116e`
+
+**Quoi** — Relecture éditoriale, factuelle, visuelle et SEO de `/fr/packshot-mode` sur le build local de `798116e`. Trois micro-corrections :
+- `accompagnement.formation.text` : ajout de « La formation est facturée séparément du studio ; » avant la phrase OPCO. Source : `blogBudget.financing.f2` (#71, Sébastien) : « La formation, facturée séparément du studio, peut être financée par votre OPCO selon votre situation. »
+- Alphashot XL G2, limite du tableau des studios : « Ne reçoit ni mannequin ni modèle : réservé aux accessoires et aux objets » devient « Gabarit d'accessoires et d'objets : pas de mannequin taille réelle ni de modèle » ; FAQ q3 : « sont réservés aux accessoires et aux objets » devient « sont dimensionnés pour les accessoires et les objets, pas pour un mannequin taille réelle ni un modèle ». Source : gabarit Orbitvu 60 × 40 × 70 cm (relevé F5). Raison : l'absolu « ne reçoit ni mannequin » n'est établi par aucune source pour un buste de petite taille ; l'impossibilité d'un mannequin taille réelle découle des dimensions.
+- V5 : fichier renommé `mode-v5-deux-coloris-reels.avif` → `mode-v5-deux-variantes-colorees.avif` (octets identiques). Raison : le nom, exposé dans l'URL de l'image, contredisait la légende « Illustration synthétique de deux variantes colorées ».
+
+**Fichiers** — `messages/fr.json` (bloc `packshotMode`), `components/landings/PackshotMode.tsx` (chemin V5), `public/images/packshot-mode/` (renommage), `docs/seo-geo/JOURNAL.md`.
+
+**Vérifié** — voir la PR #66 (contrôles rejoués après correction). Alphadesk : absente de la page ; `delisted: true` dans `machines.ts` signifie retirée du catalogue PSC (`1cbc569`), pas arrêtée chez Orbitvu ; l'état maître du 30/09 qui la dit active chez Orbitvu n'est pas dans le dépôt [Non vérifié].
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; EN et de-ch (D38).
+
+**Suite** — Transmission de la Preview à Sébastien.
+
+---
+
 ## 2026-10-01 · Mode — contrôle final avant envoi à Sébastien (Qualiopi, lien Academy, V5) · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Commit contrôlé** : `0b9bbef`

@@ -86,7 +86,7 @@ const ILLUSTRATIONS = {
   matiere: '/images/packshot-mode/mode-v2-matieres-textures.avif',
   collection: '/images/packshot-mode/mode-v3-coherence-collection.avif',
   auStudio: '/images/packshot-mode/mode-v4-preparation-humaine.avif',
-  ia: '/images/packshot-mode/mode-v5-deux-coloris-reels.avif',
+  ia: '/images/packshot-mode/mode-v5-deux-variantes-colorees.avif',
 } as const;
 
 const SOMMAIRE = [

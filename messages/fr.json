@@ -1289,7 +1289,7 @@
           "nom": "Alphashot XL G2",
           "usage": "Accessoires de taille moyenne : chaussures, bottes, sacs",
           "gabarit": "60 × 40 × 70 cm, 25 kg",
-          "limite": "Ne reçoit ni mannequin ni modèle : réservé aux accessoires et aux objets"
+          "limite": "Gabarit d'accessoires et d'objets : pas de mannequin taille réelle ni de modèle"
         },
         "prog2": {
           "nom": "Alphashot Pro G2",
@@ -1328,7 +1328,7 @@
       },
       "formation": {
         "title": "Formation",
-        "text": "Sysnext, organisme de formation certifié Qualiopi, forme vos équipes à la prise en main et à la maîtrise des studios Orbitvu, à distance ou en présentiel. En France, une prise en charge par votre OPCO est possible selon votre situation.",
+        "text": "Sysnext, organisme de formation certifié Qualiopi, forme vos équipes à la prise en main et à la maîtrise des studios Orbitvu, à distance ou en présentiel. La formation est facturée séparément du studio ; en France, une prise en charge par votre OPCO est possible selon votre situation.",
         "cta": "Voir nos formations"
       },
       "accompagnement": {
@@ -1349,7 +1349,7 @@
       },
       "q3": {
         "question": "Peut-on photographier un mannequin ou un modèle vivant dans un studio automatisé ?",
-        "answer": "Oui, avec un studio dimensionné pour cela. Orbitvu destine l'Alphastudio XXL aux mannequins, aux modèles vivants et aux grands objets (190 × 90 × 100 cm et 100 kg au maximum selon la fiche Orbitvu). Le Fashion Studio est conçu pour la prise de vue portée avec modèle, dans une organisation proche d'un plateau photo. Les studios Alphashot, comme l'Alphashot XL G2 (60 × 40 × 70 cm), sont réservés aux accessoires et aux objets."
+        "answer": "Oui, avec un studio dimensionné pour cela. Orbitvu destine l'Alphastudio XXL aux mannequins, aux modèles vivants et aux grands objets (190 × 90 × 100 cm et 100 kg au maximum selon la fiche Orbitvu). Le Fashion Studio est conçu pour la prise de vue portée avec modèle, dans une organisation proche d'un plateau photo. Les studios Alphashot, comme l'Alphashot XL G2 (60 × 40 × 70 cm), sont dimensionnés pour les accessoires et les objets, pas pour un mannequin taille réelle ni un modèle."
       },
       "q4": {
         "question": "Quel studio pour photographier des chaussures et des sacs ?",
