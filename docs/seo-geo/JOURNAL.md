@@ -34,6 +34,42 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — article Suisse : contrôle final éditorial avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `d5182e7`, `main` `8ec89c1`
+
+**Quoi** — Passe de sortie éditoriale (audit, corrections, tests, Preview) avant envoi à Sébastien. Dans `content/blog/fr/images-ia-ecommerce-suisse.json` seulement :
+- personne réelle identifiable : position du PFPDT ajoutée (« l'utilisation de programmes permettant de falsifier les visages, les images ou les messages vocaux de personnes identifiables doit toujours être clairement indiqué[e] »), dans le corps, l'encadré « En bref » et le tableau ; présentée comme la position de l'autorité, limitée aux personnes identifiables ;
+- Zalando : refus des mentions visibles sur l'image et des contenus qui en exigeraient une, comme dans le pilier ;
+- cas 4 : distinction produit de série / pièce unique, occasion ou reconditionné, reprise du pilier (« à notre lecture ») ;
+- situation A : le point 13, déjà cité deux paragraphes plus haut, n'est plus répété ; restent la simple accessibilité qui ne suffit pas, le renvoi au point 13, le rôle, l'usage du système, la destination des images et le cas par cas ;
+- section C2PA / IPTC : répétition des sections plateformes réduite à une phrase ; la norme est nommée « IPTC Photo Metadata » ;
+- tableau récapitulatif : en-têtes « Si usage dans l'UE » et « Plateformes » ; à 1440 px, l'en-tête insécable « Si l'image est utilisée dans l'Union » masquait presque toute la colonne « Sur les plateformes ».
+Aucune qualification de cas modifiée. Title, meta, H1, slug, canonical, date, visuels, alt et légendes inchangés ; pas de FAQ ajoutée.
+
+**Pourquoi** — Mission « contrôle final éditorial » du 01/10/2026. Constats : la position du PFPDT figurait dans les sources (page « IA et protection des données ») sans être reprise dans la partie « Personnes » qu'elle concerne directement ; Zalando et le cas 4 moins complets que dans le pilier ; point 13 cité deux fois à deux paragraphes d'écart ; colonne du tableau masquée sur ordinateur.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** —
+- Fresh-check : tête `d5182e7` et `main` `8ec89c1` conformes à la mission ; `d5182e7` lu avant toute écriture.
+- Sources relues le 01/10 : PFPDT, « IA et protection des données » (phrase citée) et « Déclaration commune sur les images générées par l'IA » (23/02/2026) ; SECO, Portail PME (23/09/2026 : avant-projet destiné à la consultation élaboré au printemps 2027 ; « Les fournisseurs et déployeurs de pays tiers peuvent aussi l'être si les résultats générés par un système d'IA sont utilisés dans l'UE ») ; Chancellerie fédérale, « Réglementation » ; lignes directrices C(2026) 5054 (PDF, points 10, 12, 13, 14) ; Google 14743464 ; Zalando, mise à jour du 31/08/2026.
+- Situation A : la règle de la mission (« la simple accessibilité d'un site ou compte suisse depuis l'Union ne suffit pas à elle seule ») est conservée ; aucune phrase n'écrit « accessible dans l'UE = AI Act applicable ».
+- Liens externes (16 URL distinctes) : 15 en 200 ; EUR-Lex (1) en 202, défi anti-robots non concluant.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, variables factices de la CI.
+- `next start` local, Chromium, 1440 et 390 px : 200 ; title 53 car., description 146 car., canonical inchangé, aucune balise `robots` ; JSON-LD Organization, BreadcrumbList, Article ; hero 848 × 477 et 358 × 201, S2 et S3 662 × 372 et 358 × 201, ratio 16:9, légendes présentes ; tableau sans défilement à 1024, 1280 et 1440 px (avant : 662 px visibles sur 821), défilement interne à 390 px ; 0 débordement de page ; 0 erreur de console ; 0 ancre cassée ; 0 marqueur ; 0 lien vers `/fr/packshot-e-commerce`.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local) : résultats et comparaison avec un build local de `main` `8ec89c1` dans la PR #60. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
+
+**Supposé** — [Inférence] La page du PFPDT exprime une position d'autorité de surveillance, non une règle légale autonome ; l'article la présente ainsi. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 29/09 seulement ; tableau des ratifications du traité n° 225 (403). Hors périmètre, rien de modifié : fil d'Ariane dans le `h1` (gabarit, tous les articles) ; en-têtes de tableau insécables (`globals.css`) ; articles liés `generer-images-produit-ia` et `migrer-ancien-packshotcreator`.
+
+**Suite** — Envoi à Sébastien sur la Preview de la nouvelle tête. À la publication coordonnée (D38) : lien actif vers `/fr/blog/ai-act-images-produit`, `date` du jour de publication ; adaptation de-ch (pas une traduction).
+
+---
+
 ## 2026-10-01 · Cluster AI Act — article Suisse : situation A corrigée (accessibilité depuis l'Union) · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `6bcf962`
