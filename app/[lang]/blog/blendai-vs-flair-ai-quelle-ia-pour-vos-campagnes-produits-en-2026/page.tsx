@@ -616,14 +616,14 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 </Link>
               </p>
 
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">3. Formation : Academy (Maîtrise Outils)</h4>
+              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">3. Formation : Academy (studios Orbitvu)</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Niveau 1 : Maîtrise studios Orbitvu (2 jours, 1 200€)</li>
-                <li className="text-future-dusk-600">Niveau 2 : IA photo produit BlendAI (1 jour, 600€)</li>
-                <li className="text-future-dusk-600"><strong>Financement OPCO 100% :</strong> Formation gratuite</li>
+                <li className="text-future-dusk-600">Essential Training : prise en main de votre studio Orbitvu, à distance</li>
+                <li className="text-future-dusk-600">Master Training : maîtrise de votre studio Orbitvu, en présentiel</li>
+                <li className="text-future-dusk-600"><strong>Financement OPCO :</strong> possible selon votre situation</li>
               </ul>
               <p className="mb-6">
-                <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Voir catalogue formations
                 </Link>
               </p>
@@ -642,7 +642,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600">Studio Orbitvu : investissement initial sur devis</li>
                 <li className="text-future-dusk-600">BlendAI : 3 600€/an (300€/mois)</li>
-                <li className="text-future-dusk-600">Formation : 1 800€ (OPCO → gratuit)</li>
+                <li className="text-future-dusk-600">Formation : selon le format choisi, facturée séparément (financement OPCO possible)</li>
                 <li className="text-future-dusk-600">Opérateur : 5 000€/an</li>
               </ul>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
@@ -708,7 +708,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                   <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Estimez vos économies réelles avec l'approche Hardware Orbitvu + IA BlendAI
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Maîtrisez BlendAI et studios Orbitvu avec nos formations certifiées Qualiopi (financement OPCO 100%)
+                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Maîtrisez votre studio Orbitvu avec nos formations Qualiopi (financement OPCO possible)
                 </li>
               </ul>
 

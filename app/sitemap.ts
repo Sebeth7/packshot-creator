@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllArticleSlugs, getAllGuideSlugs } from '@/lib/content';
 import { STATIC_ARTICLE_SLUGS } from '@/lib/blog';
-import { getAllFormations } from '@/lib/formations';
 import {
-  NOINDEX_EN_ACADEMY_SLUGS,
   NOINDEX_EN_BLOG_SLUGS,
   NOINDEX_EN_INDUSTRIE_SLUGS,
   NOINDEX_EN_SOLUTIONS_SLUGS,
@@ -46,7 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/fr/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/en/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/fr/academy', priority: 0.8, changeFrequency: 'monthly' as const },
-    { path: '/en/academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/blog', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -57,15 +54,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/contact', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/fr/a-propos', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/en/a-propos', priority: 0.6, changeFrequency: 'monthly' as const },
-    // Academy sub-pages FR + EN
-    { path: '/fr/academy/formations-packshot', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/en/academy/formations-packshot', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/fr/academy/formations-ia', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/en/academy/formations-ia', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/fr/academy/simulateur-opco', priority: 0.6, changeFrequency: 'monthly' as const },
-    { path: '/en/academy/simulateur-opco', priority: 0.6, changeFrequency: 'monthly' as const },
-    { path: '/fr/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
-    { path: '/en/academy/calendrier', priority: 0.6, changeFrequency: 'monthly' as const },
     // ROI Calculator
     { path: '/fr/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/calculateur-roi', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -127,16 +115,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return pages;
   });
 
-  // --- Academy formations (FR + EN hors noindex) — slugs depuis content/formations/*.json ---
-  const formationPages = getAllFormations().flatMap((f) => {
-    const pages = [
-      { path: `/fr/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const },
-    ];
-    if (!NOINDEX_EN_ACADEMY_SLUGS.has(f.slug)) {
-      pages.push({ path: `/en/academy/${f.slug}`, priority: 0.7, changeFrequency: 'monthly' as const });
-    }
-    return pages;
-  });
 
   // --- Blog articles : 12 statics (FR+EN) + 60 FR + 55 EN migrés depuis content/ ---
   const blogPages: { path: string; priority: number; changeFrequency: 'weekly' }[] = [];
@@ -212,7 +190,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...sectorPages,
     ...machinePages,
     ...solutionPages,
-    ...formationPages,
     ...blogPages,
     ...guidePages,
     ...deChPages,

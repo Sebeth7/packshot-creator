@@ -28,7 +28,7 @@
       },
       "formation": {
         "title": "Total autonomy",
-        "description": "<bold>Qualiopi certified</bold> training to master photo conventions and AI tools. <bold>Up to 100% OPCO funding</bold>. The know-how stays in your company.",
+        "description": "Training from a <bold>Qualiopi-certified</bold> organization to master your Orbitvu photo studio. <bold>OPCO funding</bold> possible depending on your situation. The know-how stays in your company.",
         "cta": "View training programs"
       },
       "cta": "Discover the Orbitvu range",
@@ -74,7 +74,7 @@
       },
       "q3": {
         "question": "How does an Orbitvu automated photo studio work?",
-        "answer": "Orbitvu studios automate the entire process: positioning, calibrated LED lighting, multi-angle and 360° capture, automatic background removal with real shadows, and direct export. An operator with no photography skills produces professional packshots in 3 seconds per image after just 1 hour of training."
+        "answer": "Orbitvu studios automate the entire process: positioning, calibrated LED lighting, multi-angle and 360° capture, automatic background removal with real shadows, and direct export. An operator with no photography skills produces professional packshots in 3 seconds per image after just 1 hour of hands-on practice."
       },
       "q4": {
         "question": "What's the difference between an automated studio and a traditional photographer?",
@@ -86,7 +86,7 @@
       },
       "q6": {
         "question": "Are your training programs eligible for OPCO funding?",
-        "answer": "Yes, PackshotCreator Academy is Qualiopi certified. All our packshot and AI product photography training programs are eligible for OPCO funding, with coverage up to 100%. We guide each company through the administrative process with their OPCO."
+        "answer": "Yes. Sysnext (PackshotCreator) is a Qualiopi-certified training organization. Our two Orbitvu studio courses, Essential Training (remote) and Master Training (on site), taught in French, may be funded by your OPCO depending on your situation. We guide each company through the administrative process with their OPCO."
       },
       "q7": {
         "question": "Who is the official Orbitvu distributor in France and Switzerland?",
@@ -111,7 +111,7 @@
       "subtitle": "3 decisive advantages for your visual production.",
       "noSkills": {
         "title": "Pro results without photo skills",
-        "description": "After just <bold>1 hour of training</bold>, any operator produces professional packshots. Lighting, background removal with real shadow preservation are <bold>fully automated</bold>.",
+        "description": "After just <bold>1 hour of hands-on practice</bold>, any operator produces professional packshots. Lighting, background removal with real shadow preservation are <bold>fully automated</bold>.",
         "stat": "1h",
         "statLabel": "to get started"
       },
@@ -214,86 +214,6 @@
       }
     }
   },
-  "formation": {
-    "meta": {
-      "title": "Academy | Qualiopi Certified Packshot & AI Training",
-      "suffix": "PackshotCreator Academy",
-      "description": "Qualiopi certified professional product photography training. Packshot with Orbitvu studios, AI with BlendAI + Anthropic. 100% OPCO funding possible."
-    },
-    "hero": {
-      "title": "PackshotCreator Academy",
-      "subtitle": "Certified Packshot & Product Photo AI Training. OPCO funding up to 100%.",
-      "cta_formations": "View training programs",
-      "cta_opco": "OPCO Funding"
-    },
-    "qualiopi": {
-      "heading": "Qualiopi Certification",
-      "description": "<bold>PackshotCreator Academy</bold> (Sysnext) is a Qualiopi-certified organisation for training actions, which makes our training programs eligible for <bold>OPCO funding</bold>.",
-      "feature1": "Expert trainers (20 years luxury photography, 3 years AI)",
-      "feature2": "Proven pedagogy (500+ trainees trained)",
-      "feature3": "Post-training follow-up (30-60 days)"
-    },
-    "opco": {
-      "heading": "OPCO Funding",
-      "description": "Up to <bold>100%</bold> coverage of your professional training by your OPCO (Skills Operator).",
-      "salaries": "For employees: Your company can request funding from its OPCO.",
-      "independants": "For self-employed: Depending on your OPCO (FIFPL, AGEFICE, etc.).",
-      "cta": "Learn more about OPCO funding"
-    },
-    "catalogue": {
-      "label": "TRAINING PROGRAMS",
-      "packshot_heading": "Packshot Product Photography Training",
-      "packshot_subtitle": "Master <bold>professional packshot photography</bold> with our Orbitvu studios",
-      "ia_label": "AI TRAINING",
-      "ia_heading": "Product Photo AI Training",
-      "ia_subtitle": "Harness the power of <bold>BlendAI</bold> to multiply your visuals"
-    },
-    "formateur": {
-      "heading": "Your Trainer",
-      "name": "Sébastien Jourdan",
-      "title": "Product Photo & AI Expert | PackshotCreator Founder",
-      "bio1": "20 years of experience in product photography for the biggest luxury brands (Cartier, Rolex, Van Cleef & Arpels).",
-      "bio2": "Pioneer of photo automation, with Orbitvu studios distributed by PackshotCreator since 2023, then of product photo AI with BlendAI in 2024.",
-      "bio3": "500+ professionals trained in the Photo studio + AI workflow.",
-      "cert1": "Qualiopi certified (training organization)",
-      "cert2": "Official Orbitvu distributor France & Switzerland",
-      "cert3": "Founder of BlendAI.Studio"
-    },
-    "formateur2": {
-      "name": "Stéphane Gormand",
-      "title": "Product Photo & Automated Workflow Expert",
-      "bio1": "Proven experience in product photography and post-production for e-commerce.",
-      "bio2": "Specialist in Orbitvu automated workflows and visual production optimization.",
-      "bio3": "Certified trainer with practice-oriented pedagogy and concrete results.",
-      "cert1": "Professional product photography certification",
-      "cert2": "Orbitvu automated studios expert",
-      "cert3": "Qualiopi certified trainer"
-    },
-    "calendrier": {
-      "heading": "Calendar & Registration",
-      "subtitle": "Check upcoming sessions and register online",
-      "contact": "Need help? Contact us"
-    },
-    "faq": {
-      "heading": "Frequently Asked Questions",
-      "q1": {
-        "question": "How does OPCO funding work?",
-        "answer": "Your company (or yourself if self-employed) contacts its OPCO to request coverage. PackshotCreator provides the quote, detailed program and all necessary documents. The OPCO can fund up to 100% of the training cost."
-      },
-      "q2": {
-        "question": "What is the difference between Blended and In-Person?",
-        "answer": "Blended: 50% e-learning (videos at your own pace) + 50% in-person/video (intensive practice). Reduced price by 24-27%. In-Person: 100% in-class with the trainer. More interactions, 1:1 coaching, lunches included."
-      },
-      "q3": {
-        "question": "Do I need to already have an Orbitvu studio to take Packshot training?",
-        "answer": "No, training can take place in our fully equipped Lyon showroom with all studios. You can then decide to acquire your own equipment."
-      },
-      "q4": {
-        "question": "Do AI training programs require AI subscriptions?",
-        "answer": "Yes, for Anthropic. BlendAI access is included during training and for 30 days after. Then, you can subscribe to a plan (from €75/month) if you wish to continue."
-      }
-    }
-  },
   "tailorMade": {
     "heading": "A tailor-made solution",
     "ecommerce": {
@@ -331,16 +251,6 @@
       "aiSoftwareDesc": "AI retouching, clipping and automated post-production",
       "industries": "Industries",
       "academy": "Training",
-      "academyHub": "All our trainings",
-      "academyHubDesc": "Overview of the PackshotCreator Academy offering",
-      "formationsPackshot": "Packshot Training",
-      "formationsPackshotDesc": "Master professional product photography",
-      "formationsIA": "AI Training",
-      "formationsIADesc": "Integrate AI into your visual workflow",
-      "simulateurOPCO": "Funding Simulator",
-      "simulateurOPCODesc": "Estimate funding for your training program",
-      "calendrier": "Calendar",
-      "calendrierDesc": "Upcoming training sessions available",
       "blog": "Blog",
       "about": "About",
       "contact": "Contact",
@@ -406,10 +316,8 @@
       "docQualite": "Quality & Traceability",
       "docProbatoire": "Forensic documentation",
       "academy": "Training",
-      "formationsPackshot": "Packshot Training",
-      "formationsIA": "AI Training",
-      "simulateurOPCO": "Funding Simulator",
-      "calendrier": "Calendar",
+      "formationsHub": "Our training (in French)",
+      "catalogueFormation": "Training catalogue (in French)",
       "company": "Company",
       "about": "About",
       "contact": "Contact",
@@ -726,89 +634,7 @@
     "faq5Question": "Do you offer online demos?",
     "faq5Answer": "Yes, we offer video conference demos for initial discovery. For a complete evaluation, we recommend an in-showroom visit with your own products.",
     "faq6Question": "Can training be funded through OPCO?",
-    "faq6Answer": "Yes, our training programs are Qualiopi-certified and eligible for OPCO funding up to 100%. We assist you with the administrative process."
-  },
-  "academyHub": {
-    "meta": {
-      "title": "PackshotCreator Academy | Qualiopi-Certified Packshot & AI Training",
-      "description": "Qualiopi-certified training: professional product photography and applied AI. OPCO funding available. Inter and intra-company sessions.",
-      "keywords": "product photo training, ai training, qualiopi, opco, packshot"
-    },
-    "hero": {
-      "title": "Academy: Qualiopi-Certified Packshot & AI Training",
-      "subtitle": "Upskill with our professional training programs. OPCO funding up to 100%. Inter and intra-company sessions.",
-      "ctaPrimary": "View training programs",
-      "ctaSecondary": "Simulate my OPCO funding"
-    },
-    "qualiopi": {
-      "heading": "Qualiopi Certified",
-      "description": "Our training organization is Qualiopi certified, a state-recognized quality guarantee. Your training can be funded by your OPCO.",
-      "benefit1": "OPCO funding up to 100%",
-      "benefit2": "Expert field trainers",
-      "benefit3": "Post-training follow-up included",
-      "benefit4": "Skills certification"
-    },
-    "formations": {
-      "heading": "Our Training Programs",
-      "subtitle": "Courses adapted to your level and objectives",
-      "packshot": {
-        "title": "Professional Packshot Training",
-        "description": "Master product photography on automated Orbitvu studio. From shooting to retouching.",
-        "duration": "2 days (14h)",
-        "level": "All levels",
-        "cta": "View program"
-      },
-      "ia": {
-        "title": "AI Product Photo Training",
-        "description": "Integrate artificial intelligence into your visual workflow. BlendAI, AI retouching, automation.",
-        "duration": "1 day (7h)",
-        "level": "Intermediate",
-        "cta": "View program"
-      }
-    },
-    "tools": {
-      "heading": "Tools & Resources",
-      "subtitle": "Prepare and plan your training",
-      "simulator": {
-        "title": "OPCO Simulator",
-        "description": "Estimate the amount your OPCO will cover for your training in a few clicks.",
-        "cta": "Simulate my funding"
-      },
-      "calendar": {
-        "title": "Session Calendar",
-        "description": "Check upcoming training dates and book your spot.",
-        "cta": "View calendar"
-      }
-    },
-    "finalCta": {
-      "heading": "Ready to upskill?",
-      "description": "Contact us for a custom program or register for the next session.",
-      "ctaPrimary": "Contact us",
-      "ctaSecondary": "Simulate my funding"
-    },
-    "faq": {
-      "heading": "Frequently asked questions about our training",
-      "q1": {
-        "question": "Are PackshotCreator training programs certified?",
-        "answer": "Our training is delivered by a Qualiopi-certified organization, a state-recognized quality guarantee, but is not degree-granting. You receive a skills certificate upon completion of each training program."
-      },
-      "q2": {
-        "question": "How can I fund my training through my OPCO?",
-        "answer": "As a Qualiopi-certified organization, our training programs are eligible for OPCO funding up to 100%. Use our OPCO simulator to estimate your coverage, then we assist you with the administrative process."
-      },
-      "q3": {
-        "question": "What product photography training programs do you offer?",
-        "answer": "We offer two tracks: Professional Packshot Training (2 days) to master product photography on automated Orbitvu studio, and AI Product Photo Training (1 day) to integrate BlendAI into your visual workflow."
-      },
-      "q4": {
-        "question": "Do the training programs include hands-on studio practice?",
-        "answer": "Yes, our training is primarily hands-on. Participants work directly on Orbitvu studios with their own products or provided samples, for immediate practical application."
-      },
-      "q5": {
-        "question": "Can training be taken remotely?",
-        "answer": "Our training programs are available in-person (inter or intra-company) and some theoretical modules can be taken remotely. Studio practice requires physical presence to handle the equipment."
-      }
-    }
+    "faq6Answer": "Yes. Sysnext (PackshotCreator) is a Qualiopi-certified training organization: our training courses may be funded by your OPCO (French training fund), depending on your situation. We assist you with the administrative process."
   },
   "studiosHardware": {
     "meta": {
@@ -841,7 +667,7 @@
       },
       "formation": {
         "title": "Training",
-        "description": "Qualiopi-certified Academy. Your teams master the system in 2 days. OPCO funding up to 100%.",
+        "description": "Qualiopi-certified training organization. Two courses: Essential Training (remote) and Master Training (on site). OPCO funding available (France).",
         "badge": "Qualiopi"
       }
     },
@@ -894,7 +720,7 @@
       "step1title": "Personalized consulting",
       "step1description": "Our experts analyze your <bold>needs, volumes and constraints</bold>. <bold>Free</bold> on-site or remote demo with your own products.",
       "step2title": "Installation & Certified training",
-      "step2description": "Delivery, installation and <bold>Qualiopi-certified training</bold>, billed separately. Your teams are operational <bold>from day one</bold>.",
+      "step2description": "Delivery and installation billed separately, <bold>Qualiopi training</bold> available as an option. Your teams are operational <bold>from day one</bold>.",
       "step3title": "Continuous support",
       "step3description": "<bold>Dedicated hotline</bold>. We stay by your side to <bold>maximize your results</bold>."
     },
@@ -929,7 +755,7 @@
       },
       "q6": {
         "question": "What is the delivery time?",
-        "answer": "The indicative delivery time is currently about 12 days, not contractual. Installation and training time depends on the system and configuration. Delivery, installation and training are billed separately."
+        "answer": "The indicative delivery time is currently about 12 days, not contractual. Installation time depends on the system and configuration. Delivery and installation are billed separately; training is available as an option."
       }
     },
     "finalCta": {
@@ -957,7 +783,7 @@
       },
       "academy": {
         "title": "Academy — Certified training",
-        "description": "Qualiopi-certified training to master your system and product photo AI."
+        "description": "Training from a Qualiopi-certified organization to master your Orbitvu studio (in French)."
       }
     },
     "orientation": {
@@ -1663,9 +1489,8 @@
       },
       "formation": {
         "title": "Training",
-        "text": "PackshotCreator Academy, a Qualiopi-certified training organization (a French quality certification), offers packshot training on Orbitvu studios at several levels. In France, funding by your OPCO (a French training fund) may be possible depending on your situation.",
-        "cta": "View packshot training",
-        "cta2": "Simulate OPCO funding (France)"
+        "text": "Sysnext (PackshotCreator), a Qualiopi-certified training organization (a French quality certification), trains your teams to get started with and master Orbitvu studios, remotely or on site. In France, funding by your OPCO (a French training fund) may be possible depending on your situation.",
+        "cta": "Our training (in French)"
       },
       "accompagnement": {
         "title": "Support",
@@ -1792,7 +1617,7 @@
       },
       "step3": {
         "title": "Installation & training",
-        "description": "On-site installation and <bold>Qualiopi-certified training</bold>, billed separately, followed by startup support."
+        "description": "On-site installation billed separately, startup support included. <bold>Qualiopi training</bold> available as an option."
       }
     },
     "sectors": {
@@ -1832,11 +1657,11 @@
       },
       "q2": {
         "question": "Do I need photography skills?",
-        "answer": "No, our studios are automated and require no photography skills. Plus, our Qualiopi-certified training makes you operational in 1 to 2 days."
+        "answer": "No, our studios are automated and require no photography skills. To go further, our training courses, Essential Training (remote) or Master Training (on site), taught in French, make you autonomous on your studio."
       },
       "q3": {
         "question": "How long to become operational?",
-        "answer": "Studio installation takes a few hours. With the training, billed separately, you are autonomous and productive from the first day."
+        "answer": "Studio installation takes a few hours. Thanks to automation, you are autonomous and productive from the first day; our training courses let you go further."
       }
     },
     "cta": {
@@ -1915,11 +1740,11 @@
       },
       "q7": {
         "question": "Do your teams have photography skills?",
-        "answer": "Our studios are designed to be used without prior photography skills. Qualiopi-certified training (1 to 2 days) makes your team completely autonomous. OPCO funding available."
+        "answer": "Our studios are designed to be used without prior photography skills. Our training courses, Essential Training (remote) or Master Training (on site), taught in French, make your team autonomous. OPCO funding available (France)."
       },
       "q8": {
         "question": "What is your production timeline?",
-        "answer": "Studio installation takes a few hours. With the training, billed separately, your team is operational from the first day. The first visuals are produced on the day of training."
+        "answer": "Studio installation takes a few hours. Thanks to automation, your team is operational from the first day and the first visuals are produced the same day."
       },
       "q9": {
         "question": "How to integrate visuals into your existing workflow?",
@@ -2793,7 +2618,7 @@
     },
     "included": {
       "heading": "What the offer covers",
-      "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. Delivery, installation and training are billed separately.",
+      "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. Delivery and installation are billed separately; training is available as an option.",
       "i1": {
         "title": "Complete studio",
         "description": "Enclosure, LED lighting, motorized turntable, camera (depending on configuration)."
@@ -2801,10 +2626,6 @@
       "i2": {
         "title": "Orbitvu Station software",
         "description": "Capture, automatic background removal (IQ Mask), multi-format export, updates included."
-      },
-      "i3": {
-        "title": "On-site training (billed separately)",
-        "description": "Hands-on training by a certified trainer. Full autonomy in 1 hour for routine operations."
       },
       "i4": {
         "title": "Installation and calibration (billed separately)",
@@ -2827,8 +2648,8 @@
         "description": "For the Alphashot Pro G2, our best-selling model. Fixed monthly payment, controlled budget."
       },
       "f2": {
-        "title": "OPCO funding (up to 100%)",
-        "description": "Our training programs are Qualiopi-certified. The training component of your investment can be fully covered by your OPCO (French training fund)."
+        "title": "OPCO funding",
+        "description": "Sysnext (PackshotCreator) is a Qualiopi-certified training organization. Training, billed separately from the studio, may be funded by your OPCO (French training fund) depending on your situation."
       },
       "f3": {
         "title": "5-year depreciation",
@@ -2855,7 +2676,7 @@
       },
       "q4": {
         "question": "Can training be funded through OPCO?",
-        "answer": "Yes. Our Academy is Qualiopi-certified, making our training programs eligible for OPCO funding. Depending on your industry sector, coverage can reach 100% of the training cost."
+        "answer": "Yes. Sysnext (PackshotCreator) is a Qualiopi-certified training organization, making our training courses eligible for OPCO funding. The level of coverage depends on your OPCO and your industry sector."
       },
       "q5": {
         "question": "What ROI can I expect?",
@@ -3149,7 +2970,7 @@
     },
     "gainsInternal": {
       "heading": "What you gain by bringing it in-house",
-      "p1": "An automated Orbitvu studio does not require a professional photographer. After one hour of training, any team member can produce calibrated, repeatable packshots.",
+      "p1": "An automated Orbitvu studio does not require a professional photographer. After one hour of hands-on practice, any team member can produce calibrated, repeatable packshots.",
       "gains": {
         "g1": {
           "title": "Total control",
@@ -3185,7 +3006,7 @@
       },
       "q2": {
         "question": "Do I need a photographer to use an Orbitvu studio?",
-        "answer": "No. Orbitvu studios are designed to be operated by any team member after one hour of training. Lighting, framing, and background removal are automated."
+        "answer": "No. Orbitvu studios are designed to be operated by any team member after one hour of hands-on practice. Lighting, framing, and background removal are automated."
       },
       "q3": {
         "question": "Can I combine outsourcing and an in-house studio?",

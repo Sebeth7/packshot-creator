@@ -64,7 +64,6 @@ const headings: HeadingData[] = [
   { id: 'verdict-quelle-ia-choisir-en-2026', text: 'Verdict : Quelle IA choisir en 2026 ?', level: 3 },
   { id: 'comment-integrer-lia-dans-votre-workflow-photo', text: 'Comment Intégrer l\'IA dans Votre Workflow Photo ?', level: 2 },
   { id: 'roi-de-lia-photo-produit-calculs-reels', text: 'ROI de l\'IA Photo Produit : Calculs Réels', level: 2 },
-  { id: 'formations-ia-photo-produit-maitrisez-blendai', text: 'Formations IA Photo Produit : Maîtrisez BlendAI', level: 2 },
   { id: 'questions-frequentes', text: 'Questions fréquentes', level: 2 },
   { id: 'conclusion-lia-photo-produit-en-2026', text: "Conclusion : L'IA Photo Produit en 2026", level: 2 },
 ];
@@ -91,10 +90,6 @@ const faqItems = [
   {
     question: 'BlendAI fonctionne-t-il avec les studios Orbitvu ?',
     answer: "Oui, BlendAI s'intègre nativement dans le workflow Orbitvu. Les photos shootées avec un studio Orbitvu sont automatiquement exportées vers BlendAI pour la post-production IA. C'est cette combinaison Hardware + IA qui offre le meilleur rapport vitesse/qualité/coût sur le marché en 2026.",
-  },
-  {
-    question: 'Les formations IA photo produit sont-elles finançables par l\'OPCO ?',
-    answer: "Oui, toutes les formations BlendAI de PackshotCreator sont certifiées Qualiopi et éligibles au financement OPCO. Pour les TPE/PME, la prise en charge peut atteindre 100%. Le délai entre la demande et la validation OPCO est généralement de 3 à 6 semaines.",
   },
   {
     question: 'Quelle IA choisir entre BlendAI, Photoroom et Flair AI en 2026 ?',
@@ -891,89 +886,6 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <strong>Économie sur 3 ans : 234 420€ | Temps libéré : 4 000h | ROI : 463%</strong> (4,63€ économisés pour 1€ investi)
             </p>
 
-          <hr className="my-8 border-neutral-200" />
-
-          {/* ── SECTION 6 : FORMATIONS ── */}
-
-            <h2 id="formations-ia-photo-produit-maitrisez-blendai" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
-              Formations IA Photo Produit : Maîtrisez BlendAI
-            </h2>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              L'adoption de l'IA photo produit nécessite une <strong>montée en compétences</strong> de vos équipes. Nous proposons des formations certifiées <strong>Qualiopi</strong>, éligibles au financement <strong>OPCO</strong> (prise en charge 100%).
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Programme de Formation BlendAI
-            </h3>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Niveau 1 : Débutant (7h, 650€)</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Public</strong> : Photographes studio, e-commerçants, chefs de produit
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Programme</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Théorie IA photo produit (1h)</li>
-              <li className="text-future-dusk-600">Prise en main BlendAI interface (2h)</li>
-              <li className="text-future-dusk-600">Workflow packshot → lifestyle (2h)</li>
-              <li className="text-future-dusk-600">Batch processing et QA (1h)</li>
-              <li className="text-future-dusk-600">Export et intégration e-commerce (1h)</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Certification</strong> : Attestation de compétences PackshotCreator Academy
-            </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Niveau 2 : Intermédiaire (14h, 1 100€)</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Public</strong> : Équipes photo confirmées, studios photo
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Programme</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Prompt engineering avancé (3h)</li>
-              <li className="text-future-dusk-600">Intégration API (REST, webhooks) (4h)</li>
-              <li className="text-future-dusk-600">Workflow Orbitvu → BlendAI automatisé (3h)</li>
-              <li className="text-future-dusk-600">Gestion de catalogues 10 000+ produits (2h)</li>
-              <li className="text-future-dusk-600">Optimisation ROI et analytics (2h)</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Certification</strong> : Certification BlendAI Expert
-            </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Niveau 3 : Expert (21h, 1 800€)</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Public</strong> : Directeurs techniques, responsables e-commerce
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Programme</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Fine-tuning IA sur charte graphique marque (6h)</li>
-              <li className="text-future-dusk-600">Développement pipelines ML (5h)</li>
-              <li className="text-future-dusk-600">Intégrations e-commerce avancées (4h)</li>
-              <li className="text-future-dusk-600">Architecture cloud (AWS, GCP) pour IA (3h)</li>
-              <li className="text-future-dusk-600">Audit et optimisation workflow existant (3h)</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Certification</strong> : Certification BlendAI Architect
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Financement OPCO : Prise en Charge 100%
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Toutes nos formations sont <strong>certifiées Qualiopi</strong>, ce qui les rend éligibles au financement par votre <strong>OPCO</strong> (Opérateur de Compétences).
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Démarches</strong> :</p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Contactez votre OPCO (AFDAS, ATLAS, OPCO Commerce, etc.)</li>
-              <li className="text-future-dusk-600">Fournissez le programme de formation + devis</li>
-              <li className="text-future-dusk-600">L'OPCO valide la prise en charge (généralement 100% pour TPE/PME)</li>
-              <li className="text-future-dusk-600">Formation réglée directement par l'OPCO</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Délai</strong> : 3–6 semaines entre demande et validation OPCO
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <a href={`/${lang}/academy#formations-ia`} className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les formations IA</a>
-            </p>
-
           {/* ── FAQ ── */}
           <section className="mt-16 pt-12 border-t border-neutral-200">
             <h2 id="questions-frequentes" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
@@ -1013,14 +925,12 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600"><strong>BlendAI, Photoroom et Flair répondent à des besoins différents</strong> : BlendAI pour le luxe/précision, Photoroom pour TPE/PME budget serré, Flair pour lifestyle créatif</li>
               <li className="text-future-dusk-600"><strong>Le ROI est positif dès 40–50 photos/mois</strong> : Pour les catalogues 100+ produits, l'économie est de 75–95% sur 3 ans</li>
               <li className="text-future-dusk-600"><strong>Le workflow optimal intègre studio automatisé + IA</strong> : La combinaison Orbitvu (studio) + BlendAI (IA) offre le meilleur rapport vitesse/qualité/coût</li>
-              <li className="text-future-dusk-600"><strong>La formation est essentielle</strong> : Les outils IA sont puissants mais exigent une montée en compétences (formations OPCO disponibles)</li>
             </ol>
 
             <Callout type="info" title="Parcours recommandé">
               <p><strong>Étape 1</strong> : Tester BlendAI gratuitement (14 jours d'essai)</p>
               <p className="mt-2"><strong>Étape 2</strong> : Réserver une démo personnalisée (IA + Studio Orbitvu)</p>
-              <p className="mt-2"><strong>Étape 3</strong> : Inscription formation Niveau 1 (financement OPCO)</p>
-              <p className="mt-2"><strong>Étape 4</strong> : Déploiement workflow complet sur votre catalogue</p>
+              <p className="mt-2"><strong>Étape 3</strong> : Déploiement workflow complet sur votre catalogue</p>
             </Callout>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -1030,7 +940,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link></li>
               <li className="text-future-dusk-600"><strong>Hub Studios Photo Automatisés</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Gamme Orbitvu 2026</Link></li>
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
-              <li className="text-future-dusk-600"><strong>Academy</strong> : <Link href="/academy" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations IA certifiées Qualiopi</Link></li>
+              <li className="text-future-dusk-600"><strong>Academy</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations aux studios photo Orbitvu</Link></li>
             </ul>
 
         </div>

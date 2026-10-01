@@ -34,6 +34,109 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D33 / #64 — `main` `8ec89c1` fusionné : formation selon #71, livraison et installation selon D32 · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `235bc54` | **Base** : `main` `8ec89c1` (#69, #71)
+
+**Quoi** — `main` fusionné dans la branche par un commit de fusion, sans rebase. Neuf fichiers étaient en conflit avec #71. Ils sont résolus selon la règle d'arbitrage de Laurent du 01/10 :
+- **Formation** : la version de `main` issue de #71 fait foi. Essential Training à distance (4 h), Master Training en présentiel (7 h), formation facturée séparément ou proposée en option selon le contexte. Le namespace `formation` et `blogBudget.included.i3`, supprimés par #71, restent supprimés. Aucun ancien format n'est réintroduit (2 jours, 3 jours, niveaux, « formation premium 3 jours »).
+- **Livraison et installation** : la correction de #64 (« facturées en supplément ») est conservée. Elle remplace « Livraison et installation incluses » et « Installation sur site … inclus » de `main`, dans les 3 langues.
+- **Phrases qui mêlaient les trois postes** : décomposées, pour que chaque fait garde sa source. Sont concernés la FAQ délai de `studiosHardware`, `blogBudget.included.body`, la FAQ délai et la liste « Ce qui n'est PAS inclus » du guide d'achat, et la FAQ « reprise » des articles `evolution`.
+- **`orbitvu-vs-concurrents`** : les libellés de formation viennent de #71. Les retraits de #64 sont maintenus là où #71 n'avait retouché que la formation à l'intérieur de blocs que #64 supprime : comparaison StyleShoots, témoignage « Marie D. », interventions et pièces 24-48 h, ligne `Support`, « Garanties support », « 98 % », « depuis 2018 ».
+
+**Pourquoi** — D32 (Laurent, 25/09) interdit de « déclarer la livraison ou l'installation incluses ». La réponse de Laurent à Q13 (25/09) dit la même chose. Sur `main`, F5 indique « Livraison et installation sont facturées en supplément », en FR, EN et de-ch. La PR #71 déclare ne modifier que les clés formation : « Livraison et installation incluses » y reprend le texte antérieur et contredit D32. Ce n'est pas une conséquence de la mise en conformité Qualiopi.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `app/[lang]/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet/page.tsx`, `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, plus les fichiers apportés par `main`.
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- `verifier-json` : 180 fichiers valides. `tsc` vert (après régénération de `.next/types` par le build). Vitest : 346/346. `next build` vert, 371 pages.
+- `next start` local, 34 URL des pages touchées : 200. JSON-LD valide. Aucune formulation obsolète dans le texte visible ni le JSON-LD (« incluses », « inbegriffen », « included », anciens formats de formation, Saint-Bonnet, prix concurrents). Les formulations composées sont présentes.
+- Rendu Chromium en 390 et 1440 px : 0 erreur de page, 0 débordement, sauf `/fr` en 390 px (53 px, préexistant).
+- Playwright `seo`, `anchors`, `cta-destinations`, `redirections` (Desktop Chrome) : 272 réussis, 61 en échec. Les mêmes 61 échouent sur un build local de `main` `8ec89c1` : aucun n'est propre à la branche.
+- **Correction de l'entrée « D33 — revue finale de #64 » du 30/09** : l'écart entre les coordonnées Google de la carte (45,8295252 ; 4,9989543) et celles du `Store` (45,829766 ; 4,998587) est de 39,1 m, et non « environ 35 m ».
+
+**Supposé** — Aucun.
+
+**Non regardé** — F5 (`/fr/packshot-e-commerce`, texte de `main`, gelé par D37) écrit encore « La durée d'installation et de formation dépend du système ». Preview (SSO) ; `www` (R4).
+
+**Suite** — Contrôle humain de la nouvelle Preview : le contrôle sur `235bc54` ne vaut plus. Laurent confirme les retraits de #64 maintenus dans les zones de formation d'`orbitvu-vs-concurrents`. Fusion uniquement sur décision explicite de Laurent.
+
+---
+
+## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
+
+**Quoi** — `/fr/academy` devient une page simple qui renvoie au catalogue de formation (deux boutons Essential / Master, un lien catalogue, la mention de certification). Elle est servie en FR uniquement. Les sous-pages, le simulateur OPCO et deux articles consacrés à l'ancienne offre sont supprimés et redirigés en 301 vers `/fr/academy`. Les textes du reste du site sont alignés sur l'offre réelle : aucune formation IA ou e-learning, aucune formation incluse à l'achat, plus de prix ni de niveaux, plus de promesse « OPCO 100 % ».
+
+**Pourquoi** — l'auditeur compare le site au catalogue (https://packshotcreator.catalogueformpro.com/), qui fait foi. Le site affichait 6 formations, des durées de 14 h et 21 h et des prix (850 € HT pour 7 h, 1 100 à 1 800 €) qui contredisent les deux seules offres du catalogue : Essential, 4 h à distance, 850 € HT ; Master, 7 h en présentiel, 1 500 € HT. Il annonçait aussi des formations IA et e-learning retirées, et des formations « incluses » alors qu'elles sont toujours facturées à part (Sébastien, 30/09). Trafic GSC sur 90 jours de toutes les pages academy : 7 clics, soit environ 28 par an. Les deux articles redirigés : 0 clic.
+
+**Fichiers** —
+- **Page et redirections :** `app/[lang]/academy/page.tsx` (réécrite) et `next.config.ts` (9 redirections 301 ajoutées, 1 réorientée).
+- **Supprimés :**
+  - pages academy : `app/[lang]/academy/{[slug],calendrier,formations-ia,formations-packshot,simulateur-opco}` ;
+  - données et simulateur : `components/simulators/opco/`, `content/formations/`, `lib/formations.ts` ;
+  - articles : `app/[lang]/blog/{financement-formation-opco-…,formation-photo-produit-professionnelle-…}`.
+- **Navigation et SEO :** `components/layout/{Header,Footer}.tsx`, `i18n/{routing,deChCoverage}.ts`, `app/sitemap.ts`, `lib/{seo-config,blog}.ts`, `components/seo/SchemaOrg.tsx` (`courseSchema` retiré), `public/llms.txt`.
+- **Textes :**
+  - libellés d'interface : `messages/{fr,en,de-ch}.json` ;
+  - FAQ formation des fiches machines : `components/calculators/ROICalculator/lib/machines.ts` (texte seul, aucun calcul touché) ;
+  - pages : `app/[lang]/studio-photo/[slug]`, `ia-photo-produit`, `industrie`, `guide`, `not-found`, `layout`, et `blog/page.tsx` ;
+  - articles : 7 à page dédiée et 23 fichiers JSON ;
+  - `data/secteurs.ts`, `components/landings/PackshotEcommerce.tsx`.
+- **Tests :** `lib/__tests__/academy-fr-only.test.ts` (nouveau), `e2e/{anchors,cta-destinations,redirections,seo}.spec.ts`, `e2e/opco-simulator.spec.ts` (supprimé).
+
+**Effet attendu** — dès le déploiement, plus rien sur le site ne contredit le catalogue. Google remplacera les anciennes URL en quelques jours à quelques semaines. D'ici là, un extrait de recherche peut encore afficher un ancien titre, mais le clic mène à `/fr/academy`.
+
+**Vérifié** :
+- Build et tests : `npx tsc --noEmit` et `npx next build` verts ; Vitest 346 tests sur 346, dont 4 nouveaux sur l'épinglage FR.
+- Redirections sur `next start` local : 25 anciennes URL (FR, EN, DE-CH, sous-pages, fiches, les deux articles, `/en/trainings-product-photography`) répondent en 301 vers `/fr/academy` en un saut, query string conservée. Test e2e `redirections.spec.ts` : bloc academy 12 sur 12.
+- Page : hreflang limité à `fr`, `fr-CH` et `x-default`, canonical `/fr/academy`, aucun noindex, JSON-LD Organization + BreadcrumbList.
+- Liens et contenu rendu :
+  - dans les 359 pages HTML prérendues, aucun lien vers `/en/academy`, `/de-ch/academy`, `/fr/academy/*` ou vers les articles supprimés ; 869 liens pointent directement sur `/fr/academy` ;
+  - dans leur texte, aucune occurrence de « formation incluse », « OPCO 100 % », « formations IA », e-learning ou blended ;
+  - sitemap : 308 URL, `/fr/academy` seule pour la section.
+- Catalogue et rendu visuel : les trois liens catalogue ouvrent la bonne fiche (vérifié le 30/09 : titres « Essential Training Distanciel - Version 2026 » et « Master Training Présentiel - Version 2026 ») ; rendu Playwright à 1440 et 390 px, sans débordement horizontal.
+
+**Supposé** : l'entité certifiée est Sysnext (Sébastien, 30/09). La mention « La certification qualité a été délivrée au titre de la catégorie d'action suivante : ACTIONS DE FORMATION » est reprise telle que fournie. Aucun logo Qualiopi n'est affiché, Sysnext n'en a pas le droit.
+
+**Non regardé** :
+- **Cloudflare :** le Worker n'a pas été modifié. `/academy/<x>` sans langue fait deux sauts (Worker vers `/fr/academy/<x>`, puis Next vers `/fr/academy`), comme les anciennes URL legacy qui visent `/en/academy`. Le comportement sur www n'est pas contrôlé avant déploiement.
+- **Pages légales (hors périmètre) :** les CGU (article 1, article 4, article 5 « PackshotCreator Academy est certifié Qualiopi ») et la politique de confidentialité citent encore le simulateur OPCO ou l'Academy comme entité certifiée.
+- **Formulation « formation(s) certifiée(s) Qualiopi » :** une vingtaine d'occurrences au moins, alors que c'est l'organisme qui est certifié ; à arbitrer avec la consultante.
+- **Garde-fous e2e :** les specs nécessitant un navigateur n'ont pas été lancées (navigateurs Playwright non installés).
+
+**Suite** :
+- Sébastien : corriger la fiche Master du catalogue, qui dit « souhaitant se former à distance » pour une formation en présentiel.
+- À trancher :
+  - le « suivi post-formation » du guide d'achat (hotline, session de suivi, accès formateur) ;
+  - « Formateurs experts 10+ ans » et les témoignages Marie D. et Camille R. (comparatif Orbitvu) ;
+  - l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget).
+
+---
+
+## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
+
+**Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
+
+**Quoi** — `lg:justify-center` sur le conteneur flex du gabarit d'article : le bloc colonne de lecture + sommaire est centré au lieu d'être collé à gauche. Largeur de lecture (65ch) inchangée.
+
+**Pourquoi** — vide à droite de l'article, mesuré : 377 px à 1440, 617 px à 1920, contre 104 et 344 px à gauche. Le `lg:mx-0` d'origine (90f5d81, 08/02) alignait la colonne à gauche du conteneur de 1280 px.
+
+**Fichiers** — `app/[lang]/blog/[slug]/page.tsx`
+
+**Effet attendu** — marges symétriques dès le déploiement : 240 / 240 px à 1440, 480 / 480 à 1920.
+
+**Vérifié** — `npx next build` vert en local. Mesure Playwright avant (sysnext.vercel.app) / après (build local), 5 articles FR / EN / DE-CH × 7 largeurs de 390 à 1920 : largeur de colonne, largeur du sommaire, hauteur de l'article, bannière identiques ; aucun débordement horizontal ; rendu identique sous 1024 px. Aucun article JSON n'est aujourd'hui sans h2 / h3, donc sans sommaire.
+**Supposé** — les ~120 autres articles JSON se comportent comme les 5 mesurés : même gabarit, la largeur de colonne ne dépend pas du contenu (`flex-1` + `min-w-0` + `max-w-prose`).
+**Non regardé** — les 12 articles à `page.tsx` dédiée (hors gabarit, mises en page propres) ; le hub `/blog` ; le rendu derrière Cloudflare sur www.
+
+**Suite** — rien.
+
+---
+
 ## 2026-09-30 · D33 — revue finale de #64 : une correction ajoutée, aucun retour arrière · Claude de Laurent
 
 **Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3` | **HEAD avant la revue** : `c7e4981`

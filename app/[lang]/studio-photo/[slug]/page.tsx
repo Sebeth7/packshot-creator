@@ -6,7 +6,7 @@ import { MACHINES, getMachineById } from '@/components/calculators/ROICalculator
 import type { Machine } from '@/components/calculators/ROICalculator/lib/types';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, CalendarDays, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon } from 'lucide-react';
+import { CheckCircle, AlertTriangle, ArrowRight, ChevronRight, Sparkles, Camera, Ruler, Weight, Zap, Monitor, Award, GraduationCap, BarChart3, MessageCircleQuestion, ArrowLeftRight, Play, ImageIcon } from 'lucide-react';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, productSchema, faqSchema, videoSchema } from '@/components/seo/SchemaOrg';
 import { currencyForLang, leasingMonthly, formatLeasingMonthly, LEASING_MONTHS, PRICE_VALID_UNTIL } from '@/lib/leasing';
 import { AnimatedCounter, FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
@@ -1174,13 +1174,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
               <div className="flex flex-wrap gap-4">
                 <Button asChild className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl">
-                  <Link href="/academy/formations-packshot">
-                    {tx(lang, 'Voir les formations', 'View training', 'Schulungen ansehen')} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="rounded-xl">
-                  <Link href="/academy/calendrier">
-                    <CalendarDays className="mr-2 h-4 w-4" /> {tx(lang, 'Calendrier', 'Calendar', 'Kalender')}
+                  <Link href="/academy">
+                    {tx(lang, 'Voir nos formations', 'Our training (in French)', 'Unsere Schulungen (auf Französisch)')} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
@@ -1205,7 +1200,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     <BarChart3 className="h-6 w-6 shrink-0" />
                     <div>
                       <p className="font-bold text-sm">OPCO</p>
-                      <p className="text-xs text-white/70">{tx(lang, 'Financement jusqu\'à 100%', 'Funding up to 100%', 'Finanzierung bis zu 100%')}</p>
+                      <p className="text-xs text-white/70">{tx(lang, 'Financement possible selon votre situation', 'Funding possible (France)', 'Finanzierung möglich (Frankreich)')}</p>
                     </div>
                   </div>
                 </div>

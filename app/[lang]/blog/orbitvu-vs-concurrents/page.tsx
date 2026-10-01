@@ -235,7 +235,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Temps/produit', values: ['1–2 min', '2–3 min'] },
                 { label: 'IA Ready', values: ['✅ Oui (BlendAI natif)', '❌ Non'] },
                 { label: 'Support France', values: ['✅ PackshotCreator officiel', '⚠️ Limité'] },
-                { label: 'Formation', values: ['✅ 2 jours', '✅ 1 jour'] },
+                { label: 'Formation', values: ['En option : Essential (à distance) ou Master (présentiel)', '✅ 1 jour'] },
                 { label: 'Évolutivité', values: ['✅ Excellente (modules)', '⚠️ Moyenne'] },
               ]}
             />
@@ -285,11 +285,10 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Techniciens francophones experts Orbitvu</li>
               <li className="text-future-dusk-600">Support téléphonique, email, visio</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Formations avancées</strong> :</p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Formations</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">3 niveaux certifiés Qualiopi</li>
-              <li className="text-future-dusk-600">Financement OPCO 100%</li>
-              <li className="text-future-dusk-600">Sessions mensuelles Paris/Lyon</li>
+              <li className="text-future-dusk-600">Essential Training (à distance) et Master Training (en présentiel)</li>
+              <li className="text-future-dusk-600">Organisme certifié Qualiopi, financement OPCO possible</li>
             </ul>
 
             <h3 id="forces-styleshoots" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -410,7 +409,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Étape 3 : Formation migration</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">1 journée de formation (facturée en supplément)</li>
+              <li className="text-future-dusk-600">Formation au catalogue : Essential Training ou Master Training, facturée séparément</li>
               <li className="text-future-dusk-600">Workflows similaires : Courbe apprentissage minimale</li>
             </ul>
 
@@ -435,7 +434,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Automatisation', values: ['❌ Manuelle', '✅ Complète'] },
                 { label: 'Qualité rendu', values: ['Standard (smartphone/compact)', 'Premium (reflex pro)'] },
                 { label: 'Volume/jour', values: ['20–30', '50–100'] },
-                { label: 'Formation', values: ['❌ Tutoriels YouTube', '✅ 2 jours on-site'] },
+                { label: 'Formation', values: ['❌ Tutoriels YouTube', '✅ Essential (à distance) ou Master (sur site), en option'] },
               ]}
             />
 
@@ -570,8 +569,8 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 3 : Formation (Academy)</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">3 niveaux certifiés Qualiopi</li>
-              <li className="text-future-dusk-600">Financement OPCO 100%</li>
+              <li className="text-future-dusk-600">Essential Training (à distance) et Master Training (en présentiel)</li>
+              <li className="text-future-dusk-600">Organisme certifié Qualiopi, financement OPCO possible</li>
               <li className="text-future-dusk-600">Formateurs experts 10+ ans</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -671,7 +670,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600"><strong>Gamme Orbitvu Complète</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Studios Photo Automatisés</Link></li>
               <li className="text-future-dusk-600"><strong>Intégration IA</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link></li>
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
-              <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
+              <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
             </ul>
 
         </div>

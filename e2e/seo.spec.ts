@@ -11,7 +11,6 @@ const bilingualPages = [
   { fr: '/fr/contact', en: '/en/contact' },
   { fr: '/fr/blog', en: '/en/blog' },
   { fr: '/fr/guide', en: '/en/guide' },
-  { fr: '/fr/academy', en: '/en/academy' },
   { fr: '/fr/studios-photo-automatises', en: '/en/studios-photo-automatises' },
   { fr: '/fr/ia-photo-produit', en: '/en/ia-photo-produit' },
   { fr: '/fr/industrie', en: '/en/industrie' },
@@ -27,8 +26,9 @@ const bilingualPages = [
   { fr: '/fr/questions-cles-photographie-produit', en: '/en/questions-cles-photographie-produit' },
 ];
 
-// Pages only in FR (legal)
+// Pages only in FR (legal, academy)
 const frOnlyPages = [
+  '/fr/academy',
   '/fr/mentions-legales',
   '/fr/confidentialite',
   '/fr/cgu',

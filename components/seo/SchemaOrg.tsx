@@ -372,34 +372,6 @@ export function localBusinessSchema() {
   };
 }
 
-export function courseSchema(course: {
-  name: string;
-  description: string;
-  provider?: string;
-  url: string;
-  duration?: string;
-}) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: course.name,
-    description: course.description,
-    provider: course.provider
-      ? {
-          '@type': 'Organization',
-          name: course.provider,
-          sameAs: `${SITE_URL}/fr/academy`,
-        }
-      : { '@id': ORG_ID },
-    url: course.url,
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'Blended',
-      inLanguage: 'fr',
-    },
-  };
-}
-
 export function reviewSchema(review: {
   authorName: string;
   rating: number;

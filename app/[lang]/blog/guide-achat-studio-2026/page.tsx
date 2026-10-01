@@ -70,7 +70,7 @@ const tocHeadings = [
 const faqItems = [
   {
     question: "Quel délai entre la commande et l'installation d'un studio Orbitvu ?",
-    answer: "Le délai de livraison indicatif est actuellement d'environ 12 jours, non contractuel. La durée d'installation et de formation dépend du système et de la configuration. Livraison, installation et formation sont facturées en supplément.",
+    answer: "Le délai de livraison indicatif est actuellement d'environ 12 jours, non contractuel. La durée d'installation dépend du système et de la configuration. Livraison et installation sont facturées en supplément ; la formation est facturée séparément.",
   },
   {
     question: "Quelle garantie est incluse avec un studio Orbitvu ?",
@@ -481,8 +481,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce qui n'est PAS inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Livraison, installation on-site et formation (facturées en supplément)</li>
-                  <li className="text-future-dusk-600">Formation avancée (+ 650 - 1 100€)</li>
+                  <li className="text-future-dusk-600">Livraison et installation on-site (facturées en supplément)</li>
+                  <li className="text-future-dusk-600">Formation (Essential ou Master, facturée séparément)</li>
                   <li className="text-future-dusk-600">Maintenance année 2+ (sur devis)</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Financement</strong> : Leasing 36 mois : sur devis | Crédit équipement : Selon banque</p>
@@ -500,7 +500,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine : sur devis</li>
                   <li className="text-future-dusk-600">Installation : sur devis</li>
-                  <li className="text-future-dusk-600">Formation avancée : 1 100€</li>
+                  <li className="text-future-dusk-600">Formation : selon le format choisi (Essential ou Master)</li>
                   <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -515,14 +515,13 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machines haute performance</li>
                   <li className="text-future-dusk-600">Capacités avancées (360°, vidéo, 3D)</li>
-                  <li className="text-future-dusk-600">Formation premium 3 jours (facturée en supplément)</li>
                   <li className="text-future-dusk-600">Support prioritaire 2 ans</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine 360 : sur devis</li>
                   <li className="text-future-dusk-600">Installation complexe : sur devis</li>
-                  <li className="text-future-dusk-600">Formation expert : 1 800€</li>
+                  <li className="text-future-dusk-600">Formation : selon le format choisi (Essential ou Master)</li>
                   <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -657,45 +656,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   Un studio photo automatisé n'est performant que si vos équipes le maîtrisent. Le support technique et la formation sont des critères différenciants majeurs.
                 </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation de Base (2 Jours)</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Programme formation de base</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Jour 1 : Installation, calibration, paramétrage</li>
-                  <li className="text-future-dusk-600">Jour 2 : Workflows produits, best practices, troubleshooting</li>
-                </ul>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation : deux formats, facturés séparément</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Niveau atteint</strong> : Autonomie opérationnelle basique (80% use cases). <strong>Limites</strong> : Produits complexes (verre, bijoux haute horlogerie) nécessitent formation avancée.
+                  La formation n&apos;est pas incluse dans l&apos;achat du studio. Sysnext (PackshotCreator), organisme de formation certifié Qualiopi, propose deux formations aux studios Orbitvu : <strong>Essential Training</strong> (à distance) pour la prise en main, et <strong>Master Training</strong> (en présentiel) pour la maîtrise du studio. Programmes, durées, tarifs et prérequis sont détaillés dans notre catalogue de formation.
                 </p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formations Avancées Certifiées Qualiopi</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>PackshotCreator Academy</strong> propose 3 niveaux de formation certifiés Qualiopi (financement OPCO 100%) :
-                </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Niveau 1 - Maîtrise Studios Orbitvu</strong> (2 jours, 1 200€)</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Optimisation workflows par secteur</li>
-                  <li className="text-future-dusk-600">Gestion produits complexes</li>
-                  <li className="text-future-dusk-600">Intégration IA BlendAI</li>
-                  <li className="text-future-dusk-600"><strong>Public</strong> : Opérateurs confirmés</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Niveau 2 - Optimisation Workflow</strong> (3 jours, 1 800€)</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Intégration PIM/DAM</li>
-                  <li className="text-future-dusk-600">Automatisation batch</li>
-                  <li className="text-future-dusk-600">Gestion colorimétrie avancée</li>
-                  <li className="text-future-dusk-600"><strong>Public</strong> : Responsables studio</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Niveau 3 - Expert 360° & Vidéo</strong> (2 jours, 1 400€)</p>
-                <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Vues 360° haute qualité</li>
-                  <li className="text-future-dusk-600">Vidéos produits professionnelles</li>
-                  <li className="text-future-dusk-600">Export 3D/CGI</li>
-                  <li className="text-future-dusk-600"><strong>Public</strong> : Spécialistes techniques</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">
+                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Découvrir les formations Orbitvu
                   </Link>
                 </p>
@@ -907,12 +873,10 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Prix public vs prix PackshotCreator distributeur officiel (-10-15%)</li>
                   <li className="text-future-dusk-600">Remises volume (si achat multiple machines)</li>
-                  <li className="text-future-dusk-600">Bundle machine + formation (-5-10%)</li>
                 </ul>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Services inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Installation on-site (négociable selon distance)</li>
-                  <li className="text-future-dusk-600">Formation avancée (upgrade niveau 2)</li>
                   <li className="text-future-dusk-600">Maintenance année 1 étendue</li>
                 </ul>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Financement</strong> :</p>
@@ -920,7 +884,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Leasing professionnel</strong> : 36-60 mois, taux 1,5-3%</li>
                   <li className="text-future-dusk-600"><strong>Crédit équipement</strong> : Selon banque et profil entreprise</li>
                   <li className="text-future-dusk-600"><strong>Paiement comptant</strong> : Remise négociable -3-5%</li>
-                  <li className="text-future-dusk-600"><strong>Financement formation OPCO</strong> : 100% pris en charge si certifié Qualiopi</li>
+                  <li className="text-future-dusk-600"><strong>Financement formation OPCO</strong> : possible selon votre situation (organisme certifié Qualiopi)</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai de livraison</strong> : environ 12 jours actuellement, indicatif et non contractuel</p>
 
@@ -934,9 +898,9 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Tests produits réels</li>
                   <li className="text-future-dusk-600">Validation workflow</li>
                 </ul>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Formation équipes (Jour 3-4)</strong> :</p>
+                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Formation équipes (en option)</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Formation de base (facturée en supplément) : 2 jours</li>
+                  <li className="text-future-dusk-600">Essential Training (à distance) ou Master Training (en présentiel), facturés séparément</li>
                   <li className="text-future-dusk-600">Workflows par type de produits</li>
                   <li className="text-future-dusk-600">Best practices secteur</li>
                   <li className="text-future-dusk-600">Troubleshooting courant</li>
@@ -979,7 +943,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts souvent oubliés</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Maintenance annuelle (sur devis)</li>
-                  <li className="text-future-dusk-600">Formation continue équipes (500 - 1 000€/an)</li>
+                  <li className="text-future-dusk-600">Formation des nouveaux opérateurs (facturée séparément)</li>
                   <li className="text-future-dusk-600">Évolutions logicielles (gratuit Orbitvu, payant concurrents)</li>
                   <li className="text-future-dusk-600">Consommables et backgrounds (200€/an)</li>
                 </ul>
@@ -1028,7 +992,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Aides OPCO pour Formation</h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Les <strong>formations certifiées Qualiopi</strong> sont éligibles au financement OPCO (Opérateurs de Compétences). <strong>Prise en charge</strong> : 100% du coût formation (1 100 - 1 800€).
+                  Les formations dispensées par un <strong>organisme certifié Qualiopi</strong> sont éligibles au financement OPCO (Opérateurs de Compétences). <strong>Prise en charge</strong> : selon votre OPCO et votre situation.
                 </p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Démarches</strong> :</p>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
@@ -1134,7 +1098,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Formations</strong> :{' '}
-                    <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Maîtriser votre studio 2-3 jours</Link>
+                    <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Nos formations aux studios Orbitvu</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Guide ROI</strong> :{' '}

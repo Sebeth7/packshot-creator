@@ -78,11 +78,11 @@ const faqItems = [
   },
   {
     question: 'Quels sont les coûts cachés d\'un studio photo automatisé ?',
-    answer: 'Les principaux coûts récurrents sont la maintenance annuelle (10–15 % du prix machine), la formation continue (500–1 000 €/an) et les mises à jour logicielles (généralement gratuites chez Orbitvu). Les consommables sont négligeables (moins de 200 €/an).',
+    answer: 'Les principaux coûts récurrents sont la maintenance annuelle (10–15 % du prix machine), la formation des nouveaux opérateurs (facturée séparément) et les mises à jour logicielles (généralement gratuites chez Orbitvu). Les consommables sont négligeables (moins de 200 €/an).',
   },
   {
     question: 'Comment financer l\'achat d\'un studio photo automatisé ?',
-    answer: 'Plusieurs options existent : leasing professionnel sur 36–60 mois, crédit équipement bancaire, ou amortissement comptable sur 3–5 ans. La formation associée (certifiée Qualiopi) peut être prise en charge à 100 % par votre OPCO.',
+    answer: 'Plusieurs options existent : leasing professionnel sur 36–60 mois, crédit équipement bancaire, ou amortissement comptable sur 3–5 ans. La formation, facturée séparément et dispensée par un organisme certifié Qualiopi, peut être financée par votre OPCO selon votre situation.',
   },
   {
     question: 'Quelle est la formule pour calculer le ROI d\'un studio photo ?',
@@ -204,8 +204,8 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation Équipes</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">Un facteur souvent sous-estimé mais crucial pour optimiser votre ROI :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Formation initiale</strong> (2 jours) : facturée en supplément chez PackshotCreator</li>
-                  <li className="text-future-dusk-600"><strong>Formation avancée</strong> (3-5 jours) : 1 100 - 1 800€ (certifiée Qualiopi, financement OPCO possible)</li>
+                  <li className="text-future-dusk-600"><strong>Essential Training</strong> (à distance) : prise en main du studio, facturée séparément</li>
+                  <li className="text-future-dusk-600"><strong>Master Training</strong> (en présentiel) : maîtrise du studio, facturée séparément (organisme certifié Qualiopi, financement OPCO possible)</li>
                   <li className="text-future-dusk-600"><strong>Support post-formation</strong> : Inclus pendant 3-6 mois selon distributeur</li>
                 </ul>
 
@@ -630,23 +630,18 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-8 my-8">
                   <h4 className="text-xl font-heading font-bold text-emerald-800 mb-4 text-center">
-                    Formations Certifiées Qualiopi | Financement OPCO 100%
+                    Formations aux studios photo Orbitvu
                   </h4>
                   <p className="text-emerald-700 mb-6 text-center max-w-2xl mx-auto">
-                    Maîtrisez les studios photo automatisés Orbitvu en 2-3 jours avec nos formateurs experts. Présentiel Paris/Lyon ou blended (50% en ligne).
+                    Essential Training (distanciel) et Master Training (présentiel) : deux formations pour prendre en main et maîtriser votre studio Orbitvu.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
-                      href="/academy/formations-packshot"
+                      href="/academy"
+                      locale="fr"
                       className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors text-center"
                     >
-                      Formations Studios Photo Orbitvu
-                    </Link>
-                    <Link
-                      href="/academy/calendrier"
-                      className="inline-block border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition-colors text-center"
-                    >
-                      Voir le Calendrier 2026
+                      Découvrir nos formations
                     </Link>
                   </div>
                 </div>
@@ -665,7 +660,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Formations</strong> :{' '}
-                    <Link href="/academy/formations-packshot" className="text-very-peri-600 hover:text-very-peri-700 underline">Maîtriser votre studio en 2-3 jours</Link>
+                    <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Nos formations aux studios Orbitvu</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Guide d'Achat</strong> :{' '}

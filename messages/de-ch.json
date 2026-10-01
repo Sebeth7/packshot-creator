@@ -64,7 +64,7 @@
       },
       "formation": {
         "title": "Volle Autonomie",
-        "description": "<bold>Qualiopi</bold>-Schulungen, um die Fotokonventionen und KI-Tools zu beherrschen. Finanzierung über <bold>OPCO bis zu 100 %</bold>. Das Know-how bleibt in Ihrem Unternehmen.",
+        "description": "Schulungen einer <bold>Qualiopi</bold>-zertifizierten Bildungseinrichtung, damit Sie Ihr Orbitvu-Fotostudio beherrschen. Finanzierung über <bold>OPCO</bold> je nach Situation möglich. Das Know-how bleibt in Ihrem Unternehmen.",
         "cta": "Schulungen ansehen"
       },
       "cta": "Die Orbitvu-Reihe entdecken",
@@ -101,7 +101,7 @@
       "subtitle": "Konkrete Argumente, um Ihre Geschäftsleitung zu überzeugen.",
       "noSkills": {
         "title": "Profi-Ergebnisse ohne Fotokenntnisse",
-        "description": "In <bold>1 Stunde Schulung</bold> erstellt jeder Bediener professionelle Packshots. Beleuchtung und Freistellen mit Erhalt der echten Schatten sind <bold>vollständig automatisiert</bold>.",
+        "description": "Nach <bold>1 Stunde Einarbeitung</bold> erstellt jeder Bediener professionelle Packshots. Beleuchtung und Freistellen mit Erhalt der echten Schatten sind <bold>vollständig automatisiert</bold>.",
         "stat": "1h",
         "statLabel": "Einarbeitung"
       },
@@ -148,7 +148,7 @@
       },
       "q3": {
         "question": "Wie funktioniert ein automatisiertes Orbitvu-Fotostudio?",
-        "answer": "Die Orbitvu-Studios automatisieren den gesamten Ablauf: Positionierung, kalibrierte LED-Beleuchtung, Aufnahme aus mehreren Winkeln und in 360°, automatisches Freistellen mit echten Schatten sowie direkten Export. Ein Bediener ohne Fotokenntnisse erstellt nach nur 1 Stunde Schulung professionelle Packshots in 3 Sekunden pro Bild."
+        "answer": "Die Orbitvu-Studios automatisieren den gesamten Ablauf: Positionierung, kalibrierte LED-Beleuchtung, Aufnahme aus mehreren Winkeln und in 360°, automatisches Freistellen mit echten Schatten sowie direkten Export. Ein Bediener ohne Fotokenntnisse erstellt nach nur 1 Stunde Einarbeitung professionelle Packshots in 3 Sekunden pro Bild."
       },
       "q4": {
         "question": "Was ist der Unterschied zwischen einem automatisierten Studio und einem klassischen Fotografen?",
@@ -160,7 +160,7 @@
       },
       "q6": {
         "question": "Sind Ihre Schulungen über OPCO finanzierbar?",
-        "answer": "Ja, die PackshotCreator Academy ist Qualiopi-zertifiziert. Alle unsere Schulungen zu Packshot und KI-Produktfotografie sind über OPCO finanzierbar, mit einer möglichen Kostenübernahme von bis zu 100 %. Wir begleiten jedes Unternehmen bei den administrativen Schritten gegenüber seinem OPCO."
+        "answer": "Ja. Sysnext (PackshotCreator) ist eine nach Qualiopi zertifizierte Bildungseinrichtung. Unsere zwei Schulungen zu den Orbitvu-Studios, Essential Training (online) und Master Training (vor Ort), auf Französisch, können je nach Situation über Ihren OPCO finanziert werden. Wir begleiten jedes Unternehmen bei den administrativen Schritten gegenüber seinem OPCO."
       },
       "q7": {
         "question": "Wer ist der offizielle Orbitvu-Händler in der Schweiz?",
@@ -191,86 +191,6 @@
       "card2": {
         "heading": "Berechnen Sie Ihren ROI",
         "description": "Schätzen Sie Ihre Einsparungen in 2 Minuten. Persönliches Ergebnis, sofort verfügbar."
-      }
-    }
-  },
-  "formation": {
-    "meta": {
-      "title": "Academy | Formations Packshot & IA Certifiées Qualiopi",
-      "suffix": "PackshotCreator Academy",
-      "description": "Formations pour les professionnels à la photo produit certifiées Qualiopi. Packshot avec studios Orbitvu, IA avec BlendAI + Anthropic. Financement OPCO 100% possible."
-    },
-    "hero": {
-      "title": "PackshotCreator Academy",
-      "subtitle": "Formations certifiées Packshot & IA Photo Produit. Financement OPCO jusqu'à 100%.",
-      "cta_formations": "Voir les formations",
-      "cta_opco": "Financement OPCO"
-    },
-    "qualiopi": {
-      "heading": "Certification Qualiopi",
-      "description": "<bold>PackshotCreator Academy</bold> (Sysnext) est un organisme certifié Qualiopi au titre des actions de formation, ce qui rend nos formations éligibles au <bold>financement OPCO</bold>.",
-      "feature1": "Formateurs experts (20 ans photo luxe, 3 ans IA)",
-      "feature2": "Pédagogie éprouvée (500+ stagiaires formés)",
-      "feature3": "Suivi post-formation (30-60 jours)"
-    },
-    "opco": {
-      "heading": "Financement OPCO",
-      "description": "Prise en charge jusqu'à <bold>100%</bold> de vos formations professionnelles par votre OPCO (Opérateur de Compétences).",
-      "salaries": "Pour les salariés : Votre entreprise peut demander le financement à son OPCO.",
-      "independants": "Pour les indépendants : Selon votre OPCO (FIFPL, AGEFICE, etc.).",
-      "cta": "En savoir plus sur le financement OPCO"
-    },
-    "catalogue": {
-      "label": "FORMATIONS",
-      "packshot_heading": "Formations Packshot Photo Produit",
-      "packshot_subtitle": "Maîtrisez la <bold>photographie packshot professionnelle</bold> avec nos studios Orbitvu",
-      "ia_label": "FORMATIONS IA",
-      "ia_heading": "Formations IA Photo Produit",
-      "ia_subtitle": "Exploitez la puissance de <bold>BlendAI</bold> pour multiplier vos visuels"
-    },
-    "formateur": {
-      "heading": "Votre Formateur",
-      "name": "Sébastien Jourdan",
-      "title": "Expert Photo Produit & IA | Fondateur PackshotCreator",
-      "bio1": "20 ans d'expérience en photographie produit pour les plus grandes marques de luxe (Cartier, Rolex, Van Cleef & Arpels).",
-      "bio2": "Pionnier de l'automatisation photo, avec les studios Orbitvu distribués par PackshotCreator depuis 2023, puis de l'IA photo produit avec BlendAI en 2024.",
-      "bio3": "500+ professionnels formés au workflow Photo studio + IA.",
-      "cert1": "Certifié Qualiopi (organisme de formation)",
-      "cert2": "Distributeur officiel Orbitvu France & Suisse",
-      "cert3": "Fondateur BlendAI.Studio"
-    },
-    "formateur2": {
-      "name": "Stéphane Gormand",
-      "title": "Expert Photo Produit & Workflow Automatisé",
-      "bio1": "Expérience confirmée en photographie produit et post-production pour le e-commerce.",
-      "bio2": "Spécialiste des workflows automatisés Orbitvu et de l'optimisation de production visuelle.",
-      "bio3": "Formateur certifié avec une pédagogie orientée pratique et résultats concrets.",
-      "cert1": "Certification professionnelle photo produit",
-      "cert2": "Expert studios automatisés Orbitvu",
-      "cert3": "Formateur certifié Qualiopi"
-    },
-    "calendrier": {
-      "heading": "Calendrier & Inscription",
-      "subtitle": "Consultez les prochaines sessions et inscrivez-vous en ligne",
-      "contact": "Besoin d'aide ? Contactez-nous"
-    },
-    "faq": {
-      "heading": "Questions Fréquentes",
-      "q1": {
-        "question": "Comment fonctionne le financement OPCO ?",
-        "answer": "Votre entreprise (ou vous-même si indépendant) contacte son OPCO pour demander la prise en charge. PackshotCreator fournit le devis, le programme détaillé et tous les documents nécessaires. L'OPCO peut financer jusqu'à 100% du coût de la formation."
-      },
-      "q2": {
-        "question": "Quelle différence entre Blended et Présentiel ?",
-        "answer": "Blended : 50% e-learning (vidéos à votre rythme) + 50% présentiel/visio (pratique intensive). Prix réduit de 24-27%. Présentiel : 100% en salle avec le formateur. Plus d'interactions, coaching 1:1, déjeuners inclus."
-      },
-      "q3": {
-        "question": "Faut-il déjà avoir un studio Orbitvu pour suivre les formations Packshot ?",
-        "answer": "Non, les formations peuvent se déroulent dans notre showroom Lyon équipé de tous les studios. Vous pouvez ensuite décider d'acquérir votre propre matériel."
-      },
-      "q4": {
-        "question": "Les formations IA nécessitent-elles des abonnements IA ?",
-        "answer": "Oui pour Anthropic. Un accès à BlendAI est inclus pendant la formation et 30 jours après. Ensuite, vous pouvez souscrire à un abonnement (à partir de 75€/mois) si vous souhaitez continuer."
       }
     }
   },
@@ -311,16 +231,6 @@
       "aiSoftwareDesc": "Automatisierte KI-Retusche, Freistellung und Postproduktion",
       "industries": "Branchen",
       "academy": "Schulungen",
-      "academyHub": "Alle unsere Schulungen",
-      "academyHubDesc": "Überblick über das Schulungsangebot der PackshotCreator Academy",
-      "formationsPackshot": "Packshot-Schulungen",
-      "formationsPackshotDesc": "Meistern Sie die professionelle Produktfotografie",
-      "formationsIA": "KI-Schulungen",
-      "formationsIADesc": "Integrieren Sie KI in Ihren Bild-Workflow",
-      "simulateurOPCO": "Förderungsrechner",
-      "simulateurOPCODesc": "Berechnen Sie die Finanzierung Ihrer Schulung",
-      "calendrier": "Kalender",
-      "calendrierDesc": "Nächste verfügbare Schulungstermine",
       "blog": "Blog",
       "about": "Über uns",
       "contact": "Kontakt",
@@ -386,10 +296,8 @@
       "docQualite": "Qualität & Rückverfolgbarkeit",
       "docProbatoire": "Beweissichernde Dokumentation",
       "academy": "Schulungen",
-      "formationsPackshot": "Packshot-Schulungen",
-      "formationsIA": "KI-Schulungen",
-      "simulateurOPCO": "Förderungsrechner",
-      "calendrier": "Kalender",
+      "formationsHub": "Unsere Schulungen (auf Französisch)",
+      "catalogueFormation": "Schulungskatalog (auf Französisch)",
       "company": "Unternehmen",
       "about": "Über uns",
       "contact": "Kontakt",
@@ -665,89 +573,7 @@
     "faq5Question": "Bieten Sie Online-Demonstrationen an?",
     "faq5Answer": "Ja, für einen ersten Einblick bieten wir Demos per Videokonferenz an. Für eine umfassende Beurteilung empfehlen wir einen Showroom-Besuch mit Ihren eigenen Produkten.",
     "faq6Question": "Gibt es Finanzierungsmöglichkeiten für die Schulungen?",
-    "faq6Answer": "Ja, für die Investition stehen Finanzierungs- bzw. Leasingoptionen zur Verfügung; die Schulungen werden separat verrechnet. Wir begleiten Sie bei den administrativen Schritten."
-  },
-  "academyHub": {
-    "meta": {
-      "title": "Academy PackshotCreator | Formations Packshot & IA Qualiopi",
-      "description": "Formations certifiées Qualiopi : photo produit professionnelle et IA appliquée. Financement OPCO possible. Sessions inter et intra-entreprise.",
-      "keywords": "formation photo produit, formation ia, qualiopi, opco, packshot"
-    },
-    "hero": {
-      "title": "Academy : Formations Packshot & IA Certifiées Qualiopi",
-      "subtitle": "Montez en compétences avec nos formations professionnelles. Financement OPCO jusqu'à 100%. Sessions inter et intra-entreprise.",
-      "ctaPrimary": "Voir les formations",
-      "ctaSecondary": "Simuler mon financement OPCO"
-    },
-    "qualiopi": {
-      "heading": "Certifié Qualiopi",
-      "description": "Notre organisme de formation est certifié Qualiopi, garantie de qualité reconnue par l'État. Vos formations peuvent être financées par votre OPCO.",
-      "benefit1": "Financement OPCO jusqu'à 100%",
-      "benefit2": "Formateurs experts terrain",
-      "benefit3": "Suivi post-formation inclus",
-      "benefit4": "Certification de compétences"
-    },
-    "formations": {
-      "heading": "Nos Formations",
-      "subtitle": "Des parcours adaptés à votre niveau et vos objectifs",
-      "packshot": {
-        "title": "Formation Packshot Professionnel",
-        "description": "Maîtrisez la photographie produit sur studio automatisé Orbitvu. De la prise de vue à la retouche.",
-        "duration": "2 jours (14h)",
-        "level": "Tous niveaux",
-        "cta": "Voir le programme"
-      },
-      "ia": {
-        "title": "Formation IA Photo Produit",
-        "description": "Intégrez l'intelligence artificielle dans votre workflow visuel. BlendAI, retouche IA, automation.",
-        "duration": "1 jour (7h)",
-        "level": "Intermédiaire",
-        "cta": "Voir le programme"
-      }
-    },
-    "tools": {
-      "heading": "Outils & Ressources",
-      "subtitle": "Préparez et planifiez votre formation",
-      "simulator": {
-        "title": "Simulateur OPCO",
-        "description": "Estimez le montant de prise en charge de votre formation par votre OPCO en quelques clics.",
-        "cta": "Simuler mon financement"
-      },
-      "calendar": {
-        "title": "Calendrier des Sessions",
-        "description": "Consultez les prochaines dates de formation disponibles et réservez votre place.",
-        "cta": "Voir le calendrier"
-      }
-    },
-    "finalCta": {
-      "heading": "Prêt.e à monter en compétences ?",
-      "description": "Contactez-nous pour un programme sur mesure ou inscrivez-vous à la prochaine session.",
-      "ctaPrimary": "Nous contacter",
-      "ctaSecondary": "Simuler mon financement"
-    },
-    "faq": {
-      "heading": "Questions fréquentes sur nos formations",
-      "q1": {
-        "question": "Les formations PackshotCreator sont-elles certifiantes ?",
-        "answer": "Nos formations sont dispensées par un organisme certifié Qualiopi, gage de qualité reconnu par l’État, mais ne sont pas diplômantes. Vous recevez une attestation de compétences à l'issue de chaque formation."
-      },
-      "q2": {
-        "question": "Comment financer ma formation via mon OPCO ?",
-        "answer": "En tant qu'organisme Qualiopi, nos formations sont éligibles au financement OPCO jusqu'à 100%. Utilisez notre simulateur OPCO pour estimer votre prise en charge, puis nous vous accompagnons dans les démarches administratives."
-      },
-      "q3": {
-        "question": "Quelles formations photo produit proposez-vous ?",
-        "answer": "Nous proposons deux parcours : la Formation Packshot Professionnel (2 jours) pour maîtriser la photo produit sur studio automatisé Orbitvu, et la Formation IA Photo Produit (1 jour) pour intégrer BlendAI dans votre workflow visuel."
-      },
-      "q4": {
-        "question": "Les formations incluent-elles de la pratique sur studio ?",
-        "answer": "Oui, nos formations sont majoritairement pratiques. Les participants travaillent directement sur les studios Orbitvu avec leurs propres produits ou des produits fournis, pour une mise en application immédiate."
-      },
-      "q5": {
-        "question": "Peut-on suivre les formations à distance ?",
-        "answer": "Nos formations sont disponibles en présentiel (inter ou intra-entreprise) et certains modules théoriques peuvent être suivis à distance. La pratique sur studio nécessite une présence physique pour manipuler les équipements."
-      }
-    }
+    "faq6Answer": "Unsere Schulungen werden separat verrechnet. Als nach Qualiopi zertifizierte Bildungseinrichtung ermöglicht Sysnext (PackshotCreator) in Frankreich eine Finanzierung über den OPCO, je nach Situation. Für die Investition in eine Lösung stehen zudem Finanzierungs- bzw. Leasingoptionen zur Verfügung. Wir begleiten Sie bei den administrativen Schritten."
   },
   "studiosHardware": {
     "meta": {
@@ -780,7 +606,7 @@
       },
       "formation": {
         "title": "Schulung",
-        "description": "Qualiopi-zertifizierte Academy. Ihre Teams beherrschen das System in 2 Tagen. Förderung über OPCO bis zu 100% möglich.",
+        "description": "Qualiopi-zertifizierte Bildungseinrichtung. Zwei Schulungen: Essential Training (online) und Master Training (vor Ort). Förderung über OPCO möglich (Frankreich).",
         "badge": "Qualiopi"
       }
     },
@@ -833,7 +659,7 @@
       "step1title": "Persönliche Beratung",
       "step1description": "Unsere Experten analysieren Ihre <bold>Bedürfnisse, Volumen und Anforderungen</bold>. <bold>Kostenlose</bold> Demonstration vor Ort oder per Video mit Ihren eigenen Produkten.",
       "step2title": "Installation & zertifizierte Schulung",
-      "step2description": "Lieferung, Installation und <bold>Qualiopi-Schulung</bold>, separat verrechnet. Ihre Teams sind <bold>ab dem ersten Tag</bold> einsatzbereit.",
+      "step2description": "Lieferung und Installation separat verrechnet, <bold>Qualiopi-Schulung</bold> optional. Ihre Teams sind <bold>ab dem ersten Tag</bold> einsatzbereit.",
       "step3title": "Laufende Begleitung",
       "step3description": "<bold>Dedizierte Hotline</bold>. Wir bleiben an Ihrer Seite, um <bold>Ihre Ergebnisse zu maximieren</bold>."
     },
@@ -868,7 +694,7 @@
       },
       "q6": {
         "question": "Wie lange dauert die Lieferung?",
-        "answer": "Die Lieferfrist beträgt derzeit als Richtwert rund 12 Tage, unverbindlich. Die Dauer von Installation und Schulung hängt vom System und von der Konfiguration ab. Lieferung, Installation und Schulung werden separat verrechnet."
+        "answer": "Die Lieferfrist beträgt derzeit als Richtwert rund 12 Tage, unverbindlich. Die Dauer der Installation hängt vom System und von der Konfiguration ab. Lieferung und Installation werden separat verrechnet; die Schulung ist optional buchbar."
       }
     },
     "finalCta": {
@@ -896,7 +722,7 @@
       },
       "academy": {
         "title": "Academy — zertifizierte Schulungen",
-        "description": "Qualiopi-Schulungen, um Ihr System und die KI-Produktfotografie zu beherrschen."
+        "description": "Schulungen einer Qualiopi-zertifizierten Bildungseinrichtung für Ihr Orbitvu-Studio (auf Französisch)."
       }
     },
     "orientation": {
@@ -1592,9 +1418,8 @@
       },
       "formation": {
         "title": "Schulung",
-        "text": "PackshotCreator Academy, eine nach Qualiopi (französische Qualitätszertifizierung) zertifizierte Bildungseinrichtung, bietet Packshot-Schulungen auf Orbitvu-Studios auf mehreren Stufen an. In Frankreich ist je nach Situation eine Kostenübernahme durch Ihren OPCO (französischer Weiterbildungsfonds) möglich.",
-        "cta": "Packshot-Schulung ansehen (auf Englisch)",
-        "cta2": "OPCO-Finanzierung in Frankreich simulieren (auf Englisch)"
+        "text": "Sysnext (PackshotCreator), eine nach Qualiopi (französische Qualitätszertifizierung) zertifizierte Bildungseinrichtung, schult Ihre Teams in der Einarbeitung und im sicheren Umgang mit Orbitvu-Studios, per Fernschulung oder vor Ort. In Frankreich ist je nach Situation eine Kostenübernahme durch Ihren OPCO (französischer Weiterbildungsfonds) möglich.",
+        "cta": "Unsere Schulungen ansehen (auf Französisch)"
       },
       "accompagnement": {
         "title": "Begleitung",
@@ -1721,7 +1546,7 @@
       },
       "step3": {
         "title": "Installation & Schulung",
-        "description": "Installation vor Ort und <bold>Schulung</bold>, separat verrechnet, sowie Begleitung beim Start."
+        "description": "Installation vor Ort separat verrechnet, Begleitung beim Start inbegriffen. <bold>Schulung</bold> optional buchbar."
       }
     },
     "sectors": {
@@ -1761,11 +1586,11 @@
       },
       "q2": {
         "question": "Braucht es Fotokenntnisse?",
-        "answer": "Nein, unsere Studios sind automatisiert und erfordern keine Fotokenntnisse. Zudem machen Sie unsere Schulungen innert 1 bis 2 Tagen einsatzbereit."
+        "answer": "Nein, unsere Studios sind automatisiert und erfordern keine Fotokenntnisse. Wer tiefer einsteigen möchte, wird mit unseren Schulungen, Essential Training (online) oder Master Training (vor Ort), auf Französisch, selbstständig."
       },
       "q3": {
         "question": "Wie lange dauert es bis zur Einsatzbereitschaft?",
-        "answer": "Die Installation des Studios dauert wenige Stunden. Dank der Schulung, die separat verrechnet wird, sind Sie schon ab dem ersten Tag selbstständig und produktiv."
+        "answer": "Die Installation des Studios dauert wenige Stunden. Dank der Automatisierung sind Sie schon ab dem ersten Tag selbstständig und produktiv; mit unseren Schulungen gehen Sie weiter."
       }
     },
     "cta": {
@@ -1844,11 +1669,11 @@
       },
       "q7": {
         "question": "Verfügen Ihre Teams über Fotokenntnisse?",
-        "answer": "Unsere Studios sind so konzipiert, dass sie ohne Vorkenntnisse in der Fotografie bedient werden können. Die Schulung (1 bis 2 Tage) macht Ihr Team vollständig selbstständig. Finanzierungs- und Leasingoptionen sind möglich."
+        "answer": "Unsere Studios sind so konzipiert, dass sie ohne Vorkenntnisse in der Fotografie bedient werden können. Unsere Schulungen, Essential Training (online) oder Master Training (vor Ort), auf Französisch, machen Ihr Team selbstständig. Finanzierungs- und Leasingoptionen sind möglich."
       },
       "q8": {
         "question": "Wie schnell sind Sie produktionsbereit?",
-        "answer": "Die Installation eines Studios dauert wenige Stunden. Dank der Schulung, die separat verrechnet wird, ist Ihr Team schon ab dem ersten Tag einsatzbereit. Die ersten Visuals entstehen bereits am Tag der Schulung."
+        "answer": "Die Installation eines Studios dauert wenige Stunden. Dank der Automatisierung ist Ihr Team schon ab dem ersten Tag einsatzbereit, und die ersten Visuals entstehen noch am selben Tag."
       },
       "q9": {
         "question": "Wie integrieren Sie die Visuals in Ihren bestehenden Workflow?",
@@ -2712,7 +2537,7 @@
     },
     "included": {
       "heading": "Ce que comprend l'offre",
-      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. La livraison, l'installation et la formation sont facturées en supplément.",
+      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. La livraison et l'installation sont facturées en supplément ; la formation est proposée en option.",
       "i1": {
         "title": "Studio complet",
         "description": "Caisson, éclairage LED, plateau tournant motorisé, caméra (selon configuration)."
@@ -2720,10 +2545,6 @@
       "i2": {
         "title": "Logiciel Orbitvu Station",
         "description": "Capture, détourage automatique (IQ Mask), export multi-formats, mises à jour incluses."
-      },
-      "i3": {
-        "title": "Formation sur site (facturée en supplément)",
-        "description": "Prise en main par un formateur certifié. Autonomie en 1 heure pour les opérations courantes."
       },
       "i4": {
         "title": "Installation et calibration (facturées en supplément)",
@@ -2746,8 +2567,8 @@
         "description": "Pour l'Alphashot Pro G2, notre modèle le plus vendu. Mensualité fixe, budget maîtrisé."
       },
       "f2": {
-        "title": "Financement OPCO (jusqu'à 100 %)",
-        "description": "Nos formations sont certifiées Qualiopi. Le volet formation de votre investissement peut être pris en charge intégralement par votre OPCO."
+        "title": "Financement OPCO",
+        "description": "Sysnext (PackshotCreator) est un organisme de formation certifié Qualiopi. La formation, facturée séparément du studio, peut être financée par votre OPCO selon votre situation."
       },
       "f3": {
         "title": "Amortissement sur 5 ans",
@@ -2774,7 +2595,7 @@
       },
       "q4": {
         "question": "Peut-on financer la formation via OPCO ?",
-        "answer": "Oui. Notre Academy est certifiée Qualiopi, ce qui rend nos formations éligibles au financement par les OPCO. Selon votre branche professionnelle, la prise en charge peut atteindre 100 % du coût de la formation."
+        "answer": "Oui. Sysnext (PackshotCreator) est un organisme de formation certifié Qualiopi, ce qui rend nos formations éligibles au financement par les OPCO. Le niveau de prise en charge dépend de votre OPCO et de votre branche professionnelle."
       },
       "q5": {
         "question": "Quel retour sur investissement espérer ?",
@@ -3068,7 +2889,7 @@
     },
     "gainsInternal": {
       "heading": "Ce qu'on gagne en internalisant",
-      "p1": "Un studio automatise Orbitvu ne necessite pas de photographe professionnel. Apres une heure de formation, n'importe quel collaborateur peut produire des packshots calibres et reproductibles.",
+      "p1": "Un studio automatise Orbitvu ne necessite pas de photographe professionnel. Apres une heure de prise en main, n'importe quel collaborateur peut produire des packshots calibres et reproductibles.",
       "gains": {
         "g1": {
           "title": "Controle total",
@@ -3104,7 +2925,7 @@
       },
       "q2": {
         "question": "Faut-il un photographe pour utiliser un studio Orbitvu ?",
-        "answer": "Non. Les studios Orbitvu sont concus pour etre utilises par n'importe quel collaborateur apres une heure de formation. L'eclairage, le cadrage et le detourage sont automatises."
+        "answer": "Non. Les studios Orbitvu sont concus pour etre utilises par n'importe quel collaborateur apres une heure de prise en main. L'eclairage, le cadrage et le detourage sont automatises."
       },
       "q3": {
         "question": "Peut-on combiner prestataire et studio interne ?",
