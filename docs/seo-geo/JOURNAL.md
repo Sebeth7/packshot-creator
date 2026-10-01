@@ -34,6 +34,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Arbitrages finaux D40 / D42 / D43 consignés · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé depuis l'entrée ci-dessous
+
+**Quoi** —
+- D43 réécrite sur les arbitrages finaux 1 et 2 de Laurent, cités : budgets de 20 USD par trimestre (D26, conservé) et de 20 USD par mission cumulés ; GO préalable explicite de Laurent pour tout appel payant ; un plafond n'est pas une autorisation de dépense ; définition de la mission ; fractionnement interdit. Le premier arbitrage reste cité pour trace, avec ce qui en est remplacé. Titre modifié : « autorisation-cadre » ne décrit plus la règle.
+- D26 : ligne « Statut » alignée.
+- D42 : arbitrages finaux 3 (modifications après le GO de Sébastien) et 4 (corrections typographiques) cités à la place des deux points À ARBITRER ; tableau d'articulation avec D40 complété de deux lignes ; statut et interdits complétés.
+- Q19 : arbitrages finaux 3 et 4 ajoutés ; portée de D43 corrigée.
+- ETAT : un point À CONFIRMER ; ligne #65 ; ligne Q19 ; registre budgétaire absent ; tableau des décisions en vigueur ou proposées.
+
+**Pourquoi** — GO de Laurent du 01/10 sur les quatre arbitrages finaux. Correction : la version précédente de Q19 présentait D43 comme applicable aux contenus du Claude de Sébastien ; aucun arbitrage ne le dit.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 01/10 vers 19:12 UTC : #76 `4a24783`, `main` `6b80e6a`, #65 `c5e15a8`, inchangées depuis l'entrée ci-dessous.
+- Citations : texte d'origine de D42 identique à la tête `59861e9` ; premier arbitrage de D43 identique à la tête `4a24783` ; arbitrages finaux cités tels que reçus.
+- Plus aucun point « À ARBITRER » dans `DECISIONS.md` ; un point « À CONFIRMER » (D43).
+- Aucun registre du cumul des missions ni du solde trimestriel dans `docs/seo-geo/` (recherche de « solde », « par trimestre », « budget de mesure »).
+- JOURNAL : 91 entrées ; aucune ligne de `main` ni de la tête `4a24783` perdue.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5.
+- Appels payants de cette mission : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne.
+- Protection Vercel, liens partageables, autorisations : non touchés.
+
+**Suite** —
+- Laurent : le point À CONFIRMER de D43 (dépassement du plafond de mission sur GO).
+- Claude de #65 : les 14 corrections de l'entrée ci-dessous, avec ces changements :
+  - point 1 : reprendre `main` après une éventuelle fusion autorisée de #76 ; à défaut, citer D42 et D43 comme consignées dans #76, non fusionnée ;
+  - point 7 : tout appel payant, conversation de test du calculateur ROI comprise, demande le GO préalable explicite de Laurent (service, coût estimé, plafond maximal), dans le plafond de la mission et le solde trimestriel (D43) ;
+  - point 8 : la place des étapes 6 à 8 de D42 n'est plus à arbitrer : appliquer l'arbitrage final 3 ;
+  - point 9 : « Non concerné », corrections typographiques : appliquer l'arbitrage final 4 (pas de nouveau circuit complet ; contrôles techniques, traçabilité proportionnée, validation ciblée si le périmètre typographique est dépassé) ;
+  - ajout 15 : § 2, « Règle d'envoi », et § 6, étape 7 : aligner le renvoi après un push sur l'arbitrage final 3 (validation ciblée si changement substantiel ; information si métadonnées, maillage, liens ou réglages techniques ; contrôles dans tous les cas) ;
+  - ajout 16 : § 6, tableau du régime, et § 9, gabarit : le GO métier de Sébastien n'est pas une autorisation de publication ; l'autorisation finale de publication ou de fusion appartient à Laurent ;
+  - ajout 17 : D40, « Ce qu'elle interdit » : y reporter « transformer le GO métier de Sébastien en autorisation automatique de publication ».
+
+---
+
 ## 2026-10-01 · Réconciliation de la gouvernance D40 / D42 / D43, #76 synchronisée avec `main` · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a` (#75, #66, #78), fusionné dans la branche

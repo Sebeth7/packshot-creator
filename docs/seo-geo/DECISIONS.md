@@ -25,12 +25,37 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D43 · 2026-10-01 · Appels payants : autorisation-cadre de 20 USD cumulés par mission
+## D43 · 2026-10-01 · Appels payants : GO préalable de Laurent pour tout appel, plafond de 20 USD par mission dans le budget de 20 USD par trimestre
 
-**Décidé par** : Laurent
-**Statut** : en vigueur — **remplace** le seuil de GO de 2 $ par exécution de D26 (point 4) et la ligne « Pas d'appel payant sans GO préalable » de D42
+**Décidé par** : Laurent — premier arbitrage (point 3), puis arbitrages finaux 1 et 2, le 01/10
+**Statut** : en vigueur depuis le 01/10 (décision de Laurent) ; texte consigné par la PR #76. **Remplace** le seuil de GO de 2 $ par exécution de D26 (point 4) et la ligne « Pas d'appel payant sans GO préalable » de D42. **Conserve** le budget de mesure de 20 USD par trimestre de D26 (point 4), qui se cumule avec le plafond par mission. L'« autorisation-cadre » du premier arbitrage est remplacée par l'arbitrage final 1 : un plafond n'est pas une autorisation de dépense
 
-**La décision** — Arbitrage de Laurent du 01/10/2026, point 3, reproduit sans modification :
+**La décision** — Arbitrages finaux de Laurent du 01/10, reproduits sans modification.
+
+Arbitrage final 1 — budget :
+
+> Les deux limites se cumulent :
+>
+> - D26 : conserver le budget de mesure de 20 USD par trimestre.
+> - D43 : fixer également un plafond maximal de 20 USD par mission.
+>
+> Le plafond par mission n'autorise jamais à dépasser le solde trimestriel disponible.
+>
+> Tout appel payant nécessite préalablement le GO explicite de Laurent, avec identification du service, estimation du coût et plafond maximal.
+>
+> Un plafond budgétaire ne constitue pas, à lui seul, une autorisation de dépense.
+
+Arbitrage final 2 — définition d'une mission :
+
+> Une mission est un objectif opérationnel délimité, associé à un périmètre, un livrable identifié et un budget cumulé.
+>
+> Son coût comprend l'ensemble des recherches, appels exploratoires, mesures complémentaires, contre-expertises et vérifications payantes nécessaires à cet objectif.
+>
+> Le fractionnement artificiel d'un même objectif en plusieurs missions pour contourner le plafond est interdit.
+>
+> Avant chaque dépense, vérifier le cumul de la mission et le solde du budget trimestriel.
+
+**Historique** — Premier arbitrage de Laurent du 01/10 (point 3), cité pour trace :
 
 > Remplacer l'ancien seuil de 2 USD par une autorisation-cadre de 20 USD cumulés PAR MISSION, tous appels payants confondus.
 >
@@ -45,22 +70,26 @@ Append-only. Plus récent en haut.
 > Ce plafond budgétaire ne constitue aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
 > La nouvelle décision prévaut sur l'ancien seuil de D26 et modifie explicitement la restriction budgétaire initialement rédigée dans D42. Conserver une trace historique claire de cet arbitrage, sans laisser deux consignes contradictoires en vigueur.
 
-**Le contexte** — Arbitrage de Laurent du 01/10 sur le point 3 d'articulation de D42. Deux consignes l'ont précédée, conservées pour trace et qui ne sont plus en vigueur sur ce point :
+Les arbitrages finaux le remplacent sur deux points :
+- l'« autorisation-cadre » : un plafond ne constitue pas, à lui seul, une autorisation de dépense ; tout appel payant demande le GO préalable explicite de Laurent ;
+- le plafond de mission s'inscrit dans le solde du budget trimestriel de D26, conservé.
+
+Ses autres dispositions restent compatibles et en vigueur : pas 20 USD par appel ; pas de consommation illimitée ; service identifié et coût estimé avant l'appel ; cumul de la mission comptabilisé ; aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+
+**Le contexte** — Deux consignes ont précédé D43, conservées pour trace et qui ne sont plus en vigueur sur ce point :
 - D26, point 4 (19/09) : GO au-delà de 2 $ par exécution ;
 - D42, première version (01/10) : « Pas d'appel payant sans GO préalable ».
 
-**Ce qu'elle interdit** — Un appel payant dont le service n'est pas identifié ou dont le coût n'est pas estimé avant l'appel. Un appel qui porterait le cumul de la mission au-delà de 20 USD sans nouveau GO explicite de Laurent. Invoquer ce plafond comme une autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+**Ce qu'elle interdit** — Un appel payant sans GO préalable explicite de Laurent. Un GO sans identification du service, estimation du coût et plafond maximal. Une dépense sans vérification préalable du cumul de la mission et du solde du budget trimestriel. Un appel qui ferait dépasser le solde trimestriel disponible. Le fractionnement artificiel d'un même objectif en plusieurs missions. Tenir un plafond pour une autorisation de dépense, d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
 
-**À ARBITRER** — Deux points que l'arbitrage du 01/10 ne tranche pas. Aucune interprétation n'est retenue d'ici là :
-- **Budget trimestriel** : le budget de mesure de 20 $ par trimestre, écrit au même point 4 de D26, n'est pas visé par l'arbitrage. S'il reste en vigueur, il plafonne aussi le cumul des missions d'un même trimestre.
-- **Mission** : le terme n'est pas défini par l'arbitrage.
+**À CONFIRMER** — Le premier arbitrage prévoyait, au-delà de 20 USD sur une mission, un nouveau GO explicite de Laurent ; l'arbitrage final 1 qualifie ce plafond de « maximal ». Un dépassement du plafond de mission sur GO explicite de Laurent reste-t-il possible, dans la limite du solde trimestriel ? D'ici là, aucun appel ne porte le cumul d'une mission au-delà de 20 USD.
 
 ---
 
 ## D42 · 2026-10-01 · Standard éditorial PackshotCreator : circuit complet en huit étapes
 
-**Décidé par** : Laurent — six arbitrages d'articulation rendus par Laurent le même jour
-**Statut** : en vigueur — portée : tous les articles, landings, hubs et contenus éditoriaux, produits par les deux environnements Claude, PR déjà ouvertes comprises, sans annuler les travaux antérieurement validés. **La ligne « Pas d'appel payant sans GO préalable » est remplacée par D43.** Complète D12 pour les contenus éditoriaux (arbitrage 1)
+**Décidé par** : Laurent — six arbitrages d'articulation, puis arbitrages finaux 3 et 4, rendus par Laurent le même jour
+**Statut** : en vigueur depuis le 01/10 (décision de Laurent, applicable aux PR déjà ouvertes) ; texte consigné par la PR #76 — portée : tous les articles, landings, hubs et contenus éditoriaux, produits par les deux environnements Claude, PR déjà ouvertes comprises, sans annuler les travaux antérieurement validés. **La ligne « Pas d'appel payant sans GO préalable » est remplacée par D43**, qui exige le GO préalable explicite de Laurent pour tout appel payant. Complète D12 pour les contenus éditoriaux (arbitrage 1 et arbitrage final 3)
 
 **La décision** — Texte de Laurent du 01/10/2026, reproduit sans modification :
 
@@ -92,12 +121,12 @@ Append-only. Plus récent en haut.
 > Pas d'appel payant sans GO préalable.
 > Cette règle s'applique également aux PR déjà ouvertes, sans annuler les travaux antérieurement validés.
 
-**Note de version** — La ligne « Pas d'appel payant sans GO préalable » reste citée ci-dessus pour trace. Elle n'est plus en vigueur : D43 la remplace (autorisation-cadre de 20 USD cumulés par mission).
+**Note de version** — La ligne « Pas d'appel payant sans GO préalable » reste citée ci-dessus pour trace. Elle n'est plus en vigueur : D43 la remplace (GO préalable explicite de Laurent pour tout appel payant ; plafond de 20 USD par mission dans le budget de 20 USD par trimestre).
 
 **Arbitrages de Laurent du 01/10** — Six points d'articulation avec les décisions existantes, relevés dans la première version de cette décision (PR #76, tête `59861e9`) et tranchés par Laurent le même jour :
 1. **D12** — Aucun contenu éditorial n'est fusionné avant validation et autorisation de publication selon la gouvernance applicable. D12 reste en vigueur pour le reste.
 2. **D15 et D16** — Conservées : validation tacite après cinq jours ouvrés pour les réécritures (D15), validation explicite pour les créations (D16). Les exigences qualitatives de D42 s'appliquent dans les deux cas.
-3. **D26, point 4** — Le seuil de 2 USD est remplacé par une autorisation-cadre de 20 USD cumulés par mission : voir D43.
+3. **D26, point 4** — Le seuil de 2 USD est remplacé par une autorisation-cadre de 20 USD cumulés par mission : voir D43. Précisé par les arbitrages finaux 1 et 2 (D43) : budget trimestriel conservé, GO préalable pour tout appel, définition de la mission.
 4. **D40** (proposée dans #65, non fusionnée) — Contrôle des Preview sur ordinateur, smartphone et tablette, en portrait et en paysage lorsque pertinent ; tester également les interactions tactiles. Cet arbitrage élargit le contrôle « desktop et 390 px » de D40 et de `08-PREVIEW-VALIDATION.md` (#65). #65 n'est pas modifiée par cette PR : son texte est à harmoniser avant sa fusion.
 5. **Périmètre** — D42 concerne les contenus produits par les deux environnements Claude. Transmission au Claude de Sébastien par la boîte aux lettres (Q19). Le périmètre d'intervention de chacun, défini par `/CLAUDE.md`, n'est pas modifié.
 6. **Travaux validés** — D37 et les travaux antérieurement validés restent acquis. D42 s'applique aux étapes restantes des chantiers ouverts.
@@ -113,15 +142,38 @@ Append-only. Plus récent en haut.
 | Contrôle des Preview, supports | Desktop 1440 px et mobile ≈ 390 px (§ 6, § 8, § 9) | Ordinateur, smartphone et tablette ; portrait et paysage lorsque pertinent (arbitrage 4) | Écart : #65 à compléter |
 | Interactions tactiles | Absentes | À tester (arbitrage 4) | Écart : #65 à compléter |
 | Transmission à Sébastien | Alias de branche, SHA de tête et dossier de validation, pour toute modification client-facing substantielle ; accès de Sébastien « non établi » | Étape 5 ; accès établi par le fait métier du 01/10 | Compatible ; mention d'accès de #65 obsolète |
-| Validation avant publication | Ne pas fusionner pour montrer ; GO avant fusion pour une création | Aucun contenu éditorial fusionné avant validation et autorisation de publication (arbitrage 1) | Compatible |
+| Validation avant publication | Ne pas fusionner pour montrer ; GO avant fusion pour une création | Aucun contenu éditorial fusionné avant validation et autorisation de publication (arbitrage 1) ; autorisation finale de Laurent (arbitrage final 3) | Compatible |
+| Modifications après le GO de Sébastien | Un GO vaut pour la tête indiquée ; tout push après l'envoi est renvoyé, limité à ce qui a changé (§ 2, § 6) | Validation ciblée si changement substantiel ; information si métadonnées, maillage, liens ou réglages techniques ; contrôles dans tous les cas (arbitrage final 3) | #65 à aligner |
+| Corrections typographiques ponctuelles | Hors du circuit (§ 6, « Non concerné ») | Pas de nouveau circuit complet ; contrôles techniques, traçabilité proportionnée, validation ciblée si le périmètre typographique est dépassé (arbitrage final 4) | Compatible ; #65 à compléter |
 | Création, réécriture, technique | D16 explicite, D15 tacite, D12 sans transmission | Même régime (arbitrage 2) ; exigences qualitatives dans les deux cas | Compatible |
-| Appels payants | Calculateur ROI sur une Preview : appels facturés, « pas de conversation de test sans raison » (§ 4) | D43 | À rattacher à D43 dans #65 |
+| Appels payants | Calculateur ROI sur une Preview : appels facturés, « pas de conversation de test sans raison » (§ 4) | D43 : GO préalable explicite de Laurent pour tout appel ; plafond par mission et budget trimestriel | À rattacher à D43 dans #65 |
 
-**À ARBITRER** — Deux points d'articulation avec D40 :
-- **Étapes 6 à 8 après le GO** : D40 fait suivre le GO de Sébastien de la fusion, et un GO vaut pour la tête indiquée ; D42 place après la validation l'optimisation finale du maillage et du SEO/GEO (6), la traduction (7) et la QA finale (8). Une modification de l'étape 6 après le GO demande-t-elle un nouveau GO, ou un renvoi pour information ?
-- **Corrections typographiques ponctuelles** : D40 les exclut du circuit ; D42 vise « tous » les contenus éditoriaux. Relèvent-elles de D42 ?
+**Arbitrages finaux de Laurent du 01/10 — articulation avec D40**, reproduits sans modification.
 
-**Ce qu'elle interdit** — Ceux du texte, sans ajout : la phrase « Aucun contenu ne doit être considéré comme terminé… » et les lignes « Pas de… » de l'exigence non négociable, sauf « Pas d'appel payant sans GO préalable », remplacée par D43. S'y ajoute, par l'arbitrage 1 : fusionner un contenu éditorial avant validation et autorisation de publication.
+Arbitrage final 3 — modifications SEO/GEO après le GO de Sébastien :
+
+> Adopter la règle suivante :
+>
+> - Si les modifications ultérieures changent substantiellement le texte, le sens, un claim, une qualification juridique ou une proposition commerciale : nouvelle validation ciblée de Sébastien sur les éléments modifiés.
+> - Si elles ne concernent que les métadonnées, le maillage, les liens ou des réglages techniques sans changement de sens : information à Sébastien, sans lui imposer une nouvelle validation complète.
+> - Dans tous les cas, les contrôles techniques et visuels restent nécessaires.
+> - L'autorisation finale de publication ou de fusion appartient toujours à Laurent.
+>
+> Ne pas transformer le GO métier de Sébastien en autorisation automatique de publication.
+
+Arbitrage final 4 — corrections typographiques ponctuelles :
+
+> Une correction strictement typographique, sans modification du sens, d'un claim ou du contenu substantiel, ne déclenche pas un nouveau circuit complet Preview / Sébastien.
+>
+> Elle reste soumise :
+>
+> - aux contrôles techniques habituels ;
+> - à une traçabilité proportionnée ;
+> - à une nouvelle validation ciblée si elle dépasse finalement le périmètre typographique.
+>
+> Conserver la cohérence de cette exception entre D40 et D42.
+
+**Ce qu'elle interdit** — Ceux du texte, sans ajout : la phrase « Aucun contenu ne doit être considéré comme terminé… » et les lignes « Pas de… » de l'exigence non négociable, sauf « Pas d'appel payant sans GO préalable », remplacée par D43. S'y ajoutent, par l'arbitrage 1 : fusionner un contenu éditorial avant validation et autorisation de publication ; par l'arbitrage final 3 : transformer le GO métier de Sébastien en autorisation automatique de publication.
 
 ---
 
@@ -354,7 +406,7 @@ Les 13 redirections du Worker :
 ## D26 · 2026-09-19 · Arbitrages de cadrage du mandat
 
 **Décidé par** : Laurent
-**Statut** : en vigueur — **point 4 : le seuil de GO de 2 $ par exécution est remplacé par D43** (2026-10-01) ; le budget de 20 $ par trimestre n'est pas visé par D43 : articulation **À ARBITRER** (D43)
+**Statut** : en vigueur — **point 4 : le seuil de GO de 2 $ par exécution est remplacé par D43** (2026-10-01) : tout appel payant demande le GO préalable explicite de Laurent. Le budget de mesure de 20 $ par trimestre est **conservé** et se cumule avec le plafond de 20 USD par mission de D43 (arbitrage final 1 de Laurent, 01/10)
 
 **La décision** — Cinq points arbitrés le 19/09, sans passer par la boîte aux lettres :
 
