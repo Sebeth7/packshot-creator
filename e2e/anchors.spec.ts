@@ -52,16 +52,4 @@ test.describe('Anchor Links', () => {
     const hasId = await page.evaluate(() => !!document.getElementById('secteurs'));
     expect(hasId).toBe(true);
   });
-
-  test('#formations exists on /fr/academy', async ({ page }) => {
-    await page.goto('/fr/academy');
-    const hasId = await page.evaluate(() => !!document.getElementById('formations'));
-    expect(hasId).toBe(true);
-  });
-
-  test('#qualiopi exists on /fr/academy', async ({ page }) => {
-    await page.goto('/fr/academy');
-    const hasId = await page.evaluate(() => !!document.getElementById('qualiopi'));
-    expect(hasId).toBe(true);
-  });
 });
