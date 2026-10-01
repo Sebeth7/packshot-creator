@@ -281,14 +281,17 @@ export const MONEY_PAGE_RESOURCES_MAP: Record<string, { guides: string[]; articl
       'taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques',
     ],
   },
+  // 01/10/2026 : trois guides accessoires (lunettes, bijoux, montres ; le guide chaussures est
+  // déjà lié dans le texte de la page). Retirés : l'article flat lay (Alphadesk, « 250
+  // produits/jour ») et le cas Promod (ancien PackshotSpin, sans EN), contraires aux faits de la
+  // landing réécrite (#66). En de-ch, seuls les guides bijoux et montres existent.
   'packshot-mode': {
     guides: [
-      'comment-faire-photos-multi-angles-chaussures',
+      'comment-photographier-lunettes-e-commerce',
+      'quels-reglages-pour-photographier-bijoux',
+      'comment-positionner-montre-avant-shooting-photo',
     ],
-    articles: [
-      'photographie-de-produits-comment-presenter-vos-vetements',
-      'promod-revolutionne-ses-shootings-photos-de-mode',
-    ],
+    articles: [],
   },
   'packshot-industriel': {
     guides: [
