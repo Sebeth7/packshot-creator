@@ -88,6 +88,47 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · UB-04 / #74 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, fusionnée sur GO de Laurent | **Commit de fusion** : `8365c73` (`main`), le 01/10/2026 à 10:29:43 UTC | **Tête fusionnée** : `d51f69c` | **Base avant fusion** : `a6760da` (#72)
+
+**Quoi** — Fusion de #74 sur GO de Laurent, limité à la tête `d51f69c`, après ces contrôles :
+- tête `d51f69c` inchangée, `main` en `a6760da` ;
+- 4 checks verts : types et build, journal, conséquences, Vercel ;
+- aucun conflit (`git merge-tree`), PR fusionnable ;
+- la CI de #74 avait tourné avant l'arrivée de #72 sur `main`. La fusion `d51f69c` + `a6760da` a donc été reconstruite en local : `tsc` vert, 180 JSON valides, `next build` vert ; sur un article FR, EN et de-ch, un seul `<h1>` sans enfant, précédé du repère `nav` étiqueté.
+
+La PR est sortie du brouillon puis fusionnée par commit de fusion ; branche conservée. Aucune autre modification de code. #70, #64, #66 et les autres PR non touchées.
+
+**Vérifié** —
+- `main` = `8365c73`, parents `a6760da` et `d51f69c` ; arbre identique à celui de la fusion reconstruite et contrôlée en local.
+- `sysnext.vercel.app` sert le nouveau build à partir de 10:31:01 UTC : première observation du repère `nav` étiqueté, relevé toutes les 20 s.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 10:31:07 UTC : vert, 17 pages et 3 ressources (sitemap 308 URL, robots.txt, llms.txt). #74 ne touche ni le sitemap ni le contenu.
+- 3 articles relevés avant fusion (10:29:20 UTC) puis après (10:31:27-35 UTC), tous en 200 : `/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots`, `/en/blog/packshot-photography-guide-why-make-product-packshots`, `/de-ch/blog/leitfaden-packshot-fotografie-warum-packshots-machen`.
+  - Après : un seul `<h1>`, sans élément enfant, dont le texte est le titre seul : « Packshot : définition, types et bonnes pratiques pour l'e-commerce », « Packshot — Definition, Types & Best Practices for E-commerce », « Packshot: Definition, Arten und Best Practices für den E-Commerce ».
+  - Avant : le texte du H1 commençait par « Accueil/Blog/E-commerce », « Home/Blog/E-commerce », « Startseite/Blog/E-commerce », avec 6 éléments enfants.
+  - Après : l'élément qui précède le `<h1>` est un `nav` étiqueté « Fil d'Ariane », « Breadcrumb », « Brotkrümelnavigation » : 2 liens (accueil et blog de la locale), la catégorie en texte, séparateurs `aria-hidden`.
+  - `BreadcrumbList` JSON-LD identique avant et après sur les 3 : PackshotCreator, Blog, l'article.
+- HTML servi pour ces 3 articles identique, identifiant de build et scripts neutralisés, à celui de la fusion construite en local.
+- CSS servie : `fe8d9e9a43b4d4ca.css`, identique octet pour octet à celle de la fusion construite en local.
+- Écart de CSS avec la feuille servie avant fusion (`00c919af44f29472.css`) : une seule déclaration ajoutée au thème, la variable de police « sans », qui renvoie à Geist, non chargée. Elle n'a aucun consommateur : 0 référence `var()` à cette variable dans les CSS, JS et HTML du build ; l'utilitaire `font-sans` compile vers la variable Geist, avant comme après. Une propriété personnalisée sans consommateur ne modifie aucune valeur calculée : rendu inchangé.
+- Cause de cet écart : l'entrée UB-04 ci-dessous cite le nom de cette variable en toutes lettres, et Tailwind analyse aussi les `.md` de `docs/`. Scanner de Tailwind (`@tailwindcss/oxide`) : le candidat est extrait de `JOURNAL.md` à `8365c73` ; il ne l'est ni de `JOURNAL.md` à `a6760da`, ni du même fichier une fois ce nom reformulé. La parité CSS annoncée dans #74 (« CSS compilée identique », `00c919af44f29472.css`) ne vaut donc pas pour la tête fusionnée : les pages du site référencent la nouvelle feuille.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`, comme pour les PR précédentes. Cela repose sur des schémas observés.
+
+**Non regardé** —
+- `www` dans Chrome (R4). Une requête de script sur l'article FR a reçu 403 à 10:31:49 UTC, sans valeur de preuve.
+- Les 122 autres articles du gabarit, un par un, en production : contrôlés sur le build local seulement.
+- Firefox, Safari, appareils réels ; GSC.
+
+**Suite** —
+- Laurent, dans Chrome sur `www` : les 3 articles ci-dessus. Attendu : titre seul dans le H1, fil d'Ariane au-dessus, rendu inchangé ; dans la source, `nav` étiqueté juste avant `<h1>`.
+- Hors périmètre, inchangé : `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` (FR et EN, 4 pages) portent toujours le fil dans leur `<h1>` : PR distincte.
+- Libellé du repère à migrer vers `messages/*.json` après #64 et #66.
+- Proposition, non appliquée : inscrire dans `03-PIEGES.md` que Tailwind analyse les `.md` de `docs/`, et qu'un nom de variable ou de classe CSS cité dans le journal peut modifier la CSS de production. La variable ajoutée est sans effet ; l'entrée UB-04 n'est pas retouchée (on n'efface jamais).
+
+---
+
 ## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
 
 **Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
