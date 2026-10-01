@@ -25,6 +25,25 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D40 · 2026-09-30 · Toute modification client-facing substantielle passe par une Preview transmise à Sébastien avant publication
+
+**Décidé par** : Laurent
+**Statut** : proposée dans la PR #65 (brouillon) — en vigueur à sa fusion
+
+**La décision** — Toute modification client-facing substantielle (nouvel article, nouvelle page ou landing, page commerciale, refonte visible, changement éditorial significatif) passe par une Preview Vercel contrôlée et transmise à Sébastien avant publication globale : branche, PR brouillon, CI verte, Preview « Ready » sur la même tête, contrôle du rendu (desktop, 390 px, SEO), envoi du lien et d'un dossier de validation court, retour de Sébastien, fusion. Le lien transmis est l'alias de branche, accompagné du SHA de tête ; un push après l'envoi est signalé avec la nouvelle tête. Pour un nouvel article, le circuit s'applique au FR avant toute traduction, puis aux trois langues avant la publication coordonnée (D38). Procédure : `08-PREVIEW-VALIDATION.md`.
+
+**Ce qu'elle ne change pas** — Le régime de validation de D12, D13, D15 et D16 :
+- création de page ou d'article, prix affichés, suppression d'URL à backlinks : validation **explicite** de Sébastien, comme avant ;
+- réécriture de contenu existant : validation **tacite** de D15 ; la Preview transmise lui donne de quoi objecter, sans créer de GO obligatoire ;
+- modification technique ou non client-facing : D12, CI verte et Preview contrôlée par Laurent, sans transmission.
+Aucun accès Vercel n'est modifié.
+
+**Le contexte** — Consigne de Laurent du 30/09 (`VERCEL_PREVIEW_BEFORE_PUBLICATION = YES`). Mesure du 30/09 sur #59, #60 et #64 : Preview créées et « Ready » sur la tête, protégées par Vercel Authentication (302 vers `vercel.com/sso-api`), `X-Robots-Tag: noindex`. L'accès de Sébastien aux Preview n'est pas établi par les sources du dépôt ; il se vérifie au premier envoi.
+
+**Ce qu'elle interdit** — Fusionner sur `main` une modification client-facing substantielle pour la montrer à Sébastien. Tenir un silence pour un GO hors du cas tacite de D15. Présenter une CI verte, une Preview « Ready » ou un lien envoyé comme une validation éditoriale. Créer un lien partageable, approuver une demande d'accès, modifier la protection des déploiements ou transmettre le jeton de contournement sans GO de Laurent.
+
+---
+
 ## D38 · 2026-09-28 · Tout nouvel article se publie en FR, EN et de-ch de façon coordonnée
 
 **Décidé par** : Laurent

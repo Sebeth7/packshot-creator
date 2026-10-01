@@ -182,6 +182,11 @@ Le Preview a une limite qu'il faut connaître : **il ne passe pas par le Worker
 Cloudflare**. Un changement de redirection dans le Worker n'y est donc pas
 testable. Voir `05-INFRA.md`.
 
+**Modification client-facing substantielle** (nouvel article, page, landing,
+refonte, changement éditorial significatif) : après ce contrôle, le lien du
+Preview part chez Sébastien avec un dossier de validation court, avant toute
+fusion (D40). URL à envoyer, accès, gabarit : `08-PREVIEW-VALIDATION.md`.
+
 ---
 
 ## Étape 6 — Merger
