@@ -1,0 +1,422 @@
+{
+  "family": "67c1c9a56fbc37f605b6e931",
+  "slugs": {
+    "fr": "comparatif-de-solutions-de-photographie-automatisee",
+    "en": "comparison-of-automated-photography-solutions",
+    "de-ch": null
+  },
+  "sujet": "Étude comparative signée par le consultant Stéphane Gormand sur les temps de production de l'Orbitvu Alphashot XL Pro V2 et du PackshotCreator R3 Mark II (Ortery 3D PhotoBench 280) ; elle conclut à la supériorité d'Orbitvu et justifie le partenariat PackshotCreator–Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "EN : « Product Photography Expert (e.g. Plus Ltd. and Orbitvu France) » vient de « (ex. PPlus Ltd. et Orbitvu France) » (« ex. » au sens d'« ancien » rendu par « e.g. », nom « PPlus » altéré) ; « He was at the origin of the first photographic studio “Packshot” » calque « Il est à l'origine du premier studio » ; « five cameras Canon RP » garde l'ordre de « cinq caméras Canon RP » ; « (5 lines) » vient de « (5 lignes) » ; « 78 visual contents » de « contenus visuels » ; espaces françaises avant les deux-points conservées dans le JSON EN (« PackshotCreator/Ortery : 115 seconds », « Implications for the customer : »). [Inférence] Le FR contient lui-même un résidu anglais, « (5 rows) », et des deux-points sans espace à l'anglaise (« révèlent: », « clients: ») : une première rédaction ou un passage partiel par l'anglais est possible, mais non établi.",
+  "qualite": {
+    "fr": "C",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français globalement fluide, mais défauts éditoriaux lourds : le nom du fondateur a été remplacé par « PackshotCreator » (« a été créé par PackshotCreator », « Il » ne renvoie plus à personne) ; « cinq tests » annoncés pour quatre décrits ; un gain de « 142 secondes » contredit les chiffres (35 s) ; phrase sans verbe ; « (5 rows) » en anglais ; « Un temps impressionnant » ; « de Orbitvu » ; deux-points à l'anglaise ; metaTitle mal ponctué ; insertions sectorielles de maillage dans une étude signée à la première personne.",
+    "en": "Anglais compréhensible mais traduit du FR, avec les mêmes défauts de fond (nom remplacé, 4 tests sur 5 annoncés, 142 s), auxquels s'ajoutent « e.g. Plus Ltd. » (contresens et nom altéré), « He was at the origin of », « five cameras Canon RP », « An impressive time of 280 seconds », des espaces avant les deux-points, « the high-tech, household appliances and computers , » sans nom, et un alt en français. FAQ correcte.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 20,
+    "en": 26,
+    "de-ch": 0
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "PackshotCreator , a été créé par PackshotCreator il y a plus de vingt ans. Il est à l'origine du premier studio photographique « Packshot » et ne cesse depuis d'innover dans ce domaine.",
+      "probleme": "Nom du fondateur remplacé à tort : la version importée de Webflow (git show 56d4bc32) porte « a été créé par Laurent Wainberg il y a plus de vingt ans ». Le remplacement vient du commit 8ae45f63 (12/06/2026, « auteur générique PackshotCreator sur les articles migrés »), qui a touché le corps en plus du champ auteur. La phrase devient absurde et « Il » ne renvoie plus à personne. Virgule fautive entre sujet et verbe (présente dans le HTML).",
+      "proposition": "PackshotCreator a été créé par Laurent Wainberg il y a plus de vingt ans. Il est à l'origine du premier studio photographique « Packshot » et ne cesse depuis d'innover dans ce domaine. (Rétablir le texte importé : arbitrage éditorial.)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "L'analyse s'est concentrée sur cinq tests critiques , comparant les temps de production et les temps nets, y compris le positionnement du produit.",
+      "probleme": "Cinq tests annoncés, quatre décrits (1. animation 360°, 2. animation 3D 12 photos, 3. animation 3D 48 photos, 4. vidéo 360°). Défaut identique en EN.",
+      "proposition": "Vérifier dans l'étude source s'il manque un test ; à défaut : « L'analyse s'est concentrée sur quatre tests… »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Bénéfice client : Une réduction de 142 secondes par animation signifie une plus grande efficacité pour les projets à gros volume, réduisant considérablement les coûts et les délais de production.",
+      "probleme": "Chiffre contradictoire : le test 1 donne 115 s contre 80 s (net 175 contre 140), soit 35 s de gain, valeur annoncée dans la phrase précédente. 142 s ne résulte d'aucun chiffre de l'article.",
+      "proposition": "Vérifier la source ; à défaut, supprimer la phrase ou la ramener à 35 s."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cette solution est particulièrement adaptée au secteur du skincare et des cosmétiques , où des visuels de haute qualité sont essentiels pour mettre en valeur les produits.",
+      "probleme": "Phrase de maillage sectoriel insérée dans la conclusion d'une étude signée à la première personne : elle prête au consultant une recommandation que ses tests ne couvrent pas (aucun test sectoriel ; la seule image de produit montre une chaussure). Même procédé pour « Cette comparaison est particulièrement pertinente pour le secteur de la mode et des accessoires » et « Cette configuration est idéale pour le secteur du high-tech, de l'électroménager et de l'informatique ».",
+      "proposition": "Retirer ces insertions du texte signé, ou les placer hors de l'étude (encadré éditorial PackshotCreator)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Marqueur Webflow « image décorative » servi comme texte alternatif (aucune substitution trouvée dans lib/, components/ ni app/) : un lecteur d'écran le lit tel quel.",
+      "proposition": "alt=\"\" si l'image est décorative, sinon alt descriptif."
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "3. Animation 3D complexe avec 48 photos (5 rows)",
+      "probleme": "Mot anglais dans l'intertitre FR ; le test 2 écrit « (5 lignes) ». En 3D multi-rangées, le terme usuel est « rangées ».",
+      "proposition": "3. Animation 3D complexe avec 48 photos (5 rangées)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Bénéfice client : Un temps impressionnant de 280 secondes par produit",
+      "probleme": "Il manque le mot « gain » (388 − 108 = 280 s) ; majuscule après les deux-points.",
+      "proposition": "Bénéfice client : un gain de temps impressionnant de 280 secondes par produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "La qualité visuelle des contenus répondant aux normes élevées du e-commerce moderne.",
+      "probleme": "Phrase sans verbe principal.",
+      "proposition": "La qualité visuelle des contenus répond aux normes élevées du e-commerce moderne."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Etude réalisée par Stéphane Gormand, Expert Photographie Produit (ex. PPlus Ltd. et Orbitvu France).",
+      "probleme": "Majuscule non accentuée (« Etude ») ; majuscules à l'anglaise sur « Expert Photographie Produit ».",
+      "proposition": "Étude réalisée par Stéphane Gormand, expert en photographie produit (ex-PPlus Ltd. et Orbitvu France)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nous avons testé l' Alphashot XL PRO V2 de Orbitvu",
+      "probleme": "Élision manquante : « d'Orbitvu ».",
+      "proposition": "Nous avons testé l'Alphashot XL Pro V2 d'Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "un système polyvalent équipé de son support multi-caméras et de cinq caméras Canon RP",
+      "probleme": "Le Canon EOS RP est un appareil photo hybride ; en français, « caméra » désigne un appareil vidéo.",
+      "proposition": "un système polyvalent équipé de son support multi-appareils et de cinq appareils photo Canon EOS RP"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Comparaison Orbitvu vs Ortery: Test des studios photo automatisés pour e-commerce [Étude 2023]",
+      "probleme": "Deux-points sans espace à l'anglaise, « Test » en majuscule, « vs » ; 94 caractères.",
+      "proposition": "Orbitvu ou Ortery : comparatif des studios photo automatisés pour l'e-commerce (étude 2023)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Orbitvu ou Ortery : Le meilleur studio photo automatisé ?",
+      "probleme": "Majuscule inutile après les deux-points.",
+      "proposition": "Orbitvu ou Ortery : le meilleur studio photo automatisé ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "comparant les temps de production et les temps nets, y compris le positionnement du produit",
+      "probleme": "« net » désigne ici le temps total, manipulation comprise : il est supérieur au temps de production (115 s, « net 175 »), à l'inverse du sens usuel de « net ».",
+      "proposition": "comparant les temps de production et les temps totaux, positionnement du produit compris"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "pictures and animations from Orbitvu Station Software",
+      "probleme": "Alt en anglais sur la page française.",
+      "proposition": "photos et animations produites avec le logiciel Orbitvu Station"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "PackshotCreator , was created by PackshotCreator over twenty years ago. He was at the origin of the first photographic studio “Packshot” and has continued to innovate in this field ever since.",
+      "probleme": "Même remplacement du nom du fondateur qu'en FR (version importée : « was created by Laurent Wainberg ») ; « He » sans référent ; « was at the origin of » est un calque.",
+      "proposition": "PackshotCreator was founded by Laurent Wainberg over twenty years ago. He created the first “Packshot” photo studio and has kept innovating in this field ever since. (Arbitrage éditorial.)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Study conducted by Stéphane Gormand, Product Photography Expert (e.g. Plus Ltd. and Orbitvu France).",
+      "probleme": "« ex. » (ancien) traduit par « e.g. » (par exemple) : contresens ; nom de l'employeur altéré (« PPlus » en FR).",
+      "proposition": "Study conducted by Stéphane Gormand, product photography expert (formerly with PPlus Ltd. and Orbitvu France)."
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The analysis focused on five critical tests , comparing production times and net times, including product positioning.",
+      "probleme": "Cinq tests annoncés, quatre décrits (même défaut qu'en FR).",
+      "proposition": "Vérifier la source ; à défaut : « The analysis focused on four critical tests… »."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Customer benefit : A reduction of 142 seconds per animation means greater efficiency for high-volume projects",
+      "probleme": "Même contradiction qu'en FR : le test 1 donne 35 s de gain.",
+      "proposition": "Vérifier la source ; à défaut, supprimer ou ramener à 35 s."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Customer benefit : An impressive time of 280 seconds per product",
+      "probleme": "Sens perdu : il s'agit d'un gain de temps.",
+      "proposition": "Customer benefit: an impressive 280 seconds saved per product"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This solution is particularly suited to the sector of Skincare and cosmetics , where high-quality visuals are essential to highlight products.",
+      "probleme": "Même insertion de maillage sectoriel qu'en FR dans la conclusion signée ; majuscule parasite à « Skincare ».",
+      "proposition": "Retirer l'insertion du texte signé ou la placer hors de l'étude."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Marqueur Webflow servi comme alt (même défaut qu'en FR).",
+      "proposition": "alt=\"\" si l'image est décorative, sinon alt descriptif."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The visual quality of content that meets the high standards of modern e-commerce.",
+      "probleme": "Phrase sans verbe principal (calque du FR).",
+      "proposition": "The visual quality of the content meets the high standards of modern e-commerce."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "equipped with its multi-camera support and five cameras Canon RP",
+      "probleme": "Ordre des mots français ; « support » pour « stand ».",
+      "proposition": "equipped with its multi-camera stand and five Canon EOS RP cameras"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This configuration is ideal for the high-tech, household appliances and computers , where the precision and clarity of the images are crucial.",
+      "probleme": "Nom « sectors » manquant ; l'espace avant la virgule est un artefact d'extraction.",
+      "proposition": "This configuration is ideal for the high-tech, home appliance and computer sectors, where image precision and clarity are crucial."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "PackshotCreator/Ortery : 115 seconds (net 175)",
+      "probleme": "Espace avant les deux-points (typographie française) présente dans le JSON EN ; même défaut sur les 8 puces de résultats et sur « Implications for the customer : », « Customer benefit : », etc.",
+      "proposition": "PackshotCreator/Ortery: 115 seconds (net 175)"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Creating a 3D animation with 12 photos (5 lines)",
+      "probleme": "« lignes » rendu par « lines » ; le test 3 dit « rows » ; forme différente de l'intertitre 1 (« Creation of »).",
+      "proposition": "2. Creating a 3D animation with 12 photos (5 rows)"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "chaussure photographiée par Orbitvu Alphashot XL V2 PRO",
+      "probleme": "Alt en français sur la page anglaise ; nom de produit inversé (« XL V2 PRO »).",
+      "proposition": "Shoe photographed with the Orbitvu Alphashot XL Pro V2"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "As an experienced consultant in product photography, PackshotCreator asked me to compare two automated photography solutions.",
+      "probleme": "Apposition mal rattachée : grammaticalement, c'est PackshotCreator qui serait le consultant (même défaut en FR).",
+      "proposition": "As an experienced product photography consultant, I was asked by PackshotCreator to compare two automated photography solutions."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "They also want to ensure the distribution of the best automated shooting solutions on the market.",
+      "probleme": "« They » renvoie à PackshotCreator, singulier (calque du « Ils » du FR).",
+      "proposition": "PackshotCreator also wants to make sure it distributes the best automated shooting solutions on the market."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Technical performances",
+      "probleme": "« performance » est indénombrable dans ce sens.",
+      "proposition": "Technical performance"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu can create up to 78 visual contents per day",
+      "probleme": "« contents » au pluriel est un calque de « contenus visuels ».",
+      "proposition": "Orbitvu can create up to 78 visual assets per day"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "en présence d'un huissier pour garantir l'authenticité et l'intégrité des résultats",
+      "source_dans_texte": "aucune (pas de constat d'huissier cité ni lié)",
+      "motif": "Garantie d'authenticité invoquée sans pièce consultable.",
+      "ecart_fr_en": "EN identique (« in the presence of a bailiff »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu peut créer jusqu'à 78 contenus visuels par jour , contre 33 pour PackshotCreator/Ortery, ce qui fait plus que doubler la productivité quotidienne (+136%).",
+      "source_dans_texte": "aucune",
+      "motif": "Calcul théorique (« utilisation en studio à 100% du temps de fonctionnement »), mix de visuels non précisé ; 78/33 = 2,36, le +136 % est cohérent.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec Orbitvu, cela équivaut à 19 734 contenus visuels par an , contre 8 457 pour PackshotCreator/Ortery",
+      "source_dans_texte": "aucune",
+      "motif": "19 734 = 78 × 253 jours, mais 33 × 253 = 8 349 ≠ 8 457 (8 457 / 33 = 256,3 jours) : base de jours non homogène ou chiffre quotidien arrondi ; à vérifier dans l'étude.",
+      "ecart_fr_en": "EN identique (19,734 / 8,457)."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Utiliser la solution d'Orbitvu peut permettre d'économiser jusqu'à 50,6 jours de travail par an",
+      "source_dans_texte": "aucune",
+      "motif": "Base de calcul non indiquée.",
+      "ecart_fr_en": "EN « up to 50.6 working days per year » identique."
+    },
+    {
+      "langue": "fr",
+      "extrait": "les studios utilisant Orbitvu pourraient réaliser des économies d'environ 12 346,4 € par an par rapport à PackshotCreator/Ortery",
+      "source_dans_texte": "aucune",
+      "motif": "Coût journalier ou horaire utilisé non indiqué ; « environ » associé à une précision décimale.",
+      "ecart_fr_en": "EN « around €12,346.4 » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Bénéfice client : Une réduction de 142 secondes par animation",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre contradictoire avec le test (35 s).",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Réduire le temps de production avec Orbitvu signifie que les clients peuvent générer du contenu visuel de plus grande qualité en moins de temps",
+      "source_dans_texte": "aucune",
+      "motif": "Les tests mesurent des temps, pas la qualité : « de plus grande qualité » n'est pas démontré.",
+      "ecart_fr_en": "EN « higher quality visual content » identique."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Le gain de temps est énorme, permettant de réaliser des projets de grande envergure en une fraction du temps habituel – une véritable révolution en termes de productivité.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif (« véritable révolution »).",
+      "ecart_fr_en": "EN « a real revolution in terms of productivity » identique."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Même pour un gain de temps moindre, les performances constantes d'Orbitvu garantissent que les clients peuvent planifier et optimiser leurs opérations plus efficacement.",
+      "source_dans_texte": "aucune",
+      "motif": "« garantissent » pour un écart mesuré de 3 s (29 contre 26 s).",
+      "ecart_fr_en": "EN « ensures » identique."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Il est à l'origine du premier studio photographique « Packshot »",
+      "source_dans_texte": "aucune",
+      "motif": "Revendication d'antériorité (« premier ») à documenter.",
+      "ecart_fr_en": "EN « the first photographic studio “Packshot” » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L'économie de temps substantielle (jusqu'à 133% de productivité supplémentaire) permet un retour sur investissement rapide, même pour des volumes modérés.",
+      "source_dans_texte": "aucune",
+      "motif": "133 % est la hausse de capacité annuelle du corps, présentée ici comme « économie de temps » et assortie d'un « jusqu'à » absent du corps ; ROI « rapide » non chiffré.",
+      "ecart_fr_en": "EN « (up to 133% in additional productivity) » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "l'Alphashot XL PRO V2 d'Orbitvu offre une meilleure gestion des objets réfléchissants et transparents grâce à ses algorithmes avancés de traitement d'image",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation de la FAQ hors du périmètre des tests décrits.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu est un leader dans le domaine des solutions de photographie de produits automatisées.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif ; les chiffres qui suivent (« Plus de 10 ans d'innovation », « plus de 30 personnes », « 180 salariés ») sont datés et non sourcés.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Non, Ortery n'est plus présent en France depuis 2023.",
+      "source_dans_texte": "aucune",
+      "motif": "Fait daté sur un concurrent, à valider.",
+      "ecart_fr_en": "EN identique."
+    }
+  ],
+  "titre_h1_meta": "FR : title (JSON) « Comparaison des solutions de photographie automatisées : Orbitvu Alphashot XL PRO V2 vs PackshotCreator R3 Mark II (Ortery 3D PhotoBench 280) » (« automatisées » s'accorde avec « solutions », mais « photographie automatisée » serait plus naturel ; « vs ») ; H1 « Orbitvu ou Ortery : Le meilleur studio photo automatisé ? » (majuscule après les deux-points) ; metaTitle de 94 car. avec deux-points à l'anglaise, servi en <title> ; la description promet « ROI analysés par un expert » alors que le corps ne calcule pas de ROI (seulement des économies théoriques). Les champs restent cohérents sur le duel Orbitvu / Ortery. EN : même architecture ; metaTitle de 89 car. ; H1 correct ; « ROI analyzed by an expert » même surpromesse.",
+  "structure_fr_en": "Parité : 6 h2, 10 h3, 24 p, 12 li, 3 images, 1 iframe, 5 FAQ dans les deux langues ; 1 007 mots FR contre 888 EN. L'EN a un lien de plus (« high productivity and repeatability » → /en/studios-photo-automatises) ; le lien du secteur mode diverge (FR → /fr/industrie, hub générique ; EN → /en/industrie/mode-textile) ; le lien Canon pointe vers canon.fr aussi sur la page EN. Dans les deux langues : 4 tests décrits sur 5 annoncés ; libellés de bénéfice incohérents (« Implications pour le client », « Bénéfice client », « Bénéfices pour le client », « Avantages client »).",
+  "images_alt_legendes": "3 images, mêmes alts dans les deux langues : « chaussure photographiée par Orbitvu Alphashot XL V2 PRO » (en français, nom de produit inversé, aussi sur la page EN), « pictures and animations from Orbitvu Station Software » (en anglais, aussi sur la page FR), « __wf_reserved_decorative » (marqueur Webflow servi tel quel ; alt vide attendu si l'image est décorative). Aucune légende.",
+  "appellations": "Bloquant : nom du fondateur (Laurent Wainberg dans l'import Webflow) remplacé par « PackshotCreator » en FR et en EN, effet de bord du commit 8ae45f63. Graphies variables du produit : « Alphashot XL PRO V2 », « Alphashot XL Pro V2 », « Alphashot XL V2 PRO » (alt) ; le catalogue du dépôt écrit « Alphashot XL Pro v2 ». « Orbitvu Station » et « Station Orbitvu » (FAQ FR). L'équivalence « PackshotCreator R3 Mark II = Ortery 3D PhotoBench 280 » et l'écriture « PackshotCreator/Ortery » sont cohérentes.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Arbitrages : (1) rétablir le nom de Laurent Wainberg dans la phrase d'introduction ou la reformuler sans nom (le commit 8ae45f63 visait le seul champ auteur) ; (2) présenter l'étude comme commanditée (le consultant conclut en faveur du partenaire commercial de PackshotCreator) et retirer les insertions sectorielles du texte signé ; (3) vérifier dans l'étude source le 5e test manquant et le chiffre de 142 s. Ensuite : retouches FR et EN (EN : « e.g. Plus Ltd. », espaces avant les deux-points, alts). Étude datée du 11/11/2023 ; faits datés : partenariat PackshotCreator–Orbitvu, retrait d'Ortery en 2023, chiffres d'entreprise Orbitvu. L'Alphashot XL Pro v2 n'est pas marqué « delisted » dans components/calculators/ROICalculator/lib/machines.ts (l'XL v2 l'est, commit 1cbc569a) ; à vérifier si l'Alphashot XL G2 a remplacé le modèle comparé. Liens externes (ortery.com, orbitvu.com, canon.fr) et vidéo YouTube 9mrB_ErHkuM non vérifiés (pas d'accès web)."
+}

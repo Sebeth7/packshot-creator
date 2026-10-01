@@ -1,0 +1,382 @@
+{
+  "family": "685ab5b7a6edbccf485aeb63",
+  "slugs": {
+    "fr": "ia-lumieres-virtuelles-revolution-packshot",
+    "en": "ai-virtual-lights-revolution-packshot",
+    "de-ch": null
+  },
+  "sujet": "Article de fond sur l'éclairage piloté par logiciel et par IA de l'Alphashot Pro G2 (74 sources LED) : limites de l'éclairage traditionnel, capacités, gains annoncés, applications sectorielles, perspectives de marché, guide de transition et spécifications.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "La seconde moitié de l'EN porte des traces objectives de traduction automatique depuis le français : « The convergence between Artificial intelligence And Virtualization of Light Accelerate. » (calque de « La convergence entre intelligence artificielle et virtualisation de la lumière s'accélère ») ; « requires a Accurate initial audit » (« un audit initial précis ») ; « types of objects treated » (« typologies des objets traités ») ; « such as rental for use » (« location à l'usage ») ; « collaboration between actors » (« entre acteurs ») ; « AI trimming » (« détourage IA ») ; « brilliant accessories » (« accessoires brillants ») ; « Cosmetic faithfully reproduce » (« Les cosmétiques restituent »). La première moitié (jusqu'à « Sectoral and vertical applications ») est une traduction fluide, vraisemblablement post-éditée.",
+  "qualite": {
+    "fr": "C",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Langue quasi native, rythme éditorial correct, quelques anglicismes métier (« fashion », « fill latéral », « double overhead », « setup », « full-auto »). Mais défauts éditoriaux majeurs : spécification de taille produit contredite par le catalogue du site (50 × 50 × 50 cm contre 35 × 35 × 40 cm), chiffres de temps incohérents entre eux, « 74 sources LED virtuelles » alors que les LED sont physiques, claims absolus non sourcés (écart-type nul, ROI en moins de six mois, certification « Virtual Light Ready »). Réécriture partielle des passages chiffrés après validation.",
+    "en": "Sections 1 à 5 fluides et idiomatiques (niveau A/B). Sections « Market, Evolution and Prospects » à « Key technical specifications » en traduction automatique brute : phrases incompréhensibles (« Unto », « Accelerate »), contresens (« resulting documentation » pour « documentation rigoureuse », « AI trimming »), doublon « JPEG, JPEG », casse des intertitres incohérente. Hérite en outre des erreurs factuelles du FR. Réécriture partielle.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 28,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "un plateau rotatif précis au 0,5 degré supportant jusqu’à 10 kg et des produits de 50 × 50 × 50 cm maximum",
+      "probleme": "Fait contredit par le catalogue du site (components/calculators/ROICalculator/lib/machines.ts, alphashot-pro-g2 : tailleMax 35×35×40 cm, 10 kg), utilisé par la fiche produit. Le poids concorde, la taille non.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le temps total par produit s’effondre : on passe de 15-20 minutes (méthode classique) à moins de 30 secondes par visuel, post-production incluse.",
+      "probleme": "Incohérence interne des chiffres : l'article annonce ailleurs 30 à 45 minutes de reconfiguration par changement de produit et 15 à 30 minutes de retouche par image (soit plus que 15-20 minutes au total), puis, dans les spécifications, une prise de vue « de 5 minutes à 30 secondes » avec post-production « intégrée ». Aucune source.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ce système intègre 74 sources LED virtuelles positionnées autour du produit",
+      "probleme": "Les sources sont des LED physiques pilotées par logiciel (la FAQ parle de « sources LED miniaturisées », le catalogue de « 74 panneaux lumineux contrôlables indépendamment ») ; « virtuelles » laisse croire à un éclairage de synthèse (rendu 3D). Même formule dans les spécifications (« 74 LED virtuelles »).",
+      "proposition": "Ce système intègre 74 sources LED positionnées autour du produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le secteur fashion bénéficie d’une restitution parfaite des textures textiles et des accessoires brillants.",
+      "probleme": "Anglicisme inutile (« fashion »), d'autant que l'ancre pointe vers le hub des secteurs.",
+      "proposition": "Le secteur de la mode bénéficie d’une restitution parfaite des textures textiles et des accessoires brillants."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "le système combine automatiquement backlight, rim light et fill latéral",
+      "probleme": "Jargon anglais non traduit, « fill latéral » hybride (même formule dans la FAQ).",
+      "proposition": "le système combine automatiquement contre-jour, lumière de contour (rim light) et débouchage latéral"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "le double overhead virtuel permet d’ajuster les reflets sans risque de surexposition",
+      "probleme": "« overhead » non traduit.",
+      "proposition": "le double éclairage zénithal permet d’ajuster les reflets sans risque de surexposition"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Des certifications sectorielles (“Virtual Light Ready”)",
+      "probleme": "Guillemets anglais dans un texte français ; voir aussi la réserve sur l'existence de cette certification (claims).",
+      "proposition": "Des certifications sectorielles (« Virtual Light Ready »)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Comment l’IA et les lumières virtuelles révolutionnent le packshot ?",
+      "probleme": "Point d'interrogation sur une tournure non interrogative ; le <title> servi et le metaTitle n'ont pas de « ? », le H1 dit « l’éclairage virtuel transforment ». Trois formulations pour un même titre.",
+      "proposition": "Comment l’IA et l’éclairage virtuel transforment le packshot"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Est-ce possible de reproduire à l’identique une configuration d’éclairage ?",
+      "probleme": "Tournure familière pour une FAQ écrite.",
+      "proposition": "Est-il possible de reproduire à l’identique une configuration d’éclairage ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une température de couleur réglable de 3200 à 6500 Kelvin",
+      "probleme": "Typographie française : séparateur de milliers et symbole de l'unité (ou « kelvins » en minuscule).",
+      "proposition": "une température de couleur réglable de 3 200 à 6 500 K"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Texte alternatif réservé de Webflow sur l'unique image (section « Marché, évolution et perspectives ») ; idem en EN.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "The convergence between Artificial intelligence And Virtualization of Light Accelerate.",
+      "probleme": "Phrase agrammaticale (verbe non conjugué, majuscules parasites).",
+      "proposition": "The convergence of artificial intelligence and light virtualization is accelerating."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "The Lighting Setup Time Goes From 30-45 minutes Unto 10 seconds, the shooting of 5 minutes Unto 30 seconds and post-production is integrated.",
+      "probleme": "Phrase incompréhensible (« Unto », casse aléatoire).",
+      "proposition": "Lighting setup time drops from 30–45 minutes to 10 seconds, shooting time from 5 minutes to 30 seconds, and post-production is built in."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "an adjustable color temperature of 3200 to 6500 Kelvin, has CRI greater than 95 For optimal color fidelity, a rotating plate accurate to the 0.5 degrees Supporting up to 10 kg and products from 50 x 50 x 50 cm maximum.",
+      "probleme": "Énumération cassée (« has CRI », majuscules parasites, « products from … maximum ») ; la dimension 50 × 50 × 50 cm est en outre contredite par le catalogue (voir FR).",
+      "proposition": "an adjustable color temperature from 3,200 to 6,500 K, a CRI above 95 for optimal color fidelity, and a turntable accurate to 0.5° supporting up to 10 kg (maximum product size to be confirmed)."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "and AI trimming reaching 99.5% accuracy",
+      "probleme": "« détourage IA » rendu par « trimming » (rognage) ; le terme attendu est background removal / clipping.",
+      "proposition": "and AI background removal with 99.5% accuracy"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "and on the resulting documentation of the presets by product family",
+      "probleme": "Contresens : le FR dit « documentation rigoureuse des presets ».",
+      "proposition": "and on rigorous documentation of presets for each product family"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The transition to virtual lighting requires a Accurate initial audit :",
+      "probleme": "« a Accurate », majuscule parasite, espace avant les deux-points (réelle dans le JSON).",
+      "proposition": "The transition to virtual lighting requires a precise initial audit:"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "offers native exports in RAW, JPEG, JPEG, PNG, TIFF, AVIF and WebP",
+      "probleme": "Doublon « JPEG, JPEG » absent du FR.",
+      "proposition": "offers native exports in RAW, JPEG, PNG, TIFF, AVIF and WebP"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "such as rental for use, the sharing of studios or the total outsourcing of visual production",
+      "probleme": "Calques (« location à l'usage », « mutualisation »).",
+      "proposition": "such as pay-per-use rental, shared studios or fully outsourced visual production"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "frictionless collaboration between actors",
+      "probleme": "« acteurs » (du marché) rendu par « actors ».",
+      "proposition": "frictionless collaboration between stakeholders"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The Fashion sector benefits from perfect reproduction of textile textures and brilliant accessories.",
+      "probleme": "« brillants » (qui brillent) rendu par « brilliant » ; majuscule à « Fashion ».",
+      "proposition": "The fashion sector benefits from accurate reproduction of textile textures and shiny accessories."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cosmetic faithfully reproduce metallic effects, bottle transparency, and cream textures.",
+      "probleme": "Sujet incorrect (« Cosmetic » singulier, verbe pluriel).",
+      "proposition": "Cosmetics images faithfully reproduce metallic effects, bottle transparency and cream textures."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "types of objects treated",
+      "probleme": "« objets traités » rendu par « treated ».",
+      "proposition": "types of products processed"
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Market, Evolution and Prospects",
+      "probleme": "Casse des intertitres incohérente : Title Case pour « AI-Driven Virtual Lighting: A Fundamental Breakthrough », « New Technical Capabilities and Concrete Use Cases », « Market, Evolution and Prospects », sentence case pour les cinq autres.",
+      "proposition": "Market trends and outlook"
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "How are AI and virtual lights revolutionizing the packshot?",
+      "probleme": "Title, H1 (« How AI and Virtual Lighting Are Transforming the Packshot ») et metaTitle (« How AI and Virtual Lights Are Revolutionizing the Packshot ») divergent (lights/lighting, casse) ; « the packshot » peu idiomatique.",
+      "proposition": "How AI and virtual lighting are transforming packshot photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "lateral fill modes for transparencies",
+      "probleme": "« pour les transparents » (produits) rendu par « for transparencies » (diapositives).",
+      "proposition": "side fill modes for transparent products"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "ce processus prend en moyenne 30 à 45 minutes",
+      "source_dans_texte": "aucune",
+      "motif": "Moyenne de marché non sourcée.",
+      "ecart_fr_en": "EN ajoute « per setup », sans changer le sens."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "rallongeant chaque image de 15 à 30 minutes de retouches",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé, incohérent avec « 15-20 minutes » de temps total par produit.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "on passe de 15-20 minutes (méthode classique) à moins de 30 secondes par visuel, post-production incluse",
+      "source_dans_texte": "aucune",
+      "motif": "Gain non sourcé ; incohérent avec les autres temps de l'article.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le temps de setup éclairage est réduit de 90 %, la post-production disparaît dans 80 % des cas.",
+      "source_dans_texte": "aucune",
+      "motif": "Pourcentages non sourcés ; « de 30-45 minutes à 10 secondes » dans les spécifications correspond à plus de 99 %, pas 90 %.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le volume journalier de visuels traités peut être multiplié par dix",
+      "source_dans_texte": "aucune",
+      "motif": "Multiplicateur non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les studios de taille critique rentabilisent l’investissement en moins de six mois, avec un calcul de retour basé sur des données réelles et vérifiables.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de ROI ; les « données réelles et vérifiables » ne sont pas fournies. Le catalogue du site (FAQ alphashot-pro-g2) dit « ROI généralement atteint dès la première année ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’écart-type entre les images d’une même série est nul.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation absolue, physiquement improbable.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’outil IQ Mask assure un détourage immédiat et parfait, même sur les produits les plus difficiles, sans la moindre ombre portée.",
+      "source_dans_texte": "aucune",
+      "motif": "« parfait », « les plus difficiles » : promesse absolue.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "issus d’une base de milliers de configurations validées en conditions réelles",
+      "source_dans_texte": "aucune",
+      "motif": "Volume de la base non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La prise en main par un nouvel opérateur ne prend plus que deux heures",
+      "source_dans_texte": "aucune",
+      "motif": "Durée non sourcée (le catalogue propose une formation Essential de 4 h).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des certifications sectorielles (“Virtual Light Ready”)",
+      "source_dans_texte": "aucune",
+      "motif": "Existence de cette certification non établie : présentée comme structurant le marché à venir.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’Alphashot Pro G2 intègre 74 LED virtuelles à contrôle granulaire (0 à 100 % par pas de 1 %), une température de couleur réglable de 3200 à 6500 Kelvin, un IRC supérieur à 95",
+      "source_dans_texte": "aucune",
+      "motif": "Spécifications à confronter à la fiche Orbitvu (74 sources : concordant avec le catalogue ; le reste non vérifiable dans le dépôt).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "des produits de 50 × 50 × 50 cm maximum",
+      "source_dans_texte": "aucune",
+      "motif": "Contredit par le catalogue du site (35 × 35 × 40 cm).",
+      "ecart_fr_en": "EN « products from 50 x 50 x 50 cm maximum » (même chiffre)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "un détourage IA atteignant 99,5 % de précision",
+      "source_dans_texte": "aucune",
+      "motif": "Taux de précision non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "en",
+      "extrait": "Difficult materials are now fully controllable.",
+      "source_dans_texte": "aucune",
+      "motif": "Renforcement de traduction.",
+      "ecart_fr_en": "FR « Les matériaux difficiles sont enfin maîtrisables » : « fully » ajouté en EN."
+    },
+    {
+      "langue": "en",
+      "extrait": "makes it possible to control reflections precisely and eliminate overexposure",
+      "source_dans_texte": "aucune",
+      "motif": "Renforcement de traduction.",
+      "ecart_fr_en": "FR « permet d’ajuster les reflets sans risque de surexposition » : EN promet d'« éliminer » la surexposition."
+    }
+  ],
+  "titre_h1_meta": "FR : title JSON « Comment l’IA et les lumières virtuelles révolutionnent le packshot ? » (avec « ? »), metaTitle et <title> servi sans « ? » (66 caractères, un peu long), H1 « Comment l’IA et l’éclairage virtuel transforment le packshot » : même sujet, trois formulations ; le corps parle d'« éclairage virtuel » et de « virtualisation de la lumière », jamais de « lumières virtuelles ». Description de 206 caractères (trop longue), fidèle au corps. EN : mêmes écarts (lights/lighting, revolutionizing/transforming) et casse incohérente entre title (sentence case) et H1/metaTitle (Title Case). Recommandation : un seul libellé aligné sur le H1.",
+  "structure_fr_en": "Parité : 8 H2, 1 image, 1 vidéo YouTube, 5 FAQ, même ordre. Découpage des paragraphes légèrement différent (FR 21, EN 22 : « Le luxe… » / « L’industrie B2B… » et « La convergence… » / « De nouveaux modèles… » séparés différemment), contenu équivalent. L'EN n'a pas le lien externe vers Orbitvu Station (FR 8 liens, EN 7).",
+  "images_alt_legendes": "Une seule image, alt « __wf_reserved_inherit » dans les deux langues, sans légende. Vidéo YouTube O7Q-q7Hnt0c dans les deux langues.",
+  "appellations": "« Alphashot Pro G2 », « Orbitvu Station », « IQ Mask » cohérents et conformes au catalogue. Aucune mention de PackshotCreator dans le corps ; auteur « PackshotCreator ». Champ auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par « PackshotCreator » le 12/06/2026 (commit 8ae45f63, choix délibéré de cohérence E-E-A-T) : pas une erreur de texte.",
+  "recommandation": "arbitrage éditorial (chiffres et spécifications) puis réécriture partielle (FR : passages chiffrés ; EN : sections « Market… » à « Key technical specifications »)",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées). La taille maximale produit (50 × 50 × 50 cm) contredit le catalogue du site (35 × 35 × 40 cm) : à trancher avec la fiche Orbitvu avant toute republication. Les perspectives (« IA prédictive », certifications « Virtual Light Ready », standards) sont des prévisions non sourcées présentées au futur de l'indicatif. Maillage : l'ancre « horlogerie » pointe vers /fr/industrie/bijoux-joaillerie alors qu'un hub /fr/industrie/horlogerie existe (data/secteurs.ts) ; l'ancre « fashion » pointe vers le hub générique /fr/industrie alors que /fr/industrie/mode-textile existe. En EN, les liens /en/industrie/* mènent à des pages servies en français et en noindex (lib/seo-config.ts). Double espace « The  food industry » en EN. Date 24/06/2025 cohérente avec la création de l'item Webflow. Aucune version de-ch."
+}

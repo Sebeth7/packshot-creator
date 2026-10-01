@@ -1,0 +1,378 @@
+{
+  "family": "67e646d359a299f6dc765521",
+  "slugs": {
+    "fr": "5-appareils-photo-en-simultane-pour-de-lanimation-3d-realiste",
+    "en": "5-cameras-realistic-3d-animation",
+    "de-ch": null
+  },
+  "sujet": "Article sur la préparation de la photogrammétrie 3D avec l'Orbitvu Alphashot XL Pro v2 (jusqu'à 5 appareils photo) : principe, flux de capture, étapes de reconstruction, cas du Parc archéologique de Pompéi, historique MaestroBot de PackshotCreator et FAQ IA/3D.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Le corps EN contient des mots français et des structures françaises : « Chez PackshotCreator, we have been mastering this technique since 2014 » ; « La photogrammetry is a technique » ; « restore the textures And the colours real » (← « les couleurs réelles », ordre nom-adjectif conservé) ; « Of automated multi-angle recordings » / « One direct compatibility » (← « Des captations… », « Une compatibilité… », articles indéfinis traduits mot à mot). Preuve structurelle : « THE<strong>Alphashot XL PRO v2</strong> » (3 fois) et « the<strong>AR/VR</strong> », rendus « THEAlphashot » et « theAR/VR », là où le FR a l'élision « L’<strong>Alphashot » et « l’<strong>AR/VR ». La FAQ EN, fluide, a été traduite séparément.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et clair. Corrections ciblées : légende en anglais, title/H1 sans rapport avec le sujet réel (photogrammétrie), calcul « 24 × 12 » incohérent avec « 300 images », calques mineurs (« caméras Canon DSLR », « AR/VR »), émojis dans les intertitres, hiérarchie commençant par un H3, deux alt réservés. Claims à valider (Pompéi, « première solution du marché »). Pas de réécriture du corps nécessaire.",
+    "en": "Corps en traduction automatique brute : mots français (« La », « Chez »), « THE » en capitales collé au nom du produit, majuscules parasites (« And », « Is »), puces incompréhensibles (« Of automated… », « One direct compatibility »), terminologie fausse (« tray » et « set » pour le plateau tournant). Seule la FAQ est publiable. Retraduction complète du corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 55,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "5 appareils photo en simultané pour de l'animation 3D réaliste",
+      "probleme": "Le title et le H1 (« 5 appareils photo en simultané pour de l'animation 3D », sans « réaliste ») annoncent un article sur l'animation 3D à 5 appareils ; le corps, le metaTitle (« Photographie 3D produit : Orbitvu et la révolution photogrammétrique ») et la description traitent de photogrammétrie. Les 5 appareils n'apparaissent que dans une puce ; l'« animation 3D » n'est jamais traitée.",
+      "proposition": "Photogrammétrie produit : préparer vos modèles 3D avec l'Alphashot XL Pro v2"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "legende",
+      "extrait_actuel": "A photo of Orbitvu multi-camera rig",
+      "probleme": "Légende en anglais dans l'article français.",
+      "proposition": "Système multi-appareils photo Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "144 à 300 images par objet (jusqu’à 24 azimuts × 12 élévations)",
+      "probleme": "Incohérence arithmétique : 24 × 12 = 288, pas 300. Une des deux valeurs est fausse.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Jusqu’à 5 caméras Canon DSLR en simultané pour une capture multi-angle",
+      "probleme": "« caméras » et « DSLR » calqués de l'anglais (appareils photo reflex).",
+      "proposition": "Jusqu’à 5 appareils photo reflex Canon en simultané pour une capture multi-angle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "synchronisation du plateau, de l’éclairage et des appareils photos",
+      "probleme": "« appareils photo » est invariable sur « photo » (graphie employée partout ailleurs dans l'article).",
+      "proposition": "synchronisation du plateau, de l’éclairage et des appareils photo"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "la préservation du patrimoine, l’AR/VR, ou encore le contrôle qualité",
+      "probleme": "Sigle anglais ; la liste des applications plus bas écrit en toutes lettres « Réalité augmentée et réalité virtuelle ».",
+      "proposition": "la préservation du patrimoine, la réalité augmentée et virtuelle, ou encore le contrôle qualité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "4. Texturisation",
+      "probleme": "En 3D, le terme usuel est « texturage » (ou « texturation »).",
+      "proposition": "4. Texturage"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "🚀 Orbitvu et la photogrammétrie : une synergie naturelle",
+      "probleme": "Émojis dans les 7 intertitres H2 (🚀 📷 🧠 🌍 🏛️ 🎯 🔚) et dans deux paragraphes (👉) : style hétérogène avec le reste du blog, mal restitué dans les extraits de recherche.",
+      "proposition": "Orbitvu et la photogrammétrie : une synergie naturelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Qu’est-ce que la photogrammétrie ?",
+      "probleme": "Premier intertitre en H3 avant tout H2 (hiérarchie inversée) ; même chose en EN.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "tout en assurant une productivité sans faille",
+      "probleme": "Collocation maladroite (« sans faille » qualifie une fiabilité, pas une productivité).",
+      "proposition": "tout en assurant une productivité constante"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "IQ-Mask : technologie de suppression automatique de l’arrière-plan",
+      "probleme": "Le catalogue et les autres articles écrivent « IQ Mask » (sans trait d'union) ; l'EN écrit « IQ mask ».",
+      "proposition": "IQ Mask : technologie de suppression automatique de l’arrière-plan"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Les deux images ont l'alt réservé de Webflow, dans les deux langues.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "👉 Voir les étapes en détail sur le site de Pix4D",
+      "probleme": "L'ancre promet le détail des étapes ; l'URL cible (pix4d.com/blog/five-industries-that-use-photogrammetry) porte, d'après son slug, sur les secteurs utilisant la photogrammétrie. À vérifier.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "La photogrammetry is a technique that consists of reconstructing 3D models from 2D images taken from different angles.",
+      "probleme": "Article français résiduel en tête de la définition.",
+      "proposition": "Photogrammetry is a technique that reconstructs 3D models from 2D images taken from different angles."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Chez PackshotCreator, we have been mastering this technique since 2014 thanks to the range MaestroBot",
+      "probleme": "Mot français « Chez » ; « the range MaestroBot » calqué.",
+      "proposition": "At PackshotCreator, we have mastered this technique since 2014 with our MaestroBot range"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "THEAlphashot XL PRO v2 Is a system of automated photography designed for the capture of high quality images",
+      "probleme": "« THE » en capitales collé au nom du produit (rendu « THEAlphashot »), « Is » en majuscule, structure calquée ; « THEAlphashot » revient deux autres fois (« allows a rapid… », conclusion).",
+      "proposition": "The Alphashot XL PRO v2 is an automated photography system designed to capture high-quality images"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of automated multi-angle recordings",
+      "probleme": "Puces commençant par « Of » / « One » (« One direct compatibility with 3D reconstruction engines », « One personalized support in the framework of 3D projects ») : liste incompréhensible.",
+      "proposition": "Automated multi-angle capture"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The captured images are projected onto the surface to restore the textures And the colours real.",
+      "probleme": "Ordre nom-adjectif français, majuscule parasite, orthographe britannique isolée.",
+      "proposition": "The captured images are projected onto the surface to reproduce the real textures and colors."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Automated sequence with synchronization of the set, lighting and cameras",
+      "probleme": "« plateau » (tournant) rendu par « set » ; plus haut « 75 cm motorized tray » (« tray » = plateau de service) : le terme métier est « turntable ».",
+      "proposition": "Automated sequence synchronizing the turntable, lighting and cameras"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This method is used both in industry and in preservation of heritage, theAR/VR, or even the quality control.",
+      "probleme": "Articles calqués, mot collé « theAR/VR ».",
+      "proposition": "This method is used in industry, heritage preservation, AR/VR and quality control."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In the constantly evolving universe of e-commerce And of digital marketing, the visual presentation of products has become an essential driver of conversion. With the Alphashot XL PRO v2, Orbitvu takes another step forward by facilitating capture images adapted to 3D photogrammetry",
+      "probleme": "Majuscule parasite, « facilitating capture images » agrammatical.",
+      "proposition": "In the fast-moving world of e-commerce and digital marketing, product presentation has become a key conversion driver. With the Alphashot XL PRO v2, Orbitvu goes a step further by making it easier to capture images suited to 3D photogrammetry"
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "5 cameras simultaneously for realistic 3D animation",
+      "probleme": "Même décalage que le FR entre title/H1 (animation 3D, 5 appareils) et corps/metaTitle (photogrammétrie) ; tournure peu idiomatique.",
+      "proposition": "Product photogrammetry: preparing 3D models with the Alphashot XL Pro v2"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Digital archiving rare or historical objects",
+      "probleme": "Préposition manquante.",
+      "proposition": "Digital archiving of rare or historical objects"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Quality control industrial with 3D inspection",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Industrial quality control with 3D inspection"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Augmented reality and vr : simple integration into immersive apps",
+      "probleme": "« vr » en minuscules, espace avant les deux-points (réelle dans le JSON).",
+      "proposition": "Augmented and virtual reality: simple integration into immersive apps"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "AI does not replace photogrammetry; it values it.",
+      "probleme": "« valoriser » rendu par « value ».",
+      "proposition": "AI does not replace photogrammetry; it enhances it."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "generate combinations",
+      "probleme": "« déclinaisons » rendu par « combinations ».",
+      "proposition": "generate variants"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Since 2014, PackshotCreator offers solutions integrating principles of photogrammetry with the range MaestroBot.",
+      "probleme": "Temps verbal (« since » exige le present perfect), « the range MaestroBot » calqué.",
+      "proposition": "Since 2014, PackshotCreator has offered solutions based on photogrammetry principles with its MaestroBot range."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is thus established as the reference tool to effectively prepare your 3D data, while ensuring a flawless productivity.",
+      "probleme": "Tournures calquées (« reference tool », « a flawless productivity »).",
+      "proposition": "It has become the go-to tool for preparing your 3D data efficiently while keeping productivity high."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "legende",
+      "extrait_actuel": "A photo of Orbitvu multi-camera rig",
+      "probleme": "Article manquant ; « A photo of » superflu dans une légende.",
+      "proposition": "An Orbitvu multi-camera rig"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "75 cm motorized tray for smooth and precise rotation",
+      "probleme": "« tray » pour un plateau tournant motorisé.",
+      "proposition": "75 cm motorized turntable for smooth, precise rotation"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Le Parc archéologique de Pompéi a numérisé plus de 5 000 artefacts en 3 mois grâce à l’Alphashot XL PRO v2.",
+      "source_dans_texte": "lien vers la page d'accueil https://pompeiisites.org/en/ (ne documente pas le chiffre) ; vidéo YouTube 8uq7kD1DoEM",
+      "motif": "Cas client chiffré attribué à une institution nommée : source précise à fournir.",
+      "ecart_fr_en": "EN « has scanned more than 5,000 artifacts in 3 months » : identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "première solution du marché à associer automatisation photographique et préparation de données 3D",
+      "source_dans_texte": "lien lesnumeriques.com (article sur le MaestroBot, ne prouve pas l'antériorité)",
+      "motif": "Claim d'antériorité « première solution du marché ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Chez PackshotCreator, nous maîtrisons cette technique depuis 2014 grâce à la gamme MaestroBot",
+      "source_dans_texte": "lien lesnumeriques.com",
+      "motif": "Cohérent avec la chronologie du site (messages/fr.json, 2014 : « MaestroBot démocratisant la photogrammétrie ») ; à conserver si la source le confirme.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Grâce à ses dimensions généreuses (142 x 250 x 124 cm) et sa capacité de charge (25 kg), ce studio permet de capturer une large variété de produits, jusqu’à 70 x 50 x 30 cm.",
+      "source_dans_texte": "aucune",
+      "motif": "Le catalogue du site (machines.ts, alphashot-xl-pro-v2) donne une emprise de 142 × 87 × 176 cm ; la charge (25 kg) et la taille produit (50 × 70 × 30 cm) concordent. Dimensions de l'appareil à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "6 panneaux LED indépendants assurant un éclairage uniforme et sans ombre",
+      "source_dans_texte": "aucune",
+      "motif": "Spécification et promesse « sans ombre » à confirmer ; idem « Plateau motorisé de 75 cm ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "144 à 300 images par objet (jusqu’à 24 azimuts × 12 élévations)",
+      "source_dans_texte": "aucune",
+      "motif": "Incohérence arithmétique (24 × 12 = 288).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Il s’impose ainsi comme l’outil de référence pour préparer efficacement vos données 3D",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "pour générer des modèles 3D d’une précision exceptionnelle",
+      "source_dans_texte": "aucune",
+      "motif": "Qualificatif non mesuré.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cela garantit une qualité optimale pour la reconstruction 3D.",
+      "source_dans_texte": "aucune",
+      "motif": "« garantit ».",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « 5 appareils photo en simultané pour de l'animation 3D réaliste » ; H1 identique sans « réaliste » ; metaTitle « Photographie 3D produit : Orbitvu et la révolution photogrammétrique » (68 caractères) ; description sur la photogrammétrie. Le corps traite de photogrammétrie ; title, H1 et slug portent sur un autre sujet (l'animation 3D à 5 appareils), probablement hérité d'un ancien article (l'ancienne URL /range-maestrobot/3d-scan-modeling-product est redirigée ici selon le rapport maître). EN : même incohérence (« 5 cameras simultaneously for realistic 3D animation » / « 3D product photography: Orbitvu and the photogrammetric revolution »).",
+  "structure_fr_en": "Parité complète : 7 H2, 7 H3, 30 paragraphes, 16 puces, 2 images, 2 vidéos YouTube, 8 liens, 5 FAQ, même ordre. 11 paragraphes vides (ZWJ hérité de Webflow) dans les deux langues. Hiérarchie commençant par un H3 dans les deux langues.",
+  "images_alt_legendes": "Deux images à alt « __wf_reserved_inherit » dans les deux langues. Une légende identique dans les deux versions, en anglais : « A photo of Orbitvu multi-camera rig » (mauvaise langue en FR, article manquant en EN).",
+  "appellations": "« PackshotCreator » : rendu réel « PackshotCreator » (HTML « Packshot<em>Creator</em> », « Creator » en italique) dans « Chez PackshotCreator » et l'intertitre « 🎯 PackshotCreator, pionnier… » ; l'anomalie automatique « Packshot Creator (espacé) » est un artefact d'extraction. « Alphashot XL PRO v2 » (PRO en capitales) contre « Alphashot XL Pro v2 » au catalogue : à harmoniser. « IQ-Mask » (FR) / « IQ mask » (EN) contre « IQ Mask ». « ShotFlow » cité en FAQ comme outil d'intégration, sans précision sur la relation avec PackshotCreator. « Orbitvu Station » cohérent. Champ auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par « PackshotCreator » le 12/06/2026 (commit 8ae45f63, choix délibéré de cohérence E-E-A-T) : pas une erreur de texte.",
+  "recommandation": "retraduction complète (EN, corps) ; retouches (FR) ; arbitrage éditorial sur title/H1/slug",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées). Date affichée 28/09/2024 alors que l'item Webflow date du 28/03/2025 (inférence ObjectId) et que la FAQ s'appuie sur « l’essor de l’intelligence artificielle générative » : date à valider. Le lien EN « Learn more about the Orbitvu process » mène à une page française (orbitvu.fr/pourquoi-choisir-orbitvu/comment-ca-marche/). Liens externes à contrôler : lesnumeriques.com (article MaestroBot), ioa.ucla.edu, pix4d.com (ancre et cible décalées). « Cinema4D » s'écrit « Cinema 4D ». Aucune version de-ch."
+}

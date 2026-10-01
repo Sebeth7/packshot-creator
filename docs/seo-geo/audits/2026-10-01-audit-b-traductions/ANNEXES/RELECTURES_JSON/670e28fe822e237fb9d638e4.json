@@ -1,0 +1,284 @@
+{
+  "family": "670e28fe822e237fb9d638e4",
+  "slugs": {
+    "fr": "photographie-2d-de-produits",
+    "en": "photographie-2d-de-produits",
+    "de-ch": null
+  },
+  "sujet": "Ancienne page produit « Photographie 2D de produits » présentant la gamme de studios photo, le kit LiveStudio, la table LuminaPad Mark II et le logiciel PackshotCreator (image fantôme, Hyperfocus, AutoMask…).",
+  "langue_originale": "SOURCE ORIGINALE NON ÉTABLIE",
+  "preuve_langue": "Il n'existe qu'un texte, en français : la version /en en est une copie mot pour mot (seules les cibles de liens changent, plus un lien ajouté vers /en/industrie/mode-textile). [Inférence] direction probable EN → FR pour le texte français lui-même, d'après des calques de l'anglais : « STUDIOS PHOTOS VERSATILES » (versatile), « des résultats consistants et homogènes » et « des éclairages constants et consistants » (consistent), « Laissez vos produits faire la vente à votre place » (let your products do the selling), « Un succès global pour tous les secteurs » (global), « le plus puissant et le plus unique du marché » (most powerful and unique), « Flat Lay », « Custom Defined ». Aucun texte anglais de référence n'est présent dans le dépôt.",
+  "qualite": {
+    "fr": "C",
+    "en": "X",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français compréhensible mais dégradé : faux amis (« versatiles », « consistants » deux fois), fautes d'accord (« pollution lumineuse extérieure indésirables », « éclairage LED professionnel réglables »), élision fautive (« pour le ecommerce »), mots collés (« fond blanc pur.Compacts », « dessolutions 360° »), unité fautive (« 5700°K »), capitales sans accents (« CREEZ », « Eclairage »), intertitre bilingue (« Flat Lay Photographie de mode à plat »), superlatifs invérifiables. Éditorialement, la page présente comme actuelle une gamme et un logiciel que le site décrit ailleurs comme abandonnés fin 2024 : contenu obsolète.",
+    "en": "Contenu entièrement en français sous /en (title, H1, corps, textes alternatifs) ; seule la meta description est en anglais. Page servie en noindex, follow (NOINDEX_EN_BLOG_SLUGS). Qualité EN : X.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 28,
+    "en": 4,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Tous les studios photo sont couplés au puissant et productif logiciel PackshotCreator qui automatise l'ensemble du processus de création.",
+      "probleme": "La page présente le logiciel et les studios PackshotCreator comme l'offre actuelle. Or l'article du site content/blog/fr/logiciel-packshotcreator-ortery-perdu-solution.json indique que « Tous les logiciels fournis avec les studios PackshotCreator entre 2003 et 2024 ont été développés par Ortery Technologies » et que le « support PackshotCreator sur ces solutions a officiellement pris fin au 31 décembre 2024 ». Le site vend aujourd'hui des studios Orbitvu. Contradiction éditoriale à arbitrer.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "en passant par les systèmes de photographie à plat dédiés aux vêtements et accessoires de mode.",
+      "probleme": "L'ancre « systèmes de photographie à plat » pointe vers /fr/studio-photo/alphatable (gamme Orbitvu), alors que la section correspondante décrit le « LuminaPad Mark II » : le lien mélange l'ancienne et la nouvelle gamme.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nous sommes le leader mondial de la photographie fixe de produits, dessolutions 360° et 3D.",
+      "probleme": "Superlatif invérifiable et probablement caduc au nom de l'entreprise actuelle (voir appellation) ; mots collés « dessolutions » (espace perdue avant le lien).",
+      "proposition": "À supprimer ou à réécrire après validation humaine ; a minima « des solutions 360° et 3D »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "STUDIOS PHOTOS VERSATILES POUR TOUS TYPES D'USAGES",
+      "probleme": "« Versatile » signifie « changeant, inconstant » en français (anglicisme pour « polyvalent ») ; capitales intégrales ; « studios photos » au lieu de « studios photo ».",
+      "proposition": "Des studios photo polyvalents pour tous les usages"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ils garantissent donc des résultats consistants et homogènes pour la photographie de produits 2D.",
+      "probleme": "« Consistant » (épais, solide) employé au sens anglais de « consistent » (constant, régulier) ; même faux ami dans « nos systèmes garantissent des éclairages constants et consistants ».",
+      "proposition": "Ils garantissent donc des résultats constants et homogènes en photographie de produits 2D."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Avec une température de couleur équivalente à la lumière du jour (5700°K), les cristaux LEDs, conçus pour durer plus de 50 000 heures",
+      "probleme": "Le kelvin ne prend pas de symbole degré (« 5 700 K ») ; « LED » est invariable en français ; « cristaux » n'est pas le terme technique (diodes, puces LED).",
+      "proposition": "Avec une température de couleur équivalente à la lumière du jour (5 700 K), les LED, conçues pour durer plus de 50 000 heures"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "permettent de photographier facilement des produits sur un fond blanc pur.Compacts et entièrement hermétiques, tous les systèmes sont conçus avec des portes latérales et frontales pour éviter une pollution lumineuse extérieure indésirables.",
+      "probleme": "Espace manquante après le point (« pur.Compacts ») ; faute d'accord (« indésirables »).",
+      "proposition": "permettent de photographier facilement des produits sur un fond blanc pur. Compacts et entièrement hermétiques, tous les systèmes sont dotés de portes latérales et frontales pour éviter toute pollution lumineuse extérieure indésirable."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Grâce à l'éclairage LED professionnel réglables sur toute la longueur de la table",
+      "probleme": "Faute d'accord (« réglables »).",
+      "proposition": "Grâce à l'éclairage LED professionnel réglable sur toute la longueur de la table"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Prenez automatiquement des photos de produits sur un fond blanc pur ou transparent pour le ecommerce ou bien d'autres utilisations",
+      "probleme": "Élision manquante et graphie (« pour l'e-commerce ») ; « ou bien d'autres utilisations » maladroit.",
+      "proposition": "Prenez automatiquement des photos de produits sur fond blanc pur ou transparent, pour l'e-commerce comme pour bien d'autres usages"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "PLACEZ, OBSERVEZ, CREEZ ET PUBLIEZ",
+      "probleme": "Capitales intégrales et accent manquant (« CRÉEZ ») ; même défaut d'accent dans « LiveStudio - Eclairage studio LED et logiciel de photographie de produits ».",
+      "proposition": "Placez, observez, créez et publiez"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Flat Lay Photographie de mode à plat",
+      "probleme": "Intertitre juxtaposant l'anglais et sa traduction, avec majuscules artificielles.",
+      "proposition": "Photographie de mode à plat (flat lay)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le logiciel PackshotCreator est le logiciel de photographie de produits le plus puissant et le plus unique du marché.",
+      "probleme": "« unique » ne se gradue pas (calque de « most unique ») ; superlatif invérifiable.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Avec plus de 70 brevets, nous améliorons et innovons constamment notre gamme de produits et services actuels",
+      "probleme": "« innover » est intransitif ici (« innovons notre gamme ») ; chiffre de brevets invérifiable et attribué à « nous ». Autres retouches mineures relevées : « réutilisez les » (« réutilisez-les »), « Un succès global pour tous les secteurs » (« global » au sens de « mondial »), « sans efforts » (« sans effort »), « plus de 20.000 utilisateurs » (séparateur de milliers).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Augmentez votre productivité tout en diminuant les erreurs administratives",
+      "probleme": "Le paragraphe qui suit ne parle d'aucune erreur administrative (il invite à une démonstration).",
+      "proposition": "Augmentez votre productivité : demandez une démonstration"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Photographie 2D de produits",
+      "probleme": "Pas de metaTitle : le <title> servi est le titre court, sans marque ni promesse ; la description, réécrite le 23/05/2026, promet un « fond blanc pur sans détourage » alors que le corps met en avant le détourage automatique (« Détourez instantanément tous vos produits sur fond transparent »).",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "PackshotCreator propose une large gamme de studios photo professionnels et d'équipements dédiés à la photographie 2D de produits.",
+      "probleme": "Tout le corps de la page /en est en français (copie intégrale du FR).",
+      "proposition": "Ne pas traduire en l'état : arbitrer d'abord le sort de la page FR (contenu produit obsolète)."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "title",
+      "extrait_actuel": "Photographie 2D de produits",
+      "probleme": "Title et H1 de la page /en en français.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "Automated 2D product photo studios by PackshotCreator: adjustable LED lighting, white background without cutout, Hyperfocus and integrated control software.",
+      "probleme": "Seule meta en anglais (ajoutée le 23/05/2026, commit e0482993) au-dessus d'un corps français ; annonce un contenu anglais qui n'existe pas.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"photographier les produits sur un fond blanc pur, transparent ou personnalisé\" src=/images/blog/67dbae7a8db6988b7bbc1d8e.avif]",
+      "probleme": "Les 9 textes alternatifs de la page /en sont en français.",
+      "proposition": null
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Nous sommes le leader mondial de la photographie fixe de produits, dessolutions 360° et 3D.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif invérifiable ; « nous » désigne l'ancienne offre PackshotCreator (logiciels Ortery selon l'article interne cité).",
+      "ecart_fr_en": "aucun (texte identique)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec plus de 70 brevets, nous améliorons et innovons constamment notre gamme",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de brevets non sourcé, titulaire non précisé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis près de 20 ans, nous poursuivons un seul objectif",
+      "source_dans_texte": "aucune",
+      "motif": "Durée non datée (page créée en 2024) ; à recalculer ou retirer.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Nos studios automatisés ont déjà convaincu plus de 20.000 utilisateurs dans 35 pays.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffres commerciaux non sourcés et non datés.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel PackshotCreator est le logiciel de photographie de produits le plus puissant et le plus unique du marché.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif invérifiable sur un logiciel dont la distribution aurait cessé fin 2024.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Flexible et plug-and-play, le LiveStudio est la solution de prise de vue la plus accessible du marché.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif ; LiveStudio figure dans la gamme Ortery selon sessions/research/concurrents-directs.md (22/03/2026).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Toutes les sources lumineuses présentes dans les studios photo peuvent être ajustées individuellement de 1 à 100%.",
+      "source_dans_texte": "aucune",
+      "motif": "Caractéristique technique à vérifier.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "les cristaux LEDs, conçus pour durer plus de 50 000 heures",
+      "source_dans_texte": "aucune",
+      "motif": "Durée de vie non sourcée.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "le tout sans aucune connaissance nécessaire en photographie.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Éliminez les étapes de retouches et gagnez un temps considérable",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue (suppression de la retouche).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec notre logiciel, les possibilités sont infinies !",
+      "source_dans_texte": "aucune",
+      "motif": "Hyperbole.",
+      "ecart_fr_en": "aucun"
+    }
+  ],
+  "titre_h1_meta": "FR : title = H1 = « Photographie 2D de produits », metaTitle absent (le <title> servi est ce titre court) ; description réécrite le 23/05/2026, cohérente sur les fonctions citées mais affirmant « fond blanc pur sans détourage » quand le corps vante le détourage automatique. EN : title et H1 en français, description en anglais, corps en français ; page en noindex, follow et exclue des alternates hreflang (lib/seo-config.ts, NOINDEX_EN_BLOG_SLUGS).",
+  "structure_fr_en": "Texte strictement identique dans les deux versions (même slug FR). Seules différences : liens internes repointés vers les équivalents /en et un lien supplémentaire en EN (« articles et accessoires de mode » → /en/industrie/mode-textile). Hiérarchie des titres irrégulière dans les deux versions (H3 puis H4, H5 « Découvrez les atouts du logiciel », H4 sans H3 parent). Deux vidéos YouTube en shortcode [embed], converties en façades par lib/blog-utils.ts. Pas de FAQ.",
+  "images_alt_legendes": "9 images, aucune légende. Textes alternatifs en français dans les deux versions, globalement descriptifs (« studio photo compact », « Table rétro-éclairée pour la photographie de vêtements à plat ») ; « PackshotCreator LiveStudio kit d'eclairage » sans accent ; « fond cyclo blanc » sans rapport clair avec l'intertitre « Les meilleurs systèmes ». En EN, aucun texte alternatif n'est traduit.",
+  "appellations": "Dans le HTML, « Packshot<em>Creator</em> » (rendu « PackshotCreator », « Creator » en italique, style de l'ancienne marque) : pas une erreur d'appellation. Le problème est de fond : la page présente l'ancienne gamme PackshotCreator (LiveStudio, LuminaPad Mark II, logiciel PackshotCreator, image fantôme, Hyperfocus, AutoMask, PackshotOneClick) comme l'offre actuelle de « nous », alors que l'article interne logiciel-packshotcreator-ortery-perdu-solution indique que ces logiciels étaient développés par Ortery et que leur support a pris fin au 31/12/2024, et que le site vend des studios Orbitvu (lien vers /studio-photo/alphatable). Aucune mention d'Orbitvu dans le texte.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Page produit héritée (item Webflow du 15/10/2024, sans catégorie, auteur ni temps de lecture), servie sous /fr/blog. Contenu commercial obsolète à faire trancher par Sébastien : retrait, redirection vers les pages Orbitvu, ou réécriture complète ; dans tous les cas, ne pas traduire en EN en l'état. Liens internes discutables : « LiveView » et « prévisualisation en direct » pointent vers /fr/ia-photo-produit (page IA) ; « fond transparent » et « fonds personnalisés » pointent vers le même guide « fond blanc parfait sans détourage », qui dit l'inverse du détourage ; l'ancre « Custom » ne couvre que la moitié de « Custom Defined ». Fonctions citées (Hyperfocus, AutoMask, Multi-Editing, PackshotOneClick) à rapprocher de l'offre actuelle avant toute réutilisation. Note de méthode : citations recalées sur le JSON source ; les « Packshot Creator » espacés et les espaces avant virgule de l'extrait sont des artefacts d'extraction."
+}

@@ -1,0 +1,415 @@
+{
+  "family": "670e28fcde56f7d5d41154d8",
+  "slugs": {
+    "fr": "acheter-studio-photo-packshot-occasion",
+    "en": "second-hand-packshot-photo-studio",
+    "de-ch": null
+  },
+  "sujet": "Faut-il acheter un studio photo packshot d'occasion ? Risques des équipements anciens (logiciel, éclairage, compatibilité) face aux studios automatisés modernes. La version EN est un article plus ancien (cas « Chloé », citations), différent de la version FR réécrite en 2025.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Le corps EN est la traduction d'une version FR antérieure qui n'existe plus dans le dépôt : la version FR actuelle est un autre texte. Indices internes : « adds Ocean » pour l'experte présentée plus haut comme « Océane » (prénom traduit) ; « should allow him to benefit » (« lui » rendu au masculin, alors qu'il s'agit de Chloé) ; « What are the reflexes to have? » (calque probable de « Quels sont les réflexes à avoir ? ») ; « The second-hand market is not always provided » (calque probable de « pas toujours fourni ») ; « vintage 2008 » (calque probable de « millésime 2008 ») ; « four daylight neon lights » (calque probable de « néons ») ; « the observation is identical » (calque probable de « le constat est identique ») ; « Or even » (calque probable de « ou encore »). Les formulations françaises entre parenthèses sont des reconstitutions : la version FR source de ce texte n'est plus dans le dépôt. FAQ : [Inférence] FR → EN, car la FAQ reprend les chiffres du corps FR (« entre 200 et 300 produits quotidiennement, contre seulement 50 à 80 »), absents du corps EN. Le premier paragraphe FR, identique à l'introduction EN, est un vestige de l'ancienne version.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif mais style marketing généré : listes « Libellé : Majuscule » systématiques, anglicismes (« Templates », « workflow », « time-to-market », « marché digital »), metaTitle en Title Case de 100 caractères, description de 297 caractères, année 2025 périmée dans le H1 et le metaTitle. Nombreuses promesses non sourcées (« Compatibilité garantie », « fidélité colorimétrique certifiée », « Les études démontrent », 200-300 contre 50-80 produits par jour). Réécriture partielle nécessaire.",
+    "en": "Ancien texte traduit automatiquement : phrases incompréhensibles (« The creations are unique and the acquisition… should allow him »), majuscules parasites (« Therefore », « Will therefore », « Or even »), prénom traduit (« Ocean »), contenus datés de 2019 sous une date de 2025, alts en français. Surtout, deux citations attribuées à Laurent Wainberg ont été réattribuées à la marque (« explain PackshotCreator Founder and manager of PackshotCreator », « specifies PackshotCreator ») par le commit 8ae45f63 : défaut bloquant. Le contenu ne correspond plus à la version FR.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 16,
+    "en": 40,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "explain PackshotCreator Founder and manager of PackshotCreator",
+      "probleme": "Nom de personne remplacé à tort par la marque (commit 8ae45f63, « auteur générique PackshotCreator »). Texte importé de Webflow (56d4bc32) : « explain Laurent Wainberg Founder and manager of PackshotCreator ». La phrase actuelle attribue une citation à « PackshotCreator Founder and manager of PackshotCreator » : tautologie absurde, la marque devenant une personne.",
+      "proposition": "Arbitrage humain : (a) restaurer l'attribution d'origine sous la forme « explains Laurent Wainberg, founder and manager of PackshotCreator », avec son accord et une fonction mise à jour (CLAUDE.md le présente comme ancien propriétaire de la société) ; ou (b) supprimer les guillemets et l'attribution pour en faire un texte éditorial."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "specifies PackshotCreator.",
+      "probleme": "Même remplacement (commit 8ae45f63) : import Webflow « specifies Laurent Wainberg. ». Une citation entre guillemets en première personne (« In 2019, standards evolved… ») est attribuée à une marque.",
+      "proposition": "Même arbitrage : restaurer « says Laurent Wainberg » (avec accord et fonction actuelle) ou retirer guillemets et attribution."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "adds Ocean.",
+      "probleme": "La même personne est appelée « Océane » quelques lignes plus haut (« explains Océane, PackshotCreator expert ») : prénom traduit automatiquement. Présent dès l'import Webflow.",
+      "proposition": "adds Océane."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "At PackshotCreator, we offer a complete range of photo studios.",
+      "probleme": "L'EN présente PackshotCreator comme gamme de studios actuelle (« PackshotCreator studios are equipped with a ventilation system », « The PackshotCreator Software has been constantly evolving since 2004 »), alors que le FR classe PackshotCreator parmi les anciennes marques à remplacer par Orbitvu via UpgradeYourPackshot. Contradiction de positionnement entre les deux langues. (« Packshot Creator » espacé dans l'extrait = artefact ; HTML « Packshot<em>Creator</em> », rendu « PackshotCreator » avec « Creator » en italique, style de l'ancienne marque.)",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Chloé, after researching existing solutions for Jewelry shooting, decide to acquire one.",
+      "probleme": "Le corps EN (cas Chloé, citations, 1 H2, 4 H3, 2 H4, 3 légendes en H6) ne correspond pas au corps FR (6 H2, 9 H3, listes « Le Bon Coin », programme de reprise). Seuls l'introduction et la FAQ se correspondent. La paire hreflang relie deux articles différents. Accord fautif en outre (« decide »).",
+      "proposition": "Remplacer le corps EN par une traduction du corps FR validé, ou dissocier les deux articles."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The creations are unique and the acquisition of a complete photo studio should allow him to benefit from complete equipment",
+      "probleme": "« The creations » et « him » renvoient à un personnage (Chloé, au féminin) qui n'est présenté qu'au paragraphe suivant ; « him » est faux. Phrase incompréhensible en ouverture de section.",
+      "proposition": "Her creations are unique, and buying a complete photo studio should give her a full set of equipment"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Another advantage the software that controls the studio.",
+      "probleme": "Verbe manquant.",
+      "proposition": "Another advantage is the software that controls the studio."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The second-hand market is not always provided.",
+      "probleme": "Calque probable de « pas toujours fourni » (reconstitution, la source FR n'est plus dans le dépôt) : incompréhensible en anglais.",
+      "proposition": "The second-hand market is not always well stocked."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This is why most of the studios offered for sale on the second-hand market have already been used for many years.",
+      "probleme": "Enchaînement illogique (« This is why ») ; la citation se contredit aussi avec « Most of the systems… have sometimes been in use ».",
+      "proposition": "As a result, most of the studios offered for sale on the second-hand market have already been in use for many years."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In 2019, standards evolved, as did the demands of Internet users.",
+      "probleme": "Contenu daté de 2019 (« Just like the 2019 model cameras », « Over the last 10 years ») publié sous la date du 22/02/2025.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The latest models of Software-Controlled Studios Therefore work with the latest operating systems, Microsoft Windows and Mac OS.",
+      "probleme": "Majuscules parasites ; « Mac OS » au lieu de macOS ; « Therefore » sans antécédent logique.",
+      "proposition": "The latest software-controlled studios work with the latest operating systems, Microsoft Windows and macOS."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "A second-hand packshot photo studio driven by an old software version of Product photography Will therefore not be able to meet some of Chloé's needs.",
+      "probleme": "Ordre des mots français, majuscules parasites.",
+      "proposition": "A second-hand packshot studio running an old version of product photography software will therefore not be able to meet some of Chloé's needs."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Photographie de boucles d'oreilles studio photo Packshot d'occasion",
+      "probleme": "Les 5 alts de la version EN sont en français.",
+      "proposition": "Earrings photographed with a second-hand packshot photo studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is 20 to 50,000 hours, compared to 5 to 15,000 hours for fluorescent lamps.",
+      "probleme": "Fourchette ambiguë (lisible « de 20 heures à 50 000 heures »).",
+      "proposition": "It is 20,000 to 50,000 hours, compared with 5,000 to 15,000 hours for fluorescent lamps."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "What are the reflexes to have?",
+      "probleme": "Calque probable de « Quels sont les réflexes à avoir ? » (reconstitution).",
+      "proposition": "What should you look out for?"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "One of them sells a lightbox with four daylight neon lights and a backlight.",
+      "probleme": "« Néons » : en anglais, fluorescent tubes ; « vintage 2008 » (millésime) suit dans le même paragraphe.",
+      "proposition": "One of them is selling a light box with four daylight fluorescent tubes and a backlight."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Lighting kit, photo light box for 2D shooting Or even a complete photo studio with a 360 turntable",
+      "probleme": "Majuscule parasite ; « 360° turntable ».",
+      "proposition": "Lighting kit, photo light box for 2D shots or a complete photo studio with a 360° turntable"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "legende",
+      "extrait_actuel": "Some offers on the second-hand market offer all-in-one: studio, computer, or even camera. Unfortunately, it is often obsolete equipment",
+      "probleme": "Légendes d'images balisées en H6 (trois occurrences) : elles polluent la hiérarchie des titres.",
+      "proposition": "Baliser en figcaption."
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Second Hand Photo Studios for Product Photography? Yes, but...",
+      "probleme": "Title Case incohérent avec les autres intertitres ; « second-hand » sans trait d'union.",
+      "proposition": "Second-hand photo studios for product photography? Yes, but..."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "a studio like Orbitvu's ALPHASHOT PRO G2 offers advanced automation",
+      "probleme": "Graphie différente de la forme majoritaire du site (« Alphashot Pro G2 », 57 occurrences dans le blog). Même graphie en FR.",
+      "proposition": "a studio like Orbitvu's Alphashot Pro G2 offers advanced automation"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Studios Photo Packshot 2025 : Pourquoi éviter Le Bon Coin et investir dans les technologies modernes",
+      "probleme": "Title Case anglais, 100 caractères (tronqué dans les résultats), année 2025 périmée, nom d'une plateforme tierce dans un titre négatif.",
+      "proposition": "Studio photo packshot d'occasion : pourquoi privilégier un équipement moderne"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Studios photo packshot : pourquoi éviter l'occasion en 2025",
+      "probleme": "Année 2025 périmée (nous sommes en 2026) ; le title JSON reste une question neutre (« Faut-il acheter son studio photo packshot d’occasion ? ») alors que H1, metaTitle et description sont résolument contre l'occasion.",
+      "proposition": "Studio photo packshot d'occasion : pourquoi privilégier un équipement moderne"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Découvrez pourquoi les studios photo packshot d'occasion sur Le Bon Coin peuvent être un piège coûteux.",
+      "probleme": "Description de 297 caractères (tronquée) ; elle contient le claim « compatibilité garantie ».",
+      "proposition": "Raccourcir à environ 155 caractères et retirer « garantie »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les plateformes comme Le Bon Coin ou eBay regorgent d'annonces",
+      "probleme": "Graphie officielle « leboncoin » (l'EN écrit « Leboncoin ») ; plateforme nommée de façon négative dans le metaTitle et quatre fois dans le corps : arbitrage éditorial.",
+      "proposition": "Les plateformes comme leboncoin ou eBay regorgent d'annonces"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Kit d’éclairage, boîte à lumière pour prises de vue 2D ou encore studio photo complet avec plateau tournant 360° : voici les réponses.",
+      "probleme": "Introduction héritée de l'ancienne version : elle annonce des réponses par type d'équipement (kit d'éclairage, boîte à lumière) que le corps actuel ne donne pas.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Incompatibilité logicielle : Les versions logicielles vendues avec ces anciens systèmes",
+      "probleme": "Majuscule après deux-points dans toutes les puces « Libellé : … » (environ 25 occurrences).",
+      "proposition": "Incompatibilité logicielle : les versions logicielles vendues avec ces anciens systèmes"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans un marché digital saturé",
+      "probleme": "Anglicisme « digital » pour « numérique ».",
+      "proposition": "Dans un marché numérique saturé"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Templates personnalisés : Permettent une cohérence visuelle entre tous les produits d'un catalogue.",
+      "probleme": "Anglicisme « templates » ; majuscule après deux-points.",
+      "proposition": "Modèles personnalisés : permettent une cohérence visuelle entre tous les produits d'un catalogue."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "L'accélération du time-to-market",
+      "probleme": "Anglicisme.",
+      "proposition": "L'accélération de la mise sur le marché"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Un studio moderne peut traiter jusqu'à 200-300 produits par jour contre 50-80 pour les anciens systèmes.",
+      "probleme": "« jusqu'à » suivi d'une fourchette : incohérent ; chiffres non sourcés.",
+      "proposition": "Un studio moderne peut traiter 200 à 300 produits par jour, contre 50 à 80 pour les anciens systèmes (à sourcer)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Valeur technique Webflow utilisée comme alt (première image, « Logiciels obsolètes »).",
+      "proposition": "capture d'un ancien logiciel de studio packshot (à confirmer visuellement)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "offre une automatisation avancée : Intégration directe aux CMS et ERP via des exports formatés (CSV, API).",
+      "probleme": "Liste stockée avec des retours à la ligne et rendue sans puces ; majuscule après deux-points. Même défaut en EN.",
+      "proposition": null
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "fr",
+      "extrait": "La plupart des studios d'occasion proposés sur ces sites datent de plus de 10 ans",
+      "source_dans_texte": "aucune",
+      "motif": "Généralisation non sourcée.",
+      "ecart_fr_en": "EN (citation) : « Most of the systems put on sale on this market have sometimes been in use for more than ten years »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un studio moderne peut traiter jusqu'à 200-300 produits par jour contre 50-80 pour les anciens systèmes.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffres de productivité non sourcés.",
+      "ecart_fr_en": "Absent du corps EN ; présent dans la FAQ EN (« between 200 and 300 products daily, compared to only 50 to 80 »)."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Compatibilité garantie : Fonctionne parfaitement avec Windows 10/11 et les dernières versions de macOS.",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie de compatibilité (reprise dans la description).",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Qualité d'image professionnelle inégalée",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "fr",
+      "extrait": "fidélité colorimétrique certifiée",
+      "source_dans_texte": "aucune",
+      "motif": "Certification non précisée (par qui ? selon quelle norme ?).",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Évolutivité et pérennité garanties",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie.",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Les visuels 360°, la réalité augmentée et les rendus 3D générés par les studios modernes augmentent l'engagement client et réduisent le taux de retour produit",
+      "source_dans_texte": "aucune",
+      "motif": "Effet commercial non sourcé ; capacité de réalité augmentée à vérifier.",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les études démontrent qu'une imagerie de qualité médiocre peut réduire drastiquement les taux de conversion",
+      "source_dans_texte": "aucune",
+      "motif": "« Les études » sans référence.",
+      "ecart_fr_en": "EN : « Studies show… »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Capture et traitement en lot (jusqu’à 300 produits/jour).",
+      "source_dans_texte": "aucune",
+      "motif": "Performance de l'Alphashot Pro G2 à vérifier auprès d'Orbitvu.",
+      "ecart_fr_en": "EN : « up to 300 products/day »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Ces systèmes contemporains offrent une compatibilité native avec les principales plateformes de vente en ligne comme Shopify, WooCommerce et PrestaShop",
+      "source_dans_texte": "aucune",
+      "motif": "Intégrations natives à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Formats modernes : Export en WebP et AVIF pour optimiser les performances web.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité à vérifier.",
+      "ecart_fr_en": "Absent en EN."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Les anciens systèmes utilisent généralement des tubes fluorescents avec une durée de vie limitée (5 000 à 15 000 heures) contre 20 000 à 50 000 heures pour les LED modernes.",
+      "source_dans_texte": "aucune",
+      "motif": "Durées de vie chiffrées sans source.",
+      "ecart_fr_en": "EN : « 20 to 50,000 hours, compared to 5 to 15,000 hours » (même ordre de grandeur, formulation ambiguë)."
+    },
+    {
+      "langue": "en",
+      "extrait": "The PackshotCreator Software has been constantly evolving since 2004.",
+      "source_dans_texte": "aucune",
+      "motif": "Fait daté sur l'ancien logiciel maison ; contredit le positionnement FR (PackshotCreator = ancienne marque).",
+      "ecart_fr_en": "Absent en FR."
+    }
+  ],
+  "titre_h1_meta": "FR : title « Faut-il acheter son studio photo packshot d’occasion ? » (neutre), H1 « … pourquoi éviter l'occasion en 2025 », metaTitle « Studios Photo Packshot 2025 : Pourquoi éviter Le Bon Coin… » (Title Case, 100 caractères), description de 297 caractères. Le corps suit la thèse du H1. L'année 2025 est périmée et le title diverge des trois autres champs. EN : title = H1 = metaTitle « Should I buy a second-hand Packshot photo studio? » (majuscule inutile à « Packshot »), description cohérente avec le corps EN, mais ce corps est l'ancien article, pas l'équivalent du FR.",
+  "structure_fr_en": "Pas de parité : les deux langues sont deux articles différents. FR : 6 H2, 9 H3, 20 paragraphes, 31 puces, 3 images, une vidéo YouTube, programme UpgradeYourPackshot. EN : 1 H2, 4 H3, 2 H4, 3 légendes en H6, 11 paragraphes, 5 images, cas « Chloé » et trois citations. Communs aux deux : le paragraphe d'introduction et les 5 questions de FAQ (traduites, contenu identique).",
+  "images_alt_legendes": "FR : un alt technique Webflow (« __wf_reserved_decorative »), « studio photo packshot d'occasion », et « logiciel de photographie de bijoux » placé dans la section « Matériel dépassé » (pertinence douteuse). EN : 5 alts en français ; 3 légendes balisées en H6 au lieu de figcaption.",
+  "appellations": "BLOQUANT EN : deux attributions de citations à Laurent Wainberg remplacées par « PackshotCreator » (commit 8ae45f63). Import 56d4bc32 : « explain Laurent Wainberg Founder and manager of PackshotCreator » et « specifies Laurent Wainberg ». Actuel : « explain PackshotCreator Founder and manager of PackshotCreator » et « specifies PackshotCreator ». Les mentions « At PackshotCreator, we offer… » et « manager of PackshotCreator » sont d'origine. Le FR n'est pas touché (aucune citation) ; seul le champ auteur des deux langues est passé de « Laurent Wainberg » à « PackshotCreator ». « Packshot Creator » espacé dans l'extrait = artefact d'extraction (HTML « Packshot<em>Creator</em> », rendu « PackshotCreator » avec « Creator » en italique, style de l'ancienne marque) : pas une erreur. « Océane » devient « Ocean ». « ALPHASHOT PRO G2 » contre « Alphashot Pro G2 » (forme majoritaire du site). « Le Bon Coin » (FR) contre « Leboncoin » (EN) ; graphie officielle « leboncoin ». « Ebay » (EN) au lieu de « eBay ». Positionnement contradictoire de PackshotCreator : gamme actuelle en EN, ancienne marque à reprendre en FR.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Décisions humaines nécessaires : (1) sort des citations de Laurent Wainberg (restauration avec son accord et sa fonction actuelle, ou suppression) ; (2) remplacer le corps EN par une traduction du FR validé, ou découpler la paire hreflang ; (3) position éditoriale sur PackshotCreator (gamme actuelle ou ancienne). Date du 22/02/2025 postérieure à la création de l'item Webflow (15/10/2024, inférence) : l'article a été réécrit en FR, mais l'EN porte la même date avec un contenu de 2019. FAQ FR au style très verbeux et généré (« analyse multidimensionnelle », « révolution fondamentale ») ; claims nombreux et non sourcés. Les espaces avant virgule de l'extrait sont des artefacts d'extraction, non signalés."
+}

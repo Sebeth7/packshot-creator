@@ -1,0 +1,188 @@
+{
+ "family": "670e211b09a3adf2bf60f98c",
+ "slugs": {
+  "fr": "promod-revolutionne-ses-shootings-photos-de-mode",
+  "en": null,
+  "de-ch": null
+ },
+ "sujet": "Cas client Promod : internalisation des prises de vue de mode avec un plateau tournant PackshotSpin 06T et formation de l'équipe web, avec témoignage d'une chargée de contenu.",
+ "langue_originale": "SOURCE ORIGINALE NON ÉTABLIE",
+ "preuve_langue": "Version FR seule dans le dépôt (pas d'EN ni de de-ch). [Inférence] Texte rédigé directement en français : aucune trace de traduction (tournures et citations idiomatiques) ; seul l'alt est en anglais.",
+ "qualite": {
+  "fr": "C",
+  "en": "X",
+  "de-ch": null
+ },
+ "justification_qualite": {
+  "fr": "Texte court mais fautif : phrase cassée dans la citation client, coquilles (« O6T », espaces manquantes après point), accord « liée », anglicisme « workshop », appel à l'action sans lien, alt en anglais, liens dans le témoignage vers un autre produit, métadonnées absentes et date de publication trompeuse.",
+  "en": "Absente : aucune version anglaise dans le dépôt pour cette famille.",
+  "de-ch": null
+ },
+ "nb_erreurs_estime": {
+  "fr": 15,
+  "en": 0,
+  "de-ch": null
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "incomprehensible",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le processus est ainsi totalement automatisé grâce. Cela, en effet, grâce au logiciel PackshotCreator, les multi-vues se font en un seul clic.",
+   "probleme": "Phrase cassée dans la citation client (« automatisé grâce. Cela, en effet, grâce au… ») : défaut présent dans l'import Webflow. Toute correction d'une citation doit rester fidèle au propos du client.",
+   "proposition": "Le processus est ainsi totalement automatisé : grâce au logiciel PackshotCreator, les multi-vues se font en un seul clic."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "¶ Promod , marque incontournable dans le prêt-à-porter pour femme, compte aujourd’hui près de 25 millions de clients par an.",
+   "probleme": "Date de publication affichée 30/12/2025 (horodatage technique identique au cas SportOkay, 2025-12-30T16:42:54.933Z) alors que l'item Webflow date du 15/10/2024 [Inférence ObjectId] et que le texte emploie des repères relatifs (« aujourd’hui », « L’année dernière ») : le lecteur situe à tort l'acquisition en 2024-2025. Chiffres (25 millions de clients, plus de 1000 magasins) non sourcés et datés.",
+   "proposition": "Rétablir la date réelle du cas client et remplacer « aujourd’hui » / « L’année dernière » par des années explicites ; sourcer ou dater les chiffres de Promod."
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"webpage of an online store with a display of clothes\" src=/images/blog/67dbae7e26328a41e4d7b11b.avif]",
+   "probleme": "Texte alternatif en anglais dans un article français.",
+   "proposition": "Page d'une boutique en ligne présentant des vêtements"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "{lien «vêtements et accessoires sur mannequin» → /fr/studio-photo/fashion-studio}",
+   "probleme": "Lien inséré dans la citation du client Promod vers la fiche Fashion Studio (Orbitvu), alors que le client décrit le plateau tournant PackshotSpin 06T : le témoignage paraît cautionner un autre produit. Même remarque pour « photos d'articles de mode » → /fr/industrie (cible générique) dans la citation.",
+   "proposition": "Retirer les liens de l'intérieur de la citation ; placer un lien éditorial hors témoignage."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Découvrez une autre expérience d'utilisation d'un studio Packshot Creator pour un site web de mode en ligne",
+   "probleme": "Appel à l'action sans lien (le texte « site web de mode en ligne » est en gras mais non lié ; lien perdu à l'import : _stats « unlinked: 2 ») ; collé à la phrase précédente sans espace (« à plat</a>.Découvrez » dans le HTML). Le nom de marque est en réalité « Packshot<em>Creator</em> » (pas d'erreur de graphie).",
+   "proposition": "Rétablir le lien vers le cas client concerné ou supprimer la phrase."
+  },
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "« Grâce au plateau tournant Spin O6T de PackshotCreator nous réalisons aujourd’hui des photos d'articles de mode",
+   "probleme": "Référence produit écrite avec la lettre « O » (« O6T ») alors que l'ancre plus haut porte « 06T » (zéro) ; virgule manquante après « PackshotCreator ».",
+   "proposition": "« Grâce au plateau tournant Spin 06T de PackshotCreator, nous réalisons aujourd’hui des photos d'articles de mode"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "les besoins de la marque évoluent notamment en termes de visuels produit.L’année dernière, Promod a fait l’acquisition",
+   "probleme": "Espace manquante après le point (présente telle quelle dans le HTML).",
+   "proposition": "les besoins de la marque évoluent, notamment en termes de visuels produit. L’année dernière, Promod a fait l’acquisition"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Afin d’appréhender toutes les possibilités de création liée aux nombreuses fonctionnalités photo du logiciel",
+   "probleme": "Accord : « possibilités … liées ».",
+   "proposition": "Afin d’appréhender toutes les possibilités de création liées aux nombreuses fonctionnalités photo du logiciel"
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "l’équipe de Promod a assisté à un workshop avec nos experts en photographie de produit",
+   "probleme": "Anglicisme « workshop ».",
+   "proposition": "l’équipe de Promod a participé à un atelier avec nos experts en photographie de produit"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "D’ailleurs, nous pensons aussi à réaliser des vues de produits à 360° de nos produits pour notre site internet». Marine Delestrain, Chargée de contenu web",
+   "probleme": "Répétition « de produits … de nos produits », espace manquante avant « », majuscule à « Chargée ».",
+   "proposition": "D’ailleurs, nous pensons aussi à réaliser des vues à 360° de nos produits pour notre site internet. » Marine Delestrain, chargée de contenu web"
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "#### Diminuer les coûts et le temps",
+   "probleme": "Hiérarchie de titres sans h2 (un h3 puis des h4) ; un h4 sert d'appel à l'action (« Découvrez un autre sujet sur les 4 fondamentaux… »).",
+   "proposition": "## Diminuer les coûts et le temps"
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "mineur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "metaTitle : None",
+   "probleme": "metaTitle, catégorie, auteur, temps de lecture et image principale absents ; seul le title (= H1) sert de balise title.",
+   "proposition": "Promod : internalisation des shootings photo de mode"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "PackshotCreator accompagne depuis 15 ans les acteurs de la mode dans l'internalisation de la prise de vues de vêtements et accessoires. Aussi bien pour la création, le luxe ou encore le prêt-à-porter.",
+   "probleme": "Ancienneté relative (« depuis 15 ans ») non datée ; seconde phrase sans verbe principal.",
+   "proposition": "PackshotCreator accompagne depuis 15 ans les acteurs de la mode — création, luxe ou prêt-à-porter — dans l'internalisation de la prise de vues de vêtements et accessoires."
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "fr",
+   "extrait": "compte aujourd’hui près de 25 millions de clients par an",
+   "source_dans_texte": "aucune",
+   "motif": "Chiffre sur un tiers (Promod), non sourcé, daté par « aujourd’hui ».",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "plus de 1000 magasins dans le monde",
+   "source_dans_texte": "aucune",
+   "motif": "Chiffre sur un tiers, non sourcé, susceptible d'avoir changé.",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "nous réalisons aujourd’hui des photos d'articles de mode pour nos vêtements et accessoires sur mannequin , sous tous les angles, en un temps record.",
+   "source_dans_texte": "aucune (citation client)",
+   "motif": "Témoignage : vérifier que l'autorisation de citation et la fonction de la personne (« Marine Delestrain, Chargée de contenu web ») sont toujours valables.",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "PackshotCreator accompagne depuis 15 ans les acteurs de la mode",
+   "source_dans_texte": "aucune",
+   "motif": "Ancienneté non datée ; varie selon la date de rédaction.",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "Promod révolutionne ses shootings photos de mode",
+   "source_dans_texte": "aucune",
+   "motif": "Titre hyperbolique (« révolutionne »).",
+   "ecart_fr_en": null
+  }
+ ],
+ "titre_h1_meta": "Title = H1 « Promod révolutionne ses shootings photos de mode » ; metaTitle absent ; description réécrite le 23/05/2026 (e0482993) : « Cas client Promod : internalisation des shootings mode avec le plateau tournant 360° PackshotSpin … », cohérente avec le corps. « shootings photos » : « photo » est usuellement invariable dans ce composé (« shootings photo »).",
+ "structure_fr_en": "FR seul. 1 h3, 3 h4 (dont un h4 utilisé comme appel à l'action), aucun h2, 6 paragraphes, 1 image, pas de FAQ. Une phrase sur les formations a été retirée le 30/09/2026 (fc6c9c6b). Lien CTA final perdu à l'import.",
+ "images_alt_legendes": "1 image (capture d'une boutique en ligne), alt en anglais « webpage of an online store with a display of clothes », pas de légende.",
+ "appellations": "Le HTML écrit « Packshot<em>Spin</em> 06T » et « Packshot<em>Creator</em> » (ancienne charte, rendu « PackshotSpin 06T », « PackshotCreator ») : pas d'erreur de graphie. Dans la citation, « Spin O6T » (lettre O) diffère de « 06T » (zéro). Le détecteur « PackshotCreator remplace LW » est un faux positif : « de PackshotCreator » figure dans la citation client depuis l'import Webflow ; aucun nom de personne remplacé. Le produit PackshotSpin 06T est une ancienne gamme PackshotCreator, les liens pointent vers des produits Orbitvu (sélecteur de machines, Fashion Studio).",
+ "recommandation": "arbitrage éditorial",
+ "remarques": "Cas client ancien portant sur un produit historique (PackshotSpin 06T) avec une date de publication technique (30/12/2025) qui le fait passer pour récent : décider de le conserver comme archive datée, de le réécrire ou de le dépublier. Si conservé : corriger la citation (avec accord du client), dater les faits, retirer les liens du témoignage, rétablir ou supprimer le CTA final, traduire l'alt. Nom et fonction d'une salariée de Promod publiés : vérifier l'autorisation. Pas de version EN : envisager une traduction seulement après arbitrage."
+}

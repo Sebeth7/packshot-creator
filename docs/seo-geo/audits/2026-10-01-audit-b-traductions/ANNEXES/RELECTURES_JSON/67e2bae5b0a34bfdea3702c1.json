@@ -1,0 +1,382 @@
+{
+ "family": "67e2bae5b0a34bfdea3702c1",
+ "slugs": {
+  "fr": "comment-maitriser-le-flou-dans-la-photographie-de-produits",
+  "en": "how-to-avoid-blurry-product-photographs",
+  "de-ch": null
+ },
+ "sujet": "Guide pratique pour éviter le flou en photographie produit (flou de bougé, flou de mise au point, focus stacking) avec renvoi vers les studios automatisés Orbitvu / Alphashot Pro G2.",
+ "langue_originale": "FR → EN (preuve interne)",
+ "preuve_langue": "EN : « He alone decides where to take stock » (de « Celui-ci décide seul où faire le point ») ; « also called stung » (de « aussi appelée piqué ») ; « their best shot » (« meilleur piqué ») ; « Chez PackshotCreator » et « En macro photography » (prépositions françaises résiduelles) ; « of goggle , of technical objects » (« des lunettes, des objets techniques ») ; « Of gemstones » (« des pierres précieuses ») ; « TO Full opening » (« À pleine ouverture ») ; « One Blurry photo » (« Une photo floue ») ; « Blur motion » (« flou de bougé ») ; « central collimator » (« collimateur central ») ; « prevention is better than correct » (« mieux vaut prévenir que corriger »). Le FR est idiomatique (« Que vous photographiiez », « piqué », « collimateur », « flou de bougé »).",
+ "qualite": {
+  "fr": "B",
+  "en": "D",
+  "de-ch": null
+ },
+ "justification_qualite": {
+  "fr": "Français natif, technique et précis ; une erreur de fond (« même une petite profondeur de champ ne suffit pas ») et des retouches ponctuelles (accord « appelée piqué », typographie des unités et des ouvertures, élision « de AF-S », metaTitle trop long, title discordant), plus la signature remplacée par la marque et 4 alts Webflow réservés.",
+  "en": "Traduction automatique du FR avec contresens métier bloquants (« take stock », « stung », « best shot », « collimator », « Blur motion »), mots français résiduels (« Chez », « En »), segments coupés (« to create one. perfectly clear »), majuscules parasites, « net » rendu par « clear » partout. FAQ plus correcte.",
+  "de-ch": null
+ },
+ "nb_erreurs_estime": {
+  "fr": 12,
+  "en": 50,
+  "de-ch": null
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "En macrophotographie ou sur des objets très détaillés, même une petite profondeur de champ ne suffit pas à obtenir une image entièrement nette.",
+   "probleme": "Contresens technique : c'est même la profondeur de champ la plus grande (diaphragme fermé) qui ne suffit pas ; une « petite » profondeur de champ est justement le problème. Le même contresens est reproduit en EN (« even a small depth of field is not enough »).",
+   "proposition": "En macrophotographie ou sur des objets très détaillés, même en fermant le diaphragme, la profondeur de champ ne suffit pas à obtenir une image entièrement nette."
+  },
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "auteur : PackshotCreator",
+   "probleme": "Champ auteur (signature) : l'import Webflow indiquait « Laurent Wainberg » ; remplacé par la marque au commit 8ae45f63 (12/06/2026). Même chose en EN.",
+   "proposition": "Arbitrage éditorial : rétablir l'auteur d'origine ou documenter le choix d'une signature de marque."
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67e2b7ddb0a34bfdea33d7db.avif]",
+   "probleme": "Les 4 images ont l'alt réservé Webflow « __wf_reserved_inherit » (…d7db, …b18a, …b21e, …d027), identique en EN.",
+   "proposition": "Rédiger un alt descriptif par image et par langue."
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "mineur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "Comment éviter les photos floues en photographie produit : causes, solutions, et bonnes pratiques",
+   "probleme": "97 caractères (tronqué en SERP) ; virgule avant « et » calquée de la virgule de série anglaise. Le title « Comment maîtriser le flou dans la photographie de produits » suggère un usage créatif du flou alors que H1, description et corps traitent de l'éviter.",
+   "proposition": "Photos produit floues : causes et solutions"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "En plus de gagner en profondeur de champ, vous obtiendrez une image avec plus de détails , aussi appelée piqué .",
+   "probleme": "« appelée » s'accorde avec « image » : c'est l'image qui serait « appelée piqué ». Le piqué désigne la finesse de détail.",
+   "proposition": "En plus de gagner en profondeur de champ, vous obtiendrez une image plus détaillée : c'est ce qu'on appelle le piqué."
+  },
+  {
+   "langue": "fr",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Utiliser la stabilisation optique ou capteur",
+   "probleme": "Formulation elliptique (il manque « du »/« par » devant « capteur »).",
+   "proposition": "Utiliser la stabilisation optique ou par capteur"
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Par exemple, à 50 mm, évitez de descendre en dessous de 1/50s .",
+   "probleme": "Typographie française : espace insécable entre la valeur et l'unité (« 1/50 s », « 1/4 s ») ; ouvertures écrites avec point décimal anglais (« f/1.8 », « f/5.6 ») au lieu de la virgule.",
+   "proposition": "Par exemple, à 50 mm, évitez de descendre en dessous de 1/50 s."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Sur Canon, c’est le mode One Shot ; sur d’autres marques, il peut s’agir de AF-S .",
+   "probleme": "Élision manquante.",
+   "proposition": "Sur Canon, c’est le mode One Shot ; sur d’autres marques, il peut s’agir d’AF-S."
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "mineur",
+   "emplacement": "legende",
+   "extrait_actuel": "[LÉGENDE] Pas de focus stacking",
+   "probleme": "Seule légende de l'article, ambiguë hors contexte (l'image montre-t-elle une comparaison ?) ; à préciser selon le contenu réel de l'image.",
+   "proposition": null
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "### Solutions :",
+   "probleme": "Deux intertitres h3 identiques « Solutions : » (ponctuation finale dans un titre) ; les sous-solutions sont des paragraphes à amorce en gras, non des intertitres.",
+   "proposition": "Solutions contre le flou de bougé / Solutions contre le flou de mise au point"
+  },
+  {
+   "langue": "en",
+   "categorie": "titre_litteral",
+   "gravite": "majeur",
+   "emplacement": "title",
+   "extrait_actuel": "How to master blur in product photography",
+   "probleme": "Traduction littérale du title FR ; « master blur » suggère un usage créatif du flou, contraire au sujet (l'éviter). metaTitle de 88 caractères.",
+   "proposition": "How to avoid blurry product photos"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "One Blurry photo is rarely recoverable, even with the best retouching or artificial intelligence tools.",
+   "probleme": "« Une » traduit par « One », majuscule parasite.",
+   "proposition": "A blurry photo can rarely be rescued, even with the best retouching or AI tools."
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "Whether you are shooting jewels , of goggle , of technical objects Or cosmetic packagings , sharpness is a quality criterion... and a credibility issue.",
+   "probleme": "« des lunettes » rendu par « of goggle », « des » rendu par « of », majuscule « Or » : phrase agrammaticale.",
+   "proposition": "Whether you are shooting jewellery, eyewear, technical objects or cosmetic packaging, sharpness is a quality criterion… and a matter of credibility."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "Blur motion: a tremor may be enough",
+   "probleme": "« flou de bougé » = camera shake (ou motion blur), pas « Blur motion » ; ordre des mots inversé.",
+   "proposition": "Camera shake: the slightest tremor can be enough"
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "He alone decides where to take stock, sometimes wrongly.",
+   "probleme": "« Celui-ci décide seul où faire le point » : pronom « He » pour un mode AF, et « faire le point » traduit par l'expression « take stock » (faire un bilan) : contresens complet.",
+   "proposition": "It decides on its own where to focus, sometimes wrongly."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "In addition to gaining depth of field, you will get an image with more details , also called stung . Most lenses offer their best shot between f/5.6 and f/8 .",
+   "probleme": "« piqué » traduit par « stung » (piqué par un insecte) puis « meilleur piqué » par « best shot » : terme métier détruit.",
+   "proposition": "In addition to gaining depth of field, you will get a more detailed image, known as sharpness or acutance. Most lenses are at their sharpest between f/5.6 and f/8."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Close the aperture to broaden the depth of field TO Full opening (for example at f/1.8), the The sharpness zone is very short — sometimes barely a few millimeters.",
+   "probleme": "« À pleine ouverture » rendu par « TO Full opening », article doublé « the The ».",
+   "proposition": "Stop down to increase depth of field. Wide open (for example at f/1.8), the zone of sharpness is very shallow — sometimes barely a few millimetres."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Chez Packshot Creator , some solutions such as Alphashot Pro G2 allow this process to be automated.",
+   "probleme": "Préposition française « Chez » restée en anglais (le nom de marque lui-même est rendu « PackshotCreator » avec « Creator » en italique dans le HTML : pas d'erreur sur la graphie).",
+   "proposition": "At PackshotCreator, some solutions such as the Alphashot Pro G2 automate this process."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "En macro photography or on highly detailed objects, even a small depth of field is not enough to get a completely clear image.",
+   "probleme": "Préposition française « En » ; même contresens technique qu'en FR (« small depth of field ») ; « clear » au lieu de « sharp ».",
+   "proposition": "In macro photography or with highly detailed objects, even stopping down does not give enough depth of field to get a completely sharp image."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Principle: Take several photos of the same subject, in moving the focus slightly every time you take. Then, software assembles the sharp areas of each image to create one. perfectly clear in its entirety .",
+   "probleme": "Segment coupé par un point (« to create one. perfectly clear »), « in moving », « every time you take » incomplet.",
+   "proposition": "Principle: take several photos of the same subject, shifting the focus slightly for each shot. Software then combines the sharp areas of each image into a single image that is sharp throughout."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "• Of gemstones ,",
+   "probleme": "Liste entière commençant par « Of » (de « des ») : « Of gemstones », « Of watch mechanisms », « Of very small objects with relief ».",
+   "proposition": "• gemstones,"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Use a central collimator or a specific point selected manually to target exactly the area of interest.",
+   "probleme": "« collimateur » (AF) rendu par « collimator » : en anglais on dit « AF point » / « focus point ».",
+   "proposition": "Use the centre AF point or a specific point selected manually to target exactly the area of interest."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Generalized blur throughout the photo, with no clear area, is often caused by a slight movement of the device at the time of triggering.",
+   "probleme": "« appareil » rendu par « device » (au lieu de « camera », idem « Hold the device close to the face », « to avoid moving the device ») ; « net » rendu par « clear » au lieu de « sharp » (idem « No area of the image is clear ») ; « déclenchement » rendu par « triggering ».",
+   "proposition": "Overall blur across the whole photo, with no sharp area, is often caused by a slight movement of the camera at the moment the shutter is released."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "Conclusion: prevention is better than correct",
+   "probleme": "Calque agrammatical de « mieux vaut prévenir que corriger ».",
+   "proposition": "Conclusion: prevention is better than cure"
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "It is better to adopt from the start The right gestures, the right settings , and working in a controlled environment .",
+   "probleme": "« les bons gestes » calqué, majuscule parasite, parallélisme cassé (« working »).",
+   "proposition": "It is better to adopt the right techniques and settings from the start, and to work in a controlled environment."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "It allows long exposures (1/4s and more) No blur of movement .",
+   "probleme": "« sans flou de bougé » rendu par « No blur of movement » avec majuscule et sans préposition.",
+   "proposition": "It allows long exposures (1/4 s and longer) without camera shake."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "On some Canon lenses, a button IS allows you to activate this function.",
+   "probleme": "Ordre des mots français (« un bouton IS ») ; « a image stabilizer » plus haut.",
+   "proposition": "On some Canon lenses, an IS switch activates this function."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "The most recent systems, equipped with 5-axis stabilization , offer excellent image maintenance, even when handheld and at low speed.",
+   "probleme": "« maintien de l'image » rendu par « image maintenance » (entretien) ; « low speed » pour « slow shutter speed ».",
+   "proposition": "The latest systems, with 5-axis stabilisation, keep the image remarkably steady, even handheld at slow shutter speeds."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Respect the rule of the inverse of the focal length It is advisable not to descend below a speed corresponding to 1 divided by the focal length used .",
+   "probleme": "Calques (« Respect the rule », « descend below a speed ») ; en anglais : « reciprocal rule ».",
+   "proposition": "Follow the reciprocal rule. It is best not to use a shutter speed slower than 1 divided by the focal length."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "This type of blur occurs when the Focus is done in the wrong place.",
+   "probleme": "Majuscule parasite ; « the focus is done » non idiomatique. Idem « we see that The sharpness point ».",
+   "proposition": "This type of blur occurs when the focus is set in the wrong place."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "On Canon, it's the mode One Shot ; on other brands, it may be AF-S .",
+   "probleme": "Ordre des mots français (« le mode One Shot »).",
+   "proposition": "On Canon, this is One Shot mode; on other brands it may be called AF-S."
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "In sectors where precision is essential — watchmaking , jewelery , Eyewear —, the slightest vibration is visible.",
+   "probleme": "« jewelery » mal orthographié (jewelry/jewellery), majuscule « Eyewear », ponctuation « —, » française ; le lien « lunetterie » du FR n'a pas été repris (3 liens EN contre 4 FR).",
+   "proposition": "In sectors where precision is essential — watchmaking, jewellery, eyewear — the slightest vibration is visible."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "but it does not allow for automated motion control or software integration with the lighting, set, and camera.",
+   "probleme": "« le plateau » (plateau tournant) rendu par « set » ; « Orbitvu Studios » avec majuscule dans la question suivante.",
+   "proposition": "but it does not allow for automated motion control or software integration with the lighting, turntable and camera."
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "toutes",
+   "extrait": "Le logiciel embarqué pilote le focus stacking , l’ éclairage et l’ alignement de manière parfaitement synchronisée, pour un rendu visuel professionnel, sans retouche.",
+   "source_dans_texte": "lien vers la fiche /fr/studio-photo/alphashot-pro-g2",
+   "motif": "Promesse « sans retouche », « parfaitement synchronisée ».",
+   "ecart_fr_en": "EN « in a perfectly synchronized manner, for a professional visual rendering, without retouching »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Découvrez les causes du flou en photographie produit et nos solutions professionnelles pour des visuels nets, sans retouche ni IA.",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse « sans retouche ni IA » dans la description.",
+   "ecart_fr_en": "EN « without retouching or AI »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les studios Orbitvu éliminent le risque de flou de bougé grâce à une structure rigide, un éclairage constant et surtout un trépied intégré conçu pour maintenir parfaitement l’appareil photo en position. Aucun mouvement manuel n’intervient pendant la prise de vue, ce qui garantit une stabilité totale.",
+   "source_dans_texte": "aucune",
+   "motif": "Absolus « éliminent », « garantit une stabilité totale » ; description technique (« trépied intégré ») à confirmer.",
+   "ecart_fr_en": "EN « eliminate the risk of blur and shake … ensures total stability »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Non, car le plateau tournant Orbitvu est motorisé et parfaitement synchronisé avec le déclenchement photo. Chaque rotation s’arrête précisément avant que l’image ne soit prise.",
+   "source_dans_texte": "aucune",
+   "motif": "Fonctionnement technique et « garantit une netteté parfaite » à valider (mode de prise de vue en rotation).",
+   "ecart_fr_en": "EN identique (« guarantees perfect sharpness »)."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les studios Orbitvu vont plus loin : ils transforment la prise de vue en un processus piloté, cohérent, précis et totalement optimisé pour la productivité visuelle sans compromis sur la netteté.",
+   "source_dans_texte": "aucune",
+   "motif": "Comparatif de supériorité (« supérieurs à un trépied classique »), « totalement optimisé ».",
+   "ecart_fr_en": "EN « fully optimized … without compromising sharpness »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les systèmes plus récents, dotés de stabilisation 5 axes , offrent un excellent maintien de l’image, même à main levée et à vitesse lente.",
+   "source_dans_texte": "aucune",
+   "motif": "Généralité technique, acceptable.",
+   "ecart_fr_en": "EN « The most recent systems » (superlatif « les plus récents » au lieu de « plus récents »)."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "La plupart des objectifs offrent leur meilleur piqué entre f/5.6 et f/8 .",
+   "source_dans_texte": "aucune",
+   "motif": "Règle empirique générale, acceptable ; EN détruit le sens (« best shot »).",
+   "ecart_fr_en": "EN « Most lenses offer their best shot between f/5.6 and f/8 »."
+  }
+ ],
+ "titre_h1_meta": "FR : title « Comment maîtriser le flou dans la photographie de produits » (« maîtriser » suggère un usage voulu du flou), H1 « Comment éviter les photos floues en photographie produit », metaTitle 97 caractères avec virgule de série ; description cohérente avec le corps mais promet « sans retouche ni IA ». EN : title littéral « How to master blur in product photography », H1 et metaTitle (88 caractères) corrects mais trop longs pour le metaTitle. Le corps traite bien d'éviter le flou : aligner le title sur le H1.",
+ "structure_fr_en": "Parité FR/EN : 4 h2, 2 h3, 28 p, 6 puces, 4 images, 1 légende, 5 FAQ, même ordre. Écart : le lien « lunetterie » → /fr/industrie/lunetterie n'existe pas en EN (3 liens contre 4). 8 paragraphes vides à caractère invisible (U+200D) dans les deux langues. Les sous-solutions sont des paragraphes à amorce en gras suivie d'un saut de ligne (rendu correct, l'extrait les fusionne).",
+ "images_alt_legendes": "4 images, toutes avec l'alt réservé « __wf_reserved_inherit » (FR et EN). Une seule légende : « Pas de focus stacking » / « No focus stacking », correctement traduite mais ambiguë.",
+ "appellations": "Orbitvu, Alphashot Pro G2, PackshotCreator cohérents. Le HTML écrit « Packshot<em>Creator</em> » dans la phrase « Chez … » (style italique de l'ancienne marque, rendu « PackshotCreator ») : pas d'erreur d'appellation. Champ auteur passé de « Laurent Wainberg » (import Webflow) à « PackshotCreator » (commit 8ae45f63).",
+ "recommandation": "retraduction complète",
+ "remarques": "Recommandation par langue : EN retraduction complète ; FR retouches (contresens profondeur de champ, typographie, metaTitle/title). Date de publication affichée 13/09/2023 alors que l'item Webflow a été créé le 25/03/2025 [Inférence d'après l'horodatage ObjectId] : à vérifier. Le lien « focus stacking » → /fr/blog/focus-sur-lhyperfocus a un slug trompeur (« hyperfocus ») mais pointe bien vers l'article « Focus stacking packshot : netteté parfaite sans retouche ». Catégorie « Innovations » discutable pour un article de technique photo."
+}

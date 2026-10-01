@@ -1,0 +1,147 @@
+{
+  "family": "670e2117666e7e6003d78ca4",
+  "slugs": {
+    "fr": "boostez-votre-taux-de-conversion-grace-aux-visuels-produits-4-erreurs-a-eviter",
+    "en": null,
+    "de-ch": null
+  },
+  "sujet": "Article de 2017 qui liste quatre erreurs de visuels produits freinant la conversion en e-commerce : absence de charte visuelle, fichiers trop lourds, photos non conformes au produit livré et fiche produit approximative.",
+  "langue_originale": "SOURCE ORIGINALE NON ÉTABLIE",
+  "preuve_langue": "Une seule version existe (FR) : content/blog/alternates.json donne \"en\": null et aucun fichier de-ch. Aucune trace de traduction dans le FR. [Inférence] rédaction française native probable : tournures idiomatiques (« montent sur le podium des 3 premiers facteurs », « Simplicité, clarté et cohérence, en un mot lisibilité ! »), typographie à la française (apostrophes typographiques, guillemets « »).",
+  "qualite": {
+    "fr": "B",
+    "en": "X",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et lisible. Défauts surtout typographiques et éditoriaux : numéro collé dans les 4 intertitres (« 1.L'absence »), espace manquante après le point (« ).La », « colis .Multipliez »), « A l’inverse », « contre productives », intertitre h5 isolé, H1 tronqué, deux renvois à d'autres articles sans lien (dont un vers un article introuvable dans le dépôt), statistiques non sourcées, conseils de formats datés de 2017. Limite basse de B.",
+    "en": "Aucune version anglaise : alternates.json donne \"en\": null.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 15,
+    "en": 0,
+    "de-ch": 0
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "1.L'absence de charte visuelle pour votre e-commerce",
+      "probleme": "Espace manquante entre le numéro et le titre ; même défaut dans « 2.Le poids des fichiers… », « 3.Les photos non conformes… », « 4.Une fiche produit approximative » (présent dans le HTML).",
+      "proposition": "1. L'absence de charte visuelle pour votre e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans un précédent billet de blog, nous avions partagé 6 bonnes pratiques pour améliorer votre taux de conversion grâce aux visuels produits .",
+      "probleme": "Renvoi à un article précédent sans lien, alors que l'article existe dans le dépôt : content/blog/fr/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques.json (l'espace avant le point est un artefact d'extraction).",
+      "proposition": "Dans un précédent billet de blog, nous avions partagé 6 bonnes pratiques pour améliorer votre taux de conversion grâce aux visuels produits (lien vers /fr/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques, à valider)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "(lire notre article sur les 5 lois de l'attractivité pour votre e-commerce ).La charte visuelle",
+      "probleme": "Renvoi à un article qui n'est pas lié et qu'on ne trouve pas dans le dépôt (aucun fichier de content/blog/fr ne contient « lois de l'attractivité » en dehors de celui-ci) ; dans le HTML, « ).La » est collé, sans espace après le point.",
+      "proposition": "Supprimer la parenthèse (ou la lier à un article existant), puis : « … charte visuelle. La charte visuelle vous permet… »"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A l’inverse, voici quelques-uns des facteurs dissuadant les internautes d'acheter sur un site e-commerce.",
+      "probleme": "Majuscule non accentuée.",
+      "proposition": "À l’inverse, voici quelques-uns des facteurs qui dissuadent les internautes d'acheter sur un site e-commerce."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Vos photos de produits représentent le premier élément d'une vitrine e-commerce",
+      "probleme": "Phrase d'accroche balisée en h5, directement sous un h2 : la hiérarchie saute les niveaux h3 et h4.",
+      "proposition": "Passer cette phrase en paragraphe (ou en h3)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "ceux que vos clients découvriront en ouvrant leurs colis .Multipliez les prises de vue",
+      "probleme": "Espace avant le point et pas d'espace après : défaut présent tel quel dans le HTML (« colis .Multipliez »).",
+      "proposition": "ceux que vos clients découvriront en ouvrant leurs colis. Multipliez les prises de vue"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "La valorisation de vos produits par l’image prendra alors tout son sens. Et vous limiterez alors le nombre de vos retours produits et de vos clients mécontents.",
+      "probleme": "Section 4 rédigée uniquement en puces qui sont en fait des phrases enchaînées (aucun paragraphe introductif) ; « alors » répété.",
+      "proposition": "La valorisation de vos produits par l’image prendra alors tout son sens, et vous limiterez le nombre de retours produits et de clients mécontents."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Boostez votre taux de conversion grâce aux visuels",
+      "probleme": "H1 tronqué par rapport au title (« … grâce aux visuels produits : 4 erreurs à éviter ») : il perd « produits » et l'angle « 4 erreurs à éviter », qui structure le corps et le metaTitle.",
+      "proposition": "Boostez votre taux de conversion : 4 erreurs à éviter avec vos visuels produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le format PNG pour jouer sur des effets de transparence",
+      "probleme": "Conseils de formats datés (2017) : seuls JPEG et PNG sont cités ; aucun format web actuel, alors que le site sert lui-même ses images en AVIF.",
+      "proposition": "Mettre à jour la liste des formats (renvoyer vers l'article lié « quel format d'image pour le web ») ou dater explicitement le conseil."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans le secteur de la mode et des accessoires , une charte visuelle cohérente est essentielle pour présenter les collections de manière harmonieuse et attrayante.",
+      "probleme": "Phrase de maillage ajoutée en gras dans le paragraphe : son lien « mode et des accessoires » pointe vers le hub générique /fr/industrie et non vers une page mode (le slug mode-textile existe dans app/[lang]/industrie/[slug]).",
+      "proposition": "Garder la phrase sans graisse et pointer le lien vers /fr/industrie/mode-textile (à valider)."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "fr",
+      "extrait": "Les photos représentent le premier facteur d’incitation à l’achat pour les consommateurs en ligne, suivies par les détails techniques et les descriptions des produits, puis par les avis clients en ligne.",
+      "source_dans_texte": "aucune (seule une vidéo YouTube intégrée suit la phrase, non vérifiée)",
+      "motif": "Classement présenté comme un fait, sans étude ni date.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "l'absence de visuels produits et les photos de mauvaise qualité montent sur le podium des 3 premiers facteurs dissuadant les internautes d'acheter sur un site e-commerce",
+      "source_dans_texte": "aucune",
+      "motif": "Classement non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Et vous limiterez alors le nombre de vos retours produits et de vos clients mécontents.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de baisse des retours, non chiffrée et non sourcée (acceptable si elle reste au conditionnel).",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Boostez votre taux de conversion grâce aux visuels produits : 4 erreurs à éviter » ; metaTitle « 4 erreurs à éviter pour booster votre taux de conversion » (56 car., cohérent ; c'est aussi le <title> servi) ; description réécrite depuis l'import, cohérente avec les 4 sections ; H1 tronqué « Boostez votre taux de conversion grâce aux visuels » qui perd l'angle « 4 erreurs ». Pas d'EN.",
+  "structure_fr_en": "Version FR seule (EN : X). Côté FR : 6 h2 plus un h5 isolé ; section 4 rédigée uniquement en puces ; conclusion d'une seule phrase ; 6 paragraphes vides (ZWJ) hérités de Webflow ; 574 mots.",
+  "images_alt_legendes": "Aucune image dans le corps (img : 0) ; une seule vidéo YouTube, via un shortcode [embed]. Pas d'alt ni de légende à corriger.",
+  "appellations": "Aucune marque citée dans le corps (ni PackshotCreator ni Orbitvu). Auteur JSON « PackshotCreator » : il remplace « Laurent Wainberg » depuis le commit 8ae45f63 du 12/06/2026, sans effet sur le corps de cet article.",
+  "recommandation": "retouches",
+  "remarques": "Article daté du 17/09/2017 : conseils techniques datés (formats JPEG/PNG, « animations HTML5 »). Le renvoi « 6 bonnes pratiques » peut être lié vers /fr/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques (l'article existe dans le dépôt) ; le renvoi « 5 lois de l'attractivité » n'a pas d'article correspondant. Vidéo https://youtu.be/HVmUF6Mjan8 non vérifiée (pas d'accès web). Autres corrections mineures non détaillées : intertitre « Le visuel produit premier facteur d'incitation à l'achat pour le e-commerce » (virgule d'apposition manquante), « contre productives » (→ « contre-productives »), « Présentations multi-vues animées en 360 ou 3D » (→ « à 360° ou en 3D »), « Rotations de produits animés à 360° » (accord : « Rotations animées à 360° »), shortcode « [embed]https://youtu.be/HVmUF6Mjan8[/embed] » resté dans le JSON (converti à l'affichage par lib/blog-utils.ts). Arbitrage éditorial : créer ou non une version EN, aucune n'existant."
+}

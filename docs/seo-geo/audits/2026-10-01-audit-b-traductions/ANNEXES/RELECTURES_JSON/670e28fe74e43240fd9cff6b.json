@@ -1,0 +1,270 @@
+{
+  "family": "670e28fe74e43240fd9cff6b",
+  "slugs": {
+    "fr": "photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre",
+    "en": "photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre",
+    "de-ch": null
+  },
+  "sujet": "Page de présentation d'une gamme d'équipements de photographie 3D (bras multi-appareils PackshotSphere X5, rail MacroSphere, PackshotDual Capture, plateaux PackshotSpin) et du logiciel PackshotCreator pour créer des animations sphériques et hémisphériques interactives.",
+  "langue_originale": "EN → FR (preuve interne)",
+  "preuve_langue": "La version FR porte des calques objectifs de l'anglais (source anglaise absente du dépôt ; la « version EN » du dépôt est une copie du FR) : « accroître la productivité et la consistance » (consistency) ; « téléchargez-les instantanément sur le web » et « peuvent ensuite être téléchargées sur le web » (upload) ; « Ajoutez un zoom profond » (deep zoom) ; « Flexible & pratique » ; « Bras 3D par PackshotCreator » (by) ; « Plus de fonctionnalités essentielles du logiciel 3D : » (More essential 3D software features) ; « Les vues de produits à deux rangées » (two-row product views) ; « en mode sphériques ou hémisphériques » (accord calqué) ; intertitre en capitales « FOURNIR DES ANIMATIONS 3D DE PRODUITS CRÉATIVES ET UNIQUES » ; noms de fonctions laissés en anglais (« LightControl », « Custom Defined »).",
+  "qualite": {
+    "fr": "C",
+    "en": "X",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Traduction de l'anglais peu relue : calques (consistance, téléchargées sur le web, zoom profond), phrases redondantes ou absurdes (« ne nécessitent pas de manipulation nécessaire », « exportées simplement ou automatiquement assemblées automatiquement »), fragment d'intertitre collé en fin de paragraphe (« classique.Une combinaison parfaite. »), mot collé au rendu (« ouPackshotMacro RE »), intertitre orphelin, hiérarchie H3 à H5 sans H2. Sur le fond : présente comme actuelle une gamme PackshotCreator historique (PackshotSpin, PackshotMacro, PackshotSphere) dont les ancres pointent vers des produits Orbitvu. Réécriture partielle a minima, arbitrage sur le maintien.",
+    "en": "Contenu entièrement en français sous /en (slug, title, H1, corps, alt) ; seule la description est en anglais. Page servie en noindex, follow (lib/seo-config.ts, NOINDEX_EN_BLOG_SLUGS). Il n'existe aucune version anglaise.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 26,
+    "en": 2,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nous fabriquons des solutions de photographie de produits en 3D, notamment des éclairages LED professionnels, des plateaux tournants 360 et des bras d'appareils photo multiples pour photographier des produits de toutes tailles.",
+      "probleme": "Fait daté : la page présente comme fabriquée et vendue aujourd'hui une gamme PackshotCreator historique (PackshotSpin, PackshotMacro DL/DIS/RE, PackshotSphere X5, MacroSphere, PackshotDual Capture). La chronologie du site (messages/fr.json : « Gamme Packshot Spin » 2010, « Packshot Macro R » 2012, « Alliance stratégique Orbitvu » 2023) et les redirections des anciennes URL produit (rapport maître) indiquent des gammes antérieures à l'offre Orbitvu actuelle ; les ancres « Packshot Macro DL/DIS » pointent vers la fiche Alphashot Micro Pro v2.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "plus d'informations qu'une animation 360° classique.Une combinaison parfaite.",
+      "probleme": "Début de l'intertitre suivant (« Une combinaison parfaite : … ») resté collé à la fin du paragraphe, sans espace.",
+      "proposition": "plus d'informations qu'une animation 360° classique."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Une fois calibrés, ces systèmes 3D ne nécessitent pas de manipulation nécessaire.",
+      "probleme": "Pléonasme absurde (traduction littérale de « require no manual handling » probable).",
+      "proposition": "Une fois calibrés, ces systèmes 3D ne nécessitent aucune manipulation."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les photos capturées peuvent être exportées simplement ou automatiquement assemblées automatiquement en animations de produits 3D interactives.",
+      "probleme": "« automatiquement » répété ; « exportées simplement » ne veut rien dire (telles quelles ?).",
+      "proposition": "Les photos capturées peuvent être exportées telles quelles ou assemblées automatiquement en animations de produits 3D interactives."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ces animations interactives peuvent ensuite être téléchargées sur le web et compatibles avec tous les supports pour une visualisation sur les smartphones et tablettes Android, Mac et PC.",
+      "probleme": "« téléchargées sur le web » pour « upload » (sens inverse en français : mettre en ligne) ; coordination agrammaticale « peuvent être téléchargées … et compatibles ». Même faux ami dans la puce « téléchargez-les instantanément sur le web ».",
+      "proposition": "Ces animations interactives peuvent ensuite être mises en ligne ; elles sont compatibles avec tous les supports : smartphones et tablettes Android, Mac et PC."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Ajouter un studio photo 360",
+      "probleme": "Intertitre H4 orphelin, sans lien ni contenu (son pendant « Ajouter un plateau tournant 360 » est un lien) ; plus largement, la page n'a aucun H2 (H3 à H5 seulement) et utilise des H5 comme boutons (« Découvrir d'autres atouts du logiciel », « En savoir plus sur les animations de produits à 360° au format HTML5 »).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le MacroSphère peut être combiné à un PackshotMacro DL, PackshotMacro DIS ouPackshotMacro RE pour photographier des bijoux et autres produits de petites tailles.",
+      "probleme": "« MacroSphère » (corps) contre « MacroSphere » (intertitre, alt, description) ; article masculin « Le » ; espace manquante au rendu (« ouPackshotMacro RE ») ; les ancres « PackshotMacro DL » et « PackshotMacro DIS » mènent à /fr/studio-photo/alphashot-micro-v2, produit d'un autre nom.",
+      "proposition": "Le MacroSphere peut être combiné à un PackshotMacro DL, PackshotMacro DIS ou PackshotMacro RE pour photographier des bijoux et autres produits de petite taille."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les paramètres sont enregistrés et réutilisés pour accroître la productivité et la consistance.",
+      "probleme": "« consistance » calque de « consistency ».",
+      "proposition": "Les paramètres sont enregistrés et réutilisés pour accroître la productivité et la cohérence."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ajoutez un zoom profond aux animations 3D pour afficher tous les détails importants de vos produits.",
+      "probleme": "« zoom profond » calque de « deep zoom » (même calque plus bas : « un zoom profond »).",
+      "proposition": "Ajoutez un zoom haute résolution aux animations 3D pour afficher tous les détails importants de vos produits."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "FOURNIR DES ANIMATIONS 3D DE PRODUITS CRÉATIVES ET UNIQUES",
+      "probleme": "Intertitre entièrement en capitales (style de maquette anglophone).",
+      "proposition": "Fournir des animations 3D de produits créatives et uniques"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Plus de fonctionnalités essentielles du logiciel 3D :",
+      "probleme": "Calque de « More essential 3D software features » ; ambigu en français (« plus de » = « davantage » ou « ne … plus »).",
+      "proposition": "Autres fonctionnalités essentielles du logiciel 3D"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "en mode sphériques ou hémisphériques",
+      "probleme": "Accord fautif.",
+      "proposition": "en mode sphérique ou hémisphérique"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "système de prise de vue d'objets en 3D sphérique et hémispérique",
+      "probleme": "Coquille dans le texte alternatif.",
+      "proposition": "système de prise de vue d'objets en 3D sphérique et hémisphérique"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Bras 3D par PackshotCreator",
+      "probleme": "Calque de « by » ; alt peu descriptif.",
+      "proposition": "Bras 3D multi-appareils PackshotCreator"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nos systèmes combinent un ou plusieurs appareils photo avec un plateau tournant 360 et un logiciel.",
+      "probleme": "« plateau tournant 360 » sans symbole degré (idem « studio photo 360 », « vues 2D et 360 »), alors que « 360° » est employé ailleurs.",
+      "proposition": "Nos systèmes combinent un ou plusieurs appareils photo avec un plateau tournant 360° et un logiciel."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Contrôlez ces solutions simultanément à partir du même logiciel.",
+      "probleme": "Balise de mise en gras coupée au milieu d'un mot (« <strong>…simultanémen</strong>t ») ; même défaut dans « p<strong>ersonnaliser » : graisse partielle visible au rendu.",
+      "proposition": "Contrôlez ces solutions simultanément à partir du même logiciel."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Photographie 3D de produits : une série complète d'équipement avec logiciel intégré",
+      "probleme": "Pas de metaTitle : le title (≈ 84 caractères) sera tronqué ; « équipement » au singulier alors que le corps dit « équipements ».",
+      "proposition": "Photographie 3D de produits : équipements et logiciel intégrés"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "title",
+      "extrait_actuel": "Photographie 3D de produits : une série complète d'équipement avec logiciel intégré",
+      "probleme": "Page /en entièrement en français : title, H1, corps, intertitres, alt ; slug français. Seule la description est en anglais.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "Complete 3D product photography solutions: PackshotSphere X5, MacroSphere and interactive HTML5 spherical animations to boost your e-commerce conversions.",
+      "probleme": "Description anglaise (ajoutée dans le dépôt, commit e0482993) pour une page dont tout le contenu est en français.",
+      "proposition": null
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Nos plateaux tournants brevetés et nos environnements d'éclairage LED sont entièrement contrôlés par logiciel",
+      "source_dans_texte": "aucune",
+      "motif": "« brevetés » : brevets non cités ; à valider (gamme historique).",
+      "ecart_fr_en": "Corps EN identique au FR."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Nous fabriquons des solutions de photographie de produits en 3D",
+      "source_dans_texte": "aucune",
+      "motif": "Qualité de fabricant à vérifier pour l'offre actuelle (distribution Orbitvu depuis 2023 selon la chronologie du site).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les animations de produits interactives en 3D augmentent les taux de conversion lors de la vente en ligne",
+      "source_dans_texte": "aucune",
+      "motif": "Effet sur la conversion non sourcé ; repris dans « Augmentez le taux de conversion de votre site web » et dans la description (« booster vos conversions »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "garantissent le flux de travail le plus rapide et le plus productif possible",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif et « garantissent ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "le logiciel intégré synchronise la prise de vue (jusqu'à 10 appareils photo)",
+      "source_dans_texte": "aucune",
+      "motif": "Capacité technique de produits historiques à confirmer ; voir aussi « Contrôlez en même temps jusqu'à 10 appareils photo ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Prenez jusqu'à 1024 images sur 10 rangées",
+      "source_dans_texte": "aucune",
+      "motif": "Spécification à confirmer.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Visualisez et utilisez des fonctionnalités logicielles uniques",
+      "source_dans_texte": "aucune",
+      "motif": "« uniques ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Simple à apprendre et à utiliser. Aucune expérience requise.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Nos systèmes 3D assurent un grand débit, des résultats cohérents et une qualité d'image exceptionnelle.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse générale non chiffrée.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : metaTitle absent ; title = H1 (« Photographie 3D de produits : une série complète d'équipement avec logiciel intégré », ≈ 84 caractères) cohérent avec le corps mais trop long et au singulier. Description ajoutée dans le dépôt (commit e0482993, absente de l'import Webflow) : cite « PackshotSphere X5, MacroSphere » (graphie du rendu) et promet de « booster vos conversions ». EN : title et H1 français, slug français, description anglaise, corps français ; robots servi « noindex, follow ». Dates divergentes : FR 15/10/2024, EN 08/11/2024.",
+  "structure_fr_en": "Corps EN strictement identique au corps FR (vérifié par comparaison du texte rendu) : 9 H3, H4 et H5, 11 paragraphes, 16 puces, 9 images, 19 liens (cibles localisées en /en), pas de FAQ. Hiérarchie défectueuse dans les deux : aucun H2, un H4 en capitales, un H4 orphelin (« Ajouter un studio photo 360 »), des H5 servant de boutons. Fragment « Une combinaison parfaite. » doublé en fin de paragraphe.",
+  "images_alt_legendes": "9 images sans légende ; alt descriptifs mais en français dans les deux versions. Coquille « hémispérique » ; « Bras 3D par PackshotCreator » calqué ; « macrosphere » en minuscules dans un alt.",
+  "appellations": "Graphie réelle au rendu (HTML « Packshot<em>Creator</em> », « Packshot<em>Sphere</em> X5 », etc.) : « PackshotCreator », « PackshotSphere X5 », « PackshotSpin », « PackshotMacro DL/DIS/RE », « PackshotDual Capture », « LightControl », « AutoMask », avec la seconde partie en italique (style de l'ancienne marque). L'anomalie automatique « Packshot Creator (espacé) » est un artefact d'extraction, pas une erreur. Incohérence réelle : « MacroSphere » (intertitre, alt, description) contre « MacroSphère » (corps, ancre). Aucune mention d'Orbitvu, alors que plusieurs ancres mènent vers des pages Orbitvu (Alphashot Micro Pro v2, /studios-photo-automatises) ; « le Custom Defined » et « AutoPNG, AutoBKG » sont des noms de fonctions non expliqués.",
+  "recommandation": "arbitrage éditorial (maintien d'une page décrivant une gamme historique ; EN à retraduire ou à retirer)",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées). Liens externes à vérifier : « Macro Sphère » → https://fr.packshot-studio.com/collections/3d/products/macrosphere-3d-jewelry-animation (autre domaine, boutique possiblement disparue) ; « Découvrez comment héberger vos photographies de produits dans le Cloud » → https://saasphoto.com/. Ancres incohérentes avec leur cible : « Packshot Sphere X5 » et « systèmes 3D ne nécessitent pas de manipulation nécessaire » → article photogrammétrie Alphashot XL Pro v2 ; « animations 360 » et « Ajouter un plateau tournant 360 » → sélecteur de machines ; « Light Control » → /studios-photo-automatises. Pas de date de mise à jour, pas d'auteur, pas de catégorie, pas de temps de lecture. Aucune version de-ch."
+}

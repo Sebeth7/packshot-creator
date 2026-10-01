@@ -1,0 +1,473 @@
+{
+  "family": "67c5cd1406caccfac3022b93",
+  "slugs": {
+    "fr": "de-la-photographie-2d-aux-modeles-3d-de-vos-produits-introduction-a-la-photogrammetrie",
+    "en": "from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry",
+    "de-ch": null
+  },
+  "sujet": "Guide technique et commercial sur la photogrammétrie de produits (capture, reconstruction, formats web, matériel, comparaison avec le scanner laser, ROI) adossé à l'Alphashot XL Pro V2 d'Orbitvu et aux services de PackshotCreator.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Faux amis et calques qui supposent une source française : « Navigators : Chrome, Firefox » (navigateurs), « Metavers and virtual spaces » (métavers), « Customer feedback ratio » (contresens sur « Ratio de retours clients »), « Parasitic reflections on metals, glasses » (reflets parasites, verres), « Mobile parts » et « Blurred on mobile elements (closures, chains...) » (parties mobiles, fermetures), « equipment park » (parc matériel), « representative references » (références), « product sheets » (fiches produit), « traditional shootings » (shootings), « devices » mis pour « appareils » photo (« 5 device configuration », « light/device/background configuration », « zoom of the device »), « quality-price ratio » (rapport qualité-prix), « 20,000 to 30,000€ » (euro postposé), « How do you start gently? » (débuter en douceur), espace française avant les deux-points dans toutes les listes (« Partial view : only », vérifiée dans le HTML). [Inférence] Le FR lui-même contient des anglicismes techniques (« Décimation adaptive », « vertices », « hotspots », « CPU-only », « time-to-market », « early adopters », « rendus studio qualité ») qui évoquent une rédaction assistée à partir de sources ou d'un brouillon anglophones. La version EN actuelle est cependant traduite du FR : « rendus studio qualité » y est rendu par « quality studio renderings », pas par « studio-quality ».",
+  "qualite": {
+    "fr": "C",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Phrasé fluide mais de type rédaction générée : nombreux anglicismes (« Décimation adaptive », « vertices », « Maps additionnelles », « hotspots », « time-to-market », « early adopters », « assets »), unités et pourcentages au format anglo-saxon (« 64GB », « 8,2MB », « 63% », « 150€ »), accords fautifs (« seules 40 à 60% », « photogrammétrique »), image sans alt (« __wf_reserved_inherit »). Sur le plan éditorial, c'est le défaut principal : des dizaines de chiffres non sourcés et incohérents entre eux (25 000 € contre 35 000 €, 300 produits par jour contre 150 images par jour, CRI > 95 contre 98+, 120+ profils contre 15 profils, +15-25 % contre +35 % de conversion) et des sources invérifiables (« Gartner, 2024 », « Benchmark Orbitvu Labs, 2024 »). Autres mineures non listées : « scanning laser » (numérisation laser), « non-transparents », « LEDs » (LED invariable), « idéales » (accord ambigu), « Calibration écran » (étalonnage).",
+    "en": "Lisible, sans phrase incompréhensible, mais traduction automatique non relue : faux amis récurrents (« Navigators », « Metavers », « glasses », « Mobile parts », « closures », « devices », « automatic cropping »), un contresens (« Customer feedback ratio »), typographie française (espace avant les deux-points dans une quarantaine de puces, € postposé), calques (« equipment park », « product sheets », « shootings », « quality-price ratio »). Porte les mêmes problèmes de claims que le FR. Autres mineures non listées : liens externes vers canon.fr et adobe.com/fr/, « Measured performances », « high power LED », « What concrete gains on production costs? » (phrase sans verbe).",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 30,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dbae6ac24274cca9421031.avif]",
+      "probleme": "Texte alternatif réduit au jeton réservé de Webflow : l'image n'a pas d'alt (même défaut en EN).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Une étude récente révèle que 63% des acheteurs souhaitent examiner un produit sous tous les angles avant de finaliser leur achat (Gartner, 2024).",
+      "probleme": "Statistique attribuée à Gartner sans lien ni référence de publication, invérifiable en l'état ; « récente » est daté ; « 63% » sans espace.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Source : Benchmark Orbitvu Labs, 2024 et analyses indépendantes",
+      "probleme": "Source non liée et non identifiable (« Orbitvu Labs », « analyses indépendantes ») pour un tableau de coûts chiffré.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Un investissement dans la 3D (à partir de 35 000€ pour un studio complet)",
+      "probleme": "Contradiction interne : la configuration de photogrammétrie est chiffrée plus haut à « environ 25 000 € » d'investissement initial. Typographie : « 35 000 € ».",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "permettant de générer jusqu’à 150 images prêtes à l’emploi quotidiennement",
+      "probleme": "Contradiction avec le corps (« Débit journalier : jusqu'à 300 produits en workflow optimisé », « entre 144 et 300 images par produit »).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cas client : Omi utilise nos solutions",
+      "probleme": "Présenté comme un cas client alors que la seule preuve avancée est « Comme on peut le voir dans leurs vidéos de présentation ». Usage d'une marque tierce à valider ; « nos solutions » entretient l'ambiguïté entre distributeur et fabricant.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Optimisez votre workflow de création de modèles 3D avec les solutions Orbitvu",
+      "probleme": "MetaTitle de 77 caractères (tronqué en SERP), anglicisme « workflow », angle « solutions Orbitvu » absent du H1 et du title ; description de 212 caractères qui promet que les solutions Orbitvu « révolutionnent la photogrammétrie ».",
+      "proposition": "Photogrammétrie produit : de la photo 2D au modèle 3D avec Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Vue partielle : seules 40 à 60% du produit sont visibles",
+      "probleme": "Accord fautif (les pourcentages sont masculins) et espace manquante avant %.",
+      "proposition": "Vue partielle : seuls 40 à 60 % du produit sont visibles"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "RAM : 64GB minimum, 128GB recommandé pour les modèles complexes",
+      "probleme": "Unités anglaises et sans espace ; en français on écrit Go, Mo, To (même défaut dans « 12GB+ VRAM », « 5000 MB/s) de 2TB », « 5-15 MB », « 8,2MB », « 25kg », « 5500K », « 150€ », « 1/125s »).",
+      "proposition": "RAM : 64 Go minimum, 128 Go recommandés pour les modèles complexes"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Décimation adaptive : réduction à 100 000-200 000 polygones pour le web",
+      "probleme": "« adaptive » est l'adjectif anglais ; en français : « adaptative ».",
+      "proposition": "Décimation adaptative : réduction à 100 000-200 000 polygones pour le web"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Complexité géométrique : 113,7k triangles, 56,8k vertices",
+      "probleme": "Terme anglais « vertices » (sommets) ; même registre dans « Maps additionnelles : normal maps, roughness maps », « hotspots », « CPU-only ».",
+      "proposition": "Complexité géométrique : 113 700 triangles, 56 800 sommets"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nike Performance by PackshotCreator on Sketchfab",
+      "probleme": "Mention d'attribution Sketchfab laissée en anglais dans l'article français.",
+      "proposition": "Nike Performance par PackshotCreator sur Sketchfab"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Formez votre équipe aux flux de travail photogrammétrique",
+      "probleme": "Accord : l'adjectif se rapporte à « flux » (pluriel).",
+      "proposition": "Formez votre équipe aux flux de travail photogrammétriques"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "cette technologie permet d’obtenir des rendus studio qualité sans recours à des photographes spécialisés",
+      "probleme": "Calque de « studio-quality » ; ordre des mots non français.",
+      "proposition": "cette technologie permet d’obtenir des rendus de qualité studio sans recourir à des photographes spécialisés"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Les early adopters rapportent :",
+      "probleme": "Anglicisme ; même registre dans « time-to-market », « assets », « workflows » (FAQ).",
+      "proposition": "Les premiers utilisateurs rapportent :"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Problème : Reflets parasites sur les métaux, verres, bijoux...",
+      "probleme": "Majuscule après les deux-points, incohérente avec les puces en minuscule (« Vue partielle : seules… ») ; même défaut dans « Solution : Combinaison », « Méthode : Utilisation », « Calibration écran : Moniteur ».",
+      "proposition": "Problème : reflets parasites sur les métaux, le verre, les bijoux…"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dbae6ac24274cca9421031.avif]",
+      "probleme": "Pas de texte alternatif (jeton Webflow).",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Navigators : Chrome, Firefox, Safari, Edge (WebGL 2.0+)",
+      "probleme": "Faux ami (navigateurs) : en anglais, « browsers ».",
+      "proposition": "Browsers: Chrome, Firefox, Safari, Edge (WebGL 2.0+)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Metavers and virtual spaces : Unity, Unreal Engine, Spatial.io",
+      "probleme": "Graphie française « Metavers » ; l'anglais écrit « metaverse ».",
+      "proposition": "Metaverse and virtual spaces: Unity, Unreal Engine, Spatial.io"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Customer feedback ratio",
+      "probleme": "Contresens : « retours clients » désigne ici les retours de produits, pas les avis clients.",
+      "proposition": "Customer return rate"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Problem : Parasitic reflections on metals, glasses, jewelry...",
+      "probleme": "« Parasitic reflections » est un calque (stray reflections) ; « glasses » veut dire lunettes ou verres à boire, alors qu'il s'agit du verre comme matériau.",
+      "proposition": "Problem: stray reflections on metal, glass, jewelry…"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Problem : Blurred on mobile elements (closures, chains...)",
+      "probleme": "« Blurred » employé comme nom, « mobile » mis pour « moving », « closures » mis pour les fermetures à glissière. L'intertitre « Mobile parts » a le même défaut.",
+      "proposition": "Problem: motion blur on moving parts (zippers, chains…)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Eliminating post-production steps through automatic cropping and built-in image correctors",
+      "probleme": "« Cropping » veut dire recadrage ; le détourage se dit « background removal » (on trouve aussi « Automatic clipping via iQ-mask » dans le corps).",
+      "proposition": "Eliminating post-production steps through automatic background removal and built-in image correction tools"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Partial view : only 40 to 60% of the product is visible",
+      "probleme": "Espace avant les deux-points (typographie française) dans environ 40 puces (« High costs : », « CPU : », « Initial investment : », « Problem : »…).",
+      "proposition": "Partial view: only 40 to 60% of the product is visible"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photogrammetry (5 device configuration)",
+      "probleme": "« Appareil » traduit par « device » au lieu de « camera » (de même pour « ideally with devices like Canon EOS R5 Mark II », « light/device/background configuration », « zoom of the device »).",
+      "proposition": "Photogrammetry (5-camera setup)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Point cloud density : > 50,000 dots/cm² for fine details",
+      "probleme": "Un nuage de points se compte en « points », pas en « dots ».",
+      "proposition": "Point cloud density: > 50,000 points/cm² for fine detail"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "with a constantly updated equipment park",
+      "probleme": "Calque de « parc matériel ».",
+      "proposition": "with constantly updated equipment"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Select some flagship products to familiarize yourself with the technique (5-10 representative references)",
+      "probleme": "« Références » au sens commercial (SKU) ; même famille : « Time spent on product sheets » (fiches produit, en anglais « product pages »).",
+      "proposition": "Start with a few flagship products to get familiar with the technique (5–10 representative SKUs)"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Reduced production costs : -78% compared to traditional shootings",
+      "probleme": "« Shootings » au sens français (séances photo).",
+      "proposition": "Lower production costs: -78% compared with traditional photo shoots"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "photogrammetry offers a significantly higher quality-price ratio",
+      "probleme": "Calque de « rapport qualité-prix ».",
+      "proposition": "photogrammetry offers significantly better value for money"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Annual maintenance : 20,000 to 30,000€",
+      "probleme": "Euro placé après le nombre, à la française, en contradiction avec « €80,000 » deux lignes plus haut (même défaut dans « 140,000 to 170,000€ »).",
+      "proposition": "Annual maintenance: €20,000 to €30,000"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "How do you start gently?",
+      "probleme": "Calque de « débuter en douceur ».",
+      "proposition": "How to get started"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "this technology makes it possible to obtain quality studio renderings without recourse to specialized photographers",
+      "probleme": "Calque du français ; « renderings » évoque l'image de synthèse.",
+      "proposition": "this technology delivers studio-quality results without the need for specialist photographers"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "63% des acheteurs souhaitent examiner un produit sous tous les angles avant de finaliser leur achat (Gartner, 2024)",
+      "source_dans_texte": "aucune (mention « Gartner, 2024 » sans lien)",
+      "motif": "Statistique attribuée à un tiers sans référence vérifiable.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Vue partielle : seules 40 à 60% du produit sont visibles",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "pouvant atteindre 150€ par produit",
+      "source_dans_texte": "aucune",
+      "motif": "Coût non sourcé.",
+      "ecart_fr_en": "EN « up to €150 per product » : équivalent"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Illumination à 360° avec 56 LEDs RGBW contrôlables",
+      "source_dans_texte": "aucune",
+      "motif": "Contradiction interne avec « 56 LEDs à spectre complet (CRI 98+) » ; CRI annoncé > 95 puis 98+. Spécifications du constructeur à vérifier.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un équipement professionnel comme l'Alphashot XL Pro V2 permet de capturer entre 144 et 300 images par produit",
+      "source_dans_texte": "aucune",
+      "motif": "Spécifications produit (et « Support pour 5 appareils Canon synchronisés via câble (délai < 1ms) », « précision de positionnement de 0,01° », « Capacité de charge jusqu'à 25kg », « Filtres polarisants intégrés ») à confronter à la fiche officielle de l'Alphashot XL Pro v2.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Temps de capture complet : 73 secondes pour 144 angles",
+      "source_dans_texte": "aucune",
+      "motif": "Intertitre « Performances mesurées » sans protocole ni source ; « Débit journalier : jusqu'à 300 produits » contredit la FAQ (« jusqu’à 150 images prêtes à l’emploi quotidiennement »).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "120+ profils prédéfinis par catégorie de produit",
+      "source_dans_texte": "aucune",
+      "motif": "Contredit la FAQ (« 15 profils d’éclairage prédéfinis modifiables »).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Détourage automatique via IQ-Mask (précision de contour < 2px)",
+      "source_dans_texte": "https://orbitvu.com/blog/how-remove-background-product-image/",
+      "motif": "La précision chiffrée n'est probablement pas dans la page liée, à vérifier.",
+      "ecart_fr_en": "EN « iQ-mask » : graphie différente"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le traitement GPU accélère la reconstruction 3D de 40-60% par rapport aux configurations CPU-only, réduisant le temps de génération complet d'un modèle de 45 à 18 minutes.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffres non sourcés ; passer de 45 à 18 min, c'est 60 % de temps en moins, pas une accélération de 40 à 60 %.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "TCO sur 3 ans : 140 000 à 170 000 €",
+      "source_dans_texte": "« Source : Benchmark Orbitvu Labs, 2024 et analyses indépendantes » (sans lien)",
+      "motif": "Tableau comparatif chiffré (25 000 € contre 80 000 €, maintenance de 20 000 à 30 000 €/an, vitesse de 2 contre 8 min, « Précision couleur : 98% sRGB » contre 85 %) issu d'une source invérifiable. La métrique « % sRGB » n'est pas une mesure de précision des couleurs. Le « Point fort : tous types de matériaux » attribué au scanner laser est à vérifier techniquement (surfaces réfléchissantes ou transparentes).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Compression de géométrie : Draco pour réduire la taille du modèle de 90%",
+      "source_dans_texte": "aucune",
+      "motif": "Gain présenté comme systématique.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Solution : Combinaison de polariseurs circulaires et d'éclairage diffus, réduisant les hotspots de 90%",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction des coûts de production : -78% par rapport aux shootings traditionnels",
+      "source_dans_texte": "aucune",
+      "motif": "Bloc « ROI : données réalistes » entièrement non sourcé (-78 %, +15-25 % de conversion, -12 % de retours, 3 semaines → 2 jours, amortissement en 12-18 mois).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Impact sur les ventes : +15-25% de taux de conversion (selon secteur d'activité)",
+      "source_dans_texte": "aucune",
+      "motif": "Contredit la FAQ (« Une augmentation de 35 % du taux de conversion sur les fiches produits enrichies »).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "même des startups innovantes comme Omi utilisent directement des solutions",
+      "source_dans_texte": "https://omi.so/ + vidéo YouTube intégrée",
+      "motif": "Référence client non confirmée par écrit ; conclusion surinterprétée (« Une validation importante de notre expertise technique »).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Performance de rendu : 60 FPS sur smartphone moyen (iPhone 12+, Samsung S20+)",
+      "source_dans_texte": "aucune",
+      "motif": "Performances (60 FPS, « < 3 secondes sur connexion 4G ») non mesurées dans le texte.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "l’automatisation des séquences 360° et des packshots standardisés élimine 70 % des étapes intermédiaires",
+      "source_dans_texte": "aucune",
+      "motif": "FAQ : série de chiffres non sourcés (70 %, -40 % de time-to-market, jusqu'à 300 % de visuels en plus, -60 % de coûts de retouche, 78 % des utilisateurs plus créatifs, -50 % de coûts 3D, +35 % de conversion, catalogue mis à jour 3 fois plus vite).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La fonction de mémoires de paramètres révolutionne particulièrement la productivité",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif ; la description promet de même que les solutions « révolutionnent la photogrammétrie ».",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un éclairage polarisé réglable à 0,1 % près pour contrôler les brillances",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalités prêtées au module « IQ Mask & Natural Shadow » (suppression des reflets par IA, éclairage polarisé) à confirmer par le constructeur.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’exemple du Fashion Studio illustre ces économies",
+      "source_dans_texte": "aucune",
+      "motif": "Nom de produit et fonctionnalités (hauteur, inclinaison, zoom motorisés) à confirmer.",
+      "ecart_fr_en": "aucun"
+    }
+  ],
+  "titre_h1_meta": "FR : title (« De la photographie 2D aux modèles 3D de vos produits : introduction à la photogrammétrie »), H1 (« Photogrammétrie : de la 2D à la 3D pour vos produits ») et corps sont cohérents entre eux. Le metaTitle (77 caractères) déplace l'angle vers « les solutions Orbitvu » et le « workflow » ; la description (212 caractères, trop longue) promet que les solutions Orbitvu « révolutionnent la photogrammétrie », alors que le corps parle surtout de méthode générale et de PackshotCreator. EN : même structure, avec un title traduit littéralement (« 3D models of your products ») et une description de 186 caractères. Le <title> servi est le metaTitle.",
+  "structure_fr_en": "Parité : 15 H2, 14 H3, 99 puces, 1 image, 2 iframes, 5 FAQ dans les deux langues. Le dernier paragraphe FR (coupé par un <br>) devient deux <p> en EN (35 contre 34), sans perte de contenu. Les listes imbriquées existent bien dans le HTML : leur aplatissement dans l'extrait est un artefact. Dans les deux langues, le troisième point de la FAQ « Quels bénéfices attendre de l’hybridation 2D/3D ? » a perdu son tiret (« Un temps de mise à jour catalogue divisé par 3 »), et la FAQ EN colle le premier tiret à la phrase (« the software offers: - 15 predefined »). Il y a 4 paragraphes vides Webflow (ZWJ) par langue.",
+  "images_alt_legendes": "Une seule image, avec l'alt « __wf_reserved_inherit » dans les deux langues : texte alternatif à rédiger. Les deux iframes (modèle Sketchfab Nike Performance, vidéo YouTube Omi) n'ont pas de légende propre ; en FR, la ligne d'attribution Sketchfab est restée en anglais (« Nike Performance by PackshotCreator on Sketchfab »).",
+  "appellations": "PackshotCreator est employé en un mot dans le corps, mais le HTML écrit « Packshot<em>Creator</em> » dans le paragraphe Omi (rendu « PackshotCreator » avec « Creator » en italique ; l'espace de l'extrait est un artefact). Le module de détourage s'écrit « IQ-Mask » (FR), « iQ-mask » (EN) et « IQ Mask & Natural Shadow » (FAQ) : il faut harmoniser sur l'appellation officielle d'Orbitvu. L'Alphashot XL Pro V2 est attribuée à Orbitvu, mais « Nos plateaux tournants » et « nos solutions » les présentent comme des produits PackshotCreator : la relation distributeur/fabricant est à clarifier. La détection « PackshotCreator remplace LW » est un faux positif : elle vise « par PackshotCreator » et « by PackshotCreator on Sketchfab », nom de compte légitime. Seul le champ auteur est passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63), par décision volontaire. Le catalogue du site écrit « Alphashot XL Pro v2 » (v minuscule), l'article « V2 » : à harmoniser.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Article à forte densité de chiffres non sourcés et contradictoires entre eux : chaque chiffre doit être validé ou retiré avant toute retraduction. L'EN demande ensuite une retraduction partielle (faux amis, typographie). Produit vedette : l'Alphashot XL Pro V2 (« Alphashot XL Pro v2 » dans le catalogue du site, active). Le lien de l'ancre pointait à l'import vers /fr/studio-photo/alphashot-xl (Alphashot XL v2, délistée depuis) ; il a été remappé vers /fr/studio-photo/alphashot-xl-pro-v2 le 07/07/2026 (commit 1cbc569a) et correspond désormais à l'ancre. Les spécifications annoncées restent à confronter à la fiche officielle. Faits datés : « NVIDIA RTX 4070 », « Gartner, 2024 », « Benchmark Orbitvu Labs, 2024 » ; le statut et le nom de RealityCapture (lien capturingreality.com) et de Spatial.io sont à revérifier. Date de publication 01/10/2025, pour un item Webflow créé le 03/03/2025. Les marques tierces Nike (modèle « Nike Performance ») et Omi (« Cas client ») sont utilisées sans accord apparent : validation juridique. Unity et Unreal Engine sont présentés comme des « Métavers et espaces virtuels », ce qui est approximatif. Les liens externes EN pointent vers des versions françaises (canon.fr, adobe.com/fr/)."
+}

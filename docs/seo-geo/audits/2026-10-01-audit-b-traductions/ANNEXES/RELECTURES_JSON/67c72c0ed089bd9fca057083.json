@@ -1,0 +1,419 @@
+{
+  "family": "67c72c0ed089bd9fca057083",
+  "slugs": {
+    "fr": "orbitvu-lautomatisation-au-service-de-la-photographie-3d-360deg",
+    "en": "orbitvu-automation-for-3d-360-product-photography",
+    "de-ch": null
+  },
+  "sujet": "Présentation promotionnelle de l'offre Orbitvu (vues 360°, automatisation, gamme de studios par taille de produit, processus, études de cas vidéo McLeod, Pompéi, Bata).",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN reproduit la syntaxe et le lexique du FR : « for valorize your products » (valoriser), « Capacity to treat up to 150 products » (traiter), « the solutions Orbitvu » et « The approach Orbitvu » (ordre des mots français), « Of Immersive Visual Experiences » et « Of professional visuals » (partitif « Des »), « One Undeniable Competitive Advantage » (« Un »), « unto High speed » (« à haute cadence »), « Intuitive edition » (« Édition »), « Pompeii Park » (« Parc de Pompéi »), « Dedicated to Clothes on models » (« mannequins »), « it is opting for » (« c'est opter pour »), « whom converts » (« qui convertit »). [Inférence] Le FR lui-même suit des conventions anglaises (Title Case dans tous les intertitres et libellés, deux-points collés au mot dans les 30 occurrences du corps, « Produits? » sans espace), ce qui suggère une rédaction initiale en anglais ou assistée par un outil anglophone, dont la version EN publiée ne dérive pas.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Phrases correctes et fluides, mais des majuscules artificielles de type Title Case dans le title, le H1, le metaTitle, les 13 intertitres et la vingtaine de libellés de puces (« Pourquoi Orbitvu Redéfinit la Photographie de Produits ? », « Augmenter vos Taux de Conversion »), une typographie anglaise (deux-points sans espace dans tout le corps, « Produits? »), des anglicismes (« workflow »), une répétition (« Supports robustes supportant ») et un discours promotionnel saturé de claims non sourcés. Correction systématique nécessaire, sans réécriture de fond.",
+    "en": "Traduction automatique mot à mot, souvent agrammaticale : intertitres cassés (« why Orbitvu Redefine the Product photography », « Of Immersive Visual Experiences », « One Undeniable Competitive Advantage »), articles fautifs (« a emerging brand », « a impressive sharpness », « a immersive shopping experience »), constructions françaises (« for valorize », « possibility of explore », « From laser positioning To the Adjusting the angles And at automatic clipping »), absurdités (« unto High speed », « whom converts ») et majuscules en milieu de phrase. Autres mineures non listées : « Use the same premium content On your social networks », « a impressive sharpness », « Make multi-angle shots », « In one click » en majuscule, « Designed for purses ».",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 40,
+    "en": 55,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "## Pourquoi Orbitvu Redéfinit la Photographie de Produits ?",
+      "probleme": "Title Case anglais appliqué au français dans les 13 intertitres (« Des Expériences Visuelles Immersives », « Optimisation de la Productivité et Retour sur Investissement », « Un Avantage Compétitif Indéniable », « Solutions Adaptées à Tous les Besoins », « Studios Compacts pour Petits Objets », « Solutions pour Produits de Taille Moyenne », « Équipements Spécialisés », « Un Processus Simple et Efficace », « Résultats Prouvés par des Leaders du Marché », « Investir dans l'Excellence Visuelle »). Dans le HTML, l'espace avant « ? » manque (« Produits</strong>? »).",
+      "proposition": "Pourquoi Orbitvu redéfinit la photographie de produits ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Orbitvu : Automatisation et Qualité pour E-commerce",
+      "probleme": "Majuscules artificielles et article manquant ; le metaTitle (« Orbitvu : Automatisation Photo pour E-commerce Performant ») et le title (« Orbitvu : L’Automatisation au service de la photographie 3D & 360° ») ont le même défaut.",
+      "proposition": "Orbitvu : automatisation et qualité pour l'e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Orbitvu : L’Automatisation au service de la photographie 3D & 360°",
+      "probleme": "Majuscule après les deux-points et sur « Automatisation ».",
+      "proposition": "Orbitvu : l’automatisation au service de la photographie 3D et 360°"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Augmenter vos Taux de Conversion",
+      "probleme": "Majuscules artificielles dans les libellés de puces (environ 20 : « Vues 360° Interactives », « Compatibilité Multi-formats », « Automatisation Intelligente », « Production à Haute Cadence », « Vous Démarquer de la Concurrence », « Renforcer votre Stratégie Omnicanale », « Préparation Rapide », « Publication Instantanée », « Plateaux Rotatifs G2 »…).",
+      "proposition": "Augmenter vos taux de conversion"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Des visuels professionnels et immersifs constituent un levier stratégique pour:",
+      "probleme": "Deux-points collés au mot, à l'anglaise. Dans le HTML, les 30 deux-points du corps (libellés de puces et légendes comprises, par exemple « Bata</strong>: ») n'ont pas d'espace ; les espaces visibles dans l'extrait sont des artefacts.",
+      "proposition": "Des visuels professionnels et immersifs constituent un levier stratégique pour :"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Plateaux Rotatifs G2 (MIDI & MAXI) : Supports robustes supportant jusqu'à 250 kg",
+      "probleme": "Répétition « supports supportant » et majuscules artificielles.",
+      "proposition": "Plateaux rotatifs G2 (MIDI et MAXI) : supports robustes acceptant jusqu'à 250 kg"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "L'approche Orbitvu transforme complètement le workflow de production visuelle",
+      "probleme": "Anglicisme « workflow ».",
+      "proposition": "L'approche Orbitvu transforme complètement la chaîne de production visuelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "E-comm Studio : Solution polyvalente pour une production visuelle variée à haute cadence",
+      "probleme": "Le catalogue du site et le lien cible nomment ce modèle « E-Comm Studio+ » (slug e-comm-studio-plus).",
+      "proposition": "E-Comm Studio+ : solution polyvalente pour une production visuelle variée à haute cadence"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "legende",
+      "extrait_actuel": "Parc de Pompéi : Plus de 5 000 artefacts numérisés en trois mois avec seulement deux opérateurs",
+      "probleme": "Appellation approximative (le site s'appelle Parc archéologique de Pompéi) ; un site archéologique cité sous l'intertitre « Résultats Prouvés par des Leaders du Marché ».",
+      "proposition": "Parc archéologique de Pompéi : plus de 5 000 artefacts numérisés en trois mois avec seulement deux opérateurs"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Fashion Studio : Dédié aux vêtements sur mannequins avec animations 360°",
+      "probleme": "Le lien « vêtements sur mannequins » pointe vers la page générique /fr/industrie, alors que l'EN pointe vers /en/industrie/mode-textile. De même, « Plateaux Rotatifs G2 » pointe vers /fr/studio-photo/selecteur-machines en FR et vers /en/studios-photo-automatises en EN : maillage divergent entre langues.",
+      "proposition": "Aligner les cibles (par exemple /fr/industrie/mode-textile)."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "why Orbitvu Redefine the Product photography",
+      "probleme": "Intertitre agrammatical : minuscule initiale, accord fautif, article superflu, majuscule au milieu.",
+      "proposition": "Why Orbitvu is redefining product photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Whether you are a emerging brand Or a e-commerce leader , the solutions Orbitvu adapt perfectly for valorize your products",
+      "probleme": "« a emerging », « Or » en majuscule, ordre des mots français, « for valorize » (valoriser).",
+      "proposition": "Whether you are an emerging brand or an e-commerce leader, Orbitvu solutions adapt seamlessly to showcase your products"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "### Of Immersive Visual Experiences",
+      "probleme": "Partitif « Des » rendu par « Of ».",
+      "proposition": "Immersive visual experiences"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Offer your customers the possibility of explore every detail",
+      "probleme": "Agrammatical (« of explore »).",
+      "proposition": "Let your customers explore every detail"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Easily export by HTML5 , MP4 , JPG , PNG , WebP or AVIF For a smooth integration on all your channels and a optimized loading",
+      "probleme": "Préposition fautive, « For » en majuscule, « a optimized ».",
+      "proposition": "Easily export to HTML5, MP4, JPG, PNG, WebP or AVIF for seamless integration across all your channels and faster loading"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The approach Orbitvu Completely transform the visual production workflow",
+      "probleme": "Ordre des mots français, majuscule fautive, accord du verbe.",
+      "proposition": "Orbitvu's approach completely transforms the visual production workflow"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "From laser positioning To the Adjusting the angles And at automatic clipping",
+      "probleme": "Construction « Du… à… et au… » décalquée mot à mot : phrase incompréhensible.",
+      "proposition": "From laser positioning to angle adjustment and automatic background removal"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Capacity to treat up to 150 products per day",
+      "probleme": "« Traiter » rendu par « treat ».",
+      "proposition": "Capacity to process up to 150 products per day"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of professional visuals and Immersive constitute a strategic lever for:",
+      "probleme": "Partitif calqué, adjectif détaché avec majuscule.",
+      "proposition": "Professional, immersive visuals are a strategic lever to:"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Versatile solution for a varied visual production unto High speed",
+      "probleme": "« à haute cadence » devient « unto High speed » : absurde.",
+      "proposition": "Versatile solution for high-throughput production of varied visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dedicated to Clothes on models with 360° animations",
+      "probleme": "« Mannequins » (bustes et mannequins de vitrine) traduit par « models » (mannequins humains) : contresens métier.",
+      "proposition": "Dedicated to garments on mannequins, with 360° animations"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "G2 Rotary Trays (MIDI & MAXI) : Sturdy supports supporting up to 250 kg",
+      "probleme": "« Plateaux rotatifs » rendu par « Rotary Trays » ; le terme métier est « turntables » (le texte dit d'ailleurs « the G2 rotating plates » plus haut). Répétition « supports supporting ».",
+      "proposition": "G2 turntables (MIDI & MAXI): sturdy platforms with a load capacity of up to 250 kg"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Choose Orbitvu , it is opting for a advanced technological solution offering:",
+      "probleme": "Calque de « Choisir Orbitvu, c'est opter pour » ; « a advanced ».",
+      "proposition": "Choosing Orbitvu means opting for an advanced technology solution that offers:"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Transform today your visual strategy and offer your customers a immersive shopping experience whom converts",
+      "probleme": "Ordre des mots, « a immersive », pronom relatif « whom » pour une chose.",
+      "proposition": "Transform your visual strategy today and give your customers an immersive shopping experience that converts"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "### One Undeniable Competitive Advantage",
+      "probleme": "« Un » rendu par le numéral « One » (même défaut dans « ## One Simple and Efficient Process » et dans les puces « One significant reduction… », « One substantial increase… », « One consistent image quality… »).",
+      "proposition": "An undeniable competitive advantage"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ideal for cosmetics , props and small electronic products",
+      "probleme": "« Accessoires » (de mode) rendu par « props » (accessoires de scène).",
+      "proposition": "Ideal for cosmetics, accessories and small electronics"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Intuitive edition : Use built-in tools to refine clipping and apply batch corrections",
+      "probleme": "« Édition » rendu par « edition » (faux ami : il s'agit d'« editing ») ; « clipping » pour le détourage.",
+      "proposition": "Intuitive editing: use built-in tools to refine background removal and apply batch corrections"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Equipped with AI For the complex products and transparencies",
+      "probleme": "Majuscule, article superflu, « transparencies » (transparents).",
+      "proposition": "AI-equipped for complex and transparent products"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "legende",
+      "extrait_actuel": "Pompeii Park : More than 5,000 digitized artifacts in three months with only two operators",
+      "probleme": "« Parc de Pompéi » traduit littéralement ; le nom officiel anglais est Pompeii Archaeological Park.",
+      "proposition": "Pompeii Archaeological Park: more than 5,000 artifacts digitized in three months with only two operators"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "### Specialty Equipments",
+      "probleme": "« Equipment » est indénombrable.",
+      "proposition": "Specialty equipment"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The 360° animations reduce the Uncertainty among buyers and stimulate sales",
+      "probleme": "Article superflu, majuscule fautive.",
+      "proposition": "360° animations reduce buyer uncertainty and drive sales"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Automation reduces operational costs, accelerates product delivery, and improves conversions",
+      "probleme": "Contresens : « la mise en ligne des produits » devient « product delivery » (livraison).",
+      "proposition": "Automation reduces operating costs, gets products online faster and improves conversions"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Orbitvu: Automation at the service of 3D & 360° photography",
+      "probleme": "Calque de « au service de ».",
+      "proposition": "Orbitvu: automation for 3D and 360° product photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "## Proven results By Market Leaders",
+      "probleme": "Majuscule fautive, préposition inadaptée.",
+      "proposition": "Proven results from market leaders"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "La force d' Orbitvu réside dans sa capacité unique à combiner innovation technologique et simplicité d'utilisation",
+      "source_dans_texte": "aucune",
+      "motif": "« Unique », « avant-garde de cette révolution visuelle », « transforment radicalement » : superlatifs promotionnels.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Capacité de traiter jusqu'à 150 produits par jour pour répondre aux besoins des catalogues volumineux",
+      "source_dans_texte": "aucune",
+      "motif": "Cadence non rattachée à un modèle précis.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Exportez facilement en HTML5 , MP4 , JPG , PNG , WebP ou AVIF",
+      "source_dans_texte": "aucune",
+      "motif": "Liste de formats d'export (AVIF notamment) à confirmer dans la documentation d'Orbitvu Station.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Publiez directement sur Shopify , Magento et autres plateformes grâce aux connecteurs dédiés",
+      "source_dans_texte": "aucune",
+      "motif": "Existence de connecteurs dédiés à vérifier ; « en un clic » (« Publication Instantanée ») relève du même registre.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les animations 360° réduisent l' incertitude des acheteurs et stimulent les ventes",
+      "source_dans_texte": "aucune",
+      "motif": "Effet sur les ventes non étayé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Supports robustes supportant jusqu'à 250 kg",
+      "source_dans_texte": "aucune",
+      "motif": "Charge maximale des plateaux G2 MIDI et MAXI à vérifier sur la fiche technique.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réalisez des prises de vue multi-angles avec détourage automatique en quelques secondes",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "McLeod Accessories : Délais de production réduits de plusieurs jours à quelques heures",
+      "source_dans_texte": "vidéo YouTube intégrée (OIYO7v6Bew8)",
+      "motif": "Études de cas (McLeod, Pompéi : 5 000 artefacts en 3 mois avec 2 opérateurs ; Bata : productivité triplée, 3 000 photos par mois) dont les chiffres doivent figurer dans les vidéos citées. Intertitre « Résultats Prouvés par des Leaders du Marché ».",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Bata : Productivité triplée grâce à l'Alphashot XL, atteignant plus de 3 000 photos mensuelles",
+      "source_dans_texte": "vidéo YouTube intégrée (G-YeZWOg5Ns)",
+      "motif": "Chiffre client ; modèle cité (Alphashot XL) remplacé dans le catalogue du site (Alphashot XL v2 délistée).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu automatise la prise de vue, le détourage et l’édition, réduisant jusqu’à 70 % le temps de production des visuels produits.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé (le « jusqu'à » est conservé en EN).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une réduction significative des coûts opérationnels",
+      "source_dans_texte": "aucune",
+      "motif": "Promesses génériques (« augmentation substantielle de la productivité », « qualité visuelle exceptionnelle »).",
+      "ecart_fr_en": "aucun"
+    }
+  ],
+  "titre_h1_meta": "FR : title (« Orbitvu : L’Automatisation au service de la photographie 3D & 360° »), H1 (« Orbitvu : Automatisation et Qualité pour E-commerce ») et metaTitle (« Orbitvu : Automatisation Photo pour E-commerce Performant ») sont tous en Title Case, et chacun propose un angle différent. Le title et le slug promettent la « photographie 3D & 360° », alors que le corps traite d'automatisation générale, ne parle de 3D qu'en passant (« projets de modélisation 3D complexes ») et ne présente aucun contenu 3D. La description est cohérente avec le corps. EN : title calqué (« at the service of »), H1 et metaTitle en Title Case acceptable en anglais, description correcte. Le <title> servi est le metaTitle.",
+  "structure_fr_en": "Parité : 5 H2, 6 H3, 17 paragraphes, 26 puces, 3 iframes avec légende, 5 FAQ, même ordre. Les cibles de liens divergent sur deux puces : « vêtements sur mannequins » mène à /fr/industrie contre /en/industrie/mode-textile, et « Plateaux Rotatifs G2 » à /fr/studio-photo/selecteur-machines contre /en/studios-photo-automatises. 8 paragraphes vides Webflow (ZWJ) par langue. Aucune image fixe.",
+  "images_alt_legendes": "Aucune image <img>. Les trois vidéos YouTube ont des légendes traduites, avec les mêmes chiffres en FR et en EN ; légendes FR en Title Case partiel et deux-points collés, légende EN « Pompeii Park » littérale. Les iframes n'ont pas d'attribut title (accessibilité), point à vérifier dans le rendu.",
+  "appellations": "Orbitvu est cohérent. Les noms de modèles diffèrent du catalogue du site : « E-comm Studio » pour E-Comm Studio+, « Alphastudio Compact » et « Alphastudio XXL » sans « Pro v2 », « Fashion Studio » (catalogue : Fashion Studio Pro v2 ou Basic), « Alphashot XL » (Bata, ancien modèle). « Alphashot Pro G2 » est correct et son lien mène bien à /studio-photo/alphashot-pro-g2. PackshotCreator n'apparaît pas dans le corps (auteur seulement).",
+  "recommandation": "retraduction complète",
+  "remarques": "Retraduction complète de l'EN ; le FR demande une passe systématique (casse des intertitres et libellés, espaces avant les deux-points) et un arbitrage sur le title, qui promet de la 3D absente du corps. Date affichée : 12/02/2025, pour un item Webflow créé le 04/03/2025 (écart faible). Texte très promotionnel, presque sans source : les seules preuves sont les trois vidéos de cas clients. Classer le Parc archéologique de Pompéi parmi les « Leaders du Marché » est maladroit."
+}

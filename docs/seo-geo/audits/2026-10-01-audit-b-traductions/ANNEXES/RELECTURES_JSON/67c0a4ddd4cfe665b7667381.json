@@ -1,0 +1,442 @@
+{
+  "family": "67c0a4ddd4cfe665b7667381",
+  "slugs": {
+    "fr": "quel-retour-sur-investissement-avec-un-studio-photo-en-interne",
+    "en": "what-return-on-investment-with-an-internal-photo-studio",
+    "de-ch": null
+  },
+  "sujet": "Retour sur investissement d'un studio photo interne automatisé : logistique, économies d'échelle, gains opérationnels, logiciel Orbitvu Station, comparatif chiffré studio traditionnel / automatisé, IA et conclusion ROI.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Déterminant français resté dans l'EN : « Les automated photo solutions eliminate time-consuming back and forth » ; « détourer » confondu avec « détourner » : « Diverting intuitively A photographed object » ; « mode » rendu par « modus » : « Packshot for the modus (luxury, ready-to-wear, accessories...) » ; le FR « <em>P</em>roduction : » (P en italique) devenu « <em>P</em>Production: » en EN, rendu « PProduction: » (le traducteur a traduit le reste du mot sans voir la lettre isolée) ; « stratégie d'économie globale » rendu par « the global economic strategy » ; « Appréhender » rendu par « Apprehend » ; « et » rendu par « And » en capitale (« furnishings And of the fast fashion », « leathercraft And luggage ») ; format numérique français conservé (« 4.000 €/month », « €5.060 », « €2.300/month »).",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif mais dégradé : Title Case systématique (H1, metaTitle, huit intertitres), intertitre partiellement en anglais (« Future-Proofing »), contresens logique (« Le temps gagné … est drastiquement revu à la baisse »), emploi impropre d'« économies d'échelle », séparateurs de milliers à l'anglaise (« 8.000 € »), montants collés (« 3,4 €Coût »), jargon creux (« démarche transformative », « répond à un critère décisif : la stratégie d'économie globale »), nombreux chiffres non sourcés. Éditorialement, la version FR publie encore les prix de studios Orbitvu retirés de l'EN le 30/06/2026 pour motif contractuel.",
+    "en": "Traduction automatique visible : déterminant français résiduel, « Diverting intuitively A photographed object », « modus », « And » en capitale, mots collés (« theoptics », « withspeeding »), « PProduction », contresens « increases from several days to a few hours », montants illisibles (« €5.060 », « €2.300/month » se lisent comme des centimes), liste sectorielle calquée (« for the shoe », « jewelery … jewelry »). Les passages réécrits le 30/06/2026 sont corrects mais calqués (« to estimate for your configuration »). Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 30,
+    "en": 50,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le temps gagné entre le moment où la décision est prise et la mise en ligne d'un visuel est drastiquement revu à la baisse.",
+      "probleme": "Contresens : c'est le délai, et non le « temps gagné », qui est réduit ; la phrase dit l'inverse de l'idée.",
+      "proposition": "Le délai entre le moment où la décision est prise et la mise en ligne d'un visuel est drastiquement réduit."
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Intégration de l'IA : Future-Proofing de la Production Visuelle",
+      "probleme": "Anglicisme non traduit dans un intertitre, et Title Case.",
+      "proposition": "Intégration de l'IA : préparer l'avenir de la production visuelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Coût : 12.000 € à 30.000 € (environ 350 €/mois sur 5 ans)",
+      "probleme": "Prix de studios automatisés (Orbitvu) toujours publiés en FR alors que le commit 3cfa2e73 (30/06/2026) les a retirés de l'EN au motif d'une « violation contractuelle Orbitvu » ; le même commit n'a modifié que des liens dans le FR. Divergence éditoriale et risque contractuel à arbitrer. Également : séparateur de milliers à l'anglaise.",
+      "proposition": "Arbitrage humain requis ; si l'on aligne sur l'EN : « Coût : sur devis, selon votre volume de production »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cette approche s'accompagne d'économies d'échelle sur de nombreux postes, auxquels on ne pense pas toujours au premier abord, comme les délais de mise sur le marché d'un produit ou la réactivité face à l'arrivage de nouvelles références.",
+      "probleme": "« Économies d'échelle » désigne la baisse du coût unitaire avec le volume ; les délais de mise sur le marché et la réactivité n'en relèvent pas.",
+      "proposition": "Cette approche procure des gains sur de nombreux postes auxquels on ne pense pas toujours au premier abord, comme les délais de mise sur le marché d'un produit ou la réactivité face à l'arrivée de nouvelles références."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Studio Photo Interne : Réduction des Coûts et Créativité",
+      "probleme": "Title Case anglais appliqué au français (même défaut dans le metaTitle « Studio Photo Interne : Réduisez vos Coûts et Améliorez votre Créativité »).",
+      "proposition": "Studio photo interne : réduction des coûts et créativité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Le Studio Photo Interne : Pivot d'une Stratégie d'Économie Globale",
+      "probleme": "Title Case sur tous les intertitres (« Optimisation Logistique et Réduction des Intermédiaires », « Économies d'Échelle : Rentabilité Croissante avec le Volume », « Gains Opérationnels : Temps, Flexibilité et Maîtrise Qualité », « Analyse Comparative : Studio Traditionnel vs Studio Automatisé », « Conclusion : Un Investissement au ROI Multidimensionnel », « Nos Solutions par Secteur d'Activité », etc.).",
+      "proposition": "Le studio photo interne, pivot d'une stratégie d'économies globale"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Coût : 8.000 € à 15.000 € (environ 190 €/mois sur 5 ans)",
+      "probleme": "Séparateur de milliers à l'anglaise (point) au lieu de l'espace insécable ; même défaut pour « 2.800 €/mois », « 1.200 €/mois », « 4.000 €/mois », « 5.060 € », « 2.300 €/mois », « 2.850 € », « 1.500 packshots », « 6.000 packshots ».",
+      "proposition": "Coût : 8 000 € à 15 000 € (environ 190 €/mois sur 5 ans)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Coût par packshot : 3,4 €Coût par animation 360° : 16,9 €",
+      "probleme": "Espace (ou retour à la ligne) manquant entre les deux montants ; montants à deux décimales attendus. Le « P » de « Production » est en italique isolé dans le HTML (<em>P</em>roduction), défaut de balisage mineur.",
+      "proposition": "Coût par packshot : 3,40 € – coût par animation 360° : 16,90 €"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Qu'il soit utilisé pour une plateforme e-commerce (photographie de meubles, prises de vues en interne pour l'agro-alimentaire, photos d'articles de parapharmacie...), la création d'un stock d'images numériques destiné à l'archivage ou encore au Contrôle Qualité, le studio photo en interne répond à un critère décisif : la stratégie d'économie globale.",
+      "probleme": "Construction rompue (« utilisé pour une plateforme…, la création… »), majuscules à « Contrôle Qualité », et chute vague : un studio ne « répond » pas à une stratégie comme à un critère.",
+      "proposition": "Qu'il serve une plateforme e-commerce (photographie de meubles, prises de vues pour l'agroalimentaire, photos d'articles de parapharmacie…), la constitution d'une photothèque d'archives ou le contrôle qualité, le studio photo interne s'inscrit dans une stratégie d'économies globale."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "soit une réduction de 86%.",
+      "probleme": "Typographie française : espace insécable avant « % » (« 86 % ») ; même défaut pour « jusqu'à 50% plus rapide », « Gain de 40% », « 15 à 30% », « 25m² », « 4-6m² ».",
+      "proposition": "soit une réduction de 86 %."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "l'optimisation des campagnes cross-canales.",
+      "probleme": "Anglicisme hybride.",
+      "proposition": "l'optimisation des campagnes multicanales."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Appréhender avec sérénité les périodes charnières comme les soldes",
+      "probleme": "Redite : les soldes sont déjà cités dans la puce « Saisir les opportunités promotionnelles flash (soldes, lancements limités) ».",
+      "proposition": "Aborder sereinement les périodes charnières (rentrée, fêtes de fin d'année)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Prévisualisation en temps réel : affichage instantané sur un écran de contrôle pour des ajustements précis",
+      "probleme": "Doublon de la puce « Prévisualisation en temps réel via l'écran de contrôle, éliminant les essais-erreurs » quelques lignes plus haut ; « Les fonctionnalités d'un logiciel Orbitvu Station » devrait être « du logiciel ».",
+      "proposition": "Supprimer la puce redondante."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Studio Photo Interne : Réduction des Coûts et Créativité",
+      "probleme": "H1 et metaTitle promettent la « créativité », que le corps ne traite presque pas (une phrase sur l'IA et une FAQ) ; le title JSON (« Quel retour sur investissement avec un studio photo en interne ? ») et le corps portent sur le ROI.",
+      "proposition": "Studio photo interne : quel retour sur investissement ?"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Les automated photo solutions eliminate time-consuming back and forth with external service providers.",
+      "probleme": "Déterminant français resté en tête de phrase.",
+      "proposition": "Automated photo solutions eliminate time-consuming back-and-forth with external service providers."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "• Diverting intuitively A photographed object",
+      "probleme": "« Détourer » confondu avec « détourner » ; phrase incompréhensible, majuscule parasite.",
+      "proposition": "• Intuitively cut out a photographed object"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Packshot for the modus (luxury, ready-to-wear, accessories...)",
+      "probleme": "« mode » rendu par le latin « modus » ; article calqué.",
+      "proposition": "• Packshots for fashion (luxury, ready-to-wear, accessories...)"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "With an in-house studio, the time between the launch decision and the publication of the visuals increases from several days to a few hours.",
+      "probleme": "Contresens : « increases » alors que le délai diminue.",
+      "proposition": "With an in-house studio, the time between the launch decision and the publication of the visuals drops from several days to a few hours."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The time saved between the moment the decision is taken and the posting of a visual online is drastically reduced.",
+      "probleme": "Contresens hérité du FR : c'est le délai qui est réduit, pas le temps gagné.",
+      "proposition": "The lead time between the decision and the visual going live is drastically reduced."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In the sectors of furnishings And of the fast fashion, the responsiveness to the arrival of new collections is increased tenfold, allowing up to 50% faster marketing.",
+      "probleme": "« And » en capitale, article calqué (« of the fast fashion »), « marketing » pour « mise en marché » (time to market).",
+      "proposition": "In furniture and fast fashion, responsiveness to new collections increases tenfold, with time to market up to 50% faster."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "the in-house photo studio meets a decisive criterion: the global economic strategy.",
+      "probleme": "« stratégie d'économie » (réduction des dépenses) rendu par « economic strategy » (stratégie économique) ; même faux sens dans l'intertitre « The In-House Photo Studio: Pivot of a Global Economic Strategy ».",
+      "proposition": "the in-house photo studio is a key part of an overall cost-saving strategy."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Monthly total: €5.060",
+      "probleme": "Point décimal anglais : se lit « 5,06 € » ; même défaut pour « Qualified operator (not photographer) Cost: €2.300/month » et « Total workforce: 4.000 €/month » (format et position du symbole incohérents avec « €2,800/month » juste au-dessus).",
+      "proposition": "Monthly total: €5,060"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Financial : Rapid depreciation thanks to recurring savings",
+      "probleme": "« Amortissement » au sens de retour sur investissement rendu par « depreciation » (amortissement comptable) : contresens.",
+      "proposition": "• Financial: rapid payback thanks to recurring savings"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Apprehend pivotal periods such as sales with serenity",
+      "probleme": "« Appréhender » rendu par « apprehend » (arrêter, comprendre) : faux ami ; formes verbales incohérentes dans la liste (« Grasp the flash promotional opportunities », « Responding to… »).",
+      "proposition": "• Handle key periods such as sales with confidence"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "• SEO optimization metadata and legends using natural language processing",
+      "probleme": "« légendes » rendu par « legends » au lieu de « captions » ; préposition manquante.",
+      "proposition": "• SEO optimization of metadata and captions using natural language processing"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Lights, backgrounds, pendants, tripods, supports, supports, turntable, camera and lens, computer, etc.",
+      "probleme": "Mot doublé (« supports, supports ») ; « pendants » pour « suspensions » est ambigu.",
+      "proposition": "• Lights, backgrounds, booms, tripods, stands, turntable, camera and lens, computer, etc."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Packshot for the jewelery, watchmaking, jewelry and goldsmithing",
+      "probleme": "Coquille « jewelery », « jewelry » répété (bijouterie et joaillerie traduits par le même mot), article calqué ; la liste entière suit ce calque (« Packshot for the shoe », « Packshot for the leathercraft And luggage », « Packshot for the furnishings and the decoration »).",
+      "proposition": "• Packshots for jewelry, watches and silverware"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Reducing “Human Time” and Refocusing on Key Competencies",
+      "probleme": "« Temps Homme » calqué en « Human Time » ; l'anglais dit « man-hours » ou « staff time ».",
+      "proposition": "Reducing Staff Time and Refocusing on Core Skills"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "or the responsiveness to the arrival of new references.",
+      "probleme": "« références » (articles, SKU) rendu par « references ».",
+      "proposition": "or how quickly you can respond when new products arrive."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "PProduction: 1,500 packshots + 300 360° animations per month",
+      "probleme": "« PProduction » : le P italique isolé du FR (<em>P</em>roduction) a été conservé et le reste du mot traduit en entier ; même défaut dans le bloc du studio automatisé. Montants à deux décimales attendus plus loin (« Cost per packshot: €3.4 Cost per 360° animation: €16.9 »).",
+      "proposition": "Production: 1,500 packshots + 300 360° animations per month"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Monthly total: significantly lower than the traditional setup, to estimate for your configuration with our ROI calculator",
+      "probleme": "Phrase réécrite le 30/06/2026 calquée sur le français (« à estimer pour votre configuration »).",
+      "proposition": "Monthly total: significantly lower than a traditional setup; estimate it for your configuration with our ROI calculator"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Automatic correction imperfections (reflections, dust) via neural networks",
+      "probleme": "Préposition manquante.",
+      "proposition": "• Automatic correction of imperfections (reflections, dust) using neural networks"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Operational : 40% gain in overall time on the visual channel",
+      "probleme": "« chaîne visuelle » rendu par « visual channel » ; espace avant les deux-points (défaut répété : « Financial : », « Strategic : », « Batch processing : »).",
+      "proposition": "• Operational: 40% time saved across the visual production chain"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Controlling your agenda",
+      "probleme": "« agenda » au sens français (emploi du temps) ; en anglais, « agenda » signifie ordre du jour ou intentions.",
+      "proposition": "• Control over your own schedule"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Packshot for theoptics And eyewear",
+      "probleme": "Mots collés (« theoptics », l'espace ayant été perdue avant la balise <strong>), « And » en capitale, article calqué. Même défaut de mot collé dans « Internalization goes hand in hand withspeeding up decision-making processes. »",
+      "proposition": "• Packshots for optics and eyewear"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "la réactivité face aux arrivages de nouvelles collections est décuplée, permettant une mise en marché jusqu'à 50% plus rapide.",
+      "source_dans_texte": "aucune",
+      "motif": "Deux chiffres non sourcés et incohérents entre eux (« décuplée » contre « 50 % plus rapide »).",
+      "ecart_fr_en": "EN « is increased tenfold, allowing up to 50% faster marketing » : équivalent."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Le coût moyen par packshot passe de 3,4 € (studio traditionnel) à 0,48 € (studio automatisé), soit une réduction de 86%.",
+      "source_dans_texte": "lien « plus vous photographiez, plus le coût par photo chute » vers http://gs-new-features-and-accelerated-content-creation/ (URL invalide)",
+      "motif": "Chiffre dérivé du tableau de coûts : chaque coût unitaire impute la totalité du coût mensuel (5 060 € / 1 500 = 3,37 € pour les packshots ET 5 060 € / 300 = 16,9 € pour les animations), méthode à valider. Repose sur les prix Orbitvu retirés de l'EN.",
+      "ecart_fr_en": "EN réécrit le 30/06/2026 : « The average cost per packshot drops significantly … use our ROI calculator » ; le FR garde 3,4 €, 0,48 € et 86 %."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Coût : 12.000 € à 30.000 € (environ 350 €/mois sur 5 ans)",
+      "source_dans_texte": "aucune",
+      "motif": "Prix publiés que le commit 3cfa2e73 a retirés de l'EN pour motif contractuel Orbitvu.",
+      "ecart_fr_en": "EN : « contact us for a personalized quote tailored to your production volume »."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Total mensuel : 2.850 €",
+      "source_dans_texte": "aucune",
+      "motif": "Total dépendant du prix retiré de l'EN ; « Coût par packshot : 0,48 € Coût par animation 360° : 3,6 € » idem.",
+      "ecart_fr_en": "EN : « significantly lower than the traditional setup » et « A markedly lower cost per packshot and per 360° animation »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Photographe expérimenté : 2.800 €/mois",
+      "source_dans_texte": "aucune",
+      "motif": "Hypothèses salariales et de coût (25 m² à 750 €/mois, 4-6 m² à 150 €/mois, opérateur à 2 300 €/mois, volumes 1 500 contre 6 000 packshots par mois) non sourcées et datées.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Traitement par lots : réduit jusqu'à 70 % le temps de post-production en appliquant des modifications simultanées à plusieurs fichiers.",
+      "source_dans_texte": "http://gs-new-features-and-accelerated-content-creation/ (URL invalide)",
+      "motif": "Chiffre produit sans source exploitable.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Intégration avec des plateformes tierces : compatibilité avec des systèmes PIM, DAM et des plateformes e-commerce comme Shopify, Magento et PrestaShop.",
+      "source_dans_texte": "aucune",
+      "motif": "Compatibilités produit à vérifier auprès d'Orbitvu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec un studio interne, le délai entre la décision de lancement et la publication des visuels passe de plusieurs jours à quelques heures.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai non sourcée.",
+      "ecart_fr_en": "EN dit l'inverse par erreur (« increases from several days to a few hours »)."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Financier : Amortissement en 12-18 mois grâce aux économies récurrentes",
+      "source_dans_texte": "aucune",
+      "motif": "Délai d'amortissement non sourcé, dépendant des prix retirés de l'EN.",
+      "ecart_fr_en": "EN : « Rapid depreciation thanks to recurring savings » (chiffre retiré)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Opérationnel : Gain de 40% de temps global sur la chaîne visuelle",
+      "source_dans_texte": "aucune",
+      "motif": "Pourcentage non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises pionnières constatent déjà une augmentation de 15 à 30% de leur taux de conversion e-commerce après internalisation.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique de conversion non sourcée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Absolument. Les solutions Orbitvu sont conçues pour être conviviales, permettant même aux opérateurs sans expérience préalable de produire des visuels professionnels.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse forte (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Génération de variantes stylistiques alignées sur l'ADN de marque, testées A/B en temps réel",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité IA présentée sans préciser quel outil la fournit ; à vérifier.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title JSON « Quel retour sur investissement avec un studio photo en interne ? » (cohérent avec le slug et le corps) ; H1 « Studio Photo Interne : Réduction des Coûts et Créativité » et metaTitle « Studio Photo Interne : Réduisez vos Coûts et Améliorez votre Créativité » (71 caractères, trop long) en Title Case, centrés sur la créativité que le corps n'aborde presque pas ; le <title> servi est le metaTitle. EN : même schéma (title JSON « What is the return on investment with an in-house photo studio? », H1 et metaTitle en Title Case anglais, normal) ; slug « internal-photo-studio » alors que le texte dit « in-house ».",
+  "structure_fr_en": "Parité de sections (6 H2, 7 H3, 49 paragraphes, 44 puces). Divergence de fond : le 30/06/2026 (commit 3cfa2e73), l'EN a perdu le prix du studio automatisé, le total mensuel automatisé, les coûts unitaires automatisés, le « 86 % » et les « 12-18 mois », remplacés par des renvois au devis et au calculateur ; le FR les conserve. Le comparatif EN est donc déséquilibré (chiffres complets pour le studio traditionnel, aucun pour l'automatisé). Liens : 16 en FR, 18 en EN (« ROI calculator » ajouté, « art objects » lié en EN seulement). 7 paragraphes vides avec U+200D dans les deux langues.",
+  "images_alt_legendes": "2 images et 1 vidéo YouTube. Texte alternatif « Photographie multi angles automatiques » en français dans les deux versions (non traduit en EN, et « multi-angles » sans trait d'union) ; « __wf_reserved_inherit » (valeur réservée Webflow) dans les deux langues. Aucune légende.",
+  "appellations": "« Orbitvu Station » et « Orbitvu » employés correctement (corps et FAQ) ; « logiciel Orbitvu Station » sans article défini (« d'un logiciel Orbitvu Station »). Aucune mention de PackshotCreator dans le corps. Champ auteur : « Laurent Wainberg » à l'import Webflow, « PackshotCreator » depuis le commit 8ae45f63.",
+  "recommandation": "arbitrage éditorial (prix Orbitvu encore publiés en FR) puis réécriture partielle (FR) et retraduction complète (EN)",
+  "remarques": "Liens externes douteux : « plus vous photographiez, plus le coût par photo chute », « Traitement par lots » (FR et EN) et « Photoshop » (EN) pointent vers http://gs-new-features-and-accelerated-content-creation/, URL invalide ; « Photoshop » (FR) pointe vers une page Adobe Sensei sur l'IA générative et « Automatic correction » (EN) vers la page de tarifs Photoshop ; « Optimisation SEO » renvoie vers https://www.exaltgrowth.com/about, page « à propos » d'un tiers sans rapport démontré. Maillage sectoriel à revoir : « optique et lunetterie » pointe vers pieces-techniques-industrie alors qu'un secteur « lunetterie » existe ; « pharmacie et parapharmacie » vers cosmetiques-beaute alors que « sante-medical » existe ; « mode » vers /fr/industrie en FR mais vers mode-textile en EN ; « chaussure » sans lien alors que « chaussures » existe. Hypothèses de coûts datées (article du 04/02/2025) et non sourcées. Le FR conserve les prix Orbitvu que le commit 3cfa2e73 qualifie de « violation contractuelle Orbitvu » : point à faire trancher par Sébastien avant toute republication. Note de méthode : citations recalées sur le JSON source ; les espaces avant virgule ou point visibles dans l'extrait sont des artefacts d'extraction et ne sont pas relevés (les espaces avant « : » de l'EN, elles, sont réelles)."
+}

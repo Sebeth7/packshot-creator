@@ -1,0 +1,642 @@
+{
+ "family": "67d154e9a53d05fd8c219b8c",
+ "slugs": {
+  "fr": "guide-photographie-packshot-pourquoi-faire-packshots",
+  "en": "packshot-photography-guide-why-make-product-packshots",
+  "de-ch": "leitfaden-packshot-fotografie-warum-packshots-machen"
+ },
+ "sujet": "Premier volet d'une série pédagogique sur la photographie packshot (définition, usages, comparaison avec lifestyle et nature morte, critères d'une bonne photo), enrichi en 2026 d'une section terminologique, d'un argumentaire sur les studios automatisés et d'une bio auteur.",
+ "langue_originale": "FR → EN (preuve interne)",
+ "preuve_langue": "EN : déterminants français résiduels « La Packshot photography », « La lifestyle product photography », « La online competition » ; « a photographer produced in still life » (de « photographe produit ») ; « more focused on produced by itself » (de « le produit en lui-même ») ; « create a printout to the viewer » (de « impression ») ; « natural referencing » (de « référencement naturel ») ; « are Primordial » ; « Does a still life photograph aim » (de « vise elle ») ; « as accurately as possible : the customer » (espace typographique française) ; « Years 1980-1990: » (de « Années 1980-1990 »). DE-CH traduit du FR (preuve interne) : la section terminologique suit le FR (Québec, « «Verpackungsfoto» » pour « photo d'emballage ») et non l'EN (IAB) ; 7 FAQ comme le FR ; calques « Das gesagt » (« Ceci étant dit »), « Sie haben es verstanden » (« Vous l'aurez compris »), « Es ist PackshotCreator, das » (« C'est PackshotCreator qui »), « Ihre wesentliche Innovation » (« Leur innovation majeure »), « das Lifestyle inspiriert » (« le lifestyle inspire ») ; créée le 27/06/2026 (commit 6a1f2f39). Les ajouts 2026 (section studio automatisé, bio) ont été rédigés séparément en FR (a8a3d3f6) et en EN (37da2e28).",
+ "qualite": {
+  "fr": "B",
+  "en": "D",
+  "de-ch": "C"
+ },
+ "justification_qualite": {
+  "fr": "Français natif et fluide ; corrections ponctuelles (accord « les studio photo automatisé », « scale », « informée », « idéale », guillemets droits) mais défauts éditoriaux notables : nom de l'auteur d'origine remplacé par « PackshotCreator », section Journal officiel non sourcée et douteuse, phrase « meubles » qui casse la logique de la liste, FAQ technique tronquée et erronée (DPI), 4 alts Webflow réservés. Limite haute de B.",
+  "en": "Traduction automatique du FR, visible dans tout le corps d'origine Webflow : déterminants français (« La »), majuscules parasites, contresens (« printout », « plan ahead », « clean »), phrases incompréhensibles (« a photographer produced in still life », « focused on produced by itself »), « natural referencing », alts en français. Seuls les ajouts 2026 (section terminologie, studio automatisé, bio, dernière FAQ) sont en anglais natif.",
+  "de-ch": "Allemand globalement fluide, conventions suisses respectées (ss systématique, aucun « ß », guillemets « », « Lancierungen », « Mitarbeitenden ») ; mais calques fréquents du FR (« Das gesagt », « Sie haben es verstanden », « natürliches Ranking », « Fristen », « Es ist PackshotCreator, das »), « Verpackungsfoto » absurde pour le Québec, alts tous français, 4 liens vers des pages /fr/, attribution remplacée, renforcement « weitgehend automatisiert »."
+ },
+ "nb_erreurs_estime": {
+  "fr": 16,
+  "en": 75,
+  "de-ch": 18
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Article publié à l'origine par PackshotCreator en janvier 2024 — mis à jour le 2 mai 2026 par Sébastien Jourdan.",
+   "probleme": "Nom de personne remplacé par le nom de marque. L'import Webflow (56d4bc32) avait pour auteur « Laurent Wainberg », et le commit 0a65c654 (02/05/2026) écrivait « Article publié à l'origine par <strong>Laurent Wainberg</strong> en janvier 2024 ». Le commit 8ae45f63 (12/06/2026, « auteur générique PackshotCreator sur les articles migrés ») a substitué « PackshotCreator » au nom de l'auteur d'origine. Même substitution en EN et en de-ch.",
+   "proposition": "Article publié à l'origine par Laurent Wainberg en janvier 2024 — mis à jour le 2 mai 2026 par Sébastien Jourdan. (sous réserve d'arbitrage éditorial sur l'attribution)"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le terme « packshot » est officiellement reconnu en France. Le Journal officiel a établi la terminologie officielle de la photographie publicitaire de produit dès le décret de 1983 , complété en 2000.",
+   "probleme": "Affirmation factuelle sans source. [Inférence] Le dispositif de terminologie officielle publie en principe des équivalents français destinés à remplacer les anglicismes : dire que « packshot » est « officiellement reconnu » est contre-intuitif et doit être confronté au texte réellement publié au Journal officiel (nature du texte — décret ou arrêté —, date, terme recommandé). Contredit en outre la FAQ du même article : « Années 1980-1990 : Le packshot est exclusivement un terme de production vidéo publicitaire ».",
+   "proposition": "Vérifier le texte du Journal officiel avant toute republication ; à défaut de source, supprimer la section ou la reformuler sans affirmation institutionnelle."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Dans le secteur des meubles, des images détaillées peuvent aider les clients à apprécier la qualité et le design des pièces, facilitant ainsi leur décision d'achat :",
+   "probleme": "Rupture logique : la phrase sur le mobilier s'intercale entre « elles peuvent avoir de multiples usages » et la liste des usages (site, réseaux sociaux, publicité, communication interne, notices) qu'elle introduit par deux-points ; le lecteur attend une liste de secteurs du mobilier. Phrase déjà présente dans l'import Webflow, reprise en EN et de-ch.",
+   "proposition": "Supprimer la phrase ou la déplacer après la liste ; introduire la liste par « Elles peuvent notamment servir : »."
+  },
+  {
+   "langue": "fr",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "faq",
+   "extrait_actuel": "La densité de pixels (DPI) doit être d'au moins 300, assurant ainsi une netteté irréprochable même en cas d'agrandissement ou d'impression.",
+   "probleme": "Erreur technique : la valeur DPI/PPI inscrite dans un fichier n'a aucun effet sur la netteté à l'écran ni lors d'un zoom web ; seule la définition en pixels compte (déjà donnée dans la phrase précédente). Le seuil de 300 ne concerne que l'impression à une taille donnée. Par ailleurs DPI (points d'impression) est confondu avec PPI (pixels par pouce). Même erreur en EN et de-ch.",
+   "proposition": "Pour l'impression, une résolution d'au moins 300 pixels par pouce à la taille finale est recommandée ; à l'écran, seule la définition en pixels détermine le niveau de détail."
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Voici les spécifications essentielles qui définissent l'excellence en matière de photographie packshot :",
+   "probleme": "Réponse tronquée : elle annonce plusieurs spécifications puis n'en donne qu'une (« Résolution et définition optimales »). Troncature déjà présente dans l'import Webflow ; identique en EN et de-ch.",
+   "proposition": "Compléter la liste ou remplacer l'annonce par « Le premier critère est la résolution : »."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "C'est là qu'interviennent les studio photo automatisé .",
+   "probleme": "Faute d'accord (pluriel) dans un passage commercial ajouté en 2026.",
+   "proposition": "C'est là qu'interviennent les studios photo automatisés."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Pour une marque qui scale son catalogue ou doit rafraîchir régulièrement ses visuels",
+   "probleme": "Anglicisme verbal « scale » non adapté au français.",
+   "proposition": "Pour une marque qui fait croître son catalogue ou doit rafraîchir régulièrement ses visuels"
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Cela les aidera à prendre une décision d'achat informée .",
+   "probleme": "Calque de « informed purchase decision » ; l'article lui-même emploie plus loin « décision éclairée ».",
+   "proposition": "Cela les aidera à prendre une décision d'achat éclairée."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "En revanche, ce type de technique est idéale pour une campagne publicitaire .",
+   "probleme": "Accord : le sujet est « ce type », masculin.",
+   "proposition": "En revanche, ce type de technique est idéal pour une campagne publicitaire."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Et l'inverse l'est encore plus : rien de tel que des packshots de mauvaise qualité pour faire fuir vos clients.",
+   "probleme": "Tournure bancale (« l'inverse l'est » sans attribut repris).",
+   "proposition": "Et l'inverse est encore plus vrai : rien de tel que des packshots de mauvaise qualité pour faire fuir vos clients."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Leur innovation majeure a consisté à créer un environnement de prise de vue contrôlé",
+   "probleme": "« Leur » renvoie à PackshotCreator (singulier) : calque de l'anglais « their » pour une entreprise.",
+   "proposition": "Son innovation majeure a consisté à créer un environnement de prise de vue contrôlé"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Quelle est l'origine du terme \"packshot\" ?",
+   "probleme": "Guillemets droits anglais dans un texte français (aussi dans « Au lieu de se concentrer sur \"ce qu'est\" le produit, elle montre \"comment\" et \"pourquoi\" l'utiliser. »).",
+   "proposition": "Quelle est l'origine du terme « packshot » ?"
+  },
+  {
+   "langue": "fr",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le ROI typique se situe entre 6 et 12 mois",
+   "probleme": "Le ROI est un ratio, pas une durée : il s'agit du délai de retour sur investissement.",
+   "proposition": "Le retour sur investissement intervient généralement en 6 à 12 mois"
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dbae71504f03ad3bf5ac89.avif]",
+   "probleme": "Texte alternatif réservé de Webflow, vide de sens : 4 images concernées (…ac89, …ac83, …ac9b, …ac98), identique dans les trois langues.",
+   "proposition": "Rédiger un alt descriptif propre à chaque image et à chaque langue."
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "mineur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "Packshot : définition, techniques et conseils e-commerce — PackshotCreator",
+   "probleme": "74 caractères : sera tronqué dans les résultats de recherche. La description promet un « Guide complet 2026 » alors que le corps se présente comme le « premier article » d'une série en quatre volets.",
+   "proposition": "Packshot : définition, types et conseils e-commerce"
+  },
+  {
+   "langue": "en",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Article originally published by PackshotCreator in January 2024 — updated on 2 May 2026 by Sébastien Jourdan.",
+   "probleme": "Même substitution qu'en FR : le commit 37da2e28 portait « Article originally published by <strong>Laurent Wainberg</strong> in January 2024 », remplacé par « PackshotCreator » au commit 8ae45f63.",
+   "proposition": "Article originally published by Laurent Wainberg in January 2024 — updated on 2 May 2026 by Sébastien Jourdan. (sous réserve d'arbitrage)"
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "By using combinations of compositions and colors, a photographer produced in still life can thus add a artistic dimension to the brand image of a company.",
+   "probleme": "« photographe produit » traduit par « photographer produced » : phrase absurde ; article « a artistic ».",
+   "proposition": "By combining compositions and colours, a still life product photographer can add an artistic dimension to a company's brand image."
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "As you can see, a packshot photograph is more focused on produced by itself , rather than on the environment in which it is used.",
+   "probleme": "« le produit en lui-même » rendu par « produced by itself » : phrase incompréhensible.",
+   "proposition": "As you can see, a packshot photograph focuses on the product itself rather than on the environment in which it is used."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "Instead, lifestyle photography attempts to create a printout to the viewer by showing how the product can be used in daily life.",
+   "probleme": "« impression » (effet produit) traduit par « printout » (tirage papier) : contresens.",
+   "proposition": "Lifestyle photography, by contrast, aims to create an impression on the viewer by showing how the product can be used in daily life."
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Does a still life photograph aim to highlight aesthetic qualities of the product, the photographer's artistic vision and the brand's message.",
+   "probleme": "« Une photographie nature morte vise elle à… » lu comme une interrogation : phrase affirmative transformée en question sans point d'interrogation.",
+   "proposition": "A still life photograph, for its part, aims to highlight the product's aesthetic qualities, the photographer's artistic vision and the brand's message."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "By definition, the Packshot photography Is a specialized photographic technique especially for e-commerce sites to capture product images isolated on a neutral background.",
+   "probleme": "Article défini calqué du français, majuscules en milieu de phrase (« Packshot », « Is »), construction incorrecte.",
+   "proposition": "By definition, packshot photography is a specialised technique, used mainly for e-commerce sites, for capturing images of products isolated on a neutral background."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "La Packshot photography is a technique that allows you to take pictures of isolated products on a uniform background .",
+   "probleme": "Article français « La » resté dans la phrase anglaise.",
+   "proposition": "Packshot photography is a technique for photographing isolated products on a uniform background."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "La lifestyle product photography is for its part a technique that consists in staging products in their context of use .",
+   "probleme": "Article français « La » résiduel ; « for its part », « consists in » calqués.",
+   "proposition": "Lifestyle product photography, for its part, stages products in the context in which they are used."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "La online competition is extremely strong, and the first impression is essential.",
+   "probleme": "Article français « La » résiduel.",
+   "proposition": "Online competition is fierce, and first impressions are crucial."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "For example, a clothing store can use packshot photographs to present their new collection on their website, Increase your conversion rate and improve your natural referencing , while communicating about it in online advertising campaigns or promotional brochures.",
+   "probleme": "Changement de personne (« their » puis « your »), majuscule fautive (« Increase »), « natural referencing » calque de « référencement naturel » (inexistant en anglais : SEO / organic search).",
+   "proposition": "For example, a clothing store can use packshot photographs to present its new collection on its website, increase its conversion rate and improve its organic search ranking, while also using them in online advertising campaigns or promotional brochures."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "majeur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "A key element for the natural referencing of your e-commerce site",
+   "probleme": "« natural referencing » n'existe pas en anglais ; repris dans le paragraphe suivant (« essential for the natural referencing or SEO »).",
+   "proposition": "A key element for your e-commerce site's SEO"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Packshot photography must be the most precise and clean possible.",
+   "probleme": "« nette » (photo) traduit par « clean » au lieu de « sharp » ; structure calquée de « la plus précise et nette possible ».",
+   "proposition": "A packshot must be as precise and sharp as possible."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "It is therefore necessary to find the right balance between too present shadows that could darken the product and an absence of shade that would cause it to lose all depth.",
+   "probleme": "« ombre » rendu une fois par « shadows » puis par « shade » (ombre portée vs zone ombragée) ; « too present shadows » calqué.",
+   "proposition": "You therefore need to strike the right balance between shadows so strong that they darken the product and a complete absence of shadow, which would rob it of all depth."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "So banish any notion of fuzzy of your photos.",
+   "probleme": "Calque mot à mot de « Bannissez toute notion de flou de vos photos » : agrammatical.",
+   "proposition": "So eliminate any blur from your photos."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Packshot photography thus assumes a thorough knowledge light, camera, and composition to produce a clear, sharp image tailored to the product.",
+   "probleme": "« suppose » rendu par « assumes » (faux ami : il faut « requires ») ; préposition « of » manquante.",
+   "proposition": "Packshot photography therefore requires a thorough knowledge of light, cameras and composition to produce a clear, sharp image tailored to the product."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Concretely, packshot photographs are Primordial for any business looking to sell its products on an e-commerce site",
+   "probleme": "« primordiales » rendu par « Primordial » (faux ami, sens « originel ») avec majuscule ; « Concretely » calque de « Concrètement ».",
+   "proposition": "In practice, packshot photographs are essential for any business looking to sell its products on an e-commerce site"
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "But is that just a good idea?",
+   "probleme": "« est-ce seulement une bonne idée ? » rendu par « just » : le sens (« est-ce vraiment une bonne idée ? ») est perdu.",
+   "proposition": "But is it really a good idea?"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "faq",
+   "extrait_actuel": "It tells a story and helps customers plan ahead.",
+   "probleme": "« se projeter » (s'imaginer utiliser le produit) traduit par « plan ahead » (planifier) : contresens.",
+   "proposition": "It tells a story and helps customers picture themselves using the product."
+  },
+  {
+   "langue": "en",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"photographie packshot sur un site e-commerce\" src=/images/blog/67d14eadad46b55ee8628cb6.avif]",
+   "probleme": "Textes alternatifs en français dans l'article anglais : 7 alts FR (« photo détails produit photographie packshot », « photographie packshot sur un site e-commerce », « Packshot multi vues d'un casque moto », « photo de chaussures en nature morte », « exemple d'une image lifestyle d'une montre », « exemple de photo de montre pour e-commerce sur Google », « Exemple photographies packshot produits taille moyenne ») + 4 « __wf_reserved_inherit ».",
+   "proposition": "Traduire chaque alt (ex. « Packshot photography on an e-commerce site ») et remplacer les 4 alts réservés."
+  },
+  {
+   "langue": "en",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Years 1980-1990: The packshot is exclusively an advertising video production term referring to the final shot of a commercial.",
+   "probleme": "Calque de « Années 1980-1990 » ; même calque pour « End of the 1990s - beginning of 2000 », « Years 2000: », « Years 2010-2020: ».",
+   "proposition": "1980s–1990s: The packshot is exclusively an advertising video production term referring to the final shot of a commercial."
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "• as part of a advertising and promotional communication of your company and its products",
+   "probleme": "Article « a » devant voyelle (idem « as part of a internal communication », « with a adapted lighting », « take a informed purchase decision », « for a advertising campaign »).",
+   "proposition": "• in your company's advertising and promotional communication about its products"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "• or even in the edition of Leaflets for your customers.",
+   "probleme": "« édition de notices » : « edition » est un faux ami ; majuscule fautive à « Leaflets ».",
+   "proposition": "• or in producing instruction leaflets for your customers."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Let's also not forget the functionality of image search search engines.",
+   "probleme": "Mot doublé (« search search ») et calque de « la fonctionnalité de recherche d'images des moteurs de recherche ».",
+   "proposition": "And let's not forget search engines' image search."
+  },
+  {
+   "langue": "en",
+   "categorie": "title_case",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "First, the background of the photograph should be Preferably white , or neutral.",
+   "probleme": "Majuscule parasite en milieu de phrase (idem « should represent the product As it is », « Welcome to the complete guide to Packshot photography », « The Focus Stacking can thus be useful »).",
+   "proposition": "First, the background should preferably be white, or at least neutral."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "However, the primary use of packshot photographs remains in product sheets of an e-commerce site, it is therefore on this use that we will focus primarily on in this series of articles.",
+   "probleme": "« fiches produits » rendu par « product sheets » (on dit « product pages ») ; « on » doublé ; phrase soudée par une virgule.",
+   "proposition": "However, the main use of packshot photographs remains e-commerce product pages, so this is the use we will focus on in this series of articles."
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "It also aims to represent the product as accurately as possible : the customer will thus not have an unpleasant surprise when receiving the product afterwards.",
+   "probleme": "Espace avant deux-points (typographie française) ; tournure calquée.",
+   "proposition": "It also aims to represent the product as accurately as possible, so that the customer has no unpleasant surprise on receiving it."
+  },
+  {
+   "langue": "en",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "In the UK, the IAB (Interactive Advertising Bureau) and broadcast standards bodies have codified packshot requirements for digital advertising.",
+   "probleme": "Section « Packshot meaning & official terminology » réécrite en deux paragraphes propres à l'EN (origine publicitaire, IAB, graphie « pack shot ») sans équivalent FR/de-ch, qui parlent du Québec ; FAQ supplémentaire « What does packshot mean? » absente en FR et de-ch (8 FAQ contre 7).",
+   "proposition": null
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Packshot photographs are generally taken in a professional studio with a lighting configuration specially adapted to each product",
+   "probleme": "Lien ajouté en EN seulement sur « professional studio » vers /en/studios-photo-automatises : l'ancre décrit un studio traditionnel, la cible est la page des studios automatisés.",
+   "proposition": null
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Artikel ursprünglich veröffentlicht von PackshotCreator im Januar 2024 — aktualisiert am 2. Mai 2026 von Sébastien Jourdan.",
+   "probleme": "Traduit depuis la version FR déjà modifiée (8ae45f63) : le nom de l'auteur d'origine, Laurent Wainberg, est remplacé par la marque.",
+   "proposition": "Artikel ursprünglich veröffentlicht von Laurent Wainberg im Januar 2024 — aktualisiert am 2. Mai 2026 von Sébastien Jourdan. (sous réserve d'arbitrage)"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "incomprehensible",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "In Québec spricht man eher von «Verpackungsfoto» .",
+   "probleme": "Le terme québécois est un terme français (« photo d'emballage ») ; le traduire en allemand fait croire qu'on parle allemand au Québec. La phrase n'a d'intérêt que si le terme français est conservé (et sourcé).",
+   "proposition": "In Québec spricht man eher von «photo d'emballage» (Verpackungsfoto)."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "faq",
+   "extrait_actuel": "Die Pixeldichte (DPI) sollte mindestens 300 betragen und so eine tadellose Schärfe selbst bei Vergrösserung oder Druck sicherstellen.",
+   "probleme": "Même erreur technique qu'en FR : la valeur DPI/PPI d'un fichier n'influe pas sur la netteté à l'écran.",
+   "proposition": "Für den Druck empfiehlt sich eine Auflösung von mindestens 300 ppi in der Endgrösse; am Bildschirm zählt allein die Pixelzahl."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"photo de chaussures en nature morte\" src=/images/blog/67d14eadad46b55ee8628cbf.avif]",
+   "probleme": "Les 7 textes alternatifs sont en français et 4 sont « __wf_reserved_inherit » : aucun alt allemand.",
+   "proposition": "Rédiger des alts allemands (ex. «Stillleben-Foto von Schuhen»)."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "melange_linguistique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "• die nötige Ausrüstung, um gute Packshot-Fotografien zu machen ,   {lien «die nötige Ausrüstung, um gute Packshot-Fotografien zu machen» → /fr/blog/materiel-photo-guide-photographie-packshot}",
+   "probleme": "Ancres allemandes pointant vers des articles français : 3 des 4 liens de la série (/fr/blog/materiel-photo…, /fr/blog/choix-media…, /fr/blog/comment-avoir-des-photos…) et le lien « Focus Stacking » (/fr/guide/comment-faire-focus-stacking-pour-photographier-bracelet).",
+   "proposition": "Pointer vers les versions de-ch si elles existent, sinon vers l'EN ou signaler la langue cible."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "seine Conversion-Rate zu steigern und sein natürliches Ranking zu verbessern",
+   "probleme": "« natürliches Ranking » calque de « référencement naturel » ; l'allemand dit « organisches Ranking » ou « Suchmaschinen-Ranking ».",
+   "proposition": "seine Conversion-Rate zu steigern und sein organisches Ranking zu verbessern"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Das gesagt, ahnen Sie sicher, dass wir hier das weite Thema der Packshot-Fotografie nur angekratzt haben.",
+   "probleme": "Calque de « Ceci étant dit » ; construction non idiomatique.",
+   "proposition": "Sie ahnen sicher, dass wir das weite Thema der Packshot-Fotografie hier nur angekratzt haben."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Sie haben es verstanden: Eine Packshot-Fotografie konzentriert sich stärker auf das Produkt selbst",
+   "probleme": "Calque de « Vous l'aurez compris ».",
+   "proposition": "Kurz gesagt: Eine Packshot-Fotografie konzentriert sich stärker auf das Produkt selbst"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Der hauptsächliche Einsatz von Packshot-Fotografien bleibt jedoch in den Produktseiten einer E-Commerce-Website",
+   "probleme": "Calque de « l'usage premier … demeure dans les fiches produits » ; préposition fautive.",
+   "proposition": "Hauptsächlich werden Packshot-Fotografien jedoch auf den Produktseiten einer E-Commerce-Website eingesetzt"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "schnell an ihre Grenzen: Fristen, Kosten und vor allem eine visuelle Einheitlichkeit",
+   "probleme": "« délais » rendu par « Fristen » (échéances imposées) ; il s'agit de temps de production.",
+   "proposition": "schnell an ihre Grenzen: lange Durchlaufzeiten, Kosten und vor allem eine visuelle Einheitlichkeit"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "title_case",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "Schärfe vor allem",
+   "probleme": "Intertitre calqué de « La netteté avant tout », peu idiomatique.",
+   "proposition": "Schärfe hat Vorrang"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Es ist PackshotCreator, das den Bereich revolutioniert hat, indem es das Konzept des automatisierten Packshot-Studios erfunden hat.",
+   "probleme": "Calque de la mise en relief « C'est PackshotCreator qui… ».",
+   "proposition": "PackshotCreator hat den Bereich revolutioniert, indem das Unternehmen das Konzept des automatisierten Packshot-Studios erfand."
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "claim_renforce",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "in einem kompakten und weitgehend automatisierten Gerät zu schaffen",
+   "probleme": "FR « relativement automatisé », EN « relatively automated » ; « weitgehend » (largement) renforce l'affirmation.",
+   "proposition": "in einem kompakten und teilweise automatisierten Gerät zu schaffen"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Eine unscharfe, schlecht ausgerichtete oder schlecht beleuchtete Fotografie",
+   "probleme": "« mal cadrée » rendu par « schlecht ausgerichtete » (mal alignée) ; le terme photo est le cadrage / Bildausschnitt.",
+   "proposition": "Eine unscharfe, schlecht kadrierte oder schlecht beleuchtete Fotografie"
+  },
+  {
+   "langue": "de-ch",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "das Lifestyle inspiriert (es hilft ihm, sich die Nutzung vorzustellen).",
+   "probleme": "« le lifestyle » substantivé calqué ; en allemand il faut reprendre le nom.",
+   "proposition": "das Lifestyle-Foto inspiriert (es hilft ihm, sich die Nutzung vorzustellen)."
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "toutes",
+   "extrait": "Un opérateur sans formation photo avancée peut produire 200 à 500 packshots par jour avec une qualité constante du premier au dernier visuel.",
+   "source_dans_texte": "aucune (le lien voisin pointe vers la page commerciale /fr/studios-photo-automatises)",
+   "motif": "Chiffre de productivité non sourcé, présenté comme général.",
+   "ecart_fr_en": "EN identique (« 200 to 500 packshots per day ») ; de-ch identique."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Le ROI typique se situe entre 6 et 12 mois pour les entreprises produisant plus de 500 visuels par an, avec une réduction du coût par image de l'ordre de 60 à 80 %.",
+   "source_dans_texte": "aucune",
+   "motif": "Chiffres de ROI et de baisse de coût non sourcés. [Inférence] Le seuil « plus de 500 visuels par an » paraît incohérent avec une capacité annoncée de 200 à 500 packshots par jour et avec un amortissement en 6 à 12 mois ; à valider.",
+   "ecart_fr_en": "EN identique (« Typical ROI lands between 6 and 12 months … 60 to 80% ») ; de-ch identique."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "le studio automatisé devient la seule réponse rentable",
+   "source_dans_texte": "aucune",
+   "motif": "Superlatif exclusif (« la seule »).",
+   "ecart_fr_en": "EN « the only economically viable answer » ; de-ch « zur einzigen rentablen Antwort »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "fond blanc parfait sans retouche, détourage automatique",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse de résultat absolu (« parfait », « sans retouche »).",
+   "ecart_fr_en": "EN « perfect white background with no retouching » ; de-ch « perfekter weisser Hintergrund ohne Retusche »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Le terme « packshot » est officiellement reconnu en France. Le Journal officiel a établi la terminologie officielle de la photographie publicitaire de produit dès le décret de 1983 , complété en 2000.",
+   "source_dans_texte": "aucune",
+   "motif": "Fait institutionnel non sourcé, à vérifier au Journal officiel (voir erreurs).",
+   "ecart_fr_en": "EN « officially recognised in the Journal officiel français (1983 decree, updated 2000) » ; de-ch identique au FR."
+  },
+  {
+   "langue": "fr",
+   "extrait": "Au Québec, on parle plutôt de « photo d'emballage » .",
+   "source_dans_texte": "aucune",
+   "motif": "Usage terminologique non sourcé.",
+   "ecart_fr_en": "Absent en EN ; présent en de-ch (traduit « Verpackungsfoto »)."
+  },
+  {
+   "langue": "en",
+   "extrait": "In the UK, the IAB (Interactive Advertising Bureau) and broadcast standards bodies have codified packshot requirements for digital advertising.",
+   "source_dans_texte": "aucune",
+   "motif": "Affirmation propre à l'EN, non sourcée, sur des organismes nommés.",
+   "ecart_fr_en": "Absent en FR et de-ch."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "C'est PackshotCreator qui a révolutionné le domaine en inventant le concept du studio packshot automatisé.",
+   "source_dans_texte": "aucune",
+   "motif": "Revendication d'invention et d'antériorité (« premier système intégré », « des milliers d'entreprises ») non sourcée ; à valider par la direction, d'autant que le corps présente PackshotCreator comme distributeur des systèmes Orbitvu.",
+   "ecart_fr_en": "EN « PackshotCreator revolutionized the field by inventing… » identique ; de-ch renforce « relativement automatisé » en « weitgehend automatisierten »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Des solutions comme les systèmes Orbitvu permettent de produire des packshots professionnels en quelques secondes, sans compétences photographiques avancées.",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse de délai (« en quelques secondes »).",
+   "ecart_fr_en": "EN « with no photography expertise required » supprime « avancées » : claim renforcé ; de-ch fidèle au FR."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "photographe spécialisé en photographie packshot depuis plus de 20 ans",
+   "source_dans_texte": "aucune",
+   "motif": "Ancienneté déclarative (bio auteur).",
+   "ecart_fr_en": "EN « for over 20 years » ; de-ch « seit über 20 Jahren »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Un packshot professionnel présente une résolution minimale de 2000 pixels sur le côté le plus long (idéalement 3000 à 4000 pixels)",
+   "source_dans_texte": "aucune",
+   "motif": "Norme présentée comme générale ; la mention DPI qui suit est techniquement erronée.",
+   "ecart_fr_en": "EN et de-ch identiques."
+  },
+  {
+   "langue": "fr",
+   "extrait": "Guide complet 2026",
+   "source_dans_texte": "aucune",
+   "motif": "Millésime dans la description : obsolescence programmée ; article présenté dans le corps comme premier volet d'une série.",
+   "ecart_fr_en": "EN « Complete guide 2026 » ; de-ch « Vollständiger Leitfaden 2026 »."
+  }
+ ],
+ "titre_h1_meta": "FR : title « Packshot : définition, techniques et conseils e-commerce », H1 « … types et bonnes pratiques pour l'e-commerce », metaTitle 74 caractères (trop long) ; cohérents entre eux et avec le corps (définition, types, conseils). La description promet un « Guide complet 2026 » alors que le corps s'ouvre sur « Dans ce premier article » d'une série : le titre d'origine Webflow (« … (1/4) ») a disparu sans que le corps soit adapté. EN : title/H1/metaTitle en Title Case anglais légitime ; metaTitle 79 caractères (trop long) ; même décalage « Complete guide 2026 » / « In this first article ». DE-CH : title « Packshot: Definition, Techniken und E-Commerce-Tipps », H1 « … Arten und Best Practices für den E-Commerce », metaTitle 70 caractères ; cohérent ; « Best Practices » anglicisme courant, acceptable.",
+ "structure_fr_en": "FR et de-ch : 6 h2, 13 h3, mêmes sections, 7 FAQ, parité paragraphe par paragraphe. EN : même ossature mais section « Packshot meaning & official terminology » réécrite en 2 paragraphes (origine publicitaire, IAB, graphie « pack shot », Journal officiel) au lieu d'un paragraphe FR (Journal officiel + Québec) ; 8 FAQ (FAQ « What does packshot mean? » propre à l'EN). Dans les trois langues : 22 paragraphes vides ne contenant qu'un caractère invisible (U+200D), hérités de Webflow ; FAQ « caractéristiques techniques » tronquée (une seule spécification sur plusieurs annoncées) ; deux FAQ redondantes (différences packshot / lifestyle / nature morte, puis packshot / lifestyle).",
+ "images_alt_legendes": "11 images, aucune légende. 4 alts « __wf_reserved_inherit » (…ac89, …ac83, …ac9b, …ac98) dans les trois langues. Les 7 autres alts sont en français et sont recopiés tels quels en EN et en de-ch (« photographie packshot sur un site e-commerce », « exemple d'une image lifestyle d'une montre », etc.). Certains alts FR sont pauvres ou bourrés de mots-clés (« photo détails produit photographie packshot », « Exemple photographies packshot produits taille moyenne »).",
+ "appellations": "Orbitvu et PackshotCreator employés de façon cohérente (« systèmes Orbitvu distribués par PackshotCreator », « PackshotCreator – Sysnext »). Problème majeur : la ligne de crédit « Article publié à l'origine par PackshotCreator » (FR/EN/de-ch) remplace le nom de l'auteur d'origine Laurent Wainberg (présent dans l'import Webflow et au commit 0a65c654, remplacé au commit 8ae45f63 du 12/06/2026) ; le champ author est passé de Laurent Wainberg à Sébastien Jourdan. La FAQ attribue à PackshotCreator l'invention du studio packshot automatisé tandis que le corps le présente comme distributeur d'Orbitvu : à faire valider. L'ancre « blendai.studio » mène à une page interne.",
+ "recommandation": "retraduction complète",
+ "remarques": "Recommandation par langue : EN retraduction complète du corps d'origine Webflow (les ajouts 2026 peuvent être conservés) ; FR retouches ; de-ch retouches (calques, alts, liens /fr/). Arbitrage éditorial requis sur l'attribution (Laurent Wainberg / PackshotCreator / Sébastien Jourdan), sur la section Journal officiel (non sourcée, contredite par la FAQ « Années 1980-1990 ») et sur la revendication d'invention en FAQ. Faits datés : « Guide complet 2026 », « depuis plus de 20 ans ». Liens : de-ch pointe vers 4 pages FR ; EN ajoute un lien « professional studio » vers la page des studios automatisés ; l'ancre « blendai.studio » mène à /…/ia-photo-produit. La section terminologique française (Journal officiel, Québec) a peu de pertinence pour un lectorat suisse alémanique. Erreur technique DPI dans les trois FAQ. EN : orthographe britannique et américaine mêlées (« catalogue », « specialised », « recognised » / « colors », « specialized », « catalogs »). de-ch : « Operator » pour « opérateur » serait plus naturel en « Bedienperson »."
+}

@@ -1,0 +1,403 @@
+{
+  "family": "67d16fc7ca69ff54d95f3dae",
+  "slugs": {
+    "fr": "materiel-photo-guide-photographie-packshot",
+    "en": "packshot-photography-guide-product-photography-equipment",
+    "de-ch": null
+  },
+  "sujet": "Deuxième volet du guide de la photographie packshot : matériel photo (espace, appareil, éclairage, fond, répétabilité, post-production), intérêt d'un studio automatisé et notions de base.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces objectives d'une traduction automatique depuis le français : article partitif « des » rendu par « of » (« For the high-tech, household appliances and computer sector, of macro lenses may be required ») ; doublet « cohérentes et homogènes » rendu par un mot répété (« should remain consistent and consistent », « consistent and consistent photo quality », « professional, consistent, and consistent photos ») ; « flou » traduit par « vagueness » (« to avoid vagueness over the entire product ») ; « conseils éprouvés, astuces utiles » rendu par « Proven tips, helpful tips » ; « professionnel débutant » rendu par « a beginner professional » ; « lumière trop chaude » rendu par « light that is too hot » ; « en effet » systématiquement rendu par « Indeed » / « in fact » ; textes alternatifs restés en français dans la version EN (« un studio photo traditionnel », « Différence qualité packshot produit »).",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte français natif et fluide. Défauts ponctuels : majuscules artificielles dans title, metaTitle et description, H1 tronqué, deux anglicismes (« skincare », « triviale »), guillemets droits, typographie des unités (« 5500K », « 85mm-105mm », « f/1.8 »), une imprécision technique à valider (« plein format (35 mm de largeur) »), « tout autant d'étapes », et deux textes alternatifs Webflow inexploitables. Un peu plus de cinq retouches, toutes mineures sauf les textes alternatifs : note B. (Les espaces avant virgule visibles dans l'extrait sont des artefacts d'extraction, absents du JSON source.)",
+    "en": "Traduction automatique visible et non relue : mots répétés (« consistent and consistent » trois fois), partitif traduit par « of », faux sens (« vagueness » pour flou, « crop » pour détourer, « too hot » pour trop chaude), fautes d'article (« a automated », « a intuitive »), calques en série (« Indeed », « in fact », « the presentation must be careful », « The logistics that surround the implementation of each product »), metaTitle calqué, textes alternatifs en français. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 15,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_decorative\" src=/images/blog/67d15a1ea67d40a54ffcc3c6.avif]",
+      "probleme": "Valeur réservée de Webflow servie comme texte alternatif ; elle n'a aucun sens pour un lecteur d'écran ni pour le référencement d'image.",
+      "proposition": "alt vide (alt=\"\") si l'image est décorative, sinon un texte décrivant l'image."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dbae71507d67953210f1b8.avif]",
+      "probleme": "Valeur réservée de Webflow servie comme texte alternatif (image de la section « La netteté »).",
+      "proposition": "Texte alternatif décrivant l'image (contenu à établir à partir de l'image elle-même)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Quel matériel photo pour de la Photographie Packshot ? [Guide]",
+      "probleme": "Majuscules artificielles à « Photographie Packshot » ; la tournure « pour de la photographie » est relâchée pour un titre. Même défaut dans la description (« notre Guide de la Photographie Packshot »).",
+      "proposition": "Quel matériel photo pour la photographie packshot ? [Guide]"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Le Guide complet de la photographie packshot, 2 : matériel photo et notions à connaître",
+      "probleme": "Majuscule artificielle à « Guide » (incohérente avec le H1 « Le guide complet… »).",
+      "proposition": "Le guide complet de la photographie packshot, 2 : matériel photo et notions à connaître"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Le guide complet de la photographie packshot, 2",
+      "probleme": "Le H1 ne dit pas le sujet de l'article (le matériel photo), alors que title et metaTitle le portent ; le H1 seul est identique pour tous les volets de la série.",
+      "proposition": "Le guide complet de la photographie packshot, 2 : matériel photo et notions à connaître"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans l'industrie du skincare et des cosmétiques, un appareil avec une excellente reproduction des couleurs est essentiel pour représenter fidèlement les teintes des produits.",
+      "probleme": "Anglicisme « skincare » ; phrase insérée (lien interne) qui interrompt le raisonnement sur le choix de l'appareil.",
+      "proposition": "Dans les secteurs des soins de la peau et des cosmétiques, un appareil offrant une excellente reproduction des couleurs est essentiel pour représenter fidèlement les teintes des produits."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les tailles de capteur les plus courantes sont le plein format (35 mm de largeur) et l'APS-C (24 mm de largeur).",
+      "probleme": "« 35 mm » désigne le format de film de référence, pas la largeur du capteur plein format, couramment donné à 36 × 24 mm. Valeur à valider par un humain avant republication (même chiffre en EN).",
+      "proposition": "Les tailles de capteur les plus courantes sont le plein format (environ 36 mm de largeur) et l'APS-C (environ 24 mm de largeur). [à valider]"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Enfin, il est crucial d'éviter le flou sur la totalité du produit en utilisant la technique du \"focus stacking\". Cette technique consiste à prendre plusieurs photos en changeant le point de mise au point à chaque prise de vue",
+      "probleme": "Guillemets droits anglais au lieu des guillemets français ; redondance « point de mise au point ».",
+      "proposition": "Enfin, il est crucial d'éviter le flou sur la totalité du produit en utilisant la technique du « focus stacking ». Cette technique consiste à prendre plusieurs photos en déplaçant la mise au point à chaque prise de vue"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "vous pouvez enregistrer toutes vos positions et réglages pour les réutiliser en un clic d'une photo à l'autre, rendant cette étape totalement triviale !",
+      "probleme": "« triviale » au sens anglais de « trivial » (très simple) ; en français courant, le mot signifie surtout « banal » ou « vulgaire ».",
+      "proposition": "vous pouvez enregistrer toutes vos positions et réglages pour les réutiliser en un clic d'une photo à l'autre : cette étape devient un jeu d'enfant !"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Il est ainsi recommandé d'utiliser une lumière blanche neutre, avec une température de couleur de 5500K.",
+      "probleme": "Typographie française : espace insécable entre nombre et unité et séparateur de milliers (« 5 500 K »).",
+      "proposition": "Il est ainsi recommandé d'utiliser une lumière blanche neutre, avec une température de couleur de 5 500 K."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Il peut être extrêmement bénéfique d'investir dans un studio photo automatisé en interne pour les entreprises en raison de plusieurs facteurs clés.",
+      "probleme": "Tournure calquée sur l'anglais (« beneficial for businesses due to several key factors ») ; l'ordre des compléments est lourd.",
+      "proposition": "Pour une entreprise, investir dans un studio photo automatisé en interne peut être extrêmement bénéfique, pour plusieurs raisons."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Un objectif macro dans la plage 85mm-105mm est idéal",
+      "probleme": "Typographie anglaise des unités (espace manquante, plage écrite à l'anglaise) ; même défaut pour « (f/1.8 ou f/1.4) » et « 50mm », où le français attend la virgule décimale.",
+      "proposition": "Un objectif macro de 85 à 105 mm est idéal"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "What photo equipment for Packshot Photography? [Guide]",
+      "probleme": "Calque mot à mot du metaTitle français (« Quel matériel photo pour… ») : question sans verbe, non idiomatique en anglais, majuscules incohérentes.",
+      "proposition": "Packshot Photography Equipment: What Do You Need? [Guide]"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "For the high-tech, household appliances and computer sector, of macro lenses may be required to capture small components accurately.",
+      "probleme": "Partitif français « des objectifs macro » traduit par « of macro lenses » : phrase agrammaticale.",
+      "proposition": "In the high-tech, household appliance and computing sectors, macro lenses may be needed to capture small components accurately."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "However, all photos should remain consistent and consistent to reflect a professional brand image.",
+      "probleme": "Doublet « cohérentes et homogènes » rendu par un mot répété.",
+      "proposition": "However, all photos must remain consistent and uniform to reflect a professional brand image."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In fact, thanks to specialized photo equipment and fully controlled by a intuitive easy to use software, you can easily achieve consistent and consistent photo quality no matter the time of year.",
+      "probleme": "Construction cassée (« and fully controlled by »), article fautif « a intuitive », « software » dénombré, mot répété « consistent and consistent ».",
+      "proposition": "With specialized photo equipment fully controlled by intuitive, easy-to-use software, you can easily achieve consistent, uniform photo quality whatever the time of year."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "using an automated photo studio allows for professional, consistent, and consistent photos, while offering the ability to explore other types of media.",
+      "probleme": "Troisième occurrence du mot répété « consistent, and consistent ».",
+      "proposition": "using an automated photo studio delivers professional, consistent and uniform photos, while opening the door to other types of media."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Finally, it is crucial to avoid vagueness over the entire product by using the technique of”Focus Stacking“.",
+      "probleme": "« flou » traduit par « vagueness » (imprécision d'une idée) au lieu de « blur » ; guillemets inversés et collés au texte, majuscules artificielles à « Focus Stacking ».",
+      "proposition": "Finally, it is crucial to keep the entire product sharp by using focus stacking."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It will also be even easier to crop the image later in order to obtain a transparent background for other supports!",
+      "probleme": "« détourer » traduit par « crop » (recadrer), ce qui est un contresens métier ; « supports » au sens français de « supports de communication ».",
+      "proposition": "It will also make it easier to cut out the product later and get a transparent background for other media!"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "For example, light that is too cold may give the impression of sterility, while light that is too hot may alter the colors of your product.",
+      "probleme": "En température de couleur, l'anglais dit « warm » et non « hot » (calque de « trop chaude »).",
+      "proposition": "For example, light that is too cool can feel clinical, while light that is too warm can distort your product's colors."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Proven tips, helpful tips, and cutting-edge techniques will help you get the most out of your camera equipment and produce professional-quality images.",
+      "probleme": "« conseils éprouvés, astuces utiles » rendus par deux fois « tips » : répétition mécanique, dès l'introduction.",
+      "proposition": "Proven advice, practical tips and advanced techniques will help you get the most out of your camera equipment and produce professional-quality images."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"un studio photo traditionnel \" src=/images/blog/67d15a1ea67d40a54ffcc3c3.avif]",
+      "probleme": "Tous les textes alternatifs de la version EN sont restés en français : « un studio photo traditionnel », « Différence qualité packshot produit », « importance températures couleur photo produit », « Importance arrière plan photo produit », « Exemple placement de lumière studio photo », « logiciel Orbitvu Station automatisation », « Gamme studios photo automatisés Orbitvu ».",
+      "proposition": "Traduire chaque texte alternatif (ex. « A traditional photo studio », « Orbitvu automated photo studio range »)."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_decorative\" src=/images/blog/67d15a1ea67d40a54ffcc3c6.avif]",
+      "probleme": "Valeurs réservées Webflow servies comme textes alternatifs (même défaut pour « __wf_reserved_inherit »).",
+      "proposition": "alt vide si décorative, sinon description en anglais."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "If you opt instead for a automated photo studio like the ones we sell, know that they benefit from a much more compact format than a more traditional photo studio.",
+      "probleme": "Article fautif « a automated » ; « know that they benefit from » calque « sachez qu'ils bénéficient de ».",
+      "proposition": "If you opt instead for an automated photo studio like the ones we sell, you'll find they are far more compact than a traditional photo studio."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "In the industry of Skincare and cosmetics, a device with excellent color reproduction is essential to accurately represent product hues.",
+      "probleme": "« In the industry of » calqué ; majuscule au milieu de la phrase ; « device » pour un appareil photo.",
+      "proposition": "In the skincare and cosmetics industry, a camera with excellent color reproduction is essential to represent product shades accurately."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Make sure you have enough space in your premises in advance",
+      "probleme": "Calque de « Veillez au préalable à avoir suffisamment de place dans vos locaux ».",
+      "proposition": "First, make sure you have enough space"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "When taking packshot photographs to highlight your products on the internet, it is essential to pay particular attention to repeatability and homogeneity shots.",
+      "probleme": "Préposition manquante (« homogeneity of shots ») ; « homogeneity » peu idiomatique.",
+      "proposition": "When taking packshots to showcase your products online, it is essential to pay close attention to the repeatability and consistency of your shots."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The logistics that surround the implementation of each product can quickly become restrictive and make it difficult to obtain an acceptable level of homogeneity.",
+      "probleme": "« mise en place de chaque produit » rendu par « implementation of each product » : sens opaque en anglais.",
+      "proposition": "The logistics of setting up each product can quickly become burdensome and make it hard to achieve an acceptable level of consistency."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "First of all, the presentation must be careful: it is important to take the time to properly arrange the product, to place it in an angle favorable to the light",
+      "probleme": "« soignée » rendu par « careful » (qui qualifie une personne) ; « in an angle favorable to the light » calqué.",
+      "proposition": "First of all, the presentation must be meticulous: take the time to arrange the product properly, position it at an angle that suits the lighting"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "An overly loaded or colored background may distract the customer's eye and hinder the presentation of your product. Likewise, a gray or black background can “crush” the product.",
+      "probleme": "« chargé » rendu par « loaded » (au lieu de « busy/cluttered ») ; « écraser » rendu littéralement par « crush ».",
+      "proposition": "A busy or colorful background can distract the customer's eye and detract from your product. Likewise, a gray or black background can make the product look flat."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A powerful post-production software not only makes it possible to remove any imperfections",
+      "probleme": "« software » est indénombrable (« a software » fautif) ; « makes it possible to » calque « permet de ».",
+      "proposition": "Powerful post-production software not only lets you remove any imperfections"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "How can an automated in-house photo studio be interesting for your business?",
+      "probleme": "« intéressant » au sens français d'« avantageux » ; « interesting » ne porte pas ce sens.",
+      "proposition": "Why an in-house automated photo studio can benefit your business"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "legende",
+      "extrait_actuel": "Difference between a packshot product made with a smartphone vs a specialized photo studio Orbitvu",
+      "probleme": "Ordre des mots calqué (« packshot product », « photo studio Orbitvu »).",
+      "proposition": "Product packshot taken with a smartphone vs. with a specialized Orbitvu photo studio"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Les tailles de capteur les plus courantes sont le plein format (35 mm de largeur) et l'APS-C (24 mm de largeur).",
+      "source_dans_texte": "aucune",
+      "motif": "Dimension du plein format à vérifier (le format est couramment donné à 36 × 24 mm) ; EN identique « full frame (35mm wide) and APS-C (24mm wide) ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Pour la photographie packshot, nous recommandons d'opter pour l'APS-C qui offre une profondeur de champ plus élevée et donc un produit plus net dans le cadre.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation technique simplifiée (vraie seulement à cadrage et ouverture comparables) ; recommandation d'équipement à valider par un photographe.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les appareils photo reflex (DSLR) sont largement considérés comme la norme de facto pour la photographie packshot de produits",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation datée (article de 2024, contenu probablement antérieur) ; l'évolution du marché vers d'autres types de boîtiers est à vérifier avant republication.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Il pourrait être tentant d'en rester aux smartphones, mais leur qualité d'image est trop limitée pour faire de bonnes photographies packshot.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation absolue non étayée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Il est ainsi recommandé d'utiliser une lumière blanche neutre, avec une température de couleur de 5500K.",
+      "source_dans_texte": "aucune",
+      "motif": "Valeur technique prescriptive non sourcée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cela permet non seulement d'économiser beaucoup de temps et de travail manuel, mais également de réduire les erreurs et les coûts liés à la photographie. Vous êtes ainsi en mesure d'augmenter votre productivité tout en vous garantissant une qualité de photographie supérieure.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de productivité, de réduction des coûts et de qualité « garantie » sans chiffre ni source.",
+      "ecart_fr_en": "EN « while ensuring superior photography quality » : équivalent."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "pour garantir que chaque prise de vue sera semblable à la précédente",
+      "source_dans_texte": "aucune",
+      "motif": "Léger renforcement en EN.",
+      "ecart_fr_en": "EN « to ensure that each shot is the same as the last » : « the same » est plus fort que « semblable »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vous pouvez enregistrer toutes vos positions et réglages pour les réutiliser en un clic d'une photo à l'autre, rendant cette étape totalement triviale !",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse produit (« en un clic », « totalement ») à valider sur les studios réellement vendus.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Vous pouvez également ajouter une vue à 360° composée de 24 à 72 images selon la précision souhaitée. Pour l'e-commerce, un minimum de 5 à 7 photos est généralement recommandé",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffres de FAQ non sourcés.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un objectif macro dans la plage 85mm-105mm est idéal pour capturer les petits produits et les détails avec une précision exceptionnelle.",
+      "source_dans_texte": "aucune",
+      "motif": "Recommandation technique et superlatif non sourcés.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : le title (« Le Guide complet… , 2 : matériel photo et notions à connaître ») et le metaTitle (« Quel matériel photo pour de la Photographie Packshot ? [Guide] ») annoncent le matériel, comme le corps ; le H1 (« Le guide complet de la photographie packshot, 2 ») est tronqué et ne dit pas le sujet ; majuscules artificielles dans title, metaTitle et description. EN : title correct en Title Case anglais ; H1 tronqué de la même façon ; metaTitle calqué et non idiomatique ; la description dit « camera equipment » et le corps alterne « camera equipment », « photo equipment » et « camera gear ». Le <title> servi correspond au metaTitle dans les deux langues.",
+  "structure_fr_en": "Parité complète : 3 H2, 13 H3, 53 paragraphes, 5 puces, 9 images, 9 figures, 8 liens et 5 FAQ dans chaque langue, dans le même ordre. Aucun paragraphe manquant ni inversé. 17 paragraphes vides contenant un U+200D (espaceurs Webflow) dans les deux JSON, dont un collé au début du paragraphe « Un fond trop chargé… » / « An overly loaded… » (balise <br>).",
+  "images_alt_legendes": "9 images. Textes alternatifs FR descriptifs mais télégraphiques, avec espaces finales (« un studio photo traditionnel », « logiciel Orbitvu Station automatisation ») ; deux valeurs réservées Webflow (« __wf_reserved_decorative », « __wf_reserved_inherit ») dans les deux langues. Côté EN, tous les textes alternatifs sont restés en français. Une seule légende, traduite mais calquée en EN.",
+  "appellations": "Orbitvu cité correctement (légende, textes alternatifs « logiciel Orbitvu Station », « Gamme studios photo automatisés Orbitvu »). La marque vendeuse n'est nommée que par « nous » (« comme ceux que nous commercialisons », « nos studios automatisés »). Champ auteur : « Laurent Wainberg » dans la version importée de Webflow (56d4bc32), remplacé par « PackshotCreator » dans les deux langues par le commit 8ae45f63 (choix éditorial à confirmer, aucune occurrence du nom dans le corps). Aucune incohérence d'appellation dans le texte.",
+  "recommandation": "retraduction complète (EN) ; retouches (FR)",
+  "remarques": "Les liens internes vers les blogs et guides pointent vers des fichiers existants ; les pages sectorielles et produit sont servies sous des slugs français dans les deux langues (/en/industrie/cosmetiques-beaute, /en/besoins-photographie-produit), comme le prévoit le routage. Deux phrases de maillage interne (cosmétiques, high-tech) semblent insérées après coup et coupent le fil du texte, surtout « électroménager » associé aux « petits composants ». Recommandation d'équipement (reflex DSLR, APS-C, 5 500 K) à faire valider par un photographe avant republication. Article daté du 31/01/2024, sans dateModified. Note de méthode : les citations ont été recalées sur le JSON source ; les espaces avant virgule ou point de l'extrait sont des artefacts d'extraction (balises <strong> remplacées par des espaces) et ne sont pas relevés. Retouches mineures FR non détaillées dans la liste : « tout autant d'étapes indispensables » (lire « autant d'étapes ») ; légende « … smartphone VS un studio photo spécialisé Orbitvu » (« VS » en capitales)."
+}

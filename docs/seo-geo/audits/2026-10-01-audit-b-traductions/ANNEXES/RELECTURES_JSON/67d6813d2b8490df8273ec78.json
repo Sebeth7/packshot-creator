@@ -1,0 +1,348 @@
+{
+  "family": "67d6813d2b8490df8273ec78",
+  "slugs": {
+    "fr": "lancement-dune-serie-debooks-dediee-au-ecommerce",
+    "en": "series-e-commerce-ebooks-shooting-products",
+    "de-ch": null
+  },
+  "sujet": "Actualité de 2017 remaniée : participation de PackshotCreator à une série d'eBooks e-commerce, eBook « UX et Image » de son fondateur, présentation d'un livre blanc « Les enjeux e-business de la photo 2.0 » et liens de maillage.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces objectives de traduction depuis le FR : « The e-commerce has evolved a lot in recent years » (FR « Le e-commerce ») ; « advantages of an in-house photo solution For the e-commerce » (FR « pour le e-commerce ») ; « One visual uniformity on all channels », « One cost reduction », « One faster upload new products » (FR « Une uniformité », « Une réduction », « Une mise en ligne ») ; « consult Her complete interview » (FR « son interview » : possessif rendu au féminin) ; intertitre EN avec espace avant le deux-points à la française (« Packshot<em>Creator</em> : continuous innovation » dans le HTML) ; « at the service of e-commerce » (FR « au service du »). Le lien Calameo de l'eBook pointe vers fr.calameo.com dans les deux langues.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Langue globalement native, mais défauts éditoriaux lourds. Le nom de Laurent Wainberg a été remplacé à tort par « PackshotCreator » à deux reprises (bloquant, confirmé par git). Le title contient une coquille (« dediée »). Title, H1, metaTitle et description promettent quatre sujets différents, avec des emojis dans la description. L'appel « Téléchargez gratuitement le livre blanc » n'a aucun lien. Les statistiques ne sont pas sourcées, et une date de 2017 accompagne un contenu manifestement réécrit plus tard.",
+    "en": "Mêmes défauts éditoriaux que le FR (nom remplacé, CTA sans lien, emojis), plus une traduction automatique visible : articles calqués, puces « One… », « Her complete interview », majuscules parasites, « a automated ». La FAQ est correcte. Article court : retraduction complète plus rentable qu'une retouche.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 24,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans cet ouvrage, PackshotCreator , fondateur de Packshot Creator , partage son expertise",
+      "probleme": "Nom de personne remplacé par le nom de la société : « PackshotCreator, fondateur de PackshotCreator » est absurde. La version importée de Webflow (git show 56d4bc32) portait « Laurent Wainberg » ; le remplacement vient du commit 8ae45f63 (« chore(content): auteur générique PackshotCreator sur les articles migrés »), qui a remplacé l'auteur jusque dans le corps. Le lien suivant (« decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator ») confirme l'identité. NB : « Packshot Creator » espacé est un artefact d'extraction de Packshot<em>Creator</em> (rendu PackshotCreator), pas une erreur.",
+      "proposition": "Dans cet ouvrage, Laurent Wainberg, fondateur de PackshotCreator, partage son expertise"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Pour en savoir plus sur la vision de PackshotCreator et l'évolution de Packshot Creator , consultez son interview complète",
+      "probleme": "Même remplacement fautif (commit 8ae45f63) : l'original Webflow porte « la vision de Laurent Wainberg ».",
+      "proposition": "Pour en savoir plus sur la vision de Laurent Wainberg et l'évolution de PackshotCreator, consultez son interview complète"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "Une série d’eBooks photo e-commerce dediée à la prise de vue de vos produits",
+      "probleme": "Coquille dans le title (« dediée »).",
+      "proposition": "Une série d’eBooks photo e-commerce dédiée à la prise de vue de vos produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Mise à jour : L'importance des visuels en e-commerce",
+      "probleme": "Quatre promesses différentes : title (une série d'eBooks), H1 (« Mise à jour : » suivi de l'importance des visuels, avec majuscule après le deux-points), metaTitle (« Optimisez vos visuels pour plus de conversions ! ») et description (stratégies cross-canal, automatisation, UX). Le corps présente surtout la série d'eBooks et un livre blanc. Le préfixe « Mise à jour : » n'a pas sa place dans un H1.",
+      "proposition": "Une série d'eBooks sur la photographie e-commerce, toujours d'actualité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "boostez votre conversion avec PackshotCreator ! 📊🚀",
+      "probleme": "Emojis dans la meta description (contraire à la règle éditoriale du dépôt) ; « boostez » est familier ; 185 caractères.",
+      "proposition": "Découvrez comment améliorer vos visuels produits pour l'e-commerce : stratégies cross-canal, automatisation, UX et impact des images."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Téléchargez gratuitement le livre blanc pour découvrir ces insights et optimiser vos stratégies visuelles.",
+      "probleme": "Appel à l'action sans lien : ni le paragraphe ni l'image du livre blanc ne pointent vers un téléchargement (vérifié dans le HTML source). Même problème en conclusion (« téléchargez notre livre blanc »). « Insights » est un anglicisme.",
+      "proposition": "Ajouter le lien de téléchargement ou retirer l'appel ; « pour découvrir ces enseignements »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Leader européen des solutions de création d'images produits , Packshot Creator ne cesse d’innover",
+      "probleme": "Claim de leadership non sourcé (lien vers /fr/a-propos uniquement). Dans le dépôt, « leader européen » est attribué à Orbitvu (« Orbitvu est leader européen des studios photo automatisés depuis 2003 »). L'innovation en « automatisation et en intelligence artificielle » renvoie à /fr/studio-photo/alphashot-g2, un produit Orbitvu : attribution à valider.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Photographie e-commerce : Optimisez vos visuels pour plus de conversions !",
+      "probleme": "Majuscule après le deux-points ; 74 caractères.",
+      "proposition": "Photographie e-commerce : optimisez vos visuels pour plus de conversions"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Focus sur l'eBook \"UX et Image\"",
+      "probleme": "Guillemets droits ; même défaut dans « Découvrez notre livre blanc : \"Les enjeux e-business de la photo 2.0\" ». La signature « Focus » (« Focus sur ») est un anglicisme courant, toléré.",
+      "proposition": "Focus sur l'eBook « UX et Image »"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le e-commerce a beaucoup évolué ces dernières années",
+      "probleme": "Élision incohérente dans l'article : « le e-commerce », « du e-commerce », mais « L'importance des visuels pour l'e-commerce ». Choisir une forme.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cette initiative, lancée par Jérémy Benmoussa",
+      "probleme": "Prénom « Jérémy » dans le texte, mais URL LinkedIn « jeremie-benmoussa » : orthographe à vérifier.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Image du livre blanc sans texte alternatif réel (marqueur Webflow).",
+      "proposition": "Couverture du livre blanc « Les enjeux e-business de la photo 2.0 »"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Même si cette série a été publiée il y a quelques années",
+      "probleme": "Date de publication 24/10/2017 sans dateModified, pour un texte manifestement réécrit plus tard (H1 « Mise à jour », mention de l'IA). Signal de fraîcheur incohérent.",
+      "proposition": "Renseigner dateModified ou dater explicitement la série (2017)."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "In this book, PackshotCreator , founder of Packshot Creator , shares his expertise",
+      "probleme": "Même remplacement fautif qu'en FR (original Webflow : « Laurent Wainberg »).",
+      "proposition": "In this book, Laurent Wainberg, founder of PackshotCreator, shares his expertise"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "To learn more about the vision of PackshotCreator and the evolution of Packshot Creator , consult Her complete interview",
+      "probleme": "Nom remplacé (original Webflow : « Laurent Wainberg ») et possessif « son » rendu au féminin (Her), avec majuscule.",
+      "proposition": "To learn more about Laurent Wainberg's vision and how PackshotCreator has evolved, read his full interview"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The e-commerce has evolved a lot in recent years",
+      "probleme": "Article calqué sur « Le e-commerce ».",
+      "proposition": "E-commerce has evolved a lot in recent years"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "advantages of an in-house photo solution For the e-commerce",
+      "probleme": "Article calqué et majuscule parasite ; suite fautive : « how a automated solution allows: ».",
+      "proposition": "the advantages of an in-house photo solution for e-commerce. In it, he explains how an automated solution delivers:"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One faster upload new products.",
+      "probleme": "Puces traduites mot à mot (« Une » rendu par One) : aussi « One visual uniformity on all channels » et « One cost reduction linked to the production of visuals. ». « Mise en ligne » (lancement) rendu par upload.",
+      "proposition": "Faster go-live for new products."
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Update: The importance of visuals in e-commerce",
+      "probleme": "Même incohérence qu'en FR entre title (série d'eBooks), H1, metaTitle (« Optimize your visuals for more conversions! ») et description.",
+      "proposition": "An e-commerce photography eBook series that is still relevant"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "boost your conversion with PackshotCreator! 📊🚀",
+      "probleme": "Emojis dans la meta description.",
+      "proposition": "Find out how to improve your product visuals for e-commerce: cross-channel strategies, automation, UX and image impact."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Download the free white paper to discover these insights and optimize your visual strategies.",
+      "probleme": "Appel à l'action sans lien (comme en FR).",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "continuous innovation at the service of e-commerce",
+      "probleme": "Calque de « au service du » ; espace avant le deux-points dans le HTML EN (« Packshot<em>Creator</em> : »).",
+      "proposition": "PackshotCreator: continuous innovation for e-commerce"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to advances in automation And in artificial intelligence",
+      "probleme": "Majuscule parasite (ancre de lien).",
+      "proposition": "Thanks to advances in automation and artificial intelligence"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Case studies and business stories having optimized their image production.",
+      "probleme": "Participe calqué.",
+      "proposition": "Case studies and testimonials from companies that have optimized their image production."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Packshot Creator had the pleasure of collaborating with a free eBook series",
+      "probleme": "On collabore « on » une série, pas « with ». NB : « Packshot Creator » espacé est un artefact d'extraction.",
+      "proposition": "PackshotCreator had the pleasure of contributing to a free eBook series"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Discover our white paper: “The e-business challenges of photo 2.0\"",
+      "probleme": "Guillemets dépareillés (ouvrant typographique, fermant droit).",
+      "proposition": "Discover our white paper: “The e-business challenges of photo 2.0”"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Customer knowledge and social networks",
+      "probleme": "« Réseaux sociaux » se dit social media en anglais marketing.",
+      "proposition": "Customer insight and social media"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "To improve image referencing",
+      "probleme": "« Référencement » se dit SEO.",
+      "proposition": "To improve image SEO"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "{lien «automation And in artificial intelligence» → /en/photo-studio/alphashot-g2}",
+      "probleme": "Lien EN vers l'ancien namespace Webflow /en/photo-studio/, qui passe par une redirection 301 (next.config.ts) vers /en/studio-photo/alphashot-g2. Le FR pointe directement vers /fr/studio-photo/alphashot-g2.",
+      "proposition": "Lien direct vers /en/studio-photo/alphashot-g2"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Find even more tips on our Blog",
+      "probleme": "Majuscule inutile.",
+      "proposition": "Find even more tips on our blog"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "80 % des consommateurs considèrent les images comme un critère clé avant l'achat.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée attribuée au livre blanc.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "comment les technologies modernes permettent de réduire de 40 % le temps de production des visuels",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Leader européen des solutions de création d'images produits",
+      "source_dans_texte": "lien /fr/a-propos (EN /en/a-propos)",
+      "motif": "Claim de leadership ; dans le dépôt, ce statut est attribué à Orbitvu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "tout en gardant une maîtrise totale de leur image de marque",
+      "source_dans_texte": "aucune",
+      "motif": "Absolu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "les entreprises constatent souvent un ROI rapide",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de ROI (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "de réduire le taux de retour et d’augmenter l’engagement",
+      "source_dans_texte": "aucune",
+      "motif": "Effet non sourcé (FAQ).",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Une série d’eBooks photo e-commerce dediée… » (coquille), H1 « Mise à jour : L'importance des visuels en e-commerce », metaTitle « Photographie e-commerce : Optimisez vos visuels pour plus de conversions ! » (servi comme <title>), description à emojis centrée sur la conversion. Quatre angles différents, dont aucun ne correspond exactement au corps (série d'eBooks, eBook « UX et Image », livre blanc). Le slug « lancement-dune-serie-debooks » annonce un lancement, alors que le corps parle d'une série « toujours pertinente ». EN : même incohérence.",
+  "structure_fr_en": "Parité : 5 H2, 18 puces, 1 image, 14 liens et 5 FAQ, dans le même ordre. 12 paragraphes en FR contre 13 en EN : l'écart vient d'un paragraphe vide ZWJ supplémentaire en EN, pas de contenu manquant. Liens externes identiques (NBS System, 202 Ecommerce, Feed Manager, LinkedIn, Calameo FR) ; liens internes mappés vers les équivalents EN, dont /en/photo-studio/alphashot-g2 (redirection 301).",
+  "images_alt_legendes": "1 image (vraisemblablement la couverture du livre blanc), alt « __wf_reserved_inherit » dans les deux langues, sans légende ni lien de téléchargement.",
+  "appellations": "Remplacement fautif confirmé par git : « Laurent Wainberg » est devenu « PackshotCreator » à 2 reprises par langue (commit 8ae45f63), ce qui rend « PackshotCreator, fondateur de PackshotCreator ». L'anomalie « Packshot Creator (espacé) » est infirmée : le HTML porte Packshot<em>Creator</em> (style de l'ancienne marque, rendu PackshotCreator avec « Creator » en italique) ; seule remarque, le mélange dans une même phrase de <strong>PackshotCreator</strong> et de Packshot<em>Creator</em>. L'attribution à PackshotCreator du statut de « leader européen » et de l'innovation illustrée par l'Alphashot G2 (Orbitvu) est à valider.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Action immédiate, quelle que soit la décision éditoriale : restaurer « Laurent Wainberg » aux deux endroits, en FR comme en EN. Le commit 8ae45f63 a pu produire le même remplacement dans d'autres articles migrés : contrôle transversal recommandé (motif « PackshotCreator, fondateur »). Arbitrage ensuite : conserver l'article comme actualité de 2017 (titre, date et slug cohérents) ou le transformer en page evergreen, avec titre, H1, meta et description réalignés et un dateModified. Le livre blanc « Les enjeux e-business de la photo 2.0 » est promis sans lien : à relier ou retirer. Liens externes (Calameo 2017, sites partenaires, LinkedIn) non vérifiés faute d'accès web ; les partenaires cités sont ceux de 2017. Anomalie « nombre_format_en_dans_fr » sur « 2.0 » infirmée (nom de version, pas un nombre décimal). EN : retraduction complète conseillée vu la brièveté de l'article."
+}

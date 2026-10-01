@@ -1,0 +1,398 @@
+{
+  "family": "67e290e6423ee8342daef9da",
+  "slugs": {
+    "fr": "eclairage-packshots-360-3d-produits",
+    "en": "lighting-3d-packshots",
+    "de-ch": null
+  },
+  "sujet": "Rôle d'un éclairage stable et des profils logiciels dans la production de packshots 360° et d'animations 3D en studio photo automatisé (fond blanc, matières complexes, profondeur de champ).",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces objectives de traduction depuis le FR : « But this device would be nothing without sound software twin » (FR « son jumeau logiciel » : possessif rendu par sound) ; « his Subjects , his transparencies , her texture Or his reflections » (FR « ses matières, ses transparences, sa texture ou ses reflets » : matières rendu par Subjects, possessifs genrés) ; « it must remain net in all positions » (FR « net ») ; « the exhibition references » (FR « références d’exposition ») ; « news shootings » (FR « shootings de nouveautés ») ; « modulate the light , the Channel , and sometimes the sculpting » (FR « la canaliser, et parfois la sculpter ») ; « One automated photo studio », « Of fine light intensity settings » (FR « Un studio », « des réglages fins »).",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte natif, technique et soigné. Retouches ponctuelles (environ 9) : unité « 5600°K » et terme « température de lumière », Title Case et esperluette dans le H1, anglicismes « viewer » et « setup », « n’est pas une option » ambigu, deux alts « __wf_reserved_inherit », article sans aucun H2. Côté éditorial : affirmations chiffrées ou absolues non sourcées (30 % de conversions, « systématiquement »).",
+    "en": "Traduction automatique visible dans presque chaque paragraphe : « Un » ou « des » rendus par One ou Of, majuscules parasites (And, Or, In, From), contresens lexicaux (sound, Subjects, exhibition, news, net, Channel), constructions agrammaticales (« it allows remember », « Investing in a optimized lighting For photography automated product »). La FAQ EN est correcte. Retraduction complète du corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 9,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "une température de lumière constante (généralement 5600°K",
+      "probleme": "Le kelvin s'écrit sans degré (« 5 600 K ») et le terme métier est « température de couleur », celui qu'emploie la FAQ. Erreur visible pour un lectorat de photographes, dans un article consacré à l'éclairage.",
+      "proposition": "une température de couleur constante (généralement 5 600 K"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Les 2 images ont pour alt le marqueur Webflow « __wf_reserved_inherit » (héritage d'un alt de médiathèque non résolu à l'export) : pas de vrai texte alternatif.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Donner vie aux objets : le rôle central du studio photo interne",
+      "probleme": "L'article ne contient aucun H2 : les 7 intertitres sont des H3 directement sous le H1. Même défaut en EN.",
+      "proposition": "Passer les 7 intertitres en H2"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Maîtriser l’éclairage pour vos Packshots 360° & 3D",
+      "probleme": "Majuscule artificielle à « Packshots » et esperluette dans un titre.",
+      "proposition": "Maîtriser l’éclairage de vos packshots 360° et 3D"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "L'importance de l'éclairage sur les animations 3D et packshots 360 d'objets",
+      "probleme": "« Sur » est maladroit, l'article manque devant « packshots », « 360 » n'a pas son « ° », et « d'objets » est redondant.",
+      "proposition": "L'importance de l'éclairage pour les animations 3D et les packshots 360°"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "comme un viewer HTML5",
+      "probleme": "Anglicisme.",
+      "proposition": "comme une visionneuse HTML5"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "n’est pas une option. C’est un choix stratégique.",
+      "probleme": "Ambigu : « n'est pas une option » peut se lire « n'est pas envisageable », contraire au sens voulu (« n'est pas facultatif »).",
+      "proposition": "n’est pas facultatif : c’est un choix stratégique."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "À quoi sert un studio photo automatisé par rapport à un setup traditionnel ?",
+      "probleme": "Anglicisme « setup », repris dans la réponse.",
+      "proposition": "À quoi sert un studio photo automatisé par rapport à une installation traditionnelle ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Découvrez comment automatisation et cohérence visuelle font toute la différence.",
+      "probleme": "Articles manquants.",
+      "proposition": "Découvrez comment l’automatisation et la cohérence visuelle font toute la différence."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Même défaut qu'en FR : 2 images sans vrai texte alternatif.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One automated photo studio makes it possible to produce in-house animated product visuals in record time.",
+      "probleme": "« Un » rendu par One dès la première phrase. Même défaut : « But one poorly exposed white background », « One smart photography software », « One great depth of field », « One software control ».",
+      "proposition": "An automated photo studio lets you produce animated product visuals in-house in record time."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "by increasing both the productivity , the regularity And the visual quality",
+      "probleme": "Articles superflus, majuscule parasite, « régularité » rendu par regularity (sens : consistency).",
+      "proposition": "by increasing productivity, consistency and visual quality"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "But this device would be nothing without sound software twin",
+      "probleme": "« Son jumeau logiciel » : le possessif est rendu par sound, la phrase n'a plus de sens.",
+      "proposition": "But this hardware would be nothing without its software twin"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it's about revealing its shapes , his Subjects , his transparencies , her texture Or his reflections",
+      "probleme": "« Matières » rendu par Subjects (matières scolaires), possessifs genrés (his/her) pour un objet, majuscules parasites.",
+      "proposition": "it's about revealing its shapes, materials, transparency, texture and reflections"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The product is In motion , visible From every angle",
+      "probleme": "Majuscules parasites (segments en gras).",
+      "proposition": "The product is in motion, visible from every angle"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "one constant light temperature (generally 5600°K",
+      "probleme": "« Une » rendu par one, « light temperature » au lieu de color temperature, et « °K » au lieu de « K ».",
+      "proposition": "a constant color temperature (typically 5600 K"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of fine light intensity settings",
+      "probleme": "« Des » rendu par Of. Même défaut : « one homogeneous distribution light on the object » et « And the ability to save all of these settings In a profile library ».",
+      "proposition": "fine-grained light intensity settings"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it allows remember complete profiles",
+      "probleme": "Agrammatical.",
+      "proposition": "it can store complete profiles"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "but also the exhibition references",
+      "probleme": "« Exposition » (photographique) rendu par exhibition (salon, musée).",
+      "proposition": "as well as exposure references"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "facilitating catalog updates, news shootings or product combinations",
+      "probleme": "« Shootings de nouveautés » rendu par news shootings (fusillades d'actualité) ; « déclinaisons produit » par product combinations.",
+      "proposition": "making catalog updates, new-product shoots and product variants easier"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photograph on pure white background remains the norm",
+      "probleme": "Agrammatical (impératif au lieu d'un gérondif).",
+      "proposition": "Shooting on a pure white background remains the norm"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is necessary at the same time modulate the light , the Channel , and sometimes the sculpting",
+      "probleme": "« La canaliser », « la sculpter » : le pronom « la » est lu comme un article, d'où « the Channel », « the sculpting ».",
+      "proposition": "You need to modulate the light, channel it and sometimes sculpt it"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it must remain net in all positions",
+      "probleme": "« Net » (photographie) se dit sharp.",
+      "proposition": "it must stay sharp in every position"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Investing in a optimized lighting For photography automated product is not an option.",
+      "probleme": "Agrammatical (article, ordre des mots, majuscule). En anglais, « is not an option » signifie « n'est pas envisageable », soit l'inverse du propos.",
+      "proposition": "Investing in optimized lighting for automated product photography is not optional."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "reflections...) ),",
+      "probleme": "Parenthèse fermante en double, présente dans le HTML EN.",
+      "proposition": "reflections...),"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "such as a HTML5 viewer",
+      "probleme": "Article (an HTML5).",
+      "proposition": "such as an HTML5 viewer"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "the least variation in light intensity",
+      "probleme": "Calque de « la moindre ».",
+      "proposition": "the slightest variation in light intensity"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "That's why a stable, adjustable and repeatable lighting is indispensable.",
+      "probleme": "Article superflu devant un indénombrable.",
+      "proposition": "That's why stable, adjustable and repeatable lighting is essential."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "going through the manual retouching",
+      "probleme": "Article superflu, calque.",
+      "proposition": "resorting to manual retouching"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It automatically detects areas underexposed or overexposed",
+      "probleme": "Ordre des mots français.",
+      "proposition": "It automatically detects underexposed or overexposed areas"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "piloted individually",
+      "probleme": "Calque de « pilotés ».",
+      "proposition": "individually controlled"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "the Purity of a glass",
+      "probleme": "Majuscule parasite ; glass au singulier dénombrable est maladroit.",
+      "proposition": "the purity of glass"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "customers who have chosen a reliable and calibrated lighting equipment",
+      "probleme": "Equipment est indénombrable.",
+      "proposition": "customers who have chosen reliable, calibrated lighting equipment"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "The importance of lighting on 3D animations and 360 object packshots",
+      "probleme": "Traduction littérale du title FR (« sur », « packshots 360 d'objets »).",
+      "proposition": "Why lighting matters for 3D animations and 360° product packshots"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Les études – et notre retour terrain – montrent que les produits présentés avec des animations 360° augmentent les conversions de plus de 30 % dans certains secteurs",
+      "source_dans_texte": "aucune (études non citées)",
+      "motif": "Statistique de conversion sans source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "ont systématiquement obtenu des résultats professionnels durables",
+      "source_dans_texte": "aucune",
+      "motif": "Absolu « systématiquement », suivi de « une réduction drastique du temps de post-traitement » et « une hausse significative des conversions en ligne ».",
+      "ecart_fr_en": "EN « have consistently obtained » : nuance légèrement atténuée."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec l’expérience acquise depuis 2003, PackshotCreator a pu constater",
+      "source_dans_texte": "aucune",
+      "motif": "Date d'ancienneté, cohérente avec d'autres contenus du dépôt (« studios PackshotCreator entre 2003 et… »), à confirmer.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cette vérification en un clic permet de produire des visuels prêts à l’emploi, sans post-traitement, avec un fond blanc parfait",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue (sans post-traitement, fond blanc parfait).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un studio photo automatisé permet de produire en interne des visuels produits animés en un temps record.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Une fois les profils configurés, un shooting peut être lancé en moins d’une minute.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "ces systèmes garantissent des conditions de prise de vue identiques pour chaque produit",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie absolue, suivie de « une cohérence visuelle parfaite » (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Il détecte automatiquement les zones sous-exposées ou surexposées",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité logicielle non nommée (quel logiciel ?), à confirmer.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « L'importance de l'éclairage sur les animations 3D et packshots 360 d'objets » (maladroit), H1 « Maîtriser l’éclairage pour vos Packshots 360° & 3D » (Title Case partiel), metaTitle « Packshots 360° et 3D : l’importance d’un éclairage maîtrisé » (correct, servi comme <title>), description sans articles. Les quatre éléments sont cohérents avec le corps. EN : title littéral, H1 « Control the lighting for your 360° & 3D Packshots » (majuscule isolée), metaTitle et description corrects.",
+  "structure_fr_en": "Parité : 0 H2, 7 H3, 22 paragraphes, 4 puces, 2 images, 1 iframe YouTube et 5 FAQ, dans le même ordre. Aucun H2 dans les deux langues (hiérarchie à corriger). Paragraphes vides ZWJ : artefacts Webflow. La FAQ EN est d'un anglais naturel, contrairement au corps.",
+  "images_alt_legendes": "2 images, alt « __wf_reserved_inherit » dans les deux langues (pas de texte alternatif réel). Pas de légende. Une vidéo YouTube intégrée (9Yrf5vwJsu4), contenu non vérifiable ici.",
+  "appellations": "Aucun produit nommé dans le corps : « studio photo automatisé » et « logiciel de photographie automatisée », génériques. PackshotCreator apparaît dans le dernier paragraphe (« depuis 2003 »), cohérent avec d'autres contenus du dépôt. Pas de remplacement de nom propre (contenu non modifié depuis l'import).",
+  "recommandation": "retraduction complète",
+  "remarques": "Par langue : EN, retraduction complète du corps (FAQ réutilisable) ; FR, retouches (unité K, H1, alts, hiérarchie H2). Date affichée 08/08/2024, alors que l'item Webflow date du 25/03/2025 (horodatage ObjectId) : date de publication antidatée ou reprise d'un ancien article, à vérifier. Le chiffre « plus de 30 % » de la FAQ doit être sourcé ou retiré. Les espaces avant virgule de l'EN sont des artefacts d'extraction, sauf la double parenthèse, réelle."
+}

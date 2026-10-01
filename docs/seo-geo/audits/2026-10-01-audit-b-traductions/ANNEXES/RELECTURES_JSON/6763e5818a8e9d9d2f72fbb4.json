@@ -1,0 +1,480 @@
+{
+  "family": "6763e5818a8e9d9d2f72fbb4",
+  "slugs": {
+    "fr": "comment-ia-revolutionne-production-visuelle",
+    "en": "how-ai-revolutionizing-visual-production",
+    "de-ch": null
+  },
+  "sujet": "Article d'opinion généraliste sur l'IA dans la production visuelle e-commerce (étiquetage, détourage, 3D, retour en temps réel, automatisation des flux), illustré de statistiques et d'études de cas de grandes marques, avec renvoi final vers ShotFlow et l'Alphashot Pro G2 d'Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "La version EN porte des traces objectives de traduction depuis le FR : « By analyzing user trends and behavior, she can suggest themes » (le « she » reprend le féminin de « elle peut suggérer », l'IA) ; espace avant les deux-points à la française dans toutes les puces en gras (« High implementation costs : », « Skills gaps : », « Job Security : »…, 10 occurrences confirmées dans le JSON) ; calques de la préposition française « de » devant les pourcentages : « boosting sales of 25% », « reducing production times for 25% and increasing the effectiveness of campaigns of 15% », « contributed to a growth of 20% sales » ; « In the industry of Skincare and cosmetics » (calque de « Dans l'industrie du skincare et des cosmétiques ») ; « Most Impacting Technologies » (calque de « Plus Impactantes ») ; « the application IKEA Place », « The brand Estée Lauder » (ordre français) ; texte alternatif resté en français dans l'EN (« Logiciel assistant IA studio automatisé ») ; majuscules parasites de segments recollés (« Orbitvu With the Alphashot Pro G2 », « A report from McKinsey Reveals »). [Inférence] La version FR contient elle-même des calques de l'anglais (« Technologies les Plus Impactantes Façonnant l'Avenir de la Photographie pour le Commerce Électronique », « Cela garantit que les actifs sont organisés », « En regardant vers l'avenir de la photographie pour le commerce électronique, une chose est claire », « Cette synergie débloquera de nouveaux niveaux d'innovation », Title Case des intertitres) : elle a probablement été produite à partir d'un brouillon anglais non publié ; l'EN publié est ensuite une retraduction du FR (aller-retour).",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte lisible mais dégradé : Title Case dans le titre, le metaTitle et plusieurs intertitres/puces, calques de l'anglais (actifs, débloquer, façonnant, élimine le besoin), deux passages incompréhensibles (« formes traditionnelles de réalité virtuelle », « réduire certaines tâches nécessaires à l'obtention des mêmes informations »), puce dupliquée, légende fautive (« Template d'éclairage proposées »), alt technique Webflow, chiffres IKEA contradictoires (25 % puis 20 %), statistiques non sourcées. Réécriture partielle nécessaire.",
+    "en": "Retraduction visible du FR : « she » pour l'IA, constructions « of 25% / for 25% » qui faussent le sens des chiffres, typographie française (espace avant les deux-points), majuscules parasites en milieu de phrase, alt en français, Title Case incohérent, faute d'accord (« these innovative solution »), mêmes passages incompréhensibles et même doublon qu'en FR. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 34,
+    "en": 42,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "Comment l'IA révolutionne la production visuelle : Quand l'IA et l'Humain travaillent ensemble",
+      "probleme": "Majuscules artificielles après les deux-points (« Quand ») et sur « l'Humain ». Même chaîne dans title et metaTitle ; le metaTitle fait 94 caractères, il sera tronqué dans les résultats de recherche.",
+      "proposition": "Comment l'IA révolutionne la production visuelle : quand l'IA et l'humain travaillent ensemble (et raccourcir le metaTitle, par exemple « L'IA et l'humain dans la production visuelle »)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Technologies les Plus Impactantes Façonnant l'Avenir de la Photographie pour le Commerce Électronique",
+      "probleme": "Title Case anglais appliqué au français et calque syntaxique de « Most Impactful Technologies Shaping the Future of E-commerce Photography » (participe présent « Façonnant », adjectif « impactantes »).",
+      "proposition": "Les technologies les plus marquantes pour l'avenir de la photographie e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Préoccupations éthiques : Une dépendance excessive à l'IA soulève des questions sur la suppression d'emplois et la confidentialité des données.",
+      "probleme": "Puce présente deux fois de suite dans la liste « Défis du paysage actuel » (même doublon en EN).",
+      "proposition": "Supprimer la seconde occurrence."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Grâce à l'innovation de l'intelligence artificielle, de nombreuses formes traditionnelles de réalité virtuelle ont évolué, repoussant les limites de ce qui est possible en matière de contenu visuel automatisé.",
+      "probleme": "« Formes traditionnelles de réalité virtuelle » n'a pas de sens dans un paragraphe sur la photographie de produits ; la phrase est absurde pour le lecteur.",
+      "proposition": "Grâce à l'intelligence artificielle, de nombreuses pratiques traditionnelles ont évolué, repoussant les limites de ce qui est possible en matière de contenu visuel automatisé. (à valider : le texte d'origine ne permet pas de savoir ce que « réalité virtuelle » devait désigner)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Chacune de ces étapes offre un potentiel pour des solutions d'IA, permettant de réduire certaines tâches nécessaires à l'obtention des mêmes informations. Cela soulève cependant des préoccupations quant à l'utilisation de la créativité par les humains dans le développement de nouveaux produits et services.",
+      "probleme": "« Réduire certaines tâches nécessaires à l'obtention des mêmes informations » et « l'utilisation de la créativité par les humains » sont opaques ; le lien logique avec la photographie produit est perdu.",
+      "proposition": "Chacune de ces étapes peut tirer parti de l'IA, qui allège certaines tâches. Cela soulève toutefois la question de la place de la créativité humaine dans le développement de nouveaux produits et services."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "L'IA n'est plus un concept futuriste, de plus en plus de projets liés à la visualisation dans le secteur de la high-tech, électroménager, informatique l'intègrent désormais au cœur de leurs activités.",
+      "probleme": "Deux propositions juxtaposées par une virgule et énumération sans articles (« de la high-tech, électroménager, informatique ») : phrase agrammaticale.",
+      "proposition": "L'IA n'est plus un concept futuriste : de plus en plus de projets de visualisation dans les secteurs de la high-tech, de l'électroménager et de l'informatique l'intègrent désormais au cœur de leurs activités."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "legende",
+      "extrait_actuel": "Template d'éclairage proposées par l'Assistant IA après reconnaissance du produit à photographier",
+      "probleme": "Faute d'accord (nom singulier, participe féminin pluriel), anglicisme « template », majuscule à « Assistant ».",
+      "proposition": "Modèles d'éclairage proposés par l'assistant IA après reconnaissance du produit à photographier"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Texte alternatif technique hérité de Webflow, sans valeur descriptive (accessibilité et SEO image). Même défaut en EN.",
+      "proposition": "Modèles d'éclairage proposés par l'assistant IA après reconnaissance du produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Des outils comme ShotFlow automatisent la gestion des ressources, le suivi et les validations, permettant aux équipes de se concentrer sur des travaux créatifs sans être freinées par des tâches administratives.",
+      "probleme": "L'ancre « ShotFlow » pointe vers /fr/ia-photo-produit (page de génération d'images par IA : lifestyle, mannequin, fond, retouche), alors que la même marque pointe vers https://www.shotflow.com/ en conclusion. Ancre trompeuse, présente depuis l'import Webflow ; même défaut en EN.",
+      "proposition": "Faire pointer l'ancre ShotFlow vers la même cible que la conclusion, ou changer l'ancre (arbitrage éditorial)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "claim_renforce",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Selon le rapport 2021 d'IKEA, cette fonctionnalité a accru la confiance des clients dans leurs achats de 35% et contribué à une croissance de 20% des ventes via l'application.",
+      "probleme": "Contradiction interne : plus haut, la même application IKEA Place est créditée de « boostant les ventes de 25% ». De plus, la construction « dans leurs achats de 35% » se lit comme « des achats de 35 % ».",
+      "proposition": "Selon le rapport 2021 d'IKEA, cette fonctionnalité a accru de 35 % la confiance des clients dans leurs achats et contribué à une hausse de 20 % des ventes via l'application. (harmoniser avec le 25 % cité plus haut après vérification de la source)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Mais qu'en est-il des créateurs ?La capture de médias englobe tout le spectre",
+      "probleme": "Espace manquante après le point d'interrogation (confirmé dans le JSON : « créateurs ?La »).",
+      "proposition": "Mais qu'en est-il des créateurs ? La capture de médias englobe tout le spectre"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "notamment l' high-tech et l'électroménager",
+      "probleme": "Élision fautive devant un h aspiré (le JSON porte « l'high-tech »).",
+      "proposition": "notamment la high-tech et l'électroménager"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cela garantit que les actifs sont organisés, faciles à rechercher et prêts à être utilisés, sans effort manuel.",
+      "probleme": "« Actifs » calque « assets » ; « Cela garantit que » calque « This ensures that ».",
+      "proposition": "Les fichiers sont ainsi organisés, faciles à retrouver et prêts à l'emploi, sans effort manuel."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "En regardant vers l'avenir de la photographie pour le commerce électronique, une chose est claire : les flux de travail les plus performants combineront la précision de l'IA avec la créativité humaine. Cette synergie débloquera de nouveaux niveaux d'innovation et d'efficacité.",
+      "probleme": "Gérondif sans sujet commun et tournures calquées de l'anglais (« Looking to the future…, one thing is clear », « unlock new levels »).",
+      "proposition": "Pour l'avenir de la photographie e-commerce, une chose est claire : les flux de travail les plus performants combineront la précision de l'IA et la créativité humaine. Cette synergie ouvrira de nouvelles perspectives d'innovation et d'efficacité."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "L'Essor de l'IA dans la photographie de produits",
+      "probleme": "Majuscule artificielle à « Essor » (idem « Le Rôle de l'automatisation des flux de travail »).",
+      "proposition": "L'essor de l'IA dans la photographie de produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Systèmes de Retour d'Information en Temps Réel : Ces systèmes améliorent les séances photo en fournissant des analyses instantanées pour des ajustements immédiats.",
+      "probleme": "Title Case dans le libellé de puce (même défaut : « Sécurité de l'Emploi », « Confidentialité des Données ») ; majuscule après les deux-points dans toutes les puces.",
+      "proposition": "Systèmes de retour d'information en temps réel : ces systèmes améliorent les séances photo en fournissant des analyses instantanées pour des ajustements immédiats."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans l'industrie du skincare et des cosmétiques , l'IA ne se contente pas de créer du contenu : elle prédit également quels types de visuels résonneront le mieux avec les audiences.",
+      "probleme": "Anglicismes « skincare », « résonneront avec les audiences » (calque de « resonate with audiences »).",
+      "proposition": "Dans les secteurs des soins de la peau et des cosmétiques, l'IA ne se contente pas de créer du contenu : elle prédit aussi quels visuels toucheront le mieux le public."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "3. Pratiques de productions durables",
+      "probleme": "Pluriel fautif.",
+      "proposition": "3. Pratiques de production durables"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Hyper personnalisation",
+      "probleme": "Le préfixe « hyper » se soude en français.",
+      "proposition": "2. Hyperpersonnalisation"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Logiciel assistant IA studio automatisé ",
+      "probleme": "Alt sans syntaxe (suite de mots-clés), espace finale, et sans rapport direct avec la légende « Logiciel automatisé Orbitvu Station ».",
+      "proposition": "Logiciel Orbitvu Station avec assistant IA pour studio automatisé"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "By analyzing user trends and behavior, she can suggest themes, colors, and styles that match current customer preferences.",
+      "probleme": "« She » désigne l'IA : reprise mécanique du féminin français « elle ».",
+      "proposition": "By analyzing user trends and behavior, it can suggest themes, colors, and styles that match current customer preferences."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "For example, the application IKEA Place uses AI-driven 3D modeling to allow customers to visualize their furniture at home, increasing their confidence in buying and boosting sales of 25% .",
+      "probleme": "« Boosting sales of 25% » signifie « des ventes de 25 % » : calque de « de 25 % » qui fausse le chiffre ; « the application IKEA Place » suit l'ordre français.",
+      "proposition": "For example, the IKEA Place app uses AI-driven 3D modeling to let customers visualize furniture in their home, increasing their purchase confidence and boosting sales by 25%."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The brand Estée Lauder has implemented AI-driven automation for its workflows, reducing production times for 25% and increasing the effectiveness of campaigns of 15% , according to its 2022 annual report.",
+      "probleme": "« For 25% » et « of 15% » rendent le chiffre inintelligible (calques de « de 25 % », « de 15 % ») ; « The brand Estée Lauder » est un ordre français.",
+      "proposition": "Estée Lauder has implemented AI-driven workflow automation, reducing production times by 25% and increasing campaign effectiveness by 15%, according to its 2022 annual report."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "According to IKEA's 2021 report, this feature increased customer confidence in their purchases of 35% and contributed to a growth of 20% sales via the app.",
+      "probleme": "Phrase agrammaticale (« a growth of 20% sales ») et chiffre mal rattaché (« purchases of 35% ») ; contredit en outre le « 25% » cité plus haut pour la même application.",
+      "proposition": "According to IKEA's 2021 report, this feature increased customers' purchase confidence by 35% and contributed to 20% growth in app sales."
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ethical concerns : Excessive dependence on AI raises questions about job cuts and data privacy.",
+      "probleme": "Puce dupliquée (identique au FR).",
+      "proposition": "Supprimer la seconde occurrence."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to the innovation of artificial intelligence, many traditional forms of virtual reality have evolved, pushing the boundaries of what is possible when it comes to automated visual content.",
+      "probleme": "Même absurdité qu'en FR : la « réalité virtuelle » n'a rien à faire dans ce paragraphe.",
+      "proposition": "Artificial intelligence has transformed many traditional practices, pushing the boundaries of what is possible with automated visual content. (à valider, comme en FR)"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Each of these steps offers potential for AI solutions, making it possible to reduce some of the tasks required to obtain the same information. However, this raises concerns about the use of creativity by humans in the development of new products and services.",
+      "probleme": "Même passage opaque qu'en FR.",
+      "proposition": "AI can play a role at each of these stages, lightening some of the workload. However, this raises questions about the place of human creativity in developing new products and services."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Logiciel assistant IA studio automatisé ",
+      "probleme": "Texte alternatif en français dans l'article anglais.",
+      "proposition": "Orbitvu Station software with AI assistant for automated studios"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Alt technique hérité de Webflow.",
+      "proposition": "Lighting templates suggested by the AI assistant after recognizing the product"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "AI is no longer a futuristic concept, more and more projects related to visualization in the field of high-tech, household appliances, computers now integrate it into the heart of their activities.",
+      "probleme": "Comma splice et énumération calquée du FR, sans coordination : phrase non idiomatique.",
+      "proposition": "AI is no longer a futuristic concept: more and more visualization projects in high-tech, household appliances and computing now place it at the heart of their operations."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Solutions like ShotFlow and Orbitvu With the Alphashot Pro G2 with built-in AI assistant show how technology can improve processes, reduce errors, and strengthen teams.",
+      "probleme": "Majuscule parasite (« With ») et répétition « with … with ».",
+      "proposition": "Solutions like ShotFlow and Orbitvu's Alphashot Pro G2 with its built-in AI assistant show how technology can improve processes, reduce errors, and strengthen teams."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A report from McKinsey Reveals that 60% of e-commerce brands are currently using AI",
+      "probleme": "Majuscule parasite en milieu de phrase.",
+      "proposition": "A McKinsey report reveals that 60% of e-commerce brands are currently using AI"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "In the industry of Skincare and cosmetics , AI doesn't just create content",
+      "probleme": "Calque de « Dans l'industrie du skincare » et majuscule fautive.",
+      "proposition": "In the skincare and cosmetics industry, AI doesn't just create content"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "High implementation costs : Investing in AI tools and training can be expensive, especially for small and medium-sized businesses.",
+      "probleme": "Espace avant les deux-points (typographie française), répétée dans les 10 puces à libellé gras.",
+      "proposition": "High implementation costs: investing in AI tools and training can be expensive, especially for small and medium-sized businesses."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The luxury brand burberry combines AI and human creativity to produce exceptional visuals.",
+      "probleme": "Nom de marque en minuscule.",
+      "proposition": "Luxury brand Burberry combines AI and human creativity to produce exceptional visuals."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Most Impacting Technologies Shaping the Future of E-Commerce Photography",
+      "probleme": "« Most impacting » n'est pas idiomatique (calque de « plus impactantes »).",
+      "proposition": "The most impactful technologies shaping the future of e-commerce photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Embrace tomorrow's visual production today with these innovative solution.",
+      "probleme": "Accord : « these … solution ».",
+      "proposition": "Embrace tomorrow's visual production today with these innovative solutions."
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Innovations: Pioneering Advances in AI and Automation",
+      "probleme": "Casse incohérente : certains intertitres en Title Case (« The Rise of AI in Product Photography », « The Role of Workflow Automation », « Ethical Considerations »), les autres en casse de phrase.",
+      "proposition": "2. Innovations: pioneering advances in AI and automation"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Real Time Feedback Systems : These systems improve photo shoots by providing instant analytics for immediate adjustments.",
+      "probleme": "Trait d'union manquant, Title Case, espace avant deux-points.",
+      "proposition": "Real-time feedback systems: these systems improve photo shoots by providing instant analysis for immediate adjustments."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "success is based primarily on the invaluable creativity and strategic capacity of the human experience .",
+      "probleme": "« Human experience » (calque de « l'expérience humaine ») désigne le vécu humain, pas l'expertise ; sens flou.",
+      "proposition": "success depends primarily on the invaluable creativity and strategic thinking of human experts."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Selon une recherche menée par Gartner, 70% des entreprises de e-commerce utilisent l'intelligence artificielle en 2023 pour améliorer les processus de production visuelle",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique attribuée à Gartner sans référence ; donnée datée de 2023 ; formulation très précise, typique d'un chiffre non vérifiable.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un rapport de McKinsey révèle que 60% des marques de commerce électronique utilisent actuellement l'IA pour optimiser leurs flux de travail en production visuelle",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique attribuée à McKinsey sans référence.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les systèmes d'étiquetage automatisé atteignent des taux de précision de 95% , réduisant considérablement les erreurs.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de précision non attribué.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Selon une étude de cas d'Adobe, des outils alimentés par l'IA, comme Adobe Sensei , réduisent les temps de traitement des images jusqu'à 40%",
+      "source_dans_texte": "https://www.adobe.com/fr/sensei/generative-ai.html (page produit, pas une étude de cas ; la version EN pointe aussi vers la page /fr/)",
+      "motif": "L'« étude de cas » n'est pas liée ; le « jusqu'à » est conservé dans les deux langues.",
+      "ecart_fr_en": "Aucun sur le chiffre (EN : « by up to 40% »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Selon Amazon Web Services, l'utilisation de l'IA a permis aux équipes de traiter des millions d'images quotidiennement tout en réduisant les erreurs de production et en accélérant considérablement les flux de travail.",
+      "source_dans_texte": "https://aws.amazon.com/fr/rekognition/ (page produit ; la version EN pointe aussi vers la page /fr/)",
+      "motif": "L'affirmation qu'Amazon a intégré Rekognition à « ses processus de photographie de produits » n'est pas étayée par le lien.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "boostant les ventes de 25% .",
+      "source_dans_texte": "https://www.ikea.com/global/en/newsroom/innovation/ikea-launches-ikea-place-a-new-app-that-allows-people-to-virtually-place-furniture-in-their-home-170912/ (communiqué de lancement, septembre 2017)",
+      "motif": "Chiffre de ventes pour IKEA Place ; un communiqué de lancement ne peut pas contenir de résultat de ventes ; contradiction avec les 20 % cités plus bas pour la même application.",
+      "ecart_fr_en": "EN « boosting sales of 25% » : le sens est altéré (« des ventes de 25 % »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Selon le rapport 2021 d'IKEA, cette fonctionnalité a accru la confiance des clients dans leurs achats de 35% et contribué à une croissance de 20% des ventes via l'application.",
+      "source_dans_texte": "aucune",
+      "motif": "Rapport cité sans lien ; chiffres incohérents avec le 25 % plus haut.",
+      "ecart_fr_en": "EN agrammaticale (« a growth of 20% sales »), chiffre de 35 % mal rattaché."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La marque Estée Lauder a mis en place l'automatisation pilotée par l'IA pour ses flux de travail, réduisant les délais de production de 25% et augmentant l'efficacité des campagnes de 15% , selon son rapport annuel 2022.",
+      "source_dans_texte": "aucune",
+      "motif": "Rapport annuel cité sans lien ; chiffres précis non vérifiables dans le texte.",
+      "ecart_fr_en": "EN « for 25% » / « of 15% » : les chiffres deviennent inintelligibles."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cette approche a permis à la marque de conserver son statut de leader du secteur.",
+      "source_dans_texte": "aucune",
+      "motif": "Lien de causalité affirmé sans source (Burberry).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des outils comme Adobe Sensei offrent désormais un retour d'information en temps réel pendant les séances photo, en analysant l'éclairage, la composition et la mise au point. Cela garantit que chaque prise est parfaite",
+      "source_dans_texte": "aucune",
+      "motif": "Fonction attribuée à Adobe Sensei à vérifier ; promesse absolue (« garantit », « parfaite »).",
+      "ecart_fr_en": "EN « This ensures that every shot is perfect » : même niveau de promesse."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les modèles 3D pilotés par l’IA produisent des représentations numériques hyperréalistes des produits, supprimant le besoin de séances photo traditionnelles.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation absolue (FAQ), contraire au positionnement d'un vendeur de studios de prise de vue ; arbitrage éditorial.",
+      "ecart_fr_en": "EN « removing the need for traditional photo shoots » : identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Pour les entreprises prêtes à se transformer, les possibilités sont presque illimitées.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif promotionnel.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title = metaTitle (94 caractères, trop long, Title Case « Quand », « l'Humain ») ; H1 = première moitié du title, cohérent ; description courte et générique (« Découvrez comment l'IA facilite le travail humain dans la production visuelle. »), cohérente avec le corps mais sans promesse précise. EN : title = metaTitle (77 caractères, un peu long), H1 cohérent, description très courte (58 caractères). Le corps traite surtout de photographie produit e-commerce, que ni le title ni la description ne mentionnent. Le temps de lecture déclaré (4 min) est sous-évalué pour environ 1 900 mots en FR et 1 600 en EN.",
+  "structure_fr_en": "Parité complète : 3 H2, mêmes H3/H4, mêmes listes, mêmes images, même iframe YouTube, 5 FAQ dans le même ordre. Écart de paragraphes (43 FR / 41 EN) dû aux paragraphes vides d'artefacts Webflow (\\u200d : 8 en FR, 6 en EN). Doublon de puce « Préoccupations éthiques / Ethical concerns » dans les deux langues. Numérotation hétérogène : sous-points en H4 « 1. 2. 3. » dans les parties 1 et 2, en H3 « 1. 2. 3. » dans la partie 3.",
+  "images_alt_legendes": "Image 1 : alt « Logiciel assistant IA studio automatisé » (suite de mots-clés, espace finale) identique en FR et en EN, donc en français dans l'EN ; légendes FR « Logiciel automatisé Orbitvu Station » et EN « Orbitvu Station automated software », correctes. Image 2 : alt « __wf_reserved_inherit » dans les deux langues ; légende FR fautive (« Template d'éclairage proposées »), légende EN correcte (« proposed » pourrait devenir « suggested »). Le produit (assistant IA d'Orbitvu) n'est pas nommé dans la légende 2.",
+  "appellations": "ShotFlow (casse majoritaire du dépôt), Orbitvu, Orbitvu Station et Alphashot Pro G2 sont cohérents entre FR et EN. L'auteur est la marque générique « PackshotCreator » (choix du commit 8ae45f63). Point à corriger : l'ancre ShotFlow du corps pointe vers /xx/ia-photo-produit (page de génération d'images par IA), et non vers ShotFlow. L'« Assistant IA » n'est jamais rattaché explicitement à Orbitvu dans la légende ni dans le paragraphe qui suit. Auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par la marque générique « PackshotCreator » par le commit 8ae45f63 du 12/06/2026 (choix éditorial délibéré, cohérence E-E-A-T, et non une erreur de traduction) : à arbitrer humainement si l'on souhaite rétablir un auteur nommé.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Arbitrer d'abord les statistiques non sourcées (Gartner 70 %, McKinsey 60 %, 95 %, Adobe 40 %, IKEA 25/35/20 %, Estée Lauder 25/15 %), qui ressemblent à des chiffres générés sans source ; les supprimer ou les sourcer. Ensuite : réécriture partielle du FR, puis retraduction complète de l'EN depuis le FR corrigé. Faits datés : « en 2023 », « rapport annuel 2022 », « rapport 2021 d'IKEA » (article daté du 18/12/2024, sans dateModified). À vérifier humainement : dénomination « Adobe Sensei » et disponibilité de l'application IKEA Place à ce jour (non vérifiables ici, sans accès web) ; contenu de la vidéo YouTube cEd0WWmiteU. Les liens externes de l'EN (Adobe, AWS) pointent vers les pages françaises (/fr/). Le temps de lecture (4 min) est à recalculer."
+}

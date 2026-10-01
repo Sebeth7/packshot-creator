@@ -1,0 +1,450 @@
+{
+  "family": "67d1ac647fa7de7306d86cee",
+  "slugs": {
+    "fr": "comment-avoir-des-photos-professionnelles-guide-packshot-produit",
+    "en": "how-to-ensure-consistency-between-photos-packshot-photography-guide",
+    "de-ch": null
+  },
+  "sujet": "Cinquième et dernier volet du guide de la photographie packshot : l'homogénéité des photos produits, puis le choix entre prestataire externe, studio traditionnel avec freelance et studio automatisé Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces objectives de traduction depuis le FR : « give a high quality printing of your products » (FR « une impression de grande qualité » : impression rendu par printing) ; « which is something we have seen and reviewed throughout this series » (FR « vu et revu ») ; « in order to always replace them at exactly the same distances » (FR « les replacer ») ; « an employee based in stock » (FR « un employé basé au stock ») ; « all photos must be taken and amended » (FR « prises et modifiées »). Majuscules en milieu de phrase exactement à l'endroit où commencent les segments en gras du FR (segments traduits isolément) : « it is therefore It is important », « consider Set up a traditional photo studio », « Anyone can use this type », « also allow you to: Create all types of media », « the Fashion Studio Or the Bike Studio ». Textes alternatifs restés en français sur la page EN.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte natif, fluide et bien construit. Environ 14 retouches, au-delà du seuil indicatif de 5 mais toutes ponctuelles et sans réécriture : coquilles (« mettre une place », « spéficiquement » dans un intertitre, « pensé » sans accord), espaces manquantes après « ? » et « ! », majuscules sans accent (« Etudions », « Etant »), subjonctif après « assurez-vous que », virgules à l'anglaise avant « et ». Côté éditorial : H1 tronqué qui n'annonce pas le sujet, metaTitle en Title Case, texte alternatif « __wf_reserved_decorative », FAQ aux promesses plus fortes que le corps.",
+    "en": "Traduction automatique visible tout au long du corps : segments en gras traduits isolément et recollés avec majuscules parasites, phrases agrammaticales (« a experienced photographer », « take well less space », « a easy to use all-in-one solution »), faux amis (printing, replace, amended), calques (« the circuit is shorter », « Let's study all of this »). Textes alternatifs en français et lien vers une page FR. Seule la FAQ est d'un anglais correct. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Le guide complet de la photographie packshot, 5",
+      "probleme": "H1 tronqué : nom de la série suivi d'un simple numéro, sans le sujet de l'article (homogénéité, photos professionnelles). Le title JSON contient la suite, le H1 non.",
+      "proposition": "Guide de la photographie packshot (5/5) : des photos produits professionnelles et homogènes"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Photos professionnelles de produits : Guide Photographie Packshot",
+      "probleme": "Majuscules artificielles (« Guide Photographie Packshot ») et construction télégraphique sans article ni préposition. C'est aussi le <title> servi.",
+      "proposition": "Photos professionnelles de produits : guide de la photographie packshot"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Pensés spéficiquement pour certains produits",
+      "probleme": "Coquille dans un intertitre (« spéficiquement »), et sujet implicite (les studios).",
+      "proposition": "Des studios pensés spécifiquement pour certains produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "claim_renforce",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Le studio automatisé Orbitvu offre le meilleur compromis entre qualité et productivité.",
+      "probleme": "La FAQ renforce le corps : superlatif absent du corps, qui dit au contraire « Il n’y a pas forcément de solution supérieure aux autres ». De même « garantissant une homogénéité parfaite sur l'ensemble de votre catalogue » et « tout en garantissant une cohérence parfaite », alors que le corps se limite à « sera d’une grande aide pour garantir l’homogénéité ».",
+      "proposition": "Pour une production régulière, le studio automatisé Orbitvu est un bon compromis entre qualité et productivité."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "mettre une place un studio photo traditionnel dans vos locaux",
+      "probleme": "Coquille.",
+      "proposition": "mettre en place un studio photo traditionnel dans vos locaux"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "investir dans un studio photo automatisé ?Il n’y a pas forcément de solution supérieure aux autres.",
+      "probleme": "Espace manquante après le point d'interrogation (deux paragraphes Webflow fusionnés, l'erreur est dans le HTML source). Même défaut plus loin : « de surcroît !En somme ».",
+      "proposition": "investir dans un studio photo automatisé ? Il n’y a pas forcément de solution supérieure aux autres."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "à la pointe de la technologie et spécifiquement pensé pour la photographie packshot",
+      "probleme": "Accord : le participe se rapporte à « les studios Orbitvu ».",
+      "proposition": "à la pointe de la technologie et spécifiquement pensés pour la photographie packshot"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Etudions tout cela.",
+      "probleme": "Majuscule non accentuée. Même défaut : « Etant donné que le studio fait tout à votre place ».",
+      "proposition": "Étudions tout cela."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Bienvenue dans le 5ème et dernier article",
+      "probleme": "Abréviation non conforme (« 5e »), incohérente avec « 5e » dans la description et « 2e » ou « 3e » dans le corps.",
+      "proposition": "Bienvenue dans le 5e et dernier article"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "assurez-vous que toutes les photos soient prises dans les mêmes conditions d'éclairage, de mise au point, et de fond",
+      "probleme": "« S'assurer que » se construit avec l'indicatif, et la virgule avant « et » suit l'usage anglais. Même défaut : « assurez-vous qu'il sache exactement » et « le contraste, la couleur, et la netteté ».",
+      "proposition": "assurez-vous que toutes les photos sont prises dans les mêmes conditions d'éclairage, de mise au point et de fond"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "où nous sommes davantage rentrés dans les détails",
+      "probleme": "Registre familier (« rentrer dans les détails »).",
+      "proposition": "où nous sommes entrés plus en détail"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Marqueur interne Webflow conservé comme texte alternatif. Il doit devenir alt=\"\" si l'image est décorative, sinon un vrai texte alternatif.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Fashion studio photo produit automatisée",
+      "probleme": "Accord fautif (le studio est masculin) et mélange nom produit / description.",
+      "proposition": "Fashion Studio, studio photo produit automatisé"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Série photographique de chaussure avec studio Orbitvu",
+      "probleme": "[Inférence, image non vue] L'image illustre le contre-exemple (« un site web présentant ces produits de cette façon », photos hétérogènes), mais l'alt l'attribue à un studio Orbitvu. Vérifier visuellement que l'alt ne relie pas la marque au mauvais exemple.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "logiciel d'automatisation et d'édition Orbitvu Station",
+      "probleme": "« Édition » est un calque de « editing » ; en photographie, on parle de retouche.",
+      "proposition": "logiciel d'automatisation et de retouche Orbitvu Station"
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "The complete guide to packshot photography, 5",
+      "probleme": "H1 tronqué, même défaut qu'en FR : il n'annonce pas le sujet.",
+      "proposition": "Packshot photography guide (5/5): consistent, professional product photos"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "makes it possible in return to give a high quality printing of your products",
+      "probleme": "« Impression » (sentiment) est rendu par printing (impression papier), ce qui fausse le sens. La tournure « the fact of guaranteeing… makes it possible in return » est un calque.",
+      "proposition": "Keeping all your product photos consistent over time conveys an impression of high quality and a much more professional brand image."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it is therefore It is important to ensure that every detail is the same from one photo shoot to the next",
+      "probleme": "Segment en gras traduit isolément et recollé : « It is » en double, avec majuscule.",
+      "proposition": "it is therefore important to make sure that every detail stays the same from one photo shoot to the next"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "make sure that all photos are taken under the same conditions lighting, focus, and background",
+      "probleme": "Phrase agrammaticale (préposition manquante).",
+      "proposition": "make sure that all photos are taken under the same lighting, focus and background conditions"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "in order to always replace them at exactly the same distances",
+      "probleme": "Faux ami : « replacer » signifie reposition ; replace veut dire remplacer.",
+      "proposition": "so that you can always reposition them at exactly the same distances"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "you may want to consider Set up a traditional photo studio on your premises and to hire a freelance product photographer",
+      "probleme": "Segment en gras traduit isolément : majuscule et infinitif agrammatical après consider.",
+      "proposition": "you may want to consider setting up a traditional photo studio on your premises and hiring a freelance product photographer"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You will also need a experienced photographer to make the most of your photo studio brand new...",
+      "probleme": "Article fautif (« a experienced ») et ordre des mots français (« photo studio brand new »).",
+      "proposition": "You will also need an experienced photographer to make the most of your brand-new photo studio..."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "an employee based in stock, Anyone can use this type of automated studio",
+      "probleme": "Calque de « un employé basé au stock », avec en plus une majuscule parasite (début d'un segment en gras).",
+      "proposition": "a warehouse employee, anyone can use this type of automated studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "all photos must be taken and amended within a certain period of time",
+      "probleme": "Amended (modifier un texte, un contrat) ne convient pas pour des photos.",
+      "proposition": "all photos must be taken and retouched within a set timeframe"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "these machines take well less space on your premises than a traditional photo studio",
+      "probleme": "Agrammatical (« bien moins » traduit mot à mot).",
+      "proposition": "these machines take up far less space on your premises than a traditional photo studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu's automated studios also allow you to: Create all types of media with ease",
+      "probleme": "Deux-points parasite et majuscule (segment en gras), suivis d'un espace avant le deux-points à la française.",
+      "proposition": "Orbitvu's automated studios also let you create all types of media with ease: still photographs, 360-degree animations, videos and more."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "the Fashion Studio Or the Bike Studio",
+      "probleme": "Majuscule parasite ; « ou » doit ici être and, puisque la suite décrit les deux studios (« for one… for the other »).",
+      "proposition": "the Fashion Studio and the Bike Studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "if you are aiming for a high quality packshot photography while looking for a easy to use all-in-one solution",
+      "probleme": "Articles fautifs et absence de traits d'union.",
+      "proposition": "if you want high-quality packshot photography and an easy-to-use all-in-one solution"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Série photographique de chaussure avec studio Orbitvu",
+      "probleme": "Les cinq textes alternatifs non vides de la page EN sont en français : aussi « Logiciel aide série photographique chaussure Orbitvu Station », « Studio photo produit automatisé », « logiciel d'automatisation et d'édition Orbitvu Station », « Fashion studio photo produit automatisée ». Le sixième vaut « __wf_reserved_decorative ».",
+      "proposition": "Shoe photo series shot with an Orbitvu studio (à adapter après vérification de l'image)"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "{lien «short training to know how to use the studio» → /fr/academy}",
+      "probleme": "La page EN renvoie vers la page française /fr/academy. La route /[lang]/academy existe dans app/, donc /en/academy est disponible. Le libellé est aussi un calque (« a short training to know how to »).",
+      "proposition": "Lien vers /en/academy, ancre « a short training course on how to use the studio »"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This will make the reframing process easier",
+      "probleme": "Pour « recadrage », le terme métier anglais est cropping.",
+      "proposition": "This will make cropping easier"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "which is something we have seen and reviewed throughout this series",
+      "probleme": "Calque de « vu et revu » (sens : abordé à maintes reprises).",
+      "proposition": "as we have stressed again and again throughout this series"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "and that's normal",
+      "probleme": "Calque de « et c’est bien normal ».",
+      "proposition": "which is understandable"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Are you going to delegate your packshot photography outside by using a service provider",
+      "probleme": "Calque de « déléguer… à l'extérieur ».",
+      "proposition": "Are you going to outsource your packshot photography to a service provider"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Let's study all of this.",
+      "probleme": "Calque de « Étudions tout cela ».",
+      "proposition": "Let's look at each option."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "the circuit is shorter",
+      "probleme": "Calque de « le circuit est plus court ».",
+      "proposition": "the turnaround is shorter"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The software Orbitvu Station allows you to set and control the studio in a homogeneous way",
+      "probleme": "Ordre des mots français et tournure non idiomatique.",
+      "proposition": "The Orbitvu Station software lets you set up and control the studio consistently"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This allows you to gain in productivity and quality.",
+      "probleme": "Calque de « gagner en ».",
+      "proposition": "This improves both productivity and quality."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "do not hesitate to contact us : we will be happy to answer you and guide you.",
+      "probleme": "Espace avant le deux-points (typographie française, présente dans le HTML source) et calque de « n’hésitez pas ».",
+      "proposition": "feel free to contact us: we will be happy to answer your questions and advise you."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "En résumé, avec un studio photo automatisé comme ceux d'Orbitvu, vous économisez du temps et de l'argent sur le long terme",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse d'économies non chiffrée ni sourcée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Par ailleurs, ces machines prennent bien moins de place dans vos locaux qu'un studio photo traditionnel.",
+      "source_dans_texte": "aucune",
+      "motif": "Comparatif d'encombrement général, qui dépend du modèle (le corps cite aussi le Bike Studio).",
+      "ecart_fr_en": "EN agrammatical (« take well less space ») mais même sens."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "si vous avez un studio photo automatisé en interne, vous pouvez prendre des photos de vos produits à tout moment",
+      "source_dans_texte": "aucune",
+      "motif": "Suivi de « sans avoir à payer de frais supplémentaires » : promesse qui ignore les coûts d'exploitation et de maintenance.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "il suffit de suivre une courte formation pour savoir se servir du studio",
+      "source_dans_texte": "lien /fr/academy (sur les deux versions)",
+      "motif": "Promesse de prise en main, à aligner sur l'offre réelle de formation.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Etant donné que le studio fait tout à votre place, le shooting est bien plus rapide et efficace.",
+      "source_dans_texte": "aucune",
+      "motif": "Absolu (« fait tout à votre place »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Le studio automatisé Orbitvu offre le meilleur compromis entre qualité et productivité.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif propre à la FAQ, en contradiction avec la nuance du corps.",
+      "ecart_fr_en": "EN identique : « offers the best compromise between quality and productivity »."
+    },
+    {
+      "langue": "fr",
+      "extrait": "garantissant une homogénéité parfaite sur l'ensemble de votre catalogue",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie absolue, ajoutée par la FAQ.",
+      "ecart_fr_en": "EN identique : « guaranteeing perfect consistency across your entire catalog »."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Le système automatise la capture et la post-production, permettant de traiter plus de produits en moins de temps qu'avec un studio traditionnel.",
+      "source_dans_texte": "aucune",
+      "motif": "Automatisation de la post-production : fonctionnalité à confirmer, absente du corps.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "nous vous recommandons chaudement les studios Orbitvu, à la pointe de la technologie",
+      "source_dans_texte": "lien orbitvu.com/software/orbitvu-station/ (paragraphe suivant)",
+      "motif": "Superlatif promotionnel.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : le title JSON (« Le guide complet de la photographie packshot, 5 : comment avoir des photos plus professionnelles et homogènes ») décrit bien le corps, mais avec une numérotation maladroite (« , 5 : »). Le H1 est tronqué au numéro. Le metaTitle, servi comme <title>, est en Title Case et parle de « photos professionnelles » sans mentionner l'homogénéité. La description (« comment prendre des photos professionnelles ») ne couvre que la moitié du corps, la seconde partie portant sur le choix d'une solution de production. EN : même architecture, avec le même H1 tronqué. Le slug EN (« how-to-ensure-consistency… ») colle mieux au corps que le slug FR.",
+  "structure_fr_en": "Parité stricte : 3 H2, 8 H3, 28 paragraphes, 4 puces, 6 images, 7 liens et 5 FAQ, dans le même ordre. Aucun paragraphe manquant ou inversé. Les paragraphes vides (‍, ZWJ) sont des espaceurs Webflow présents dans les deux langues : artefact sans gravité. Les anomalies « espace avant virgule » de l'EN sont des artefacts d'extraction (balises <strong>), à l'exception de « contact us : » et « with ease : », présents dans le HTML.",
+  "images_alt_legendes": "6 images, mêmes fichiers dans les deux langues, sans légende. Tous les alts sont en français, y compris sur la page EN. L'un vaut « __wf_reserved_decorative » (marqueur Webflow). Autres défauts : alt télégraphique avec espace final (« Logiciel aide série photographique chaussure Orbitvu Station »), accord fautif (« Fashion studio photo produit automatisée »), et premier alt potentiellement contradictoire avec le rôle de contre-exemple de l'image (à vérifier visuellement).",
+  "appellations": "Orbitvu, Orbitvu Station, Fashion Studio et Bike Studio sont employés de façon cohérente en FR et en EN. PackshotCreator n'apparaît que comme auteur. Seul défaut, en EN : l'ordre des mots « The software Orbitvu Station ». Pas de remplacement de nom propre détecté (similarité texte 1.0 avec l'import Webflow).",
+  "recommandation": "retraduction complète",
+  "remarques": "Par langue : EN à retraduire entièrement (corps, alts, lien /fr/academy) ; FR à retoucher (coquilles, H1, metaTitle, alt Webflow, FAQ à aligner sur la nuance du corps). Signatures FR « en charge » (« pris en charge ») : calque infirmé, l'emploi est correct. Liens de série vers les articles 2 et 3 présents et cohérents FR/EN. Lien externe https://orbitvu.com/software/orbitvu-station/ non vérifié (pas d'accès web). Article daté du 13/03/2024 sans dateModified : la FAQ, plus promotionnelle que le corps, semble avoir été rédigée séparément."
+}

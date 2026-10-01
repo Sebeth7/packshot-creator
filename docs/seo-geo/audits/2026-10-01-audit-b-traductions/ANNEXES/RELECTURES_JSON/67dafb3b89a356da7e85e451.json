@@ -1,0 +1,408 @@
+{
+ "family": "67dafb3b89a356da7e85e451",
+ "slugs": {
+  "fr": "quel-studio-photo-type-pour-vos-shootings-produits-en-interne",
+  "en": "best-photo-studio-in-house-photo-shoots",
+  "de-ch": null
+ },
+ "sujet": "Présentation commerciale de la gamme de studios photo automatisés Orbitvu (à plat, petits objets, volumineux, multi-angle, plateaux tournants, logiciel Orbitvu Station) et des services PackshotCreator, pour l'internalisation des prises de vue produits.",
+ "langue_originale": "FR → EN (preuve interne)",
+ "preuve_langue": "EN : « You want internalize the production of your visuals … but choose the right one Packshot photo studio may seem complex? » (structure de « Vous souhaitez internaliser …, mais choisir le bon studio … ») ; « models » (de « mannequins ») ; « motorized tray » (de « plateau motorisé ») ; « reactivity » (« réactivité ») ; « Pre-registered templates » (« Templates pré-enregistrés ») ; « thanks to technology IQ Mask » (« grâce à la technologie IQ Mask ») ; « near Lyon To test the studios » (« pour tester ») ; « under multiple angles » (« sous plusieurs angles ») ; « product sheets » (« fiches produits ») ; title « typical photo studio » (« studio photo type »).",
+ "qualite": {
+  "fr": "B",
+  "en": "D",
+  "de-ch": null
+ },
+ "justification_qualite": {
+  "fr": "Français correct, au ton commercial chargé d'émojis ; défauts concentrés sur le H1 (Title Case + « Visuel »), le metaTitle (émoji, Title Case), l'incohérence title/H1, des statistiques non sourcées en FAQ, les mentions « NOUVEAU » périmées et quelques anglicismes (« Templates », « multi-row », « centre d'expérience », « digital »). Signature remplacée par la marque.",
+  "en": "Traduction automatique : phrase d'ouverture agrammaticale, trois intertitres sur quatre corrompus (« 1 ️ ※ », « 3 ️ aging studios », « 4 ️ 803 »), contresens métier (« models » pour mannequins, « tray » pour plateau), calques fréquents, 5 alts en français, lien vers /fr/academy. FAQ globalement lisible.",
+  "de-ch": null
+ },
+ "nb_erreurs_estime": {
+  "fr": 16,
+  "en": 35,
+  "de-ch": null
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "title_case",
+   "gravite": "majeur",
+   "emplacement": "h1",
+   "extrait_actuel": "Studios Photo Packshot : Automatisez et Optimisez Vos Visuel",
+   "probleme": "H1 en Title Case anglais et faute d'accord (« Visuel » au lieu de « Visuels »).",
+   "proposition": "Studios photo packshot : automatisez et optimisez vos visuels"
+  },
+  {
+   "langue": "fr",
+   "categorie": "title_case",
+   "gravite": "mineur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "📸 Studios Photo Packshot Orbitvu : Automatisez et Optimisez vos Visuels",
+   "probleme": "Title Case et émoji en tête du metaTitle (71 caractères, au-delà de la limite d'affichage) ; trois formulations différentes pour title, H1 et metaTitle.",
+   "proposition": "Studios photo packshot Orbitvu : automatisez vos visuels"
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "majeur",
+   "emplacement": "title",
+   "extrait_actuel": "Quel studio photo type pour vos shootings produits en interne ?",
+   "probleme": "Title (question « quel studio type ») sans rapport de formulation avec le H1 et le metaTitle (« Automatisez et Optimisez ») ; « studio photo type » ambigu (« type » adjectif). Le corps est un catalogue de la gamme Orbitvu plus qu'un guide de choix.",
+   "proposition": "Quel studio photo packshot choisir pour vos prises de vue produits en interne ?"
+  },
+  {
+   "langue": "fr",
+   "categorie": "claim_renforce",
+   "gravite": "majeur",
+   "emplacement": "faq",
+   "extrait_actuel": "75 % des acheteurs en ligne considèrent la qualité visuelle comme un critère décisif avant d’acheter. Des études montrent qu'un visuel professionnel peut augmenter les conversions de près de 60 %.",
+   "probleme": "Statistiques présentées comme établies (« Des études montrent ») sans aucune source ni lien ; en EN « près de 60 % » devient « up to 60% ».",
+   "proposition": "Sourcer les deux chiffres ou les supprimer."
+  },
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "auteur : PackshotCreator",
+   "probleme": "Champ auteur (signature) : l'import Webflow (56d4bc32) indiquait « Laurent Wainberg » ; remplacé par la marque au commit 8ae45f63 (12/06/2026, « auteur générique PackshotCreator »). Même chose en EN.",
+   "proposition": "Arbitrage éditorial : rétablir l'auteur d'origine ou documenter la signature de marque."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "🔹 NOUVEAU - ALPHASHOT PRO G2 : Une solution avancée intégrant l’IA pour optimiser la prise de vue et simplifier la production visuelle des petits produits.",
+   "probleme": "Mention « NOUVEAU » datée (3 occurrences : ALPHASHOT PRO G2, FURNITURE STUDIO, FASHION STUDIO) dans un article daté du 04/09/2023 et lu en 2026 : information périmée, et incohérente avec la date de publication affichée.",
+   "proposition": "Supprimer « NOUVEAU - » ou dater la nouveauté."
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "##### 🔹 ALPHASHOT MICRO v2 : Conçu pour la macro-photographie, avec un éclairage optimisé pour capturer les moindres détails et un détourage automatisé.",
+   "probleme": "Une seule fiche produit balisée en h5 (intertitre) alors que toutes les autres sont des paragraphes : hiérarchie de titres incohérente (même défaut en EN).",
+   "proposition": "Baliser comme paragraphe, comme les autres produits."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "📍 Un centre d’expérience près de Lyon pour tester les studios .",
+   "probleme": "« centre d'expérience » calque de « experience center » ; le site parle ailleurs de « Showroom Lyon » (messages/fr.json).",
+   "proposition": "📍 Un showroom près de Lyon pour tester les studios."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "✅ Templates pré-enregistrés pour une standardisation parfaite.",
+   "probleme": "Anglicisme « Templates » ; « préenregistrés » s'écrit soudé (orthographe employée dans la FAQ).",
+   "proposition": "✅ Modèles préenregistrés pour une standardisation parfaite."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Avec cette automatisation avancée , produire des visuels devient aussi simple que cliquer sur un bouton.",
+   "probleme": "Comparatif incomplet : « aussi simple que de cliquer ».",
+   "proposition": "Avec cette automatisation avancée, produire des visuels devient aussi simple que de cliquer sur un bouton."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Il est conçu pour réaliser des photographies multi-row 360° , parfaites pour des présentations produits immersives.",
+   "probleme": "Anglicisme « multi-row » non expliqué.",
+   "proposition": "Il est conçu pour réaliser des photographies 360° sur plusieurs rangées d'angles, parfaites pour des présentations produits immersives."
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "🔹 ALPHASTUDIO COMPACT PRO : Une solution polyvalente pour des produits de taille moyenne nécessitant une prise de vue sous plusieurs angles.",
+   "probleme": "Studio présenté comme « pour des produits de taille moyenne » dans la rubrique « Studios pour objets volumineux ».",
+   "proposition": null
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "🔹 ALPHADESK v2 : Table lumineuse rétro-éclairée conçue pour capturer plusieurs produits simultanément et les exporter séparément.",
+   "probleme": "Graphie flottante « rétro-éclairée » / « rétroéclairé » (alt) ; « macro-photographie » au lieu de « macrophotographie ».",
+   "proposition": "🔹 ALPHADESK v2 : Table lumineuse rétroéclairée conçue pour capturer plusieurs produits simultanément et les exporter séparément."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "améliorer leur conversion grâce à des visuels professionnels et parfaitement intégrés aux exigences du marché digital.",
+   "probleme": "« digital » au sens de « numérique » ; « parfaitement intégrés aux exigences » maladroit.",
+   "proposition": "améliorer leur taux de conversion grâce à des visuels professionnels adaptés aux exigences du commerce en ligne."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "{lien «Plateau tournant Orbitvu G2» → /fr/studio-photo/selecteur-machines}",
+   "probleme": "Le lien du plateau G2 mène au sélecteur de machines en FR mais à /en/studios-photo-automatises en EN : cibles divergentes pour la même ancre.",
+   "proposition": null
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "intertitre",
+   "extrait_actuel": "3 ️ aging studios for large objects and 360° animations (furniture, household appliances, fashion)",
+   "probleme": "Intertitre corrompu (émoji « 3️⃣ » dégradé, « Studios » transformé en « aging studios ») ; corruption déjà présente dans l'import Webflow.",
+   "proposition": "3️⃣ Studios for large objects and 360° animations (furniture, household appliances, fashion)"
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "intertitre",
+   "extrait_actuel": "4 ️ 803 Specialized studios for advanced multi-angle and 360° shooting",
+   "probleme": "Intertitre corrompu (« 803 » à la place de l'émoji « 4️⃣ ») ; les intertitres 1 et 2 portent aussi « 1 ️ ※ » / « 2 ️ ※ ».",
+   "proposition": "4️⃣ Specialised studios for advanced multi-angle and 360° shooting"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "You want internalize the production of your visuals to gain efficiency and control, but choose the right one Packshot photo studio may seem complex?",
+   "probleme": "Phrase d'accroche agrammaticale calquée de la structure française (« Vous souhaitez internaliser …, mais choisir le bon studio … peut sembler complexe ? »).",
+   "proposition": "Want to bring visual production in-house to gain efficiency and control, but finding the right packshot photo studio seems complicated?"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Ideal for: models, clothing, household appliances, musical instruments, sports equipment.",
+   "probleme": "« mannequins » (bustes / mannequins de vitrine) traduit par « models » (modèles humains) ; même contresens dans « guaranteeing an optimal rendering of textiles and models » et en FAQ « dedicated to clothing and models ».",
+   "proposition": "Ideal for: mannequins, clothing, household appliances, musical instruments, sports equipment."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "faq",
+   "extrait_actuel": "with optimized lighting and a high-capacity motorized tray.",
+   "probleme": "« plateau motorisé » (plateau tournant) traduit par « tray » (plateau de service).",
+   "proposition": "with optimised lighting and a high-capacity motorised turntable."
+  },
+  {
+   "langue": "en",
+   "categorie": "titre_litteral",
+   "gravite": "majeur",
+   "emplacement": "title",
+   "extrait_actuel": "What is the typical photo studio for your in-house product shootings?",
+   "probleme": "Traduction littérale du title FR (« studio photo type ») ; « shootings » non idiomatique en anglais (« shoots »).",
+   "proposition": "Which packshot studio is right for your in-house product shoots?"
+  },
+  {
+   "langue": "en",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"Caisson rétroéclairé pour photo de bouteilles\" src=/images/blog/67dbae80aff27501162f47f3.mp4]",
+   "probleme": "Les 5 alts de la version EN sont en français : « Caisson rétroéclairé pour photo de bouteilles », « Alphadesk studio photo spécialisé flat lay vêtements », « Studio photo produits bijoux », « Alphashot XL studio photo modélisation 3D », « Plateau tournant automatisé pour photo 360 ». Le premier média est une vidéo .mp4 portant un alt d'image.",
+   "proposition": "Backlit box for bottle photography (et équivalents pour les 4 autres)."
+  },
+  {
+   "langue": "en",
+   "categorie": "melange_linguistique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "{lien «trainings» → /fr/academy}",
+   "probleme": "Lien de l'article EN vers la page française /fr/academy ; « trainings » non idiomatique (« training »).",
+   "proposition": "Pointer vers /en/academy (la route app/[lang]/academy existe) ; ancre « training »."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "📍 An experience center near Lyon To test the studios .",
+   "probleme": "« pour tester » rendu par « To » en majuscule ; calque « experience center ».",
+   "proposition": "📍 A showroom near Lyon where you can test the studios."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "✅ Time saver : Avoid going back and forth with external service providers and reduce your time to go online.",
+   "probleme": "« délais de mise en ligne » rendu par « time to go online » ; « Time saver » pour « Gain de temps » ; espace avant deux-points (présente dans le HTML).",
+   "proposition": "✅ Time savings: avoid back-and-forth with external providers and get products online faster."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "✅ Flexibility and reactivity : Shoot your products on demand, without depending on an external schedule.",
+   "probleme": "« réactivité » rendu par « reactivity » (sens chimique) au lieu de « responsiveness ».",
+   "proposition": "✅ Flexibility and responsiveness: shoot your products on demand, without depending on an external schedule."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "✅ Automatic clipping thanks to technology IQ Mask .",
+   "probleme": "Ordre des mots français (« grâce à la technologie IQ Mask ») ; idem « an intelligent software ».",
+   "proposition": "✅ Automatic background removal with IQ Mask technology."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "✅ Pre-registered templates for perfect standardization.",
+   "probleme": "« préenregistrés » rendu par « pre-registered » (pré-inscrits) au lieu de « preset » / « saved ».",
+   "proposition": "✅ Preset templates for perfect standardisation."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "this studio integrates a motorized camera mount And a advanced lighting system , guaranteeing an optimal rendering of textiles and models.",
+   "probleme": "Majuscule parasite « And », « a advanced », « models » pour « mannequins ».",
+   "proposition": "this studio includes a motorised camera mount and an advanced lighting system, ensuring optimal rendering of textiles and mannequins."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Some systems make it possible to go beyond simple packshots by capturing a product under multiple angles in a single automated process .",
+   "probleme": "« sous plusieurs angles » rendu par « under multiple angles ».",
+   "proposition": "Some systems go beyond simple packshots by capturing a product from multiple angles in a single automated process."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "A quality packshot directly influences the conversion rate of product sheets.",
+   "probleme": "« fiches produits » rendu par « product sheets » (on dit « product pages »).",
+   "proposition": "A quality packshot directly influences the conversion rate of product pages."
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "The combination between PackshotCreator, Orbitvu and ShotFlow offers a complete solution",
+   "probleme": "« combination between » non idiomatique.",
+   "proposition": "The combination of PackshotCreator, Orbitvu and ShotFlow offers a complete solution"
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "toutes",
+   "extrait": "75 % des acheteurs en ligne considèrent la qualité visuelle comme un critère décisif avant d’acheter.",
+   "source_dans_texte": "aucune",
+   "motif": "Statistique sans source.",
+   "ecart_fr_en": "EN « 75% of online buyers consider visual quality to be a decisive criterion before buying » : identique."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Des études montrent qu'un visuel professionnel peut augmenter les conversions de près de 60 %.",
+   "source_dans_texte": "aucune",
+   "motif": "« Des études » non citées.",
+   "ecart_fr_en": "EN « by up to 60% » : « près de » (valeur approchée) devient « jusqu'à » (plafond)."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "PackshotCreator est le partenaire officiel d’Orbitvu en France",
+   "source_dans_texte": "aucune",
+   "motif": "Statut commercial à confirmer (ailleurs sur le site : « distributeur des solutions Orbitvu en France »).",
+   "ecart_fr_en": "EN « the official partner of Orbitvu in France »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "L’Alphastudio XXL PRO est un studio grand format permettant de photographier des produits jusqu’à 190 centimètres de hauteur avec une lumière homogène et un détourage instantané.",
+   "source_dans_texte": "aucune",
+   "motif": "190 cm cohérent avec components/machine-selector/lib/machines.ts (« 100×70×190 cm ») ; « détourage instantané » est une promesse.",
+   "ecart_fr_en": "EN « up to 190 centimeters in height »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Ce dispositif peut accueillir jusqu’à cinq appareils photo , capturant des images sous différents angles (0° – 90° avec des incréments de 5°).",
+   "source_dans_texte": "lien vers la fiche ALPHASHOT XL PRO",
+   "motif": "Spécification technique à confirmer.",
+   "ecart_fr_en": "EN « up to five cameras … (0° — 90° with 5° increments) »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Il s’intègre directement aux plateformes e-commerce et aux systèmes PIM",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse d'intégration générique.",
+   "ecart_fr_en": "EN « It integrates directly with e-commerce platforms and PIM systems »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "✅ Rentabilité à long terme : Amortissez rapidement votre investissement en supprimant les coûts récurrents de prestations externes.",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse d'amortissement rapide sans chiffre.",
+   "ecart_fr_en": "EN « Quickly amortize your investment »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Son interface intuitive et ses réglages automatiques permettent un workflow ultra-rapide .",
+   "source_dans_texte": "aucune",
+   "motif": "Superlatif.",
+   "ecart_fr_en": "EN « lightning-fast workflow »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Ces solutions garantissent une qualité optimale et un processus de production accéléré",
+   "source_dans_texte": "aucune",
+   "motif": "Garantie de résultat.",
+   "ecart_fr_en": "EN « These solutions guarantee optimal quality »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "ce studio permet de photographier des produits de grande taille avec une qualité irréprochable et un rendu parfaitement homogène.",
+   "source_dans_texte": "lien vers la fiche FURNITURE STUDIO",
+   "motif": "Superlatifs « irréprochable », « parfaitement ».",
+   "ecart_fr_en": "EN « irreproachable quality and a perfectly homogeneous rendering »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Plateau tournant Orbitvu E-COMM : Idéal pour des objets lourds et encombrants, supportant des charges importantes tout en garantissant une stabilité parfaite .",
+   "source_dans_texte": "lien vers /fr/studio-photo/e-comm-studio-plus",
+   "motif": "« stabilité parfaite » ; capacité non chiffrée.",
+   "ecart_fr_en": "EN « guaranteeing perfect stability »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "réduisant ainsi le taux de retour et renforçant la confiance lors de l’achat en ligne",
+   "source_dans_texte": "aucune",
+   "motif": "Effet sur les retours non chiffré ni sourcé.",
+   "ecart_fr_en": "EN « reducing the return rate »."
+  }
+ ],
+ "titre_h1_meta": "FR : title « Quel studio photo type pour vos shootings produits en interne ? » (question), H1 « Studios Photo Packshot : Automatisez et Optimisez Vos Visuel » (Title Case, faute), metaTitle « 📸 Studios Photo Packshot Orbitvu : Automatisez et Optimisez vos Visuels » (émoji, Title Case, 71 caractères) : trois promesses différentes ; description très promotionnelle (« Boostez », « images professionnelles parfaites »). Le corps est un catalogue produit plutôt qu'un guide de choix. EN : title littéral (« typical photo studio », « shootings »), H1 et metaTitle en Title Case anglais acceptable, metaTitle avec émoji (68 caractères).",
+ "structure_fr_en": "Parité FR/EN : 5 h2, 4 h3, 1 h5 (fiche ALPHASHOT MICRO v2 balisée en titre dans les deux langues), 35 p, 2 puces, 5 médias dont une vidéo .mp4, 13 liens, 5 FAQ. Les listes à coches (✔, ✅, 📍) sont des paragraphes avec sauts de ligne, pas des listes HTML. 9 paragraphes vides à caractère invisible (U+200D). Lien du plateau G2 divergent (FR → /fr/studio-photo/selecteur-machines ; EN → /en/studios-photo-automatises). Lien EN « trainings » → /fr/academy.",
+ "images_alt_legendes": "5 médias, aucune légende. Alts FR descriptifs mais parfois bourrés de mots-clés (« Alphashot XL studio photo modélisation 3D ») ; la vidéo .mp4 porte un alt d'image. Les 5 alts sont recopiés en français dans la version EN.",
+ "appellations": "Noms de produits en capitales dans le corps (ALPHADESK v2, ALPHATABLE, ALPHASHOT MICRO v2, ALPHASHOT 360, ALPHASHOT PRO G2, ALPHASTUDIO COMPACT PRO, ALPHASTUDIO XXL PRO, FURNITURE STUDIO, FASHION STUDIO, ALPHASHOT XL PRO) mais en casse normale en FAQ (« Alphashot Pro G2 », « Alphastudio XXL PRO », « Furniture Studio ») : casse à harmoniser. Les ancres « ALPHASTUDIO COMPACT PRO » / « ALPHASTUDIO XXL PRO » pointent vers des fiches « …-v2 » (machines.ts : « Alphastudio XXL Pro v2 ») : vérifier la dénomination commerciale actuelle. « ShotFlow » conforme à la graphie majoritaire du dépôt. Orbitvu / PackshotCreator cohérents. Champ auteur « PackshotCreator » (signature de marque, voir erreurs).",
+ "recommandation": "retraduction complète",
+ "remarques": "Recommandation par langue : EN retraduction complète ; FR retouches (H1, metaTitle, title, « NOUVEAU », anglicismes) et arbitrage sur les statistiques non sourcées. Date affichée 04/09/2023 alors que l'item Webflow date du 19/03/2025 [Inférence ObjectId] et que le texte présente comme « NOUVEAU » des produits (Pro G2, Furniture Studio, Fashion Studio) : date et mentions à revoir. « centre d'expérience près de Lyon » cohérent avec l'adresse du showroom de Saint-Bonnet-de-Mure (messages/fr.json). Gamme et dénominations (v2, PRO, E-COMM) à confronter au catalogue actuel. Usage massif d'émojis dans les intertitres et listes, peu adapté à un article de référence."
+}

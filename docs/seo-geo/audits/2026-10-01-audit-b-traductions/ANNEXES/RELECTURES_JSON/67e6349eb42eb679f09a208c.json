@@ -1,0 +1,351 @@
+{
+  "family": "67e6349eb42eb679f09a208c",
+  "slugs": {
+    "fr": "e-commerce-4-fondamentaux-pour-reduire-les-abandons-de-panier",
+    "en": "4-fundamentals-for-reducing-abandoned-shopping-carts",
+    "de-ch": null
+  },
+  "sujet": "Les leviers pour réduire l'abandon de panier en e-commerce (catalogue et visuels, avis clients, promotions, tunnel de commande, IA et retargeting), avec des sources externes et une mise en avant des solutions Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Déterminants français résiduels dans l'EN : « Les user reviews strongly influence buying behavior. », « Les promo codes , exclusive offers ». « L’ abandon » rendu par « THE cart abandonment ». Faux amis qui ne s'expliquent que depuis le FR : « a pillar of reinsurance » (« réassurance »), « Smart charging forms » (« Remplissage intelligent des formulaires »), « Optimize your control tunnel » (« tunnel de commande »), « retaining outbound visitors » (« visiteurs en partance »). Parenthèse traduite mot à mot : « Suggest bundles (bundles). » (FR : « Proposez des offres groupées (bundles). »).",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Prose française native, claire, bien structurée et sourcée. Les défauts se concentrent hors du texte courant : title, H1 et metaTitle se contredisent (4, 5, « 4+1 »), emoji dans le metaTitle et la description, cinq alts « __wf_reserved_inherit », lien « Social Media Examiner » qui pointe vers OptiMonk. Il reste quelques maladresses (« de jusqu'à 26 % », « retient 35 % de temps en plus l’attention », anglicismes « checkout »). Retouches.",
+    "en": "Traduction automatique visible : déterminants français (« Les user reviews », « Les promo codes »), « THE », faux amis (« reinsurance », « charging forms », « control tunnel », « outbound visitors »), phrase incompréhensible (« selected 35% more time the attention »), coordinations calquées dans la synthèse, questions de la FAQ en Title Case. Retraduction complète.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 40,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "👉 Réduire l'abandon de panier : les 4+1 leviers à activer",
+      "probleme": "Trois comptes différents : title JSON et slug « 4 fondamentaux », H1 « 5 leviers », metaTitle servi « 4+1 leviers ». Le corps numérote 5 sections. Emoji dans le <title> servi et dans la description.",
+      "proposition": "Réduire l'abandon de panier : 5 leviers à activer (et aligner le title JSON ; le slug « 4-fondamentaux » relève d'un arbitrage SEO)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Les cinq images portent l'alt technique de Webflow, servi tel quel. Même défaut en EN.",
+      "proposition": "Alts descriptifs, ou alt=\"\" pour les visuels purement décoratifs."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "D’après Social Media Examiner , un catalogue enrichi de visuels de qualité retient 35 % de temps en plus l’attention des internautes.",
+      "probleme": "L'ancre « Social Media Examiner » pointe vers https://www.optimonk.com/reduce-shopping-cart-abandonment-rate/ : la source citée n'est pas celle du lien. La phrase est aussi maladroite (« retient 35 % de temps en plus l’attention »). Même défaut en EN.",
+      "proposition": "D’après Social Media Examiner, un catalogue enrichi de visuels de qualité retient l’attention des internautes 35 % plus longtemps. (lien à corriger vers la source réelle, ou attribuer le chiffre à OptiMonk après vérification)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ce type de campagne peut augmenter les conversions de jusqu'à 26 % ( Shopify ).",
+      "probleme": "« de jusqu'à » est fautif.",
+      "proposition": "Ce type de campagne peut augmenter les conversions jusqu'à 26 % (Shopify)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Checkout invité : ne forcez pas la création de compte ( BigCommerce ).",
+      "probleme": "Anglicisme « checkout » (également « lors du checkout »).",
+      "proposition": "Commande en tant qu’invité : n’imposez pas la création de compte (BigCommerce)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Taux de conversion : Il mesure le pourcentage de visiteurs ayant finalisé un achat.",
+      "probleme": "Majuscule après les deux-points, ici et dans les autres puces à libellé (« Descriptifs précis : Fonctionnalités », « Astuce Orbitvu : Accompagnez »).",
+      "proposition": "Taux de conversion : il mesure le pourcentage de visiteurs ayant finalisé un achat."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "avec des taux qui peuvent dépasser 70 % selon les secteurs ( Optimonk ).",
+      "probleme": "La marque s'écrit « OptiMonk » (2 occurrences).",
+      "proposition": "avec des taux qui peuvent dépasser 70 % selon les secteurs (OptiMonk)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nos solutions permettent :",
+      "probleme": "Sous l'intertitre « Pourquoi faire appel à Orbitvu ? », « Nos solutions » fait parler le site (PackshotCreator) comme s'il était Orbitvu. Même ambiguïté avec « Astuce Orbitvu ». Le rôle de distributeur n'est pas explicité.",
+      "proposition": "Les solutions Orbitvu permettent :"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "👉 Découvrez comment booster votre taux de conversion e-commerce avec des visuels engageants, un tunnel optimisé et des outils comme Orbitvu.",
+      "probleme": "Emoji en tête de description ; la description parle de taux de conversion, alors que le sujet de l'article est l'abandon de panier.",
+      "proposition": "Découvrez 5 leviers pour réduire l’abandon de panier : visuels engageants, avis clients, promotions ciblées, tunnel optimisé et outils comme Orbitvu."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Pourquoi faire appel à Orbitvu ?",
+      "probleme": "L'intertitre H2 contient un lien (« faire appel à Orbitvu » vers /fr/studios-photo-automatises) : à déplacer dans le corps.",
+      "proposition": "Pourquoi faire appel à Orbitvu ? (lien déplacé dans le paragraphe suivant)"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les user reviews strongly influence buying behavior.",
+      "probleme": "Déterminant français résiduel.",
+      "proposition": "User reviews strongly influence buying behavior."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les promo codes , exclusive offers or immediate discounts play a decisive role in the purchase decision.",
+      "probleme": "Déterminant français résiduel.",
+      "proposition": "Promo codes, exclusive offers and instant discounts play a decisive role in the purchase decision."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "THE cart abandonment remains a real headache for e-retailers, with rates that can exceed 70% by sector ( Optimonk ).",
+      "probleme": "« THE » en capitales (traduction de « L’ ») ; « by sector » rend mal « selon les secteurs ».",
+      "proposition": "Cart abandonment remains a real headache for e-retailers, with rates that can exceed 70% depending on the sector (OptiMonk)."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "According to Social Media Examiner , a catalog enriched with quality visuals selected 35% more time the attention of Internet users.",
+      "probleme": "« selected 35% more time the attention » ne veut rien dire (« retient » mal traduit). Le lien pointe vers OptiMonk, comme en FR.",
+      "proposition": "According to Social Media Examiner, a catalog enriched with quality visuals holds users' attention 35% longer. (source à corriger)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Customer reviews: a pillar of reinsurance",
+      "probleme": "« Réassurance » (rassurer le client) traduit par « reinsurance » (réassurance au sens de l'assurance) : contresens.",
+      "proposition": "2. Customer reviews: a pillar of reassurance"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Smart charging forms (AI, auto-filling).",
+      "probleme": "« Remplissage » traduit par « charging » : contresens.",
+      "proposition": "Smart form filling (AI, autofill)."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Optimize your control tunnel , especially on mobile.",
+      "probleme": "« Tunnel de commande » rendu par « control tunnel » : en anglais, on dit « checkout process » ou « funnel ». Ailleurs, « shopping tunnel » et « order tunnel » sont aussi des calques.",
+      "proposition": "Optimize your checkout process, especially on mobile."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Cinq alts techniques Webflow.",
+      "proposition": "Alts descriptifs en anglais."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Example: Sephora offers discounts via exit-intent pop-ups — an effective technique for retaining outbound visitors ( Optimonk ).",
+      "probleme": "« Visiteurs en partance » rendu par « outbound visitors » (terme logistique ou téléphonique).",
+      "proposition": "Example: Sephora offers discounts via exit-intent pop-ups, an effective way to retain visitors who are about to leave (OptiMonk)."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Suggest bundles (bundles).",
+      "probleme": "Parenthèse redondante, reprise mot à mot du FR.",
+      "proposition": "Offer bundles."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This type of campaign can increase the conversions of up to 26% ( Shopify ).",
+      "probleme": "Article et préposition calqués (« the conversions of »).",
+      "proposition": "This type of campaign can increase conversions by up to 26% (Shopify)."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Bet on a visually enriched catalog and informative.",
+      "probleme": "Coordination calquée, ici comme dans « Activate targeted promotions and well presented. » et « Value Customer reviews to reassure. ».",
+      "proposition": "Invest in a visually rich, informative catalog."
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Do Better Visuals Really Reduce Dropouts?",
+      "probleme": "Question de FAQ en Title Case (de même « Is Automating Visuals or Personalization Reserved for Large Companies? »), alors que les autres sont en casse de phrase ; « dropouts » est impropre pour un panier abandonné.",
+      "proposition": "Do better visuals really reduce cart abandonment?"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "why call on Orbitvu ?",
+      "probleme": "Minuscule initiale, espace avant le point d'interrogation, tournure calquée.",
+      "proposition": "Why choose Orbitvu?"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Don't forget the mobile experience , which became the majority.",
+      "probleme": "Calque de « devenue majoritaire ».",
+      "proposition": "Don't forget the mobile experience, which now accounts for the majority of traffic."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The solutions Orbitvu allow you to quickly create this promotional content.",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Orbitvu solutions let you quickly create this promotional content."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "No Today, technologies like Orbitvu",
+      "probleme": "Ponctuation manquante après « No ».",
+      "proposition": "No. Today, technologies like Orbitvu"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Integrate reviews directly into product sheets.",
+      "probleme": "« Fiches produits » rendu par « product sheets » ; en e-commerce, on dit « product pages » (plusieurs occurrences, y compris dans la FAQ).",
+      "proposition": "Integrate reviews directly into product pages."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "avec des taux qui peuvent dépasser 70 % selon les secteurs ( Optimonk ).",
+      "source_dans_texte": "https://www.optimonk.com/reduce-shopping-cart-abandonment-rate/",
+      "motif": "Statistique sourcée ; à vérifier dans la page cible.",
+      "ecart_fr_en": "EN « can exceed 70% by sector » : nuance de « selon les secteurs » affaiblie."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "D’après Social Media Examiner , un catalogue enrichi de visuels de qualité retient 35 % de temps en plus l’attention des internautes.",
+      "source_dans_texte": "https://www.optimonk.com/reduce-shopping-cart-abandonment-rate/ (ne correspond pas à la source nommée)",
+      "motif": "La source nommée et la source liée diffèrent.",
+      "ecart_fr_en": "EN incompréhensible (« selected 35% more time the attention »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "60 % des internautes lisent au moins quatre avis avant de se décider ( Sellercraft ).",
+      "source_dans_texte": "https://sellercraft.co/understanding-and-combatting-shopping-cart-abandonment-in-e-commerce-marketplaces-in-2025/",
+      "motif": "Statistique sourcée ; à vérifier dans la page cible.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Exemple : ASOS a repensé son checkout mobile, avec options locales et paiement simplifié. Résultat : +50 % de conversions sur mobile ( Crobox ).",
+      "source_dans_texte": "https://blog.crobox.com/article/reduce-cart-abandonment-in-2025",
+      "motif": "Résultat chiffré d'un tiers ; à vérifier dans la source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Ce type de campagne peut augmenter les conversions de jusqu'à 26 % ( Shopify ).",
+      "source_dans_texte": "https://www.shopify.com/blog/shopping-cart-abandonment",
+      "motif": "Statistique sourcée ; le « jusqu'à » est conservé en EN.",
+      "ecart_fr_en": "Aucun sur le chiffre (« of up to 26% »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu permet aux e-commerçants de produire, en interne, des contenus visuels de qualité constante, en un temps record. Plus besoin d’envoyer les produits en studio. Plus besoin de retoucher manuellement chaque image.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesses absolues (FAQ) : « temps record », « plus besoin de retoucher ».",
+      "ecart_fr_en": "EN « in record time », « No need to manually retouch each image » : identiques."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un visuel interactif, bien intégré, augmente le temps passé sur la page, réduit les retours et booste la conversion. C’est mesurable. Et c’est rentable.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmations de résultat sans donnée (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Aujourd’hui, les technologies comme Orbitvu ou les outils de personnalisation par IA sont accessibles, évolutifs et conçus pour s’intégrer facilement à n’importe quelle plateforme e-commerce.",
+      "source_dans_texte": "aucune",
+      "motif": "Compatibilité universelle affirmée (« n’importe quelle plateforme »).",
+      "ecart_fr_en": "EN « any e-commerce platform » : identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "N’oubliez pas l’ expérience mobile , devenue majoritaire.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation statistique implicite non sourcée.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : le title JSON « E-commerce : 4 fondamentaux pour réduire les abandons de panier » et le slug « 4-fondamentaux » s'opposent au H1 « E-commerce : 5 leviers pour réduire l’abandon de panier » et au metaTitle servi « 👉 Réduire l'abandon de panier : les 4+1 leviers à activer » (emoji). Le corps compte 5 sections numérotées. La description (emoji, « booster votre taux de conversion ») est décalée par rapport au sujet de l'abandon de panier. EN : même incohérence (4 / 5 / 4+1, emoji) ; le slug EN parle de « abandoned shopping carts ».",
+  "structure_fr_en": "Parité : 8 H2, 3 H3, 5 images, 28 puces, 11 liens, 5 FAQ dans le même ordre. L'écart de paragraphes (31 FR / 32 EN) vient des paragraphes vides (\\u200d : 11 en FR, 12 en EN). Pas de section manquante.",
+  "images_alt_legendes": "Cinq images sans légende, toutes avec l'alt « __wf_reserved_inherit » dans les deux langues.",
+  "appellations": "Orbitvu est cité huit fois, avec « Astuce Orbitvu » et « Nos solutions » sous « Pourquoi faire appel à Orbitvu ? » : le site parle à la place d'Orbitvu, sans dire que PackshotCreator en est le distributeur. « Optimonk » s'écrit « OptiMonk ». Aucune mention de PackshotCreator dans le corps ; l'auteur est la marque générique. Auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par la marque générique « PackshotCreator » par le commit 8ae45f63 du 12/06/2026 (choix éditorial délibéré, cohérence E-E-A-T, et non une erreur de traduction) : à arbitrer humainement si l'on souhaite rétablir un auteur nommé.",
+  "recommandation": "retouches",
+  "remarques": "Recommandation par langue : FR, retouches (aligner title, H1 et metaTitle, retirer les emojis, corriger les alts et la source Social Media Examiner, petites corrections) ; EN, retraduction complète depuis le FR. Date de publication 13/09/2024, alors que l'item Webflow a été créé le 28/03/2025 (inférence ObjectId) et que deux sources liées portent « 2025 » dans leur URL (Crobox, Sellercraft) : date incohérente, à corriger ou à compléter par une dateModified. Les sources externes sont nombreuses et réelles en apparence ; leur contenu est à vérifier humainement, sans accès web ici."
+}

@@ -1,0 +1,491 @@
+{
+  "family": "67d18851014c67710270d296",
+  "slugs": {
+    "fr": "comment-shotflow-permet-accelerer-production-contenus-visuels-mode",
+    "en": "how-shotflow-accelerates-fashion-visual-content-production",
+    "de-ch": null
+  },
+  "sujet": "Étude de cas sur les gains de productivité attribués au logiciel de gestion de production visuelle ShotFlow chez le détaillant de mode américain Express.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "La version EN publiée est une traduction automatique du FR, avec des traces objectives : « In the industry of modus , tea Rapidity is essential. » (FR « Dans l'industrie de la mode, la rapidité » : « mode » rendu par modus, « la » par tea) ; « TEA Operational inefficiency » (FR « L'inefficacité opérationnelle ») ; « TEA Artificial intelligence » (FR « L'intelligence artificielle ») ; « Les Marketing opportunities Were lost » (article français resté tel quel) ; « In a Market Too vibrating Than fashion » (FR « aussi dynamique que ») ; « Acceleration of uploads » (FR « mises en ligne ») ; « reduce file search time by three » (FR « diviser par trois »). [Inférence] Le FR porte lui-même des anglicismes et calques systématiques (« assets », « templates de workflows », « social media », « marketeurs », « L'entrée manuelle des métadonnées », « Le manque d'un système centralisé », « Les opportunités marketing étaient perdues »). Il est donc probablement adapté d'une étude de cas anglophone (Express est une entreprise américaine, lien vers shotflow.com), mais aucun texte source n'est cité.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Lisible, mais anglicismes et calques fréquents (assets, workflow, templates, social media, branding, marketeurs, digitales, impactant, « entrée manuelle », « le manque d'un »), majuscules après deux-points dans le H1, le metaTitle et deux intertitres, pourcentages sans espace insécable. Côté éditorial, c'est le point le plus lourd : sept chiffres de gains non sourcés, un chiffre de synthèse (50 % sur le temps de production) sans appui dans le détail, et une FAQ qui ajoute des fonctionnalités (localisation intégrée, droits d'utilisation géolocalisés) et un chiffre (70 %) absents du corps.",
+    "en": "Corps produit par traduction automatique segmentée, souvent incompréhensible : mots français résiduels (« Les »), contresens lexicaux (modus, tea, vibrating, commit, download, publishers), majuscules aléatoires dans presque toutes les phrases, chiffres déformés (« reduce file search time by three »), alts en français. La FAQ EN est en revanche d'un anglais correct et naturel (rédaction séparée). Retraduction complète du corps nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 22,
+    "en": 60,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Réduction de 50% du temps de production des contenus",
+      "probleme": "Chiffre de synthèse sans équivalent dans le détail des résultats. Le corps indique « Le temps de validation a été divisé par deux » (validation, pas production) et « 40% du temps administratif récupéré ». Risque de confusion ou de gonflement du résultat.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Cette centralisation a permis à certaines marques internationales de réduire de 70% le temps consacré à l'adaptation des campagnes entre les différents marchés",
+      "probleme": "Chiffre et fonctionnalités (« fonctionnalités de localisation intégrées », « Le système de droits d'utilisation géolocalisés », « Les métadonnées multilingues sont synchronisées automatiquement ») absents du corps et non sourcés. Risque d'affirmation inventée sur un produit tiers.",
+      "proposition": "Supprimer le chiffre et les fonctionnalités non confirmées, ou les sourcer."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "ShotFlow : Accélérez vos contenus visuels mode",
+      "probleme": "Majuscule après le deux-points ; « accélérer des contenus » est impropre, et « contenus visuels mode » demande « de mode ».",
+      "proposition": "ShotFlow : accélérez la production de vos contenus visuels de mode"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "ShotFlow : Accélérez votre production de contenus visuels mode",
+      "probleme": "Majuscule après le deux-points.",
+      "proposition": "ShotFlow : accélérez votre production de contenus visuels de mode"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "La solution : Comment ShotFlow a transformé le workflow d'Express",
+      "probleme": "Majuscule après le deux-points. Même défaut : « Conclusion : L'automatisation au service de la mode ».",
+      "proposition": "La solution : comment ShotFlow a transformé le workflow d'Express"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les opportunités marketing étaient perdues car la création de contenu ne suivait pas le rythme du marché.",
+      "probleme": "Calque de « marketing opportunities were lost ».",
+      "proposition": "Des opportunités marketing étaient manquées, faute d'une création de contenu au rythme du marché."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "L'entrée manuelle des métadonnées générait de nombreuses erreurs",
+      "probleme": "Calque de « manual entry ».",
+      "proposition": "La saisie manuelle des métadonnées générait de nombreuses erreurs"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le manque d'un système centralisé imposait le recours à des échanges d'e-mails",
+      "probleme": "Calque de « the lack of a centralized system ».",
+      "proposition": "L'absence de système centralisé imposait des échanges d'e-mails"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les photographes pouvaient télécharger instantanément leurs images pour les rendre accessibles aux éditeurs et aux marketeurs.",
+      "probleme": "« Télécharger » est ambigu (le sens est téléverser ou importer) ; « éditeurs » est un faux ami de « editors » (retoucheurs, monteurs) ; « marketeurs » est un anglicisme.",
+      "proposition": "Les photographes pouvaient importer instantanément leurs images pour les rendre accessibles aux retoucheurs et aux équipes marketing."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "40% du temps administratif récupéré au profit des tâches créatives.",
+      "probleme": "Pas d'espace insécable avant « % » en français. Même défaut pour 35%, 30%, 90%, 50% et 70% (FAQ).",
+      "proposition": "40 % du temps administratif récupéré au profit des tâches créatives."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "perturbait leur capacité à produire rapidement des visuels",
+      "probleme": "Le sujet est Express, au singulier (« sa capacité ») ; le texte alterne singulier et pluriel.",
+      "proposition": "perturbait sa capacité à produire rapidement des visuels"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Tableau de bord Shotflow pour fluidifier la production de contenu visuel",
+      "probleme": "« Shotflow » dans les deux alts, « ShotFlow » dans tout le corps (24 occurrences). La graphie officielle est à arbitrer (le dépôt compte 252 « ShotFlow » contre 6 « Shotflow »).",
+      "proposition": "Tableau de bord ShotFlow pour fluidifier la production de contenu visuel"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "In the industry of modus , tea Rapidity is essential.",
+      "probleme": "Première phrase de l'article inintelligible : « mode » rendu par modus, « la » par tea. « modus » est en plus l'ancre d'un lien.",
+      "proposition": "In the fashion industry, speed is essential."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Brands Need to Produce High quality visuals In record time to keep up with rapidly changing trends.",
+      "probleme": "Majuscules aléatoires (segments traduits isolément).",
+      "proposition": "Brands need to produce high-quality visuals in record time to keep up with fast-changing trends."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "a Smooth Coordination Between creative teams",
+      "probleme": "Majuscules aléatoires.",
+      "proposition": "smooth coordination between creative teams"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "TEA Operational inefficiency Was disrupting their ability to produce visuals quickly",
+      "probleme": "« L' » rendu par TEA ; phrase incompréhensible.",
+      "proposition": "Operational inefficiency was disrupting its ability to produce visuals quickly"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "In a Market Too vibrating Than fashion",
+      "probleme": "« Aussi dynamique que » traduit mot à mot : non-sens.",
+      "proposition": "In a market as dynamic as fashion"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "To ensure a Effective Content Production , it is essential to combine Speed of Execution And Operational flexibility",
+      "probleme": "Article fautif et majuscules aléatoires.",
+      "proposition": "To ensure efficient content production, it is essential to combine speed of execution and operational flexibility"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Les Marketing opportunities Were lost because content creation did not keep pace with the market.",
+      "probleme": "Article français « Les » resté dans le texte anglais.",
+      "proposition": "Marketing opportunities were missed because content creation could not keep pace with the market."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Manual planning processes, lengthy validations, and communication errors exceeded Timeframes",
+      "probleme": "Sens perdu : ce sont les délais qui étaient dépassés, du fait de ces processus. « Systématiquement » a disparu.",
+      "proposition": "Manual planning, lengthy approvals and miscommunication meant deadlines were systematically missed"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "were managed manually, continuously down the entire process",
+      "probleme": "« Ralentissant l'ensemble du processus » rendu par un non-sens.",
+      "proposition": "were handled manually, slowing down the entire process"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Automating file renaming, metadata tagging, and commit tracking has eliminated repetitive tasks.",
+      "probleme": "« Suivi des validations » rendu par commit tracking (vocabulaire du développement logiciel).",
+      "proposition": "Automating file renaming, metadata tagging and approval tracking eliminated repetitive tasks."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "40% Administrative time recovered in favor of creative tasks.",
+      "probleme": "Agrammatical.",
+      "proposition": "40% of administrative time freed up for creative work."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Acceleration of uploads thanks to optimized planning",
+      "probleme": "« Mises en ligne » (lancements de campagnes) rendu par uploads.",
+      "proposition": "Faster go-lives thanks to optimized planning"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One Real-time dashboard Offered teams a live follow-up of the photo shoots.",
+      "probleme": "« Un » rendu par One, majuscules aléatoires, calque de « suivi ».",
+      "proposition": "A real-time dashboard let teams track photo shoots live."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The Validation Time Was Divided by Two",
+      "probleme": "Title Case aléatoire et calque de « divisé par deux ».",
+      "proposition": "Approval time was halved."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "TEA Artificial intelligence Allowed automatic labeling of images.",
+      "probleme": "« L' » rendu par TEA.",
+      "proposition": "Artificial intelligence enabled automatic image tagging."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Reduction of 35% asset review cycles.",
+      "probleme": "Agrammatical. Même défaut : « Reduction of 90% metadata errors. » et « Reduction of 50% Content production time ».",
+      "proposition": "35% fewer asset review cycles."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photographers could instantly download their images to make them available to publishers and marketers.",
+      "probleme": "Sens inversé (download au lieu de upload) et faux ami « éditeurs » rendu par publishers.",
+      "proposition": "Photographers could instantly upload their images to make them available to editors and marketers."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "guaranteeing a accurate identification images.",
+      "probleme": "Agrammatical.",
+      "proposition": "ensuring accurate image identification."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "A better categorization of assets made it possible to reduce file search time by three.",
+      "probleme": "« Diviser par trois » rendu par « reduce by three », qui se lit « retrancher trois » : le chiffre est déformé.",
+      "proposition": "Better asset categorization cut file search time to a third."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Optimized asset management with search three times as fast Files",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Optimized asset management, with file searches three times faster"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "brands need solutions Smart and scalable to remain competitive",
+      "probleme": "Adjectifs postposés à la française, avec majuscule.",
+      "proposition": "brands need smart, scalable solutions to remain competitive"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Tableau de bord Shotflow pour fluidifier la production de contenu visuel",
+      "probleme": "Les 2 alts de la page EN sont en français (aussi « Application mobile Shotflow pour faciliter la mise à jour et la productivité en création de contenus visuels »).",
+      "proposition": "ShotFlow dashboard for streamlining visual content production"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "has encountered several challenges in its content production",
+      "probleme": "Temps verbal : il s'agit d'une situation passée et révolue.",
+      "proposition": "encountered several challenges in its content production"
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "The Main Difficulties Before Automation",
+      "probleme": "Title Case incohérent avec les autres intertitres de l'article, en casse de phrase.",
+      "proposition": "The main challenges before automation"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "worked in silo",
+      "probleme": "Pluriel attendu.",
+      "proposition": "worked in silos"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "led to High costs",
+      "probleme": "Majuscule parasite, comme dans « increased the Risk of errors », « a Homogeneous image » et « complicated the File Access ».",
+      "proposition": "led to high costs"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Marketing was able to validate assets directly into the system",
+      "probleme": "Préposition.",
+      "proposition": "Marketing could approve assets directly in the system"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Conclusion: Automation at the service of fashion",
+      "probleme": "Calque de « au service de ».",
+      "proposition": "Conclusion: automation serving fashion"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "ShotFlow: Accelerate your fashion visual content",
+      "probleme": "« Accelerate your content » est impropre ; le H1 diverge du title et du metaTitle (« production of »).",
+      "proposition": "ShotFlow: speed up your fashion visual content production"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Fewer meetings and 30% reduction of delays in workflows.",
+      "probleme": "Construction non idiomatique.",
+      "proposition": "Fewer meetings and 30% fewer workflow delays."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "40% du temps administratif récupéré au profit des tâches créatives.",
+      "source_dans_texte": "aucune (seul lien : page d'accueil https://www.shotflow.com/)",
+      "motif": "Chiffre d'étude de cas attribué à Express, sans source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le temps de validation a été divisé par deux",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction de 35% des cycles de révision des assets.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Moins de réunions et 30% de réduction des retards dans les workflows.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une meilleure catégorisation des assets a permis de diviser par trois le temps de recherche des fichiers.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": "EN « reduce file search time by three » : le chiffre est déformé (lecture « moins trois »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction de 90% des erreurs de métadonnées.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé, répété dans les résultats (« Diminution des erreurs de métadonnées de 90% »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction de 50% du temps de production des contenus",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de synthèse non étayé par le détail (seul le temps de validation est « divisé par deux »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cette centralisation a permis à certaines marques internationales de réduire de 70% le temps consacré à l'adaptation des campagnes entre les différents marchés",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre et fonctionnalités (localisation, droits géolocalisés) présents seulement dans la FAQ.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "ShotFlow est la clé d'une production de contenu plus rapide et plus efficace.",
+      "source_dans_texte": "aucune",
+      "motif": "Formule promotionnelle absolue.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Chaque produit en ligne était accompagné d'un contenu marketing parfaitement adapté.",
+      "source_dans_texte": "aucune",
+      "motif": "Absolu (« chaque », « parfaitement »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Aux États-Unis, les marques de mode font face à de nombreux ralentissements liés aux processus d'approbation",
+      "source_dans_texte": "aucune",
+      "motif": "Généralisation sectorielle non sourcée.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Comment ShotFlow permet d'accélérer votre production de contenus visuels mode », H1 « ShotFlow : Accélérez vos contenus visuels mode » (majuscule après deux-points, formulation impropre), metaTitle « ShotFlow : Accélérez votre production de contenus visuels mode » (majuscule). La description fait 175 caractères et se termine par un fragment (« Solutions d'automatisation efficaces. »). L'ensemble est cohérent avec le corps, mais aucun élément n'annonce qu'il s'agit d'une étude de cas Express. EN : title et metaTitle corrects, H1 impropre (« Accelerate your fashion visual content »).",
+  "structure_fr_en": "Parité : 5 H2, 10 H3, 16 paragraphes, 40 puces, 2 images et 5 FAQ, dans le même ordre. L'EN compte 900 mots contre 1 113 en FR (traduction télégraphique). La FAQ EN est bien rédigée, contrairement au corps : rédaction ou traduction distincte. Lien « mode » → /fr/industrie, mais EN « modus » → /en/industrie/mode-textile.",
+  "images_alt_legendes": "2 images, mêmes fichiers, sans légende. Alts en français sur les deux pages, avec la graphie « Shotflow » contraire au corps.",
+  "appellations": "« ShotFlow » dans le corps contre « Shotflow » dans les alts : graphie officielle à arbitrer. Express, nommé comme client et lié à express.com : vérifier l'autorisation de citer la marque et l'origine de l'étude de cas. Le lien entre PackshotCreator et ShotFlow n'est jamais expliqué, alors que le CTA final « Découvrez comment ShotFlow peut accélérer votre production de contenu » renvoie vers /fr/contact (contact PackshotCreator). Le statut commercial (distribution de ShotFlow ?) est à valider. Pas de remplacement de nom propre (similarité 1.0 avec l'import).",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Par langue : décider d'abord si l'étude de cas est conservée et si ses chiffres peuvent être sourcés (étude ShotFlow d'origine ?). Ensuite, FR en réécriture partielle (anglicismes, chiffre de synthèse 50 %, FAQ 5 à purger) et EN en retraduction complète du corps (FAQ EN réutilisable). [Connaissance externe, non vérifiée ici faute d'accès web] Express Inc. a fait l'objet d'une procédure de faillite aux États-Unis en 2024 suivie d'une reprise : l'article (daté du 02/01/2025) présente Express comme un « grand détaillant de mode » sans contexte ; à vérifier avant republication. Signatures de calque confirmées : « digitales », « impactant », « opportunités », « workflow ». L'anomalie « majuscule_milieu_phrase » EN est confirmée (« In record », « A c… », etc.)."
+}

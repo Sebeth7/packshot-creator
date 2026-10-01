@@ -1,0 +1,407 @@
+{
+  "family": "670e262cabb4626493da23e4",
+  "slugs": {
+    "fr": "comment-avoir-meilleure-photo-produit-e-commerce",
+    "en": "how-to-e-commerce-product-photography",
+    "de-ch": null
+  },
+  "sujet": "Dix conseils pratiques pour réussir ses photos produit e-commerce (principes du packshot, nombre d'images, angles, détails, lifestyle, dimensions, optimisation web et SEO, matériel), avec une FAQ orientée studios Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des résidus et calques du français : « La quality of your visuals can play a decisive role » (déterminant français) ; « she returns it desirable, clear and incurring » (= « elle le rend désirable, clair et engageant » : « rend » lu comme « rendre/returns », « engageant » rendu par « incurring ») ; « One 360 degree animation » (« Une » rendu par « One ») ; « natural referencing or SEO (Search Engine Optimization) in English » (= « référencement naturel… en anglais ») ; « Is of Show how the product is installed » (= « est de montrer ») ; « product sheet » (= « fiche produit ») ; textes alternatifs en français.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif, clair et publiable après retouches ponctuelles : trois fautes d'accord ou de conjugaison (« écrit », « prête », « nous contactez »), un alt mal accordé, « Téléchargez une sitemap » (sens et genre), graphies WordPress et Yoast SEO, deux alts de remplacement Webflow, intertitres 5 et 7 hétérogènes. Un peu plus de cinq corrections, mais toutes mineures et localisées.",
+    "en": "Traduction automatique visible et non relue : introduction incompréhensible (« she returns it desirable, clear and incurring »), déterminants et ordre des mots français, majuscules au milieu des phrases (« Is of Show », « How does »), calques (« natural referencing », « product sheet », « in English »), contresens (« Download a Sitemap »), mots collés réels (« tooptimize », « touse »), alts en français, liens vers fr.wordpress.org. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 13,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une série d'articles que nous avons écrit à l'attention des débutants",
+      "probleme": "Accord du participe passé avec le COD placé avant (« que » = la série ou les articles).",
+      "proposition": "une série d'articles que nous avons écrits à l'attention des débutants"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "des images optimisées et prête à publier sur votre site e-commerce",
+      "probleme": "Accord : « prêtes ».",
+      "proposition": "des images optimisées et prêtes à publier sur votre site e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "ou à nous contactez si vous souhaitez aller plus loin !",
+      "probleme": "Infinitif attendu après « à ».",
+      "proposition": "ou à nous contacter si vous souhaitez aller plus loin !"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "n'hésitez pas à consulter notre guide plus poussé sur la photographie packshot",
+      "probleme": "Renvoi sans lien : le guide annoncé n'est pas lié (même défaut en EN).",
+      "proposition": "Ajouter le lien vers le guide de la photographie packshot déjà cité au point 1."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Téléchargez une sitemap de vos images",
+      "probleme": "« Télécharger » est ambigu (download) ; un sitemap se soumet aux moteurs de recherche. « Sitemap » est usuellement masculin. L'EN en a tiré un contresens (« Download a Sitemap »).",
+      "proposition": "Soumettez un sitemap de vos images"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "de nombreux plugins SEO sur Wordpress, comme YoastSEO ou Rank Math SEO",
+      "probleme": "Graphies officielles : WordPress, Yoast SEO.",
+      "proposition": "de nombreux plugins SEO pour WordPress, comme Yoast SEO ou Rank Math SEO"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeurs techniques Webflow utilisées comme texte alternatif (« __wf_reserved_inherit » pour l'image du point 10, « __wf_reserved_decorative » pour celle du point 8) : lues telles quelles par les lecteurs d'écran, sans valeur SEO. Identique en EN.",
+      "proposition": "Rédiger des alts descriptifs (ex. point 8 : « compression d'une photo produit pour le web » ; point 10 : description réelle de l'image après vérification visuelle)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Photo lifestyle mobilier réalisé avec studio packshot",
+      "probleme": "Accord : « réalisée ».",
+      "proposition": "Photo lifestyle de mobilier réalisée avec un studio packshot"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "7. Informez sur les dimensions de votre produit",
+      "probleme": "Construction maladroite (« informer » appelle un complément de personne).",
+      "proposition": "7. Indiquez les dimensions de votre produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le format JPEG est le format d'image le plus couramment utilisé sur le web car il offre une bonne qualité d'image tout en étant facile à compresser.",
+      "probleme": "Information datée : n'évoque ni WebP ni AVIF (le site lui-même sert ses images en AVIF).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "La fonction \"image fantôme\" garantit un positionnement cohérent",
+      "probleme": "Guillemets droits anglais au lieu de guillemets français ; « garantit » est un claim.",
+      "proposition": "La fonction « image fantôme » facilite un positionnement cohérent"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "You are looking to increase sales of your site? La quality of your visuals can play a decisive role. One Well thought-out product photo does not just present an article: she returns it desirable, clear and incurring.",
+      "probleme": "Première phrase de l'article : déterminant français, « One » pour « Une », « she returns it » (contresens sur « elle le rend »), « incurring » pour « engageant ». Incompréhensible.",
+      "proposition": "Looking to increase sales on your website? The quality of your visuals can play a decisive role. A well-thought-out product photo does more than present an item: it makes it desirable, clear and engaging."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Here it is 10 proven tips to improve your e-commerce visuals",
+      "probleme": "Calque de « Voici ».",
+      "proposition": "Here are 10 proven tips to improve your e-commerce visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it is essential to respect the best practices of packshot photography, including here are some of the main principles:",
+      "probleme": "Calque de « dont voici » : phrase agrammaticale.",
+      "proposition": "it is essential to follow the best practices of packshot photography. Here are some of the main principles:"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "mastering The lighting With a neutral color temperature to guarantee a faithful return",
+      "probleme": "Majuscules parasites ; « restitution » rendu par « return ».",
+      "proposition": "Control the lighting with a neutral color temperature to ensure accurate color rendering"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One 360 degree animation can also bring real added value to your product sheet!",
+      "probleme": "« Une » rendu par « One » ; « fiche produit » calqué en « product sheet ».",
+      "proposition": "A 360-degree animation can also add real value to your product page!"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Another idea to incorporate into your e-commerce product photos Is of Show how the product is installed if it is not intuitive, or How does the product work afterwards.",
+      "probleme": "Calque de « est de montrer », majuscules parasites, interrogative insérée dans une affirmative.",
+      "proposition": "another idea for your e-commerce product photos is to show how the product is installed, if this is not intuitive, or how it works afterwards."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Have images with the right dimensions is also important for optimizing your website.",
+      "probleme": "Infinitif français calqué : gérondif attendu.",
+      "proposition": "Having images with the right dimensions is also important for optimizing your website."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "9. Use them to boost your natural referencing (SEO)",
+      "probleme": "« Référencement naturel » calqué en « natural referencing », expression inexistante en anglais.",
+      "proposition": "9. Use them to boost your SEO"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "thanks to natural referencing or SEO (Search Engine Optimization) in English",
+      "probleme": "« en anglais » conservé dans un texte anglais : absurde.",
+      "proposition": "thanks to search engine optimization (SEO)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Download a Sitemap of your images",
+      "probleme": "Contresens : un sitemap se soumet (submit) aux moteurs, il ne se télécharge pas.",
+      "proposition": "Submit an image sitemap"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You have at the very least need a good camera",
+      "probleme": "Phrase agrammaticale.",
+      "proposition": "At the very least, you need a good camera"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This material is designed to make the easy, fast and accessible photo shooting for everyone.",
+      "probleme": "Ordre des mots français ; « matériel » rendu par « material ».",
+      "proposition": "This equipment is designed to make photography easy, fast and accessible to everyone."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "so do not hesitate to consult our A more in-depth guide to packshot photography or at Contact us if you want to go further!",
+      "probleme": "Segments mal découpés (« our A more », « or at Contact us »).",
+      "proposition": "so feel free to read our more in-depth guide to packshot photography or contact us if you want to go further!"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it is often enough tooptimize and compress product photos for your e-commerce",
+      "probleme": "Mots collés réels dans le HTML servi (pas d'espace avant <strong>) : « tooptimize » ici, « imperative touse quality equipment » au point 10.",
+      "proposition": "it is often enough to optimize and compress the product photos on your online store"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "photo produit e-commerce d'un fauteuil",
+      "probleme": "Alts en français dans la version EN (4 alts sur 6 ; les 2 autres sont des valeurs Webflow).",
+      "proposition": "e-commerce product photo of an armchair"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "for beginners and less beginners",
+      "probleme": "Calque de « des débutants et des moins débutants ».",
+      "proposition": "for beginners and more experienced photographers"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "That's where the lifestyle photography intervenes.",
+      "probleme": "Calque de « intervient ».",
+      "proposition": "That's where lifestyle photography comes in."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "as if to show more closely the fabric of a garment or the delicate carvings on a pendant",
+      "probleme": "« comme pour » (= par exemple) mal rendu ; « gravures » = engravings, pas carvings.",
+      "proposition": "for example to show the fabric of a garment or the delicate engravings on a pendant up close"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Having photos of selling products is one thing",
+      "probleme": "Contresens sur « photos de produits vendeuses ».",
+      "proposition": "Having product photos that sell is one thing"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "many SEO plugins on Wordpress, such as YoastSEO or Rank Math SEO",
+      "probleme": "Liens vers fr.wordpress.org dans la version anglaise ; graphies WordPress, Yoast SEO.",
+      "proposition": "many WordPress SEO plugins, such as Yoast SEO or Rank Math SEO (liens wordpress.org)"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This type of studio guarantees you a extremely high quality standard, all with disconcerting ease.",
+      "probleme": "Article « a » fautif devant voyelle ; « disconcerting » maladroit.",
+      "proposition": "This type of studio delivers an extremely high quality standard with remarkable ease."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "How do I get selling photos for my e-commerce?",
+      "probleme": "Calque de « photos vendeuses » et de « mon e-commerce ».",
+      "proposition": "How can I get product photos that sell for my online store?"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "perfect cropping, accurate colors, and optimal sharpness",
+      "probleme": "« Détourage » rendu par « cropping » (recadrage).",
+      "proposition": "perfect clipping (background removal), accurate colors and optimal sharpness"
+    },
+    {
+      "langue": "en",
+      "categorie": "claim_renforce",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "for creating the best-selling e-commerce product photo and boosting your online sales!",
+      "probleme": "Le FR dit « créer une meilleure photo produit » ; l'EN promet « the best-selling » (superlatif ajouté). Répétition de « e-commerce product photo(graphy) ».",
+      "proposition": "10 foolproof tips for creating better e-commerce product photos and boosting your online sales!"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Les 10 astuces infaillibles pour créer une photo de produit vendeuse !",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif « infaillibles » (title et H1).",
+      "ecart_fr_en": "EN : « 10 foolproof tips »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Ce type de studio vous garantit un standard de qualité extrêmement élevé",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie de qualité.",
+      "ecart_fr_en": "EN : « guarantees you a extremely high quality standard »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vous pouvez produire des photos de produits e-commerce de qualité professionnelle en quelques minutes seulement",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai.",
+      "ecart_fr_en": "EN : « in just a few minutes »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel Orbitvu Station automatise la post-production pour garantir des photos de haute qualité : détourage parfait, couleurs fidèles et netteté optimale.",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie et « détourage parfait ».",
+      "ecart_fr_en": "EN : « perfect cropping » (terme faux)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les studios automatisés Orbitvu intègrent des paramètres préconfigurés pour les principales plateformes e-commerce.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité produit à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La fonction \"image fantôme\" garantit un positionnement cohérent pour une présentation professionnelle.",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Donner ce type d'indications claires à vos clients vous évitera par ailleurs bien des retours et réclamations.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de réduction des retours, non chiffrée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "en",
+      "extrait": "for creating the best-selling e-commerce product photo",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif ajouté en EN.",
+      "ecart_fr_en": "FR : « créer une meilleure photo produit e-commerce »"
+    }
+  ],
+  "titre_h1_meta": "FR : title « Les 10 astuces infaillibles pour créer une photo de produit vendeuse ! », H1 « Photo produit e-commerce : les 10 astuces infaillibles », metaTitle « Photo produit e-commerce : 10 astuces pour une photo efficace ! », description cohérente ; le corps annonce « 10 conseils éprouvés » et en donne dix : cohérent. EN : title, H1 et metaTitle cohérents entre eux (répétition de « photo » dans le metaTitle) ; la description ajoute « best-selling » et répète « e-commerce product photo ».",
+  "structure_fr_en": "Parité : 10 H2, 35 paragraphes, 11 puces, 6 images, 5 questions de FAQ, même ordre. 12 paragraphes vides (ZWJ) dans les deux langues. Différences : l'image du point 10 n'est pas la même (FR 67dd85edd8fd350b34495f9a, EN 67dbae79db22afe6492e916e) ; le lien « animation à 360 degrés » pointe vers /fr/studio-photo/selecteur-machines en FR et vers /en/studios-photo-automatises en EN ; le « guide plus poussé » final n'est lié dans aucune langue.",
+  "images_alt_legendes": "Deux alts sur six sont des valeurs techniques Webflow (« __wf_reserved_decorative », « __wf_reserved_inherit ») dans les deux langues. Alts FR : accord fautif (« réalisé »), alt vague (« zoom produit qualitatif »). Les 4 alts descriptifs de la version EN sont en français. Pas de légende.",
+  "appellations": "Orbitvu et Orbitvu Station (FAQ uniquement), WordPress écrit « Wordpress », Yoast SEO écrit « YoastSEO ». Aucun nom de personne dans le corps ; auteur passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63).",
+  "recommandation": "retraduction complète",
+  "remarques": "FR : retouches seulement. EN : retraduction complète depuis le FR corrigé. Article daté du 06/03/2024 : l'affirmation sur le JPEG est datée. Les questions de FAQ sont génériques mais leurs réponses ne parlent que d'Orbitvu (« Comment obtenir des photos vendeuses pour mon e-commerce ? » → studios Orbitvu) : à rééquilibrer ou assumer. Les liens Yoast et Rank Math de la version EN visent fr.wordpress.org. Les espaces avant virgule de l'extrait sont des artefacts d'extraction, mais les mots collés « tooptimize » et « touse » sont réels. Mineures FR non détaillées : alt vague « zoom produit qualitatif » ; intertitre « 5. Incorporer une ou plusieurs photos lifestyle » à l'infinitif, alors que les autres sont à l'impératif (« Incorporez »)."
+}

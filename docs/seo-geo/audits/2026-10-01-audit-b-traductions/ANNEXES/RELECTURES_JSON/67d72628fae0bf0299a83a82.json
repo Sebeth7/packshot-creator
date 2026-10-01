@@ -1,0 +1,508 @@
+{
+  "family": "67d72628fae0bf0299a83a82",
+  "slugs": {
+    "fr": "pourquoi-choisir-orbitvu-photographie-packshot",
+    "en": "why-choose-orbitvu-for-packshot-photography",
+    "de-ch": null
+  },
+  "sujet": "Article promotionnel présentant les difficultés courantes de la photographie de produit (lumière, paramétrage, retouches, homogénéité, compétences) et les studios automatisés Orbitvu avec le logiciel Orbitvu Station comme réponse.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des calques et des découpages qui ne s'expliquent que par une source française : « represent a certain cost » (calque fautif de « représenter un coût certain », dont le sens est inversé) ; « In addition, you benefit from the installation of the software Orbitvu Station of Pre-registered templates » (reprend mot à mot la syntaxe de « vous bénéficiez à l’installation du logiciel Orbitvu Station de Templates pré-enregistrés ») ; « watchmaking, jewellery, jewellery and silverware » (bijouterie et joaillerie rendues toutes deux par jewellery) ; « One automated photo studio » (article indéfini « Un » pris pour un numéral) ; « If you have the misfortune to switch » (« Si vous avez le malheur de ») ; « either with a subscription » (« soit… soit ») ; « Framing is also important : » (espace française avant les deux-points) ; « or even Jagermeister » (« ou encore ») ; les 8 textes alternatifs de l'EN sont restés en français.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Langue native et fluide, mais title tronqué (« des marque »), H1 incomplet, six espaces manquantes après un point dues à des concaténations Webflow, plusieurs anglicismes (« challenge », « Templates », « triviale », « boostez »), et des affirmations commerciales non sourcées ou incohérentes (« plus de 10 ans d’expérience » pour une société « Fondée en 2004 »). Plus de cinq corrections, mais aucune réécriture de fond : une passe de retouches suffit. Autres retouches mineures non listées : « etc... », « 6000 » (6 000), « clé-en-main » / « clés en main », « studios photos », « clin d’oeil » (œ).",
+    "en": "Traduction automatique segmentée, visible : majuscules en milieu de phrase (« However, There », « The Variations », « to Plan », « of Pre-registered »), segments dupliqués (« Mercedes-Benz, Mercedes-Benz », « from America to Japan to France, from America to Japan, via France », « jewellery, jewellery »), syntaxe cassée (« does not allow automate », « of save each », « Ideal for highlight shoes »), contresens (« photography solutions of automated, efficient and high-quality products », « a certain cost »), double ponctuation, terminologie fautive (« Clipping » pour détourage) et 8 textes alternatifs sur 8 en français. La FAQ, ajoutée plus tard, est nettement meilleure que le corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 18,
+    "en": 55,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "Photographie de produit : Comment Orbitvu est devenu le partenaire incontournable des marque",
+      "probleme": "Title tronqué (« des marque » sans s, phrase coupée) et majuscule fautive après les deux-points.",
+      "proposition": "Photographie de produit : comment Orbitvu est devenu le partenaire incontournable des marques"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Comment Orbitvu est devenu le partenaire incontournable",
+      "probleme": "H1 incomplet (partenaire de qui ?) ; il ne reprend ni l'angle du metaTitle (« Pourquoi choisir Orbitvu ») ni le complément « des marques » du title.",
+      "proposition": "Comment Orbitvu est devenu le partenaire incontournable des marques en photographie de produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "C'est dans ce contexte que Orbitvu s'est imposé comme un partenaire incontournable pour des marques telles que Bosch, Clarks, Mercedes-Benz, Seiko, Chanel ou encore Jagermeister.Fondée en 2004",
+      "probleme": "Élision manquante (« que Orbitvu »), espace manquante après le point (« Jagermeister.Fondée », présent tel quel dans le HTML) et nom de marque mal orthographié (Jägermeister).",
+      "proposition": "C'est dans ce contexte qu'Orbitvu s'est imposé comme un partenaire incontournable pour des marques telles que Bosch, Clarks, Mercedes-Benz, Seiko, Chanel ou encore Jägermeister. Fondée en 2004"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "s'il faut les ajuster.Cette problématique prend également de l'ampleur",
+      "probleme": "Espace manquante après le point (même défaut dans « article dédié .Le seul réglage » [HTML : « dédié.Le »], « photos de produits…Au-delà », « logiciel de retouche complexe.Il existe », « cohérence .Les variations » [HTML : « cohérence.Les »], « opérationnel !Nous vous proposons »). Six occurrences au total.",
+      "proposition": "s'il faut les ajuster. Cette problématique prend également de l'ampleur"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une animation à 360 degrés peut ainsi être un véritable challenge avec un studio photo traditionnel",
+      "probleme": "Anglicisme « challenge ».",
+      "proposition": "une animation à 360 degrés peut ainsi être un véritable défi avec un studio photo traditionnel"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Or, les logiciels gratuits ne permettent pas d' automatiser ou de \"batcher\" ses tâches pour vous faire gagner du temps",
+      "probleme": "Rupture de personne (« ses tâches… vous faire gagner ») et guillemets droits au lieu des guillemets français.",
+      "proposition": "Or, les logiciels gratuits ne permettent pas d'automatiser ou de « batcher » vos tâches pour vous faire gagner du temps"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "vous bénéficiez à l’installation du logiciel Orbitvu Station de Templates pré-enregistrés",
+      "probleme": "Majuscule fautive et anglicisme (« Templates ») ; construction lourde (« bénéficiez à l'installation … de »).",
+      "proposition": "Dès l'installation, le logiciel Orbitvu Station vous fournit des modèles (templates) préenregistrés"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "La réalisation de vidéos ou d’animations à 360 degrés devient alors particulièrement triviale.",
+      "probleme": "« Trivial » au sens anglais de « très simple » : faux ami en français courant.",
+      "proposition": "La réalisation de vidéos ou d’animations à 360 degrés devient alors très simple."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Grâce à leur technologie brevetée, ils simplifient et accélèrent",
+      "probleme": "Orbitvu est traité au singulier dans tout l'article (« Orbitvu s'est ainsi imposé »), puis au pluriel ici.",
+      "proposition": "Grâce à sa technologie brevetée, Orbitvu simplifie et accélère"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Fort de ses plus de 10 ans d’expérience dans le milieu",
+      "probleme": "Incohérent avec « Fondée en 2004 » dans l'introduction (plus de 20 ans à la date de l'article) ; fait daté à revoir.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une fonctionnalité précieuse pour le secteur de l'horlogerie, bijouterie, joaillerie et orfèvrerie",
+      "probleme": "Articles manquants dans l'énumération.",
+      "proposition": "une fonctionnalité précieuse pour l'horlogerie, la bijouterie, la joaillerie et l'orfèvrerie"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "However, There are a lot of problems that can occur during product photography",
+      "probleme": "Majuscule en milieu de phrase : le segment en gras a été traduit isolément.",
+      "proposition": "However, many problems can arise during product photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "brands such as Bosch, Clarks, Mercedes-Benz, Mercedes-Benz, Seiko, Chanel or even Jagermeister.Founded in 2004",
+      "probleme": "Marque dupliquée, calque « or even » (« ou encore »), espace manquante après le point, Jägermeister mal orthographié.",
+      "proposition": "brands such as Bosch, Clarks, Mercedes-Benz, Seiko, Chanel and Jägermeister. Founded in 2004"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "this Polish company offers photography solutions of automated, efficient and high-quality products",
+      "probleme": "Contresens dû au découpage par le lien : les adjectifs qualifient les produits et non les solutions.",
+      "proposition": "this Polish company offers automated, efficient, high-quality product photography solutions"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The settings required can be numerous and complex. : it is essential",
+      "probleme": "Double ponctuation (« . : ») créée par une traduction segment par segment.",
+      "proposition": "The settings required can be numerous and complex: it is essential"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Setting up all this equipment can be tedious and time-consuming. , sometimes requiring hours",
+      "probleme": "Double ponctuation (« . , ») ; le HTML contient bien « time-consuming.</strong>, ».",
+      "proposition": "Setting up all this equipment can be tedious and time-consuming, sometimes requiring hours"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "you will often have to do other things further changes to the image , and the Clipping is a good example",
+      "probleme": "Phrase agrammaticale (deux segments juxtaposés), article et majuscule fautifs devant « Clipping ».",
+      "proposition": "you will often have to make further changes to the image, background removal being a good example"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "But the Clipping is becoming particularly arduous on other products",
+      "probleme": "« Clipping » ne désigne pas le détourage en anglais (le terme évoque l'écrêtage des hautes lumières) : on dit « background removal » ou « clipping path ». Temps verbal fautif.",
+      "proposition": "But background removal becomes particularly difficult with other products"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "However, free software does not allow automate or to “batch” your tasks to save you time",
+      "probleme": "Agrammatical (« does not allow automate »).",
+      "proposition": "However, free software does not let you automate or batch your tasks to save time"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "either with a subscription to be paid every month",
+      "probleme": "« either… either » calqué sur « soit… soit ».",
+      "proposition": "or with a monthly subscription to pay"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "lack harmony and coherence .The Variations in light can affect",
+      "probleme": "Majuscule en milieu de phrase après un segment en gras, espace manquante après le point (HTML : « coherence</strong>.The »).",
+      "proposition": "lack harmony and consistency. Variations in light can affect"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is therefore essential for you to Plan your product photography carefully",
+      "probleme": "Majuscule en milieu de phrase (segment en gras traduit isolément).",
+      "proposition": "It is therefore essential to plan your product photography carefully"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "but it can quickly represent a certain cost",
+      "probleme": "Contresens : « un coût certain » signifie « un coût non négligeable », alors que « a certain cost » veut dire « un certain coût, indéterminé ».",
+      "proposition": "but this can quickly become expensive"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "from America to Japan to France, from America to Japan, via France",
+      "probleme": "Segment dupliqué par la traduction automatique.",
+      "proposition": "from the Americas to Japan, by way of France"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "a team of more than 20 engineers competent and dedicated",
+      "probleme": "Ordre des mots calqué sur le français (adjectifs postposés).",
+      "proposition": "a team of more than 20 skilled, dedicated engineers"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One automated photo studio allows you to take product photographs with extreme precision and quality.",
+      "probleme": "L'article indéfini « Un » a été rendu par le numéral « One ».",
+      "proposition": "An automated photo studio lets you take product photographs with outstanding precision and quality."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In addition, you benefit from the installation of the software Orbitvu Station of Pre-registered templates",
+      "probleme": "Syntaxe française reproduite mot à mot, majuscule en milieu de phrase, « pre-registered » impropre (préréglés, préenregistrés : « preset »).",
+      "proposition": "In addition, Orbitvu Station comes with preset templates as soon as it is installed"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The product can also be placed on a turntable. . This allows",
+      "probleme": "Double point (HTML : « turntable.</strong>. »).",
+      "proposition": "The product can also be placed on a turntable. This allows"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ideal for highlight shoes at 360° for example.",
+      "probleme": "Agrammatical (verbe à la place d'un gérondif ; ancre de lien tronquée).",
+      "proposition": "Ideal for showcasing shoes in 360°, for example."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu studios are accompanied by a intuitive software Orbitvu Station",
+      "probleme": "« a intuitive » ; « software » est indénombrable et ne prend pas l'article ; ordre des mots calqué.",
+      "proposition": "Orbitvu studios come with Orbitvu Station, an intuitive software application"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "But also of save each of your settings (light, placement, settings)",
+      "probleme": "« of save » est agrammatical ; « settings » est répété dans la parenthèse.",
+      "proposition": "You can also save all your settings (lighting, placement, adjustments)"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "watchmaking, jewellery, jewellery and silverware",
+      "probleme": "« Jewellery » dupliqué (bijouterie et joaillerie confondues). Orthographe britannique, alors que l'article est en anglais américain (« color », « license »).",
+      "proposition": "watchmaking, fashion and fine jewelry, and silverware"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Présentation homogène de packshot chaussure pour e-commerce",
+      "probleme": "Les 8 textes alternatifs de l'EN sont en français (y compris « résultat photographie rouge à lèvres pour e-commerce », « détourage photo objet transparent », « Alphashot XXL, l'un des studios photos automatisés Orbitvu », « le logiciel Orbitvu Station vous aidera à prendre de meilleures photos de produit plus rapidement »).",
+      "proposition": "Consistent shoe packshots for e-commerce"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "If you have the misfortune to switch from a very light or reflective product",
+      "probleme": "Calque de « Si vous avez le malheur de ».",
+      "proposition": "If you switch from a very light or reflective product"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Framing is also important :",
+      "probleme": "Espace avant les deux-points : typographie française conservée dans l'anglais.",
+      "proposition": "Framing is also important:"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "which can distract the customer's attention and distract them from the product",
+      "probleme": "Répétition de « distract ».",
+      "proposition": "which can draw the customer's attention away from the product"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "especially if we are on the same type of products (shoes for example)",
+      "probleme": "Calque de « si on est sur la même typologie de produits ».",
+      "proposition": "especially within the same product category (shoes, for example)"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Camera boxes like those from Scancube are closed solutions",
+      "probleme": "« Camera boxes » est impropre pour « caissons photo » ; on dit « light boxes » ou « photo booths ».",
+      "proposition": "Light boxes such as Scancube's are closed systems"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "do not allow you to manage more creative situations or lighting",
+      "probleme": "« Mises en situation » mal rendu par « situations » : il s'agit de prises de vue en contexte (lifestyle).",
+      "proposition": "do not allow in-context (lifestyle) setups or more creative lighting"
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "What are the main alternatives to Orbitvu Studios?",
+      "probleme": "« Studios » en majuscule, alors que l'article écrit ailleurs « Orbitvu studios » (également « With Orbitvu Studios, you can easily create »).",
+      "proposition": "What are the main alternatives to Orbitvu studios?"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu est le plus grand fabricant de solutions automatisées pour la photographie",
+      "source_dans_texte": "https://www.orbitvu.com/ (page d'accueil du fabricant, pas une source indépendante)",
+      "motif": "Superlatif de taille de marché.",
+      "ecart_fr_en": "aucun (« Orbitvu is the largest manufacturer of automated solutions for photography »)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Fort de ses plus de 10 ans d’expérience dans le milieu",
+      "source_dans_texte": "aucune",
+      "motif": "Incohérent avec « Fondée en 2004 » dans le même article ; chiffre daté.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "partenaire privilégié de plus de 6000 marques",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre commercial non sourcé et non daté.",
+      "ecart_fr_en": "EN : « more than 6,000 brands », phrase dupliquée"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "une équipe de plus de 20 ingénieurs compétents et dévoués",
+      "source_dans_texte": "aucune",
+      "motif": "Effectif non sourcé, à dater.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu est le choix numéro un des professionnels de la photographie de produit et des marques du monde entier",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif non étayé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "pour des marques telles que Bosch, Clarks, Mercedes-Benz, Seiko, Chanel ou encore Jagermeister",
+      "source_dans_texte": "aucune",
+      "motif": "Références clients à confirmer (droit de citer ces marques).",
+      "ecart_fr_en": "EN cite Mercedes-Benz deux fois"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Grâce à leur technologie brevetée",
+      "source_dans_texte": "aucune",
+      "motif": "Brevet allégué non référencé.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "ce qui en retour augmentera les conversions de votre site e-commerce",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de hausse des conversions sans donnée.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "et ce, sans un abonnement à payer tous les mois",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation sur le modèle de licence d'Orbitvu Station (absence d'abonnement) à vérifier, l'offre ayant pu changer.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Vous vous garantirez au passage une homogénéité parfaite entre toutes vos photos, passées et à venir !",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue (« garantie », « parfaite ») et logiquement intenable pour les photos « passées ». L'intertitre parle aussi d'une homogénéité « garanties ».",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le système de 74 panneaux lumineux contrôlables garantit une qualité professionnelle constante",
+      "source_dans_texte": "aucune",
+      "motif": "Spécification technique sans modèle précisé ; promesse « garantit ».",
+      "ecart_fr_en": "EN « ensures » : équivalent"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L'assistant photo IA d'Orbitvu identifie automatiquement le produit et optimise l'éclairage en conséquence.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité à confirmer (nom et version du logiciel).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’un des principaux inconvénients de ces systèmes réside dans leur éclairage fixe, similaire aux anciennes séries Ortery.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmations comparatives sur des concurrents nommés (Scancube, Ortery, StyleShoots, PhotoRobot) : risque juridique (publicité comparative), à vérifier.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "PackshotCreator n’est plus une alternative à Orbitvu puisqu’il est désormais le distributeur officiel des solutions Orbitvu en France et en Europe francophone.",
+      "source_dans_texte": "aucune",
+      "motif": "Fait daté sur le statut commercial, à valider par la direction.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Grâce à Orbitvu, optimisez votre flux de travail et boostez votre productivité comme jamais !",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif promotionnel.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "en",
+      "extrait": "but it can quickly represent a certain cost",
+      "source_dans_texte": "aucune",
+      "motif": "Claim affaibli par la traduction : l'idée d'un coût élevé est perdue.",
+      "ecart_fr_en": "FR « un coût certain » (coût élevé), EN « a certain cost » (coût indéterminé)"
+    }
+  ],
+  "titre_h1_meta": "FR : title tronqué (« … incontournable des marque »), avec une majuscule fautive après les deux-points ; H1 coupé (« … le partenaire incontournable ») ; metaTitle sous forme de question (« Pourquoi choisir Orbitvu… ») cohérent avec le slug et le corps ; description cohérente. Trois angles pour un même article, et le title comme le H1 sont incomplets. EN : title complet et correct ; H1 tronqué de la même façon (« How Orbitvu became the go-to partner ») ; metaTitle (« Why Orbitvu for your product photography? ») et description corrects et cohérents avec le corps. Le <title> servi est le metaTitle dans les deux langues.",
+  "structure_fr_en": "Parité complète : 4 H2, 11 H3, 33 paragraphes, 4 puces, 8 images, 5 FAQ dans les deux langues, même ordre. L'EN ajoute des duplications internes (« Mercedes-Benz, Mercedes-Benz », « from America to Japan » répété, « jewellery, jewellery ») mais aucun paragraphe ne manque. Les deux langues contiennent 13 paragraphes vides de type Webflow (<p> ne contenant qu'un caractère ZWJ U+200D), à nettoyer.",
+  "images_alt_legendes": "FR : 8 textes alternatifs en français, pertinents ; la légende du rouge à lèvres est correcte ; dans les alt, « studios photos » devrait s'écrire « studios photo ». EN : 8 textes alternatifs sur 8 restés en français (le détecteur n'en signalait que 6), donc à traduire intégralement ; la légende est traduite mais ambiguë (« a lipstick made with an Orbitvu photo studio » laisse entendre que le studio a fabriqué le rouge à lèvres) ; mieux : « Lipstick packshot shot with an Orbitvu photo studio ».",
+  "appellations": "Orbitvu et Orbitvu Station sont cohérents ; Alphashot XXL n'apparaît que dans un alt ; PackshotCreator (en un mot) apparaît dans la FAQ et comme auteur, de façon cohérente. EN : « Orbitvu Studios » prend une majuscule à deux endroits, contre « Orbitvu studios » ailleurs. « Jagermeister » doit s'écrire Jägermeister (FR et EN). Aucun nom propre n'a été remplacé à tort.",
+  "recommandation": "retraduction complète",
+  "remarques": "La retraduction complète concerne l'EN (corps et alt) ; le FR n'a besoin que de retouches (title, H1, espaces, anglicismes, cohérence « plus de 10 ans » / « 2004 »). Date affichée : 20/03/2024, alors que l'item Webflow a été créé le 16/03/2025 et que la FAQ (ajoutée après l'import) évoque le statut de distributeur de PackshotCreator. Il faut une date cohérente ou un dateModified. Plusieurs affirmations comparatives visent des concurrents nommés (StyleShoots, PhotoRobot, Scancube, Ortery) : validation humaine requise. Photoroom est qualifié d'outil « rudimentaire » et présenté comme un outil « à la main », ce qui est discutable puisque c'est un détourage automatique par IA. Les liens internes EN /en/besoins-photographie-produit et /en/industrie/bijoux-joaillerie gardent des slugs français ; les routes existent, ce ne sont donc pas des liens morts. La phrase « Nous vous proposons également une courte formation facultative » fait parler PackshotCreator dans un article centré sur Orbitvu, ce qu'il faut assumer explicitement."
+}

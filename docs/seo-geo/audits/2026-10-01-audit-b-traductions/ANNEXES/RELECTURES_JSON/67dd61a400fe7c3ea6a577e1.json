@@ -1,0 +1,476 @@
+{
+  "family": "67dd61a400fe7c3ea6a577e1",
+  "slugs": {
+    "fr": "comment-avoir-meilleures-images-amazon",
+    "en": "how-to-get-best-amazon-product-photos",
+    "de-ch": null
+  },
+  "sujet": "Guide sur l'impact des visuels produits sur Amazon, les règles d'images imposées par la plateforme et l'automatisation de la prise de vue avec les studios Orbitvu distribués par PackshotCreator.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des contresens qui ne s'expliquent que par une source française : « Authorized simulation , as well as alternative funds » (« Mise en situation autorisée, ainsi que fonds alternatifs » : fonds pris au sens financier), « Generation of funds adapted to the product » (« Génération de fonds adaptés au produit »), « They must reassure, project the customer, reduce doubts » (« projeter le client »), « it is it that triggers the click » (« c’est elle qui déclenche le clic »), « Of smooth 360° animations » et « of visibility levers » (partitif « Des » rendu par « Of »), « supports you with integration with support , going through the on-site training » (« de l’intégration au support, en passant par la formation sur site »), « only as an external service provider » (« qu’en prestataire externe »), « And it's not trivial » (« ce n’est pas anecdotique »), « deadlines » pour « délais », « product sheet » pour « fiche produit », « One turnkey solution » (« Une solution »). S'y ajoutent les espaces avant les deux-points dans les puces (vérifiées dans le HTML) et le lien EN « on-site training » qui pointe vers /fr/academy.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte natif, clair et bien structuré. Retouches ponctuelles : un faux sens (« sacrifier à la cohérence visuelle »), « projeter le client », des anglicismes (« watermark », « Templates », « KPIs », « alt-text »), le mélange RGB/RVB et la typographie des nombres (« 4000 m² », « 1000 pixels »). Côté éditorial : 5 images sur 6 sans alt (« __wf_reserved_inherit »), une source mal attribuée (ancre « eComo » vers un article Pixcap), une source douteuse (Phototrend), une affirmation forte non sourcée (« Amazon est lui-même client d’Orbitvu ») et des règles Amazon datées à revérifier.",
+    "en": "Traduction automatique non relue, avec des segments absurdes (« alternative funds », « Generation of funds », « project the customer », « Of smooth 360° animations », « it is it that triggers the click », « Saves more time 75% »), des majuscules en milieu de phrase (« understand The impact of visuals », « discover How to », « Field feedback And Observed KPIs »), une terminologie fausse (« cropping » et « clipping » pour détourage, « product sheet », « deadlines ») et un lien vers la version FR de l'academy. La FAQ est meilleure que le corps mais garde des calques. Autres mineures non listées : « two axes », « fuelled » (orthographe britannique, alors que le reste est américain), « Click-through » en majuscule, « Recordable settings and adaptable by product », « allow the customer to project themselves ».",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 45,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dd4d471f62a240dd60c267.avif]",
+      "probleme": "5 images sur 6 ont pour alt le jeton réservé Webflow, autrement dit pas de texte alternatif (images 67dd4d47, 67dd4dfd, 67dd4d86, 67dd4e8e, 67dd4ef3). C'est un comble dans un article qui conseille de « Complétez les attributs alt-text ».",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "près de 75 % des acheteurs prennent leur décision d’achat en se basant uniquement sur les images des produits, comme l’explique eComo",
+      "probleme": "Attribution erronée : l'ancre « eComo » pointe vers un article de Pixcap (https://pixcap.com/fr/blog/image-du-produit-amazon). La source citée n'est pas celle du lien. Même défaut en EN.",
+      "proposition": "près de 75 % des acheteurs prennent leur décision d’achat en se basant uniquement sur les images des produits, selon Pixcap"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "sans dépendre de prestataires ni sacrifier à la cohérence visuelle",
+      "probleme": "Faux sens : « sacrifier à » signifie « se conformer à ». Le sens voulu est « sacrifier la cohérence ».",
+      "proposition": "sans dépendre de prestataires ni sacrifier la cohérence visuelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Elles doivent rassurer, projeter le client, réduire les doutes.",
+      "probleme": "« Projeter le client » est impropre : on attend « permettre au client de se projeter ».",
+      "proposition": "Elles doivent rassurer, aider le client à se projeter, lever les doutes."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "avec une taille minimale de 1000 x 1000 pixels pour activer le zoom",
+      "probleme": "Incohérent avec le corps (« 1000 pixels sur le côté le plus long pour activer le zoom ») ; typographie (1 000 × 1 000).",
+      "proposition": "avec au moins 1 000 pixels sur le côté le plus long pour activer le zoom"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Mode couleur : RGB ou CMYK (le niveau de gris n’est pas accepté)",
+      "probleme": "Sigles anglais, alors que le même article écrit « valeur RVB » plus bas : il faut harmoniser (RVB / CMJN).",
+      "proposition": "Mode couleur : RVB ou CMJN (les niveaux de gris ne sont pas acceptés)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Interdiction d’ajouter texte, logo ou watermark",
+      "probleme": "Anglicisme « watermark ».",
+      "proposition": "Interdiction d’ajouter texte, logo ou filigrane"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu, avec plus de 4000 m² d’usine en Europe",
+      "probleme": "Pas d'espace de séparation des milliers (même défaut dans « 1000 pixels », « 1600 px », « 2000 x 2000 px », où il faut aussi le signe ×).",
+      "proposition": "Orbitvu, avec plus de 4 000 m² d’usine en Europe"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ajustez votre stratégie en fonction des retours terrain et des KPIs observés",
+      "probleme": "Anglicisme et pluriel anglais (KPIs) ; même registre dans « Templates visuels réutilisables » et « attributs alt-text ».",
+      "proposition": "Ajustez votre stratégie en fonction des retours terrain et des indicateurs clés (KPI) observés"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Fond blanc pur obligatoire (valeur RVB : 255, 255, 255) (David Himbert)",
+      "probleme": "Attribution à une personne sans lien ni contexte, incompréhensible pour le lecteur (même défaut en EN).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Amazon : comment avoir les meilleures photos produit pour booster vos ventes",
+      "probleme": "Registre familier (« comment avoir », « booster ») ; le title, le H1 (« Optimisation des images produits Amazon : guide complet ») et le metaTitle (« Photographie Amazon : guide complet & solutions automatisées ») proposent trois formulations différentes.",
+      "proposition": "Amazon : comment obtenir les meilleures photos produit pour augmenter vos ventes"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"exemple recherche Amazon présentation produit\" src=/images/blog/67dedf2599f418db1d421456.avif]",
+      "probleme": "L'unique alt renseigné est en français ; les 5 autres images n'ont pas d'alt (« __wf_reserved_inherit »).",
+      "proposition": "Example of Amazon search results showing product images"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Here is a complete guide to understand The impact of visuals , the rules imposed by Amazon , and discover How to effectively automate image production",
+      "probleme": "Majuscules en milieu de phrase (segments en gras traduits isolément).",
+      "proposition": "This complete guide explains the impact of visuals and the rules Amazon imposes, and shows how to automate image production effectively"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "as explained eComo",
+      "probleme": "Agrammatical ; de plus, le lien pointe vers Pixcap, pas vers eComo.",
+      "proposition": "according to Pixcap"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "They must reassure, project the customer, reduce doubts.",
+      "probleme": "« Project the customer » n'a pas de sens en anglais (calque de « projeter le client »).",
+      "proposition": "They must reassure shoppers, help them picture the product in use and remove doubts."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is also an important lever for limit product returns , improve the perception of quality and differentiate themselves from similar products",
+      "probleme": "Agrammatical (« for limit ») et pronom incohérent (« themselves »).",
+      "proposition": "They are also a key lever for reducing returns, improving perceived quality and standing out from similar products"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Authorized simulation , as well as alternative funds",
+      "probleme": "Contresens absurde : « mise en situation » rendu par « simulation », « fonds » (arrière-plans) par « funds » (fonds financiers).",
+      "proposition": "Lifestyle (in-context) shots allowed, as well as alternative backgrounds"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Generation of funds adapted to the product",
+      "probleme": "« Fonds » (arrière-plans) traduit par « funds ».",
+      "proposition": "Generation of backgrounds tailored to the product"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Workflow fully automated : shooting, cropping, naming, export",
+      "probleme": "« Cropping » (recadrage) mis pour le détourage ; ordre des mots calqué ; espace avant les deux-points. Plus bas, « Automatic clipping » emploie un autre terme pour la même notion.",
+      "proposition": "Fully automated workflow: shooting, background removal, file naming, export"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Saves more time 75% compared to conventional production",
+      "probleme": "Phrase agrammaticale.",
+      "proposition": "Saves more than 75% of production time compared with conventional methods"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Up to 90% lower unit cost per image only as an external service provider",
+      "probleme": "Contresens : « qu’en prestataire externe » (que chez un prestataire) devient « only as ».",
+      "proposition": "Up to 90% lower cost per image than with an external service provider"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "supports you with integration with support , going through the on-site training",
+      "probleme": "Contresens de la construction « de… à…, en passant par » ; en outre, le lien de l'ancre « on-site training » pointe vers /fr/academy (page FR) dans l'article EN.",
+      "proposition": "supports you from integration to after-sales support, including on-site training"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "And it's not trivial: Amazon is itself an Orbitvu customer",
+      "probleme": "Faux sens : « it's not trivial » veut dire « ce n’est pas simple », alors que le FR dit « ce n’est pas anecdotique ».",
+      "proposition": "And this is no minor detail: Amazon itself is an Orbitvu customer"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The latest generation of Orbitvu studios integrates modules from artificial intelligence",
+      "probleme": "Calque de « modules d’intelligence artificielle ».",
+      "proposition": "The latest generation of Orbitvu studios includes AI modules"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of smooth 360° animations , optimized for mobile",
+      "probleme": "Le partitif « Des » est rendu par « Of » dans les trois puces (« Of short videos », « Of 3D models interactive »).",
+      "proposition": "Smooth 360° animations, optimized for mobile"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Adjust your strategy based on Field feedback And Observed KPIs",
+      "probleme": "Majuscules en milieu de phrase.",
+      "proposition": "Adjust your strategy based on field feedback and the KPIs you observe"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "They are conversion vectors , of visibility levers , and guarantors of your brand image",
+      "probleme": "« of visibility levers » : partitif mal traduit.",
+      "proposition": "They drive conversion, boost visibility and safeguard your brand image"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "it is it that triggers the click",
+      "probleme": "Calque mot à mot de « c’est elle qui déclenche le clic ».",
+      "proposition": "it's the image that earns the click"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "may result in temporary deletion of your product sheet",
+      "probleme": "Terminologie Amazon : on parle de « listing » ou de « product detail page », et la sanction est la « suppression » d'un listing. « Product sheet » est un calque de « fiche produit » ; même défaut dans la FAQ.",
+      "proposition": "may result in your listing being temporarily suppressed"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The return online is not immediate",
+      "probleme": "Calque de « La remise en ligne ».",
+      "proposition": "Reinstatement is not immediate"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "while controlling your costs and deadlines",
+      "probleme": "« Délais » au sens de délais de production : « lead times » ou « turnaround times », pas « deadlines ». Même défaut dans « Reduction of deadlines to put a new product online ».",
+      "proposition": "while keeping costs and turnaround times under control"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Prohibition to add text, logo or watermark",
+      "probleme": "Calque de « Interdiction d’ajouter ».",
+      "proposition": "No added text, logos or watermarks"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "gray level is not accepted",
+      "probleme": "Le terme consacré est « grayscale ».",
+      "proposition": "grayscale is not accepted"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "One turnkey solution : hardware + software + support",
+      "probleme": "Article « Une » rendu par le numéral « One » ; espace avant les deux-points.",
+      "proposition": "A turnkey solution: hardware + software + support"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A local service via the Orbitvu Experience Center near Lyon",
+      "probleme": "Dans le HTML, l'espace manque entre « the » et la balise <strong> (« via the<strong>Orbitvu ») : le rendu affiche « theOrbitvu ».",
+      "proposition": "Local support via the Orbitvu Experience Center near Lyon"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Minimum size : 1000 pixels on the longest side to activate the zoom",
+      "probleme": "Espace avant les deux-points (typographie française), présente dans le HTML pour toutes les puces à libellé en gras ; « the zoom » pour la fonction zoom.",
+      "proposition": "Minimum size: 1,000 pixels on the longest side to enable zoom"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "make the most of the available locations to present your product from every angle",
+      "probleme": "« Emplacements » d'images : on dit « image slots ».",
+      "proposition": "make the most of the available image slots to show your product from every angle"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Amazon: how to have the best product photos to boost your sales",
+      "probleme": "Traduction littérale de « comment avoir » ; tournure non idiomatique.",
+      "proposition": "Amazon: how to get the best product photos to boost your sales"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "près de 75 % des acheteurs prennent leur décision d’achat en se basant uniquement sur les images des produits",
+      "source_dans_texte": "https://pixcap.com/fr/blog/image-du-produit-amazon (ancre « eComo » : attribution incohérente)",
+      "motif": "Statistique de seconde main ; il faut identifier l'étude d'origine.",
+      "ecart_fr_en": "aucun (« nearly 75% »)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des visuels de qualité peuvent entraîner jusqu’à 30 % d’augmentation du taux de conversion",
+      "source_dans_texte": "https://www.ecomo.fr/services-ecommerce-marketplaces/photos-produits-optimisees-amazon-ecommerce/ (page de services d'une agence)",
+      "motif": "Chiffre tiré d'une page commerciale, pas d'une étude.",
+      "ecart_fr_en": "aucun (le « jusqu’à » est conservé : « up to 30% »)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Amazon est lui-même client d’Orbitvu",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation forte sur un client nommé, répétée (« Un outil utilisé par des marques internationales… et Amazon lui-même »). Preuve et droit de citer à confirmer.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "leader mondial de la photographie automatisée",
+      "source_dans_texte": "https://www.orbitvu.com/ (site du fabricant)",
+      "motif": "Superlatif auto-déclaré ; « avec une régularité et une rapidité inégalées » non étayé non plus.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Gain de temps de plus de 75 % par rapport à une production classique",
+      "source_dans_texte": "aucune (la source « Orbitvu » de la puce précédente concerne le flux automatisé)",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": "EN agrammatical (« Saves more time 75% ») mais même chiffre"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Coût unitaire par image jusqu’à 90 % plus bas qu’en prestataire externe",
+      "source_dans_texte": "https://phototrend.fr/2022/04/profoto-rachat-styleshoots-studio-photo-automatise/",
+      "motif": "[Inférence d'après l'URL] La source traite du rachat de StyleShoots par Profoto (2022), pas des coûts Orbitvu : il faut vérifier qu'elle étaye bien le chiffre.",
+      "ecart_fr_en": "EN « only as an external service provider » : sens perdu"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des centaines d’images par jour produites en interne, sans retouche",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de productivité et de « sans retouche ».",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Détourage automatique avec fond blanc pur garanti",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie absolue ; « Résultat parfaitement standardisé, quelle que soit la gamme » relève du même registre.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Orbitvu, avec plus de 4000 m² d’usine en Europe et une équipe R&D solide, développe les technologies les plus avancées pour la photographie produit automatisée",
+      "source_dans_texte": "https://orbitvu.com/blog/packshotcreator-now-powered-orbitvu/",
+      "motif": "Surface d'usine et superlatif « les plus avancées » à vérifier dans la source.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "fort de 20 ans d’expérience dans la production visuelle pour le e-commerce",
+      "source_dans_texte": "aucune",
+      "motif": "Ancienneté de PackshotCreator à dater.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un service de proximité via l’ Orbitvu Experience Center près de Lyon",
+      "source_dans_texte": "aucune (le lien de conclusion mène à /fr/contact)",
+      "motif": "Existence et localisation du showroom à confirmer.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Détection automatique des défauts, corrections de contraste, balance des blancs",
+      "source_dans_texte": "https://www.marketresearchintellect.com/fr/blog/ai-in-focus-the-evolution-of-automated-product-photography-solutions/",
+      "motif": "Fonctionnalités IA attribuées aux studios Orbitvu mais sourcées par un blog d'études de marché générique, à confirmer chez le constructeur (de même pour « Génération de fonds adaptés au produit »).",
+      "ecart_fr_en": "EN « Generation of funds » : contresens"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Jusqu’à 9 images au total , dont 7 visibles par défaut",
+      "source_dans_texte": "aucune",
+      "motif": "Règles Amazon (9 images, 7 visibles, 85 % à 90 % du cadre, mannequin, formats, 1 000 px) susceptibles d'avoir changé depuis la rédaction : à revérifier dans la documentation Seller Central en vigueur.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "C’est aussi la solution la plus simple pour créer des animations 360° ou vidéos, même sans expertise photo.",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "aucun"
+    }
+  ],
+  "titre_h1_meta": "FR : le title (« Amazon : comment avoir les meilleures photos produit pour booster vos ventes »), le H1 (« Optimisation des images produits Amazon : guide complet ») et le metaTitle (« Photographie Amazon : guide complet & solutions automatisées ») divergent dans la formulation mais restent cohérents avec le corps ; la description est cohérente. Registre familier dans le title. EN : title littéral (« how to have the best »), H1 en Title Case (« Amazon Product Image Optimization: A Complete Guide »), acceptable en anglais mais incohérent avec les intertitres en casse de phrase ; metaTitle et description corrects. Le <title> servi est le metaTitle.",
+  "structure_fr_en": "Parité complète : 7 H2, 6 H3, 4 H4, 24 paragraphes, 43 puces, 6 images, 5 FAQ, même ordre. Les images EN ont d'autres fichiers source (67dedf25…) que les FR (67dd4d…), peut-être des captures localisées, à vérifier. 12 paragraphes vides Webflow (ZWJ) par langue.",
+  "images_alt_legendes": "FR : la première image a un alt pertinent (« exemple recherche Amazon présentation produit »), les 5 autres ont « __wf_reserved_inherit » (pas d'alt). EN : la première a le même alt, resté en français, et les 5 autres n'ont pas d'alt. Aucune légende. Tous les alt sont donc à rédiger ou traduire, ce qui est d'autant plus gênant que l'article recommande de compléter les textes alternatifs.",
+  "appellations": "« PackshotCreator » est en un mot dans l'intertitre « La force du partenariat Orbitvu x PackshotCreator » et sous la forme Packshot<em>Creator</em> dans le texte (rendu « PackshotCreator » avec « Creator » en italique, style de l'ancienne marque ; l'espace de l'extrait est un artefact). Ce n'est pas une erreur, tout au plus une harmonisation de style à décider. Orbitvu et Orbitvu Experience Center sont cohérents. Aucun nom de personne remplacé ; « (David Himbert) » est une attribution isolée, sans contexte.",
+  "recommandation": "retraduction complète",
+  "remarques": "La retraduction complète concerne l'EN ; le FR n'a besoin que de retouches (alt, attribution eComo/Pixcap, faux sens « sacrifier à », typographie). Date affichée : 24/01/2024, pour un item Webflow créé le 21/03/2025 ; l'article cite « La dernière génération de studios Orbitvu » avec un lien vers l'Alphashot G2 (/fr/studio-photo/alphashot-g2), modèle aujourd'hui marqué delisted dans components/calculators/ROICalculator/lib/machines.ts (la page reste servie). L'article renvoie donc vers une machine qui n'est plus mise en avant. Le lien EN /en/photo-studio/alphashot-g2 passe par une redirection 301 (next.config.ts) vers /en/studio-photo/alphashot-g2 : mettre le lien à jour. Le lien EN « on-site training » pointe vers /fr/academy. Les règles Amazon sont à revérifier, car elles évoluent. La source Phototrend (2022, rachat de StyleShoots par Profoto) semble sans rapport avec le chiffre qu'elle est censée étayer. La mention « (David Himbert) » est à expliciter ou à supprimer."
+}

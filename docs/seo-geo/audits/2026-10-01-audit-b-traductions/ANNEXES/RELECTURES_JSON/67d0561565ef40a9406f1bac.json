@@ -1,0 +1,464 @@
+{
+  "family": "67d0561565ef40a9406f1bac",
+  "slugs": {
+    "fr": "photographier-une-bague-comme-un-professionnel-en-8-etapes",
+    "en": "8-steps-to-professional-jewelry-photography",
+    "de-ch": null
+  },
+  "sujet": "Tutoriel en 8 étapes pour photographier une bague avec le studio Orbitvu Alphashot Micro Pro v2 (objectif macro, plateau transparent, adhésif, spots, réflecteurs, réglages logiciels), suivi d'une FAQ productivité et ROI.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des mots français résiduels et des contresens typiques d'une traduction automatique depuis le français : « Les reflections of light » ; « La precision And the clearness of Orbitvu equipment » ; « in terms ofloudness And of light » (« intensité » rendu par « loudness ») ; « Adjust the shades greys and yolks » (« jaunes » rendu par « yolks ») ; « presentation of each room » (« pièce » rendu par « room ») ; « the choice ofpurpose is crucial » (« objectif » rendu par « purpose ») ; « highlight your jewelry in a occupational » (« professionnelle ») ; « create photos Uniques and captivating » ; « appear Net and Brilliant » (« nettes et éclatantes »). Preuve structurelle dans le HTML : 19 articles anglais collés à la balise suivante (« the<strong>sheen</strong> », « the<strong>axis of rotation</strong> », « THE<strong>loudness</strong> »), exactement là où le FR a une élision « l'<strong>éclat</strong> », « l'<strong>axe de rotation</strong> », « L'<strong>intensité</strong> » : la traduction a été faite sur le HTML français.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français globalement natif mais texte marketing redondant, avec plusieurs phrases à la syntaxe cassée (deux constructions fusionnées dans l'étape 5), une phrase illogique (« Si ce n'est pas le cas »), une phrase vide de sens (« interaction virtuelle avec votre prospect »), une coquille (« phoographie »), une contradiction interne (technologie « unique pour maintenir » une bague, puis absence de système de maintien), trois appellations différentes du même produit, des calques (« caméra », « solution », « spotlight »), un artefact « détails36 » dans la FAQ et des chiffres non sourcés en désaccord avec le catalogue du site (150 bijoux/jour contre 200 produits/jour). Réécriture partielle nécessaire.",
+    "en": "Traduction automatique brute non relue : mots français résiduels (« Les reflections », « La precision »), contresens lexicaux (loudness, yolks, room, purpose, occupational), majuscules parasites en milieu de phrase (« And », « For », « THE »), mots collés au rendu (« thesheen », « theaxis », « THEloudness »), phrases incompréhensibles, 7 textes alternatifs sur 8 en français. Quasiment chaque phrase est à reprendre : retraduction complète.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 24,
+    "en": 120,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Par exemple, pour photographier une bague ornée de diamants, utilisez le réflecteur argenté de manière à créer des éclats lumineux peut donner un effet scintillant impressionnant.",
+      "probleme": "Deux constructions fusionnées (impératif « utilisez » + sujet infinitif de « peut donner ») : la phrase est agrammaticale.",
+      "proposition": "Par exemple, pour photographier une bague ornée de diamants, utiliser le réflecteur argenté de manière à créer des éclats lumineux peut donner un effet scintillant impressionnant."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "En revanche, pour photographier une bague aux teintes plus sombres ou en métal mat, utilisez un réflecteur noir pour accentuer les ombres peut ajouter de la profondeur et du mystère à l'image finale.",
+      "probleme": "Même construction fusionnée que la phrase précédente : agrammaticale.",
+      "proposition": "En revanche, pour photographier une bague aux teintes plus sombres ou en métal mat, utiliser un réflecteur noir pour accentuer les ombres peut ajouter de la profondeur et du mystère à l'image finale."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Si ce n'est pas le cas, vous pouvez toujours utiliser la fonction Superfocus, incluse dans le logiciel de l'Alphashot Micro Pro v2, pour éliminer tout flou progressif.",
+      "probleme": "« Si ce n'est pas le cas » ne se rattache à rien : la phrase précédente dit que le flou est généralement recherché mais peut rendre l'objectif inadapté. Le lecteur ne comprend pas quand utiliser Superfocus.",
+      "proposition": "Si cet effet n'est pas souhaité, vous pouvez utiliser la fonction Superfocus, incluse dans le logiciel de l'Alphashot Micro Pro v2, pour éliminer le flou progressif."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le studio photo Alphashot Micro Pro v2, offre aujourd'hui une technologie innovante et unique pour maintenir et photographier une bague avec une facilité déconcertante.",
+      "probleme": "Contradiction interne : l'étape 3 affirme « l'Alphashot Micro V2 ne dispose pas d'un système intégré pour maintenir les bagues en position verticale » (maintien par adhésif). Le claim « unique pour maintenir » est donc faux dans l'article lui-même. Virgule fautive entre le sujet et le verbe.",
+      "proposition": "Le studio photo Alphashot Micro Pro v2 offre une technologie qui facilite la prise de vue des bagues."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Présentation vidéo de l'Alphashot Micro V2",
+      "probleme": "Le même produit est nommé « Alphashot Micro V2 » (intertitre et 3 occurrences du corps), « Alphashot Micro Version 2 » (ancre du lien produit) et « Alphashot Micro Pro v2 » (reste du texte, alt, FAQ). Le catalogue du site (components/calculators/ROICalculator/lib/machines.ts, id alphashot-micro-v2) le nomme « Alphashot Micro Pro v2 ».",
+      "proposition": "Présentation vidéo de l'Alphashot Micro Pro v2"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "grâce au studio de phoographie Orbitvu",
+      "probleme": "Coquille.",
+      "proposition": "grâce au studio de photographie Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Il permet également une interaction virtuelle avec votre prospect.",
+      "probleme": "Phrase sans rapport avec le paragraphe (éclairage) et sans sens identifiable ; l'EN la reproduit telle quelle.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Panneaux lumineux intégrés contrôlables individuellement via le logiciel en termes d'intensité et de lumière",
+      "probleme": "« en termes d'intensité et de lumière » est redondant et vide (l'intensité est déjà une grandeur de la lumière).",
+      "proposition": "Panneaux lumineux intégrés dont l'intensité est réglable individuellement via le logiciel"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Position de caméra ajustable de l'horizontale à la verticale avec un bouton de protection pour la sécurité",
+      "probleme": "Calque de l'anglais « camera » : en français, il s'agit d'un appareil photo (même calque dans « Des LED Brilliance situées au-dessus et en dessous de la caméra » et « Le support de caméra permet de connecter l'appareil directement à la solution », où « solution » est aussi un calque).",
+      "proposition": "Position de l'appareil photo réglable de l'horizontale à la verticale, avec un bouton de protection pour la sécurité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Plateforme rotative à la base pour créer des présentations à un angle, multi-angles, 360° ou même des vidéos",
+      "probleme": "Terminologie : le terme métier est « plateau tournant » ; « présentations à un angle » est un calque (vues sous un seul angle).",
+      "proposition": "Plateau tournant à la base pour créer des vues sous un seul angle, multi-angles, à 360° ou même des vidéos"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Un spotlight pour une lumière focalisée sur certaines pierres ou diamants",
+      "probleme": "Anglicisme inutile (« spot » est le terme français employé ailleurs dans l'article) ; majuscule de liste acceptable.",
+      "proposition": "Un spot pour une lumière focalisée sur certaines pierres ou diamants"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "l'objectif 100mm macro donne d'excellents résultats",
+      "probleme": "Ordre calqué de l'anglais (« 100mm macro lens ») et absence d'espace avant l'unité ; même défaut pour « Canon 100mm ». Également « 100% » sans espace (« contrôlables à 100% », « de 1 à 100% »).",
+      "proposition": "l'objectif macro 100 mm donne d'excellents résultats"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Assurez-vous que l'éclairage soit bien ajusté pour éviter les ombres indésirables.",
+      "probleme": "Après « s'assurer que », l'indicatif est la norme.",
+      "proposition": "Assurez-vous que l'éclairage est bien ajusté pour éviter les ombres indésirables."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "même les plus petits détails36",
+      "probleme": "Artefact « 36 » (appel de note d'un outil de génération ou de recherche) collé au mot ; présent aussi en EN (« details36 »).",
+      "proposition": "même les plus petits détails"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Texte alternatif réservé de Webflow (aucune description) sur l'image de l'étape 1 ; idem en EN.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Les reflections of light, the brilliance of precious stones, and the finesse jewelry must be carefully highlighted to obtain perfect visuals.",
+      "probleme": "Article français résiduel « Les », « reflections » au lieu de « reflections/reflets » idiomatique, « the finesse jewelry » agrammatical.",
+      "proposition": "Light reflections, the brilliance of gemstones and the delicacy of each piece must be carefully highlighted to obtain perfect visuals."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "La precision And the clearness of Orbitvu equipment bring out the beauty of each room.",
+      "probleme": "Article français résiduel « La », majuscule parasite « And », « room » pour « pièce » (contresens).",
+      "proposition": "The precision and clarity of Orbitvu equipment bring out the beauty of each piece."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Photographing a ring represents a considerable challenge For the professionals in the jewelry sector. Capture all particulars and reduce the time of retouching are daily challenges.",
+      "probleme": "Phrase d'ouverture en traduction automatique : majuscule parasite « For », « Capture … and reduce … are » agrammatical, « particulars » pour « détails ».",
+      "proposition": "Photographing a ring is a considerable challenge for jewelry professionals. Capturing every detail and reducing retouching time are daily concerns."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Integrated light panels individually controllable via the software in terms ofloudness And of light",
+      "probleme": "« intensité » rendu par « loudness » (volume sonore) ; mot collé « ofloudness » au rendu ; même contresens dans « THEloudness of the spot can be changed from 1 to 100% ».",
+      "proposition": "Integrated light panels whose intensity can be adjusted individually via the software"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In packshot photography, the choice ofpurpose is crucial for getting shots of professional quality.",
+      "probleme": "« objectif » (optique) rendu par « purpose » : contresens dans la section consacrée au choix de l'objectif ; mot collé « ofpurpose ».",
+      "proposition": "In packshot photography, choosing the right lens is crucial to getting professional-quality shots."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "As confirmed by our users, the objective 100mm macro gives excellent results with this system",
+      "probleme": "« objective » pour « lens » (faux ami) et ordre des mots calqué.",
+      "proposition": "As our users confirm, the 100mm macro lens gives excellent results with this system"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Adjust the shades greys and yolks, by playing on the Gray tolerance, the saturation And the luminosity.",
+      "probleme": "« jaunes » rendu par « yolks » (jaunes d'œuf) ; structure calquée, majuscules parasites.",
+      "proposition": "Adjust grey and yellow tones using the grey tolerance, saturation and brightness settings."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These tips improve the quality of your photographs and highlight your jewelry in a occupational.",
+      "probleme": "Phrase incomplète et contresens (« de manière professionnelle » rendu par « in a occupational »).",
+      "proposition": "These tips improve the quality of your photographs and showcase your jewelry professionally."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Once you have your transparent tray ready and your camera is ready, you can place the ring in flat Or make it stick up using a transparent adhesive.",
+      "probleme": "« in flat », « Or » en majuscule, « make it stick up » : consigne métier incompréhensible.",
+      "proposition": "Once your transparent tray and camera are ready, you can lay the ring flat or stand it upright using clear adhesive."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "However, it is important to note that the effect of fuzzy Due to a low depth of field is unavoidable with a macro lens.",
+      "probleme": "« the effect of fuzzy Due to » agrammatical.",
+      "proposition": "However, the blur caused by a shallow depth of field is unavoidable with a macro lens."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Our configuration of Black table and black reflector Sublimate your jewelry. It highlights their sheen And their particulars. Perfect for images captivating and professionals, it gives your jewelry an appeal elegant.",
+      "probleme": "Ordre des mots français conservé (« images captivating », « appeal elegant »), accord fautif (« Sublimate »), majuscules parasites.",
+      "proposition": "Our black table and black reflector setup makes your jewelry shine. It highlights its brilliance and detail and gives it an elegant look, for captivating, professional images."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The embedded software Accelerate it post-production of your content thanks to a multitude oftools And of functionalities.",
+      "probleme": "Agrammatical (« Accelerate it post-production »), mot collé « oftools ».",
+      "proposition": "The built-in software speeds up post-production with a wide range of tools and features."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to Orbitvu, you can guarantee exceptional results that will highlight thesheen And the quality of your jewelry",
+      "probleme": "Mot collé au rendu (« thesheen ») : le HTML contient « the<strong>sheen</strong> » sans espace ; 19 cas identiques dans l'article (« theaxis of rotation », « THEmacro lens », « theCanon 100mm », « thehandwork », « thelighting », « thealignment », « thenatural shine », « asamber », « toadapt »…). Majuscule parasite « And ».",
+      "proposition": "Orbitvu helps you achieve exceptional results that highlight the brilliance and quality of your jewelry"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "photographier une bague avec un adhésif transparent pour la fixer sur le plateau de l'Alphashot Micro Pro v2",
+      "probleme": "Texte alternatif en français dans la version anglaise ; 7 alt sur 8 sont en français (« plateau interchangeable de l'Alphashot Micro Pro v2 », « Spot additionnel réglable studio photo », « Réflecteurs argentés et noirs de l'Alphashot Micro Pro v2 », « Eclairage du studio Alphashot Micro Pro v2 », « photographier une bague en ajustant les couleurs en argent ou en or », « Packshot d'une montre sur fond noir et réflecteur noir »), le 8e est « __wf_reserved_inherit ».",
+      "proposition": "Ring held upright with clear adhesive on the Alphashot Micro Pro v2 tray"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "thus ensuring a uniform and professional presentation of each room.",
+      "probleme": "« pièce » (bijou) rendu par « room ».",
+      "proposition": "thus ensuring a uniform and professional presentation of each piece."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This makes it possible to ensure that the true colors jewels appear Net and Brilliant without capturing the surrounding reflections.",
+      "probleme": "« nettes et éclatantes » rendu par « Net and Brilliant » (mots français/majuscules), « the true colors jewels » agrammatical.",
+      "proposition": "This ensures that the jewelry's true colors look sharp and vivid without picking up surrounding reflections."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "you will be able to create photos Uniques and captivating that will catch the eye of customers.",
+      "probleme": "Mot français « Uniques », ordre des adjectifs calqué.",
+      "proposition": "you will be able to create unique, captivating photos that catch customers' eyes."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "This advanced equipment, driven by software, will allow you to Sublimate every detail of your creations with a unparalleled precision",
+      "probleme": "« Sublimate » (calque de « sublimer », majuscule parasite), « a unparalleled ».",
+      "proposition": "This advanced, software-driven equipment lets you enhance every detail of your creations with unparalleled precision"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to his smooth and homogeneous surface",
+      "probleme": "Pronom « his » pour un objet (calque de « sa »).",
+      "proposition": "Thanks to its smooth, even surface"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "The Alphashot Micro Pro v2 can process up to 150 jewels per day",
+      "probleme": "« jewels » désigne des pierres/joyaux, pas des pièces de bijouterie.",
+      "proposition": "The Alphashot Micro Pro v2 can process up to 150 pieces of jewelry per day"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "including the removal of transparent media and color adjustment",
+      "probleme": "« supports transparents » (adhésif, plateau) rendu par « media ».",
+      "proposition": "including removal of transparent supports and color adjustment"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "(gold, diamond, diamond, sapphire, emerald, pearl, rubies)",
+      "probleme": "Doublon « diamond, diamond » absent du FR ; pluriel incohérent « rubies ».",
+      "proposition": "(gold, diamond, sapphire, emerald, pearl, ruby)"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Use the transparent tray to photograph a ring and improve the appearance of the jewelry",
+      "probleme": "Intertitres incohérents : l'étape 1 est au gérondif (« 1. Choosing the right lens to shoot a ring »), les étapes 2 à 8 à l'impératif.",
+      "proposition": "2. Use the transparent tray to photograph a ring and enhance the jewelry"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Make sure the ring doesn't move and that it's secure Fixed at this location.",
+      "probleme": "« secure Fixed » agrammatical, majuscule parasite.",
+      "proposition": "Make sure the ring doesn't move and is securely fixed in place."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "L'Alphashot Micro Pro v2 permet de traiter jusqu'à 150 bijoux par jour avec des photos à 360° et des vues détaillées.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de productivité non sourcé ; le catalogue du site (machines.ts, alphashot-micro-v2) annonce une capacité de 200 produits/jour. Incohérence à arbitrer.",
+      "ecart_fr_en": "EN identique (« up to 150 jewels per day »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "la réduction significative du temps de traitement (jusqu'à 150 produits par jour), et l'élimination des coûts de sous-traitance photo",
+      "source_dans_texte": "aucune",
+      "motif": "Débit présenté comme une « réduction du temps » ; promesse d'« élimination » des coûts de sous-traitance.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "offre aujourd'hui une technologie innovante et unique pour maintenir et photographier une bague avec une facilité déconcertante",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif « unique » contredit par l'étape 3 (pas de système intégré de maintien vertical).",
+      "ecart_fr_en": "EN identique (« innovative and unique technology »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vous permettra de sublimer chaque détail de vos créations avec une précision inégalée",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif non démontré.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Comme le confirment nos utilisateurs, l'objectif 100mm macro donne d'excellents résultats avec ce système",
+      "source_dans_texte": "aucune",
+      "motif": "Témoignage invoqué sans source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La fonction exclusive Brilliance Light",
+      "source_dans_texte": "aucune",
+      "motif": "« exclusive » ; de même « système exclusif d'éclairage cylindrique » (corps et FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Combinée à une ouverture optimale (f/16-f/22), cette technologie garantit une netteté irréprochable sur toutes les facettes du bijou",
+      "source_dans_texte": "aucune",
+      "motif": "« garantit » ; recommandation technique (f/16-f/22 combinée au focus stacking) à faire valider par un photographe : en macro, ces ouvertures sont sujettes à la diffraction, et le focus stacking sert précisément à s'en dispenser.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel propose des préréglages spécifiques pour différents matériaux (or, diamant, saphir, émeraude, perle, rubis), optimisant automatiquement l'éclairage pour chaque type de bijou.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité produit précise à vérifier auprès d'Orbitvu.",
+      "ecart_fr_en": "EN ajoute un doublon « diamond, diamond »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le studio intègre des paramètres préconfigurés conformes aux exigences des principales plateformes e-commerce.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité produit à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cela attire l'attention des clients et augmente vos ventes.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse commerciale non sourcée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le nouveau design de l'Alphashot Micro V2 est équipé d'un port USB Type-C qui le rend compatible avec les dernières technologies d'appareils photo sans miroir et permet un transfert de données ultra-rapide vers l'ordinateur.",
+      "source_dans_texte": "aucune",
+      "motif": "Spécification et « nouveau design » datés : à confirmer avec la fiche produit actuelle.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title = H1 = metaTitle (« Photographier une bague comme un professionnel en 8 étapes »), cohérents avec le corps (8 étapes). La description annonce « 8 astuces … en maîtrisant le cadrage, l'éclairage et l'arrière-plan » : le cadrage n'est traité dans aucune étape (objectif, plateau, adhésif, spots, réflecteurs, éclairage, logiciel, plateau noir) ; proposition : « Découvrez 8 étapes pour photographier une bague : objectif macro, plateau, éclairage, réflecteurs et post-production pour des visuels professionnels. » EN : title = H1 = metaTitle (« Photographing a ring like a pro in 8 steps »), correct mais « How to photograph a ring like a pro in 8 steps » serait plus idiomatique ; le slug parle de « jewelry photography » plus large que l'article. Description EN correcte (même réserve sur « framing »).",
+  "structure_fr_en": "Parité complète : 10 H2, 43 paragraphes, 7 puces (dont une liste imbriquée pour Brilliance Light, correcte en HTML), 8 images, 1 vidéo YouTube, 4 liens, 5 FAQ, même ordre. 17 paragraphes vides (caractère ZWJ hérité de Webflow) dans les deux langues. Pas de section manquante ; l'EN est une traduction phrase à phrase du FR.",
+  "images_alt_legendes": "Aucune légende. FR : 1 alt réservé « __wf_reserved_inherit » (image de l'étape 1), « Eclairage du studio Alphashot Micro Pro v2 » sans accent (« Éclairage »), « Packshot d'une montre sur fond noir et réflecteur noir » illustre une montre dans un article sur les bagues (et l'étape 8 parle de « plateau noir » dans l'intertitre puis de « table noire » dans le corps). EN : 7 alt sur 8 en français, 1 alt réservé ; tous à traduire.",
+  "appellations": "Produit nommé tour à tour « Alphashot Micro Pro v2 » (graphie du catalogue du site), « Alphashot Micro V2 » et « Alphashot Micro Version 2 » ; harmoniser sur « Alphashot Micro Pro v2 ». « Superfocus » dans l'article contre « Super Focus » dans le catalogue (machines.ts) : à harmoniser. « Orbitvu Station », « studio Orbitvu » cohérents. Aucun nom de personne remplacé ; auteur « PackshotCreator ». Champ auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par « PackshotCreator » le 12/06/2026 (commit 8ae45f63, choix délibéré de cohérence E-E-A-T) : pas une erreur de texte.",
+  "recommandation": "retraduction complète (EN) ; réécriture partielle (FR)",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées), et non sur l'extrait families/*.md dont les espaces avant ponctuation sont des artefacts ; les mots collés de l'EN (« thesheen », « ofloudness ») sont en revanche réels (pas d'espace avant la balise <strong> dans le HTML). Date affichée 11/04/2023 alors que l'item Webflow a été créé le 11/03/2025 (inférence ObjectId) et que le texte présente le « nouveau design » de la Micro V2 : date à valider. Écart de capacité FAQ (150/jour) contre catalogue (200/jour). Le lien EN « professionals in the jewelry sector » pointe vers /en/industrie/bijoux-joaillerie, page servie en français et en noindex (lib/seo-config.ts, NOINDEX_EN_INDUSTRIE_SLUGS). Catégorie « Innovations » peu adaptée à un tutoriel. Aucune version de-ch."
+}

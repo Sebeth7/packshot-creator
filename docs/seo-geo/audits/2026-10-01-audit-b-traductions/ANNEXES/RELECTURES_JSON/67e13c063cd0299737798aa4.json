@@ -1,0 +1,401 @@
+{
+  "family": "67e13c063cd0299737798aa4",
+  "slugs": {
+    "fr": "comment-automatiser-la-creation-de-vos-photographies-animations-de-produits",
+    "en": "automate-creation-product-photographs-animations",
+    "de-ch": null
+  },
+  "sujet": "Article sur l'automatisation de la production de visuels produits (prise de vue, détourage IQ Mask, multiformat, Orbitvu Station), ses bénéfices transverses et la gamme de studios Orbitvu distribuée par PackshotCreator.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "La preuve est décisive : la coquille française « nammage structuré » (pour nommage) se retrouve telle quelle dans l'EN (« with a Structured nammage »). S'y ajoutent des déterminants français résiduels (« La creation of product visuals Has become a major strategic challenge In the e-commerce », « La communication centralizes a bank of standardized images »), un ordre des mots français (« The teams marketing , e-commerce , product or logistics », « The studios Orbitvu are available »), des partitifs calqués (« the stages of photography , of Clipping And of publication »), des contresens lexicaux (« resuming the vetting » pour « reprendre le contrôle », « goggle » pour « lunettes », « novelties » pour « nouveautés », « combinations » pour « déclinaisons ») et des majuscules en tête de chaque segment en gras traduit isolément (« Has », « In », « And », « Or », « As », « Increase »).",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte natif, fluide et bien construit. Retouches ponctuelles : coquille « nammage », H1 tronqué, anglicismes (« templates », « boostez », « session de shooting »), caractères invisibles U+200B en début et fin de paragraphes, emojis « ✔️ ». Le défaut éditorial est bloquant : la citation finale est attribuée à « PackshotCreator, fondateur et dirigeant de Packshot Creator ». Le nom de la personne (« Laurent Wainberg » dans l'import Webflow) a été remplacé par le nom de la société lors du commit 4dde4f23 du 12/06/2026, ce qui donne une attribution absurde. Le titre FR n'est donc pas « A ».",
+    "en": "Traduction automatique segmentée, visible dès la première phrase : déterminants français résiduels (« La creation », « La communication »), majuscules en milieu de phrase en tête de chaque segment en gras (« Has become », « In the e-commerce », « And the », « Or the », « As first selling point », « Increase the conversions »), syntaxe française (« The teams marketing », « The studios Orbitvu »), contresens (« resuming the vetting »), mots inexistants ou faux (« nammage », « goggle »), espaces manquantes autour des balises (« of<strong>picture », « the<strong>automation », « the<strong>customer experience »). La FAQ, de meilleure qualité, contraste avec le corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 10,
+    "en": 50,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "— PackshotCreator, fondateur et dirigeant de Packshot Creator",
+      "probleme": "Attribution absurde : une société présentée comme « fondateur et dirigeant » d'elle-même. L'import Webflow (56d4bc32) portait « — Laurent Wainberg, fondateur et dirigeant de Packshot<em>Creator</em> ». Le nom a été remplacé lors du commit 4dde4f23 (« purge anciennes coordonnées », 12/06/2026). La citation en première personne (« Nous développons et équipons depuis plus de vingt ans… ») reste celle d'une personne physique.",
+      "proposition": "Arbitrage éditorial : soit rétablir l'attribution nominative avec l'accord de l'intéressé et une fonction à jour, soit supprimer la citation, soit la reformuler en texte institutionnel non attribué. Ne pas laisser « PackshotCreator, fondateur et dirigeant de PackshotCreator »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Comment automatiser la création de vos photographies",
+      "probleme": "H1 tronqué : il manque « et animations de produits » par rapport au title (« Comment automatiser la création de vos photographies & animations de produits ? ») et au slug ; le metaTitle (« Automatisation des visuels produits : boostez votre e-commerce ») adopte un troisième angle.",
+      "proposition": "Comment automatiser la création de vos photos et animations de produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "exporter automatiquement les fichiers au bon format avec un nammage structuré",
+      "probleme": "Coquille : « nammage » pour « nommage », reprise telle quelle dans l'EN.",
+      "proposition": "exporter automatiquement les fichiers au bon format avec un nommage structuré"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "créer des templates pour chaque typologie de produit",
+      "probleme": "Anglicisme.",
+      "proposition": "créer des modèles pour chaque typologie de produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Créer des visuels multi-formats sans duplication d'effort",
+      "probleme": "Calque de « duplication of effort » ; « multiformats » s'écrit soudé.",
+      "proposition": "Créer des visuels multiformats sans multiplier les efforts"
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Automatisation des visuels produits : boostez votre e-commerce",
+      "probleme": "Anglicisme « boostez » dans le metaTitle.",
+      "proposition": "Automatisation des visuels produits : accélérez votre e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "¶ ✔️ Réduction de 80 % du besoin de retouches .​",
+      "probleme": "Emojis « ✔️ » utilisés comme puces, chacun dans un paragraphe distinct au lieu d'une liste ; caractères invisibles U+200B (espace sans chasse) en fin de paragraphe, présents dans tout le FR.",
+      "proposition": "Remplacer par une vraie liste à puces et supprimer les U+200B."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Alphashot Pro G2 : pour les marques souhaitant associer créativité et productivité sans effort .",
+      "probleme": "Incohérence nom/lien : le texte nomme l'« Alphashot Pro G2 » (modèle actif du catalogue, slug alphashot-pro-g2), mais le lien de la puce pointe vers /fr/studio-photo/alphashot-g2, page d'un autre modèle (« Alphashot G2 »), marqué delisted dans le catalogue. Même défaut en EN (/en/studio-photo/alphashot-g2).",
+      "proposition": "Faire pointer le lien vers /fr/studio-photo/alphashot-pro-g2 (et /en/studio-photo/alphashot-pro-g2), ou corriger le nom si c'est bien l'Alphashot G2 qui est visé."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "— PackshotCreator, founder and director of Packshot Creator",
+      "probleme": "Même remplacement de nom de personne que le FR (import : « — Laurent Wainberg, founder and director of Packshot<em>Creator</em> ») : l'attribution est absurde.",
+      "proposition": "Même arbitrage que le FR."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "La creation of product visuals Has become a major strategic challenge In the e-commerce",
+      "probleme": "Phrase d'ouverture : déterminant français, majuscules en milieu de phrase, article calqué (« In the e-commerce »).",
+      "proposition": "Creating product visuals has become a major strategic challenge in e-commerce"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "transform the stages of photography , of Clipping And of publication into a simple, repeatable workflow",
+      "probleme": "Partitifs calqués, majuscules fautives ; « Clipping » impropre pour le détourage.",
+      "proposition": "turn photography, background removal and publishing into a simple, repeatable workflow"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The correlation between the visual quality And the e-commerce performance is undeniable.",
+      "probleme": "Articles calqués et « And » en majuscule.",
+      "proposition": "The correlation between visual quality and e-commerce performance is undeniable."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "improved visuals can Increase the conversions of 35 to 60%",
+      "probleme": "Majuscule fautive ; « of » au lieu de « by ».",
+      "proposition": "improved visuals can increase conversions by 35 to 60%"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These figures highlight the crucial importance of picture As first selling point , influencing the trust , the understanding the product And the conversion .",
+      "probleme": "Phrase désarticulée : article manquant, majuscules, « the understanding the product » ; le HTML colle « of<strong>picture » (espace manquante).",
+      "proposition": "These figures highlight how crucial the image is as the primary selling point, shaping trust, product understanding and conversion."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "resuming the vetting on the whole of creative flow",
+      "probleme": "Contresens incompréhensible pour « reprendre le contrôle sur l’ensemble du flux de création ».",
+      "proposition": "regaining control over the entire creative workflow"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The Clipping is often one of the most expensive and time-consuming steps.",
+      "probleme": "Article et majuscule fautifs ; « clipping » est ambigu pour le détourage. Plus loin, « the products are cut automatically » rend « détourés » par « cut », ce qui est faux.",
+      "proposition": "Background removal is often one of the most expensive and time-consuming steps."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "create Templates for each type of product, and automatically export the files in the right format with a Structured nammage",
+      "probleme": "Majuscules fautives et mot inexistant « nammage », hérité de la coquille FR.",
+      "proposition": "create templates for each product type, and automatically export files in the right format with structured file naming"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The teams marketing , e-commerce , product or logistics can produce their visuals themselves",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Marketing, e-commerce, product or logistics teams can produce their own visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These gains are not only for Photo studio , but have visible impacts on Sales , the logistics And the customer experience .",
+      "probleme": "Majuscules fautives, articles calqués ; le HTML colle « the<strong>customer » (espace manquante).",
+      "proposition": "These gains go beyond the photo studio, with visible effects on sales, logistics and the customer experience."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La communication centralizes a bank of standardized images, ready to broadcast.",
+      "probleme": "Déterminant français resté dans l'anglais.",
+      "proposition": "Communications teams can centralize a library of standardized, ready-to-use images."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The product Or the R&D can easily document novelties, samples, combinations.",
+      "probleme": "Majuscule fautive, articles calqués, « novelties » (nouveautés) et « combinations » (déclinaisons) faux.",
+      "proposition": "Product and R&D teams can easily document new products, samples and variants."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "economical solution for small items , cosmetics , goggle, jewels , accessories.",
+      "probleme": "« Goggle » (singulier inexistant, et sens de « lunettes de protection ») pour « lunettes » (eyewear) ; « jewels » pour « bijoux » (jewelry). Le lien vers l'industrie lunetterie présent en FR a disparu en EN.",
+      "proposition": "economical solution for small items, cosmetics, eyewear, jewelry and accessories."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The studios Orbitvu are available in several formats according to your needs:",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Orbitvu studios come in several formats to suit your needs:"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The marketing benefits from consistent visuals for its campaigns, catalogs, and social media visuals.",
+      "probleme": "Article calqué (« Le marketing ») ; même défaut dans « The e-commerce can integrate ».",
+      "proposition": "Marketing gets consistent visuals for campaigns, catalogs and social media."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "which makes it possible to reduce deadlines between receiving a product and putting it online",
+      "probleme": "« Délais » rendu par « deadlines ».",
+      "proposition": "which shortens the time between receiving a product and putting it online"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "An automated studio = a transversal tool",
+      "probleme": "« Transversal » est un calque : on dit « cross-functional ».",
+      "proposition": "An automated studio = a cross-functional tool"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is a common tool , at the service of all.",
+      "probleme": "Calque de « au service de tous ».",
+      "proposition": "It's a shared tool that serves everyone."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to the automation , the creation of visuals no longer depends on a professional photographer",
+      "probleme": "Article superflu ; le HTML colle « the<strong>automation » (rendu « theautomation »).",
+      "proposition": "Thanks to automation, creating visuals no longer depends on a professional photographer"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "the user can produce still photos for the product sheet",
+      "probleme": "« Product sheet » est un calque de « fiche produit ».",
+      "proposition": "the user can produce still photos for the product page"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "How to automate the creation of your product photographs & animations?",
+      "probleme": "Question en « How to…? » non idiomatique, calquée sur le FR ; le H1 est tronqué (« How to automate the creation of your photographs »).",
+      "proposition": "How to automate the creation of product photos and animations"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Do you want to test for yourself?",
+      "probleme": "Calque de « Envie de tester par vous-même ? ».",
+      "proposition": "Want to try it for yourself?"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "By using predefined templates and smart templates",
+      "probleme": "« modèles prédéfinis et gabarits intelligents » donnent deux fois « templates ».",
+      "proposition": "By using predefined templates and smart layouts"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "93 % des consommateurs sont plus enclins à acheter un produit lorsqu'il est présenté avec des images de haute qualité",
+      "source_dans_texte": "https://www.goaland.com/fr/blog/e-commerce/photos-et-pages-produits/ (blog d'agence, source secondaire)",
+      "motif": "Statistique de seconde main, à remonter à l'étude d'origine.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "une amélioration des visuels peut augmenter les conversions de 35 à 60 %",
+      "source_dans_texte": "https://www.cbnews.fr/creation/image-impact-tendances-photo-produit-19058/",
+      "motif": "Fourchette élevée, à vérifier dans la source.",
+      "ecart_fr_en": "aucun (EN « Increase the conversions of 35 to 60% »)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "4 clients sur 10 retournent un produit s'il ne correspond pas à sa présentation visuelle",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Temps de shooting divisé par 3 à 5",
+      "source_dans_texte": "https://www.canon.fr/pro/stories/ecommerce-success-high-quality-images/ (ancre « Les retours clients sont clairs : »)",
+      "motif": "Présenté comme des « retours clients », mais le lien mène à une page Canon : l'attribution de ces chiffres à des clients Orbitvu ou PackshotCreator est à établir. Vaut aussi pour « Réduction de 80 % du besoin de retouches ».",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction de 80 % du besoin de retouches",
+      "source_dans_texte": "lien Canon (voir ci-dessus)",
+      "motif": "Chiffre non rattaché à une étude identifiable.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le résultat est un rendu professionnel sans retouche manuelle",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue sur IQ Mask (détourage avec ombres naturelles, sans retouche).",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "garantissant une qualité d'image exceptionnelle et une production rapide",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif et garantie ; « en garantissant une qualité constante sur tous les visuels produits » (Multi-Camera Rig) relève du même registre.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "permet d'utiliser jusqu'à cinq appareils photo montés sur un bras spécial",
+      "source_dans_texte": "lien interne /fr/studio-photo/alphashot-xl-pro-v2",
+      "motif": "Spécification de l'Alphashot XL Pro v2 avec Multi-Camera Rig à confirmer sur la fiche officielle.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "« Nous développons et équipons depuis plus de vingt ans des acteurs du e-commerce avec nos solutions photo automatisées.",
+      "source_dans_texte": "aucune",
+      "motif": "Citation en première personne dont l'auteur a été effacé ; « Nous développons » est à concilier avec le statut actuel de distributeur Orbitvu ; le chiffre « 30 000 produits par an » est illustratif.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec la mise à jour Orbitvu Station 24.2.2, il est désormais possible d'importer des sessions vides",
+      "source_dans_texte": "aucune",
+      "motif": "Numéro de version daté (« désormais ») à actualiser.",
+      "ecart_fr_en": "aucun"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "l'automatisation garantit que tous les visuels produits respectent les directives de la marque",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie absolue (FAQ).",
+      "ecart_fr_en": "EN « ensures » : équivalent"
+    }
+  ],
+  "titre_h1_meta": "FR : title « Comment automatiser la création de vos photographies & animations de produits ? » ; H1 tronqué « Comment automatiser la création de vos photographies » ; metaTitle sur un autre angle, avec un anglicisme (« Automatisation des visuels produits : boostez votre e-commerce ») ; description de 169 caractères (un peu longue), cohérente avec la conclusion. EN : même schéma, avec un title en « How to…? » non idiomatique, un H1 tronqué (« How to automate the creation of your photographs ») et un metaTitle correct. Le <title> servi est le metaTitle.",
+  "structure_fr_en": "Parité : 6 H2, 1 H3, 19 paragraphes, 13 puces, 1 image, 1 iframe YouTube, 5 FAQ dans les deux langues. L'EN a 13 liens contre 14 en FR : le lien /fr/industrie/lunetterie (ancre « lunettes ») a disparu en EN (« goggle » sans lien). Les 5 avantages chiffrés sont des paragraphes séparés précédés d'un emoji « ✔️ », pas une liste. Les FAQ « outils sans code » et « import CSV dans Orbitvu Station 24.2.2 » sont hors sujet par rapport à l'article.",
+  "images_alt_legendes": "Une seule image (en fin d'article) avec l'alt « __wf_reserved_inherit » dans les deux langues : texte alternatif absent, à rédiger. L'iframe YouTube n'a ni titre ni légende.",
+  "appellations": "Défaut bloquant dans les deux langues : la citation est attribuée à « PackshotCreator, fondateur et dirigeant de Packshot<em>Creator</em> », alors que l'import Webflow portait « Laurent Wainberg ». Le remplacement date du commit 4dde4f23 (12/06/2026, « purge anciennes coordonnées ») et vise aussi le champ auteur (« Laurent Wainberg » → « PackshotCreator »). Ailleurs, « Packshot<em>Creator</em> » est rendu « PackshotCreator » avec « Creator » en italique, style de l'ancienne marque ; l'espace de l'extrait est un artefact. « IQ Mask » est cohérent dans l'article. « Alphashot Pro G2 » est bien un modèle du catalogue, mais son lien mène à la page de l'« Alphashot G2 » (autre modèle, délisté). « Alphashot XL Pro v2 » est conforme au catalogue. Orbitvu Station et E-Comm Studio+ sont cohérents.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Recommandation principale « arbitrage éditorial » en raison du défaut bloquant, puis retraduction complète de l'EN. Deux actions distinctes : (1) arbitrage éditorial sur la citation et son attribution dans les deux langues (décision humaine, la personne concernée étant l'ancien dirigeant) ; (2) retraduction complète de l'EN, retouches légères du FR (H1, « nammage », U+200B, emojis). Date affichée : 22/06/2023, incohérente avec le contenu (Orbitvu Station 24.2.2, Alphashot Pro G2, XL Pro v2) et avec la création de l'item Webflow le 24/03/2025. Le lien de la puce « Alphashot Pro G2 » pointe vers la page de l'Alphashot G2, délistée (flag delisted dans components/calculators/ROICalculator/lib/machines.ts ; la page reste servie). Le lien XL Pro v2 a été remappé le 07/07/2026 (commit 1cbc569a), depuis l'Alphashot XL v2 délistée. Le lien « Les retours clients sont clairs » vers une page Canon ne prouve pas des retours de clients Orbitvu."
+}

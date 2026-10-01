@@ -1,0 +1,334 @@
+{
+  "family": "67b8986bd6b3f4b432156878",
+  "slugs": {
+    "fr": "comment-shotflow-ameliore-suivi-taches-en-temps-reel",
+    "en": "how-shotflow-improves-real-time-task-tracking",
+    "de-ch": null
+  },
+  "sujet": "Article promotionnel sur ShotFlow, plateforme cloud de suivi en temps réel de la production de contenus visuels (statuts, notifications, validations), avec une étude de cas anonyme et une FAQ très chiffrée.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Le H1 anglais « How ShotFlow transforms production monitoring into time » traduit mot à mot le H1 français tronqué « Comment ShotFlow transforme le suivi de production en temps » (« en temps » → « into time ») : l'EN a été produit à partir du FR déjà fautif. Autres traces : metaTitle « | -50% delay » (← « | -50% de délais ») ; description « Supporting testimonies and case studies » (← « Témoignages et études de cas à l'appui ») ; « artistic directors » (← « directeurs artistiques ») ; « Reduce your deadlines by 50% » (← « Réduisez vos délais de 50% », faux ami délais/deadlines) ; « ShotFlow is transforming creative daily life! » (← « ShotFlow transforme le quotidien créatif ! »).",
+  "qualite": {
+    "fr": "C",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Corps rédigé en français naturel de style marketing, avec des anglicismes (assets, reshoots, deadlines, upload, workflow, timing). Mais H1 tronqué (bloquant), metaTitle et description qui généralisent le chiffre du corps, et une FAQ remplie de statistiques précises non sourcées (études 2024, 180 clients, 200 déploiements depuis 2019) dont un client nommé (Printemps) : réécriture partielle de la FAQ et des métadonnées après validation.",
+    "en": "Corps globalement fluide, mais H1 absurde (« into time »), metaTitle calqué (« -50% delay »), description terminée par un fragment, faux amis récurrents (deadlines, artistic directors, follow-up, validations), casse incohérente d'un intertitre, et perte des 2 images et des 2 liens (dont l'appel à l'action vers le contact). Hérite des claims non sourcés de la FAQ.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 18,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "bloquant",
+      "emplacement": "h1",
+      "extrait_actuel": "Comment ShotFlow transforme le suivi de production en temps",
+      "probleme": "H1 tronqué (« réel » manquant) : le titre affiché à l'écran n'a pas de sens.",
+      "proposition": "Comment ShotFlow transforme le suivi de production en temps réel"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "ShotFlow : Optimisez votre suivi de production en temps réel | -50% de délais",
+      "probleme": "Généralise le chiffre du corps (« 50 % de réduction des délais d'approbation ») à tous les « délais » ; 77 caractères (tronqué en SERP) ; majuscule après deux-points ; « 50% » sans espace.",
+      "proposition": "ShotFlow : suivi de production en temps réel, délais d'approbation -50 %"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "Réduisez vos délais de 50%, améliorez la collaboration et diminuez les coûts. Témoignages et études de cas à l'appui.",
+      "probleme": "Même généralisation du chiffre ; « Témoignages et études de cas » au pluriel alors que l'article contient une seule étude de cas anonyme et deux citations anonymes, sans source ; 207 caractères.",
+      "proposition": "Délais d'approbation réduits de 50 %, collaboration améliorée, coûts réduits : découvrez comment le suivi en temps réel de ShotFlow transforme la production de contenu."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Les équipes photo de Printemps, un client de référence de ShotFlow, ont mesuré une réduction de 32% du temps consacré aux tâches de coordination et de suivi",
+      "probleme": "Client nommé et résultats chiffrés attribués sans source ni lien ; risque juridique et de crédibilité si non validé par le client.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Pourquoi le suivi de production est une difficulté majeure ?",
+      "probleme": "Interrogation directe sans inversion du sujet.",
+      "proposition": "Pourquoi le suivi de production est-il une difficulté majeure ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Upload instantané des prises de vue",
+      "probleme": "Anglicisme évitable.",
+      "proposition": "Mise en ligne instantanée des prises de vue"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Grâce à une meilleure anticipation, les équipes respectent plus facilement les deadlines.",
+      "probleme": "Anglicisme évitable.",
+      "proposition": "Grâce à une meilleure anticipation, les équipes respectent plus facilement les échéances."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "des retouches supplémentaires et même des reshoots",
+      "probleme": "Anglicisme (même mot dans « la diminution des reshoots »).",
+      "proposition": "des retouches supplémentaires et même de nouvelles prises de vue"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Une meilleure gestion des projets renforce la relation et la confiance entre les équipes.",
+      "probleme": "Contredit l'intertitre de la section (« Plus de transparence et de confiance avec les clients ») : il s'agit de la relation avec les clients.",
+      "proposition": "Une meilleure gestion des projets renforce la relation et la confiance avec les clients."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Oui, de façon remarquable !",
+      "probleme": "Ton publicitaire et exclamatif dans une réponse de FAQ (même registre : « ShotFlow transforme le quotidien créatif ! »).",
+      "proposition": "Oui."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "83% des utilisateurs ont mis en place au moins une intégration",
+      "probleme": "Typographie des pourcentages incohérente : « 50 % » avec espace dans le corps, « 83% », « 47% », « 90% »… sans espace dans la FAQ et les métadonnées.",
+      "proposition": "83 % des utilisateurs ont mis en place au moins une intégration"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "h1",
+      "extrait_actuel": "How ShotFlow transforms production monitoring into time",
+      "probleme": "Traduction du H1 français tronqué : « into time » n'a aucun sens.",
+      "proposition": "How ShotFlow transforms real-time production monitoring"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "ShotFlow: Optimize your production monitoring in real time | -50% delay",
+      "probleme": "« -50% delay » calqué et ambigu ; généralise le chiffre du corps (approval times).",
+      "proposition": "ShotFlow: real-time production tracking | approval times cut by 50%"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "Reduce your deadlines by 50%, improve collaboration, and reduce costs. Supporting testimonies and case studies",
+      "probleme": "« délais » rendu par « deadlines » (échéances) : réduire ses échéances n'a pas de sens ; fragment final sans verbe ni point ; « testimonies » (témoignage judiciaire) au lieu de « testimonials ».",
+      "proposition": "Cut approval times by 50%, improve collaboration and lower costs, with a customer case study."
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Are you ready to optimize your production and increase efficiency? Learn how ShotFlow can revolutionize your workflow now.",
+      "probleme": "L'EN a perdu les 2 images du FR (tableau de bord, base de données) et les 2 liens, dont cet appel à l'action vers /contact et le lien « ShotFlow transforms content production » ; les puces des sections « problèmes » et « fonctionnalités » ont été fondues en paragraphes.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Shorter deadlines",
+      "probleme": "« délais » rendu par « deadlines ».",
+      "proposition": "Shorter lead times"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "artistic directors and photographers save an average of 28% of time",
+      "probleme": "« directeurs artistiques » = art directors.",
+      "proposition": "art directors and photographers save an average of 28% of their time"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "ShotFlow is transforming creative daily life!",
+      "probleme": "Calque de « quotidien créatif ».",
+      "proposition": "ShotFlow transforms creative teams' day-to-day work."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Validations are often delayed because follow-up is based on Excel files",
+      "probleme": "« validations » et « follow-up » calqués de « validations » et « suivi » (approvals, tracking) ; même usage de « follow-up » dans la FAQ.",
+      "proposition": "Approvals are often delayed because tracking relies on Excel files"
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Conclusion: Simplify and Optimize Your Workflow Today",
+      "probleme": "Seul intertitre en Title Case, les autres sont en sentence case.",
+      "proposition": "Conclusion: simplify and optimize your workflow today"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Fewer costs, more profitability",
+      "probleme": "« costs » est indénombrable ici : « lower costs ».",
+      "proposition": "Lower costs, higher profitability"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Real-time analyses make it possible to identify blocking points and to optimize processes.",
+      "probleme": "« analyses », « blocking points » calqués.",
+      "proposition": "Real-time analytics help identify bottlenecks and optimize processes."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Communication related to production management is also decreasing by 60% on average.",
+      "probleme": "Présent progressif inadapté à un résultat mesuré.",
+      "proposition": "Communication related to production management also falls by 60% on average."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Les délais d'approbation ont été réduits de 50 %, ce qui accélère toute la production.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre phare de l'article, repris dans le metaTitle et la description sous une forme généralisée.",
+      "ecart_fr_en": "EN fidèle dans le corps ; metaTitle/description EN généralisent comme le FR."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "40 % du temps de travail économisé grâce à l'automatisation des mises à jour.",
+      "source_dans_texte": "aucune",
+      "motif": "Non sourcé ; incohérent avec la FAQ (28 %, 32 %, 35 %).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "65 % de réduction des e-mails liés au suivi de production",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas anonyme (« Un grand acteur du retail ») ; idem « 50 % de validation plus rapide des prises de vue », « 20 % d'économies », « 98 % des lancements produits livrés dans les délais » ; la FAQ annonce ailleurs « 60 % » de baisse de la communication.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "\"ShotFlow a totalement changé notre manière de gérer la production. Suivre nos assets est devenu incroyablement simple et notre équipe est bien plus efficace.\"",
+      "source_dans_texte": "aucune",
+      "motif": "Citation attribuée à « Un directeur créatif » anonyme ; deuxième citation anonyme en fin de FAQ.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Selon une étude client 2024, 83% des utilisateurs ont mis en place au moins une intégration avec leurs systèmes existants, réduisant ainsi les transferts manuels de fichiers de 47% en moyenne.",
+      "source_dans_texte": "aucune",
+      "motif": "Étude citée sans référence.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Compatible avec Adobe Creative Cloud (Photoshop, InDesign, Premiere Pro), les principaux DAM comme Widen et Bynder, ainsi que les CMS comme WordPress et Drupal.",
+      "source_dans_texte": "aucune",
+      "motif": "Liste d'intégrations à confirmer auprès de l'éditeur.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La méthodologie d'onboarding en 4 phases a été affinée sur plus de 200 déploiements réussis depuis 2019.",
+      "source_dans_texte": "aucune",
+      "motif": "Volume et date non sourcés ; idem « 3 à 4 semaines », « 90% des équipes … deux sessions de formation de 2 heures ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Selon une enquête de satisfaction 2024 (échantillon de 450 créatifs), les directeurs artistiques et photographes gagnent en moyenne 28% de temps",
+      "source_dans_texte": "aucune",
+      "motif": "Enquête citée sans référence.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les équipes photo de Printemps, un client de référence de ShotFlow, ont mesuré une réduction de 32% du temps consacré aux tâches de coordination et de suivi, avec une amélioration de la satisfaction au travail de 4,2/10 à 7,8/10 sur l'échelle de bien-être professionnel.",
+      "source_dans_texte": "aucune",
+      "motif": "Client nommé, chiffres et échelle non identifiés : validation écrite du client indispensable.",
+      "ecart_fr_en": "EN « Printemps, a ShotFlow customer » : « de référence » omis (légère atténuation)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L'architecture cloud garantit une performance constante jusqu'à 100 000 assets actifs par compte.",
+      "source_dans_texte": "aucune",
+      "motif": "« garantit » ; idem « temps de réponse inférieurs à 1,2 seconde même avec 200 utilisateurs simultanés ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un client du secteur mode gère aujourd'hui plus de 25 000 assets par saison et a constaté une réduction mesurée de 18% de ses délais de mise sur le marché, documentée dans une étude de cas disponible sur le site de ShotFlow.",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas invoquée sans lien.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "D'après les données anonymisées collectées auprès de plus de 180 clients actifs, on observe une réduction moyenne de 35% du temps consacré au suivi administratif",
+      "source_dans_texte": "aucune",
+      "motif": "Base clients et chiffres non sourcés ; idem « 15-22% », « 20-25% », « 60% ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis des décennies, de nombreuses entreprises peinent à avoir une vision claire de leurs processus de production.",
+      "source_dans_texte": "aucune",
+      "motif": "Généralité d'accroche, sans enjeu factuel fort.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Comment ShotFlow améliore le suivi des tâches en temps réel » ; H1 tronqué « Comment ShotFlow transforme le suivi de production en temps » ; metaTitle « ShotFlow : Optimisez votre suivi de production en temps réel | -50% de délais » (77 caractères) ; description de 207 caractères. Trois sujets légèrement différents (suivi des tâches / suivi de production / gestion de contenu) ; le corps traite du suivi de production. Le « -50 % » des métadonnées généralise le chiffre du corps, limité aux délais d'approbation. EN : mêmes écarts, H1 incompréhensible (« into time »), metaTitle 71 caractères.",
+  "structure_fr_en": "6 H2 et 15 H3 dans les deux langues, même ordre, FAQ 5/5 identique. FR : 17 paragraphes, 39 puces, 2 images, 2 liens. EN : 31 paragraphes, 11 puces, 0 image, 0 lien. Les listes à deux puces des sections « difficultés », « fonctionnalités » et « impact » sont devenues des paragraphes en EN (contenu conservé), les deux images et les deux liens ont disparu, la citation du directeur créatif est fusionnée dans la phrase qui l'introduit. La dernière réponse de FAQ contient un second paragraphe avec une citation anonyme (dans les deux langues).",
+  "images_alt_legendes": "FR : 2 images, alt français corrects (« Tableau de bord ShotFlow collaboratif pour production de contenu visuel » avec espace finale, « Base de données puissante pour votre production de contenus visuels »), sans légende. EN : aucune image.",
+  "appellations": "« ShotFlow » écrit de façon constante, conforme à la graphie dominante du dépôt. Le lien FR « ShotFlow transforme la production de contenu » mène à /fr/ia-photo-produit, page qui ne mentionne pas ShotFlow (vérifié dans app/[lang]/ia-photo-produit et messages/fr.json) ; l'ancienne page /workflow-management-shotflow y est redirigée selon le rapport maître. Auteur « PackshotCreator ». La relation commerciale entre PackshotCreator et ShotFlow n'est pas explicitée dans l'article. Champ auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par « PackshotCreator » le 12/06/2026 (commit 8ae45f63, choix délibéré de cohérence E-E-A-T) : pas une erreur de texte.",
+  "recommandation": "arbitrage éditorial (validation ou suppression des statistiques de FAQ et du client nommé) puis retouches FR/EN (H1, métadonnées, images et liens EN)",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées). La FAQ a toutes les caractéristiques d'un texte généré sans source (chiffres précis, études « 2024 » non référencées, client nommé, « étude de cas disponible sur le site de ShotFlow » sans lien) : aucun de ces chiffres ne doit être republié sans preuve. Les chiffres du corps et de la FAQ ne concordent pas entre eux (40 % de temps économisé contre 28 %, 32 %, 35 % ; 65 % d'e-mails en moins contre 60 % de communication en moins). Date 23/01/2025 antérieure à la création de l'item Webflow (21/02/2025, inférence ObjectId). Aucune version de-ch."
+}

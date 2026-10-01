@@ -1,0 +1,292 @@
+{
+  "family": "67d9997d8424a1a30c00e049",
+  "slugs": {
+    "fr": "e-commerce-comment-mettre-en-place-votre-studio-photo",
+    "en": "e-commerce-set-up-internal-packshots",
+    "de-ch": null
+  },
+  "sujet": "Organisation humaine d'un studio photo e-commerce interne équipé Orbitvu : pourquoi internaliser, rôles clés (chef de projet, photographe, assistant, retoucheur), gains de productivité.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "EN : « Suppression automatique des fonds » rendu par « Automatic removal of funds » (fonds = funds) ; « est de simplifier » rendu par « is of simplify » ; « intégrée aux solutions Orbitvu » rendu par « with built-in AI To the solutions Orbitvu » ; « L'automatisation » rendu par « THEautomation » (article français converti en capitales) ; « former une équipe » rendu par « form a team » (FAQ « How long does it take to form a team at Orbitvu? ») ; « Éditeur » rendu par « Publisher » ; « Grâce à l'automatisation, aux réglages … et à une interface » rendu par « Thanks to theautomation, to preconfigurable settings And to a intuitive interface ».",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et fluide, au style promotionnel chargé d'émojis. Retouches : anglicismes (« shoot », « Éditeur » et « édition » au sens d'editing), majuscule après deux-points dans un intertitre, metaTitle (82 caractères) et description (205 caractères) trop longs, texte alternatif sans trait d'union, et deux contradictions internes (« vous n'avez plus besoin d'un photographe dédié » puis un rôle « Photographe » ; quatre rôles définis puis « même sans équipe dédiée »). Promesses fortes non chiffrées sous un intertitre « mesurables ».",
+    "en": "Traduction automatique visible : « Automatic removal of funds », « is of simplify », « Thanks to theautomation, to preconfigurable settings And to a intuitive interface », « built-in AI To the solutions Orbitvu », « Many companies that have integrated a Orbitvu photo studio internally, there are significant gains », « THEautomation … allow quickly produce », « form a team », « Publisher ». Retraduction complète.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 10,
+    "en": 30,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Photographe – L’exécutant agile 📸",
+      "probleme": "Contradiction interne : l'article affirme plus haut « vous n'avez plus besoin d'un photographe dédié », puis définit un rôle « Photographe » ; la conclusion ajoute « même sans équipe dédiée » après avoir détaillé quatre rôles. Le paragraphe du rôle s'adresse à « vous » au lieu de décrire le rôle.",
+      "proposition": "2. Opérateur de prise de vue – l'exécutant agile [à arbitrer avec le reste de l'argumentaire]"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "4. Éditeur – Le garant de la qualité ✨",
+      "probleme": "« Éditeur » au sens anglais d'« editor » (retoucheur, responsable de la post-production) ; même calque dans « l'édition devient ultra-simple ».",
+      "proposition": "4. Retoucheur – le garant de la qualité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Conclusion : Gagnez en autonomie et en efficacité avec Orbitvu",
+      "probleme": "Majuscule après deux-points ; même défaut de majuscule après tiret dans les intertitres de rôles (« Le stratège », « L'exécutant agile », « Le coordinateur », « Le garant de la qualité »).",
+      "proposition": "Conclusion : gagnez en autonomie et en efficacité avec Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "👉 Optimisez chaque shoot : les paramètres sont enregistrés pour une qualité constante",
+      "probleme": "Anglicisme « shoot » (et « shootings produits » plus haut).",
+      "proposition": "👉 Optimisez chaque prise de vue : les paramètres sont enregistrés pour une qualité constante"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Des gains de productivité mesurables",
+      "probleme": "L'intertitre promet des gains « mesurables » mais la section ne donne aucune mesure (« De nombreuses entreprises … constatent des gains significatifs »).",
+      "proposition": "Des gains de productivité concrets"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Comment organiser un studio photo e-commerce interne ? | Orbitvu & PackshotCreator",
+      "probleme": "82 caractères (tronqué dans les résultats) ; description de 205 caractères, également trop longue.",
+      "proposition": "Organiser un studio photo e-commerce interne | Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"comment organiser un studio photo e commerce interne?\" src=/images/blog/67dbae80ee44df4eb2842fc6.avif]",
+      "probleme": "Texte alternatif sous forme de question de mot-clé, sans trait d'union (« e-commerce ») ni espace avant « ? » ; ne décrit pas l'image. Image placée après l'appel à l'action final.",
+      "proposition": "Texte alternatif décrivant l'image (contenu à établir à partir de l'image)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nous avons déjà exploré les bonnes pratiques budgétaires et logistiques pour internaliser la production visuelle grâce à un studio photo e-commerce.",
+      "probleme": "Renvoi à un article précédent sans lien ; style promotionnel saturé d'émojis (✅ 🎯 📸 🔄 ✨ 💡 👉 ✔ 🔥) qui alourdit la lecture.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "✅ Automatic removal of funds",
+      "probleme": "« fonds » (arrière-plans) traduit par « funds » (argent) : contresens grossier sur une fonction clé.",
+      "proposition": "✅ Automatic background removal"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One of the great advantages of solutions Orbitvu, distributed in France and Switzerland by PackshotCreator, is of simplify image production as much as possible. Thanks to theautomation, to preconfigurable settings And to a intuitive interface, you no longer need a dedicated photographer.",
+      "probleme": "« solutions Orbitvu » (ordre français), « is of simplify », mots collés « theautomation », « And » en capitale, « a intuitive ».",
+      "proposition": "One of the great advantages of Orbitvu solutions, distributed in France and Switzerland by PackshotCreator, is that they make image production as simple as possible. Thanks to automation, preconfigurable settings and an intuitive interface, you no longer need a dedicated photographer."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Even without technical experience, you can capture perfect images thanks to intelligent presets with built-in AI To the solutions Orbitvu.",
+      "probleme": "« intégrée aux solutions Orbitvu » rendu par « with built-in AI To the solutions Orbitvu » : agrammatical.",
+      "proposition": "Even without technical experience, you can capture perfect images thanks to the smart presets and AI built into Orbitvu solutions."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Many companies that have integrated a Orbitvu photo studio internally, there are significant gains in speed and efficiency.",
+      "probleme": "Phrase sans verbe principal pour le sujet ; « a Orbitvu ».",
+      "proposition": "Many companies that have brought an Orbitvu photo studio in-house report significant gains in speed and efficiency."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "THEautomation and artificial intelligence allow quickly produce professional visuals, even without a dedicated team.",
+      "probleme": "Article « L' » rendu par « THE » en capitales et collé ; « allow quickly produce » agrammatical.",
+      "proposition": "Automation and artificial intelligence make it possible to produce professional visuals quickly, even without a dedicated team."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "How long does it take to form a team at Orbitvu?",
+      "probleme": "« former » (to train) rendu par « form » ; « à Orbitvu » rendu par « at Orbitvu » : la question devient « combien de temps pour constituer une équipe chez Orbitvu ».",
+      "proposition": "How long does it take to train a team on Orbitvu?"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "4. Publisher — The guarantor of quality ✨",
+      "probleme": "« Éditeur » rendu par « Publisher » (maison d'édition, éditeur de publication) au lieu de « editor » / « retoucher ».",
+      "proposition": "4. Editor — the quality guardian ✨"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The integration of a internal e-commerce photo studio allows you to: ✅ To speed up your product shootings with automatic settings",
+      "probleme": "« a internal », « allows you to: To speed up » (double « to »), « shootings » (anglicisme français ; l'anglais dit « shoots »), « internal » pour « in-house ».",
+      "proposition": "An in-house e-commerce photo studio lets you: ✅ Speed up your product shoots with automatic settings"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "We have already explored the good budgetary and logistical practices to internalize visual production through an e-commerce photo studio.",
+      "probleme": "« bonnes pratiques » rendu par « good … practices », « internalize » pour « bring in-house ».",
+      "proposition": "We have already looked at budget and logistics best practices for bringing visual production in-house with an e-commerce photo studio."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "He oversees the entire process : visual management, production monitoring and quality control.",
+      "probleme": "Espace avant les deux-points (réelle dans le JSON, aussi dans « Increase speed : », « Optimize every shot : », « editing becomes ultra-simple : ») ; « He » genré pour un rôle.",
+      "proposition": "They oversee the entire process: visual management, production tracking and quality control."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "💡 Thanks to the tools Orbitvu, the automation of shooting makes it possible to considerably reduce handling time and to increase productivity.",
+      "probleme": "Ordre français « the tools Orbitvu », « makes it possible to » calqué.",
+      "proposition": "💡 With Orbitvu tools, automated shooting considerably reduces handling time and increases productivity."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Photographer — The agile performer 📸",
+      "probleme": "« exécutant » rendu par « performer » (artiste de scène).",
+      "proposition": "2. Photographer — the agile operator 📸"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "With the integrated tools of the solutions Orbitvu, editing becomes ultra-simple :",
+      "probleme": "Ordre français « the solutions Orbitvu » ; espace avant deux-points.",
+      "proposition": "With the tools built into Orbitvu solutions, editing becomes ultra-simple:"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"comment organiser un studio photo e commerce interne?\" src=/images/blog/67dbae80ee44df4eb2842fc6.avif]",
+      "probleme": "Texte alternatif en français dans la version EN.",
+      "proposition": "Texte alternatif anglais décrivant l'image."
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "How to organize an internal e-commerce photo studio? | Orbitvu & PackshotCreator",
+      "probleme": "80 caractères (tronqué) ; « internal » au lieu de « in-house » ; description de 184 caractères.",
+      "proposition": "How to organize an in-house e-commerce photo studio | Orbitvu"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "vous n’avez plus besoin d’un photographe dédié. Votre équipe peut produire des visuels professionnels en toute autonomie, sans compétences techniques particulières.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue, contredite par le rôle « Photographe » décrit plus bas.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Fini les pertes de temps liées aux retouches et aux ajustements manuels.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue.",
+      "ecart_fr_en": "EN « No more wasting time related to manual retouching and adjustments. » : équivalent."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Même sans expérience technique, vous pouvez capturer des images parfaites grâce aux préréglages intelligents et à l’IA intégrée aux solutions Orbitvu.",
+      "source_dans_texte": "aucune",
+      "motif": "« images parfaites » et fonctions IA (« Corrections d'éclairage optimisées par l'IA ») à vérifier sur la gamme Orbitvu actuelle.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "De nombreuses entreprises ayant intégré un studio photo Orbitvu en interne constatent des gains significatifs en rapidité et en efficacité.",
+      "source_dans_texte": "aucune",
+      "motif": "Témoignage collectif non sourcé, sous un intertitre « mesurables » sans chiffre.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "En général, une formation de quelques heures suffit pour que votre équipe maîtrise le studio et commence à produire des visuels de qualité.",
+      "source_dans_texte": "aucune",
+      "motif": "Durée incohérente avec d'autres pages du site (calendrier Academy « 1 à 3 jours », formations d'une demi-journée à 2 ou 3 jours selon le rapport maître du 26/09/2026) ; à aligner.",
+      "ecart_fr_en": "EN « a few hours of training is enough » : équivalent."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Non, les solutions Orbitvu sont conçues pour être utilisées sans compétences techniques. Grâce aux réglages préconfigurés et à l’IA intégrée, il est possible de capturer des visuels parfaits en quelques clics.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse forte (FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "💡 Résultat : plus besoin de logiciels complexes",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Studio photo e-commerce : comment le mettre en place pour vos packshots en interne ? », H1 « Studio photo e-commerce : automatisation et organisation », metaTitle « Comment organiser un studio photo e-commerce interne ? | Orbitvu & PackshotCreator » (82 caractères) : trois formulations différentes mais cohérentes avec le corps, qui traite surtout d'organisation ; description de 205 caractères. EN : même schéma, traduit (« internal » au lieu de « in-house ») ; metaTitle de 80 caractères, description de 184.",
+  "structure_fr_en": "Parité complète (4 H2, 4 H3, 14 paragraphes, 1 image, 2 liens, 5 FAQ), dans le même ordre ; listes rendues par des émojis et des <br> dans des paragraphes, sans balises de liste. Aucun paragraphe manquant ni inversé. Texte identique à l'import Webflow dans les deux langues (seuls auteur et image ont changé). Image unique placée après l'appel à l'action final.",
+  "images_alt_legendes": "Une image, sans légende. Texte alternatif « comment organiser un studio photo e commerce interne? » : formulation de mot-clé, non descriptive, sans trait d'union ; resté en français dans la version EN.",
+  "appellations": "Orbitvu cité de façon cohérente ; « distribuées en France et en Suisse par PackshotCreator » cohérent avec les autres pages du site (dans le HTML, « Packshot<em>Creator</em> », style de l'ancienne marque, pas une erreur). Le metaTitle associe « Orbitvu & PackshotCreator ». L'ancre « Orbitvu » pointe vers /besoins-photographie-produit et non vers une page Orbitvu. Champ auteur : « Laurent Wainberg » à l'import, « PackshotCreator » depuis le commit 8ae45f63 (aucune mention dans le corps).",
+  "recommandation": "retraduction complète (EN) ; retouches (FR)",
+  "remarques": "Date de publication 2023-09-16 antérieure à la création de l'item Webflow (18/03/2025) : article probablement réécrit sans dateModified. Le texte renvoie à un article précédent (« bonnes pratiques budgétaires et logistiques ») sans lien. Durée de formation (« quelques heures ») à aligner sur l'offre Academy. Fonctions IA citées à vérifier sur la gamme actuelle. Note de méthode : citations recalées sur le JSON source ; les espaces avant virgule et point de l'extrait sont des artefacts d'extraction, mais les espaces avant « : » de l'EN sont réelles."
+}

@@ -1,0 +1,362 @@
+{
+  "family": "67d03c4bc109c8cd115efc62",
+  "slugs": {
+    "fr": "photographie-de-produits-comment-presenter-vos-vetements",
+    "en": "product-photography-how-to-showcase-your-clothing",
+    "de-ch": null
+  },
+  "sujet": "La photographie flat lay (produits disposés à plat, vus de dessus) : définition, intérêt, techniques, équipement recommandé (Alphatable et Alphadesk d'Orbitvu) et limites, notamment pour les vêtements.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces du français : « or “Flat lay” in English » (= « ou \"flat lay\" en anglais », absurde dans un texte anglais) ; « Table arts » (= « Arts de la table ») ; « Presentation of Thematic boxes Of clothes » et « Elaboration of a “Wish list” Seasonal » (ordre des mots français) ; « Does not highlight the drape or drape of the fabrics » (= « le tombé ou le drapé ») ; « Allow a margin around your topics » (= « sujets ») ; FAQ « the cut, fit, or fit of the garment » (= « la coupe, le tombé ou l'ajustement ») et « the natural shadows that are needed » (contresens sur « si désirées »).",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et clair. Retouches ponctuelles : H1 en Title Case, guillemets droits, deux calques légers (« l'opportunité », « environnement digital »), « si désirées » dans la FAQ, petite incohérence sur l'orientation de l'appareil (« parallèle » contre « perpendiculairement »). Défauts techniques : trois alts « __wf_reserved_inherit », et un lien vers le hub /fr/industrie au lieu de la page mode.",
+    "en": "Traduction automatique visible : majuscules et articles calqués (« One pure white background Who highlights », « Of natural drop shadows To give relief »), ordre des mots français, faux amis (« topics », « Table arts »), répétition absurde (« drape or drape »), « in English », mots collés réels (« theAlphatable And theAlphadesk », « offashion »), espaces avant deux-points, contresens dans la FAQ. Retraduction complète.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 10,
+    "en": 38,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Photographie Flat Lay : Optimisez vos Visuels E-commerce",
+      "probleme": "Title Case anglais et majuscule après deux-points.",
+      "proposition": "Photographie flat lay : optimisez vos visuels e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Comment photographier des vêtements pour le e-commerce ?",
+      "probleme": "Le metaTitle promet un guide général de photo de vêtements, alors que le corps traite du flat lay pour toutes catégories (cosmétiques, électronique, arts de la table) et ne cite pas « flat lay ». Le title JSON (« … comment présenter vos vêtements à plat ? ») est plus juste.",
+      "proposition": "Photographie flat lay : comment présenter vos vêtements à plat"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Qu'est-ce que la photographie \"flat lay\" ?",
+      "probleme": "Guillemets droits anglais (aussi dans le corps : \"flat lay\", \"wish list\").",
+      "proposition": "Qu'est-ce que la photographie « flat lay » ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cette approche visuelle, prise en vue plongeante",
+      "probleme": "Une « vue plongeante » peut être oblique ; le flat lay se photographie à la verticale, vu de dessus (plongée totale).",
+      "proposition": "Cette approche visuelle, photographiée à la verticale, vue de dessus"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "cette technique offre l'opportunité de raconter une histoire visuelle captivante",
+      "probleme": "Calque de « opportunity ».",
+      "proposition": "cette technique permet de raconter une histoire visuelle captivante"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "dans un environnement digital de plus en plus concurrentiel",
+      "probleme": "Anglicisme « digital ».",
+      "proposition": "dans un environnement numérique de plus en plus concurrentiel"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "tout en préservant les ombres naturelles si désirées",
+      "probleme": "Calque de « if desired ».",
+      "proposition": "tout en préservant, si on le souhaite, les ombres naturelles"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Table lumineuse avec appareil photo positionné en hauteur et parallèle au support",
+      "probleme": "La FAQ décrit le même montage avec « un appareil photo fixé perpendiculairement au-dessus de la surface » : les deux formulations désignent la même chose (capteur parallèle, axe optique perpendiculaire) mais se contredisent en apparence.",
+      "proposition": "Table lumineuse avec appareil photo fixé au-dessus, capteur parallèle au plateau"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Les trois images du corps ont pour alt la valeur technique Webflow « __wf_reserved_inherit », dans les deux langues.",
+      "proposition": "Rédiger des alts descriptifs après vérification visuelle (ex. « composition flat lay de vêtements et accessoires »)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Vêtements et accessoires de mode",
+      "probleme": "Lien vers le hub générique /fr/industrie, alors que l'EN pointe vers /en/industrie/mode-textile. Par ailleurs, l'intertitre « Les solutions Orbitvu pour la photographie flat lay » contient un lien (vers /fr/studio-photo/alphatable), ce qui est déconseillé dans un H2.",
+      "proposition": "Lier /fr/industrie/mode-textile ; sortir le lien de l'intertitre."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photographing flat objects, or “Flat lay” in English, is a technique that differs from the traditional packshot.",
+      "probleme": "« in English » dans un texte anglais ; « flat objects » (objets plats) au lieu d'objets posés à plat.",
+      "proposition": "Flat lay photography, which shows objects laid flat and shot from above, is a technique that differs from the traditional packshot."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "this technique offers the opportunity to Tell a visual story captivating",
+      "probleme": "Majuscule parasite et adjectif postposé à la française.",
+      "proposition": "this technique gives brands the opportunity to tell a captivating visual story"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Presentation of Thematic boxes Of clothes",
+      "probleme": "Ordre des mots et majuscules calqués.",
+      "proposition": "Presenting themed clothing boxes"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Staging offashion accessories Complementary",
+      "probleme": "Adjectif postposé et majuscule ; mot collé réel « offashion » dans le HTML servi.",
+      "proposition": "Staging complementary fashion accessories"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Elaboration of a “Wish list” Seasonal",
+      "probleme": "Adjectif postposé, majuscules.",
+      "proposition": "Putting together a seasonal wish list"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One pure white background Who highlights the products",
+      "probleme": "« Un » rendu par « One », « qui » rendu par « Who » pour une chose.",
+      "proposition": "A pure white background that showcases the products"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of natural drop shadows To give relief to objects",
+      "probleme": "« Des » rendu par « Of », majuscules ; « relief » calqué.",
+      "proposition": "Natural drop shadows that give objects depth"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "The solutions Orbitvu for flat lay photography",
+      "probleme": "Ordre des mots français.",
+      "proposition": "Orbitvu solutions for flat lay photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Does not highlight the drape or drape of the fabrics (In this case prefer a photo of the garment worn)",
+      "probleme": "« le tombé ou le drapé » rendu par « drape or drape ».",
+      "proposition": "Does not show how fabrics hang or drape (in this case, use a photo of the garment being worn)"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu's automated solutions, such as theAlphatable And theAlphadesk, allow you to quickly produce consistent, high-quality images",
+      "probleme": "Mots collés réels dans le HTML servi (pas d'espace avant <strong>) : « theAlphatable And theAlphadesk » ici et « like theAlphatable Or theAlphadesk » plus bas ; majuscules parasites « And », « Or ».",
+      "proposition": "Orbitvu's automated solutions, such as the Alphatable and the Alphadesk, allow you to quickly produce consistent, high-quality images"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Choose a live model when the cut, fit, or fit of the garment are essential aspects to communicate",
+      "probleme": "« fit » répété (tombé et ajustement confondus) ; le mannequin, cité dans la question et dans le FR (« un mannequin ou un modèle vivant »), a disparu de la réponse.",
+      "proposition": "Choose a mannequin or a live model when the cut, drape or fit of the garment is essential to communicate"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "while maintaining the natural shadows that are needed",
+      "probleme": "Contresens : le FR dit « si désirées » (option), l'EN « that are needed » (nécessaires).",
+      "proposition": "while preserving natural shadows if desired"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Allow a margin around your topics to make it easier to reframe later.",
+      "probleme": "« sujets » rendu par « topics » ; « reframe » peu usuel.",
+      "proposition": "Leave a margin around your subjects to make cropping easier later."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Table arts",
+      "probleme": "Calque de « arts de la table ».",
+      "proposition": "Tableware"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Precise placement : Each element must be carefully positioned in the frame",
+      "probleme": "Espace avant deux-points (typographie française) dans toutes les puces « Libellé : » de la version EN (espace réelle dans le JSON).",
+      "proposition": "Precise placement: each element must be carefully positioned in the frame"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A shooting carried out in a studio with adapted equipment makes it possible to obtain:",
+      "probleme": "Calque (« shooting » nom, « adapted »).",
+      "proposition": "A studio shoot with suitable equipment gives you:"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Unsuitable for large clothes Like wedding dresses",
+      "probleme": "Majuscule parasite.",
+      "proposition": "Unsuitable for large garments such as wedding dresses"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The flat lay photograph represents a innovative visual solution",
+      "probleme": "Article fautif devant voyelle ; idem « a undeniable marketing asset ».",
+      "proposition": "Flat lay photography is an innovative visual solution"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Product photography: how do you present your clothes flat?",
+      "probleme": "Calque du title FR.",
+      "proposition": "Product photography: how to present clothing laid flat"
+    },
+    {
+      "langue": "en",
+      "categorie": "claim_renforce",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Orbitvu techniques, equipment and solutions for compelling e-commerce visuals.",
+      "probleme": "Le FR (« Techniques, équipements et solutions Orbitvu ») ne rattache à Orbitvu que les solutions ; l'EN lui attribue aussi les techniques et l'équipement.",
+      "proposition": "Techniques, equipment and Orbitvu solutions for compelling e-commerce visuals."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Capture rapide : Réalisez des packshots professionnels en seulement 15 secondes",
+      "source_dans_texte": "aucune",
+      "motif": "Durée de capture chiffrée.",
+      "ecart_fr_en": "EN : « in just 15 seconds »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Productivité accrue : Jusqu'à 150 prises de vue par heure",
+      "source_dans_texte": "aucune",
+      "motif": "Cadence chiffrée.",
+      "ecart_fr_en": "EN : « Up to 150 shots per hour » (le « jusqu'à » est conservé)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Simplicité d'utilisation : Une seule personne peut gérer l'ensemble du processus",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse d'usage.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cohérence visuelle : Garantit une identité de marque uniforme",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie.",
+      "ecart_fr_en": "EN : « Ensures a consistent brand identity »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Publication directe : Exportez vos visuels vers vos plateformes e-commerce grâce aux plugins intégrés",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité (plugins intégrés) à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Résultats professionnels : Sans nécessiter de compétences avancées en photographie",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse d'usage.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Découvrez comment la photographie flat lay révolutionne la présentation de vos produits en ligne.",
+      "source_dans_texte": "aucune",
+      "motif": "Hyperbole (description).",
+      "ecart_fr_en": "EN : « is revolutionizing »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "les systèmes automatisés comme ceux d'Orbitvu intègrent une technologie de détourage qui identifie automatiquement les contours du produit et supprime l'arrière-plan, tout en préservant les ombres naturelles si désirées",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalité produit.",
+      "ecart_fr_en": "EN : « while maintaining the natural shadows that are needed » (option devenue nécessité)"
+    }
+  ],
+  "titre_h1_meta": "FR : title « Photographie de produits : comment présenter vos vêtements à plat ? », H1 « Photographie Flat Lay : Optimisez vos Visuels E-commerce » (Title Case), metaTitle « Comment photographier des vêtements pour le e-commerce ? » (plus large que le sujet), description « … la photographie flat lay révolutionne… solutions Orbitvu » (182 caractères). Le corps traite du flat lay en général, vêtements compris : title et H1 cohérents, metaTitle trop large. EN : même schéma ; title calqué, H1 en Title Case anglais acceptable, description qui attribue techniques et équipement à Orbitvu.",
+  "structure_fr_en": "Parité : 6 H2, 7 H3, 20 paragraphes, 27 puces, 3 images, 1 vidéo YouTube, 5 questions de FAQ, même ordre. L'article s'ouvre sur deux paragraphes promotionnels (Orbitvu, vidéo) avant la définition du flat lay, dans les deux langues. Liens : FR « Vêtements et accessoires de mode » → /fr/industrie (hub), EN → /en/industrie/mode-textile. Un lien est placé dans un H2 dans les deux langues. 8 paragraphes vides (ZWJ) dans chaque langue.",
+  "images_alt_legendes": "Les 3 images ont pour alt « __wf_reserved_inherit » dans les deux langues (valeur technique Webflow, sans description). Pas de légende.",
+  "appellations": "Orbitvu, Alphatable, Alphadesk : graphies constantes et conformes au site. En EN, mots collés réels « theAlphatable », « theAlphadesk ». Pas de nom de personne ; auteur passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63).",
+  "recommandation": "retraduction complète",
+  "remarques": "FR : retouches. EN : retraduction complète. Date de publication 05/09/2023 antérieure à la création de l'item Webflow (11/03/2025, inférence) : à vérifier. Chiffres produit (15 secondes, 150 prises de vue par heure) à valider sur la fiche Orbitvu. Les espaces avant virgule de l'extrait sont des artefacts d'extraction ; les espaces avant deux-points dans les puces EN et les mots collés sont réels."
+}

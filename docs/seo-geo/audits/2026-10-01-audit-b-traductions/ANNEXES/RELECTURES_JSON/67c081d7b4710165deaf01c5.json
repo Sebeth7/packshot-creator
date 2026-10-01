@@ -1,0 +1,478 @@
+{
+  "family": "67c081d7b4710165deaf01c5",
+  "slugs": {
+    "fr": "evolution-e-commerce-packshot",
+    "en": "e-commerce-packshot-evolution",
+    "de-ch": null
+  },
+  "sujet": "Historique de la photographie produit dans le e-commerce (années 2000 à aujourd'hui), attentes des consommateurs, puis argumentaire pour les studios automatisés Orbitvu et l'offre de reprise UpgradeYourPackshot.com.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des résidus et calques du français : « La product photography is much more than just an illustration » (déterminant « La » conservé) ; « especially in areas such as modus And the props » (= « la mode et les accessoires », mode → modus, accessoires → props) ; « that they are quick to charge » (= « rapides à charger ») ; « competitive takeover offer » / « this takeover program » (= « offre de reprise ») ; « allows you to valorize your old equipment » (= « valoriser ») ; « the image is queen » (= « l'image est reine ») ; textes alternatifs restés en français dans la version EN.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et globalement fluide, mais au-delà de cinq corrections : accords fautifs, majuscules après deux-points dans title et H1, Title Case sur « Indice de Rendu des Couleurs », imprécision technique sur l'éclairage LED gradable. Défauts éditoriaux lourds : H1 centré sur une offre de reprise datée de 2024 (« actuellement ») alors que le corps est surtout historique, chiffres de FAQ non sourcés (70 %, 15-20 %, ROI 6 à 12 mois), lien « Scancube » pointant vers upgradeyourpackshot.com, et PackshotCreator présenté comme relevant des « solutions obsolètes » sur le site PackshotCreator. Réécriture partielle nécessaire.",
+    "en": "Traduction automatique visible et non relue : déterminant français résiduel (« La product photography »), phrases incompréhensibles (« modus And the props », « transform photos to 360 degrees of your products in visuals 3D »), majuscules au milieu des phrases (« And », « For », « Costly »), faux amis (« quick to charge », « takeover », « crop » pour détourer), segment coupé (« to see products. From every angle »), domaine erroné dans la FAQ (« updateyourpackshot.com »), textes alternatifs en français. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 16,
+    "en": 50,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Évolution photo e-commerce : Offre de reprise exceptionnelle",
+      "probleme": "Le H1 annonce une offre de reprise alors que quatre des cinq H2 traitent de l'historique et des attentes des consommateurs ; l'offre n'occupe qu'une section. Majuscule après deux-points. Le H1 diverge aussi du title (« Pourquoi investir dans les nouveaux studios ») et du metaTitle (« Évolution du packshot e-commerce »).",
+      "proposition": "Évolution du e-commerce et du packshot : pourquoi passer aux studios automatisés Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Évolution du e-commerce et du packshot : Pourquoi investir dans les nouveaux studios photos automatisés Orbitvu",
+      "probleme": "Majuscule après deux-points (usage anglais) ; « studios photos » alors que le texte écrit aussi « studios photo » (alt).",
+      "proposition": "Évolution du e-commerce et du packshot : pourquoi investir dans les nouveaux studios photo automatisés Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "C'est le moment idéal pour moderniser votre équipement de photographie de produits ! Nous proposons actuellement une offre de reprise concurrentielle",
+      "probleme": "Offre commerciale présentée comme en cours (« actuellement ») dans un article daté du 18/09/2024 ; sa validité en 2026 n'est pas établie par le texte. Même problème en EN (« We are currently offering »).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "pour les solutions obsolètes telles que PackshotCreator, Ortery, Scancube",
+      "probleme": "Sur un site à la marque PackshotCreator (metaTitle « | PackshotCreator », auteur « PackshotCreator »), le matériel PackshotCreator est qualifié de « solutions obsolètes ». La position éditoriale (ancienne gamme maison remplacée par Orbitvu ?) doit être tranchée et formulée explicitement. Identique en EN.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "telles que PackshotCreator, Ortery, Scancube, ou même d'anciennes solutions Orbitvu",
+      "probleme": "L'ancre « Scancube » pointe vers https://www.upgradeyourpackshot.com (lien trompeur : le lecteur attend le site du fabricant). En EN, l'ancre pointe vers scancube.com et « Ortery » est aussi lié : liens divergents entre langues.",
+      "proposition": "Retirer le lien de l'ancre « Scancube » ou le faire pointer vers le même type de cible que la version EN."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "le détourage des produits et les diverses retouches est devenu plus facile",
+      "probleme": "Faute d'accord : sujet pluriel (deux noms coordonnés).",
+      "proposition": "le détourage des produits et les diverses retouches sont devenus plus faciles"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "l'émergence de la vidéo et de l'intelligence artificielle, qui a également ouvert",
+      "probleme": "Accord : l'antécédent est double (la vidéo et l'intelligence artificielle).",
+      "proposition": "l'émergence de la vidéo et de l'intelligence artificielle, qui ont également ouvert"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Avec un éclairage LED gradable, il devient ainsi possible de contrôler l'intensité de la lumière, d'ajuster la température de couleur pour correspondre à différentes ambiances, et même de modifier la direction et l'angle d'éclairage",
+      "probleme": "Imprécision technique : la gradation règle l'intensité ; la température de couleur et l'orientation ne dépendent pas de la gradabilité (sources bicolores ou orientables). « Grâce à sa gradabilité » (néologisme) suit dans le même paragraphe.",
+      "proposition": "Reformuler après validation technique : réserver la gradation au contrôle de l'intensité et présenter séparément le réglage de température de couleur et l'orientation des sources."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "l'Indice de Rendu des Couleurs (IRC)",
+      "probleme": "Majuscules artificielles sur un nom commun (Title Case anglais).",
+      "proposition": "l'indice de rendu des couleurs (IRC)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Compatibilité avec les derniers appareils photo mirrorless haute résolution",
+      "probleme": "Anglicisme : le terme français usuel est « hybride ».",
+      "proposition": "Compatibilité avec les derniers appareils photo hybrides haute résolution"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "absentes des équipements plus anciens : Intelligence artificielle pour le détourage automatique et l'optimisation des images",
+      "probleme": "Liste stockée avec des retours à la ligne, rendue sans puces (whitespace-pre-line) ; premier élément collé après les deux-points avec majuscule. Même défaut en EN.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "une réduction du temps de production (jusqu'à 70% plus rapide)",
+      "probleme": "Typographie française : espace insécable avant « % » (également « 15-20% » et « 15% » dans la FAQ ROI).",
+      "proposition": "(jusqu'à 70 % plus rapide)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Studio photo E-Comm Studio + de Orbitvu",
+      "probleme": "Élision manquante (« de Orbitvu ») ; alt réutilisé tel quel en EN.",
+      "proposition": "Studio photo E-Comm Studio + d'Orbitvu"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Technological advances such asdimmable LED lighting have made it possible",
+      "probleme": "Mots collés réels dans le HTML servi (aucune espace avant la balise <strong>) : « such asdimmable », « And ofgenuineness », « of theartificial intelligence », « theColor Rendering Index », « in terms ofuser experience », « Thanks to theprocess automation ». Visibles par le lecteur. (Les espaces avant virgule de l'extrait sont, elles, des artefacts d'extraction.)",
+      "proposition": "Technological advances such as dimmable LED lighting have made it possible"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "In the ultra-competitive world of e-commerce, the image is queen. La product photography is much more than just an illustration",
+      "probleme": "Déterminant français résiduel « La » et calque « the image is queen » dès la première phrase.",
+      "proposition": "In the highly competitive world of e-commerce, the image is king. Product photography is much more than a simple illustration"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "especially in areas such as modus And the props.",
+      "probleme": "« mode » rendu par « modus », « accessoires » par « props » (accessoires de scène) : phrase absurde.",
+      "proposition": "especially in sectors such as fashion and accessories."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "but also changes in expectations And the consumer behaviors.",
+      "probleme": "Structure française calquée, majuscule parasite.",
+      "proposition": "but also changes in consumer expectations and behaviour."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "a growing need for transparency And ofgenuineness on the part of businesses",
+      "probleme": "Calque de « de transparence et d'authenticité », majuscule parasite.",
+      "proposition": "a growing need for transparency and authenticity on the part of businesses"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "the clipping products and various retouching has become easier thanks to advances in image editing software. Format support RAW has also offered",
+      "probleme": "Syntaxe française conservée (« La prise en charge du format RAW ») ; phrase agrammaticale.",
+      "proposition": "clipping products and retouching became easier thanks to advances in image editing software. Support for the RAW format also offered"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "We were then able to see the emergence of video And of theartificial intelligence",
+      "probleme": "Calque mot à mot avec articles français.",
+      "proposition": "We then saw the emergence of video and artificial intelligence"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "we can also use AI to transform photos to 360 degrees of your products in visuals 3D",
+      "probleme": "Ordre des mots français (« photos à 360 degrés », « visuels 3D ») : sens obscurci.",
+      "proposition": "AI can also be used to turn 360-degree photos of your products into 3D visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It can also be used to automatically crop products",
+      "probleme": "« Détourer » ne veut pas dire « recadrer » (crop) ; terme métier attendu : clipping / background removal. Même erreur dans la FAQ (« automatic image cropping »).",
+      "proposition": "It can also be used to automatically clip products from their background"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Consumers especially like the opportunity to see products. From every angle,",
+      "probleme": "Phrase coupée en deux par un point parasite.",
+      "proposition": "Consumers especially like being able to see products from every angle,"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "that they are quick to charge",
+      "probleme": "« charger » (une page) traduit par « charge » (recharger une batterie).",
+      "proposition": "that they load quickly"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La 360-degree automated capture makes it possible",
+      "probleme": "Déterminant français résiduel.",
+      "proposition": "Automated 360-degree capture makes it possible"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to theprocess automation For capturing and retouching",
+      "probleme": "Majuscule parasite et syntaxe calquée.",
+      "proposition": "By automating capture and retouching"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "We are currently offering a competitive takeover offer for outdated solutions",
+      "probleme": "« Reprise » (de matériel) rendu par « takeover » (rachat d'entreprise) ; idem « this takeover program » et FAQ « eligible for takeover ». Le terme correct, « trade-in », est employé ailleurs dans le même article.",
+      "proposition": "We are currently offering a competitive trade-in deal for outdated solutions"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "How does the trade-in program on updateyourpackshot.com actually work?",
+      "probleme": "Domaine « updateyourpackshot.com » (deux fois dans la FAQ) alors que le corps et la version FR citent UpgradeYourPackshot.com.",
+      "proposition": "How does the trade-in program on upgradeyourpackshot.com actually work?"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "or visit now UpgradeYourPackshot.com to get a free estimate",
+      "probleme": "L'ancre « UpgradeYourPackshot.com » pointe vers /en/studios-photo-automatises (page interne) et non vers le site annoncé (en FR, l'ancre pointe vers upgradeyourpackshot.com). « visit now » : ordre des mots fautif.",
+      "proposition": "or visit UpgradeYourPackshot.com now to get a free estimate (lien vers le site annoncé, ou ancre adaptée à la page interne)"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "exemple de l'évolution du e-commerce avec le site boo.com",
+      "probleme": "Les six textes alternatifs de la version EN sont en français.",
+      "proposition": "example of e-commerce evolution: the boo.com website"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "for outdated solutions such as PackshotCreator, Ortery, Scancube",
+      "probleme": "Même question éditoriale qu'en FR : PackshotCreator qualifié de solution dépassée sur le site PackshotCreator.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "E-commerce photo evolution: Exceptional trade-in offer",
+      "probleme": "Calque du H1 FR, avec le même décalage par rapport au corps.",
+      "proposition": "The evolution of e-commerce and packshots: why switch to Orbitvu automated studios"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Consumers want to see images True to reality",
+      "probleme": "Majuscule parasite, ordre des mots.",
+      "proposition": "Consumers want to see true-to-life images"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "can prove to be a Costly error",
+      "probleme": "Majuscule parasite.",
+      "proposition": "can prove to be a costly mistake"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It's the Perfect time to modernize your product photography equipment!",
+      "probleme": "Majuscule parasite.",
+      "proposition": "It's the perfect time to modernize your product photography equipment!"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "allows you to valorize your old equipment",
+      "probleme": "Calque de « valoriser ».",
+      "proposition": "lets you get value from your old equipment"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The first CMS have been adopted to effectively manage online content",
+      "probleme": "Temps verbal (present perfect pour un fait daté) calqué sur le passé composé.",
+      "proposition": "The first CMSs were adopted to manage online content effectively"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "with Orbitvu Studios, you can produce high-quality visuals",
+      "probleme": "Majuscule incohérente (« Orbitvu studios » ailleurs).",
+      "proposition": "with Orbitvu studios, you can produce high-quality visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Since 2020, we can note a widespread adoption of automated photo studios",
+      "probleme": "Calque de « on peut noter ».",
+      "proposition": "Since 2020, automated photo studios have been widely adopted"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "une réduction du temps de production (jusqu'à 70% plus rapide)",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de productivité non sourcé (FAQ).",
+      "ecart_fr_en": "EN identique : « (up to 70% faster) »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises qui passent à nos solutions Orbitvu constatent généralement un ROI positif dans les 6 à 12 mois suivant l'acquisition.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de ROI chiffrée, non sourcée.",
+      "ecart_fr_en": "EN identique : « positive ROI within 6 to 12 months »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "grâce à des visuels de meilleure qualité qui augmentent le taux de conversion de 15-20% en moyenne",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique de conversion non sourcée.",
+      "ecart_fr_en": "EN identique : « by 15-20% on average »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "jusqu'à 15% de réduction grâce à une représentation plus fidèle des articles",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique de baisse des retours non sourcée.",
+      "ecart_fr_en": "EN identique : « up to 15% reduction »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Logiciel Orbitvu Station constamment mis à jour avec de nouvelles fonctionnalités sans frais supplémentaires pendant 3 ans",
+      "source_dans_texte": "aucune",
+      "motif": "Engagement commercial (mises à jour gratuites pendant 3 ans) à confirmer auprès d'Orbitvu.",
+      "ecart_fr_en": "EN identique : « at no additional cost for 3 years »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Nous nous occupons également de la désinstallation de votre ancien matériel et de l'installation complète de votre nouvelle solution ; la formation de votre équipe est proposée en option.",
+      "source_dans_texte": "aucune",
+      "motif": "Engagement de service ; la formation est passée de « incluse » à « en option » (commit fc6c9c6b), aligné dans les deux langues.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "car la plupart des studios professionnels sont éligibles à notre programme de reprise",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse d'éligibilité large.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Nous proposons actuellement une offre de reprise concurrentielle",
+      "source_dans_texte": "https://www.upgradeyourpackshot.com",
+      "motif": "Offre datée (article du 18/09/2024) : vérifier qu'elle est toujours active.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "garantissant des résultats professionnels en un temps record",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie et superlatif.",
+      "ecart_fr_en": "EN : « guaranteeing professional results in record time »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "offrant aux consommateurs une expérience de visualisation sans précédent",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "EN : « an unprecedented viewing experience »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cette avancée technologique offre ainsi une flexibilité et une personnalisation inégalées",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "EN : « unparalleled flexibility »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vous n'avez même pas besoin d'expérience particulière en photographie : le studio se charge de tout pour vous !",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse d'automatisation totale.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis 2020, on peut noter une adoption généralisée des studios photos automatisés",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation de marché non sourcée.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « … : Pourquoi investir dans les nouveaux studios photos automatisés Orbitvu » (majuscule après deux-points), H1 « Évolution photo e-commerce : Offre de reprise exceptionnelle » (centré sur l'offre), metaTitle « Évolution du packshot e-commerce | PackshotCreator » (neutre, corrigé le 23/05 : il contenait auparavant une description), description centrée sur Orbitvu et la reprise. Le corps est aux trois quarts historique : le H1 surpondère l'offre. EN : même schéma, H1 calqué, metaTitle « E-commerce Packshot Evolution | PackshotCreator » correct.",
+  "structure_fr_en": "Parité stricte : 5 H2, 10 H3, 41 paragraphes, 6 images, 5 questions de FAQ, même ordre. 10 paragraphes vides (ZWJ ou espace) dans les deux langues. Divergences de liens : FR « Scancube » → upgradeyourpackshot.com ; EN « Ortery » → ortery.com et « Scancube » → scancube.com ; lien de conclusion FR → upgradeyourpackshot.com, EN → /en/studios-photo-automatises sous l'ancre « UpgradeYourPackshot.com ». Paragraphe EN coupé (« see products. From every angle »).",
+  "images_alt_legendes": "6 images identiques dans les deux langues. Alts FR acceptables, avec deux coquilles (« de Orbitvu », « Orbitvu station »). Les 6 alts de la version EN sont en français (l'outil n'en signale que 3, les autres contenant des noms propres). Pas de légende.",
+  "appellations": "Orbitvu, Orbitvu Station (alt « Orbitvu station »), E-Comm Studio + ; « Orbitvu Studios » capitalisé en EN. PackshotCreator cité parmi les « solutions obsolètes » éligibles à la reprise, alors que le site, le metaTitle et l'auteur portent la marque PackshotCreator : arbitrage éditorial nécessaire. UpgradeYourPackshot.com (corps) contre updateyourpackshot.com (FAQ EN). Auteur passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63) ; aucun nom de personne dans le corps.",
+  "recommandation": "retraduction complète",
+  "remarques": "FR : réécriture partielle (H1, offre datée, chiffres de FAQ, position sur PackshotCreator, lien Scancube). EN : retraduction complète depuis le FR corrigé. Date de publication 18/09/2024 antérieure à la création de l'item Webflow (27/02/2025, inférence) : à vérifier. Offre de reprise et domaine (upgrade ou update) à confirmer. Les chiffres de la FAQ (70 %, 15-20 %, 15 %, 6 à 12 mois, 3 ans) n'ont aucune source et doivent être validés ou retirés. Mention de boo.com comme exemple des années 2000 : fait historique non détaillé. Mineures FR non détaillées dans la liste : « une opportunité inestimable » (calque, préférer « une occasion précieuse ») ; « l'émergence du Rich Media » (anglicisme capitalisé) ; alt « Détourage automatique d'image avec Orbitvu station » (« Orbitvu Station »)."
+}

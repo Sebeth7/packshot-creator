@@ -1,0 +1,322 @@
+{
+  "family": "67e28a1d1eed7d0635aacdef",
+  "slugs": {
+    "fr": "focus-sur-lhyperfocus",
+    "en": "focus-on-the-focus-stacking",
+    "de-ch": null
+  },
+  "sujet": "Le focus stacking (empilement de mises au point) en photographie packshot, son historique chez PackshotCreator depuis 2013 et la fonction SuperFocus intégrée aux studios Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des mots français non traduits et des calques mot à mot du FR : « En macro photography » (← « En macrophotographie »), « • Chronophage , » (← « • Chronophage , »), « nothing should escape the objective » (← « rien ne doit échapper à l'objectif », objectif = lens), « the optical diffraction ends up degrading the bite » (← « dégrader le piqué »), « A solution: the stacking of adjustments » (← « l'empilement de mises au point »), « It's in 2013 what Packshot Creator Has been » (← « C'est en 2013 que Packshot Creator a été »), « one e-commerce product sheet , one printed brochure » (← « une fiche produit e-commerce , une brochure imprimée »), « with requirement and efficiency » (← « avec exigence et efficacité »). Le FR est natif et ne présente pas de trace de traduction.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif, technique et fluide. Défauts éditoriaux plutôt que linguistiques : nom de personne remplacé par la marque (« C'est PackshotCreator qui, anticipant… », l'import Webflow portait « Laurent Wainberg »), revendication de distribution « distribue exclusivement » contraire à la doctrine D6 et désormais divergente de l'EN, slug et alt en « hyperfocus » pour une fonction nommée SuperFocus, claims superlatifs non sourcés (« premier acteur mondial », « aucune autre technique », « seule solution »). Quelques retouches mineures (« répétable », « objets optique-précision », redondance netteté/piqué).",
+    "en": "Traduction automatique non relue : mots français résiduels (« En macro photography », « Chronophage »), faux amis métier (« objective » pour objectif, « bite » pour piqué, « adjustments » pour mises au point, « fuzzy » pour flou), phrases agrammaticales (« It's in 2013 what Packshot Creator Has been The world's leading player »), majuscules parasites (« Or of macro shots », « The Real lights », « Relief »), tautologies (« the technique of Focus Stacking — or Focus stacking — », « maximum sharpness and optimum sharpness »), alts en français. La FAQ est nettement meilleure que le corps. Retraduction complète du corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 11,
+    "en": 40,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "C’est PackshotCreator qui, anticipant les besoins des utilisateurs en matière de netteté et de réalisme, a pris l’initiative d’intégrer le SDK Helicon Focus dans le logiciel.",
+      "probleme": "Nom de personne remplacé par la marque : l'import Webflow (56d4bc32) portait « C’est Laurent Wainberg qui, anticipant… » ; le remplacement (commit 4dde4f23, « auteur générique PackshotCreator ») a aussi touché le corps. La phrase devient tautologique après « distribué sous la marque Packshot Creator ». Même défaut en EN : « It is PackshotCreator who, anticipating… ».",
+      "proposition": "C’est Laurent Wainberg qui, anticipant les besoins des utilisateurs en matière de netteté et de réalisme, a pris l’initiative d’intégrer le SDK Helicon Focus dans le logiciel. (texte d'origine ; à arbitrer si la mention nominative doit être conservée)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "claim_renforce",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Depuis 2023, Packshot Creator distribue exclusivement les solutions Orbitvu .",
+      "probleme": "Revendication de distribution avec « exclusivement », alors que la doctrine D6 (docs/seo-geo/DECISIONS.md) proscrit l'exclusivité dans toute revendication de distribution ; l'EN a été corrigé (commit 74dff0ce) en « is the official distributor of Orbitvu solutions », pas le FR : écart FR/EN. Le texte est aussi l'ancre d'un lien externe vers orbitvu.com.",
+      "proposition": "Depuis 2023, PackshotCreator est distributeur officiel des solutions Orbitvu."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Résultat hyperfocus sur une montre",
+      "probleme": "« hyperfocus » (alt et slug « focus-sur-lhyperfocus ») alors que la fonction est nommée SuperFocus dans tout le texte.",
+      "proposition": "Résultat SuperFocus sur une montre"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le focus stacking est la seule solution qui combine netteté maximale et piqué optimal .",
+      "probleme": "Netteté et piqué quasi synonymes : l'opposition voulue (profondeur de champ étendue sans perte de piqué) n'est pas exprimée ; « seule solution » est un superlatif.",
+      "proposition": "Le focus stacking permet de combiner une profondeur de champ maximale et un piqué optimal."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Un workflow fiable, répétable , intégré à votre chaîne de création de contenu.",
+      "probleme": "« répétable » est un anglicisme (repeatable).",
+      "proposition": "Un flux de travail fiable, reproductible, intégré à votre chaîne de création de contenu."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "aux objets optique-précision",
+      "probleme": "Composé non idiomatique.",
+      "proposition": "aux instruments d’optique de précision"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Ce que permet le SuperFocus qu’aucune autre technique ne permet",
+      "probleme": "Répétition « permet … permet » et superlatif absolu non démontré.",
+      "proposition": "Ce que le SuperFocus apporte par rapport aux autres techniques"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cette technique autrefois réservée à des experts utilisant Photoshop ou Helicon Focus, est aujourd’hui entièrement automatisée",
+      "probleme": "Virgule isolée entre sujet et verbe (incise non ouverte).",
+      "proposition": "Cette technique, autrefois réservée à des experts utilisant Photoshop ou Helicon Focus, est aujourd’hui entièrement automatisée"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Marqueur interne Webflow exposé comme texte alternatif (image d'ouverture), dans les deux langues.",
+      "proposition": "Studio Orbitvu avec fonction SuperFocus (alt à rédiger d'après l'image)"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "En macro photography , it is almost impossible to have both the front, the middle and the back of the product clearly defined in a single image.",
+      "probleme": "Préposition française « En » résiduelle ; même défaut avec le mot français « Chronophage » dans une puce.",
+      "proposition": "In macro photography, it is almost impossible to get the front, middle and back of the product in sharp focus in a single image."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "• Chronophage ,",
+      "probleme": "Mot français non traduit.",
+      "proposition": "• Time-consuming,"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It's in 2013 what Packshot Creator Has been The world's leading player to integrate focus stacking into a complete packshot workflow.",
+      "probleme": "Phrase agrammaticale (« C'est en 2013 que » → « It's in 2013 what »), majuscules parasites, et claim modifié : le FR dit « le premier acteur mondial » (first), l'EN « The world's leading player » (leader).",
+      "proposition": "In 2013, PackshotCreator became the first company in the world to integrate focus stacking into a complete packshot workflow."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Even when the aperture is closed at f/22, the optical diffraction ends up degrading the bite.",
+      "probleme": "« piqué » traduit par « bite » (morsure) : contresens technique.",
+      "proposition": "Even when stopping down to f/22, diffraction eventually degrades sharpness."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "A solution: the stacking of adjustments",
+      "probleme": "« mises au point » traduit par « adjustments » : l'intertitre ne désigne plus le focus stacking.",
+      "proposition": "A solution: focus stacking"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "nothing should escape the objective.",
+      "probleme": "« objectif » (lens) traduit par « objective » (but).",
+      "proposition": "nothing should escape the lens."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is to circumvent this limit that the technique of Focus Stacking — or Focus stacking — has established itself as an essential solution.",
+      "probleme": "Tautologie : la glose française « ou empilement de mises au point » a été rendue par le même terme ; majuscules incohérentes.",
+      "proposition": "To get around this limitation, focus stacking has become an essential technique."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "especially when it comes to small objects Or of macro shots . Very quickly, a well-known technical constraint came into play: limited depth of field .",
+      "probleme": "Majuscule parasite « Or », préposition erronée, passage au prétérit injustifié.",
+      "proposition": "especially with small objects or macro shots. A well-known technical constraint quickly comes into play: limited depth of field."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Focus stacking is the only solution that combines maximum sharpness and optimum sharpness .",
+      "probleme": "Tautologie (netteté et piqué rendus par le même mot).",
+      "proposition": "Focus stacking is the only technique that combines maximum depth of field with optimal sharpness."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• one e-commerce product sheet ,",
+      "probleme": "Article « une » rendu par « one » (4 puces) ; « product sheet » calque de « fiche produit ».",
+      "proposition": "• an e-commerce product page,"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "we continue to offer tools concrete, powerful and accessible to all companies that want to promote their products with requirement and efficiency .",
+      "probleme": "Ordre des mots français, « avec exigence » rendu par « with requirement ».",
+      "proposition": "we continue to offer practical, powerful and accessible tools to companies that want to showcase their products with high standards and efficiency."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "• The Real lights and shadows .",
+      "probleme": "Majuscule parasite (même défaut : « Relief », « the Packshot photography », « slightly modifying the Focus »).",
+      "proposition": "• the real lights and shadows."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A workflow reliable, repeatable , integrated into your content creation channel.",
+      "probleme": "Ordre des mots français ; « chaîne » rendu par « channel ».",
+      "proposition": "A reliable, repeatable workflow integrated into your content creation pipeline."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "différence packshot avec et sans focus stacking",
+      "probleme": "Alt en français dans la version EN (idem « Résultat hyperfocus sur une montre ») alors que la légende est traduite.",
+      "proposition": "Packshot comparison with and without focus stacking"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Focus stacking packshot: clear product visuals without retouching",
+      "probleme": "Juxtaposition « Focus stacking packshot » non idiomatique ; « clear » pour « nets » (sharp). La description reprend le calque « from A to Z ».",
+      "proposition": "Focus stacking for packshots: sharp product images without retouching"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "C’est en 2013 que Packshot Creator a été le premier acteur mondial à intégrer le focus stacking dans un workflow packshot complet.",
+      "source_dans_texte": "aucune",
+      "motif": "Revendication d'antériorité mondiale non sourcée ; repris en conclusion (« En introduisant dès 2013 »).",
+      "ecart_fr_en": "FR « le premier acteur mondial » (antériorité) ; EN « The world's leading player » (position de leader) : claim différent."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis 2023, Packshot Creator distribue exclusivement les solutions Orbitvu .",
+      "source_dans_texte": "lien externe https://orbitvu.com/blog/packshotcreator-now-powered-orbitvu/",
+      "motif": "Formulation d'exclusivité contraire à D6 en FR.",
+      "ecart_fr_en": "EN corrigé en « is the official distributor of Orbitvu solutions » (74dff0ce), FR non corrigé."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "C’est dans ce cadre que la fonctionnalité SuperFocus a vu le jour.",
+      "source_dans_texte": "aucune",
+      "motif": "Laisse entendre que SuperFocus est né du partenariat PackshotCreator/Orbitvu : origine de la fonction à confirmer.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le tout en quelques secondes.",
+      "source_dans_texte": "aucune",
+      "motif": "Durée de capture et fusion non chiffrée précisément ; dépend du nombre d'images (6 à 20 selon la FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un photographe débutant peut, en moins d’une minute, obtenir un visuel de qualité professionnelle.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai et de résultat.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le focus stacking est la seule solution qui combine netteté maximale et piqué optimal .",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif absolu ; même registre : « Ce que permet le SuperFocus qu’aucune autre technique ne permet ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Vous gagnez en crédibilité auprès des acheteurs, ce qui se traduit par plus de conversions et moins de retours .",
+      "source_dans_texte": "aucune",
+      "motif": "Effet commercial affirmé sans donnée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "En moyenne, un empilement efficace se compose de 6 à 20 prises de vues.",
+      "source_dans_texte": "aucune",
+      "motif": "Donnée technique à valider (FAQ), de même « une ouverture optimale (f/4 à f/8) ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "avec une précision de fusion bien supérieure et sans étape de retouche supplémentaire",
+      "source_dans_texte": "aucune",
+      "motif": "Comparatif favorable à Photoshop non étayé ; « la solution garantit une cohérence visuelle sans nécessiter de retouche » (FAQ 5) contient « garantit ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis plus de 20 ans, Packshot Creator accompagne les marques",
+      "source_dans_texte": "aucune",
+      "motif": "Cohérent avec la date de création 2001 retenue (DECISIONS) ; à garder aligné.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title JSON « Focus sur… Le SuperFocus » (non servi), H1 « Focus stacking packshot : netteté parfaite sans retouche », metaTitle « Focus stacking packshot : des visuels produits nets sans retouche », description « Maîtrisez la profondeur de champ… nets de A à Z » : cohérents entre eux et avec le corps ; « netteté parfaite » est un superlatif. Slug « focus-sur-lhyperfocus » incohérent avec le nom SuperFocus. EN : H1 « Focus stacking for packshot: perfect sharpness », metaTitle « Focus stacking packshot: clear product visuals without retouching » (non idiomatique), description « allows clear visuals from A to Z » (calque) ; slug « focus-on-the-focus-stacking » maladroit.",
+  "structure_fr_en": "Parité complète : 10 H2, 30 paragraphes, 23 puces, 3 images, 1 vidéo YouTube, 5 FAQ dans le même ordre. 8 paragraphes vides avec ZWJ dans chaque langue (artefact Webflow). Divergence de contenu introduite après l'import : phrase sur la distribution Orbitvu corrigée en EN seulement (74dff0ce).",
+  "images_alt_legendes": "3 images. Alt « __wf_reserved_inherit » (marqueur Webflow) sur l'image d'ouverture dans les deux langues. Alts EN en français (« Résultat hyperfocus sur une montre », « différence packshot avec et sans focus stacking ») alors que la légende EN est traduite (« Difference between a ring photo with focus stacking and without »). « hyperfocus » dans l'alt.",
+  "appellations": "SuperFocus cohérent dans le corps ; « hyperfocus » dans le slug FR et un alt. Les occurrences « Packshot Creator » de l'extrait sont un artefact d'extraction : le HTML est « Packshot<em>Creator</em> » (rendu « PackshotCreator », « Creator » en italique, style de l'ancienne marque) ; pas d'erreur d'appellation de ce fait. En revanche, « PackshotCreator » a remplacé à tort le nom « Laurent Wainberg » dans le corps des deux langues (commit 4dde4f23) — cas d'appellation fautive explicitement visé. Orbitvu, Orbitvu Station, Ortery, Helicon Focus correctement nommés ; « Alphashot MICRO Pro v2 » (la fiche machine du site écrit « Alphashot Micro Pro v2 »). « Orbitvu Experience Center près de Lyon » (remplace « à Levallois » depuis 4dde4f23).",
+  "recommandation": "retraduction complète",
+  "remarques": "EN : retraduction complète du corps (FAQ à relire seulement). FR : retouches ciblées + deux arbitrages : (1) restaurer ou non le nom de Laurent Wainberg dans la phrase sur l'intégration du SDK Helicon Focus (remplacé par la marque, ce qui crée une tautologie) ; (2) remplacer « distribue exclusivement » par « distributeur officiel » conformément à D6 et à la version EN. Date affichée 2023-09-02 alors que l'item Webflow a été créé le 2025-03-25 (inférence ObjectId) et que le texte mentionne « Depuis 2023 » : date de publication probablement antidatée, à vérifier. Liens externes orbitvu.com et ortery.com non vérifiés (pas d'accès web)."
+}

@@ -1,0 +1,478 @@
+{
+  "family": "67e168ab52289ca859bb7f48",
+  "slugs": {
+    "fr": "est-il-utile-dinternaliser-sa-production-de-photos-packshot",
+    "en": "5-questions-before-investing-in-an-in-house-photo-studio",
+    "de-ch": null
+  },
+  "sujet": "Cinq questions à se poser avant d'internaliser sa production de photos produit avec un studio photo automatisé Orbitvu (usages, besoins, budget et rentabilité, espace, organisation du flux), suivies d'une FAQ commerciale.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "EN : déterminant français « Les use cases are multiple » ; « modus » pour « mode » et « the props » pour « accessoires » ; articles français rendus mot à mot : « Of homogeneous visuals » (« des visuels »), « one total control » (« un contrôle »), « Of a shooting space » (« d'un espace »), « One Orbitvu photo studio installed internally » (« Un studio ») ; « Orbitvu Station software who runs these studios » (« qui pilote ») ; nom de marque coupé par l'ordre des mots français (« l'équipe Packshot<em>Creator</em> » devenu « The Packshot team<em>Creator</em> ») ; « For a company that realizes 50 packshots » (« réalisant »). Les réponses de FAQ EN sont en anglais fluide, sauf la réponse 4, corrompue.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Langue française native, mais défauts éditoriaux nombreux. Title, H1 et metaTitle portent trois angles différents. La section budget, vidée de ses prix après l'import, garde des reliquats incohérents (parenthèse de calcul orpheline, phrase nominale isolée) et un chiffre faux (400 € × 221 j = 88 400 €, pas 92 400 €). Deux astérisques renvoient à une note inexistante. S'y ajoutent « Do it yourself, or not? », un « oui » illogique, le jargon « stock-in / stock-out », une liste de modèles en FAQ à vérifier (Alphadesk v2 délisté dans le dépôt) et une réponse sans les dimensions demandées. Réécriture partielle de la section budget nécessaire.",
+    "en": "Traduction automatique visible : déterminants français, articles mot à mot (« Of », « One »), majuscules au milieu des phrases, faux amis (« modus », « props », « material », « realizes », « Stock-out », « internalize »), phrases incompréhensibles (« These deadlines translate into: more through additional costs only through… »), nom de marque cassé (« The Packshot teamCreator »), réponse 4 de la FAQ corrompue (modèles répétés, liste tronquée), information ajoutée (« in French »).",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 14,
+    "en": 60,
+    "de-ch": 0
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Studios photo Orbitvu : rentabiliser vos visuels produits",
+      "probleme": "Trois angles pour trois champs : title en question (« Est-il utile d'internaliser sa production de photos packshot ? »), H1 commercial centré sur la rentabilité, metaTitle « guide complet d'internalisation » alors que le corps est structuré en « 5 questions ».",
+      "proposition": "Internaliser sa production de photos packshot : 5 questions à se poser avant d'investir dans un studio Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Coût annuel avec prestataire externe (à 400€/jour) : 92 400 €",
+      "probleme": "Calcul incohérent avec la base annoncée (« 221 jours ouvrés/an ») : 400 € × 221 = 88 400 € ; 92 400 € correspond à 231 jours. Le lien entre « 50 packshots par semaine » et une facturation journalière tous les jours ouvrés n'est pas expliqué. Espace manquante dans « 400€ ». Seul chiffre précis qui subsiste face à un coût Orbitvu devenu vague : comparaison déséquilibrée.",
+      "proposition": "Coût annuel avec prestataire externe (à 400 €/jour sur 221 jours ouvrés) : 88 400 € (chiffre et hypothèse à valider)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Réduction des retours produits (de 5 à 15% selon les études du secteur e-commerce*) grâce à des représentations plus fidèles",
+      "probleme": "Astérisque sans note de renvoi : aucune note dans l'article. Même cas pour « Augmentation du taux de conversion de 5 à 20%… * ». Chiffres présentés comme sourcés sans l'être.",
+      "proposition": "Ajouter la source précise en note ou supprimer les fourchettes chiffrées."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Les studios photo Orbitvu se déclinent en plusieurs modèles: Alphashot Micro v2, Alphashot 360, Alphashot XL Pro v2, Alphastudio Compact Pro v2, Alphastudio XXL Pro v2, Fashion Studio Pro, Bike Studio, Alphadesk v2 et Alphatable.",
+      "probleme": "La question porte sur les « dimensions maximales » mais la réponse ne donne aucune dimension. Liste à vérifier : l'Alphadesk v2 est marqué « delisted » dans le dépôt (commit 1cbc569a), et les Alphashot Pro G2 et Alphashot XL G2, présents au catalogue du dépôt, n'y figurent pas. Espace manquante avant les deux-points.",
+      "proposition": "Répondre par les dimensions maximales par modèle (à reprendre du catalogue) ou renvoyer au sélecteur de machines ; aligner la liste sur la gamme actuelle."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Un studio Orbitvu, du modèle d'entrée de gamme aux modèles avancés, se rentabilise rapidement une fois ramené à un coût journalier sur 3 ans (en se basant sur 221 jours ouvrés/an) — contactez-nous pour un devis personnalisé adapté à votre volume de production.",
+      "probleme": "Reliquat de la suppression des prix (l'import portait « 10 000 € … revient à environ 15 €/jour sur 3 ans ») : le coût journalier et la parenthèse de calcul ne renvoient plus à aucun chiffre.",
+      "proposition": "Un studio Orbitvu, de l'entrée de gamme aux modèles avancés, s'amortit rapidement : contactez-nous pour un devis adapté à votre volume de production."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Une économie annuelle substantielle , propre à chaque configuration.",
+      "probleme": "Phrase nominale isolée, reliquat de l'ancienne ligne « Économie annuelle : 81 085 € ».",
+      "proposition": "À fusionner avec la puce précédente ou à supprimer."
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Do it yourself, or not? Autrement dit : internaliser ou externaliser ?",
+      "probleme": "Phrase anglaise dans le corps FR, sans espace avant le point d'interrogation.",
+      "proposition": "Faire soi-même ou faire faire ? Autrement dit : internaliser ou externaliser ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Pour beaucoup d’entreprises, la réponse est désormais claire : oui, produire en interne est plus stratégique .",
+      "probleme": "« oui » répond à une alternative (« internaliser ou externaliser ? ») : illogique.",
+      "proposition": "Pour beaucoup d’entreprises, la réponse est désormais claire : produire en interne est plus stratégique."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "d’un espace de traitement ou de rangement pour les produits déjà photographiés ( stock-out ).",
+      "probleme": "Jargon anglais ; en anglais, « stock-out » signifie rupture de stock, contresens repris tel quel dans l'EN. Même remarque pour « ( stock-in ) ».",
+      "proposition": "d’un espace de traitement ou de rangement pour les produits déjà photographiés (sortie)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Studio photo automatisé Orbitvu : guide complet d'internalisation",
+      "probleme": "« guide complet » surpromet pour un article de 5 questions ; « internalisation » est peu idiomatique en SERP (« internaliser sa production photo »).",
+      "proposition": "Studio photo automatisé Orbitvu : 5 questions avant d'internaliser vos photos produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Et si vous n’avez pas encore d’organisation établie, l’équipe Packshot Creator vous accompagne pour concevoir votre workflow idéal .",
+      "probleme": "Pas d'erreur d'appellation : le HTML porte « Packshot<em>Creator</em> », rendu « PackshotCreator » avec « Creator » en italique (style de l'ancienne marque, l'espace est un artefact d'extraction). Seul défaut : le lien englobe toute la proposition (ancre de 11 mots).",
+      "proposition": "Limiter l'ancre du lien /fr/contact à « l’équipe PackshotCreator »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeur réservée de Webflow utilisée comme alt pour les 4 images ; aucune substitution trouvée dans lib/, components/ ni app/ (recherche « wf_reserved » vide) : vraisemblablement servie telle quelle.",
+      "proposition": "Rédiger 4 alts descriptifs d'après les images (non consultées ici)."
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "bloquant",
+      "emplacement": "faq",
+      "extrait_actuel": "Orbitvu photo studios come in several models: Alphashot Micro v2, Alphashot V2, Alphashot Micro v2, Alphashot Micro v2, Alphashot Micro v2, Alphashot Micro v2, Alphashot Micro v2, Fashion Studio Pro v2",
+      "probleme": "Réponse de FAQ corrompue (déjà présente dans l'import Webflow) : modèles répétés en boucle, liste tronquée (« …Fashion Studio Pro, Alphashot ») ; ne correspond pas à la liste FR et ne répond pas à la question des dimensions.",
+      "proposition": "Remplacer par la traduction de la liste FR, une fois celle-ci validée et complétée par les dimensions maximales."
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "And if you don't have an established organization yet, The Packshot team Creator accompanies you for design your ideal workflow .",
+      "probleme": "Nom de marque cassé par l'ordre des mots français : le HTML porte « The Packshot team<em>Creator</em> », rendu « The Packshot teamCreator ». « accompanies you for design » est agrammatical.",
+      "proposition": "And if you don't yet have an established process, the PackshotCreator team will help you design your ideal workflow."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These deadlines translate into: more through additional costs only through an improvement in visual quality.",
+      "probleme": "Phrase incompréhensible (traduction de « Ces délais se traduisent davantage par des surcoûts que par une amélioration de la qualité visuelle ») ; « deadlines » pour « délais » au sens de retards.",
+      "proposition": "These delays lead to extra costs rather than better visual quality."
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "majeur",
+      "emplacement": "title",
+      "extrait_actuel": "Is it useful to internalize your packshot photo production?",
+      "probleme": "Traduction mot à mot ; « internalize » s'emploie surtout au sens psychologique, l'anglais dit « bring in-house » ou « insource ».",
+      "proposition": "Should you bring packshot photo production in-house?"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Orbitvu Automated Photo Studio: A Complete Internalization Guide",
+      "probleme": "« Internalization » est un faux ami dans ce contexte.",
+      "proposition": "Orbitvu Automated Photo Studio: A Complete Guide to In-House Production"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les use cases are multiple :",
+      "probleme": "Déterminant français ; espace avant les deux-points (présente dans le JSON).",
+      "proposition": "Use cases include:"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This allows be responsive , especially in sectors such as modus , the props , or the cosmetics , where references are changing rapidly.",
+      "probleme": "« modus » pour « mode » (fashion), « the props » (accessoires de scène) pour « accessoires », « references » pour « références produit » (SKU) ; « allows be » agrammatical.",
+      "proposition": "It lets you be responsive, especially in sectors such as fashion, accessories or cosmetics, where product ranges change quickly."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One Orbitvu photo studio installed internally allows to automate part or all of the product visual production workflow .",
+      "probleme": "« Un » rendu par « One » ; « allows to » agrammatical ; « installed internally ».",
+      "proposition": "An in-house Orbitvu photo studio lets you automate part or all of your product visual production workflow."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "From the positioning of the object to Shooting , up to automated integration of visuals , the entire operation of the studio is designed for a Time saver maximum — and therefore for a significant cost reduction .",
+      "probleme": "Segments recollés, majuscules parasites, « Time saver maximum » incompréhensible.",
+      "proposition": "From positioning the product to shooting and automated integration of the visuals, the whole studio is designed to save as much time as possible — and therefore to cut costs significantly."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of homogeneous visuals ,",
+      "probleme": "« des » rendu par « Of », « un » par « one » dans les trois puces (« one total control on production », « one ability to adapt immediately »).",
+      "proposition": "consistent visuals, / full control over production, / the ability to adapt immediately."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The main cost of a visual production is not the material, but The workforce and the time spent at each stage of the process.",
+      "probleme": "« matériel » (équipement) rendu par « material » (matière) ; majuscule parasite.",
+      "proposition": "The main cost of producing visuals is not the equipment but labor and the time spent at each stage of the process."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Annual cost with external service provider (at 400€/day): 92,400€",
+      "probleme": "Même erreur de calcul qu'en FR (400 × 221 = 88,400) ; formats monétaires incohérents dans l'article (« €300 », « 700-900 € », « 92,400€ »).",
+      "proposition": "Annual cost with an external provider (at €400/day over 221 working days): €88,400 (à valider)"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It can be a small dedicated studio Or of a optimized corner in a workshop or warehouse .",
+      "probleme": "« Or of a optimized » : calque de « ou d'un coin optimisé ».",
+      "proposition": "It can be a small dedicated studio or an optimized corner of a workshop or warehouse."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of a treatment or storage space for products already photographed ( Stock-out ).",
+      "probleme": "« Stock-out » signifie rupture de stock en anglais : contresens ; « treatment » pour « traitement » (processing) ; « Of » pour « d'un ».",
+      "proposition": "a processing or storage area for products already photographed (outgoing)."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In sectors such as Skincare Or the cosmetics , an in-house studio also offers a optimal control of light and staging .",
+      "probleme": "Majuscules parasites, « a optimal » ; le texte d'ancre du lien reprend l'erreur (« Skincare Or the cosmetics »).",
+      "proposition": "In sectors such as skincare and cosmetics, an in-house studio also gives you optimal control over lighting and staging."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is the logical sequence of steps — of Product arrival At deployment of the final visual .",
+      "probleme": "« de… à » rendu par « of… At ».",
+      "proposition": "It is the logical sequence of steps — from product arrival to delivery of the final visual."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Même valeur réservée Webflow pour les 4 images de la page EN.",
+      "proposition": "Rédiger 4 alts anglais descriptifs."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Here are the 5 essential questions to ask yourself before taking the plunge and choosing a Orbitvu automated photo studio .",
+      "probleme": "« a Orbitvu » (même faute plus loin : « With a Orbitvu automated photo studio »).",
+      "proposition": "Here are the 5 essential questions to ask yourself before taking the plunge and choosing an Orbitvu automated photo studio."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For a company that realizes 50 packshots per week :",
+      "probleme": "« réaliser » rendu par « realizes » (se rendre compte) ; espace avant les deux-points.",
+      "proposition": "For a company producing 50 packshots per week:"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For specialized visuals (360° packshots, multi-angles), this price can increase up to 700-900 € per day .",
+      "probleme": "Format monétaire français dans l'EN (« 700-900 € »), incohérent avec « €300 and €600 ».",
+      "proposition": "For specialized visuals (360° packshots, multi-angle), this can rise to €700–900 per day."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Reduced time to market allowing you to capitalize more quickly on new features",
+      "probleme": "« nouveautés » (nouveaux produits) rendu par « new features ».",
+      "proposition": "Shorter time to market, so you can capitalize on new products faster"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Shooting numerous references requires a organized and centralized space .",
+      "probleme": "« références » rendu par « references » (SKU) ; « a organized ».",
+      "proposition": "Shooting a large number of SKUs requires an organized, centralized space."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The challenge then becomes choose a scalable solution , designed for:",
+      "probleme": "Verbe à l'infinitif sans « -ing ».",
+      "proposition": "The challenge then becomes choosing a scalable solution designed to:"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "produce Fast and well from the first use,",
+      "probleme": "Majuscule parasite ; calque.",
+      "proposition": "produce quickly and well from day one,"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu Station software who runs these studios is regularly enriched with new features at no additional cost",
+      "probleme": "« who » pour un logiciel.",
+      "proposition": "The Orbitvu Station software that runs these studios is regularly updated with new features at no extra cost"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu Studios are supplied with a dedicated software that simplifies and automates the key steps of the process",
+      "probleme": "« a software » (indénombrable) ; majuscule à « Studios ».",
+      "proposition": "Orbitvu studios come with dedicated software that simplifies and automates the key steps of the process"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "Orbitvu photo studios: make your product visuals profitable",
+      "probleme": "Calque de « rentabiliser vos visuels produits » ; même incohérence d'angle qu'en FR avec title et metaTitle.",
+      "proposition": "Bringing product photography in-house: 5 questions before investing in an Orbitvu studio"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Un prestataire externe facture généralement entre 300 € et 600 € par jour selon la complexité des prises de vue.",
+      "source_dans_texte": "aucune",
+      "motif": "Tarif de marché non sourcé.",
+      "ecart_fr_en": "EN « between €300 and €600 per day » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Pour les visuels spécialisés (packshots à 360°, multi-angles), ce tarif peut grimper jusqu'à 700-900 € par jour .",
+      "source_dans_texte": "aucune",
+      "motif": "Tarif non sourcé.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Coût annuel avec prestataire externe (à 400€/jour) : 92 400 €",
+      "source_dans_texte": "aucune",
+      "motif": "Erreur arithmétique (88 400 € sur 221 jours) ; hypothèse « 50 packshots par semaine » non reliée au tarif journalier.",
+      "ecart_fr_en": "EN identique (92,400€)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Réduction des retours produits (de 5 à 15% selon les études du secteur e-commerce*) grâce à des représentations plus fidèles",
+      "source_dans_texte": "aucune (astérisque sans note)",
+      "motif": "Chiffre présenté comme sourcé sans l'être.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Augmentation du taux de conversion de 5 à 20% avec des visuels à 360° et multi-angles*",
+      "source_dans_texte": "aucune (astérisque sans note)",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un retour sur investissement clair et rapide , dès la première année d’utilisation.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de ROI dès la première année, alors que les chiffres d'amortissement ont été retirés du corps (l'import parlait d'un point mort après 12-15 mois).",
+      "ecart_fr_en": "EN « from the first year of use » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le point mort est généralement atteint rapidement, au-delà duquel chaque visuel produit représente une économie nette.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation vague qui a remplacé un chiffre (« après environ 12-15 mois » dans l'import) ; à cadrer ou à renvoyer vers le calculateur ROI.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel Orbitvu Station qui pilote ces studios est régulièrement enrichi de nouvelles fonctionnalités sans surcoût",
+      "source_dans_texte": "aucune",
+      "motif": "« sans surcoût » : conditions de mise à jour à vérifier auprès d'Orbitvu.",
+      "ecart_fr_en": "EN « at no additional cost » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La maîtrise complète des fonctionnalités avancées (masquage automatique, exports personnalisés, etc.) s'acquiert généralement en 2 à 4 semaines d'utilisation régulière.",
+      "source_dans_texte": "aucune",
+      "motif": "Durée non sourcée.",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une personne sans compétence préalable en photographie peut tout à fait gérer la production.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse forte (« tout à fait »).",
+      "ecart_fr_en": "EN « can handle the production entirely » : légèrement renforcé (« entirely »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Pour un studio de gamme moyenne, le TCO sur 5 ans reste nettement inférieur au coût d'externalisation sur la même période",
+      "source_dans_texte": "aucune",
+      "motif": "Comparaison non chiffrée (les montants de l'import ont été retirés).",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "en",
+      "extrait": "our training courses (Essential Training remote, Master Training on site, in French) let you go further",
+      "source_dans_texte": "aucune",
+      "motif": "« in French » n'existe pas dans le FR (« Master Training en présentiel ») : information ajoutée à l'EN, à valider auprès de l'Academy.",
+      "ecart_fr_en": "FR : « nos formations (Essential Training à distance, Master Training en présentiel) »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les studios Orbitvu sont conçus avec un encombrement minimum pour une intégration facile , même dans des espaces restreints.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation générale, variable selon les modèles (Alphastudio XXL, Bike Studio).",
+      "ecart_fr_en": "EN identique."
+    }
+  ],
+  "titre_h1_meta": "FR : title « Est-il utile d'internaliser sa production de photos packshot ? » (question), H1 « Studios photo Orbitvu : rentabiliser vos visuels produits » (commercial), metaTitle « Studio photo automatisé Orbitvu : guide complet d'internalisation » (65 car., servi en <title> ; « guide complet » surpromet). La description (ROI, espace, workflow) correspond au corps. Trois angles différents, aucun ne reprend la structure « 5 questions ». EN : calques « Is it useful to internalize », « A Complete Internalization Guide », « make your product visuals profitable » ; le slug EN « 5-questions-before-investing-in-an-in-house-photo-studio » est plus juste que tous les titres.",
+  "structure_fr_en": "Parité stricte : 6 h2, 5 h3, 32 p, 35 li, 4 images, 5 FAQ ; 1 071 mots FR contre 1 002 EN ; 4 liens par langue, cibles équivalentes (calculateur ROI, cosmétiques, éclairage, contact). Les deux versions ont subi la même suppression des prix après l'import, avec les mêmes phrases-reliquats. FAQ 4 EN corrompue ; FAQ 1 EN ajoute « in French ». 8 paragraphes vides (ZWJ) par langue.",
+  "images_alt_legendes": "4 images, toutes avec l'alt « __wf_reserved_inherit » dans les deux langues (valeur Webflow servie telle quelle, aucune substitution dans lib/, components/ ni app/) : aucun alt réel. Aucune légende.",
+  "appellations": "FR : « Packshot<em>Creator</em> » est rendu « PackshotCreator » (italique de l'ancienne marque) ; pas d'erreur. EN : « The Packshot team<em>Creator</em> » casse le nom (rendu « The Packshot teamCreator »). « Orbitvu Station » est cohérent. Liste de modèles FR à vérifier : Alphadesk v2 marqué « delisted » dans le dépôt, Alphashot Pro G2 et XL G2 absents ; « Bike Studio » et « Alphatable » à confirmer.",
+  "recommandation": "retraduction complète",
+  "remarques": "Recommandation : retraduire entièrement l'EN, après la réécriture partielle FR de la section budget. Les prix de l'import (10 000–30 000 €, 15 €/jour, 81 085 €, 350 €/mois, TCO 25 000–35 000 €) ont été retirés après l'import ; la section budget reste déséquilibrée (prestataire chiffré, Orbitvu non chiffré, calcul faux) : arbitrage éditorial sur ce qu'on affiche, en cohérence avec le calculateur ROI (/fr/calculateur-roi). Les 4 alts réservés Webflow sont à corriger. Article daté du 13/10/2024, item Webflow créé le 24/03/2025. Noms de formation (« Essential Training », « Master Training ») à aligner sur l'offre actuelle de l'Academy."
+}

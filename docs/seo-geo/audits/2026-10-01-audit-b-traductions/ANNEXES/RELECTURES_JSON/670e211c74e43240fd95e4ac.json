@@ -1,0 +1,179 @@
+{
+ "family": "670e211c74e43240fd95e4ac",
+ "slugs": {
+  "fr": "revolution-e-commerce-les-animations-3d-spheriques-de-produits-pour-le-sport",
+  "en": null,
+  "de-ch": null
+ },
+ "sujet": "Cas client SportOkay.com : acquisition de deux PackshotSphere X5 pour produire en interne des animations 3D sphériques de produits de sport, avec statistiques sur l'effet des animations enrichies.",
+ "langue_originale": "SOURCE ORIGINALE NON ÉTABLIE",
+ "preuve_langue": "Version FR seule dans le dépôt (pas d'EN ni de de-ch). [Inférence] Rédigé directement en français ; pas de trace de traduction hormis le deux-points sans espace (« références: »).",
+ "qualite": {
+  "fr": "C",
+  "en": "X",
+  "de-ch": null
+ },
+ "justification_qualite": {
+  "fr": "Texte court comportant de nombreuses fautes (syntaxe de la phrase d'ouverture, phrase tronquée « du plus petit », accords « plus grand », « liés », « leurs »), ponctuation et typographie fautives, alt vide, métadonnées absentes, date trompeuse ; description qui déforme les statistiques.",
+  "en": "Absente : aucune version anglaise dans le dépôt pour cette famille.",
+  "de-ch": null
+ },
+ "nb_erreurs_estime": {
+  "fr": 16,
+  "en": 0,
+  "de-ch": null
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "claim_renforce",
+   "gravite": "bloquant",
+   "emplacement": "description",
+   "extrait_actuel": "SportOkay.com booste ses ventes avec les animations 3D sphériques PackshotSphere : 60% d'UX améliorée, 64% de CA en hausse et 55% de retours en moins.",
+   "probleme": "La description (réécrite le 23/05/2026, e0482993) transforme des proportions de clients en effets chiffrés : le corps dit « près de 60% de ceux utilisant des animations enrichies ont amélioré l’expérience utilisateur », « Dans 64% des cas cela se traduit par une hausse de leur chiffre d’affaires », « Dans 55%, … une baisse des retours » ; la description affirme « 64% de CA en hausse » et « 55% de retours en moins » (hausse de 64 % du CA, baisse de 55 % des retours). Elle attribue en outre ces résultats à SportOkay.com (« booste ses ventes ») alors que l'étude porte sur les clients de PackshotCreator en général.",
+   "proposition": "Cas client SportOkay.com : animations 3D sphériques réalisées en interne avec deux PackshotSphere X5 pour présenter toute la gamme sport en ligne."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "SportOkay.com a lancé cet automne un nouveau site de sport en ligne à la gamme illimitée.",
+   "probleme": "Date de publication affichée 30/12/2025 (horodatage technique commun à plusieurs articles) alors que l'item Webflow date du 15/10/2024 [Inférence ObjectId] : « cet automne », « La jeune entreprise », « Une récente étude » deviennent trompeurs. « gamme illimitée » est une hyperbole.",
+   "proposition": "Dater explicitement le lancement et l'étude ; « un nouveau site de sport en ligne à la gamme très large »."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Pour la mettre en valeur ses références, une solution photo e-commerce en interne a été acquise par l'entreprise pour créer en interne les animations 3D sphériques de ses produits .",
+   "probleme": "Faute de syntaxe (« Pour la mettre en valeur ses références ») dans le paragraphe d'ouverture ; « en interne » répété ; passif lourd.",
+   "proposition": "Pour mettre en valeur ses références, l'entreprise a acquis une solution photo e-commerce afin de créer en interne les animations 3D sphériques de ses produits."
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"\" src=/images/blog/67dbae7f92e7b97f7d785161.avif]",
+   "probleme": "Seule image de l'article sans texte alternatif.",
+   "proposition": "Rédiger un alt décrivant l'image réelle (non vérifiable ici)."
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Cela lui permet de créer de manière automatisée des animations 3D sphériques et hémisphériques d’objets de toutes tailles, du plus petit.",
+   "probleme": "Phrase tronquée (« du plus petit » sans « au plus grand »).",
+   "proposition": "Cela lui permet de créer de manière automatisée des animations 3D sphériques et hémisphériques d’objets de toutes tailles, du plus petit au plus grand."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le bras photo 3D par ses dimensions permet également la prise de vue des produits plus grand et volumineux (skis, sac de sport, combinaison…).",
+   "probleme": "Accord (« plus grands ») et virgules manquantes autour de « par ses dimensions ».",
+   "proposition": "Le bras photo 3D, par ses dimensions, permet également la prise de vue des produits plus grands et volumineux (skis, sac de sport, combinaison…)."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le studio permet ainsi d'animer en 3D toutes leurs références: chronomètre, lampe, lunettes de ski, chaussures, divers accessoires…",
+   "probleme": "« leurs » alors que le sujet est « l'entreprise » (singulier) ; deux-points sans espace insécable (typographie anglaise, présente dans le HTML).",
+   "proposition": "Le studio permet ainsi d'animer en 3D toutes ses références : chronomètre, lampe, lunettes de ski, chaussures, divers accessoires…"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "chaque studio 3D est conçu pour prendre en compte les problématiques liés à la photographie de produit .",
+   "probleme": "Accord (« problématiques liées ») ; virgule manquante avant « chaque studio » (« … la décoration en ligne, chaque studio »).",
+   "proposition": "chaque studio 3D est conçu pour prendre en compte les problématiques liées à la photographie de produit."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Ceux-ci, par leur polyvalence accueillent ou permettent la prise de vue d'un large panel d'objets.",
+   "probleme": "Virgule manquante après l'incise ; « studios photos 3D » dans la phrase précédente (« photo » invariable).",
+   "proposition": "Ceux-ci, par leur polyvalence, permettent la prise de vue d'un large éventail d'objets."
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "montre que près de 60% de ceux utilisant des animations enrichies ont amélioré l’expérience utilisateur.",
+   "probleme": "Typographie française : espace insécable avant « % » (« 60 % », « 64 % », « 55 % »).",
+   "proposition": "montre que près de 60 % de ceux qui utilisent des animations enrichies ont amélioré l’expérience utilisateur."
+  },
+  {
+   "langue": "fr",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "### Pourquoi montrer des animations 3D sphériques produits ?",
+   "probleme": "[Inférence] « animation 3D sphérique » désigne ici une séquence photo multi-rangées à 360° (bras photo), non un modèle 3D ; le lien « animations 3D sphériques » vers l'article sur la photogrammétrie entretient la confusion. Intertitre par ailleurs elliptique (« animations 3D sphériques produits »).",
+   "proposition": "### Pourquoi montrer des animations sphériques de produits ?"
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "mineur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "metaTitle : None",
+   "probleme": "metaTitle, catégorie, auteur, temps de lecture et image principale absents.",
+   "proposition": "SportOkay.com : animations 3D sphériques de produits sport"
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "fr",
+   "extrait": "Une récente étude réalisée en Europe auprès des clients de Packshot Creator montre que près de 60% de ceux utilisant des animations enrichies ont amélioré l’expérience utilisateur. Dans 64% des cas cela se traduit par une hausse de leur chiffre d’affaires. Dans 55%, cela se traduit également par une baisse des retours produits (déception, changement d’avis…).",
+   "source_dans_texte": "aucune (étude non citée, non datée, échantillon inconnu)",
+   "motif": "Statistiques internes non sourcées ; « récente » daté ; base de calcul ambiguë (64 % de l'ensemble ou des 60 % ?).",
+   "ecart_fr_en": "Description : « 60% d'UX améliorée, 64% de CA en hausse et 55% de retours en moins » (renforcement, voir erreurs)."
+  },
+  {
+   "langue": "fr",
+   "extrait": "L’expérience en ligne via les animations 3D sphériques est incomparable pour un internaute.",
+   "source_dans_texte": "aucune",
+   "motif": "Superlatif.",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "De la photo fixe à l'animation 3D, ils s'adressent à tous les budgets .",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse générale (« tous les budgets »).",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "de nombreux sites web e-commerce choisissent les studios photos 3D Packshot Creator .",
+   "source_dans_texte": "aucune",
+   "motif": "Affirmation de notoriété non étayée.",
+   "ecart_fr_en": null
+  },
+  {
+   "langue": "fr",
+   "extrait": "SportOkay.com a lancé cet automne un nouveau site de sport en ligne à la gamme illimitée.",
+   "source_dans_texte": "aucune",
+   "motif": "Fait daté relatif et hyperbole ; existence actuelle du site et de l'équipement (deux PackshotSphere X5) à confirmer.",
+   "ecart_fr_en": null
+  }
+ ],
+ "titre_h1_meta": "Title = H1 « Révolution e-commerce : les animations 3D sphériques de produits pour le sport » ; metaTitle absent. Description (réécrite le 23/05/2026) incohérente avec le corps : elle convertit des pourcentages de clients en gains chiffrés et les attribue à SportOkay.com. Le titre généraliste (« Révolution e-commerce ») masque qu'il s'agit d'un cas client.",
+ "structure_fr_en": "FR seul. 2 h3, aucun h2, 4 paragraphes, 1 image, pas de FAQ. Liens : trois ancres différentes pointent vers le même article (/fr/blog/5-appareils-photo-en-simultane-pour-de-lanimation-3d-realiste, repointé depuis l'EN le 07/07/2026) ; « vins et spiritueux » pointe vers la page d'accueil /fr ; « animations 3D sphériques » vers l'article photogrammétrie.",
+ "images_alt_legendes": "1 image, alt vide, pas de légende.",
+ "appellations": "Le HTML écrit « Packshot<em>Creator</em> » (2 fois) et « Packshot<em>Sphere</em> X5 » (ancienne charte, rendus « PackshotCreator », « PackshotSphere X5 ») : pas d'erreur de graphie. La description écrit « PackshotSphere », cohérent. Le produit PackshotSphere X5 relève de l'ancienne gamme PackshotCreator : vérifier s'il est encore commercialisé.",
+ "recommandation": "arbitrage éditorial",
+ "remarques": "Cas client ancien (item Webflow d'octobre 2024, contenu vraisemblablement plus ancien) présenté avec une date technique du 30/12/2025 et des repères relatifs (« cet automne », « jeune entreprise », « récente étude ») : décider archive datée, réécriture ou dépublication. Corriger en priorité la description, qui publie des chiffres déformés. Statistiques de l'« étude » à sourcer ou retirer. Pas de version EN."
+}

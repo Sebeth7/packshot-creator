@@ -1,0 +1,299 @@
+{
+  "family": "67c8702d0439042229ee6ddc",
+  "slugs": {
+    "fr": "e-commerce-8-elements-indispensables-pour-reussir",
+    "en": "e-commerce-8-elements-success",
+    "de-ch": null
+  },
+  "sujet": "Court article daté de 2017 relayant une infographie de Wizishop sur 8 éléments clés de réussite en e-commerce (dont la photo produit), avec une citation de Wizishop, une présentation des studios automatisés Orbitvu installés en interne et une FAQ ajoutée ultérieurement.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des calques objectifs du français : « These systems are Automatics » (← « Ces systèmes sont automatiques », adjectif accordé au pluriel) ; « Visuals multi-angles » (← « Visuels multi-angles ») ; « Shooting systems Orbitvu are designed » (← « Les systèmes de prise de vue Orbitvu ») ; « The logistics for Set up a photo studio is thus simplified » (← « La logistique pour installer un studio photo est ainsi simplifiée ») ; « in terms of reactivity » (← « réactivité ») ; « What uses? » (← « Quels usages ? »). La source de l'infographie et de la citation est un blog français (wizishop.fr).",
+  "qualite": {
+    "fr": "B",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français correct et naturel (citation comprise). Défauts ponctuels : intertitre « Notre infographie » contredisant l'attribution à Wizishop, « l'enseigne » sans antécédent, majuscules fautives (metaTitle, « Réseaux sociaux »), guillemets droits, « Chaussure » au singulier, typographie des unités. Sur le fond : mentions d'Orbitvu dans un article daté de 2017, claims chiffrés non sourcés en FAQ, et les 8 éléments promis par le titre ne figurent que dans l'image.",
+    "en": "Introduction, citation et FAQ correctes ; la moitié du corps (sections « How to produce visuals internally? » et « What uses? ») est en traduction automatique visible (« Set up », « Automatics », « Visuals multi-angles », « Shoe ») ; segment dupliqué dans la dernière réponse de FAQ ; alt en français. Corps court : retouches lourdes plutôt que retraduction.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 12,
+    "en": 16,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Notre infographie e-commerce : \"des photos adaptées, un design impeccable...\"",
+      "probleme": "« Notre » contredit le paragraphe d'ouverture (« Cette infographie e-commerce a été réalisée par notre partenaire Wizishop ») : attribution erronée. Guillemets droits et points de suspension en trois points.",
+      "proposition": "L'infographie e-commerce de Wizishop : « des photos adaptées, un design impeccable… »"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "Apprenez à créer un studio photo interne avec Orbitvu pour booster vos ventes.",
+      "probleme": "Promesse que le corps ne tient pas (deux paragraphes généraux sur l'installation d'un studio) ; Orbitvu dans un article daté du 16/10/2017 (voir remarques). De plus, les « 8 éléments » du titre ne sont listés nulle part dans le texte : ils ne figurent que dans l'image.",
+      "proposition": "Découvrez les 8 éléments clés pour réussir en e-commerce selon l'infographie de Wizishop, dont des photos produit de haute qualité, et comment produire ses visuels en interne."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "8 éléments indispensables pour réussir en e-commerce : La photographie produit",
+      "probleme": "Majuscule après deux-points ; 78 caractères (tronqué en SERP) ; formulation qui laisse croire que les 8 éléments sont la photographie produit.",
+      "proposition": "E-commerce : 8 éléments indispensables, dont la photo produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Pour les clients de l'enseigne, cela représente un bénéfice logistique mais également au niveau de la réactivité.",
+      "probleme": "« l'enseigne » n'a pas d'antécédent (aucune enseigne n'est nommée) ; [Inférence] il s'agit des entreprises qui installent un studio.",
+      "proposition": "Pour les entreprises, cela représente un gain logistique, mais aussi de réactivité."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "À l'ère où les Réseaux sociaux dédiés aux photos cartonnent",
+      "probleme": "Majuscule fautive en milieu de phrase (dans la citation) ; guillemets droits autour de la citation au lieu de « ».",
+      "proposition": "À l'ère où les réseaux sociaux dédiés aux photos cartonnent"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Chaussure",
+      "probleme": "Singulier dans une liste de secteurs (« Horlogerie-bijouterie », « Matériel électronique ») ; non lié alors qu'un hub /fr/industrie/chaussures existe.",
+      "proposition": "Chaussures"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Proposer des photos de produits de haute qualité fait partie du top 5 de ces éléments essentiels.",
+      "probleme": "« top 5 » familier/anglicisme dans un texte rédactionnel.",
+      "proposition": "Proposer des photos de produits de haute qualité figure parmi les cinq premiers de ces éléments essentiels."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Un espace d'environ 20m² est généralement suffisant.",
+      "probleme": "Espace manquante avant l'unité (le corps écrit « 20 m² ») ; de même « 30% » et « 40% » sans espace.",
+      "proposition": "Un espace d'environ 20 m² est généralement suffisant."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "infographie e-commerce photo 2017",
+      "probleme": "Alt non descriptif pour une infographie qui porte tout le contenu annoncé (les 8 éléments) : inaccessible aux lecteurs d'écran et aux moteurs.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Quels équipements minimums sont nécessaires pour un studio photo e-commerce interne ?",
+      "probleme": "« minimums » adjectivé au pluriel, tournure lourde.",
+      "proposition": "Quel équipement minimal faut-il pour un studio photo e-commerce interne ?"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The logistics for Set up a photo studio is thus simplified.",
+      "probleme": "Agrammatical (« for Set up », accord « logistics … is »).",
+      "proposition": "Setting up a photo studio is therefore logistically simpler."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These systems are Automatics and exist for various applications:",
+      "probleme": "Adjectif français accordé et capitalisé.",
+      "proposition": "These automated systems are available for various applications:"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Shooting systems Orbitvu are designed to be integrated into businesses.",
+      "probleme": "Ordre des mots français ; « integrated into businesses » maladroit.",
+      "proposition": "Orbitvu shooting systems are designed to be installed in-house."
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "short video content (demos, tutorials) and for some sectors, advanced visualization (3D, augmented reality), short video content (demos, tutorials) and for certain sectors, advanced visualization (3D, augmented reality)",
+      "probleme": "Segment dupliqué (absent du FR).",
+      "proposition": "short video content (demos, tutorials) and, for some sectors, advanced visualization (3D, augmented reality)"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For the brand's customers, this represents a logistical benefit but also in terms of reactivity.",
+      "probleme": "« réactivité » rendu par « reactivity » ; « the brand » sans antécédent (hérité du FR).",
+      "proposition": "For businesses, this is a logistical benefit and a gain in responsiveness."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "What uses?",
+      "probleme": "Calque de « Quels usages ? ».",
+      "proposition": "Applications"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "How to produce visuals internally?",
+      "probleme": "« en interne » = in-house ; question sans auxiliaire.",
+      "proposition": "How to produce visuals in-house"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Visuals multi-angles",
+      "probleme": "Ordre et pluriel français.",
+      "proposition": "Multi-angle visuals"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Shoe",
+      "probleme": "Singulier calqué ; le secteur se dit « Footwear ». Idem « Electronic hardware » pour « Electronics ».",
+      "proposition": "Footwear"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Offering high-quality product photos is part of Top 5 of these essential elements.",
+      "probleme": "Article manquant, majuscule.",
+      "proposition": "Offering high-quality product photos ranks among the top five of these essential elements."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "In the era where Social networks dedicated to photos are a hit",
+      "probleme": "Calque et majuscule parasite (dans la citation traduite).",
+      "proposition": "In an era when photo-centric social networks are booming"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "infographie e-commerce photo 2017",
+      "probleme": "Alt en français dans la version anglaise, et non descriptif.",
+      "proposition": null
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "situation views",
+      "probleme": "Calque de « vues en situation » ; de même « background suppression » (background removal) et « internal e-commerce photo studio » (in-house).",
+      "proposition": "in-context shots"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Une bonne image produit peut améliorer vos ventes jusqu'à 30% selon les études récentes.",
+      "source_dans_texte": "aucune",
+      "motif": "« études récentes » non citées.",
+      "ecart_fr_en": "EN identique (« according to recent studies »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les sites proposant des vues à 360° et des zooms de qualité peuvent voir leurs taux de conversion augmenter jusqu'à 40%.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "réduisent le taux de retour et augmentent significativement les conversions",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation générale non sourcée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Proposer des photos de produits de haute qualité fait partie du top 5 de ces éléments essentiels.",
+      "source_dans_texte": "lien vers l'article Wizishop (2017)",
+      "motif": "Classement attribué à l'infographie Wizishop : vérifier que la source le dit et qu'elle est en ligne.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Aujourd'hui, des solutions telles que PackshotCreator existent. Elles vous permettent de valoriser vos produits avec des photos de haute qualité.",
+      "source_dans_texte": "lien vers l'article Wizishop (2017)",
+      "motif": "Citation attribuée à « Wizishop » (une entreprise, sans nom de personne) : vérifier le texte exact et l'auteur sur la source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Parfois une simple pièce de 20 m² organisée pour accueillir un shooting produits suffit amplement.",
+      "source_dans_texte": "aucune",
+      "motif": "Surface à confirmer selon la gamme (les grands studios Orbitvu exigent davantage) ; reprise en FAQ (« environ 20m² »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Il garantit l'uniformité des visuels, optimise automatiquement l'éclairage et s'installe dans un espace compact.",
+      "source_dans_texte": "aucune",
+      "motif": "« garantit » et « automatiquement » à nuancer selon les modèles.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Apprenez à créer un studio photo interne avec Orbitvu pour booster vos ventes.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de la description non tenue par le corps.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Infographie e-commerce : 8 éléments indispensables pour réussir », H1 « E-commerce : 8 clés du succès dont la photographie produit », metaTitle « 8 éléments indispensables pour réussir en e-commerce : La photographie produit » (78 caractères, majuscule fautive) : trois formulations, sujet commun. La description promet d'apprendre à créer un studio Orbitvu. Le corps ne liste pas les 8 éléments (contenus uniquement dans l'image) : décalage fort entre la promesse SEO et le texte indexable (328 mots, temps de lecture 1 min). EN : mêmes écarts.",
+  "structure_fr_en": "Parité : 5 H2, 8 paragraphes, 8 puces, 1 image, 5 FAQ, même ordre. L'EN a 2 liens de plus (« Shoe » et « And many other e-commerce sectors » vers le hub /en/industrie ; « Shoe » pourrait viser /en/industrie/chaussures). Dernière réponse de FAQ EN avec un segment dupliqué.",
+  "images_alt_legendes": "Une seule image (l'infographie), alt « infographie e-commerce photo 2017 » identique en FR et en EN, non descriptif ; aucune légende. [Inférence] l'infographie Wizishop est vraisemblablement en français, donc illisible pour le public EN.",
+  "appellations": "« PackshotCreator » figure dans la citation de Wizishop datée de 2017 (cohérent avec l'époque). « Orbitvu » apparaît dans le corps (« Les systèmes de prise de vue Orbitvu »), la description et la FAQ, alors que la chronologie du site (messages/fr.json) date l'« Alliance stratégique Orbitvu » de 2023 : mentions vraisemblablement ajoutées lors de la recréation de l'item Webflow (05/03/2025, inférence ObjectId) sans mise à jour de la date. L'ancre « Orbitvu » pointe vers /fr/besoins-photographie-produit (cible sans rapport direct avec la marque). Auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par « PackshotCreator » le 12/06/2026 (commit 8ae45f63, choix délibéré).",
+  "recommandation": "arbitrage éditorial (date 2017 contre mentions Orbitvu, sourcing des chiffres, texte des 8 éléments) puis retouches FR/EN",
+  "remarques": "Citations faites sur le texte rendu du JSON source (balises retirées). Article daté du 16/10/2017 mais mentionnant Orbitvu et une FAQ sur l'IA générative de visuels : soit la date est fausse, soit le contenu a été modernisé sans mise à jour (dateModified absent). Le lien source Wizishop (wizishop.fr, article de 2017) est à contrôler (lien ancien). Les liens EN vers /en/industrie/bijoux-joaillerie et /en/industrie/electronique-hightech mènent à des pages servies en français et en noindex (lib/seo-config.ts, NOINDEX_EN_INDUSTRIE_SLUGS). Aucune version de-ch."
+}

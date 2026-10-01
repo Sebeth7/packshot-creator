@@ -1,0 +1,459 @@
+{
+  "family": "67d1a71d5b8b56f8af527bfa",
+  "slugs": {
+    "fr": "choix-media-guide-de-la-photographie-packshot-4",
+    "en": "media-photography-complete-guide-to-packshot-photography-4",
+    "de-ch": null
+  },
+  "sujet": "Quatrième volet du guide de la photographie packshot : choisir entre photo fixe, animation à 360° et vidéo selon le produit, avec avantages et inconvénients de chaque média et mise en avant des studios automatisés.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces objectives de traduction depuis le FR : « the most impacting packshot possible » (FR « le plus impactant ») ; « However, choosing the right medium… » (FR « Or, le choix du média », où « or » de liaison est pris pour une opposition) ; « rotating around him to explore every angle » (FR « en tournant autour de lui ») ; « One automated studio allows you » et les puces « One considerable time savings », « Of big savings over the long term », « One usability » (FR « Un… », « De grandes économies… », « Une facilité… ») ; « You will have understood it, Video is a medium » (FR « Vous l'aurez compris ») ; « The packshot video is finally » (FR « enfin »). Majuscules parasites au début des segments en gras du FR : « The three most used media types », « Like clothes », « But Be careful », « The video allows Show », « to Assembling », « to Getting started ». Textes alternatifs restés en français.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte natif et clair. Une douzaine de retouches ponctuelles, au-delà du seuil indicatif de 5 mais sans réécriture : intertitre H2 fusionné avec le H3 « Photographie fixe », cinq espaces manquantes après un point (paragraphes fusionnés dans le HTML), « œuvres d'arts », guillemets droits ou anglais, Title Case dans la description et dans le nom de la série, « plateforme tournante » au lieu du terme métier « plateau tournant ». Côté éditorial : H1 tronqué au numéro, FAQ hors sujet (multivue, marketplaces, détourage) par rapport au corps.",
+    "en": "Traduction automatique visible : segments en gras traduits isolément avec majuscules parasites, phrases agrammaticales (« A video is more bandwidth-intensive just a photo », « You will then have to Assembling »), articles traduits par One ou Of, connecteur « Or » rendu par However (contresens logique), nom de la série déformé (« Our Packshot Complete Photography Guide »), alts en français, terme « cropping » pour le détourage dans la FAQ. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 13,
+    "en": 40,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Le guide complet de la photographie packshot, 4",
+      "probleme": "H1 tronqué au numéro de la série : il n'annonce pas le sujet (choix du média).",
+      "proposition": "Guide de la photographie packshot (4/5) : photo fixe, animation 360° ou vidéo ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Tour d'horizon des médias possibles en photographie packshot Photographie fixe",
+      "probleme": "Le HTML source contient un seul H2 avec <br><br> : « Photographie fixe » est fondu dans le H2 au lieu d'être un H3, au même niveau que « Animation à 360 degrés » et « Vidéo ». Même défaut en EN.",
+      "proposition": "H2 « Tour d'horizon des médias possibles en photographie packshot » puis H3 « Photographie fixe »"
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Q: Quelle est la différence entre multivue et 360° ?",
+      "probleme": "La FAQ traite de multivue, de marketplaces, de détourage et de publication automatique, des notions absentes du corps (photo fixe, 360°, vidéo). Elle est désalignée de l'article.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Dans ce 4e article du Guide de la Photographie Packshot, le choix du média idéal pour sublimer vos produits (photo, vidéo ou animation 360).",
+      "probleme": "Majuscules artificielles, phrase sans verbe principal, et « 360 » sans le symbole « ° ».",
+      "proposition": "Dans ce 4e article du guide de la photographie packshot, découvrez comment choisir le média idéal pour sublimer vos produits : photo, vidéo ou animation 360°."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Notre Guide Complet de la Photographie Packshot touche bientôt à sa fin",
+      "probleme": "Title Case. Le nom de la série est aussi incohérent (« Le guide complet de la photographie packshot » ailleurs).",
+      "proposition": "Notre guide complet de la photographie packshot touche bientôt à sa fin"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "les aidera à le projeter dans leur propre espace.En proposant",
+      "probleme": "Espace manquante après le point (paragraphes Webflow fusionnés, défaut présent dans le HTML source). Mêmes défauts : « n'y gagnent rien.Dans », « décision d’achat.Ainsi », « logiciel.Cependant », « exception.Ici » (HTML : « sans exception</strong>.Ici ») et « de moyen !Vous voici ». Ces fusions masquent aussi des retours à la ligne voulus.",
+      "proposition": "les aidera à se le représenter dans leur propre espace. En proposant"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "tels que les œuvres d'arts ou les bijoux",
+      "probleme": "Orthographe : « œuvres d'art ».",
+      "proposition": "tels que les œuvres d'art ou les bijoux"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Vous pouvez utiliser une plateforme tournante manuelle ou automatique",
+      "probleme": "Le terme métier est « plateau tournant », celui de l'alt de l'image voisine (« Plateau tournant pour animation produit 360 »). Le texte emploie trois fois « plateforme tournante ».",
+      "proposition": "Vous pouvez utiliser un plateau tournant manuel ou automatique"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le temps et l'argent nécessaires pour filmer et éditer des vidéos de haute qualité",
+      "probleme": "« Éditer » est un calque de « edit » ; pour la vidéo, on dit « monter ».",
+      "proposition": "Le temps et l'argent nécessaires pour tourner et monter des vidéos de haute qualité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une question primordiale pour vous assurer d'avoir le packshot le plus impactant possible",
+      "probleme": "« Impactant » est un anglicisme critiqué.",
+      "proposition": "une question primordiale pour obtenir le packshot le plus percutant possible"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Mais attention à ne pas céder à l’attrait “gadget” de ces médias",
+      "probleme": "Guillemets anglais. Ailleurs, guillemets droits : « le plus \"simple\" des médias ».",
+      "proposition": "Mais attention à ne pas céder à l’attrait « gadget » de ces médias"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "capable de supporter le poids du produit que vous souhaitez capturer",
+      "probleme": "« Capturer » est un calque de « capture ». « Supporter le poids », relevé par la détection automatique, est en revanche correct.",
+      "proposition": "capable de supporter le poids du produit que vous souhaitez photographier"
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "The complete guide to packshot photography, 4",
+      "probleme": "H1 tronqué, même défaut qu'en FR.",
+      "proposition": "Packshot photography guide (4/5): still photo, 360° animation or video?"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Overview of possible media in packshot photography Still photography",
+      "probleme": "H2 fusionné avec le H3 « Still photography » (<br><br> dans le H2), comme en FR.",
+      "proposition": "H2 « Overview of packshot photography media » puis H3 « Still photography »"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "we will thus present to you The three most used media types in packshot photography",
+      "probleme": "Majuscule parasite (segment en gras) et tournure calquée.",
+      "proposition": "we will look at the three media types most commonly used in packshot photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "However, choosing the right medium to present your products",
+      "probleme": "Contresens logique : « Or » introduit ici une suite de raisonnement (« and yet / now »), pas une opposition. However contredit la phrase précédente.",
+      "proposition": "And choosing the right medium to present your products"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "some products are better suited to a moving presentation for example, Like clothes",
+      "probleme": "Majuscule parasite sur l'ancre de lien, ponctuation calquée.",
+      "proposition": "some products, such as clothing, are better suited to being shown in motion"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "But Be careful not to give in to the “gimmick” appeal of these media",
+      "probleme": "Majuscule parasite (segment en gras).",
+      "proposition": "But be careful not to give in to the “gimmick” appeal of these media"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "rotating around him to explore every angle",
+      "probleme": "« Lui » (le produit) rendu par him.",
+      "proposition": "by rotating around it to explore every angle"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You will then have to Assembling the different images obtained using software.",
+      "probleme": "Forme verbale agrammaticale avec majuscule. Juste avant, « a manual rotating platform or automatic » garde l'ordre des mots français.",
+      "proposition": "You can use a manual or automatic turntable to take pictures at regular intervals, then assemble the images with dedicated software."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to a automated rotating platform and integrated into the photo studio",
+      "probleme": "Article fautif, coordination agrammaticale.",
+      "proposition": "Thanks to an automated turntable built into the photo studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The video allows Show your product in motion or in action",
+      "probleme": "Agrammatical, avec majuscule parasite.",
+      "proposition": "Video lets you show your product in motion or in action"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "A video is more bandwidth-intensive just a photo or an animation",
+      "probleme": "Than manquant.",
+      "proposition": "A video uses more bandwidth than a photo or an animation"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You will have understood it, Video is a medium to be reserved for products that benefit from being highlighted in this way",
+      "probleme": "Calque de « Vous l'aurez compris », avec majuscule parasite.",
+      "proposition": "As you can see, video is best reserved for products that benefit from being shown this way"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One automated studio allows you to easily and automatically create photos",
+      "probleme": "Article indéfini « Un » rendu par One.",
+      "proposition": "An automated studio lets you easily and automatically create photos"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of big savings over the long term",
+      "probleme": "Liste à puces traduite mot à mot (« Un / De / Une ») : « One considerable time savings », « Of big savings over the long term », « One usability , even for beginners ».",
+      "proposition": "Considerable time savings / Significant long-term savings / Ease of use, even for beginners"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You are now better equipped to Getting started in packshot photography",
+      "probleme": "Forme verbale agrammaticale avec majuscule. Suite tout aussi fautive : « for highlight your products ».",
+      "proposition": "You are now better equipped to get started in packshot photography, to showcase your products according to their characteristics"
+    },
+    {
+      "langue": "en",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Our Packshot Complete Photography Guide is coming to an end soon",
+      "probleme": "Nom de la série déformé, différent du titre « The complete guide to packshot photography ».",
+      "proposition": "Our complete guide to packshot photography is nearly over"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "The system automatically manages image cropping, optimization, and publishing on your sales channels.",
+      "probleme": "« Détourage » (suppression du fond) rendu par cropping (recadrage) : erreur de terminologie métier.",
+      "proposition": "The system automatically handles background removal, image optimization and publishing to your sales channels."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Photo de mode avec studio photo Alphastudio XXL ",
+      "probleme": "Les 4 alts de la page EN sont en français : aussi « photo fixe d'un emballage de chocolat avec studio Orbitvu », « Plateau tournant pour animation produit 360 », « Gamme studios photos Orbitvu ».",
+      "proposition": "Fashion photo shot with an Alphastudio XXL photo studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "the most impacting packshot possible",
+      "probleme": "Impacting est un calque de « impactant ».",
+      "proposition": "the most impactful packshot possible"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For each media, we will also present its advantages and disadvantages",
+      "probleme": "Singulier : medium.",
+      "proposition": "For each medium, we will also go over its advantages and disadvantages"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It all starts with the still photography",
+      "probleme": "Article superflu.",
+      "proposition": "It all starts with still photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "not to mention a support for your product",
+      "probleme": "Faux ami : « support » désigne ici un product stand ou holder.",
+      "proposition": "not to mention a stand for your product"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "You will need a rotating platform capable of supporting the weight of the product",
+      "probleme": "Le terme métier anglais est turntable, employé ailleurs dans le site.",
+      "proposition": "You will need a turntable capable of supporting the weight of the product"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "which allows you to differentiate from the competition",
+      "probleme": "Differentiate demande un complément (yourself).",
+      "proposition": "which helps you stand out from the competition"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The packshot video is finally an effective way to show your product on a large scale",
+      "probleme": "« Enfin » (pour clore une énumération) rendu par finally (« enfin, après attente »).",
+      "proposition": "Lastly, packshot video is an effective way to reach a wide audience"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "a household appliance that could be shown to be used",
+      "probleme": "Tournure passive calquée et peu claire.",
+      "proposition": "a household appliance whose use you want to demonstrate"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "In this 4th article of the Packshot Photography Guide, the choice of the ideal media to enhance your products (photo, video or 360 animation).",
+      "probleme": "Phrase sans verbe calquée sur le FR, et « 360 » sans « ° ».",
+      "proposition": "In this 4th article of our packshot photography guide, learn how to choose the ideal medium for your products: photo, video or 360° animation."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "all in one and the same professional quality studio",
+      "probleme": "Calque de « en un seul et même studio ».",
+      "proposition": "all in a single professional-quality studio"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Les vidéos ont également tendance à augmenter votre taux de conversion",
+      "source_dans_texte": "aucune",
+      "motif": "Effet sur la conversion et les profits, sans source.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Ces studios ont révolutionné le monde de la photographie packshot",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vous pouvez aisément réaliser des animations à 360 degrés de vos produits et ce, en quelques minutes seulement",
+      "source_dans_texte": "lien /fr/studio-photo/selecteur-machines (EN : /en/studios-photo-automatises)",
+      "motif": "Promesse de délai.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un gain de temps considérable",
+      "source_dans_texte": "aucune",
+      "motif": "Liste de promesses (« De grandes économies sur le long terme », « Une facilité d'utilisation , même pour les débutants »).",
+      "ecart_fr_en": "EN inintelligible (« One considerable time savings », « Of big savings »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "celui que l'on retrouve sur tous les sites e-commerce sans exception",
+      "source_dans_texte": "aucune",
+      "motif": "Absolu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Il s'agit d'une technologie assez novatrice, ce qui vous permet de vous différencier de la concurrence",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation datée : le 360° n'est plus une nouveauté.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une vidéo est plus gourmande en bande passante qu'une photo ou une animation",
+      "source_dans_texte": "aucune",
+      "motif": "Comparaison technique à nuancer : une animation 360° se compose de nombreuses images.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "fr",
+      "extrait": "Le système gère automatiquement le détourage, l'optimisation des images et la publication sur vos canaux de vente.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonctionnalités d'Orbitvu Station (publication automatique sur les canaux de vente) à confirmer ; absentes du corps.",
+      "ecart_fr_en": "EN : « image cropping » au lieu de détourage, ce qui change la fonctionnalité annoncée."
+    },
+    {
+      "langue": "fr",
+      "extrait": "Ces différentes prises de vue peuvent être automatisées et sauvegardées dans des modèles réutilisables pour une cohérence parfaite.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse absolue (« cohérence parfaite »).",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title « Le guide complet de la photographie packshot, 4 : quel média privilégier » (sans point d'interrogation), H1 tronqué au numéro. Le metaTitle « Choix du média et packshot : photo fixe, vidéo ou animation 360° ? » (66 caractères, servi comme <title>) est cohérent avec le corps. La description est en Title Case, sans verbe, avec « 360 » sans « ° ». EN : même schéma ; metaTitle correct, description calquée et sans verbe. La FAQ (multivue, marketplaces) déborde du sujet annoncé.",
+  "structure_fr_en": "Parité : 2 H2, 3 H3, H4 Avantages/Inconvénients, 30 paragraphes, 17 puces, 4 images et 5 FAQ, dans le même ordre. Le H2 fusionné avec « Photographie fixe » est commun aux deux langues. Liens : 5 en FR contre 7 en EN. L'EN ajoute un lien sur « works of art or sculptures » (→ /en/industrie) et sur « automated studio » (→ /en/besoins-photographie-produit). Les cibles divergent : FR « comme les vêtements » → /fr/industrie contre EN « Like clothes » → /en/industrie/mode-textile ; FR « plateforme tournante automatisée » → /fr/studio-photo/selecteur-machines contre EN → /en/studios-photo-automatises. Paragraphes vides ZWJ : artefacts Webflow.",
+  "images_alt_legendes": "4 images, mêmes fichiers dans les deux langues, sans légende. Alts en français sur la page EN (4 sur 4, et non 2 comme l'indique la détection automatique). Défauts : espaces finales, « 360 » sans « ° », « studios photos » au lieu de « studios photo ». Le premier alt nomme « Alphastudio XXL » pour une photo de mode (modèle cohérent avec le référentiel machines du dépôt, « Alphastudio XXL Pro v2 », à confirmer visuellement).",
+  "appellations": "Le nom de la série varie : « Le guide complet de la photographie packshot » (corps, title), « Guide de la Photographie Packshot » (description), « Guide Complet de la Photographie Packshot » (conclusion) ; en EN, « The complete guide to packshot photography », « Packshot Photography Guide » et « Packshot Complete Photography Guide ». Orbitvu et Orbitvu Station sont cohérents. Pas de remplacement de nom propre.",
+  "recommandation": "retraduction complète",
+  "remarques": "Par langue : EN à retraduire entièrement ; FR à retoucher (H1, H2 fusionné, espaces, terminologie « plateau tournant », FAQ à réaligner sur le corps). Phrase éditoriale à valider : « vous pouvez mettre en avant les points positifs de votre produit tout en atténuant les aspects moins positifs » (ton discutable pour un conseil au consommateur). « Technologie assez novatrice » : fait daté (article du 28/02/2024). Signatures « impactant » (confirmé, calque mineur) et « supporter » (infirmé, « supporter le poids » est correct). Les espaces avant ponctuation détectées en EN sont, pour la plupart, des artefacts d'extraction ; les espaces manquantes après un point (« space.By », « decision.So », « exception.Here ») sont réelles dans les deux langues."
+}

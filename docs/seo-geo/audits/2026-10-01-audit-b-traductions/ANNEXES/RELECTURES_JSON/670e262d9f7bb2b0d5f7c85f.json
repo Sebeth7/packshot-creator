@@ -1,0 +1,502 @@
+{
+  "family": "670e262d9f7bb2b0d5f7c85f",
+  "slugs": {
+    "fr": "avantage-du-e-commerce-pour-les-entreprises",
+    "en": "potential-advantages-e-commerce-businesses",
+    "de-ch": null
+  },
+  "sujet": "Article sur les avantages du e-commerce pour les entreprises (bascule post-COVID, portée, ventes, coûts, données, agilité), puis sur le rôle de la photographie produit, avec renvoi vers les studios automatisés Orbitvu et une FAQ chiffrée.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN est une traduction automatique mot à mot du FR, avec des résidus français : « La pandemic has profoundly changed our consumption habits. », intertitre H2 « La product photography : a central challenge to succeed online », « En 2024 , this preference for e-commerce remains strongly anchored », « La Description is clear ». Contresens de traduction automatique : « In sectors such as modus Or the shoes » (« la mode ou les chaussures »), « rents , loads or maintenance » (« charges »), « During the pandemic, she jumped to 30% » (« elle », la croissance), « It scores a structural transformation » (« Il marque »), « visitors should be able to Plan yourself immediately » (« se projeter »), « we are going to see wherefore » (« pourquoi »). Les intertitres EN reprennent les déterminants français partitifs : « Of cost savings And a increased efficiency » (« Des économies de coûts et une efficacité renforcée »).",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Langue native et fluide, mais défauts éditoriaux nets. Title, H1 et metaTitle portent trois promesses différentes. Il y a un intertitre H3 en double (« Une adoption accélérée des technologies »), un ancien intertitre resté en paragraphe (« Une préférence pour les achats multicanaux »), deux sections redondantes sur les données et un bloc récapitulatif répété. Quatre alt valent « __wf_reserved_decorative » et sont rendus tels quels. Le lien « guide complet » n'a pas de cible et le nom « Alphashot XXL » est douteux. La FAQ est chiffrée sans source.",
+    "en": "Traduction automatique brute et non relue : déterminants français (« La pandemic », « La product photography », « En 2024 »), majuscules au milieu des phrases (« And », « Of », « With »), intertitres agrammaticaux, contresens (« modus », « loads », « Plan yourself », « scores »), « she » pour la croissance, alt en français. Mêmes défauts de structure qu'en FR. Retraduction complète nécessaire.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 22,
+    "en": 130,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Photographie produit e-commerce : clé de la conversion",
+      "probleme": "Trois promesses différentes : title JSON « Maximisez votre potentiel : les avantages cruciaux du e-commerce pour les entreprises », H1 sur la photographie produit et la conversion, metaTitle servi « E-commerce : Pourquoi la photographie produit est devenue un levier stratégique ». Or les deux tiers du corps (H2 1 et 2) traitent des avantages du e-commerce, ce que disent le slug et le H2 « Quel est l’avantage du e-commerce pour les entreprises ? ». Le H1 et le metaTitle ne correspondent qu'au dernier tiers.",
+      "proposition": "Aligner H1, title et metaTitle sur le corps, par exemple H1 : « Les avantages du e-commerce pour les entreprises, et le rôle clé de la photographie produit » (arbitrage SEO à valider)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Une adoption accélérée des technologies",
+      "probleme": "Intertitre H3 en double : il est suivi d'une image décorative puis de « Une adoption accélérée des technologies numériques ». Ancien intertitre non supprimé (même doublon en EN).",
+      "proposition": "Supprimer le premier H3 et garder « Une adoption accélérée des technologies numériques »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Une préférence pour les achats multicanaux",
+      "probleme": "Ancien intertitre resté sous forme de paragraphe isolé, juste avant le H3 « Une préférence croissante pour une expérience multicanale » (même défaut en EN).",
+      "proposition": "Supprimer ce paragraphe."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Des données précieuses pour mieux comprendre vos clients",
+      "probleme": "Section redondante avec la précédente (« Des données exploitables pour mieux décider ») : même idée et même conclusion (« prendre des décisions stratégiques éclairées »), présentée comme « un autre atout majeur ». Les deux versions successives de la section ont été conservées.",
+      "proposition": "Fusionner les deux sections en une seule."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Quatre images ont pour alt la valeur réservée de Webflow. Aucun code du dépôt ne la neutralise (aucune occurrence de « __wf_reserved » dans les .ts/.tsx) : elle est donc servie telle quelle et lue par les lecteurs d'écran. Même défaut en EN.",
+      "proposition": "alt=\"\" si l'image est décorative, sinon un alt descriptif."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "nous vous invitons à consulter notre guide complet .",
+      "probleme": "« guide complet » est une balise <a> sans href (vérifié dans le JSON) : le lien promis ne mène nulle part. Même défaut en EN (« complete guide »).",
+      "proposition": "Ajouter la cible du guide visé ou retirer la promesse (arbitrage éditorial)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Alphashot XXL studio photo automatisé d'Orbitvu pour packshots",
+      "probleme": "Nom de modèle erroné : l'image (vérifiée visuellement après conversion) montre un studio Orbitvu marqué « ALPHASTUDIO XXL » sur ses montants, pas un « Alphashot XXL ». Ce dernier nom ne figure d'ailleurs pas dans le catalogue des machines du dépôt (lib/machine-images.ts : alphastudio-xxl-v2). Il n'apparaît ailleurs que dans l'article « pourquoi-choisir-orbitvu ».",
+      "proposition": "Studio photo automatisé AlphaStudio XXL d'Orbitvu pour packshots"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "E-commerce : Pourquoi la photographie produit est devenue un levier stratégique",
+      "probleme": "Majuscule après les deux-points ; 79 caractères (tronqué en SERP).",
+      "proposition": "E-commerce : pourquoi la photo produit est un levier stratégique"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "title",
+      "extrait_actuel": "Maximisez votre potentiel : les avantages cruciaux du e-commerce pour les entreprises",
+      "probleme": "Formule creuse (« Maximisez votre potentiel »), « cruciaux » emphatique ; title JSON non servi (le <title> servi est le metaTitle) mais incohérent avec le H1.",
+      "proposition": "Les avantages du e-commerce pour les entreprises"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Sur un site e-commerce, l’image n’est pas seulement un “plus” : c’est le point de contact principal entre le produit et l’acheteur .",
+      "probleme": "Guillemets anglais dans un texte français.",
+      "proposition": "Sur un site e-commerce, l’image n’est pas seulement un « plus » : c’est le point de contact principal entre le produit et l’acheteur."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "La pandémie a profondément modifié nos habitudes de consommation. Avec les restrictions, les confinements et la distanciation sociale, les consommateurs se sont naturellement tournés vers Internet pour faire leurs achats.",
+      "probleme": "Ce bloc de trois paragraphes, placé après la section multicanale, répète le début de l'article (pandémie, changement durable, « En 2024 »).",
+      "proposition": "Le supprimer ou le réduire à une phrase de transition."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Aujourd’hui, le e-commerce n’est plus une option : c’est devenu une nécessité pour les entreprises qui vendent des produits physiques.",
+      "probleme": "Reprise presque mot pour mot de la première phrase (« le e-commerce n’est plus une option : c’est devenu une évidence ») ; de même « répond parfaitement à cette attente » apparaît deux fois.",
+      "proposition": "Aujourd’hui, vendre en ligne est devenu indispensable pour les entreprises qui commercialisent des produits physiques."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "combiner la présence physique avec les avantages du digital",
+      "probleme": "« Le digital » est un anglicisme (également « virage digital ») ; « numérique » est déjà employé ailleurs dans le texte.",
+      "proposition": "combiner la présence physique et les avantages du numérique"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Le coût moyen est inférieur à 1€ par produit pour 7 photos",
+      "probleme": "Espace insécable manquante avant le symbole (de même « 75% », « 60% » dans la FAQ). La FAQ utilise des apostrophes droites alors que le corps utilise l’apostrophe typographique.",
+      "proposition": "Le coût moyen est inférieur à 1 € par produit pour 7 photos"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "un fauteuil ikea capturé depuis plusieurs angles grâce à un studio photo automatisé Orbitvu",
+      "probleme": "Nom de marque en minuscule (IKEA).",
+      "proposition": "Un fauteuil IKEA photographié sous plusieurs angles avec un studio photo automatisé Orbitvu"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Comment garantir une photographie produit irréprochable ?",
+      "probleme": "L'intertitre H3 entier est un lien vers /fr/blog/comment-avoir-meilleures-images-amazon (article sur Amazon), ancre sans rapport direct ; « garantir » promet trop.",
+      "proposition": "Déplacer le lien dans le corps avec une ancre explicite (« nos conseils pour des images Amazon réussies »)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "covid 19 e-commerce",
+      "probleme": "Alt sous forme de mots-clés, graphie « COVID-19 » non respectée.",
+      "proposition": "Hausse du e-commerce pendant la pandémie de COVID-19"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "intertitre",
+      "extrait_actuel": "La product photography : a central challenge to succeed online",
+      "probleme": "Article français « La » dans un intertitre H2 anglais, espace avant les deux-points.",
+      "proposition": "Product photography: a key challenge for online success"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "In sectors such as modus Or the shoes , this freedom to buy has become a key criterion.",
+      "probleme": "« modus » traduit « mode » (fashion) : contresens qui rend la phrase incompréhensible ; « Or the shoes » est mal découpé.",
+      "proposition": "In sectors such as fashion and footwear, this freedom to shop whenever they like has become a key criterion."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La pandemic has profoundly changed our consumption habits.",
+      "probleme": "Déterminant français résiduel.",
+      "proposition": "The pandemic profoundly changed our consumption habits."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "En 2024 , this preference for e-commerce remains strongly anchored .",
+      "probleme": "« En 2024 » non traduit (trois occurrences).",
+      "proposition": "In 2024, this preference for e-commerce remains firmly established."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Imagine yourself browsing an e-commerce site, looking for perfect product . La Description is clear , the price is competitive...",
+      "probleme": "« La Description » : déterminant français et majuscule parasite ; article manquant (« perfect product »).",
+      "proposition": "Imagine browsing an e-commerce site, looking for the perfect product. The description is clear, the price is competitive..."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "During the pandemic, she jumped to 30% .",
+      "probleme": "« She » reprend le féminin français de « la croissance ».",
+      "proposition": "During the pandemic, it jumped to 30%."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "with all that this implies in rents , loads or maintenance .",
+      "probleme": "« Loads » traduit « charges » (frais fixes) : contresens.",
+      "proposition": "with all the rent, overheads and maintenance that this implies."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Without the ability to manipulate the object, visitors should be able to Plan yourself immediately , be reassured, and want to click.",
+      "probleme": "« Plan yourself » traduit « se projeter » ; changement de personne et majuscule parasite.",
+      "proposition": "Since they cannot handle the product, visitors must be able to picture themselves using it right away, feel reassured and want to click."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It scores a structural transformation in the way we buy, which has taken root over the long term.",
+      "probleme": "« Scores » traduit « marque » : contresens.",
+      "proposition": "It marks a structural, lasting transformation in the way we shop."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "In this article, we are going to see wherefore e-commerce has established itself as a new norm, what are the concrete benefits for businesses",
+      "probleme": "« Wherefore » est archaïque et fautif ; interrogative indirecte mal construite.",
+      "proposition": "In this article, we look at why e-commerce has become the new norm, what concrete benefits it brings businesses"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This is precisely where the Orbitvu automated photo studios . Designed to meet the requirements of modern e-commerce, they allow simplify And of optimizing the whole shooting process.",
+      "probleme": "Phrase sans verbe (« interviennent » perdu), puis syntaxe cassée (« allow simplify And of optimizing »).",
+      "proposition": "This is precisely where Orbitvu automated photo studios come in. Designed to meet the requirements of modern e-commerce, they simplify and optimize the entire shooting process."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Of cost savings And a increased efficiency",
+      "probleme": "Intertitre traduit mot à mot : déterminant partitif français, majuscule parasite, « a increased ». Même schéma dans « One Expanded scope And a increased customer base », « One increase in sales And of turnover », « Of actionable data To better decide », « One flexibility And a responsiveness unequalled », « Consumers looking for bargains And of personalizing », « A marked preference for security And the convenience ».",
+      "proposition": "Cost savings and greater efficiency"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "What is The advantage of e-commerce for businesses?",
+      "probleme": "Intertitre H2 avec majuscule parasite.",
+      "proposition": "What are the advantages of e-commerce for businesses?"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "un fauteuil ikea capturé depuis plusieurs angles grâce à un studio photo automatisé Orbitvu",
+      "probleme": "Alt en français dans l'article anglais.",
+      "proposition": "An IKEA armchair photographed from several angles with an Orbitvu automated photo studio"
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Alphashot XXL studio photo automatisé d'Orbitvu pour packshots",
+      "probleme": "Alt en français dans l'article anglais (non signalé par la détection automatique) ; nom de modèle erroné (l'image montre un AlphaStudio XXL).",
+      "proposition": "Orbitvu AlphaStudio XXL automated photo studio for packshots"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Now that you are fully aware of The strategic impact of e-commerce , it is time to maximizing this advantage With a Product photography that lives up to your ambitions .",
+      "probleme": "Conclusion agrammaticale (« to maximizing »), majuscules parasites.",
+      "proposition": "Now that you are fully aware of the strategic impact of e-commerce, it is time to make the most of it with product photography that lives up to your ambitions."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Because online, your image Speak before you .",
+      "probleme": "Phrase de chute agrammaticale (accord, majuscule).",
+      "proposition": "Because online, your images speak before you do."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For businesses that want accelerate their growth and remain competitive, online commerce represents a essential strategic lever .",
+      "probleme": "« want accelerate », « a essential ».",
+      "proposition": "For businesses that want to accelerate their growth and stay competitive, online commerce is an essential strategic lever."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Many now prefer Avoid crowds and limit in-store contacts .",
+      "probleme": "Infinitif sans « to » et majuscule parasite.",
+      "proposition": "Many now prefer to avoid crowds and limit in-store contact."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "What they are waiting for today is a smooth experience",
+      "probleme": "« Attendre » au sens de « s'attendre à » rendu par « wait for ».",
+      "proposition": "What they expect today is a seamless experience"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Conversely, a professional, clear and rewarding photo can turn a simple visit into concrete purchase .",
+      "probleme": "« Valorisante » rendu par « rewarding » (contresens : il faut « flattering » ou « appealing ») ; article manquant.",
+      "proposition": "Conversely, a professional, clear and flattering photo can turn a simple visit into an actual purchase."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Before the health crisis, e-commerce growth revolved around 10 to 15% per year .",
+      "probleme": "« Revolved around » calque « tournait autour de ».",
+      "proposition": "Before the health crisis, e-commerce was growing by around 10 to 15% a year."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Successful businesses are the ones that know integrate their points of contact : website, physical store, social networks, customer service, etc., in a single unified experience.",
+      "probleme": "« know integrate », espace avant deux-points, « points of contact » au lieu de « touchpoints ».",
+      "proposition": "Successful businesses are those that bring their touchpoints (website, physical store, social media, customer service, etc.) together into a single unified experience."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Before talking about the concrete advantages of e-commerce, let's look at What triggered this massive transition in buying habits.",
+      "probleme": "Majuscule parasite.",
+      "proposition": "Before discussing the concrete advantages of e-commerce, let's look at what triggered this massive shift in buying habits."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Thanks to a innovative technology , you can create in a few minutes consistent images , Attractive and perfectly framed",
+      "probleme": "« a innovative », ordre des mots, majuscule parasite.",
+      "proposition": "Thanks to innovative technology, you can create consistent, attractive and perfectly framed images in minutes"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "The Orbitvu Station software allows you to save predefined models of lighting and parameters, ensuring perfect homogeneity for all products.",
+      "probleme": "« Models of lighting » traduit « modèles d'éclairage » : en anglais, on dit « lighting presets » ou « templates ».",
+      "proposition": "Orbitvu Station software lets you save lighting and settings presets, ensuring consistent results across all products."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "With restrictions, lockdowns, and social distance, consumers naturally turned to Internet to do their shopping.",
+      "probleme": "« social distance » pour « social distancing » ; article manquant devant « Internet ».",
+      "proposition": "With restrictions, lockdowns and social distancing, consumers naturally turned to the internet to do their shopping."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Avant la crise sanitaire, la croissance du e-commerce tournait autour de 10 à 15 % par an . Pendant la pandémie, elle a bondi à 30 % .",
+      "source_dans_texte": "aucune",
+      "motif": "Taux de croissance sans source ni périmètre géographique.",
+      "ecart_fr_en": "Aucun sur les chiffres."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L'automatisation avec un studio photo Orbitvu permet de photographier jusqu'à 150 produits par jour avec 7 photos par produit.",
+      "source_dans_texte": "aucune",
+      "motif": "Cadence produit (FAQ) sans précision du modèle ni des conditions.",
+      "ecart_fr_en": "« jusqu'à » conservé (EN « up to 150 products per day »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le coût moyen est inférieur à 1€ par produit pour 7 photos, incluant l'investissement initial et les coûts d'exploitation.",
+      "source_dans_texte": "aucune",
+      "motif": "Coût unitaire dont les hypothèses (volume, durée d'amortissement) ne sont pas données ; à rapprocher du calculateur ROI du site.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les clients témoignent d'un ROI \"formidable\" avec une augmentation significative de la productivité, passant de quelques photos par mois à plus de 100 par jour.",
+      "source_dans_texte": "aucune",
+      "motif": "Témoignage client non attribué, présenté comme général (« Les clients »).",
+      "ecart_fr_en": "EN « Customers report a “tremendous” ROI » : équivalent."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel Orbitvu Station permet de sauvegarder des modèles prédéfinis d'éclairage et de paramètres, assurant une homogénéité parfaite pour tous les produits. Le système d'éclairage cylindrique LED exclusif garantit des résultats professionnels constants.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesses absolues (« homogénéité parfaite », « exclusif », « garantit »).",
+      "ecart_fr_en": "EN « perfect homogeneity », « exclusive », « guarantees » : identiques."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les solutions Orbitvu intègrent des paramètres préconfigurés conformes aux exigences des principales plateformes comme Amazon et eBay.",
+      "source_dans_texte": "aucune",
+      "motif": "Fonction produit à vérifier auprès d'Orbitvu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "75% des consommateurs considèrent la qualité visuelle comme primordiale dans leur décision d'achat. Des visuels de haute qualité peuvent augmenter les conversions jusqu'à 60%.",
+      "source_dans_texte": "aucune",
+      "motif": "Deux statistiques sans source.",
+      "ecart_fr_en": "« jusqu'à » conservé (EN « by up to 60% ») ; « primordiale » devient « essential »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Grâce à une technologie innovante , vous pouvez créer en quelques minutes des images cohérentes , attrayantes et parfaitement cadrées , même si vous avez des centaines de références à photographier.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai et de résultat (« parfaitement cadrées »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Elle se traduit par une augmentation directe des revenus , sans coûts additionnels majeurs.",
+      "source_dans_texte": "aucune",
+      "motif": "Lien de causalité affirmé sans donnée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une flexibilité et une réactivité inégalées",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif dans un intertitre.",
+      "ecart_fr_en": "EN « One flexibility And a responsiveness unequalled » : même superlatif."
+    }
+  ],
+  "titre_h1_meta": "FR : le title JSON (« Maximisez votre potentiel : les avantages cruciaux du e-commerce pour les entreprises ») porte sur les avantages du e-commerce, comme le slug et le premier H2. Le H1 (« Photographie produit e-commerce : clé de la conversion »), le metaTitle servi (« E-commerce : Pourquoi la photographie produit est devenue un levier stratégique », 79 caractères, majuscule après les deux-points) et la description (« Boostez vos ventes avec des visuels impactants… ») portent sur la photographie produit. Le corps consacre deux H2 sur quatre aux avantages du e-commerce et un seul à la photographie : l'incohérence est nette. EN : même schéma ; le H1 et le metaTitle sont en Title Case et en bon anglais, manifestement rédigés à part et non traduits automatiquement, contrairement au corps.",
+  "structure_fr_en": "Parité complète : 4 H2, 16 H3, 7 images, 5 FAQ, mêmes paragraphes (62/62). Les défauts de structure sont communs aux deux langues : H3 doublé « Une adoption accélérée des technologies / … numériques » ; ancien intertitre resté en paragraphe « Une préférence pour les achats multicanaux » ; sections « données » redondantes ; bloc récapitulatif sur la pandémie répété ; 14 paragraphes vides (\\u200d) dans chaque langue.",
+  "images_alt_legendes": "Sept images, sans légende. Quatre ont l'alt « __wf_reserved_decorative », servi tel quel faute de neutralisation dans le code. L'alt « covid 19 e-commerce » est une suite de mots-clés. Les alts « un fauteuil ikea capturé depuis plusieurs angles grâce à un studio photo automatisé Orbitvu » et « Alphashot XXL studio photo automatisé d'Orbitvu pour packshots » sont en français dans les deux langues, donc dans la mauvaise langue en EN. L'alt « Alphashot XXL » nomme mal le studio photographié, qui est un AlphaStudio XXL.",
+  "appellations": "Orbitvu et Orbitvu Station sont cohérents. L'alt « Alphashot XXL » nomme mal le modèle : l'image montre un AlphaStudio XXL (inscription visible sur le studio), présent au catalogue du dépôt (alphastudio-xxl-v2). L'auteur est la marque générique PackshotCreator : dans l'import Webflow, l'auteur était « Laurent Wainberg » ; il a été remplacé volontairement par le commit 8ae45f63 du 12/06/2026 (cohérence E-E-A-T), ce qui relève d'une décision éditoriale et non d'une erreur de traduction. Le texte ne mentionne pas PackshotCreator en tant que distributeur.",
+  "recommandation": "retraduction complète",
+  "remarques": "Recommandation par langue : FR, retouches éditoriales ciblées (aligner le H1, le title et le metaTitle ; supprimer les doublons d'intertitres et les sections redondantes ; corriger les alts ; réparer ou retirer le lien « guide complet ») ; EN, retraduction complète depuis le FR corrigé. Faits datés : « En 2024 » (3 occurrences), cadrage COVID et inflation. Date de publication 24/04/2024 alors que l'item Webflow a été créé le 15/10/2024 (horodatage ObjectId, inférence) : date à vérifier. Les chiffres de la FAQ (150 produits par jour, moins de 1 € par produit, plus de 100 photos par jour, 75 %, jusqu'à 60 %) sont à rapprocher des sources Orbitvu et du calculateur ROI avant toute republication. Le lien du H3 « Comment garantir une photographie produit irréprochable ? » mène à un article Amazon. Le temps de lecture déclaré est de 6 min pour 1 800 mots environ."
+}

@@ -1,0 +1,374 @@
+{
+  "family": "67e41233cb2c0c8643c00c89",
+  "slugs": {
+    "fr": "conseils-photo-le-cadrage-et-la-composition",
+    "en": "tips-photo-framing-composition",
+    "de-ch": null
+  },
+  "sujet": "Conseils de cadrage et de composition appliqués à la photographie produit (intention, remplissage du cadre, décentrage, règle des tiers, mouvement), avec un renvoi commercial vers l'Alphashot Pro G2 et une FAQ technique (distance, fond, reflets, réglages, packshot ou lifestyle).",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "Dans le corps EN : déterminants français résiduels « La Rule of thirds is a classical method » et « Les intersection points of these lines » ; mot français « plus » dans « seems more aesthetics , plus true to your visual message » ; calques directs « Fill or aerate » (« aérer »), « Some useful landmarks » (« repères »), « e-commerce stickers » (« vignettes »), « are called” strengths “ » (« points forts »), « a Line of force » (« ligne de force »), « Decentralize the subject » (« Décentrer »), « Let him breathe visually, especially if he is in motion » (« Laissez-lui », « s'il ») ; majuscules de segments découpés (« should Capturing attention , To build trust », « THE environment Or the staging Give meaning »). La FAQ EN est en anglais fluide : [Inférence] elle a été traduite ou rédigée à part, avec plus de soin.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et clair, bon niveau métier. Retouches ponctuelles : metaTitle en Title Case et trop long (76 car.), description de 266 car., intertitres en gras collés au texte dans le HTML (« sujetÉvitez »), guillemets droits, 2 alts inexploitables, renvoi « Découvrez… » sans lien, « Conclusion : Règles… », date 2017 incohérente avec la mention de l'Alphashot Pro G2, promesse « 6 règles de cadrage » alors que la 6e section est commerciale.",
+    "en": "Corps traduit automatiquement depuis le FR : déterminants français, majuscules au milieu des phrases, contresens métier (« too focused » pour « trop centré », « strengths » et « highlights » pour « points forts », « stickers » pour « vignettes »), phrases incompréhensibles (« The movement Or the View of the subject Ask for space to express yourself »), alt en français. Les métadonnées et la FAQ EN sont correctes.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 12,
+    "en": 45,
+    "de-ch": 0
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeur réservée de Webflow utilisée comme alt (1re image) ; aucune substitution trouvée dans lib/, components/ ni app/ (recherche « wf_reserved » vide), donc vraisemblablement servie telle quelle aux lecteurs d'écran.",
+      "proposition": "Rédiger un alt descriptif d'après l'image (non consultée ici)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Photographie Produit : 6 Règles de Cadrage pour des Images Qui Convertissent",
+      "probleme": "Title Case anglais appliqué au français ; 76 caractères (tronqué en SERP).",
+      "proposition": "Photographie produit : 6 règles de cadrage pour des images qui convertissent"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Maîtrisez l'art de la photographie produit grâce à nos 6 conseils essentiels de cadrage et composition.",
+      "probleme": "Description de 266 caractères. Elle promet « 6 conseils essentiels de cadrage », mais la 6e section du corps (« Du studio pro à la solution interne : la qualité accessible ») est un renvoi produit, pas un conseil de cadrage.",
+      "proposition": "Intention, remplissage du cadre, décentrage, règle des tiers, mouvement : nos conseils de cadrage et de composition pour des photos produit qui servent la vente, quel que soit votre équipement."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "➤ Laissez de l'espace autour du sujetÉvitez de coller l'objet aux bordures.",
+      "probleme": "Intertitre en gras collé au texte qui suit (présent dans le HTML) ; même défaut pour « Décentrer le sujet » + « C'est… » et « Ne pas suivre les axes centraux » + « Sauf… ». Les trois amorces mélangent aussi infinitif et impératif.",
+      "proposition": "➤ Laisser de l'espace autour du sujet. Évitez de coller l'objet aux bords du cadre."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "L'un des premiers choix de composition consiste à décider du rapport entre le sujet et l'espace qui l'entoure.Quelques repères utiles :",
+      "probleme": "Espace manquante après le point (présent dans le HTML).",
+      "proposition": "L'un des premiers choix de composition consiste à décider du rapport entre le sujet et l'espace qui l'entoure. Quelques repères utiles :"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les points d'intersection de ces lignes sont appelés \" points forts \".",
+      "probleme": "Guillemets droits anglais au lieu de guillemets français (les espaces intérieures sont un artefact d'extraction) ; même chose pour \"regarde\" dans la section 3.",
+      "proposition": "Les points d'intersection de ces lignes sont appelés « points forts »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Photo cadrage composition",
+      "probleme": "Alt fait de mots-clés juxtaposés, sans description de l'image.",
+      "proposition": "Alt descriptif à rédiger d'après l'image (par exemple le sujet photographié et la grille des tiers, si elle est visible)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Découvrez par exemple comment une boutique en ligne peut photographier ses chaussures avec un studio photo interne pour garantir un rendu homogène , cohérent et percutant .",
+      "probleme": "« Découvrez » annonce un cas client, mais la phrase n'a pas de lien. Un article candidat existe dans le dépôt : /fr/blog/la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator.",
+      "proposition": "Ajouter le lien vers le cas client (cible à valider) ou reformuler sans « Découvrez »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Conclusion : Règles… ou repères ?",
+      "probleme": "Majuscule inutile après les deux-points.",
+      "proposition": "Conclusion : règles… ou repères ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Pour un produit tenu en main, faites en sorte que le regard du modèle tombe sur l'un des points forts.",
+      "probleme": "Ambigu : « que le regard tombe sur » se comprend comme la direction du regard, alors que le conseil vise vraisemblablement à placer les yeux du modèle sur un point fort.",
+      "proposition": "Pour un produit tenu en main, placez les yeux du modèle sur l'un des points forts."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "N'hésitez pas à utiliser des polariseurs pour éliminer les reflets spéculaires.",
+      "probleme": "Le terme usuel est « filtre polarisant ». « Éliminer » est trop fort : un polarisant atténue surtout les reflets sur les surfaces non métalliques (verre, vernis), peu sur le métal nu, alors que la question cite les objets métalliques. Nuance technique à faire valider.",
+      "proposition": "Un filtre polarisant peut aussi atténuer certains reflets spéculaires (verre, surfaces vernies)."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeur réservée de Webflow servie comme alt (même défaut qu'en FR).",
+      "proposition": "Rédiger un alt anglais descriptif d'après l'image."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This is even more true in the context of Product photography , where each image should Capturing attention , To build trust ... and sell .",
+      "probleme": "Segments mal recollés après la traduction automatique (« should Capturing », « To build »), majuscules parasites.",
+      "proposition": "This is even more true in product photography, where every image has to capture attention, build trust… and sell."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Is it necessary Valuing details Or rather show a global scene ?",
+      "probleme": "Phrase agrammaticale issue de la traduction automatique.",
+      "proposition": "Should you highlight details or show the whole scene?"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One of the first compositional choices is to decide on Relationship between subject and space that surrounds it.Some useful landmarks:",
+      "probleme": "Article manquant, majuscule parasite, espace manquante après le point (dans le HTML) ; « landmarks » est un calque de « repères ».",
+      "proposition": "One of the first composition choices is deciding on the relationship between the subject and the space around it. A few useful pointers:"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You are looking to maximizing visual impact in a small space (e.g. e-commerce stickers)",
+      "probleme": "« vignettes e-commerce » (miniatures) traduit par « stickers » (autocollants) : contresens ; « looking to maximizing » est agrammatical.",
+      "proposition": "You want to maximize visual impact in a small space (e.g. e-commerce thumbnails)"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "THE environment Or the staging Give meaning to the image",
+      "probleme": "Traduction automatique : majuscules au milieu de la phrase, accord faux ; rendu « THEenvironment » dans le HTML.",
+      "proposition": "The setting or the staging gives the image its meaning"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "You want Suggest a universe or an atmosphere",
+      "probleme": "« to » manquant, majuscule parasite ; « universe » est un calque d'« univers ».",
+      "proposition": "You want to suggest a world or a mood"
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The movement Or the View of the subject Ask for space to express yourself",
+      "probleme": "Incompréhensible : « View » pour « regard », « yourself » au lieu du sujet, majuscules parasites.",
+      "proposition": "The subject's movement or gaze needs space to express itself"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "➤ Decentralize the subject It's a basic rule of photography: avoid placing the subject in the center of the image. A subject that is too focused often gives a static, frozen impression.",
+      "probleme": "« Decentralize » ne s'emploie pas en composition (« off-center ») ; « too focused » (mise au point) est un contresens pour « trop centré » ; amorce collée au texte dans le HTML.",
+      "proposition": "➤ Off-center the subject. It's a basic rule of photography: avoid placing the subject in the center of the frame. A subject that is too centered often looks static and frozen."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La Rule of thirds is a classical method of visual composition, inherited from painting.",
+      "probleme": "Déterminant français « La » resté en tête de phrase.",
+      "proposition": "The rule of thirds is a classic composition method inherited from painting."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les intersection points of these lines are called” strengths “.",
+      "probleme": "Déterminant français « Les » ; « points forts » traduit par « strengths » (qualités) : contresens ; guillemets inversés et collés dans le HTML (« called”strengths“ »).",
+      "proposition": "The points where these lines intersect are called “power points”."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "For a hand-held product, ensure that the Model look falls on one of the highlights.",
+      "probleme": "« highlights » désigne en photographie les hautes lumières, pas les points forts de la grille ; « Model look » est un calque de « regard du modèle ».",
+      "proposition": "For a hand-held product, place the model's eyes on one of the power points."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Let the movement be real (e.g. one step, one rotation) or suggested (a look, an orientation), he must have space to express himself in the image.",
+      "probleme": "« Que le mouvement soit… » rendu par l'impératif « Let » ; « he… himself » renvoie au mouvement.",
+      "proposition": "Whether the movement is real (e.g. a step, a rotation) or implied (a glance, an orientation), it needs space in the frame."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "If another composition seems more aesthetics , plus true to your visual message , make that choice.",
+      "probleme": "« plus » laissé en français ; « more aesthetics » agrammatical ; « matter of instinct » est collé dans le HTML (« ofinstinct »).",
+      "proposition": "If another composition looks better or truer to your visual message, go with it."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "For example, find out how an online store can photograph its shoes with a internal photo studio to guarantee a result homogenous , consistent and hard-hitting .",
+      "probleme": "« a internal » ; ordre des mots français (« a result homogenous ») ; « internal » pour « interne » au lieu de « in-house ».",
+      "proposition": "For example, see how an online store photographs its shoes with an in-house photo studio to get consistent, coherent and impactful results."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "Photo cadrage composition",
+      "probleme": "Alt en français sur la page anglaise.",
+      "proposition": "Alt anglais descriptif à rédiger d'après l'image."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "2. Fill or aerate: find the right balance for your product",
+      "probleme": "« aerate » est un calque d'« aérer » (sens agricole ou technique en anglais).",
+      "proposition": "2. Fill the frame or leave space: find the right balance for your product"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "3. The composition at the service of your product",
+      "probleme": "Calque de « au service de ».",
+      "proposition": "3. Composition that serves your product"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "➤ Leave space around the subjectAvoid sticking the object to the borders. Let him breathe visually, especially if he is in motion or “looking” in one direction.",
+      "probleme": "Texte collé (« subjectAvoid ») ; « him/he » pour un objet.",
+      "proposition": "➤ Leave space around the subject. Avoid placing the object against the edges of the frame. Give it room to breathe, especially if it is moving or “looking” in one direction."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "What is the main topic?",
+      "probleme": "« sujet » (photographique) rendu par « topic » (thème).",
+      "proposition": "What is the main subject?"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "For a packshot of glasses, position the lenses on a Line of force , and not right in the center of the image.",
+      "probleme": "« ligne de force » rendu mot à mot ; en anglais on parle des lignes de la grille des tiers.",
+      "proposition": "For a packshot of glasses, position the lenses on one of the thirds lines rather than in the dead center of the frame."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "6. From the pro studio to the internal solution: accessible quality",
+      "probleme": "« internal solution » est un calque de « solution interne ».",
+      "proposition": "6. From pro studio to in-house setup: quality within reach"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "What we have just seen are not fixed laws, but landmarks to help you structure your shots.",
+      "probleme": "« landmarks » est un calque de « repères ».",
+      "proposition": "What we have just covered are not fixed laws, but guidelines to help you structure your shots."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "A carried bag? → Think about the relationship between the subject, the wearer and the viewer's gaze .",
+      "probleme": "« Un sac porté » rendu par « A carried bag ».",
+      "proposition": "A bag being worn? → Think about the relationship between the subject, the wearer and the viewer's gaze."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "In other words, What do you want to show, tell, or make people feel?",
+      "probleme": "Majuscule parasite au milieu de la phrase.",
+      "proposition": "In other words, what do you want to show, tell or make people feel?"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Photographie Produit : 6 Règles de Cadrage pour des Images Qui Convertissent",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de conversion (« qui convertissent ») qu'aucune donnée du corps n'étaye ; « 6 règles de cadrage » alors que la 6e section est commerciale.",
+      "ecart_fr_en": "EN identique : « Product Photography: 6 Framing Rules for Images That Convert »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Découvrez par exemple comment une boutique en ligne peut photographier ses chaussures avec un studio photo interne pour garantir un rendu homogène , cohérent et percutant .",
+      "source_dans_texte": "aucune (pas de lien)",
+      "motif": "« garantir » : promesse attachée au studio interne, sans le cas client annoncé.",
+      "ecart_fr_en": "EN « to guarantee a result homogenous , consistent and hard-hitting » : même portée."
+    }
+  ],
+  "titre_h1_meta": "FR : title « Conseils photo : le cadrage et la composition » ; H1 « Conseils photo : cadrage et composition pour vendre » ; metaTitle en Title Case de 76 car. (« 6 Règles… Qui Convertissent »), c'est aussi le <title> servi ; description de 266 car. Les trois titres convergent sur le cadrage, mais la promesse « 6 règles / 6 conseils » ne correspond qu'à 5 sections de conseil, la 6e étant un renvoi produit (Alphashot Pro G2). EN : title « Photo tips: framing and composition », H1 « Photo tips: framing and composing to sell » (« composition » serait plus naturel), metaTitle « Product Photography: 6 Framing Rules for Images That Convert » correct (le Title Case est normal en anglais), description de 241 car. Métadonnées EN de bonne qualité, contrairement au corps.",
+  "structure_fr_en": "Parité stricte : 7 h2, 18 p, 16 li, 2 images, 5 FAQ dans les deux langues, même ordre ; 723 mots FR contre 717 EN. 4 paragraphes vides (ZWJ) dans chaque langue. Deux liens par langue, cibles équivalentes (/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots ↔ /en/blog/packshot-photography-guide-why-make-product-packshots ; /fr|en/studio-photo/alphashot-pro-g2). Aucune section absente.",
+  "images_alt_legendes": "2 images avec les mêmes alts dans les deux langues : « __wf_reserved_inherit » (valeur Webflow, servie telle quelle) et « Photo cadrage composition » (mots-clés en français, y compris sur la page EN). Aucune légende.",
+  "appellations": "« Alphashot Pro G2 » est cohérent en FR et en EN et lié à la fiche produit ; Orbitvu n'est pas nommé dans le corps. Auteur JSON « PackshotCreator » (remplace « Laurent Wainberg » depuis le commit 8ae45f63, sans effet sur le corps).",
+  "recommandation": "retraduction complète",
+  "remarques": "Recommandation : retraduire entièrement le corps EN (FAQ EN à conserver) et retoucher le FR. Date affichée 16/09/2017, incohérente : l'item Webflow a été créé le 26/03/2025 (horodatage ObjectId) et le corps cite l'Alphashot Pro G2 ; à redater (pas de dateModified). [Inférence] la FAQ (5 Q/R) est un ajout postérieur, de style différent. Nuance technique sur les polariseurs à faire valider par un photographe. Lien de cas client « chaussures » manquant dans les deux langues. Correction mineure non détaillée : « Ce que nous venons de voir ne sont pas des lois figées » (→ « Ce que nous venons de voir, ce ne sont pas des lois figées »), conclusion qui répète la phrase d'introduction."
+}

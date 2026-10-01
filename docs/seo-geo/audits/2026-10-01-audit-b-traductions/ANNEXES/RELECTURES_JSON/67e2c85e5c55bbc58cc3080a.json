@@ -1,0 +1,425 @@
+{
+  "family": "67e2c85e5c55bbc58cc3080a",
+  "slugs": {
+    "fr": "la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator",
+    "en": "shoes-the-unmissable-e-business-sector-boosted-with-packshotcreator",
+    "de-ch": null
+  },
+  "sujet": "Le marché de la chaussure en ligne et l'intérêt de produire ses visuels de chaussures en interne avec un studio automatisé. L'article superpose une partie récente (Orbitvu) et une partie ancienne (PackshotCreator, chiffres 2014).",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient des résidus et des contresens qui ne s'expliquent que depuis le FR. Résidus : « En 2022 , the French online shoe market Has reached », « Les French consumers are among the biggest shoe buyers », « La Shoe photography to put them online ». Contresens : « it has become a switchboard » (« standard » pris au sens de standard téléphonique) ; « automatically divert products » (« détourer » lu comme « détourner ») ; « digitalization of physical signs » (« enseignes ») ; « a portfolio of €330 per household » (« portefeuille ») ; « Pure Players suchlike Zalando » (« comme »).",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Les quatre premières sections, récentes, sont en bon français. La seconde moitié est un ancien texte laissé en place. Il répète les mêmes idées (visuels 2D, multi-angles, 360°, livraison, moins de cinq minutes, détourage), contredit les chiffres du début (6,2 contre 5,7 paires, 380 € contre 330 €, Britanniques contre États-Unis) et attribue la même solution tantôt à Orbitvu, tantôt à PackshotCreator. Ce texte ancien est mal écrit : phrases sans verbe principal, subjonctif fautif (« obtienne »), « augmentez » pour « augmenter », formats de nombres anglais (9.2, 5.7). Description fautive (« est devenu »), metaTitle de 95 caractères.",
+    "en": "Traduction automatique non relue : mots français (« En 2022 », « Les French », « La Shoe »), contresens métier (« divert » pour détourer, « switchboard » pour standard), faux amis (« signs », « portfolio »), majuscules parasites, phrases agrammaticales. H1 et metaTitle déformés (« in-house e-commerce », « internal sales visuals »), alts en français, doublon dans la FAQ. Retraduction complète.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 30,
+    "en": 55,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "L’appréhension des consommateurs quant à la problématique de la taille, du confort, et du visuel de la chaussure pose moins problème aujourd’hui.",
+      "probleme": "Toute la section « La photographie de chaussures en interne : quels visuels ? » reprend en moins bien la section « L’importance des visuels de qualité pour la vente en ligne » (réticence, visuels 2D, multi-angles, 360°, 3D, guides de tailles, livraison et retours gratuits). De même, « Des visuels de qualité étape incontournable… » répète « Produire ses visuels en interne » (moins de cinq minutes, 360°, détourage en quelques secondes). L'ancien texte n'a pas été retiré lors de la réécriture.",
+      "proposition": "Supprimer les sections anciennes (« Le boom en ligne de la chaussure », « La photographie de chaussures en interne : quels visuels ? », « Des visuels de qualité étape incontournable… » et les paragraphes 2014) ou les fusionner dans la partie récente."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "En effet, les ventes en ligne représentent 11 % du marché de la chaussure en valeur ; les français sont par ailleurs parmi les plus grands acheteurs Européens juste derrière les Etats-Unis : environ 5.7 paires sont achetées par an, représentant un portefeuille de 330€ par ménage tous les ans.",
+      "probleme": "Contredit le début de l'article (« juste derrière les Britanniques », « 6,2 paires », « 380 € par ménage »). « Les plus grands acheteurs Européens juste derrière les Etats-Unis » est illogique. « Portefeuille » est impropre (budget). Typographie : « français », « Européens », « Etats-Unis », « 5.7 », « 330€ ».",
+      "proposition": "Supprimer (chiffres déjà donnés, plus récents, en tête d'article)."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La photographie des chaussures pour les mettre en ligne est faisable et même recommandée en interne. En France le marché en ligne a représenté 9.2 milliards d’euros en 2014. Avec une augmentation de plus de 5% depuis 2010, c’est un secteur en pleine expansion.",
+      "probleme": "Chiffres de 2014 présentés au présent, après les chiffres 2022. Incohérence interne : si le marché en ligne pèse 9,2 milliards et ne représente que 11 % du marché total (paragraphe suivant), ce marché total serait d'environ 84 milliards, ce qui est invraisemblable. Format décimal anglais (« 9.2 »), « 5% » sans espace.",
+      "proposition": "Supprimer ou dater explicitement après vérification de la source."
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "C’est la raison pour laquelle Packshot Creator offre aux entreprises des solutions de création de photos de produits innovantes et ultra simples à utiliser.",
+      "probleme": "La même promesse (moins de cinq minutes, multi-angles, 360°, détourage en quelques secondes) est attribuée plus haut à Orbitvu (« Grâce aux solutions proposées par Orbitvu »), et la description dit « Produisez vos visuels avec les studios photo Orbitvu ». Le texte ancien présente PackshotCreator comme fabricant des solutions. Le rendu « Packshot Creator » est un artefact d'extraction (HTML : Packshot<em>Creator</em>).",
+      "proposition": "Arbitrage éditorial : formuler le rôle de PackshotCreator (distributeur) et d'Orbitvu (fabricant) de façon cohérente, ou supprimer ce paragraphe redondant."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "La photographie de chaussures en ligne est devenu l'incontournable du e-commerce. Produisez vos visuels avec les studios photo Orbitvu.",
+      "probleme": "Faute d'accord (« est devenu »). « La photographie de chaussures en ligne » est impropre. Le slug et le title annoncent PackshotCreator, la description annonce Orbitvu. Le metaTitle servi fait 95 caractères et le title JSON (« Photographie de chaussures pour du e-commerce, nos solutions pour un secteur dynamisé ») diffère du H1.",
+      "proposition": "La photographie de chaussures est devenue incontournable en e-commerce. Produisez vos visuels en interne avec les studios photo Orbitvu."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les visuels produits de qualité étant l’étape incontournable pour donner aux cyberacheteurs encore plus de raisons d’acheter en ligne. Mais aussi des raisons d'afficher des photos avec un rendu fidèle et ultra réaliste des couleurs et des matières.",
+      "probleme": "Deux phrases sans verbe principal (participe « étant », puis fragment « Mais aussi… ») ; le sens de la seconde est obscur.",
+      "proposition": "Des visuels produits de qualité sont l’étape incontournable pour donner aux cyberacheteurs encore plus de raisons d’acheter en ligne, à condition d’offrir un rendu fidèle et réaliste des couleurs et des matières."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Découvrez comment Packshot Creator aide les entreprises de vente de chaussures en ligne à optimiser leur site e-commerce et augmentez leurs ventes...",
+      "probleme": "Impératif « augmentez » au lieu de l'infinitif « augmenter » ; points de suspension inutiles.",
+      "proposition": "Découvrez comment PackshotCreator aide les entreprises de vente de chaussures en ligne à optimiser leur site e-commerce et à augmenter leurs ventes."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cinq minutes entre le moment où l’utilisateur place son produit dans le système et obtienne une vue de son produit sous plusieurs angles.",
+      "probleme": "Subjonctif fautif après « le moment où » ; phrase nominale.",
+      "proposition": "Cinq minutes séparent le moment où l’utilisateur place son produit dans le système de celui où il obtient une vue sous plusieurs angles."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le e-commerçant fait donc bénéficier aux visiteurs des visuels de plus en plus qualitatifs et complets.",
+      "probleme": "Construction fautive : on dit « faire bénéficier quelqu’un de quelque chose ».",
+      "proposition": "Le e-commerçant fait ainsi bénéficier ses visiteurs de visuels toujours plus qualitatifs et complets."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cela va des visuels 2D réellement détaillés, aux photos multi-angles de chaussures , aux vues 360° et d'animations de produits 3D",
+      "probleme": "Rupture de construction (« aux vues 360° et d'animations ») ; énumération mal coordonnée.",
+      "proposition": "Cela va des visuels 2D très détaillés aux photos multi-angles, en passant par les vues 360° et les animations 3D"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Des visuels de qualité étape incontournable pour la chaussure en ligne",
+      "probleme": "Ponctuation manquante (apposition sans deux-points).",
+      "proposition": "Des visuels de qualité : une étape incontournable pour la chaussure en ligne"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Il compte aujourd’hui des pure players récents (comme Zalando ou Zappos) ainsi que des boutiques physiques proposant désormais leurs propres e-shop.",
+      "probleme": "« Il » sans antécédent (l'intertitre ne peut pas en servir). Zappos est un acteur américain, peu pertinent pour le marché français, et « récents » est daté. « Leurs propres e-shop » : accord manquant.",
+      "proposition": "Le marché compte aujourd’hui des pure players (comme Zalando) ainsi que des enseignes physiques dotées de leurs propres e-shops."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Photographie de chaussures pour l’e-commerce : comment produire des visuels vendeurs en interne",
+      "probleme": "95 caractères, il sera tronqué. L'élision « l’e-commerce » alterne avec « le e-commerce » / « du e-commerce » ailleurs dans le texte.",
+      "proposition": "Photo de chaussures e-commerce : produire des visuels vendeurs en interne"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "zoom détaillé grâce à la qualité du packshot basket",
+      "probleme": "Alt approximatif (« packshot basket »), sans majuscule initiale.",
+      "proposition": "Zoom détaillé sur un packshot de basket"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Il suffit de moins de cinq minutes !",
+      "probleme": "Tournure maladroite (« il suffit de moins de ») ; dans le JSON, une espace insécable traîne après le point d'exclamation.",
+      "proposition": "Moins de cinq minutes suffisent !"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Suggest seen from every angle is no longer a differentiating advantage: it has become a switchboard .",
+      "probleme": "« Standard » traduit par « switchboard » (standard téléphonique) : contresens qui rend la phrase absurde ; « Suggest seen » est agrammatical.",
+      "proposition": "Offering views from every angle is no longer a differentiator: it has become the standard."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The associated software also allows you to: automatically divert products in a few seconds.",
+      "probleme": "« Détourer » (détourage, suppression du fond) traduit par « divert » (détourner) : contresens sur un terme métier.",
+      "proposition": "The associated software can also automatically clip products (remove the background) in a few seconds."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "En 2022 , the French online shoe market Has reached 13.1 billion euros , an increase of more than 42% compared to 2014.",
+      "probleme": "« En 2022 » non traduit, majuscule parasite, temps verbal fautif.",
+      "proposition": "In 2022, the French online footwear market reached €13.1 billion, an increase of more than 42% compared with 2014."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les French consumers are among the biggest shoe buyers in Europe, just behind the British.",
+      "probleme": "Article français résiduel.",
+      "proposition": "French consumers are among the biggest shoe buyers in Europe, just behind the British."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La Shoe photography to put them online is feasible and even recommended internally.",
+      "probleme": "Article français résiduel, majuscule parasite, « them » sans antécédent.",
+      "proposition": "Photographing shoes in-house for online sales is feasible and even recommended."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This expansion can be explained both by the emergence of Pure Players suchlike Zalando , Sarenza or Spartoo , but also by the digitalization of physical signs who are now developing their own E-shops .",
+      "probleme": "« Signs » traduit « enseignes » (chaînes de magasins) : faux ami. « Suchlike » est fautif. Majuscules parasites, « who » pour des entreprises.",
+      "proposition": "This expansion is driven both by the emergence of pure players such as Zalando, Sarenza and Spartoo, and by the digital transformation of brick-and-mortar retailers, which are now developing their own online stores."
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "Shoe photography for in-house e-commerce",
+      "probleme": "Modificateur mal placé : c'est la photographie qui se fait en interne, pas le e-commerce. Le metaTitle « how to produce internal sales visuals » est lui aussi déformé (« internal sales » se lit « ventes internes »). Le slug EN « shoes-the-unmissable-e-business-sector… » calque « incontournable ».",
+      "proposition": "In-house shoe photography for e-commerce"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Shoe photography for e-commerce: how to produce internal sales visuals",
+      "probleme": "« Internal sales visuals » ne rend pas « visuels vendeurs en interne ».",
+      "proposition": "Shoe photography for e-commerce: how to create high-converting visuals in-house"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "representing a portfolio of €330 per household every year.",
+      "probleme": "« Portefeuille » traduit par « portfolio » ; à remplacer par « spending » ou « budget ».",
+      "proposition": "representing annual spending of €330 per household."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "exemple de présentation chaussures e-commerce",
+      "probleme": "Alt en français dans l'article anglais (non signalé par la détection automatique). Le second alt (« zoom détaillé grâce à la qualité du packshot basket ») est lui aussi en français.",
+      "proposition": "Example of an e-commerce shoe presentation (et « Detailed zoom on a sneaker packshot » pour le second)"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "A single studio makes it possible to generate high-definition 2D photos, multi-angle presentations, multi-angle presentations, interactive 360° views",
+      "probleme": "« multi-angle presentations » en double, ce qui n'est pas le cas en FR.",
+      "proposition": "A single studio can produce high-definition 2D photos, multi-angle presentations, interactive 360° views"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This approach allows reduce the time it takes to put it online , of control costs and to offer a visual coherence across the entire product catalog.",
+      "probleme": "Syntaxe calquée et agrammaticale (« allows reduce », « of control costs »).",
+      "proposition": "This approach reduces time to publication, keeps costs under control and ensures visual consistency across the entire product catalog."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Learn how Packshot Creator helps businesses of selling shoes online to optimize their e-commerce site and increase their sales...",
+      "probleme": "« businesses of selling shoes online » est agrammatical. Le lien du FR vers /industrie/chaussures est absent en EN. « Packshot Creator » est un artefact d'extraction.",
+      "proposition": "Learn how PackshotCreator helps online shoe retailers optimize their e-commerce sites and increase sales."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "On average, A French person buys 6.2 pairs of shoes per year , for a annual budget of around €380 per household .",
+      "probleme": "Majuscule parasite, « a annual ».",
+      "proposition": "On average, a French person buys 6.2 pairs of shoes a year, with an annual budget of around €380 per household."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "These visual elements, coupled with policies of fast delivery and returns (often free), allow e-retailers to Remove the last obstacles to buying",
+      "probleme": "Ordre calqué (« policies of fast delivery »), majuscule parasite.",
+      "proposition": "These visual elements, combined with fast (often free) delivery and returns policies, allow e-retailers to remove the last barriers to purchase"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Buyers want to be able zoom in on the stitching, the finishes, the soles , and get a true overview of the product as if they had it in their hands.",
+      "probleme": "« to be able zoom » : « to » manquant.",
+      "proposition": "Buyers want to be able to zoom in on the stitching, finishes and soles, and get a true picture of the product as if they were holding it."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The user can create multiple photos just as easily multi-angles or a view Full interactive 360° .",
+      "probleme": "Ordre des mots incohérent, majuscule parasite.",
+      "proposition": "The user can just as easily create a set of multi-angle photos or a full interactive 360° view."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Shoe photography internally, the objective: to make faster and more profitable the Product photo shooting for a website.",
+      "probleme": "Phrase calquée, ordre des mots français.",
+      "proposition": "The goal of in-house shoe photography is to make product photo shoots for websites faster and more cost-effective."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "It is a received idea.",
+      "probleme": "Calque de « C’est une idée reçue ».",
+      "proposition": "That's a misconception."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "It goes from 2D visuals really detailed, with multi-angle photos of shoes",
+      "probleme": "Ordre des mots français.",
+      "proposition": "This ranges from highly detailed 2D visuals to multi-angle shoe photos"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "That is the reason why Packshot Creator offers businesses innovative product photo creation solutions and super easy to use. It only takes less than five minutes!",
+      "probleme": "Coordination fautive, « only takes less than » redondant.",
+      "proposition": "That is why PackshotCreator offers businesses innovative, extremely easy-to-use product photography solutions. It takes less than five minutes!"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Quality product visuals being the essential step in giving online shoppers even more reasons to buy online.",
+      "probleme": "Phrase sans verbe principal (fragment repris du FR).",
+      "proposition": "Quality product visuals are essential to give online shoppers even more reasons to buy."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "En 2022 , le marché français de la chaussure en ligne a atteint 13,1 milliards d'euros , soit une augmentation de plus de 42 % par rapport à 2014.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre sans source et invraisemblable au regard du même article (11 % de ventes en ligne). 13,1 / 9,2 = 1,42 : le chiffre semble calculé à partir des 9,2 milliards de 2014, eux-mêmes douteux. À vérifier.",
+      "ecart_fr_en": "EN « 13.1 billion euros » : identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les consommateurs français sont parmi les plus grands acheteurs de chaussures en Europe, juste derrière les Britanniques. En moyenne, un Français achète 6,2 paires de chaussures par an , pour un budget annuel d’environ 380 € par ménage .",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffres non sourcés et non datés, contredits plus bas (5,7 paires, 330 €, « derrière les Etats-Unis »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "En France le marché en ligne a représenté 9.2 milliards d’euros en 2014. Avec une augmentation de plus de 5% depuis 2010, c’est un secteur en pleine expansion.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de 2014 périmé et incohérent avec la part de 11 % ; « plus de 5 % depuis 2010 » (cumulé ou annuel ?) est ambigu.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Grâce aux solutions proposées par Orbitvu , il est possible de créer en moins de cinq minutes des visuels professionnels",
+      "source_dans_texte": "vidéo YouTube YI1ym88wuBk (démonstration)",
+      "motif": "Promesse de délai (moins de cinq minutes), répétée dans le corps et la FAQ, et attribuée tantôt à Orbitvu, tantôt à PackshotCreator.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le logiciel associé permet également de détourer automatiquement les produits en quelques secondes.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai.",
+      "ecart_fr_en": "EN « automatically divert products » : le claim devient incompréhensible."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "C’est pour cette raison que les solutions de photographie automatisée proposées par Orbitvu s’imposent aujourd’hui comme un outil clé dans la stratégie de contenu des marques de chaussures.",
+      "source_dans_texte": "lien interne /fr/besoins-photographie-produit",
+      "motif": "Affirmation de position de marché non étayée.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Un seul studio permet de générer des photos 2D haute définition, des présentations multi-angles, des vues 360° interactives ou encore des animations 3D exploitables sur site web, mobile ou réseaux sociaux.",
+      "source_dans_texte": "aucune",
+      "motif": "Capacités produit (animations 3D depuis un seul studio) à confirmer selon le modèle.",
+      "ecart_fr_en": "EN : doublon « multi-angle presentations »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La fidélité visuelle est assurée par une maîtrise complète de l’environnement de prise de vue. Les sources lumineuses LED sont calibrées, la température de couleur est constante et les réglages sont reproductibles.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse technique (calibrage, température constante) à valider sur la fiche produit.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : le title JSON (« Photographie de chaussures pour du e-commerce, nos solutions pour un secteur dynamisé »), le H1 (« Photographie de chaussures pour l’e-commerce en interne ») et le metaTitle servi (95 caractères, trop long) sont différents. Le slug cite « packshotcreator » et la description renvoie aux « studios photo Orbitvu », avec une faute d'accord (« est devenu »). Le corps alterne Orbitvu (partie récente) et PackshotCreator (partie ancienne). EN : le H1 « Shoe photography for in-house e-commerce » et le metaTitle « … internal sales visuals » déforment le sens ; le slug calque « incontournable » (« unmissable ») et « dynamisé » (« boosted »).",
+  "structure_fr_en": "Parité : 6 H2, 1 H3, 2 images, 1 vidéo, 5 puces, 5 FAQ. Différences : le lien « vente de chaussures en ligne » vers /industrie/chaussures existe en FR mais pas en EN (5 liens contre 4) ; la 3e réponse de la FAQ EN contient un doublon absent du FR. Défaut commun : la seconde moitié (« Le boom en ligne de la chaussure » et suivantes) duplique la première et la contredit ; c'est l'ancien article, laissé sous sa réécriture.",
+  "images_alt_legendes": "Deux images sans légende, avec des alts français identiques en FR et en EN : « exemple de présentation chaussures e-commerce », « zoom détaillé grâce à la qualité du packshot basket ». Ils sont dans la mauvaise langue en EN et sont approximatifs en FR.",
+  "appellations": "« Packshot Creator » dans l'extrait est un artefact (HTML : Packshot<em>Creator</em>, rendu PackshotCreator). Le vrai problème est l'incohérence de rôle : la même offre (moins de cinq minutes, 360°, détourage) est attribuée à Orbitvu dans la partie récente et à PackshotCreator dans la partie ancienne, sans préciser que PackshotCreator distribue les studios Orbitvu. Le slug et le title EN/FR mettent PackshotCreator en avant, la description met Orbitvu en avant. Auteur : « Laurent Wainberg » dans l'import Webflow, remplacé par la marque générique « PackshotCreator » par le commit 8ae45f63 du 12/06/2026 (choix éditorial délibéré, cohérence E-E-A-T, et non une erreur de traduction) : à arbitrer humainement si l'on souhaite rétablir un auteur nommé.",
+  "recommandation": "réécriture partielle",
+  "remarques": "Recommandation par langue : FR, réécriture partielle (supprimer ou fusionner l'ancien texte, arbitrer les chiffres, corriger la description et le metaTitle) ; EN, retraduction complète depuis le FR corrigé. Faits datés : chiffres 2014 et 2010, « En 2022 », « pure players récents (comme Zalando ou Zappos) ». Article daté du 25/10/2023 alors que l'item Webflow a été créé le 25/03/2025 (inférence ObjectId) : la partie récente a probablement été ajoutée en 2025 sans dateModified. Toutes les statistiques de marché sont sans source et se contredisent ; arbitrage humain requis avant toute reconstruction. Le lien « photographie des chaussures » pointe vers le guide 360° chaussures : cohérent."
+}

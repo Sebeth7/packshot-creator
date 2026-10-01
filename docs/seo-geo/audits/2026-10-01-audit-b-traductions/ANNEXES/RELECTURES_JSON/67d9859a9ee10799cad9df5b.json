@@ -1,0 +1,337 @@
+{
+  "family": "67d9859a9ee10799cad9df5b",
+  "slugs": {
+    "fr": "avantages-toplight-photographie-produits",
+    "en": "advantages-toplight-product-photography",
+    "de-ch": null
+  },
+  "sujet": "Les sept avantages de l'éclairage par le haut (toplight) en photographie produit (texture, détails intérieurs, prises de vue à plat, reflets, ombres, contrôle en temps réel, ambiances), avec la mise en avant des solutions d'éclairage Orbitvu distribuées par le site.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN contient du français non traduit et des calques mot à mot : « Sa managements, her streaming, sound loudness And her quality » (= « Sa direction, sa diffusion, son intensité et sa qualité » : « Sa » conservé, « son » rendu par « sound ») ; « Les shadows play a role crucial » (déterminant français) ; « En flat photography or for shooting in diving » (« En » conservé, « en plongée » rendu par « in diving ») ; « aux product photos » ; « This is the case of sacks » (= « sacs ») ; « THELED lighting unto variable intensity » (mot collé réel) ; alts en français. La FAQ EN, fluide, est une traduction distincte et soignée.",
+  "qualite": {
+    "fr": "B",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français natif et correct. Retouches : unité « 5700°K » (kelvin sans degré), « Ring Light » capitalisé sans statut clair, « surbrillance » impropre, coquille dans un alt, H1 contenant « | Orbitvu ». Défauts éditoriaux : cinq alts « __wf_reserved_inherit », comparaison nominative avec Scancube et Ortery (liens vers leurs fiches produit) sans source, superlatifs (« inégalée », « incomparable »).",
+    "en": "Corps traduit automatiquement et inintelligible par endroits : phrase d'ouverture incompréhensible (« Sa managements, her streaming, sound loudness »), français résiduel (« Les », « En », « aux »), « loudness » pour l'intensité lumineuse, « shooting in diving » pour la plongée, majuscules parasites, très nombreux mots collés réels dans le HTML (« THElighting is Themost », « theloudness And theorienting », « OfOrbitvu », « generatinghard shadows »), alts en français. Seule la FAQ est de bonne qualité. Retraduction complète du corps.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 12,
+    "en": 55,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "la température de couleur équilibrée à 5700°K",
+      "probleme": "Le kelvin s'écrit sans symbole de degré ; espace des milliers et espace avant l'unité en français. Même faute en EN (« 5700°K »).",
+      "proposition": "la température de couleur équilibrée à 5 700 K"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "7 avantages du toplight en photographie produit | Orbitvu",
+      "probleme": "Le H1 reprend le format d'une balise title (séparateur « | » et marque). Le title JSON est « Les avantages du toplight pour la photographie de produits ». Même schéma en EN.",
+      "proposition": "7 avantages du toplight en photographie produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Cinq des douze images ont pour alt la valeur technique Webflow « __wf_reserved_inherit » (les deux premières et celles des points 3 et 6), dans les deux langues.",
+      "proposition": "Rédiger des alts descriptifs après vérification visuelle."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "contrôler reflets toplight photographie produits réflechissants",
+      "probleme": "Coquille (« réfléchissants ») ; alt en suite de mots-clés.",
+      "proposition": "contrôle des reflets au toplight sur des produits réfléchissants"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "toplight création sentiments photo",
+      "probleme": "« sentiments » impropre (la section parle d'ambiances) ; alt en suite de mots-clés.",
+      "proposition": "ambiance créée au toplight en photographie produit"
+    },
+    {
+      "langue": "fr",
+      "categorie": "appellation",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "le Ring Light Orbitvu diffuse une lumière homogène",
+      "probleme": "« Ring Light » en majuscules, comme un nom de produit, sans que le texte le précise (aussi dans la FAQ : « le Ring Light d’Orbitvu »). Nom commercial ou terme générique (éclairage annulaire) : à valider.",
+      "proposition": "l'éclairage annulaire (ring light) Orbitvu diffuse une lumière homogène, à moins qu'il ne s'agisse d'un nom commercial"
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "de sublimer les produits sans effet de surbrillance",
+      "probleme": "« Surbrillance » relève de l'interface logicielle ; en photo, on parle de hautes lumières brûlées ou de reflets excessifs.",
+      "proposition": "de sublimer les produits sans hautes lumières brûlées"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Contrairement à un éclairage directif, le Ring Light Orbitvu diffuse une lumière homogène, idéale pour mettre en valeur les détails internes des produits",
+      "probleme": "Rupture de sujet : l'article porte sur le toplight (dont le point 2 vante l'éclairage de l'intérieur des produits), puis attribue ce même rôle au Ring Light sans transition. Dans la FAQ, « ces produits » n'a pas d'antécédent dans la question.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "comme les textiles, le cuir ou les objets métalliques",
+      "probleme": "Le lien « textiles » pointe vers le hub /fr/industrie, l'EN vers /en/industrie/mode-textile.",
+      "proposition": "Lier /fr/industrie/mode-textile."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "THElighting is Themost decisive element in product photography. Sa managements, her streaming, sound loudness And her quality have a much greater impact than the camera or lens used.",
+      "probleme": "Première phrase de l'article inintelligible : français résiduel (« Sa »), « son » rendu par « sound », « intensité » par « loudness », « direction » par « managements » ; mots collés réels « THElighting » et « Themost ».",
+      "proposition": "Lighting is the most decisive factor in product photography. Its direction, diffusion, intensity and quality have a much greater impact than the camera or lens used."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The solutions Orbitvu, which we distribute, offer a lighting flexibility unequalled, allowing a precise control of each light source.",
+      "probleme": "Ordre des mots français.",
+      "proposition": "The Orbitvu solutions we distribute offer unrivalled lighting flexibility, with precise control of each light source."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Contrary to closed boxes Like those of Scancube or Ortery, the systems Orbitvu are designed to adapt to specific needs of each product.",
+      "probleme": "Calques (« Contrary to », « the systems Orbitvu »), majuscule parasite.",
+      "proposition": "Unlike closed light boxes such as those from Scancube or Ortery, Orbitvu systems are designed to adapt to the specific needs of each product."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "theloudness And theorienting of the light can be adjusted with a high precision.",
+      "probleme": "« intensité » rendue par « loudness » (volume sonore), « orientation » par « orienting » ; mots collés réels « theloudness And theorienting ».",
+      "proposition": "the intensity and direction of the light can be adjusted very precisely."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "This is the case of sacks, backpacks, shoes or helmets.",
+      "probleme": "« sacs » rendu par « sacks » (sacs de toile) ; calque « This is the case of ».",
+      "proposition": "This is the case for bags, backpacks, shoes and helmets."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One Toplight well positioned makes it possible to effectively illuminate theinterior of these objects, thus revealing their functional characteristics who influence the purchase decision of consumers.",
+      "probleme": "« Un » rendu par « One », adjectif postposé, « who » pour une chose ; mot collé réel « theinterior ».",
+      "proposition": "A well-positioned toplight effectively illuminates the inside of these objects, revealing functional features that influence consumers' purchase decisions."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "En flat photography or for shooting in diving, the zenith light is essential to get a homogeneous lighting. Thanks to a adjustable toplight, it is possible to minimize unwanted shadows And of enhance the products with no effect of Highlight.",
+      "probleme": "« En » français conservé, « en plongée » rendu par « in diving », fin de phrase incompréhensible.",
+      "proposition": "In flat lay photography and overhead shots, top lighting is essential for even illumination. With an adjustable toplight, you can minimize unwanted shadows and enhance products without blown-out highlights."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photographing objects reflective Like glass bottles, of jewels Or metal accessories can be complex. One Well calibrated toplight Allows you to limit parasitic reflections and to ensure a Faithful rendering products.",
+      "probleme": "Ordre des mots français, articles calqués, majuscules parasites.",
+      "proposition": "Photographing reflective objects such as glass bottles, jewelry or metal accessories can be tricky. A well-calibrated toplight limits stray reflections and ensures products are rendered accurately."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Les shadows play a role crucial in the enhancement of a product.",
+      "probleme": "Déterminant français et adjectif postposé.",
+      "proposition": "Shadows play a crucial role in showcasing a product."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "It is thus possible toAdjust the angle And theloudness light to get a optimal rendering, with a automatic clipping while maintaining natural shadows.",
+      "probleme": "« loudness » pour intensité, articles fautifs, majuscules ; mots collés réels « toAdjust », « theloudness ».",
+      "proposition": "You can adjust the angle and intensity of the light for the best result, with automatic clipping that preserves natural shadows."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Orbitvu solutions integrate advanced features allowing preview And ofAdjust the lighting in Real time before shooting.",
+      "probleme": "Calque de « permettant de prévisualiser et d’ajuster » ; mot collé réel « ofAdjust ».",
+      "proposition": "Orbitvu solutions include advanced features to preview and adjust the lighting in real time before shooting."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "thus giving a distinctive touch aux product photos.",
+      "probleme": "Mot français « aux » ; la phrase précédente est aussi calquée (« Allows you to Play on the mood visuals »).",
+      "proposition": "giving product photos a distinctive touch."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "THELED lighting unto variable intensity, the color temperature balanced to 5700°K And a color rendering index greater than 95 guarantee accurate visuals, faithful to textures And to tints products.",
+      "probleme": "« unto », « THE » en capitales, « tints products » ; unité « 5700°K » ; mots collés réels « THELED », « tooptimize », « OfOrbitvu » dans la phrase qui précède.",
+      "proposition": "Dimmable LED lighting, a balanced color temperature of 5,700 K and a color rendering index above 95 deliver accurate visuals that are true to product textures and colors."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Contrary to a directional lighting, the Ring Light Orbitvu Broadcast a homogeneous light",
+      "probleme": "« diffuse » rendu par « Broadcast » (diffuser une émission) ; ordre des mots ; mot collé réel « generatinghard shadows » dans la même phrase.",
+      "proposition": "Unlike directional lighting, the Orbitvu ring light diffuses even light"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These efficient systems allowoptimize each shot and to guarantee ever more qualitative results.",
+      "probleme": "Infinitif sans « to », « qualitative » calqué ; mot collé réel « allowoptimize ».",
+      "proposition": "These high-performance systems help you optimize every shot and achieve consistently better results."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "toplight accentuer texture photographie de produits",
+      "probleme": "Les 7 alts descriptifs de la version EN sont en français (les 5 autres sont des valeurs Webflow).",
+      "proposition": "toplight enhancing texture in product photography"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Our solutions allow a fine management Of the various light sources to avoid these side effects.",
+      "probleme": "« effets indésirables » rendu par « side effects » (effets secondaires) ; majuscule parasite.",
+      "proposition": "Our solutions allow fine control of each light source to avoid these unwanted effects."
+    },
+    {
+      "langue": "en",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "5. Shadow Mastery",
+      "probleme": "Title Case isolé (les autres intertitres sont en casse de phrase).",
+      "proposition": "5. Shadow control"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "How is Orbitvu lighting more efficient than closed systems like Ortery or Scancube?",
+      "probleme": "« performant » rendu par « efficient » (économe) ; « effective » ou « better-performing » attendu.",
+      "proposition": "How does Orbitvu lighting outperform closed systems like Ortery or Scancube?"
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Sa direction, sa diffusion, son intensité et sa qualité ont un impact bien plus important que l'appareil photo ou l'objectif utilisé.",
+      "source_dans_texte": "/fr/blog/eclairage-photos-produits (article interne)",
+      "motif": "Affirmation générale présentée comme un fait.",
+      "ecart_fr_en": "EN inintelligible sur ce passage."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "offrent une flexibilité d’éclairage inégalée",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "EN : « a lighting flexibility unequalled »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Contrairement aux caissons fermés comme ceux de Scancube ou Ortery, les systèmes Orbitvu sont pensés pour s’adapter aux besoins spécifiques de chaque produit.",
+      "source_dans_texte": "liens vers scancube.com/mini-studio-photo et ortery.com (fiche 3D Photobench 280)",
+      "motif": "Publicité comparative nominative : vérifier que les produits liés sont bien des caissons fermés et que la comparaison est objective et vérifiable. Reprise dans la FAQ (« plus performant que les systèmes fermés comme Ortery ou Scancube »).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "la température de couleur équilibrée à 5700°K et un indice de rendu des couleurs supérieur à 95 garantissent des visuels précis",
+      "source_dans_texte": "aucune",
+      "motif": "Caractéristiques techniques à vérifier sur la fiche Orbitvu ; « garantissent ».",
+      "ecart_fr_en": "EN : « 5700°K » et « greater than 95 », identiques."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cela garantit une exposition parfaite et réduit considérablement le temps de post-production.",
+      "source_dans_texte": "aucune",
+      "motif": "Garantie absolue.",
+      "ecart_fr_en": "EN : « This ensures a perfect exposure »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "il est plus simple que jamais d’optimiser la production visuelle des produits",
+      "source_dans_texte": "aucune",
+      "motif": "Hyperbole.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "des studios photo automatisés offrant une flexibilité incomparable",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif.",
+      "ecart_fr_en": "EN : « a incomparable flexibility »"
+    }
+  ],
+  "titre_h1_meta": "FR : title « Les avantages du toplight pour la photographie de produits », H1 « 7 avantages du toplight en photographie produit | Orbitvu » (format de balise title), metaTitle « 7 avantages du toplight en photographie produit | Éclairage Orbitvu » (67 caractères, légèrement long), description cohérente (188 caractères). Le corps compte bien sept points : cohérent. EN : même schéma (« 7 benefits of toplight in product photography | Orbitvu »), metaTitle et description corrects.",
+  "structure_fr_en": "Parité : 8 H2, 35 paragraphes, 12 images, 1 vidéo YouTube, 5 questions de FAQ, même ordre. 23 paragraphes vides (ZWJ) dans chaque langue. Liens identiques sauf « textiles » (FR → hub /fr/industrie, EN → /en/industrie/mode-textile). La dernière section passe du toplight au « Ring Light » sans transition.",
+  "images_alt_legendes": "12 images : 5 alts « __wf_reserved_inherit » dans les deux langues ; les 7 autres sont des suites de mots-clés français (« toplight création sentiments photo », coquille « réflechissants »), conservées telles quelles dans la version EN. Pas de légende.",
+  "appellations": "Orbitvu constant. « Ring Light » / « Ring Light Orbitvu » : nom commercial ou terme générique, à valider. Concurrents nommés : Scancube, Ortery. PackshotCreator n'est pas nommé ; le site se présente comme distributeur (« que nous distribuons », « En tant que distributeur des solutions Orbitvu »). Auteur passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63).",
+  "recommandation": "retraduction complète",
+  "remarques": "FR : retouches, et validation juridique de la comparaison nominative avec Scancube et Ortery. EN : retraduire le corps ; la FAQ EN peut être conservée. Date de publication 08/01/2023 antérieure à la création de l'item Webflow (18/03/2025, inférence) : à vérifier. Les liens externes vers les fiches produit concurrentes (Scancube mini-studio-photo, Ortery 3D Photobench 280) sont à vérifier (pages possiblement retirées). Les espaces avant virgule de l'extrait sont des artefacts d'extraction ; les mots collés de l'EN sont réels."
+}

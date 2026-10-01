@@ -1,0 +1,376 @@
+{
+  "family": "67b8959c4d678ec508643837",
+  "slugs": {
+    "fr": "comment-shotflow-permet-optimiser-production-contenu",
+    "en": "how-shotflow-helps-optimize-content-production",
+    "de-ch": null
+  },
+  "sujet": "Cas client anonyme : un studio de production visuelle (1,8 million d'images par an) automatise métadonnées, suivi et intégration de ses systèmes avec le logiciel ShotFlow, résultats chiffrés à l'appui.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "L'EN porte des traces du français : « he needed a more scalable workflow » (« il » = le studio, rendu par « he ») ; « an effective solution for improve workflow visibility » (= « pour améliorer ») ; « having difficulty in manage an experienced team » (= « pour gérer ») ; « Of metadata models were created » (= « Des modèles ») ; « product sheets » (= « fiches produits ») ; « Blocks in team collaboration » (= « Blocages ») ; alts en français. [Inférence] Le FR, avec ses intertitres en Title Case et ses tournures de cas client anglo-saxon (« défis techniques », « Un Environnement de Production en Pleine Mutation »), pourrait lui-même adapter une source anglaise absente du dépôt : non démontrable.",
+  "qualite": {
+    "fr": "C",
+    "en": "C",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français globalement correct, mais Title Case sur le H1, le metaTitle et trois H2 ; metaTitle de 102 caractères et description de 257 ; anglicismes (« impactant », « upload », « workflows ») ; incohérence singulier/pluriel (« le studio »… « leur clientèle ») ; « quels métriques » ; emojis dans le corps ; erreur de fond dans la FAQ (fiches produits « conformes aux standards ISO 16684-1 », norme qui porte sur les métadonnées XMP) ; cas client anonyme présenté comme « prouvé ». Réécriture partielle.",
+    "en": "Compréhensible dans l'ensemble, mais traduction automatique visible : majuscules parasites (« And », « Twice »), infinitifs calqués (« for improve », « in manage »), pronom erroné (« he »), « Of metadata models », phrase coupée (« several million files. without »), mot collé réel (« toabsorb »), contresens dans la FAQ (« continuously transformed » pour « fondamentalement »), alts en français. Réécriture partielle (une vingtaine de phrases) ; limite D.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 18,
+    "en": 28,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Comment ShotFlow Révolutionne la Production Visuelle : Automatisation et Optimisation à Grande Échelle",
+      "probleme": "Title Case anglais sur sept mots ; 102 caractères (tronqué dans les résultats).",
+      "proposition": "Comment ShotFlow révolutionne la production visuelle à grande échelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "ShotFlow : Révolution de la Production Visuelle",
+      "probleme": "Title Case.",
+      "proposition": "ShotFlow : la révolution de la production visuelle"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Un Environnement de Production en Pleine Mutation",
+      "probleme": "Title Case (de même pour « La Transformation : Une Production Évolutive Grâce à ShotFlow » et « Résultats : Une Révolution pour la Production de Contenu »).",
+      "proposition": "Un environnement de production en pleine mutation"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "description",
+      "extrait_actuel": "Un studio traite 1,8M d'images/an avec 35% de capacité en plus sans coûts supplémentaires. Cas client e-commerce prouvé.",
+      "probleme": "Description de 257 caractères ; « Cas client… prouvé » alors que le client n'est pas nommé et qu'aucune source n'est donnée ; typographie (« 1,8 M », « 35 % »).",
+      "proposition": "Raccourcir à environ 155 caractères et remplacer « prouvé » par « Cas client »."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "Résultat : des fiches produits précises et conformes aux standards ISO 16684-1",
+      "probleme": "La norme ISO 16684-1 définit le modèle de métadonnées XMP ; elle ne s'applique pas aux fiches produits. Le corps la rattache correctement aux métadonnées. « Standards » au pluriel pour une seule norme. Même erreur en EN.",
+      "proposition": "Résultat : des métadonnées conformes à la norme ISO 16684-1 (XMP) et des fiches produits plus précises"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "quels métriques concrètes illustrent cette amélioration ?",
+      "probleme": "« Métrique » est féminin.",
+      "proposition": "quelles métriques concrètes illustrent cette amélioration ?"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "L’augmentation rapide de leur clientèle nécessitait une solution efficace",
+      "probleme": "Référent singulier (« le studio ») repris par « leur » ; idem « transformant ainsi leur efficacité opérationnelle ».",
+      "proposition": "L’augmentation rapide de sa clientèle nécessitait une solution efficace"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "il rencontrait des difficultés pour gérer simultanément une équipe expérimentée et un volume de production élevé",
+      "probleme": "Logique obscure : en quoi une équipe expérimentée serait-elle une difficulté ? Formulation à vérifier dans la source du cas client.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Chaque jour, des milliers d’images étaient enregistrées manuellement",
+      "probleme": "Ce sont les métadonnées des images qui étaient saisies à la main, pas les images elles-mêmes (le paragraphe porte sur la saisie des métadonnées).",
+      "proposition": "Chaque jour, les métadonnées de milliers d’images étaient saisies manuellement"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "impactant directement les ventes en ligne et la satisfaction client",
+      "probleme": "Anglicisme « impacter ».",
+      "proposition": "ce qui pesait directement sur les ventes en ligne et la satisfaction client"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Suivi en temps réel dès l’upload des fichiers.",
+      "probleme": "Anglicisme (également dans la FAQ).",
+      "proposition": "Suivi en temps réel dès le téléversement des fichiers."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "✅ Suppression des corrections inutiles, rendant le flux de travail plus efficace.",
+      "probleme": "Emojis (✅, 📸, ↗️, ✔️, ⏳, 📈, 🔗) en tête de lignes séparées par des sauts de ligne dans un même paragraphe (« Impact : ✅ … ✅ … ») : typographie lourde, à la place de vraies listes à puces. Identique en EN.",
+      "proposition": "Remplacer par des listes à puces sans emojis."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "With over 1.8 million images produced per year, he needed a more scalable workflow.",
+      "probleme": "« il » (le studio) rendu par « he ».",
+      "proposition": "With over 1.8 million images produced per year, it needed a more scalable workflow."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "required an effective solution for improve workflow visibility",
+      "probleme": "Infinitif français calqué.",
+      "proposition": "required an effective solution to improve workflow visibility"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "was having difficulty in manage an experienced team and a high production volume simultaneously",
+      "probleme": "Forme verbale fautive.",
+      "proposition": "was struggling to manage an experienced team and a high production volume at the same time"
+    },
+    {
+      "langue": "en",
+      "categorie": "structure",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "the studio needed a solution that could manage several million files. without overburdening the teams.",
+      "probleme": "Phrase coupée par un point parasite.",
+      "proposition": "the studio needed a solution that could manage several million files without overburdening its teams."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of metadata models were created to adapt to the specific requirements of customers.",
+      "probleme": "« Des » rendu par « Of ».",
+      "proposition": "Metadata templates were created to meet each customer's specific requirements."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The images were automatically associated product references (SKUs), brand specifications, and required formats.",
+      "probleme": "Préposition manquante (« associated with »).",
+      "proposition": "Images were automatically associated with product references (SKUs), brand specifications and required formats."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "Base de données puissante pour votre production de contenus visuels",
+      "probleme": "Les 2 alts de la version EN sont en français.",
+      "proposition": "Powerful database for your visual content production"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "faq",
+      "extrait_actuel": "accurate product sheets that comply with ISO 16684-1 standards",
+      "probleme": "Même erreur de fond qu'en FR (ISO 16684-1 = métadonnées XMP), plus le calque « product sheets ».",
+      "proposition": "metadata that complies with ISO 16684-1 (XMP) and more accurate product pages"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The integration of metadata, tracking and file routing made it possible toabsorb growth without friction.",
+      "probleme": "Mot collé réel dans le HTML servi : « toabsorb » (pas d'espace avant <strong>).",
+      "proposition": "Integrating metadata, tracking and file routing made it possible to absorb growth smoothly."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "resulting in inconsistencies And expensive fixes.",
+      "probleme": "Majuscule parasite.",
+      "proposition": "resulting in inconsistencies and costly fixes."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The smallest error could alter the accuracy of product sheets",
+      "probleme": "« fiches produits » calqué.",
+      "proposition": "The smallest error could affect the accuracy of product pages"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "3. Blocks in team collaboration",
+      "probleme": "« Blocages » rendu par « Blocks ».",
+      "proposition": "3. Bottlenecks in team collaboration"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Photography, Retouching, and Delivery Processes operated independently",
+      "probleme": "Majuscules parasites en milieu de phrase.",
+      "proposition": "Photography, retouching and delivery processes operated independently"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Approval process Twice as fast than before.",
+      "probleme": "Majuscule parasite et faute (« as fast as »).",
+      "proposition": "Approval process twice as fast as before."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "The teams were wasting precious time to find old versions of the files.",
+      "probleme": "Construction fautive (« wasting time finding »).",
+      "proposition": "Teams were wasting valuable time finding old versions of files."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "The ShotFlow dashboard has continuously transformed this relationship",
+      "probleme": "Contresens : le FR dit « fondamentalement transformé ».",
+      "proposition": "The ShotFlow dashboard has fundamentally transformed this relationship"
+    },
+    {
+      "langue": "en",
+      "categorie": "titre_litteral",
+      "gravite": "mineur",
+      "emplacement": "h1",
+      "extrait_actuel": "ShotFlow: Revolution in Visual Production",
+      "probleme": "Calque du H1 FR, peu idiomatique.",
+      "proposition": "ShotFlow: revolutionizing visual production"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Compliance with standards ISO 16684-1 for full compatibility with DAMs and e-commerce platforms.",
+      "probleme": "Ordre des mots calqué.",
+      "proposition": "Compliance with the ISO 16684-1 standard for full compatibility with DAMs and e-commerce platforms."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Un studio de production visuelle de premier plan faisait face à des inefficacités opérationnelles",
+      "source_dans_texte": "aucune",
+      "motif": "Client anonyme : aucun moyen de vérifier le cas ; « de premier plan » invérifiable.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Avec plus de 1,8 million d’images produites par an",
+      "source_dans_texte": "aucune",
+      "motif": "Volume non sourcé (repris dans la description et la FAQ).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "35 % de capacité de production en plus sans coûts supplémentaires.",
+      "source_dans_texte": "aucune",
+      "motif": "Gain chiffré non sourcé.",
+      "ecart_fr_en": "EN : « 35% more production capacity without additional costs »"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Le processus d’intégration des nouveaux clients était 50 % plus rapide",
+      "source_dans_texte": "aucune",
+      "motif": "Gain chiffré non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Processus d’approbation deux fois plus rapide qu’avant.",
+      "source_dans_texte": "aucune",
+      "motif": "Gain chiffré non sourcé.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "L’automatisation de ShotFlow a supprimé le besoin d’embaucher du personnel supplémentaire pour gérer la montée en charge.",
+      "source_dans_texte": "aucune",
+      "motif": "Affirmation sur l'emploi.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Respect des standards ISO 16684-1 pour une compatibilité totale avec les DAM et les plateformes e-commerce.",
+      "source_dans_texte": "aucune",
+      "motif": "Conformité normative et « compatibilité totale » à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Intégration directe dans Adobe Creative Cloud pour un accès instantané aux outils créatifs.",
+      "source_dans_texte": "aucune",
+      "motif": "Intégration produit à vérifier.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "La distribution finale des images vers les plateformes e-commerce et les clients était instantanée.",
+      "source_dans_texte": "aucune",
+      "motif": "« instantanée » : promesse absolue.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Cas client e-commerce prouvé.",
+      "source_dans_texte": "aucune",
+      "motif": "« prouvé » sans source ni client nommé (description).",
+      "ecart_fr_en": "EN : « Proven e-commerce customer case. »"
+    }
+  ],
+  "titre_h1_meta": "FR : title « Comment ShotFlow permet d'optimiser la production de contenu » (sobre), H1 « ShotFlow : Révolution de la Production Visuelle » et metaTitle « Comment ShotFlow Révolutionne… » en Title Case, metaTitle de 102 caractères, description de 257 caractères avec « prouvé ». Le corps est cohérent avec ces titres (cas client ShotFlow). EN : title « How ShotFlow optimizes content production », H1 calqué « ShotFlow: Revolution in Visual Production », metaTitle « How ShotFlow Accelerates Content Production » (verbe différent du FR « Révolutionne »), description de 224 caractères.",
+  "structure_fr_en": "Parité de contenu : 3 H2, 8 H3, 21 puces, 2 images, 5 questions de FAQ, même ordre. L'EN compte un paragraphe de plus (25 contre 24), dû à un paragraphe vide (ZWJ). Une phrase coupée en EN (« several million files. without »). Casse des H2 EN incohérente (« A rapidly changing production environment » contre « Transformation: Scalable Production Thanks to ShotFlow »).",
+  "images_alt_legendes": "FR : deux alts descriptifs corrects. EN : les deux mêmes alts, en français. Pas de légende.",
+  "appellations": "« ShotFlow » écrit de façon constante (20 occurrences), conforme à la forme majoritaire du site (« Shotflow » n'apparaît que dans d'autres articles). L'article ne dit jamais qui édite ShotFlow ni son lien avec PackshotCreator ou Orbitvu. Le seul lien interne (« automatisant les workflows » → /fr/ia-photo-produit) mène à une page qui ne mentionne pas ShotFlow (vérification dans app/ et components/). Auteur passé de « Laurent Wainberg » à « PackshotCreator » (commit 8ae45f63) ; aucun nom de personne dans le corps.",
+  "recommandation": "réécriture partielle",
+  "remarques": "Cas client anonyme rempli de chiffres (1,8 M d'images, +35 %, 50 %, ×2) sans source : demander l'étude d'origine (éditeur de ShotFlow ?) avant toute republication, ou présenter le texte comme illustratif. Le lien interne vers /ia-photo-produit est peu pertinent. Article daté du 15/01/2025, item Webflow créé le 21/02/2025 (inférence). Les espaces avant virgule de l'extrait sont des artefacts d'extraction ; le mot collé « toabsorb » est réel."
+}

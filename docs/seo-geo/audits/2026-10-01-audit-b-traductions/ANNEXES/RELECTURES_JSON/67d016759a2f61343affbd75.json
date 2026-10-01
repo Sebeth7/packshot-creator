@@ -1,0 +1,686 @@
+{
+  "family": "67d016759a2f61343affbd75",
+  "slugs": {
+    "fr": "8-defis-prodution-contenu-visuel",
+    "en": "8-challenges-producing-visual-content",
+    "de-ch": null
+  },
+  "sujet": "Long article sur huit difficultés de la production de contenu visuel e-commerce (flux désorganisés, multiplateforme, gestion de studio, cohérence de marque, délais, métadonnées, visibilité entre équipes, intégration des outils), chacune avec statistiques, solution et mise en œuvre, qui promeut le logiciel ShotFlow et, en conclusion, Orbitvu.",
+  "langue_originale": "FR → EN (preuve interne)",
+  "preuve_langue": "EN : déterminants français « Les automation tools », « La visibility is essential », « Les real-time dashboards » ; « THE automation is the solution » ; « Use the functions of parses » et « Use the parses studio management tools » (« analyse » rendu par « parses ») ; « Provide sighted » (« aperçus ») ; « an Arabic telephone game » (« téléphone arabe ») ; « By centralizing her workflow, she eliminated » (« elle », la marque) ; « Of inconsistent visuals » (« Des visuels ») ; « One poor studio management » (« Une mauvaise gestion ») ; « know 25% more downtime » (« connaissent ») ; « when they are downloaded » (« téléchargement »). [Inférence] Le FR porte lui-même des calques de l'anglais (« points douloureux », « prospèrent sur les visuels verticaux », « YouTube exige un écran large », « opportunité perdue », « des listes incomplètes ou des introductions retardées », métaphore laissée en anglais « buildings on fire ») : chaîne probable source anglaise liée à ShotFlow (absente du dépôt) → FR → EN, non établie.",
+  "qualite": {
+    "fr": "C",
+    "en": "D",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Français lisible mais visiblement traduit ou adapté de l'anglais : calques fréquents (« points douloureux », « prospèrent sur », « opportunité perdue », « introductions », « transparents »), phrases incompréhensibles (« n'est pas aussi simple que d'en prendre une », « la mise à l'échelle … doit souvent être améliorée », « les délais d'exécution sont absolument vitaux »), bourrage de l'expression « flux de travail (de la) photographie (pour le) commerce électronique », H1 et metaTitle en Title Case, H1 « en 2025 » périmé, plus de 30 statistiques et 4 études de cas sans source, 4 alts inexploitables.",
+    "en": "Retraduction automatique du FR : déterminants français, « THE », faux amis et contresens (« parses », « sighted », « Arabic telephone game », « ignore », « downloaded »), articles mot à mot (« Of », « One »), chiffres déformés (« an improvement in 30% of the customer satisfaction rate », « a reduction in 25% production deadlines », « for 50% »), lien vers une page FR. Métadonnées et FAQ EN correctes.",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 40,
+    "en": 70,
+    "de-ch": 0
+  },
+  "erreurs": [
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Qu'il s'agisse de vidéos didactiques, d'images de style de vie ou de photos de produits, la création d'excellents visuels n'est pas aussi simple que d'en prendre une.",
+      "probleme": "« en prendre une » ne renvoie à rien (« visuels » est masculin pluriel) : calque de « isn't as easy as taking one » ; « images de style de vie » est un calque de « lifestyle ».",
+      "proposition": "Qu'il s'agisse de vidéos didactiques, de photos lifestyle ou de photos produit, créer d'excellents visuels ne se résume pas à prendre une photo."
+    },
+    {
+      "langue": "fr",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ces « défis brûlants » (métaphore \"buildings on fire\" inventée lors du sommet ShotFlow) représentent les problèmes critiques auxquels sont confrontées les équipes",
+      "probleme": "Métaphore laissée en anglais, entre guillemets droits ; « sommet ShotFlow » non expliqué ; « inventée » attribue une origine sans source.",
+      "proposition": "Ces « défis brûlants » (la métaphore des « bâtiments en feu », employée lors d'un événement ShotFlow) sont les problèmes critiques auxquels les équipes sont confrontées"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Impliquez votre équipe dans l'identification des points douloureux : elle saura où se situent les inefficacités.",
+      "probleme": "« points douloureux » est un calque de « pain points ».",
+      "proposition": "Impliquez votre équipe dans l'identification des points de friction : elle sait où se situent les inefficacités."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les Stories Instagram prospèrent sur les visuels verticaux, YouTube exige un écran large et TikTok raffole des vidéos courtes et percutantes.",
+      "probleme": "« prospèrent sur » (thrive on) et « exige un écran large » (widescreen) sont des calques.",
+      "proposition": "Les Stories Instagram misent sur le format vertical, YouTube sur le 16:9 et TikTok sur les vidéos courtes et percutantes."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Plus vous vous adressez à de nombreuses plateformes, plus vous avez besoin de variations de contenu , et la mise à l'échelle pour répondre à cette demande doit souvent être améliorée.",
+      "probleme": "Fin de phrase incompréhensible (calque de « scaling … often needs to be improved ») ; « Plus vous vous adressez à de nombreuses plateformes » est maladroit.",
+      "proposition": "Plus vous ciblez de plateformes, plus il vous faut de déclinaisons de contenu, et la production peine souvent à suivre."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Cela prend du temps et augmente le risque d'erreurs, comme le recadrage de détails clés du produit ou une marque mal adaptée.",
+      "probleme": "« le recadrage de détails clés » dit le contraire de l'idée (des détails coupés au recadrage) ; « une marque mal adaptée » est obscur.",
+      "proposition": "Cela prend du temps et augmente le risque d'erreurs, comme des détails clés du produit coupés au recadrage ou une charte de marque mal appliquée."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Si les noms de fichiers, le marquage et les cycles d'approbation sont les principaux goulets d'étranglement de la création de contenu visuel, les délais d'exécution sont absolument vitaux.",
+      "probleme": "Rapport logique absurde entre la condition et la conséquence.",
+      "proposition": "Le nommage des fichiers, le marquage et les cycles de validation sont les principaux goulets d'étranglement de la création visuelle, alors que les délais sont vitaux."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les délais non respectés peuvent se traduire par la perte de perspectives de vente, des listes incomplètes ou des introductions retardées.",
+      "probleme": "« listes » (listings, fiches produits) et « introductions » (lancements) sont des calques.",
+      "proposition": "Les délais non respectés peuvent se traduire par des ventes manquées, des fiches produits incomplètes ou des lancements retardés."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Selon des études, 40% des équipes consacrent plus de temps à des tâches manuelles répétitives qu'elles ne devraient en consacrer au travail créatif.",
+      "probleme": "Comparaison bancale (calque) ; « Selon des études » sans source.",
+      "proposition": "Selon des études (à sourcer), 40 % des équipes passent plus de temps sur des tâches manuelles répétitives que sur le travail créatif."
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Utilisez des outils qui étiquettent automatiquement les actifs lors de leur téléchargement en fonction de règles prédéfinies.",
+      "probleme": "Pour un DAM, il s'agit de l'import (upload) ; « téléchargement » est ambigu et l'EN en tire un contresens (« downloaded »). « actifs » est un calque d'« assets ».",
+      "proposition": "Utilisez des outils qui étiquettent automatiquement les fichiers dès leur import, selon des règles prédéfinies."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ces erreurs peuvent s'avérer coûteuses dans le monde en constante évolution de la gestion des flux de travail et des studios de photographie de commerce électronique.",
+      "probleme": "Bourrage de mots-clés : la formule « flux de travail (de la) photographie (pour le / du / de) commerce électronique / e-commerce » revient environ 15 fois sous des variantes artificielles (« Dans le flux de travail de la photographie e-commerce », « Veillez à la cohérence des visuels dans les flux de travail photographiques du commerce électronique »…).",
+      "proposition": "Ces erreurs peuvent coûter cher. (Réduire les répétitions de la formule dans tout l'article.)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "8 Défis de Contenu Visuel pour l'E-Commerce en 2025",
+      "probleme": "Title Case anglais appliqué au français ; « en 2025 » est périmé (nous sommes en 2026, l'article est daté du 12/12/2024).",
+      "proposition": "8 défis de la production de contenu visuel pour l'e-commerce"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeur réservée de Webflow servie comme alt (3 images) ; aucune substitution trouvée dans lib/, components/ ni app/.",
+      "proposition": "Rédiger 3 alts descriptifs d'après les images."
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Marqueur Webflow « image décorative » servi comme texte alternatif.",
+      "proposition": "alt=\"\" si l'image est décorative, sinon alt descriptif."
+    },
+    {
+      "langue": "fr",
+      "categorie": "title_case",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "8 Défis de Production Visuelle en E-Commerce : Solutions & Automatisation",
+      "probleme": "Title Case et esperluette ; 73 caractères.",
+      "proposition": "8 défis de la production visuelle en e-commerce : solutions et automatisation"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les équipes ont souvent besoin d'aide pour optimiser les calendriers ou anticiper les besoins en ressources",
+      "probleme": "Calque probable de « need help » (au sens de « peinent à ») ; « calendriers » pour « plannings ».",
+      "proposition": "Les équipes peinent souvent à optimiser les plannings ou à anticiper les besoins en ressources"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Le problème vient souvent du fait que les équipes s'appuient sur des systèmes obsolètes pour gérer les actifs, tels que les feuilles de calcul, les chaînes de courrier électronique et les hiérarchies de dossiers.",
+      "probleme": "« actifs » (assets) alterne avec « ressources » dans l'article ; « tels que » se rattache aux actifs au lieu des systèmes ; « chaînes de courrier électronique » est un calque.",
+      "proposition": "Le problème vient souvent de systèmes dépassés pour gérer les fichiers : tableurs, fils d'e-mails, arborescences de dossiers."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Chaque jour, un visuel qui n'est pas prêt pour la sortie d'un produit ou une campagne de marketing est une opportunité perdue.",
+      "probleme": "« opportunité perdue » est un calque.",
+      "proposition": "Chaque jour où un visuel n'est pas prêt pour un lancement produit ou une campagne marketing est une occasion manquée."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "vive et attrayantes sur Instagram, mais ternes et peu soignées sur votre site web.",
+      "probleme": "Faute d'accord : « vives » (les images).",
+      "proposition": "vives et attrayantes sur Instagram, mais ternes et peu soignées sur votre site web."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Dans le secteur de l'high-tech et de l'électroménager, des flux de travail désorganisés peuvent entraîner la publication de visuels obsolètes",
+      "probleme": "« high-tech » à h aspiré : « du high-tech ».",
+      "proposition": "Dans le secteur du high-tech et de l'électroménager, des flux de travail désorganisés peuvent entraîner la publication de visuels obsolètes"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les équipements sont réservés deux fois",
+      "probleme": "Calque de « double-booked ».",
+      "proposition": "Les équipements sont réservés en double"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Permettre des flux de travail transparents pour l'approbation des ressources et le retour d'information.",
+      "probleme": "« transparents » est un calque de « seamless ».",
+      "proposition": "Fluidifier les circuits de validation et de retour."
+    },
+    {
+      "langue": "fr",
+      "categorie": "structure",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Statistiques illustrant le problème",
+      "probleme": "Trois formulations pour le même intertitre récurrent (« Des statistiques qui mettent en évidence le problème », « Des statistiques qui mettent en lumière le problème », « Statistiques illustrant le problème ») ; les h4 alternent de même infinitif, impératif et nom (« Audit des flux de travail existants », « Former votre équipe », « Auditez vos outils actuels »).",
+      "proposition": "Uniformiser : « Les chiffres du problème » ; h4 à l'impératif partout."
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "faq",
+      "extrait_actuel": "Quelles compétences en IA sont les plus précieuses pour une équipe de production visuelle aujourd'hui ?",
+      "probleme": "La question porte sur des compétences, la réponse liste des fonctionnalités (« Les capacités d'IA les plus valorisées »).",
+      "proposition": "Quelles fonctionnalités d'IA sont les plus utiles à une équipe de production visuelle aujourd'hui ?"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "These” hot challenges ” (metaphor “buildings on fire” invented at the ShotFlow Summit) represent the critical problems teams face",
+      "probleme": "Guillemets inversés et espacés (présents dans le JSON) ; « hot challenges » pour « burning challenges ».",
+      "proposition": "These “burning challenges” (the “buildings on fire” metaphor used at the ShotFlow Summit) are the critical problems teams face"
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "An international clothing brand has reduced 40% the turnaround time for its content after implementing ShotFlow. By centralizing her workflow, she eliminated 80% emails and accelerated its photography workflow for e-commerce.",
+      "probleme": "« her/she » pour la marque (« elle ») ; ordre des mots français (« reduced 40% the ») ; « 80% emails ».",
+      "proposition": "An international clothing brand cut its content turnaround time by 40% after implementing ShotFlow. By centralizing its workflow, it cut emails by 80% and sped up its e-commerce photography workflow."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Use the functions of parses to track the effectiveness of your new workflows.",
+      "probleme": "« analyse » rendu par « parses » (analyse syntaxique) ; rendu « functions ofparses » dans le HTML. Même faute dans « Use the parses studio management tools » et « Take advantage of the features of parses ».",
+      "proposition": "Use analytics features to track the effectiveness of your new workflows."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Use the parses studio management tools to identify inefficiencies",
+      "probleme": "« parses » pour « analytics » ; point final manquant.",
+      "proposition": "Use the analytics in your studio management tools to identify inefficiencies."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Take advantage of the features of parses to identify bottlenecks and areas for improvement.",
+      "probleme": "« parses » pour « analytics ».",
+      "proposition": "Use analytics features to identify bottlenecks and areas for improvement."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Teams are often forced to resize and reformat manually visuals for each platform. This is time consuming and increases the risk of mistakes, such as reframing key product details or a misfit brand.",
+      "probleme": "Ordre des mots français (« reformat manually visuals ») ; « reframing key product details or a misfit brand » ne veut rien dire.",
+      "proposition": "Teams often have to resize and reformat visuals manually for each platform. This is time-consuming and increases the risk of mistakes, such as cropping out key product details or off-brand visuals."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les automation tools designed for the production of visual content can greatly facilitate cross-platform scaling.",
+      "probleme": "Déterminant français.",
+      "proposition": "Automation tools designed for visual content production can make cross-platform scaling much easier."
+    },
+    {
+      "langue": "en",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Provide sighted to ensure that the visuals meet the standards specific to each platform before publishing them.",
+      "probleme": "« aperçus » rendu par « sighted » : incompréhensible.",
+      "proposition": "Provide previews to check that visuals meet each platform's standards before publishing."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "By using automation tools, a global electronics retailer reduced the time needed to produce visuals for 50% .",
+      "probleme": "« de 50 % » rendu par « for 50% » : sens altéré.",
+      "proposition": "By using automation tools, a global electronics retailer cut the time needed to produce visuals by 50%."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "One poor studio management disrupts workflows and creates bottlenecks that affect the production process.",
+      "probleme": "« Une » rendu par « One ».",
+      "proposition": "Poor studio management disrupts workflows and creates bottlenecks that affect the production process."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Studios with a disorganized schedule know 25% more downtime, which has a direct impact on the project schedule.",
+      "probleme": "« connaissent » rendu par « know ».",
+      "proposition": "Studios with disorganized schedules experience 25% more downtime, which directly affects project timelines."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Of inconsistent visuals can upset customers and erode trust in your brand.",
+      "probleme": "« Des » rendu par « Of » ; « troubler » (désorienter) rendu par « upset » (contrarier).",
+      "proposition": "Inconsistent visuals can confuse customers and erode trust in your brand."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "After implementing a centralized style guide and a review system, the brand saw an improvement in 30% of the customer satisfaction rate in the space of six months.",
+      "probleme": "Chiffre déformé : « une amélioration de 30 % du taux » devient « une amélioration dans 30 % du taux ».",
+      "proposition": "After implementing a centralized style guide and a review system, the brand saw a 30% improvement in customer satisfaction within six months."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "THE automation is the solution to save time.",
+      "probleme": "Article « L' » rendu par « THE » en capitales.",
+      "proposition": "Automation is the way to save time."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Use tools that automatically label the assets when they are downloaded according to predefined rules.",
+      "probleme": "Contresens : il s'agit de l'import (upload), pas du téléchargement.",
+      "proposition": "Use tools that automatically tag assets on upload according to predefined rules."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "it's like an Arabic telephone game",
+      "probleme": "Expression française traduite mot à mot ; l'anglais dit « a game of telephone » (US) ou « Chinese whispers » (UK).",
+      "proposition": "it's like a game of telephone"
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The lack of visibility causes one department to ignore what the other is doing, leading to unnecessary delays and confusion.",
+      "probleme": "« ignorer » (ne pas savoir) rendu par « ignore » (ne pas tenir compte) : faux ami.",
+      "proposition": "Without visibility, one department is unaware of what another is doing, which leads to unnecessary delays and confusion."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "La visibility is essential for studio management and photography workflows for e-commerce.",
+      "probleme": "Déterminant français.",
+      "proposition": "Visibility is essential for studio management and e-commerce photography workflows."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Les real-time dashboards and project management tools are changing the game.",
+      "probleme": "Déterminant français.",
+      "proposition": "Real-time dashboards and project management tools are changing the game."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Businesses that integrate their systems are seeing a reduction in 25% production deadlines and an increase in overall efficiency.",
+      "probleme": "Chiffre déformé (« in 25% production deadlines ») ; « deadlines » pour « délais » (lead times).",
+      "proposition": "Businesses that integrate their systems see a 25% reduction in production lead times and higher overall efficiency."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "these “emergency situations” can be managed with good tools , strategies And a adapted state of mind .",
+      "probleme": "« And » en majuscule, « a adapted », calque de « un état d'esprit adapté ».",
+      "proposition": "these “emergencies” can be managed with the right tools, strategies and mindset."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "The result? One Stronger brand , of happier teams and, above all, of better results for your business.",
+      "probleme": "« Une » rendu par « One », « des » par « of » ; rendu « OneStronger » dans le HTML.",
+      "proposition": "The result? A stronger brand, happier teams and, above all, better results for your business."
+    },
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Organize sessions of practical training to get everyone familiar with the new system.",
+      "probleme": "Le lien « practical training » mène un lecteur anglophone vers /fr/academy, page en français. C'est cohérent avec le site (l'Academy n'existe qu'en FR : app/[lang]/academy/page.tsx redirige /en/academy vers /fr/academy), mais rien ne le signale. « sessions of practical training » est un calque.",
+      "proposition": "Organize hands-on training sessions to get everyone familiar with the new system. (Garder le lien en signalant « in French », ou le retirer.)"
+    },
+    {
+      "langue": "en",
+      "categorie": "autre",
+      "gravite": "majeur",
+      "emplacement": "h1",
+      "extrait_actuel": "8 Visual Content Challenges for E-Commerce in 2025",
+      "probleme": "Année périmée (« in 2025 ») dans le H1, alors que la page est en ligne en 2026.",
+      "proposition": "8 Visual Content Challenges for E-Commerce"
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_inherit",
+      "probleme": "Valeur réservée de Webflow servie comme alt (3 images).",
+      "proposition": "Rédiger 3 alts anglais descriptifs."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "majeur",
+      "emplacement": "alt",
+      "extrait_actuel": "__wf_reserved_decorative",
+      "probleme": "Marqueur Webflow servi comme alt.",
+      "proposition": "alt=\"\" si l'image est décorative, sinon alt descriptif."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Involve your team in identifying pain points : it will know where the inefficiencies are.",
+      "probleme": "« it » pour l'équipe (« elle ») ; espace avant les deux-points (présente dans le JSON).",
+      "proposition": "Involve your team in identifying pain points: they know where the inefficiencies are."
+    },
+    {
+      "langue": "en",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Designate a studio manager responsible for overseeing bookings and resolving disputes.",
+      "probleme": "« conflits » (de réservation) rendu par « disputes » (litiges).",
+      "proposition": "Designate a studio manager to oversee bookings and resolve scheduling conflicts."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Teams using shared dashboards are seeing an increase of 30% of their effectiveness.",
+      "probleme": "Construction calquée.",
+      "proposition": "Teams using shared dashboards see a 30% increase in efficiency."
+    },
+    {
+      "langue": "en",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Businesses lose on average 10,000 dollars per week due to the inefficiency of studios in large-scale operations.",
+      "probleme": "Format monétaire (« $10,000 ») ; calque.",
+      "proposition": "Businesses lose an average of $10,000 per week to studio inefficiency in large-scale operations."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "31% marketers say the lack of structured workflows is a major barrier to increasing content production.",
+      "probleme": "« of » manquant ; même faute dans « 50% marketers say », « 31% teams report », « 40% marketing managers say », « 45% creative teams ».",
+      "proposition": "31% of marketers say the lack of structured workflows is a major barrier to increasing content production."
+    },
+    {
+      "langue": "en",
+      "categorie": "traduction_automatique",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Studies show that 69% Marketers recognize that automating content production has helped them",
+      "probleme": "« of » manquant, majuscule parasite.",
+      "proposition": "Studies show that 69% of marketers say automating content production has helped them"
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Instagram Stories thrive on vertical visuals, YouTube requires a large screen, and TikTok loves short, compelling videos.",
+      "probleme": "« YouTube requires a large screen » : calque de « écran large » (widescreen).",
+      "proposition": "Instagram Stories thrive on vertical visuals, YouTube favors widescreen, and TikTok loves short, punchy videos."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Create a unique and reliable source for all assets and tasks.",
+      "probleme": "« source unique » : l'anglais dit « single source of truth ».",
+      "proposition": "Create a single source of truth for all assets and tasks."
+    },
+    {
+      "langue": "en",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Due to inefficiency, businesses lose on average 20 to 30% of their turnover each year.",
+      "probleme": "« chiffre d'affaires » rendu par « turnover » (au sens américain, rotation du personnel) ; chiffre non sourcé.",
+      "proposition": "Businesses lose an average of 20 to 30% of their revenue each year to inefficiency."
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "31% des spécialistes du marketing déclarent que l'absence de flux de travail structurés est un obstacle majeur à l'augmentation de la production de contenu.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique sans source ni date.",
+      "ecart_fr_en": "EN « 31% marketers say » identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "En raison de l'inefficacité, les entreprises perdent en moyenne 20 à 30% de leur chiffre d'affaires chaque année.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre extrême non sourcé.",
+      "ecart_fr_en": "EN identique (« turnover »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Une marque internationale de vêtements a réduit de 40% le délai d'exécution de son contenu après avoir mis en œuvre ShotFlow. En centralisant son flux de travail, elle a éliminé 80% des courriers électroniques",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas anonyme attribuée à un logiciel tiers, non sourcée.",
+      "ecart_fr_en": "EN « has reduced 40% the turnaround time », « eliminated 80% emails » : même portée, syntaxe altérée."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des études montrent que 69% des spécialistes du marketing reconnaissent que l'automatisation de la production de contenu les a aidés à répondre plus efficacement aux demandes spécifiques à chaque plateforme.",
+      "source_dans_texte": "aucune",
+      "motif": "« Des études » sans référence ; même section : « 40% des équipes de production », « Plus de 30% des spécialistes du marketing ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "En utilisant des outils d'automatisation, un détaillant mondial de produits électroniques a réduit le temps de production des visuels de 50% .",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas anonyme.",
+      "ecart_fr_en": "EN « reduced the time needed to produce visuals for 50% » : sens altéré."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises perdent en moyenne 10 000 dollars par semaine en raison de l'inefficacité des studios dans les opérations à grande échelle.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre non sourcé, en dollars sur le site français ; même section : « 25% de temps d'arrêt en plus », « 40% des équipes de production ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Par exemple, un détaillant de mode international a mis en place un système de planification centralisé et a réduit les temps d'arrêt de 30% .",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas anonyme.",
+      "ecart_fr_en": "EN « reduced the downtime of 30% » : syntaxe altérée."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "70% des consommateurs affirment que la cohérence des visuels a un impact significatif sur leurs décisions d'achat.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée ; même section : « +23% » de chiffre d'affaires, « 50% des spécialistes du marketing ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "la marque a constaté une amélioration de 30% du taux de satisfaction des clients en l'espace de six mois.",
+      "source_dans_texte": "aucune",
+      "motif": "Étude de cas anonyme.",
+      "ecart_fr_en": "EN « an improvement in 30% of the customer satisfaction rate » : chiffre déformé."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les systèmes automatisés peuvent réduire le temps consacré aux tâches manuelles jusqu'à 50% , ce qui améliore considérablement les délais d'exécution.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée ; même section : « 40% des équipes », « 30% des entreprises de e-commerce ».",
+      "ecart_fr_en": "EN identique (« by up to 50% »)."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les systèmes de métadonnées centralisés peuvent réduire les temps de recherche jusqu'à 80% , ce qui permet d'économiser un nombre incalculable d'heures.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée ; même section : « 50% des équipes ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les équipes utilisant des tableaux de bord partagés constatent une augmentation de 30% de leur efficacité.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée ; même section : « 45% des équipes créatives ».",
+      "ecart_fr_en": "EN « an increase of 30% of their effectiveness »."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises qui intègrent leurs systèmes constatent une réduction de 25% des délais de production et une augmentation de l'efficacité globale.",
+      "source_dans_texte": "aucune",
+      "motif": "Statistique non sourcée ; même section : « 31% des équipes », « 40% des responsables marketing ».",
+      "ecart_fr_en": "EN « a reduction in 25% production deadlines » : déformé."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises qui adoptent ces technologies en premier réduisent leurs délais de mise sur le marché de 60% en moyenne.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de FAQ non sourcé ; « Photographie paramétrique permettant de générer des variations infinies » : terme non défini et promesse « infinies ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les équipes qui intègrent ces capacités d'IA réduisent leur temps de post-production de 40% tout en améliorant la cohérence.",
+      "source_dans_texte": "aucune",
+      "motif": "Chiffre de FAQ non sourcé ; mêmes réserves pour « La règle du 70/30 » et « un équilibre de 80/20 ».",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Les entreprises qui mettent en œuvre des systèmes centralisés de gestion de contenu visuel constatent généralement un ROI de 150% à 300% au cours de la première année.",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de ROI chiffrée non sourcée, avec des fourchettes détaillées (40-60 %, 25-35 %, 15-25 %).",
+      "ecart_fr_en": "EN identique."
+    },
+    {
+      "langue": "toutes",
+      "extrait": "(métaphore \"buildings on fire\" inventée lors du sommet ShotFlow)",
+      "source_dans_texte": "aucune",
+      "motif": "Attribution d'origine à un événement non identifié.",
+      "ecart_fr_en": "EN « invented at the ShotFlow Summit » identique."
+    }
+  ],
+  "titre_h1_meta": "FR : title « Les 8 défis de la production de contenu visuel » ; H1 « 8 Défis de Contenu Visuel pour l'E-Commerce en 2025 » (Title Case, année périmée, glissement de « production » vers « contenu ») ; metaTitle « 8 Défis de Production Visuelle en E-Commerce : Solutions & Automatisation » (Title Case, 73 car., servi en <title>) ; description de 207 car. Le corps traite bien les 8 défis annoncés. Slug FR avec coquille « prodution ». EN : title « The 8 challenges of producing visual content », H1 « 8 Visual Content Challenges for E-Commerce in 2025 » (année périmée), metaTitle « 8 E-Commerce Visual Production Challenges: Solutions & Automation » correct, description de 189 car. Métadonnées EN correctes, corps dégradé.",
+  "structure_fr_en": "Parité stricte : 9 h2, 32 h3, 54 p, 89 li, 4 images, 1 iframe, 5 FAQ ; même ordre ; 3 741 mots FR contre 2 892 EN. Liens : 5 en FR, 6 en EN (l'EN ajoute « automation tools » → /en/studios-photo-automatises) ; le lien mode diverge (FR → /fr/industrie, hub ; EN → /en/industrie/mode-textile) ; « practical training » pointe vers /fr/academy depuis l'EN (l'Academy n'existe qu'en FR : /en/academy redirige vers /fr/academy). Intertitres « statistiques » en 3 variantes et h4 de formes mêlées, dans les deux langues. 10 paragraphes vides (ZWJ) hérités de Webflow.",
+  "images_alt_legendes": "4 images, mêmes alts dans les deux langues : 3 « __wf_reserved_inherit » et 1 « __wf_reserved_decorative » (valeurs Webflow servies telles quelles). Aucun alt réel, aucune légende.",
+  "appellations": "« ShotFlow » est cohérent (8 occurrences par langue, graphie majoritaire du dépôt). Orbitvu n'apparaît qu'en conclusion ; PackshotCreator est absent du corps. L'article fait la promotion de ShotFlow, logiciel tiers (liens vers shotflow.com), avec des études de cas non sourcées : relation commerciale à confirmer. Auteur JSON « PackshotCreator » (ex-« Laurent Wainberg », commit 8ae45f63, sans effet sur le corps).",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Arbitrage préalable : faut-il garder un article promotionnel ShotFlow qui aligne plus de 30 statistiques et 4 études de cas sans aucune source, plus une FAQ de style génératif (ROI 150–300 %, « photographie paramétrique ») ? Si oui : sourcer ou retirer les chiffres, réécrire partiellement le FR (calques, phrases incompréhensibles, bourrage de mots-clés), puis retraduire entièrement l'EN. H1 « en 2025 » périmé dans les deux langues. Slug FR « 8-defis-prodution-contenu-visuel » avec coquille ; le corriger impose une redirection (rayon d'action, cf. R8). Vidéo YouTube FG0GXKmxIak et liens shotflow.com / orbitvu.com non vérifiés (pas d'accès web). Autre mineure EN non détaillée : « to ensure that the equipment is still in working condition » (« still » pour « toujours », → « always in working order »). Expression « téléphone arabe » datée et parfois jugée connotée en français : « téléphone sans fil » ou « jeu du téléphone » possibles."
+}

@@ -1,0 +1,446 @@
+{
+ "family": "67d29ed104741e4f9e4e9043",
+ "slugs": {
+  "fr": "eclairage-photos-produits",
+  "en": "product-photo-lighting",
+  "de-ch": null
+ },
+ "sujet": "Présentation de l'éclairage multi-sources des studios automatisés Orbitvu (Alphashot Pro G2 et ses 74 sources, IA d'éclairage, détourage IQ Mask, fond rétroéclairé, flux de publication), avec comparatifs visuels mono-source / multi-sources et citations de Stéphane Gormand.",
+ "langue_originale": "FR → EN (preuve interne)",
+ "preuve_langue": "EN : « One optimal lighting » (de « Un éclairage optimal ») ; « automated studios Orbitvu » (ordre français) ; « such as cosmetic , the jewelry Or the technical products » (« la cosmétique, la joaillerie ou les produits techniques ») ; « The products cosmetics , like this care » (« Les produits cosmétiques, comme ce soin ») ; « White goods like these sneakers » (« Les produits blancs ») ; « unique lighting » (« éclairage unique ») ; « THE AI Photo Assistant » (« L' AI Photo Assistant ») ; « THE closed environment studios » (« L'environnement fermé des studios ») ; « A perfectly united background » (« Un fond parfaitement uni ») ; « The software Orbitvu Station » ; « underlines Stéphane Gormand » (« souligne »). [Inférence] Le FR lui-même a été rédigé à partir de documentation anglaise d'Orbitvu : Title Case des intertitres, « élimine virtuellement » (virtually), citations « Une fois capturées, vous pouvez exporter » et « notre réseau d'IA personnalisé ».",
+ "qualite": {
+  "fr": "C",
+  "en": "D",
+  "de-ch": null
+ },
+ "justification_qualite": {
+  "fr": "Corps en français correct mais : Title Case anglais sur 13 intertitres, citations visiblement traduites de l'anglais et d'attribution douteuse, guillemets droits, calques (« virtuellement »), signature remplacée par la marque, metaTitle et description trop longs, texte saturé de superlatifs. Réécriture partielle des intertitres et des citations.",
+  "en": "Traduction automatique du FR : articles et majuscules parasites (« THE », « One », « With », « And », « Or »), contresens métier (« trimming », « cropping » pour détourage ; « White goods » ; « unique lighting » ; « united background » ; « this care »), phrases agrammaticales (« The system allows remember… »), title traduit littéralement, alts en français. Seules les FAQ sont à peu près correctes.",
+  "de-ch": null
+ },
+ "nb_erreurs_estime": {
+  "fr": 20,
+  "en": 55,
+  "de-ch": null
+ },
+ "erreurs": [
+  {
+   "langue": "fr",
+   "categorie": "title_case",
+   "gravite": "majeur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "Le Studio Photo Automatisé : Une Révolution Technologique",
+   "probleme": "Title Case anglais appliqué à tous les intertitres FR (13 sur 14) : « De la Prise de Vue à la Post-Production », « La Technologie IQ Mask™ : L'Excellence du Détourage Automatisé », « Éclairage Multi-sources : La Supériorité Technologique d'Orbitvu », « Comparaison visuelle : Multi-sources vs Mono-source », « L'Alphashot Pro G2 : 74 Sources Lumineuses Indépendantes », « Intelligence Artificielle au Service de l'Éclairage », « L'Environnement Photographique Optimisé », « La Diffusion Maîtrisée de la Lumière », « Un Fond Parfaitement Uni », « L'Automatisation du Flux de Travail », « De la Capture à la Publication », « Conclusion : Une Solution Complète pour l'Excellence Visuelle ».",
+   "proposition": "Le studio photo automatisé : une révolution technologique / De la prise de vue à la post-production / La technologie IQ Mask™ : l'excellence du détourage automatisé / Éclairage multisource : la supériorité technologique d'Orbitvu / Comparaison visuelle : multisource ou source unique / L'Alphashot Pro G2 : 74 sources lumineuses indépendantes / L'intelligence artificielle au service de l'éclairage / Un environnement photographique optimisé / Une diffusion maîtrisée de la lumière / Un fond parfaitement uni / L'automatisation du flux de travail / De la capture à la publication / Conclusion : une solution complète pour l'excellence visuelle"
+  },
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "\"Tout ce qu'il faut, c'est un clic , et notre réseau d'IA personnalisé reconnaîtra votre produit et suggérera plusieurs options d'éclairage qui sont enregistrées comme un modèle pour une utilisation future\", explique Stéphane Gormand",
+   "probleme": "[Inférence] Le possessif « notre réseau d'IA » dans la bouche d'un expert du distributeur suggère un texte du fabricant Orbitvu attribué à Stéphane Gormand ; les autres citations (« Plus besoin de techniques de détourage manuel chronophages ! … », « Une fois capturées, vous pouvez exporter vos images … ») portent aussi des traces de traduction depuis l'anglais. Attribution des citations à valider avant republication.",
+   "proposition": "Vérifier l'origine des citations ; si elles proviennent d'Orbitvu, les attribuer à Orbitvu ou les reformuler en discours indirect."
+  },
+  {
+   "langue": "fr",
+   "categorie": "appellation",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "auteur : PackshotCreator",
+   "probleme": "Champ auteur (signature affichée) : l'import Webflow indiquait « Laurent Wainberg » ; remplacé par la marque au commit 8ae45f63 (12/06/2026, « auteur générique PackshotCreator »). Même chose en EN.",
+   "proposition": "Arbitrage éditorial : rétablir l'auteur d'origine ou documenter le choix d'une signature de marque."
+  },
+  {
+   "langue": "fr",
+   "categorie": "incoherence_seo_h1_corps",
+   "gravite": "majeur",
+   "emplacement": "metaTitle",
+   "extrait_actuel": "Photographie de produits : maîtrisez l’éclairage multi-sources pour des visuels parfaits",
+   "probleme": "metaTitle de 88 caractères (tronqué en SERP) ; description de 218 caractères (tronquée) ; trois formulations différentes pour title (« pour être sûr de votre éclairage, multipliez les sources »), H1 et metaTitle. Le corps traite pour moitié d'autre chose que l'éclairage (détourage IQ Mask, flux de publication, retouche logicielle) : c'est une présentation produit Orbitvu plus qu'un guide d'éclairage.",
+   "proposition": "Photographie produit : l'éclairage multisource expliqué"
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Les studios Orbitvu utilisent un système de fond rétroéclairé qui élimine virtuellement toutes les ombres indésirables.",
+   "probleme": "« virtuellement » calque de l'anglais « virtually » (= pratiquement).",
+   "proposition": "Les studios Orbitvu utilisent un fond rétroéclairé qui élimine pratiquement toutes les ombres indésirables."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "\"Une fois capturées, vous pouvez exporter vos images, photos à 360° et vidéos vers n'importe quelle destination dont vous avez besoin automatiquement avec les profils de publication prédéfinis définissant la taille, le format, le recadrage, la destination et bien plus encore\"",
+   "probleme": "Participe en tête qui ne se rapporte pas au sujet (« Une fois capturées, vous ») et ordre des mots anglais : citation manifestement traduite de l'anglais.",
+   "proposition": "« Une fois les prises de vue terminées, les profils de publication prédéfinis (taille, format, recadrage, destination, etc.) exportent automatiquement vos images, photos à 360° et vidéos là où vous en avez besoin »"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Ce niveau d'automatisation assure une cohérence irréprochable sur des séries entières de produits.L'interface intuitive permet de prévisualiser le résultat final en temps réel via le mode LiveView",
+   "probleme": "Espace manquante après le point (présente dans le HTML source).",
+   "proposition": "Ce niveau d'automatisation assure une cohérence irréprochable sur des séries entières de produits. L'interface intuitive permet de prévisualiser le résultat final en temps réel via le mode LiveView"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Un éclairage optimal est l'élément fondamental de la photographie de produits, après l'appareil photo lui-même.",
+   "probleme": "Contradiction interne : « l'élément fondamental » puis « après l'appareil photo ».",
+   "proposition": "Après l'appareil photo lui-même, un éclairage optimal est l'élément le plus important de la photographie de produits."
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "de la capture initiale jusqu'à la publication multi-canal.",
+   "probleme": "Orthographe : « multicanal » s'écrit soudé (de même « multisource » est recommandé plutôt que « multi-sources »).",
+   "proposition": "de la capture initiale jusqu'à la publication multicanal."
+  },
+  {
+   "langue": "fr",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Le modèle phare d'Orbitvu, l' Alphashot Pro G2 , révolutionne la notion même d'éclairage studio avec son système Virtual Lights . Il intègre précisément 74 sources lumineuses indépendantes",
+   "probleme": "« Il intègre précisément » : adverbe inutile, calque de « precisely ».",
+   "proposition": "Le modèle phare d'Orbitvu, l'Alphashot Pro G2, révolutionne la notion même d'éclairage studio avec son système Virtual Lights : 74 sources lumineuses indépendantes"
+  },
+  {
+   "langue": "fr",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "\" Plus besoin de techniques de détourage manuel chronophages ! IQ Mask vous aide à supprimer rapidement l'arrière-plan de votre photo tout en maintenant la haute qualité des images de produits\"",
+   "probleme": "Guillemets droits anglais pour toutes les citations du corps FR (4 citations) au lieu des guillemets français.",
+   "proposition": "« Plus besoin de techniques de détourage manuel chronophages ! IQ Mask vous aide à supprimer rapidement l'arrière-plan de votre photo tout en maintenant la haute qualité des images de produits »"
+  },
+  {
+   "langue": "fr",
+   "categorie": "structure",
+   "gravite": "mineur",
+   "emplacement": "faq",
+   "extrait_actuel": "Q: Pourquoi utiliser un studio photo automatisé au lieu d’un éclairage classique ?",
+   "probleme": "La réponse ne répond pas à la question : elle traite des surfaces réfléchissantes et de l'éclairage multi-sources ; le studio automatisé n'apparaît qu'en dernière phrase.",
+   "proposition": "Q: Comment photographier les produits réfléchissants ou translucides ?"
+  },
+  {
+   "langue": "fr",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"__wf_reserved_inherit\" src=/images/blog/67dbae7c9d6996c79db71abf.avif]",
+   "probleme": "6 images sur 10 avec l'alt réservé Webflow « __wf_reserved_inherit » (…1abf, …1aa9, …1a99, …1b07, …e498, …1aa5), identique en EN.",
+   "proposition": "Rédiger un alt descriptif propre à chaque image et à chaque langue."
+  },
+  {
+   "langue": "en",
+   "categorie": "titre_litteral",
+   "gravite": "majeur",
+   "emplacement": "title",
+   "extrait_actuel": "Product photography: to be sure of your lighting, multiply the sources",
+   "probleme": "Traduction mot à mot du title FR (« pour être sûr de votre éclairage, multipliez les sources ») : non idiomatique en anglais.",
+   "proposition": "Product photography: why multi-source lighting matters"
+  },
+  {
+   "langue": "en",
+   "categorie": "titre_litteral",
+   "gravite": "mineur",
+   "emplacement": "h1",
+   "extrait_actuel": "Product photography: the ideal multi-source lighting",
+   "probleme": "Calque du H1 FR (« l'éclairage multi-sources idéal »).",
+   "proposition": "Product photography: getting multi-source lighting right"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "One optimal lighting is the fundamental element of product photography, after the camera itself.",
+   "probleme": "Article indéfini « Un » traduit par le numéral « One » ; « lighting » indénombrable.",
+   "proposition": "After the camera itself, optimal lighting is the most important element of product photography."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "This precision is particularly crucial for demanding industries such as cosmetic , the jewelry Or the technical products , where the fidelity of colors and textures is a major commercial issue.",
+   "probleme": "Articles français calqués (« the jewelry », « the technical products »), majuscule parasite « Or », « cosmetic » adjectif, « enjeu » rendu par « issue ».",
+   "proposition": "This precision is particularly crucial in demanding industries such as cosmetics, jewellery and technical products, where faithful colours and textures are a major commercial concern."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "IQ Mask™ Technology: The Excellence of Automated Trimming",
+   "probleme": "« détourage » rendu par « trimming » (rognage) ; le terme métier est background removal / clipping / cut-out. Même erreur dans le corps : « revolutionizing the automatic cropping of images » (« cropping » = recadrage).",
+   "proposition": "IQ Mask™ technology: automated background removal at its best"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "Orbitvu studios stand out for their exclusive IQ Mask™ technology , which is revolutionizing the automatic cropping of images.",
+   "probleme": "« détourage automatique » traduit par « automatic cropping » (recadrage) : contresens métier.",
+   "proposition": "Orbitvu studios stand out for their exclusive IQ Mask™ technology, which is revolutionising automatic background removal."
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "bloquant",
+   "emplacement": "corps",
+   "extrait_actuel": "The products cosmetics , like this care, require precise lighting so that the packaging is perfectly legible and that the shades of white are correctly rendered.",
+   "probleme": "Ordre des mots français (« The products cosmetics ») et « ce soin » traduit par « this care » : phrase incompréhensible.",
+   "proposition": "Cosmetic products such as this skincare item need precise lighting so that the packaging is perfectly legible and the different shades of white are rendered correctly."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "White goods like these sneakers perfectly demonstrate the importance of multiple lighting.",
+   "probleme": "« Les produits blancs » traduit par « White goods », qui désigne en anglais le gros électroménager : contresens.",
+   "proposition": "White products such as these sneakers clearly show the importance of multi-source lighting."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "With multi-source lighting, transparency is perfectly rendered while maintaining the visibility of the label, while unique lighting creates problematic reflections.",
+   "probleme": "« éclairage unique » traduit par « unique lighting » (éclairage exceptionnel) au lieu de « single-source lighting » ; idem « while the unique lighting flattens out the details ».",
+   "proposition": "With multi-source lighting, transparency is rendered perfectly and the label stays legible, whereas a single light source creates troublesome reflections."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "The Alphashot Pro G2 integrates a dedicated artificial intelligence to the automatic optimization of lighting. THE AI Photo Assistant analyzes the product instantly",
+   "probleme": "« L' » rendu par « THE » en capitales ; préposition calquée (« dedicated … to the »).",
+   "proposition": "The Alphashot Pro G2 includes AI dedicated to optimising lighting automatically. The AI Photo Assistant instantly analyses the product"
+  },
+  {
+   "langue": "en",
+   "categorie": "incomprehensible",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "THE closed environment studios like the Alphashot XL ensures that no stray light interferes with controlled lighting.",
+   "probleme": "« L'environnement fermé des studios » mal découpé : sujet incompréhensible, « THE » en capitales.",
+   "proposition": "The enclosed design of studios such as the Alphashot XL ensures that no stray light interferes with the controlled lighting."
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "majeur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "A perfectly united background",
+   "probleme": "« fond uni » traduit par « united » (réuni) : contresens ; le corps dit correctement « perfectly plain background ».",
+   "proposition": "A perfectly plain background"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "The system allows remember workflow settings and to reactivate them with a simple click for coherent series.",
+   "probleme": "Construction agrammaticale (« allows remember »).",
+   "proposition": "The system can save workflow settings and recall them in a single click for consistent series."
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "majeur",
+   "emplacement": "corps",
+   "extrait_actuel": "By combining a sophisticated lighting system With a dedicated artificial intelligence And a intuitive software , Orbitvu offers a comprehensive solution that greatly simplifies the creation of professional visual content.",
+   "probleme": "Majuscules parasites (« With », « And »), « a intuitive software » ; même défaut dans « THE Alphashot Pro G2 With its 74 independent light sources » et « intelligent automation And of technical precision ».",
+   "proposition": "By combining a sophisticated lighting system with dedicated AI and intuitive software, Orbitvu offers a comprehensive solution that greatly simplifies the creation of professional visual content."
+  },
+  {
+   "langue": "en",
+   "categorie": "unites_dates_legendes_alt",
+   "gravite": "majeur",
+   "emplacement": "alt",
+   "extrait_actuel": "[IMG alt=\"technique photo packshot bouteille transparente avec éclairages différents\" src=/images/blog/67d1c124221dd7b45ff5086a.avif]",
+   "probleme": "Les 4 alts informatifs sont en français (« photo crayons de couleurs avec 2 éclairages différents », « technique photo packshot éclairage packaging blanc », « technique photo packshot bouteille transparente avec éclairages différents », « technique photo packshot basket blanche avec éclairages différents ») ; les 6 autres sont « __wf_reserved_inherit ».",
+   "proposition": "Packshot lighting comparison: transparent bottle under multi-source vs single-source lighting"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "The multi-core treatment takes full advantage of the power of modern processors and 64-bit architecture to offer a exceptional computing efficiency",
+   "probleme": "« traitement » (informatique) rendu par « treatment » au lieu de « processing » ; « a exceptional ».",
+   "proposition": "Multi-core processing takes full advantage of modern processors and 64-bit architecture for exceptional computing efficiency"
+  },
+  {
+   "langue": "en",
+   "categorie": "faux_ami_terminologie",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "This light insulation , combined with the specific materials of the interior panels",
+   "probleme": "« isolation lumineuse » : « insulation » désigne l'isolation thermique/électrique.",
+   "proposition": "This light sealing, combined with the specific materials of the interior panels"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Let's find out how automated studios Orbitvu are revolutionizing the professional lighting approach",
+   "probleme": "Ordre des mots français (« studios Orbitvu »).",
+   "proposition": "Let's see how Orbitvu automated studios are revolutionising professional lighting"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "Orbitvu photo studios work thanks to a integrated software control system",
+   "probleme": "« work thanks to » calque de « fonctionnent grâce à » ; « a integrated ».",
+   "proposition": "Orbitvu photo studios are driven by an integrated software control system"
+  },
+  {
+   "langue": "en",
+   "categorie": "traduction_automatique",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "revolutionizes the very concept of studio lighting with its system Virtual Lights .",
+   "probleme": "Ordre des mots français (« son système Virtual Lights »).",
+   "proposition": "revolutionises the very concept of studio lighting with its Virtual Lights system."
+  },
+  {
+   "langue": "en",
+   "categorie": "title_case",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "“All you need is One click , and our custom AI network will recognize your product",
+   "probleme": "Majuscule parasite (« One ») issue de « un clic ».",
+   "proposition": "“All it takes is one click, and our custom AI network will recognise your product"
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "This lighting allows you to highlight textures, details and control highlights and shadows “, underlines Stéphane Gormand .",
+   "probleme": "Guillemet fermant ouvrant (“) au lieu de (”) ; « underlines » calque de « souligne » (« stresses », « points out »).",
+   "proposition": "This lighting allows you to highlight textures and details and to control highlights and shadows,” points out Stéphane Gormand."
+  },
+  {
+   "langue": "en",
+   "categorie": "autre",
+   "gravite": "mineur",
+   "emplacement": "intertitre",
+   "extrait_actuel": "The Alphashot Pro G2:74 Independent Light Sources",
+   "probleme": "Espace manquante après les deux-points.",
+   "proposition": "The Alphashot Pro G2: 74 Independent Light Sources"
+  },
+  {
+   "langue": "en",
+   "categorie": "calque",
+   "gravite": "mineur",
+   "emplacement": "corps",
+   "extrait_actuel": "The software Orbitvu Station integrates all the necessary post-processing tools",
+   "probleme": "Ordre des mots français (« Le logiciel Orbitvu Station »).",
+   "proposition": "Orbitvu Station software includes all the necessary post-processing tools"
+  }
+ ],
+ "claims_a_reverifier": [
+  {
+   "langue": "toutes",
+   "extrait": "Il intègre précisément 74 sources lumineuses indépendantes positionnées stratégiquement autour du produit.",
+   "source_dans_texte": "lien vers la fiche produit /fr/studio-photo/alphashot-pro-g2 (sur le nom du modèle)",
+   "motif": "Donnée technique ; cohérente avec components/machine-selector/lib/machines.ts (« 74 sources lumineuses pour objets complexes »).",
+   "ecart_fr_en": "EN identique (« 74 independent light sources »)."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "offrant une flexibilité sans précédent pour mettre en valeur n'importe quel type de produit",
+   "source_dans_texte": "aucune",
+   "motif": "Superlatif (« sans précédent », « n'importe quel type »).",
+   "ecart_fr_en": "EN « unprecedented flexibility to highlight any type of product »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les studios Orbitvu se distinguent par leur technologie exclusive IQ Mask™ , qui révolutionne le détourage automatique des images.",
+   "source_dans_texte": "lien externe orbitvu.com (blog fabricant)",
+   "motif": "« exclusive », « révolutionne », « supprime instantanément les arrière-plans » : promesses non vérifiées indépendamment.",
+   "ecart_fr_en": "EN « exclusive IQ Mask™ technology … removes backgrounds instantly »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Cette technologie préserve même les ombres naturelles et les reflets, permettant de photographier efficacement des objets transparents, réfléchissants ou aux contours complexes .",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse de résultat sur des cas réputés difficiles.",
+   "ecart_fr_en": "EN identique."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Ce niveau de contrôle lumineux était jusqu'alors réservé aux studios professionnels équipés de multiples flashs et softboxes",
+   "source_dans_texte": "aucune",
+   "motif": "Affirmation d'antériorité.",
+   "ecart_fr_en": "EN « Until now, this level of light control was reserved… »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les studios Orbitvu utilisent un système de fond rétroéclairé qui élimine virtuellement toutes les ombres indésirables. Cette technologie assure un arrière-plan parfaitement uni , idéal pour obtenir un fond blanc pur ou toute autre couleur uniforme sans post-traitement complexe.",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse « parfaitement uni », « fond blanc pur ».",
+   "ecart_fr_en": "EN « virtually eliminates all unwanted shadows … perfectly plain background »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Les studios Orbitvu offrent une automatisation complète , de la capture initiale jusqu'à la publication multi-canal.",
+   "source_dans_texte": "aucune",
+   "motif": "« automatisation complète ».",
+   "ecart_fr_en": "EN « a full automation »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "Auto Retoucher qui élimine automatiquement les imperfections de surface, les rayures et les empreintes digitales",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse fonctionnelle.",
+   "ecart_fr_en": "EN identique."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "permettre à quiconque de créer des images de qualité studio sans expertise photographique particulière, tout en offrant aux professionnels un niveau de contrôle inégalé",
+   "source_dans_texte": "aucune",
+   "motif": "Superlatifs (« inégalé », « combinaison unique », « efficacité et une cohérence sans précédent »).",
+   "ecart_fr_en": "EN « unsurpassed level of control », « unique combination », « unprecedented efficiency »."
+  },
+  {
+   "langue": "toutes",
+   "extrait": "désormais distributeur des solutions Orbitvu en France",
+   "source_dans_texte": "lien LinkedIn de la personne",
+   "motif": "Fonction de la personne et statut de distributeur datés (« désormais », article de mars 2025) ; à confirmer.",
+   "ecart_fr_en": "EN « now distributor of Orbitvu solutions in France »."
+  },
+  {
+   "langue": "fr",
+   "extrait": "Photographie de produits : maîtrisez l’éclairage multi-sources pour des visuels parfaits",
+   "source_dans_texte": "aucune",
+   "motif": "Promesse « visuels parfaits » dans le metaTitle.",
+   "ecart_fr_en": "EN « for perfect visuals »."
+  }
+ ],
+ "titre_h1_meta": "FR : title « Photographie de produits : pour être sûr de votre éclairage, multipliez les sources », H1 « Photographie produit : l’éclairage multi-sources idéal », metaTitle « … maîtrisez l’éclairage multi-sources pour des visuels parfaits » (88 caractères, trop long) ; trois formulations divergentes ; description 218 caractères (trop longue), centrée sur Orbitvu. Le corps est pour moitié une présentation produit Orbitvu (détourage, workflow, retouche) : le titre « éclairage » ne couvre qu'une partie du contenu. EN : title traduit mot à mot (« to be sure of your lighting, multiply the sources »), H1 calqué ; metaTitle (69 caractères) et description corrects.",
+ "structure_fr_en": "Parité stricte FR/EN : 5 h2, 9 h3, 40 p, 10 images, 2 vidéos YouTube, 5 FAQ, même ordre. 23 paragraphes vides à caractère invisible (U+200D) dans les deux langues, hérités de Webflow. FAQ « Pourquoi utiliser un studio photo automatisé au lieu d’un éclairage classique ? » hors sujet par rapport à sa question (FR et EN).",
+ "images_alt_legendes": "10 images, pas de légende textuelle. 6 alts « __wf_reserved_inherit » dans les deux langues. Les 4 alts informatifs sont en français et identiques dans la version EN (« photo crayons de couleurs avec 2 éclairages différents », « technique photo packshot éclairage packaging blanc », « technique photo packshot bouteille transparente avec éclairages différents », « technique photo packshot basket blanche avec éclairages différents ») ; ils sont en outre bourrés de mots-clés (« technique photo packshot »).",
+ "appellations": "Orbitvu, Alphashot Pro G2, Alphashot XL, Orbitvu Station, IQ Mask™, Virtual Lights, AI Photo Assistant, Auto Retoucher : cohérents. Marque du distributeur : le HTML écrit deux fois « Packshot<em>Creator</em> » (rendu « PackshotCreator » avec « Creator » en italique, style de l'ancienne marque) et une fois « PackshotCreator » sans italique ; harmonisation typographique facultative, pas d'erreur d'appellation. Champ auteur passé de « Laurent Wainberg » (import Webflow) à « PackshotCreator » (commit 8ae45f63). Citations attribuées à Stéphane Gormand dont certaines semblent reprendre la communication d'Orbitvu (« notre réseau d'IA personnalisé ») : attribution à valider.",
+ "recommandation": "retraduction complète",
+ "remarques": "Recommandation par langue : EN retraduction complète ; FR réécriture partielle (intertitres en casse française, citations à vérifier et réécrire, metaTitle/description raccourcis). Faits datés : fonction de Stéphane Gormand et mention « désormais distributeur des solutions Orbitvu en France » (article de mars 2025) à confirmer. Liens externes vers orbitvu.com (software, blog IQ Mask, blog AI Photo Assistant) et LinkedIn à contrôler (non vérifiés, aucun accès web). Les liens EN /en/industrie/cosmetiques-beaute etc. correspondent à la route app/[lang]/industrie/[slug] (slugs français par construction). Ton très promotionnel (« révolutionne » ×4, « sans précédent » ×2, « inégalé », « unique ») pour un article de blog."
+}

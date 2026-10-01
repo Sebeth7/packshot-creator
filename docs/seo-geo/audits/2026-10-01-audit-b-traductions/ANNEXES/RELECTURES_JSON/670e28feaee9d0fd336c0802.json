@@ -1,0 +1,245 @@
+{
+  "family": "670e28feaee9d0fd336c0802",
+  "slugs": {
+    "fr": "photographie-de-produits-a-360-degres-en-interne",
+    "en": "photographie-de-produits-a-360-degres-en-interne",
+    "de-ch": null
+  },
+  "sujet": "Page de présentation commerciale des plateaux tournants, studios photo 360° et du logiciel « PackshotCreator » (bijoux, mannequins, formats d'export, animations HTML5), rédigée à la première personne du fabricant.",
+  "langue_originale": "SOURCE ORIGINALE NON ÉTABLIE",
+  "preuve_langue": "Il n'existe qu'une seule rédaction : la version EN est une copie intégrale du texte français (contenu HTML identique au FR une fois les attributs href retirés ; seuls les liens internes ont été repointés vers des cibles /en/). [Inférence] direction probable EN → FR pour le texte français lui-même, d'après des calques de l'anglais : « un éclairage consistant » (consistent lighting), « des procédures opérationnelles permanentes » (standard operating procedures), « une expérience tactile avec vos produits », « ajouter un zoom profond » (deep zoom), « une expérience plus amusante » (fun), termes d'interface laissés en anglais (« Custom Defined », « cliquez sur \"snap\" »). Ces indices ne suffisent pas à établir une source : aucun texte anglais n'existe dans le dépôt ni dans l'import Webflow.",
+  "qualite": {
+    "fr": "C",
+    "en": "X",
+    "de-ch": null
+  },
+  "justification_qualite": {
+    "fr": "Texte compréhensible mais daté et maladroit : faux ami « éclairage consistant », faute d'accord « une plateau tournant », calques opaques (« procédures opérationnelles permanentes », « profils HTML5 », « expérience tactile »), espaces manquantes après point (« suspendu.Avec », « autres.En »), mise en gras commençant au milieu d'un mot, « ecommerce » sans trait d'union, guillemets droits. Éditorialement : page produit à la première personne (« Nous développons », « Nous concevons ») présentant comme actuels un logiciel « PackshotCreator », des produits « Packshot Alto Mark II » et « PackshotSpin XL » et un plateau « breveté », à revalider ; aucun H2, metaTitle absent, aucune catégorie ni auteur.",
+    "en": "X : contenu intégralement en français servi sous /en/blog/ avec un slug français. Title, H1 (« Photographie de produits à 360 degrés en interne »), corps, intertitres, puces et 14 textes alternatifs sont en français ; seule la meta description est en anglais (« 360° photo studios with turntables and integrated LED lighting… »). Page servie en 200 avec <html lang=\"en\">, meta robots « noindex, follow », canonical vers elle-même, hreflang uniquement vers la version FR, absente du sitemap ; le slug figure dans NOINDEX_EN_BLOG_SLUGS (lib/seo-config.ts). Les liens internes du texte français pointent vers des articles anglais (/en/guide/360-animation-focus-stacking, /en/blog/360-photos-marketplaces, etc.).",
+    "de-ch": null
+  },
+  "nb_erreurs_estime": {
+    "fr": 21,
+    "en": 1,
+    "de-ch": null
+  },
+  "erreurs": [
+    {
+      "langue": "en",
+      "categorie": "melange_linguistique",
+      "gravite": "bloquant",
+      "emplacement": "corps",
+      "extrait_actuel": "Nous développons des plateaux tournants et des studios photo professionnels à 360° avec un éclairage consistant et un logiciel puissant , dédiés à la création d'animations de produits à 360° en interne.",
+      "probleme": "La version EN (/en/blog/photographie-de-produits-a-360-degres-en-interne) sert le texte français intégral : title, H1, 12 intertitres H3/H4, 13 paragraphes, 20 puces, 14 alts et la légende. Seule la meta description est en anglais. Page déclarée lang=\"en\", noindex, follow, hors sitemap. Il n'existe aucune traduction anglaise.",
+      "proposition": "Arbitrage : rédiger une vraie version anglaise avec un slug anglais (puis retirer le slug de NOINDEX_EN_BLOG_SLUGS et ajouter le hreflang en), ou retirer la page /en (redirection vers la version FR ou 410), selon la décision éditoriale."
+    },
+    {
+      "langue": "en",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "majeur",
+      "emplacement": "description",
+      "extrait_actuel": "360° photo studios with turntables and integrated LED lighting: specialized solutions for jewelry, mannequins and PackshotCreator automation software.",
+      "probleme": "Description anglaise ajoutée après l'import (commit e0482993) sur une page dont le title, le H1 et le corps sont en français : incohérence de langue entre snippet et page.",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "faux_ami_terminologie",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "avec un éclairage consistant et un logiciel puissant",
+      "probleme": "Faux ami : « consistant » (épais, substantiel) employé pour « consistent » (homogène, constant). Terme mis en gras dans la première phrase.",
+      "proposition": "avec un éclairage homogène et un logiciel puissant"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "une plateau tournant rétroéclairé et un logiciel unique",
+      "probleme": "Faute d'accord (plateau est masculin).",
+      "proposition": "un plateau tournant rétroéclairé et un logiciel"
+    },
+    {
+      "langue": "fr",
+      "categorie": "incomprehensible",
+      "gravite": "majeur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nos flux de travail ont été spécialement conçus pour des procédures opérationnelles permanentes tout en conservant la capacité d'être créatif.",
+      "probleme": "« procédures opérationnelles permanentes » (calque probable de « standard operating procedures ») est opaque pour un lecteur e-commerce.",
+      "proposition": "Nos flux de travail ont été conçus pour des procédures standardisées et reproductibles, tout en laissant place à la créativité."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Nos plateaux tournants et nos studios de photographie de produits à 360° font partie d'un flux de travail important.",
+      "probleme": "Tournure calquée et vide de sens (« font partie d'un flux de travail important »).",
+      "proposition": "Nos plateaux tournants et nos studios de photographie de produits à 360° s'intègrent dans un flux de travail complet."
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "les meilleurs réglages peuvent être réutilisés pour faciliter et accélérer la productivité",
+      "probleme": "Collocation incorrecte : on n'accélère pas la productivité.",
+      "proposition": "les meilleurs réglages peuvent être réutilisés pour gagner en rapidité et en productivité"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Offrez à vos clients une expérience tactile avec vos produits en créant des profils HTML5. Ce format permet aux utilisateurs de personnaliser entièrement leurs animations : définir ses paramètres de rotation et sa vitesse, ajouter un zoom profond",
+      "probleme": "« expérience tactile », « profils HTML5 » et « zoom profond » sont des calques peu clairs ; incohérence « leurs animations » / « ses paramètres ».",
+      "proposition": "Offrez à vos clients une expérience interactive en créant des animations HTML5. Ce format permet de personnaliser entièrement les animations : définir les paramètres de rotation et la vitesse, ajouter un zoom haute définition"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "en mode suspendu.Avec ses diverses options",
+      "probleme": "Espace manquante après le point (même défaut : « réseaux sociaux et autres.En plus d'être »).",
+      "proposition": "en mode suspendu. Avec ses diverses options"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Ils ont été s pécialement conçus",
+      "probleme": "Dans le HTML, la mise en gras commence au milieu du mot (« s<strong>pécialement… ») ; même défaut pour « pour c haque usage » (« c<strong>haque usage… »).",
+      "proposition": "Ils ont été spécialement conçus (gras sur le mot entier ou supprimé)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "pour le ecommerce, les réseaux sociaux ou encore l'archivage de produits",
+      "probleme": "Graphie « ecommerce » sans trait d'union et sans élision (aussi « pour un site ecommerce » et l'alt « créer des animations 360 pour le ecommerce »).",
+      "proposition": "pour l'e-commerce, les réseaux sociaux ou encore l'archivage de produits"
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "intertitre",
+      "extrait_actuel": "Fonctionnalité \"Custom Defined\"",
+      "probleme": "Nom de fonctionnalité anglais non expliqué, entre guillemets droits (de même « cliquez sur \"snap\" »). L'anomalie automatique « titlecase_intertitre » est infirmée : il s'agit d'un nom de fonction logicielle, pas d'un Title Case.",
+      "proposition": "Fonctionnalité « Custom Defined » (angles prédéfinis)"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Faire des achats en ligne une expérience plus amusante",
+      "probleme": "Calque probable de « fun ».",
+      "proposition": "Rendre les achats en ligne plus ludiques"
+    },
+    {
+      "langue": "fr",
+      "categorie": "calque",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "De plus en plus d'entreprises adoptent continuellement de meilleures approches pour communiquer la valeur et les détails de leurs produits.",
+      "probleme": "« De plus en plus » et « continuellement » redondants ; tournure lourde.",
+      "proposition": "De plus en plus d'entreprises cherchent de meilleures façons de mettre en valeur leurs produits et leurs détails."
+    },
+    {
+      "langue": "fr",
+      "categorie": "autre",
+      "gravite": "mineur",
+      "emplacement": "corps",
+      "extrait_actuel": "Du positionnement du produit, l'automatisation de la capture, à l'édition par lots et à l'exportation",
+      "probleme": "Énumération mal construite (« Du … à … »).",
+      "proposition": "Du positionnement du produit à l'exportation, en passant par l'automatisation de la capture et l'édition par lots"
+    },
+    {
+      "langue": "fr",
+      "categorie": "unites_dates_legendes_alt",
+      "gravite": "mineur",
+      "emplacement": "alt",
+      "extrait_actuel": "[IMG alt=\"\" src=/images/blog/67dbae7c2484dbfd03b4db7f.avif]",
+      "probleme": "Deux images de contenu sans texte alternatif (67dbae7c2484dbfd03b4db7f.avif et 67dbae7c2484dbfd03b4db6b.avif) ; alt « Studio photo 360 » avec espace finale ; légende de l'iframe composée uniquement de caractères BOM (U+FEFF).",
+      "proposition": null
+    },
+    {
+      "langue": "fr",
+      "categorie": "incoherence_seo_h1_corps",
+      "gravite": "mineur",
+      "emplacement": "metaTitle",
+      "extrait_actuel": "Photographie de produits à 360 degrés en interne",
+      "probleme": "metaTitle absent (le title sert de balise <title>) ; pas de H2 (12 H3 seulement) ; ni catégorie, ni auteur, ni temps de lecture : page de type landing produit importée dans le blog.",
+      "proposition": null
+    }
+  ],
+  "claims_a_reverifier": [
+    {
+      "langue": "toutes",
+      "extrait": "Nos best-sellers, les studios photo entièrement automatisés sont composés d'un plateau tournant rétroéclairé breveté",
+      "source_dans_texte": "aucune",
+      "motif": "Brevet affirmé (repris : « plateaux tournants rétroéclairés et brevetés par PackshotCreator », « Les plateaux tournants 360 brevetés et perfectionnés ») : titulaire et validité à vérifier.",
+      "ecart_fr_en": "aucun (texte identique)"
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Notre logiciel puissant et facile à utiliser permet à n'importe quel membre de votre entreprise de créer des animations à 360 degrés en quelques secondes",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de délai (« en quelques secondes », répétée plus bas).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "un logiciel unique qui automatise l'ensemble des flux de production photo",
+      "source_dans_texte": "aucune",
+      "motif": "Superlatif « unique ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Ils ont été s pécialement conçus pour répondre aux besoins de tous les secteurs d'activités",
+      "source_dans_texte": "aucune",
+      "motif": "Généralisation « tous les secteurs ».",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Depuis 2001, Packshot Creator développe des plateaux tournants et des studios photo 360° pour la photographie de produits.",
+      "source_dans_texte": "aucune",
+      "motif": "Date cohérente avec la décision de date de création 2001 (docs/seo-geo/DECISIONS.md) ; en revanche l'affirmation « développe » (fabricant) et l'existence actuelle du « logiciel PackshotCreator » sont à confirmer : l'article « logiciel-packshotcreator-ortery-perdu-solution » présente Ortery comme éditeur des logiciels PackshotCreator et PackshotSpin.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Augmenter les taux de conversion",
+      "source_dans_texte": "aucune",
+      "motif": "Bénéfices 360° présentés sans chiffre ni source (conversion, retours, confiance).",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "Des plugins personnalisés et un guide d'utilisation à 360 degrés sont offerts gratuitement aux clients de Packshot Creator",
+      "source_dans_texte": "aucune",
+      "motif": "Engagement commercial (gratuité) à confirmer dans l'offre actuelle.",
+      "ecart_fr_en": null
+    },
+    {
+      "langue": "toutes",
+      "extrait": "vos animations 360° de produits seront compatibles sur toutes les plateformes et visibles sans plug-in additionnel !",
+      "source_dans_texte": "aucune",
+      "motif": "Promesse de compatibilité universelle.",
+      "ecart_fr_en": null
+    }
+  ],
+  "titre_h1_meta": "FR : title = H1 = « Photographie de produits à 360 degrés en interne », metaTitle absent ; description ajoutée après l'import (commit e0482993), cohérente avec le corps (studios 360°, bijoux, mannequins, logiciel). EN : title et H1 en français, description en anglais, corps en français : incohérence totale ; la page est en noindex, follow et sans hreflang en.",
+  "structure_fr_en": "Le contenu EN est strictement identique au FR (HTML identique hors attributs href) : mêmes 12 intertitres, 13 paragraphes, 20 puces, 14 images, 2 iframes. Seuls les 12 liens internes diffèrent : repointés vers des cibles /en/ (par ex. « studios photo professionnels à 360° » → /en/guide/360-animation-focus-stacking, « logiciel PackshotCreator » → /en/blog/orbitvu-automation-for-3d-360-product-photography, « plateaux tournants et des studios photo 360° » → /en/studio-photo/selecteur-machines). Dates différentes : FR 2024-10-15, EN 2024-11-08 (création de la locale EN Webflow). Aucune FAQ dans les deux langues.",
+  "images_alt_legendes": "14 images, alts en français dans les deux versions (6 signalés en EN par le contrôle automatique, en réalité les 12 alts non vides sont français) ; 2 alts vides sur des images de contenu ; alt « Studio photo 360 » avec espace finale ; « 360 » sans « ° » dans plusieurs alts ; légende d'iframe faite de 6 caractères BOM invisibles. Iframe tierce saasphoto.com (démonstration « Drill_360 ») et vidéo YouTube 4GezuaP_GJ4 non vérifiées (pas d'accès web).",
+  "appellations": "Le nom s'écrit partout « PackshotCreator » à l'affichage : les 7 occurrences « Packshot Creator » de l'extrait sont un artefact d'extraction, le HTML étant « Packshot<em>Creator</em> » (« Creator » en italique, style de l'ancienne marque) ; les autres occurrences sont « PackshotCreator » sans italique — hétérogénéité de mise en forme seulement, pas d'erreur d'appellation. Produits nommés « Packshot Alto Mark II (L et XL) » et « PackshotSpin XL », logiciel « PackshotCreator » : présentés comme gamme actuelle du site, alors que le lien « logiciel Packshot Creator » mène à l'article Orbitvu et qu'un autre article du blog (logiciel-packshotcreator-ortery-perdu-solution) renvoie vers Ortery pour les logiciels PackshotCreator/PackshotSpin. Orbitvu n'est jamais nommé dans le texte. Cohérence avec l'offre actuelle à faire valider par l'humain.",
+  "recommandation": "arbitrage éditorial",
+  "remarques": "Arbitrage requis sur deux points : (1) la page /en sert du français (X) — créer une vraie traduction avec slug anglais ou retirer la page ; (2) le FR est une ancienne page produit rédigée par un fabricant (« Nous développons », « Nous concevons », brevets, produits Packshot Alto Mark II / PackshotSpin XL, logiciel PackshotCreator) dont l'actualité doit être confirmée avant toute réécriture partielle. Une règle explicite pour ce slug n'a pas été trouvée dans cloudflare-worker/src/index.js (recherche textuelle) ; la page /en répond 200 sur l'origine avec noindex, follow. Le commentaire de app/sitemap.ts indique que les slugs EN noindex « sont 301 vers /fr via le Worker », ce qui n'est pas vérifiable ici (R4) et ne concerne explicitement que les articles statiques."
+}
