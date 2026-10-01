@@ -34,6 +34,70 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Inter auto-hébergée, itération 2 : sous-ensembles et repli d'origine · Claude de Laurent
+
+**Chantier** : fiabilité du build, suite de l'entrée du 30/09 ci-dessous | **PR** : #72, brouillon, non fusionnée | **Base** : `main` `8ec89c1`
+
+**Quoi** — Les fichiers servis passent des fichiers officiels complets (114 840 o) à des sous-ensembles dérivés de ces fichiers (34 200 o). Les sources officielles restent archivées, non servies, dans `app/fonts/inter/source/`. La police de repli `Inter Fallback` reprend les métriques que `next/font/google` générait avant #72.
+
+**Pourquoi** — Revue de Laurent du 01/10 : principe validé, poids des fichiers complets non validé (+90 384 o par page). Un second écart a été trouvé pendant l'itération. Le repli recalculé par `next/font/local` (`size-adjust` 111,36 % contre 107,12 % sur `main`), mesuré avec une police « Arial » simulée, faisait passer le CLS au chargement de `/fr/packshot-mode` à 390 px de 0,0001 à 0,0339. Il élargissait aussi de 5,06 px les titres contenant « → ». Cet écart existait depuis la première version de #72 ; cette page n'avait pas été mesurée.
+
+**Fichiers** — `app/fonts/inter/Inter-Bold-subset.woff2`, `app/fonts/inter/Inter-SemiBold-subset.woff2`, `app/fonts/inter/subset-unicodes.txt`, `app/fonts/inter-fallback.css` (nouveaux) ; `app/fonts/inter/source/Inter-Bold.woff2`, `app/fonts/inter/source/Inter-SemiBold.woff2` (déplacés, inchangés) ; `app/fonts/inter.ts`, `app/etude-clients-2026/layout.tsx`, `app/fonts/inter/PROVENANCE.md`. `LICENSE.txt` inchangé.
+
+**Sous-ensemble** — Commande `pyftsubset` (fontTools 4.66.1, brotli 1.2.0) dans `PROVENANCE.md`. 359 codepoints :
+- Latin-1 tel que Google le servait (225) ;
+- Latin étendu A (124) ;
+- Ș ș Ț ț et ẞ (5) ;
+- U+202F, U+2007, U+2010-2012 (5).
+
+`unicode-range` déclare 354 codepoints : les 5 derniers, absents des fichiers Google, restent au repli comme « → ». Toutes les fonctionnalités OpenType, les métriques et la table `name` sont conservées.
+
+Choix de couverture, mesuré en Bold :
+
+| Couverture | Taille |
+|---|---|
+| Latin-1 seul | 29 924 o |
+| Retenue (Latin-1 + Latin étendu A + ș ț ẞ) | 34 200 o |
+| Latin-1 + tout le latin-ext Google | 57 480 o |
+| Toute l'ancienne couverture Google | 78 424 o |
+
+Passent d'Inter au repli : Latin étendu B hors Ș ș Ț ț, l'alphabet phonétique, le vietnamien, le grec et le cyrillique. Aucun n'apparaît dans le texte rendu en Inter : 115 caractères distincts sur les 357 pages prérendues, plus `/etude-clients-2026` et `/roi-pro`.
+
+**Poids de police téléchargé** (mesuré à froid, identique à 1440 et 390 px) :
+
+| Route | `main` `8ec89c1` | Fichiers complets | Sous-ensembles | Écart avec `main` |
+|---|---|---|---|---|
+| Page standard `[lang]` | 24 456 o | 114 840 o | 34 200 o | +9 744 o |
+| Routes ROI | 24 456 o | 114 840 o | 34 200 o | +9 744 o |
+| `/etude-clients-2026` | 48 432 o | 229 652 o | 68 400 o | +19 968 o |
+
+Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
+
+**Vérifié** —
+- **Sous-ensembles.** SHA-256 identiques sur deux exécutions. La `cmap` correspond exactement à `subset-unicodes.txt`. Métriques verticales, `xAvgCharWidth` et avances identiques à la source. Façonnage HarfBuzz identique au fichier complet sur 3 019 chaînes (corpus du site et chaînes de test FR, DE, prix, ponctuation), en 700 et en 600.
+- **Builds.** `npx next build` vert avec réseau, et vert dans un espace de noms sans réseau (Google et npm injoignables, contrôlé par `curl`) : 371/371 pages. 0 `next/font/google` dans le code ; 0 référence Google Fonts dans `.next` hors `@vercel/og`. CSS compilée identique à `main` hors `@font-face` et classes de module de police.
+- **Parité, `main` contre branche.** 19 pages en 1440 et 390 px, dont `/fr/packshot-mode`, les routes ROI et l'étude. Statuts 200. Hauteurs de page identiques. 1 360 éléments rendus en Inter : écart max de largeur de texte 0,016 px, 0 retour à la ligne modifié, graisse, taille et interligne identiques. Écart max par catégorie : H1/H2 (286) 0,016 px ; accents (420) 0,016 px ; allemand (50) 0,000 px ; prix en € (18) 0,001 px ; ponctuation (332) 0,016 px ; titres à « → » ou U+202F (12) 0,000 px.
+- **Police réellement utilisée par nœud** (`CSS.getPlatformFontsForNode`), identique sur `main` et la branche :
+  - en Inter : chaînes de test FR, DE (dont ẞ), européennes (Ł Š Ő Ş Ț Ÿ), ponctuation, U+00A0 et U+202F ;
+  - au repli : « → », U+2010 et U+2011.
+- **CLS au remplacement de police** (police retardée de 1,5 s ; 9 pages × 2 largeurs × 3 mesures) : identique à `main`, sans Arial comme avec Arial simulé. Seule exception : `/etude-clients-2026` à 390 px, 0,0084 contre 0,0083 sur une mesure sur trois. Titres à « → » avec Arial simulé : 0,00 px d'écart.
+- **Captures.** Différences confinées à l'anticrénelage des bords des lettres Inter, identiques au pixel près à celles de la version complète sur les pages sans animation. Sur les accueils, s'y ajoutent les zones animées, présentes aussi entre deux rendus de `main`.
+- **Tests.**
+  - `verifier-json` : 180 fichiers valides.
+  - `tsc` : 0 erreur.
+  - Vitest : 17 fichiers, 346/346.
+  - ESLint ciblé : 0 erreur, 0 avertissement.
+  - `smoke.mjs` en local : vert, identique à `main`.
+  - Playwright (`seo`, `responsive`, `mobile-overflow`, `language-switch`, `internal-links`, `roi-calculator`) : 279 réussis et 46 échecs sur `main` comme sur la branche, listes identiques.
+
+**Supposé** — Que la police Arial réelle de Windows et macOS donne les mêmes résultats que Liberation Sans renommée « Arial » : ses chasses sont compatibles avec Arial. Qu'un contenu futur reste en alphabet latin européen ; sinon, les caractères hors couverture passent au repli, comme « → » aujourd'hui.
+
+**Non regardé** — Firefox et Safari ; le Preview Vercel (jeton de contournement non transmis) ; `www` derrière Cloudflare ; Lighthouse ; les réponses générées du calculateur ROI.
+
+**Suite** — Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis contrôle dans Chrome sur `www` (onglet Réseau : un seul `Inter_Bold_subset*.woff2` de 34 200 o, aucune requête Google Fonts). Pour ajouter un caractère : `subset-unicodes.txt`, relancer la commande de `PROVENANCE.md`, puis mettre à jour `unicode-range` dans les deux appels. Rollback : `git revert -m 1 <commit de fusion de #72>` puis push sur `main`.
+
+---
+
 ## 2026-09-30 · Inter auto-hébergée : le build ne dépend plus de Google Fonts · Claude de Laurent
 
 **Chantier** : hors chantier SEO — fiabilité du build, demande de Sébastien relayée par Laurent | **PR** : #72, brouillon, non fusionnée | **Commit** : `2a587ad` | **Base** : `main` `a8c85ca` (#69), synchronisée par fusion avec `main` `8ec89c1` (#71)
