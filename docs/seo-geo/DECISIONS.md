@@ -25,6 +25,57 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D42 · 2026-10-01 · Standard éditorial PackshotCreator : circuit complet en huit étapes
+
+**Décidé par** : Laurent
+**Statut** : en vigueur — portée : tous les articles, landings, hubs et contenus éditoriaux, PR déjà ouvertes comprises, sans annuler les travaux antérieurement validés
+
+**La décision** — Texte de Laurent du 01/10/2026, reproduit sans modification :
+
+> DÉCISION DE GOUVERNANCE — STANDARD ÉDITORIAL PACKSHOTCREATOR
+> Décidé par : Laurent
+> Date : 1er octobre 2026
+> Portée : TOUS les articles, landings, hubs et contenus éditoriaux.
+> Aucun contenu ne doit être considéré comme terminé sur la seule base d'une rédaction achevée ou d'une CI verte.
+> Chaque chantier doit suivre le circuit complet :
+>
+> 1. Cadrage SEO/GEO à partir des sources et données existantes.
+> 2. Rédaction naturelle, experte et fidèle aux faits métier.
+> 3. Intégration complète des visuels, tableaux et éléments éditoriaux.
+> 4. Contrôle de la véritable Preview sur desktop, tablette et mobile.
+> 5. Validation de Sébastien selon la gouvernance applicable.
+> 6. Optimisation finale du maillage interne et du SEO/GEO.
+> 7. Traduction EN et adaptation de-ch depuis la version FR validée, selon le périmètre linguistique.
+> 8. QA finale, publication autorisée, contrôle de production et mesure des résultats.
+>
+> EXIGENCE NON NÉGOCIABLE :
+> Un livrable doit être complet sur trois plans :
+> ÉDITORIAL + VISUEL/UX + SEO/GEO.
+> Pas de publication précipitée.
+> Pas de témoignages inventés.
+> Pas de promesses non sourcées.
+> Pas de contenu qui sonne artificiellement IA.
+> Pas de traduction depuis un brouillon.
+> Pas de fusion assimilée à une validation.
+> Pas d'appel payant sans GO préalable.
+> Cette règle s'applique également aux PR déjà ouvertes, sans annuler les travaux antérieurement validés.
+
+**Le contexte** — Aucun motif n'accompagne le texte. Relevé du 01/10 dans le dépôt, sur `main` `17fc0b3` :
+- PR ouvertes touchant `content/**`, `messages/**` ou un composant de landing : #27 (maillage Q3, 13 fichiers), #59 (pilier AI Act, FR), #60 (article Suisse, FR), #64 (D33, 16 fichiers), #66 (`/fr/packshot-mode`), #70 (`metaTitle` d'un article) ;
+- PR ouvertes sans fichier de contenu : #65 (D40, documentation), #67 (D36, Worker et `next.config.ts`), #75 (documentation).
+
+**Articulation avec les décisions existantes** — relevée le 01/10, **non tranchée**. Chaque point attend une réponse de Laurent (`ETAT.md`, « Balle chez Laurent ») :
+1. **D12** (fusion par le Claude de Laurent sur CI verte et Preview contrôlée). D42 exclut qu'un contenu soit tenu pour terminé sur une CI verte. À confirmer : pour un contenu éditorial, la fusion attend-elle l'étape 8 « publication autorisée » ?
+2. **D15** (validation tacite des réécritures après 5 jours ouvrés) et **D16** (validation explicite des créations). L'étape 5 renvoie à « la gouvernance applicable ». À confirmer : le régime tacite de D15 reste-t-il cette gouvernance pour les réécritures ?
+3. **D26**, point 4 (GO au-delà de 2 $ par exécution). D42 exige un GO préalable pour tout appel payant. À confirmer : le seuil de 2 $ est-il supprimé ?
+4. **D40**, proposée dans #65 et non fusionnée : contrôle de la Preview en desktop et 390 px. D42 ajoute la tablette. À harmoniser dans #65 avant sa fusion.
+5. **Périmètre des deux Claude** (`/CLAUDE.md`, section 1) : le contenu relève du Claude de Sébastien ; D42 vise « TOUS » les contenus éditoriaux. À confirmer : D42 s'applique-t-elle aux contenus portés par le Claude de Sébastien, et Sébastien en est-il informé ?
+6. **D37** (F5 publiée sans nouvelle validation) et les travaux validés avant le 01/10 : non remis en cause, selon la dernière phrase du texte.
+
+**Ce qu'elle interdit** — Les interdits sont ceux du texte, sans ajout : la phrase « Aucun contenu ne doit être considéré comme terminé… » et les sept lignes « Pas de… » de l'exigence non négociable.
+
+---
+
 ## D41 · 2026-09-30 · Cluster AI Act : satellites B, C et D non créés, matière indispensable réintégrée dans le pilier A
 
 **Décidé par** : Laurent — consignée le 2026-10-01

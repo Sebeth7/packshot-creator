@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D42 — standard éditorial PackshotCreator consigné · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : brouillon, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `17fc0b3`
+
+**Quoi** — Décision de gouvernance de Laurent du 01/10 consignée en D42 : texte reproduit sans modification, circuit en huit étapes, exigence non négociable. Six points d'articulation avec D12, D15, D16, D26, D37, D40 et le périmètre des deux Claude relevés, non tranchés.
+
+**Pourquoi** — Consigne de Laurent du 01/10. Aucun motif n'accompagne le texte.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule. D42 s'applique aux PR ouvertes touchant un contenu éditorial.
+
+**Vérifié** —
+- Numérotation : D39 (#66) et D40 (#65) réservées sur branches, D41 sur `main` ; aucune D42 ni au-delà sur les branches distantes au 01/10.
+- PR ouvertes au 01/10, fichiers hors `docs/seo-geo/` relevés par `git diff` depuis la base commune avec `main` :
+  - touchant `content/**`, `messages/**` ou un composant de landing : #27, #59, #60, #64, #66, #70 ;
+  - sans fichier de contenu : #65, #67, #75.
+- #71 (Academy, Claude de Sébastien) et #72 (Inter) ne sont plus ouvertes : fusionnées dans `main` (`8ec89c1`, `a6760da`).
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- L'étape du circuit atteinte par chaque PR ouverte : non établie.
+- `02-PROCEDURE.md`, `README.md` et `/CLAUDE.md` ne sont pas modifiés. #65 modifie déjà `02-PROCEDURE.md` et `README.md`.
+- `npx next build` non lancé : aucun fichier du site n'est modifié.
+
+**Suite** —
+- Réponses de Laurent aux six points d'articulation de D42 (`ETAT.md`, « Balle chez Laurent »).
+- Positionner chaque PR ouverte de contenu dans le circuit.
+- Harmoniser D40 (#65) avec l'étape 4 de D42, qui ajoute la tablette.
+
+---
+
 ## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
 
 **Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
