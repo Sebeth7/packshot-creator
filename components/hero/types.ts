@@ -20,6 +20,8 @@ export interface HeroSectionProps {
   align?: HeroAlign;
   compact?: boolean;
   badge?: HeroBadge;
+  /** Fil d'Ariane rendu juste avant le `<h1>`, hors de celui-ci (variante centrée seulement). */
+  breadcrumb?: ReactNode;
   title: string | ReactNode;
   subtitle?: string | ReactNode;
   ctas?: HeroCTA[];

@@ -12,6 +12,7 @@ export default function HeroSection({
   align = 'center',
   compact = false,
   badge,
+  breadcrumb,
   title,
   subtitle,
   ctas,
@@ -46,6 +47,7 @@ export default function HeroSection({
         ) : (
           <CenteredLayout
             badge={badge}
+            breadcrumb={breadcrumb}
             title={title}
             subtitle={subtitle}
             ctas={ctas}
@@ -109,6 +111,7 @@ function SplitLayout({
 
 function CenteredLayout({
   badge,
+  breadcrumb,
   title,
   subtitle,
   ctas,
@@ -116,7 +119,7 @@ function CenteredLayout({
   align = 'center',
 }: Pick<
   HeroSectionProps,
-  'badge' | 'title' | 'subtitle' | 'ctas' | 'children' | 'align'
+  'badge' | 'breadcrumb' | 'title' | 'subtitle' | 'ctas' | 'children' | 'align'
 >) {
   const isLeft = align === 'left';
   const wrapperClass = isLeft ? 'max-w-4xl' : 'max-w-4xl mx-auto text-center';
@@ -124,6 +127,8 @@ function CenteredLayout({
   return (
     <FadeInView className={wrapperClass}>
       <BadgePill badge={badge} centered={!isLeft} />
+
+      {breadcrumb}
 
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
         {title}
