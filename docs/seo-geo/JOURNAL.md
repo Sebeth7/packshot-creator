@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — article Suisse : S1 corrigé, S3 reconstruit, S2 nettoyé et déplacé, `main` `f1a3491` intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `f1a3491` (#75), fusionné par `a0f6033`
+
+**Quoi** — Trois visuels remplacés, sur GO de Laurent du 01/10 (finalisation graphique) :
+- S1 (image principale) : `cover.avif` → `cover-trois-couches.avif`. Bande droite de la photo prolongée à partir du fond de studio (restes de la transition de A1 retirés : vitres en diagonale, pierres, feuille d'olivier) ; rectangle fantôme de la première carte comblé.
+- S3 : `fidelite-produit.avif` → `fidelite-produit-quatre-rendus.avif`. Un seul flacon de référence, trois rendus dérivés (plus chaud, plus froid, teinte de liquide modifiée par rotation pondérée par la chroma) ; cartes neutres, référence signalée par un liseré et le nœud plein de la frise. Alt et légende nouveaux.
+- S2 : `suisse-ue-plateforme.avif` → `suisse-ue-plateformes-couches.avif`. Coin sombre, pastille et extrémités de barre parasites retirés ; figure déplacée de « Faut-il signaler… » (mot 760) vers « Quand l’AI Act peut concerner une entreprise suisse », après « Cela ne permet pas de conclure automatiquement… » (mot 2 827). Alt et légende inchangés.
+- Anciens fichiers supprimés : plus aucune référence dans le code ni le contenu (recherche dans le dépôt, hors historique du JOURNAL). Texte de l'article inchangé hors figures.
+
+**Pourquoi** — Revue graphique du 01/10 : S3 à aplats rectangulaires décalés et cartes teintées lisibles comme un statut ; raccord de A1 visible sur S1 ; S2 redondant avec S1 à 760 mots du hero et porteur d'artefacts. `main` fusionné : #75 (docs) mettait le JOURNAL en conflit.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/` (3 ajouts, 3 suppressions), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). `og:image` et `image` de l'`Article` suivent le nouveau nom.
+
+**Vérifié**
+- Fichiers : AVIF 1600 × 900, yuv444p, plage complète, BT.709 ; SHA-256 `0a314229…b992d2` (S1, 13 397 o), `23de32e4…59dd11` (S3, 39 962 o), `c892eb2d…4a28` (S2, 11 013 o), identiques au paquet `FINALISATION_GRAPHIQUE_AI_ACT_2026-10-01`. Écart moyen AVIF décodé / maître PNG inférieur à 1 niveau sur 255.
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union ; aucune ligne perdue de part ou d'autre ; ETAT fusionné automatiquement.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : nouvelles images en 200 `image/avif`, anciennes en 404 ; 3 images chargées (hero 848 × 477, 772 × 434, 358 × 201 ; S3 et S2 662 × 372, 662 × 372, 358 × 201) ; 2 légendes ; 0 débordement ; 0 erreur de console ; 0 réponse en erreur ; 0 ponctuation isolée en début de ligne ; tableau sans défilement à 1440 et 820 px.
+- SEO : title 53, description 146, canonical inchangé, aucune balise `robots`, `og:image` et `Article.image` = `cover-trois-couches.avif` ; carte de `/fr/blog` sur le nouveau fichier ; sitemap 309 URL ; `smoke.mjs` vert (17 pages, 3 ressources).
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, 2 workers) : 307 tests, 24 échecs, liste identique à `main` `17fc0b3` (`f1a3491` n'en diffère que par la documentation).
+
+**Supposé** — [Inférence] Les corrections partent des AVIF publiés, les PNG maîtres (`AI_ACT_VISUAL_HANDOFF_2026-09-30.zip`) n'étant pas dans le conteneur : perte de génération jugée invisible à l'affichage. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; Safari et Firefox ; A2 et S4 (absents du dépôt).
+
+**Suite** — A3 du pilier à régénérer hors dépôt (brief du 01/10) ; GO de Sébastien sur la Preview ; à la publication : liens A ↔ S et `date`.
+
+---
+
 ## 2026-10-01 · Cluster AI Act — article Suisse : `main` `17fc0b3` (#73) intégré, espaces insécables · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `17fc0b3`, fusionné par `271580c`
