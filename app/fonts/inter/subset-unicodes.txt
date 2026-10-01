@@ -1,0 +1,24 @@
+# Codepoints conservés dans Inter-Bold-subset.woff2 et Inter-SemiBold-subset.woff2.
+# Entrée de pyftsubset (--unicodes-file) ; commande dans PROVENANCE.md.
+# Total : 359 codepoints. unicode-range de app/fonts/inter.ts : les mêmes, sauf le dernier groupe (354).
+
+# Latin de base et Latin-1 : le sous-ensemble « latin » servi par Google avant #72
+# (A-Z, a-z, chiffres, ponctuation, accents français, Œ œ, Ä Ö Ü ä ö ü ß, « » ‹ ›,
+# ’ ‘ “ ” „ ‚, – —, …, €, espaces U+00A0 et U+2009) — 225 codepoints
+U+0000, U+0020-007E, U+00A0-00AC, U+00AE-00FF, U+0131, U+0152-0153
+U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+2002, U+2009
+U+200B, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026
+U+2032-2033, U+2039-203A, U+2044, U+20AC, U+2122, U+2191, U+2193
+U+2212, U+FEFF
+
+# Latin étendu A (U+0100-017F) présent dans le sous-ensemble « latin-ext » de Google :
+# langues européennes à alphabet latin (Ÿ, Ł ł, Š š, Ž ž, Ő ő, Ş ş, Ğ ğ…) — 124 codepoints
+U+0100-0130, U+0132-0148, U+014A-0151, U+0154-017F
+
+# Roumain Ș ș Ț ț (virgule souscrite) et eszett majuscule ẞ — 5 codepoints
+U+0218-021B, U+1E9E
+
+# Liste explicite absente des fichiers Google : espace fine insécable U+202F, espace
+# tabulaire U+2007, traits d'union U+2010, U+2011, U+2012. Présents dans le fichier,
+# exclus de unicode-range : rendus par la police de repli, comme avant #72 — 5 codepoints
+U+2007, U+2010-2012, U+202F
