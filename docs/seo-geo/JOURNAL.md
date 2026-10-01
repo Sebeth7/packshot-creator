@@ -34,6 +34,60 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — archivage D16 et clôture des PR historiques #43, #53, #61, #62, #63 · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, PR historiques | **PR** : documentaire, brouillon (numéro reporté ci-dessous) | **Base** : `main` `8ec89c1`
+
+**Quoi** — Archive des mesures D16 qui ont justifié la création du pilier A ; verdict final B/C/D consigné en D41 ; backlog technique de #43 (BL-43-1 à BL-43-4) et idée de #53 (BL-53-1) inscrits ici et dans `ETAT.md`. Sur GO de Laurent du 01/10 : fermeture sans fusion de #53, puis #61, #62, #63, puis #43. Aucune branche supprimée, aucun article ni code modifié.
+
+**Pourquoi** — Revue de clôture du 30/09 (rapport « Revue clôture PR historiques AI Act ») : les mesures D16 de création de A n'existaient que dans #43 (description et JOURNAL de sa branche), absentes de #59 ; le verdict final B/C/D n'était consigné que dans la branche et la description de #59 ; les descriptions de #61, #62 et #63 concluent encore « les trois critères de D16 sont remplis ».
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`
+
+**Archive D16**
+
+**1. Mesures historiques — création du pilier A, 28/09/2026.** Recopiées sans modification depuis la description de #43 (tête `175a9d5`) :
+
+> **D16 — mesures du 28/09/2026 (exécutions n8n 3460 et 3461, workflows jetables archivés, coût 0,343 $)**
+> 1. **Similarité (D27)** : brief rédigé de 729 mots ; maximum 0,697 (`/fr/blog/generer-images-produit-ia`) sur 168 pages FR ; 0 page ≥ 0,85. Témoin : page 250 réembarquée, cosinus 1,000000 ; calcul local contrôlé contre `pgvector` à 1e-6 près.
+> 2. **Demande FR/CH** (DataForSEO Google Ads, données jusqu'à août 2026 ; témoins conformes) : « ai act e-commerce » 10 et « watermark ai act » 10 en France ; « watermark ai act » 10 en Suisse romande ; famille : « ai act » 4 400, « ia act » 6 600, « article 50 ai act » 90 (260 en août) en France ; « ki kennzeichnungspflicht » 40 (260 en août) en Suisse alémanique.
+> 3. **Lacune de citation GEO** : 5 sondes Perplexity Sonar, PSC cité 0/5 ; 19 SERP Google FR, PSC 0/19 dans le top 10 ; AI Overview présent 19/19, contenu non observé. Limites : une exécution par question, un seul moteur.
+
+Le JOURNAL de la branche `seo/ai-act-images-produit-2026-09-28` (entrée « Article AI Act et images produit, Preview à valider », commit `4aa305e`) porte « D16 PASS » dans son en-tête de chantier et résume : « D16 : similarité maximale 0,697 avec l'existant ; « article 50 ai act » 90 recherches (260 en août) ; PSC absent des réponses IA mesurées (0/5 Perplexity). »
+
+Limites, telles qu'écrites dans la source : une exécution par question, un seul moteur pour les sondes ; contenu des AI Overview non observé. Le brief mesuré date du 28/09, avant la restructuration du 29/09 (#59) ; aucune nouvelle mesure n'est faite ici.
+
+**2. Décision de création de A.** Fondée sur les mesures ci-dessus (« D16 PASS », 28/09). Le pilier restructuré (#59, tête `80489cf` au 01/10) ne reproduit pas ces mesures. D16 réserve la fusion d'une création à la validation explicite de Sébastien : `SEBASTIEN_PASS = PENDING` dans la description de #59 au 01/10.
+
+**3. Décision finale B/C/D, 30/09/2026 (D41).** `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Mesures du 30/09 : descriptions de #61, #62 et #63 (workflows n8n jetables en lecture seule `EiMBLzt28dSzVzHh` et `KPKz3xyNOnDIxZiX`). Leur conclusion « les trois critères de D16 sont remplis » précède la décision de Laurent et n'est pas le verdict retenu. Motif, repris du JOURNAL de la branche de #59 : « critère 2 non rempli pour B et C (aucune demande mesurée sur l'intention réglementaire, requêtes génériques ou d'outils non assimilées) ; critère 3 non rempli pour D ». Matière indispensable réintégrée dans A par `be1f8ae` ; présente à la tête `80489cf` (titres renommés par la passe éditoriale `4200f6a`).
+
+**Backlog conservé** — inscrit aussi dans `ETAT.md`, « Prochaines actions ».
+
+| Élément | SOURCE_PR | SOURCE_SHA | SOURCE_FILE | PURPOSE | CURRENT_STATUS (`main` `8ec89c1`) | FUTURE_ACTION | DEPENDENCY |
+|---|---|---|---|---|---|---|---|
+| BL-43-1 | #43 | `4aa305e` | `app/[lang]/blog/[slug]/page.tsx` | `og:url`, `og:site_name`, `og:locale` et carte `twitter` propres à chaque article ; retrait de l'import `HeadingData` inutilisé | Absent : `openGraph` sans `url`, `siteName` ni `locale`, aucun `twitter` ; import `HeadingData` présent (l. 21). Fusion simulée du fichier sans conflit | PR applicative distincte, réécrite sur `main` (pas de cherry-pick). Rayon large : 125 articles JSON (FR 63, EN 57, de-ch 5), garde-conséquences | Aucune avec A ou S ; décision de Laurent |
+| BL-43-2 | #43 | `4aa305e` | `content/blog/fr/generer-images-produit-ia.json` (corps l. 16, FAQ l. 36) | Séparer droit de la consommation et obligations de transparence de l'AI Act (E1/E2) | Phrase « Le règlement européen sur l'IA impose également que les images ne trompent pas le consommateur… » présente (2 occurrences) | Réécriture depuis le texte final de A, après revue factuelle ; ne pas recopier l'ancien texte de #43 (dates, renvoi à A) ; validation de Sébastien (`01-RAYON-ACTION.md`) | Le texte de #43 renvoie à `/fr/blog/ai-act-images-produit` : lien à n'activer qu'à la publication de A (D38) |
+| BL-43-3 | #43 | `4aa305e` (E3 à E7), `216f324` (E3 de-ch), `175a9d5` (E6 dans la FAQ n° 3, JSON-LD compris) | `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json` | AI Retoucher décrit d'après Orbitvu (E6) ; retrait de « Elle n'invente rien » (E7) ; répartition fournisseur / déployeur et lignes directrices de la Commission à la place de l'analyse Orbitvu (E3 à E5) ; périmètre suisse en de-ch | Formulations visées présentes dans les 3 langues (« sans altérer ses caractéristiques », « n'invente rien », lien `orbitvu.com/blog/eu-ai-act…`). #71 a modifié ces 3 fichiers : la fusion simulée de #43 y est en conflit | Réécriture sur `main`, revalidée contre le texte final de A (#59) ; validation de Sébastien ; de-ch selon D38 | Publication de A (cohérence, renvoi) ; validation de Sébastien |
+| BL-43-4 | #43 | `175a9d5` (tête, description) ; `4aa305e` (JOURNAL de branche) | Description de #43 ; `docs/seo-geo/JOURNAL.md` de la branche `seo/ai-act-images-produit-2026-09-28` | Justification D16 de la création de A | Archivée dans cette entrée et dans le commentaire d'archivage de #43 ; absente de #59 (description et JOURNAL de branche) | À la fusion de #59, renvoyer à cette entrée ; toute nouvelle mesure sur le texte restructuré relève d'une décision de Laurent | #59 |
+| BL-53-1 | #53 | `2d4e66d` | `content/blog/fr/ai-act-images-produit.json` de la branche `seo/ai-act-illustrations-2026-09-29`, bloc « Une image retouchée ou générée par IA : faut-il la signaler ? » | Arbre pédagogique en 4 questions | `OPTIONAL / IDEA ONLY` ; non intégré à A | Si Laurent le décide : reconstruire depuis la version juridique finale de A, sans reprendre l'ancien HTML/CSS (sa question 3 omet « entités, événements » de la liste fermée de l'art. 3(60)) | Décision de Laurent ; A publié |
+
+**Effet attendu** — Aucun sur le site : documentation seule. Le cluster ne garde que #59 (A) et #60 (S) ouvertes.
+
+**Vérifié**
+- Fresh check du 01/10 : `main` `8ec89c1` ; têtes inchangées depuis la revue du 30/09 : #43 `175a9d5`, #53 `9e86b9b`, #61 `250e34a`, #62 `8f2f42b`, #63 `b6495d1`, sans nouveau commentaire ; #59 `80489cf`, #60 `d5182e7`.
+- Mesures D16 du 28/09 extraites par l'API GitHub de la description de #43, sans retouche ; résumé du JOURNAL de branche relu au commit `4aa305e`.
+- Numérotation : D39 (#66, branche `claude/exciting-cannon-x48wud`) et D40 (#65, branche `claude/busy-gauss-cfe9m8`) sont pris ; aucune occurrence de D41 ni D42 sur les branches distantes au 01/10.
+- `main` `8ec89c1` : formulations visées par E1, E2, E3 à E7 présentes ; gabarit sans `og:url`, `og:site_name`, `og:locale` ni `twitter` ; fusion simulée (`git merge-tree`) de #43 : conflits dans `ETAT.md`, `JOURNAL.md` et les 3 articles « migrer », `page.tsx` sans conflit.
+- Matière réintégrée de B, C, D toujours présente dans A à `80489cf` (points 92, 113, 114, 117, 127 et 129 ; L2133-2 ; loi 2023-451 ; tableau des plateformes ; WebP ; C2PA ; 7 FAQ).
+
+**Supposé** — [Inférence] Les références `refs/pull/<n>/head` restent consultables après la fermeture des PR, branches conservées. Cela repose sur des schémas observés.
+
+**Non regardé** — Aucune nouvelle mesure D16, aucune recherche juridique, aucun crédit payant. #59 et #60 non modifiées. Preview Vercel. Branches distantes conservées : suppression non décidée.
+
+**Suite** — Après fermeture : URL des commentaires reportées ci-dessous. Suppression éventuelle des branches de #61, #62, #63 après le GO de Sébastien sur #59 ; celle de #53 et #43 après exécution ou abandon explicite du backlog. BL-43-1 à BL-43-3 : chantiers distincts, sur décision.
+
+---
+
 ## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
