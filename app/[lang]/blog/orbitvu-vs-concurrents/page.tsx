@@ -75,7 +75,7 @@ const faqItems = [
   },
   {
     question: 'Orbitvu est-il compatible avec les logiciels tiers et les PIM ?',
-    answer: "Oui, Orbitvu propose une API REST ouverte avec intégrations natives pour BlendAI, Adobe Lightroom/Photoshop, les PIM (Akeneo, Salsify) et les plateformes e-commerce (Shopify, WooCommerce, Magento). StyleShoots propose une API plus limitée avec des intégrations custom plus complexes.",
+    answer: "Oui, Orbitvu propose une API REST ouverte avec intégrations natives pour BlendAI, Adobe Lightroom/Photoshop, les PIM (Akeneo, Salsify) et les plateformes e-commerce (Shopify, WooCommerce, Magento).",
   },
   {
     question: 'Peut-on tester Orbitvu avant de l\'acheter ?',
@@ -170,7 +170,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
           {/* ── INTRO ── */}
 
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
-              Le marché des studios photo automatisés s'est considérablement structuré ces dernières années. Trois acteurs principaux se distinguent en 2026 : <strong>Orbitvu</strong> (leader européen), <strong>StyleShoots</strong> (premium néerlandais), et <strong>Photomatics</strong> (entry-level américain). Choisir entre ces solutions peut s'avérer complexe tant les positionnements, tarifs et philosophies produit diffèrent.
+              Le marché des studios photo automatisés s'est considérablement structuré ces dernières années. Trois acteurs principaux se distinguent en 2026 : <strong>Orbitvu</strong>, <strong>StyleShoots</strong> (premium néerlandais), et <strong>Photomatics</strong> (entry-level américain). Choisir entre ces solutions peut s'avérer complexe tant les positionnements, tarifs et philosophies produit diffèrent.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
               Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution, leur <strong>rapport qualité/prix</strong>, et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, quel que soit votre budget, ce guide vous aidera à faire le choix optimal pour votre activité.
@@ -190,7 +190,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
 
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Orbitvu</strong> (Pologne)</p>
             <ul className="list-disc pl-6 mb-4 space-y-1">
-              <li className="text-future-dusk-600">Positionnement : Leader européen milieu/haut de gamme</li>
+              <li className="text-future-dusk-600">Positionnement : Milieu/haut de gamme</li>
               <li className="text-future-dusk-600">Gamme : AlphaShot Micro, G2, 360, XXL (sur devis selon configuration)</li>
               <li className="text-future-dusk-600">Distributeur France officiel : <strong>PackshotCreator</strong></li>
             </ul>
@@ -233,10 +233,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                 { label: 'Taille produits', values: ['100×80×80 cm', '100×100×120 cm'] },
                 { label: 'Volume/jour', values: ['200–500', '150–300'] },
                 { label: 'Temps/produit', values: ['1–2 min', '2–3 min'] },
-                { label: 'IA Ready', values: ['✅ Oui (BlendAI natif)', '❌ Non'] },
-                { label: 'Support France', values: ['✅ PackshotCreator officiel', '⚠️ Limité'] },
                 { label: 'Formation', values: ['En option : Essential (à distance) ou Master (présentiel)', '✅ 1 jour'] },
-                { label: 'Évolutivité', values: ['✅ Excellente (modules)', '⚠️ Moyenne'] },
               ]}
             />
 
@@ -256,24 +253,15 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </ul>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">2. IA Ready : Intégration BlendAI Native</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Orbitvu = Seul fabricant avec intégration IA native en 2026.</strong>
-            </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow automatisé Orbitvu → BlendAI</strong> :</p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Capture packshot</strong> Orbitvu (1–2 min)</li>
-              <li className="text-future-dusk-600"><strong>Export automatique API</strong> BlendAI (10 sec, aucune manipulation)</li>
+              <li className="text-future-dusk-600"><strong>Export automatique API</strong> BlendAI (10 sec)</li>
               <li className="text-future-dusk-600"><strong>Traitement IA</strong> : Détourage, backgrounds, lifestyle (30–60 sec)</li>
               <li className="text-future-dusk-600"><strong>Import automatique</strong> PIM/DAM (10 sec)</li>
             </ol>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Total temps</strong> : <strong>3–4 minutes</strong> pour 5 déclinaisons produit (fond blanc, détourage, 2 backgrounds, lifestyle)
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>StyleShoots</strong> : Aucune intégration IA native. Export manuel vers logiciels tiers requis.
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Impact productivité</strong> : Orbitvu + BlendAI = 250–500 produits traités/jour (1 opérateur) | StyleShoots seul = 150–300 produits/jour
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</Link>
@@ -317,10 +305,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">Mode flat-lay automatisé</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Orbitvu</strong> : Ces modes existent mais nécessitent plus de réglages manuels (30 sec setup vs 5 sec StyleShoots).
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Impact</strong> : Si vous shootez 90%+ vêtements mode, StyleShoots peut faire gagner 20–30 sec/produit. Si vous shootez produits mixtes, le gain est négligeable.
+              <strong>Orbitvu</strong> : Ces modes existent mais nécessitent plus de réglages manuels.
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">3. Communauté et Réseau</h4>
@@ -336,7 +321,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Verdict Orbitvu vs StyleShoots
             </h3>
             <Callout type="success" title="Orbitvu gagne sur la plupart des critères">
-              <p><strong>Orbitvu l'emporte</strong> sur : IA Ready (unique), Support France (excellence), Évolutivité (modules).</p>
+              <p><strong>Orbitvu l'emporte</strong> sur : IA Ready, Support France, Évolutivité (modules).</p>
               <p className="mt-2"><strong>StyleShoots l'emporte</strong> sur : Design premium, Modes automatiques mode (marginal), Prestige marque.</p>
               <p className="mt-2"><strong>Recommandation</strong> : <strong>Orbitvu</strong>, sauf si budget illimité et prestige showroom prioritaire.</p>
             </Callout>
@@ -383,7 +368,6 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               rows={[
                 { label: 'Temps/produit', values: ['3–5 min', '1–2 min'] },
                 { label: 'Qualité capteur', values: ['24 MP', '50 MP'] },
-                { label: 'Détourage auto', values: ['85%', '99%+'] },
                 { label: 'IA Ready', values: ['❌ Non', '✅ Oui'] },
                 { label: 'Software', values: ['Windows uniquement', 'Windows + macOS'] },
                 { label: 'Prix équivalent', values: ['Sur devis', 'Sur devis'] },
@@ -492,9 +476,6 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               rows={[
                 { label: 'Positionnement', values: ['Milieu/Haut pro', 'Haut premium', 'Entry DIY'] },
                 { label: 'Qualité rendu', values: ['Premium', 'Premium+', 'Standard'] },
-                { label: 'Évolutivité', values: ['✅ Excellente', '⚠️ Moyenne', '❌ Limitée'] },
-                { label: 'IA Ready', values: ['✅ Oui (BlendAI)', '❌ Non', '❌ Non'] },
-                { label: 'Support France', values: ['✅ PackshotCreator', '⚠️ Limité', '❌ Email only'] },
                 { label: 'Formation', values: ['✅ Certifiée Qualiopi', '✅ On-site', '❌ YouTube'] },
                 { label: 'Idéal pour', values: ['E-com pro 500+', 'Marques luxe', 'Créateurs TPE'] },
               ]}
@@ -511,9 +492,6 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               1. IA Ready : Workflow 2026 Complet
             </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Orbitvu = Seul fabricant intégration IA native.</strong>
-            </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow Hardware + IA</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Studio Orbitvu (capture packshot) : 1–2 min</li>
@@ -525,7 +503,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              2. Support Français Excellence : PackshotCreator
+              2. Support Français : PackshotCreator
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Distributeur officiel France/Suisse depuis 2023.</strong>
@@ -546,16 +524,10 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Avantage</strong> : Investissement initial maîtrisé, upgrade selon besoins futurs réels.
             </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>StyleShoots</strong> : Évolutivité limitée, upgrades souvent impossibles (changement machine requis).
-            </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               4. Écosystème Complet : Approche 3 Piliers
             </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>PackshotCreator = Unique acteur proposant écosystème complet</strong> :
-            </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 1 : Hardware (Orbitvu)</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Gamme complète studios automatisés</li>
@@ -608,17 +580,17 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Conclusion : Orbitvu, le Choix Rationnel 2026
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le marché des studios photo automatisés est mature en 2026, avec 3 acteurs positionnés sur des segments distincts. <strong>Orbitvu</strong> s'impose comme le choix rationnel pour les <strong>e-commerçants professionnels</strong> grâce à une intégration IA unique et un support France d'excellence via PackshotCreator.
+              Le marché des studios photo automatisés est mature en 2026, avec 3 acteurs positionnés sur des segments distincts. <strong>Orbitvu</strong> s'impose comme le choix rationnel pour les <strong>e-commerçants professionnels</strong> grâce à une intégration IA et un support France via PackshotCreator.
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Les 4 Raisons de Choisir Orbitvu
             </h3>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>IA Ready</strong> : Seul fabricant intégration IA native (workflow 2026)</li>
+              <li className="text-future-dusk-600"><strong>IA Ready</strong> : intégration BlendAI (workflow 2026)</li>
               <li className="text-future-dusk-600"><strong>Support France</strong> : PackshotCreator distributeur officiel</li>
               <li className="text-future-dusk-600"><strong>Évolutivité</strong> : Modules additionnels (360°, vidéo, 3D) selon besoins futurs</li>
-              <li className="text-future-dusk-600"><strong>Écosystème complet</strong> : Approche 3 piliers Hardware + IA + Formation unique</li>
+              <li className="text-future-dusk-600"><strong>Écosystème complet</strong> : Approche 3 piliers Hardware + IA + Formation</li>
             </ol>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
