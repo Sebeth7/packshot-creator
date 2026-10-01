@@ -1,13 +1,6 @@
-import { Inter } from 'next/font/google';
+import { inter } from '@/app/fonts/inter';
 import type { Metadata } from 'next';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['700'],
-  display: 'swap'
-});
 
 // Body font: native system stack (--font-body in globals.css)
 

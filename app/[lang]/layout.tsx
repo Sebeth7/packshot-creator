@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Inter } from 'next/font/google';
+import { inter } from '@/app/fonts/inter';
 import { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
@@ -10,13 +10,6 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import { SmoothScroll } from '@/components/animations';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['700'],
-  display: 'swap'
-});
 
 // Body font is now the native system stack (defined in globals.css :root --font-body)
 // — saves ~37 KB of WOFF2 + 1 <link rel="preload"> on every page.
