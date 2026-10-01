@@ -34,6 +34,55 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Mode — #66 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, fusionnée | **Commit** : `4093d3d` (fusion de `04fdc8a`)
+
+**Quoi** — Publication coordonnée de `/fr/packshot-mode`, `/en/packshot-mode` et `/de-ch/packshot-mode`. Le GO de fusion a été donné par Laurent. La PR a été fusionnée le 01/10 à 16:26:04 UTC. Le déploiement Vercel de production a abouti à 16:27:09 UTC (statut `success` sur `4093d3d`). J0 de mesure = 01/10 ; J+28 = 29/10 ; J+56 = 26/11.
+
+**Vérifié sur l'origine (`sysnext.vercel.app`, hors Cloudflare)** —
+- Avant fusion, les trois pages portaient encore « 500 + », « - 80 % », « 3 s », Alphadesk et 100 × 70 cm. Après fusion :
+  - les trois pages répondent 200 ;
+  - les title, H1, canonical, `og:locale` (fr_FR, en_US, de_CH) sont ceux de la PR ;
+  - hreflang : 5 entrées (fr, fr-CH, en, de-CH, x-default) ;
+  - JSON-LD Organization, BreadcrumbList et FAQPage (9) ;
+  - les anciens chiffres sont absents du contenu (0 occurrence de chacun) ;
+  - le sommaire collant, 2 CTA vers `#demande-demo` et le formulaire sont présents ;
+  - 0 lien vers `/packshot-e-commerce` dans `<main>`.
+- Sélecteur de langue :
+  - les liens pointent vers la même page dans les autres langues, tous en 200 ;
+  - clic réel : FR → EN, EN → DE-CH et DE-CH → FR arrivent sur la bonne page.
+- Liens internes : 167 liens distincts des trois pages, tous en 200. Deux réponses `000` au premier essai (réseau), 200 au second.
+- Fiche XXL : 100x90x190 sur `/fr/studio-photo/alphastudio-xxl-v2`, `/en/studio-photo/alphastudio-xxl-v2` et `/de-ch/fotostudio/alphastudio-xxl-v2`. Même valeur sur le sélecteur et sur `/fr/industrie-defense`.
+- Sitemap : les trois URL sont présentes. Les hubs `/fr/industrie/mode-textile` et `/fr/industrie/chaussures` lient toujours `/fr/packshot-mode`.
+- `smoke.mjs https://sysnext.vercel.app` : vert, 17 pages, 3 ressources, sitemap à 308 URL.
+- Navigateur : trois langues sur six affichages (1440, 1280, 1024 et 768 tactiles, 390 et 360 tactiles).
+  - 15/18 sans défaut. Partout : 21 images chargées avec alt, FAQ visible = JSON-LD, aucun débordement, appui tactile sur le CTA intermédiaire → `#demande-demo`.
+  - Formulaire non soumis.
+
+**Anomalies observées** —
+- Erreur React #418 (différence entre HTML serveur et rendu client), intermittente, sur 2 affichages sur 18. Re-mesure sur 6 chargements par page : `/fr/packshot-mode` 1/6, `/fr/packshot-e-commerce` 1/6, `/fr/studios-photo-automatises` 1/6, `/fr/industrie/mode-textile` 0/6. [Inférence] Non propre à #66 : même fréquence sur des pages que #66 ne modifie pas. Jamais observée sur le build local. Cause non établie.
+- 502 ponctuel sur un fichier `/_next/static/chunks/…js` (1 affichage sur 18). Le même fichier répond 200 au contrôle suivant.
+
+**Accès navigateur** — Chromium de l'environnement ne reconnaissait pas l'autorité du proxy sortant (`ERR_CERT_AUTHORITY_INVALID`). Les contrôles navigateur ont été faits avec `--ignore-certificate-errors-spki-list` limité à l'empreinte de cette seule autorité (`/root/.ccr/agent-proxy-ca.crt`). La vérification TLS n'a pas été désactivée.
+
+**Supposé** — Le courriel à Sébastien et la soumission des trois URL dans Google Search Console ont été faits par Laurent, selon son message du 01/10. Non vérifiable d'ici.
+
+**Non regardé** — `www.packshot-creator.com` (R4 : Worker et WAF compris) ; Firefox et Safari ; lecteur d'écran réel ; performance (LCP, CLS) en production.
+
+**Suite** —
+- Laurent, dans Chrome sur `www`, les trois pages, desktop puis mobile :
+  - nouveau contenu ;
+  - sélecteur de langue ;
+  - sommaire collant ;
+  - CTA vers le formulaire, sans l'envoyer ;
+  - fiche XXL `/fr/studio-photo/alphastudio-xxl-v2`.
+- Erreur React #418 : à instruire hors de ce chantier.
+- Mesure GSC à J+28 (29/10) et J+56 (26/11).
+- Hors périmètre : chiffres non sourcés du hub mode-textile ; PR distincte recommandée.
+
+---
+
 ## 2026-10-01 · Mode — finalisation de la PR #66 : retours de Sébastien, finitions, maillage, EN et de-ch · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, prête pour le GO de fusion de Laurent, non fusionnée | **Base** : `9f67351` (fusion de `main` après #73)
