@@ -961,82 +961,448 @@
   },
   "packshotMode": {
     "meta": {
-      "title": "Fashion Packshot | Automated Clothing Photography",
-      "description": "Automated photo studio for fashion and textiles. Flat-lay, mannequin, ghost, 360° photos. Hundreds of pieces per day. E-commerce catalog integration."
+      "title": "Fashion Packshots: In-House Photos of Clothing and Accessories",
+      "description": "Photograph your collections in-house: flat lay, on a mannequin or on-model, true-to-life colors and fabrics, the right Orbitvu studios and the role of AI."
     },
+    "breadcrumb": "Fashion packshots",
     "hero": {
-      "title": "Fashion Packshot: E-commerce Photography for Clothing & Apparel",
-      "subtitle": "High-throughput professional photo production for fashion and ready-to-wear.",
-      "cta": "Get a quote",
-      "ctaSecondary": "View studios"
-    },
-    "benefits": {
-      "heading": "Why automate your fashion photo production?",
-      "item1": {
-        "title": "Flat-lay or mannequin photos",
-        "description": "Flat-lay with Alphadesk or worn photography with large-format studios. <bold>All techniques</bold> in one workflow."
-      },
-      "item2": {
-        "title": "True-to-life textures and colors",
-        "description": "Calibrated LED lighting for <bold>exact reproduction</bold> of materials, shades and textile details."
-      },
-      "item3": {
-        "title": "Immersive 360° photography",
-        "description": "Offer an interactive customer experience with <bold>360° rotation</bold> of your clothing and accessories."
-      },
-      "item4": {
-        "title": "Volume: hundreds of pieces per day",
-        "description": "<bold>High-throughput</bold> production with complete automation: capture, clipping, and export simultaneously."
-      },
-      "item5": {
-        "title": "E-commerce catalog integration",
-        "description": "Direct export to your PIM, DAM or e-commerce platform with the <bold>right formats</bold> and metadata."
+      "badge": "Fashion and textiles",
+      "title": "Fashion packshots: accurate photos, collection after collection",
+      "subtitle": "A fashion packshot shows the garment or accessory exactly as the customer will receive it: its color, its fabric, its cut. Across a collection, every piece needs the same lighting, the same framing and the same views, season after season.",
+      "role": "PackshotCreator supports brands, manufacturers and online retailers that photograph their collections in-house: we distribute Orbitvu automated photo studios in France and Switzerland, install them and train your teams. We do not offer photography services.",
+      "ctaPrimary": "Request a demo",
+      "ctaSecondary": "Find the right studio",
+      "mosaicCaption": "Four ways to present a fashion item: flat lay, shaped on a mannequin, on-model, accessory.",
+      "alts": {
+        "aplat": "Long pink belted coat, photographed flat on a white background",
+        "volume": "Mustard-yellow jacket shown in shape, with no visible mannequin, on a white background",
+        "porte": "Woman in a pale yellow hoodie and lilac jogging pants, photographed full-length on a white background",
+        "accessoire": "Black, orange and white heeled sandal, side view on a white background"
       }
     },
-    "stats": {
-      "stat1": {
-        "value": "500+",
-        "label": "pieces photographed per day"
+    "bref": {
+      "label": "At a glance",
+      "lead": "Photographing a collection in-house means repeating the same choices for every piece (presentation, lighting, angles, framing), then checking that each image matches the item being sold.",
+      "reperes": {
+        "coherence": {
+          "titre": "Consistency",
+          "texte": "Same background, same lighting, same angles and same framing for every piece in a product family, season after season."
+        },
+        "fidelite": {
+          "titre": "Accuracy",
+          "texte": "The color, texture and drape in the image must match the garment the customer will receive."
+        },
+        "presentation": {
+          "titre": "Presentation",
+          "texte": "Flat, shaped on a mannequin or on-model: each presentation shows something different and needs different preparation."
+        },
+        "controle": {
+          "titre": "Control",
+          "texte": "The studio runs the saved shots and processing; the team prepares the pieces and approves every image before publication."
+        }
       },
-      "stat2": {
-        "value": "3s",
-        "label": "per white background packshot"
+      "logos": "They produce their packshots with us"
+    },
+    "sommaire": {
+      "titre": "Contents",
+      "retour": "Back to contents",
+      "barre": "Quick access to sections",
+      "collection": "A consistent collection",
+      "matiere": "Color, fabric and drape",
+      "presentations": "Flat, mannequin or on-model",
+      "interne": "Why bring it in-house",
+      "auStudio": "The studio and the team",
+      "ia": "AI: where it helps, where to check it",
+      "plateformes": "Platform requirements",
+      "studios": "Which studio for which items",
+      "accompagnement": "Budget and support",
+      "faq": "Frequently asked questions"
+    },
+    "collection": {
+      "eyebrow": "The collection",
+      "heading": "A fashion photo is judged at the scale of the collection",
+      "p1": "On a category page, items are displayed side by side. The Nielsen Norman Group observes that consistent images, with the same background, orientation, lighting and scale, are easy to scan and compare. In fashion, a difference in lighting or framing stands out all the more because the pieces look alike: two sweaters in the same knit should not look like two different shades.",
+      "p2": "This consistency also has to hold over time. Restocks, new colorways and the next collection will be photographed weeks or months later, sometimes by someone else. For them to sit alongside the images already online without a visible break, the lighting, angles and framing must be reproducible.",
+      "p3": "This is the first benefit of an automated studio for fashion: the lighting settings, the sequence of angles and the processing are saved in a template, then recalled for every piece in the same product family. Consistency then relies on the saved template rather than on settings redone at every session.",
+      "serie": {
+        "robe": "Yellow children's dress with a small pattern, photographed flat on a white background",
+        "sweat": "Cream sweatshirt with an orange pattern, photographed flat on a white background",
+        "combishort": "Light-wash denim playsuit with long sleeves, photographed flat on a white background"
       },
-      "stat3": {
-        "value": "-80%",
-        "label": "cost vs external studio"
+      "imageCaption": "Same background, same lighting, same framing: a series reads as a whole.",
+      "illustration": {
+        "alt": "Illustration of a consistent series of sweaters in several colors, presented with the same framing.",
+        "caption": "Synthetic illustration of a collection in several colorways; it does not document a real shoot."
+      },
+      "lienGuide": "The method in Orbitvu Station, step by step: <lien>consistent photos for an entire collection</lien>."
+    },
+    "matiere": {
+      "eyebrow": "The real product",
+      "heading": "Color, fabric, drape: what the photo must convey",
+      "intro": "A garment is chosen for its color, its fabric and the way it falls. The photo must show the item actually being sold, which is also what Amazon and Google Merchant Center require in their guidelines. This is the other benefit of studio photography: showing the real product, its textures and its drape, rather than an interpretation.",
+      "illustration": {
+        "alt": "Close-ups of knit, denim, satin and wool under studio lighting.",
+        "caption": "Synthetic illustration of four textile materials and how they render under light."
+      },
+      "points": {
+        "couleur": {
+          "titre": "Color",
+          "texte": "A poorly reproduced shade is discovered when the parcel is opened. Lighting and camera settings are set once for each product family, then checked on difficult shades: blacks, whites, saturated colors."
+        },
+        "texture": {
+          "titre": "Fabric and texture",
+          "texte": "Knit, denim, velvet and satin do not react to light in the same way. Lighting set to bring out the grain of a matte fabric can make a satin fabric shine: each family of materials deserves its own lighting template, tested on a representative piece."
+        },
+        "tombe": {
+          "titre": "Drape and cut",
+          "texte": "Laid flat, the drape can only be guessed; on a mannequin, the garment regains its shape; on a model, it shows the cut in motion and on a body. The presentation you choose determines what the customer will be able to judge."
+        },
+        "details": {
+          "titre": "Details",
+          "texte": "Buttons, seams, lining, finishes: close-ups answer the questions the overall view leaves open. In its tests, the Baymard Institute saw participants abandon a product because the resolution or zoom was insufficient."
+        }
+      },
+      "recolo": {
+        "titre": "Recoloring: a stopgap, not a rule",
+        "texte": "Producing the other colorways by recoloring the photo of a single item can help out occasionally. But a recolored image is not a photo of the real colorway: the exact shade, the texture and the way the fabric reacts to light may differ. Photographing each real colorway shows the item actually sold. If you do recolor, compare each variant with the item before publishing it."
+      },
+      "lienGuide": "Color settings and checks: <lien>getting accurate colors in product photography</lien>.",
+      "sources": "Sources of the studies cited"
+    },
+    "presentations": {
+      "eyebrow": "Presentations",
+      "heading": "Flat, on a mannequin or on-model: which presentation for which items?",
+      "intro": "Each presentation answers a different buyer question and calls for a different setup. Nothing forces you to pick just one: on-model shots can be reserved for key pieces, with the rest photographed flat or on a mannequin.",
+      "illustration": {
+        "alt": "Illustration of the same coat presented flat, on a mannequin and then on a model.",
+        "caption": "Synthetic illustration of three ways to present the same garment."
+      },
+      "columns": {
+        "presentation": "Presentation",
+        "montre": "What it shows",
+        "articles": "Typical items",
+        "demande": "What it requires"
+      },
+      "rows": {
+        "aplat": {
+          "presentation": "Flat lay",
+          "montre": "The overall shape, prints, front and back details",
+          "articles": "T-shirts, sweatshirts, children's clothing, linens, scarves",
+          "demande": "Careful flat styling (steaming, symmetry) and an overhead shot"
+        },
+        "volume": {
+          "presentation": "Shaped on a mannequin",
+          "montre": "Volume, neckline and cut, without drawing attention to a model",
+          "articles": "Jackets, coats, dresses, shirts",
+          "demande": "A mannequin in the right size, dressing it and, for the “ghost mannequin” effect, removing the mannequin in post-production"
+        },
+        "porte": {
+          "presentation": "Worn by a model",
+          "montre": "Drape in context, relative size, style",
+          "articles": "Key pieces, new collections, ready-to-wear",
+          "demande": "A model, often styling, and a set designed for on-model photography"
+        },
+        "accessoires": {
+          "presentation": "Accessories from several angles",
+          "montre": "Three-dimensional shape, materials, finishes",
+          "articles": "Shoes, bags, small leather goods, eyewear, jewelry",
+          "demande": "A turntable and a sequence of angles suited to the size of the item"
+        }
+      },
+      "note": "The Orbitvu studios suited to each presentation are listed further down, in the table “Which Orbitvu studio for which fashion items?”.",
+      "lienChaussures": "For shoes, our guide details a <lien>multi-angle view sequence</lien>."
+    },
+    "interne": {
+      "eyebrow": "Organization",
+      "heading": "Why photograph your collections in-house?",
+      "intro": "A photographer or an external studio produces polished images, especially for campaigns and editorial series. In-house production makes most sense when pieces arrive continuously and need to go online quickly.",
+      "raisons": {
+        "rythme": {
+          "titre": "The pace of collections",
+          "texte": "New arrivals, restocks, colorways added mid-season: in-house, pieces are photographed as soon as they arrive, without waiting for a shooting slot."
+        },
+        "surPlace": {
+          "titre": "Pieces stay on site",
+          "texte": "Samples, prototypes, one-off or confidential pieces before a launch: they never leave your premises."
+        },
+        "temps": {
+          "titre": "Consistency over time",
+          "texte": "Shooting templates stay in the company: the next collection is photographed under the same conditions as the previous one, even if the operator changes."
+        },
+        "volume": {
+          "titre": "High volumes",
+          "texte": "When styles and colorways number in the hundreds, redoing the settings at every session takes time and increases the risk of differences between images. A saved template, recalled for each piece, avoids redoing them. The volume at which in-house production pays off depends on your collections: estimate it with your own figures."
+        }
+      },
+      "prestataire": {
+        "titre": "What can stay with an external provider",
+        "texte": "Campaigns, lookbooks, outdoor shoots or elaborate staging: these one-off productions can stay with a photographer or a studio. A mixed setup is possible: catalog packshots in-house, campaigns outsourced."
+      },
+      "liens": "To put figures on your own setup: the <lien>return on investment calculator</lien>."
+    },
+    "auStudio": {
+      "eyebrow": "In the studio",
+      "heading": "What the studio does, what the team does",
+      "intro": "An Orbitvu studio combines software-controlled lighting, a remotely controlled camera and the Orbitvu Station software, with a turntable or an overhead shot depending on the model. It automates repetition, not the preparation of the garment.",
+      "columns": {
+        "etape": "Step",
+        "studio": "What the studio does",
+        "equipe": "What the team does"
+      },
+      "rows": {
+        "preparation": {
+          "etape": "Preparation and setup",
+          "studio": "Nothing: this step remains manual",
+          "equipe": "Steam, shape, dress the mannequin, position the piece"
+        },
+        "reglages": {
+          "etape": "Settings",
+          "studio": "Lighting and camera parameters recalled from the template saved for the product family",
+          "equipe": "Choose the template suited to the fabric and the presentation"
+        },
+        "capture": {
+          "etape": "Shooting",
+          "studio": "Triggering and the planned series of angles; turntable rotation on studios equipped with one; 360° or video depending on the studio",
+          "equipe": "Start the sequence, prepare the next piece"
+        },
+        "detourage": {
+          "etape": "Background removal",
+          "studio": "Background removed at capture on backlit studios, or by AI in the software",
+          "equipe": "Check delicate areas: a model's hair, lace, fringes, sheer fabrics"
+        },
+        "export": {
+          "etape": "Formatting and export",
+          "studio": "Cropping, margins, dimensions and file naming by SKU applied according to the configured profiles",
+          "equipe": "Compare each image with the piece before publication"
+        }
+      },
+      "imageAlt": "An operator places a boot in an Orbitvu automated photo studio, next to the control screen",
+      "imageCaption": "The operator positions the piece; the studio runs through the planned angles.",
+      "illustration": {
+        "alt": "Illustration of an operator preparing a coat on a mannequin in a photo studio.",
+        "caption": "Synthetic illustration of a manual preparation step before the shoot."
+      },
+      "controle": "Automation does not remove human control: the team judges whether the color, fabric and drape match the piece. According to Orbitvu, basic training is enough for everyday packshots, with no prior photography experience. For on-model photography, the eye of a photographer or stylist remains valuable.",
+      "demo": {
+        "texte": "To see this division of tasks on your own pieces, a demonstration remains the most reliable way.",
+        "cta": "Request a demo"
       }
     },
-    "machines": {
-      "heading": "Recommended systems for fashion",
-      "subtitle": "Studios adapted for textiles, from <bold>footwear to ready-to-wear</bold>",
-      "cta": "Request a quote"
+    "ia": {
+      "eyebrow": "AI",
+      "heading": "AI and fashion photography: where it helps, where to check it",
+      "intro": "AI is already part of production: background removal, retouching, variations. The more an image is generated rather than photographed, the more its accuracy to the garment being sold must be checked.",
+      "illustration": {
+        "alt": "Illustration of two coats with a similar cut, camel and charcoal, presented under the same conditions.",
+        "caption": "Synthetic illustration of two color variants."
+      },
+      "aide": {
+        "titre": "Where it helps",
+        "items": {
+          "detourage": "Cutting out and cleaning up a real photo",
+          "formats": "Preparing format and background variations for each channel",
+          "scenes": "Creating staged scenes from a real packshot, for social media or campaigns"
+        }
+      },
+      "controler": {
+        "titre": "Where to check it",
+        "items": {
+          "couleur": "The exact shade and the texture of the fabric",
+          "motifs": "Patterns, stripes and prints, which must stay continuous and aligned",
+          "textes": "Text and logos printed on the garment or its labels",
+          "coupe": "Drape and proportions, which must not flatter the actual cut"
+        }
+      },
+      "essais": {
+        "titre": "Generated ghost mannequin: test it on your pieces",
+        "texte": "AI tools offer to generate a “ghost mannequin” rendering from flat photos. The garment's volume is then generated, not photographed: check in particular the accuracy of textures, the continuity of patterns and the legibility of printed text. These tools are evolving fast: test them on your own pieces, including the most delicate ones, and compare each image with the item before publication."
+      },
+      "virtuel": {
+        "titre": "Virtual models",
+        "texte": "Some tools generate virtual models wearing the garment. If you use them, check each platform's rules: Amazon requires the contains-synthetic-performer tag for images showing photorealistic people entirely generated by AI, and Google Merchant Center requires images created with generative AI to contain metadata indicating it."
+      },
+      "hybride": {
+        "titre": "A hybrid method",
+        "texte": "The real photo of each piece serves as the reference: taken in the studio, it then feeds AI-assisted uses. Each derived image is compared with this reference before being published."
+      },
+      "lien": "See what <lien>AI makes possible in product photography</lien> with your real packshots."
+    },
+    "plateformes": {
+      "eyebrow": "Platforms",
+      "heading": "Zalando, Amazon, Google: requirements to check before export",
+      "intro": "Guidelines vary by platform and change over time. These are the points that directly concern fashion photos, taken from the official pages.",
+      "tableTitle": "Benchmarks checked on September 28, 2026",
+      "tableNote": "These values change: check the source before each upload.",
+      "columns": {
+        "plateforme": "Platform",
+        "fond": "Background",
+        "format": "Format and resolution",
+        "noter": "Note"
+      },
+      "rows": {
+        "zalando": {
+          "nom": "Zalando",
+          "fond": "Packshots: white #FFFFFF, required; Zalando then adds a light gray background",
+          "format": "Portrait, 1:1.44 ratio; minimum 762 × 1,100 px, 1,801 × 2,600 px recommended (minimum 1,800 × 2,600 px for designer brands)",
+          "noter": "JPEG, sRGB, 20 MB maximum; guidelines updated on August 31, 2026"
+        },
+        "amazon": {
+          "nom": "Amazon",
+          "fond": "Main image: pure white (RGB 255, 255, 255), required",
+          "format": "All images: minimum 500 px on the longest side; over 1,000 px recommended for zoom",
+          "noter": "Main image: product fills 85% of the image. Photorealistic people entirely generated by AI: contains-synthetic-performer tag"
+        },
+        "google": {
+          "nom": "Google Merchant Center",
+          "fond": "Plain white or transparent, recommended",
+          "format": "Minimum 500 × 500 px from January 31, 2027; around 1,500 × 1,500 px recommended",
+          "noter": "Images created with generative AI: metadata required. Main image: no promotional elements, watermarks or borders"
+        }
+      },
+      "sources": "Official sources"
+    },
+    "studios": {
+      "eyebrow": "Range",
+      "heading": "Which Orbitvu studio for which fashion items?",
+      "intro": "The choice starts from the presentation you choose and the size of the pieces. Maximum product dimensions are those published by Orbitvu, in the order used on its product sheets, which do not specify the axes.",
+      "columns": {
+        "studio": "Studio",
+        "usage": "Fashion use",
+        "gabarit": "Max product size and weight",
+        "limite": "Good to know"
+      },
+      "rows": {
+        "alphatable": {
+          "nom": "Alphatable",
+          "usage": "Flat, overhead photography: clothing, linens, textiles",
+          "gabarit": "165 × 112 × 5 cm, 80 kg",
+          "limite": "Overhead view only; large floor footprint"
+        },
+        "xxl": {
+          "nom": "Alphastudio XXL",
+          "usage": "Garments shaped on a mannequin, live models, large items",
+          "gabarit": "190 × 90 × 100 cm, 100 kg",
+          "limite": "Requires a dedicated space; cut-outs of a model in motion are checked image by image"
+        },
+        "fashion": {
+          "nom": "Fashion Studio",
+          "usage": "On-model photography with a live model, on a dedicated stage area",
+          "gabarit": "Full-length live model (see product page)",
+          "limite": "Very large studio, specialized in fashion; less versatile for object packshots"
+        },
+        "xlg2": {
+          "nom": "Alphashot XL G2",
+          "usage": "Medium-sized accessories: shoes, boots, bags",
+          "gabarit": "60 × 40 × 70 cm, 25 kg",
+          "limite": "Sized for accessories and objects: no full-size mannequin or model"
+        },
+        "prog2": {
+          "nom": "Alphashot Pro G2",
+          "usage": "Small accessories: eyewear, belts, small leather goods",
+          "gabarit": "35 × 35 × 40 cm, 10 kg",
+          "limite": "Small items only"
+        },
+        "micro": {
+          "nom": "Alphashot Micro Pro v2",
+          "usage": "Jewelry and watches",
+          "gabarit": "Up to 18 cm, 1 kg",
+          "limite": "Very small items only"
+        }
+      },
+      "voirFiche": "View product page",
+      "note": "No throughput figures are given here: for a garment, the pace depends mainly on preparing the piece, the presentation and the number of views. The Fashion Studio is also available in a <lien>Basic version</lien>.",
+      "figures": {
+        "xxlAlt": "A live model poses in an Alphastudio XXL, an Orbitvu automated photo studio",
+        "xxlCaption": "Alphastudio XXL: mannequins, live models and large items.",
+        "fashionAlt": "Orbitvu Fashion Studio: open set for on-model photography, with a model in place",
+        "fashionCaption": "Fashion Studio: a set dedicated to on-model photography."
+      },
+      "liens": "Not sure which model to choose? The <lien>studio finder</lien> guides you based on your items. See also <lien2>the full range of automated photo studios</lien2>."
+    },
+    "accompagnement": {
+      "eyebrow": "Investment",
+      "heading": "Budget, financing, training: preparing the project",
+      "cout": {
+        "title": "Full cost",
+        "text": "Compare the cost of a published image, not the price of a photo. In-house: equipment purchased or financed, preparation and shooting time, software, training and space. With a provider: agreed price, logistics for the pieces and any reshoots. The break-even point depends on the number of styles and colorways and on the pace of your collections; no payback period applies to everyone.",
+        "cta": "Estimate with the calculator"
+      },
+      "financement": {
+        "title": "Financing",
+        "text": "Purchase or professional leasing (financial lease), over 60 months or from 36 months, subject to approval of your application. In Switzerland, leasing through Swiss institutions is possible."
+      },
+      "formation": {
+        "title": "Training",
+        "text": "Sysnext, a Qualiopi-certified training organization (a French quality certification), trains your teams to get started with and master Orbitvu studios, remotely or on site. Training is billed separately from the studio. In France, OPCO funding (a French training fund) may be available depending on your situation.",
+        "cta": "Our training courses (in French)"
+      },
+      "accompagnement": {
+        "title": "Support",
+        "text": "As Orbitvu's official distributor in France and Switzerland, PackshotCreator helps you choose the studio, organizes a demonstration on your pieces, delivers, installs, trains your operators and provides support in French. Delivery and installation are charged separately; delivery times are indicative and not contractually binding.",
+        "migration": "Using an older PackshotCreator studio? Read our article on <lien>migrating to Orbitvu</lien>."
+      }
     },
     "faq": {
-      "heading": "Frequently asked questions about fashion photography",
+      "heading": "Frequently asked questions about fashion packshots",
       "q1": {
-        "question": "How to photograph clothing for an e-commerce site?",
-        "answer": "Three main techniques: flat-lay photography with Alphadesk, invisible mannequin (ghost) or model photography. Our studios automate each technique with calibrated lighting and instant clipping."
+        "question": "Should clothes be photographed flat, on a mannequin or on a model?",
+        "answer": "It depends on what the buyer needs to judge. Flat, the photo shows the shape and the prints; on a mannequin, the volume and the cut; on a model, the drape in context and the relative size. A single catalog can combine these presentations: on-model for key pieces, flat or on a mannequin for the rest. Each requires its own preparation and, often, a different studio."
       },
       "q2": {
-        "question": "Flat-lay vs mannequin: which method to choose?",
-        "answer": "Flat-lay is ideal for t-shirts, sweaters and accessories. The invisible mannequin (ghost) suits jackets, dresses and shirts for a 3D look. Model photography highlights the cut and drape. Most brands combine all three techniques."
+        "question": "How do you get accurate colors in clothing photos?",
+        "answer": "By setting the lighting and camera settings for each product family, then recalling them at every shoot instead of redoing them. Difficult shades (blacks, whites, saturated colors) and shiny fabrics are checked on screen by comparing the image with the piece. Amazon and Google Merchant Center require the image to show the product actually sold, in its real color."
       },
       "q3": {
-        "question": "What lighting for fashion photography?",
-        "answer": "Diffused LED lighting is essential for faithfully reproducing colors and textures. Orbitvu studios integrate automatic lighting that adapts to each type of textile, eliminating unwanted shadows and reflections."
+        "question": "Can a mannequin or a live model be photographed in an automated studio?",
+        "answer": "Yes, with a studio sized for it. Orbitvu designs the Alphastudio XXL for mannequins, live models and large objects (190 × 90 × 100 cm and 100 kg maximum according to the Orbitvu product sheet). The Fashion Studio is designed for on-model photography with a live model, on a dedicated stage area. Alphashot studios, such as the Alphashot XL G2 (60 × 40 × 70 cm), are sized for accessories and objects, not for a full-size mannequin or a model."
+      },
+      "q4": {
+        "question": "Which studio should you use to photograph shoes and bags?",
+        "answer": "It depends on the size of the item. According to Orbitvu, the Alphashot XL G2 accepts products up to 60 × 40 × 70 cm and 25 kg, and the Alphashot Pro G2 up to 35 × 35 × 40 cm and 10 kg. Both shoot on a turntable, which makes it possible to run through the angles and, depending on the configuration, to produce 360° views or video."
+      },
+      "q5": {
+        "question": "Can recoloring replace a photo of each colorway?",
+        "answer": "It can help out occasionally, but a recolored image is not a photo of the real colorway: the exact shade, the texture and the way the fabric reacts to light may differ. Photographing each real colorway shows the item actually sold. If you do recolor, compare each variant with the item before publication."
+      },
+      "q6": {
+        "question": "Can AI create a ghost mannequin rendering from a flat photo?",
+        "answer": "Some tools offer it. The garment's volume is then generated, not photographed: check the accuracy of textures, the continuity of patterns and the legibility of printed text. These tools are evolving fast: test them on your own pieces and check every image. A real photo remains the reference for the product."
+      },
+      "q7": {
+        "question": "What photos does Zalando require?",
+        "answer": "According to the Zalando Partner University guidelines, updated on August 31, 2026 and checked on September 28, 2026: for packshots, a white #FFFFFF background (Zalando then adds a light gray background), a portrait format with a 1:1.44 ratio, a minimum of 762 × 1,100 px and 1,801 × 2,600 px recommended, as sRGB JPEG files of up to 20 MB. Check the official page before each upload."
+      },
+      "q8": {
+        "question": "How many pieces can be photographed per day?",
+        "answer": "No figure applies to every collection. Triggering the shot is fast; what sets the pace is preparing each piece (steaming, shaping, dressing the mannequin), the chosen presentation and the number of views. The throughput figures announced by Orbitvu are published without a measurement protocol. The most reliable approach is to test your own pieces during a demonstration."
+      },
+      "q9": {
+        "question": "Do you need to be a photographer to shoot a collection in an automated studio?",
+        "answer": "Not for everyday packshots: according to Orbitvu, basic training is enough, with no prior photography experience. The operator prepares the pieces, chooses the saved shooting template and checks the result. For on-model shoots and campaigns, a photographer and a stylist remain valuable."
       }
     },
     "cta": {
-      "heading": "Ready to accelerate your fashion photo production?",
-      "description": "Discover our solutions during a demo with a textile photography expert.",
-      "ctaPrimary": "Request a demo",
-      "ctaSecondary": "Calculate my ROI"
+      "heading": "Test a studio on your own pieces",
+      "formTitle": "Request a demo",
+      "demoNote": "30 minutes with an advisor, by video call or at the showroom near Lyon, where you can bring your trickiest pieces: blacks, whites, shiny fabrics, knits.",
+      "roiTitle": "Estimate your full cost",
+      "roiText": "An estimate based on your volumes: annual savings, time freed up, break-even point.",
+      "roiCta": "Open the calculator"
     },
-    "testimonial": {
-      "quote": "We shoot 200 references per day with a single operator. Production speed has increased 8x since installation.",
-      "author": "Alexandre M.",
-      "role": "Production Director, ready-to-wear brand"
+    "explore": {
+      "label": "Explore our solutions",
+      "studios": {
+        "title": "Automated photo studios",
+        "desc": "The Orbitvu range distributed by PackshotCreator, from jewelry to large formats."
+      },
+      "ia": {
+        "title": "AI product photography",
+        "desc": "Create staged scenes from your real packshots."
+      },
+      "academy": {
+        "title": "Team training — Sysnext",
+        "desc": "Courses from a Qualiopi-certified training organization, for your operators. In French."
+      }
     }
   },
   "packshotEcommerce": {
@@ -2126,7 +2492,7 @@
       },
       "q7": {
         "question": "Which studio for large parts?",
-        "answer": "The Alphastudio XXL Pro v2 accepts parts up to 100x70x190 cm and 100 kg. For larger parts, contact us for a custom study."
+        "answer": "The Alphastudio XXL Pro v2 accepts parts up to 100x90x190 cm and 100 kg. For larger parts, contact us for a custom study."
       }
     },
     "cta": {

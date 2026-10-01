@@ -120,6 +120,138 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Mode — #66 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, fusionnée | **Commit** : `4093d3d` (fusion de `04fdc8a`)
+
+**Quoi** — Publication coordonnée de `/fr/packshot-mode`, `/en/packshot-mode` et `/de-ch/packshot-mode`. Le GO de fusion a été donné par Laurent. La PR a été fusionnée le 01/10 à 16:26:04 UTC. Le déploiement Vercel de production a abouti à 16:27:09 UTC (statut `success` sur `4093d3d`). J0 de mesure = 01/10 ; J+28 = 29/10 ; J+56 = 26/11.
+
+**Vérifié sur l'origine (`sysnext.vercel.app`, hors Cloudflare)** —
+- Avant fusion, les trois pages portaient encore « 500 + », « - 80 % », « 3 s », Alphadesk et 100 × 70 cm. Après fusion :
+  - les trois pages répondent 200 ;
+  - les title, H1, canonical, `og:locale` (fr_FR, en_US, de_CH) sont ceux de la PR ;
+  - hreflang : 5 entrées (fr, fr-CH, en, de-CH, x-default) ;
+  - JSON-LD Organization, BreadcrumbList et FAQPage (9) ;
+  - les anciens chiffres sont absents du contenu (0 occurrence de chacun) ;
+  - le sommaire collant, 2 CTA vers `#demande-demo` et le formulaire sont présents ;
+  - 0 lien vers `/packshot-e-commerce` dans `<main>`.
+- Sélecteur de langue :
+  - les liens pointent vers la même page dans les autres langues, tous en 200 ;
+  - clic réel : FR → EN, EN → DE-CH et DE-CH → FR arrivent sur la bonne page.
+- Liens internes : 167 liens distincts des trois pages, tous en 200. Deux réponses `000` au premier essai (réseau), 200 au second.
+- Fiche XXL : 100x90x190 sur `/fr/studio-photo/alphastudio-xxl-v2`, `/en/studio-photo/alphastudio-xxl-v2` et `/de-ch/fotostudio/alphastudio-xxl-v2`. Même valeur sur le sélecteur et sur `/fr/industrie-defense`.
+- Sitemap : les trois URL sont présentes. Les hubs `/fr/industrie/mode-textile` et `/fr/industrie/chaussures` lient toujours `/fr/packshot-mode`.
+- `smoke.mjs https://sysnext.vercel.app` : vert, 17 pages, 3 ressources, sitemap à 308 URL.
+- Navigateur : trois langues sur six affichages (1440, 1280, 1024 et 768 tactiles, 390 et 360 tactiles).
+  - 15/18 sans défaut. Partout : 21 images chargées avec alt, FAQ visible = JSON-LD, aucun débordement, appui tactile sur le CTA intermédiaire → `#demande-demo`.
+  - Formulaire non soumis.
+
+**Anomalies observées** —
+- Erreur React #418 (différence entre HTML serveur et rendu client), intermittente, sur 2 affichages sur 18. Re-mesure sur 6 chargements par page : `/fr/packshot-mode` 1/6, `/fr/packshot-e-commerce` 1/6, `/fr/studios-photo-automatises` 1/6, `/fr/industrie/mode-textile` 0/6. [Inférence] Non propre à #66 : même fréquence sur des pages que #66 ne modifie pas. Jamais observée sur le build local. Cause non établie.
+- 502 ponctuel sur un fichier `/_next/static/chunks/…js` (1 affichage sur 18). Le même fichier répond 200 au contrôle suivant.
+
+**Accès navigateur** — Chromium de l'environnement ne reconnaissait pas l'autorité du proxy sortant (`ERR_CERT_AUTHORITY_INVALID`). Les contrôles navigateur ont été faits avec `--ignore-certificate-errors-spki-list` limité à l'empreinte de cette seule autorité (`/root/.ccr/agent-proxy-ca.crt`). La vérification TLS n'a pas été désactivée.
+
+**Supposé** — Le courriel à Sébastien et la soumission des trois URL dans Google Search Console ont été faits par Laurent, selon son message du 01/10. Non vérifiable d'ici.
+
+**Non regardé** — `www.packshot-creator.com` (R4 : Worker et WAF compris) ; Firefox et Safari ; lecteur d'écran réel ; performance (LCP, CLS) en production.
+
+**Suite** —
+- Laurent, dans Chrome sur `www`, les trois pages, desktop puis mobile :
+  - nouveau contenu ;
+  - sélecteur de langue ;
+  - sommaire collant ;
+  - CTA vers le formulaire, sans l'envoyer ;
+  - fiche XXL `/fr/studio-photo/alphastudio-xxl-v2`.
+- Erreur React #418 : à instruire hors de ce chantier.
+- Mesure GSC à J+28 (29/10) et J+56 (26/11).
+- Hors périmètre : chiffres non sourcés du hub mode-textile ; PR distincte recommandée.
+
+---
+
+## 2026-10-01 · Mode — finalisation de la PR #66 : retours de Sébastien, finitions, maillage, EN et de-ch · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, prête pour le GO de fusion de Laurent, non fusionnée | **Base** : `9f67351` (fusion de `main` après #73)
+
+**Retours de Sébastien du 01/10 (relayés par Laurent, tenus pour acquis)** —
+- Sommaire collant desktop : validé.
+- Droits des photos Orbitvu montrant des personnes : confirmés. Couvre les six visuels de la liste transmise : tuile « porté » du hero, opératrice XL G2, `alphastudio-xxl/hero.avif`, `fashion-studio/hero.avif`, vignettes `machines/alphastudio-xxl.avif` et `machines/fashion-studio.avif`. Remplacements préparés le 01/10 : non appliqués, sans objet.
+- Alphastudio XXL : profondeur 90 cm. Le constat « profondeur 70 ou 90 cm : NON ÉTABLI PAR LA SOURCE » de l'entrée précédente est levé : 100 × 90 × 190 cm (l, w, h de `dimensionsMax`).
+- Illustrations synthétiques V1 à V5 : publiables, remplaçables plus tard par des photos réelles. Aucune régénération.
+- Ligne « Balle chez Sébastien » Mode levée dans ETAT. Aucune nouvelle question posée à Sébastien.
+
+**Quoi** —
+- XXL : `tailleMax` et `dimensionsMax` 100 × 70 × 190 → 100 × 90 × 190 cm dans `components/machine-selector/lib/machines.ts` et `components/calculators/ROICalculator/lib/machines.ts` ; FAQ de la fiche XXL (FR, EN, de-ch) ; `industrieDefense.faq.q7.answer` dans les trois fichiers de messages. La landing citait déjà 190 × 90 × 100 cm selon la fiche Orbitvu : inchangée.
+- Finition FR :
+  - Tableau des studios : cartes sous 1024 px (`lg`) au lieu de 768 px (`md`). De 768 à 970 px, la 4e colonne était coupée par le cadre (tableau de 808 à 923 px pour 718 px de cadre).
+  - Section collection : la capture du logiciel (`soft-templates.avif`, clairsemée à l'écran) est remplacée par une série réelle de trois packshots Alphatable déjà présents dans le dépôt (robe, sweat, combishort ; même fond, même cadrage), avec des alt dédiés.
+- Liens retirés de la page :
+  - `/fr/packshot-amazon`, qui affiche « 500 + » et « - 80 % » ;
+  - `/fr/blog/prestataire-packshot-vs-studio-interne`, qui affiche « 3 secondes par packshot » et « 300 photos par jour ».
+  Clé `plateformes.lienAmazon` supprimée ; `interne.liens` ne garde que le calculateur.
+- `MoneyPageResources` (`data/content-maillage.ts`, entrée `packshot-mode`) :
+  - Retirés : l'article flat lay (Alphadesk, « 250 produits/jour ») et le cas Promod (ancien PackshotSpin, sans EN).
+  - Ajoutés : trois guides accessoires (lunettes, réglages bijoux, position de la montre). Le guide chaussures était déjà lié dans le texte.
+  - Rendu : 3 cartes en FR et EN, 2 en de-ch (seuls les guides bijoux et montre existent en de-ch).
+- EN et de-ch :
+  - Blocs `packshotMode` intégraux remplacent les anciens. Ils sont traduits du FR validé (D38). Clés et balises riches identiques au FR ; 262 messages ICU compilés par langue.
+  - `app/[lang]/packshot-mode/page.tsx` sert `PackshotMode` dans les trois langues. Les métadonnées viennent du bloc de chaque langue : title, description, canonical propre, hreflang via `buildLanguages`, `og:locale` fr_FR / en_US / de_CH, Twitter.
+  - Sources de la page localisées : libellés traduits, Google en `hl=en` / `hl=de`, Amazon sur la page amazon.fr signalée comme telle.
+  - Liens de guides EN corrigés : couleurs, chaussures.
+- de-ch, adaptation suisse :
+  - Lexique : « verrechnet », « allfällige », dates en 28.09.2026, pas de ß, guillemets « ».
+  - OPCO et Qualiopi présentés comme dispositifs français (D38) ; leasing par des établissements suisses.
+  - Langue des liens signalée : « (auf Englisch) » sur les trois guides servis en EN ; « (auf Französisch) » sur les formations.
+
+**Maillage** — Sortant, dans le contenu de la page :
+- les 13 fiches studio et le sélecteur, par le tableau des studios, inchangé ;
+- `/fr/academy`, carte « Formation des équipes — Sysnext », conforme à #71 ;
+- le calculateur ROI ;
+- l'IA photo produit ;
+- les guides couleurs, chaussures et collection homogène ;
+- les trois guides accessoires.
+
+Le hub `/fr/industrie/mode-textile` n'est pas lié (chiffres non sourcés : -80 %, 50-100 vêtements par jour, « 400 SKUs ») ; il lie déjà la landing par `SECTOR_PACKSHOT_MAP`. Canoniques et routage de la landing et du hub inchangés (D39). Gel F5 : 0 lien vers `/packshot-e-commerce` dans `<main>` ; le seul lien de la page vient du gabarit global, déjà présent sur toutes les pages. Aucun lien entrant ajouté depuis d'autres pages.
+
+**Fichiers** — `components/landings/PackshotMode.tsx`, `app/[lang]/packshot-mode/page.tsx`, `messages/fr.json` (bloc `packshotMode` ; `industrieDefense.faq.q7.answer`), `messages/en.json` et `messages/de-ch.json` (bloc `packshotMode` remplacé ; `industrieDefense.faq.q7.answer`), `data/content-maillage.ts` (entrée `packshot-mode`), `components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action** —
+- XXL : `machines.ts` est lu par la fiche `/studio-photo/alphastudio-xxl-v2` (FR, EN, `/de-ch/fotostudio/…` : statistiques, FAQ visible et JSON-LD), le sélecteur, le moteur et l'assistant ROI, `/solutions/[slug]` et `/industrie-defense`.
+- Comportements :
+  - Moteur et assistant ROI (`checkDimensionsFit`, dimensions triées) : un produit dont la plus petite dimension est comprise entre 71 et 90 cm, les deux autres tenant dans 190 et 100 cm, devient compatible avec la XXL.
+  - Sélecteur `/studio-photo/selecteur-machines` : il filtre par `tailleCategories`, inchangées ; seul le texte `tailleMax` affiché change.
+- `content-maillage.ts` : seule l'entrée `packshot-mode` change.
+- EN et de-ch : seule la page `/en/packshot-mode` et `/de-ch/packshot-mode` change de gabarit ; `PackshotLandingTemplate` n'est pas modifié.
+
+**Vérifié** —
+- Contrôles statiques : `tsc`, eslint 0, `verifier-json`, Vitest 373/373, `next build` 371 pages. Build local servi par `next start`.
+- QA FR, EN et de-ch sur six affichages (1440, 1280, 1024 et 768 tactile, 390 et 360 tactile) : 18/18 sans défaut.
+  - Pages : statut 200, 1 H1, canonical propre, 5 hreflang, `og:locale` attendu, JSON-LD Organization, BreadcrumbList et FAQPage, FAQ 9 = JSON-LD 9 (texte identique).
+  - Contenu : 21 images chargées, toutes avec alt, aucune clé brute, aucune ancre cassée, aucun débordement horizontal.
+  - Erreurs : aucune erreur console, aucune réponse 4xx.
+  - Sommaire collant affiché à partir de 1024 px. Appui tactile sur le CTA intermédiaire → `#demande-demo`. Formulaire présent, non soumis.
+- Tableaux à 768, 820, 900, 1024, 1280 px, trois langues : aucun dépassement du cadre ; studios en cartes sous 1024, en tableau au-delà.
+- Sommaire collant à 1024, 1280, 1440 px, trois langues, dix sections : barre visible, section active signalée, aucun dépassement (libellé actif le plus long : 889 px pour 1360 px de cadre, EN).
+- Liens : 167 liens internes distincts des trois pages, tous en 200.
+- XXL : 100x90x190 rendu sur la fiche XXL (FR, EN, de-ch), le sélecteur et `/fr/industrie-defense` ; aucune occurrence 100 × 70 × 190 restante dans le code et les messages.
+- axe-core à 1440 et 390 px, trois langues : aucune violation dans `<main>`. 57 nœuds `color-contrast` hors `<main>` (gabarit global, préexistants).
+
+Le résultat des specs Playwright est reporté dans la PR.
+
+**Supposé** — Les retours de Sébastien sont relayés par Laurent dans la consigne du 01/10, tenus pour acquis comme demandé. La profondeur de 90 cm repose sur ce retour et sur la fiche Orbitvu relevée le 28/09 ; aucune fiche archivée dans le dépôt.
+
+**Non regardé** —
+- Preview réelle (Vercel Authentication, 302 vers SSO) : contrôle visuel dans Chrome à faire par Laurent.
+- `www` (R4).
+- Firefox et Safari.
+- Lecteur d'écran réel.
+- `de-ch.json` porte `industrieDefense` en français (préexistant, seule la dimension a changé).
+- Pages liées avant ce chantier et qui portent des chiffres non sourcés : `/fr/studios-photo-automatises` (« 500+ ») ; cadences « produits par jour » des fiches.
+
+**Suite** — GO de fusion de Laurent après contrôle visuel des Previews. Après fusion : smoke `sysnext.vercel.app` FR, EN, de-ch, contrôle Chrome sur `www`, entrée au JOURNAL ; le chantier n'est pas terminé avant. Hors périmètre, PR distincte recommandée : nettoyage des chiffres du hub `/fr/industrie/mode-textile`, puis lien réciproque hub → landing déjà en place, landing → hub à ajouter.
+
+---
+
 ## 2026-10-01 · UB-04 / #74 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, fusionnée sur GO de Laurent | **Commit de fusion** : `8365c73` (`main`), le 01/10/2026 à 10:29:43 UTC | **Tête fusionnée** : `d51f69c` | **Base avant fusion** : `a6760da` (#72)
@@ -158,6 +290,72 @@ La PR est sortie du brouillon puis fusionnée par commit de fusion ; branche con
 - Hors périmètre, inchangé : `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` (FR et EN, 4 pages) portent toujours le fil dans leur `<h1>` : PR distincte.
 - Libellé du repère à migrer vers `messages/*.json` après #64 et #66.
 - Proposition, non appliquée : inscrire dans `03-PIEGES.md` que Tailwind analyse les `.md` de `docs/`, et qu'un nom de variable ou de classe CSS cité dans le journal peut modifier la CSS de production. La variable ajoutée est sans effet ; l'entrée UB-04 n'est pas retouchée (on n'efface jamais).
+
+---
+
+## 2026-10-01 · Mode — sommaire collant desktop, formation harmonisée sur #71, dimensions XXL et droits des visuels · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base** : `bac1b18` (contre-relecture ChatGPT du texte intégral terminée, structure et texte validés)
+
+**Quoi** —
+- Sommaire collant, desktop seulement (lg et plus) : barre fixe sous l'en-tête du site (`components/landings/SommaireCollant.tsx`, nouveau, client). Elle apparaît quand le sommaire de la page (`#sommaire`) est sorti de l'écran et disparaît après la FAQ. Dix ancres numérotées (mêmes cibles et libellés que `#sommaire`), section en cours signalée par son libellé, un soulignement et `aria-current="location"` ; les autres libellés en `sr-only`, affichés en infobulle au survol et au focus. Nom accessible distinct (« Accès rapide aux sections », clé `sommaire.barre`) : axe signalait deux repères « Sommaire » (`landmark-unique`). Mobile et tablette : sommaire de la page inchangé, non collant.
+- Barre latérale façon blog écartée : le blog place un `aside` de 256 px à 48 px du texte (`lg:gap-12`) ; à 1440 px, le contenu passerait de 1232 à 928 px, tableaux et illustrations compris (-25 %), et la FAQ a déjà sa colonne collante (`lg:top-32`). Le composant partagé `components/blog/TableOfContents.tsx` n'est pas réutilisé : boutons sans `aria-expanded`, sans changement d'adresse, mise en page de colonne étroite ; le modifier toucherait tous les articles.
+- Formation : « La formation est facturée séparément du studio ; en France, une prise en charge par votre OPCO est possible selon votre situation. » devient « La formation est facturée séparément du studio. Financement OPCO possible selon votre situation. » (formulation de #71, `academy.hero.description`, `fc6c9c6`). Carte finale : titre « Academy » devenu « Formation des équipes — Sysnext », cible `/fr/academy` inchangée, description inchangée.
+
+**Dimensions XXL** — Sources disponibles dans le dépôt : (1) fiche orbitvu.com relevée le 28/09 pour F5, consignée ici et dans `packshotEcommerce` : 190 × 90 × 100 cm, 100 kg, axes non précisés par Orbitvu, version non précisée dans le relevé ; la fiche elle-même n'est pas archivée dans le dépôt ; (2) `sessions/research/orbitvu-specs.md` (collecte du 22/03/2026, sources mêlées orbitvu.com et pages PSC) : « Produits jusqu'a 190 cm de haut, 100 cm de large », sans profondeur, et un tableau à 100x70x190 cm identique à celui du Compact Pro v2, déjà contredit par Orbitvu (80 × 70 × 130 cm) ; (3) `machines.ts` : « Alphastudio XXL Pro v2 », `dimensionsMax` l 100, w 70, h 190, sans source primaire tracée. Hauteur 190 et largeur 100 : concordantes [Inférence : à partir du corpus secondaire]. Profondeur 70 ou 90 cm : NON ÉTABLI PAR LA SOURCE. Version visée par la fiche Orbitvu (XXL ou XXL Pro v2) : NON ÉTABLI PAR LA SOURCE. Aucune valeur harmonisée ; la landing garde la valeur Orbitvu et sa mention « axes non précisés ».
+
+**Droits des visuels** — Revue des visuels réels de la page : outre les quatre photos déjà signalées (tuile « porté » du hero, opératrice XL G2, `alphastudio-xxl/hero.avif`, `fashion-studio/hero.avif`), les vignettes du tableau des studios `machines/alphastudio-xxl.avif` et `machines/fashion-studio.avif` montrent aussi une personne ; elles sont partagées avec les fiches et d'autres pages. Aucun visuel changé avant décision. Remplacements préparés en cas de refus, actifs existants sans personne : opératrice → `alphashot-xl-g2/advantage-open-doors.avif` (1400 × 1004) ; tuile « porté » → `alphatable-alphadesk/packshot-dungarees.avif`, avec légende et alt de la mosaïque à ajuster (« porté » retiré) ; figures XXL et Fashion Studio → aucune vue d'ensemble sans personne dans le dépôt (`alphastudio-xxl/hw-studio.avif` et `fashion-studio/hw-studio.avif` montrent aussi une silhouette) : retrait du bloc de deux figures, le tableau restant ; vignettes du tableau → `alphastudio-xxl/hw-turntable.avif` et `fashion-studio/hw-led.avif` (détails matériels, 439 × 436 et 438 × 436) ou vignette retirée.
+
+**Fichiers** — `components/landings/SommaireCollant.tsx` (nouveau), `components/landings/PackshotMode.tsx` (import et rendu de la barre), `messages/fr.json` (bloc `packshotMode` : `accompagnement.formation.text`, `explore.academy.title`, `sommaire.barre`), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `verifier-json` (180), `tsc`, eslint sur les 2 fichiers, 261 messages ICU, `next build` (371 pages), `seo.spec` `packshot-mode` 26/26. Build local, 1440, 1280, 1024 et 390 px : barre masquée en haut de page et au retour sur `#sommaire`, visible de la section 1 à la FAQ, masquée au formulaire ; bord haut à 65 px = bas de l'en-tête (aucun chevauchement), bas à 114 px, sous la colonne collante de la FAQ (128 px) ; section active correcte (05 au milieu de « Le studio et l'équipe », 08 après Entrée sur « 08 », 10 dans la FAQ) ; clavier : Tab de 07 à 08, anneau de focus visible, Entrée → `#studios`, titre H2 à 248 px ; 10 cibles existantes ; illustrations et tableaux à 1230 px (1440, 1280), 974 px (1024), 356 px (390) : inchangés ; aucun débordement, aucune erreur console ; 390 px : barre non rendue, sommaire de la page en position statique. axe-core (1440, barre visible) : aucune violation dans la barre ; `color-contrast` : 57 nœuds, tous hors `<main>` (pied de page). CTA intermédiaire inchangé (y = 14 626 à 390 px, clic → `#demande-demo`). Title (61), meta (146), H1 unique, canonical, 5 hreflang, FAQ visible = FAQPage (9/9).
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; Firefox et Safari ; lecteur d'écran réel (seul l'arbre d'accessibilité et axe ont été contrôlés).
+
+**Suite** — Sébastien : droits des six visuels avec personnes. Puis décision de fusion par Laurent.
+
+---
+
+## 2026-10-01 · Mode — corrections après contre-relecture ChatGPT + Chrome (retours d'expérience, CTA, Fashion Studio) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base** : `f1c2da0`, puis `main` `a6760da` (#72) fusionnée
+
+**Quoi** — Corrections ciblées demandées par Laurent après le contrôle Chrome de la Preview (MODE_CHROME_EDITORIAL_QA = PARTIAL) :
+- Quatre affirmations d'expérience directe non établies, reformulées en conseils de contrôle, sans test, résultat, préférence client ni témoignage : `matiere.recolo.texte` (« Chez PackshotCreator, nous l'avons vue utilisée ainsi… », « Les clients que nous accompagnons préfèrent en général… »), `interne.raisons.volume.texte` (« D'expérience, PackshotCreator constate… »), `ia.essais.titre` et `ia.essais.texte` (« Ce que nous avons observé », « PackshotCreator a testé… »), `faq.q5.answer` et `faq.q6.answer` (mêmes affirmations).
+- Fashion Studio : « dans une organisation proche d'un plateau photo (traditionnel) » n'apparaît pas dans le corpus (`sessions/research/orbitvu-specs.md`, `machines.ts`) ; remplacé par « sur un espace scénique dédié », présent pour la version Pro v2 (« Espace scénique 3×3m ») et la version Basic (« dans un espace scénique »). `studios.rows.fashion.usage` et `faq.q3.answer`.
+- Un seul CTA intermédiaire « Demander une démonstration », vers le formulaire existant (`#demande-demo`), en fin de section « Ce que fait le studio, ce que fait l'équipe » : en 390 px, le bouton du hero (y = 782) et le formulaire (y = 25 731) étaient séparés de ~24 900 px ; le nouveau CTA (y = 14 626) coupe cet écart en deux. Aucun formulaire, popup, bandeau fixe ni CTA calculateur ajouté. Clés `auStudio.demo.texte` et `auStudio.demo.cta`.
+- Fusion de `main` `a6760da` (#72, Inter auto-hébergée) : conflits limités à `JOURNAL.md` et `ETAT.md`, les deux côtés conservés. Tous les caractères du bloc `packshotMode` sont couverts par l'`unicode-range` du sous-ensemble Inter.
+
+**Images (constat, aucune modification)** — Les « 536 px » relevés dans Chrome sont le `naturalWidth` calculé par le navigateur : en 1440 px et DPR 2, `sizes` (1232 px) fait choisir le candidat 3840w ; `/_next/image` n'agrandit pas et renvoie le fichier source de 1672 × 941 px ; Chrome divise par la densité du descripteur (3840 / 1232) : 1672 × 1232 / 3840 = 536. Même octets pour w=1920 et w=3840 (51 852 o pour V1). Effet réel : sur écran DPR 2, V1 à V5 sont affichées à 1230 px CSS à partir de 1672 px de pixels (agrandissement ×1,47) ; limite de la source, non corrigible sans régénération (exclue). Chargement différé : V1 à V5 se chargent à l'approche, toutes chargées après défilement sur 7 affichages (1440, 1280, 1024, 768, 390 ; DPR 1 à 3). Une capture d'élément prise sans défilement préalable montre V4 vide : artefact de capture, l'image se charge une fois atteinte. Logos : bandeau propre à la page (comme F5), 9 logos nommés, 9 doublons `alt=""` et `aria-hidden="true"`, arbre d'accessibilité à 9 images : aucun défaut ; les logos hors écran horizontalement se chargent quand le défilement les amène (18/18 en 18 s à 390 px). `ClientLogos.tsx` (partagé) n'est pas utilisé par la page et n'est pas touché.
+
+**Dimensions XXL (constat)** — Pas de contradiction de nature : `machines.ts` (100 × 70 × 190 cm) et la fiche Orbitvu relevée le 28/09 (190 × 90 × 100 cm) sont toutes deux des tailles maximales de produit ; l'encombrement de la machine est 277 × 190 × 273 cm (corpus, FAQ de la fiche). [Inférence] Si 190 est la hauteur et 100 la largeur (corpus : « jusqu'à 190 cm de haut, 100 cm de large »), l'écart porte sur la profondeur : 70 cm contre 90 cm. La landing suit la fiche Orbitvu ; l'alignement de `machines.ts` reste hors périmètre (écart n° 3 du 28/09).
+
+**Fichiers** — `messages/fr.json` (bloc `packshotMode` seul, JSON identique hors du bloc), `components/landings/PackshotMode.tsx` (bloc CTA), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `verifier-json` (180), `tsc`, eslint, 260 messages ICU compilés, Vitest 373/373, `next build` (371 pages) ; sur le build local : `seo.spec` `packshot-mode` 26/26, `smoke.mjs` vert (sitemap 308 URL) ; 1440 et 390 px : 1 H1, aucun débordement de page, aucune erreur console, aucune réponse 4xx, aucune ancre cassée, FAQ visible = FAQPage (9/9), title (61), meta (146), canonical et 5 hreflang inchangés ; clic du nouveau CTA : `#demande-demo` en haut de l'écran ; chaînes retirées (« Chez PackshotCreator », « D'expérience », « nous avons observé », « a testé », « essais menés », « clients que nous accompagnons », « plateau photo traditionnel ») : 0 dans le texte visible, le `<head>` et le JSON-LD.
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) avant le push ; `www` (R4) ; EN et de-ch (D38) ; droits des photos Orbitvu avec personnes (question à Sébastien).
+
+**Suite** — Contre-relecture ChatGPT du texte intégral, puis transmission à Sébastien (un seul point : droits des photos).
+
+---
+
+## 2026-10-01 · Mode — contrôle final avant transmission à Sébastien, trois micro-corrections · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base contrôlée** : `798116e`
+
+**Quoi** — Relecture éditoriale, factuelle, visuelle et SEO de `/fr/packshot-mode` sur le build local de `798116e`. Trois micro-corrections :
+- `accompagnement.formation.text` : ajout de « La formation est facturée séparément du studio ; » avant la phrase OPCO. Source : `blogBudget.financing.f2` (#71, Sébastien) : « La formation, facturée séparément du studio, peut être financée par votre OPCO selon votre situation. »
+- Alphashot XL G2, limite du tableau des studios : « Ne reçoit ni mannequin ni modèle : réservé aux accessoires et aux objets » devient « Gabarit d'accessoires et d'objets : pas de mannequin taille réelle ni de modèle » ; FAQ q3 : « sont réservés aux accessoires et aux objets » devient « sont dimensionnés pour les accessoires et les objets, pas pour un mannequin taille réelle ni un modèle ». Source : gabarit Orbitvu 60 × 40 × 70 cm (relevé F5). Raison : l'absolu « ne reçoit ni mannequin » n'est établi par aucune source pour un buste de petite taille ; l'impossibilité d'un mannequin taille réelle découle des dimensions.
+- V5 : fichier renommé `mode-v5-deux-coloris-reels.avif` → `mode-v5-deux-variantes-colorees.avif` (octets identiques). Raison : le nom, exposé dans l'URL de l'image, contredisait la légende « Illustration synthétique de deux variantes colorées ».
+
+**Fichiers** — `messages/fr.json` (bloc `packshotMode`), `components/landings/PackshotMode.tsx` (chemin V5), `public/images/packshot-mode/` (renommage), `docs/seo-geo/JOURNAL.md`.
+
+**Vérifié** — voir la PR #66 (contrôles rejoués après correction). Alphadesk : absente de la page ; `delisted: true` dans `machines.ts` signifie retirée du catalogue PSC (`1cbc569`), pas arrêtée chez Orbitvu ; l'état maître du 30/09 qui la dit active chez Orbitvu n'est pas dans le dépôt [Non vérifié].
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; EN et de-ch (D38).
+
+**Suite** — Transmission de la Preview à Sébastien.
 
 ---
 
@@ -461,6 +659,44 @@ Limites, telles qu'écrites dans la source : une exécution par question, un seu
 
 ---
 
+## 2026-10-01 · Mode — contrôle final avant envoi à Sébastien (Qualiopi, lien Academy, V5) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Commit contrôlé** : `0b9bbef`
+
+**Quoi** — Contrôle seul, aucun code modifié ici. `0b9bbef` (autre session Claude de Laurent) remplace dans `packshotMode.accompagnement.formation.text` « Sysnext (PackshotCreator), organisme de formation certifié Qualiopi, forme vos équipes… » par « Sysnext, organisme de formation certifié Qualiopi, forme vos équipes… » : la certification est attribuée à Sysnext seul. Phrase OPCO inchangée (« possible selon votre situation »). La valeur homonyme de F5 (`packshotEcommerce.r8.formation.text`) n'est pas touchée.
+
+**Pourquoi** — Consigne de Laurent du 01/10 : certification attribuée sans ambiguïté à Sysnext ; aucune « PackshotCreator Academy » certifiée ; ni prix, ni durée, ni formation IA, ni simulateur OPCO, ni promesse de financement.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`.
+
+**Vérifié** — Lien de la carte « Formation » : `<Link href="/academy" locale={epingle('/academy')}>`, même implémentation que F5 après #71 ; rendu `/fr/academy`, en 200 ; aucun lien vers `simulateur-opco`. Lien « Academy » du bloc « Explorez » : `locale={epingle(l.href)}`, rendu `/fr/academy`. Légende V5 : « Illustration synthétique de deux variantes colorées. » 5/5 illustrations chargées à 1440 et 390 px. `verifier-json`, `tsc`, Vitest (dont `academy-fr-only`), `next build`, `seo.spec` `packshot-mode`, `smoke.mjs` : verts sur le build local.
+**Supposé** — Sysnext est l'entité titulaire de la certification Qualiopi : formulation reprise des textes du site et de #71, non recontrôlée sur le certificat.
+**Non regardé** — Textes Qualiopi hors du bloc `packshotMode` (F5, accueil, contact, blog), hors consigne.
+
+**Suite** — Envoi de la Preview à Sébastien par Laurent.
+
+---
+
+## 2026-09-30 · Mode — `main` (#71) fusionnée dans #66, liens formation alignés · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base fusionnée** : `main` `8ec89c1` (#71)
+
+**Quoi** — Fusion de `main` dans la branche de #66 : conflit de `JOURNAL.md` seulement, les deux entrées sont conservées. #71 retire les routes `/academy/formations-packshot` et `/academy/simulateur-opco`, vers lesquelles la carte « Formation » de la page Mode pointait : le build ne passait plus. Alignement identique à celui que #71 applique à F5 :
+- lien unique vers `/academy`, libellé « Voir nos formations » ; lien « Simuler une prise en charge OPCO » retiré ;
+- `packshotMode.accompagnement.formation.text` : « PackshotCreator Academy, organisme de formation certifié Qualiopi, forme vos opérateurs à la prise de vue sur studio Orbitvu, sur plusieurs niveaux. » devient « Sysnext (PackshotCreator), organisme de formation certifié Qualiopi, forme vos équipes à la prise en main et à la maîtrise des studios Orbitvu, à distance ou en présentiel. » ; la phrase OPCO est inchangée.
+
+**Pourquoi** — Texte de F5 validé par Sébastien dans #71 (audit Qualiopi du 16/10/2026, le catalogue fait foi) ; seul changement textuel de la page Mode, hors visuels.
+
+**Fichiers** — `components/landings/PackshotMode.tsx`, `messages/fr.json` (bloc `packshotMode.accompagnement.formation`), `docs/seo-geo/JOURNAL.md`.
+
+**Vérifié** — voir la PR #66 (contrôles rejoués après fusion).
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Passe de Sébastien sur la Preview.
+
+---
+
 ## 2026-10-01 · Inter auto-hébergée, itération 2 : sous-ensembles et repli d'origine · Claude de Laurent
 
 **Chantier** : fiabilité du build, suite de l'entrée du 30/09 ci-dessous | **PR** : #72, brouillon, non fusionnée | **Base** : `main` `8ec89c1`
@@ -642,6 +878,32 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 
 ---
 
+## 2026-09-30 · Mode — pack visuel V1 à V5 intégré dans `/fr/packshot-mode` · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **HEAD avant** : `ac5698b`
+
+**Quoi** — Cinq illustrations générées (pack du 30/09, `MODE_VISUAL_HANDOFF_2026-09-30.zip`) ajoutées à la version FR, une par section : V3 dans « collection », V2 dans « matière », V1 dans « présentations », V4 dans « au studio » (après le tableau), V5 dans « IA ». Alt et légendes repris du rapport `MODE_VISUAL_FINAL_REVIEW_2026-09-30.md`. V6 (optionnel) non retenu : hero inchangé. Aucun visuel existant retiré, aucun texte existant modifié.
+
+**Pourquoi** — Liste « Visuels à produire » de la PR #66 ; sélection verrouillée par Laurent le 30/09 : V1, V2, V4 KEEP ; V3, V5 KEEP avec réserve ; V6 OPTIONAL.
+
+**Fichiers** — `components/landings/PackshotMode.tsx` (composant `Illustration`, 5 figures), `messages/fr.json` (bloc `packshotMode` : 5 objets `illustration` { alt, caption } ajoutés, rien d'autre ne change), `public/images/packshot-mode/` (5 AVIF, 495 107 octets), `docs/seo-geo/JOURNAL.md`, `ETAT.md`.
+
+**Provenance** — Illustrations générées dans ChatGPT : ni client, ni séance réelle, ni personne de l'équipe, ni preuve de performance. Chaque légende commence par « Illustration synthétique ». Les PNG sources portent un manifeste C2PA (bloc `caBX`) que les dérivés AVIF ne conservent pas ; `next/image` ré-encode de toute façon. PNG conservés hors dépôt.
+
+**Format** — PNG 1672 × 941 → AVIF 1672 × 941 (sharp 0.34.5, qualité 60, effort 6), ratio complet, aucun recadrage. Qualité 50 écartée : grain de la maille et du denim lissé à 100 %. Servi par `next/image` en WebP : à 1440 px (w=1920, image de 1672 px) 52 à 158 Ko, 475 Ko pour les cinq ; à 390 px DPR 3 (w=1080) 27 à 86 Ko, 234 Ko. Chargement différé, aucun préchargement ajouté.
+
+**Écarts au rapport** — Légende V5 : seule la première proposition est publiée (« Illustration synthétique de deux variantes colorées. ») ; la seconde (« ne pas la présenter comme preuve de deux articles physiques photographiés ») est une consigne d'usage, pas une légende. Apostrophes typographiques du rapport converties en apostrophes droites, usage du bloc `packshotMode` (109 droites, 0 typographique). V3 : 7 coloris au lieu de 6, accepté par le rapport. Noms de fichiers repris du pack, y compris `mode-v5-deux-coloris-reels` : le mot « reels » figure dans l'URL de l'image.
+
+**V6** — Comparé dans le DOM du build local, sans modification de code. Desktop : une image 16:9 (576 × 325) à la place de la mosaïque carrée (576 × 576) laisse la colonne à moitié vide. Mobile : plus compact (253 px de haut contre 410). Contenu : un plateau à boîtes à lumière, ni studio Orbitvu ni packshot, alors que le chapeau présente des studios automatisés ; même manteau camel que V1, V4 et V5. Amélioration nette en desktop et en mobile non établie : hero actuel conservé.
+
+**Vérifié** — SHA-256 des 6 PNG et du rapport conformes à `SHA256SUMS.txt` ; `npx tsc --noEmit` ; eslint `--max-warnings=0` sur les 2 fichiers de code ; `verifier-json.mjs` (186) ; Vitest 342/342 ; `npx next build` vert. Build local à 1440 et 390 px : statut 200, 5/5 illustrations chargées au ratio 1,777 (source 1,777), aucun débordement horizontal, 0 erreur console, 0 réponse 4xx/5xx, 0 image sans alt, 0 ancre cassée, 4 tableaux, FAQ 9 visibles = 9 FAQPage, 67 liens internes uniques en 200, aucun claim retiré réintroduit. HTML serveur comparé au build de `ac5698b` : title, meta description, H1, canonical, 5 hreflang, 13 balises OG/Twitter, JSON-LD (octets identiques) et 3 préchargements d'images inchangés. `/en/packshot-mode`, `/de-ch/packshot-mode`, `/fr/industrie/mode-textile`, `/fr/packshot-e-commerce`, `sitemap.xml` (325 URL) : identiques à `ac5698b` hors identifiant de build et `lastmod`. `e2e/seo.spec.ts` filtré `packshot-mode` : 26/26 (Chromium, Pixel 5). `anchors`, `internal-links`, `responsive`, `mobile-overflow` : 107/136 ; les 29 mêmes échecs sur `main` (`7ad0ca3`) et sur `ac5698b`, aucun sur Mode (`/fr`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, `/fr/studios-photo-automatises`). `smoke.mjs` sur le build local : vert, 17 pages.
+**Supposé** — Aucune marque tierce et aucun texte lisible dans les images : constat du rapport ; à l'œil sur les PNG, étiquettes intérieures et sac sans inscription lisible.
+**Non regardé** — Preview (SSO, aucun jeton de contournement dans cette session) ; `www` (R4) ; EN et de-ch (D38) ; hub.
+
+**Suite** — Passe de Sébastien sur la Preview ; arbitrage de Laurent sur la légende V5 et le nom du fichier V5 si besoin.
+
+---
+
 ## 2026-09-30 · Articles de blog centrés sur grand écran · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien | **PR** : #69 | **Commit** : `d570218`
@@ -766,6 +1028,30 @@ Aucun cas terrain inventé : le marqueur « workflow Suisse / UE » reste en pla
 6. seulement ensuite, #67, après fusion de `main` dans sa branche. Deux conflits attendus :
    - le test Worker, dont #67 porte la version à 15 cas : garder celle de `main` ;
    - le haut du JOURNAL.
+
+---
+
+## 2026-09-30 · Mode — réécriture FR de la landing `/fr/packshot-mode` (méthode F5) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Version FR de `/fr/packshot-mode` réécrite dans un composant page-scopé, `PackshotMode.tsx` : chapeau, « En bref », sommaire, 9 sections H2 (collection, couleur/matière/tombé, présentations, internalisation, studio et équipe, IA, plateformes, studios, budget et accompagnement) et FAQ de 9 questions. EN et de-ch restent sur `PackshotLandingTemplate` avec leurs anciens messages, jusqu'à la traduction de la version FR validée (D38). Canonical, hreflang, sitemap, robots, Worker : inchangés.
+
+**Pourquoi** — Page de 755 mots visibles (build local de `main`) et 3 FAQ, bandeau « 500+ pièces par jour / 3 s / -80 % » non sourcé et repris par les moteurs IA (dossier Mode du 30/09, hors dépôt), témoignage « Alexandre M. » non validé, Alphadesk (délisté) et Alphashot XL Pro v2 recommandés. Méthode transposée de F5 (`074189a` → `55ea992`), sans reprise de son texte.
+
+**Fichiers** — `components/landings/PackshotMode.tsx` (nouveau), `app/[lang]/packshot-mode/page.tsx`, `messages/fr.json` (bloc `packshotMode` seul, octets identiques hors du bloc), `docs/seo-geo/JOURNAL.md`, `ETAT.md`, `DECISIONS.md`.
+
+**Claims retirés** — 500+ pièces/jour ; 3 s par packshot ; -80 % de coûts ; « centaines de pièces par jour » (meta et bénéfices) ; témoignage « Alexandre M. » (200 références par jour, cadence multipliée par 8) ; « 3 étapes. Zéro compétence photo. » ; « tout est automatisé » ; « reproduction exacte » ; « éliminant les ombres et reflets » ; « détourage instantané » ; « La plupart des marques combinent… » ; « 20 systèmes Orbitvu » ; cartes machines (XL Pro v2, cadences « photos/jour » de `machines.ts`, XXL à 100 × 70 × 190 cm) ; Alphadesk ; image « Showroom PackshotCreator », qui ne représente pas le showroom.
+
+**Faits utilisés** — NN/g, Baymard, Amazon G1881, Google Merchant Center 6324350 et 16989427, Zalando : relevés F5 du 28/09, datés dans la page. Dimensions Orbitvu : fiches relevées le 28/09 pour F5. Limites de l'Alphatable, de l'XXL et du Fashion Studio : fiches du site (`machines.ts`). Faits métier de Sébastien du 30/09, transmis par Laurent (prise de vue réelle, gros volumes, recolorisation, essais IA « mannequin invisible », Fashion Studio) : attribués à « PackshotCreator », sans nom. Financement, formation, accompagnement : faits de F5 (D32 pour la livraison et l'installation). Aucun prix, aucune cadence chiffrée.
+
+**Vérifié** — `npx tsc --noEmit` ; eslint `--max-warnings=0` sur les 2 fichiers de code ; `verifier-json.mjs` (186) ; 249 messages ICU compilés ; Vitest 342/342 ; `npx next build` vert, table des routes identique à `main` (383 pages) ; `e2e/seo.spec.ts` filtré sur `packshot-mode` : 26/26 (Chromium, Pixel 5) ; `smoke.mjs` sur le build local : vert, 17 pages, sitemap 325 URL. Rendu local à 1440 et 390 px : statut 200, 1 H1, `lang="fr"`, canonical et 5 hreflang identiques à `main`, `og:url`, `og:locale`, `og:type` et `twitter:*` ajoutés en FR seulement, Organization + BreadcrumbList + FAQPage (9 questions = FAQ visible), 22 liens internes uniques en 200, 6 externes en `_blank` avec `noopener noreferrer`, aucun débordement horizontal, aucune ancre cassée, aucune erreur console, aucune réponse 4xx, préchargements d'images 10 → 3. Mots visibles du `<main>` : 755 → 3 494. Claims retirés : 0 occurrence dans le texte visible, le `<head>`, le JSON-LD et le bloc `packshotMode` du flux RSC. `/en/packshot-mode`, `/de-ch/packshot-mode` et `/fr/industrie/mode-textile` : HTML hors scripts identique à `main`.
+**Supposé** — Les visuels réutilisés (`public/images/machines/*`) sont des visuels Orbitvu : non recontrôlé sur orbitvu.com, d'où des légendes qui ne nomment aucun modèle, sauf pour les photos de studio dont le nom figure sur l'appareil. Valeurs des plateformes : celles du 28/09, non relues depuis.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; relecture par Sébastien ; hub non modifié ; versions EN et de-ch non traduites.
+
+**Constats hors périmètre** — Le flux RSC de toute page FR contient tout `fr.json`, donc les anciens claims d'autres namespaces (déjà signalé par F5). La PR #64 (D33, ouverte) annonce un délai de livraison d'environ 12 jours, contre environ 10 dans F5 et D32 : chiffre retiré de la page Mode. Le hub `/fr/industrie/mode-textile` porte des chiffres non sourcés (-80 %, 50-100 vêtements par jour, 100-300 visuels IA par jour, cas client « 400 SKUs », délais -75 %). L'article flat lay lié par `MoneyPageResources` cite l'Alphadesk, « 15 secondes » et « 150 prises de vue par heure ». La fiche XXL du site affiche 100 × 70 × 190 cm, Orbitvu 190 × 90 × 100 cm.
+
+**Suite** — Relecture de Laurent ; passe de Sébastien (faits métier, Fashion Studio, délai de livraison) ; visuels à produire séparément après validation (liste dans la PR) ; traduction EN et de-ch depuis la version FR validée (D38) ; calendrier de fusion à décider par Laurent.
 
 ---
 
