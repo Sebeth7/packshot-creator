@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Mode — contrôle final avant envoi à Sébastien (Qualiopi, lien Academy, V5) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Commit contrôlé** : `0b9bbef`
+
+**Quoi** — Contrôle seul, aucun code modifié ici. `0b9bbef` (autre session Claude de Laurent) remplace dans `packshotMode.accompagnement.formation.text` « Sysnext (PackshotCreator), organisme de formation certifié Qualiopi, forme vos équipes… » par « Sysnext, organisme de formation certifié Qualiopi, forme vos équipes… » : la certification est attribuée à Sysnext seul. Phrase OPCO inchangée (« possible selon votre situation »). La valeur homonyme de F5 (`packshotEcommerce.r8.formation.text`) n'est pas touchée.
+
+**Pourquoi** — Consigne de Laurent du 01/10 : certification attribuée sans ambiguïté à Sysnext ; aucune « PackshotCreator Academy » certifiée ; ni prix, ni durée, ni formation IA, ni simulateur OPCO, ni promesse de financement.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`.
+
+**Vérifié** — Lien de la carte « Formation » : `<Link href="/academy" locale={epingle('/academy')}>`, même implémentation que F5 après #71 ; rendu `/fr/academy`, en 200 ; aucun lien vers `simulateur-opco`. Lien « Academy » du bloc « Explorez » : `locale={epingle(l.href)}`, rendu `/fr/academy`. Légende V5 : « Illustration synthétique de deux variantes colorées. » 5/5 illustrations chargées à 1440 et 390 px. `verifier-json`, `tsc`, Vitest (dont `academy-fr-only`), `next build`, `seo.spec` `packshot-mode`, `smoke.mjs` : verts sur le build local.
+**Supposé** — Sysnext est l'entité titulaire de la certification Qualiopi : formulation reprise des textes du site et de #71, non recontrôlée sur le certificat.
+**Non regardé** — Textes Qualiopi hors du bloc `packshotMode` (F5, accueil, contact, blog), hors consigne.
+
+**Suite** — Envoi de la Preview à Sébastien par Laurent.
+
+---
+
 ## 2026-09-30 · Mode — `main` (#71) fusionnée dans #66, liens formation alignés · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base fusionnée** : `main` `8ec89c1` (#71)
