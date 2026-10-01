@@ -119,6 +119,19 @@ Ce plafond budgétaire ne constitue aucune autorisation d'écriture, de déploie
 
 ---
 
+## D39 · 2026-09-30 · Mode : la landing `/fr/packshot-mode` est la page commerciale cible ; le hub reste distinct
+
+**Décidé par** : Laurent
+**Statut** : en vigueur
+
+**La décision** — Sur la mode, la page commerciale cible est `/fr/packshot-mode`, enrichie à partir de l'existant selon la méthode de F5. Le hub `/fr/industrie/mode-textile` reste en place et distinct : ni redirection, ni canonique croisée. Le recrawl encore incomplet de la landing après #16 ne justifie aucun changement de canonique, de redirection ou d'architecture. La version FR est validée avant toute traduction (D38).
+
+**Le contexte** — Phase de recherche Mode close le 30/09 (rapport de phase 1, Evidence Pack et contre-expertise, hors dépôt). La landing faisait 755 mots visibles et affichait des chiffres non sourcés (500+ pièces par jour, 3 s, -80 %) repris par les moteurs IA.
+
+**Ce qu'elle interdit** — Rouvrir l'arbitrage landing / hub sans élément nouveau ; rediriger ou canonicaliser l'une vers l'autre ; relancer la recherche Mode pour ce chantier ; lier la landing Mode à F5 avant le 23/11/2026 (D37).
+
+---
+
 ## D38 · 2026-09-28 · Tout nouvel article se publie en FR, EN et de-ch de façon coordonnée
 
 **Décidé par** : Laurent
