@@ -100,6 +100,14 @@ const articleProseClasses = [
   '[&_img]:rounded-lg [&_img]:shadow-sm [&_img]:my-8',
 ].join(' ');
 
+// Nom accessible du repère de navigation du fil d'Ariane. Gardé ici et non dans
+// messages/*.json, réservés par d'autres PR au 01/10/2026 ; à y migrer ensuite.
+const BREADCRUMB_LABEL: Record<string, string> = {
+  fr: "Fil d'Ariane",
+  en: 'Breadcrumb',
+  'de-ch': 'Brotkrümelnavigation',
+};
+
 export default async function BlogArticlePage({ params }: PageProps) {
   const { lang, slug } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blogArticle' });
@@ -135,18 +143,22 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <HeroSection
         compact
         align="left"
-        title={
-          <>
-            <div className="flex items-center gap-2 text-sm font-sans font-normal text-future-dusk-300 mb-6">
-              <Link href="/" className="hover:text-white transition-colors">{t('home')}</Link>
-              <span>/</span>
-              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              <span>/</span>
-              <span className="text-very-peri-300">{category || t('defaultCategory')}</span>
-            </div>
-            {title}
-          </>
+        breadcrumb={
+          // Hors du <h1> : le H1 ne porte que le titre de l'article (UB-04).
+          // font-heading et non font-sans : la police sans du thème renvoie à
+          // Geist, non chargée ; dans le <h1>, le fil héritait d'Inter. Rendu inchangé.
+          <nav
+            aria-label={BREADCRUMB_LABEL[lang] ?? BREADCRUMB_LABEL.en}
+            className="flex items-center gap-2 text-sm font-heading font-normal text-future-dusk-300 mb-6"
+          >
+            <Link href="/" className="hover:text-white transition-colors">{t('home')}</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-very-peri-300">{category || t('defaultCategory')}</span>
+          </nav>
         }
+        title={title}
       >
         <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200 mt-2">
           <span className="inline-flex items-center gap-1.5">

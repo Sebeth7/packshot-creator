@@ -100,6 +100,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
+
+**Quoi** — Le gabarit d'article passait le fil d'Ariane dans le prop `title` de `HeroSection`, rendu dans le `<h1>`. Le fil sort du `<h1>` :
+- `HeroSection` reçoit un prop optionnel `breadcrumb`, rendu juste avant le `<h1>` dans la variante centrée. Les 19 autres usages ne le passent pas : leur sortie est inchangée.
+- Dans le gabarit d'article, le `div` du fil devient un `<nav>` étiqueté par langue (« Fil d'Ariane », « Breadcrumb », « Brotkrümelnavigation »). Les séparateurs « / » sont masqués aux lecteurs d'écran.
+- `font-sans` devient `font-heading` sur ce `nav`. Dans le thème, `font-sans` renvoie à la variable Geist, jamais définie : dans le `<h1>`, le fil héritait donc d'Inter ; hors du `<h1>`, il aurait pris la police système. Rendu identique.
+
+Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés. Le `BreadcrumbList` JSON-LD est inchangé.
+
+**Pourquoi** — Mesure du 30/09, confirmée le 01/10 sur `main` : le texte du H1 de ces articles commençait par « Accueil / Blog / <catégorie> », et un `<div>` se trouvait dans le `<h1>`, ce que le modèle de contenu HTML n'admet pas.
+
+**Fichiers** — `app/[lang]/blog/[slug]/page.tsx`, `components/hero/HeroSection.tsx`, `components/hero/types.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 de 125 articles ne contient plus que leur titre. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** —
+- HTML prérendu, `main` `2ef01b2` contre la branche, identifiant de build neutralisé, scripts retirés : 359 fichiers.
+  - 234 identiques ;
+  - 125 diffèrent : 63 FR, 57 EN, 5 de-ch, tous des articles du gabarit commun ;
+  - pour les 125, l'écart s'explique entièrement par le déplacement du fil. Une fois ce déplacement neutralisé, le HTML est identique ; 0 écart inexpliqué.
+- H1 : un seul `<h1>` par article, sans élément enfant. Son texte est égal au champ `h1` (ou `title`) du JSON de l'article sur les 125.
+- CSS compilée : fichier identique à `main` (`00c919af44f29472.css`), même empreinte que celle servie par `sysnext.vercel.app`. Une première version du commentaire contenait le jeton `--font-sans`, que Tailwind ajoutait au thème : reformulé.
+- Chromium, `next start`, 6 articles (3 FR, 2 EN, 1 de-ch), 1440 et 390 px, animations neutralisées :
+  - captures de la zone d'en-tête : 0 pixel différent sur les 12 ;
+  - position et taille du fil, police, taille, graisse, interligne et couleur calculées identiques ;
+  - hauteur de document identique, 0 débordement, 0 erreur de page.
+- Accessibilité, arbre ARIA, 3 articles FR, EN et de-ch :
+  - un seul `heading` de niveau 1, au nom égal au titre ;
+  - un repère `navigation` nommé dans la langue de la page, avec 2 liens et la catégorie en texte ;
+  - séparateurs absents de l'arbre ;
+  - liens atteints au clavier.
+- `npx tsc --noEmit` vert. `verifier-json` : 180 JSON valides. Vitest 373/373. `npx next build` vert, variables factices de la CI. ESLint sur les 3 fichiers : 0 erreur, 1 avertissement (`HeadingData`), déjà présent sur `main`.
+- Playwright, Chromium (`seo`, `anchors`, `internal-links`, `language-switch`, `mobile-overflow`, `responsive`) : 285 réussis et 25 échecs sur `main` comme sur la branche, **listes d'échecs identiques**. Configuration locale hors dépôt pointant sur le Chromium du conteneur ; `playwright.config.ts` non modifié.
+
+**Supposé** — [Inférence] `www` sert le même HTML que `sysnext.vercel.app`. Le rendu de Firefox et Safari suit celui de Chromium : mêmes règles CSS, structure de bloc équivalente. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO), `www` (R4), Firefox, Safari, appareils réels.
+- Hors périmètre, non modifiés : `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne`, articles à page dédiée en FR et EN, portent le même fil dans leur `<h1>` (4 pages).
+- Le libellé du repère est défini dans le gabarit, et non dans `messages/*.json`, exclus de ce lot et réservés par #64 et #66 : à y migrer ensuite.
+
+**Suite** — GO de Laurent, puis fusion. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, un article FR, EN et de-ch contrôlé dans Chrome sur `www`. Les 2 articles à page dédiée relèvent d'une PR distincte.
+
+---
+
 ## 2026-10-01 · D36 — #68 resynchronisée avec `main` après #69 et #71, Worker de production relu (R5) · Claude de Laurent
 
 **Chantier** : D36 | **PR** : #68, brouillon, non fusionnée | **Base** : `main` `8ec89c1` | **Fusion** : `008cee1`
