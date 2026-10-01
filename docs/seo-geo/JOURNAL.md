@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-01 · Cluster AI Act — archivage D16 et clôture des PR historiques #43, #53, #61, #62, #63 · Claude de Laurent
 
-**Chantier** : cluster éditorial AI Act / images produit, PR historiques | **PR** : documentaire, brouillon (numéro reporté ci-dessous) | **Base** : `main` `8ec89c1`
+**Chantier** : cluster éditorial AI Act / images produit, PR historiques | **PR** : #73, documentaire, brouillon | **Base** : `main` `8ec89c1`
 
 **Quoi** — Archive des mesures D16 qui ont justifié la création du pilier A ; verdict final B/C/D consigné en D41 ; backlog technique de #43 (BL-43-1 à BL-43-4) et idée de #53 (BL-53-1) inscrits ici et dans `ETAT.md`. Sur GO de Laurent du 01/10 : fermeture sans fusion de #53, puis #61, #62, #63, puis #43. Aucune branche supprimée, aucun article ni code modifié.
 
@@ -80,11 +80,25 @@ Limites, telles qu'écrites dans la source : une exécution par question, un seu
 - `main` `8ec89c1` : formulations visées par E1, E2, E3 à E7 présentes ; gabarit sans `og:url`, `og:site_name`, `og:locale` ni `twitter` ; fusion simulée (`git merge-tree`) de #43 : conflits dans `ETAT.md`, `JOURNAL.md` et les 3 articles « migrer », `page.tsx` sans conflit.
 - Matière réintégrée de B, C, D toujours présente dans A à `80489cf` (points 92, 113, 114, 117, 127 et 129 ; L2133-2 ; loi 2023-451 ; tableau des plateformes ; WebP ; C2PA ; 7 FAQ).
 
-**Supposé** — [Inférence] Les références `refs/pull/<n>/head` restent consultables après la fermeture des PR, branches conservées. Cela repose sur des schémas observés.
+- Après fermeture (`git ls-remote`, API GitHub) : les 5 PR à l'état `closed`, `merged = false` ; les 5 branches distantes et `refs/pull/{43,53,61,62,63}/head` pointent sur les têtes ci-dessus ; commits `4aa305e`, `216f324`, `175a9d5`, `2d4e66d` lisibles ; #59 `80489cf` et #60 `d5182e7` inchangées ; `main` `8ec89c1` sans article B, C ou D.
+- Commentaire d'archivage de #43 relu par l'API : bloc D16 identique à la description de #43.
+
+**Supposé** — Aucune hypothèse non vérifiée retenue.
 
 **Non regardé** — Aucune nouvelle mesure D16, aucune recherche juridique, aucun crédit payant. #59 et #60 non modifiées. Preview Vercel. Branches distantes conservées : suppression non décidée.
 
-**Suite** — Après fermeture : URL des commentaires reportées ci-dessous. Suppression éventuelle des branches de #61, #62, #63 après le GO de Sébastien sur #59 ; celle de #53 et #43 après exécution ou abandon explicite du backlog. BL-43-1 à BL-43-3 : chantiers distincts, sur décision.
+**Clôture du 01/10/2026** (UTC), dans cet ordre :
+
+| PR | Commentaire | Fermée sans fusion |
+|---|---|---|
+| #43 | archivage D16 et backlog : https://github.com/Sebeth7/packshot-creator/pull/43#issuecomment-5925993020 | — |
+| #53 | https://github.com/Sebeth7/packshot-creator/pull/53#issuecomment-5925995805 | 06:28:56 |
+| #61 | https://github.com/Sebeth7/packshot-creator/pull/61#issuecomment-5926001091 | 06:29:35 |
+| #62 | https://github.com/Sebeth7/packshot-creator/pull/62#issuecomment-5926002712 | 06:29:36 |
+| #63 | https://github.com/Sebeth7/packshot-creator/pull/63#issuecomment-5926004339 | 06:29:37 |
+| #43 | fermeture : https://github.com/Sebeth7/packshot-creator/pull/43#issuecomment-5926007409 | 06:29:50 |
+
+**Suite** — Suppression éventuelle des branches de #61, #62, #63 après le GO de Sébastien sur #59 ; celle de #53 et #43 après exécution ou abandon explicite du backlog. BL-43-1 à BL-43-3 : chantiers distincts, sur décision.
 
 ---
 
