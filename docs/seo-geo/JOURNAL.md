@@ -34,6 +34,74 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · AI Act Q2 — paragraphe AI Act des articles « migrer » : référent, délai transitoire, absolu (FR, EN, de-ch) · Claude de Laurent
+
+**Chantier** : cluster AI Act, BL-43-3 (partiel) | **PR** : #77, brouillon, non fusionnée | **Base** : `main` `17fc0b3` | **Commit** : `576d76b` (tête précédente `a0e27a5`)
+
+**Quoi** — Micro-correction validée par Laurent. Elle porte sur le seul paragraphe AI Act des trois articles « migrer », texte seul. Trois imperfections traitées :
+- référent de l'exception : elle vise désormais le seul marquage par l'outil, sans exemption générale ;
+- délai transitoire : celui de l'article 111(4) est mentionné ;
+- absolu : « Elle n'invente rien » et ses équivalents sont retirés.
+
+**Pourquoi** — Points relevés à la livraison de #77 (entrée suivante, rubrique « Non regardé ») et complément de Laurent du 01/10, contrôlé contre le pilier A (#59, tête `f9e772f`) :
+- 50(2) : marquage par le fournisseur ;
+- 50(4) : mention visible par le déployeur pour les hypertrucages ;
+- 111(4) : délai jusqu'au 2 décembre 2026 pour les systèmes mis sur le marché avant le 2 août 2026 ;
+- les exceptions (mise en forme standard, modification non substantielle) concernent le seul marquage du fournisseur.
+
+**Fichiers** — `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Changements (FR ; EN et de-ch à l'identique, de-ch avec la nuance territoriale)**
+
+| Imperfection | Avant | Après | Source |
+|---|---|---|---|
+| Absolu | « Elle n'invente rien. Ce n'est plus un détail… » | « Partir d'une photo réelle n'est plus un détail… » | Consigne de Laurent : neutraliser, garder le message « photo réelle » |
+| Temporalité | « …doit désormais porter un marquage lisible par machine, apposé par l'outil qui la produit ; » | « …doit porter un marquage lisible par machine, apposé par l'outil qui la produit ; les outils mis sur le marché avant cette date ont jusqu'au 2 décembre 2026 pour s'y conformer. » | A, calendrier : « Fin du délai de mise en conformité au marquage de l'article 50(2) pour les systèmes mis sur le marché avant le 2 août 2026 (article 111(4), ajouté par le règlement (UE) 2026/1744). » |
+| Temporalité, marque | « la marque, elle, ne doit une mention visible que si l'image constitue un hypertrucage. » | « La marque, elle, ne doit une mention visible que si l'image constitue un hypertrucage, et ce délai ne la concerne pas. » | A : « Cette date ne décale pas l'obligation de la marque. » |
+| Référent | « …et la retouche studio classique échappent à cette obligation, comme le détaille… » | « Pour les corrections de couleur ou d'exposition et la retouche studio classique, ce marquage par l'outil n'est pas requis tant qu'elles ne modifient pas substantiellement l'image ou son sens, comme le détaille… » | A, 50(2) : le marquage ne s'applique pas si le système « ne modifie pas substantiellement l'image fournie ou son sens » |
+
+Typographie : espaces insécables entre le jour, le mois et l'année des deux dates, dans ce seul paragraphe (convention de A `f9e772f`). Mesure : 0 signe isolé en début de ligne à 390, 820 et 1440 px.
+
+**Contrôle des sources**
+- Pilier A, tête `f9e772f` (avant : `a499b5e` ; écart limité à la typographie et à une fusion de `main`), lu sans modification.
+- Analyse Orbitvu du 4 septembre 2026, lien du paragraphe, lue le 01/10 :
+  - elle classe parmi les retouches exemptées « Color correction, exposure, and white-balance adjustment » et « Normal studio retouching that does not change what the image shows » ;
+  - elle place la fin du délai au 2 décembre 2026 pour les systèmes déjà sur le marché, sans report de l'obligation du déployeur ;
+  - elle étend l'exemption aux deux obligations : non repris, conformément à la consigne (pas d'exemption générale).
+- « Exposition » : absent des exemples de la Commission cités par A. Seule source : Orbitvu, déjà citée par le paragraphe.
+- Aucune recherche juridique nouvelle.
+
+**Effet attendu** — Aucun effet SEO : seul le champ `content` change ; title, description, canonical, hreflang et JSON-LD sont identiques à la production.
+
+**Vérifié**
+- `verifier-json` 180 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert, 371 pages ; `verifier-consequences` : effet local.
+- `next start` local, Chromium, 390, 820 et 1440 px, 3 pages :
+  - 200 ;
+  - un seul paragraphe, un `strong`, un lien inchangé (`_blank`, `noopener`) ;
+  - formulations attendues présentes, anciennes absentes ;
+  - 0 signe isolé en début de ligne ;
+  - FAQ visible = `FAQPage` (8, 8, 8) ;
+  - un `h1`, 0 débordement, 0 erreur de console ;
+  - captures relues.
+- En-tête SEO comparé à `sysnext.vercel.app` par `curl` : identique sur les 3 pages (title, description, canonical, 5 hreflang, 4 JSON-LD).
+- `smoke.mjs` local vert (17 pages, 3 ressources).
+- e2e (5 specs, Chromium) : 307 tests, 283 passés, 24 échecs, liste identique au passage précédent de #77, aucun sur ces pages.
+
+**Supposé** — Rien de plus que l'entrée suivante (24 échecs e2e préexistants).
+
+**Non regardé**
+- Preview Vercel (SSO) et `www`.
+- Hors du paragraphe, inchangé :
+  - « sans rien changer à l'exactitude de ses caractéristiques » (corps) ;
+  - FAQ n° 3 : « sans altérer ses caractéristiques » et « Elle ne génère pas de produit fictif » ;
+  - lien Orbitvu à la place des lignes directrices de la Commission.
+  Ces trois points relèvent de E3 à E6.
+- Dans le paragraphe : « Un seul cas limite y est signalé » ; l'analyse Orbitvu cite aussi « other details that were never captured ». Non modifié.
+
+**Suite** — Validation de Sébastien (prose), puis fusion sur GO de Laurent. Lien vers A non ajouté (D38).
+
+---
+
 ## 2026-10-01 · AI Act Q2 — deux formulations juridiques corrigées : `generer-images-produit-ia` (FR) et articles « migrer » (FR, EN, de-ch) · Claude de Laurent
 
 **Chantier** : cluster AI Act, BL-43-2 (E1/E2) et BL-43-3 (partiel : phrase « lisible par machine » seule) | **PR** : #77, brouillon, non fusionnée | **Base** : `main` `17fc0b3` (#73 comprise) | **Commit** : `5357bfb`
