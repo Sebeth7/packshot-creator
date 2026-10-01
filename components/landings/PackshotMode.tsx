@@ -25,6 +25,7 @@ import { Button } from '@/components/ui/button';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SommaireCollant from '@/components/landings/SommaireCollant';
 import {
   ArrowRight,
   ArrowUp,
@@ -412,6 +413,14 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
           </div>
         </div>
       </section>
+
+      {/* ━━ SOMMAIRE COLLANT (desktop) ━━ Relais du sommaire ci-dessus, de la section 1 à la FAQ. */}
+      <SommaireCollant
+        titre={t('sommaire.titre')}
+        libelle={t('sommaire.barre')}
+        ancreSommaire="sommaire"
+        entrees={SOMMAIRE.map((s) => ({ id: s.id, libelle: t(`sommaire.${s.key}`) }))}
+      />
 
       {/* ━━ 1 — LA COLLECTION ━━ */}
       <section id="collection" className="py-20 lg:py-28 bg-future-dusk-0 scroll-mt-24">

@@ -1009,6 +1009,7 @@
     "sommaire": {
       "titre": "Sommaire",
       "retour": "Retour au sommaire",
+      "barre": "Accès rapide aux sections",
       "collection": "Une collection cohérente",
       "matiere": "Couleur, matière et tombé",
       "presentations": "À plat, en volume ou porté",
@@ -1332,7 +1333,7 @@
       },
       "formation": {
         "title": "Formation",
-        "text": "Sysnext, organisme de formation certifié Qualiopi, forme vos équipes à la prise en main et à la maîtrise des studios Orbitvu, à distance ou en présentiel. La formation est facturée séparément du studio ; en France, une prise en charge par votre OPCO est possible selon votre situation.",
+        "text": "Sysnext, organisme de formation certifié Qualiopi, forme vos équipes à la prise en main et à la maîtrise des studios Orbitvu, à distance ou en présentiel. La formation est facturée séparément du studio. Financement OPCO possible selon votre situation.",
         "cta": "Voir nos formations"
       },
       "accompagnement": {
@@ -1399,7 +1400,7 @@
         "desc": "Créer des mises en scène à partir de vos packshots réels."
       },
       "academy": {
-        "title": "Academy",
+        "title": "Formation des équipes — Sysnext",
         "desc": "Formations d'un organisme certifié Qualiopi, pour vos opérateurs."
       }
     }
