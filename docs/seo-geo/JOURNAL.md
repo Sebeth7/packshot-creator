@@ -34,6 +34,68 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D33 / #64 — micro-corrections finales du comparatif Orbitvu (verdict, IA Ready, superlatifs, date de création) · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `913d607` | **Base** : `main` `17fc0b3`, déjà fusionnée dans la branche
+
+**Quoi** — GO de Laurent du 01/10, « micro-corrections finales avant validation » ; Laurent valide les suppressions supplémentaires de l'option B (`a3d375b`). Quatorze remplacements dans `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, aucune autre page :
+- verdict Orbitvu / StyleShoots : callout « Orbitvu gagne sur la plupart des critères » (« Orbitvu l'emporte sur : IA Ready, Support France, Évolutivité », « StyleShoots l'emporte sur… », « Recommandation : Orbitvu, sauf si budget illimité… ») remplacé par un callout « Critères de choix » sans appréciation comparative : le choix dépend des produits, des volumes, de la place du studio et des outils à connecter ; tester ses propres produits en démonstration (sur site ou au showroom près de Lyon, repris de la FAQ). Titre h3 et entrée de sommaire : « Bien choisir entre Orbitvu et StyleShoots » ; ancre `#verdict-orbitvu-vs-styleshoots` conservée ;
+- tableau PackshotStudio R3 / AlphaShot G2 : ligne « IA Ready » (❌ Non / ✅ Oui) supprimée. Aucune preuve produit primaire dans le dépôt : le badge « IA Ready » des fiches produit (`app/[lang]/studio-photo/[slug]/page.tsx`, `components/shared/ProductGrid.tsx`) est un libellé du site, et rien ne documente le PackshotStudio R3 ;
+- « Concurrence Orbitvu : Technologie supérieure, prix compétitifs » → « Concurrence Orbitvu : un fabricant européen spécialisé dans les studios photo automatisés » (fait déjà présent dans la FAQ de la page) ;
+- même passage : « Amélioration technologique (Orbitvu Gen 2026 > PackshotCreator Gen 2018) » → « Accès à la gamme Orbitvu actuelle » ;
+- « Support Français Premium : PackshotCreator Distributeur Officiel » (h4) → « Support en France : PackshotCreator, distributeur officiel » ; « Support technique premium » → « Support technique en France » ;
+- tableau décisionnel : « Marque luxe budget illimité » → « Marque luxe, studio visible des clients » (repris de la section « Design Premium » de la page) ; « Précision extrême, prix accessible » → « Format adapté aux petits objets » ;
+- conclusion : « Orbitvu s'impose comme le choix rationnel pour les e-commerçants professionnels grâce à une intégration IA et un support France via PackshotCreator » → « Pour les e-commerçants professionnels, nous recommandons Orbitvu : intégration avec BlendAI, modules additionnels selon les besoins et support en France par PackshotCreator, distributeur officiel » (recommandation assumée du distributeur, sans supériorité affirmée) ;
+- cohérence : « Modules additionnels (360°, vidéo, 3D) » → « (360°, vidéo) », le module 3D n'étant pas dans la section « Évolutivité » ; introduction : « leur rapport qualité/prix » retiré, la page ne compare plus aucun prix (D25) ;
+- date de création : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, acteur français » ; « Gamme historique PackshotCreator (2004–2018) » → « (jusqu'en 2018) ». Retrait provisoire de l'année, sans choix entre les sources contradictoires (voir plus bas).
+
+**Pourquoi** — Contre-relecture du 01/10 : le verdict affirmait une supériorité sur des critères dont les lignes comparatives avaient été supprimées faute de preuve ; la ligne « IA Ready » subsistait dans un seul tableau ; superlatifs et appréciations de prix sans source ; « fondée en 2004 » contredit D33 (2001).
+
+**Fichiers** — `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. FAQ (5 questions, JSON-LD), métadonnées, canonical, hreflang, URL et ancres inchangées. Ce patch ne vaut pas validation factuelle intégrale de la page.
+
+**Date de création — contradiction à résoudre, non tranchée** :
+- D33 (25/09) : « date de création : 2001 » ; `foundingDate` à aligner sur 2001 ; fiche Google : décembre 2001 ;
+- faits métier du 30/09 : histoire de Sysnext depuis 2001, lancement de PackshotCreator en 2004, PackshotCreator marque de Sysnext ; `foundingDate` exclu du périmètre de #64 ;
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, non modifié ;
+- mentions du site relevées le 01/10, non modifiées : « Depuis 2004 » (titre et description d'À propos, `messages/fr.json:2159`, `:2164`, équivalents `en.json:2156`, `:2161`, `de-ch.json:2075`, `:2080`) ; « Créée en 2003, la société Sysnext » (interview, `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json`) ; « depuis 2003 » (`eclairage-packshots-360-3d-produits`, FR et EN) ; « Depuis 2001, PackshotCreator développe » (`photographie-de-produits-a-360-degres-en-interne`, FR et EN) ; « since 2004 » pour le logiciel (`second-hand-packshot-photo-studio`, EN) ;
+- hors sujet mais relevé : `pourquoi-choisir-orbitvu-photographie-packshot` (FR) date Orbitvu de 2004 (« Fondée en 2004, cette entreprise polonaise ») ;
+- à trancher par Laurent : le modèle d'entité (Sysnext société, PackshotCreator marque) et l'année à afficher pour chacune, avant tout alignement de `foundingDate` ou des textes.
+
+**Vérifié**
+- Préconditions : HEAD distant de #64 = `913d607` ; `main` = `17fc0b3`, déjà fusionnée dans la branche ; branche locale vérifiée avant commit.
+- Absence dans le HTML servi (`next start` local) : « l'emporte », « gagne sur la plupart », « budget illimité », « Technologie supérieure », « prix compétitifs », « Support Français Premium », « Support technique premium », « fondée en 2004 », « 2004–2018 », « Gen 2026 », « Précision extrême », « prix accessible », « s'impose comme », « rapport qualité/prix », « vidéo, 3D », ligne « IA Ready » du tableau R3 / G2 ; présence des onze nouvelles formulations.
+- `/fr/blog/orbitvu-vs-concurrents` : 200 ; un `<h1>` ; canonical inchangée ; JSON-LD `BreadcrumbList`, `Article`, `FAQPage` à 5 questions ; 5 `<details>` ; aucune ancre interne orpheline ; ancres `#verdict-orbitvu-vs-styleshoots`, `#pourquoi-choisir-orbitvu-les-5-avantages-cles`, `#conclusion-orbitvu-le-choix-rationnel-2026` présentes.
+- `verifier-json` : 180 fichiers valides. `next build` vert, 371 pages. `tsc` vert. Vitest : 18 fichiers, 373/373.
+- Rendu Chromium 390, 768 et 1440 px : 0 erreur de page ou de console, 0 réponse 4xx, 0 débordement horizontal ; callout et tableau décisionnel lisibles ; tableaux défilables en 390 px.
+- Playwright (`seo`, `anchors`, `mobile-overflow`, `responsive`, `cta-destinations`, projet Desktop Chrome) : 287 réussis, 25 en échec (`responsive` 13, `seo` 9, `anchors`, `cta-destinations`, `mobile-overflow` 1 chacun), sur l'accueil, `studios-photo-automatises`, `ia-photo-produit` et `industrie` en `/fr` ou `/en`, `/fr/industrie-defense`, `/fr/academy`, `/fr/packshot-bijoux` ; aucune de ces specs ne visite le comparatif. Les 25 échouent aussi sur un build local de `913d607` (HEAD avant), relancés seuls : 26 échecs sur la référence, dont `/fr` en 1440 px « renders without horizontal scroll », réussi sur le patch. Aucun échec propre au patch.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO), `www` (R4) : le contrôle de la véritable Preview sur desktop, tablette et mobile (D42, étape 4) reste à faire par Laurent. Projets Playwright Firefox, WebKit et Pixel 5. Pages autres que le comparatif.
+
+Affirmations du comparatif toujours **NON VÉRIFIÉES**, conservées sans être validées (option C non lancée) :
+- métadonnées (non modifiées, SEO préservé) : description et `articleSchema` « Comparatif complet Orbitvu vs concurrents (PackshotCreator, StyleShoots, Photorobot). Qualité, prix, fonctionnalités, intégration IA. Guide objectif 2026. » (Photorobot absent de la page, aucun prix comparé) ; mots-clés « orbitvu vs photorobot », « meilleur studio automatisé » ;
+- introduction : « Trois acteurs principaux se distinguent en 2026 » ; « comparatif objectif » ; « Que vous gériez 500 ou 10 000 produits par an » ;
+- acteurs : Orbitvu (Pologne), positionnement milieu/haut de gamme, gamme AlphaShot Micro, G2, 360, XXL ; StyleShoots (Pays-Bas), « premium néerlandais », « Premium haut de gamme », gamme Vertical, Eclipse, Live, distribution « Direct StyleShoots + revendeurs agréés » (à rapprocher de `blogComparatif.styleshoots.body4` : filiale Profoto à Paris) ; Photomatics (USA), « Entry-level DIY », gamme Studio Box, Pro Kit, vente en ligne directe ; « PackshotCreator (ancienne gamme française, arrêtée en 2018) » ; « Solutions chinoises généralistes (Alibaba, Taobao) » ;
+- tableau G2 / Vertical : taille 100×80×80 / 100×100×120 cm ; volume/jour 200–500 / 150–300 ; temps/produit 1–2 / 2–3 min ; formation StyleShoots « ✅ 1 jour » ;
+- forces Orbitvu : « Logiciel Orbitvu Station (inclus à vie) », interface drag & drop, workflows pré-configurés par secteur, compatibilité Windows + macOS ; « Intégration BlendAI Native » ; workflow : capture 1–2 min, export API 10 sec, traitement IA 30–60 sec, import PIM/DAM 10 sec, total 3–4 min pour 5 déclinaisons ; « Hotline française », « Techniciens francophones experts Orbitvu », support téléphonique, email, visio ;
+- forces StyleShoots : « finitions aluminium brossé, look Apple » ; Orbitvu « Design fonctionnel industriel » ; modes « one-click » (mannequin invisible, fantôme, flat-lay) ; « Orbitvu : Ces modes existent mais nécessitent plus de réglages manuels » ; communauté StyleShoots active (forums, groupes Facebook, conférences) contre communauté Orbitvu « plus confidentielle » ;
+- histoire : « l'un des pionniers européens » ; gamme jusqu'en 2018 (R3, PackshotMacro, PackshotRotator) et équivalences avec la gamme AlphaShot ; motifs de l'arrêt de la fabrication (R&D coûteuse, concurrence Orbitvu, décision stratégique) ; « Continuité service (même équipe support) », « Upgrade facilité » ;
+- tableau R3 / G2 : temps/produit 3–5 / 1–2 min ; capteur 24 MP / 50 MP ; logiciel Windows uniquement / Windows + macOS ; millésimes « (2018) » / « (2026) » ;
+- transition : reprise de l'ancien matériel « valorisation selon état », « Crédit sur achat Orbitvu AlphaShot », « Courbe apprentissage minimale » ;
+- Photomatics : « segment radicalement différent » ; tableau Studio Box / AlphaShot Micro : taille 40×40×40 / 30×30×30 cm, automatisation « ❌ Manuelle » / « ✅ Complète », qualité de rendu « Standard (smartphone/compact) » / « Premium (reflex pro) », volume/jour 20–30 / 50–100, formation « ❌ Tutoriels YouTube » ; seuils < 100 produits/an, < 500 références, > 1 000 produits/an, > 500 produits/an, < 50 produits/an ; « Photomatics et Orbitvu ne sont PAS concurrents directs » ; analogie smartphone / reflex professionnel ;
+- tableau général : positionnement (Milieu/Haut pro, Haut premium, Entry DIY), qualité de rendu (Premium / Premium+ / Standard), formation (« ✅ Certifiée Qualiopi » : Qualiopi certifie l'organisme, pas la formation ; « ✅ On-site » ; « ❌ YouTube »), « Idéal pour » (E-com pro 500+, Marques luxe, Créateurs TPE) ;
+- avantages : modules 360°, vidéo, éclairage additionnel, motorisation charge lourde ; « Investissement initial maîtrisé » ; « Gamme complète studios automatisés » ; « Intégration native studios Orbitvu » (BlendAI) ; « Formateurs experts 10+ ans » ; « Avantage compétitif : Workflow complet clé en main, un seul interlocuteur pour tout » ;
+- FAQ (5 questions, JSON-LD, non modifiée) : « Le SAV Orbitvu est-il efficace en France ? Oui » ; API REST ouverte et intégrations natives (BlendAI, Adobe Lightroom/Photoshop, Akeneo, Salsify, Shopify, WooCommerce, Magento) ; démonstrations « gratuites », sur site avec déplacement de la machine ; Photomatics « moins de 100 produits par an » ;
+- conclusion : titre « Orbitvu, le Choix Rationnel 2026 » (conservé : ancre et SEO) ; « Le marché … est mature en 2026, avec 3 acteurs positionnés sur des segments distincts » ; tableau décisionnel : profils « 500–5 000 produits/an », « < 100 produits/an », raisons « Polyvalence, IA Ready », « Design premium, prestige showroom », « Budget entry-level, usage ponctuel », « Vues interactives natives, évolutif » ;
+- reprises introduites par ce patch, sans source indépendante : démonstrations « sur site » (reprise de la FAQ) ; « Format adapté aux petits objets » (cohérent avec le tableau AlphaShot Micro, lui-même non vérifié).
+
+**Suite** — Contrôle par Laurent de la Preview du nouveau HEAD sur desktop, tablette et mobile (D42, étape 4) ; décision de Laurent sur la contradiction de date de création ; décision sur les affirmations non vérifiées ci-dessus (option C non lancée) ; validation de Sébastien selon la gouvernance applicable (D42, étape 5, articulation avec D12 et D15 non tranchée) ; fusion uniquement sur nouveau GO.
+
+---
+
 ## 2026-10-01 · D33 / #64 — option B : corrections minimales du comparatif Orbitvu, `main` `8365c73` fusionné · Claude de Laurent
 
 **Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `44c531e` | **Base** : `main` `8365c73` | **Fusions** : `0744bbd` (`main` `8365c73`), puis fusion de `main` `17fc0b3` (#73, documentaire), arrivé pendant les tests

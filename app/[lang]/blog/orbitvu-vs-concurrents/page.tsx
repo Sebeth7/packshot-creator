@@ -53,7 +53,7 @@ const headings: HeadingData[] = [
   { id: 'orbitvu-vs-styleshoots-le-duel-du-premium', text: 'Orbitvu vs StyleShoots : Le Duel du Premium', level: 2 },
   { id: 'forces-orbitvu', text: 'Forces Orbitvu', level: 3 },
   { id: 'forces-styleshoots', text: 'Forces StyleShoots', level: 3 },
-  { id: 'verdict-orbitvu-vs-styleshoots', text: 'Verdict Orbitvu vs StyleShoots', level: 3 },
+  { id: 'verdict-orbitvu-vs-styleshoots', text: 'Bien choisir entre Orbitvu et StyleShoots', level: 3 },
   { id: 'orbitvu-vs-packshotcreator-contexte-historique', text: 'Orbitvu vs PackshotCreator : Contexte Historique', level: 2 },
   { id: 'orbitvu-vs-photomatics-positionnements-differents', text: 'Orbitvu vs Photomatics : Positionnements Différents', level: 2 },
   { id: 'tableau-comparatif-general-les-3-acteurs', text: 'Tableau Comparatif Général : Les 3 Acteurs', level: 2 },
@@ -173,7 +173,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Le marché des studios photo automatisés s'est considérablement structuré ces dernières années. Trois acteurs principaux se distinguent en 2026 : <strong>Orbitvu</strong>, <strong>StyleShoots</strong> (premium néerlandais), et <strong>Photomatics</strong> (entry-level américain). Choisir entre ces solutions peut s'avérer complexe tant les positionnements, tarifs et philosophies produit diffèrent.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
-              Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution, leur <strong>rapport qualité/prix</strong>, et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, quel que soit votre budget, ce guide vous aidera à faire le choix optimal pour votre activité.
+              Dans ce comparatif objectif, nous analysons en profondeur les <strong>forces et faiblesses</strong> de chaque solution et surtout <strong>pour quel type d'entreprise</strong> chaque studio est le plus adapté. Que vous gériez 500 ou 10 000 produits par an, quel que soit votre budget, ce guide vous aidera à faire le choix optimal pour votre activité.
             </p>
 
           <hr className="my-8 border-neutral-200" />
@@ -267,7 +267,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir l'intégration complète Orbitvu + BlendAI</Link>
             </p>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">3. Support Français Premium : PackshotCreator Distributeur Officiel</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">3. Support en France : PackshotCreator, distributeur officiel</h4>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Hotline française</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Techniciens francophones experts Orbitvu</li>
@@ -318,12 +318,11 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             </p>
 
             <h3 id="verdict-orbitvu-vs-styleshoots" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Verdict Orbitvu vs StyleShoots
+              Bien choisir entre Orbitvu et StyleShoots
             </h3>
-            <Callout type="success" title="Orbitvu gagne sur la plupart des critères">
-              <p><strong>Orbitvu l'emporte</strong> sur : IA Ready, Support France, Évolutivité (modules).</p>
-              <p className="mt-2"><strong>StyleShoots l'emporte</strong> sur : Design premium, Modes automatiques mode (marginal), Prestige marque.</p>
-              <p className="mt-2"><strong>Recommandation</strong> : <strong>Orbitvu</strong>, sauf si budget illimité et prestige showroom prioritaire.</p>
+            <Callout type="info" title="Critères de choix">
+              <p>Le choix dépend de vos produits, de vos volumes, de la place du studio dans vos locaux et des outils à connecter (PIM, DAM, IA). Les forces décrites plus haut ne pèsent pas de la même façon selon ces critères.</p>
+              <p className="mt-2">Le plus sûr reste de tester vos propres produits : PackshotCreator propose des démonstrations Orbitvu sur site ou au showroom près de Lyon.</p>
             </Callout>
 
           <hr className="my-8 border-neutral-200" />
@@ -338,9 +337,9 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               L'Histoire PackshotCreator
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>PackshotCreator</strong> (société française, fondée en 2004) a été l'un des <strong>pionniers européens</strong> des studios photo automatisés.
+              <strong>PackshotCreator</strong>, acteur français, a été l'un des <strong>pionniers européens</strong> des studios photo automatisés.
             </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Gamme historique PackshotCreator</strong> (2004–2018) :</p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Gamme historique PackshotCreator</strong> (jusqu'en 2018) :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">PackshotStudio R3 (équivalent AlphaShot G2 actuel)</li>
               <li className="text-future-dusk-600">PackshotMacro (équivalent AlphaShot Micro)</li>
@@ -350,14 +349,14 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pourquoi PackshotCreator a arrêté sa fabrication ?</strong></p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>R&amp;D coûteuse</strong> : Développer une nouvelle génération de machines</li>
-              <li className="text-future-dusk-600"><strong>Concurrence Orbitvu</strong> : Technologie supérieure, prix compétitifs</li>
+              <li className="text-future-dusk-600"><strong>Concurrence Orbitvu</strong> : un fabricant européen spécialisé dans les studios photo automatisés</li>
               <li className="text-future-dusk-600"><strong>Décision stratégique</strong> : Devenir <strong>distributeur officiel Orbitvu France/Suisse</strong></li>
             </ol>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages pour clients PackshotCreator</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Continuité service (même équipe support)</li>
               <li className="text-future-dusk-600">Upgrade facilité (ancien PackshotStudio R3 → Orbitvu AlphaShot G2)</li>
-              <li className="text-future-dusk-600">Amélioration technologique (Orbitvu Gen 2026 &gt; PackshotCreator Gen 2018)</li>
+              <li className="text-future-dusk-600">Accès à la gamme Orbitvu actuelle</li>
             </ul>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -368,7 +367,6 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               rows={[
                 { label: 'Temps/produit', values: ['3–5 min', '1–2 min'] },
                 { label: 'Qualité capteur', values: ['24 MP', '50 MP'] },
-                { label: 'IA Ready', values: ['❌ Non', '✅ Oui'] },
                 { label: 'Software', values: ['Windows uniquement', 'Windows + macOS'] },
                 { label: 'Prix équivalent', values: ['Sur devis', 'Sur devis'] },
               ]}
@@ -532,7 +530,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Gamme complète studios automatisés</li>
               <li className="text-future-dusk-600">Distribution officielle France/Suisse</li>
-              <li className="text-future-dusk-600">Support technique premium</li>
+              <li className="text-future-dusk-600">Support technique en France</li>
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pilier 2 : IA (BlendAI)</strong></p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -580,7 +578,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               Conclusion : Orbitvu, le Choix Rationnel 2026
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le marché des studios photo automatisés est mature en 2026, avec 3 acteurs positionnés sur des segments distincts. <strong>Orbitvu</strong> s'impose comme le choix rationnel pour les <strong>e-commerçants professionnels</strong> grâce à une intégration IA et un support France via PackshotCreator.
+              Le marché des studios photo automatisés est mature en 2026, avec 3 acteurs positionnés sur des segments distincts. Pour les <strong>e-commerçants professionnels</strong>, nous recommandons <strong>Orbitvu</strong> : intégration avec BlendAI, modules additionnels selon les besoins et support en France par PackshotCreator, distributeur officiel.
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -589,7 +587,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>IA Ready</strong> : intégration BlendAI (workflow 2026)</li>
               <li className="text-future-dusk-600"><strong>Support France</strong> : PackshotCreator distributeur officiel</li>
-              <li className="text-future-dusk-600"><strong>Évolutivité</strong> : Modules additionnels (360°, vidéo, 3D) selon besoins futurs</li>
+              <li className="text-future-dusk-600"><strong>Évolutivité</strong> : Modules additionnels (360°, vidéo) selon besoins futurs</li>
               <li className="text-future-dusk-600"><strong>Écosystème complet</strong> : Approche 3 piliers Hardware + IA + Formation</li>
             </ol>
 
@@ -612,7 +610,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                     <td className="px-4 py-3 text-center text-future-dusk-600">Polyvalence, IA Ready</td>
                   </tr>
                   <tr className="border-b border-neutral-100 bg-white">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Marque luxe budget illimité</td>
+                    <td className="px-4 py-3 font-medium text-future-dusk-900">Marque luxe, studio visible des clients</td>
                     <td className="px-4 py-3 text-center text-future-dusk-600">StyleShoots Vertical</td>
                     <td className="px-4 py-3 text-center text-future-dusk-600">Design premium, prestige showroom</td>
                   </tr>
@@ -624,7 +622,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
                   <tr className="border-b border-neutral-100 bg-white">
                     <td className="px-4 py-3 font-medium text-future-dusk-900">Bijoutier/Horloger</td>
                     <td className="px-4 py-3 text-center font-bold text-very-peri-700">Orbitvu AlphaShot Micro</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">Précision extrême, prix accessible</td>
+                    <td className="px-4 py-3 text-center text-future-dusk-600">Format adapté aux petits objets</td>
                   </tr>
                   <tr className="border-b border-neutral-100 bg-neutral-50">
                     <td className="px-4 py-3 font-medium text-future-dusk-900">E-commerce 360° / AR-VR</td>
