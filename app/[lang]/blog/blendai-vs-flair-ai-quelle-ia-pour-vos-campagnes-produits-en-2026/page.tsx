@@ -241,7 +241,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 <li className="text-future-dusk-600">Lancements produits (visuels impactants, storytelling)</li>
               </ul>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Tarification :</strong> 30-200€/mois selon nombre de générations (plans individuels et équipes)
+                <strong>Tarification :</strong> selon le nombre de générations (plans individuels et équipes)
               </p>
 
               <hr className="my-8 border-neutral-200" />
@@ -499,7 +499,6 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                   { label: 'Cohérence marque', values: ['Style guide', 'Variable'] },
                   { label: 'API/Automatisation', values: ['Oui (REST)', 'Non'] },
                   { label: 'Intégration Orbitvu', values: ['Native', 'Non'] },
-                  { label: 'Prix mensuel', values: ['150-500€', '30-200€'] },
                   { label: 'Support', values: ['Dédié', 'Self-service'] },
                 ]}
               />
@@ -544,7 +543,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 <li className="text-future-dusk-600">Marques lifestyle (cosmétiques, mode, food)</li>
                 <li className="text-future-dusk-600">Équipes marketing créant des campagnes ponctuelles</li>
                 <li className="text-future-dusk-600">Agences créatives (prototyping rapide pour clients)</li>
-                <li className="text-future-dusk-600">Budgets serrés (30-200€/mois vs 150-500€ BlendAI)</li>
+                <li className="text-future-dusk-600">Budgets serrés</li>
               </ul>
               <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases critiques :</strong></p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -555,7 +554,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               </ul>
               <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
                 <p className="text-future-dusk-600 leading-relaxed italic">
-                  Marque cosmétiques indépendante, 20 produits (crèmes, sérums). Campagne lancement nouveau sérum anti-âge. <strong>Flair.ai :</strong> Génération de 20 visuels lifestyle (femmes 35-45 ans, décors luxueux, storytelling beauté). <strong>Budget :</strong> 100€/mois Flair.ai vs 5 000-10 000€ shooting professionnel. <strong>ROI : 4 900-9 900€ économisés.</strong>
+                  Marque cosmétiques indépendante, 20 produits (crèmes, sérums). Campagne lancement nouveau sérum anti-âge. <strong>Flair.ai :</strong> Génération de 20 visuels lifestyle (femmes 35-45 ans, décors luxueux, storytelling beauté).
                 </p>
               </div>
 
@@ -573,9 +572,6 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               </ul>
               <p className="mb-2 leading-relaxed text-future-dusk-600">
                 <strong>Avantage :</strong> Efficacité quotidienne + Créativité ponctuellement
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Coût total :</strong> 150-500€/mois (BlendAI) + 30-200€/mois (Flair.ai) = 180-700€/mois
               </p>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
                 <strong>Budget économisé :</strong> 90-95% vs shootings traditionnels (prestataires + retouche)

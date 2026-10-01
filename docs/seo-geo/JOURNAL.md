@@ -34,6 +34,124 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D33 / #64 — micro-corrections finales du comparatif Orbitvu (verdict, IA Ready, superlatifs, date de création) · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `913d607` | **Base** : `main` `17fc0b3`, déjà fusionnée dans la branche
+
+**Quoi** — GO de Laurent du 01/10, « micro-corrections finales avant validation » ; Laurent valide les suppressions supplémentaires de l'option B (`a3d375b`). Quatorze remplacements dans `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, aucune autre page :
+- verdict Orbitvu / StyleShoots : callout « Orbitvu gagne sur la plupart des critères » (« Orbitvu l'emporte sur : IA Ready, Support France, Évolutivité », « StyleShoots l'emporte sur… », « Recommandation : Orbitvu, sauf si budget illimité… ») remplacé par un callout « Critères de choix » sans appréciation comparative : le choix dépend des produits, des volumes, de la place du studio et des outils à connecter ; tester ses propres produits en démonstration (sur site ou au showroom près de Lyon, repris de la FAQ). Titre h3 et entrée de sommaire : « Bien choisir entre Orbitvu et StyleShoots » ; ancre `#verdict-orbitvu-vs-styleshoots` conservée ;
+- tableau PackshotStudio R3 / AlphaShot G2 : ligne « IA Ready » (❌ Non / ✅ Oui) supprimée. Aucune preuve produit primaire dans le dépôt : le badge « IA Ready » des fiches produit (`app/[lang]/studio-photo/[slug]/page.tsx`, `components/shared/ProductGrid.tsx`) est un libellé du site, et rien ne documente le PackshotStudio R3 ;
+- « Concurrence Orbitvu : Technologie supérieure, prix compétitifs » → « Concurrence Orbitvu : un fabricant européen spécialisé dans les studios photo automatisés » (fait déjà présent dans la FAQ de la page) ;
+- même passage : « Amélioration technologique (Orbitvu Gen 2026 > PackshotCreator Gen 2018) » → « Accès à la gamme Orbitvu actuelle » ;
+- « Support Français Premium : PackshotCreator Distributeur Officiel » (h4) → « Support en France : PackshotCreator, distributeur officiel » ; « Support technique premium » → « Support technique en France » ;
+- tableau décisionnel : « Marque luxe budget illimité » → « Marque luxe, studio visible des clients » (repris de la section « Design Premium » de la page) ; « Précision extrême, prix accessible » → « Format adapté aux petits objets » ;
+- conclusion : « Orbitvu s'impose comme le choix rationnel pour les e-commerçants professionnels grâce à une intégration IA et un support France via PackshotCreator » → « Pour les e-commerçants professionnels, nous recommandons Orbitvu : intégration avec BlendAI, modules additionnels selon les besoins et support en France par PackshotCreator, distributeur officiel » (recommandation assumée du distributeur, sans supériorité affirmée) ;
+- cohérence : « Modules additionnels (360°, vidéo, 3D) » → « (360°, vidéo) », le module 3D n'étant pas dans la section « Évolutivité » ; introduction : « leur rapport qualité/prix » retiré, la page ne compare plus aucun prix (D25) ;
+- date de création : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, acteur français » ; « Gamme historique PackshotCreator (2004–2018) » → « (jusqu'en 2018) ». Retrait provisoire de l'année, sans choix entre les sources contradictoires (voir plus bas).
+
+**Pourquoi** — Contre-relecture du 01/10 : le verdict affirmait une supériorité sur des critères dont les lignes comparatives avaient été supprimées faute de preuve ; la ligne « IA Ready » subsistait dans un seul tableau ; superlatifs et appréciations de prix sans source ; « fondée en 2004 » contredit D33 (2001).
+
+**Fichiers** — `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. FAQ (5 questions, JSON-LD), métadonnées, canonical, hreflang, URL et ancres inchangées. Ce patch ne vaut pas validation factuelle intégrale de la page.
+
+**Date de création — contradiction à résoudre, non tranchée** :
+- D33 (25/09) : « date de création : 2001 » ; `foundingDate` à aligner sur 2001 ; fiche Google : décembre 2001 ;
+- faits métier du 30/09 : histoire de Sysnext depuis 2001, lancement de PackshotCreator en 2004, PackshotCreator marque de Sysnext ; `foundingDate` exclu du périmètre de #64 ;
+- `components/seo/SchemaOrg.tsx:72` : `foundingDate: '2004'`, non modifié ;
+- mentions du site relevées le 01/10, non modifiées : « Depuis 2004 » (titre et description d'À propos, `messages/fr.json:2159`, `:2164`, équivalents `en.json:2156`, `:2161`, `de-ch.json:2075`, `:2080`) ; « Créée en 2003, la société Sysnext » (interview, `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json`) ; « depuis 2003 » (`eclairage-packshots-360-3d-produits`, FR et EN) ; « Depuis 2001, PackshotCreator développe » (`photographie-de-produits-a-360-degres-en-interne`, FR et EN) ; « since 2004 » pour le logiciel (`second-hand-packshot-photo-studio`, EN) ;
+- hors sujet mais relevé : `pourquoi-choisir-orbitvu-photographie-packshot` (FR) date Orbitvu de 2004 (« Fondée en 2004, cette entreprise polonaise ») ;
+- à trancher par Laurent : le modèle d'entité (Sysnext société, PackshotCreator marque) et l'année à afficher pour chacune, avant tout alignement de `foundingDate` ou des textes.
+
+**Vérifié**
+- Préconditions : HEAD distant de #64 = `913d607` ; `main` = `17fc0b3`, déjà fusionnée dans la branche ; branche locale vérifiée avant commit.
+- Absence dans le HTML servi (`next start` local) : « l'emporte », « gagne sur la plupart », « budget illimité », « Technologie supérieure », « prix compétitifs », « Support Français Premium », « Support technique premium », « fondée en 2004 », « 2004–2018 », « Gen 2026 », « Précision extrême », « prix accessible », « s'impose comme », « rapport qualité/prix », « vidéo, 3D », ligne « IA Ready » du tableau R3 / G2 ; présence des onze nouvelles formulations.
+- `/fr/blog/orbitvu-vs-concurrents` : 200 ; un `<h1>` ; canonical inchangée ; JSON-LD `BreadcrumbList`, `Article`, `FAQPage` à 5 questions ; 5 `<details>` ; aucune ancre interne orpheline ; ancres `#verdict-orbitvu-vs-styleshoots`, `#pourquoi-choisir-orbitvu-les-5-avantages-cles`, `#conclusion-orbitvu-le-choix-rationnel-2026` présentes.
+- `verifier-json` : 180 fichiers valides. `next build` vert, 371 pages. `tsc` vert. Vitest : 18 fichiers, 373/373.
+- Rendu Chromium 390, 768 et 1440 px : 0 erreur de page ou de console, 0 réponse 4xx, 0 débordement horizontal ; callout et tableau décisionnel lisibles ; tableaux défilables en 390 px.
+- Playwright (`seo`, `anchors`, `mobile-overflow`, `responsive`, `cta-destinations`, projet Desktop Chrome) : 287 réussis, 25 en échec (`responsive` 13, `seo` 9, `anchors`, `cta-destinations`, `mobile-overflow` 1 chacun), sur l'accueil, `studios-photo-automatises`, `ia-photo-produit` et `industrie` en `/fr` ou `/en`, `/fr/industrie-defense`, `/fr/academy`, `/fr/packshot-bijoux` ; aucune de ces specs ne visite le comparatif. Les 25 échouent aussi sur un build local de `913d607` (HEAD avant), relancés seuls : 26 échecs sur la référence, dont `/fr` en 1440 px « renders without horizontal scroll », réussi sur le patch. Aucun échec propre au patch.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO), `www` (R4) : le contrôle de la véritable Preview sur desktop, tablette et mobile (D42, étape 4) reste à faire par Laurent. Projets Playwright Firefox, WebKit et Pixel 5. Pages autres que le comparatif.
+
+Affirmations du comparatif toujours **NON VÉRIFIÉES**, conservées sans être validées (option C non lancée) :
+- métadonnées (non modifiées, SEO préservé) : description et `articleSchema` « Comparatif complet Orbitvu vs concurrents (PackshotCreator, StyleShoots, Photorobot). Qualité, prix, fonctionnalités, intégration IA. Guide objectif 2026. » (Photorobot absent de la page, aucun prix comparé) ; mots-clés « orbitvu vs photorobot », « meilleur studio automatisé » ;
+- introduction : « Trois acteurs principaux se distinguent en 2026 » ; « comparatif objectif » ; « Que vous gériez 500 ou 10 000 produits par an » ;
+- acteurs : Orbitvu (Pologne), positionnement milieu/haut de gamme, gamme AlphaShot Micro, G2, 360, XXL ; StyleShoots (Pays-Bas), « premium néerlandais », « Premium haut de gamme », gamme Vertical, Eclipse, Live, distribution « Direct StyleShoots + revendeurs agréés » (à rapprocher de `blogComparatif.styleshoots.body4` : filiale Profoto à Paris) ; Photomatics (USA), « Entry-level DIY », gamme Studio Box, Pro Kit, vente en ligne directe ; « PackshotCreator (ancienne gamme française, arrêtée en 2018) » ; « Solutions chinoises généralistes (Alibaba, Taobao) » ;
+- tableau G2 / Vertical : taille 100×80×80 / 100×100×120 cm ; volume/jour 200–500 / 150–300 ; temps/produit 1–2 / 2–3 min ; formation StyleShoots « ✅ 1 jour » ;
+- forces Orbitvu : « Logiciel Orbitvu Station (inclus à vie) », interface drag & drop, workflows pré-configurés par secteur, compatibilité Windows + macOS ; « Intégration BlendAI Native » ; workflow : capture 1–2 min, export API 10 sec, traitement IA 30–60 sec, import PIM/DAM 10 sec, total 3–4 min pour 5 déclinaisons ; « Hotline française », « Techniciens francophones experts Orbitvu », support téléphonique, email, visio ;
+- forces StyleShoots : « finitions aluminium brossé, look Apple » ; Orbitvu « Design fonctionnel industriel » ; modes « one-click » (mannequin invisible, fantôme, flat-lay) ; « Orbitvu : Ces modes existent mais nécessitent plus de réglages manuels » ; communauté StyleShoots active (forums, groupes Facebook, conférences) contre communauté Orbitvu « plus confidentielle » ;
+- histoire : « l'un des pionniers européens » ; gamme jusqu'en 2018 (R3, PackshotMacro, PackshotRotator) et équivalences avec la gamme AlphaShot ; motifs de l'arrêt de la fabrication (R&D coûteuse, concurrence Orbitvu, décision stratégique) ; « Continuité service (même équipe support) », « Upgrade facilité » ;
+- tableau R3 / G2 : temps/produit 3–5 / 1–2 min ; capteur 24 MP / 50 MP ; logiciel Windows uniquement / Windows + macOS ; millésimes « (2018) » / « (2026) » ;
+- transition : reprise de l'ancien matériel « valorisation selon état », « Crédit sur achat Orbitvu AlphaShot », « Courbe apprentissage minimale » ;
+- Photomatics : « segment radicalement différent » ; tableau Studio Box / AlphaShot Micro : taille 40×40×40 / 30×30×30 cm, automatisation « ❌ Manuelle » / « ✅ Complète », qualité de rendu « Standard (smartphone/compact) » / « Premium (reflex pro) », volume/jour 20–30 / 50–100, formation « ❌ Tutoriels YouTube » ; seuils < 100 produits/an, < 500 références, > 1 000 produits/an, > 500 produits/an, < 50 produits/an ; « Photomatics et Orbitvu ne sont PAS concurrents directs » ; analogie smartphone / reflex professionnel ;
+- tableau général : positionnement (Milieu/Haut pro, Haut premium, Entry DIY), qualité de rendu (Premium / Premium+ / Standard), formation (« ✅ Certifiée Qualiopi » : Qualiopi certifie l'organisme, pas la formation ; « ✅ On-site » ; « ❌ YouTube »), « Idéal pour » (E-com pro 500+, Marques luxe, Créateurs TPE) ;
+- avantages : modules 360°, vidéo, éclairage additionnel, motorisation charge lourde ; « Investissement initial maîtrisé » ; « Gamme complète studios automatisés » ; « Intégration native studios Orbitvu » (BlendAI) ; « Formateurs experts 10+ ans » ; « Avantage compétitif : Workflow complet clé en main, un seul interlocuteur pour tout » ;
+- FAQ (5 questions, JSON-LD, non modifiée) : « Le SAV Orbitvu est-il efficace en France ? Oui » ; API REST ouverte et intégrations natives (BlendAI, Adobe Lightroom/Photoshop, Akeneo, Salsify, Shopify, WooCommerce, Magento) ; démonstrations « gratuites », sur site avec déplacement de la machine ; Photomatics « moins de 100 produits par an » ;
+- conclusion : titre « Orbitvu, le Choix Rationnel 2026 » (conservé : ancre et SEO) ; « Le marché … est mature en 2026, avec 3 acteurs positionnés sur des segments distincts » ; tableau décisionnel : profils « 500–5 000 produits/an », « < 100 produits/an », raisons « Polyvalence, IA Ready », « Design premium, prestige showroom », « Budget entry-level, usage ponctuel », « Vues interactives natives, évolutif » ;
+- reprises introduites par ce patch, sans source indépendante : démonstrations « sur site » (reprise de la FAQ) ; « Format adapté aux petits objets » (cohérent avec le tableau AlphaShot Micro, lui-même non vérifié).
+
+**Suite** — Contrôle par Laurent de la Preview du nouveau HEAD sur desktop, tablette et mobile (D42, étape 4) ; décision de Laurent sur la contradiction de date de création ; décision sur les affirmations non vérifiées ci-dessus (option C non lancée) ; validation de Sébastien selon la gouvernance applicable (D42, étape 5, articulation avec D12 et D15 non tranchée) ; fusion uniquement sur nouveau GO.
+
+---
+
+## 2026-10-01 · D33 / #64 — option B : corrections minimales du comparatif Orbitvu, `main` `8365c73` fusionné · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `44c531e` | **Base** : `main` `8365c73` | **Fusions** : `0744bbd` (`main` `8365c73`), puis fusion de `main` `17fc0b3` (#73, documentaire), arrivé pendant les tests
+
+**Quoi** — GO de Laurent du 01/10, « option B validée avec limites ».
+- `main` `8365c73` (#72 Inter, #74 UB-04) fusionné par le commit de fusion `0744bbd`, sans rebase ni force-push. Seul `JOURNAL.md` était en conflit : blocs des deux branches conservés intégralement, ordonnés par date de leur commit (UB-04 09:11, D33 `2ef01b2` 07:06, D36 06:28, Inter itération 2 06:26, D33 `8ec89c1` 05:36, Inter du 30/09).
+- `main` `17fc0b3` (#73, cluster AI Act, documentaire : `DECISIONS.md` D41, `ETAT.md`, `JOURNAL.md`), fusionné ensuite par un second commit de fusion. Conflits documentaires seuls : JOURNAL, blocs conservés intégralement et ordonnés par date de commit (AI Act reliquat 08:19, D33 `2ef01b2` 07:06, AI Act archivage D16 06:27, laissé au-dessus de D36 comme sur `main`) ; ETAT, en-tête « Dernière mise à jour » des deux côtés, segments conservés dans l'ordre chronologique.
+- `/fr/blog/orbitvu-vs-concurrents` : suppressions et retraits de qualificatifs, sans nouveau superlatif ni nouvelle comparaison :
+  - A : ligne « Détourage auto » (85 % / 99 %+) supprimée du tableau PackshotStudio R3 / AlphaShot G2 ;
+  - B : « (30 sec setup vs 5 sec StyleShoots) » retiré ; paragraphe « Impact : Si vous shootez 90%+ vêtements mode, StyleShoots peut faire gagner 20–30 sec/produit. Si vous shootez produits mixtes, le gain est négligeable. » supprimé ;
+  - C : les deux lignes « Support France » supprimées (tableau G2 / Vertical, tableau général) ;
+  - « leader européen » : retiré de l'introduction ; « Positionnement : Leader européen milieu/haut de gamme » → « Positionnement : Milieu/haut de gamme » ;
+  - « seul fabricant » : les deux paragraphes « Orbitvu = Seul fabricant … intégration IA native » supprimés ; liste de conclusion « Seul fabricant intégration IA native (workflow 2026) » → « intégration BlendAI (workflow 2026) » ;
+  - « unique » : retiré du verdict, de la conclusion (« intégration IA unique ») et de « Hardware + IA + Formation unique » ; paragraphe « PackshotCreator = Unique acteur proposant écosystème complet » supprimé ;
+  - « excellence » : retiré du verdict, du titre « Support Français Excellence » et de la conclusion (« support France d'excellence ») ;
+  - absolus sur l'IA : « aucune manipulation » retiré ; « StyleShoots : Aucune intégration IA native. Export manuel vers logiciels tiers requis. » supprimé ; lignes « IA Ready » supprimées des deux tableaux comparatifs avec StyleShoots ;
+  - comparaisons dépréciatives sur StyleShoots : « StyleShoots : Évolutivité limitée, upgrades souvent impossibles (changement machine requis). » supprimé ; lignes « Évolutivité » (Excellente / Moyenne / Limitée) supprimées des deux tableaux ;
+  - productivité : « Impact productivité : Orbitvu + BlendAI = 250–500 produits traités/jour (1 opérateur) | StyleShoots seul = 150–300 produits/jour » supprimé ;
+  - FAQ : « StyleShoots propose une API plus limitée avec des intégrations custom plus complexes. » retiré ; 5 questions conservées.
+
+**Pourquoi** — Affirmations non sourcées : superlatifs, absolus, comparaisons dépréciatives envers un concurrent nommé. Le rapport « option B » auquel renvoie le GO n'était disponible ni dans la session d'exécution, ni dans la PR, ni dans ce journal : les corrections sont dérivées des catégories énumérées dans le GO. Règle suivie : suppression d'abord ; pour une ligne de tableau dont la valeur concurrente n'est pas établie, suppression de la ligne plutôt que requalification (principe de la correction C) ; quand un élément de liste devait garder un contenu, reprise d'un fait déjà présent sur la page (BlendAI).
+
+**Fichiers** — `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, plus les fichiers apportés par `main` (Inter auto-hébergée, gabarit des articles UB-04).
+
+**Effet attendu** — Aucun avant fusion. Ce patch ne vaut pas validation factuelle intégrale de la page.
+
+**Vérifié**
+- Préconditions, avant toute écriture : HEAD distant de #64 = `44c531e`, `main` = `8365c73`.
+- JOURNAL résolu : toutes les lignes de `44c531e`, de `8365c73` et de la base `2ef01b2` présentes ; aucune ligne hors de leur union. ETAT : fusion automatique, les deux lignes ajoutées par `main` (UB-04, Inter #72) présentes.
+- Arbitrages, sur l'arbre fusionné : `foundingDate` `2004`, identique à `main`, non modifié ; showroom 198 allée de la Tour, 01700 Beynost (`showroomAddress`, `showroomValue`, `Store`, carte), aucune occurrence de Saint-Bonnet-de-Mure, DELTAPARK, 69720 ni Paris 11e ; Orbitvu depuis 2023 ; livraison et installation facturées en supplément ; délai d'environ 12 jours, non contractuel (FR, EN, de-ch) ; allemand : accompagnement commercial seulement ; garantie standard d'un an, extension possible ; comparatif : Essential et Master seuls cités, formation « facturée séparément » ou « en option », aucune formation de 2 ou 3 jours, de niveau ou Premium.
+- `verifier-json` : 180 fichiers valides. `tsc` vert. Vitest 373/373. `next build` vert, 371 pages.
+- `next start` local, `/fr/blog/orbitvu-vs-concurrents` : 200 ; un `<h1>` ; canonical inchangée ; JSON-LD `BreadcrumbList`, `Article`, `FAQPage` à 5 questions ; 5 `<details>` visibles, questions et réponses identiques au JSON-LD ; aucune des formulations retirées dans le HTML.
+- Rendu Chromium 390 et 1440 px (comparatif, `guide-achat-studio-2026`, `/fr/contact`, `/fr/distributeur-orbitvu-suisse`) : 0 erreur, 0 réponse 4xx, 0 débordement ; tableaux du comparatif défilables en 390 px.
+- Playwright (`seo`, `anchors`, `cta-destinations`, `redirections`, `mobile-overflow`, `responsive` ; Desktop Chrome et Pixel 5) : 628 réussis, 150 en échec (dont 100 dans `redirections`) ; les mêmes 150 échecs sur un build local de `main` `8365c73`. Aucun échec propre à #64.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO), `www` (R4). Aucune caractéristique Orbitvu documentée sur la page n'a disparu : BlendAI (titre « Intégration BlendAI Native » et workflow), modules (section « Évolutivité : Modules Additionnels »), support (section « Support Français Premium »).
+
+Valeurs restantes **non vérifiées**, conservées sans être validées (option C non lancée) :
+- comparatif, tableau G2 / Vertical : taille produits 100×80×80 cm / 100×100×120 cm ; volume/jour 200–500 / 150–300 ; temps/produit 1–2 min / 2–3 min ; formation StyleShoots « 1 jour » ;
+- comparatif, workflow Orbitvu → BlendAI (deux sections) : capture 1–2 min, export API 10 sec, traitement IA 30–60 sec, import PIM/DAM 10 sec, total 3–4 min pour 5 déclinaisons ; « Export automatique API », « Import automatique PIM/DAM », « Intégration native studios Orbitvu » ;
+- comparatif, tableau PackshotStudio R3 / AlphaShot G2 : temps/produit 3–5 min / 1–2 min ; capteur 24 MP / 50 MP ; IA Ready Non / Oui ; logiciel Windows / Windows + macOS ;
+- comparatif, tableau Photomatics Studio Box / AlphaShot Micro : taille 40×40×40 / 30×30×30 cm ; automatisation ; qualité de rendu ; volume/jour 20–30 / 50–100 ; formation ;
+- comparatif, seuils de profil : < 100 produits/an, < 500 références, > 1 000 produits/an, > 500 produits/an, < 50 produits/an, 500–5 000 produits/an ;
+- comparatif, tableau général : positionnement, qualité de rendu (Premium / Premium+ / Standard), formation (Qualiopi / On-site / YouTube), « Idéal pour » ;
+- comparatif, FAQ : API REST ouverte et intégrations natives (BlendAI, Adobe Lightroom/Photoshop, Akeneo, Salsify, Shopify, WooCommerce, Magento) ;
+- comparatif, qualitatif : « nécessitent plus de réglages manuels » (Orbitvu) ; verdict « Orbitvu gagne sur la plupart des critères », « l'emporte sur : IA Ready, Support France, Évolutivité (modules) », recommandation « sauf si budget illimité » ; « Support Français Premium » et « Support technique premium » ; « Technologie supérieure, prix compétitifs » ; « Précision extrême, prix accessible » ; « Marque luxe budget illimité » ; « choix rationnel » (titre et conclusion) ; « Formateurs experts 10+ ans » ; « Logiciel Orbitvu Station (inclus à vie) » ; module « 3D » cité en conclusion, absent de la liste des modules ; communauté StyleShoots ;
+- comparatif, « PackshotCreator (société française, fondée en 2004) » et gamme « 2004–2018 » : en écart avec D33 (2001), non modifiés (consigne : `foundingDate` inchangé) ;
+- hors comparatif, déjà signalés le 30/09 : `guide-achat-studio-2026` (« Satisfaction client 98% (enquête 2025 sur 150+ installations) », hotline < 2 h, intervention 24-48 h, pièces 24 h, « ROI 4-8 mois ») ; `comment-calculer-le-roi-…` (« productivité ×20 ») ;
+- `packshotEcommerce` (F5, gelé par D37) : « environ 10 jours », inchangé.
+
+**Suite** — Contrôle de la Preview sur le nouveau HEAD ; confirmation par Laurent que ces corrections couvrent l'option B attendue (rapport d'origine non disponible) ; option C non lancée ; fusion uniquement sur nouveau GO.
+
+---
+
 ## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
 
 **Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
@@ -137,6 +255,44 @@ Propriétaire des vérifications : l'exploitant de BlendAI. Selon le § 0 du sou
 **Non regardé** — blendai.studio ; exactitude juridique ou factuelle des formulations ; recensement complet EN et de-ch de E12 ; Preview. Constat incident, non instruit : les lignes 2676, 2681, 2718, 2759 et 2771 de `messages/de-ch.json` portent un texte en français.
 
 **Suite** — Aucune correction décidée. Pour chaque item : vérification par son propriétaire, puis décision de Laurent et validation de Sébastien pour la prose, avant toute PR applicative ; avis juridique là où la revue le demande (E8, E9, E10, H2, H3). Ordre proposé par la revue (l. 96) : « E8 (préalable 2), H2 », puis « E9, E10 et E12, enfin E11 et E13 ».
+
+---
+
+## 2026-10-01 · D33 / #64 — `main` `2ef01b2` (#68) fusionné, dernière synchronisation avant décision · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `1a26d2d` | **Base** : `main` `2ef01b2`
+
+**Quoi** — `main` fusionné dans la branche par un commit de fusion, sans rebase ni force-push.
+- Seul `docs/seo-geo/JOURNAL.md` était en conflit. Les deux historiques sont conservés intégralement, entrées les plus récentes en premier.
+- Le Worker et son test D36 sont repris de `main` sans modification.
+- Aucune autre modification fonctionnelle.
+- Les trois suppressions de blocs non sourcés dans `orbitvu-vs-concurrents` sont maintenues, sur l'arbitrage du pilotage du 01/10.
+
+**Pourquoi** — #68 (D36, Worker) a été fusionnée après `1a26d2d`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, plus les fichiers apportés par `main` (`cloudflare-worker/src/index.js`, `cloudflare-worker/test/d36-origine-noindex.test.ts`).
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- Diff net de #64 contre `main`, hors `docs/` : identique avant (`8ec89c1`…`1a26d2d`) et après (`2ef01b2`…HEAD). 16 fichiers ; `cloudflare-worker/` identique à `main`.
+- `verifier-json` : 180 fichiers valides. `tsc` vert. Vitest : 373/373, test Worker D36 compris. `next build` vert, 371 pages.
+- Contrôle métier sur `next start` local :
+  - livraison et installation facturées en supplément ; formation facturée séparément ou proposée en option ;
+  - délai d'environ 12 jours, non contractuel ;
+  - showroom au 198 allée de la Tour, 01700 Beynost (texte et `Store`) ; siège inchangé ; `foundingDate` `2004` ;
+  - Orbitvu depuis 2023 ;
+  - garantie d'un an avec extension possible, sans durée maximale ;
+  - aucun prix concurrent ni performance non sourcée sur les 6 pages comparatives.
+- `orbitvu-vs-concurrents` mentionne encore Essential et Master (4 occurrences), « facturée séparément » ou « en option », et « organisme certifié Qualiopi » (2 occurrences). Sysnext n'y est nommé ni sur `main` ni sur la branche.
+- Rendu Chromium en 390 et 1440 px : 0 erreur, 0 débordement, sauf `/fr` en 390 px (53 px, préexistant).
+- Playwright `seo`, `anchors`, `cta-destinations`, `redirections` : 61 échecs, identiques à `main` `8ec89c1`. Aucun fichier servi par Next n'a changé entre `8ec89c1` et `2ef01b2`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO), `www` (R4). Information perdue avec les suppressions : la ligne « de 4 h (Essential, à distance) à 1 jour (Master, en présentiel) » d'`orbitvu-vs-concurrents`, à réintroduire seulement sur décision.
+
+**Suite** — Contrôle humain de la Preview sur le HEAD poussé ; décision de fusion de Laurent.
 
 ---
 
@@ -311,6 +467,37 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 
 ---
 
+## 2026-10-01 · D33 / #64 — `main` `8ec89c1` fusionné : formation selon #71, livraison et installation selon D32 · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `235bc54` | **Base** : `main` `8ec89c1` (#69, #71)
+
+**Quoi** — `main` fusionné dans la branche par un commit de fusion, sans rebase. Neuf fichiers étaient en conflit avec #71. Ils sont résolus selon la règle d'arbitrage de Laurent du 01/10 :
+- **Formation** : la version de `main` issue de #71 fait foi. Essential Training à distance (4 h), Master Training en présentiel (7 h), formation facturée séparément ou proposée en option selon le contexte. Le namespace `formation` et `blogBudget.included.i3`, supprimés par #71, restent supprimés. Aucun ancien format n'est réintroduit (2 jours, 3 jours, niveaux, « formation premium 3 jours »).
+- **Livraison et installation** : la correction de #64 (« facturées en supplément ») est conservée. Elle remplace « Livraison et installation incluses » et « Installation sur site … inclus » de `main`, dans les 3 langues.
+- **Phrases qui mêlaient les trois postes** : décomposées, pour que chaque fait garde sa source. Sont concernés la FAQ délai de `studiosHardware`, `blogBudget.included.body`, la FAQ délai et la liste « Ce qui n'est PAS inclus » du guide d'achat, et la FAQ « reprise » des articles `evolution`.
+- **`orbitvu-vs-concurrents`** : les libellés de formation viennent de #71. Les retraits de #64 sont maintenus là où #71 n'avait retouché que la formation à l'intérieur de blocs que #64 supprime : comparaison StyleShoots, témoignage « Marie D. », interventions et pièces 24-48 h, ligne `Support`, « Garanties support », « 98 % », « depuis 2018 ».
+
+**Pourquoi** — D32 (Laurent, 25/09) interdit de « déclarer la livraison ou l'installation incluses ». La réponse de Laurent à Q13 (25/09) dit la même chose. Sur `main`, F5 indique « Livraison et installation sont facturées en supplément », en FR, EN et de-ch. La PR #71 déclare ne modifier que les clés formation : « Livraison et installation incluses » y reprend le texte antérieur et contredit D32. Ce n'est pas une conséquence de la mise en conformité Qualiopi.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `app/[lang]/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet/page.tsx`, `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, plus les fichiers apportés par `main`.
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- `verifier-json` : 180 fichiers valides. `tsc` vert (après régénération de `.next/types` par le build). Vitest : 346/346. `next build` vert, 371 pages.
+- `next start` local, 34 URL des pages touchées : 200. JSON-LD valide. Aucune formulation obsolète dans le texte visible ni le JSON-LD (« incluses », « inbegriffen », « included », anciens formats de formation, Saint-Bonnet, prix concurrents). Les formulations composées sont présentes.
+- Rendu Chromium en 390 et 1440 px : 0 erreur de page, 0 débordement, sauf `/fr` en 390 px (53 px, préexistant).
+- Playwright `seo`, `anchors`, `cta-destinations`, `redirections` (Desktop Chrome) : 272 réussis, 61 en échec. Les mêmes 61 échouent sur un build local de `main` `8ec89c1` : aucun n'est propre à la branche.
+- **Correction de l'entrée « D33 — revue finale de #64 » du 30/09** : l'écart entre les coordonnées Google de la carte (45,8295252 ; 4,9989543) et celles du `Store` (45,829766 ; 4,998587) est de 39,1 m, et non « environ 35 m ».
+
+**Supposé** — Aucun.
+
+**Non regardé** — F5 (`/fr/packshot-e-commerce`, texte de `main`, gelé par D37) écrit encore « La durée d'installation et de formation dépend du système ». Preview (SSO) ; `www` (R4).
+
+**Suite** — Contrôle humain de la nouvelle Preview : le contrôle sur `235bc54` ne vaut plus. Laurent confirme les retraits de #64 maintenus dans les zones de formation d'`orbitvu-vs-concurrents`. Fusion uniquement sur décision explicite de Laurent.
+
+---
+
 ## 2026-09-30 · Inter auto-hébergée : le build ne dépend plus de Google Fonts · Claude de Laurent
 
 **Chantier** : hors chantier SEO — fiabilité du build, demande de Sébastien relayée par Laurent | **PR** : #72, brouillon, non fusionnée | **Commit** : `2a587ad` | **Base** : `main` `a8c85ca` (#69), synchronisée par fusion avec `main` `8ec89c1` (#71)
@@ -457,6 +644,67 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 6. seulement ensuite, #67, après fusion de `main` dans sa branche. Deux conflits attendus :
    - le test Worker, dont #67 porte la version à 15 cas : garder celle de `main` ;
    - le haut du JOURNAL.
+
+---
+
+## 2026-09-30 · D33 — revue finale de #64 : une correction ajoutée, aucun retour arrière · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3` | **HEAD avant la revue** : `c7e4981`
+
+**Quoi** — Revue du diff complet de #64 contre `main` (18 fichiers) au regard des faits métier du 30/09. Une seule correction ajoutée : `/fr/blog/guide-achat-studio-2026`, option « Premium : AlphaShot 360 ou XXL », liste « Ce que vous obtenez » : « Formation premium 3 jours » → « Formation premium 3 jours (facturée en supplément) ». Aucune modification de #64 annulée.
+
+**Pourquoi** — #64 retire « Formation 2 jours incluse » des listes « Ce que vous obtenez » des options Entry-Level et Mid-Range ; la troisième liste de la même section présentait encore une formation comme comprise dans l'achat, contraire au fait métier « formation facturée en supplément ». Formulation reprise de `blogBudget.included.i3` de #64.
+
+**Fichiers** — `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- `main` distant = `7ad0ca3` = base de #64 ; HEAD distant de #64 = `c7e4981` avant cette passe ; CI de `c7e4981` : 4 contrôles sur 4 en succès ; aucun fil de revue.
+- Showroom : Beynost seulement dans `contact.showroomAddress`, `legal.article2.showroomValue`, le `Store` (`localBusinessSchema`, `@id` `#showroom`) et la carte ; `organizationSchema` (254 rue Vendôme, 69003 Lyon), `headquartersValue` et `foundingDate` (`2004`) identiques à `main` ; aucune occurrence de Saint-Bonnet-de-Mure, DELTAPARK ou 69720 dans le code servi. L'URL d'intégration de la carte répond 200 et Google la résout en « 198 All. de la Tour, 01700 Beynost, France » (45,82953 ; 4,99895), soit environ 35 m des coordonnées BAN du `Store`.
+- JSON-LD de `/fr/contact`, `/en/contact`, `/de-ch/kontakt` : 4 blocs valides (`Organization`, `BreadcrumbList`, `Store`, `FAQPage`) ; `FAQPage` de `/fr/blog/orbitvu-vs-concurrents` à 5 questions.
+- FR / EN / de-ch : mêmes clés modifiées dans les trois fichiers ; aucune traduction ne promet de support ni de formation en allemand ; livraison, installation et formation en supplément ; délai d'environ 12 jours indicatif et non contractuel ; garantie d'un an sans durée maximale.
+- D25 : aucun prix concurrent restant dans les éléments modifiés.
+- « environ 10 jours » : seulement dans `packshotEcommerce` (F5), non modifié.
+- `verifier-json` 186 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 383 pages.
+- `next start` local, 42 URL (FR, EN, de-ch) : 200, sauf 4 routes de-ch absentes, 404 aussi sur `main` ; aucune formulation corrigée dans le texte visible ni le JSON-LD.
+- Rendu Chromium 390 et 1440 px, 17 pages touchées : 0 erreur de page ; 0 débordement, sauf `/fr` en 390 px (53 px, section « Vos défis »), mesuré à l'identique sur un build de `main` `7ad0ca3`.
+- Playwright local (`seo`, `mobile-overflow`, `anchors`, `responsive` ; Desktop Chrome et Pixel 5) : 571 réussis, 45 en échec ; rejoués sur un build local de `main` `7ad0ca3` : les 45 échouent aussi (46 en échec sur `main`), aucun échec propre à #64. Pages en cause : `/fr` (débordement), `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, `/fr/industrie`, `/en`, `/en/studios-photo-automatises`, `/en/ia-photo-produit`, `/en/industrie`, `/fr/packshot-bijoux`.
+
+**Supposé** — [Non vérifié] Rendu visuel du repère sur la carte dans Chrome (non ouvert dans un navigateur réel). [Inférence] Le showroom de Beynost reste à moins de deux heures de Genève (mention conservée sur la page Suisse). Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4). Claims non sourcés restant dans des fichiers touchés par #64, identiques à ceux que #64 retire de `/fr/blog/orbitvu-vs-concurrents`, non retirés dans cette passe (décision de Laurent) : `guide-achat-studio-2026` (« Satisfaction client 98% (enquête 2025 sur 150+ installations) », hotline < 2 h, intervention 24-48 h, pièces 24 h, « ROI 4-8 mois ») ; `comment-calculer-le-roi-…` (« productivité ×20 »).
+
+**Suite** — Conflit de gouvernance signalé, non tranché : D33 demande d'aligner `foundingDate` sur 2001, le fait métier du 30/09 met ce changement hors périmètre tant que l'entité du nœud `Organization` n'est pas qualifiée. D32 (10 jours) et D1 (Saint-Bonnet-de-Mure) à mettre à jour par leur auteur. Fusion uniquement sur décision explicite de Laurent.
+
+---
+
+## 2026-09-30 · D33 — patch factuel sûr (showroom, Orbitvu, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu, Qualiopi), PR brouillon · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **Base** : `main` `7ad0ca3`
+
+**Quoi** — Corrections factuelles sur liste fermée, sans refonte : showroom au 198 allée de la Tour, 01700 Beynost (page contact, mentions légales, `localBusinessSchema`, carte) ; partenariat Orbitvu daté de 2023 (« depuis 2018 », « dès 2008 », « depuis plus de 20 ans » retirés) ; livraison, installation et formation facturées en supplément, délai indicatif d'environ 12 jours, non contractuel ; accompagnement commercial en allemand seulement ; garantie standard d'un an, extension possible ; prix concurrents et prix comparés retirés (D25) ; chiffres non sourcés retirés de `/fr/blog/orbitvu-vs-concurrents` ; « certifié Qualiopi depuis 2017 » remplacé par une mention non datée au périmètre certifié.
+
+**Pourquoi** — Mission « D33 — patch factuel sûr » de Laurent (30/09) : faits métier de Laurent et Sébastien, D25, D33.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx` (`localBusinessSchema` seul), `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/orbitvu-vs-concurrents/page.tsx`, `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `app/[lang]/blog/comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet/page.tsx`, `app/[lang]/blog/blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026/page.tsx`, `app/[lang]/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026/page.tsx`, `app/[lang]/blog/ia-photo-produit-guide-2026/page.tsx`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant fusion. Après fusion : textes et `Store` du showroom alignés sur Beynost ; plus de promesse contraire aux conditions commerciales ; FAQPage de `/fr/blog/orbitvu-vs-concurrents` à 5 questions (6 avant).
+
+**Vérifié**
+- `main` distant = `7ad0ca3` avant la branche.
+- Adresse du showroom : Base Adresse Nationale (`api-adresse.data.gouv.fr`), « 198 Allée de la Tour 01700 Beynost », longitude 4,998587, latitude 45,829766. URL d'intégration Google Maps obtenue par la redirection de Google pour cette adresse ; la page intégrée répond 200 et contient « Beynost ».
+- Qualiopi : liste publique DGEFP des organismes de formation, SYSNEXT (SIREN 805401148), certification au titre des actions de formation.
+- Messages : édition par chemin JSON, formatage d'origine conservé (sérialisation identique au fichier avant édition) ; `organizationSchema` (254 rue Vendôme, 69003 Lyon) et `foundingDate` inchangés.
+- `verifier-json` 186 fichiers valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 383 pages.
+- `next start` local, 37 URL : toutes en 200 sauf `/de-ch/mentions-legales` (404, route inexistante en de-ch, sans lien avec ce patch) ; canonical et `robots` inchangés ; FAQPage alimentée par le même tableau que les questions affichées ; aucune formulation corrigée ne subsiste dans le HTML ; restent, hors périmètre : « Orbitvu depuis 2018 » (témoignage client, accueil et `/studios-photo-automatises`), « 98 % » et « 4-8 semaines » (validation OPCO) dans `guide-achat-studio-2026`, « EUR 12,450 » (prix PackshotCreator, pages EN).
+- 0 débordement horizontal en 390 et 1440 px, 0 erreur de page, sur les 10 pages dont la structure HTML change.
+
+**Supposé** — [Non vérifié] Rendu visuel du repère sur la carte intégrée : le Chromium de la session refuse le certificat du proxy ; à contrôler dans Chrome sur la Preview. [Inférence] Le showroom de Beynost reste à moins de deux heures de Genève (mention conservée sur la page Suisse). Cela repose sur des schémas observés.
+
+**Non regardé** — Hors liste de la mission, signalé sans modification : `hasMap` (cid de la fiche Google) et intitulés « Showroom Lyon » ; `packshotEcommerce` (F5) et D32 à « environ 10 jours » ; « Satisfaction client 98 % (enquête 2025) » et engagements de service (hotline, 24-48 h, pièces 24 h) de `guide-achat-studio-2026` ; délai « 2 à 4 semaines » de `/industrie` (D10) ; prix PackshotCreator et BlendAI hors éléments comparés ; dates Qualiopi « depuis 2022 » et « 2024 » ; « Formateur agréé Orbitvu depuis 2019 » ; témoignage client « Orbitvu depuis 2018 » ; gamme PackshotCreator « 2004–2018 » ; D1 et `00-BRIEFING.md` citant encore Saint-Bonnet-de-Mure ; `messages/de.json`, `es.json`, `nl.json` (non servis) ; `www` (R4) ; Preview (SSO).
+
+**Suite** — Relecture de Laurent et Sébastien ; décision sur les éléments signalés ; mise à jour de D1 (commune du showroom) et de D32 (12 jours) par leur auteur ; contrôle Chrome de la carte sur la Preview ; fusion uniquement sur décision explicite.
 
 ---
 
