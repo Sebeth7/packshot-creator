@@ -34,6 +34,49 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — pilier A : contrôle final éditorial avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `80489cf`, `main` `8ec89c1`
+
+**Quoi** — Passe de sortie éditoriale (audit, corrections, tests, Preview) avant envoi à Sébastien. Dans `content/blog/fr/ai-act-images-produit.json` seulement :
+- ouverture : « Vérifié le 28 septembre » devient « Sources vérifiées du 28 au 30 septembre », comme le corps (plateformes et mesure du 30/09) ;
+- tableau « qui doit quoi », ligne agence : point 14 cité en entier (une entreprise reste déployeur lorsque des prestataires opèrent le système pour son compte, sous sa responsabilité et son contrôle), comme dans l'article Suisse (#60) ; le cas d'une marque qui impose ou encadre l'usage de l'IA reste non tranché ;
+- ligne marketplace : renvoi au point 16 ;
+- « la version finale du 20 juillet 2026 » devient « la version publiée le 20 juillet 2026 » ;
+- Google, mention visible : « Google peut en ajouter lui-même dans certains cas » ;
+- mesure WebP : condition de la mesure (navigateur acceptant WebP) ;
+- renvoi vers l'article Suisse : titre réel, toujours sans lien actif ;
+- sources classées par nature (cadre européen, droit français, Suisse, plateformes, standards), sans la trace de production « ajoutés » ; trois sources déjà utilisées par le texte ajoutées à la liste : Google 6324350 (refus du produit), Google 17231950 (libellé IA), projet de lignes directrices du 8 mai 2026 ;
+- en-têtes de trois tableaux raccourcis (« Ce que cela change », « Rôle selon l'AI Act », « Marquage par l'outil ? », « Mention visible par la marque ? », « À faire ») : à 1440 px, les en-têtes insécables (`white-space: nowrap`, `app/globals.css`) faisaient déborder 3 tableaux sur 4 et tronquaient leur dernière colonne.
+Aucune qualification de cas modifiée. FAQ, title, meta, H1, slug, canonical, date, visuels, alt et légende inchangés.
+
+**Pourquoi** — Mission « contrôle final éditorial » du 01/10/2026 : Sébastien ne reçoit que ce qui exige son arbitrage. Constats : date d'ouverture contredite par le corps ; ligne agence moins complète que l'article Suisse sur le même point 14 ; deux affirmations Google sans source listée ; projet du 8 mai cité sans source ; dernière colonne de trois tableaux masquée sur ordinateur.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** —
+- Fresh-check : tête `80489cf` et `main` `8ec89c1` conformes à la mission ; PR ouvertes listées ; aucune autre session n'a écrit dans #59 depuis `80489cf`.
+- Sources relues le 01/10 : lignes directrices C(2026) 5054 (PDF, points 10, 12, 13, 14, 16, 92, 113, 114, 116, 117, 127, 129, 154) ; projet du 8 mai 2026 (PDF, point 86 : suppression ou masquage d'arrière-plans parmi les modifications à marquer) ; Google 14743464, 14572008, 6324350 (conservation des métadonnées IA parmi les conditions minimales, dont le non-respect entraîne le refus du produit), 17231950 (paramètre de libellé IA facultatif ; libellés ajoutés par Google dans certains cas) ; Zalando, mise à jour du 31/08/2026 (mentions visibles refusées, marquage invisible « required by December 2026 ») ; Chancellerie fédérale, page « Intelligence artificielle ».
+- Mesure WebP : preuve au JOURNAL de #63 (30/09, 06:27 UTC, `sysnext.vercel.app`, `/images/hero/hero-studios-wide.avif` : original servi en `w=640` et `w=1080`, WebP sans XMP ni EXIF en `w=1920` pour un en-tête `Accept` annonçant WebP).
+- Liens externes (20 URL distinctes) : 15 en 200 ; EUR-Lex (2) en 202 et Légifrance (3) en 403, défis anti-robots non concluants.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, variables factices de la CI.
+- `next start` local, Chromium, 1440 et 390 px : 200 ; title 57 car., description 155 car., canonical inchangé, aucune balise `robots` ; JSON-LD Organization, BreadcrumbList, Article, FAQPage 7 ; hero 848 × 477 et 358 × 201, A3 662 × 372 et 358 × 201, ratio 16:9, légende présente ; 4 tableaux sans défilement à 1024, 1280 et 1440 px (avant : 3 sur 4 tronqués), défilement interne à 390 px ; 0 débordement de page ; 0 erreur de console ; 0 ancre cassée ; 0 marqueur ; 0 lien vers `/fr/packshot-e-commerce`.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local) : résultats et comparaison avec un build local de `main` `8ec89c1` dans la PR #59. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
+
+**Supposé** — [Inférence] EUR-Lex et Légifrance servent les mêmes textes que ceux lus les 29 et 30/09 (Cellar, conversion). Cela repose sur des schémas observés.
+
+**Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 30/09 pour #63 seulement.
+Hors périmètre, rien de modifié :
+- gabarit du blog : le fil d'Ariane est rendu dans le `h1` (tous les articles) ;
+- `globals.css` : en-têtes de tableau insécables, risque de colonne masquée sur d'autres articles ;
+- deux articles publiés affichés en « articles liés » sous A, dont la phrase sur l'AI Act diverge du pilier : `generer-images-produit-ia` et `migrer-ancien-packshotcreator`.
+
+**Suite** — Envoi à Sébastien sur la Preview de la nouvelle tête. À la publication coordonnée (D38) : lien actif vers `/fr/blog/images-ia-ecommerce-suisse`, `date` du jour de publication.
+
+---
+
 ## 2026-09-30 · Cluster AI Act — pilier A : passe éditoriale (cadre de rédaction de Sébastien) · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `de7289f`, puis fusion de `main` `a8c85ca` (#69, conflit du JOURNAL résolu en gardant les deux entrées)
