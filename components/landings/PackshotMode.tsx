@@ -613,6 +613,15 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
             <GraduationCap className="h-6 w-6 mt-0.5 shrink-0 text-very-peri-500" aria-hidden="true" />
             <p className="text-future-dusk-700 leading-relaxed">{t('auStudio.controle')}</p>
           </div>
+          {/* Seul CTA intermédiaire : à mi-page (mesure du 01/10 en 390 px : ~24 900 px entre le bouton du hero et le formulaire). */}
+          <div className="mt-10 rounded-2xl border border-very-peri-200 bg-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <p className="flex-1 text-future-dusk-900 font-medium leading-relaxed">{t('auStudio.demo.texte')}</p>
+            <Button asChild className="w-fit bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-6 h-11 shrink-0">
+              <a href={`#${ANCRE_DEMO}`}>
+                {t('auStudio.demo.cta')} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Mode — corrections après contre-relecture ChatGPT + Chrome (retours d'expérience, CTA, Fashion Studio) · Claude de Laurent
+
+**Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base** : `f1c2da0`, puis `main` `a6760da` (#72) fusionnée
+
+**Quoi** — Corrections ciblées demandées par Laurent après le contrôle Chrome de la Preview (MODE_CHROME_EDITORIAL_QA = PARTIAL) :
+- Quatre affirmations d'expérience directe non établies, reformulées en conseils de contrôle, sans test, résultat, préférence client ni témoignage : `matiere.recolo.texte` (« Chez PackshotCreator, nous l'avons vue utilisée ainsi… », « Les clients que nous accompagnons préfèrent en général… »), `interne.raisons.volume.texte` (« D'expérience, PackshotCreator constate… »), `ia.essais.titre` et `ia.essais.texte` (« Ce que nous avons observé », « PackshotCreator a testé… »), `faq.q5.answer` et `faq.q6.answer` (mêmes affirmations).
+- Fashion Studio : « dans une organisation proche d'un plateau photo (traditionnel) » n'apparaît pas dans le corpus (`sessions/research/orbitvu-specs.md`, `machines.ts`) ; remplacé par « sur un espace scénique dédié », présent pour la version Pro v2 (« Espace scénique 3×3m ») et la version Basic (« dans un espace scénique »). `studios.rows.fashion.usage` et `faq.q3.answer`.
+- Un seul CTA intermédiaire « Demander une démonstration », vers le formulaire existant (`#demande-demo`), en fin de section « Ce que fait le studio, ce que fait l'équipe » : en 390 px, le bouton du hero (y = 782) et le formulaire (y = 25 731) étaient séparés de ~24 900 px ; le nouveau CTA (y = 14 626) coupe cet écart en deux. Aucun formulaire, popup, bandeau fixe ni CTA calculateur ajouté. Clés `auStudio.demo.texte` et `auStudio.demo.cta`.
+- Fusion de `main` `a6760da` (#72, Inter auto-hébergée) : conflits limités à `JOURNAL.md` et `ETAT.md`, les deux côtés conservés. Tous les caractères du bloc `packshotMode` sont couverts par l'`unicode-range` du sous-ensemble Inter.
+
+**Images (constat, aucune modification)** — Les « 536 px » relevés dans Chrome sont le `naturalWidth` calculé par le navigateur : en 1440 px et DPR 2, `sizes` (1232 px) fait choisir le candidat 3840w ; `/_next/image` n'agrandit pas et renvoie le fichier source de 1672 × 941 px ; Chrome divise par la densité du descripteur (3840 / 1232) : 1672 × 1232 / 3840 = 536. Même octets pour w=1920 et w=3840 (51 852 o pour V1). Effet réel : sur écran DPR 2, V1 à V5 sont affichées à 1230 px CSS à partir de 1672 px de pixels (agrandissement ×1,47) ; limite de la source, non corrigible sans régénération (exclue). Chargement différé : V1 à V5 se chargent à l'approche, toutes chargées après défilement sur 7 affichages (1440, 1280, 1024, 768, 390 ; DPR 1 à 3). Une capture d'élément prise sans défilement préalable montre V4 vide : artefact de capture, l'image se charge une fois atteinte. Logos : bandeau propre à la page (comme F5), 9 logos nommés, 9 doublons `alt=""` et `aria-hidden="true"`, arbre d'accessibilité à 9 images : aucun défaut ; les logos hors écran horizontalement se chargent quand le défilement les amène (18/18 en 18 s à 390 px). `ClientLogos.tsx` (partagé) n'est pas utilisé par la page et n'est pas touché.
+
+**Dimensions XXL (constat)** — Pas de contradiction de nature : `machines.ts` (100 × 70 × 190 cm) et la fiche Orbitvu relevée le 28/09 (190 × 90 × 100 cm) sont toutes deux des tailles maximales de produit ; l'encombrement de la machine est 277 × 190 × 273 cm (corpus, FAQ de la fiche). [Inférence] Si 190 est la hauteur et 100 la largeur (corpus : « jusqu'à 190 cm de haut, 100 cm de large »), l'écart porte sur la profondeur : 70 cm contre 90 cm. La landing suit la fiche Orbitvu ; l'alignement de `machines.ts` reste hors périmètre (écart n° 3 du 28/09).
+
+**Fichiers** — `messages/fr.json` (bloc `packshotMode` seul, JSON identique hors du bloc), `components/landings/PackshotMode.tsx` (bloc CTA), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `verifier-json` (180), `tsc`, eslint, 260 messages ICU compilés, Vitest 373/373, `next build` (371 pages) ; sur le build local : `seo.spec` `packshot-mode` 26/26, `smoke.mjs` vert (sitemap 308 URL) ; 1440 et 390 px : 1 H1, aucun débordement de page, aucune erreur console, aucune réponse 4xx, aucune ancre cassée, FAQ visible = FAQPage (9/9), title (61), meta (146), canonical et 5 hreflang inchangés ; clic du nouveau CTA : `#demande-demo` en haut de l'écran ; chaînes retirées (« Chez PackshotCreator », « D'expérience », « nous avons observé », « a testé », « essais menés », « clients que nous accompagnons », « plateau photo traditionnel ») : 0 dans le texte visible, le `<head>` et le JSON-LD.
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) avant le push ; `www` (R4) ; EN et de-ch (D38) ; droits des photos Orbitvu avec personnes (question à Sébastien).
+
+**Suite** — Contre-relecture ChatGPT du texte intégral, puis transmission à Sébastien (un seul point : droits des photos).
+
+---
+
 ## 2026-10-01 · Mode — contrôle final avant transmission à Sébastien, trois micro-corrections · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Base contrôlée** : `798116e`

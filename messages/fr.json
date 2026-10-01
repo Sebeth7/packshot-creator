@@ -1062,7 +1062,7 @@
       },
       "recolo": {
         "titre": "Recolorisation : un dépannage, pas une règle",
-        "texte": "Produire les autres coloris en recolorant la photo d'un seul article peut dépanner ponctuellement. Chez PackshotCreator, nous l'avons vue utilisée ainsi, avec des limites : la teinte exacte, la texture et la façon dont la matière réagit à la lumière ne suivent pas toujours. Les clients que nous accompagnons préfèrent en général photographier chaque coloris réel. Si vous recolorez, comparez chaque variante à l'article avant de la publier."
+        "texte": "Produire les autres coloris en recolorant la photo d'un seul article peut dépanner ponctuellement. Mais une image recolorée n'est pas une photo du coloris réel : la teinte exacte, la texture et la façon dont la matière réagit à la lumière peuvent s'en écarter. Photographier chaque coloris réel montre directement l'article vendu. Si vous recolorez, comparez chaque variante à l'article avant de la publier."
       },
       "lienGuide": "Réglages et contrôle de la couleur : <lien>obtenir des couleurs fidèles en photographie de produit</lien>.",
       "sources": "Sources des études citées"
@@ -1129,7 +1129,7 @@
         },
         "volume": {
           "titre": "Les gros volumes",
-          "texte": "D'expérience, PackshotCreator constate que l'intérêt d'un studio automatisé est le plus net sur les gros volumes : quand les références et les coloris se comptent par centaines, rappeler les mêmes réglages sur chaque pièce fait la différence."
+          "texte": "Quand les références et les coloris se comptent par centaines, refaire les réglages à chaque séance prend du temps et multiplie les risques d'écart entre les images. Un modèle enregistré, rappelé pour chaque pièce, évite de les refaire. Le volume à partir duquel l'internalisation se justifie dépend de vos collections : chiffrez-le avec vos propres données."
         }
       },
       "prestataire": {
@@ -1180,7 +1180,11 @@
         "alt": "Illustration d'une opératrice préparant un manteau sur mannequin dans un studio photo.",
         "caption": "Illustration synthétique d'une étape de préparation manuelle avant la prise de vue."
       },
-      "controle": "L'automatisation ne retire pas le contrôle humain : c'est l'équipe qui juge si la couleur, la matière et le tombé correspondent à la pièce. Selon Orbitvu, une formation de base suffit pour le packshot courant, sans expérience photo préalable. Pour la prise de vue portée, le regard d'un photographe ou d'un styliste reste précieux."
+      "controle": "L'automatisation ne retire pas le contrôle humain : c'est l'équipe qui juge si la couleur, la matière et le tombé correspondent à la pièce. Selon Orbitvu, une formation de base suffit pour le packshot courant, sans expérience photo préalable. Pour la prise de vue portée, le regard d'un photographe ou d'un styliste reste précieux.",
+      "demo": {
+        "texte": "Pour voir ce partage des tâches sur vos propres pièces, le plus fiable reste une démonstration.",
+        "cta": "Demander une démonstration"
+      }
     },
     "ia": {
       "eyebrow": "IA",
@@ -1208,8 +1212,8 @@
         }
       },
       "essais": {
-        "titre": "Ce que nous avons observé",
-        "texte": "PackshotCreator a testé la génération d'un rendu « mannequin invisible » à partir de photos à plat. Lors de ces essais, la fidélité des textures, des motifs et des textes imprimés posait problème. Ces outils évoluent vite et leurs performances actuelles peuvent être différentes : testez-les sur vos propres pièces et contrôlez chaque image avant publication."
+        "titre": "Mannequin invisible généré : tester sur vos pièces",
+        "texte": "Des outils d'IA proposent de générer un rendu « mannequin invisible » à partir de photos à plat. Le volume du vêtement est alors généré, pas photographié : vérifiez en particulier la fidélité des textures, la continuité des motifs et la lisibilité des textes imprimés. Ces outils évoluent vite : testez-les sur vos propres pièces, y compris les plus délicates, et comparez chaque image à l'article avant publication."
       },
       "virtuel": {
         "titre": "Mannequins virtuels",
@@ -1281,7 +1285,7 @@
         },
         "fashion": {
           "nom": "Fashion Studio",
-          "usage": "Prise de vue portée avec modèle vivant, dans une organisation proche d'un plateau photo traditionnel",
+          "usage": "Prise de vue portée avec modèle vivant, sur un espace scénique dédié",
           "gabarit": "Modèle vivant en pied (voir la fiche)",
           "limite": "Studio de très grande taille, spécialisé dans la mode ; moins polyvalent pour le packshot d'objets"
         },
@@ -1349,7 +1353,7 @@
       },
       "q3": {
         "question": "Peut-on photographier un mannequin ou un modèle vivant dans un studio automatisé ?",
-        "answer": "Oui, avec un studio dimensionné pour cela. Orbitvu destine l'Alphastudio XXL aux mannequins, aux modèles vivants et aux grands objets (190 × 90 × 100 cm et 100 kg au maximum selon la fiche Orbitvu). Le Fashion Studio est conçu pour la prise de vue portée avec modèle, dans une organisation proche d'un plateau photo. Les studios Alphashot, comme l'Alphashot XL G2 (60 × 40 × 70 cm), sont dimensionnés pour les accessoires et les objets, pas pour un mannequin taille réelle ni un modèle."
+        "answer": "Oui, avec un studio dimensionné pour cela. Orbitvu destine l'Alphastudio XXL aux mannequins, aux modèles vivants et aux grands objets (190 × 90 × 100 cm et 100 kg au maximum selon la fiche Orbitvu). Le Fashion Studio est conçu pour la prise de vue portée avec modèle vivant, sur un espace scénique dédié. Les studios Alphashot, comme l'Alphashot XL G2 (60 × 40 × 70 cm), sont dimensionnés pour les accessoires et les objets, pas pour un mannequin taille réelle ni un modèle."
       },
       "q4": {
         "question": "Quel studio pour photographier des chaussures et des sacs ?",
@@ -1357,11 +1361,11 @@
       },
       "q5": {
         "question": "La recolorisation peut-elle remplacer la photo de chaque coloris ?",
-        "answer": "Elle peut dépanner ponctuellement. D'expérience, PackshotCreator constate des limites sur la teinte exacte, la texture et la façon dont la matière réagit à la lumière, et les clients que nous accompagnons préfèrent en général photographier chaque coloris réel. Si vous recolorez, comparez chaque variante à l'article avant publication."
+        "answer": "Elle peut dépanner ponctuellement, mais une image recolorée n'est pas une photo du coloris réel : la teinte exacte, la texture et la façon dont la matière réagit à la lumière peuvent s'en écarter. Photographier chaque coloris réel montre directement l'article vendu. Si vous recolorez, comparez chaque variante à l'article avant publication."
       },
       "q6": {
         "question": "L'IA peut-elle créer un rendu mannequin invisible à partir d'une photo à plat ?",
-        "answer": "Des outils le proposent. Lors d'essais menés par PackshotCreator, la fidélité des textures, des motifs et des textes imprimés posait problème. Ces outils évoluent vite et leurs performances actuelles peuvent être différentes : testez-les sur vos propres pièces et contrôlez chaque image. Une photo réelle reste la référence du produit."
+        "answer": "Des outils le proposent. Le volume du vêtement est alors généré, pas photographié : vérifiez la fidélité des textures, la continuité des motifs et la lisibilité des textes imprimés. Ces outils évoluent vite : testez-les sur vos propres pièces et contrôlez chaque image. Une photo réelle reste la référence du produit."
       },
       "q7": {
         "question": "Quelles photos Zalando demande-t-il ?",
