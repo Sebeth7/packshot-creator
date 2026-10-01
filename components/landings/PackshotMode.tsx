@@ -1,11 +1,12 @@
 /**
  * Landing /[lang]/packshot-mode — composant page-scopé, réécriture du 30/09/2026 sur la
- * méthode de F5 (/packshot-e-commerce). Servi en FR seulement : EN et de-ch restent sur
- * PackshotLandingTemplate jusqu'à la traduction de la version FR validée (D38).
+ * méthode de F5 (/packshot-e-commerce). Trilingue depuis le 01/10/2026 : FR validé, puis
+ * EN et adaptation de-ch depuis le FR validé (D38, D42 étape 7).
  *
- * Le texte vit dans messages/fr.json (namespace packshotMode) ; ce fichier ne porte que la
- * mise en page, les images, les sources et les cibles de liens. PackshotLandingTemplate,
- * partagé par les autres landings, n'est pas modifié.
+ * Le texte vit dans messages/{fr,en,de-ch}.json (namespace packshotMode, clés identiques
+ * dans les trois langues) ; ce fichier ne porte que la mise en page, les images, les sources
+ * et les cibles de liens. PackshotLandingTemplate, partagé par les autres landings, n'est
+ * plus utilisé pour cette page et n'est pas modifié.
  *
  * Données machines : dimensions publiées par Orbitvu (fiches orbitvu.com relevées le
  * 28/09/2026 pour F5, consignées dans docs/seo-geo/JOURNAL.md). Les limites du Fashion
@@ -26,6 +27,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import SommaireCollant from '@/components/landings/SommaireCollant';
+import { tx } from '@/lib/locale-text';
 import {
   ArrowRight,
   ArrowUp,
@@ -80,6 +82,14 @@ const HERO_MOSAIQUE = [
   { key: 'accessoire', src: '/images/machines/alphashot-xl/packshot-shoe-360.avif', w: 600, h: 600 },
 ] as const;
 
+// Série réelle : packshots Orbitvu de la fiche Alphatable, même fond et même cadrage (01/10/2026,
+// à la place de la capture du logiciel, trop clairsemée à l'écran).
+const SERIE_COLLECTION = [
+  { key: 'robe', src: '/images/machines/alphatable-alphadesk/packshot-dress.avif', w: 1200, h: 1215 },
+  { key: 'sweat', src: '/images/machines/alphatable-alphadesk/packshot-blouse.avif', w: 1200, h: 1105 },
+  { key: 'combishort', src: '/images/machines/alphatable-alphadesk/packshot-dungarees.avif', w: 1200, h: 1215 },
+] as const;
+
 // Illustrations générées, dérivées AVIF des PNG 1672 × 941 du pack (SHA-256 contrôlés, sources
 // conservées hors dépôt). Ratio complet, aucun recadrage : V1 et V3 doivent rester lisibles.
 const ILLUSTRATIONS = {
@@ -118,10 +128,12 @@ const POINTS_MATIERE: { key: string; icon: LucideIcon }[] = [
 ];
 
 // Sources relues pour F5 le 28/09/2026 (JOURNAL.md) ; libellés propres à cette page.
-const SOURCES_UX = [
-  { label: 'Nielsen Norman Group, photos dans les listes de produits (2022)', href: 'https://www.nngroup.com/articles/product-photos-listing-pages/' },
-  { label: 'Baymard Institute, résolution et zoom des images', href: 'https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom' },
-];
+function sourcesUx(lang: Langue) {
+  return [
+    { label: tx(lang, 'Nielsen Norman Group, photos dans les listes de produits (2022)', 'Nielsen Norman Group, photos on product listing pages (2022)', 'Nielsen Norman Group, Fotos in Produktlisten (2022)'), href: 'https://www.nngroup.com/articles/product-photos-listing-pages/' },
+    { label: tx(lang, 'Baymard Institute, résolution et zoom des images', 'Baymard Institute, image resolution and zoom', 'Baymard Institute, Bildauflösung und Zoom'), href: 'https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom' },
+  ];
+}
 
 const PRESENTATIONS = ['aplat', 'volume', 'porte', 'accessoires'] as const;
 
@@ -144,13 +156,16 @@ const IA_BLOCS: { key: string; icon: LucideIcon }[] = [
 
 const PLATEFORMES = ['zalando', 'amazon', 'google'] as const;
 
-// Versions françaises des pages officielles, relues le 28/09/2026 pour F5.
-const SOURCES_PLATEFORMES = [
-  { label: 'Zalando Partner University, consignes images', href: 'https://partner.zalando.com/university/article/zalando-image-guidelines' },
-  { label: 'Amazon Seller Central, exigences relatives aux images (G1881)', href: 'https://sellercentral.amazon.fr/help/hub/reference/external/G1881' },
-  { label: 'Google Merchant Center, lien image', href: 'https://support.google.com/merchants/answer/6324350?hl=fr' },
-  { label: 'Google Merchant Center, mise à jour 2026 des spécifications', href: 'https://support.google.com/merchants/answer/16989427?hl=fr' },
-];
+// Pages officielles relues le 28/09/2026 pour F5 ; version de la langue quand elle existe
+// (Amazon : page amazon.fr dans les trois langues, comme F5).
+function sourcesPlateformes(lang: Langue) {
+  return [
+    { label: tx(lang, 'Zalando Partner University, consignes images', 'Zalando Partner University, image guidelines', 'Zalando Partner University, Bildrichtlinien'), href: 'https://partner.zalando.com/university/article/zalando-image-guidelines' },
+    { label: tx(lang, 'Amazon Seller Central, exigences relatives aux images (G1881)', 'Amazon Seller Central (amazon.fr), product image requirements (G1881)', 'Amazon Seller Central (amazon.fr), Anforderungen an Produktbilder (G1881)'), href: 'https://sellercentral.amazon.fr/help/hub/reference/external/G1881' },
+    { label: tx(lang, 'Google Merchant Center, lien image', 'Google Merchant Center, image link', 'Google Merchant Center, Bildlink (Englisch)'), href: tx(lang, 'https://support.google.com/merchants/answer/6324350?hl=fr', 'https://support.google.com/merchants/answer/6324350?hl=en', 'https://support.google.com/merchants/answer/6324350?hl=en') },
+    { label: tx(lang, 'Google Merchant Center, mise à jour 2026 des spécifications', 'Google Merchant Center, 2026 specification update', 'Google Merchant Center, Aktualisierung der Spezifikationen 2026'), href: tx(lang, 'https://support.google.com/merchants/answer/16989427?hl=fr', 'https://support.google.com/merchants/answer/16989427?hl=en', 'https://support.google.com/merchants/answer/16989427?hl=de') },
+  ];
+}
 
 // Fiches actives du site (aucun modèle délisté) ; vignettes déjà utilisées par les fiches.
 const STUDIOS: { key: string; slug: string; img: string; w: number; h: number }[] = [
@@ -171,15 +186,11 @@ const ARTICLES: Record<string, { gabarit: '/blog/[slug]' | '/guide/[slug]'; slug
   },
   couleurs: {
     gabarit: '/guide/[slug]',
-    slugs: { fr: 'comment-obtenir-couleurs-fideles-photographie-produit' },
+    slugs: { fr: 'comment-obtenir-couleurs-fideles-photographie-produit', en: 'how-to-get-accurate-colors-in-product-photography' },
   },
   chaussures: {
     gabarit: '/guide/[slug]',
-    slugs: { fr: 'comment-faire-photos-multi-angles-chaussures' },
-  },
-  prestataire: {
-    gabarit: '/blog/[slug]',
-    slugs: { fr: 'prestataire-packshot-vs-studio-interne', en: 'prestataire-packshot-vs-studio-interne' },
+    slugs: { fr: 'comment-faire-photos-multi-angles-chaussures', en: 'how-to-take-multi-angle-photos-of-shoes' },
   },
   migration: {
     gabarit: '/blog/[slug]',
@@ -250,8 +261,12 @@ function EnTete({ eyebrow, heading, intro, retour }: { eyebrow: string; heading:
 }
 
 /** Libellé de colonne affiché au-dessus de chaque cellule quand le tableau passe en cartes (mobile). */
-function LibelleMobile({ children }: { children: ReactNode }) {
-  return <span className="md:hidden block text-[11px] font-semibold uppercase tracking-wider text-future-dusk-400 mb-1">{children}</span>;
+function LibelleMobile({ children, jusqua = 'md' }: { children: ReactNode; jusqua?: 'md' | 'lg' }) {
+  return (
+    <span className={`${jusqua === 'lg' ? 'lg:hidden' : 'md:hidden'} block text-[11px] font-semibold uppercase tracking-wider text-future-dusk-400 mb-1`}>
+      {children}
+    </span>
+  );
 }
 
 /** Illustration pleine largeur du conteneur, sans recadrage, légende sous l'image. */
@@ -436,16 +451,23 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
               <p className="mt-6 text-future-dusk-600">{t.rich('collection.lienGuide', { lien: lienArticle(lang, 'collection') })}</p>
             </div>
             <figure className="lg:col-span-6">
-              <div className="bg-white rounded-3xl p-4 sm:p-6 border border-neutral-100 shadow-sm">
-                <Image
-                  src="/images/machines/alphatable-alphadesk/soft-templates.avif"
-                  alt={t('collection.imageAlt')}
-                  width={1304}
-                  height={1100}
-                  sizes="(min-width: 1024px) 560px, 92vw"
-                  className="w-full h-auto"
-                />
-              </div>
+              <ul className="grid grid-cols-3 gap-3 sm:gap-4">
+                {SERIE_COLLECTION.map((img) => (
+                  <li
+                    key={img.key}
+                    className="bg-white rounded-2xl border border-neutral-100 shadow-sm aspect-[4/5] p-3 sm:p-5 flex items-center justify-center"
+                  >
+                    <Image
+                      src={img.src}
+                      alt={t(`collection.serie.${img.key}`)}
+                      width={img.w}
+                      height={img.h}
+                      sizes="(min-width: 1024px) 190px, 30vw"
+                      className="w-full h-full object-contain"
+                    />
+                  </li>
+                ))}
+              </ul>
               <figcaption className="mt-4 text-sm text-future-dusk-500 text-center">{t('collection.imageCaption')}</figcaption>
             </figure>
           </div>
@@ -481,11 +503,11 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
           <p className="mt-8 text-future-dusk-600">{t.rich('matiere.lienGuide', { lien: lienArticle(lang, 'couleurs') })}</p>
           <details className="group mt-6 text-xs text-future-dusk-500">
             <summary className="inline-flex min-h-6 items-center gap-1.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-semibold uppercase tracking-wider hover:text-very-peri-600 transition-colors">
-              {t('matiere.sources')} ({SOURCES_UX.length})
+              {t('matiere.sources')} ({sourcesUx(lang).length})
               <ChevronDown className="h-3.5 w-3.5 group-open:rotate-180 transition-transform" aria-hidden="true" />
             </summary>
             <ul className="mt-3 space-y-1.5 leading-relaxed">
-              {SOURCES_UX.map((s) => (
+              {sourcesUx(lang).map((s) => (
                 <li key={s.href}>
                   <LienExterne href={s.href}>{s.label}</LienExterne>
                 </li>
@@ -558,10 +580,7 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
             </div>
           </div>
           <p className="mt-8 text-future-dusk-600 leading-relaxed max-w-4xl">
-            {t.rich('interne.liens', {
-              lien: lienArticle(lang, 'prestataire'),
-              lien2: lien(lang, '/calculateur-roi'),
-            })}
+            {t.rich('interne.liens', { lien: lien(lang, '/calculateur-roi') })}
           </p>
         </div>
       </section>
@@ -719,10 +738,9 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
               </tbody>
             </table>
             <div className="px-5 sm:px-8 py-4 border-t border-neutral-100 bg-neutral-50">
-              <ListeSources titre={t('plateformes.sources')} sources={SOURCES_PLATEFORMES} />
+              <ListeSources titre={t('plateformes.sources')} sources={sourcesPlateformes(lang)} />
             </div>
           </div>
-          <p className="mt-6 text-future-dusk-600">{t.rich('plateformes.lienAmazon', { lien: lien(lang, '/packshot-amazon') })}</p>
         </div>
       </section>
 
@@ -732,17 +750,17 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
           <EnTete eyebrow={t('studios.eyebrow')} heading={t('studios.heading')} intro={t('studios.intro')} retour={retour} />
           <div className="mt-12 rounded-3xl bg-white border border-neutral-200 overflow-hidden">
             <table className="w-full text-sm text-left">
-              <thead className="hidden md:table-header-group bg-future-dusk-900 text-white">
+              <thead className="hidden lg:table-header-group bg-future-dusk-900 text-white">
                 <tr>
                   {(['studio', 'usage', 'gabarit', 'limite'] as const).map((c) => (
                     <th key={c} scope="col" className="px-6 py-3 font-semibold">{t(`studios.columns.${c}`)}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="block md:table-row-group">
+              <tbody className="block lg:table-row-group">
                 {STUDIOS.map((s) => (
-                  <tr key={s.key} className="block md:table-row border-t border-neutral-100 px-5 py-4 md:p-0">
-                    <th scope="row" className="block md:table-cell md:px-6 md:py-4 align-middle mb-3 md:mb-0">
+                  <tr key={s.key} className="block lg:table-row border-t border-neutral-100 px-5 py-4 lg:p-0">
+                    <th scope="row" className="block lg:table-cell lg:px-6 lg:py-4 align-middle mb-3 lg:mb-0">
                       <Link
                         href={{ pathname: '/studio-photo/[slug]', params: { slug: s.slug } }}
                         locale={epingle({ pathname: '/studio-photo/[slug]', params: { slug: s.slug } })}
@@ -761,16 +779,16 @@ export default async function PackshotMode({ lang }: { lang: Langue }) {
                         </span>
                       </Link>
                     </th>
-                    <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-600 align-middle py-1">
-                      <LibelleMobile>{t('studios.columns.usage')}</LibelleMobile>
+                    <td className="block lg:table-cell lg:px-6 lg:py-4 text-future-dusk-600 align-middle py-1">
+                      <LibelleMobile jusqua="lg">{t('studios.columns.usage')}</LibelleMobile>
                       {t(`studios.rows.${s.key}.usage`)}
                     </td>
-                    <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-900 font-medium align-middle py-1 md:whitespace-nowrap">
-                      <LibelleMobile>{t('studios.columns.gabarit')}</LibelleMobile>
+                    <td className="block lg:table-cell lg:px-6 lg:py-4 text-future-dusk-900 font-medium align-middle py-1 xl:whitespace-nowrap">
+                      <LibelleMobile jusqua="lg">{t('studios.columns.gabarit')}</LibelleMobile>
                       {t(`studios.rows.${s.key}.gabarit`)}
                     </td>
-                    <td className="block md:table-cell md:px-6 md:py-4 text-future-dusk-600 align-middle py-1">
-                      <LibelleMobile>{t('studios.columns.limite')}</LibelleMobile>
+                    <td className="block lg:table-cell lg:px-6 lg:py-4 text-future-dusk-600 align-middle py-1">
+                      <LibelleMobile jusqua="lg">{t('studios.columns.limite')}</LibelleMobile>
                       {t(`studios.rows.${s.key}.limite`)}
                     </td>
                   </tr>

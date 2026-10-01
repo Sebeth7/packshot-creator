@@ -667,13 +667,13 @@ export const MACHINES: Machine[] = [
     nom: 'Alphastudio XXL Pro v2',
     prix: 45450,
     capaciteJour: 150,
-    tailleMax: '100×70×190 cm',
+    tailleMax: '100×90×190 cm',
     poidsMax: '100 kg',
     tailleCategories: ['grand', 'tres-grand'],
     useCases: ['Mannequins vivants', 'Vêtements (Ghost)', 'Gros bagages', 'Meubles'],
     maintenanceAnnuelle: 0,
     consommablesAnnuels: 1000,
-    dimensionsMax: { l: 100, w: 70, h: 190 },
+    dimensionsMax: { l: 100, w: 90, h: 190 },
     poidsMaxKg: 100,
     features: ['packshot', '360', 'video', 'ghost-mannequin', 'lifestyle'],
     automationLevel: 'full-auto',
@@ -692,7 +692,7 @@ export const MACHINES: Machine[] = [
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphastudio XXL Pro v2 ?', en: 'What types of products can be photographed with the Alphastudio XXL Pro v2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphastudio XXL Pro v2 fotografieren?' },
-        answer: { fr: 'L\'Alphastudio XXL Pro v2 est la solution tout-en-un pour la mode et les grands produits jusqu\'à 100x70x190 cm et 100 kg. Il gère les packshots, les vues 360, les vidéos, le ghost mannequin et les prises de vue lifestyle avec mannequins vivants. Il convient également au gros bagage, aux meubles de taille moyenne et à tout produit nécessitant un éclairage studio professionnel.', en: 'The Alphastudio XXL Pro v2 is the all-in-one solution for fashion and large products up to 100x70x190 cm and 100 kg. It handles packshots, 360 views, videos, ghost mannequin and lifestyle shots with live models. It also suits large luggage, medium-sized furniture and any product requiring professional studio lighting.', 'de-ch': 'Der Alphastudio XXL Pro v2 ist die All-in-one-Lösung für Mode und grosse Produkte bis 100x70x190 cm und 100 kg. Er bewältigt Packshots, 360-Grad-Ansichten, Videos, Ghost-Mannequin und Lifestyle-Aufnahmen mit lebenden Models. Er eignet sich zudem für grosses Gepäck, mittelgrosse Möbel und alle Produkte, die eine professionelle Studiobeleuchtung erfordern.' },
+        answer: { fr: 'L\'Alphastudio XXL Pro v2 est la solution tout-en-un pour la mode et les grands produits jusqu\'à 100x90x190 cm et 100 kg. Il gère les packshots, les vues 360, les vidéos, le ghost mannequin et les prises de vue lifestyle avec mannequins vivants. Il convient également au gros bagage, aux meubles de taille moyenne et à tout produit nécessitant un éclairage studio professionnel.', en: 'The Alphastudio XXL Pro v2 is the all-in-one solution for fashion and large products up to 100x90x190 cm and 100 kg. It handles packshots, 360 views, videos, ghost mannequin and lifestyle shots with live models. It also suits large luggage, medium-sized furniture and any product requiring professional studio lighting.', 'de-ch': 'Der Alphastudio XXL Pro v2 ist die All-in-one-Lösung für Mode und grosse Produkte bis 100x90x190 cm und 100 kg. Er bewältigt Packshots, 360-Grad-Ansichten, Videos, Ghost-Mannequin und Lifestyle-Aufnahmen mit lebenden Models. Er eignet sich zudem für grosses Gepäck, mittelgrosse Möbel und alle Produkte, die eine professionelle Studiobeleuchtung erfordern.' },
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphastudio XXL Pro v2 ?', en: 'How much space is needed to install the Alphastudio XXL Pro v2?', 'de-ch': 'Wie viel Platz wird für die Installation des Alphastudio XXL Pro v2 benötigt?' },

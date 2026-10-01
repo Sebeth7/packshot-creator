@@ -1,36 +1,35 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/components/templates/PackshotLandingTemplate';
 import PackshotMode from '@/components/landings/PackshotMode';
-import { Shirt, Layers, Palette, RotateCw, Zap, Upload } from 'lucide-react';
 import { buildLanguages } from '@/lib/hreflang';
 
-// FR : composant page-scopé PackshotMode (réécriture du 30/09/2026, méthode F5).
-// EN et de-ch : gabarit partagé et anciens messages, jusqu'à la traduction de la version FR
-// validée (D38). La configuration ci-dessous ne sert plus qu'à ces deux langues.
-const CONFIG: PackshotLandingConfig = {
-  namespace: 'packshotMode',
-  slug: 'packshot-mode',
-  benefitImageSlug: 'mode',
-  heroIcon: Shirt,
-  heroBadge: { fr: 'Mode & Textile', en: 'Fashion & Textile' },
-  benefitIcons: [Layers, Palette, RotateCw, Zap, Upload],
-  machineIds: ['alphashot-xl-pro-v2', 'alphatable', 'alphastudio-xxl-v2'],
-  faqCount: 3,
-};
+// Landing Mode, trilingue depuis le 01/10/2026 : FR (réécriture du 30/09/2026, méthode F5),
+// EN et adaptation de-ch depuis le FR validé (D38, D42). Les trois langues partagent le
+// composant page-scopé PackshotMode ; PackshotLandingTemplate n'est plus utilisé ici.
+const SLUG = 'packshot-mode';
+const NAMESPACE = 'packshotMode';
+const LANGUES = ['fr', 'en', 'de-ch'] as const;
+type Langue = (typeof LANGUES)[number];
+
+// Même convention que les autres pages du site (fr_FR, en_US, de_CH).
+const OG_LOCALE: Record<Langue, string> = { fr: 'fr_FR', en: 'en_US', 'de-ch': 'de_CH' };
 
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+function langue(lang: string): Langue {
+  return (LANGUES as readonly string[]).includes(lang) ? (lang as Langue) : 'fr';
+}
+
 export function generateStaticParams() {
-  return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'de-ch' }];
+  return LANGUES.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
-  const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
-  const url = `https://www.packshot-creator.com/${lang}/${CONFIG.slug}`;
+  const lang = langue((await params).lang);
+  const t = await getTranslations({ locale: lang, namespace: NAMESPACE });
+  const url = `https://www.packshot-creator.com/${lang}/${SLUG}`;
   const ogImage = `/api/og?title=${encodeURIComponent(t('meta.title'))}&type=page&lang=${lang}`;
 
   return {
@@ -38,42 +37,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t('meta.description'),
     alternates: {
       canonical: url,
-      languages: buildLanguages(`/fr/${CONFIG.slug}`, { en: `/en/${CONFIG.slug}`, deCh: `/de-ch/${CONFIG.slug}` }),
+      languages: buildLanguages(`/fr/${SLUG}`, { en: `/en/${SLUG}`, deCh: `/de-ch/${SLUG}` }),
     },
-    // FR : l'openGraph de la page remplace celui du layout ; url, locale et type sont redonnés
-    // ici, et twitter reprend le titre de la page (même traitement que F5). EN et de-ch inchangés.
-    openGraph: lang === 'fr'
-      ? {
-          title: t('meta.title'),
-          description: t('meta.description'),
-          url,
-          siteName: 'PackshotCreator',
-          locale: 'fr_FR',
-          type: 'website',
-          images: [{ url: ogImage, width: 1200, height: 630 }],
-        }
-      : {
-          title: t('meta.title'),
-          description: t('meta.description'),
-          images: [{ url: ogImage, width: 1200, height: 630 }],
-        },
-    ...(lang === 'fr'
-      ? {
-          twitter: {
-            card: 'summary_large_image',
-            title: t('meta.title'),
-            description: t('meta.description'),
-            images: [ogImage],
-          },
-        }
-      : {}),
+    // L'openGraph de la page remplace celui du layout : url, locale et type sont redonnés ici.
+    openGraph: {
+      title: t('meta.title'),
+      description: t('meta.description'),
+      url,
+      siteName: 'PackshotCreator',
+      locale: OG_LOCALE[lang],
+      type: 'website',
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('meta.title'),
+      description: t('meta.description'),
+      images: [ogImage],
+    },
   };
 }
 
 export default async function PackshotModePage({ params }: PageProps) {
-  const { lang } = await params;
-  if (lang === 'fr') return <PackshotMode lang="fr" />;
-
-  const t = await getTranslations({ locale: lang, namespace: CONFIG.namespace });
-  return <PackshotLandingTemplate config={CONFIG} lang={lang} t={t} />;
+  const lang = langue((await params).lang);
+  return <PackshotMode lang={lang} />;
 }

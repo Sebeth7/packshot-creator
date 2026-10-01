@@ -1027,7 +1027,11 @@
       "p1": "Sur une page de catégorie, les pièces s'affichent côte à côte. Le Nielsen Norman Group observe que des images cohérentes, avec le même fond, la même orientation, le même éclairage et la même échelle, se parcourent et se comparent facilement. En mode, un écart de lumière ou de cadrage se remarque d'autant plus que les pièces se ressemblent : deux pulls de la même maille ne doivent pas sembler de deux teintes différentes.",
       "p2": "Cette cohérence doit aussi tenir dans le temps. Les réassorts, les nouveaux coloris et la collection suivante seront photographiés des semaines ou des mois plus tard, parfois par une autre personne. Pour qu'ils rejoignent les images déjà en ligne sans rupture, la lumière, les angles et le cadrage doivent pouvoir être reproduits.",
       "p3": "C'est le premier intérêt d'un studio automatisé pour la mode : les réglages d'éclairage, la séquence d'angles et les traitements sont enregistrés dans un modèle, puis rappelés pour chaque pièce de la même famille. La régularité repose alors sur le modèle enregistré plutôt que sur des réglages refaits à chaque séance.",
-      "imageAlt": "Trois vêtements photographiés à plat sur fond blanc : un body vert, un pull rouge et un body imprimé, avec le même cadrage",
+      "serie": {
+        "robe": "Robe d'enfant jaune à petits motifs, photographiée à plat sur fond blanc",
+        "sweat": "Sweat crème à motifs orange, photographié à plat sur fond blanc",
+        "combishort": "Combishort en jean clair à manches longues, photographié à plat sur fond blanc"
+      },
       "imageCaption": "Même fond, même lumière, même cadrage : une série se lit comme un ensemble.",
       "illustration": {
         "alt": "Illustration d'une série cohérente de pulls de plusieurs coloris présentés avec le même cadrage.",
@@ -1137,7 +1141,7 @@
         "titre": "Ce qui peut rester chez un prestataire",
         "texte": "Campagnes, lookbooks, prises de vue en extérieur ou mises en scène élaborées : ces productions ponctuelles peuvent rester confiées à un photographe ou à un studio. Une organisation mixte est possible : packshots de catalogue en interne, campagnes à l'extérieur."
       },
-      "liens": "Pour comparer les deux organisations : <lien>prestataire packshot ou studio interne</lien>. Pour chiffrer la vôtre : le <lien2>calculateur de retour sur investissement</lien2>."
+      "liens": "Pour chiffrer votre organisation : le <lien>calculateur de retour sur investissement</lien>."
     },
     "auStudio": {
       "eyebrow": "Au studio",
@@ -1258,8 +1262,7 @@
           "noter": "Images créées par IA générative : métadonnées obligatoires. Image principale : ni élément promotionnel, ni filigrane, ni bordure"
         }
       },
-      "sources": "Sources officielles",
-      "lienAmazon": "Pour Amazon en particulier : <lien>nos repères pour le packshot Amazon</lien>."
+      "sources": "Sources officielles"
     },
     "studios": {
       "eyebrow": "Gamme",
@@ -2492,7 +2495,7 @@
       },
       "q7": {
         "question": "Quel studio choisir pour des pièces volumineuses ?",
-        "answer": "L'Alphastudio XXL Pro v2 accepte des pièces jusqu'à 100x70x190 cm et 100 kg. Pour des pièces plus grandes, contactez-nous pour une étude personnalisée."
+        "answer": "L'Alphastudio XXL Pro v2 accepte des pièces jusqu'à 100x90x190 cm et 100 kg. Pour des pièces plus grandes, contactez-nous pour une étude personnalisée."
       }
     },
     "cta": {
