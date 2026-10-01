@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — pilier A : arbitrage « couleur inexistante » (option 1) appliqué · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
+
+**Quoi** — Passage « couleur inexistante » de la section « Recolorisation : variante vendue ou couleur inexistante » remplacé par la formulation validée par Laurent le 01/10 (proposition A06 de `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md`). Aucune autre phrase de l'article modifiée ; article S (#60) non modifié.
+
+**Changement de sens (validé par Laurent)** — Avant : un coloris inexistant présenté comme disponible « relève probablement d'une modification substantielle et, côté marque, d'un hypertrucage ». Après : « les exemples de la Commission invitent à vérifier si la transformation est substantielle et si la présentation pourrait constituer un hypertrucage, selon le rendu et le contexte ». La conclusion AI Act passe d'une interprétation probable à une question à examiner. L'alerte de droit de la consommation est conservée (article L121-2, lien Légifrance inchangé), et reste distincte de la qualification au titre de l'AI Act.
+
+**Pourquoi** — Arbitrage A / S « couleur inexistante », option 1 : aucune source réunie ne tranche le cas sur une fiche produit ; aligner A sur le degré de S (« reste à qualifier selon le cas ») sans renforcer aucune qualification. Arbitrage clos.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Cohérence A / S : plus aucune phrase de A ne qualifie ce cas d'hypertrucage probable ; S, cas 3 : « son application exacte à une fiche produit reste à qualifier selon le cas » ; mentions de droit de la consommation inchangées dans les deux articles.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée, 4 tableaux sans défilement à 1440 et 820 px ; `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à `main` `6b80e6a`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Transmission des deux Previews FR à Sébastien par Laurent ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée.
+
+---
+
 ## 2026-10-01 · Cluster AI Act — pilier A : nouvelle illustration A3 · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
