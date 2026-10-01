@@ -35,7 +35,7 @@ export default async function NotFound() {
             <span className="text-white font-medium text-sm">{t('blog')}</span>
           </Link>
           <Link
-            href={`/${locale}/academy`}
+            href="/fr/academy"
             className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors group"
           >
             <GraduationCap className="w-8 h-8 text-very-peri-300 group-hover:text-very-peri-200 transition-colors" />
