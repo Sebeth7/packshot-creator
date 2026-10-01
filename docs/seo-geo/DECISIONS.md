@@ -25,6 +25,19 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D41 · 2026-09-30 · Cluster AI Act : satellites B, C et D non créés, matière indispensable réintégrée dans le pilier A
+
+**Décidé par** : Laurent — consignée le 2026-10-01
+**Statut** : en vigueur — application de D16 et D27, qu'elle n'amende pas
+
+**La décision** — Ne pas créer les satellites B (retouche IA, #61), C (mannequins virtuels et personnes synthétiques, #62) et D (métadonnées et marketplaces, #63) : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Réintégrer dans le pilier A (#59) la seule matière indispensable au lecteur. Fermer #61, #62 et #63 sans fusion.
+
+**Le contexte** — Mesures D16 du 30/09 dans les descriptions de #61, #62 et #63 (workflows n8n jetables en lecture seule `EiMBLzt28dSzVzHh` et `KPKz3xyNOnDIxZiX`). Leur conclusion « les trois critères de D16 sont remplis » précède la décision et n'est pas le verdict retenu. Motif de Laurent : critère 2 non rempli pour B et C (aucune demande mesurée sur l'intention réglementaire, requêtes génériques ou d'outils non assimilées) ; critère 3 non rempli pour D. Réintégration : commit `be1f8ae` de #59. Archive des mesures et backlog : `JOURNAL.md`, entrée du 2026-10-01.
+
+**Ce qu'elle interdit** — Publier, fusionner ou rouvrir #61, #62 ou #63 ; présenter leurs mesures du 30/09 comme un verdict favorable à leur publication ; recréer un article sur ces trois sujets sans nouvelle mesure D16 complète et nouvelle décision.
+
+---
+
 ## D38 · 2026-09-28 · Tout nouvel article se publie en FR, EN et de-ch de façon coordonnée
 
 **Décidé par** : Laurent
