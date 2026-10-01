@@ -34,6 +34,61 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Réconciliation de la gouvernance D40 / D42 / D43, #76 synchronisée avec `main` · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a` (#75, #66, #78), fusionné dans la branche
+
+**Quoi** —
+- `main` `6b80e6a` fusionné dans la branche. Conflits dans `JOURNAL.md` et `ETAT.md`, résolus en conservant les deux côtés ; `DECISIONS.md` fusionné sans conflit, D39 (#66) conservée.
+- D43 : arbitrage du point 3 cité mot pour mot ; budget trimestriel et définition de la mission marqués **À ARBITRER**, comme dans le statut de D26.
+- D42 : fait métier de Laurent du 01/10 sur l'accès de Sébastien aux Preview ; tableau d'articulation avec D40, proposée dans #65 et non fusionnée ; deux points **À ARBITRER**.
+- ETAT : #54 et #71 consignées fusionnées ; ligne des quatre points À ARBITRER ; modifications à transmettre au Claude de #65 ; liste des PR de contenu mise à jour (#66 publiée, #77 ajoutée).
+
+**Pourquoi** — GO de Laurent du 01/10 : réconcilier D40, D42 et D43 avant toute fusion. Fait métier de Laurent du 01/10 : « Sébastien peut ouvrir les Previews Vercel protégées. Son accès fonctionne, il n'y a aucun problème. »
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 01/10 vers 17:46 UTC : `main` `6b80e6a` ; #65 `c5e15a8`, base `8ec89c1`, non synchronisée avec `main` ; #76 `90e94d7` avant cette entrée.
+- Fusions sur `main` depuis la base précédente de #76 (`17fc0b3`) : #75 à 14:57:19 UTC, #66 à 16:26:04 UTC, #78 à 17:30:39 UTC.
+- JOURNAL : 89 entrées, soit les 87 de `main` et les 2 de #76 ; aucune ligne de l'un ou l'autre côté perdue. Ordre de la zone fusionnée : heure du commit qui a introduit chaque entrée.
+- ETAT : états de PR comparés à GitHub. #54 (29/09, 16:31:38 UTC, `2854c27`), #71 (30/09, 20:40:44 UTC, `8ec89c1`) et #72 (01/10, 09:02:01 UTC, `a6760da`) étaient notées ouvertes ou non fusionnées : corrigées. Ligne UB-04 : version de `main` (#75) retenue, doublon de « Balle chez Laurent » retiré.
+- `/llms.txt` sur `sysnext.vercel.app` : 200, aucune occurrence de « exclusi » ni de « 2004 », « 16 secteurs » (#54).
+- Numérotation : D40 sur #65 seulement ; D42, D43 et Q19 sur #76 seulement ; aucune D44 ni Q20 sur les branches distantes.
+- Bloc cité de D42 identique à celui de la tête `59861e9` ; citation de D43 conforme au texte de l'arbitrage.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final de cette entrée compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5. Écart avec `main` limité à 4 fichiers de `docs/seo-geo/`.
+- Appels payants de cette mission : aucun, 0 USD. Consigne de Laurent du 01/10 : cette mission documentaire ne vaut pas autorisation de lancer un appel payant.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne. #77 (AI Act Q2) relevée par ses fichiers, non lue.
+- Protection Vercel, liens partageables, autorisations : non touchés.
+- `www` dans Chrome (R4).
+
+**Suite** —
+- Laurent : quatre points **À ARBITRER**. D43 : budget trimestriel ; définition de la mission. D42 et D40 : étape 6 après le GO ; corrections typographiques ponctuelles.
+- Modifications à transmettre au Claude de #65, tête `c5e15a8` :
+  1. Fusionner `main` (au moins `6b80e6a`) dans la branche ; placer D40 entre D41 et D39, sans renuméroter ; ne pas présenter D42 ni D43 comme fusionnées tant que #76 ne l'est pas.
+  2. D40, « La décision » : remplacer « contrôle du rendu (desktop, 390 px, SEO) » par un contrôle sur ordinateur, smartphone et tablette, en portrait et en paysage lorsque pertinent, interactions tactiles comprises, et SEO (D42, arbitrage 4).
+  3. D40, « Le contexte » : remplacer « L'accès de Sébastien aux Preview n'est pas établi par les sources du dépôt ; il se vérifie au premier envoi. » par le fait métier de Laurent du 01/10, cité.
+  4. D40, « Ce qu'elle ne change pas » : indiquer que D12 est complétée par D42 (arbitrage 1) pour les contenus éditoriaux : fusion après validation et autorisation de publication.
+  5. `08-PREVIEW-VALIDATION.md`, schéma d'en-tête (l. 8) : même remplacement qu'au point 2.
+  6. § 3, « Sébastien » (l. 108-121) : remplacer « Accès non établi par les sources du dépôt », l'inférence et la « Vérification au premier envoi » par le fait métier. Conserver « Request access : ne pas contourner » et « Ce que ce circuit ne fait jamais sans GO de Laurent ».
+  7. § 4, ligne « Calculateur ROI » (l. 147) : rattacher à D43 (service identifié, coût estimé, cumul de la mission, plafond de 20 USD, nouveau GO au-delà).
+  8. § 6 : étape 4, critère de sortie élargi comme au point 2 ; étape 8 « Fusion » : après validation et autorisation de publication (D42, arbitrage 1). La place des étapes 6 à 8 de D42 après le GO reste À ARBITRER : ne pas la trancher dans #65.
+  9. § 6, « Non concerné » (l. 209) : laisser les corrections typographiques ponctuelles en l'état, avec un renvoi au point À ARBITRER de D42.
+  10. § 8 : ajouter la tablette, les orientations portrait et paysage lorsque pertinent, et les interactions tactiles. L'arbitrage ne fixe ni largeur de tablette ni liste d'interactions : ne pas en inventer.
+  11. § 9, gabarit (l. 278) : remplacer « rendu desktop et 390 px contrôlé » par « rendu ordinateur, smartphone et tablette contrôlé, portrait et paysage si pertinent, interactions tactiles testées ».
+  12. `ETAT.md` de #65 : ligne « Circuit Preview Vercel → Sébastien (D40) » et en-tête : remplacer « accès de Sébastien aux Preview non établi » par l'accès confirmé du 01/10.
+  13. `JOURNAL.md` de #65 : une nouvelle entrée consigne ces modifications ; l'entrée du 30/09 n'est pas réécrite.
+  14. Interdits : aucune modification de la protection Vercel, aucun lien public, aucune autorisation ; aucun appel payant.
+
+---
+
 ## 2026-10-01 · Mode — #66 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, fusionnée | **Commit** : `4093d3d` (fusion de `04fdc8a`)
