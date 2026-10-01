@@ -1,0 +1,13 @@
+/* Repli de la police des titres, identique à celui que next/font/google
+   générait pour Inter avant #72 : valeurs de calculateSizeAdjustValues('Inter')
+   (next/dist/server/font-utils, Next 16.1.1). Recalculées par next/font/local
+   sur le fichier Bold, elles donneraient size-adjust 111,36 % : texte décalé
+   pendant le chargement, caractères du repli (ex. « → ») plus larges. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+  size-adjust: 107.12%;
+}
