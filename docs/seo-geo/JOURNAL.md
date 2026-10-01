@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · Cluster AI Act — article Suisse : situation A corrigée (accessibilité depuis l'Union) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `6bcf962`
+
+**Quoi** — Sur consigne de Laurent du 01/10, un seul paragraphe modifié : la situation A de « Six situations à distinguer ». La version de `e8ce8a3` assimilait une image susceptible d'être un hypertrucage, publiée sur un site ou un compte accessible depuis l'Union, à une diffusion dans l'Union. La nouvelle version :
+- dit que la simple accessibilité depuis l'Union ne suffit pas, à elle seule, à faire basculer la situation (« À notre lecture ») ;
+- reprend la lettre du point 13 telle que l'article la cite déjà plus haut : déployeur qui prévoit lui-même la diffusion dans l'Union, en la dirigeant ou en l'autorisant, y compris par publication sur l'internet accessible mondialement ; exclusion des canaux imprévisibles et hors de son contrôle ;
+- s'aligne sur le pilier (#59) : l'application concrète dépend du rôle de l'entreprise, de l'usage du système et de la destination des images ;
+- laisse les situations intermédiaires à apprécier au cas par cas.
+Aucune autre phrase, aucun visuel, aucune métadonnée modifiés.
+
+**Pourquoi** — Formulation jugée trop large par Laurent : elle pouvait laisser croire que la simple accessibilité d'une publication depuis l'Union suffit à déclencher l'AI Act pour une entreprise suisse.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** — Un seul paragraphe diffère entre `6bcf962` et la nouvelle tête (comparaison du champ `content` ; autres champs identiques). Paraphrase du point 13 reprise du paragraphe « Les lignes directrices de la Commission précisent ces deux cas », déjà présent dans l'article ; formule du pilier reprise de `80489cf` (#59). `verifier-json`, `tsc` et `next build` : voir la PR.
+
+**Supposé** — [Inférence] La nouvelle formulation ne crée pas de règle nouvelle : elle reste une lecture (« À notre lecture ») des lignes directrices citées. Cela repose sur des schémas observés.
+
+**Non regardé** — Aucune source relue (consigne : pas de nouvelle recherche). Marqueurs terrain et étiquettes éditoriales : non modifiés ici. `e8ce8a3` (autre session) a retiré les 5 marqueurs terrain et intégré les étiquettes à la prose, alors que la consigne de Laurent du 01/10 les supposait encore présents pour la revue de Sébastien : écart signalé à Laurent, rien rétabli. Preview (SSO) ; `www` (R4).
+
+**Suite** — Validation de Laurent sur la formulation, puis passe de Sébastien sur la Preview de la nouvelle tête.
+
+---
+
 ## 2026-09-30 · Academy réduite au catalogue Qualiopi, textes formation alignés · Claude de Sébastien
 
 **Chantier** : hors chantier, demande directe de Sébastien (audit de surveillance Qualiopi du 16/10/2026) | **PR** : #71 | **Commit** : `fc6c9c6`
