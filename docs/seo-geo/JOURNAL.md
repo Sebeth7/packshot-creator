@@ -34,6 +34,44 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D33 / #64 — `main` `2ef01b2` (#68) fusionné, dernière synchronisation avant décision · Claude de Laurent
+
+**Chantier** : D33, alignement factuel du site | **PR** : #64, brouillon, `DO NOT MERGE` | **Branche** : `seo/d33-factual-safe-patch-2026-09-30` | **HEAD avant** : `1a26d2d` | **Base** : `main` `2ef01b2`
+
+**Quoi** — `main` fusionné dans la branche par un commit de fusion, sans rebase ni force-push.
+- Seul `docs/seo-geo/JOURNAL.md` était en conflit. Les deux historiques sont conservés intégralement, entrées les plus récentes en premier.
+- Le Worker et son test D36 sont repris de `main` sans modification.
+- Aucune autre modification fonctionnelle.
+- Les trois suppressions de blocs non sourcés dans `orbitvu-vs-concurrents` sont maintenues, sur l'arbitrage du pilotage du 01/10.
+
+**Pourquoi** — #68 (D36, Worker) a été fusionnée après `1a26d2d`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, plus les fichiers apportés par `main` (`cloudflare-worker/src/index.js`, `cloudflare-worker/test/d36-origine-noindex.test.ts`).
+
+**Effet attendu** — Aucun avant fusion.
+
+**Vérifié**
+- Diff net de #64 contre `main`, hors `docs/` : identique avant (`8ec89c1`…`1a26d2d`) et après (`2ef01b2`…HEAD). 16 fichiers ; `cloudflare-worker/` identique à `main`.
+- `verifier-json` : 180 fichiers valides. `tsc` vert. Vitest : 373/373, test Worker D36 compris. `next build` vert, 371 pages.
+- Contrôle métier sur `next start` local :
+  - livraison et installation facturées en supplément ; formation facturée séparément ou proposée en option ;
+  - délai d'environ 12 jours, non contractuel ;
+  - showroom au 198 allée de la Tour, 01700 Beynost (texte et `Store`) ; siège inchangé ; `foundingDate` `2004` ;
+  - Orbitvu depuis 2023 ;
+  - garantie d'un an avec extension possible, sans durée maximale ;
+  - aucun prix concurrent ni performance non sourcée sur les 6 pages comparatives.
+- `orbitvu-vs-concurrents` mentionne encore Essential et Master (4 occurrences), « facturée séparément » ou « en option », et « organisme certifié Qualiopi » (2 occurrences). Sysnext n'y est nommé ni sur `main` ni sur la branche.
+- Rendu Chromium en 390 et 1440 px : 0 erreur, 0 débordement, sauf `/fr` en 390 px (53 px, préexistant).
+- Playwright `seo`, `anchors`, `cta-destinations`, `redirections` : 61 échecs, identiques à `main` `8ec89c1`. Aucun fichier servi par Next n'a changé entre `8ec89c1` et `2ef01b2`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO), `www` (R4). Information perdue avec les suppressions : la ligne « de 4 h (Essential, à distance) à 1 jour (Master, en présentiel) » d'`orbitvu-vs-concurrents`, à réintroduire seulement sur décision.
+
+**Suite** — Contrôle humain de la Preview sur le HEAD poussé ; décision de fusion de Laurent.
+
+---
+
 ## 2026-10-01 · D36 — #68 resynchronisée avec `main` après #69 et #71, Worker de production relu (R5) · Claude de Laurent
 
 **Chantier** : D36 | **PR** : #68, brouillon, non fusionnée | **Base** : `main` `8ec89c1` | **Fusion** : `008cee1`
