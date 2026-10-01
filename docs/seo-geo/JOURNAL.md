@@ -66,6 +66,8 @@ Aucune qualification de cas modifiée. FAQ, title, meta, H1, slug, canonical, da
 - e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `8ec89c1` (0 en plus, 0 en moins) : titles et descriptions hors bornes (dont `/fr/academy`), hreflang de `/fr/packshot-bijoux`, débordements de `/fr`, `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, ancre `#calculateur-roi`. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
 - Premier passage e2e de la branche écarté : 82 dépassements de délai sur des pages sans lien avec l'article (`/fr/ia-photo-produit`, `/fr/packshot-amazon`…), serveur local bloqué après des contrôles concurrents (même cause que dans #63) ; relance complète sur un serveur redémarré : 0 dépassement.
 
+- Après fusion de `main` `2ef01b2` (#68, Worker D36, fusionnée pendant la passe ; conflit du JOURNAL seulement) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 (346 + tests D36 de `main`) ; `next build` vert. Contenu de l'article identique avant et après la fusion.
+
 **Supposé** — [Inférence] EUR-Lex et Légifrance servent les mêmes textes que ceux lus les 29 et 30/09 (Cellar, conversion). Cela repose sur des schémas observés.
 
 **Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 30/09 pour #63 seulement.
