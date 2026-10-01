@@ -2029,6 +2029,15 @@ var index_default = {
         linkHeader.replace(/https?:\/\/[a-z0-9-]+\.vercel\.app/gi, "https://www.packshot-creator.com")
       );
     }
+    // D36 : en acces direct, l'origine pose "X-Robots-Tag: noindex" sur son HTML,
+    // avec le marqueur "X-Packshot-Origin-Noindex" (next.config.ts). Une reponse
+    // servie ici (www) ne doit jamais porter ce noindex : marqueur et en-tete sont
+    // retires ensemble. Un X-Robots-Tag sans marqueur n'est pas touche ; les 410
+    // ci-dessus portent le leur et ne passent pas par ce bloc.
+    if (newResponse.headers.has("x-packshot-origin-noindex")) {
+      newResponse.headers.delete("x-robots-tag");
+      newResponse.headers.delete("x-packshot-origin-noindex");
+    }
     return newResponse;
   }
 };
