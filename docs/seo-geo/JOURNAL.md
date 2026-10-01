@@ -80,6 +80,134 @@ Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni descriptio
 
 ---
 
+## 2026-10-01 · Cluster AI Act — reliquat de la revue du 28/09 archivé : E8 à E13 (site) et H1 à H3 (blendai.studio) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, reliquat de la revue préalable du 28/09 | **PR** : #73, documentaire, brouillon | **Base** : `main` `2ef01b2`
+
+**Quoi** — Archivage, sans aucune correction, des constats E8 à E13 (contenus du site) et H1 à H3 (site blendai.studio, hors dépôt) de la revue préalable du 28/09, et des faits BlendAI de l'évaluation historique. Backlog inscrit dans `ETAT.md`. Aucun texte public modifié, aucune décision de correction, aucune validation juridique.
+
+**Pourquoi** — Le fil historique « AI Act et images produit e-commerce » signale que ces constats de sa revue du 28/09 n'ont pas été transmis. Contrôle du 01/10 : aucune trace dans `JOURNAL.md`, `ETAT.md`, `DECISIONS.md`, `BOITE-AUX-LETTRES.md` ni `06-CHANTIERS.md`, sur `main` comme sur les branches distantes. E1 à E7 de la même revue sont déjà archivés (BL-43-2 et BL-43-3, entrée précédente).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Source**
+- `REVUE_PREALABLES_AUDIT_PSC_AI_ACT_2026-09-28.md`, lignes 73 (E8), 79 à 83 (E9 à E13) et 89 à 91 (H1 à H3) ; SHA-256 `15e32d04d82c75b94333c8fe59805d96af4dde7a64ffcfa209eb4eaebc564583`. Dépôt lu par la revue : `main` `809f61f` ; ses numéros de ligne valent pour ce commit.
+- Faits BlendAI : `BLENDAI_AI_ACT_PROVIDER_ASSESSMENT.md`, § 0 (mis à jour le 28/09) ; SHA-256 `6c3596dd0be10ea2595d938a79cc43ba1795f7c973c550a62f6edf1a09aa31b9`.
+- Les deux fichiers sont des pièces jointes de l'artifact privé https://claude.ai/artifact/U9K31cAELz7QhH4VGcyL1y (version `1790618360-4bae`), relues le 01/10 ; empreintes identiques à celles affichées par l'artifact.
+
+**Numérotation** — E8 à E13 et H1 à H3 sont les identifiants de la revue, préfixés ici `RV28-` pour ne pas se confondre avec la piste H1 du chantier « Marque » d'`ETAT.md`. Aucun numéro de décision de l'ancien addendum n'est repris : D25 désigne au dépôt « Pas de prix dans un comparatif concurrentiel ».
+
+**Constats RV28-E8 à RV28-E13 — contenus de packshot-creator.com.** Gravité et besoin d'avis juridique : ceux de la revue du 28/09, non réexaminés. Présence : relevée sur `main` `2ef01b2` le 01/10 par `git grep`, sans autre contrôle.
+
+| ID | Constat de la revue (ligne) | Gravité (revue) | Avis juridique demandé par la revue | Présence sur `main` `2ef01b2` | Statut de preuve | Propriétaire de la vérification | Validation humaine |
+|---|---|---|---|---|---|---|---|
+| RV28-E8 | BlendAI.studio présenté comme « solution propriétaire » de PackshotCreator ; JSON-LD `provider: PackshotCreator` (l. 73) | MEDIUM ; HIGH si BlendAI est de Sysnext et non conforme au 02/12/2026 | Oui | `messages/fr.json` l. 451, 544, 2765, 2843 ; `messages/en.json` l. 448, 463, 541, 778, 2762 ; `messages/de-ch.json` l. 390, 405, 480 (« eigene Lösung »), 2681, 2759 ; `app/[lang]/ia-photo-produit/page.tsx:712` (`provider`) | Formulations constatées. Qualification de fournisseur : [Interprétation] de la revue, non tranchée | Sébastien : faits produit (développement, entité, mise sur le marché, marquage) | Sébastien (faits, prose) ; avis juridique selon la revue |
+| RV28-E9 | FAQ « Les visuels IA sont-ils légaux pour le e-commerce ? » de `studio-ia-vs-ia-generative` : FTC, Californie, « seules les photos réelles sont conformes » (l. 79) | MEDIUM | Oui | `fr.json:2855`, `en.json:2852`, `de-ch.json:2771` | Formulations constatées ; règle californienne marquée [Non vérifié] par la revue ; aucune recherche juridique faite ici | À désigner par Laurent | Sébastien (prose) ; avis juridique selon la revue |
+| RV28-E10 | « La Californie impose depuis janvier 2026 le labellisage des photos IA » (l. 80) | MEDIUM | Oui | `fr.json:2760`, `en.json:2757`, `de-ch.json:2676` | Idem E9 | À désigner par Laurent | Idem E9 |
+| RV28-E11 | « Conforme : photo réelle auditable, métadonnées préservées » (l. 81) | LOW | Non | `fr.json:2802`, `en.json:2799`, `de-ch.json:2718` | « Métadonnées préservées » non démontré. Constat technique du 30/09 (#63, repris dans #59) : sur `sysnext.vercel.app`, une image AVIF perdait ses métadonnées XMP et EXIF une fois réencodée en WebP à 1 920 px | Claude de Laurent : contrôle technique de la chaîne d'images, sans coût | Sébastien (prose) |
+| RV28-E12 | Absolus « Fidélité 100% garantie », « jamais au produit », « zéro hallucination », « fidèles à 100% » (JSON-LD `SoftwareApplication`), aussi sur `/fr/ia-photo-produit` (l. 82) | MEDIUM | Non | `fr.json` l. 352, 356, 420, 421, 441, 668, 2766, 2777 ; `page.tsx:692` (JSON-LD) ; équivalents EN et de-ch non recensés ligne à ligne | Formulations constatées ; exactitude technique non établie | Sébastien : comportement réel de BlendAI | Sébastien (prose) |
+| RV28-E13 | Témoignage « La fidélité des rendus est impressionnante. Nos clients ne font pas la différence avec un vrai shooting lifestyle. » (l. 83) | LOW | Non | `fr.json:384` | Contexte éditorial non examiné (auteur, autorisation, pages d'affichage) ; D31 exclut déjà tout témoignage sur `/de-ch` | Sébastien : contexte du témoignage | Sébastien |
+
+**Constats RV28-H1 à RV28-H3 — site blendai.studio, hors dépôt PackshotCreator.** Relevés par la revue le 28/09. **État actuel NON VÉRIFIÉ** : aucune requête ni intervention sur ce site.
+
+| ID | Constat de la revue (ligne) | Gravité (revue) | Qui, selon la revue | Statut de preuve |
+|---|---|---|---|---|
+| RV28-H1 | Accueil : « Résultats indiscernables du réel, fidélité produit 100% garantie. » (l. 89) | MEDIUM ; HIGH si BlendAI est de Sysnext | Exploitant de BlendAI | Relevé du 28/09, non revérifié |
+| RV28-H2 | Offre « Marques Premium » : « Conformité juridique garantie » (l. 90) | HIGH | Exploitant de BlendAI et juriste | Relevé du 28/09, non revérifié |
+| RV28-H3 | Pied de page : « Mentions légales », « CGV », « Confidentialité » en HTTP 404 (l. 91) | MEDIUM | Exploitant de BlendAI et juriste | Relevé du 28/09, non revérifié |
+
+Propriétaire des vérifications : l'exploitant de BlendAI. Selon le § 0 du sous-rapport (déclaratif de Laurent du 28/09), le service est développé par Sébastien Jourdan et une société dédiée est en création. Saisine de l'exploitant : décision de Laurent.
+
+**Faits BlendAI de l'évaluation historique** — `BLENDAI_AI_ACT_PROVIDER_ASSESSMENT.md`, § 0.1 : faits communiqués par Laurent le 28/09, « non vérifiés sur pièces » selon le document, non reconfirmés au 01/10. Ce ne sont pas des faits opérationnels actuels.
+- Marquage ou métadonnées IA des exports : « Fonction en développement » (`AI_MARKING_EXPORT = IN_DEVELOPMENT`).
+- Mannequins ou personnes virtuelles : non vérifié (`VIRTUAL_HUMANS = UNVERIFIED`) ; le document relève qu'ils sont déjà annoncés publiquement (site et blendai.studio).
+- Société exploitante : « Une société dédiée est en cours de création » ; nom et date non communiqués.
+- Développeur : Sébastien Jourdan ; service en bêta depuis quelques mois, sans date de mise sur le marché retenue ; modèles sous-jacents confidentiels.
+
+**Effet attendu** — Aucun sur le site : documentation seule.
+
+**Vérifié**
+- `main` `2ef01b2` ; tête de #73 `781ab08` avant ce commit.
+- Aucune trace antérieure de ces constats dans `docs/seo-geo/`, sur `main` et sur les branches distantes.
+- Fichiers sources relus depuis l'artifact ; SHA-256 identiques à ceux qu'il affiche.
+- Formulations E8 à E13 présentes sur `main` `2ef01b2` (`git grep`).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — blendai.studio ; exactitude juridique ou factuelle des formulations ; recensement complet EN et de-ch de E12 ; Preview. Constat incident, non instruit : les lignes 2676, 2681, 2718, 2759 et 2771 de `messages/de-ch.json` portent un texte en français.
+
+**Suite** — Aucune correction décidée. Pour chaque item : vérification par son propriétaire, puis décision de Laurent et validation de Sébastien pour la prose, avant toute PR applicative ; avis juridique là où la revue le demande (E8, E9, E10, H2, H3). Ordre proposé par la revue (l. 96) : « E8 (préalable 2), H2 », puis « E9, E10 et E12, enfin E11 et E13 ».
+
+---
+
+## 2026-10-01 · Cluster AI Act — archivage D16 et clôture des PR historiques #43, #53, #61, #62, #63 · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, PR historiques | **PR** : #73, documentaire, brouillon | **Base** : `main` `8ec89c1`
+
+**Quoi** — Archive des mesures D16 qui ont justifié la création du pilier A ; verdict final B/C/D consigné en D41 ; backlog technique de #43 (BL-43-1 à BL-43-4) et idée de #53 (BL-53-1) inscrits ici et dans `ETAT.md`. Sur GO de Laurent du 01/10 : fermeture sans fusion de #53, puis #61, #62, #63, puis #43. Aucune branche supprimée, aucun article ni code modifié.
+
+**Pourquoi** — Revue de clôture du 30/09 (rapport « Revue clôture PR historiques AI Act ») : les mesures D16 de création de A n'existaient que dans #43 (description et JOURNAL de sa branche), absentes de #59 ; le verdict final B/C/D n'était consigné que dans la branche et la description de #59 ; les descriptions de #61, #62 et #63 concluent encore « les trois critères de D16 sont remplis ».
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`
+
+**Archive D16**
+
+**1. Mesures historiques — création du pilier A, 28/09/2026.** Recopiées sans modification depuis la description de #43 (tête `175a9d5`) :
+
+> **D16 — mesures du 28/09/2026 (exécutions n8n 3460 et 3461, workflows jetables archivés, coût 0,343 $)**
+> 1. **Similarité (D27)** : brief rédigé de 729 mots ; maximum 0,697 (`/fr/blog/generer-images-produit-ia`) sur 168 pages FR ; 0 page ≥ 0,85. Témoin : page 250 réembarquée, cosinus 1,000000 ; calcul local contrôlé contre `pgvector` à 1e-6 près.
+> 2. **Demande FR/CH** (DataForSEO Google Ads, données jusqu'à août 2026 ; témoins conformes) : « ai act e-commerce » 10 et « watermark ai act » 10 en France ; « watermark ai act » 10 en Suisse romande ; famille : « ai act » 4 400, « ia act » 6 600, « article 50 ai act » 90 (260 en août) en France ; « ki kennzeichnungspflicht » 40 (260 en août) en Suisse alémanique.
+> 3. **Lacune de citation GEO** : 5 sondes Perplexity Sonar, PSC cité 0/5 ; 19 SERP Google FR, PSC 0/19 dans le top 10 ; AI Overview présent 19/19, contenu non observé. Limites : une exécution par question, un seul moteur.
+
+Le JOURNAL de la branche `seo/ai-act-images-produit-2026-09-28` (entrée « Article AI Act et images produit, Preview à valider », commit `4aa305e`) porte « D16 PASS » dans son en-tête de chantier et résume : « D16 : similarité maximale 0,697 avec l'existant ; « article 50 ai act » 90 recherches (260 en août) ; PSC absent des réponses IA mesurées (0/5 Perplexity). »
+
+Limites, telles qu'écrites dans la source : une exécution par question, un seul moteur pour les sondes ; contenu des AI Overview non observé. Le brief mesuré date du 28/09, avant la restructuration du 29/09 (#59) ; aucune nouvelle mesure n'est faite ici.
+
+**2. Décision de création de A.** Fondée sur les mesures ci-dessus (« D16 PASS », 28/09). Le pilier restructuré (#59, tête `80489cf` au 01/10) ne reproduit pas ces mesures. D16 réserve la fusion d'une création à la validation explicite de Sébastien : `SEBASTIEN_PASS = PENDING` dans la description de #59 au 01/10.
+
+**3. Décision finale B/C/D, 30/09/2026 (D41).** `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Mesures du 30/09 : descriptions de #61, #62 et #63 (workflows n8n jetables en lecture seule `EiMBLzt28dSzVzHh` et `KPKz3xyNOnDIxZiX`). Leur conclusion « les trois critères de D16 sont remplis » précède la décision de Laurent et n'est pas le verdict retenu. Motif, repris du JOURNAL de la branche de #59 : « critère 2 non rempli pour B et C (aucune demande mesurée sur l'intention réglementaire, requêtes génériques ou d'outils non assimilées) ; critère 3 non rempli pour D ». Matière indispensable réintégrée dans A par `be1f8ae` ; présente à la tête `80489cf` (titres renommés par la passe éditoriale `4200f6a`).
+
+**Backlog conservé** — inscrit aussi dans `ETAT.md`, « Prochaines actions ».
+
+| Élément | SOURCE_PR | SOURCE_SHA | SOURCE_FILE | PURPOSE | CURRENT_STATUS (`main` `8ec89c1`) | FUTURE_ACTION | DEPENDENCY |
+|---|---|---|---|---|---|---|---|
+| BL-43-1 | #43 | `4aa305e` | `app/[lang]/blog/[slug]/page.tsx` | `og:url`, `og:site_name`, `og:locale` et carte `twitter` propres à chaque article ; retrait de l'import `HeadingData` inutilisé | Absent : `openGraph` sans `url`, `siteName` ni `locale`, aucun `twitter` ; import `HeadingData` présent (l. 21). Fusion simulée du fichier sans conflit | PR applicative distincte, réécrite sur `main` (pas de cherry-pick). Rayon large : 125 articles JSON (FR 63, EN 57, de-ch 5), garde-conséquences | Aucune avec A ou S ; décision de Laurent |
+| BL-43-2 | #43 | `4aa305e` | `content/blog/fr/generer-images-produit-ia.json` (corps l. 16, FAQ l. 36) | Séparer droit de la consommation et obligations de transparence de l'AI Act (E1/E2) | Phrase « Le règlement européen sur l'IA impose également que les images ne trompent pas le consommateur… » présente (2 occurrences) | Réécriture depuis le texte final de A, après revue factuelle ; ne pas recopier l'ancien texte de #43 (dates, renvoi à A) ; validation de Sébastien (`01-RAYON-ACTION.md`) | Le texte de #43 renvoie à `/fr/blog/ai-act-images-produit` : lien à n'activer qu'à la publication de A (D38) |
+| BL-43-3 | #43 | `4aa305e` (E3 à E7), `216f324` (E3 de-ch), `175a9d5` (E6 dans la FAQ n° 3, JSON-LD compris) | `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json` | AI Retoucher décrit d'après Orbitvu (E6) ; retrait de « Elle n'invente rien » (E7) ; répartition fournisseur / déployeur et lignes directrices de la Commission à la place de l'analyse Orbitvu (E3 à E5) ; périmètre suisse en de-ch | Formulations visées présentes dans les 3 langues (« sans altérer ses caractéristiques », « n'invente rien », lien `orbitvu.com/blog/eu-ai-act…`). #71 a modifié ces 3 fichiers : la fusion simulée de #43 y est en conflit | Réécriture sur `main`, revalidée contre le texte final de A (#59) ; validation de Sébastien ; de-ch selon D38 | Publication de A (cohérence, renvoi) ; validation de Sébastien |
+| BL-43-4 | #43 | `175a9d5` (tête, description) ; `4aa305e` (JOURNAL de branche) | Description de #43 ; `docs/seo-geo/JOURNAL.md` de la branche `seo/ai-act-images-produit-2026-09-28` | Justification D16 de la création de A | Archivée dans cette entrée et dans le commentaire d'archivage de #43 ; absente de #59 (description et JOURNAL de branche) | À la fusion de #59, renvoyer à cette entrée ; toute nouvelle mesure sur le texte restructuré relève d'une décision de Laurent | #59 |
+| BL-53-1 | #53 | `2d4e66d` | `content/blog/fr/ai-act-images-produit.json` de la branche `seo/ai-act-illustrations-2026-09-29`, bloc « Une image retouchée ou générée par IA : faut-il la signaler ? » | Arbre pédagogique en 4 questions | `OPTIONAL / IDEA ONLY` ; non intégré à A | Si Laurent le décide : reconstruire depuis la version juridique finale de A, sans reprendre l'ancien HTML/CSS (sa question 3 omet « entités, événements » de la liste fermée de l'art. 3(60)) | Décision de Laurent ; A publié |
+
+**Effet attendu** — Aucun sur le site : documentation seule. Le cluster ne garde que #59 (A) et #60 (S) ouvertes.
+
+**Vérifié**
+- Fresh check du 01/10 : `main` `8ec89c1` ; têtes inchangées depuis la revue du 30/09 : #43 `175a9d5`, #53 `9e86b9b`, #61 `250e34a`, #62 `8f2f42b`, #63 `b6495d1`, sans nouveau commentaire ; #59 `80489cf`, #60 `d5182e7`.
+- Mesures D16 du 28/09 extraites par l'API GitHub de la description de #43, sans retouche ; résumé du JOURNAL de branche relu au commit `4aa305e`.
+- Numérotation : D39 (#66, branche `claude/exciting-cannon-x48wud`) et D40 (#65, branche `claude/busy-gauss-cfe9m8`) sont pris ; aucune occurrence de D41 ni D42 sur les branches distantes au 01/10.
+- `main` `8ec89c1` : formulations visées par E1, E2, E3 à E7 présentes ; gabarit sans `og:url`, `og:site_name`, `og:locale` ni `twitter` ; fusion simulée (`git merge-tree`) de #43 : conflits dans `ETAT.md`, `JOURNAL.md` et les 3 articles « migrer », `page.tsx` sans conflit.
+- Matière réintégrée de B, C, D toujours présente dans A à `80489cf` (points 92, 113, 114, 117, 127 et 129 ; L2133-2 ; loi 2023-451 ; tableau des plateformes ; WebP ; C2PA ; 7 FAQ).
+
+- Après fermeture (`git ls-remote`, API GitHub) : les 5 PR à l'état `closed`, `merged = false` ; les 5 branches distantes et `refs/pull/{43,53,61,62,63}/head` pointent sur les têtes ci-dessus ; commits `4aa305e`, `216f324`, `175a9d5`, `2d4e66d` lisibles ; #59 `80489cf` et #60 `d5182e7` inchangées ; `main` `8ec89c1` sans article B, C ou D.
+- Commentaire d'archivage de #43 relu par l'API : bloc D16 identique à la description de #43.
+
+**Supposé** — Aucune hypothèse non vérifiée retenue.
+
+**Non regardé** — Aucune nouvelle mesure D16, aucune recherche juridique, aucun crédit payant. #59 et #60 non modifiées. Preview Vercel. Branches distantes conservées : suppression non décidée.
+
+**Clôture du 01/10/2026** (UTC), dans cet ordre :
+
+| PR | Commentaire | Fermée sans fusion |
+|---|---|---|
+| #43 | archivage D16 et backlog : https://github.com/Sebeth7/packshot-creator/pull/43#issuecomment-5925993020 | — |
+| #53 | https://github.com/Sebeth7/packshot-creator/pull/53#issuecomment-5925995805 | 06:28:56 |
+| #61 | https://github.com/Sebeth7/packshot-creator/pull/61#issuecomment-5926001091 | 06:29:35 |
+| #62 | https://github.com/Sebeth7/packshot-creator/pull/62#issuecomment-5926002712 | 06:29:36 |
+| #63 | https://github.com/Sebeth7/packshot-creator/pull/63#issuecomment-5926004339 | 06:29:37 |
+| #43 | fermeture : https://github.com/Sebeth7/packshot-creator/pull/43#issuecomment-5926007409 | 06:29:50 |
+
+**Suite** — Suppression éventuelle des branches de #61, #62, #63 après le GO de Sébastien sur #59 ; celle de #53 et #43 après exécution ou abandon explicite du backlog. BL-43-1 à BL-43-3 : chantiers distincts, sur décision.
+
+---
+
 ## 2026-10-01 · D36 — #68 resynchronisée avec `main` après #69 et #71, Worker de production relu (R5) · Claude de Laurent
 
 **Chantier** : D36 | **PR** : #68, brouillon, non fusionnée | **Base** : `main` `8ec89c1` | **Fusion** : `008cee1`
