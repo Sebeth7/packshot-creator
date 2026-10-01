@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
 
-**Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
+**Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
 
 **Quoi** — Le gabarit d'article passait le fil d'Ariane dans le prop `title` de `HeroSection`, rendu dans le `<h1>`. Le fil sort du `<h1>` :
 - `HeroSection` reçoit un prop optionnel `breadcrumb`, rendu juste avant le `<h1>` dans la variante centrée. Les 19 autres usages ne le passent pas : leur sortie est inchangée.
