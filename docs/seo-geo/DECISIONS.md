@@ -25,10 +25,38 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D42 · 2026-10-01 · Standard éditorial PackshotCreator : circuit complet en huit étapes
+## D43 · 2026-10-01 · Appels payants : autorisation-cadre de 20 USD cumulés par mission
 
 **Décidé par** : Laurent
-**Statut** : en vigueur — portée : tous les articles, landings, hubs et contenus éditoriaux, PR déjà ouvertes comprises, sans annuler les travaux antérieurement validés
+**Statut** : en vigueur — **remplace** le seuil de GO de 2 $ par exécution de D26 (point 4) et la ligne « Pas d'appel payant sans GO préalable » de D42
+
+**La décision** — Remplacer l'ancien seuil de 2 USD par une autorisation-cadre de 20 USD cumulés **par mission**, tous appels payants confondus :
+- pas 20 USD par appel ;
+- pas de consommation illimitée ;
+- identifier le service utilisé avant l'appel ;
+- estimer son coût ;
+- comptabiliser les dépenses cumulées de la mission ;
+- ne pas effectuer d'appel entraînant un dépassement des 20 USD ;
+- au-delà, solliciter un nouveau GO explicite de Laurent.
+
+Ce plafond budgétaire ne constitue aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+
+**Le contexte** — Arbitrage de Laurent du 01/10 sur le point 3 d'articulation de D42. Deux consignes l'ont précédée, conservées pour trace et qui ne sont plus en vigueur sur ce point :
+- D26, point 4 (19/09) : GO au-delà de 2 $ par exécution ;
+- D42, première version (01/10) : « Pas d'appel payant sans GO préalable ».
+
+**Ce qu'elle interdit** — Un appel payant dont le service n'est pas identifié ou dont le coût n'est pas estimé avant l'appel. Un appel qui porterait le cumul de la mission au-delà de 20 USD sans nouveau GO explicite de Laurent. Invoquer ce plafond comme une autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+
+**Non tranché, à confirmer par Laurent** —
+- Le budget de mesure de 20 $ par trimestre, écrit au même point 4 de D26, n'est pas visé par l'arbitrage. S'il reste en vigueur, il plafonne aussi le cumul des missions d'un même trimestre.
+- Le terme « mission » n'est pas défini par l'arbitrage.
+
+---
+
+## D42 · 2026-10-01 · Standard éditorial PackshotCreator : circuit complet en huit étapes
+
+**Décidé par** : Laurent — six arbitrages d'articulation rendus par Laurent le même jour
+**Statut** : en vigueur — portée : tous les articles, landings, hubs et contenus éditoriaux, produits par les deux environnements Claude, PR déjà ouvertes comprises, sans annuler les travaux antérieurement validés. **La ligne « Pas d'appel payant sans GO préalable » est remplacée par D43.** Complète D12 pour les contenus éditoriaux (arbitrage 1)
 
 **La décision** — Texte de Laurent du 01/10/2026, reproduit sans modification :
 
@@ -60,19 +88,21 @@ Append-only. Plus récent en haut.
 > Pas d'appel payant sans GO préalable.
 > Cette règle s'applique également aux PR déjà ouvertes, sans annuler les travaux antérieurement validés.
 
+**Note de version** — La ligne « Pas d'appel payant sans GO préalable » reste citée ci-dessus pour trace. Elle n'est plus en vigueur : D43 la remplace (autorisation-cadre de 20 USD cumulés par mission).
+
+**Arbitrages de Laurent du 01/10** — Six points d'articulation avec les décisions existantes, relevés dans la première version de cette décision (PR #76, tête `59861e9`) et tranchés par Laurent le même jour :
+1. **D12** — Aucun contenu éditorial n'est fusionné avant validation et autorisation de publication selon la gouvernance applicable. D12 reste en vigueur pour le reste.
+2. **D15 et D16** — Conservées : validation tacite après cinq jours ouvrés pour les réécritures (D15), validation explicite pour les créations (D16). Les exigences qualitatives de D42 s'appliquent dans les deux cas.
+3. **D26, point 4** — Le seuil de 2 USD est remplacé par une autorisation-cadre de 20 USD cumulés par mission : voir D43.
+4. **D40** (proposée dans #65, non fusionnée) — Contrôle des Preview sur ordinateur, smartphone et tablette, en portrait et en paysage lorsque pertinent ; tester également les interactions tactiles. Cet arbitrage élargit le contrôle « desktop et 390 px » de D40 et de `08-PREVIEW-VALIDATION.md` (#65). #65 n'est pas modifiée par cette PR : son texte est à harmoniser avant sa fusion.
+5. **Périmètre** — D42 concerne les contenus produits par les deux environnements Claude. Transmission au Claude de Sébastien par la boîte aux lettres (Q19). Le périmètre d'intervention de chacun, défini par `/CLAUDE.md`, n'est pas modifié.
+6. **Travaux validés** — D37 et les travaux antérieurement validés restent acquis. D42 s'applique aux étapes restantes des chantiers ouverts.
+
 **Le contexte** — Aucun motif n'accompagne le texte. Relevé du 01/10 dans le dépôt, sur `main` `17fc0b3` :
 - PR ouvertes touchant `content/**`, `messages/**` ou un composant de landing : #27 (maillage Q3, 13 fichiers), #59 (pilier AI Act, FR), #60 (article Suisse, FR), #64 (D33, 16 fichiers), #66 (`/fr/packshot-mode`), #70 (`metaTitle` d'un article) ;
 - PR ouvertes sans fichier de contenu : #65 (D40, documentation), #67 (D36, Worker et `next.config.ts`), #75 (documentation).
 
-**Articulation avec les décisions existantes** — relevée le 01/10, **non tranchée**. Chaque point attend une réponse de Laurent (`ETAT.md`, « Balle chez Laurent ») :
-1. **D12** (fusion par le Claude de Laurent sur CI verte et Preview contrôlée). D42 exclut qu'un contenu soit tenu pour terminé sur une CI verte. À confirmer : pour un contenu éditorial, la fusion attend-elle l'étape 8 « publication autorisée » ?
-2. **D15** (validation tacite des réécritures après 5 jours ouvrés) et **D16** (validation explicite des créations). L'étape 5 renvoie à « la gouvernance applicable ». À confirmer : le régime tacite de D15 reste-t-il cette gouvernance pour les réécritures ?
-3. **D26**, point 4 (GO au-delà de 2 $ par exécution). D42 exige un GO préalable pour tout appel payant. À confirmer : le seuil de 2 $ est-il supprimé ?
-4. **D40**, proposée dans #65 et non fusionnée : contrôle de la Preview en desktop et 390 px. D42 ajoute la tablette. À harmoniser dans #65 avant sa fusion.
-5. **Périmètre des deux Claude** (`/CLAUDE.md`, section 1) : le contenu relève du Claude de Sébastien ; D42 vise « TOUS » les contenus éditoriaux. À confirmer : D42 s'applique-t-elle aux contenus portés par le Claude de Sébastien, et Sébastien en est-il informé ?
-6. **D37** (F5 publiée sans nouvelle validation) et les travaux validés avant le 01/10 : non remis en cause, selon la dernière phrase du texte.
-
-**Ce qu'elle interdit** — Les interdits sont ceux du texte, sans ajout : la phrase « Aucun contenu ne doit être considéré comme terminé… » et les sept lignes « Pas de… » de l'exigence non négociable.
+**Ce qu'elle interdit** — Ceux du texte, sans ajout : la phrase « Aucun contenu ne doit être considéré comme terminé… » et les lignes « Pas de… » de l'exigence non négociable, sauf « Pas d'appel payant sans GO préalable », remplacée par D43. S'y ajoute, par l'arbitrage 1 : fusionner un contenu éditorial avant validation et autorisation de publication.
 
 ---
 
@@ -292,7 +322,7 @@ Les 13 redirections du Worker :
 ## D26 · 2026-09-19 · Arbitrages de cadrage du mandat
 
 **Décidé par** : Laurent
-**Statut** : en vigueur
+**Statut** : en vigueur — **point 4 : le seuil de GO de 2 $ par exécution est remplacé par D43** (2026-10-01) ; le budget de 20 $ par trimestre n'est pas visé par D43, articulation à confirmer
 
 **La décision** — Cinq points arbitrés le 19/09, sans passer par la boîte aux lettres :
 
@@ -518,7 +548,7 @@ Sébastien) ; la suppression d'une URL portant des backlinks.
 ## D12 · 2026-09-16 · Laurent merge ses propres pull requests
 
 **Décidé par** : Sébastien
-**Statut** : en vigueur, dans les termes révisés par D13
+**Statut** : en vigueur, dans les termes révisés par D13 ; **complétée par D42** (2026-10-01) : aucun contenu éditorial n'est fusionné avant validation et autorisation de publication selon la gouvernance applicable
 
 **La décision** — Le Claude de Laurent merge ses propres pull requests dès lors
 que le contrôle d'intégration est vert et le Preview contrôlé. Seul ce qui

@@ -67,6 +67,29 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q19 · 2026-10-01 · Pour information — D42, standard éditorial, et D43, appels payants — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : gouvernance
+**Bloque** : rien ; transmission décidée par Laurent (D42, arbitrage 5)
+
+**Contexte** — Laurent a décidé le 01/10 un standard éditorial (D42) et un plafond pour les appels payants (D43). D42 concerne les contenus produits par les deux environnements Claude : tous les articles, landings, hubs et contenus éditoriaux, PR déjà ouvertes comprises. Les travaux antérieurement validés restent acquis ; D42 s'applique aux étapes restantes des chantiers ouverts.
+
+**Vérifié** — `DECISIONS.md`, D42 et D43 (PR #76). Le circuit compte huit étapes. Pour toi, les deux points principaux :
+- l'étape 5, validation de Sébastien selon la gouvernance applicable : D15 (tacite, réécritures) et D16 (explicite, créations) sont conservées ;
+- l'arbitrage 1 : aucun contenu éditorial n'est fusionné avant validation et autorisation de publication.
+
+`/CLAUDE.md` n'est pas modifié. Ton périmètre d'intervention n'est pas modifié.
+
+**La question** — Sébastien prend-il connaissance de D42 et D43 pour les contenus produits par son environnement Claude ?
+
+**Options**
+- A : prise de connaissance, sans objection → D42 et D43 s'appliquent aussi aux contenus produits par le Claude de Sébastien ; une mention dans `/CLAUDE.md` relève alors d'une décision de Sébastien.
+- B : objection → réexamen par Laurent et Sébastien ; D42 reste en vigueur pour les contenus du Claude de Laurent.
+
+**Ma recommandation** — A : c'est la portée décidée par Laurent, et `/CLAUDE.md` reste entre les mains de Sébastien.
+
+---
+
 ### Q10 · 2026-09-19 · Réexamen de la cible de clics — DU Claude de Laurent À Laurent
 
 **Chantier** : pilotage du KPI trafic

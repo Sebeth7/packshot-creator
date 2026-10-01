@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-01 · D42 arbitrée, D43 (appels payants), Q19, états de #72 et #74 corrigés · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `17fc0b3`
+
+**Quoi** —
+- Les six arbitrages de Laurent du 01/10 sont intégrés à D42 ; le texte d'origine reste cité sans modification.
+- D43 remplace le seuil de 2 $ par exécution de D26 et la ligne « Pas d'appel payant sans GO préalable » de D42 : autorisation-cadre de 20 USD cumulés par mission. Les deux consignes antérieures restent écrites, marquées comme remplacées.
+- Q19 transmet D42 et D43 au Claude de Sébastien.
+- Les états périmés de #72 et #74 dans `ETAT.md` sont corrigés.
+
+**Pourquoi** — GO de Laurent du 01/10 sur les six points relevés dans l'entrée ci-dessous. Consigne : trace historique claire, sans deux consignes contradictoires en vigueur.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D43 créée ; D42 complétée ; lignes « Statut » de D12 et D26 annotées, corps inchangé), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q19), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Bloc cité de D42 identique, caractère pour caractère, à celui de la tête `59861e9`. Dans `DECISIONS.md`, hors D42 et D43, seules les lignes « Statut » de D12 et D26 changent.
+- Numérotation : aucune D43 ni Q19 sur `main` ni sur les branches distantes au 01/10. Q16 à Q18 jamais déposées (`ETAT.md`).
+- #72 fusionnée le 01/10 à 09:02:01 UTC, commit de fusion `a6760da` ; #74 à 10:29:43 UTC, `8365c73` (`git log` de `main`).
+- `sysnext.vercel.app`, le 01/10 vers 11:36 UTC :
+  - `smoke.mjs` vert, 17 pages et 3 ressources ;
+  - 3 articles (`/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots`, `/en/blog/packshot-photography-guide-why-make-product-packshots`, `/de-ch/blog/leitfaden-packshot-fotografie-warum-packshots-machen`) : un seul H1 sans élément enfant, au titre seul, précédé d'un `nav` étiqueté ; `BreadcrumbList` à 3 éléments, PackshotCreator, Blog, l'article ;
+  - `/fr` et ces 3 articles : aucune référence Google Fonts ; un seul fichier de police référencé, `Inter_Bold_subset.p.f8804717.woff2`, servi en 34 200 o, taille égale à `app/fonts/inter/Inter-Bold-subset.woff2`.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers.
+- `npx next build` vert, variables factices. Tailwind analyse aussi les `.md` de `docs/` (constat consigné dans #75, non fusionnée) : la CSS compilée de la branche, texte final de cette entrée compris, est comparée à celle de `main` `17fc0b3`, construit à part. 3 feuilles, mêmes noms et mêmes empreintes MD5 : identiques.
+- Appels payants de cette mission (D43) : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- `www` dans Chrome (R4), pour #72 comme pour #74 : lignes de « Balle chez Laurent ».
+- #65, #66 et les articles AI Act : non modifiés, par consigne.
+- Playwright : non lancé, aucun fichier du site modifié.
+- #75 corrige aussi l'état de #74 dans `ETAT.md`, avec un autre texte : conflit à résoudre à la fusion de la seconde des deux PR.
+
+**Suite** —
+- Laurent : les deux points non tranchés de D43 (budget de 20 $ par trimestre de D26 ; définition d'une mission).
+- #65 : harmoniser D40 et `08-PREVIEW-VALIDATION.md` avec l'arbitrage 4 avant sa fusion.
+- Q19 : réponse du Claude de Sébastien.
+- Positionner chaque PR ouverte de contenu dans le circuit de D42.
+
+---
+
 ## 2026-10-01 · D42 — standard éditorial PackshotCreator consigné · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : brouillon, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `17fc0b3`
