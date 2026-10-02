@@ -34,6 +34,316 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — pilier A : visuel A2 intégré (panneau 1 remonté par compositing local) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — A2 `detourage-meme-tasse-quatre-etapes.avif`, grille 2 × 2, ajouté à la fin de « Une retouche IA n'est pas forcément une nouvelle image », avant « Le détourage a changé de qualification en juillet 2026 ».
+- Panneaux 2 à 4 : ceux de `A2_detourage_mise_en_forme_standard_V2.png` (paquet `PSC_AI_ACT_A2_S4_REGENERES_2026-10-02`, création ChatGPT), sans modification.
+- Panneau 1 : remonté localement, sans aucune génération, sur consigne de Laurent du 02/10 (« STOP aux nouvelles générations complètes de la tasse »).
+  - Tasse du panneau 2 extraite par masque, posée à l'identique dans un décor de studio construit localement : fond gris neutre, table mate, pied de lumière flou à gauche.
+  - Ombre d'origine transférée, ombre de contact ajoutée.
+  - Le panneau 1 du V2 (autre tasse) est écarté.
+- ALT : « Quatre vues de la même tasse fictive en grès : dans un décor de studio, détourée sur fond gris, posée sur fond blanc avec une ombre douce, puis légèrement corrigée. »
+- Légende de l'inventaire précédée de la mention du montage : « Illustration générée par IA, avec montage. Étapes de préparation… »
+- `readingTime` 21 → 22.
+- Commit local, **non poussé** : un seul push final par PR, sur GO de Laurent.
+
+**Pourquoi** — Contrôle du 02/10 : la tasse du panneau 1 de V2 diffère de celle des panneaux 2 à 4 (angle, anse, proportions). Le panneau 1 devait montrer exactement la même tasse.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/detourage-meme-tasse-quatre-etapes.avif` (ajout), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fidélité :
+  - panneau 1 contre panneau 2, intérieur du masque : 82 999 pixels repris sans aucun écart ; bordure adoucie vers l'intérieur seulement, aucun pixel de l'ancien fond ;
+  - panneaux 3 et 4 contre 2 : écarts limités aux contours ;
+  - contrôle visuel à 100 % : rebord, anse, pied.
+- Image :
+  - PNG source V2 : SHA-256 `13a78934…228931` (manifeste C2PA) ; PNG assemblé : `089e234c…dc8cb1` ;
+  - AVIF : libaom, CRF 10 (mouchetures de l'émail lissées à CRF 24), yuv444p, plage complète, BT.709, 1092 × 920, 50 741 o, SHA-256 `3c7d267e…cad9eb`, SSIM 0,986 ; moyenne RGB identique au PNG.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, 7 formats : 0 débordement, 0 erreur ; 6 figures chargées, soit 7 visuels avec l'en-tête ; FAQ 7 = `FAQPage` 7 ; 0 ponctuation isolée.
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4).
+
+**Suite** — GO de push de Laurent ; contrôle humain de la Preview.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier européen (A) : maillage vers `/fr/packshot-mode`, audit SEO/GEO et contrôles de finalisation · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — Un lien interne ajouté, cas 3 (recolorisation, phrase sur le textile) : ancre « packshot mode » vers `/fr/packshot-mode` (landing Mode, D39, qui porte le même retour métier de Sébastien sur la recolorisation). Aucun autre texte modifié. Commit local, **non poussé** : le push attend le GO de Laurent sur l'inventaire du diff (mission du 02/10).
+
+**Pourquoi** — Mission « Finalisation complète des articles A et S » du 02/10 : maillage interne préparé. Destination vérifiée : 200, indexable, canonique propre, sans affirmation contraire à l'article. Destinations écartées ou conditionnelles (affirmations en tension avec l'article, gel F5, D39, D41) : matrice du livrable `PSC_AI_ACT_A_S_FINALISATION_SEO_MAILLAGE_PREVIEWS_2026-10-02.zip`, hors dépôt. Liens A ↔ S : préparés, non activés (404 dans la Preview de branche), simulés dans une intégration locale A + S sur `main` `9400eaa` : liens en 200.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; ESLint : 300 signalements, identiques à `main` (aucun fichier de code modifié).
+- `next start` local, 7 formats (1440 × 900, 1024 × 768, 1180 × 820, 820 × 1180, 844 × 390, 390 × 844, 360 × 740) : 0 débordement, 0 erreur, 0 requête en échec, toutes les figures chargées, un seul H1 ; FAQ ouverte au clic et au toucher (A).
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+- Liens externes : 26 en 200 ; EUR-Lex (202) et Légifrance (403) non vérifiables par script.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4) ; archives F/F2 et addendum du 02/10, absents du dépôt.
+
+**Suite** — GO de push de Laurent ; A2 et S4 régénérés ; contrôle humain des Previews ; liens A ↔ S au déploiement de publication coordonnée.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier A : quatre visuels, Zalando harmonisé, tableau complémentaire condensé · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi**
+- **Visuels** (paquet `PSC_AI_ACT_A_S_COMPLEMENTS_2026-10-02`, créations ChatGPT, arbitrage de Laurent du 02/10, option 1) :
+  - A7 `marquage-machine-mention-visible.avif` : « Deux obligations, deux acteurs », avant « Qui doit quoi » ;
+  - A4 `correction-recolorisation-variantes.avif` : cas 3, après le paragraphe « couleur inexistante » ;
+  - A5 `poussiere-image-rayure-produit.avif` : cas 6 ;
+  - A6 `chemise-a-plat-mannequin-invisible-portee.avif` : fin du cas 7.
+  
+  Légendes de l'inventaire reprises telles quelles ; textes alternatifs rédigés. A7 montre un flacon fictif distinct de A1 et A3 : ni l'alt ni la légende ne le présentent comme le même produit. Ratio d'origine conservé (1536 × 1024). A2 non intégré : la géométrie de la tasse change entre la photo de studio et la version détourée. À régénérer.
+- **Zalando** : formulation commune de Laurent (« Les consignes Zalando analysées évoquent un marquage invisible des contenus générés par IA à l'horizon décembre 2026. Le statut exact de cette exigence reste à confirmer avant publication. ») sous le tableau des plateformes ; cellule « À faire » ramenée à « marquage invisible évoqué à l'horizon décembre 2026, statut exact à confirmer ». « attendu d'ici décembre 2026 » retiré. **ZALANDO_STATUS = UNRESOLVED / À ARBITRER.**
+- **Tableau « Les autres situations en un coup d’œil »** rétabli sous forme condensée : mêmes onze lignes et mêmes réponses que `84520da`. Les étiquettes de provenance entre parenthèses sont remplacées par le code de lecture de l'article, expliqué sous l'intertitre (« selon la Commission », « probablement », « à notre lecture », réponse sans mention = règlement). Aucune réponse modifiée, « non tranché » conservé partout où il figurait.
+- `readingTime` 19 → 21.
+
+**Pourquoi** — Arbitrages de Laurent du 02/10 : visuels sans défaut, harmonisation Zalando A / S, tableau complémentaire condensé sans perte des nuances réglementaires.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, quatre AVIF ajoutés dans `public/images/blog/ai-act-images-produit/`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024 ; SSIM face au PNG de 0,964 à 0,979 ; moyenne RGB identique au PNG (pas de dérive de plage). Tailles et SHA-256 : A7 69 440 o `d2433b1a…fc5789` ; A4 49 084 o `a9882c30…24a7de` ; A5 61 091 o `3307f1ab…bd5667` ; A6 155 595 o `6e1a8997…c7a44b`. Les PNG source portent un manifeste C2PA, non conservé dans l'AVIF (comme les autres visuels du site).
+- Tableau condensé relu ligne par ligne contre `84520da` : deux précisions de la ligne « Vidéo produit » rétablies avant commit (« hypertrucage », « ou modifié »).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec ; toutes les figures chargées au défilement, ratios 1,500 (nouveaux visuels) et 1,778 (existants) respectés ; 4 tableaux sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; canonical et JSON-LD inchangés ; FAQ 7 = `FAQPage` 7.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Source primaire Zalando (aucune nouvelle recherche, consigne de Laurent) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — A2 régénéré à intégrer ; message à Sébastien préparé, non envoyé (Laurent) ; Zalando à confirmer avant publication.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier A : relecture éditoriale du 02/10 intégrée · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa` (intégré par fusion, JOURNAL en union)
+
+**Quoi** — Corps et FAQ de l'article réécrits à partir de `01_A_PILIER_FR_PROPOSITION.md` (dossier `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02`, GO de Laurent du 02/10 : « actualiser les Previews »). Texte resserré : ouverture par trois visuels, encadré « L’essentiel en une minute », sept cas numérotés, méthode en sept étapes. Conservés : H1, slug, `title`, `metaTitle`, `description`, `date`, image d'en-tête, figure A3 (alt et légende inchangés), note datée, tableaux « Qui doit quoi », calendrier et plateformes (au 30/09), section Sources complète, 24 liens (liste identique), paragraphe « couleur inexistante » validé le 01/10 (option 1), retour métier de Sébastien sur la recolorisation. Sept FAQ : questions inchangées, réponses raccourcies. `readingTime` 22 → 19.
+
+**Retirés, conformément à la proposition** — Tableau « Les autres situations en un coup d’œil » (onze lignes, dont mannequin invisible, avatar d'essayage, vidéo et 360°, matière réintégrée de B, C et D par D41) ; paragraphe de mesure AVIF/WebP du 30/09 sur notre site (remplacé par une phrase générale sur la conservation des métadonnées) ; marqueurs d'emplacement visuel et notes de travail de la proposition.
+
+**Écarts de sens corrigés (formulation de la PR conservée)** — La proposition, reprise telle quelle, aurait modifié la portée d'une source sur les points suivants :
+- déployeur défini comme « la marque qui publie » : rétabli « qui utilise l'outil sous sa propre autorité » (article 3(4)) ;
+- produit rendu différent ou meilleur « demande une analyse distincte » (encadré) et « la ressemblance trompeuse doit être appréciée » (cas 5) : rétabli « peut en être un » et « la qualification d'hypertrucage est probable » (exemple de la Commission) ;
+- mention « claire et reconnaissable, au plus tard lors de la première exposition » et attribution à la Commission de la perception sans outil : rétablies ;
+- agence : conclusions des points 12 et 14 et cas intermédiaire non tranché rétablis ; marketplace non déployeur (point 16) conservée ;
+- délai du 2 décembre 2026 : « ajouté par le règlement (UE) 2026/1744 » rétabli ; transparence volontaire « sans effort disproportionné » rétablie ;
+- mise en forme standard : liste de la Commission dans ses termes, liste des modifications à marquer rétablie ;
+- cas 4 : marquage probable du décor par l'outil rétabli ; cas 6 : marquage en cas de changement de sens rétabli ;
+- cas 7 : points 113 et 114, et les trois situations voisines (point 92, article L2133-2, loi 2023-451) rétablis en forme courte ;
+- sanctions : règle du montant le plus élevé et règle PME rétablies, note de travail retirée.
+
+**Pourquoi** — Relecture éditoriale du 02/10 : A doit se lire comme un guide ; Sébastien relit cette version.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comptage (texte du corps et FAQ) : 5 486 → 4 757 mots ; 3 tableaux, 1 figure dans le corps, 11 H2, 10 H3 ; aucun marqueur `[…]`, aucun « Niveau : », aucun Markdown brut ; aucun lien vers `/fr/packshot-e-commerce`.
+- Script de liens de publication A ↔ S : essai à blanc vert (phrases de renvoi conservées).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec, A3 chargée au défilement (1600 × 900), 3 tableaux sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; sommaire, FAQ (7) et JSON-LD `FAQPage` (7) rendus ; canonical inchangée.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main` (`6b80e6a`, `9400eaa` ne modifiant que la documentation).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Message rectificatif de Laurent à Sébastien ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : arbitrage « couleur inexistante » (option 1) appliqué · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
+
+**Quoi** — Passage « couleur inexistante » de la section « Recolorisation : variante vendue ou couleur inexistante » remplacé par la formulation validée par Laurent le 01/10 (proposition A06 de `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md`). Aucune autre phrase de l'article modifiée ; article S (#60) non modifié.
+
+**Changement de sens (validé par Laurent)** — Avant : un coloris inexistant présenté comme disponible « relève probablement d'une modification substantielle et, côté marque, d'un hypertrucage ». Après : « les exemples de la Commission invitent à vérifier si la transformation est substantielle et si la présentation pourrait constituer un hypertrucage, selon le rendu et le contexte ». La conclusion AI Act passe d'une interprétation probable à une question à examiner. L'alerte de droit de la consommation est conservée (article L121-2, lien Légifrance inchangé), et reste distincte de la qualification au titre de l'AI Act.
+
+**Pourquoi** — Arbitrage A / S « couleur inexistante », option 1 : aucune source réunie ne tranche le cas sur une fiche produit ; aligner A sur le degré de S (« reste à qualifier selon le cas ») sans renforcer aucune qualification. Arbitrage clos.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Cohérence A / S : plus aucune phrase de A ne qualifie ce cas d'hypertrucage probable ; S, cas 3 : « son application exacte à une fiche produit reste à qualifier selon le cas » ; mentions de droit de la consommation inchangées dans les deux articles.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée, 4 tableaux sans défilement à 1440 et 820 px ; `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à `main` `6b80e6a`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Transmission des deux Previews FR à Sébastien par Laurent ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : nouvelle illustration A3 · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
+
+**Quoi** — A3 remplacée, sur validation de Laurent du 01/10 : `produit-reel-decor-genere.avif` (A1 recoupée en deux panneaux) → `produit-net-decor-flou.avif` (même flacon net au premier plan sur une pierre claire, décor méditerranéen généré flou, sans texte). Emplacement inchangé (« Produit réel dans un décor ou une scène générés »). Alt : « Flacon net au premier plan, posé sur une pierre claire, devant un décor généré volontairement flou. » Légende inchangée. Ancien fichier supprimé, plus aucune référence.
+
+**Pourquoi** — Contre-vérification du 01/10 : A3 redondante avec l'image d'en-tête A1. Brief A3 du 01/10 (finalisation graphique).
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/produit-net-decor-flou.avif` (ajout), `public/images/blog/ai-act-images-produit/produit-reel-decor-genere.avif` (suppression), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Source : PNG 1672 × 941 transmis par Laurent (SHA-256 `971c6a7f…f06895`), redimensionné en 1600 × 900, encodé en AVIF yuv444p, plage complète, BT.709 (90 138 o, SHA-256 `c832a720…9910a9`) ; écart moyen AVIF décodé / maître 1,2 niveau sur 255 ; aucun texte ni marque visibles (contrôle à l'œil sur gros plans).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : nouvelle image en 200 `image/avif` (1600 × 900, chargée), ancienne en 404 ; 662 × 372, 662 × 372, 358 × 201 ; légende présente ; 0 débordement ; 0 erreur de console ; 0 ponctuation isolée en début de ligne ; 4 tableaux sans défilement à 1440 et 820 px.
+- SEO inchangé (title 57, description 155, canonical, FAQPage 7, `og:image` = `cover.avif`) ; `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à `main` `6b80e6a`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Le PNG source porte un manifeste C2PA (bloc `caBX`) ; l'encodage AVIF ne le conserve pas, comme pour les autres visuels du site. Le conserver demanderait de re-signer le fichier dérivé. Aucune obligation de la marque n'est en cause : l'illustration est signalée par sa légende. Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Arbitrage « couleur inexistante » A / S ; transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : passe éditoriale finale, `main` `6b80e6a` intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a` (#66, #78), fusionné par `5603fb4`
+
+**Quoi** — Corrections rédactionnelles tirées de la relecture `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md` (GO de Laurent du 01/10), sans réécriture de fond ni réduction de longueur :
+- ouverture : la question du lecteur d'abord, phrase méta « À la fin de cet article, vous saurez… » et tournure « pas X, mais Y » retirées ; note de méthode datée déplacée sous « En bref », inchangée ;
+- « En bref » : deux puces complémentaires fusionnées (décor généré / produit rendu différent) ;
+- tableau « Qui doit quoi » : cellule « Agence » ramenée à une phrase ; la nuance (points 12 et 14, cas intermédiaire non tranché) passe en prose sous le tableau, mot pour mot ;
+- intertitre « Pourquoi le détourage a changé de qualification en juillet 2026 » ; phrase d'annonce redondante retirée ;
+- introduction des sept situations et du tableau des autres situations resserrées ;
+- recolorisation : la généralisation non sourcée « Métal, cuir, textile chatoyant ou verre teinté réagissent mal à une recolorisation » est remplacée par les faits métier de Sébastien déjà publiés sur `/fr/packshot-mode` (#66) : teinte exacte, texture et réaction de la matière à la lumière, en particulier sur le textile ;
+- couleur inexistante : fondement de l'interprétation explicité (exemple de la Commission pour la publicité et l'emballage) ; degré inchangé (« probablement ») ;
+- scène générée : exemples concrets (perspective, accessoire présenté comme inclus, usage suggéré) ; qualification inchangée (non tranché) ;
+- influenceur synthétique traité à un seul endroit : la ligne du tableau rejoint la liste des situations voisines, nuance image fixe / vidéo conservée ;
+- rubrique « Sources officielles » renommée « Sources » (elle contient aussi plateformes et standards) ;
+- typographie : espace insécable entre jour et mois (24 dates).
+
+**Pourquoi** — Standard éditorial de Laurent : article d'expertise naturel, précis, utile ; contre-relecture du 01/10. `main` fusionné : #66 et #78 mettaient le JOURNAL en conflit.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comparaison avant / après des nombres, articles, points et marqueurs : « probablement » inchangé (24) ; « points 12 et 14 » cité une fois de plus (nuance déplacée) ; aucune date ni aucun article modifié ; FAQ inchangée hors typographie.
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union ; aucune ligne perdue ; ETAT et DECISIONS : toutes les lignes de `main` présentes.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; rendu local à 1440, 820 et 390 px (détail dans la PR).
+
+**Supposé** — [Inférence] Les faits métier de Sébastien sur la recolorisation sont ceux transmis par Laurent le 30/09 et publiés dans `/fr/packshot-mode` (#66, fusionnée) ; le fichier de réponses d'origine n'est pas dans le conteneur. Cela repose sur des schémas observés.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; Preview Vercel (SSO) par script ; `www` (R4) ; A3 (fichier régénéré non reçu).
+
+**Suite** — Arbitrage de Laurent sur la cohérence A / S « couleur inexistante » (proposition dans la PR) ; A3 ; liens A ↔ S à activer à la publication (script préparé hors dépôt) ; transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : `main` `f1a3491` (#75) intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `f1a3491`, fusionné par `9f81252`
+
+**Quoi** — `main` `f1a3491` fusionné (#75 : UB-04 consignée en production, documentation seule). Aucun fichier de l'article ni image modifiés. A3 reste en place : sa régénération (brief du 01/10, finalisation graphique) se fait hors dépôt, sans bloquer l'article Suisse.
+
+**Pourquoi** — #75 mettait le haut du JOURNAL en conflit avec la branche.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun.
+
+**Vérifié**
+- Seul conflit : le haut de ce journal, résolu par union ; aucune ligne perdue de part ou d'autre ; ETAT fusionné automatiquement.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée en début de ligne, 4 tableaux sans défilement à 1440 et 820 px, 2 images chargées ; `smoke.mjs` vert.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — e2e non rejoués (aucun fichier du site modifié depuis le passage sur `f9e772f`) ; Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Intégration de A3 régénéré : nouveau nom de fichier, `alt` du brief, légende inchangée, ancien fichier supprimé.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : `main` `17fc0b3` (#73) intégré, espaces insécables · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `17fc0b3`, fusionné par `1dc9293`
+
+**Quoi** — `main` `17fc0b3` fusionné (#73 : mesures D16 archivées, D41, PR historiques #43, #53, #61, #62, #63 fermées sans fusion). Typographie seule, dans le corps et les 7 FAQ : 204 espaces remplacées par des espaces insécables (U+00A0) devant « : », « ; », « ? » et « » », après « « », et dans « 1 080 » et « 1 920 » ; deux points de coupure invisibles (`<wbr>`) dans l'identifiant « trainedAlgorithmicMedia » du tableau des plateformes. Aucun mot, aucun lien, aucune qualification modifiés.
+
+**Pourquoi** — Consigne de Laurent du 01/10 : reprise après #73, articles réellement terminés. Mesure sur `next start` local avant correction : signes de ponctuation rejetés seuls en début de ligne, 10 à 1440 px, 10 à 820 px, 7 à 390 px. Les insécables rendaient « « trainedAlgorithmicMedia », » insécable : le tableau des plateformes défilait de nouveau à 1440 px (695 px pour 662) ; les `<wbr>` le ramènent à 662 px.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; résolu par union (entrées de #59, puis entrées de `main`, dont l'archive D16 et D41 de #73) ; aucune ligne perdue de part ou d'autre, contrôle ligne à ligne.
+- Texte : corps et FAQ identiques à `1dc9293` une fois U+00A0 ramenée à l'espace et `<wbr>` retiré ; title, description, H1, slug, date et auteur inchangés.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 signe de ponctuation isolé en début de ligne ; 0 débordement de page ; 0 erreur de console ; 0 réponse en erreur ; 4 tableaux sans défilement à 1440 et 820 px, défilement interne à 390 px ; 2 images chargées (hero 848 × 477, 772 × 434, 358 × 201 ; A3 662 × 372, 662 × 372, 358 × 201), légende de A3 présente ; 0 ancre cassée ; 0 marqueur de travail.
+- Métadonnées : title 57 caractères, description 155, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (auteur Sébastien Jourdan), FAQPage 7 ; URL au sitemap (309 URL) ; `/fr/packshot-e-commerce` présent dans le seul pied de page commun, aucun lien depuis l'article ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `17fc0b3` (0 en plus, 0 en moins).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; Safari et Firefox ; traductions (D38, non démarrées).
+
+**Suite** — Constats non corrigés, faute de consigne de réécriture, listés dans la PR : « probablement » 24 fois et « textes consultés » 9 fois ; H1 coupé « e- / commerce » à 820, 390, 375 et 360 px (gabarit commun, coupure au trait d'union) ; `date` du 28/09 antérieure aux faits du 30/09 cités, à fixer à la publication ; lien vers l'article Suisse sans `href` jusqu'à la publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : image d'en-tête signalée, `main` `8365c73` intégré, contrôles avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `8365c73`, fusionné par `09871fe`
+
+**Quoi** — Note d'ouverture complétée par une phrase : « L’image d’en-tête est une illustration générée par IA. » (A1 n'a pas de légende dans le gabarit commun, non modifié). `main` `8365c73` fusionné, dont #74 : le fil d'Ariane n'est plus rendu dans le `h1` des articles. Aucune autre phrase de l'article modifiée.
+
+**Pourquoi** — Consigne de Laurent du 01/10 (finalisation avant Sébastien) : signaler l'image d'en-tête comme les légendes de A3 (arbitrage Q1), synchroniser la branche avec `main`. Choix éditorial de transparence, non l'affirmation d'une obligation légale.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; toutes les entrées conservées (UB-04 en tête, puis celles de #59) ; aucune ligne perdue de part ou d'autre.
+- `tsc` vert ; `verifier-json` 181 valides ; Vitest 373/373 ; `next build` vert, 372 pages.
+- `next start` local, Chromium, 390, 1024 et 1440 px : 200 ; 0 débordement de page ; 0 erreur de console ; un seul `h1`, égal au titre, sans fil d'Ariane ; 4 tableaux, sans défilement à 1024 et 1440 px, défilement interne à 390 px ; 2 images (`cover.avif` 848 × 477 puis 358 × 201, `produit-reel-decor-genere.avif` 662 × 372 puis 358 × 201), chargées ; 7 FAQ visibles et 7 dans le `FAQPage` ; 0 ancre cassée ; 0 lien vers `/fr/packshot-e-commerce`.
+- Métadonnées : title 57 caractères, description 155, canonical `https://www.packshot-creator.com/fr/blog/ai-act-images-produit`, aucune balise `robots`, `og:image` = `cover.avif`, JSON-LD Organization, BreadcrumbList, Article, FAQPage ; URL présente au sitemap (309 URL) ; `smoke.mjs` local vert (17 pages, 3 ressources).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; suite e2e complète (le dernier passage, sur `ea7d923`, était identique à `main`) ; traductions (D38, non démarrées). Articles liés `generer-images-produit-ia` et `migrer-ancien-packshotcreator` : non modifiés dans cette PR (backlog BL-43-2 et BL-43-3 de #73).
+
+**Suite** — Transmission à Sébastien sur la Preview de la nouvelle tête ; à la publication coordonnée : lien actif vers l'article Suisse, `date` du jour.
+
+---
+
 ## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé
@@ -547,6 +857,101 @@ Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni descriptio
 
 ---
 
+## 2026-10-01 · Cluster AI Act — pilier A : mention « Illustration générée par IA » (Q1) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `ea7d923`
+
+**Quoi** — Arbitrage Q1 de Laurent du 01/10 : légende de A3 : « Illustration : placer un produit… » devient « Illustration générée par IA. Placer un produit… » ; reste de la légende inchangé. Aucune autre phrase modifiée.
+
+**Pourquoi** — Choix éditorial de transparence sur des illustrations générées par IA, dans des articles consacrés au signalement des images IA. Ce n'est pas l'affirmation d'une obligation légale générale : l'article ne la présente pas comme telle.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** — `verifier-json`, `tsc`, Vitest et `next build` en local avant push ; rendu des légendes contrôlé sur `next start` local.
+
+**Supposé** — Rien.
+
+**Non regardé** — A1 (hero) : le gabarit commun du blog n'affiche pas de légende sous l'image principale. Ajouter un champ optionnel `imageCaption` au gabarit (`app/[lang]/blog/[slug]/page.tsx`, `lib/content.ts`) a été refusé par le contrôle de permissions de la session (modification d'une ressource partagée) : rien n'est modifié, décision à prendre par Laurent. Preview (SSO) ; `www` (R4).
+
+**Suite** — Mention sur l'image principale selon la décision de Laurent ; puis transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : contrôle final éditorial avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `80489cf`, `main` `8ec89c1`
+
+**Quoi** — Passe de sortie éditoriale (audit, corrections, tests, Preview) avant envoi à Sébastien. Dans `content/blog/fr/ai-act-images-produit.json` seulement :
+- ouverture : « Vérifié le 28 septembre » devient « Sources vérifiées du 28 au 30 septembre », comme le corps (plateformes et mesure du 30/09) ;
+- tableau « qui doit quoi », ligne agence : point 14 cité en entier (une entreprise reste déployeur lorsque des prestataires opèrent le système pour son compte, sous sa responsabilité et son contrôle), comme dans l'article Suisse (#60) ; le cas d'une marque qui impose ou encadre l'usage de l'IA reste non tranché ;
+- ligne marketplace : renvoi au point 16 ;
+- « la version finale du 20 juillet 2026 » devient « la version publiée le 20 juillet 2026 » ;
+- Google, mention visible : « Google peut en ajouter lui-même dans certains cas » ;
+- mesure WebP : condition de la mesure (navigateur acceptant WebP) ;
+- renvoi vers l'article Suisse : titre réel, toujours sans lien actif ;
+- sources classées par nature (cadre européen, droit français, Suisse, plateformes, standards), sans la trace de production « ajoutés » ; cinq sources déjà utilisées par le texte ajoutées à la liste : Google 6324350 (refus du produit), Google 17231950 (libellé IA), projet de lignes directrices du 8 mai 2026, texte adopté par le Sénat le 18/02/2026 et projet de loi n° 2518 de l'Assemblée nationale (organisation du contrôle en France) ;
+- en-têtes de trois tableaux raccourcis (« Ce que cela change », « Rôle selon l'AI Act », « Marquage par l'outil ? », « Mention visible par la marque ? », « À faire ») : à 1440 px, les en-têtes insécables (`white-space: nowrap`, `app/globals.css`) faisaient déborder 3 tableaux sur 4 et tronquaient leur dernière colonne.
+Aucune qualification de cas modifiée. FAQ, title, meta, H1, slug, canonical, date, visuels, alt et légende inchangés.
+
+**Pourquoi** — Mission « contrôle final éditorial » du 01/10/2026 : Sébastien ne reçoit que ce qui exige son arbitrage. Constats : date d'ouverture contredite par le corps ; ligne agence moins complète que l'article Suisse sur le même point 14 ; deux affirmations Google, le projet du 8 mai et le calendrier parlementaire français sans source listée ; dernière colonne de trois tableaux masquée sur ordinateur.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** —
+- Fresh-check : tête `80489cf` et `main` `8ec89c1` conformes à la mission ; PR ouvertes listées ; aucune autre session n'a écrit dans #59 depuis `80489cf`.
+- Sources relues le 01/10 : lignes directrices C(2026) 5054 (PDF, points 10, 12, 13, 14, 16, 92, 113, 114, 116, 117, 127, 129, 154) ; projet du 8 mai 2026 (PDF, point 86 : suppression ou masquage d'arrière-plans parmi les modifications à marquer) ; Google 14743464, 14572008, 6324350 (conservation des métadonnées IA parmi les conditions minimales, dont le non-respect entraîne le refus du produit), 17231950 (paramètre de libellé IA facultatif ; libellés ajoutés par Google dans certains cas) ; Zalando, mise à jour du 31/08/2026 (mentions visibles refusées, marquage invisible « required by December 2026 ») ; Chancellerie fédérale, page « Intelligence artificielle » ; liste des points de contact de la Commission (France : DGCCRF) ; Sénat, texte adopté le 18/02/2026 (titre « systèmes d'intelligence artificielle », art. 55-1 et suivants) ; Assemblée nationale, projet de loi n° 2518 déposé le 20/02/2026.
+- Mesure WebP : preuve au JOURNAL de #63 (30/09, 06:27 UTC, `sysnext.vercel.app`, `/images/hero/hero-studios-wide.avif` : original servi en `w=640` et `w=1080`, WebP sans XMP ni EXIF en `w=1920` pour un en-tête `Accept` annonçant WebP).
+- Liens externes (22 URL distinctes) : 17 en 200 ; EUR-Lex (2) en 202 et Légifrance (3) en 403, défis anti-robots non concluants.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, variables factices de la CI.
+- `next start` local, Chromium, 1440 et 390 px : 200 ; title 57 car., description 155 car., canonical inchangé, aucune balise `robots` ; JSON-LD Organization, BreadcrumbList, Article, FAQPage 7 ; hero 848 × 477 et 358 × 201, A3 662 × 372 et 358 × 201, ratio 16:9, légende présente ; 4 tableaux sans défilement à 1024, 1280 et 1440 px (avant : 3 sur 4 tronqués), défilement interne à 390 px ; 0 débordement de page ; 0 erreur de console ; 0 ancre cassée ; 0 marqueur ; 0 lien vers `/fr/packshot-e-commerce`.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `8ec89c1` (0 en plus, 0 en moins) : titles et descriptions hors bornes (dont `/fr/academy`), hreflang de `/fr/packshot-bijoux`, débordements de `/fr`, `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, ancre `#calculateur-roi`. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
+- Premier passage e2e de la branche écarté : 82 dépassements de délai sur des pages sans lien avec l'article (`/fr/ia-photo-produit`, `/fr/packshot-amazon`…), serveur local bloqué après des contrôles concurrents (même cause que dans #63) ; relance complète sur un serveur redémarré : 0 dépassement.
+
+- Après fusion de `main` `2ef01b2` (#68, Worker D36, fusionnée pendant la passe ; conflit du JOURNAL seulement) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 (346 + tests D36 de `main`) ; `next build` vert. Contenu de l'article identique avant et après la fusion.
+
+**Supposé** — [Inférence] EUR-Lex et Légifrance servent les mêmes textes que ceux lus les 29 et 30/09 (Cellar, conversion). Cela repose sur des schémas observés.
+
+**Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 30/09 pour #63 seulement.
+Hors périmètre, rien de modifié :
+- gabarit du blog : le fil d'Ariane est rendu dans le `h1` (tous les articles) ;
+- `globals.css` : en-têtes de tableau insécables, risque de colonne masquée sur d'autres articles ;
+- deux articles publiés affichés en « articles liés » sous A, dont la phrase sur l'AI Act diverge du pilier : `generer-images-produit-ia` et `migrer-ancien-packshotcreator`.
+
+**Suite** — Envoi à Sébastien sur la Preview de la nouvelle tête. À la publication coordonnée (D38) : lien actif vers `/fr/blog/images-ia-ecommerce-suisse`, `date` du jour de publication.
+
+---
+
+## 2026-09-30 · Cluster AI Act — pilier A : passe éditoriale (cadre de rédaction de Sébastien) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `de7289f`, puis fusion de `main` `a8c85ca` (#69, conflit du JOURNAL résolu en gardant les deux entrées)
+
+**Quoi** — Réécriture de la prose pour la lisibilité, qualifications juridiques inchangées. Ouverture qui répond puis dit ce que le lecteur saura décider ; les 34 mentions « Niveau : … » intégrées aux phrases (« la Commission cite », « probablement », « à notre lecture », « les textes consultés ne tranchent pas »), avec un paragraphe de lecture unique avant les cas ; titres des cas sans la numérotation héritée des 20 cas de #43 ; tableau des autres cas reconstruit (réponse pour l'outil et pour la marque, puis degré de certitude, repris de #43 et #61) ; tableaux « qui doit quoi », calendrier et plateformes tournés vers l'action ; listes pour la mise en forme standard et les critères de l'hypertrucage ; 14 tirets cadratins retirés ; 2 liens de sources placés près des affirmations (lignes directrices, article L121-2). FAQ, title, meta, slug, canonical et visuels inchangés ; `readingTime` 20 → 22.
+
+**Pourquoi** — Retour de Sébastien du 30/09 (textes « durs à lire ») et kit `TRANSMISSION_REDACTION_BLOG_2026-09-30` (prompt prioritaire, SKILL, règles d'écriture, style maison, repères SEO/GEO), transmis par Laurent.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Sens juridique : chaque niveau (Texte, Exemple direct Commission, Interprétation, Non tranché) retrouvé dans la nouvelle phrase ; points 10 à 16, 113 à 117 des lignes directrices C(2026) 5054 relus sur le PDF de la Commission le 30/09 pour les deux précisions de sens listées dans la PR (agence : critère des points 12 et 14, cas toujours non tranché ; exemple de produit hypertrucage : « dans une publicité ou sur un emballage »).
+- Suisse : « aucune obligation suisse d'étiquetage » devient « aucune obligation suisse générale d'étiquetage », aligné sur l'article Suisse (#60).
+- Mots : corps 4 078 → 4 527, total avec FAQ et H1 4 655 → 5 104 (même méthode que la PR) ; hausse due surtout au tableau des autres cas, qui donne désormais la réponse et plus seulement le niveau.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local, 1440 et 390 px : 200, title et description inchangés, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article, FAQPage 7 = 7 visibles ; hero 848 × 477 et 358 × 201, A3 662 × 372 et 358 × 201, légende présente ; 0 débordement ; 0 erreur de page ; 0 lien interne, 0 lien vers `/fr/packshot-e-commerce` ; aucun « Niveau : » ni tiret cadratin au rendu.
+- `e2e/seo.spec.ts` + `internal-links-all.spec.ts` en local : 243 réussis et 8 échecs avant la fusion de #71. Correction : la comparaison annoncée d'abord avec `https://sysnext.vercel.app` n'était pas valable (erreurs TLS du proxy, puis délais dépassés depuis le conteneur). Comparaison refaite après fusion de `main` `8ec89c1` : 235 réussis, 9 échecs, liste identique à celle d'un build local de `main` `8ec89c1` (titles et descriptions hors bornes, dont `/fr/academy`, et hreflang de `/fr/packshot-bijoux`).
+- Après fusion de `main` `8ec89c1` (#71) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, 372 pages ; rendu de l'article inchangé en 1440 et 390 px.
+**Supposé** — [Inférence] Le retour de Sébastien se limite à ce que cite la mission (« durs à lire », « meilleur des deux mondes », « reprends les quatre articles comme un ensemble éditorial ») : aucun autre écrit de sa part n'a été transmis. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; EN et de-ch (D38) ; relecture par un autre lecteur : aucune ; « quatre articles » : non établi, seuls A et S traités, #61 à #63 non touchées.
+
+**Suite** — Seconde passe de Sébastien sur la Preview ; deux précisions de sens à valider (voir PR #59).
+
+---
+
 ## 2026-10-01 · Cluster AI Act — reliquat de la revue du 28/09 archivé : E8 à E13 (site) et H1 à H3 (blendai.studio) · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, reliquat de la revue préalable du 28/09 | **PR** : #73, documentaire, brouillon | **Base** : `main` `2ef01b2`
@@ -949,6 +1354,86 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 **Non regardé** — les 12 articles à `page.tsx` dédiée (hors gabarit, mises en page propres) ; le hub `/blog` ; le rendu derrière Cloudflare sur www.
 
 **Suite** — rien.
+
+---
+
+## 2026-09-30 · Cluster AI Act — pilier A : visuels A1 (hero) et A3 intégrés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `be1f8ae`
+
+**Quoi** — A1 devient l'image principale de l'article (champ `image`) ; A3 est inséré dans « Cas 11 + 12 », après le paragraphe sur l'exemple de la Commission (produit réel, environnement généré), avec l'alt et la légende fixés par la mission. A2 n'est pas intégré. Aucune prose modifiée.
+
+**Pourquoi** — Sélection visuelle verrouillée par Laurent le 30/09 (`AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` : A1 et A3 KEEP, A2 REJECT), en vue de la passe de Sébastien sur la Preview.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/cover.avif`, `public/images/blog/ai-act-images-produit/produit-reel-decor-genere.avif`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). Sur la Preview : hero, `og:image` et image de l'`Article` JSON-LD renseignés.
+
+**Vérifié**
+- Pack `AI_ACT_VISUAL_HANDOFF_2026-09-30.zip` : SHA-256 et tailles des PNG identiques au rapport (A1 `e5a4cf6d…4437b`, 1 615 385 octets ; A3 `f2f57220…8b7b2`, 1 329 657 octets). PNG sources conservés hors dépôt, non modifiés.
+- Pipeline réel : le hero et les images du corps sont servis tels quels (balise `img`, sans optimiseur) ; le corpus utilise l'AVIF (112 champs `image` sur 126) et la convention `/images/blog/<slug>/cover.avif`. Dérivés AVIF 1600 × 900 sans recadrage, qualité 70, 4:4:4 : A1 78 992 octets (PSNR 43,6 dB), A3 73 246 octets (PSNR 43,9 dB) ; comparaison à 1:1 sans différence visible.
+- `next start` local : les deux images en 200 `image/avif`, ratio 16:9 complet en 1440 px (hero 848 × 477, A3 662 × 372) et en 390 px (358 × 201 chacune), 0 débordement, 0 erreur de page ; 7 FAQ = FAQPage 7 ; 4 tableaux ; canonical et absence de balise `robots` inchangés ; `og:image` = URL absolue de `cover.avif` ; `Article.image` = `/images/blog/ai-act-images-produit/cover.avif`.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages ; `e2e/seo.spec.ts` + `internal-links-all.spec.ts` : 243 réussis, les 8 échecs préexistants de `main`, inchangés.
+
+**Supposé** — [Inférence] Provenance : illustrations générées par IA, enregistrées `model_generated=true` le 30/09/2026 selon le rapport (source fournie, non vérifiable dans les fichiers) ; modèle, identifiant de génération et prompt non embarqués ; aucune métadonnée XMP, IPTC ou C2PA dans les PNG ni dans les AVIF. Cela repose sur des schémas observés.
+
+**Non regardé** — Alt du hero : le gabarit impose le titre de l'article (`app/[lang]/blog/[slug]/page.tsx`) ; l'alt demandé pour A1 n'est pas applicable sans modifier ce gabarit commun, non touché. `twitter:image` : le gabarit du blog n'en émet pas par article (image générique du layout, comme tous les articles). Prise en charge de l'AVIF en `og:image` par les réseaux sociaux : non vérifiée, comportement identique au reste du corpus. Preview (SSO). EN et de-ch (D38).
+
+**Suite** — Preview de la nouvelle tête à transmettre à Sébastien (passe finale) ; S1, S2, S3 sur #60 ; alt de hero configurable : PR de gabarit séparée si Laurent le décide.
+
+---
+
+## 2026-09-30 · Cluster AI Act — satellites B, C, D non créés (D16), matière indispensable réintégrée dans le pilier A · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `91e96a8`
+
+**Quoi** — Décision de pilotage de Laurent du 30/09 : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Le pilier A reprend seulement la matière indispensable au lecteur : recolorisation (nouvelle H3 « Cas 8 + 9 », section renommée « Sept situations »), phrase sur la correction de couleur « mineure », rayure et usure (cas 14), personnes réelles et synthétiques (cas 16), plateformes et métadonnées (tableau Google Merchant Center, Amazon, Zalando ; point 117 ; métadonnées perdues au réencodage WebP ; C2PA), 2 questions de FAQ, sources correspondantes. Les trois renvois à des « dossiers » futurs sont retirés ; les lignes 8 et 9 de l'index, désormais traitées en H3, aussi.
+
+**Pourquoi** — D16/D27 appliqués par Laurent : critère 2 non rempli pour B et C (aucune demande mesurée sur l'intention réglementaire, requêtes génériques ou d'outils non assimilées) ; critère 3 non rempli pour D. Objectif : un pilier autonome suffisant, sans revenir à la version longue de #43.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Corps 3 437 → 4 258 mots ; FAQ 5 → 7 questions ; total 4 838 mots ; `readingTime` 17 → 20 (ratio des articles longs du blog).
+- Textes repris des branches de #61, #62 et #63, déjà relus sur sources primaires le 30/09, avec leurs niveaux (Texte, Exemple direct Commission, Interprétation, Non tranché) ; aucune qualification nouvelle.
+- Sérialisation JSON identique à l'original (indentation 2, UTF-8, sans retour final) ; 0 lien interne ; 0 lien vers `/fr/packshot-e-commerce` (D37).
+- Contrôles : voir la PR #59 (verifier-json, tsc, Vitest, `next build`, rendu local).
+**Supposé** — [Inférence] Le constat sur l'optimiseur d'images (AVIF servi avec métadonnées en 640 et 1 080 px, WebP sans métadonnées en 1 920 px) reste valable à la publication ; il date du 30/09 et vaut pour notre configuration seulement. Cela repose sur des schémas observés.
+**Non regardé** — Visuels A1 et A3 : fichiers et rapport `AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` introuvables dans le dépôt, les branches, les artifacts et le stockage Supabase ; article Suisse (#60) inchangé, sans renvoi aux satellites ; EN et de-ch (D38) ; Preview (SSO).
+
+**Suite** — Fermeture sans fusion recommandée pour #61, #62 et #63 ; intégration des visuels A1, A3, S1, S2 et S3 dès transmission des fichiers et du rapport ; passe finale de Sébastien.
+
+---
+
+## 2026-09-29 · Cluster AI Act — pilier A restructuré, PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `e2e1027` (post-#55 et #58 ; `37146c2` au début de la mission)
+
+**Quoi** — Création de `content/blog/fr/ai-act-images-produit.json` depuis `main`, à partir du texte restructuré transmis par Laurent le 29/09 (≈ 3 644 mots FAQ comprise, 5 FAQ), qui remplace éditorialement la version longue de #43. Balisage adapté au format du corpus (`tldr`, `table-wrap`, FAQ dans `faqs`). Micro-corrections seulement : 6 renvois au document de travail (« article source », « article actuel ») ; section « Et en Suisse ? » réduite à une passerelle prudente (art. 2(1)(c)), sans lien actif vers l'article Suisse non publié ; 4 précisions exigées par les sources primaires (art. 3(3) « ou en service » ; art. 3(60) liste fermée ; lignes directrices §92, changements extrêmes « qui modifient le sens » ; Code, interopérabilité « des mécanismes de détection »). Liens ajoutés sur les 8 sources officielles déjà nommées.
+
+**Pourquoi** — Mission « cluster AI Act » de Laurent (29/09) : le pilier se recentre sur l'article 50 ; les cas 3-10, 15, 17-20 et les plateformes relèvent des futurs satellites B, C et D.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée FR, EN et de-ch (D38). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Sources primaires relues le 29/09 : règlement (UE) 2024/1689 et 2026/1744 (texte du JO via le Cellar, EUR-Lex renvoyant 202 aux scripts), lignes directrices C(2026) 5054 et projet du 8 mai 2026 (PDF), FAQ article 50, Code de bonnes pratiques (PDF), liste des autorités de surveillance (7/09/2026), dossiers Sénat et Assemblée nationale, L121-1 et L121-2 (lus par conversion, Légifrance renvoyant 403 aux scripts). A1 à A10 confirmés sur le fond ; qualifications de cas inchangées.
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; ESLint 258 erreurs et 68 avertissements sur tout le projet, identiques à `main` (les fichiers modifiés ne sont pas analysés par ESLint) ; `next build` vert, 384 pages, après rebase sur `e2e1027`.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/ai-act-images-produit`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (`datePublished` = `dateModified` = 2026-09-28) et FAQPage (5 = 5 visibles), URL présente au sitemap (326 URL), 0 débordement en 1440 et 390 px ; comportement identique à `generer-images-produit-ia` (pas de hreflang sans entrée `alternates.json`, pas d'image).
+- Liens : 0 interne ; 9 externes, 7 en 200, EUR-Lex 202 et Légifrance 403 (défis anti-robots, non concluants depuis le conteneur).
+- `e2e/seo.spec.ts` et `e2e/internal-links-all.spec.ts` sur le serveur local : 243 réussis, 8 échecs préexistants (title ou description hors bornes et hreflang de `/fr/packshot-bijoux`), métadonnées identiques à `sysnext.vercel.app`.
+- Aucun lien vers `/fr/packshot-e-commerce` (D37). #43, #53 et #55 non modifiées.
+**Supposé** — [Inférence] Les lignes directrices restent citables comme « publiées le 20 juillet 2026, non contraignantes » : le communiqué de la Commission parle de publication, alors que la communication C(2026) 5054 annonce une adoption formelle ultérieure, une fois toutes les versions linguistiques disponibles. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; versions EN et de-ch (D38) ; visuels ; relecture de la prose et de la signature par Sébastien (`01-RAYON-ACTION.md`, `content/blog/**`).
+
+**Passe éditoriale du 30/09** (relecture humaine de Laurent, #59) — deux micro-corrections, sans changement de qualification ni de structure : introduction des sources (« Sources utilisées pour cette analyse, vérifiées au 28 septembre 2026. ») ; FAQ « Qu’est-ce qu’un hypertrucage pour une image produit ? », « notamment » retiré au profit de l'énumération fermée de l'art. 3(60) déjà employée dans le corps. `verifier-json`, `tsc` et `next build` rejoués.
+
+**Micro-correction du 30/09, mission « fermeture D16 et micro-corrections A/S »** — section « Quand une image produit devient-elle un hypertrucage ? » : « quatre éléments » devient « quatre critères cumulatifs », avec renvoi au point 113 des lignes directrices C(2026) 5054 (« four cumulative criteria », PDF relu le 30/09). Une phrase ajoutée signale que la FAQ de la Commission (mise à jour le 24/07/2026, relue le 30/09) présente les mêmes exigences en trois critères cumulatifs, en regroupant l’objet représenté avec le critère d’existence. Aucune qualification, aucun cas et aucune structure modifiés. Le verdict D16 de B, C et D reste en attente de mesure : aucune matière n’est réintégrée dans A.
+
+**Suite** — Passe terrain de Sébastien, revue visuelle, maillage final et traductions avant toute publication coordonnée ; liens vers les satellites B, C, D et vers l'article Suisse à activer à leur publication.
 
 ---
 
