@@ -1,0 +1,38 @@
+{
+  "id": "D2",
+  "article": "metadonnees",
+  "section": "IPTC, XMP et C2PA : à quoi servent-ils ?",
+  "title": "Informations, mot-clé et manifeste",
+  "caption": "Différencier conceptuellement champ descriptif, mot-clé et manifeste de provenance, sans supposer leur présence ni leur caractère obligatoire sur un fichier précis.",
+  "alt": "Trois compositions abstraites illustrant champ descriptif, mot-clé et manifeste de provenance.",
+  "need": "FONCTIONNEL PROVISOIRE",
+  "steps": [
+    [
+      "Information descriptive",
+      "Champ illustratif ; aucune métadonnée réelle affichée."
+    ],
+    [
+      "Mot-clé",
+      "Emplacement conceptuel d’un mot-clé, sans valeur simulée."
+    ],
+    [
+      "Manifeste de provenance",
+      "Principe d’association et de vérification, sans manifeste fictif."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/metadonnees.json : marqueur <figure data-visuel=\"D2\">, rendu par ModuleRevue sous la section « IPTC, XMP et C2PA : à quoi servent-ils ? »"
+  },
+  "status": "FONCTIONNEL PROVISOIRE",
+  "asset_slots": [],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; produit par un outil d’IA (confirmation de Laurent du 02/10/2026).",
+    "ia": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "C2",
+  "article": "mannequins",
+  "section": "Ne laissez pas le personnage modifier la perception du produit",
+  "title": "Le personnage ne doit pas changer la robe",
+  "caption": "Une robe de référence mesurée à plat, la même robe portée par une silhouette stylisée avec une longueur conforme, puis une version où la longueur a changé. Schéma conceptuel, sans personne générée photoréaliste.",
+  "alt": "Schéma d’une robe générique : à plat avec un repère de longueur, portée par une silhouette stylisée à la même longueur, puis portée avec un ourlet remonté signalé en rouge.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Référence à plat",
+      "Longueur et coupe relevées sur la pièce réelle."
+    ],
+    [
+      "Portée, longueur conforme",
+      "L’ourlet tombe au même repère que la référence."
+    ],
+    [
+      "Portée, longueur modifiée",
+      "L’ourlet est remonté : l’image ne décrit plus la pièce vendue."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/mannequins.json : marqueur <figure data-visuel=\"C2\">, rendu par ModuleRevue sous la section « Ne laissez pas le personnage modifier la perception du produit »"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
+  }
+}

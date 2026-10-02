@@ -1,0 +1,207 @@
+/* Modules interactifs des previews AI Act. Couleurs du thème (variables de
+   app/globals.css) ; aucune animation, aucune transition. Le module est placé
+   dans la prose de l'article : les règles [&_img] de la prose sont neutralisées. */
+
+.module {
+  margin: 2.5rem 0;
+  padding: 1.125rem;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--future-dusk-0-5);
+  border-radius: 0.875rem;
+  background: var(--future-dusk-0);
+}
+
+.surtitre {
+  margin: 0;
+  font-family: var(--font-heading, inherit);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--very-peri-5);
+}
+
+.titre {
+  margin: 0.25rem 0 0.75rem;
+  font-family: var(--font-heading, inherit);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--future-dusk-8);
+}
+
+.visuel {
+  overflow: hidden;
+  border: 1px solid var(--future-dusk-0-5);
+  border-radius: 0.625rem;
+  background: #fff;
+}
+
+.visuel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: contain;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.etapes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.875rem 0 0.625rem;
+}
+
+.etape,
+.fleche {
+  min-height: 2.75rem;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.etape {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--very-peri-1-5);
+  background: #fff;
+  color: var(--future-dusk-7);
+  font-weight: 600;
+  text-align: left;
+}
+
+.etape[aria-pressed='true'] {
+  border-color: var(--very-peri-5);
+  background: var(--very-peri-5);
+  color: #fff;
+}
+
+.fleche {
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--future-dusk-1-5);
+  background: transparent;
+  color: var(--future-dusk-7);
+}
+
+.etape:disabled,
+.fleche:disabled {
+  cursor: not-allowed;
+}
+
+.fleche:disabled {
+  opacity: 0.4;
+}
+
+.etape:focus-visible,
+.fleche:focus-visible {
+  outline: 3px solid var(--very-peri-6);
+  outline-offset: 2px;
+}
+
+.commandes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.description {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--future-dusk-6);
+}
+
+.compteur {
+  font-weight: 600;
+  color: var(--future-dusk-8);
+}
+
+.statique {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  list-style: decimal;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--future-dusk-6);
+}
+
+.legende {
+  margin-top: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--future-dusk-6);
+}
+
+.reserves {
+  overflow-wrap: anywhere;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--future-dusk-1-5);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--future-dusk-5);
+}
+
+.reserves p {
+  margin: 0.375rem 0 0;
+}
+
+.statut {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background: var(--very-peri-0-5);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--very-peri-7);
+}
+
+.libelle {
+  font-weight: 600;
+  color: var(--future-dusk-7);
+}
+
+/* Mobile : étapes en colonne, commandes sur deux lignes (description au-dessus). */
+@media (max-width: 600px) {
+  .module {
+    margin: 2rem 0;
+    padding: 0.75rem;
+  }
+  .etapes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.375rem;
+  }
+  .commandes {
+    flex-wrap: wrap;
+  }
+  .description {
+    order: -1;
+    flex-basis: 100%;
+    text-align: left;
+  }
+  .fleche {
+    flex: 1 1 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .module *,
+  .module *::before,
+  .module *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

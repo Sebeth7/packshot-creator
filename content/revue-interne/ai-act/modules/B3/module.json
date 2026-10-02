@@ -1,0 +1,43 @@
+{
+  "id": "B3",
+  "article": "retouche",
+  "section": "Poussière, rayure, usure : demandez-vous où se trouve le défaut",
+  "title": "Artefact de prise de vue ou défaut de l’objet ?",
+  "caption": "D’abord, des poussières sur l’image, y compris hors de l’objet ; ensuite, une rayure sur le verre d’une montre d’occasion. Schéma explicatif, pas l’analyse d’un exemplaire vendu.",
+  "alt": "Schéma d’une même montre générique : d’abord avec des poussières réparties sur l’image, puis avec une rayure sur le verre entourée d’un repère.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Poussière sur l’image",
+      "Points présents sur la prise de vue, y compris hors de l’objet : un artefact de capture."
+    ],
+    [
+      "Rayure sur l’objet",
+      "Marque sur le verre de la montre : une caractéristique de l’exemplaire vendu."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B3\">, rendu par ModuleRevue sous la section « Poussière, rayure, usure : demandez-vous où se trouve le défaut »"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
+  }
+}

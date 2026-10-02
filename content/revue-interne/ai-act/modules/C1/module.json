@@ -1,0 +1,51 @@
+{
+  "id": "C1",
+  "article": "mannequins",
+  "section": "Le mannequin invisible n’est pas nécessairement une création de personne",
+  "title": "Mannequin invisible : trois étapes",
+  "caption": "Photographie du vêtement sur buste, retrait du support, puis reconstruction éventuelle de l’encolure. Schéma conceptuel ; l’origine et le procédé réels doivent être documentés.",
+  "alt": "Schéma d’une chemise générique sur buste, sans buste, puis avec intérieur d’encolure illustré.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Mannequin photographié",
+      "Vêtement réel à documenter par une image source."
+    ],
+    [
+      "Buste supprimé",
+      "Support retiré dans la représentation."
+    ],
+    [
+      "Intérieur reconstruit",
+      "Encolure complétée par une autre prise de vue ou reconstruite par IA : vérifier coutures, col et volume."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/mannequins.json : marqueur <figure data-visuel=\"C1\">, rendu par ModuleRevue sous la section « Le mannequin invisible n’est pas nécessairement une création de personne »"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; produit par un outil d’IA (confirmation de Laurent du 02/10/2026).",
+    "ia": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "B1",
+  "article": "retouche",
+  "section": "Détourage : surveillez ce que l’outil reconstruit",
+  "title": "Détourage et contours complexes",
+  "caption": "Trois états conceptuels d’un détourage : fichier initial, retrait du fond, reconstruction éventuelle des bords. Comparer au fichier source et au produit réel avant validation.",
+  "alt": "Schéma d’un flacon générique traversant trois états de détourage, sans photographie de référence.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Prise de vue originale",
+      "Décor et bord du produit photographié."
+    ],
+    [
+      "Fond supprimé",
+      "Objet isolé ; vérifier transparence et contour."
+    ],
+    [
+      "Contour reconstruit",
+      "Zone de reconstruction hypothétique, à contrôler sur la vraie image."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B1\">, rendu par ModuleRevue sous la section « Détourage : surveillez ce que l’outil reconstruit »"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; produit par un outil d’IA (confirmation de Laurent du 02/10/2026).",
+    "ia": true
+  }
+}

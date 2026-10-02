@@ -34,6 +34,175 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — illustrations des previews privées B, C, D (en-têtes B0, C0, D0 ; B1, C2 dans le corps) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act, previews privées B, C, D | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `73a7d47`
+
+**Quoi** —
+- Cinq PNG du ZIP `PSC_AI_ACT_BCD_VISUELS_INTEGRATION_2026-10-02` convertis en AVIF (1672 et 836 px) :
+  - B0 remplace l'en-tête vide de B ;
+  - C0 et D0 remplacent ceux de C et D, comme alternatives à leur brief, écart affiché dans le bandeau de relecture ;
+  - B1 (collier) est placé dans « Détourage », avant le module B1 ;
+  - C2 (bijoux portés) est placé après la liste qui contient « Bijou », hors emplacement du module C2.
+- Légendes ouvertes par « Illustration générée par IA. », ALT rédigés d'après l'image.
+- Les huit modules SVG et le texte des articles sont inchangés : seuls deux marqueurs `<figure data-illustration>` sont ajoutés.
+
+**Pourquoi** — GO de Laurent du 02/10 : plus d'en-têtes vides sur les Previews, intégration contextuelle non trompeuse des PNG, modules conservés, D3 inchangé.
+
+**Écartés** —
+- B2 (sacs) : dit la même chose que le module B2, redessiné le 02/10 sur le même exemple bleu, rouge, vert, et que A4 (mugs).
+- B3 (montres) : dit la même chose que le module B3, déjà une montre, et que A5 (gourde). Ce serait aussi la deuxième montre de B après B0.
+- C1 (chemise) : même composition que C0, vêtement seul puis porté par une personne synthétique, et palette proche de A6.
+- La planche `00_PLANCHE_8_IMAGES.png` n'est pas intégrée.
+
+**Fichiers** — `app/[lang]/revue-interne/ai-act/{donnees.ts,revue.module.css,[slug]/page.tsx}`, `app/[lang]/revue-interne/ai-act/visuels/[fichier]/route.ts`, `content/revue-interne/ai-act/{retouche,mannequins,metadonnees}.json`, `content/revue-interne/ai-act/visuels/*.avif` (10), `lib/__tests__/revue-interne-ai-act.test.ts`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site public. Les AVIF sont hors de `public/`. Ils sont servis par une route soumise à la même garde que les pages : générée en Preview et en développement seulement, `X-Robots-Tag: noindex, nofollow, noarchive`.
+
+**Vérifié**
+- Empreintes SHA-256 du ZIP conformes à `04_MANIFEST_SHA256.txt`.
+- Chaque PNG porte un bloc `caBX` (C2PA) contenant `trainedAlgorithmicMedia`, `OpenAI` et `ChatGPT` : chaînes lues, signature non vérifiée. Ce bloc n'est pas conservé dans l'AVIF, comme pour A et S.
+- AVIF sharp, qualité 66, 4:4:4 : de 8,7 à 68,2 Ko, PSNR de 41,5 à 44,7 dB face au PNG redimensionné.
+- `tsc` vert ; ESLint sans message sur les fichiers modifiés ; Vitest 386/386 ; `verifier-json` 191 ; `verifier-consequences` : effet local, rien qui déborde ; `smoke.mjs` vert.
+- `next build` en Preview simulée : 384 pages, dont 10 AVIF identiques octet pour octet aux sources, `Content-Type: image/avif` et `X-Robots-Tag` conservés.
+- `next build` en production simulée : 371 pages, previews et AVIF en 404, aucun fichier AVIF ni texte de légende dans `.next`.
+- `next start`, Chromium, 3 pages × 5 formats (1440, 1024, 820, 390, 360) :
+  - en-tête chargé et visible sans défilement (de 132 à 435 px de hauteur visible) ;
+  - illustrations du corps chargées, ratio 1,775 ;
+  - 0 débordement, 0 cadre vide, 0 requête en échec, 0 erreur de console ;
+  - les huit modules répondent au clic ou au toucher sur « Suivant » ;
+  - robots `noindex, nofollow, noarchive`, 0 canonique, 0 `og:image`.
+
+**Supposé** — Le ZIP indique « ChatGPT Images » comme outil : je ne l'ai pas vérifié au-delà des chaînes du bloc C2PA.
+
+**Non regardé** — Preview derrière le SSO (contrôle humain) ; `www` (R4) ; qualité photographique des AVIF sur écran haute densité au-delà des recadrages comparés ; navigation clavier des modules (inchangés).
+
+**Suite** — Arbitrage de Laurent sur C0 et D0 (écarts au brief), sur l'exclusion de B2, B3 et C1, puis GO de push. D3 attend toujours une capture technique réelle datée. D41 reste en vigueur.
+
+---
+
+## 2026-10-02 · Cluster AI Act — finalisation éditoriale, visuelle et SEO/GEO des previews privées B, C, D · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act, previews privées B (retouche), C (mannequins), D (métadonnées) | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `dead94d`
+
+**Quoi** —
+- Textes : 31 modifications tracées (avant / après dans le dossier de livraison). Notes internes retirées du corps (« pilier A », « ancienne PR », « texte source », « article historique », « point à arbitrer », intitulés de sources) ; FAQ réécrites sur le texte (B 5, C 5, D 5) ; doublons de FAQ avec A retirés ; Google et Amazon datés au 30/09 ; Zalando aligné sur la formulation de A et S (statut exact non établi) ; mesure WebP du 30/09 restituée avec ses conditions (tailles, en-têtes `Accept`, origine Vercel, `www` non mesuré) ; « Images virtuelles » alignée sur A ; Ombres et Texture précisées par une méthode de contrôle.
+- Modules : B2 (sac bleu, rouge du catalogue, coloris hors catalogue, comme l'exemple du texte), B3 (montre : poussière sur l'image, rayure sur l'objet), C2 (robe : référence à plat, longueur conforme, longueur modifiée) et D1 (loi, plateforme, standard, comme l'intitulé de sa section) redessinés en SVG ; libellés de C1 et D3 ajustés ; provenance documentée et affichée dans chaque module ; « Illustration générée par IA. » en tête des huit légendes (SVG écrits par Claude Code ; SVG du ZIP produits par IA, confirmation de Laurent du 02/10).
+- SEO de preview : title et meta proposés révisés ; briefs d'en-tête B0, C0, D0 distincts de A et S. SEO technique public non activé.
+- Notes de module : coupure des noms longs (débordement de 1 à 2 px à 360 px).
+
+**Pourquoi** — GO de Laurent du 02/10 : finalisation des maquettes privées sur les trois dimensions de D42 (éditorial, visuel/UX, SEO/GEO), sans publication. D41 reste en vigueur.
+
+**Fichiers** — `content/revue-interne/ai-act/{retouche,mannequins,metadonnees}.json`, `content/revue-interne/ai-act/modules/*/module.json` (8), `content/revue-interne/ai-act/modules/{B2,B3,C2,D1}/etat_*.svg` (11), `app/[lang]/revue-interne/ai-act/{modules.ts,ModuleRevue.tsx,ModuleRevue.module.css}`, `lib/__tests__/revue-interne-ai-act.test.ts`, `docs/seo-geo/JOURNAL.md`
+
+**Source** — Têtes relues le 02/10 : A `0d380a8`, S `fc9333b` (lecture seule). Mesure WebP du 30/09 : JOURNAL de la branche de #63 (`b6495d1`). Relevé de contrôle du 02/10 à 07:06 UTC sur `sysnext.vercel.app` (`/_next/image`, `hero-studios-wide.avif`) : 640 et 1 080 px, AVIF d'origine avec XMP et EXIF ; 1 920 px avec `Accept` WebP, WebP sans XMP ni EXIF (réponse en cache Vercel) ; 1 920 px avec `Accept: */*`, AVIF d'origine. Relevé joint au dossier, non inséré dans le texte.
+
+**Effet attendu** — Aucun sur le site public.
+
+**Vérifié**
+- `tsc` vert ; ESLint sans message sur les fichiers modifiés ; Vitest 382/382 ; `verifier-json` 191 ; `verifier-consequences` : effet local, rien qui déborde ; `smoke.mjs` local vert.
+- `next build` : Preview simulée, 374 pages, 3 previews en 200 ; production simulée et build hors Vercel, 371 pages, previews, autres langues et URL d'asset en 404, sans texte ni SVG.
+- `next start`, Chromium : 3 pages × 7 formats (1440 ; 1024 × 768 ; 820 × 1180 ; 1180 × 820 ; 390 × 844 ; 844 × 390 ; 360 × 740) : 0 débordement de page ou de module, tableaux et code sans défilement interne, un seul `h1`, 0 erreur de console, FAQ ouverte au clic, sommaire de bureau : chaque entrée mène à son titre (96 px sous le haut de l'écran).
+- Modules 8 sur 8 : clic sur chaque étape, Précédent / Suivant jusqu'aux bornes, clavier, toucher, sans JavaScript (étape 1, boutons inactifs, liste statique), `prefers-reduced-motion` (0 transition, 0 animation), navigation B → C → D.
+- Indexation : robots et googlebot `noindex, nofollow, noarchive` ; 0 canonique, 0 alternate, 0 JSON-LD, 0 `og:url` ; previews absentes du sitemap, de `/fr/blog` et des autres pages prérendues.
+- e2e `seo` et `mobile-overflow` : 234 réussis, 10 échecs, liste identique à celle de `dead94d` (pages hors du diff ; 9 reproduisent les valeurs de `sysnext.vercel.app`).
+- Sommaire repliable sur mobile et tablette : après un toucher, le titre visé passe sous le haut de l'écran. Anomalie du composant commun déjà consignée dans `ETAT.md` (antérieure à #50, présente sur `main`), non traitée ici.
+
+**Supposé** — Aucune hypothèse retenue. Provenance des SVG du ZIP (B1, C1, D2, D3) : produits par un outil d'IA, selon la confirmation de Laurent du 02/10 ; leurs légendes s'ouvrent aussi par « Illustration générée par IA. » (arbitrage Q1).
+
+**Non regardé** — Preview derrière le SSO ; `www` (R4) ; sources primaires ; rapports F/F2 et leur addendum du 02/10, absents du dépôt.
+
+**Suite** — Contrôle humain de la Preview (fiche `08_CHECKLIST_PREVIEW_SSO.md`) ; validation de Sébastien (D42, étape 5) ; points à arbitrer (`09_POINTS_RESTANT_A_ARBITRER.md`). Toute publication exige une nouvelle mesure D16 complète et une nouvelle décision de Laurent (D41).
+
+---
+
+## 2026-10-02 · Cluster AI Act — huit modules interactifs dans les previews privées B, C, D ; garde Preview · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act, previews privées B (retouche), C (mannequins), D (métadonnées) | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `3f8927b`
+
+**Quoi** —
+- Huit modules pédagogiques interactifs à la place des emplacements de visuels du corps : B1 (détourage), B2 (couleur), B3 (artefact ou défaut), C1 (mannequin invisible), C2 (à plat, volume, porté), D1 (couches du fichier), D2 (descriptif, mot-clé, manifeste), D3 (parcours du fichier). Étapes au choix (boutons, Précédent / Suivant), aucune lecture automatique ni animation ; sans JavaScript, étape 1 affichée et liste statique de toutes les étapes.
+- Chaque module affiche son statut (« SOURCE GRAPHIQUE ATTENDUE » pour B et C, « FONCTIONNEL PROVISOIRE » pour D), la mention « schéma conceptuel », le visuel définitif attendu et la consigne de légende de la fiche d'emplacement. Les en-têtes B0, C0, D0 restent des emplacements à décider.
+- Garde d'environnement : pages construites sur une Preview Vercel ou en développement local seulement ; 404 en production Vercel, en CI et pour toute build hors Vercel.
+- Open Graph et Twitter propres aux previews : le layout leur donnait `og:url` et l'image de partage de la page d'accueil publique.
+- Tableau de D : marges et corps resserrés sous 400 px (dépassement interne de 35 px à 360 px).
+
+**Pourquoi** — Mission de Laurent du 02/10 : terminer les huit modules du ZIP dans #79, sans publication. D41 reste en vigueur : maquettes privées d'évaluation, sans valeur de création, de validation D16 ni de publication.
+
+**Fichiers** — `app/[lang]/revue-interne/ai-act/[slug]/page.tsx`, `app/[lang]/revue-interne/ai-act/donnees.ts`, `app/[lang]/revue-interne/ai-act/revue.module.css`, `app/[lang]/revue-interne/ai-act/modules.ts`, `app/[lang]/revue-interne/ai-act/ModuleRevue.tsx`, `app/[lang]/revue-interne/ai-act/ModuleRevue.module.css`, `content/revue-interne/ai-act/modules/{B1,B2,B3,C1,C2,D1,D2,D3}/` (8 `module.json`, 25 `etat_XX.svg`), `lib/revue-interne/acces.ts`, `lib/__tests__/revue-interne-ai-act.test.ts`, `docs/seo-geo/JOURNAL.md`
+
+**Source** — `PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02.zip` (SHA-256 `6432410015cbd50935ea64e1b5075b9c3aacfeae424f4f0b8dc5997cc77c8520`) : `03_ANIMATIONS/*/module.json` et `etat_XX.svg` copiés à l'octet près (SHA-256 contrôlés) ; `poster.svg`, identiques à `etat_01.svg`, non repris. Textes : `01_TEXTES/B.md`, `C.md`, `D.md` identiques mot pour mot aux textes déjà intégrés dans #79 ; aucun mot modifié.
+
+**Réconciliation avec le patch du ZIP** — Patch non appliqué tel quel : il prévoyait trois routes, une copie des textes en TypeScript et une route d'asset SVG, alors que #79 sert déjà les textes par une route unique et des JSON. Repris : composant et interactions (`ReviewModule` → `ModuleRevue`), libellés et étapes des `module.json`, SVG, logique de garde. Adapté :
+- SVG incorporés en URI `data:` à la build : ni fichier dans `public/`, ni route d'asset ;
+- titre du module en paragraphe, pas en H3 : hiérarchie et sommaire de l'article inchangés ;
+- garde plus stricte que celle du ZIP (une build hors Vercel est refusée, y compris `next start` local) ;
+- test de la garde placé dans `lib/__tests__/` (le chemin du ZIP n'était pas couvert par la configuration de Vitest) ;
+- couleurs du thème du site à la place des couleurs codées en dur.
+Les champs `placements` des `module.json` décrivent encore l'architecture du ZIP : sources conservées à l'octet près, champ non lu.
+
+**Effet attendu** — Aucun sur le site public.
+
+**Vérifié**
+- `tsc` vert ; ESLint sans message sur les fichiers modifiés ; `verifier-json` 191 valides ; Vitest 382/382 (9 nouveaux tests : garde, emplacements, section H2 de chaque module) ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- `next build` local en Preview simulée (`VERCEL=1`, `VERCEL_ENV=preview`) : vert, 374 pages, 3 previews en 200. En production simulée (`VERCEL_ENV=production`) : vert, 371 pages ; previews, autres langues et `/fr/revue-interne/ai-act/asset/B1/01` en 404, sans texte ni SVG servi.
+- `sysnext.vercel.app` (production, hors Cloudflare), le 02/10 : 404 sur les 3 previews et sur l'URL d'asset. Preview de la branche : 302 vers le SSO Vercel.
+- `next start`, Chromium, 1440, 1024 × 768, 820 × 1180, 390 × 844 et 360 × 740 : 0 débordement de page, 0 erreur de console, un seul `h1`, tableaux et code sans défilement interne.
+- Modules, 8 sur 8 : chaque étape au clic, Précédent / Suivant jusqu'aux bornes ; clavier (Tab, Entrée, Espace ; contour de focus de 3 px) ; toucher à 390 px ; sans JavaScript, boutons inactifs, étape 1 et liste statique ; `prefers-reduced-motion` : 0 transition, 0 animation ; navigation B → C → D.
+- En-tête : robots et googlebot `noindex, nofollow, noarchive` ; aucune canonique, aucun alternate, aucun JSON-LD ; aucun `og:url` ni `og:image`. 0 occurrence dans `sitemap.xml` et `/fr/blog` ; aucun flux RSS dans le dépôt ; aucun lien entrant depuis une autre page prérendue.
+- e2e `seo` et `mobile-overflow` sur la build locale : 234 réussis, 10 échecs sur des pages hors du diff. Les 9 échecs de title, description et hreflang reproduisent les valeurs servies par `sysnext.vercel.app` ; `/fr` à 375 px non comparé à la production.
+
+**Supposé** — [Inférence] Vercel expose `VERCEL_ENV=preview` pendant la build d'une Preview ; sinon les previews répondent 404 aussi sur la Preview (garde fermée par défaut). Cela repose sur des schémas observés. À contrôler sur la Preview après push.
+
+**Non regardé** — Preview Vercel derrière le SSO ; `www` (R4) ; Safari, Firefox, appareils réels ; lecteur d'écran réel ; sources primaires ; provenance des SVG (outil de création non documenté dans le ZIP).
+
+**Suite** — Contrôle humain sur la Preview (Laurent, Sébastien) : 3 pages en 200 sous SSO, modules, mobile. Photographies définitives B et C, relevé technique réel pour D3, arbitrage Zalando. Toute publication exige une nouvelle mesure D16 complète et une nouvelle décision de Laurent (D41).
+
+---
+
+## 2026-10-02 · Cluster AI Act — previews privées de relecture B, C, D (hors publication) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, articles B (retouche), C (mannequins), D (métadonnées) | **PR** : brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa`
+
+**Quoi** — Trois pages de relecture privées, `/fr/revue-interne/ai-act/retouche`, `/mannequins` et `/metadonnees`, avec le rendu des articles du blog (prose, tableaux, sommaire, FAQ). S'y ajoutent un bandeau de relecture, un « SEO de preview » proposé, une navigation entre les trois pages et des emplacements de visuels (« VISUEL B1 À INTÉGRER »…). Textes : réécritures du 02/10 intégrées sans changement de mot, typographie seule ; notes de travail sorties du corps.
+
+**Pourquoi** — GO de Laurent du 02/10 : « Cette mission autorise la création de maquettes privées de travail pour lecture et relecture, pas la publication. » D41 reste en vigueur : ces pages ne valent ni création, ni validation éditoriale ou juridique, ni publication.
+
+**Fichiers** — `app/[lang]/revue-interne/ai-act/[slug]/page.tsx`, `app/[lang]/revue-interne/ai-act/donnees.ts`, `app/[lang]/revue-interne/ai-act/revue.module.css`, `content/revue-interne/ai-act/retouche.json`, `content/revue-interne/ai-act/mannequins.json`, `content/revue-interne/ai-act/metadonnees.json`, `docs/seo-geo/JOURNAL.md`
+
+**Source** — `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02.zip` (SHA-256 `d51c0718c9fed42d0fb496609761f17d1268f769a9c8b566b60fab5e7b486f62`), fichiers `03_B_RETOUCHE_ARCHIVE_REECRITE.md`, `04_C_MANNEQUINS_ARCHIVE_REECRITE.md`, `05_D_METADONNEES_ARCHIVE_REECRITE.md`, lus avec `00_LIRE_EN_PREMIER_RELECTURE.md`. FAQ : la réécriture n'en contient pas ; questions reprises des têtes historiques `250e34a` (B, 6 sur 6), `8f2f42b` (C, 6 sur 6) et `b6495d1` (D, 4 sur 6). Deux FAQ de D sont écartées : Zalando (« exige d'ici décembre 2026 », point NON TRANCHÉ dans la réécriture) et CDN (mesure WebP étendue à « notre propre site »).
+
+**Effet attendu** — Aucun sur le site public : pages hors sitemap, hors liste du blog et hors maillage, en FR seulement.
+
+**Vérifié**
+- Texte : mots du corps et des notes = mots du fichier source pour B (1 128), C (1 038) et D (1 499) ; chaque paragraphe du corps se retrouve tel quel dans la source.
+- Typographie seule : apostrophe ’, espaces insécables devant « : ; ? ! » » et après « « », hors code.
+- Indexation :
+    - robots `noindex, nofollow, noarchive, nocache` et googlebot `noindex, nofollow, noarchive` ;
+    - aucune canonique ni alternate ;
+    - 0 occurrence dans `sitemap.xml` ;
+    - 0 lien depuis les autres pages prérendues ;
+    - 404 en `/en`, en `/de-ch` et pour tout autre slug.
+- Isolement : feuille de style des previews chargée sur ces seules pages. Aucun fichier existant modifié hors de ce journal.
+- `tsc` vert ; ESLint sans message sur la route ; `verifier-json` 183 valides ; Vitest 373/373 ; `next build` vert, 374 pages ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- `next start` local, Chromium, 6 formats : ordinateur 1440, tablette 1024 × 768 et 820 × 1180, smartphone 390 × 844, 844 × 390 et 360 × 740.
+    - Partout : 200 ; 0 débordement de page ; 0 erreur de console ; un seul `h1` ; 0 ponctuation isolée en début de ligne ; FAQ ouverte au clic et au toucher.
+    - Emplacements : 16:9, 662 × 372 sur ordinateur, 358 × 201 sur smartphone.
+    - Tableaux et code dans la largeur, sauf le tableau de D (3 colonnes) : 5 px de défilement interne à 390 px.
+
+**Supposé** — [Inférence] La césure française (`hyphens: auto`) s'applique sur iOS Safari et Chrome Android ; le Chromium du conteneur ne l'applique pas. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) par script ; Safari, Firefox, appareils réels ; sources primaires (non revérifiées depuis le 30/09, comme l'indique la réécriture) ; EN et de-ch (hors mission).
+
+**Écarts volontaires au gabarit commun, limités à ces previews** (`revue.module.css`) :
+- en-têtes de tableau sur plusieurs lignes, cellules plus compactes et césure sous 640 px ;
+- blocs de code repliés à la ligne.
+Le style commun (`app/globals.css`, en-têtes insécables) masque une colonne sur smartphone, sur A et S aussi : à corriger dans `globals.css` avant toute publication.
+
+**Suite** — Relecture privée (Laurent, puis Sébastien) ; seconde passe d'intégration des visuels ; toute publication exige une nouvelle mesure D16 complète et une nouvelle décision de Laurent (D41).
+
+---
+
 ## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé

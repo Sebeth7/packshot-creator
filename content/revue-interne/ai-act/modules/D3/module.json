@@ -1,0 +1,46 @@
+{
+  "id": "D3",
+  "article": "metadonnees",
+  "section": "Où peut-on perdre les métadonnées ?",
+  "title": "Parcours et contrôle du fichier reçu",
+  "caption": "Chemin hypothétique d’une image : capture, export, CMS/DAM, transformation/CDN, réception. Pour connaître la survie réelle des données, insérer exclusivement un relevé issu de tests authentiques, datés et contextualisés.",
+  "alt": "Schéma d’un fichier passant par cinq étapes, jusqu’au contrôle de la copie réellement reçue, sans résultats ExifTool inventés.",
+  "need": "FONCTIONNEL PROVISOIRE",
+  "steps": [
+    [
+      "Fichier source et retouche",
+      "Conserver l’original comme point de départ."
+    ],
+    [
+      "Export",
+      "Identifier le format et les réglages utilisés."
+    ],
+    [
+      "CMS / DAM",
+      "Documenter le traitement dans le stockage éditorial."
+    ],
+    [
+      "CDN / adaptation",
+      "Comparer les variantes réellement servies selon la requête."
+    ],
+    [
+      "Fichier reçu",
+      "Effectuer le contrôle du fichier téléchargé ; aucun résultat simulé ici."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/metadonnees.json : marqueur <figure data-visuel=\"D3\">, rendu par ModuleRevue sous la section « Où peut-on perdre les métadonnées ? »"
+  },
+  "status": "FONCTIONNEL PROVISOIRE",
+  "asset_slots": [],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; produit par un outil d’IA (confirmation de Laurent du 02/10/2026).",
+    "ia": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "B2",
+  "article": "retouche",
+  "section": "Couleur : trois opérations très différentes",
+  "title": "Correction, variante vendue, coloris hors catalogue",
+  "caption": "Le sac bleu photographié, sa variante rouge produite par recolorisation, puis un coloris absent de l’offre. Schéma conceptuel : il ne prouve ni l’existence commerciale d’une variante ni la fidélité de son rendu.",
+  "alt": "Schéma d’un même sac générique en trois couleurs : bleu avec un échantillon bleu, rouge avec un échantillon rouge, vert sans échantillon de référence.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Bleu photographié",
+      "Dominante corrigée : le fichier retrouve le bleu du sac photographié."
+    ],
+    [
+      "Rouge du catalogue, recolorisé",
+      "Variante vendue produite par recolorisation : à comparer à une référence réelle du rouge (texture, couture, reflet)."
+    ],
+    [
+      "Coloris hors catalogue",
+      "Aucune référence réelle : l’image montre une couleur absente de l’offre."
+    ]
+  ],
+  "placements": {
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B2\">, rendu par ModuleRevue sous la section « Couleur : trois opérations très différentes »"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
+  }
+}

@@ -1,0 +1,293 @@
+/* Previews internes du dossier AI Act : styles limités à ces pages.
+   Les emplacements du corps sont injectés en HTML (classes globales) : ils ne
+   sont stylés que sous .revue, qui n'existe que sur ces routes. */
+
+.revue :global(.revue-visuel) {
+  margin: 2.5rem 0;
+}
+
+.revue :global(.revue-visuel__cadre),
+.cadre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--very-peri-2);
+  border-radius: 0.75rem;
+  background: var(--very-peri-0-5);
+  text-align: center;
+}
+
+.revue :global(.revue-visuel__cadre) p,
+.cadre p {
+  margin: 0;
+  max-width: 34rem;
+}
+
+.revue :global(.revue-visuel__id),
+.id {
+  font-family: var(--font-heading, inherit);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--very-peri-5);
+}
+
+.revue :global(.revue-visuel__message),
+.message {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--future-dusk-4);
+}
+
+.revue :global(.revue-visuel__format),
+.format {
+  font-size: 0.75rem;
+  color: var(--future-dusk-3);
+}
+
+.revue :global(.revue-visuel__legende) {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--future-dusk-4);
+}
+
+.revue :global(.revue-visuel__legende) span {
+  font-weight: 600;
+  color: var(--future-dusk-5);
+}
+
+/* Illustrations fournies (AVIF) : en-tête et corps. La légende signale
+   l'illustration générée par IA ; style aligné sur les figcaption du blog. */
+.ouverture {
+  margin: 0;
+}
+
+.ouverture figcaption,
+.revue :global(.revue-illustration figcaption) {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--future-dusk-4);
+}
+
+.revue :global(.revue-illustration) {
+  margin: 2.5rem 0;
+}
+
+.revue :global(.revue-illustration img) {
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+/* Sur petit écran, le cadre garde son ratio ; le texte se resserre. */
+@media (max-width: 480px) {
+  .revue :global(.revue-visuel__cadre),
+  .cadre {
+    padding: 0.75rem;
+  }
+  .revue :global(.revue-visuel__message),
+  .message {
+    font-size: 0.8125rem;
+  }
+}
+
+.bandeau {
+  overflow-wrap: anywhere;
+  margin-bottom: 1.5rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid var(--very-peri-5);
+  border-radius: 0.5rem;
+  background: var(--future-dusk-0);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--future-dusk-6);
+}
+
+.bandeau strong {
+  color: var(--future-dusk-8);
+}
+
+.seo {
+  margin-top: 0.75rem;
+}
+
+.seo summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--very-peri-6);
+}
+
+.seo dl {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  gap: 0.35rem 0.75rem;
+  margin: 0.75rem 0 0;
+}
+
+.seo dt {
+  font-weight: 600;
+  color: var(--future-dusk-7);
+}
+
+.seo dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .seo dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .seo dd {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.dossier {
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--future-dusk-0-5);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.dossier p {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--future-dusk-4);
+}
+
+.dossier ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dossier a,
+.dossier span {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+.dossier a {
+  border: 1px solid var(--very-peri-1);
+  color: var(--very-peri-7);
+}
+
+.dossier a:hover {
+  background: var(--very-peri-0-5);
+}
+
+.dossier span[aria-current] {
+  background: var(--very-peri-5);
+  color: #fff;
+}
+
+/* Blocs de code (commandes ExifTool de D) : le style commun du blog n'en prévoit
+   pas ; défilement interne pour ne jamais élargir la page. Limité à ces previews. */
+.revue :global(.blog-article pre) {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 1.5rem 0;
+  padding: 1rem 1.125rem;
+  border-radius: 0.75rem;
+  background: var(--future-dusk-9);
+  color: #f4f5f8;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.revue :global(.blog-article pre code) {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.notes {
+  margin-top: 3rem;
+  padding: 1.25rem 1.25rem 0.5rem;
+  border: 1px dashed var(--future-dusk-1-5);
+  border-radius: 0.75rem;
+  background: var(--future-dusk-0);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--future-dusk-6);
+}
+
+.notes p,
+.notes ul {
+  margin: 0 0 0.875rem;
+}
+
+.notes ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.notes h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--future-dusk-8);
+}
+
+.notesTitre {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--future-dusk-4);
+}
+
+.sourceFaq {
+  margin: -1.5rem 0 1.5rem;
+  font-size: 0.875rem;
+  color: var(--future-dusk-4);
+}
+
+/* Tableaux : le style commun (app/globals.css) garde les en-têtes sur une ligne,
+   ce qui masque une colonne sur smartphone (constaté aussi sur A et S). Écart
+   volontaire, limité à ces previews : en-têtes sur plusieurs lignes sous 640 px.
+   À reporter dans globals.css avant toute publication. */
+@media (max-width: 640px) {
+  .revue :global(.prose .table-wrap thead th) {
+    white-space: normal;
+  }
+  .revue :global(.prose .table-wrap thead th),
+  .revue :global(.prose .table-wrap tbody td) {
+    padding: 0.6rem 0.625rem;
+    font-size: 0.875rem;
+    hyphens: auto;
+  }
+  /* Identifiants techniques (DigitalSourceType…) : coupure possible, sans césure. */
+  .revue :global(.prose .table-wrap td code) {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Très petits écrans (360 px) : le tableau à 3 colonnes de D dépassait de
+   5 à 35 px dans son conteneur ; marges et corps resserrés pour tenir. */
+@media (max-width: 400px) {
+  .revue :global(.prose .table-wrap thead th),
+  .revue :global(.prose .table-wrap tbody td) {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8125rem;
+  }
+}
