@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — article Suisse S : relecture éditoriale du 02/10 intégrée · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa` (intégré par fusion, JOURNAL en union)
+
+**Quoi** — Corps de l'article réécrit à partir de `02_S_SUISSE_FR_PROPOSITION.md` (dossier `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02`, GO de Laurent du 02/10 : « actualiser les Previews »). Droit suisse, application éventuelle de l'AI Act et règles des plateformes distingués une fois, puis appliqués aux huit situations. Conservés : H1, slug, `title`, `metaTitle`, `description`, `date`, image d'en-tête, figures S3 et S2 (alt et légendes inchangés), note datée, section Sources complète, liens existants (deux liens ajoutés dans le corps, vers la LPD et la page du PFPDT déjà citées en Sources), retour métier de Sébastien sur le textile, aucune FAQ. `readingTime` 20 → 15.
+
+**Remplacés ou retirés, conformément à la proposition** — H2 « La Suisse a-t-elle un « AI Act » en 2026 ? » et « Faut-il signaler une image générée ou retouchée par IA en Suisse ? » fondus dans l'ouverture et dans « En Suisse, commencez par comparer l’image au produit » ; six situations A à F remplacées par un tableau de questions (quatre lignes de la proposition, plus une ligne « outil édité dans l'Union ou hors de l'Union » reprise des situations E et F) suivi des points 12 et 14 ; tableau récapitulatif Suisse / UE / plateformes retiré ; H2 « C2PA et IPTC sont-ils obligatoires en Suisse ? » fondu dans la section plateformes ; marqueurs d'emplacement visuel et notes de travail retirés.
+
+**Écarts de sens corrigés (formulation de la PR conservée)** :
+- cas 2 : « ne tranchent pas tous les aspects » → rétabli « ne tranchent pas la qualification précise » ;
+- cas 3 : rétablis « indication inexacte ou fallacieuse » (LCD) et l'exemple de la Commission « dans une publicité ou sur un emballage », « reste à qualifier selon le cas » (cohérent avec l'arbitrage du 01/10) ;
+- PFPDT : « doit toujours être clairement indiquée » rétabli (le « toujours » de la source était omis), y compris dans l'encadré ;
+- champ territorial : points 10 et 13 dans leurs termes, dont « y compris par la publication d'hypertrucages sur l'internet accessible mondialement » ; exemple du point 14 (célébrité) et règle de l'agence (points 12 et 14) rétablis ; « la simple accessibilité mondiale d'un site ne permet pas, à elle seule… » conservé ;
+- Google (« impose », ne pas supprimer), Amazon (exclusions) et Zalando (marquage invisible « présenté comme requis d'ici décembre 2026 », refus des mentions visibles, pas de contenu exigeant une mention légale) : formulations vérifiées le 29/09 rétablies ;
+- SECO : « avant-projet destiné à la consultation au printemps 2027 », titre « d'ici début 2027 » rétablis.
+
+**Pourquoi** — Relecture éditoriale du 02/10 : S doit rester lisible seul pour un acteur suisse ; Sébastien relit cette version.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comptage (texte du corps) : 4 599 → 3 549 mots ; 1 tableau, 2 figures dans le corps, 9 H2, 8 H3 ; aucun marqueur `[…]`, aucun « Niveau : », aucun Markdown brut ; aucun lien vers `/fr/packshot-e-commerce`.
+- Script de liens de publication A ↔ S : essai à blanc vert (phrases de renvoi conservées).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec, S3 et S2 chargées au défilement (1600 × 900), tableau sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; sommaire rendu, aucune FAQ ; canonical et JSON-LD inchangés.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main` (`6b80e6a`, `9400eaa` ne modifiant que la documentation).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Message rectificatif de Laurent à Sébastien ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée. Questions en H2 retirées (« La Suisse a-t-elle un AI Act », « C2PA et IPTC… ») : à réexaminer à l'étape 6 de D42 (optimisation SEO/GEO).
+
+---
+
 ## 2026-10-01 · Cluster AI Act — article Suisse : passe éditoriale finale, `main` `6b80e6a` intégré · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `6b80e6a` (#66, #78), fusionné par `31e7faf`
