@@ -109,7 +109,7 @@ désynchroniser.
 | `JOURNAL.md` | Append-only. L'historique, plus récent en haut |
 | `DECISIONS.md` | Append-only. Les arbitrages à ne jamais rejouer |
 | `BOITE-AUX-LETTRES.md` | Les questions entre les deux Claude, et leurs réponses |
-| `06-CHANTIERS.md` | Le backlog SEO/GEO, avec état et priorité |
+| `06-CHANTIERS.md` | Backlog historique des chantiers `C<n>`, arrêté au 19/09/2026 ; l'état courant et le backlog qualifié sont dans `ETAT.md` |
 
 ---
 

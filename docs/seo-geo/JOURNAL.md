@@ -34,6 +34,96 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
+
+**Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
+
+**Quoi** — Trois précisions demandées par Laurent après contre-relecture de #81, dans `ETAT.md` et `REVUE-PR-BRANCHES-2026-10-02.md` seulement. L'entrée ci-dessous (rangement) n'est pas réécrite.
+1. **Transmission AI Act** — Le pilotage externe du 02/10 rapporte une transmission à Sébastien intitulée « Dossier IA & images produit : nos 5 articles sont prêts pour ta relecture ». Trois états distingués : transmission rapportée (information du pilotage, non établie par GitHub ; les descriptions de #59 et #60 portent encore « mail à Sébastien non envoyé ») ; accusé de réception non établi ; validation métier (D42, étape 5) non établie, aucune trace GitHub. Périmètre des 5 articles non établi par GitHub ; [Inférence] A, S et B, C, D.
+2. **D36 / #67** — Les transmissions de pilotage rapportent un déploiement du Worker après #68, le 01/10. L'entrée ci-dessous écrit « déploiement du Worker non consigné » et « présence du bloc D36 en production non établie » : exact pour le dépôt, à lire désormais avec ce rapport. Statut retenu : déploiement rapporté ; version active à confirmer par lecture Cloudflare READ ONLY ; puis contrôle de `www` ; ensuite seulement, décision sur #67. Aucun nouveau déploiement autorisé.
+3. **Nombre de PR** — Les 9 PR du registre sont les PR opérationnelles inventoriées avant #81. GitHub affiche 10 PR ouvertes depuis l'ouverture de #81, documentaire. Les mentions « 9 PR ouvertes » de l'entrée ci-dessous s'entendent ainsi.
+
+**Pourquoi** — GO conditionnel de Laurent du 02/10 : trois clarifications avant la fusion de #81.
+
+**Fichiers** — `docs/seo-geo/ETAT.md` (A, B, C, D, F6, G : lignes ciblées), `docs/seo-geo/REVUE-PR-BRANCHES-2026-10-02.md` (§ 1, § 2, § 3, § 5 : lignes ciblées), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** — Têtes au 02/10 à 13:36 UTC : `main` `8c0dd06`, #81 `fa3ab31`, inchangées. Plus aucune formulation affirmant que le Worker n'a pas été déployé ni que le dossier AI Act n'a pas été transmis, hors citations des descriptions de PR attribuées comme telles.
+
+**Supposé** — Les deux faits rapportés par le pilotage (transmission du 02/10, déploiement du Worker du 01/10) sont repris tels que Laurent les transmet, sans vérification.
+
+**Non regardé** — Cloudflare (aucune lecture, aucun déploiement) ; messagerie ; `www`.
+
+**Suite** — Lecture Cloudflare READ ONLY du Worker actif, puis contrôle de `www`, avant toute décision sur #67. GO de Laurent pour la fusion de #81.
+
+---
+
+## 2026-10-02 · Rangement GitHub : revue des PR et des branches, `ETAT.md` restructuré · Claude de Laurent
+
+**Chantier** : gouvernance, mission « grand rangement GitHub » de Laurent du 02/10 | **PR** : brouillon, documentation seule, ne pas fusionner sans GO, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06` (#80)
+
+**Quoi** —
+- `ETAT.md` réorganisé : A état actuel, B travaux actifs (les 9 PR ouvertes seulement), C balle chez Laurent (décisions, contrôles Chrome sur `www`), D balle chez Sébastien, E mesures datées, F backlog qualifié (renvois), G dernières livraisons, H projets parallèles, puis référence (P0, questions, décisions récentes, accès). L'en-tête de 25 mises à jour successives est remplacé par un lien permanent vers la version `8c0dd06`.
+- `REVUE-PR-BRANCHES-2026-10-02.md` (nouveau) : photographie figée des 9 PR ouvertes, des PR fusionnées du 28/09 au 02/10, des 9 PR fermées sans fusion, des 59 branches classées, et 18 contradictions documentaires.
+- `06-CHANTIERS.md` : bandeau « backlog historique » en tête, texte existant inchangé. `README.md` : ligne de `06-CHANTIERS.md` précisée.
+- Aucun fichier du site. `DECISIONS.md` et `BOITE-AUX-LETTRES.md` non modifiés. Aucune PR existante modifiée, fusionnée ou fermée ; aucune branche supprimée.
+
+**Pourquoi** — Mission de Laurent du 02/10 : rendre lisible en quelques minutes ce qui est terminé, en cours, en attente de validation, en mesure, au backlog ou conservé pour mémoire. `ETAT.md` présentait comme ouverts des chantiers fusionnés et des décisions fusionnées comme non fusionnées.
+
+**Statuts corrigés dans `ETAT.md`, avec leur preuve** —
+- D42 et D43 « #76, non fusionnée » : #76 fusionnée le 02/10 à 04:42:30 UTC, `9400eaa`.
+- Ligne #65 « reprend `main` après une éventuelle fusion de #76 » : #76 fusionnée ; #65 a 53 commits de retard et 3 fichiers en conflit.
+- Academy (#71), UB-04 (#74), `llms.txt` (#54), R01 (#58), Mode (#66) sortis des chantiers ouverts : fusionnées (GitHub, `git log` de `main`). Contrôles et mesures restants conservés en C et E.
+- Chantier « Accents — PR à ouvrir » et « PR accents (CC2) : rebaser après #22 » : #23 fusionnée le 20/09 à 17:30:55 UTC, titre identique ; JOURNAL du 20/09.
+- « Mesures M1-M6 du chantier marque » : M3 et M4 faites le 19/09, M1, M2 et M6 le 23/09 (JOURNAL) ; reste M5.
+- P0-K « effective à la fusion de #35 » : #35 fusionnée le 25/09 à 06:38:55 UTC.
+- « 5 branches distantes portant des commits absents de `main` » (19/09) : 2 sur clone complet (`REVUE-PR-BRANCHES-2026-10-02.md`, § 4).
+- Page témoin F5 « à venir » : J0 le 28/09, J+28 le 26/10, J+56 le 23/11 (D37).
+- D36 « à exécuter » : précisé — #68 fusionnée le 01/10, bloc Worker dans `main` ; déploiement du Worker non consigné ; #67 bloquée par sa porte.
+
+**Preuves conservées hors de `main`** —
+- Contrôle post-déploiement du lot F, consigné le 23/09 dans le JOURNAL de la branche `content/maillage-q3` (#27, commit `e81e5c0`), jamais fusionné. Cité tel quel :
+
+  > **Contrôle post-déploiement** — Par Laurent, `curl.exe` depuis son poste, 23/09 07:45-07:46 UTC, chaîne de requête neuve (B2) : **tout conforme**.
+  > - Annexe K, ex-410, `alphashot-xl-v2` et lot C : 301 vers les cibles attendues.
+  > - Témoins : `/` → `/fr` ; `/de/studio-photo/alphashot-xl` → `/de-ch/fotostudio/alphashot-xl-g2` ; `videos.` 404 servi par R2, `books.` 302 servi par sa propre origine, `trail.` 200 servi par sa propre origine — aucun sous-domaine renvoyé vers `www`.
+  > - de-ch (`next.config.ts`, en production depuis la fusion) : `/de-ch/industrie/mode-textile` → 301 `/de-ch/branchen/mode` → 200 (07:29 UTC).
+  > - Jeton de déploiement révoqué.
+
+  Clôture de la ligne lot F à confirmer par Laurent (`ETAT.md`, C).
+- Maillage Q3 de #27 : 14 liens posés sur 16 paires listées par Laurent le 23/09, dans une phrase existante, sans mot ajouté. Paires : `comment-avoir-meilleures-images-amazon` et `eclairage-photos-produits` → `/fr/packshot-amazon` ; `comment-mettre-en-valeur-un-produit-guide-photographie-packshot` et `promod-revolutionne-ses-shootings-photos-de-mode` → `/fr/packshot-mode` ; guides `comment-faire-photos-multi-angles-chaussures` et `realiser-animation-360-professionnelle-chaussures` → `/fr/industrie/chaussures` ; guide `comment-positionner-montre-avant-shooting-photo` → `/fr/industrie/horlogerie` ; `formation-photo-produit-professionnelle-maitriser-studios-orbitvu-et-ia-en-2026` → `/fr/academy` (article supprimé depuis par #71) ; `photographie-de-produits-a-360-degres-en-interne` et `est-il-utile-dinternaliser-sa-production-de-photos-packshot` → `/fr/studio-photo/alphashot-360` ; `guide-achat-studio-2026` → `alphashot-pro-g2` et `alphashot-xl-g2` ; `budget-studio-photo-automatise` → `alphastudio-compact-v2` et `alphashot-pro-g2`. Non réalisées : `meubles-decorations-…` → `/fr/packshot-mode` ; `budget-studio-photo-automatise` → `alphastudio-xxl-v2`. Ancres et emplacements : description de #27.
+- Audit B : branche `claude/pensive-cannon-zl2oh4`, commit `ec2b4c62cee81b98de0e8660043866656d3c8c45`, 160 fichiers, aucune PR ; classée HISTORICAL_PRESERVE.
+- Têtes des 9 PR fermées sans fusion lisibles par `refs/pull/<n>/head` (#1, #24, #31, #43, #48, #53, #61, #62, #63) ; branches de #24, #31, #43, #48, #53, #61, #62, #63 conservées.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/REVUE-PR-BRANCHES-2026-10-02.md` (nouveau), `docs/seo-geo/06-CHANTIERS.md`, `docs/seo-geo/README.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- `main` `8c0dd06` relu au début de la mission puis à 13:07 UTC ; aucune poussée sur une branche distante après 12:48 UTC au moment de l'écriture. Statut Vercel de `8c0dd06` : `success` à 12:49:13 UTC (API GitHub publique). Aucune CI ne tourne sur `main` (workflows sur `pull_request` seulement).
+- 9 PR ouvertes : tête, base, retard, fichiers, conflits contre `8c0dd06` (`git merge-tree --write-tree`), check runs (4/4 verts sur chaque tête), statut Vercel (`success` sur chaque tête), revues (0), commentaires (aucun de `Sebeth7`).
+- 71 PR fermées : 62 fusionnées, 9 sans fusion.
+- 59 branches distantes, après `git fetch --unshallow` : avance, retard et patchs uniques (`git cherry`) ; 20 portent des commits absents de `main`. Un clone superficiel donnait 399, 372 et 51 commits d'avance à des branches entièrement contenues dans `main`.
+- Contrôle de non-perte : 305 identifiants de l'ancien `ETAT.md` (code, SHA, PR, décisions, hors en-tête) recherchés dans le nouvel `ETAT.md` et la photographie ; les absents sont des réservations de fichiers de chantiers fusionnés, consignées dans leurs entrées du JOURNAL, et des éléments du gabarit.
+- `npx tsc --noEmit`, `node scripts/seo/verifier-json.mjs`, `npx next build` (variables factices) : voir la PR.
+- Appels payants : aucun, 0 USD.
+
+**Supposé** — [Inférence] Le relevé du 19/09 des branches de Sébastien a été fait sur un clone superficiel : ses valeurs coïncident avec celles d'un clone superficiel du 02/10. Cela repose sur des schémas observés.
+
+**Non regardé** —
+- `www` (R4) ; Cloudflare : le Worker déployé n'a pas été lu, la présence du bloc D36 en production n'est donc pas établie ; dashboards Vercel ; Supabase ; n8n.
+- Contenu éditorial des PR : aucune relecture, aucune validation.
+- #80 : aucun envoi de formulaire, aucune sonde.
+- Audits A, C, D, E, F/F2 et livrables de pilotage hors dépôt.
+- `JOURNAL.md` : l'entrée #80 ci-dessous porte « PR : à venir » ; non modifiée (ajout seul).
+
+**Collision attendue** — Les PR ouvertes qui modifient `ETAT.md` (#27, #59, #60, #64, #65, #67, #70, #77) entreront en conflit sur ce fichier à leur prochaine reprise de `main` : leur ligne se replace dans la section B (#59, #60, #64, #65, #67, #70), en C pour les points à trancher (date de création, #64), en F2 pour BL-43-2 et BL-43-3 (#77). `JOURNAL.md` : insertion en tête, comme pour toute PR.
+
+**Suite** — GO distincts de Laurent, rien n'est exécuté : sort de #27 ; sort de #65 ; suppression éventuelle des 39 branches sans commit absent de `main` (7 relèvent de Sébastien) ; sort des 3 branches de PR fermées sans fusion ; clôture du contrôle lot F ; fusion de cette PR documentaire.
+
+---
+
 ## 2026-10-02 · Formulaire de contact : les demandes envoyées depuis les pages de-ch étaient refusées · Claude de Sébastien
 
 **Chantier** : correctif urgent, hors 06-CHANTIERS | **PR** : à venir | **Base** : `main` `9400eaa`
