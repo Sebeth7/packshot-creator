@@ -1,7 +1,7 @@
 import { test, expect, type Page, type Route } from '@playwright/test';
 
 /**
- * Landing /fr/catalogue-orbitvu-all-in-one (kit du 02/10/2026).
+ * Landing /fr/catalogue-orbitvu-all-in-one (kit du 02/10/2026, V3 du même jour).
  *
  * Les réponses de /api/catalogue sont simulées par `page.route` : aucun appel ne
  * sort du navigateur vers un service réel. Seul le dernier test interroge la
@@ -10,7 +10,9 @@ import { test, expect, type Page, type Route } from '@playwright/test';
  */
 
 const URL_PAGE = '/fr/catalogue-orbitvu-all-in-one';
-const H1 = 'Quel studio Orbitvu pour vos produits ? Découvrez le catalogue All-in-One.';
+const H1 = 'Vos produits comme vous ne les avez jamais vus.';
+const VIDEO = '/images/hero/hero-range-2025.mp4';
+const POSTER = '/images/hero/hero-range-2025-poster.avif';
 const PDF_SIMULE = 'https://exemple.test/catalogue-simule.pdf';
 
 async function simulerApi(page: Page, status: number, body: unknown, delai = 0) {
@@ -61,7 +63,53 @@ test.describe('Landing catalogue All-in-One', () => {
     await expect(form.locator('input[type="checkbox"]')).toHaveCount(1);
     await expect(page.getByLabel(/Je souhaite être contacté\(e\)/)).not.toBeChecked();
     await expect(form.locator('input[type="tel"]')).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Recevoir le catalogue All-in-One' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Recevoir le catalogue' })).toBeVisible();
+  });
+
+  test('vidéo de la home en desktop : muette, en boucle, bouton pause', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(URL_PAGE);
+    const video = page.locator('section[aria-labelledby="catalogue-titre"] video');
+    await expect(video).toHaveCount(1);
+    await expect(video.locator('source')).toHaveAttribute('src', VIDEO);
+    await expect(video).toHaveAttribute('poster', POSTER);
+    expect(await video.evaluate((v: HTMLVideoElement) => v.muted && v.loop && v.autoplay && v.playsInline)).toBe(true);
+    const pause = page.getByRole('button', { name: 'Mettre en pause l’animation' });
+    await pause.click();
+    await expect(page.getByRole('button', { name: 'Lire l’animation' })).toBeVisible();
+  });
+
+  test('mobile : image fixe, la vidéo n’est pas téléchargée', async ({ page }) => {
+    const mp4: string[] = [];
+    page.on('request', (r) => {
+      if (r.url().includes('hero-range-2025.mp4')) mp4.push(r.url());
+    });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(URL_PAGE);
+    await page.waitForLoadState('networkidle');
+    const hero = page.locator('section[aria-labelledby="catalogue-titre"]');
+    await expect(hero.locator('video')).toHaveCount(0);
+    await expect(hero.locator(`img[src="${POSTER}"]`)).toHaveCount(1);
+    expect(mp4).toEqual([]);
+  });
+
+  test('mouvement réduit : image fixe en desktop', async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+    const page = await context.newPage();
+    await page.goto(URL_PAGE);
+    const hero = page.locator('section[aria-labelledby="catalogue-titre"]');
+    await expect(hero.locator(`img[src="${POSTER}"]`)).toHaveCount(1);
+    await expect(hero.locator('video')).toHaveCount(0);
+    await context.close();
+  });
+
+  test('bouton principal visible dans le premier écran à 1440 × 900', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(URL_PAGE);
+    const boite = await page.getByRole('button', { name: 'Recevoir le catalogue' }).boundingBox();
+    expect(boite).not.toBeNull();
+    expect(boite!.y + boite!.height).toBeLessThanOrEqual(900);
   });
 
   test('envoi vide : quatre messages, aucune requête', async ({ page }) => {

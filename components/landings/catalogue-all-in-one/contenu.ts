@@ -1,6 +1,12 @@
 /**
- * Textes de la landing catalogue Orbitvu All-in-One — repris sans modification du
- * copydeck V2 du 02/10/2026 (kit d'intégration, 05_SPECIFICATIONS/01_COPYDECK_FR_V2.md).
+ * Textes de la landing catalogue Orbitvu All-in-One.
+ *
+ * - Hero et formulaire : direction éditoriale V3 de Laurent du 02/10/2026 (H1 et CTA
+ *   validés par Laurent, phrases reprises telles quelles).
+ * - États du formulaire, contenu du catalogue et bloc final : copydeck V2 du 02/10/2026
+ *   (kit d'intégration, 05_SPECIFICATIONS/01_COPYDECK_FR_V2.md), sans modification.
+ * - Section « Imaginez les possibilités » : légendes factuelles des visuels (PROPOSÉ),
+ *   et phrase sur l'IA reprise de la landing /fr/packshot-e-commerce (publiée).
  *
  * STATUT : PROPOSÉ — relecture métier de Sébastien avant publication (D42, étape 5).
  * Page française unique, commune à la France et à la Suisse : ces textes ne sont
@@ -37,18 +43,27 @@ export const META = {
 } as const;
 
 export const HERO = typographie({
-  surtitre: 'CATALOGUE ORBITVU · ÉDITION 2026',
-  h1: 'Quel studio Orbitvu pour vos produits ? Découvrez le catalogue All-in-One.',
-  valeur:
-    'Du bijou au mobilier, explorez dix systèmes de photographie produit automatisée, leurs applications et leurs caractéristiques dans un seul catalogue.',
+  surtitre: 'PHOTOGRAPHIE PRODUIT · AUTOMATISATION · IA',
+  h1: 'Vos produits comme vous ne les avez jamais vus.',
+  valeur: [
+    'Découvrez une autre façon de photographier vos produits : lumière maîtrisée, prises de vue sous différents angles, vues à 360°, vidéo et assistance intelligente sur les systèmes compatibles.',
+    'Des petits objets aux produits volumineux, explorez les possibilités des studios automatisés Orbitvu.',
+  ],
+  transition: {
+    titre: 'Quel studio pour vos produits ?',
+    texte:
+      'Le catalogue All-in-One vous aide à découvrir la gamme, comprendre les différentes solutions et commencer votre sélection.',
+  },
   reperes: ['28 pages', '10 systèmes', 'PDF en français'],
   signature: 'PackshotCreator, distributeur officiel Orbitvu en France et en Suisse.',
   altCouverture: 'Couverture du catalogue Orbitvu All-in-One, édition française 2026, sur fond sombre.',
+  pause: 'Mettre en pause l’animation',
+  lecture: 'Lire l’animation',
 } as const);
 
 export const FORMULAIRE = typographie({
-  titre: 'Recevoir le catalogue',
-  promesse: 'Recevez automatiquement le lien pour télécharger le catalogue.',
+  titre: 'Recevoir le catalogue All-in-One',
+  promesse: 'Recevez automatiquement votre lien de téléchargement.',
   prenom: { label: 'Prénom', placeholder: 'Votre prénom' },
   email: { label: 'E-mail professionnel', placeholder: 'prenom@entreprise.com' },
   entreprise: { label: 'Entreprise', placeholder: 'Nom de votre entreprise' },
@@ -57,7 +72,7 @@ export const FORMULAIRE = typographie({
   facultatif: '(facultatif)',
   consultant: 'Je souhaite être contacté(e) par un consultant PackshotCreator.',
   cta: 'Recevoir le catalogue',
-  reassurance: 'Accès immédiat au catalogue après validation du formulaire. Aucune démonstration obligatoire.',
+  reassurance: 'Accès immédiat après validation du formulaire. Aucune démonstration obligatoire.',
   donnees: {
     avant:
       'Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. Consultez notre ',
@@ -84,16 +99,17 @@ export const ETATS = typographie({
   indisponible: 'Le fichier est momentanément indisponible. Réessayez ou contactez-nous.',
 } as const);
 
-export const INTERIEUR = typographie({
-  surtitre: "À L'INTÉRIEUR",
-  h2: 'Feuilletez le catalogue avant de le recevoir.',
-  intro: "Un aperçu de la gamme, des images et de la matrice qui aide à s'orienter parmi les systèmes Orbitvu.",
-  microCta: 'Recevoir le catalogue complet',
+export const POSSIBILITES = typographie({
+  h2: 'Imaginez les possibilités',
+  // Phrase publiée sur /fr/packshot-e-commerce (messages/fr.json) : l'assistant photo IA
+  // n'est pas une fonction de toute la gamme.
+  ia: "Selon la documentation Orbitvu, les fonctions d'IA de Station sont sur abonnement ; l'assistant photo IA est réservé aux Alphashot Pro G2 et XL G2.",
 } as const);
 
-export const CONTENU_CATALOGUE = typographie({
-  surtitre: 'CE QUE VOUS Y TROUVEREZ',
-  h2: "Une vue d'ensemble pour commencer à choisir.",
+export const STUDIO = typographie({
+  h2: 'Trouvez le studio adapté à vos produits',
+  intro: "Un aperçu de la gamme, des images et de la matrice qui aide à s'orienter parmi les systèmes Orbitvu.",
+  cta: 'Recevoir le catalogue',
   lignes: [
     {
       titre: 'La gamme selon vos produits',

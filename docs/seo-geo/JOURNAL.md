@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V3 : vidéo de la home, promesse photographique, catalogue en aide au choix · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Recentrage V3 demandé par Laurent : ce qui donne envie, ce sont les possibilités des studios Orbitvu ; le catalogue devient la première étape concrète pour choisir. Hero refait (vidéo de la home, H1 « Vos produits comme vous ne les avez jamais vus. », formulaire inchangé), sections « Imaginez les possibilités » et « Trouvez le studio adapté à vos produits » ; bloc final conservé.
+
+**Pourquoi** — Retour de Laurent du 02/10 sur la première Preview : la page présentait le catalogue comme un objet extraordinaire ; c'est un document commercial utile.
+
+**Fait métier** — FAIT MÉTIER LAURENT, 02/10/2026 : Laurent confirme disposer des droits nécessaires à la diffusion du catalogue et à sa présentation sur cette landing. Cette autorisation n'est plus un arbitrage en attente. Le PDF reste à contrôler techniquement : la copie du kit a une CropBox restreinte.
+
+**Fichiers** — modifiés : `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `contenu.ts`, `visuels.ts`), `e2e/catalogue-all-in-one.spec.ts` ; nouveaux : `components/landings/catalogue-all-in-one/VideoStudio.tsx`, `SansCoupure.tsx` ; `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `components/hero/HeroVideo.tsx`, la home, les fiches XL G2 et Pro G2, les routes et redirections XL (D29), `public/`.
+
+**Vidéo** — `public/images/hero/hero-range-2025.mp4` (H.264, 2280 × 780, 3,47 s, 30 i/s, 623 654 o) et `hero-range-2025-poster.avif`, référencés tels quels, sans copie. Inspection image par image : studio et écran entre 27 % et 80 % de la largeur, fond sombre uni ailleurs ; une composition « vidéo en fond » placerait le studio derrière le texte et le formulaire. Choix : panneau éditorial sous le titre (cadrage `55% 50%`, rapport 2:1 en desktop), bandeau pleine largeur en tête sur mobile. `VideoStudio` reprend les règles de `HeroVideo` (lecture muette en boucle à partir de 768 px, image fixe en dessous sans téléchargement de la vidéo, image fixe si `prefers-reduced-motion`), sans le voile latéral prévu pour un fond, avec un bouton pause (WCAG 2.2.2). Le modèle du studio filmé n'est pas nommé : non établi.
+
+**Visuels de la section 2** — quatre visuels déjà publiés sur les fiches du site : `alphashot-xl-g2/advantage-open-doors.avif`, `alphashot-xl-g2/soft-station-capture.avif`, `alphashot-pro-g2/soft-export.avif`, `alphashot-pro-g2/packshot-mascara.avif`. Écartés : les photos montrant une personne (`alphashot-xl-g2/packshot-operator.avif`, `alphashot-pro-g2/session.avif`, mains de `alphashot-xl-g2/hw-turntable.avif` ; droit à l'image ouvert au JOURNAL du 01/10). Légendes sans nom de modèle : la copie interne du catalogue (`pdftotext`) nomme l'Alphashot Pro G2 et l'Alphashot XL Pro v2, pas l'XL G2 (D29). Phrase sur l'IA reprise de `/fr/packshot-e-commerce` : « l'assistant photo IA est réservé aux Alphashot Pro G2 et XL G2 ».
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement (dont la règle React Compiler sur `setState` dans un effet, évitée par `useSyncExternalStore`) ; `npx vitest run` : 423/423.
+- `npx next build` vert ; `/fr/catalogue-orbitvu-all-in-one` prérendue seule.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 42/42, dont vidéo muette et en boucle en desktop avec bouton pause, aucune requête du MP4 à 390 px, image fixe avec `prefers-reduced-motion`, bouton principal dans le premier écran à 1440 × 900.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, identiques à ceux de `main` `8c0dd06` relevés le même jour.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390, 320 et 844 × 390 ; bas du bouton principal à 827 px sur 900 en 1440 × 900, 881 px sur 768 en 1024 × 768 ; à 390 × 844, la carte du formulaire commence dans le premier écran (bouton à 1 269 px). Le Chromium du conteneur ne décode pas le H.264 : pour les captures animées, la requête du MP4 est servie au navigateur de capture avec une copie AV1 du même fichier (scratchpad, hors dépôt).
+**Supposé** — Que Chrome, Safari et Firefox lisent le MP4 H.264 en lecture automatique muette, comme sur la home.
+**Non regardé** — Preview Vercel V3 dans un navigateur (SSO, pas de jeton) ; Safari iOS et Android réels ; Firefox et WebKit (absents du conteneur) ; lecteurs d'écran réels.
+
+**Suite** — Revue graphique et éditoriale de Laurent sur la Preview V3 ; title et meta description encore ceux du copydeck V2, à trancher avec l'indexation ; export paysage correct du PDF, QR, hébergement, stockage, règle CRM et mention données avant toute activation.
+
+---
+
 ## 2026-10-02 · Landing catalogue Orbitvu All-in-One — intégration en PR brouillon, bloquée ASSETS/PDF/EXTERNALS PENDING · Claude de Laurent
 
 **Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `13f3cf0` | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`, puis fusion de `main` `de6c4cd` (#81, documentation seule ; conflits `ETAT.md` et `JOURNAL.md` résolus en conservant les deux côtés)

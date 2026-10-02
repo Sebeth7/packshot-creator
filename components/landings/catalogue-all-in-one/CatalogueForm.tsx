@@ -13,6 +13,9 @@ import {
   type SaisieCatalogue,
 } from '@/lib/catalogue/schema';
 import { ETATS, FORMULAIRE, TELEPHONES } from './contenu';
+import { EmplacementVisuel } from './EmplacementVisuel';
+import { SansCoupure } from './SansCoupure';
+import { VISUELS } from './visuels';
 import { LienTelephone } from './LienTelephone';
 import {
   mesurerDemandeAcceptee,
@@ -207,10 +210,22 @@ export function CatalogueForm() {
 
   return (
     <>
-    <h2 className="text-2xl font-heading font-bold tracking-tight text-future-dusk-900 sm:text-[1.75rem]">
-      {FORMULAIRE.titre}
-    </h2>
-    <p className="mt-1.5 mb-5 text-base text-future-dusk-600">{FORMULAIRE.promesse}</p>
+    <div className="mb-5 flex items-start gap-4">
+      {/* Couverture du catalogue, en vignette : le document est la récompense du formulaire. */}
+      <EmplacementVisuel
+        visuel={VISUELS.K1}
+        ton="sombre"
+        compact
+        sizes="72px"
+        className="mt-1 w-14 shrink-0 -rotate-3 rounded-[3px] shadow-md shadow-future-dusk-900/30 ring-1 ring-future-dusk-900/10 sm:w-[72px]"
+      />
+      <div>
+        <h2 className="text-[1.375rem] leading-tight font-heading font-bold tracking-tight text-future-dusk-900 sm:text-2xl">
+          <SansCoupure texte={FORMULAIRE.titre} />
+        </h2>
+        <p className="mt-1.5 text-sm text-future-dusk-600 sm:text-base">{FORMULAIRE.promesse}</p>
+      </div>
+    </div>
     <form onSubmit={handleSubmit(envoyer)} noValidate aria-busy={envoiEnCours} className="relative">
       {/* Champ piège : invisible et hors du parcours clavier ; rempli = automate. */}
       <div aria-hidden="true" className="absolute -left-[10000px] top-0 h-px w-px overflow-hidden">
@@ -218,7 +233,7 @@ export function CatalogueForm() {
         <input ref={piege} id="cat-site-web" name="siteWeb" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3.5">
         <div>
           <label htmlFor="cat-prenom" className={libelle}>
             {FORMULAIRE.prenom.label} <span aria-hidden="true">*</span>
