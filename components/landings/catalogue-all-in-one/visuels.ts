@@ -1,13 +1,13 @@
 /**
  * Visuels de la landing.
  *
- * 1. K1–K6 : pages du catalogue (manifeste du kit du 02/10/2026,
- *    05_SPECIFICATIONS/03_ASSET_MANIFEST.md). Droits de diffusion confirmés par
- *    Laurent le 02/10/2026 (fait métier). `src: null` = visuel non intégré : un
- *    emplacement neutre est affiché, faute d'export paysage techniquement correct
- *    (la copie du kit a une CropBox restreinte). Les exports iront sous
- *    public/images/catalogue-all-in-one/ (AVIF/WebP). Les aperçus de contrôle du
- *    kit, marqués « NE PAS PUBLIER », ne doivent jamais y être copiés.
+ * 1. K1–K6 : pages du catalogue Orbitvu All-in-One, édition française 2026. Droits de
+ *    diffusion et de présentation confirmés par Laurent le 02/10/2026 (fait métier).
+ *    Fichiers : exports WebP du PDF de contrôle `All-in-One_2026_FR_RECROP_QA_NOT_APPROVED`
+ *    (paquet du 02/10/2026 : seule la CropBox a été remise au cadrage réel, le contenu
+ *    des pages n'est pas recomposé), copiés à l'identique sous
+ *    public/images/catalogue-all-in-one/. Les planches de contrôle et le PDF ne sont pas
+ *    dans le dépôt : le téléchargement du PDF n'est pas activé.
  * 2. GAMME : visuels Orbitvu déjà publiés sur les fiches du site
  *    (public/images/machines/), sans personne visible (point de droit à l'image
  *    ouvert au JOURNAL du 01/10 pour les photos d'opérateurs). Les légendes ne
@@ -21,45 +21,72 @@ export interface VisuelCatalogue {
   id: IdVisuel;
   /** Pages du catalogue reproduites. */
   pages: string;
-  /** Texte alternatif ou légende publiée avec le visuel. */
+  /** Légende publiée avec le visuel. */
   texte: string;
-  /** Rapport largeur / hauteur : page A4 paysage ≈ 1,414 ; double page ≈ 2,828. */
-  ratio: number;
+  /** Texte alternatif : ce que montre l'image. */
+  alt: string;
+  /** Dimensions du fichier : le rapport fixe l'emplacement, sans décalage de mise en page. */
+  width: number;
+  height: number;
   src: string | null;
+  /** Page seule affichée à la place d'une double page sur petit écran. */
+  mobile?: IdVisuel;
 }
 
-const PAGE = 297 / 210;
+const DOSSIER = '/images/catalogue-all-in-one';
+const PAGE = { width: 1339, height: 950 };
+const DOUBLE = { width: 2678, height: 950 };
 
 export const VISUELS: Record<IdVisuel, VisuelCatalogue> = {
   K1: {
     id: 'K1',
     pages: 'p. 1',
-    texte: 'Couverture du catalogue Orbitvu All-in-One, édition française 2026, sur fond sombre.',
-    ratio: PAGE,
-    src: null,
+    texte: 'Couverture du catalogue Orbitvu All-in-One, édition française 2026.',
+    alt: 'Couverture du catalogue Orbitvu All-in-One : « Solutions conçues pour une imagerie produit authentique »',
+    ...PAGE,
+    src: `${DOSSIER}/k1-couverture.webp`,
   },
-  K2: { id: 'K2', pages: 'p. 24', texte: 'Page Orbitvu Furniture Studio du catalogue', ratio: PAGE, src: null },
-  K3: { id: 'K3', pages: 'p. 10', texte: 'Page Alphashot Pro G2 du catalogue', ratio: PAGE, src: null },
+  K2: {
+    id: 'K2',
+    pages: 'p. 24',
+    texte: 'Orbitvu Furniture Studio — page 24',
+    alt: 'Page 24 du catalogue : présentation de l’Orbitvu Furniture Studio et photos d’un canapé',
+    ...PAGE,
+    src: `${DOSSIER}/k2-furniture-studio-p24.webp`,
+  },
+  K3: {
+    id: 'K3',
+    pages: 'p. 10',
+    texte: 'Alphashot Pro G2 — page 10',
+    alt: 'Page 10 du catalogue : présentation de l’Alphashot Pro G2 et dix exemples de packshots',
+    ...PAGE,
+    src: `${DOSSIER}/k3-alphashot-pro-g2-p10.webp`,
+  },
   K4: {
     id: 'K4',
     pages: 'pp. 24–25',
     texte: 'Orbitvu Furniture Studio — extrait, pages 24–25',
-    ratio: PAGE * 2,
-    src: null,
+    alt: 'Pages 24 et 25 du catalogue : Orbitvu Furniture Studio, photos de mobilier et de véhicules, témoignage client',
+    ...DOUBLE,
+    src: `${DOSSIER}/k4-furniture-studio-pp24-25.webp`,
+    mobile: 'K2',
   },
   K5: {
     id: 'K5',
     pages: 'pp. 10–11',
     texte: 'Alphashot Pro G2 — aperçu, pages 10–11',
-    ratio: PAGE * 2,
-    src: null,
+    alt: 'Pages 10 et 11 du catalogue : Alphashot Pro G2, exemples de packshots et photos de lunettes de soleil',
+    ...DOUBLE,
+    src: `${DOSSIER}/k5-alphashot-pro-g2-pp10-11.webp`,
+    mobile: 'K3',
   },
   K6: {
     id: 'K6',
     pages: 'pp. 6–7',
     texte: 'Quel système pour quels produits\u00A0? — matrice de sélection, pages 6–7',
-    ratio: PAGE * 2,
-    src: null,
+    alt: 'Pages 6 et 7 du catalogue : matrice croisant dix systèmes Orbitvu, des petits aux très grands produits, et les secteurs d’activité',
+    ...DOUBLE,
+    src: `${DOSSIER}/k6-matrice-pp6-7.webp`,
   },
 };
 

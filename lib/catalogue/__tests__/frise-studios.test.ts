@@ -1,13 +1,14 @@
 /**
- * Frise des studios de la landing catalogue (V4) : données tirées de MACHINES et de
- * getMachineImage, sans référence retirée du catalogue, images présentes sur disque.
+ * Frise des studios de la landing catalogue (V4, ruban continu en V5) : données tirées
+ * de MACHINES et de getMachineImage, sans référence retirée du catalogue, images
+ * présentes sur disque, gabarit croissant avec la taille des produits.
  */
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import { getMachineImage } from '@/lib/machine-images';
-import { EXCLUSIONS_FRISE, familleStudio, studiosGamme } from '@/components/landings/catalogue-all-in-one/studios';
+import { EXCLUSIONS_FRISE, familleStudio, gabaritStudio, studiosGamme } from '@/components/landings/catalogue-all-in-one/studios';
 
 const studios = studiosGamme();
 
@@ -74,5 +75,20 @@ describe('frise des studios', () => {
       'Produits moyens à grands produits',
     );
     for (const s of studios) expect(s.famille).not.toMatch(/\d/);
+  });
+
+  it('gabarit du visuel : la plus grande catégorie de taille traitée', () => {
+    expect(Object.fromEntries(studios.map((s) => [s.id, s.gabarit]))).toEqual({
+      'alphashot-micro-v2': 'petit',
+      'alphashot-360': 'petit',
+      'alphashot-pro-g2': 'petit',
+      'alphashot-xl-pro-v2': 'moyen',
+      alphatable: 'grand',
+      'alphastudio-compact-v2': 'grand',
+      'bike-studio': 'tres-grand',
+      'furniture-studio': 'tres-grand',
+      'e-comm-studio-plus': 'tres-grand',
+    });
+    expect(gabaritStudio({ tailleCategories: [] })).toBe('moyen');
   });
 });

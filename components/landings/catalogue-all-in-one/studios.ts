@@ -1,5 +1,5 @@
 /**
- * Frise « Une gamme, de multiples possibilités » (V4 du 02/10/2026).
+ * Frise « Une gamme, de multiples possibilités » (V4 du 02/10/2026, ruban continu en V5).
  *
  * Source de vérité : MACHINES (calculateur ROI) pour les noms et les familles,
  * getMachineImage() pour les images. Aucun chemin construit à partir d'un id
@@ -15,12 +15,17 @@ import { getMachineImage } from '@/lib/machine-images';
 /**
  * Références au catalogue retirées de la frise, avec leur motif. Une entrée retirée
  * ici reste au catalogue du site : seule la frise est concernée.
+ * Réexamen V5 (02/10/2026) : aucune image adaptée dans public/images/machines/.
+ * XL G2 : toutes ses photos sont sur fond noir (hero, packshot-angled,
+ * hw-panel-lighting…), illisibles en silhouette sur le ruban clair. XXL et Fashion :
+ * vues d'ensemble toutes avec une personne ; sans personne, seulement des détails
+ * (colonne, LED, plateau), qui ne montrent pas le studio.
  */
 export const EXCLUSIONS_FRISE: Readonly<Record<string, string>> = {
-  // Seule image disponible : photo d'ambiance sur fond sombre, incohérente avec les
-  // rendus détourés sur fond blanc des autres studios. Tenue à l'écart aussi pour ne
-  // pas juxtaposer XL G2 et XL Pro v2 comme des équivalents (D29).
-  'alphashot-xl-g2': 'photo d’ambiance sombre, D29',
+  // Photos disponibles toutes sur fond sombre, incohérentes avec les rendus détourés
+  // sur fond blanc des autres studios. Tenue à l'écart aussi pour ne pas juxtaposer
+  // XL G2 et XL Pro v2 comme des équivalents (D29).
+  'alphashot-xl-g2': 'photos sur fond sombre, D29',
   // Images disponibles : vues d'ensemble avec une personne.
   'alphastudio-xxl-v2': 'aucune vue d’ensemble sans personne',
   'fashion-studio-basic': 'aucune vue d’ensemble sans personne',
@@ -47,10 +52,18 @@ export function familleStudio(machine: Pick<Machine, 'tailleCategories' | 'featu
   return `${premiere} à ${derniere}`;
 }
 
+/** Plus grande catégorie de taille : fixe le gabarit du visuel sur le ruban. */
+export type Gabarit = ProductSizeCategory;
+
+export function gabaritStudio(machine: Pick<Machine, 'tailleCategories'>): Gabarit {
+  return [...ORDRE_TAILLE].reverse().find((t) => machine.tailleCategories.includes(t)) ?? 'moyen';
+}
+
 export type StudioFrise = {
   id: string;
   nom: string;
   famille: string;
+  gabarit: Gabarit;
   image: string;
 };
 
@@ -60,6 +73,7 @@ export function studiosGamme(): StudioFrise[] {
     id: m.id,
     nom: m.nom,
     famille: familleStudio(m),
+    gabarit: gabaritStudio(m),
     image: getMachineImage(m.id),
   }));
 }

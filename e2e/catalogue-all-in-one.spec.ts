@@ -218,7 +218,7 @@ test.describe('Landing catalogue All-in-One', () => {
     });
   }
 
-  test.describe('frise des studios (V4)', () => {
+  test.describe('frise des studios (V5 : ruban continu)', () => {
     const NOMS = [
       'Alphashot Micro Pro v2',
       'Alphashot 360',
@@ -231,13 +231,24 @@ test.describe('Landing catalogue All-in-One', () => {
       'E-Comm Studio+',
     ];
     const FRISE = 'section[aria-labelledby="gamme-titre"]';
+    /** Position du ruban : translation automatique, sinon défilement natif. */
     const position = (page: Page) =>
-      page.locator('#frise-studios').evaluate((el) => ({ gauche: el.scrollLeft, max: el.scrollWidth - el.clientWidth }));
+      page.locator('#frise-studios').evaluate((el) => {
+        const piste = el.firstElementChild as HTMLElement;
+        const m = /translate3d\((-?[\d.]+)px/.exec(piste.style.transform);
+        const periode = (piste.firstElementChild as HTMLElement).offsetWidth;
+        return { auto: !!m, x: m ? -Number(m[1]) : el.scrollLeft, periode, largeur: el.clientWidth };
+      });
 
-    async function contexteDesktop(browser: import('@playwright/test').Browser, reducedMotion: 'reduce' | 'no-preference') {
-      // Souris et sans écran tactile, y compris dans le projet mobile : l'automatisme
-      // est réservé aux grands écrans avec survol.
-      const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion, hasTouch: false, isMobile: false });
+    async function contexte(
+      browser: import('@playwright/test').Browser,
+      { reducedMotion = 'no-preference', mobile = false }: { reducedMotion?: 'reduce' | 'no-preference'; mobile?: boolean } = {},
+    ) {
+      const context = await browser.newContext(
+        mobile
+          ? { viewport: { width: 390, height: 844 }, reducedMotion, hasTouch: true, isMobile: true }
+          : { viewport: { width: 1440, height: 900 }, reducedMotion, hasTouch: false, isMobile: false },
+      );
       await context.addCookies([
         {
           name: 'cookie-consent',
@@ -248,7 +259,18 @@ test.describe('Landing catalogue All-in-One', () => {
       return context;
     }
 
-    test('entre le hero et « Imaginez les possibilités » : neuf studios, sans doublon ni lien', async ({ page }) => {
+    /** Frise au centre de l'écran, vérifiée : le défilement doux de la page (Lenis),
+     *  initialisé après le chargement, peut ramener la page en haut. */
+    async function centrer(page: Page) {
+      await page.waitForLoadState('networkidle');
+      await expect(async () => {
+        await page.locator(FRISE).evaluate((s) => s.scrollIntoView({ block: 'center' }));
+        await expect(page.locator(FRISE)).toBeInViewport({ ratio: 0.6, timeout: 500 });
+      }).toPass({ timeout: 10_000 });
+      await page.mouse.move(5, 5);
+    }
+
+    test('entre le hero et « Imaginez les possibilités » : neuf studios accessibles, copies masquées', async ({ page }) => {
       await page.goto(URL_PAGE);
       const ordre = await page.evaluate(() =>
         [...document.querySelectorAll('main section[aria-labelledby]')].map((s) => s.getAttribute('aria-labelledby')),
@@ -256,89 +278,218 @@ test.describe('Landing catalogue All-in-One', () => {
       expect(ordre.slice(0, 3)).toEqual(['catalogue-titre', 'gamme-titre', 'possibilites-titre']);
       const frise = page.locator(FRISE);
       await expect(frise.getByRole('heading', { level: 2 })).toHaveText('Du bijou au mobilier, explorez les studios Orbitvu.');
-      await expect(frise.getByText('UNE GAMME, DE MULTIPLES POSSIBILITÉS')).toBeVisible();
-      const cartes = page.getByRole('list', { name: 'Studios Orbitvu' }).getByRole('listitem');
-      await expect(cartes).toHaveCount(NOMS.length);
-      for (const [i, nom] of NOMS.entries()) await expect(cartes.nth(i)).toContainText(nom);
+      // Une seule liste exposée : les copies de la boucle sont aria-hidden et inertes.
+      await expect(frise.getByRole('list')).toHaveCount(1);
+      const studios = page.getByRole('list', { name: 'Studios Orbitvu' }).getByRole('listitem');
+      await expect(studios).toHaveCount(NOMS.length);
+      for (const [i, nom] of NOMS.entries()) await expect(studios.nth(i)).toContainText(nom);
+      const copies = page.locator('#frise-studios ul[aria-hidden="true"]');
+      await expect(copies).toHaveCount(2);
+      for (const copie of await copies.all()) expect(await copie.evaluate((u) => (u as HTMLElement).inert)).toBe(true);
       await expect(frise.locator('a')).toHaveCount(0);
       await expect(frise).not.toContainText('€');
       await expect(frise).not.toContainText('Alphashot XL G2');
     });
 
-    test('précédent, suivant et clavier', async ({ browser }) => {
-      const context = await contexteDesktop(browser, 'no-preference');
+    test('desktop : ruban fin, visuels de 92 à 176 px', async ({ browser }) => {
+      const context = await contexte(browser);
       const page = await context.newPage();
       await page.goto(URL_PAGE);
-      const precedent = page.getByRole('button', { name: 'Studios précédents' });
-      const suivant = page.getByRole('button', { name: 'Studios suivants' });
-      await expect(precedent).toBeDisabled();
-      await suivant.click();
-      await expect.poll(async () => (await position(page)).gauche).toBeGreaterThan(0);
-      await expect(precedent).toBeEnabled();
-      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
-      const liste = page.getByRole('list', { name: 'Studios Orbitvu' });
-      await liste.focus();
-      const avant = (await position(page)).gauche;
-      await page.keyboard.press('ArrowRight');
-      await expect.poll(async () => (await position(page)).gauche).toBeGreaterThan(avant);
-      await page.keyboard.press('End');
-      await expect.poll(async () => { const p = await position(page); return p.max - p.gauche; }).toBeLessThanOrEqual(2);
-      await expect(suivant).toBeDisabled();
-      await page.keyboard.press('Home');
-      await expect.poll(async () => (await position(page)).gauche).toBe(0);
-      await expect(precedent).toBeDisabled();
+      const mesure = await page.locator('#frise-studios').evaluate((el) => ({
+        hauteur: el.getBoundingClientRect().height,
+        largeurs: [...el.querySelectorAll('ul:not([aria-hidden]) li > div')].map((d) => d.getBoundingClientRect().width),
+      }));
+      expect(mesure.hauteur).toBeLessThanOrEqual(190);
+      expect(Math.min(...mesure.largeurs)).toBeGreaterThanOrEqual(92);
+      expect(Math.max(...mesure.largeurs)).toBeLessThanOrEqual(176);
       await context.close();
     });
 
-    test('desktop : avancée automatique seulement vidéo hors champ, arrêtée par une interaction manuelle', async ({ browser }) => {
-      const context = await contexteDesktop(browser, 'no-preference');
+    test('desktop : défilement continu seulement vidéo hors champ, suspendu au survol, pause et reprise', async ({ browser }) => {
+      const context = await contexte(browser);
       const page = await context.newPage();
       await page.goto(URL_PAGE);
-      // Premier écran : la vidéo est dans le champ, la frise ne bouge pas.
-      await page.waitForTimeout(5500);
-      expect((await position(page)).gauche).toBe(0);
-      await page.locator(FRISE).evaluate((s) => s.scrollIntoView({ block: 'center' }));
+      // Premier écran : la vidéo est dans le champ, le ruban ne bouge pas.
+      await page.waitForTimeout(3000);
+      expect(await position(page)).toMatchObject({ auto: false, x: 0 });
+      await centrer(page);
+      await expect.poll(async () => (await position(page)).x, { timeout: 5_000 }).toBeGreaterThan(0);
+      // Continu : de petits incréments réguliers, pas un saut de carte.
+      const a = (await position(page)).x;
+      await page.waitForTimeout(500);
+      const b = (await position(page)).x;
+      await page.waitForTimeout(500);
+      const c = (await position(page)).x;
+      for (const d of [b - a, c - b]) {
+        expect(d).toBeGreaterThan(4);
+        expect(d).toBeLessThan(30);
+      }
+      // Survol : arrêt, la position passe au défilement natif sans saut.
+      await page.locator('#frise-studios').hover();
+      const survol = await position(page);
+      expect(survol.auto).toBe(false);
+      expect(Math.abs(survol.x - c)).toBeLessThan(30);
+      await page.waitForTimeout(1000);
+      expect((await position(page)).x).toBe(survol.x);
       await page.mouse.move(5, 5);
-      await expect.poll(async () => (await position(page)).gauche, { timeout: 10_000 }).toBeGreaterThan(0);
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(survol.x);
+      // Pause explicite puis reprise.
       await page.getByRole('button', { name: 'Mettre en pause le défilement' }).click();
-      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
       await page.mouse.move(5, 5);
-      const figee = (await position(page)).gauche;
-      await page.waitForTimeout(5500);
-      expect((await position(page)).gauche).toBe(figee);
+      const figee = (await position(page)).x;
+      await page.waitForTimeout(1500);
+      expect((await position(page)).x).toBe(figee);
+      await page.getByRole('button', { name: 'Reprendre le défilement' }).click();
+      await page.mouse.move(5, 5);
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(figee);
       await context.close();
     });
 
-    test('mouvement réduit : ni bouton pause ni avancée automatique', async ({ browser }) => {
-      const context = await contexteDesktop(browser, 'reduce');
+    test('boucle sans saut : au bout d’une période, la position revient au début de la séquence', async ({ browser }) => {
+      const context = await contexte(browser);
       const page = await context.newPage();
       await page.goto(URL_PAGE);
-      await page.locator(FRISE).evaluate((s) => s.scrollIntoView({ block: 'center' }));
+      await centrer(page);
+      await page.getByRole('button', { name: 'Mettre en pause le défilement' }).click();
+      const { periode } = await position(page);
+      // Copies identiques : même visuel une période plus loin.
+      const memes = await page.locator('#frise-studios').evaluate((el, p) => {
+        const imgs = [...el.querySelectorAll('img')];
+        const premiere = imgs[0].getBoundingClientRect().left;
+        const plusLoin = imgs.find((i) => Math.abs(i.getBoundingClientRect().left - premiere - p) < 1);
+        return !!plusLoin && plusLoin.getAttribute('src') === imgs[0].getAttribute('src');
+      }, periode);
+      expect(memes).toBe(true);
+      await page.locator('#frise-studios').evaluate((el, p) => (el.scrollLeft = p - 4), periode);
+      await page.getByRole('button', { name: 'Reprendre le défilement' }).click();
       await page.mouse.move(5, 5);
-      await expect(page.getByRole('button', { name: /défilement/ })).toHaveCount(0);
-      await page.waitForTimeout(5500);
-      expect((await position(page)).gauche).toBe(0);
+      await expect.poll(async () => { const p = await position(page); return p.auto && p.x < 40; }).toBe(true);
       await context.close();
     });
 
-    test('mobile : défilement horizontal à accroche, carte suivante entrevue, aucun automatisme', async ({ page }) => {
+    test('clavier et boutons : le visiteur prend la main jusqu’à la reprise', async ({ browser }) => {
+      const context = await contexte(browser);
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      await centrer(page);
+      const ruban = page.getByRole('group', { name: /Ruban des studios/ });
+      await ruban.focus();
+      await page.keyboard.press('ArrowRight');
+      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
+      // Fin de l'animation native de la flèche (≈ 150 ms) avant la touche suivante.
+      await page.waitForTimeout(400);
+      await page.keyboard.press('Home');
+      await expect.poll(async () => (await position(page)).x).toBe(0);
+      await page.keyboard.press('End');
+      await expect.poll(async () => { const p = await position(page); return Math.abs(p.x - (p.periode - p.largeur)); }).toBeLessThan(2);
+      await page.keyboard.press('Home');
+      await page.getByRole('button', { name: 'Studios suivants' }).click();
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(0);
+      await page.waitForTimeout(600);
+      await ruban.focus();
+      await page.keyboard.press('Home');
+      await expect.poll(async () => (await position(page)).x).toBe(0);
+      // Précédent depuis le début : défilement sans fin, pas de butée.
+      await page.getByRole('button', { name: 'Studios précédents' }).click();
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(0);
+      await page.waitForTimeout(1000);
+      expect((await position(page)).auto).toBe(false);
+      await context.close();
+    });
+
+    test('mouvement réduit : aucune translation automatique, consultation manuelle possible', async ({ browser }) => {
+      const context = await contexte(browser, { reducedMotion: 'reduce' });
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      await centrer(page);
+      await expect(page.getByRole('button', { name: /défilement/ })).toHaveCount(0);
+      await page.waitForTimeout(2500);
+      expect(await position(page)).toMatchObject({ auto: false, x: 0 });
+      await page.getByRole('button', { name: 'Studios suivants' }).click();
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(0);
+      await context.close();
+    });
+
+    test('mobile : défilement continu, glisser au doigt prend la main', async ({ browser, browserName }) => {
+      test.skip(browserName !== 'chromium', 'geste tactile simulé par CDP');
+      const context = await contexte(browser, { mobile: true });
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      await centrer(page);
+      await expect(page.getByRole('button', { name: 'Studios suivants' })).toBeHidden();
+      await expect(page.getByRole('button', { name: 'Mettre en pause le défilement' })).toBeVisible();
+      await expect.poll(async () => (await position(page)).x, { timeout: 5_000 }).toBeGreaterThan(0);
+      const boite = (await page.locator('#frise-studios').boundingBox())!;
+      const y = boite.y + boite.height / 2;
+      const avant = (await position(page)).x;
+      const cdp = await context.newCDPSession(page);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 300, y }] });
+      for (let i = 1; i <= 12; i += 1) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 300 - 15 * i, y }] });
+        await page.waitForTimeout(16);
+      }
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await expect.poll(async () => (await position(page)).x).toBeGreaterThan(avant + 60);
+      expect((await position(page)).auto).toBe(false);
+      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
+      await context.close();
+    });
+  });
+
+  test.describe('catalogue réel (V5)', () => {
+    async function chargee(locator: import('@playwright/test').Locator) {
+      await locator.scrollIntoViewIfNeeded();
+      await expect.poll(() => locator.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+
+    test('couverture K1 réelle dans la carte du formulaire', async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(URL_PAGE);
+      const couverture = page.locator('#catalogue img[alt^="Couverture du catalogue Orbitvu All-in-One"]');
+      await expect(couverture).toBeVisible();
+      await chargee(couverture);
+      expect((await couverture.boundingBox())!.width).toBeGreaterThanOrEqual(110);
+    });
+
+    test('desktop : doubles pages K5, K4 et K6 affichées, plus aucun emplacement neutre', async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(URL_PAGE);
+      const section = page.locator('section[aria-labelledby="studio-titre"]');
+      for (const id of ['K5', 'K4', 'K6']) {
+        const img = section.locator(`[data-page-catalogue="${id}"] img`);
+        await expect(img).toBeVisible();
+        await chargee(img);
+      }
+      await expect(section.locator('[data-page-catalogue="K3"]')).toBeHidden();
+      await expect(page.locator('[data-emplacement]')).toHaveCount(0);
+      await expect(page.locator('main')).not.toContainText('en attente');
+      await expect(page.getByText(/téléchargement du\s+PDF non activé/)).toBeVisible();
+    });
+
+    test('mobile : pages seules K3 et K2 à la place des doubles pages', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(URL_PAGE);
-      const liste = page.locator('#frise-studios');
-      await liste.scrollIntoViewIfNeeded();
-      await expect(page.getByRole('button', { name: /défilement/ })).toHaveCount(0);
-      const mesure = await liste.evaluate((el) => {
-        const [premiere, seconde] = [...el.querySelectorAll('li')].map((li) => li.getBoundingClientRect());
-        return {
-          accroche: getComputedStyle(el).scrollSnapType,
-          defile: el.scrollWidth > el.clientWidth,
-          secondeEntrevue: seconde.left < window.innerWidth && seconde.right > window.innerWidth,
-          premiereEntiere: premiere.left >= 0 && premiere.right <= window.innerWidth,
-        };
-      });
-      expect(mesure).toEqual({ accroche: 'x mandatory', defile: true, secondeEntrevue: true, premiereEntiere: true });
-      await page.waitForTimeout(5000);
-      expect((await position(page)).gauche).toBe(0);
+      const section = page.locator('section[aria-labelledby="studio-titre"]');
+      for (const id of ['K3', 'K2', 'K6']) {
+        const img = section.locator(`[data-page-catalogue="${id}"] img`);
+        await expect(img).toBeVisible();
+        await chargee(img);
+      }
+      await expect(section.locator('[data-page-catalogue="K5"]')).toBeHidden();
+      await expect(section.locator('[data-page-catalogue="K4"]')).toBeHidden();
+    });
+
+    test('matrice K6 : agrandissement dans une fenêtre modale, fermée par Échap', async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(URL_PAGE);
+      await page.getByRole('button', { name: 'Agrandir la matrice' }).click();
+      const dialogue = page.getByRole('dialog', { name: /matrice de sélection/ });
+      await expect(dialogue).toBeVisible();
+      const img = dialogue.locator('img');
+      await chargee(img);
+      expect((await img.boundingBox())!.width).toBeGreaterThan(2000);
+      await page.keyboard.press('Escape');
+      await expect(dialogue).toBeHidden();
     });
   });
 

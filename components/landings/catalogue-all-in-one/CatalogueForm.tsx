@@ -13,7 +13,7 @@ import {
   type SaisieCatalogue,
 } from '@/lib/catalogue/schema';
 import { ETATS, FORMULAIRE, TELEPHONES } from './contenu';
-import { EmplacementVisuel } from './EmplacementVisuel';
+import { PageCatalogue } from './PageCatalogue';
 import { SansCoupure } from './SansCoupure';
 import { VISUELS } from './visuels';
 import { LienTelephone } from './LienTelephone';
@@ -211,13 +211,14 @@ export function CatalogueForm() {
   return (
     <>
     <div className="mb-5 flex items-start gap-4">
-      {/* Couverture du catalogue, en vignette : le document est la récompense du formulaire. */}
-      <EmplacementVisuel
+      {/* Vraie couverture du catalogue, en vignette lisible et sans rotation (V5) :
+          le document est la récompense du formulaire, pas le sujet de la page. */}
+      <PageCatalogue
         visuel={VISUELS.K1}
-        ton="sombre"
-        compact
-        sizes="72px"
-        className="mt-1 w-14 shrink-0 -rotate-3 rounded-[3px] shadow-md shadow-future-dusk-900/30 ring-1 ring-future-dusk-900/10 sm:w-[72px]"
+        sizes="(min-width: 640px) 120px, 88px"
+        priority
+        // 96 px de 1024 à 1279 px : la carte y est étroite, le titre ne gagne pas de ligne.
+        className="mt-1 w-[88px] shrink-0 rounded-[3px] shadow-md shadow-future-dusk-900/30 ring-1 ring-future-dusk-900/10 sm:w-[120px] lg:w-24 xl:w-[120px]"
       />
       <div>
         <h2 className="text-[1.375rem] leading-tight font-heading font-bold tracking-tight text-future-dusk-900 sm:text-2xl">

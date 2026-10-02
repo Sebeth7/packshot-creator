@@ -5,7 +5,7 @@
  *   validés par Laurent, phrases reprises telles quelles).
  * - États du formulaire, contenu du catalogue et bloc final : copydeck V2 du 02/10/2026
  *   (kit d'intégration, 05_SPECIFICATIONS/01_COPYDECK_FR_V2.md), sans modification.
- * - Frise des studios (V4) : surtitre, titre et texte de Laurent du 02/10/2026 ; noms des
+ * - Frise des studios (V4, V5) : surtitre et titre de Laurent du 02/10/2026 ; noms des
  *   studios repris de machines.ts.
  * - Section « Imaginez les possibilités » : légendes factuelles des visuels (PROPOSÉ),
  *   et phrase sur l'IA reprise de la landing /fr/packshot-e-commerce (publiée).
@@ -101,12 +101,12 @@ export const ETATS = typographie({
   indisponible: 'Le fichier est momentanément indisponible. Réessayez ou contactez-nous.',
 } as const);
 
+// V5 : intitulé court seulement (ruban compact) ; le texte d'accompagnement V4 est retiré.
 export const GAMME = typographie({
   surtitre: 'UNE GAMME, DE MULTIPLES POSSIBILITÉS',
   h2: 'Du bijou au mobilier, explorez les studios Orbitvu.',
-  texte:
-    'Des équipements pensés pour différents produits et formats. Parcourez la gamme et commencez à imaginer votre futur studio photo.',
   liste: 'Studios Orbitvu',
+  ruban: 'Ruban des studios, défilable horizontalement',
   precedent: 'Studios précédents',
   suivant: 'Studios suivants',
   pause: 'Mettre en pause le défilement',

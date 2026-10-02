@@ -10,15 +10,17 @@
  * (variante compacte de la maquette : arbitrage ouvert).
  *
  * Vidéo : fichiers de la home (public/images/hero/), lus par VideoStudio, variante
- * locale de HeroVideo (non modifié). Pages du catalogue : emplacements neutres tant
- * que l'export paysage correct manque (visuels.ts). Aucun lien vers F5 (D37).
+ * locale de HeroVideo (non modifié). Pages du catalogue : exports réels du PDF de
+ * contrôle depuis la V5 (visuels.ts) ; téléchargement du PDF non activé. Aucun lien
+ * vers F5 (D37).
  */
 import Image from 'next/image';
 import { ArrowRight, Phone, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { CatalogueForm } from './CatalogueForm';
-import { EmplacementVisuel } from './EmplacementVisuel';
+import { AgrandirPage } from './AgrandirPage';
 import { LienTelephone } from './LienTelephone';
+import { PageCatalogue } from './PageCatalogue';
 import { SansCoupure } from './SansCoupure';
 import { StudiosRail } from './StudiosRail';
 import { VideoStudio } from './VideoStudio';
@@ -137,8 +139,8 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
         </div>
         {apercuInterne && (
           <p className="relative border-t border-amber-300/30 bg-amber-400/10 px-4 py-2 text-center text-xs text-amber-100">
-            Aperçu de travail, parcours non activé&nbsp;: pages du catalogue en attente du PDF définitif, aucune demande
-            enregistrée ni envoyée.
+            Aperçu de travail, parcours non activé&nbsp;: extraits du catalogue présentés pour revue, téléchargement du
+            PDF non activé, aucune demande enregistrée ni envoyée.
           </p>
         )}
       </section>
@@ -186,57 +188,68 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
         </div>
       </section>
 
-      {/* ━━ 3. TROUVEZ LE STUDIO ADAPTÉ : le catalogue comme aide au choix ━━ */}
+      {/* ━━ 3. TROUVEZ LE STUDIO ADAPTÉ : le catalogue comme aide au choix ━━
+          V5 : vraies pages du catalogue. Desktop : texte à gauche, doubles pages K5 et K4
+          à droite, puis la matrice K6 sur toute la largeur, avec agrandissement.
+          Sous 640 px : pages seules (K3, K2) à la place des doubles pages. */}
       <section aria-labelledby="studio-titre" className="bg-future-dusk-0 py-14 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
-          <div className="lg:col-span-5">
-            <h2 id="studio-titre" className="text-3xl font-heading font-bold tracking-tight text-future-dusk-900 sm:text-4xl">
-              {STUDIO.h2}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-future-dusk-600">{STUDIO.intro}</p>
-            <ol className="mt-6 space-y-5">
-              {STUDIO.lignes.map((ligne, i) => (
-                <li key={ligne.titre} className="flex gap-4">
-                  <span aria-hidden="true" className="mt-0.5 text-sm font-semibold tabular-nums text-very-peri-500">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-future-dusk-900">{ligne.titre}</h3>
-                    <p className="mt-1 text-base leading-relaxed text-future-dusk-700">
-                      {ligne.texte} <span className="italic text-future-dusk-500">{ligne.pages}</span>
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <a href={`#${ANCRE_FORMULAIRE}`} className={`${boutonPrincipal} mt-8 w-full sm:w-auto`}>
-              {STUDIO.cta}
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </a>
-          </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-5">
+              <h2 id="studio-titre" className="text-3xl font-heading font-bold tracking-tight text-future-dusk-900 sm:text-4xl">
+                {STUDIO.h2}
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-future-dusk-600">{STUDIO.intro}</p>
+              <ol className="mt-6 space-y-5">
+                {STUDIO.lignes.map((ligne, i) => (
+                  <li key={ligne.titre} className="flex gap-4">
+                    <span aria-hidden="true" className="mt-0.5 text-sm font-semibold tabular-nums text-very-peri-500">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="font-heading text-lg font-semibold text-future-dusk-900">{ligne.titre}</h3>
+                      <p className="mt-1 text-base leading-relaxed text-future-dusk-700">
+                        {ligne.texte} <span className="italic text-future-dusk-500">{ligne.pages}</span>
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <a href={`#${ANCRE_FORMULAIRE}`} className={`${boutonPrincipal} mt-8 w-full sm:w-auto`}>
+                {STUDIO.cta}
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
 
-          <div className="lg:col-span-7 lg:pt-2">
-            <figure>
-              <EmplacementVisuel
-                visuel={VISUELS.K6}
-                sizes="(min-width: 1024px) 700px, 92vw"
-                className="rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100"
-              />
-              <figcaption className="mt-3 text-sm text-future-dusk-600">{VISUELS.K6.texte}</figcaption>
-            </figure>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            <div className="space-y-7 lg:col-span-7 lg:pt-2">
               {(['K5', 'K4'] as const).map((id) => (
                 <figure key={id}>
-                  <EmplacementVisuel
+                  <PageCatalogue
                     visuel={VISUELS[id]}
-                    sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 92vw"
+                    mobile={VISUELS[id].mobile ? VISUELS[VISUELS[id].mobile] : undefined}
+                    sizes="(min-width: 1280px) 700px, (min-width: 1024px) 56vw, 92vw"
                     className="rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100"
                   />
-                  <figcaption className="mt-3 text-sm text-future-dusk-600">{VISUELS[id].texte}</figcaption>
+                  <figcaption className="mt-3 text-sm text-future-dusk-600">
+                    <span className="sm:hidden">{VISUELS[VISUELS[id].mobile ?? id].texte}</span>
+                    <span className="hidden sm:inline">{VISUELS[id].texte}</span>
+                  </figcaption>
                 </figure>
               ))}
             </div>
           </div>
+
+          <figure className="mt-12 lg:mt-14">
+            <PageCatalogue
+              visuel={VISUELS.K6}
+              sizes="(min-width: 1280px) 1216px, 96vw"
+              className="rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100"
+            />
+            <figcaption className="mt-2 flex flex-wrap items-center justify-between gap-x-4 text-sm text-future-dusk-600">
+              <span className="py-2">{VISUELS.K6.texte}</span>
+              <AgrandirPage visuel={VISUELS.K6} libelle="Agrandir la matrice" />
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -263,9 +276,8 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
               </a>
             </div>
             <div className="hidden w-44 shrink-0 -rotate-2 sm:block lg:w-52">
-              <EmplacementVisuel
+              <PageCatalogue
                 visuel={VISUELS.K1}
-                ton="sombre"
                 sizes="208px"
                 className="rounded-[4px] shadow-xl shadow-future-dusk-900/30 ring-1 ring-future-dusk-900/10"
               />
