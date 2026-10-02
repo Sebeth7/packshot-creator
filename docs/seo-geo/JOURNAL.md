@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-02 · Landing catalogue Orbitvu All-in-One — intégration en PR brouillon, bloquée ASSETS/PDF/EXTERNALS PENDING · Claude de Laurent
 
-**Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`
+**Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `13f3cf0` | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`
 
 **Quoi** — Page `/fr/catalogue-orbitvu-all-in-one` (FR seule, France et Suisse) en quatre sections, formulaire dédié et route `POST /api/catalogue` à services injectés. La page répond 404 sur la production Vercel tant que `PUBLICATION_AUTORISEE` est faux ; la route répond 503 `catalogue_unavailable` : aucun stockage, aucun adaptateur Pipedrive ni Resend n'existe dans le code.
 
