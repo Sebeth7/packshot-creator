@@ -1,40 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod/v4';
 import { Resend } from 'resend';
 import { enrichLead, formatEnrichmentNote, formatEnrichmentHtml, type EnrichedLead } from '@/lib/lead-enrichment';
+import { contactSchema, type ContactFormData } from '@/lib/contact-schema';
 
 // ── Pipedrive config ──────────────────────────────────────────
 const PIPEDRIVE_PIPELINE_ID = 3; // PackshotCreator Pipeline
 const PIPEDRIVE_STAGE_ID = 17;   // R0 - Nouvelles demandes
 
-// ── Validation schema ─────────────────────────────────────────
-const contactSchema = z.object({
-  firstName: z.string().min(2),
-  lastName: z.string().min(2),
-  email: z.email(),
-  phone: z.string().optional(),
-  company: z.string().min(1),
-  sector: z.string().min(1),
-  requestType: z.enum(['demo', 'quote', 'support', 'training', 'other']),
-  message: z.string().optional(),
-  rgpdConsent: z.literal(true),
-  newsletter: z.enum(['yes', 'no']),
-  locale: z.enum(['fr', 'en']).default('fr'),
-  pageSource: z.string().optional(), // page d'origine (ex: "/fr/studio-photo/alphashot-pro-g2")
-  machineContext: z.string().optional(), // machine pré-sélectionnée si applicable
-  // Attribution first-touch de session (mesure GEO : trafic IA / SEO / campagnes)
-  attribution: z.object({
-    utmSource: z.string().max(200).optional(),
-    utmMedium: z.string().max(200).optional(),
-    utmCampaign: z.string().max(200).optional(),
-    utmTerm: z.string().max(200).optional(),
-    utmContent: z.string().max(200).optional(),
-    referrer: z.string().max(500).optional(),
-    landingPage: z.string().max(500).optional(),
-  }).optional(),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
 
 // ── Pipedrive helpers ─────────────────────────────────────────
 
@@ -217,7 +189,8 @@ export async function POST(request: NextRequest) {
     const data = parsed.data;
     const resend = new Resend(process.env.RESEND_API_KEY);
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
-    const typeLabel = REQUEST_TYPE_LABELS[data.requestType]?.[data.locale] || data.requestType;
+    // Libellés en fr et en seulement : de-ch reçoit l'anglais, comme l'email de confirmation.
+    const typeLabel = REQUEST_TYPE_LABELS[data.requestType]?.[data.locale === 'fr' ? 'fr' : 'en'] || data.requestType;
 
     // 1. Pipedrive: Person + Organization + Deal + Note
     let pipedriveResult = { personId: null as number | null, dealId: null as number | null };

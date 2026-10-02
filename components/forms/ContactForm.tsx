@@ -9,6 +9,7 @@ import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { trackFormSubmit } from '@/lib/analytics';
 import { getAttribution } from '@/lib/attribution';
+import type { ContactLocale } from '@/lib/contact-schema';
 
 // ── Config ────────────────────────────────────────────────────
 
@@ -89,7 +90,7 @@ const SECTORS = {
 
 // ── Validation ────────────────────────────────────────────────
 
-function createContactSchema(locale: 'fr' | 'en' | 'de-ch') {
+function createContactSchema(locale: ContactLocale) {
   const messages = {
     fr: { required: 'Ce champ est requis', email: 'Email invalide', min2: 'Minimum 2 caractères', rgpd: 'Vous devez accepter la politique de confidentialité' },
     en: { required: 'This field is required', email: 'Invalid email', min2: 'Minimum 2 characters', rgpd: 'You must accept the privacy policy' },
@@ -116,7 +117,8 @@ type ContactFormValues = z.infer<ReturnType<typeof createContactSchema>>;
 // ── Props ─────────────────────────────────────────────────────
 
 interface ContactFormProps {
-  locale?: 'fr' | 'en' | 'de-ch';
+  /** Typée sur les langues acceptées par `/api/contact` (`lib/contact-schema.ts`) */
+  locale?: ContactLocale;
   className?: string;
   /** Mode compact pour intégration dans les pages produits */
   compact?: boolean;

@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Formulaire de contact : les demandes envoyées depuis les pages de-ch étaient refusées · Claude de Sébastien
+
+**Chantier** : correctif urgent, hors 06-CHANTIERS | **PR** : à venir | **Base** : `main` `9400eaa`
+
+**Quoi** — `/api/contact` accepte désormais `de-ch`. Le schéma est sorti dans `lib/contact-schema.ts`, et `ContactForm` type sa prop `locale` sur la même liste : une langue envoyée par le formulaire et refusée par l'API devient une erreur de compilation.
+
+**Pourquoi** — Le schéma de l'API n'acceptait que `fr` et `en`, alors que `ContactForm` envoie `de-ch` sur `/de-ch/kontakt`, les fiches `fotostudio`, les pages `branchen`, la gamme et les landings de-ch. Sonde du 02/10 sur `sysnext.vercel.app`, envoi invalide par construction (consentement décoché, aucun effet) : 400, `Invalid option: expected one of "fr"|"en"` sur `locale`. Le visiteur voyait le message d'erreur du formulaire ; rien n'arrivait dans Pipedrive ni par email. Décalage introduit par `818cac8` (27/06, de-ch Palier 2). `e2e/contact-form.spec.ts` n'envoie jamais le formulaire et ne teste pas de-ch.
+
+**Fichiers** — `lib/contact-schema.ts` (nouveau), `app/api/contact/route.ts`, `components/forms/ContactForm.tsx`, `lib/__tests__/contact-schema.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Dès le déploiement : une demande de-ch crée personne, organisation et deal à l'étape 17 « R0 - Nouvelles demandes », prévient Sébastien et Stéphane, et envoie au prospect la confirmation anglaise (même traitement que `en`). Libellé du type de demande dans l'email interne : anglais pour de-ch, comme pour en. Titre du deal : français, inchangé.
+
+**Vérifié** — `npx vitest run` : 377/377, dont 4 nouveaux. Contre-épreuve : avec l'ancienne liste `fr`/`en`, 2 tests sur 4 échouent et `tsc` signale 7 erreurs (les pages qui passent `de-ch`). `npx tsc --noEmit`, eslint des 4 fichiers, `npx next build` verts. `next start` local : la sonde de-ch ne renvoie plus que l'erreur de consentement ; une langue inconnue (`de`) reste refusée.
+**Supposé** — Que des demandes de-ch ont été perdues depuis la mise en production de la locale : le code et la sonde l'établissent, la date de mise en production n'est pas vérifiée et le volume perdu est inconnu (une erreur 400 n'est pas journalisée côté application).
+**Non regardé** — Envoi réel de bout en bout (il crée un vrai deal et deux emails) : à faire depuis `www` dans Chrome après déploiement, puis suppression de la fiche test. Confirmation en allemand : non écrite, la confirmation anglaise s'applique. `/api/roi-pdf` (calculateur EN et de-ch) : n'a pas de liste de langues fermée, non concerné par ce défaut.
+
+**Suite** — Après fusion : sonde sur `sysnext.vercel.app`, puis envoi réel depuis `/de-ch/kontakt`. Un test e2e qui envoie le formulaire (API simulée) dans les trois langues reste à écrire. Confirmation en allemand à décider.
+
+---
+
 ## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé
