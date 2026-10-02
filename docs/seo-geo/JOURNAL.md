@@ -34,6 +34,47 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — pilier A : visuel A2 intégré (panneau 1 remonté par compositing local) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — A2 `detourage-meme-tasse-quatre-etapes.avif`, grille 2 × 2, ajouté à la fin de « Une retouche IA n'est pas forcément une nouvelle image », avant « Le détourage a changé de qualification en juillet 2026 ».
+- Panneaux 2 à 4 : ceux de `A2_detourage_mise_en_forme_standard_V2.png` (paquet `PSC_AI_ACT_A2_S4_REGENERES_2026-10-02`, création ChatGPT), sans modification.
+- Panneau 1 : remonté localement, sans aucune génération, sur consigne de Laurent du 02/10 (« STOP aux nouvelles générations complètes de la tasse »).
+  - Tasse du panneau 2 extraite par masque, posée à l'identique dans un décor de studio construit localement : fond gris neutre, table mate, pied de lumière flou à gauche.
+  - Ombre d'origine transférée, ombre de contact ajoutée.
+  - Le panneau 1 du V2 (autre tasse) est écarté.
+- ALT : « Quatre vues de la même tasse fictive en grès : dans un décor de studio, détourée sur fond gris, posée sur fond blanc avec une ombre douce, puis légèrement corrigée. »
+- Légende de l'inventaire précédée de la mention du montage : « Illustration générée par IA, avec montage. Étapes de préparation… »
+- `readingTime` 21 → 22.
+- Commit local, **non poussé** : un seul push final par PR, sur GO de Laurent.
+
+**Pourquoi** — Contrôle du 02/10 : la tasse du panneau 1 de V2 diffère de celle des panneaux 2 à 4 (angle, anse, proportions). Le panneau 1 devait montrer exactement la même tasse.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/detourage-meme-tasse-quatre-etapes.avif` (ajout), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fidélité :
+  - panneau 1 contre panneau 2, intérieur du masque : 82 999 pixels repris sans aucun écart ; bordure adoucie vers l'intérieur seulement, aucun pixel de l'ancien fond ;
+  - panneaux 3 et 4 contre 2 : écarts limités aux contours ;
+  - contrôle visuel à 100 % : rebord, anse, pied.
+- Image :
+  - PNG source V2 : SHA-256 `13a78934…228931` (manifeste C2PA) ; PNG assemblé : `089e234c…dc8cb1` ;
+  - AVIF : libaom, CRF 10 (mouchetures de l'émail lissées à CRF 24), yuv444p, plage complète, BT.709, 1092 × 920, 50 741 o, SHA-256 `3c7d267e…cad9eb`, SSIM 0,986 ; moyenne RGB identique au PNG.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, 7 formats : 0 débordement, 0 erreur ; 6 figures chargées, soit 7 visuels avec l'en-tête ; FAQ 7 = `FAQPage` 7 ; 0 ponctuation isolée.
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4).
+
+**Suite** — GO de push de Laurent ; contrôle humain de la Preview.
+
+---
+
 ## 2026-10-02 · Cluster AI Act — pilier européen (A) : maillage vers `/fr/packshot-mode`, audit SEO/GEO et contrôles de finalisation · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
