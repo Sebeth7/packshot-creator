@@ -1,7 +1,7 @@
 /**
- * Une seule animation majeure à la fois (V4) : la vidéo du hero et la frise des
- * studios observent le même élément avec le même seuil. Sous ce seuil, la vidéo se
- * met en pause et la frise peut défiler ; au-dessus, l'inverse.
+ * Repères communs au hero et au ruban des studios. Depuis la V5.1, la priorité entre
+ * les deux animations passe par animationPrincipale.ts : le ruban ne dépend plus de
+ * la visibilité de la vidéo.
  */
 export const ID_VIDEO_GAMME = 'video-gamme';
 

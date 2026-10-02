@@ -48,6 +48,19 @@ const TRAME = {
   backgroundSize: '24px 24px',
 };
 
+const cadrePage = 'rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100';
+
+/** Légende d'une double page, ou de la page seule qui la remplace sous 640 px. */
+function Legende({ id }: { id: 'K4' | 'K5' }) {
+  const seule = VISUELS[id].mobile;
+  return (
+    <figcaption className="mt-2 text-sm text-future-dusk-600">
+      {seule && <span className="sm:hidden">{VISUELS[seule].texte}</span>}
+      <span className={seule ? 'hidden sm:inline' : undefined}>{VISUELS[id].texte}</span>
+    </figcaption>
+  );
+}
+
 const surtitreClair = 'text-xs sm:text-sm font-semibold tracking-[0.12em] text-very-peri-600';
 const surtitreSombre = 'text-xs sm:text-sm font-semibold tracking-[0.12em] text-very-peri-200';
 const boutonPrincipal =
@@ -189,9 +202,10 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
       </section>
 
       {/* ━━ 3. TROUVEZ LE STUDIO ADAPTÉ : le catalogue comme aide au choix ━━
-          V5 : vraies pages du catalogue. Desktop : texte à gauche, doubles pages K5 et K4
-          à droite, puis la matrice K6 sur toute la largeur, avec agrandissement.
-          Sous 640 px : pages seules (K3, K2) à la place des doubles pages. */}
+          V5.1 : composition compacte, pour donner envie sans montrer tout le document.
+          Desktop : texte à gauche ; à droite K5 en grand, puis K4 et la vignette K6
+          côte à côte (matrice lisible en agrandissement). Sous 640 px : pages seules
+          K3 et K2 côte à côte, puis la vignette K6 ; aucune double page minuscule. */}
       <section aria-labelledby="studio-titre" className="bg-future-dusk-0 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -221,35 +235,38 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
               </a>
             </div>
 
-            <div className="space-y-7 lg:col-span-7 lg:pt-2">
-              {(['K5', 'K4'] as const).map((id) => (
-                <figure key={id}>
-                  <PageCatalogue
-                    visuel={VISUELS[id]}
-                    mobile={VISUELS[id].mobile ? VISUELS[VISUELS[id].mobile] : undefined}
-                    sizes="(min-width: 1280px) 700px, (min-width: 1024px) 56vw, 92vw"
-                    className="rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100"
-                  />
-                  <figcaption className="mt-3 text-sm text-future-dusk-600">
-                    <span className="sm:hidden">{VISUELS[VISUELS[id].mobile ?? id].texte}</span>
-                    <span className="hidden sm:inline">{VISUELS[id].texte}</span>
-                  </figcaption>
-                </figure>
-              ))}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-6 self-start sm:gap-x-6 lg:col-span-7 lg:pt-2">
+              <figure className="sm:col-span-2">
+                <PageCatalogue
+                  visuel={VISUELS.K5}
+                  mobile={VISUELS.K3}
+                  sizes="(min-width: 1280px) 690px, (min-width: 1024px) 56vw, 92vw"
+                  sizesMobile="46vw"
+                  className={cadrePage}
+                />
+                <Legende id="K5" />
+              </figure>
+              <figure>
+                <PageCatalogue
+                  visuel={VISUELS.K4}
+                  mobile={VISUELS.K2}
+                  sizes="(min-width: 1280px) 335px, (min-width: 1024px) 28vw, 46vw"
+                  sizesMobile="46vw"
+                  className={cadrePage}
+                />
+                <Legende id="K4" />
+              </figure>
+              <figure className="col-span-2 sm:col-span-1">
+                <AgrandirPage
+                  visuel={VISUELS.K6}
+                  libelle="Agrandir la matrice"
+                  sizes="(min-width: 1280px) 335px, (min-width: 640px) 46vw, 92vw"
+                  className={cadrePage}
+                />
+                <figcaption className="mt-2 text-sm text-future-dusk-600">{VISUELS.K6.texte}</figcaption>
+              </figure>
             </div>
           </div>
-
-          <figure className="mt-12 lg:mt-14">
-            <PageCatalogue
-              visuel={VISUELS.K6}
-              sizes="(min-width: 1280px) 1216px, 96vw"
-              className="rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100"
-            />
-            <figcaption className="mt-2 flex flex-wrap items-center justify-between gap-x-4 text-sm text-future-dusk-600">
-              <span className="py-2">{VISUELS.K6.texte}</span>
-              <AgrandirPage visuel={VISUELS.K6} libelle="Agrandir la matrice" />
-            </figcaption>
-          </figure>
         </div>
       </section>
 

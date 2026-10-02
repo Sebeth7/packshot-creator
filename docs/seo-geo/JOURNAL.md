@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5.1 : section catalogue compacte, priorité au ruban, métadonnées préparées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg`, partie de `4412966` (HEAD transmis, vérifié identique sur origin) | **Base** : `main` `de6c4cd` (inchangée)
+
+**Quoi** — Mission V5.1 de Laurent après revue de la Preview V5. (A) Section « Trouvez le studio adapté à vos produits » compactée. (B) Ruban des studios : démarrage dès qu'il entre dans le champ, la vidéo du hero se mettant en pause pendant qu'il défile. (C) Title et meta description réécrits pour le positionnement V5, indexation inchangée. H1, formulaire, CTA, téléphones, API, visuels K1–K6 et PDF inchangés.
+
+**Pourquoi** — (A) À 1 361 px de haut à 1440, la section montrait trop du document à télécharger. (B) En V4 et V5, le ruban attendait que la vidéo du hero soit à moins de 30 % visible : à 1440 × 900, un visiteur arrêté sur la frise avec la vidéo encore à l'écran (défilement entre ≈ 370 et 630 px) voyait un ruban immobile. (C) Title et meta description encore ceux du copydeck V2 (« 28 pages, 10 systèmes »).
+
+**Section catalogue (A)** — Texte inchangé à gauche ; à droite, K5 en grand, puis K4 et la vignette K6 côte à côte ; la vignette K6 est un bouton « Agrandir la matrice » qui ouvre la fenêtre modale de la V5. Sous 640 px : pages seules K3 et K2 côte à côte, puis la vignette K6 pleine largeur ; aucune double page minuscule. Hauteurs mesurées (V5 → V5.1) : 1440 px 1 361 → 822 (−40 %), 1024 px 1 348 → 900 (−33 %), 768 px 1 673 → 1 193 (−29 %), 390 px 1 793 → 1 278 (−29 %), 320 px 1 840 → 1 400 (−24 %). À 1440, la hauteur est désormais celle de la colonne de texte, non modifiée : la baisse dépasse la fourchette indicative de 25 à 35 % sans rien retirer.
+
+**Ruban (B)** — Démarrage quand le ruban est visible à 60 % au moins (header déduit), sans condition sur la vidéo. Nouveau `animationPrincipale.ts` : le ruban signale quand il défile, la vidéo du hero se met alors en pause, puis reprend quand il s'arrête. Contrôle visuel en conditions réelles (arrivée par la molette depuis le haut de page) : démarrage immédiat, 22,0 px/s constants sur 14 s, environ deux machines nouvelles en 12 s, huit visibles d'emblée à 1440 ; vitesse conservée. Boucle : incréments réguliers de part et d'autre du retour au début (1 672,2 → 0,6 px), sans saut. Silhouettes, fondu des bords, survol, focus, pause, glissement tactile, mouvement réduit et arrêt hors champ inchangés et revérifiés.
+
+**Métadonnées (C)** — Title : « Studios photo Orbitvu : recevez le catalogue | PackshotCreator » (62 caractères). Meta description : « Découvrez les possibilités des studios photo automatisés Orbitvu et recevez le catalogue All-in-One pour explorer la gamme. France et Suisse. » (141 caractères). Proposition de Laurent retenue telle quelle : longueurs dans les règles du dépôt (`e2e/seo.spec.ts` : title < 70, description de 50 à 160) et termes présents sur la page (studios automatisés Orbitvu, catalogue All-in-One, gamme, France et Suisse). Aucune donnée de volume de recherche consultée ni affirmée. Inchangés : `noindex, nofollow`, aucune canonique, aucun sitemap, route FR seule, `PUBLICATION_AUTORISEE = false`.
+
+**Fichiers** — nouveau : `components/landings/catalogue-all-in-one/animationPrincipale.ts` ; modifiés : `CatalogueAllInOne.tsx`, `AgrandirPage.tsx` (vignette cliquable), `StudiosRail.tsx`, `VideoStudio.tsx`, `coordination.ts` (commentaire), `contenu.ts` (META), `e2e/catalogue-all-in-one.spec.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx` (lit `META`), formulaire, API, `public/`, home, fiches machines.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 433/433 ; `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 66/66 sur serveur neuf, dont : nouveau title et nouvelle meta description, `nofollow` présent ; ruban qui défile alors que la vidéo est encore visible à plus de 30 %, avec appel à `pause()` sur la vidéo, puis arrêt du ruban et appel à `play()` au retour en haut ; section catalogue ≤ 1 020 px à 1440 et vignette K6 de moins de 400 px ; K3 et K2 côte à côte sur mobile.
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3, V4, V5 et sur `main`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du CTA inchangé (827 px sur 900 à 1440, 881 sur 768 à 1024) ; aucun emplacement neutre ; aucune requête du MP4 sous 768 px.
+**Supposé** — Que la vitesse de 22 px/s convienne à l'œil de Laurent : jugement sur enregistrement, pas sur mesure d'usage.
+**Non regardé** — Preview Vercel V5.1 dans un navigateur (SSO : les captures sont locales, ce n'est pas un contrôle de la Preview) ; Safari, Firefox et appareils réels ; volumes de recherche des formulations du title.
+
+**Suite** — Dernière validation graphique de Laurent sur la Preview. Restent ouverts avant activation : destination des QR « démo » (`orbitvu.fr/contact/`), versions de produits nommées par le PDF, validation du PDF QA, hébergement du PDF, stockage et CRM, indexation et URL définitive. Aucune fusion ni publication ; pas de développement CRM/e-mail engagé.
+
+---
+
 ## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5 : ruban continu des studios, vraies pages du catalogue · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd` (inchangée depuis V3)

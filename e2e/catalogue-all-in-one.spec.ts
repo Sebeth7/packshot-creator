@@ -48,7 +48,13 @@ test.describe('Landing catalogue All-in-One', () => {
   test('H1, métadonnées noindex, aucune canonique ni hreflang', async ({ page }) => {
     await page.goto(URL_PAGE);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(H1);
-    await expect(page).toHaveTitle('Catalogue Orbitvu All-in-One 2026 | PackshotCreator');
+    await expect(page).toHaveTitle('Studios photo Orbitvu : recevez le catalogue | PackshotCreator');
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      'Découvrez les possibilités des studios photo automatisés Orbitvu et recevez le catalogue All-in-One pour explorer la gamme. France et Suisse.',
+    );
+    // Préparées seulement : ni canonique ni indexation (arbitrage de Laurent).
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /nofollow/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
     await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
@@ -305,11 +311,11 @@ test.describe('Landing catalogue All-in-One', () => {
       await context.close();
     });
 
-    test('desktop : défilement continu seulement vidéo hors champ, suspendu au survol, pause et reprise', async ({ browser }) => {
+    test('desktop : défilement continu dès que le ruban est visible, suspendu au survol, pause et reprise', async ({ browser }) => {
       const context = await contexte(browser);
       const page = await context.newPage();
       await page.goto(URL_PAGE);
-      // Premier écran : la vidéo est dans le champ, le ruban ne bouge pas.
+      // Premier écran : le ruban n'est pas dans le champ, il ne bouge pas.
       await page.waitForTimeout(3000);
       expect(await position(page)).toMatchObject({ auto: false, x: 0 });
       await centrer(page);
@@ -342,6 +348,51 @@ test.describe('Landing catalogue All-in-One', () => {
       await page.getByRole('button', { name: 'Reprendre le défilement' }).click();
       await page.mouse.move(5, 5);
       await expect.poll(async () => (await position(page)).x).toBeGreaterThan(figee);
+      await context.close();
+    });
+
+    test('ruban visible, vidéo du hero encore à l’écran : le ruban défile et la vidéo se met en pause', async ({ browser }) => {
+      const context = await contexte(browser);
+      // Appels à play() et pause() comptés : le Chromium de test ne décode pas forcément
+      // le H.264, l'état `paused` seul ne prouverait rien.
+      await context.addInitScript(() => {
+        const w = window as unknown as { __pauses: number; __lectures: number };
+        w.__pauses = 0;
+        w.__lectures = 0;
+        const pause = HTMLMediaElement.prototype.pause;
+        const play = HTMLMediaElement.prototype.play;
+        HTMLMediaElement.prototype.pause = function () {
+          w.__pauses += 1;
+          return pause.call(this);
+        };
+        HTMLMediaElement.prototype.play = function () {
+          w.__lectures += 1;
+          return play.call(this);
+        };
+      });
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      await page.waitForLoadState('networkidle');
+      // Référence prise avant le défilement : le ruban démarre dès qu'il entre dans le champ.
+      const pauses = await page.evaluate(() => (window as unknown as { __pauses: number }).__pauses);
+      // Ruban en bas de l'écran : la vidéo reste visible au-dessus.
+      await expect(async () => {
+        await page.locator('#frise-studios').evaluate((el) => el.scrollIntoView({ block: 'end' }));
+        await expect(page.locator('#frise-studios')).toBeInViewport({ ratio: 0.9, timeout: 500 });
+        await expect(page.locator('#video-gamme')).toBeInViewport({ ratio: 0.3, timeout: 500 });
+      }).toPass({ timeout: 10_000 });
+      await page.mouse.move(5, 5);
+      await expect.poll(async () => (await position(page)).x, { timeout: 5_000 }).toBeGreaterThan(0);
+      await expect
+        .poll(() => page.evaluate(() => (window as unknown as { __pauses: number }).__pauses))
+        .toBeGreaterThan(pauses);
+      // Retour en haut : le ruban s'arrête, la vidéo est relancée.
+      const lectures = await page.evaluate(() => (window as unknown as { __lectures: number }).__lectures);
+      await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+      await expect.poll(async () => (await position(page)).auto).toBe(false);
+      await expect
+        .poll(() => page.evaluate(() => (window as unknown as { __lectures: number }).__lectures))
+        .toBeGreaterThan(lectures);
       await context.close();
     });
 
@@ -451,10 +502,14 @@ test.describe('Landing catalogue All-in-One', () => {
       expect((await couverture.boundingBox())!.width).toBeGreaterThanOrEqual(110);
     });
 
-    test('desktop : doubles pages K5, K4 et K6 affichées, plus aucun emplacement neutre', async ({ page }) => {
+    test('desktop : doubles pages K5, K4 et vignette K6, section compacte, plus aucun emplacement neutre', async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.goto(URL_PAGE);
       const section = page.locator('section[aria-labelledby="studio-titre"]');
+      // V5.1 : au moins 25 % de moins que les 1 361 px de la V5 à 1440 px.
+      expect((await section.boundingBox())!.height).toBeLessThanOrEqual(1020);
+      // K6 en vignette : pas plus large que la moitié de la colonne des visuels.
+      expect((await section.locator('[data-page-catalogue="K6"]').boundingBox())!.width).toBeLessThan(400);
       for (const id of ['K5', 'K4', 'K6']) {
         const img = section.locator(`[data-page-catalogue="${id}"] img`);
         await expect(img).toBeVisible();
@@ -466,7 +521,7 @@ test.describe('Landing catalogue All-in-One', () => {
       await expect(page.getByText(/téléchargement du\s+PDF non activé/)).toBeVisible();
     });
 
-    test('mobile : pages seules K3 et K2 à la place des doubles pages', async ({ page }) => {
+    test('mobile : pages seules K3 et K2 côte à côte, aucune double page sauf la vignette K6', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(URL_PAGE);
       const section = page.locator('section[aria-labelledby="studio-titre"]');
@@ -477,12 +532,14 @@ test.describe('Landing catalogue All-in-One', () => {
       }
       await expect(section.locator('[data-page-catalogue="K5"]')).toBeHidden();
       await expect(section.locator('[data-page-catalogue="K4"]')).toBeHidden();
+      const [k3, k2] = await Promise.all(['K3', 'K2'].map((id) => section.locator(`[data-page-catalogue="${id}"]`).boundingBox()));
+      expect(Math.abs(k3!.y - k2!.y)).toBeLessThan(2);
     });
 
     test('matrice K6 : agrandissement dans une fenêtre modale, fermée par Échap', async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.goto(URL_PAGE);
-      await page.getByRole('button', { name: 'Agrandir la matrice' }).click();
+      await page.getByRole('button', { name: /^Agrandir la matrice/ }).click();
       const dialogue = page.getByRole('dialog', { name: /matrice de sélection/ });
       await expect(dialogue).toBeVisible();
       const img = dialogue.locator('img');

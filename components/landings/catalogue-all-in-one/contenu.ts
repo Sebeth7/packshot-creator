@@ -9,6 +9,8 @@
  *   studios repris de machines.ts.
  * - Section « Imaginez les possibilités » : légendes factuelles des visuels (PROPOSÉ),
  *   et phrase sur l'IA reprise de la landing /fr/packshot-e-commerce (publiée).
+ * - Title et meta description : proposition V5.1 de Laurent du 02/10/2026 (META),
+ *   à la place de ceux du copydeck V2.
  *
  * STATUT : PROPOSÉ — relecture métier de Sébastien avant publication (D42, étape 5).
  * Page française unique, commune à la France et à la Suisse : ces textes ne sont
@@ -38,10 +40,15 @@ export const TELEPHONES = {
   CH: { pays: 'Suisse', affiche: '+41 44 580 43 84', href: 'tel:+41445804384' },
 } as const;
 
+// V5.1 (02/10/2026) : métadonnées alignées sur le positionnement V5 (photographie produit,
+// automatisation, possibilités des studios, catalogue comme aide au choix). Title 62
+// caractères, description 141 (règles du dépôt : < 70 et 50 à 160, e2e/seo.spec.ts).
+// Préparées seulement : la page reste `noindex, nofollow`, sans canonique ni sitemap ;
+// l'indexation est un arbitrage de Laurent.
 export const META = {
-  title: 'Catalogue Orbitvu All-in-One 2026 | PackshotCreator',
+  title: 'Studios photo Orbitvu : recevez le catalogue | PackshotCreator',
   description:
-    'Quel studio Orbitvu pour vos produits ? Découvrez le catalogue All-in-One : 28 pages, 10 systèmes et leurs applications. Téléchargement France et Suisse.',
+    'Découvrez les possibilités des studios photo automatisés Orbitvu et recevez le catalogue All-in-One pour explorer la gamme. France et Suisse.',
 } as const;
 
 export const HERO = typographie({

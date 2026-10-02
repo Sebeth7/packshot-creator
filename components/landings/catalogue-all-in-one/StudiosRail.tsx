@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { GAMME } from './contenu';
-import { ID_VIDEO_GAMME, MARGE_HEADER, SEUIL_VIDEO_VISIBLE } from './coordination';
+import { signalerRuban } from './animationPrincipale';
+import { MARGE_HEADER } from './coordination';
 import type { Gabarit, StudioFrise } from './studios';
 
 /**
@@ -21,10 +22,12 @@ import type { Gabarit, StudioFrise } from './studios';
  * d'autant : les copies étant identiques, la boucle ne se voit pas. Sans JavaScript,
  * le ruban reste visible et défilable à la main.
  *
- * Défilement automatique seulement si : pas de `prefers-reduced-motion`, ruban visible,
- * vidéo du hero hors champ (une seule animation majeure à la fois), onglet actif, ni
- * survol ni focus du ruban. Toute interaction manuelle (glisser, molette horizontale,
- * clavier, boutons) l'arrête jusqu'à « Reprendre ».
+ * Défilement automatique seulement si : pas de `prefers-reduced-motion`, ruban visible
+ * à 60 % au moins, onglet actif, ni survol ni focus du ruban. Toute interaction
+ * manuelle (glisser, molette horizontale, clavier, boutons) l'arrête jusqu'à
+ * « Reprendre ». Une seule animation majeure à la fois (V5.1) : quand le ruban défile,
+ * la vidéo du hero se met en pause (animationPrincipale.ts), au lieu que le ruban
+ * attende la sortie de la vidéo du champ.
  *
  * Visuels : rendus détourés sur fond blanc, fondus dans le fond du ruban
  * (`mix-blend-multiply`) pour n'en garder que la silhouette ; gabarit croissant avec
@@ -109,11 +112,10 @@ export function StudiosRail({ studios }: { studios: StudioFrise[] }) {
   const [survol, setSurvol] = useState(false);
   const [focus, setFocus] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [videoDansLeChamp, setVideoDansLeChamp] = useState(false);
   const [ongletVisible, setOngletVisible] = useState(true);
 
   const enLecture = mouvement && !arret;
-  const actif = enLecture && !survol && !focus && visible && !videoDansLeChamp && ongletVisible;
+  const actif = enLecture && !survol && !focus && visible && ongletVisible;
 
   /** Longueur d'une liste : période de la boucle. */
   function periode(): number {
@@ -167,29 +169,19 @@ export function StudiosRail({ studios }: { studios: StudioFrise[] }) {
     };
   }, []);
 
-  // Visibilité du ruban, de la vidéo du hero et de l'onglet : observées seulement si le
-  // mouvement est permis.
+  // Visibilité du ruban et de l'onglet : observées seulement si le mouvement est permis.
   useEffect(() => {
-    const el = section.current;
+    const el = ruban.current;
     if (!mouvement || !el) return;
-    const frise = new IntersectionObserver(([e]) => setVisible(e.intersectionRatio >= 0.3), {
-      threshold: [0, 0.3, 1],
+    const observateur = new IntersectionObserver(([e]) => setVisible(e.intersectionRatio >= 0.6), {
+      threshold: [0, 0.6, 1],
       rootMargin: MARGE_HEADER,
     });
-    frise.observe(el);
-    const video = document.getElementById(ID_VIDEO_GAMME);
-    const hero = video
-      ? new IntersectionObserver(([e]) => setVideoDansLeChamp(e.intersectionRatio >= SEUIL_VIDEO_VISIBLE), {
-          threshold: [0, SEUIL_VIDEO_VISIBLE, 1],
-          rootMargin: MARGE_HEADER,
-        })
-      : null;
-    if (video) hero?.observe(video);
+    observateur.observe(el);
     const onglet = () => setOngletVisible(document.visibilityState === 'visible');
     document.addEventListener('visibilitychange', onglet);
     return () => {
-      frise.disconnect();
-      hero?.disconnect();
+      observateur.disconnect();
       document.removeEventListener('visibilitychange', onglet);
     };
   }, [mouvement]);
@@ -218,9 +210,11 @@ export function StudiosRail({ studios }: { studios: StudioFrise[] }) {
       image = requestAnimationFrame(avancer);
     };
     image = requestAnimationFrame(avancer);
+    signalerRuban(true);
     return () => {
       cancelAnimationFrame(image);
       rendreLaMain(el, bande, translation);
+      signalerRuban(false);
     };
   }, [actif]);
 

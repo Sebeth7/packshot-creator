@@ -1,15 +1,29 @@
 'use client';
 
+import Image from 'next/image';
 import { useRef } from 'react';
 import { Maximize2, X } from 'lucide-react';
 import type { VisuelCatalogue } from './visuels';
 
 /**
- * Agrandissement d'une double page (V5 : matrice de sélection, illisible à la largeur
- * de la page). Fenêtre modale native : focus piégé et touche Échap gérés par le
- * navigateur. L'image est montrée à la taille du fichier, défilable dans les deux sens.
+ * Double page en vignette, agrandie au clic (V5.1 : matrice de sélection K6). La
+ * vignette suffit à reconnaître la matrice ; sa lecture se fait dans une fenêtre
+ * modale native (focus piégé et touche Échap gérés par le navigateur), image à la
+ * taille du fichier, défilable dans les deux sens.
  */
-export function AgrandirPage({ visuel, libelle }: { visuel: VisuelCatalogue; libelle: string }) {
+export function AgrandirPage({
+  visuel,
+  libelle,
+  sizes,
+  className = '',
+}: {
+  visuel: VisuelCatalogue;
+  /** Texte du bouton, repris dans son nom accessible. */
+  libelle: string;
+  /** `sizes` de la vignette. */
+  sizes: string;
+  className?: string;
+}) {
   const dialogue = useRef<HTMLDialogElement>(null);
   if (!visuel.src) return null;
 
@@ -18,10 +32,23 @@ export function AgrandirPage({ visuel, libelle }: { visuel: VisuelCatalogue; lib
       <button
         type="button"
         onClick={() => dialogue.current?.showModal()}
-        className="inline-flex min-h-11 items-center gap-2 rounded-lg px-1 text-sm font-semibold text-very-peri-600 underline-offset-4 hover:text-very-peri-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400"
+        aria-label={`${libelle} : ${visuel.texte}`}
+        className={`group relative block w-full overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400 focus-visible:ring-offset-2 ${className}`}
       >
-        <Maximize2 className="h-4 w-4" aria-hidden="true" />
-        {libelle}
+        <span
+          data-page-catalogue={visuel.id}
+          className="relative block"
+          style={{ aspectRatio: `${visuel.width} / ${visuel.height}` }}
+        >
+          <Image src={visuel.src} alt="" fill sizes={sizes} className="object-contain" />
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-2 right-2 inline-flex items-center gap-1.5 rounded-full bg-future-dusk-900/80 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors group-hover:bg-very-peri-600"
+        >
+          <Maximize2 className="h-3.5 w-3.5" />
+          {libelle}
+        </span>
       </button>
       <dialog
         ref={dialogue}

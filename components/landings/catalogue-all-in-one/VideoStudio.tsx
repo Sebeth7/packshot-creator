@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
+import { useRubanActif } from './animationPrincipale';
 import { HERO } from './contenu';
 import { MARGE_HEADER, SEUIL_VIDEO_VISIBLE } from './coordination';
 
@@ -14,7 +15,8 @@ import { MARGE_HEADER, SEUIL_VIDEO_VISIBLE } from './coordination';
  * - image fixe si `prefers-reduced-motion`.
  * Différences : pas de voile sombre latéral (prévu pour un texte posé sur la vidéo),
  * cadrage réglable, bouton pause (WCAG 2.2.2 : animation en boucle de plus de 5 s),
- * et pause automatique quand la vidéo sort du champ (coordination.ts).
+ * et pause automatique quand la vidéo sort du champ (coordination.ts) ou quand le
+ * ruban des studios défile (animationPrincipale.ts, V5.1).
  */
 const ECRAN_LARGE = '(min-width: 768px)';
 
@@ -56,6 +58,7 @@ export function VideoStudio({
   // Pause demandée par le visiteur, distincte de la pause hors champ.
   const [pauseVisiteur, setPauseVisiteur] = useState(false);
   const [dansLeChamp, setDansLeChamp] = useState(true);
+  const rubanActif = useRubanActif();
   const conteneur = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -73,13 +76,13 @@ export function VideoStudio({
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-    if (pauseVisiteur || !dansLeChamp) v.pause();
+    if (pauseVisiteur || !dansLeChamp || rubanActif) v.pause();
     // Lecture refusée par le navigateur : le bouton propose « Lire ». Une lecture
     // interrompue par une pause hors champ (AbortError) ne compte pas.
     else v.play().catch((e: unknown) => {
       if (e instanceof DOMException && e.name === 'NotAllowedError') setPauseVisiteur(true);
     });
-  }, [video, pauseVisiteur, dansLeChamp]);
+  }, [video, pauseVisiteur, dansLeChamp, rubanActif]);
 
   const media = `absolute inset-0 h-full w-full object-cover ${mediaClassName}`;
 
