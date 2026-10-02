@@ -178,9 +178,9 @@ export default async function PreviewRevuePage({ params }: PageProps) {
         // Emplacement de l'image d'en-tête : même conteneur que l'image d'un article publié.
         <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
           <div className={styles.cadre} style={{ aspectRatio: ouverture.ratio.replace(':', ' / ') }}>
-            <p className={styles.id}>Visuel {ouverture.id} à intégrer — image d&apos;en-tête</p>
+            <p className={styles.id}>Visuel {ouverture.id} à intégrer — image d’en-tête</p>
             <p className={styles.message}>{ouverture.message}</p>
-            <p className={styles.format}>{ouverture.ratio} · largeur du conteneur d&apos;en-tête</p>
+            <p className={styles.format}>{ouverture.ratio} · largeur du conteneur d’en-tête</p>
           </div>
         </div>
       )}
@@ -201,6 +201,14 @@ export default async function PreviewRevuePage({ params }: PageProps) {
               <article className={articleProseClasses}>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
               </article>
+              {article.notesRelecture && article.notesRelecture.length > 0 && (
+                <aside className={styles.notes} aria-label="Notes de la réécriture, hors texte de l'article">
+                  <p className={styles.notesTitre}>Notes de la réécriture — hors texte de l’article</p>
+                  {article.notesRelecture.map((note, i) => (
+                    <div key={i} dangerouslySetInnerHTML={{ __html: sanitizeHtml(note) }} />
+                  ))}
+                </aside>
+              )}
             </div>
             {headings.length > 0 && (
               <aside className="hidden lg:block w-64 shrink-0">
@@ -219,6 +227,7 @@ export default async function PreviewRevuePage({ params }: PageProps) {
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-future-dusk-900 mb-10">
               Questions fréquentes
             </h2>
+            {article.sourceFaq && <p className={styles.sourceFaq}>{article.sourceFaq}</p>}
             <div className="space-y-4">
               {article.faqs.map((faq, i) => (
                 <details key={i} className="group rounded-2xl border border-neutral-100 bg-white">

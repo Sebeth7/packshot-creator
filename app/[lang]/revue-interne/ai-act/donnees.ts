@@ -53,7 +53,11 @@ export interface ArticleRevue {
   source: string;
   content: string;
   faqs: { question: string; answer: string }[];
+  /** Origine de chaque question de FAQ (la réécriture du 02/10 n'en contient pas). */
+  sourceFaq?: string;
   visuels: EmplacementVisuel[];
+  /** Notes de travail de la réécriture (statut, questions pour Sébastien) : HTML, hors du texte de l'article. */
+  notesRelecture?: string[];
 }
 
 export function lireArticleRevue(slug: string): ArticleRevue | null {

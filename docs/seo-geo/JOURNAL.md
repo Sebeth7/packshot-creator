@@ -34,6 +34,49 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — previews privées de relecture B, C, D (hors publication) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, articles B (retouche), C (mannequins), D (métadonnées) | **PR** : brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa`
+
+**Quoi** — Trois pages de relecture privées, `/fr/revue-interne/ai-act/retouche`, `/mannequins` et `/metadonnees`, avec le rendu des articles du blog (prose, tableaux, sommaire, FAQ). S'y ajoutent un bandeau de relecture, un « SEO de preview » proposé, une navigation entre les trois pages et des emplacements de visuels (« VISUEL B1 À INTÉGRER »…). Textes : réécritures du 02/10 intégrées sans changement de mot, typographie seule ; notes de travail sorties du corps.
+
+**Pourquoi** — GO de Laurent du 02/10 : « Cette mission autorise la création de maquettes privées de travail pour lecture et relecture, pas la publication. » D41 reste en vigueur : ces pages ne valent ni création, ni validation éditoriale ou juridique, ni publication.
+
+**Fichiers** — `app/[lang]/revue-interne/ai-act/[slug]/page.tsx`, `app/[lang]/revue-interne/ai-act/donnees.ts`, `app/[lang]/revue-interne/ai-act/revue.module.css`, `content/revue-interne/ai-act/retouche.json`, `content/revue-interne/ai-act/mannequins.json`, `content/revue-interne/ai-act/metadonnees.json`, `docs/seo-geo/JOURNAL.md`
+
+**Source** — `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02.zip` (SHA-256 `d51c0718c9fed42d0fb496609761f17d1268f769a9c8b566b60fab5e7b486f62`), fichiers `03_B_RETOUCHE_ARCHIVE_REECRITE.md`, `04_C_MANNEQUINS_ARCHIVE_REECRITE.md`, `05_D_METADONNEES_ARCHIVE_REECRITE.md`, lus avec `00_LIRE_EN_PREMIER_RELECTURE.md`. FAQ : la réécriture n'en contient pas ; questions reprises des têtes historiques `250e34a` (B, 6 sur 6), `8f2f42b` (C, 6 sur 6) et `b6495d1` (D, 4 sur 6). Deux FAQ de D sont écartées : Zalando (« exige d'ici décembre 2026 », point NON TRANCHÉ dans la réécriture) et CDN (mesure WebP étendue à « notre propre site »).
+
+**Effet attendu** — Aucun sur le site public : pages hors sitemap, hors liste du blog et hors maillage, en FR seulement.
+
+**Vérifié**
+- Texte : mots du corps et des notes = mots du fichier source pour B (1 128), C (1 038) et D (1 499) ; chaque paragraphe du corps se retrouve tel quel dans la source.
+- Typographie seule : apostrophe ’, espaces insécables devant « : ; ? ! » » et après « « », hors code.
+- Indexation :
+    - robots `noindex, nofollow, noarchive, nocache` et googlebot `noindex, nofollow, noarchive` ;
+    - aucune canonique ni alternate ;
+    - 0 occurrence dans `sitemap.xml` ;
+    - 0 lien depuis les autres pages prérendues ;
+    - 404 en `/en`, en `/de-ch` et pour tout autre slug.
+- Isolement : feuille de style des previews chargée sur ces seules pages. Aucun fichier existant modifié hors de ce journal.
+- `tsc` vert ; ESLint sans message sur la route ; `verifier-json` 183 valides ; Vitest 373/373 ; `next build` vert, 374 pages ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- `next start` local, Chromium, 6 formats : ordinateur 1440, tablette 1024 × 768 et 820 × 1180, smartphone 390 × 844, 844 × 390 et 360 × 740.
+    - Partout : 200 ; 0 débordement de page ; 0 erreur de console ; un seul `h1` ; 0 ponctuation isolée en début de ligne ; FAQ ouverte au clic et au toucher.
+    - Emplacements : 16:9, 662 × 372 sur ordinateur, 358 × 201 sur smartphone.
+    - Tableaux et code dans la largeur, sauf le tableau de D (3 colonnes) : 5 px de défilement interne à 390 px.
+
+**Supposé** — [Inférence] La césure française (`hyphens: auto`) s'applique sur iOS Safari et Chrome Android ; le Chromium du conteneur ne l'applique pas. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) par script ; Safari, Firefox, appareils réels ; sources primaires (non revérifiées depuis le 30/09, comme l'indique la réécriture) ; EN et de-ch (hors mission).
+
+**Écarts volontaires au gabarit commun, limités à ces previews** (`revue.module.css`) :
+- en-têtes de tableau sur plusieurs lignes, cellules plus compactes et césure sous 640 px ;
+- blocs de code repliés à la ligne.
+Le style commun (`app/globals.css`, en-têtes insécables) masque une colonne sur smartphone, sur A et S aussi : à corriger dans `globals.css` avant toute publication.
+
+**Suite** — Relecture privée (Laurent, puis Sébastien) ; seconde passe d'intégration des visuels ; toute publication exige une nouvelle mesure D16 complète et une nouvelle décision de Laurent (D41).
+
+---
+
 ## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé

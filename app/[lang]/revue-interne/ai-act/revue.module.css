@@ -75,6 +75,7 @@
 }
 
 .bandeau {
+  overflow-wrap: anywhere;
   margin-bottom: 1.5rem;
   padding: 0.875rem 1rem;
   border-left: 3px solid var(--very-peri-5);
@@ -171,4 +172,88 @@
 .dossier span[aria-current] {
   background: var(--very-peri-5);
   color: #fff;
+}
+
+/* Blocs de code (commandes ExifTool de D) : le style commun du blog n'en prévoit
+   pas ; défilement interne pour ne jamais élargir la page. Limité à ces previews. */
+.revue :global(.blog-article pre) {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 1.5rem 0;
+  padding: 1rem 1.125rem;
+  border-radius: 0.75rem;
+  background: var(--future-dusk-9);
+  color: #f4f5f8;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.revue :global(.blog-article pre code) {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.notes {
+  margin-top: 3rem;
+  padding: 1.25rem 1.25rem 0.5rem;
+  border: 1px dashed var(--future-dusk-1-5);
+  border-radius: 0.75rem;
+  background: var(--future-dusk-0);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--future-dusk-6);
+}
+
+.notes p,
+.notes ul {
+  margin: 0 0 0.875rem;
+}
+
+.notes ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.notes h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--future-dusk-8);
+}
+
+.notesTitre {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--future-dusk-4);
+}
+
+.sourceFaq {
+  margin: -1.5rem 0 1.5rem;
+  font-size: 0.875rem;
+  color: var(--future-dusk-4);
+}
+
+/* Tableaux : le style commun (app/globals.css) garde les en-têtes sur une ligne,
+   ce qui masque une colonne sur smartphone (constaté aussi sur A et S). Écart
+   volontaire, limité à ces previews : en-têtes sur plusieurs lignes sous 640 px.
+   À reporter dans globals.css avant toute publication. */
+@media (max-width: 640px) {
+  .revue :global(.prose .table-wrap thead th) {
+    white-space: normal;
+  }
+  .revue :global(.prose .table-wrap thead th),
+  .revue :global(.prose .table-wrap tbody td) {
+    padding: 0.6rem 0.625rem;
+    font-size: 0.875rem;
+    hyphens: auto;
+  }
+  /* Identifiants techniques (DigitalSourceType…) : coupure possible, sans césure. */
+  .revue :global(.prose .table-wrap td code) {
+    overflow-wrap: anywhere;
+  }
 }
