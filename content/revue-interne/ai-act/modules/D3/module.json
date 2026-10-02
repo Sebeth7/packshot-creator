@@ -40,7 +40,7 @@
     "responsive": "image fluide, contrôles en retour à la ligne"
   },
   "provenance": {
-    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; outil de création non documenté dans le ZIP.",
-    "ia": null
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; produit par un outil d’IA (confirmation de Laurent du 02/10/2026).",
+    "ia": true
   }
 }

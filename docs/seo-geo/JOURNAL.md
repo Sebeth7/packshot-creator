@@ -40,7 +40,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Quoi** —
 - Textes : 31 modifications tracées (avant / après dans le dossier de livraison). Notes internes retirées du corps (« pilier A », « ancienne PR », « texte source », « article historique », « point à arbitrer », intitulés de sources) ; FAQ réécrites sur le texte (B 5, C 5, D 5) ; doublons de FAQ avec A retirés ; Google et Amazon datés au 30/09 ; Zalando aligné sur la formulation de A et S (statut exact non établi) ; mesure WebP du 30/09 restituée avec ses conditions (tailles, en-têtes `Accept`, origine Vercel, `www` non mesuré) ; « Images virtuelles » alignée sur A ; Ombres et Texture précisées par une méthode de contrôle.
-- Modules : B2 (sac bleu, rouge du catalogue, coloris hors catalogue, comme l'exemple du texte), B3 (montre : poussière sur l'image, rayure sur l'objet), C2 (robe : référence à plat, longueur conforme, longueur modifiée) et D1 (loi, plateforme, standard, comme l'intitulé de sa section) redessinés en SVG ; libellés de C1 et D3 ajustés ; provenance documentée et affichée dans chaque module ; « Illustration générée par IA. » en tête des légendes des SVG écrits par Claude Code.
+- Modules : B2 (sac bleu, rouge du catalogue, coloris hors catalogue, comme l'exemple du texte), B3 (montre : poussière sur l'image, rayure sur l'objet), C2 (robe : référence à plat, longueur conforme, longueur modifiée) et D1 (loi, plateforme, standard, comme l'intitulé de sa section) redessinés en SVG ; libellés de C1 et D3 ajustés ; provenance documentée et affichée dans chaque module ; « Illustration générée par IA. » en tête des huit légendes (SVG écrits par Claude Code ; SVG du ZIP produits par IA, confirmation de Laurent du 02/10).
 - SEO de preview : title et meta proposés révisés ; briefs d'en-tête B0, C0, D0 distincts de A et S. SEO technique public non activé.
 - Notes de module : coupure des noms longs (débordement de 1 à 2 px à 360 px).
 
@@ -61,7 +61,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - e2e `seo` et `mobile-overflow` : 234 réussis, 10 échecs, liste identique à celle de `dead94d` (pages hors du diff ; 9 reproduisent les valeurs de `sysnext.vercel.app`).
 - Sommaire repliable sur mobile et tablette : après un toucher, le titre visé passe sous le haut de l'écran. Anomalie du composant commun déjà consignée dans `ETAT.md` (antérieure à #50, présente sur `main`), non traitée ici.
 
-**Supposé** — [Inférence] Les SVG du ZIP (B1, C1, D2, D3) ont été produits par un outil d'IA ; non documenté dans le ZIP, la mention « Illustration générée par IA. » n'y est pas ajoutée. Cela repose sur des schémas observés.
+**Supposé** — Aucune hypothèse retenue. Provenance des SVG du ZIP (B1, C1, D2, D3) : produits par un outil d'IA, selon la confirmation de Laurent du 02/10 ; leurs légendes s'ouvrent aussi par « Illustration générée par IA. » (arbitrage Q1).
 
 **Non regardé** — Preview derrière le SSO ; `www` (R4) ; sources primaires ; rapports F/F2 et leur addendum du 02/10, absents du dépôt.
 
