@@ -24,11 +24,11 @@ commentaires.
 | `main` | `8c0dd067c0880e1a355d52edd8659b32446b50c6`, fusion de #80, 02/10 à 12:48:08 UTC |
 | Déploiement de production de `main` | Statut Vercel `success`, « Deployment has completed », 02/10 à 12:49:13 UTC |
 | CI sur `main` | Aucune : les trois workflows (`pr-checks`, `garde-journal`, `garde-consequences`) ne tournent que sur `pull_request` |
-| PR ouvertes | 9 : #27, #59, #60, #64, #65, #67, #70, #77, #79 |
+| PR ouvertes | 9 PR opérationnelles au relevé : #27, #59, #60, #64, #65, #67, #70, #77, #79. #81 (cette revue, documentaire) ouverte ensuite, à 13:20 UTC : GitHub affiche 10 PR ouvertes |
 | PR fermées | 71 : 62 fusionnées, 9 fermées sans fusion |
 | Branches distantes | 59 hors `main` |
-| Revues GitHub sur les 9 PR ouvertes | 0 |
-| Commentaires humains sur les 9 PR ouvertes | 0 de `Sebeth7` ; les commentaires de `lwainberg` sont des sessions Claude de Laurent ; les autres sont de `vercel[bot]` |
+| Revues GitHub sur les 9 PR opérationnelles | 0 |
+| Commentaires humains sur les 9 PR opérationnelles | 0 de `Sebeth7` ; les commentaires de `lwainberg` sont des sessions Claude de Laurent ; les autres sont de `vercel[bot]` |
 
 Vingt derniers commits de `main` : `git log --oneline -20 8c0dd06`. Le dernier
 commit non-fusion est `f441bc1` (#80, Claude de Sébastien).
@@ -36,6 +36,8 @@ commit non-fusion est `f441bc1` (#80, Claude de Sébastien).
 ---
 
 ## 2. Registre des PR ouvertes
+
+Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figure pas.
 
 Toutes sont en conflit avec `main` `8c0dd06`, au minimum sur le haut de
 `JOURNAL.md` (#80 y a ajouté une entrée). GitHub affiche `dirty` pour #79 et
@@ -68,8 +70,9 @@ validation éditoriale (D42).**
 | Fichiers | 10 : `content/blog/fr/ai-act-images-produit.json`, 7 AVIF, `ETAT.md`, `JOURNAL.md` |
 | Conflits | `JOURNAL.md` |
 | CI, Vercel | 4/4 verts, `success` sur `2a36322` (02/10 09:12 UTC) |
-| Statut déclaré | « Prêt pour la relecture visuelle de Laurent sur la Preview (02/10) » ; 7 visuels sur 7 ; mail à Sébastien non envoyé ; Zalando `UNRESOLVED / À ARBITRER` ; traductions non commencées (D38) |
-| Validation métier | Non rendue (D42, étape 5) |
+| Statut déclaré | « Prêt pour la relecture visuelle de Laurent sur la Preview (02/10) » ; 7 visuels sur 7 ; la description indique « mail à Sébastien non envoyé » ; Zalando `UNRESOLVED / À ARBITRER` ; traductions non commencées (D38) |
+| Transmission à Sébastien | Rapportée par le pilotage externe du 02/10 (« Dossier IA & images produit : nos 5 articles sont prêts pour ta relecture ») ; information du pilotage, non établie par GitHub ; accusé de réception non établi |
+| Validation métier | Non établie : aucune trace GitHub (D42, étape 5) |
 | Prochain geste | Relecture visuelle de Laurent sur la Preview (SSO) |
 
 ### #60 — article Suisse S (FR)
@@ -83,8 +86,9 @@ validation éditoriale (D42).**
 | Fichiers | 9 : `content/blog/fr/images-ia-ecommerce-suisse.json`, 6 AVIF, `ETAT.md`, `JOURNAL.md` |
 | Conflits | `JOURNAL.md` |
 | CI, Vercel | 4/4 verts, `success` sur `74ae921` (02/10 09:13 UTC) |
-| Statut déclaré | « Prêt pour la relecture visuelle de Laurent sur la Preview (02/10) » ; 6 visuels sur 6 ; mail à Sébastien non envoyé ; Zalando à arbitrer ; adaptation de-ch après validation du FR (D38) |
-| Validation métier | Non rendue |
+| Statut déclaré | « Prêt pour la relecture visuelle de Laurent sur la Preview (02/10) » ; 6 visuels sur 6 ; la description indique « mail à Sébastien non envoyé » ; Zalando à arbitrer ; adaptation de-ch après validation du FR (D38) |
+| Transmission à Sébastien | Idem #59 : rapportée par le pilotage externe du 02/10, non établie par GitHub ; accusé de réception non établi |
+| Validation métier | Non établie : aucune trace GitHub |
 | Prochain geste | Relecture visuelle de Laurent sur la Preview (SSO) |
 
 ### #64 — D33, patch factuel sûr
@@ -127,8 +131,8 @@ validation éditoriale (D42).**
 | Fichiers | 6 : `next.config.ts`, `cloudflare-worker/src/index.js`, 2 tests, `ETAT.md`, `JOURNAL.md` |
 | Conflits | `cloudflare-worker/test/d36-origine-noindex.test.ts` (ajout des deux côtés : #68 en a fusionné une version à 27 cas), `ETAT.md`, `JOURNAL.md` |
 | CI, Vercel | 4/4 verts, `success` sur `62ebfae` (30/09 16:27 UTC) |
-| Porte de vérification | #68 fusionnée le 01/10 (`2ef01b2`) : le bloc Worker D36 est dans `main`. Déploiement de ce Worker depuis `main` et contrôle de `www` : **aucune trace au JOURNAL, non établis** |
-| Prochain geste | Aucun avant le déploiement du Worker (GO de Laurent, R5) et le contrôle de `www` |
+| Porte de vérification | #68 fusionnée le 01/10 (`2ef01b2`) : le bloc Worker D36 est dans `main`. Déploiement du Worker après #68 : **rapporté le 01/10 par les transmissions de pilotage**, non consigné au JOURNAL, non vérifié par cette revue. Version active à confirmer par lecture Cloudflare READ ONLY ; contrôle de `www` à faire |
+| Prochain geste | Lecture Cloudflare READ ONLY du Worker actif, puis contrôle de `www` ; aucune décision sur #67 avant ; aucun nouveau déploiement autorisé |
 
 ### #70 — Ubersuggest, `metaTitle` de `/fr/blog/photographie-2d-de-produits`
 
@@ -155,7 +159,7 @@ validation éditoriale (D42).**
 | Fichiers | 6 : 4 JSON `content/blog/{fr,en,de-ch}/`, `ETAT.md`, `JOURNAL.md` |
 | Conflits | `JOURNAL.md` |
 | CI, Vercel | 4/4 verts, `success` sur `a207fe3` (01/10 12:09 UTC) |
-| Statut déclaré | Micro-correction finale de Laurent appliquée ; prête pour transmission à Sébastien, non transmise ; `content/blog/**` est la prose de Sébastien |
+| Statut déclaré | Micro-correction finale de Laurent appliquée ; prête pour transmission à Sébastien, « non transmise » selon la description du 01/10, état ultérieur non établi ; `content/blog/**` est la prose de Sébastien |
 | Prochain geste | Transmission à Sébastien pour validation (décision de Laurent) |
 
 ### #79 — REVIEW ONLY, Previews privées AI Act B/C/D
@@ -170,6 +174,7 @@ validation éditoriale (D42).**
 | Conflits | `JOURNAL.md` (GitHub : `dirty`) |
 | CI, Vercel | 4/4 verts, `success` sur `a4a62ac` (02/10 09:31 UTC) |
 | Garde | Pages construites sur Preview Vercel et en développement seulement ; 404 en production (relevé de la PR sur `sysnext.vercel.app`) |
+| Transmission à Sébastien | [Inférence] Possiblement comprise dans le dossier « nos 5 articles » rapporté par le pilotage externe du 02/10 ; non établi par GitHub |
 | Prochain geste | Contrôle humain de la Preview (SSO) ; toute publication exige une nouvelle mesure D16 et une décision de Laurent (D41) |
 
 ---
@@ -188,7 +193,7 @@ validation éditoriale (D42).**
 | #73 | Archivage AI Act, D41, backlog | 01/10 11:19:49 | `17fc0b3` | — |
 | #74 | UB-04, fil d'Ariane hors du H1 | 01/10 10:29:43 | `8365c73` | Chrome sur `www` |
 | #72 | Inter auto-hébergée | 01/10 09:02:01 | `a6760da` | Chrome sur `www`, onglet Réseau |
-| #68 | D36, protection Worker | 01/10 06:58:31 | `2ef01b2` | Déploiement du Worker depuis `main` non établi ; contrôle de `www` |
+| #68 | D36, protection Worker | 01/10 06:58:31 | `2ef01b2` | Déploiement rapporté le 01/10 (pilotage), version active à confirmer (Cloudflare READ ONLY) ; contrôle de `www` |
 | #71 | Academy réduite au catalogue Qualiopi (Claude de Sébastien) | 30/09 20:40:44 | `8ec89c1` | Reliquat CGU et confidentialité (Sébastien) |
 | #69 | Centrage des articles de blog (Claude de Sébastien) | 30/09 18:33:22 | `a8c85ca` | — |
 | #57 | Documentation : #55 et #58 | 30/09 04:17:33 | `7ad0ca3` | — |
@@ -343,7 +348,7 @@ entre parenthèses, les patchs sans équivalent dans `main` (`git cherry`).
 | 7 | `ETAT.md`, P0-K | « Effective à la fusion de #35 » | #35 fusionnée le 25/09 à 06:38:55 UTC | Corrigé dans `ETAT.md` |
 | 8 | `ETAT.md`, « Balle chez Sébastien » | 5 branches sans PR portant des commits absents de `main` (19/09) | 2 sur clone complet (§ 4) | Corrigé dans `ETAT.md` |
 | 9 | `ETAT.md`, « En attente de mesure » | Page témoin : « à venir », « J+56 » | F5 publiée le 28/09 (J0 18:43 UTC) : J+28 le 26/10, J+56 le 23/11 | Corrigé dans `ETAT.md` |
-| 10 | `ETAT.md`, D36 | « à exécuter puis à vérifier » | #68 fusionnée : bloc Worker D36 dans `main` ; déploiement du Worker non consigné ; #67 en conflit sur le test Worker | Précisé dans `ETAT.md` |
+| 10 | `ETAT.md`, D36 | « à exécuter puis à vérifier » | #68 fusionnée : bloc Worker D36 dans `main` ; déploiement rapporté le 01/10 par le pilotage, non consigné au JOURNAL, version active à confirmer ; #67 en conflit sur le test Worker | Précisé dans `ETAT.md` |
 | 11 | `JOURNAL.md`, entrée #80 du 02/10 | « PR : à venir » | PR #80, fusionnée à 12:48:08 UTC | Signalé ; entrée non modifiée (JOURNAL en ajout seul) |
 | 12 | Description de #65 | « Accès de Sébastien aux Preview : non établi » | Fait métier de Laurent du 01/10 : accès confirmé (D42) | Point 3 des 17 modifications de #65 |
 | 13 | D33 contre #64 | `foundingDate` à aligner sur 2001 | Faits métier du 30/09 cités par #64 : Sysnext 2001, lancement de PackshotCreator 2004 ; le site affiche 2001, 2003 et 2004 | À trancher par Laurent ; `DECISIONS.md` non modifié |

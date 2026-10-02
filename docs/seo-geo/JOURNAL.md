@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
+
+**Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
+
+**Quoi** — Trois précisions demandées par Laurent après contre-relecture de #81, dans `ETAT.md` et `REVUE-PR-BRANCHES-2026-10-02.md` seulement. L'entrée ci-dessous (rangement) n'est pas réécrite.
+1. **Transmission AI Act** — Le pilotage externe du 02/10 rapporte une transmission à Sébastien intitulée « Dossier IA & images produit : nos 5 articles sont prêts pour ta relecture ». Trois états distingués : transmission rapportée (information du pilotage, non établie par GitHub ; les descriptions de #59 et #60 portent encore « mail à Sébastien non envoyé ») ; accusé de réception non établi ; validation métier (D42, étape 5) non établie, aucune trace GitHub. Périmètre des 5 articles non établi par GitHub ; [Inférence] A, S et B, C, D.
+2. **D36 / #67** — Les transmissions de pilotage rapportent un déploiement du Worker après #68, le 01/10. L'entrée ci-dessous écrit « déploiement du Worker non consigné » et « présence du bloc D36 en production non établie » : exact pour le dépôt, à lire désormais avec ce rapport. Statut retenu : déploiement rapporté ; version active à confirmer par lecture Cloudflare READ ONLY ; puis contrôle de `www` ; ensuite seulement, décision sur #67. Aucun nouveau déploiement autorisé.
+3. **Nombre de PR** — Les 9 PR du registre sont les PR opérationnelles inventoriées avant #81. GitHub affiche 10 PR ouvertes depuis l'ouverture de #81, documentaire. Les mentions « 9 PR ouvertes » de l'entrée ci-dessous s'entendent ainsi.
+
+**Pourquoi** — GO conditionnel de Laurent du 02/10 : trois clarifications avant la fusion de #81.
+
+**Fichiers** — `docs/seo-geo/ETAT.md` (A, B, C, D, F6, G : lignes ciblées), `docs/seo-geo/REVUE-PR-BRANCHES-2026-10-02.md` (§ 1, § 2, § 3, § 5 : lignes ciblées), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** — Têtes au 02/10 à 13:36 UTC : `main` `8c0dd06`, #81 `fa3ab31`, inchangées. Plus aucune formulation affirmant que le Worker n'a pas été déployé ni que le dossier AI Act n'a pas été transmis, hors citations des descriptions de PR attribuées comme telles.
+
+**Supposé** — Les deux faits rapportés par le pilotage (transmission du 02/10, déploiement du Worker du 01/10) sont repris tels que Laurent les transmet, sans vérification.
+
+**Non regardé** — Cloudflare (aucune lecture, aucun déploiement) ; messagerie ; `www`.
+
+**Suite** — Lecture Cloudflare READ ONLY du Worker actif, puis contrôle de `www`, avant toute décision sur #67. GO de Laurent pour la fusion de #81.
+
+---
+
 ## 2026-10-02 · Rangement GitHub : revue des PR et des branches, `ETAT.md` restructuré · Claude de Laurent
 
 **Chantier** : gouvernance, mission « grand rangement GitHub » de Laurent du 02/10 | **PR** : brouillon, documentation seule, ne pas fusionner sans GO, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06` (#80)

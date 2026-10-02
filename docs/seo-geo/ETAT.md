@@ -25,8 +25,8 @@ vont en C ou D, ses mesures en E.
 |---|---|
 | Contrôle | 02/10/2026, 13:10 UTC, Claude de Laurent |
 | `main` | `8c0dd06` — fusion de #80, 02/10 à 12:48:08 UTC ; production Vercel `success` à 12:49:13 UTC |
-| Dernière mise à jour documentaire | 02/10 — Claude de Laurent : rangement GitHub (PR documentaire en brouillon). Avant : 02/10, #80 (Claude de Sébastien) ; 02/10, #76 (D43 à 200 USD par mois) |
-| PR ouvertes | 9 : #27, #59, #60, #64, #65, #67, #70, #77, #79 — toutes en conflit avec `main` au moins sur le haut du JOURNAL |
+| Dernière mise à jour documentaire | 02/10 — Claude de Laurent : rangement GitHub (#81, brouillon, documentation seule), précisé le 02/10 avant GO. Avant : 02/10, #80 (Claude de Sébastien) ; 02/10, #76 (D43 à 200 USD par mois) |
+| PR ouvertes | 10 sur GitHub depuis l'ouverture de #81 (documentaire, ce rangement). Les 9 PR opérationnelles inventoriées avant #81 : #27, #59, #60, #64, #65, #67, #70, #77, #79 — toutes en conflit avec `main` au moins sur le haut du JOURNAL |
 | Questions ouvertes | Q10, Q19 (`BOITE-AUX-LETTRES.md`) |
 
 Règles transverses en vigueur, rappel :
@@ -40,17 +40,17 @@ Règles transverses en vigueur, rappel :
 
 ## B. Travaux actifs
 
-Seules les PR ouvertes. Détail, fichiers et conflits : `REVUE-PR-BRANCHES-2026-10-02.md`, § 2.
+Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figure pas. Détail, fichiers et conflits : `REVUE-PR-BRANCHES-2026-10-02.md`, § 2.
 
 | PR | Objet | Propriétaire | Statut | Blocage | Prochain geste |
 |---|---|---|---|---|---|
-| #59 | Pilier AI Act A, FR (`/fr/blog/ai-act-images-produit`) | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `2a36322`, 7 visuels sur 7 | Zalando à arbitrer ; validation de Sébastien (D42, étape 5) ; traductions après validation du FR (D38) | Relecture visuelle de Laurent sur la Preview, puis envoi à Sébastien |
-| #60 | Article Suisse S, FR (`/fr/blog/images-ia-ecommerce-suisse`) | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `74ae921`, 6 visuels sur 6 | Idem #59 ; adaptation de-ch après validation du FR | Relecture visuelle de Laurent sur la Preview, puis envoi à Sébastien |
+| #59 | Pilier AI Act A, FR (`/fr/blog/ai-act-images-produit`) | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `2a36322`, 7 visuels sur 7 | Zalando à arbitrer ; validation de Sébastien (D42, étape 5) ; traductions après validation du FR (D38) | Relecture visuelle de Laurent sur la Preview ; transmission à Sébastien rapportée par le pilotage du 02/10, validation non établie (D) |
+| #60 | Article Suisse S, FR (`/fr/blog/images-ia-ecommerce-suisse`) | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `74ae921`, 6 visuels sur 6 | Idem #59 ; adaptation de-ch après validation du FR | Relecture visuelle de Laurent sur la Preview ; transmission à Sébastien rapportée par le pilotage du 02/10, validation non établie (D) |
 | #77 | AI Act : deux formulations juridiques corrigées (FR, EN, de-ch), BL-43-2 et paragraphe de BL-43-3 | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `a207fe3` ; micro-correction finale de Laurent appliquée | `content/blog/**` est la prose de Sébastien : sa validation est requise | Transmission à Sébastien, sur décision de Laurent |
 | #79 | Previews privées AI Act B, C, D — REVIEW ONLY | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `a4a62ac` ; pages en 404 hors Preview | D41 : aucune publication sans nouvelle mesure D16 et nouvelle décision | Contrôle humain de la Preview (SSO) ; validation de Sébastien |
 | #64 | D33, patch factuel (showroom Beynost, Orbitvu 2023, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu) | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `63e1e92`, 31 commits de retard | Fusion sur décision explicite de Laurent et de Sébastien ; points ouverts en C | Contrôle de la Preview par Laurent (desktop, tablette, mobile) |
 | #65 | D40 proposée : circuit Preview Vercel → Sébastien (documentation) | Claude de Laurent | Brouillon ; tête `c5e15a8`, 53 commits de retard ; conflits `DECISIONS`, `ETAT`, `JOURNAL` | D40 non en vigueur ; 17 modifications imposées par D42 et D43 (JOURNAL du 01/10, « arbitrages finaux ») | Sort à arbitrer par Laurent (C) |
-| #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée : Worker portant le bloc D36 déployé depuis `main` et `www` contrôlé, avant toute fusion. #68 fusionnée le 01/10 ; déploiement du Worker non consigné | Aucun avant le GO de déploiement du Worker (C) |
+| #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée avant toute décision sur #67 : version active du Worker confirmée (présence du bloc D36), puis `www` contrôlé. Déploiement après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, non vérifié par ce rangement | Lecture Cloudflare READ ONLY, puis contrôle de `www` (C). Aucun nouveau déploiement autorisé |
 | #70 | Ubersuggest : `metaTitle` de `/fr/blog/photographie-2d-de-produits` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `ef0bc89` | Point ouvert : un `<title>` relève-t-il du copywriting réservé à Sébastien ? | Arbitrage séparé de Laurent |
 | #27 | Maillage article → offre (Q3, 14 liens) et contrôle `curl.exe` du lot F | Claude de Laurent | Ouverte, non brouillon, inactive depuis le 23/09 ; 164 commits de retard ; conflit sur un fichier supprimé par #71 | Historique : ne pas fusionner globalement. Revue demandée à Sébastien depuis le 23/09, non rendue | Aucun développement ; sort sur GO distinct de Laurent, preuves conservées (JOURNAL du 02/10) |
 
@@ -69,7 +69,7 @@ Seules les PR ouvertes. Détail, fichiers et conflits : `REVUE-PR-BRANCHES-2026-
 | #64 — date de création | 01/10 | D33 dit 2001 ; faits métier du 30/09 cités par #64 : Sysnext 2001, lancement de PackshotCreator 2004 ; `foundingDate` 2004 ; le site affiche 2001, 2003 et 2004 selon les pages. `DECISIONS.md` non modifié |
 | #64 — autres points | 30/09 | Délai : 10 jours (D32, F5) contre 12 jours (#64) ; showroom : D1 et `00-BRIEFING.md` citent Saint-Bonnet-de-Mure, #64 Beynost ; claims non sourcés restants dans `guide-achat-studio-2026` et `comment-calculer-le-roi-…` |
 | #70 — `<title>` et copywriting | 30/09 | Point de gouvernance ouvert, à trancher avant toute fusion |
-| D36 / #67 — GO de déploiement du Worker | 01/10 | Ordre : resynchronisation R5, `wrangler deploy` depuis `main` (le bloc D36 y est depuis #68), lecture du script déployé (`x-packshot-origin-noindex`), contrôle de `www` ; ensuite seulement, #67 reprend `main` (garder le test Worker de `main`) et nouveau GO |
+| D36 / #67 — confirmer le Worker actif | 01/10 | Déploiement du Worker après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, version active non vérifiée par ce rangement. Ordre : (1) lecture Cloudflare **READ ONLY** du script actif : version, présence de `x-packshot-origin-noindex` (bloc D36 de `main` depuis #68), écart éventuel avec le dépôt (R5) ; (2) contrôle de `www` ; (3) seulement ensuite, décision sur #67 : reprise de `main` (garder le test Worker de `main`) et nouveau GO. **Aucun nouveau déploiement autorisé** |
 | D29 — mapping produit Alphashot XL v2 / XL G2 | 24/09 | `SUSPENDED / REVIEW_PRODUCT_MAPPING`. Préalable à tout changement de redirection XL : 13 redirections du Worker vers `alphashot-xl-g2` et 2 règles de `next.config.ts` vers `alphashot-xl-v2` laissées en l'état ; aucun rollback automatique |
 | Q10 — cible de clics | 19/09 | Les quick wins et la substitution de page ne comblent pas l'écart seuls ; la cible dépend du chantier marque (M5, 14-28/10) |
 | D33 — fiche Google (hors dépôt) | 25/09 | Si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33 |
@@ -104,7 +104,8 @@ Le contrôle sur `sysnext.vercel.app` est fait et consigné au JOURNAL pour chaq
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | Q19 — prise de connaissance de D42 (standard éditorial, applicable aux contenus des deux environnements Claude) et de D43 (pour information) | Laurent (D42, arbitrage 5) | 01/10 | Transmission seule ; `/CLAUDE.md` et le périmètre du Claude de Sébastien non modifiés ; aucun arbitrage n'étend D43 à son environnement |
-| Validations éditoriales (D42, étape 5) — à venir | Laurent | — | Aucune transmission établie au 02/10 d'après les PR : #59 et #60 (mail non envoyé), #77 (non transmise), #64 et #79 (après contrôle de la Preview par Laurent). Seule demande formelle sur GitHub : revue de #27, demandée le 23/09, dont le sort est d'abord à décider par Laurent |
+| Dossier « IA & images produit » (AI Act) — relecture | Laurent | 02/10 | **Transmission** : rapportée par le pilotage externe du 02/10, message intitulé « Dossier IA & images produit : nos 5 articles sont prêts pour ta relecture » ; information du pilotage, non établie par GitHub (les descriptions de #59 et #60 portent encore « mail à Sébastien non envoyé »). Périmètre des 5 articles non établi par GitHub ; [Inférence] A (#59), S (#60) et B, C, D (#79). **Accusé de réception** : non établi. **Validation métier** (D42, étape 5) : non établie, aucune trace GitHub (0 revue, 0 commentaire de `Sebeth7`) |
+| Autres validations (D42, étape 5) | Laurent | — | #77 : « non transmise » selon sa description du 01/10, état ultérieur non établi. #64 : après contrôle de la Preview par Laurent. Seule demande formelle sur GitHub : revue de #27, demandée le 23/09, dont le sort est d'abord à décider par Laurent |
 | #80 — contrôle de bout en bout du formulaire de-ch | Claude de Sébastien (JOURNAL du 02/10) | 02/10 | Envoi réel depuis `/de-ch/kontakt` (il crée un vrai deal et deux courriels), puis suppression de la fiche test ; confirmation en allemand à décider ; test e2e qui envoie le formulaire dans les trois langues à écrire. Exécutant non désigné dans le JOURNAL |
 | Academy (#71) — reliquat légal, audit Qualiopi du 16/10 | Claude de Sébastien (JOURNAL du 30/09) | 30/09 | CGU (article 1, article 4, article 5 « PackshotCreator Academy est certifié Qualiopi ») et politique de confidentialité citent encore le simulateur OPCO ou l'Academy comme entité certifiée ; formulation « formation(s) certifiée(s) Qualiopi », une vingtaine d'occurrences au moins, à arbitrer avec la consultante ; fiche Master du catalogue (« à distance » pour une formation en présentiel). À trancher : « suivi post-formation » du guide d'achat ; « Formateurs experts 10+ ans » et témoignages Marie D. et Camille R. (comparatif Orbitvu) ; « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget). Textes légaux non modifiés par le Claude de Laurent |
 | Branches sans PR portant des commits absents de `main` | Laurent | 19/09, recompté le 02/10 | Sur clone complet : `feat/sysnext-industrial` (4 commits, mini-site Sysnext Industrial) et `feat/geo-referentiels-prix` (2 commits, pages référentiels prix). Les 3 autres branches comptées le 19/09 n'en portent aucune (`REVUE-PR-BRANCHES-2026-10-02.md`, § 4). Pour information : conserver ou abandonner |
@@ -187,7 +188,7 @@ Acquis : #44, #46, #50, #52, #69, #74 (et #72 pour la police). Ne pas recréer d
 
 - D32 : `hasMerchantReturnPolicy` (aucun retour) et `shippingDetails` (livraison et installation facturées en supplément, délai indicatif d'environ 10 jours, jamais garanti ; même règle en France et en Suisse), PR applicative distincte. Écart à trancher avec #64 (12 jours), voir C.
 - D33 : `foundingDate` (`components/seo/SchemaOrg.tsx:72` au 25/09, `'2004'`) à aligner après arbitrage de la date (voir C) ; relire les quatre textes qui annoncent en allemand l'ensemble du service, formation et SAV compris (relevé du 25/09 : `messages/fr.json:189`, `messages/de-ch.json:167`, `messages/en.json:93`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx:36`) — traités en partie par #64.
-- D36 : #67, après déploiement du Worker (voir C) ; `smoke.mjs` lit la balise `robots`, pas l'en-tête.
+- D36 : #67, après confirmation du Worker actif (Cloudflare READ ONLY) et contrôle de `www` (voir C) ; `smoke.mjs` lit la balise `robots`, pas l'en-tête.
 - D22 (Q6 close) : règle WAF « Skip SBFM — PerplexityBot », conditionnée au user-agent et aux adresses publiées ; contrôle à J+3. Modification Cloudflare, non exécutée au 25/09.
 - D29 : aucun changement de redirection XL avant validation du mapping (voir C).
 
@@ -227,7 +228,7 @@ Liste complète du 28/09 au 02/10, commits de fusion compris : `REVUE-PR-BRANCHE
 | #74, #75 | UB-04, fil d'Ariane hors du H1 ; documentation | 01/10 10:29 et 14:57 | Chrome |
 | #73 | Archivage AI Act, D41, backlog BL-43 / BL-53 / RV28 | 01/10 11:19 | — |
 | #72 | Inter auto-hébergée | 01/10 09:02 | Chrome |
-| #68 | D36, protection Worker (code seulement) | 01/10 06:58 | Déploiement du Worker et #67 (C) |
+| #68 | D36, protection Worker | 01/10 06:58 | Déploiement rapporté le 01/10 par le pilotage ; version active à confirmer (Cloudflare READ ONLY), puis `www` ; #67 (C) |
 | #71 | Academy réduite au catalogue Qualiopi (Claude de Sébastien) | 30/09 20:40 | Reliquat légal (D) |
 | #69 | Centrage des articles de blog (Claude de Sébastien) | 30/09 18:33 | — |
 | #58 | R01, sélecteur de langue des 8 hubs `/de-ch/branchen/*` (26 liens en 404 et 6 redirections ramenés à 0) | 29/09 18:48 | Chrome |
