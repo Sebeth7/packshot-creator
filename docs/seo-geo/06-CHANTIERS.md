@@ -1,5 +1,15 @@
 # 06 — Chantiers SEO / GEO
 
+> **Backlog historique — ne pas lire comme la liste des actions courantes.**
+> Ce fichier n'est plus tenu à jour depuis le 19/09/2026. Les travaux actifs,
+> la balle de chacun, les mesures et le backlog qualifié vivent dans `ETAT.md`
+> (sections B à F) ; les audits A à E et F/F2 alimentent un backlog consolidé
+> distinct (`ETAT.md`, F1). Avancées depuis le 19/09, non reportées ci-dessous :
+> C4 (lot F) livré par #26, Worker déployé le 23/09 ; volet accents de C14 livré
+> par #23 le 20/09 ; « Substitution de page » : F5 publiée le 28/09 (#39), en
+> mesure ; « Marque » : M1 à M4 et M6 faites, M5 du 14 au 28/10. Note du 02/10,
+> rangement GitHub.
+
 Le backlog, arrêté au **19/09/2026**. `ETAT.md` dit ce qui est en cours
 maintenant ; ce fichier dit ce qu'il y a à faire et pourquoi.
 
