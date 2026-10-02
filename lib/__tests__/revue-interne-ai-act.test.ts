@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import { revueInterneAutorisee as autorisee } from '@/lib/revue-interne/acces';
+import fs from 'node:fs';
+import path from 'node:path';
 import {
+  DOSSIER_VISUELS,
   PREVIEWS,
   decouperAuxModules,
+  fichiersIllustrations,
+  illustrationsArticle,
   insererEmplacements,
+  insererIllustrations,
   lireArticleRevue,
   type EmplacementVisuel,
+  type Illustration,
 } from '../../app/[lang]/revue-interne/ai-act/donnees';
 import { lireModules } from '../../app/[lang]/revue-interne/ai-act/modules';
 
@@ -78,5 +85,67 @@ describe('previews internes AI Act — emplacements et modules', () => {
         attendus[slug],
       );
     }
+  });
+});
+
+describe('previews internes AI Act — illustrations fournies', () => {
+  const exemple: Illustration = {
+    id: 'X0',
+    fichier: 'x0-exemple',
+    largeurs: [1672, 836],
+    largeur: 1672,
+    hauteur: 941,
+    alt: 'Objet « fictif »',
+    legende: 'Illustration générée par IA. Exemple.',
+    statut: 'ILLUSTRATION CONTEXTUELLE',
+    provenance: { origine: 'test', ia: true },
+  };
+
+  it('remplace le marqueur par la figure, avec srcset et attributs échappés', () => {
+    const sortie = insererIllustrations('<p>a</p><figure data-illustration="X0"></figure>', [exemple]);
+    expect(sortie).toContain('src="/fr/revue-interne/ai-act/visuels/x0-exemple-836.avif"');
+    expect(sortie).toContain('x0-exemple-1672.avif 1672w, /fr/revue-interne/ai-act/visuels/x0-exemple-836.avif 836w');
+    expect(sortie).toContain('alt="Objet « fictif »"');
+    expect(sortie).toContain('<figcaption>Illustration générée par IA. Exemple.</figcaption>');
+    expect(sortie).not.toContain('data-illustration="X0"></figure>');
+  });
+
+  it('échoue sur un marqueur sans fiche ou une fiche sans marqueur', () => {
+    expect(() => insererIllustrations('<figure data-illustration="X9"></figure>', [exemple])).toThrow(/sans fiche/);
+    expect(() => insererIllustrations('<p>a</p>', [exemple])).toThrow(/sans marqueur/);
+  });
+
+  it('en-têtes B0, C0, D0 et illustrations B1, C2 : fichiers présents, légende IA, statut, provenance', () => {
+    const attendus: Record<string, string[]> = {
+      retouche: ['B0', 'B1'],
+      mannequins: ['C0', 'C2'],
+      metadonnees: ['D0'],
+    };
+    for (const { slug } of PREVIEWS) {
+      const article = lireArticleRevue(slug)!;
+      const illustrations = illustrationsArticle(article);
+      expect(illustrations.map((i) => i.id)).toEqual(attendus[slug]);
+      for (const i of illustrations) {
+        expect(i.legende.startsWith('Illustration générée par IA. ')).toBe(true);
+        expect(i.alt.length).toBeGreaterThan(30);
+        // Aucun ALT ne présente le rendu comme une photographie (« studio photo » décrit le décor de D0).
+        expect(i.alt).not.toMatch(/photographi/i);
+        expect(i.provenance.ia).toBe(true);
+        expect(i.statut.length).toBeGreaterThan(0);
+        for (const l of i.largeurs) {
+          expect(fs.existsSync(path.join(DOSSIER_VISUELS, `${i.fichier}-${l}.avif`))).toBe(true);
+        }
+      }
+      // Les marqueurs du corps sont tous résolus ; le texte des modules reste en place.
+      const html = insererIllustrations(article.content, article.illustrations);
+      expect(html).not.toMatch(/<figure data-illustration="/);
+    }
+  });
+
+  it('ne sert que les fichiers référencés, et tous les fichiers du dossier le sont', () => {
+    const servis = fichiersIllustrations().sort();
+    const presents = fs.readdirSync(DOSSIER_VISUELS).filter((f) => f.endsWith('.avif')).sort();
+    expect(servis).toEqual(presents);
+    expect(servis).toHaveLength(10);
   });
 });

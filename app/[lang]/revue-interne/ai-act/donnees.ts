@@ -31,6 +31,32 @@ export interface EmplacementVisuel {
   message: string;
   /** Légende prévue, si le texte en appelle une. */
   legende?: string | null;
+  /** Illustration fournie qui remplace le cadre vide (en-tête seulement). */
+  illustration?: Illustration;
+}
+
+/**
+ * Illustration fournie : PNG du ZIP converti en AVIF, servi par la route
+ * `visuels/[fichier]` sous la même garde que les pages (jamais dans `public/`).
+ */
+export interface Illustration {
+  /** Identifiant du ZIP : B0, B1, C0, C2, D0. */
+  id: string;
+  /** Nom de base des fichiers de `content/revue-interne/ai-act/visuels/` : `<fichier>-<largeur>.avif`. */
+  fichier: string;
+  /** Largeurs disponibles, en pixels, de la plus grande à la plus petite. */
+  largeurs: number[];
+  /** Dimensions de la plus grande version. */
+  largeur: number;
+  hauteur: number;
+  alt: string;
+  /** Légende affichée ; commence par « Illustration générée par IA. ». */
+  legende: string;
+  /** Statut dans la livraison du 02/10 : « HERO PROPOSÉ », « HERO ALTERNATIF À VALIDER »… */
+  statut: string;
+  /** Écart au brief ou au texte, affiché dans le bandeau de relecture. */
+  ecart?: string;
+  provenance: { origine: string; ia: boolean };
 }
 
 export interface ArticleRevue {
@@ -56,6 +82,8 @@ export interface ArticleRevue {
   /** Origine de chaque question de FAQ (la réécriture du 02/10 n'en contient pas). */
   sourceFaq?: string;
   visuels: EmplacementVisuel[];
+  /** Illustrations du corps, placées par un marqueur `<figure data-illustration="…"></figure>`. */
+  illustrations?: Illustration[];
   /** Notes de travail de la réécriture (statut, questions pour Sébastien) : HTML, hors du texte de l'article. */
   notesRelecture?: string[];
 }
@@ -87,6 +115,68 @@ export function htmlEmplacement(v: EmplacementVisuel): string {
     `<p class="revue-visuel__format">${echapper(v.ratio)} · pleine largeur de lecture</p>` +
     `</div>${legende}</figure>`
   );
+}
+
+/** Dossier des AVIF des illustrations (hors de `public/`). */
+export const DOSSIER_VISUELS = path.join(DOSSIER, 'visuels');
+
+/** Chemin public d'une version de l'illustration, servie par `visuels/[fichier]/route.ts`. */
+export function urlIllustration(i: Illustration, largeur: number): string {
+  return `/fr/revue-interne/ai-act/visuels/${i.fichier}-${largeur}.avif`;
+}
+
+/** `src` (plus petite version) et `srcSet` d'une illustration. */
+export function sourcesIllustration(i: Illustration): { src: string; srcSet: string } {
+  return {
+    src: urlIllustration(i, i.largeurs[i.largeurs.length - 1]),
+    srcSet: i.largeurs.map((l) => `${urlIllustration(i, l)} ${l}w`).join(', '),
+  };
+}
+
+/** Rendu HTML d'une illustration du corps, sur le modèle des figures des articles A et S. */
+export function htmlIllustration(i: Illustration): string {
+  const { src, srcSet } = sourcesIllustration(i);
+  return (
+    `<figure class="revue-illustration" data-illustration-revue="${echapper(i.id)}">` +
+    `<img src="${echapper(src)}" srcset="${echapper(srcSet)}" sizes="(min-width: 768px) 700px, 100vw" ` +
+    `alt="${echapper(i.alt)}" width="${i.largeur}" height="${i.hauteur}" loading="lazy" />` +
+    `<figcaption>${echapper(i.legende)}</figcaption></figure>`
+  );
+}
+
+/**
+ * Remplace chaque marqueur `<figure data-illustration="X"></figure>` par l'illustration `X`.
+ * Un marqueur sans illustration, ou une illustration sans marqueur, lève une erreur.
+ */
+export function insererIllustrations(html: string, illustrations: Illustration[] = []): string {
+  const parId = new Map(illustrations.map((i) => [i.id, i]));
+  const vus = new Set<string>();
+  const sortie = html.replace(/<figure data-illustration="([^"]+)"><\/figure>/g, (_m, id: string) => {
+    const i = parId.get(id);
+    if (!i) throw new Error(`Marqueur d'illustration sans fiche : ${id}`);
+    vus.add(id);
+    return htmlIllustration(i);
+  });
+  for (const id of parId.keys()) {
+    if (!vus.has(id)) throw new Error(`Illustration sans marqueur dans le contenu : ${id}`);
+  }
+  return sortie;
+}
+
+/** Illustrations d'un article : en-tête puis corps. */
+export function illustrationsArticle(article: ArticleRevue): Illustration[] {
+  const enTete = article.visuels.flatMap((v) => (v.illustration ? [v.illustration] : []));
+  return [...enTete, ...(article.illustrations ?? [])];
+}
+
+/** Noms des fichiers AVIF référencés par les trois previews : seuls fichiers servis par la route. */
+export function fichiersIllustrations(): string[] {
+  return PREVIEWS.flatMap(({ slug }) => {
+    const article = lireArticleRevue(slug);
+    return article
+      ? illustrationsArticle(article).flatMap((i) => i.largeurs.map((l) => `${i.fichier}-${l}.avif`))
+      : [];
+  });
 }
 
 /** Repère laissé dans le HTML à la place d'un marqueur couvert par un module interactif. */

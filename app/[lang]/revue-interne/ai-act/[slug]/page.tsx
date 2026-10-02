@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, ChevronRight, Clock, User } from 'lucide-react';
@@ -11,7 +12,10 @@ import {
   PREVIEWS,
   lireArticleRevue,
   insererEmplacements,
+  insererIllustrations,
   decouperAuxModules,
+  illustrationsArticle,
+  sourcesIllustration,
   type ArticleRevue,
 } from '../donnees';
 import { lireModules } from '../modules';
@@ -128,6 +132,14 @@ function BandeauRelecture({ article }: { article: ArticleRevue }) {
           <dd>{article.h1 || article.title}</dd>
           <dt>Robots</dt>
           <dd>noindex, nofollow, noarchive</dd>
+          {illustrationsArticle(article).map((i) => (
+            <Fragment key={i.id}>
+              <dt>Visuel {i.id}</dt>
+              <dd>
+                {i.statut}.{i.ecart ? ` ${i.ecart}` : ''}
+              </dd>
+            </Fragment>
+          ))}
         </dl>
       </details>
     </div>
@@ -142,7 +154,10 @@ export default async function PreviewRevuePage({ params }: PageProps) {
 
   const modules = lireModules(slug);
   const processed = processHtmlContent(
-    insererEmplacements(article.content, article.visuels, new Set(modules.keys())),
+    insererIllustrations(
+      insererEmplacements(article.content, article.visuels, new Set(modules.keys())),
+      article.illustrations,
+    ),
   );
   const segments = decouperAuxModules(
     sanitizeHtml(processed.processedHtml),
@@ -195,7 +210,27 @@ export default async function PreviewRevuePage({ params }: PageProps) {
         </div>
       </HeroSection>
 
-      {ouverture && (
+      {ouverture?.illustration ? (
+        // Image d'en-tête : même conteneur et mêmes attributs que l'image d'un article
+        // publié ; légende ajoutée pour signaler l'illustration générée par IA.
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
+          <figure className={styles.ouverture}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              {...sourcesIllustration(ouverture.illustration)}
+              sizes="(min-width: 896px) 848px, calc(100vw - 2rem)"
+              alt={ouverture.illustration.alt}
+              width={ouverture.illustration.largeur}
+              height={ouverture.illustration.hauteur}
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
+              className="w-full h-auto rounded-2xl shadow-lg"
+            />
+            <figcaption>{ouverture.illustration.legende}</figcaption>
+          </figure>
+        </div>
+      ) : ouverture && (
         // Emplacement de l'image d'en-tête : même conteneur que l'image d'un article publié.
         <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-10">
           <div className={styles.cadre} style={{ aspectRatio: ouverture.ratio.replace(':', ' / ') }}>

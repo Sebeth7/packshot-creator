@@ -62,6 +62,30 @@
   color: var(--future-dusk-5);
 }
 
+/* Illustrations fournies (AVIF) : en-tête et corps. La légende signale
+   l'illustration générée par IA ; style aligné sur les figcaption du blog. */
+.ouverture {
+  margin: 0;
+}
+
+.ouverture figcaption,
+.revue :global(.revue-illustration figcaption) {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--future-dusk-4);
+}
+
+.revue :global(.revue-illustration) {
+  margin: 2.5rem 0;
+}
+
+.revue :global(.revue-illustration img) {
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
 /* Sur petit écran, le cadre garde son ratio ; le texte se resserre. */
 @media (max-width: 480px) {
   .revue :global(.revue-visuel__cadre),

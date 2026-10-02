@@ -34,6 +34,53 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — illustrations des previews privées B, C, D (en-têtes B0, C0, D0 ; B1, C2 dans le corps) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act, previews privées B, C, D | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `73a7d47`
+
+**Quoi** —
+- Cinq PNG du ZIP `PSC_AI_ACT_BCD_VISUELS_INTEGRATION_2026-10-02` convertis en AVIF (1672 et 836 px) :
+  - B0 remplace l'en-tête vide de B ;
+  - C0 et D0 remplacent ceux de C et D, comme alternatives à leur brief, écart affiché dans le bandeau de relecture ;
+  - B1 (collier) est placé dans « Détourage », avant le module B1 ;
+  - C2 (bijoux portés) est placé après la liste qui contient « Bijou », hors emplacement du module C2.
+- Légendes ouvertes par « Illustration générée par IA. », ALT rédigés d'après l'image.
+- Les huit modules SVG et le texte des articles sont inchangés : seuls deux marqueurs `<figure data-illustration>` sont ajoutés.
+
+**Pourquoi** — GO de Laurent du 02/10 : plus d'en-têtes vides sur les Previews, intégration contextuelle non trompeuse des PNG, modules conservés, D3 inchangé.
+
+**Écartés** —
+- B2 (sacs) : dit la même chose que le module B2, redessiné le 02/10 sur le même exemple bleu, rouge, vert, et que A4 (mugs).
+- B3 (montres) : dit la même chose que le module B3, déjà une montre, et que A5 (gourde). Ce serait aussi la deuxième montre de B après B0.
+- C1 (chemise) : même composition que C0, vêtement seul puis porté par une personne synthétique, et palette proche de A6.
+- La planche `00_PLANCHE_8_IMAGES.png` n'est pas intégrée.
+
+**Fichiers** — `app/[lang]/revue-interne/ai-act/{donnees.ts,revue.module.css,[slug]/page.tsx}`, `app/[lang]/revue-interne/ai-act/visuels/[fichier]/route.ts`, `content/revue-interne/ai-act/{retouche,mannequins,metadonnees}.json`, `content/revue-interne/ai-act/visuels/*.avif` (10), `lib/__tests__/revue-interne-ai-act.test.ts`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site public. Les AVIF sont hors de `public/`. Ils sont servis par une route soumise à la même garde que les pages : générée en Preview et en développement seulement, `X-Robots-Tag: noindex, nofollow, noarchive`.
+
+**Vérifié**
+- Empreintes SHA-256 du ZIP conformes à `04_MANIFEST_SHA256.txt`.
+- Chaque PNG porte un bloc `caBX` (C2PA) contenant `trainedAlgorithmicMedia`, `OpenAI` et `ChatGPT` : chaînes lues, signature non vérifiée. Ce bloc n'est pas conservé dans l'AVIF, comme pour A et S.
+- AVIF sharp, qualité 66, 4:4:4 : de 8,7 à 68,2 Ko, PSNR de 41,5 à 44,7 dB face au PNG redimensionné.
+- `tsc` vert ; ESLint sans message sur les fichiers modifiés ; Vitest 386/386 ; `verifier-json` 191 ; `verifier-consequences` : effet local, rien qui déborde ; `smoke.mjs` vert.
+- `next build` en Preview simulée : 384 pages, dont 10 AVIF identiques octet pour octet aux sources, `Content-Type: image/avif` et `X-Robots-Tag` conservés.
+- `next build` en production simulée : 371 pages, previews et AVIF en 404, aucun fichier AVIF ni texte de légende dans `.next`.
+- `next start`, Chromium, 3 pages × 5 formats (1440, 1024, 820, 390, 360) :
+  - en-tête chargé et visible sans défilement (de 132 à 435 px de hauteur visible) ;
+  - illustrations du corps chargées, ratio 1,775 ;
+  - 0 débordement, 0 cadre vide, 0 requête en échec, 0 erreur de console ;
+  - les huit modules répondent au clic ou au toucher sur « Suivant » ;
+  - robots `noindex, nofollow, noarchive`, 0 canonique, 0 `og:image`.
+
+**Supposé** — Le ZIP indique « ChatGPT Images » comme outil : je ne l'ai pas vérifié au-delà des chaînes du bloc C2PA.
+
+**Non regardé** — Preview derrière le SSO (contrôle humain) ; `www` (R4) ; qualité photographique des AVIF sur écran haute densité au-delà des recadrages comparés ; navigation clavier des modules (inchangés).
+
+**Suite** — Arbitrage de Laurent sur C0 et D0 (écarts au brief), sur l'exclusion de B2, B3 et C1, puis GO de push. D3 attend toujours une capture technique réelle datée. D41 reste en vigueur.
+
+---
+
 ## 2026-10-02 · Cluster AI Act — finalisation éditoriale, visuelle et SEO/GEO des previews privées B, C, D · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act, previews privées B (retouche), C (mannequins), D (métadonnées) | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `dead94d`

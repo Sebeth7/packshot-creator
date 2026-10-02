@@ -40,7 +40,25 @@
       "emplacement": "ouverture",
       "ratio": "16:9",
       "message": "Image d’en-tête à décider. Brief proposé : schéma abstrait d’un fichier image et de ses couches (pixels, métadonnées, manifeste), sans produit, sans texte incrusté. À éviter : flacon et panneaux à trois couches (S).",
-      "legende": null
+      "legende": null,
+      "illustration": {
+        "id": "D0",
+        "fichier": "d0-parcours-image-chaussure",
+        "largeurs": [
+          1672,
+          836
+        ],
+        "largeur": 1672,
+        "hauteur": 941,
+        "alt": "Studio photo à gauche, puis une chaussure de sport claire fictive déclinée sur des panneaux translucides reliés par une ligne lumineuse : prise de vue, modèle filaire, rendu central, variantes de fond, mise en situation et colis.",
+        "legende": "Illustration générée par IA. Représentation conceptuelle du parcours d’une image produit, de la prise de vue à la diffusion ; aucun fichier, aucune métadonnée ni aucun résultat de test n’y est représenté.",
+        "statut": "HERO ALTERNATIF À VALIDER",
+        "ecart": "Écart au brief initial (schéma abstrait d’un fichier et de ses couches, sans produit, sans texte ; à éviter : flacon et panneaux à trois couches de S) : l’image montre un produit (chaussure) et des panneaux translucides, famille visuelle proche de l’en-tête de S (studio, panneaux).",
+        "provenance": {
+          "origine": "PNG du ZIP PSC_AI_ACT_BCD_VISUELS_INTEGRATION_2026-10-02 (01_IMAGES_PNG/D0_HERO_ALTERNATIF_flux_image_sneaker.png, SHA-256 4486825e6665944e06fbf2a44cf47eb7a8a2ab81b612060ab15756cee287a571), 1672 × 941, généré par ChatGPT Images selon le ZIP ; converti en AVIF le 02/10/2026 (sharp, qualité 66, 4:4:4, largeurs 1672 et 836) ; manifeste C2PA du PNG non conservé dans l’AVIF.",
+          "ia": true
+        }
+      }
     },
     {
       "id": "D1",
