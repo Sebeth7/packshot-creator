@@ -257,3 +257,13 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* Très petits écrans (360 px) : le tableau à 3 colonnes de D dépassait de
+   5 à 35 px dans son conteneur ; marges et corps resserrés pour tenir. */
+@media (max-width: 400px) {
+  .revue :global(.prose .table-wrap thead th),
+  .revue :global(.prose .table-wrap tbody td) {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8125rem;
+  }
+}

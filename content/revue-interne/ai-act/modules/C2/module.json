@@ -1,0 +1,48 @@
+{
+  "id": "C2",
+  "article": "mannequins",
+  "section": "Ne laissez pas le personnage modifier la perception du produit",
+  "title": "À plat, volume et porté",
+  "caption": "Trois modes de présentation d’un même vêtement conceptuel. La concordance des proportions, coutures et matières ne peut être établie qu’avec des photographies réelles contrôlées.",
+  "alt": "Schéma d’une même chemise générique présentée à plat, en volume puis sur silhouette neutre.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "À plat",
+      "Longueur, coutures et découpe des manches."
+    ],
+    [
+      "En volume",
+      "Tombé, col et proportions de la pièce."
+    ],
+    [
+      "Porté — conceptuel",
+      "Interaction avec une silhouette ; aucune preuve de fidélité réelle."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/mannequins/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/mannequins/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

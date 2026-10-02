@@ -1,0 +1,48 @@
+{
+  "id": "B1",
+  "article": "retouche",
+  "section": "Détourage : surveillez ce que l’outil reconstruit",
+  "title": "Détourage et contours complexes",
+  "caption": "Trois états conceptuels d’un détourage : fichier initial, retrait du fond, reconstruction éventuelle des bords. Comparer au fichier source et au produit réel avant validation.",
+  "alt": "Schéma d’un flacon générique traversant trois états de détourage, sans photographie de référence.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Prise de vue originale",
+      "Décor et bord du produit photographié."
+    ],
+    [
+      "Fond supprimé",
+      "Objet isolé ; vérifier transparence et contour."
+    ],
+    [
+      "Contour reconstruit",
+      "Zone de reconstruction hypothétique, à contrôler sur la vraie image."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

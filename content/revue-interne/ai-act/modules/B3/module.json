@@ -1,0 +1,40 @@
+{
+  "id": "B3",
+  "article": "retouche",
+  "section": "Poussière, rayure, usure : demandez-vous où se trouve le défaut",
+  "title": "Artefact ou défaut du produit ?",
+  "caption": "La poussière due à la capture et la rayure physique concernent des supports différents. Il s’agit d’un schéma explicatif, pas de l’analyse d’un exemplaire vendu.",
+  "alt": "Comparaison conceptuelle entre un artefact de capture hors de l’objet et une rayure sur sa surface.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Artefact de capture",
+      "Points situés sur la représentation, pas une preuve de salissure physique."
+    ],
+    [
+      "Défaut physique",
+      "Marque stylisée sur l’objet ; état réel à documenter par prise de vue."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

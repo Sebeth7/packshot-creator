@@ -1,0 +1,48 @@
+{
+  "id": "B2",
+  "article": "retouche",
+  "section": "Couleur : trois opérations très différentes",
+  "title": "Correction et recolorisation",
+  "caption": "Trois rendus illustratifs : teinte photographiée, variante dont l’existence doit être vérifiée, coloris purement hypothétique. Cette animation ne démontre l’existence commerciale d’aucune variante.",
+  "alt": "Schéma de trois rendus colorés du même flacon générique, sans référence à un catalogue réel.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Teinte photographiée",
+      "État initial fictif ; photographie réelle attendue."
+    ],
+    [
+      "Variante au catalogue — à vérifier",
+      "Remplacer par photographie réelle de la référence correspondante."
+    ],
+    [
+      "Coloris hors catalogue — hypothèse",
+      "Exemple pédagogique de coloris non validé, non proposé à la vente."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

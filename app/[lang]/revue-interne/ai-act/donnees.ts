@@ -89,22 +89,72 @@ export function htmlEmplacement(v: EmplacementVisuel): string {
   );
 }
 
+/** Repère laissé dans le HTML à la place d'un marqueur couvert par un module interactif. */
+const REPERE_MODULE = /<div data-module-revue="([^"]+)"><\/div>/g;
+
 /**
- * Remplace chaque marqueur `<figure data-visuel="X"></figure>` du contenu par
- * son emplacement. Un marqueur sans fiche, ou une fiche `corps` sans marqueur,
- * lève une erreur : le build échoue plutôt que de perdre un emplacement.
+ * Remplace chaque marqueur `<figure data-visuel="X"></figure>` du contenu :
+ * - par un repère de module si `X` a un module interactif (`modules`) ;
+ * - sinon par son emplacement de visuel.
+ * Un marqueur sans fiche, une fiche `corps` sans marqueur ou un module sans
+ * marqueur lève une erreur : le build échoue plutôt que de perdre un visuel.
  */
-export function insererEmplacements(html: string, visuels: EmplacementVisuel[]): string {
+export function insererEmplacements(
+  html: string,
+  visuels: EmplacementVisuel[],
+  modules: ReadonlySet<string> = new Set(),
+): string {
   const corps = new Map(visuels.filter((v) => v.emplacement === 'corps').map((v) => [v.id, v]));
   const vus = new Set<string>();
   const sortie = html.replace(/<figure data-visuel="([^"]+)"><\/figure>/g, (_m, id: string) => {
     const v = corps.get(id);
     if (!v) throw new Error(`Marqueur de visuel sans fiche : ${id}`);
     vus.add(id);
-    return htmlEmplacement(v);
+    return modules.has(id) ? `<div data-module-revue="${echapper(id)}"></div>` : htmlEmplacement(v);
   });
   for (const id of corps.keys()) {
     if (!vus.has(id)) throw new Error(`Emplacement de visuel sans marqueur dans le contenu : ${id}`);
   }
+  for (const id of modules) {
+    if (!vus.has(id)) throw new Error(`Module sans marqueur dans le contenu : ${id}`);
+  }
   return sortie;
+}
+
+export type SegmentRevue = { type: 'html'; html: string } | { type: 'module'; id: string };
+
+function texteBrut(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;|&#160;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;|&apos;/g, '’')
+    .replace(/'/g, '’')
+    .replace(/[\s  ]+/g, ' ')
+    .trim();
+}
+
+/**
+ * Découpe le HTML traité aux repères de module. Chaque module doit suivre,
+ * sans autre H2 entre les deux, l'intertitre H2 annoncé par son `module.json`
+ * (`sections`) : le build échoue sinon.
+ */
+export function decouperAuxModules(html: string, sections: ReadonlyMap<string, string>): SegmentRevue[] {
+  const segments: SegmentRevue[] = [];
+  let debut = 0;
+  for (const m of html.matchAll(REPERE_MODULE)) {
+    const id = m[1];
+    const avant = html.slice(0, m.index);
+    const h2 = [...avant.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].at(-1);
+    const attendu = sections.get(id);
+    if (attendu === undefined) throw new Error(`Repère de module inconnu : ${id}`);
+    if (!h2 || texteBrut(h2[1]) !== texteBrut(attendu)) {
+      throw new Error(`Module ${id} hors de sa section « ${attendu} » (trouvé : « ${h2 ? texteBrut(h2[1]) : 'aucun H2'} »)`);
+    }
+    segments.push({ type: 'html', html: html.slice(debut, m.index) });
+    segments.push({ type: 'module', id });
+    debut = (m.index ?? 0) + m[0].length;
+  }
+  segments.push({ type: 'html', html: html.slice(debut) });
+  return segments.filter((s) => s.type === 'module' || s.html.trim() !== '');
 }

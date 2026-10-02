@@ -6,12 +6,16 @@ import { TableOfContents } from '@/components/blog';
 import { HeroSection } from '@/components/hero';
 import { processHtmlContent, calculateReadingTime } from '@/lib/blog-utils';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { revueInterneAutorisee } from '@/lib/revue-interne/acces';
 import {
   PREVIEWS,
   lireArticleRevue,
   insererEmplacements,
+  decouperAuxModules,
   type ArticleRevue,
 } from '../donnees';
+import { lireModules } from '../modules';
+import ModuleRevue from '../ModuleRevue';
 import styles from '../revue.module.css';
 
 /**
@@ -19,6 +23,10 @@ import styles from '../revue.module.css';
  * FR seul ; noindex, nofollow, noarchive ; absentes du sitemap, de la
  * navigation et du maillage public. D41 reste en vigueur : rien ici ne vaut
  * création, validation ni publication.
+ *
+ * Garde d'environnement (`revueInterneAutorisee`) : pages construites sur une
+ * Preview Vercel ou en développement local seulement ; 404 en production, en CI
+ * et hors Vercel. La protection SSO des Preview reste requise.
  */
 
 interface PageProps {
@@ -26,6 +34,7 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
+  if (!revueInterneAutorisee('fr', process.env)) return [];
   return PREVIEWS.map((p) => ({ lang: 'fr', slug: p.slug }));
 }
 
@@ -41,14 +50,18 @@ const ROBOTS: Metadata['robots'] = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const article = lireArticleRevue(slug);
+  const { lang, slug } = await params;
+  const article = revueInterneAutorisee(lang, process.env) ? lireArticleRevue(slug) : null;
   if (!article) return { title: 'Preview introuvable', robots: ROBOTS };
   return {
     title: article.metaTitle || article.title,
     description: article.description,
     robots: ROBOTS,
     // Aucune canonique ni alternate : ces pages n'ont pas d'URL publique.
+    // Open Graph et Twitter remplacent ceux du layout, qui pointeraient
+    // og:url et l'image de partage vers la page d'accueil publique.
+    openGraph: { title: 'Revue interne — non publiée', description: 'Preview interne, accès réservé.' },
+    twitter: { card: 'summary', title: 'Revue interne — non publiée', description: 'Preview interne, accès réservé.' },
   };
 }
 
@@ -123,11 +136,19 @@ function BandeauRelecture({ article }: { article: ArticleRevue }) {
 
 export default async function PreviewRevuePage({ params }: PageProps) {
   const { lang, slug } = await params;
-  if (lang !== 'fr') notFound();
+  if (!revueInterneAutorisee(lang, process.env)) notFound();
   const article = lireArticleRevue(slug);
   if (!article) notFound();
 
-  const processed = processHtmlContent(insererEmplacements(article.content, article.visuels));
+  const modules = lireModules(slug);
+  const processed = processHtmlContent(
+    insererEmplacements(article.content, article.visuels, new Set(modules.keys())),
+  );
+  const segments = decouperAuxModules(
+    sanitizeHtml(processed.processedHtml),
+    new Map([...modules.values()].map((m) => [m.id, m.section])),
+  );
+  const fiches = new Map(article.visuels.map((v) => [v.id, v]));
   const title = article.h1 || article.title;
   const readingTime = article.readingTime ?? calculateReadingTime(processed.wordCount);
   const headings = processed.headings;
@@ -199,7 +220,18 @@ export default async function PreviewRevuePage({ params }: PageProps) {
                 </div>
               )}
               <article className={articleProseClasses}>
-                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
+                {segments.map((s, i) =>
+                  s.type === 'html' ? (
+                    <div key={i} dangerouslySetInnerHTML={{ __html: s.html }} />
+                  ) : (
+                    <ModuleRevue
+                      key={s.id}
+                      module={modules.get(s.id)!}
+                      visuelAttendu={fiches.get(s.id)?.message}
+                      legendeAttendue={fiches.get(s.id)?.legende}
+                    />
+                  ),
+                )}
               </article>
               {article.notesRelecture && article.notesRelecture.length > 0 && (
                 <aside className={styles.notes} aria-label="Notes de la réécriture, hors texte de l'article">

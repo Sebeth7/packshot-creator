@@ -1,0 +1,48 @@
+{
+  "id": "C1",
+  "article": "mannequins",
+  "section": "Le mannequin invisible n’est pas nécessairement une création de personne",
+  "title": "Mannequin invisible : trois étapes",
+  "caption": "Photographie du vêtement sur buste, retrait du support, puis reconstruction éventuelle de l’encolure. Schéma conceptuel ; l’origine et le procédé réels doivent être documentés.",
+  "alt": "Schéma d’une chemise générique sur buste, sans buste, puis avec intérieur d’encolure illustré.",
+  "need": "SOURCE GRAPHIQUE ATTENDUE",
+  "steps": [
+    [
+      "Mannequin photographié",
+      "Vêtement réel à documenter par une image source."
+    ],
+    [
+      "Buste supprimé",
+      "Support retiré dans la représentation."
+    ],
+    [
+      "Intérieur reconstruit",
+      "Zone recréée schématiquement ; vérifier les coutures et le col."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/mannequins/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/mannequins/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "SOURCE GRAPHIQUE ATTENDUE",
+  "asset_slots": [
+    {
+      "file": "photo_etape_01.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_02.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    },
+    {
+      "file": "photo_etape_03.png",
+      "status": "NON FOURNI - Ne pas inventer de preuve."
+    }
+  ],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "D3",
+  "article": "metadonnees",
+  "section": "Où peut-on perdre les métadonnées ?",
+  "title": "Parcours et contrôle du fichier reçu",
+  "caption": "Chemin hypothétique d’une image : capture, export, CMS/DAM, transformation/CDN, réception. Pour connaître la survie réelle des données, insérer exclusivement un relevé issu de tests authentiques, datés et contextualisés.",
+  "alt": "Schéma d’un fichier passant par cinq étapes, jusqu’au contrôle de la copie réellement reçue, sans résultats ExifTool inventés.",
+  "need": "FONCTIONNEL PROVISOIRE",
+  "steps": [
+    [
+      "Capture",
+      "Conserver l’original comme point de départ."
+    ],
+    [
+      "Export",
+      "Identifier le format et les réglages utilisés."
+    ],
+    [
+      "CMS / DAM",
+      "Documenter le traitement dans le stockage éditorial."
+    ],
+    [
+      "CDN / adaptation",
+      "Comparer les variantes réellement servies selon la requête."
+    ],
+    [
+      "Fichier reçu",
+      "Effectuer le contrôle du fichier téléchargé ; aucun résultat simulé ici."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "FONCTIONNEL PROVISOIRE",
+  "asset_slots": [],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

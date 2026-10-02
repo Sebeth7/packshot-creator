@@ -1,0 +1,35 @@
+{
+  "id": "D1",
+  "article": "metadonnees",
+  "section": "Distinguez la loi, la plateforme et le standard",
+  "title": "Image et couches techniques",
+  "caption": "Représentation abstraite d’un fichier image et d’informations pouvant lui être associées. Ce dessin ne correspond pas à un fichier inspecté et ne crée aucune obligation juridique.",
+  "alt": "Schéma neutre d’un fichier image associé à plusieurs couches d’informations techniques.",
+  "need": "FONCTIONNEL PROVISOIRE",
+  "steps": [
+    [
+      "Contenu visuel",
+      "Le fichier porte d’abord une image."
+    ],
+    [
+      "Données associées",
+      "Des informations descriptives peuvent l’accompagner."
+    ],
+    [
+      "Provenance éventuelle",
+      "Une information de provenance peut être associée selon le flux utilisé."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "FONCTIONNEL PROVISOIRE",
+  "asset_slots": [],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "D2",
+  "article": "metadonnees",
+  "section": "IPTC, XMP et C2PA : à quoi servent-ils ?",
+  "title": "Informations, mot-clé et manifeste",
+  "caption": "Différencier conceptuellement champ descriptif, mot-clé et manifeste de provenance, sans supposer leur présence ni leur caractère obligatoire sur un fichier précis.",
+  "alt": "Trois compositions abstraites illustrant champ descriptif, mot-clé et manifeste de provenance.",
+  "need": "FONCTIONNEL PROVISOIRE",
+  "steps": [
+    [
+      "Information descriptive",
+      "Champ illustratif ; aucune métadonnée réelle affichée."
+    ],
+    [
+      "Mot-clé",
+      "Emplacement conceptuel d’un mot-clé, sans valeur simulée."
+    ],
+    [
+      "Manifeste de provenance",
+      "Principe d’association et de vérification, sans manifeste fictif."
+    ]
+  ],
+  "placements": {
+    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
+    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+  },
+  "status": "FONCTIONNEL PROVISOIRE",
+  "asset_slots": [],
+  "behavior": {
+    "navigation": "boutons manuels",
+    "autoplay": false,
+    "reduced_motion": "transitions supprimées",
+    "responsive": "image fluide, contrôles en retour à la ligne"
+  }
+}
