@@ -34,6 +34,56 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé
+
+**Quoi** —
+- D43 réécrite sur la décision de Laurent du 02/10, citée : 200 USD par mois, toutes missions confondues ; plus de plafond général de 20 USD par mission ni de budget de 20 USD par trimestre ; seuil de 2 USD supprimé ; GO explicite de Laurent avant tout appel payant ou lot d'appels délimité, sur présentation de sept éléments ; consommation du mois non établie à indiquer ; fractionnement interdit. Titre et date de D43 modifiés.
+- Arbitrages budgétaires du 01/10 conservés dans D43 pour trace, marqués comme remplacés. Deux dispositions maintenues, listées : la définition d'une mission ; aucun plafond ne vaut autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+- D26 : ligne « Statut » ; point 4 remplacé par D43 du 02/10 ; formulation historique conservée.
+- D42 : trois renvois budgétaires actualisés (note de version, arbitrage 3, tableau d'articulation). Texte et arbitrages éditoriaux inchangés.
+- Q19 : référence budgétaire actualisée.
+- ETAT : budget applicable ; ligne « À CONFIRMER » retirée ; ligne #65 ; tableau des décisions.
+
+**Évolution des règles budgétaires**
+
+| Date | Source | Règle | État au 02/10 |
+|---|---|---|---|
+| 19/09 | D26, point 4 | 20 $ par trimestre, GO au-delà de 2 $ par exécution | Remplacée |
+| 01/10 | D42, première version | « Pas d'appel payant sans GO préalable » | Remplacée par D43, qui reprend et précise le GO |
+| 01/10 | D43, premier arbitrage | Autorisation-cadre de 20 USD cumulés par mission | Remplacée |
+| 01/10 | D43, arbitrages finaux 1 et 2 | 20 USD par trimestre et 20 USD par mission cumulés ; GO pour tout appel ; définition de la mission | Remplacés, sauf la définition de la mission |
+| 02/10 | D43 | 200 USD par mois, toutes missions confondues ; GO explicite avant tout appel | **En vigueur** |
+
+**Pourquoi** — Décision de Laurent du 02/10 : elle remplace explicitement D26 point 4, le plafond de 20 USD par mission de D43 et le seuil de 2 USD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 02/10 vers 04:28 UTC : #76 `6acfd87`, `main` `6b80e6a`, #65 `c5e15a8`.
+- D42 : seules ses trois lignes de renvoi budgétaire changent ; texte d'origine identique à la tête `59861e9`. D26 : seule la ligne « Statut » change. Citations des arbitrages du 01/10 conservées à l'identique.
+- Plus aucun point ouvert « À CONFIRMER » ou « À ARBITRER » dans `DECISIONS.md` ni `ETAT.md` : les occurrences restantes le déclarent sans objet ou appartiennent à l'historique de l'en-tête d'`ETAT.md`. Les seules mentions de 20 USD par mission ou par trimestre restantes sont historiques et marquées comme remplacées.
+- Aucun registre de la consommation mensuelle dans `docs/seo-geo/` : la consommation d'octobre 2026 n'y est pas établie.
+- JOURNAL : 92 entrées ; aucune ligne de `main` ni de la tête `6acfd87` perdue.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5.
+- Appels payants de cette mission : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne.
+- Consommation réelle d'octobre 2026 sur les services payants : hors dépôt, non établie.
+
+**Suite** —
+- Claude de #65 : prompt actualisé. Le point 7 (calculateur ROI) renvoie à D43 du 02/10 : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel payant.
+- GO de Laurent pour la fusion de #76.
+
+---
+
 ## 2026-10-01 · Arbitrages finaux D40 / D42 / D43 consignés · Claude de Laurent
 
 **Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé depuis l'entrée ci-dessous

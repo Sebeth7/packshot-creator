@@ -25,37 +25,71 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D43 · 2026-10-01 · Appels payants : GO préalable de Laurent pour tout appel, plafond de 20 USD par mission dans le budget de 20 USD par trimestre
+## D43 · 2026-10-02 · Services payants de recherche SEO/GEO : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel
 
-**Décidé par** : Laurent — premier arbitrage (point 3), puis arbitrages finaux 1 et 2, le 01/10
-**Statut** : en vigueur depuis le 01/10 (décision de Laurent) ; texte consigné par la PR #76. **Remplace** le seuil de GO de 2 $ par exécution de D26 (point 4) et la ligne « Pas d'appel payant sans GO préalable » de D42. **Conserve** le budget de mesure de 20 USD par trimestre de D26 (point 4), qui se cumule avec le plafond par mission. L'« autorisation-cadre » du premier arbitrage est remplacée par l'arbitrage final 1 : un plafond n'est pas une autorisation de dépense
+**Décidé par** : Laurent — décision du 02/10, qui remplace sur le budget ses arbitrages du 01/10
+**Statut** : **en vigueur depuis le 02/10** (décision de Laurent) ; texte consigné par la PR #76. **Remplace** : le budget de 20 USD par trimestre et le seuil de GO de 2 USD par exécution de D26 (point 4) ; le plafond de 20 USD par mission des arbitrages du 01/10 ; la ligne « Pas d'appel payant sans GO préalable » de D42, dont l'exigence de GO est reprise et précisée ici
 
-**La décision** — Arbitrages finaux de Laurent du 01/10, reproduits sans modification.
+**La décision** — Décision de Laurent du 02/10/2026, reproduite sans modification :
 
-Arbitrage final 1 — budget :
+> FAIT MÉTIER LAURENT — 02/10/2026 :
+>
+> Le budget global des services payants de recherche SEO/GEO PackshotCreator est fixé à :
+>
+> 200 USD PAR MOIS, TOUTES MISSIONS CONFONDUES.
+>
+> Cette décision remplace explicitement :
+>
+> - D26, point 4 : ancien budget de 20 USD par trimestre ;
+> - D43 : ancien plafond de 20 USD par mission ;
+> - l'ancien seuil de GO au-delà de 2 USD par exécution.
+>
+> Il n'existe donc plus de plafond général de 20 USD par mission ni de budget limité à 20 USD par trimestre.
+>
+> Une mission peut dépasser 20 USD lorsque la qualité des mesures le justifie, sous réserve du budget mensuel disponible et du GO de Laurent.
+>
+> Les 200 USD constituent un plafond global mensuel, et non 200 USD supplémentaires par mission.
+>
+> Le plafond mensuel ne constitue PAS une autorisation automatique de dépense.
+>
+> Avant tout appel payant ou lot d'appels précisément délimité, présenter :
+>
+> - le service utilisé ;
+> - l'objectif ;
+> - le nombre d'appels et leurs paramètres ;
+> - le coût estimé ;
+> - le plafond maximal ;
+> - la consommation cumulée connue du mois ;
+> - le budget mensuel restant connu.
+>
+> Attendre le GO explicite de Laurent.
+>
+> Si la consommation antérieure du mois n'est pas établie, l'indiquer : ne pas supposer arbitrairement que le solde est de 200 USD.
+>
+> Ne pas fractionner artificiellement une mission pour contourner une autorisation.
 
-> Les deux limites se cumulent :
->
-> - D26 : conserver le budget de mesure de 20 USD par trimestre.
-> - D43 : fixer également un plafond maximal de 20 USD par mission.
->
-> Le plafond par mission n'autorise jamais à dépasser le solde trimestriel disponible.
->
-> Tout appel payant nécessite préalablement le GO explicite de Laurent, avec identification du service, estimation du coût et plafond maximal.
->
-> Un plafond budgétaire ne constitue pas, à lui seul, une autorisation de dépense.
+**Règle applicable** — Récapitulatif de la décision du 02/10 :
 
-Arbitrage final 2 — définition d'une mission :
+| Point | Règle |
+|---|---|
+| Budget | 200 USD par mois, toutes missions confondues : plafond global mensuel, pas 200 USD par mission |
+| Plafond par mission | Aucun plafond général. Une mission peut dépasser 20 USD si la qualité des mesures le justifie, dans le budget mensuel disponible et sur GO de Laurent |
+| Budget de 20 USD par trimestre | Supprimé |
+| Seuil de GO de 2 USD par exécution | Supprimé |
+| Autorisation | GO explicite de Laurent avant tout appel payant ou lot d'appels précisément délimité, sur présentation des sept éléments de la décision |
+| Consommation du mois non établie | L'indiquer ; ne pas supposer un solde de 200 USD |
+| Fractionnement | Interdit pour contourner une autorisation |
 
-> Une mission est un objectif opérationnel délimité, associé à un périmètre, un livrable identifié et un budget cumulé.
->
-> Son coût comprend l'ensemble des recherches, appels exploratoires, mesures complémentaires, contre-expertises et vérifications payantes nécessaires à cet objectif.
->
-> Le fractionnement artificiel d'un même objectif en plusieurs missions pour contourner le plafond est interdit.
->
-> Avant chaque dépense, vérifier le cumul de la mission et le solde du budget trimestriel.
+**Dispositions du 01/10 maintenues** — Non visées par la décision du 02/10 et compatibles avec elle :
+- la définition d'une mission : « Une mission est un objectif opérationnel délimité, associé à un périmètre, un livrable identifié et un budget cumulé. Son coût comprend l'ensemble des recherches, appels exploratoires, mesures complémentaires, contre-expertises et vérifications payantes nécessaires à cet objectif. » (arbitrage final 2) ;
+- un plafond ne constitue aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe (premier arbitrage).
 
-**Historique** — Premier arbitrage de Laurent du 01/10 (point 3), cité pour trace :
+Toutes les autres dispositions budgétaires du 01/10 sont remplacées. Le point « À CONFIRMER » du 01/10 (dépassement du plafond de mission) est sans objet : la décision du 02/10 le tranche.
+
+**Historique** — Consignes antérieures, citées pour trace, **plus en vigueur** sauf les deux dispositions maintenues ci-dessus :
+- D26, point 4 (19/09) : budget de mesure de 20 $ par trimestre, GO au-delà de 2 $ par exécution ;
+- D42, première version (01/10) : « Pas d'appel payant sans GO préalable » ;
+- premier arbitrage de Laurent du 01/10 (point 3) :
 
 > Remplacer l'ancien seuil de 2 USD par une autorisation-cadre de 20 USD cumulés PAR MISSION, tous appels payants confondus.
 >
@@ -70,19 +104,28 @@ Arbitrage final 2 — définition d'une mission :
 > Ce plafond budgétaire ne constitue aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
 > La nouvelle décision prévaut sur l'ancien seuil de D26 et modifie explicitement la restriction budgétaire initialement rédigée dans D42. Conserver une trace historique claire de cet arbitrage, sans laisser deux consignes contradictoires en vigueur.
 
-Les arbitrages finaux le remplacent sur deux points :
-- l'« autorisation-cadre » : un plafond ne constitue pas, à lui seul, une autorisation de dépense ; tout appel payant demande le GO préalable explicite de Laurent ;
-- le plafond de mission s'inscrit dans le solde du budget trimestriel de D26, conservé.
+- arbitrages finaux 1 et 2 de Laurent du 01/10 :
 
-Ses autres dispositions restent compatibles et en vigueur : pas 20 USD par appel ; pas de consommation illimitée ; service identifié et coût estimé avant l'appel ; cumul de la mission comptabilisé ; aucune autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+> Les deux limites se cumulent :
+>
+> - D26 : conserver le budget de mesure de 20 USD par trimestre.
+> - D43 : fixer également un plafond maximal de 20 USD par mission.
+>
+> Le plafond par mission n'autorise jamais à dépasser le solde trimestriel disponible.
+>
+> Tout appel payant nécessite préalablement le GO explicite de Laurent, avec identification du service, estimation du coût et plafond maximal.
+>
+> Un plafond budgétaire ne constitue pas, à lui seul, une autorisation de dépense.
+>
+> Une mission est un objectif opérationnel délimité, associé à un périmètre, un livrable identifié et un budget cumulé.
+>
+> Son coût comprend l'ensemble des recherches, appels exploratoires, mesures complémentaires, contre-expertises et vérifications payantes nécessaires à cet objectif.
+>
+> Le fractionnement artificiel d'un même objectif en plusieurs missions pour contourner le plafond est interdit.
+>
+> Avant chaque dépense, vérifier le cumul de la mission et le solde du budget trimestriel.
 
-**Le contexte** — Deux consignes ont précédé D43, conservées pour trace et qui ne sont plus en vigueur sur ce point :
-- D26, point 4 (19/09) : GO au-delà de 2 $ par exécution ;
-- D42, première version (01/10) : « Pas d'appel payant sans GO préalable ».
-
-**Ce qu'elle interdit** — Un appel payant sans GO préalable explicite de Laurent. Un GO sans identification du service, estimation du coût et plafond maximal. Une dépense sans vérification préalable du cumul de la mission et du solde du budget trimestriel. Un appel qui ferait dépasser le solde trimestriel disponible. Le fractionnement artificiel d'un même objectif en plusieurs missions. Tenir un plafond pour une autorisation de dépense, d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
-
-**À CONFIRMER** — Le premier arbitrage prévoyait, au-delà de 20 USD sur une mission, un nouveau GO explicite de Laurent ; l'arbitrage final 1 qualifie ce plafond de « maximal ». Un dépassement du plafond de mission sur GO explicite de Laurent reste-t-il possible, dans la limite du solde trimestriel ? D'ici là, aucun appel ne porte le cumul d'une mission au-delà de 20 USD.
+**Ce qu'elle interdit** — Un appel payant, ou un lot d'appels, sans GO explicite préalable de Laurent. Une demande de GO sans les sept éléments de la décision. Supposer un solde de 200 USD quand la consommation antérieure du mois n'est pas établie. Dépasser le budget mensuel. Fractionner artificiellement une mission pour contourner une autorisation. Tenir le plafond mensuel pour une autorisation automatique de dépense, ou un plafond pour une autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
 
 ---
 
@@ -121,12 +164,12 @@ Ses autres dispositions restent compatibles et en vigueur : pas 20 USD par appel
 > Pas d'appel payant sans GO préalable.
 > Cette règle s'applique également aux PR déjà ouvertes, sans annuler les travaux antérieurement validés.
 
-**Note de version** — La ligne « Pas d'appel payant sans GO préalable » reste citée ci-dessus pour trace. Elle n'est plus en vigueur : D43 la remplace (GO préalable explicite de Laurent pour tout appel payant ; plafond de 20 USD par mission dans le budget de 20 USD par trimestre).
+**Note de version** — La ligne « Pas d'appel payant sans GO préalable » reste citée ci-dessus pour trace. Elle n'est plus en vigueur : D43 la remplace (décision du 02/10 : budget global de 200 USD par mois ; GO explicite de Laurent avant tout appel payant).
 
 **Arbitrages de Laurent du 01/10** — Six points d'articulation avec les décisions existantes, relevés dans la première version de cette décision (PR #76, tête `59861e9`) et tranchés par Laurent le même jour :
 1. **D12** — Aucun contenu éditorial n'est fusionné avant validation et autorisation de publication selon la gouvernance applicable. D12 reste en vigueur pour le reste.
 2. **D15 et D16** — Conservées : validation tacite après cinq jours ouvrés pour les réécritures (D15), validation explicite pour les créations (D16). Les exigences qualitatives de D42 s'appliquent dans les deux cas.
-3. **D26, point 4** — Le seuil de 2 USD est remplacé par une autorisation-cadre de 20 USD cumulés par mission : voir D43. Précisé par les arbitrages finaux 1 et 2 (D43) : budget trimestriel conservé, GO préalable pour tout appel, définition de la mission.
+3. **D26, point 4** — Le seuil de 2 USD est remplacé par une autorisation-cadre de 20 USD cumulés par mission : voir D43. Précisé par les arbitrages finaux 1 et 2 (D43) : budget trimestriel conservé, GO préalable pour tout appel, définition de la mission. **Remplacé sur le budget par D43 du 02/10** : 200 USD par mois, toutes missions confondues, sans plafond trimestriel ni plafond général par mission.
 4. **D40** (proposée dans #65, non fusionnée) — Contrôle des Preview sur ordinateur, smartphone et tablette, en portrait et en paysage lorsque pertinent ; tester également les interactions tactiles. Cet arbitrage élargit le contrôle « desktop et 390 px » de D40 et de `08-PREVIEW-VALIDATION.md` (#65). #65 n'est pas modifiée par cette PR : son texte est à harmoniser avant sa fusion.
 5. **Périmètre** — D42 concerne les contenus produits par les deux environnements Claude. Transmission au Claude de Sébastien par la boîte aux lettres (Q19). Le périmètre d'intervention de chacun, défini par `/CLAUDE.md`, n'est pas modifié.
 6. **Travaux validés** — D37 et les travaux antérieurement validés restent acquis. D42 s'applique aux étapes restantes des chantiers ouverts.
@@ -146,7 +189,7 @@ Ses autres dispositions restent compatibles et en vigueur : pas 20 USD par appel
 | Modifications après le GO de Sébastien | Un GO vaut pour la tête indiquée ; tout push après l'envoi est renvoyé, limité à ce qui a changé (§ 2, § 6) | Validation ciblée si changement substantiel ; information si métadonnées, maillage, liens ou réglages techniques ; contrôles dans tous les cas (arbitrage final 3) | #65 à aligner |
 | Corrections typographiques ponctuelles | Hors du circuit (§ 6, « Non concerné ») | Pas de nouveau circuit complet ; contrôles techniques, traçabilité proportionnée, validation ciblée si le périmètre typographique est dépassé (arbitrage final 4) | Compatible ; #65 à compléter |
 | Création, réécriture, technique | D16 explicite, D15 tacite, D12 sans transmission | Même régime (arbitrage 2) ; exigences qualitatives dans les deux cas | Compatible |
-| Appels payants | Calculateur ROI sur une Preview : appels facturés, « pas de conversation de test sans raison » (§ 4) | D43 : GO préalable explicite de Laurent pour tout appel ; plafond par mission et budget trimestriel | À rattacher à D43 dans #65 |
+| Appels payants | Calculateur ROI sur une Preview : appels facturés, « pas de conversation de test sans raison » (§ 4) | D43 (02/10) : budget global de 200 USD par mois ; GO explicite de Laurent avant tout appel payant | À rattacher à D43 dans #65 |
 
 **Arbitrages finaux de Laurent du 01/10 — articulation avec D40**, reproduits sans modification.
 
@@ -406,7 +449,7 @@ Les 13 redirections du Worker :
 ## D26 · 2026-09-19 · Arbitrages de cadrage du mandat
 
 **Décidé par** : Laurent
-**Statut** : en vigueur — **point 4 : le seuil de GO de 2 $ par exécution est remplacé par D43** (2026-10-01) : tout appel payant demande le GO préalable explicite de Laurent. Le budget de mesure de 20 $ par trimestre est **conservé** et se cumule avec le plafond de 20 USD par mission de D43 (arbitrage final 1 de Laurent, 01/10)
+**Statut** : en vigueur, sauf le point 4 — **point 4 remplacé par D43 du 2026-10-02**, sur le budget (20 $ par trimestre) comme sur le seuil de GO (2 $ par exécution) : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO, GO explicite de Laurent avant tout appel payant. Formulation historique du point 4 conservée ci-dessous
 
 **La décision** — Cinq points arbitrés le 19/09, sans passer par la boîte aux lettres :
 

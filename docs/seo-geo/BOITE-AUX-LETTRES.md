@@ -80,7 +80,7 @@ dans `DECISIONS.md`.
 - l'arbitrage final 3 : après ton GO, une modification qui change substantiellement le texte, le sens, un claim, une qualification juridique ou une proposition commerciale revient vers toi pour une validation ciblée ; une modification limitée aux métadonnées, au maillage, aux liens ou à des réglages techniques, sans changement de sens, t'est seulement signalée. Ton GO métier n'est pas une autorisation de publication : elle appartient à Laurent ;
 - l'arbitrage final 4 : une correction strictement typographique ne relance pas le circuit Preview / Sébastien ; elle te revient pour une validation ciblée si elle dépasse le périmètre typographique.
 
-D43 encadre les appels payants : GO préalable de Laurent pour tout appel, plafond de 20 USD par mission dans le budget de mesure de 20 USD par trimestre (D26). Elle t'est transmise pour information ; aucun arbitrage ne l'étend à ton environnement.
+D43 encadre les services payants de recherche SEO/GEO : budget global de 200 USD par mois, toutes missions confondues (décision de Laurent du 02/10, qui remplace les plafonds de 20 USD par mission et par trimestre) ; GO explicite de Laurent avant tout appel payant. Elle t'est transmise pour information ; aucun arbitrage ne l'étend à ton environnement.
 
 `/CLAUDE.md` n'est pas modifié. Ton périmètre d'intervention n'est pas modifié.
 
