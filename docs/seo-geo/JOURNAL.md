@@ -34,6 +34,157 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · D43 révisée : budget global de 200 USD par mois pour les services payants de recherche SEO/GEO · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé
+
+**Quoi** —
+- D43 réécrite sur la décision de Laurent du 02/10, citée : 200 USD par mois, toutes missions confondues ; plus de plafond général de 20 USD par mission ni de budget de 20 USD par trimestre ; seuil de 2 USD supprimé ; GO explicite de Laurent avant tout appel payant ou lot d'appels délimité, sur présentation de sept éléments ; consommation du mois non établie à indiquer ; fractionnement interdit. Titre et date de D43 modifiés.
+- Arbitrages budgétaires du 01/10 conservés dans D43 pour trace, marqués comme remplacés. Deux dispositions maintenues, listées : la définition d'une mission ; aucun plafond ne vaut autorisation d'écriture, de déploiement, de lancement de workflow ou de modification d'un service externe.
+- D26 : ligne « Statut » ; point 4 remplacé par D43 du 02/10 ; formulation historique conservée.
+- D42 : trois renvois budgétaires actualisés (note de version, arbitrage 3, tableau d'articulation). Texte et arbitrages éditoriaux inchangés.
+- Q19 : référence budgétaire actualisée.
+- ETAT : budget applicable ; ligne « À CONFIRMER » retirée ; ligne #65 ; tableau des décisions.
+
+**Évolution des règles budgétaires**
+
+| Date | Source | Règle | État au 02/10 |
+|---|---|---|---|
+| 19/09 | D26, point 4 | 20 $ par trimestre, GO au-delà de 2 $ par exécution | Remplacée |
+| 01/10 | D42, première version | « Pas d'appel payant sans GO préalable » | Remplacée par D43, qui reprend et précise le GO |
+| 01/10 | D43, premier arbitrage | Autorisation-cadre de 20 USD cumulés par mission | Remplacée |
+| 01/10 | D43, arbitrages finaux 1 et 2 | 20 USD par trimestre et 20 USD par mission cumulés ; GO pour tout appel ; définition de la mission | Remplacés, sauf la définition de la mission |
+| 02/10 | D43 | 200 USD par mois, toutes missions confondues ; GO explicite avant tout appel | **En vigueur** |
+
+**Pourquoi** — Décision de Laurent du 02/10 : elle remplace explicitement D26 point 4, le plafond de 20 USD par mission de D43 et le seuil de 2 USD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 02/10 vers 04:28 UTC : #76 `6acfd87`, `main` `6b80e6a`, #65 `c5e15a8`.
+- D42 : seules ses trois lignes de renvoi budgétaire changent ; texte d'origine identique à la tête `59861e9`. D26 : seule la ligne « Statut » change. Citations des arbitrages du 01/10 conservées à l'identique.
+- Plus aucun point ouvert « À CONFIRMER » ou « À ARBITRER » dans `DECISIONS.md` ni `ETAT.md` : les occurrences restantes le déclarent sans objet ou appartiennent à l'historique de l'en-tête d'`ETAT.md`. Les seules mentions de 20 USD par mission ou par trimestre restantes sont historiques et marquées comme remplacées.
+- Aucun registre de la consommation mensuelle dans `docs/seo-geo/` : la consommation d'octobre 2026 n'y est pas établie.
+- JOURNAL : 92 entrées ; aucune ligne de `main` ni de la tête `6acfd87` perdue.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5.
+- Appels payants de cette mission : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne.
+- Consommation réelle d'octobre 2026 sur les services payants : hors dépôt, non établie.
+
+**Suite** —
+- Claude de #65 : prompt actualisé. Le point 7 (calculateur ROI) renvoie à D43 du 02/10 : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel payant.
+- GO de Laurent pour la fusion de #76.
+
+---
+
+## 2026-10-01 · Arbitrages finaux D40 / D42 / D43 consignés · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a`, inchangé depuis l'entrée ci-dessous
+
+**Quoi** —
+- D43 réécrite sur les arbitrages finaux 1 et 2 de Laurent, cités : budgets de 20 USD par trimestre (D26, conservé) et de 20 USD par mission cumulés ; GO préalable explicite de Laurent pour tout appel payant ; un plafond n'est pas une autorisation de dépense ; définition de la mission ; fractionnement interdit. Le premier arbitrage reste cité pour trace, avec ce qui en est remplacé. Titre modifié : « autorisation-cadre » ne décrit plus la règle.
+- D26 : ligne « Statut » alignée.
+- D42 : arbitrages finaux 3 (modifications après le GO de Sébastien) et 4 (corrections typographiques) cités à la place des deux points À ARBITRER ; tableau d'articulation avec D40 complété de deux lignes ; statut et interdits complétés.
+- Q19 : arbitrages finaux 3 et 4 ajoutés ; portée de D43 corrigée.
+- ETAT : un point À CONFIRMER ; ligne #65 ; ligne Q19 ; registre budgétaire absent ; tableau des décisions en vigueur ou proposées.
+
+**Pourquoi** — GO de Laurent du 01/10 sur les quatre arbitrages finaux. Correction : la version précédente de Q19 présentait D43 comme applicable aux contenus du Claude de Sébastien ; aucun arbitrage ne le dit.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 01/10 vers 19:12 UTC : #76 `4a24783`, `main` `6b80e6a`, #65 `c5e15a8`, inchangées depuis l'entrée ci-dessous.
+- Citations : texte d'origine de D42 identique à la tête `59861e9` ; premier arbitrage de D43 identique à la tête `4a24783` ; arbitrages finaux cités tels que reçus.
+- Plus aucun point « À ARBITRER » dans `DECISIONS.md` ; un point « À CONFIRMER » (D43).
+- Aucun registre du cumul des missions ni du solde trimestriel dans `docs/seo-geo/` (recherche de « solde », « par trimestre », « budget de mesure »).
+- JOURNAL : 91 entrées ; aucune ligne de `main` ni de la tête `4a24783` perdue.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5.
+- Appels payants de cette mission : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne.
+- Protection Vercel, liens partageables, autorisations : non touchés.
+
+**Suite** —
+- Laurent : le point À CONFIRMER de D43 (dépassement du plafond de mission sur GO).
+- Claude de #65 : les 14 corrections de l'entrée ci-dessous, avec ces changements :
+  - point 1 : reprendre `main` après une éventuelle fusion autorisée de #76 ; à défaut, citer D42 et D43 comme consignées dans #76, non fusionnée ;
+  - point 7 : tout appel payant, conversation de test du calculateur ROI comprise, demande le GO préalable explicite de Laurent (service, coût estimé, plafond maximal), dans le plafond de la mission et le solde trimestriel (D43) ;
+  - point 8 : la place des étapes 6 à 8 de D42 n'est plus à arbitrer : appliquer l'arbitrage final 3 ;
+  - point 9 : « Non concerné », corrections typographiques : appliquer l'arbitrage final 4 (pas de nouveau circuit complet ; contrôles techniques, traçabilité proportionnée, validation ciblée si le périmètre typographique est dépassé) ;
+  - ajout 15 : § 2, « Règle d'envoi », et § 6, étape 7 : aligner le renvoi après un push sur l'arbitrage final 3 (validation ciblée si changement substantiel ; information si métadonnées, maillage, liens ou réglages techniques ; contrôles dans tous les cas) ;
+  - ajout 16 : § 6, tableau du régime, et § 9, gabarit : le GO métier de Sébastien n'est pas une autorisation de publication ; l'autorisation finale de publication ou de fusion appartient à Laurent ;
+  - ajout 17 : D40, « Ce qu'elle interdit » : y reporter « transformer le GO métier de Sébastien en autorisation automatique de publication ».
+
+---
+
+## 2026-10-01 · Réconciliation de la gouvernance D40 / D42 / D43, #76 synchronisée avec `main` · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `6b80e6a` (#75, #66, #78), fusionné dans la branche
+
+**Quoi** —
+- `main` `6b80e6a` fusionné dans la branche. Conflits dans `JOURNAL.md` et `ETAT.md`, résolus en conservant les deux côtés ; `DECISIONS.md` fusionné sans conflit, D39 (#66) conservée.
+- D43 : arbitrage du point 3 cité mot pour mot ; budget trimestriel et définition de la mission marqués **À ARBITRER**, comme dans le statut de D26.
+- D42 : fait métier de Laurent du 01/10 sur l'accès de Sébastien aux Preview ; tableau d'articulation avec D40, proposée dans #65 et non fusionnée ; deux points **À ARBITRER**.
+- ETAT : #54 et #71 consignées fusionnées ; ligne des quatre points À ARBITRER ; modifications à transmettre au Claude de #65 ; liste des PR de contenu mise à jour (#66 publiée, #77 ajoutée).
+
+**Pourquoi** — GO de Laurent du 01/10 : réconcilier D40, D42 et D43 avant toute fusion. Fait métier de Laurent du 01/10 : « Sébastien peut ouvrir les Previews Vercel protégées. Son accès fonctionne, il n'y a aucun problème. »
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes au 01/10 vers 17:46 UTC : `main` `6b80e6a` ; #65 `c5e15a8`, base `8ec89c1`, non synchronisée avec `main` ; #76 `90e94d7` avant cette entrée.
+- Fusions sur `main` depuis la base précédente de #76 (`17fc0b3`) : #75 à 14:57:19 UTC, #66 à 16:26:04 UTC, #78 à 17:30:39 UTC.
+- JOURNAL : 89 entrées, soit les 87 de `main` et les 2 de #76 ; aucune ligne de l'un ou l'autre côté perdue. Ordre de la zone fusionnée : heure du commit qui a introduit chaque entrée.
+- ETAT : états de PR comparés à GitHub. #54 (29/09, 16:31:38 UTC, `2854c27`), #71 (30/09, 20:40:44 UTC, `8ec89c1`) et #72 (01/10, 09:02:01 UTC, `a6760da`) étaient notées ouvertes ou non fusionnées : corrigées. Ligne UB-04 : version de `main` (#75) retenue, doublon de « Balle chez Laurent » retiré.
+- `/llms.txt` sur `sysnext.vercel.app` : 200, aucune occurrence de « exclusi » ni de « 2004 », « 16 secteurs » (#54).
+- Numérotation : D40 sur #65 seulement ; D42, D43 et Q19 sur #76 seulement ; aucune D44 ni Q20 sur les branches distantes.
+- Bloc cité de D42 identique à celui de la tête `59861e9` ; citation de D43 conforme au texte de l'arbitrage.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers ; `npx next build` vert, variables factices.
+- CSS compilée de la branche, texte final de cette entrée compris, identique à celle de `main` `6b80e6a` construit à part : 3 feuilles, mêmes noms et mêmes empreintes MD5. Écart avec `main` limité à 4 fichiers de `docs/seo-geo/`.
+- Appels payants de cette mission : aucun, 0 USD. Consigne de Laurent du 01/10 : cette mission documentaire ne vaut pas autorisation de lancer un appel payant.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- #65, #64 et les autres PR : non modifiées, par consigne. #77 (AI Act Q2) relevée par ses fichiers, non lue.
+- Protection Vercel, liens partageables, autorisations : non touchés.
+- `www` dans Chrome (R4).
+
+**Suite** —
+- Laurent : quatre points **À ARBITRER**. D43 : budget trimestriel ; définition de la mission. D42 et D40 : étape 6 après le GO ; corrections typographiques ponctuelles.
+- Modifications à transmettre au Claude de #65, tête `c5e15a8` :
+  1. Fusionner `main` (au moins `6b80e6a`) dans la branche ; placer D40 entre D41 et D39, sans renuméroter ; ne pas présenter D42 ni D43 comme fusionnées tant que #76 ne l'est pas.
+  2. D40, « La décision » : remplacer « contrôle du rendu (desktop, 390 px, SEO) » par un contrôle sur ordinateur, smartphone et tablette, en portrait et en paysage lorsque pertinent, interactions tactiles comprises, et SEO (D42, arbitrage 4).
+  3. D40, « Le contexte » : remplacer « L'accès de Sébastien aux Preview n'est pas établi par les sources du dépôt ; il se vérifie au premier envoi. » par le fait métier de Laurent du 01/10, cité.
+  4. D40, « Ce qu'elle ne change pas » : indiquer que D12 est complétée par D42 (arbitrage 1) pour les contenus éditoriaux : fusion après validation et autorisation de publication.
+  5. `08-PREVIEW-VALIDATION.md`, schéma d'en-tête (l. 8) : même remplacement qu'au point 2.
+  6. § 3, « Sébastien » (l. 108-121) : remplacer « Accès non établi par les sources du dépôt », l'inférence et la « Vérification au premier envoi » par le fait métier. Conserver « Request access : ne pas contourner » et « Ce que ce circuit ne fait jamais sans GO de Laurent ».
+  7. § 4, ligne « Calculateur ROI » (l. 147) : rattacher à D43 (service identifié, coût estimé, cumul de la mission, plafond de 20 USD, nouveau GO au-delà).
+  8. § 6 : étape 4, critère de sortie élargi comme au point 2 ; étape 8 « Fusion » : après validation et autorisation de publication (D42, arbitrage 1). La place des étapes 6 à 8 de D42 après le GO reste À ARBITRER : ne pas la trancher dans #65.
+  9. § 6, « Non concerné » (l. 209) : laisser les corrections typographiques ponctuelles en l'état, avec un renvoi au point À ARBITRER de D42.
+  10. § 8 : ajouter la tablette, les orientations portrait et paysage lorsque pertinent, et les interactions tactiles. L'arbitrage ne fixe ni largeur de tablette ni liste d'interactions : ne pas en inventer.
+  11. § 9, gabarit (l. 278) : remplacer « rendu desktop et 390 px contrôlé » par « rendu ordinateur, smartphone et tablette contrôlé, portrait et paysage si pertinent, interactions tactiles testées ».
+  12. `ETAT.md` de #65 : ligne « Circuit Preview Vercel → Sébastien (D40) » et en-tête : remplacer « accès de Sébastien aux Preview non établi » par l'accès confirmé du 01/10.
+  13. `JOURNAL.md` de #65 : une nouvelle entrée consigne ces modifications ; l'entrée du 30/09 n'est pas réécrite.
+  14. Interdits : aucune modification de la protection Vercel, aucun lien public, aucune autorisation ; aucun appel payant.
+
+---
+
 ## 2026-10-01 · Mode — #66 fusionnée et contrôlée en production (hors Cloudflare) · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, fusionnée | **Commit** : `4093d3d` (fusion de `04fdc8a`)
@@ -163,6 +314,83 @@ Le résultat des specs Playwright est reporté dans la PR.
 - Pages liées avant ce chantier et qui portent des chiffres non sourcés : `/fr/studios-photo-automatises` (« 500+ ») ; cadences « produits par jour » des fiches.
 
 **Suite** — GO de fusion de Laurent après contrôle visuel des Previews. Après fusion : smoke `sysnext.vercel.app` FR, EN, de-ch, contrôle Chrome sur `www`, entrée au JOURNAL ; le chantier n'est pas terminé avant. Hors périmètre, PR distincte recommandée : nettoyage des chiffres du hub `/fr/industrie/mode-textile`, puis lien réciproque hub → landing déjà en place, landing → hub à ajouter.
+
+---
+
+## 2026-10-01 · D42 arbitrée, D43 (appels payants), Q19, états de #72 et #74 corrigés · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : #76, brouillon, non fusionnée, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `17fc0b3`
+
+**Quoi** —
+- Les six arbitrages de Laurent du 01/10 sont intégrés à D42 ; le texte d'origine reste cité sans modification.
+- D43 remplace le seuil de 2 $ par exécution de D26 et la ligne « Pas d'appel payant sans GO préalable » de D42 : autorisation-cadre de 20 USD cumulés par mission. Les deux consignes antérieures restent écrites, marquées comme remplacées.
+- Q19 transmet D42 et D43 au Claude de Sébastien.
+- Les états périmés de #72 et #74 dans `ETAT.md` sont corrigés.
+
+**Pourquoi** — GO de Laurent du 01/10 sur les six points relevés dans l'entrée ci-dessous. Consigne : trace historique claire, sans deux consignes contradictoires en vigueur.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D43 créée ; D42 complétée ; lignes « Statut » de D12 et D26 annotées, corps inchangé), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q19), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule.
+
+**Vérifié** —
+- Bloc cité de D42 identique, caractère pour caractère, à celui de la tête `59861e9`. Dans `DECISIONS.md`, hors D42 et D43, seules les lignes « Statut » de D12 et D26 changent.
+- Numérotation : aucune D43 ni Q19 sur `main` ni sur les branches distantes au 01/10. Q16 à Q18 jamais déposées (`ETAT.md`).
+- #72 fusionnée le 01/10 à 09:02:01 UTC, commit de fusion `a6760da` ; #74 à 10:29:43 UTC, `8365c73` (`git log` de `main`).
+- `sysnext.vercel.app`, le 01/10 vers 11:36 UTC :
+  - `smoke.mjs` vert, 17 pages et 3 ressources ;
+  - 3 articles (`/fr/blog/guide-photographie-packshot-pourquoi-faire-packshots`, `/en/blog/packshot-photography-guide-why-make-product-packshots`, `/de-ch/blog/leitfaden-packshot-fotografie-warum-packshots-machen`) : un seul H1 sans élément enfant, au titre seul, précédé d'un `nav` étiqueté ; `BreadcrumbList` à 3 éléments, PackshotCreator, Blog, l'article ;
+  - `/fr` et ces 3 articles : aucune référence Google Fonts ; un seul fichier de police référencé, `Inter_Bold_subset.p.f8804717.woff2`, servi en 34 200 o, taille égale à `app/fonts/inter/Inter-Bold-subset.woff2`.
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; Vitest : 373 tests sur 373, 18 fichiers.
+- `npx next build` vert, variables factices. Tailwind analyse aussi les `.md` de `docs/` (constat consigné dans #75, non fusionnée) : la CSS compilée de la branche, texte final de cette entrée compris, est comparée à celle de `main` `17fc0b3`, construit à part. 3 feuilles, mêmes noms et mêmes empreintes MD5 : identiques.
+- Appels payants de cette mission (D43) : aucun, 0 USD.
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- `www` dans Chrome (R4), pour #72 comme pour #74 : lignes de « Balle chez Laurent ».
+- #65, #66 et les articles AI Act : non modifiés, par consigne.
+- Playwright : non lancé, aucun fichier du site modifié.
+- #75 corrige aussi l'état de #74 dans `ETAT.md`, avec un autre texte : conflit à résoudre à la fusion de la seconde des deux PR.
+
+**Suite** —
+- Laurent : les deux points non tranchés de D43 (budget de 20 $ par trimestre de D26 ; définition d'une mission).
+- #65 : harmoniser D40 et `08-PREVIEW-VALIDATION.md` avec l'arbitrage 4 avant sa fusion.
+- Q19 : réponse du Claude de Sébastien.
+- Positionner chaque PR ouverte de contenu dans le circuit de D42.
+
+---
+
+## 2026-10-01 · D42 — standard éditorial PackshotCreator consigné · Claude de Laurent
+
+**Chantier** : gouvernance | **PR** : brouillon, branche `claude/vibrant-dijkstra-8g0ae5` | **Base** : `main` `17fc0b3`
+
+**Quoi** — Décision de gouvernance de Laurent du 01/10 consignée en D42 : texte reproduit sans modification, circuit en huit étapes, exigence non négociable. Six points d'articulation avec D12, D15, D16, D26, D37, D40 et le périmètre des deux Claude relevés, non tranchés.
+
+**Pourquoi** — Consigne de Laurent du 01/10. Aucun motif n'accompagne le texte.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun effet sur le site : documentation seule. D42 s'applique aux PR ouvertes touchant un contenu éditorial.
+
+**Vérifié** —
+- Numérotation : D39 (#66) et D40 (#65) réservées sur branches, D41 sur `main` ; aucune D42 ni au-delà sur les branches distantes au 01/10.
+- PR ouvertes au 01/10, fichiers hors `docs/seo-geo/` relevés par `git diff` depuis la base commune avec `main` :
+  - touchant `content/**`, `messages/**` ou un composant de landing : #27, #59, #60, #64, #66, #70 ;
+  - sans fichier de contenu : #65, #67, #75.
+- #71 (Academy, Claude de Sébastien) et #72 (Inter) ne sont plus ouvertes : fusionnées dans `main` (`8ec89c1`, `a6760da`).
+
+**Supposé** — Rien.
+
+**Non regardé** —
+- L'étape du circuit atteinte par chaque PR ouverte : non établie.
+- `02-PROCEDURE.md`, `README.md` et `/CLAUDE.md` ne sont pas modifiés. #65 modifie déjà `02-PROCEDURE.md` et `README.md`.
+- `npx next build` non lancé : aucun fichier du site n'est modifié.
+
+**Suite** —
+- Réponses de Laurent aux six points d'articulation de D42 (`ETAT.md`, « Balle chez Laurent »).
+- Positionner chaque PR ouverte de contenu dans le circuit.
+- Harmoniser D40 (#65) avec l'étape 4 de D42, qui ajoute la tablette.
 
 ---
 
