@@ -76,6 +76,9 @@ export const routing = defineRouting({
     '/packshot-e-commerce': '/packshot-e-commerce',
     '/packshot-industriel': { fr: '/packshot-industriel', en: '/packshot-industriel', 'de-ch': '/packshot-industrie' },
     '/packshot-mode': '/packshot-mode',
+    // Landing catalogue Orbitvu All-in-One : FR seule, commune à la France et à la
+    // Suisse romande (kit du 02/10/2026) ; aucune version /en ni /de-ch.
+    '/catalogue-orbitvu-all-in-one': '/catalogue-orbitvu-all-in-one',
 
     // Segments localisés en de-ch (Suisse alémanique)
     '/industrie': { fr: '/industrie', en: '/industrie', 'de-ch': '/branchen' },
