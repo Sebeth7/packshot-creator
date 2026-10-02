@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — article Suisse S : deux visuels, Zalando harmonisé, trois intertitres interrogatifs restaurés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi**
+- **Visuels** (paquet `PSC_AI_ACT_A_S_COMPLEMENTS_2026-10-02`, créations ChatGPT, arbitrage de Laurent du 02/10, option 1) :
+  - S5 `personne-photo-transformation-synthese.avif` : « Quand une personne apparaît », entre le paragraphe du PFPDT et celui sur le mannequin synthétique ;
+  - S6 `meme-article-trois-destinations.avif` : section Google, Amazon et Zalando, avant la liste.
+  
+  Légendes de l'inventaire reprises telles quelles ; textes alternatifs rédigés ; ratio d'origine conservé (1536 × 1024). S4 non intégré : les gros plans ne correspondent pas au sac montré (fermoir, grain). À régénérer.
+- **Intertitres restaurés** : « La Suisse a-t-elle un « AI Act » en 2026 ? » (réponse « Non. », texte de `cc2446c` : « générale et transversale ») ; « Faut-il signaler une image générée ou retouchée par IA en Suisse ? » (réponse courte, puis H3 « Commencez par comparer l’image au produit ») ; « C2PA et IPTC sont-ils obligatoires en Suisse ? » (réponse en gras de `cc2446c`, exigences des plateformes rappelées).
+- **Zalando** : formulation commune de Laurent dans la puce Zalando ; « présenté comme requis d'ici décembre 2026 » retiré ; refus des mentions visibles et contenus exigeant une mention légale conservés. **ZALANDO_STATUS = UNRESOLVED / À ARBITRER.**
+- `readingTime` 15 → 16.
+
+**Pourquoi** — Arbitrages de Laurent du 02/10 : visuels sans défaut, harmonisation Zalando A / S, restauration des trois intertitres interrogatifs utiles (SEO/GEO).
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, deux AVIF ajoutés dans `public/images/blog/images-ia-ecommerce-suisse/`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024 ; S5 84 410 o `826f849b…7d6706`, SSIM 0,960 ; S6 177 797 o `41d0603c…44ed90`, SSIM 0,966. Les PNG source portent un manifeste C2PA, non conservé dans l'AVIF.
+- Aucune occurrence de « requis » dans le texte ; script de liens de publication A ↔ S : essai à blanc vert.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec ; toutes les figures chargées au défilement, ratios 1,500 (nouveaux visuels) et 1,778 (existants) respectés ; tableau sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; canonical et JSON-LD inchangés ; 11 H2 dont les trois intertitres restaurés.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Source primaire Zalando (aucune nouvelle recherche, consigne de Laurent) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — S4 régénéré à intégrer ; message à Sébastien préparé, non envoyé (Laurent) ; Zalando à confirmer avant publication.
+
+---
+
 ## 2026-10-02 · Cluster AI Act — article Suisse S : relecture éditoriale du 02/10 intégrée · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa` (intégré par fusion, JOURNAL en union)
