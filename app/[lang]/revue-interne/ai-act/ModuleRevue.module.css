@@ -143,6 +143,7 @@
 }
 
 .reserves {
+  overflow-wrap: anywhere;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px dashed var(--future-dusk-1-5);

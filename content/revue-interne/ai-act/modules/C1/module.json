@@ -2,8 +2,8 @@
   "id": "C1",
   "article": "mannequins",
   "section": "Le mannequin invisible n’est pas nécessairement une création de personne",
-  "title": "Mannequin invisible : trois étapes",
-  "caption": "Photographie du vêtement sur buste, retrait du support, puis reconstruction éventuelle de l’encolure. Schéma conceptuel ; l’origine et le procédé réels doivent être documentés.",
+  "title": "Mannequin invisible : trois étapes",
+  "caption": "Photographie du vêtement sur buste, retrait du support, puis reconstruction éventuelle de l’encolure. Schéma conceptuel ; l’origine et le procédé réels doivent être documentés.",
   "alt": "Schéma d’une chemise générique sur buste, sans buste, puis avec intérieur d’encolure illustré.",
   "need": "SOURCE GRAPHIQUE ATTENDUE",
   "steps": [
@@ -17,12 +17,11 @@
     ],
     [
       "Intérieur reconstruit",
-      "Zone recréée schématiquement ; vérifier les coutures et le col."
+      "Encolure complétée par une autre prise de vue ou reconstruite par IA : vérifier coutures, col et volume."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/mannequins/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/mannequins/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/mannequins.json : marqueur <figure data-visuel=\"C1\">, rendu par ModuleRevue sous la section « Le mannequin invisible n’est pas nécessairement une création de personne »"
   },
   "status": "SOURCE GRAPHIQUE ATTENDUE",
   "asset_slots": [
@@ -44,5 +43,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; outil de création non documenté dans le ZIP.",
+    "ia": null
   }
 }

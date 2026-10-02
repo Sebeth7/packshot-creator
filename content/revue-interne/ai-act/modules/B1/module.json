@@ -1,9 +1,9 @@
 {
   "id": "B1",
   "article": "retouche",
-  "section": "Détourage : surveillez ce que l’outil reconstruit",
+  "section": "Détourage : surveillez ce que l’outil reconstruit",
   "title": "Détourage et contours complexes",
-  "caption": "Trois états conceptuels d’un détourage : fichier initial, retrait du fond, reconstruction éventuelle des bords. Comparer au fichier source et au produit réel avant validation.",
+  "caption": "Trois états conceptuels d’un détourage : fichier initial, retrait du fond, reconstruction éventuelle des bords. Comparer au fichier source et au produit réel avant validation.",
   "alt": "Schéma d’un flacon générique traversant trois états de détourage, sans photographie de référence.",
   "need": "SOURCE GRAPHIQUE ATTENDUE",
   "steps": [
@@ -13,7 +13,7 @@
     ],
     [
       "Fond supprimé",
-      "Objet isolé ; vérifier transparence et contour."
+      "Objet isolé ; vérifier transparence et contour."
     ],
     [
       "Contour reconstruit",
@@ -21,8 +21,7 @@
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B1\">, rendu par ModuleRevue sous la section « Détourage : surveillez ce que l’outil reconstruit »"
   },
   "status": "SOURCE GRAPHIQUE ATTENDUE",
   "asset_slots": [
@@ -44,5 +43,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; outil de création non documenté dans le ZIP.",
+    "ia": null
   }
 }

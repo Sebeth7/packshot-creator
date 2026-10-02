@@ -2,27 +2,26 @@
   "id": "D1",
   "article": "metadonnees",
   "section": "Distinguez la loi, la plateforme et le standard",
-  "title": "Image et couches techniques",
-  "caption": "Représentation abstraite d’un fichier image et d’informations pouvant lui être associées. Ce dessin ne correspond pas à un fichier inspecté et ne crée aucune obligation juridique.",
-  "alt": "Schéma neutre d’un fichier image associé à plusieurs couches d’informations techniques.",
+  "title": "Trois niveaux à ne pas confondre",
+  "caption": "Obligations légales, règles des plateformes, standards techniques : trois niveaux distincts. Schéma conceptuel ; il ne représente aucun fichier inspecté et ne crée aucune obligation.",
+  "alt": "Schéma de trois panneaux successivement mis en avant : une balance pour la loi, une boutique pour la plateforme, un fichier balisé pour le standard technique.",
   "need": "FONCTIONNEL PROVISOIRE",
   "steps": [
     [
-      "Contenu visuel",
-      "Le fichier porte d’abord une image."
+      "Obligations légales",
+      "L’AI Act répartit certaines obligations de transparence ; il n’impose ni IPTC, ni XMP, ni C2PA."
     ],
     [
-      "Données associées",
-      "Des informations descriptives peuvent l’accompagner."
+      "Règles des plateformes",
+      "Chaque marketplace fixe ses propres conditions d’image."
     ],
     [
-      "Provenance éventuelle",
-      "Une information de provenance peut être associée selon le flux utilisé."
+      "Standards techniques",
+      "IPTC, XMP ou C2PA décrivent comment l’information est stockée ou liée au fichier."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/metadonnees.json : marqueur <figure data-visuel=\"D1\">, rendu par ModuleRevue sous la section « Distinguez la loi, la plateforme et le standard »"
   },
   "status": "FONCTIONNEL PROVISOIRE",
   "asset_slots": [],
@@ -31,5 +30,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
   }
 }

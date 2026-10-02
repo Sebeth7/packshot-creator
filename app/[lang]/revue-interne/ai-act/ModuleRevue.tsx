@@ -101,7 +101,10 @@ export default function ModuleRevue({ module, visuelAttendu, legendeAttendue }: 
         </ol>
       </noscript>
 
-      <figcaption className={styles.legende}>{module.legende}</figcaption>
+      <figcaption className={styles.legende}>
+        {module.provenance.ia === true && 'Illustration générée par IA. '}
+        {module.legende}
+      </figcaption>
       <div className={styles.reserves}>
         <span className={styles.statut}>{module.statut}</span>
         <p>
@@ -114,6 +117,11 @@ export default function ModuleRevue({ module, visuelAttendu, legendeAttendue }: 
             <span className={styles.libelle}>Visuel définitif attendu :</span> {visuelAttendu}
           </p>
         )}
+        <p>
+          <span className={styles.libelle}>Provenance :</span> {module.provenance.origine}
+          {module.provenance.ia === null &&
+            ' Mention « Illustration générée par IA. » (arbitrage Q1) : à arbitrer selon cette provenance.'}
+        </p>
         {legendeAttendue && (
           <p>
             <span className={styles.libelle}>Légende définitive :</span> {legendeAttendue}

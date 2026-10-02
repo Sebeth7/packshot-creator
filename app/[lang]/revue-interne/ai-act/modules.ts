@@ -2,9 +2,11 @@
  * Modules pédagogiques interactifs des previews AI Act (B1-B3, C1-C2, D1-D3).
  *
  * Sources : `content/revue-interne/ai-act/modules/<id>/` — `module.json` et
- * `etat_XX.svg`, copiés à l'octet près du ZIP
- * `PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02` (dossier `03_ANIMATIONS`).
- * Les `poster.svg` du ZIP, identiques à `etat_01.svg`, ne sont pas repris.
+ * `etat_XX.svg`. B1, C1, D2, D3 : SVG du ZIP
+ * `PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02` (dossier `03_ANIMATIONS`),
+ * à l'octet près. B2, B3, C2, D1 : SVG réécrits le 02/10 pour correspondre au
+ * texte (champ `provenance` de chaque `module.json`). Les `poster.svg` du ZIP,
+ * identiques à `etat_01.svg`, ne sont pas repris.
  *
  * Les SVG sont incorporés aux pages en URI `data:` au moment de la build : aucun
  * fichier dans `public/`, aucune route d'asset. Ils n'existent donc que dans le
@@ -28,6 +30,7 @@ interface ModuleSource {
   alt: string;
   status: string;
   steps: [string, string][];
+  provenance: { origine: string; ia: boolean | null };
 }
 
 export interface EtapeModule {
@@ -49,6 +52,8 @@ export interface ModuleRevue {
   /** « SOURCE GRAPHIQUE ATTENDUE » (B, C) ou « FONCTIONNEL PROVISOIRE » (D). */
   statut: string;
   etapes: EtapeModule[];
+  /** Origine des SVG ; `ia` : produit par une IA (vrai), non (faux), non documenté (null). */
+  provenance: { origine: string; ia: boolean | null };
 }
 
 function versUriData(svg: string): string {
@@ -73,6 +78,7 @@ function lireModule(id: string): ModuleRevue {
     alt: source.alt,
     statut: source.status,
     etapes,
+    provenance: source.provenance,
   };
 }
 

@@ -68,6 +68,8 @@ describe('previews internes AI Act — emplacements et modules', () => {
       expect([...modules.keys()]).toEqual(attendus[slug]);
       for (const m of modules.values()) {
         expect(m.etapes.length).toBeGreaterThanOrEqual(2);
+        expect(m.provenance.origine.length).toBeGreaterThan(20);
+        expect([true, false, null]).toContain(m.provenance.ia);
         for (const e of m.etapes) expect(e.image.startsWith('data:image/svg+xml;base64,')).toBe(true);
       }
       const sortie = insererEmplacements(article!.content, article!.visuels, new Set(modules.keys()));

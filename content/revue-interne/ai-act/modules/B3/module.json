@@ -1,24 +1,23 @@
 {
   "id": "B3",
   "article": "retouche",
-  "section": "Poussière, rayure, usure : demandez-vous où se trouve le défaut",
-  "title": "Artefact ou défaut du produit ?",
-  "caption": "La poussière due à la capture et la rayure physique concernent des supports différents. Il s’agit d’un schéma explicatif, pas de l’analyse d’un exemplaire vendu.",
-  "alt": "Comparaison conceptuelle entre un artefact de capture hors de l’objet et une rayure sur sa surface.",
+  "section": "Poussière, rayure, usure : demandez-vous où se trouve le défaut",
+  "title": "Artefact de prise de vue ou défaut de l’objet ?",
+  "caption": "D’abord, des poussières sur l’image, y compris hors de l’objet ; ensuite, une rayure sur le verre d’une montre d’occasion. Schéma explicatif, pas l’analyse d’un exemplaire vendu.",
+  "alt": "Schéma d’une même montre générique : d’abord avec des poussières réparties sur l’image, puis avec une rayure sur le verre entourée d’un repère.",
   "need": "SOURCE GRAPHIQUE ATTENDUE",
   "steps": [
     [
-      "Artefact de capture",
-      "Points situés sur la représentation, pas une preuve de salissure physique."
+      "Poussière sur l’image",
+      "Points présents sur la prise de vue, y compris hors de l’objet : un artefact de capture."
     ],
     [
-      "Défaut physique",
-      "Marque stylisée sur l’objet ; état réel à documenter par prise de vue."
+      "Rayure sur l’objet",
+      "Marque sur le verre de la montre : une caractéristique de l’exemplaire vendu."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B3\">, rendu par ModuleRevue sous la section « Poussière, rayure, usure : demandez-vous où se trouve le défaut »"
   },
   "status": "SOURCE GRAPHIQUE ATTENDUE",
   "asset_slots": [
@@ -36,5 +35,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
   }
 }

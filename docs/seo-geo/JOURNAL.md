@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — finalisation éditoriale, visuelle et SEO/GEO des previews privées B, C, D · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act, previews privées B (retouche), C (mannequins), D (métadonnées) | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `dead94d`
+
+**Quoi** —
+- Textes : 31 modifications tracées (avant / après dans le dossier de livraison). Notes internes retirées du corps (« pilier A », « ancienne PR », « texte source », « article historique », « point à arbitrer », intitulés de sources) ; FAQ réécrites sur le texte (B 5, C 5, D 5) ; doublons de FAQ avec A retirés ; Google et Amazon datés au 30/09 ; Zalando aligné sur la formulation de A et S (statut exact non établi) ; mesure WebP du 30/09 restituée avec ses conditions (tailles, en-têtes `Accept`, origine Vercel, `www` non mesuré) ; « Images virtuelles » alignée sur A ; Ombres et Texture précisées par une méthode de contrôle.
+- Modules : B2 (sac bleu, rouge du catalogue, coloris hors catalogue, comme l'exemple du texte), B3 (montre : poussière sur l'image, rayure sur l'objet), C2 (robe : référence à plat, longueur conforme, longueur modifiée) et D1 (loi, plateforme, standard, comme l'intitulé de sa section) redessinés en SVG ; libellés de C1 et D3 ajustés ; provenance documentée et affichée dans chaque module ; « Illustration générée par IA. » en tête des légendes des SVG écrits par Claude Code.
+- SEO de preview : title et meta proposés révisés ; briefs d'en-tête B0, C0, D0 distincts de A et S. SEO technique public non activé.
+- Notes de module : coupure des noms longs (débordement de 1 à 2 px à 360 px).
+
+**Pourquoi** — GO de Laurent du 02/10 : finalisation des maquettes privées sur les trois dimensions de D42 (éditorial, visuel/UX, SEO/GEO), sans publication. D41 reste en vigueur.
+
+**Fichiers** — `content/revue-interne/ai-act/{retouche,mannequins,metadonnees}.json`, `content/revue-interne/ai-act/modules/*/module.json` (8), `content/revue-interne/ai-act/modules/{B2,B3,C2,D1}/etat_*.svg` (11), `app/[lang]/revue-interne/ai-act/{modules.ts,ModuleRevue.tsx,ModuleRevue.module.css}`, `lib/__tests__/revue-interne-ai-act.test.ts`, `docs/seo-geo/JOURNAL.md`
+
+**Source** — Têtes relues le 02/10 : A `0d380a8`, S `fc9333b` (lecture seule). Mesure WebP du 30/09 : JOURNAL de la branche de #63 (`b6495d1`). Relevé de contrôle du 02/10 à 07:06 UTC sur `sysnext.vercel.app` (`/_next/image`, `hero-studios-wide.avif`) : 640 et 1 080 px, AVIF d'origine avec XMP et EXIF ; 1 920 px avec `Accept` WebP, WebP sans XMP ni EXIF (réponse en cache Vercel) ; 1 920 px avec `Accept: */*`, AVIF d'origine. Relevé joint au dossier, non inséré dans le texte.
+
+**Effet attendu** — Aucun sur le site public.
+
+**Vérifié**
+- `tsc` vert ; ESLint sans message sur les fichiers modifiés ; Vitest 382/382 ; `verifier-json` 191 ; `verifier-consequences` : effet local, rien qui déborde ; `smoke.mjs` local vert.
+- `next build` : Preview simulée, 374 pages, 3 previews en 200 ; production simulée et build hors Vercel, 371 pages, previews, autres langues et URL d'asset en 404, sans texte ni SVG.
+- `next start`, Chromium : 3 pages × 7 formats (1440 ; 1024 × 768 ; 820 × 1180 ; 1180 × 820 ; 390 × 844 ; 844 × 390 ; 360 × 740) : 0 débordement de page ou de module, tableaux et code sans défilement interne, un seul `h1`, 0 erreur de console, FAQ ouverte au clic, sommaire de bureau : chaque entrée mène à son titre (96 px sous le haut de l'écran).
+- Modules 8 sur 8 : clic sur chaque étape, Précédent / Suivant jusqu'aux bornes, clavier, toucher, sans JavaScript (étape 1, boutons inactifs, liste statique), `prefers-reduced-motion` (0 transition, 0 animation), navigation B → C → D.
+- Indexation : robots et googlebot `noindex, nofollow, noarchive` ; 0 canonique, 0 alternate, 0 JSON-LD, 0 `og:url` ; previews absentes du sitemap, de `/fr/blog` et des autres pages prérendues.
+- e2e `seo` et `mobile-overflow` : 234 réussis, 10 échecs, liste identique à celle de `dead94d` (pages hors du diff ; 9 reproduisent les valeurs de `sysnext.vercel.app`).
+- Sommaire repliable sur mobile et tablette : après un toucher, le titre visé passe sous le haut de l'écran. Anomalie du composant commun déjà consignée dans `ETAT.md` (antérieure à #50, présente sur `main`), non traitée ici.
+
+**Supposé** — [Inférence] Les SVG du ZIP (B1, C1, D2, D3) ont été produits par un outil d'IA ; non documenté dans le ZIP, la mention « Illustration générée par IA. » n'y est pas ajoutée. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview derrière le SSO ; `www` (R4) ; sources primaires ; rapports F/F2 et leur addendum du 02/10, absents du dépôt.
+
+**Suite** — Contrôle humain de la Preview (fiche `08_CHECKLIST_PREVIEW_SSO.md`) ; validation de Sébastien (D42, étape 5) ; points à arbitrer (`09_POINTS_RESTANT_A_ARBITRER.md`). Toute publication exige une nouvelle mesure D16 complète et une nouvelle décision de Laurent (D41).
+
+---
+
 ## 2026-10-02 · Cluster AI Act — huit modules interactifs dans les previews privées B, C, D ; garde Preview · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act, previews privées B (retouche), C (mannequins), D (métadonnées) | **PR** : #79, brouillon « REVIEW ONLY », ne pas fusionner | **Branche** : `review/ai-act-bcd-private-previews-2026-10-02` | **Base** : `main` `9400eaa` ; tête avant ce commit `3f8927b`

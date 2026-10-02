@@ -1,14 +1,14 @@
 {
   "id": "D3",
   "article": "metadonnees",
-  "section": "Où peut-on perdre les métadonnées ?",
+  "section": "Où peut-on perdre les métadonnées ?",
   "title": "Parcours et contrôle du fichier reçu",
-  "caption": "Chemin hypothétique d’une image : capture, export, CMS/DAM, transformation/CDN, réception. Pour connaître la survie réelle des données, insérer exclusivement un relevé issu de tests authentiques, datés et contextualisés.",
+  "caption": "Chemin hypothétique d’une image : capture, export, CMS/DAM, transformation/CDN, réception. Pour connaître la survie réelle des données, insérer exclusivement un relevé issu de tests authentiques, datés et contextualisés.",
   "alt": "Schéma d’un fichier passant par cinq étapes, jusqu’au contrôle de la copie réellement reçue, sans résultats ExifTool inventés.",
   "need": "FONCTIONNEL PROVISOIRE",
   "steps": [
     [
-      "Capture",
+      "Fichier source et retouche",
       "Conserver l’original comme point de départ."
     ],
     [
@@ -25,12 +25,11 @@
     ],
     [
       "Fichier reçu",
-      "Effectuer le contrôle du fichier téléchargé ; aucun résultat simulé ici."
+      "Effectuer le contrôle du fichier téléchargé ; aucun résultat simulé ici."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/metadonnees.json : marqueur <figure data-visuel=\"D3\">, rendu par ModuleRevue sous la section « Où peut-on perdre les métadonnées ? »"
   },
   "status": "FONCTIONNEL PROVISOIRE",
   "asset_slots": [],
@@ -39,5 +38,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; outil de création non documenté dans le ZIP.",
+    "ia": null
   }
 }

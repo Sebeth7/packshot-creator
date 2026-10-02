@@ -2,27 +2,26 @@
   "id": "C2",
   "article": "mannequins",
   "section": "Ne laissez pas le personnage modifier la perception du produit",
-  "title": "À plat, volume et porté",
-  "caption": "Trois modes de présentation d’un même vêtement conceptuel. La concordance des proportions, coutures et matières ne peut être établie qu’avec des photographies réelles contrôlées.",
-  "alt": "Schéma d’une même chemise générique présentée à plat, en volume puis sur silhouette neutre.",
+  "title": "Le personnage ne doit pas changer la robe",
+  "caption": "Une robe de référence mesurée à plat, la même robe portée par une silhouette stylisée avec une longueur conforme, puis une version où la longueur a changé. Schéma conceptuel, sans personne générée photoréaliste.",
+  "alt": "Schéma d’une robe générique : à plat avec un repère de longueur, portée par une silhouette stylisée à la même longueur, puis portée avec un ourlet remonté signalé en rouge.",
   "need": "SOURCE GRAPHIQUE ATTENDUE",
   "steps": [
     [
-      "À plat",
-      "Longueur, coutures et découpe des manches."
+      "Référence à plat",
+      "Longueur et coupe relevées sur la pièce réelle."
     ],
     [
-      "En volume",
-      "Tombé, col et proportions de la pièce."
+      "Portée, longueur conforme",
+      "L’ourlet tombe au même repère que la référence."
     ],
     [
-      "Porté — conceptuel",
-      "Interaction avec une silhouette ; aucune preuve de fidélité réelle."
+      "Portée, longueur modifiée",
+      "L’ourlet est remonté : l’image ne décrit plus la pièce vendue."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/mannequins/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/mannequins/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/mannequins.json : marqueur <figure data-visuel=\"C2\">, rendu par ModuleRevue sous la section « Ne laissez pas le personnage modifier la perception du produit »"
   },
   "status": "SOURCE GRAPHIQUE ATTENDUE",
   "asset_slots": [
@@ -44,5 +43,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
   }
 }

@@ -1,7 +1,7 @@
 {
   "id": "D2",
   "article": "metadonnees",
-  "section": "IPTC, XMP et C2PA : à quoi servent-ils ?",
+  "section": "IPTC, XMP et C2PA : à quoi servent-ils ?",
   "title": "Informations, mot-clé et manifeste",
   "caption": "Différencier conceptuellement champ descriptif, mot-clé et manifeste de provenance, sans supposer leur présence ni leur caractère obligatoire sur un fichier précis.",
   "alt": "Trois compositions abstraites illustrant champ descriptif, mot-clé et manifeste de provenance.",
@@ -9,7 +9,7 @@
   "steps": [
     [
       "Information descriptive",
-      "Champ illustratif ; aucune métadonnée réelle affichée."
+      "Champ illustratif ; aucune métadonnée réelle affichée."
     ],
     [
       "Mot-clé",
@@ -21,8 +21,7 @@
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/metadonnees/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/metadonnees/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/metadonnees.json : marqueur <figure data-visuel=\"D2\">, rendu par ModuleRevue sous la section « IPTC, XMP et C2PA : à quoi servent-ils ? »"
   },
   "status": "FONCTIONNEL PROVISOIRE",
   "asset_slots": [],
@@ -31,5 +30,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG fourni dans le ZIP PSC_AI_ACT_BCD_COMPLET_ANIMATIONS_PATCH_2026-10-02 (dossier 03_ANIMATIONS), repris à l’octet près ; outil de création non documenté dans le ZIP.",
+    "ia": null
   }
 }

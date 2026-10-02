@@ -1,28 +1,27 @@
 {
   "id": "B2",
   "article": "retouche",
-  "section": "Couleur : trois opérations très différentes",
-  "title": "Correction et recolorisation",
-  "caption": "Trois rendus illustratifs : teinte photographiée, variante dont l’existence doit être vérifiée, coloris purement hypothétique. Cette animation ne démontre l’existence commerciale d’aucune variante.",
-  "alt": "Schéma de trois rendus colorés du même flacon générique, sans référence à un catalogue réel.",
+  "section": "Couleur : trois opérations très différentes",
+  "title": "Correction, variante vendue, coloris hors catalogue",
+  "caption": "Le sac bleu photographié, sa variante rouge produite par recolorisation, puis un coloris absent de l’offre. Schéma conceptuel : il ne prouve ni l’existence commerciale d’une variante ni la fidélité de son rendu.",
+  "alt": "Schéma d’un même sac générique en trois couleurs : bleu avec un échantillon bleu, rouge avec un échantillon rouge, vert sans échantillon de référence.",
   "need": "SOURCE GRAPHIQUE ATTENDUE",
   "steps": [
     [
-      "Teinte photographiée",
-      "État initial fictif ; photographie réelle attendue."
+      "Bleu photographié",
+      "Dominante corrigée : le fichier retrouve le bleu du sac photographié."
     ],
     [
-      "Variante au catalogue — à vérifier",
-      "Remplacer par photographie réelle de la référence correspondante."
+      "Rouge du catalogue, recolorisé",
+      "Variante vendue produite par recolorisation : à comparer à une référence réelle du rouge (texture, couture, reflet)."
     ],
     [
-      "Coloris hors catalogue — hypothèse",
-      "Exemple pédagogique de coloris non validé, non proposé à la vente."
+      "Coloris hors catalogue",
+      "Aucune référence réelle : l’image montre une couleur absente de l’offre."
     ]
   ],
   "placements": {
-    "HTML": "02_MAQUETTES_HTML/retouche/index.html : remplacer uniquement la figure .visual-await préexistante correspondante",
-    "NextJS": "app/[lang]/revue-interne/ai-act/retouche/page.tsx : composant ReviewModule, injecté dans le corps à la même figure"
+    "PR79": "content/revue-interne/ai-act/retouche.json : marqueur <figure data-visuel=\"B2\">, rendu par ModuleRevue sous la section « Couleur : trois opérations très différentes »"
   },
   "status": "SOURCE GRAPHIQUE ATTENDUE",
   "asset_slots": [
@@ -44,5 +43,9 @@
     "autoplay": false,
     "reduced_motion": "transitions supprimées",
     "responsive": "image fluide, contrôles en retour à la ligne"
+  },
+  "provenance": {
+    "origine": "SVG écrit en code vectoriel par Claude Code (IA) le 02/10/2026 pour la PR #79, sans générateur d’images ni photographie.",
+    "ia": true
   }
 }
