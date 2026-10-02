@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — intégration en PR brouillon, bloquée ASSETS/PDF/EXTERNALS PENDING · Claude de Laurent
+
+**Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`
+
+**Quoi** — Page `/fr/catalogue-orbitvu-all-in-one` (FR seule, France et Suisse) en quatre sections, formulaire dédié et route `POST /api/catalogue` à services injectés. La page répond 404 sur la production Vercel tant que `PUBLICATION_AUTORISEE` est faux ; la route répond 503 `catalogue_unavailable` : aucun stockage, aucun adaptateur Pipedrive ni Resend n'existe dans le code.
+
+**Pourquoi** — GO de Laurent du 02/10 pour une intégration en branche isolée et une PR brouillon uniquement. Objectif : donner envie de recevoir le catalogue, consultant facultatif, démonstration en lien tertiaire.
+
+**Fichiers** — nouveaux : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx`, `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `LienTelephone.tsx`, `contenu.ts`, `mesure.ts`, `visuels.ts`), `app/api/catalogue/route.ts`, `lib/catalogue/` (`schema.ts`, `gestionnaire.ts`, `services.ts`, `activation.ts`, `courriel.ts`, `crm.ts`, 3 fichiers de tests), `e2e/catalogue-all-in-one.spec.ts` ; modifiés, ajouts d'une ligne : `i18n/routing.ts` (pathname), `i18n/deChCoverage.ts` (`FR_ONLY`) ; `docs/seo-geo/ETAT.md`, ce journal.
+
+**Effet attendu** — Aucun en production : page en 404, route fermée, aucune entrée de sitemap, aucun lien entrant. Sur Preview et en local : revue visuelle et fonctionnelle, avec réponses d'API simulées.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 423/423, dont 46 nouveaux (schéma, route : succès simulé, e-mail en échec, CRM en échec, PDF absent, stockage absent ou en échec, pays absent ou hors FR/CH, double clic, nouvel essai, limitation, champ piège, journal sans donnée personnelle, secrets présents sans effet, simulation ; e-mail composé ; règle CRM ; sélecteur de langue). Contre-épreuve : sans l'entrée `FR_ONLY`, 2 tests échouent.
+- `npx next build` vert (valeurs factices) : `/fr/catalogue-orbitvu-all-in-one` prérendue seule. Build avec `VERCEL_ENV=production` vert, puis `next start` : `/fr`, `/en` et `/de-ch/catalogue-orbitvu-all-in-one` en 404, `/fr` en 200, `/api/catalogue` en 503.
+- Playwright `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 34/34 ; réponses d'API interceptées ; la vraie route locale répond 503. Balise `robots` `noindex, nofollow`, aucune canonique, aucun hreflang, aucun lien vers F5 dans `<main>`, aucun pays présélectionné, case consultant décochée, ni téléphone ni case marketing ; sélecteur de langue : EN vers `/en`, DE-CH vers `/de-ch`.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 241 réussis, 11 échecs, identiques sur un build de `main` `8c0dd06` : préexistants.
+- Captures locales 1440×900, 1024×768 paysage, 768×1024, 390×844, 320×640, 844×390, et sept états du formulaire : aucun débordement horizontal ; bas du CTA à 859 px sur 900 en 1440 ; sous la ligne de flottaison à 1024×768. `prefers-reduced-motion` : éventail fixe. Contrastes calculés : CTA blanc sur `#6667AB` 5,13:1 ; textes ≥ 5,9:1 ; texte indicatif des champs 4,17:1 sur leur fond `future-dusk-0` (même couleur `future-dusk-400` que `ContactForm`).
+- Aperçus K1–K6 du kit : injectés dans le navigateur de capture seulement ; `git status` ne montre aucun fichier du kit.
+**Supposé** — Que le 404 prérendu par `notFound()` est servi en 404 par Vercel comme par `next start` (mesuré en local seulement). Que `trackEvent` n'émet rien sans consentement analytique (lecture de `GoogleAnalytics.tsx`, non mesuré dans GA4).
+**Non regardé** — Preview Vercel (pas de jeton de contournement dans cette session ; visuels non autorisés de toute façon). Firefox et WebKit (navigateurs absents du conteneur). Lecteurs d'écran réels. Rendu sur `www` (R4). Envoi réel : interdit à ce stade.
+
+**Suite** — Bloquants avant toute Preview complète ou publication : PDF paysage brut, accord écrit d'Orbitvu (PDF et pages), destinations des QR, hébergement du PDF, stockage durable et reprise des échecs, règle Pipedrive (étape), mention données, relecture de Sébastien (D42), URL, indexation et header (Laurent), puis GO de Laurent.
+
+---
+
 ## 2026-10-02 · Formulaire de contact : les demandes envoyées depuis les pages de-ch étaient refusées · Claude de Sébastien
 
 **Chantier** : correctif urgent, hors 06-CHANTIERS | **PR** : à venir | **Base** : `main` `9400eaa`
