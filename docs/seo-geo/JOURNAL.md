@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-02 · Cluster AI Act — article Suisse S : visuel S4 intégré (version recomposée) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — S4 `matiere-finition-gros-plans.avif` ajouté dans le cas 5 « Matière ou finition embellie », après le premier paragraphe.
+- Source : `S4_matiere_finition_details_V2.png` (paquet `PSC_AI_ACT_A2_S4_REGENERES_2026-10-02`, création ChatGPT).
+- Recomposée localement sans génération, sur arbitrage de Laurent du 02/10 : vue d'ensemble du sac, gros plan grain et couture, gros plan doublure et fermeture. Le gros plan du fermoir est retiré : barre horizontale absente du sac.
+- Légende de l'inventaire du 02/10 reprise telle quelle ; ALT rédigé ; ratio 1536 × 1024 conservé.
+- Commit local, **non poussé** : le push attend le GO de Laurent.
+
+**Pourquoi** — Contrôle de fidélité de S4 V2 du 02/10 : le gros plan du fermoir ne correspond pas à la vue d'ensemble (deux blocs verticaux), comme sur la version refusée. Les gros plans grain et couture, doublure et fermeture restent compatibles avec le sac.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/matiere-finition-gros-plans.avif` (ajout), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Image :
+  - PNG source V2 : SHA-256 `595371a6…0abd2a` (manifeste C2PA) ; PNG recomposé : `75cf11bd…acadf33` ;
+  - AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024, 175 037 o, SHA-256 `267dbaf8…b358e4` ; SSIM 0,981 ; moyenne RGB identique au PNG.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, 7 formats : 0 débordement, 0 erreur, 5 figures chargées (ratio 1,500 pour S4) ; 0 ponctuation isolée.
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4).
+
+**Suite** — GO de push de Laurent ; contrôle humain de la Preview.
+
+---
+
 ## 2026-10-02 · Cluster AI Act — article Suisse (S) : maillage vers `/fr/packshot-mode`, audit SEO/GEO et contrôles de finalisation · Claude de Laurent
 
 **Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
