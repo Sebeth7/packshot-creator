@@ -67,6 +67,33 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q19 · 2026-10-01 · Pour information — D42, standard éditorial, et D43, appels payants — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : gouvernance
+**Bloque** : rien ; transmission décidée par Laurent (D42, arbitrage 5)
+
+**Contexte** — Laurent a décidé le 01/10 un standard éditorial (D42) et un plafond pour les appels payants (D43). D42 concerne les contenus produits par les deux environnements Claude : tous les articles, landings, hubs et contenus éditoriaux, PR déjà ouvertes comprises. Les travaux antérieurement validés restent acquis ; D42 s'applique aux étapes restantes des chantiers ouverts.
+
+**Vérifié** — `DECISIONS.md`, D42 et D43 (PR #76). Le circuit compte huit étapes. Pour toi, les points principaux :
+- l'étape 5, validation de Sébastien selon la gouvernance applicable : D15 (tacite, réécritures) et D16 (explicite, créations) sont conservées ;
+- l'arbitrage 1 : aucun contenu éditorial n'est fusionné avant validation et autorisation de publication ;
+- l'arbitrage final 3 : après ton GO, une modification qui change substantiellement le texte, le sens, un claim, une qualification juridique ou une proposition commerciale revient vers toi pour une validation ciblée ; une modification limitée aux métadonnées, au maillage, aux liens ou à des réglages techniques, sans changement de sens, t'est seulement signalée. Ton GO métier n'est pas une autorisation de publication : elle appartient à Laurent ;
+- l'arbitrage final 4 : une correction strictement typographique ne relance pas le circuit Preview / Sébastien ; elle te revient pour une validation ciblée si elle dépasse le périmètre typographique.
+
+D43 encadre les services payants de recherche SEO/GEO : budget global de 200 USD par mois, toutes missions confondues (décision de Laurent du 02/10, qui remplace les plafonds de 20 USD par mission et par trimestre) ; GO explicite de Laurent avant tout appel payant. Elle t'est transmise pour information ; aucun arbitrage ne l'étend à ton environnement.
+
+`/CLAUDE.md` n'est pas modifié. Ton périmètre d'intervention n'est pas modifié.
+
+**La question** — Sébastien prend-il connaissance de D42, applicable aux contenus produits par son environnement Claude, et de D43, transmise pour information ?
+
+**Options**
+- A : prise de connaissance, sans objection → D42 s'applique aussi aux contenus produits par le Claude de Sébastien ; une mention dans `/CLAUDE.md` relève alors d'une décision de Sébastien.
+- B : objection → réexamen par Laurent et Sébastien ; D42 reste en vigueur pour les contenus du Claude de Laurent.
+
+**Ma recommandation** — A : c'est la portée décidée par Laurent, et `/CLAUDE.md` reste entre les mains de Sébastien.
+
+---
+
 ### Q10 · 2026-09-19 · Réexamen de la cible de clics — DU Claude de Laurent À Laurent
 
 **Chantier** : pilotage du KPI trafic
