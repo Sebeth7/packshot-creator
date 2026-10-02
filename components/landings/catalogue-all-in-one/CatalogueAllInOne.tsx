@@ -4,8 +4,8 @@
  * ce sont les possibilités des studios Orbitvu ; le catalogue est la première étape
  * concrète pour choisir.
  *
- * Quatre sections : hero (vidéo de la home, promesse, formulaire), possibilités,
- * choix du studio avec le catalogue, catalogue / consultant. Page française unique,
+ * Cinq sections : hero (vidéo de la home, promesse, formulaire), frise des studios
+ * (V4), possibilités, choix du studio avec le catalogue, catalogue / consultant. Page française unique,
  * commune à la France et à la Suisse. Header et Footer partagés non modifiés
  * (variante compacte de la maquette : arbitrage ouvert).
  *
@@ -20,18 +20,25 @@ import { CatalogueForm } from './CatalogueForm';
 import { EmplacementVisuel } from './EmplacementVisuel';
 import { LienTelephone } from './LienTelephone';
 import { SansCoupure } from './SansCoupure';
+import { StudiosRail } from './StudiosRail';
 import { VideoStudio } from './VideoStudio';
 import { FINAL, FORMULAIRE, HERO, POSSIBILITES, STUDIO, TELEPHONES } from './contenu';
+import { ID_VIDEO_GAMME } from './coordination';
+import { studiosGamme } from './studios';
 import { VISUELS, VISUELS_GAMME } from './visuels';
 
 const ANCRE_FORMULAIRE = 'catalogue';
 
 // Vidéo de la page d'accueil, réutilisée telle quelle (aucune copie du fichier).
+// Recadrage V4 : la source (2280 × 780) porte, autour du flacon, un rectangle
+// translucide incrusté dans toutes ses images (x ≈ 0 à 1130). Le panneau montre la
+// partie droite, studio et écran (x ≈ 1180 à 2280) : agrandissement ancré à droite,
+// égal à ratio du panneau × 780 / 1100. Même fichier, aucun flou ni masque ajouté.
 const VIDEO_GAMME = {
   src: '/images/hero/hero-range-2025.mp4',
   poster: '/images/hero/hero-range-2025-poster.avif',
-  // Studio et écran occupent 27 % à 80 % de la largeur : centre décalé vers la droite.
-  cadrage: '55% 50%',
+  cadrage: '100% 50%',
+  agrandissement: 'origin-right scale-[1.7] sm:scale-[1.56] lg:scale-[1.42]',
 };
 
 const TRAME = {
@@ -60,9 +67,11 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
           <div className="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-10 lg:gap-y-0 xl:gap-x-14">
             <div className="-mx-4 sm:mx-0 lg:col-span-7 lg:row-start-2 lg:mt-7">
               <VideoStudio
+                id={ID_VIDEO_GAMME}
                 src={VIDEO_GAMME.src}
                 poster={VIDEO_GAMME.poster}
                 cadrage={VIDEO_GAMME.cadrage}
+                mediaClassName={VIDEO_GAMME.agrandissement}
                 className="aspect-[2.4/1] bg-future-dusk-800 sm:aspect-[2.2/1] sm:rounded-2xl sm:shadow-2xl sm:shadow-black/40 sm:ring-1 sm:ring-white/10 lg:aspect-[2/1]"
               />
             </div>
@@ -133,6 +142,9 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
           </p>
         )}
       </section>
+
+      {/* ━━ 1 bis. FRISE DES STUDIOS ━━ MACHINES + getMachineImage (studios.ts). */}
+      <StudiosRail studios={studiosGamme()} />
 
       {/* ━━ 2. IMAGINEZ LES POSSIBILITÉS ━━ Visuels Orbitvu déjà publiés sur les fiches du site. */}
       <section aria-labelledby="possibilites-titre" className="bg-white py-14 sm:py-20">

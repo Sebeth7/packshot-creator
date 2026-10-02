@@ -1,7 +1,7 @@
 import { test, expect, type Page, type Route } from '@playwright/test';
 
 /**
- * Landing /fr/catalogue-orbitvu-all-in-one (kit du 02/10/2026, V3 du même jour).
+ * Landing /fr/catalogue-orbitvu-all-in-one (kit du 02/10/2026, V3 et V4 du même jour).
  *
  * Les réponses de /api/catalogue sont simulées par `page.route` : aucun appel ne
  * sort du navigateur vers un service réel. Seul le dernier test interroge la
@@ -217,6 +217,130 @@ test.describe('Landing catalogue All-in-One', () => {
       expect(deborde).toBe(false);
     });
   }
+
+  test.describe('frise des studios (V4)', () => {
+    const NOMS = [
+      'Alphashot Micro Pro v2',
+      'Alphashot 360',
+      'Alphashot Pro G2',
+      'Alphashot XL Pro v2',
+      'Alphatable v2',
+      'Alphastudio Compact Pro v2',
+      'Bike Studio',
+      'Furniture Studio',
+      'E-Comm Studio+',
+    ];
+    const FRISE = 'section[aria-labelledby="gamme-titre"]';
+    const position = (page: Page) =>
+      page.locator('#frise-studios').evaluate((el) => ({ gauche: el.scrollLeft, max: el.scrollWidth - el.clientWidth }));
+
+    async function contexteDesktop(browser: import('@playwright/test').Browser, reducedMotion: 'reduce' | 'no-preference') {
+      // Souris et sans écran tactile, y compris dans le projet mobile : l'automatisme
+      // est réservé aux grands écrans avec survol.
+      const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion, hasTouch: false, isMobile: false });
+      await context.addCookies([
+        {
+          name: 'cookie-consent',
+          value: encodeURIComponent(JSON.stringify({ necessary: true, analytics: false, externalMedia: false })),
+          url: 'http://localhost:3000',
+        },
+      ]);
+      return context;
+    }
+
+    test('entre le hero et « Imaginez les possibilités » : neuf studios, sans doublon ni lien', async ({ page }) => {
+      await page.goto(URL_PAGE);
+      const ordre = await page.evaluate(() =>
+        [...document.querySelectorAll('main section[aria-labelledby]')].map((s) => s.getAttribute('aria-labelledby')),
+      );
+      expect(ordre.slice(0, 3)).toEqual(['catalogue-titre', 'gamme-titre', 'possibilites-titre']);
+      const frise = page.locator(FRISE);
+      await expect(frise.getByRole('heading', { level: 2 })).toHaveText('Du bijou au mobilier, explorez les studios Orbitvu.');
+      await expect(frise.getByText('UNE GAMME, DE MULTIPLES POSSIBILITÉS')).toBeVisible();
+      const cartes = page.getByRole('list', { name: 'Studios Orbitvu' }).getByRole('listitem');
+      await expect(cartes).toHaveCount(NOMS.length);
+      for (const [i, nom] of NOMS.entries()) await expect(cartes.nth(i)).toContainText(nom);
+      await expect(frise.locator('a')).toHaveCount(0);
+      await expect(frise).not.toContainText('€');
+      await expect(frise).not.toContainText('Alphashot XL G2');
+    });
+
+    test('précédent, suivant et clavier', async ({ browser }) => {
+      const context = await contexteDesktop(browser, 'no-preference');
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      const precedent = page.getByRole('button', { name: 'Studios précédents' });
+      const suivant = page.getByRole('button', { name: 'Studios suivants' });
+      await expect(precedent).toBeDisabled();
+      await suivant.click();
+      await expect.poll(async () => (await position(page)).gauche).toBeGreaterThan(0);
+      await expect(precedent).toBeEnabled();
+      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
+      const liste = page.getByRole('list', { name: 'Studios Orbitvu' });
+      await liste.focus();
+      const avant = (await position(page)).gauche;
+      await page.keyboard.press('ArrowRight');
+      await expect.poll(async () => (await position(page)).gauche).toBeGreaterThan(avant);
+      await page.keyboard.press('End');
+      await expect.poll(async () => { const p = await position(page); return p.max - p.gauche; }).toBeLessThanOrEqual(2);
+      await expect(suivant).toBeDisabled();
+      await page.keyboard.press('Home');
+      await expect.poll(async () => (await position(page)).gauche).toBe(0);
+      await expect(precedent).toBeDisabled();
+      await context.close();
+    });
+
+    test('desktop : avancée automatique seulement vidéo hors champ, arrêtée par une interaction manuelle', async ({ browser }) => {
+      const context = await contexteDesktop(browser, 'no-preference');
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      // Premier écran : la vidéo est dans le champ, la frise ne bouge pas.
+      await page.waitForTimeout(5500);
+      expect((await position(page)).gauche).toBe(0);
+      await page.locator(FRISE).evaluate((s) => s.scrollIntoView({ block: 'center' }));
+      await page.mouse.move(5, 5);
+      await expect.poll(async () => (await position(page)).gauche, { timeout: 10_000 }).toBeGreaterThan(0);
+      await page.getByRole('button', { name: 'Mettre en pause le défilement' }).click();
+      await expect(page.getByRole('button', { name: 'Reprendre le défilement' })).toBeVisible();
+      await page.mouse.move(5, 5);
+      const figee = (await position(page)).gauche;
+      await page.waitForTimeout(5500);
+      expect((await position(page)).gauche).toBe(figee);
+      await context.close();
+    });
+
+    test('mouvement réduit : ni bouton pause ni avancée automatique', async ({ browser }) => {
+      const context = await contexteDesktop(browser, 'reduce');
+      const page = await context.newPage();
+      await page.goto(URL_PAGE);
+      await page.locator(FRISE).evaluate((s) => s.scrollIntoView({ block: 'center' }));
+      await page.mouse.move(5, 5);
+      await expect(page.getByRole('button', { name: /défilement/ })).toHaveCount(0);
+      await page.waitForTimeout(5500);
+      expect((await position(page)).gauche).toBe(0);
+      await context.close();
+    });
+
+    test('mobile : défilement horizontal à accroche, carte suivante entrevue, aucun automatisme', async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(URL_PAGE);
+      const liste = page.locator('#frise-studios');
+      await liste.scrollIntoViewIfNeeded();
+      await expect(page.getByRole('button', { name: /défilement/ })).toHaveCount(0);
+      const mesure = await liste.evaluate((el) => {
+        const [premiere, seconde] = [...el.querySelectorAll('li')].map((li) => li.getBoundingClientRect());
+        return {
+          accroche: getComputedStyle(el).scrollSnapType,
+          defile: el.scrollWidth > el.clientWidth,
+          secondeEntrevue: seconde.left < window.innerWidth && seconde.right > window.innerWidth,
+          premiereEntiere: premiere.left >= 0 && premiere.right <= window.innerWidth,
+        };
+      });
+      expect(mesure).toEqual({ accroche: 'x mandatory', defile: true, secondeEntrevue: true, premiereEntiere: true });
+      await page.waitForTimeout(5000);
+      expect((await position(page)).gauche).toBe(0);
+    });
+  });
 
   test('la vraie route locale reste fermée : 503, aucun succès', async ({ request }) => {
     const res = await request.post('/api/catalogue', {
