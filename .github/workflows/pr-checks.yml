@@ -43,6 +43,11 @@ jobs:
       - name: Intégrité des JSON
         run: node scripts/seo/verifier-json.mjs
 
+      - name: Tests unitaires (Vitest)
+        # ~400 tests, ~5 s en local : cohérence des dimensions produit (D45),
+        # registre de navigation des pages longues (D44), SEO, conseiller ROI.
+        run: npx vitest run
+
       - name: Lint
         run: npx eslint --max-warnings=0 .
         continue-on-error: true
@@ -58,3 +63,18 @@ jobs:
 
       - name: Build de production
         run: npx next build
+
+      # Parcours navigateur ciblés, sur le build de production ci-dessus : sélecteur
+      # de machines, sommaire du blog et barre des pages longues (D44). Les specs
+      # absents de la branche testée sont ignorés (--pass-with-no-tests).
+      - name: Navigateur Chromium (Playwright)
+        run: npx playwright install --with-deps chromium
+
+      - name: Parcours navigateur (navigation, sélecteur)
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+        run: |
+          npx next start -p 3000 > /tmp/next-start.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:3000/fr && break; sleep 2; done
+          npx playwright test machine-selector sommaire-blog navigation-pages-longues \
+            --project=chromium --workers=2 --reporter=line --pass-with-no-tests
