@@ -12,11 +12,22 @@ const SEP = `${ESPACE}(?:cm)?${ESPACE}[x×X*]${ESPACE}`;
 
 /** Triplets « a × b × c » suivis d'une unité centimètre (ou sans unité, si `sansUnite`). */
 export function extraireTriplets(texte: string, { sansUnite = false } = {}): Triplet[] {
+  return extraireTripletsEnContexte(texte, { sansUnite }).map((e) => e.triplet);
+}
+
+/**
+ * Mêmes triplets, avec le début de la phrase qui les précède (jusqu'au dernier
+ * point, saut de ligne, guillemet ou chevron) : sert à distinguer une capacité de
+ * machine (« dimensions maximales : … ») d'un objet photographié (« un objet de … »).
+ */
+export function extraireTripletsEnContexte(texte: string, { sansUnite = false } = {}): { triplet: Triplet; contexte: string }[] {
   const unite = sansUnite ? `(?:${ESPACE}cm)?` : `${ESPACE}cm`;
   const motif = new RegExp(`${NOMBRE}${SEP}${NOMBRE}${SEP}${NOMBRE}${unite}(?![\\d])`, 'g');
-  const resultat: Triplet[] = [];
+  const resultat: { triplet: Triplet; contexte: string }[] = [];
   for (const m of texte.matchAll(motif)) {
-    resultat.push([nombre(m[1]), nombre(m[2]), nombre(m[3])]);
+    const avant = texte.slice(Math.max(0, m.index - 200), m.index);
+    const coupure = Math.max(...['. ', '\n', '"', '>', '!', '?'].map((c) => avant.lastIndexOf(c)));
+    resultat.push({ triplet: [nombre(m[1]), nombre(m[2]), nombre(m[3])], contexte: avant.slice(coupure + 1) });
   }
   return resultat;
 }

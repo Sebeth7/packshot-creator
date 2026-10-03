@@ -41,7 +41,9 @@ export interface DimensionsPsc {
 }
 
 /**
- * conforme       : le site et le fabricant donnent la même valeur.
+ * conforme       : correspondance numérique entre la valeur du site et la fiche fabricant
+ *                  consultée (source et date ci-dessous). Ne valide pas la version
+ *                  commerciale : voir `version` et Q20.
  * ecart          : valeurs différentes, version établie : erreur démontrable (catégorie A).
  * a-arbitrer     : valeurs différentes, version non établie ou sources contradictoires (catégorie B).
  * non-verifiable : aucune source primaire pour cette caractéristique.

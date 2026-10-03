@@ -17,7 +17,7 @@ import { evaluateMachine } from '@/components/calculators/ROICalculator/lib/mach
 import type { SelectionCriteria } from '@/components/calculators/ROICalculator/lib/types';
 import { FICHES_TECHNIQUES, VALEURS_RETIREES, ficheTechnique } from '@/data/produits/fiches-techniques';
 import { ECARTS_CATALOGUES, ECARTS_MESSAGES } from '@/data/produits/ecarts-connus';
-import { extraireTriplets, extraireKg, extraireLongueurMax, memeTriplet, tripletDe, trier } from '../dimensions';
+import { extraireTriplets, extraireTripletsEnContexte, extraireKg, extraireLongueurMax, memeTriplet, tripletDe, trier } from '../dimensions';
 
 const ROOT = process.cwd();
 const LANGUES = ['fr', 'en', 'de-ch'] as const;
@@ -230,16 +230,30 @@ describe('Valeurs retirées', () => {
     });
   }
 
-  it('aucune valeur retirée ne réapparaît (XXL 100 × 70 × 190 cm)', () => {
+  // Une valeur retirée est interdite comme capacité de la machine (catalogue, fiche,
+  // texte qui l'énonce), pas comme dimension d'un objet photographié : un objet de
+  // 100 × 70 × 190 cm tient dans l'XXL (voir « Fonctions de recommandation »).
+  const OBJET = /\b(?:un |une |l['’]|d['’])?(?:objet|produit|article|pièce|meuble|object|product|item|piece|Objekt|Produkt|Artikel|Möbel)s?\b/i;
+  const CAPACITE = /max|jusqu['’]à|up to|bis zu|capacit|kapazit/i;
+  function retireesEnoncees(texte: string): string[] {
+    return extraireTripletsEnContexte(texte, { sansUnite: true })
+      .filter(({ triplet, contexte }) => VALEURS_RETIREES.some((r) => memeTriplet(triplet, r.triplet)) && !(OBJET.test(contexte) && !CAPACITE.test(contexte)))
+      .map(({ triplet }) => triplet.join('×'));
+  }
+
+  it('valeur retirée (XXL 100 × 70 × 190 cm) : absente comme capacité, admise comme objet photographié', () => {
+    // Ce que la garde distingue.
+    expect(retireesEnoncees('Dimensions maximales de l’Alphastudio XXL : 100 × 70 × 190 cm')).toHaveLength(1);
+    expect(retireesEnoncees('Alphastudio XXL — 100 x 70 x 190 cm')).toHaveLength(1);
+    expect(retireesEnoncees('Objets jusqu’à 190 × 70 × 100 cm')).toHaveLength(1);
+    expect(retireesEnoncees('Un objet de 100 × 70 × 190 cm tient dans l’Alphastudio XXL.')).toHaveLength(0);
+    expect(retireesEnoncees('A product measuring 190 x 100 x 70 cm fits the Alphastudio XXL.')).toHaveLength(0);
+
     const trouvees: string[] = [];
     for (const fichier of RACINES.flatMap(fichiers)) {
       if (IGNORES.has(fichier)) continue;
       const texte = fs.readFileSync(path.join(ROOT, fichier), 'utf8');
-      for (const t of extraireTriplets(texte, { sansUnite: true })) {
-        for (const r of VALEURS_RETIREES) {
-          if (memeTriplet(t, r.triplet)) trouvees.push(`${fichier} : ${t.join('×')}`);
-        }
-      }
+      for (const t of retireesEnoncees(texte)) trouvees.push(`${fichier} : ${t}`);
       for (const m of ROI) {
         // dimensionsMax écrit en objet : { l: 100, w: 70, h: 190 }
         const objet = VALEURS_RETIREES.find((r) => r.id === m.id);
@@ -262,9 +276,10 @@ describe('Fonctions de recommandation : valeurs réellement consommées', () => 
     return !r.missingCriteria.includes('Dimensions produit trop grandes') && !r.missingCriteria.includes('Poids produit trop élevé');
   };
 
-  it('Alphastudio XXL (version documentée 100 × 90 × 190) : 90 cm accepté, 91 cm refusé', () => {
+  it('Alphastudio XXL (capacité référencée 100 × 90 × 190) : 90 cm accepté, 91 cm refusé ; un objet de 100 × 70 × 190 reste accepté', () => {
     expect(tient('alphastudio-xxl-v2', { l: 100, w: 90, h: 190 })).toBe(true);
     expect(tient('alphastudio-xxl-v2', { l: 100, w: 91, h: 190 })).toBe(false);
+    // Objet photographiable, à ne pas confondre avec l'ancienne capacité retirée (même triplet).
     expect(tient('alphastudio-xxl-v2', { l: 100, w: 70, h: 190 })).toBe(true);
   });
 

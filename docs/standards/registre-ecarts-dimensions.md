@@ -9,6 +9,8 @@ Application de la règle D45 (R-PRODUCT-DIM). Photographie du **03/10/2026**, `m
 - Questions : Q20 (`docs/seo-geo/BOITE-AUX-LETTRES.md`).
 - Source fabricant : pages publiques `orbitvu.com/products/*`, HTML brut relevé le 03/10/2026 à 05:54 UTC.
 
+Statut « conforme » : correspondance numérique entre la valeur du site et la fiche fabricant consultée, à la date du relevé. Il ne valide pas la correspondance entre la version commerciale PSC et le produit fabricant (« Pro v2 », XL v2, Compact, XXL : Q20.2, Q20.12). Au 03/10, l'objet maximal correspond numériquement pour 11 machines sur 17 ; aucune version n'est validée par ce décompte.
+
 Catégories :
 - **A — erreur démontrée** : même produit (nom fabricant identique), valeur du site différente de la source. Correction technique possible après accord de Sébastien sur le périmètre (catalogues de machines : son périmètre).
 - **B — contradiction commerciale ou documentaire** : version non établie, sources contradictoires, ou source absente. Aucune valeur remplacée avant la réponse de Sébastien.

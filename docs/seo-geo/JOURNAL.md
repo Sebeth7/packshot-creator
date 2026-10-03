@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · PRODUCT-TEST — garde de la valeur retirée : capacité et objet distingués ; « conforme » défini (revue pré-fusion) · Claude de Laurent
+
+**Chantier** : D45, revue pré-fusion #83 à #87 | **PR** : #83 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- La garde « valeur retirée » ne signale plus tout triplet 100 / 70 / 190 : elle le signale quand le texte l'énonce comme capacité (catalogue, « maximal », « jusqu'à », nom de machine seul), pas quand il décrit un objet photographié (« un objet de 100 × 70 × 190 cm tient dans l'XXL »). Cinq cas synthétiques fixent la distinction dans le test.
+- Statut `conforme` défini comme une correspondance numérique avec la fiche fabricant consultée, sans validation de la version commerciale (référentiel et registre).
+
+**Pourquoi** — Revue du pilotage du 03/10 : l'ancienne garde confondait la régression de la capacité XXL avec la mention légitime d'un objet de même dimension ; le décompte « 11 conformes » pouvait se lire comme une validation des versions.
+
+**Fichiers** — `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `data/produits/fiches-techniques.ts` (commentaire), `docs/standards/registre-ecarts-dimensions.md`
+
+**Vérifié** — 23 tests, verts. Deux mutations temporaires : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL » → 0 échec. `evaluateMachine` : un objet de 100 × 70 × 190 reste accepté sur l'XXL.
+**Supposé** — rien.
+**Non regardé** — formulations rédactionnelles non prévues par les deux listes de mots (objet, capacité) : une mention ambiguë reste signalée, ce qui est le sens prudent.
+
+**Suite** — Aucune valeur affichée modifiée. PR PRODUCT-DATA toujours subordonnée à Q20.
+
+---
+
 ## 2026-10-03 · D45 — référentiel des dimensions, contrôle de cohérence, registre des écarts, Q20 · Claude de Laurent
 
 **Chantier** : D45 (R-PRODUCT-DIM), PR PRODUCT-TEST | **PR** : brouillon, branche `ccr-79f70eb9-product-test` | **Base** : `main` `de6c4cd`
