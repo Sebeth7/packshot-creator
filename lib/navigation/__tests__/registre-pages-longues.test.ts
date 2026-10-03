@@ -54,6 +54,20 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     for (const l of LANGUES) expect(barreActive('fiche-machine', l, 'alphashot-pro-g2')).toBe(true);
   });
 
+  it('familles généralisées : toute page d’une famille active reçoit la barre, y compris une page future', () => {
+    for (const l of LANGUES) {
+      expect(barreActive('guide', l, 'guide-futur')).toBe(true);
+      expect(barreActive('fiche-machine', l, 'machine-future')).toBe(true);
+      expect(barreActive('landing-ia', l, 'ia-photo-produit')).toBe(true);
+      expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(true);
+      expect(barreActive('solution', l, 'solution-future')).toBe(true);
+      expect(barreActive('blog-dedie-sans-sommaire', l, 'comparatif-orbitvu-ortery-styleshoots-2026')).toBe(true);
+      expect(barreActive('blog-dedie-sans-sommaire', l, 'prestataire-packshot-vs-studio-interne')).toBe(false);
+    }
+    // #27 ne touche que les fichiers FR de ces guides : les versions EN restent équipées.
+    expect(barreActive('guide', 'en', 'comment-faire-photos-multi-angles-chaussures')).toBe(true);
+  });
+
   it('une famille inconnue ne reçoit pas la barre', () => {
     expect(barreActive('famille-inexistante', 'fr', 'x')).toBe(false);
   });

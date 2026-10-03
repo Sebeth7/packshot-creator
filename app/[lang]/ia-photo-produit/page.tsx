@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
@@ -140,8 +142,29 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
     company: t(`testimonials.t${i}.company`),
   }));
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active (data/navigation/pages-longues.ts).
+  const barre = barreActive('landing-ia', lang as Langue, 'ia-photo-produit');
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        { id: 'fonctionnalites', libelle: t('features.heading') },
+        { id: 'resultats', libelle: t('gallery.heading') },
+        { id: 'manifeste', libelle: t('manifeste.heading') },
+        { id: 'plateforme', libelle: t('platform.heading') },
+        { id: 'faq', libelle: t('faq.heading') },
+      ]
+    : [];
+
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Full-bleed background image, same pattern as Home
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -203,7 +226,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. FEATURES TABS — Tabbed video demos
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
+      <section id={ancre('fonctionnalites')} className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -334,7 +357,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. COMPARATIF — Philosophie intro + Bento asymmetric
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section id={ancre('manifeste')} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-white" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
@@ -494,7 +517,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           7. PLATEFORME BLENDAI — Dark bg, floating card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
+      <section id={ancre('plateforme')} className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-[#2d1b4e]/40 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -557,7 +580,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           8. FAQ — Two-column: heading left, accordion right
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-neutral-50">
+      <section id={ancre('faq')} className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}

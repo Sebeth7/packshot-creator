@@ -30,6 +30,8 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { Button } from '@/components/ui/button';
 import { buildLanguages } from '@/lib/hreflang';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 
 /* ──────────────────────── Types ──────────────────────── */
 
@@ -183,8 +185,29 @@ export default async function ComparatifPage({ params }: PageProps) {
     }),
   );
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active (data/navigation/pages-longues.ts).
+  const barre = barreActive('blog-dedie-sans-sommaire', lang as Langue, slug);
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        { id: 'introduction', libelle: t('intro.heading') },
+        { id: 'tableau-comparatif', libelle: t('comparison.heading') },
+        { id: 'forces-faiblesses', libelle: t('strengths.heading') },
+        { id: 'notre-avis', libelle: t('ourTake.heading') },
+        { id: 'faq', libelle: t('faq.heading') },
+      ]
+    : [];
+
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
       {/* ───── Hero ───── */}
       <HeroSection
         compact
@@ -242,7 +265,7 @@ export default async function ComparatifPage({ params }: PageProps) {
       </HeroSection>
 
       {/* ───── Intro ───── */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('introduction')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-future-dusk-900 mb-8">
@@ -367,7 +390,7 @@ export default async function ComparatifPage({ params }: PageProps) {
       </section>
 
       {/* ───── Grand Tableau Comparatif ───── */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('tableau-comparatif')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <div className="text-center mb-12">
@@ -441,7 +464,7 @@ export default async function ComparatifPage({ params }: PageProps) {
       </section>
 
       {/* ───── Forces et Faiblesses ───── */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('forces-faiblesses')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-future-dusk-900 text-center mb-12">
@@ -520,7 +543,7 @@ export default async function ComparatifPage({ params }: PageProps) {
       </section>
 
       {/* ───── Notre Avis (Our Take) ───── */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('notre-avis')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-future-dusk-900 mb-8">
@@ -594,7 +617,7 @@ export default async function ComparatifPage({ params }: PageProps) {
       </section>
 
       {/* ───── FAQ ───── */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('faq')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-future-dusk-900 text-center mb-12">

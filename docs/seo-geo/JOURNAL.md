@@ -34,6 +34,47 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · D44 — barre de sommaire collante mutualisée, trois pilotes puis 96 pages par famille de gabarits · Claude de Laurent
+
+**Chantier** : D44 (R-UX-LONG), PR UX-STICKY | **PR** : brouillon, branche `ccr-79f70eb9-ux-sticky` | **Base** : `main` `de6c4cd` | **Commits** : `9d9de22` (composant, registre, pilotes), puis généralisation
+
+**Quoi** —
+- `components/navigation/SommaireCollant.tsx` : version commune de la barre de Mode. Elle apporte ancres configurables, début et fin, rien sous 1 024 px, décalage des ancres calculé sur l'en-tête. Numéros fixes et libellé actif dans un emplacement unique : CLS de défilement nul.
+- `data/navigation/pages-longues.ts` : registre par famille, avec pages gelées et exceptions motivées.
+- Gabarits équipés, `id` posés seulement si la barre est active, libellés tirés des titres existants :
+  - guides (`guide/[slug]`) ;
+  - fiches (`studio-photo/[slug]`) ;
+  - `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` ;
+  - `ia-photo-produit`, `studios-photo-automatises` ;
+  - `solutions/[slug]`.
+- Tests : `lib/navigation/__tests__/registre-pages-longues.test.ts` (7), `e2e/navigation-pages-longues.spec.ts` (47).
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : généraliser par famille de gabarits, en conservant les navigations adaptées. Audit du 03/10 : 47 guides, 39 fiches et plusieurs landings longues sans navigation.
+
+**Fichiers** — `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/studio-ia-vs-ia-generative/page.tsx`, `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `app/[lang]/solutions/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Navigation desktop sur 96 pages indexables. Une nouvelle page d'une famille équipée (guide, fiche, solution) reçoit la barre sans autre geste. Aucun effet sur l'indexation : ni URL, ni canonique, ni hreflang, ni contenu.
+
+**Décision de conception à valider** — La barre de Mode insère le libellé actif après le numéro actif : les numéros suivants se décalent à chaque changement de section. CLS mesuré pendant le défilement sur `main` : 0,036 à 1 024 px, 0,021 à 1 440 px ; 0,080 sur un guide de 12 étapes avec la même mécanique. Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros : CLS 0 sur toutes les pages équipées. Mode reste sur son composant jusqu'au 26/11. Sa bascule changera l'emplacement du libellé : décision de Laurent, après contrôle de parité.
+
+**Vérifié** (build local, `main` `de6c4cd` en référence) —
+- Registre : 116 pages contrôlées, 116 conformes ; 96 équipées (44 guides, 39 fiches, 3 IA photo produit, 3 gamme, 3 solutions, 2 comparatifs, 2 studio-ia) ; 20 gelées ou exclues sans barre (F5, Mode avec sa barre d'origine, hub mode-textile, accueil, 3 guides de #27, budget, prestataire, Amazon).
+- `e2e/navigation-pages-longues.spec.ts` : 94/94 sur deux passages (47 tests). Couvre 17 pages équipées à 1 024 et 1 440 px, 3 pages à 390 et 768 px, 7 pages gelées ou exclues.
+- Comparaison `main` / branche, 116 pages à 390 et 1 440 px (232 combinaisons), puis 16 pages représentatives aux 7 largeurs (360 à 1 920, 112 combinaisons) :
+  - 0 écart de hauteur de page ;
+  - 0 largeur de tableau ou d'illustration modifiée ;
+  - 0 débordement horizontal nouveau (débordement de l'accueil à 390 px, préexistant) ;
+  - 0 régression de CLS. Deux valeurs isolées sous 1 024 px (solutions à 768 px, IA de-ch à 390 px) remesurées cinq fois : 0 sur `main` comme sur la branche.
+- axe-core à 390 et 1 440 px : 0 violation dans la barre. Violations de la page : `color-contrast` (pied de page) et `heading-order`, identiques sur `main`.
+- `tsc`, eslint (5 avertissements préexistants sur la fiche), `next build` (371 pages), Vitest 384/384.
+
+**Supposé** — Les ancres existantes `#resultats` (IA photo produit) et `#studios` (gamme), réutilisées, reçoivent sur desktop le décalage de 129 px : les CTA internes qui y mènent s'arrêtent sous la barre au lieu de 0 px. Effet tenu pour souhaitable ; non validé par Sébastien.
+**Non regardé** — Firefox, Safari, lecteur d'écran réel ; Preview (SSO) et `www` (R4) ; pages EN non indexées ; Mode non modifiée.
+
+**Suite** — Preview contrôlée par Laurent sur une page par famille ; GO de fusion distinct. Après le 26/11 : bascule de Mode (parité, décision). Après le 23/11 : réexamen de F5. Clôture de #27 et #64 : sortie des pages gelées.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé

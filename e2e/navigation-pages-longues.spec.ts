@@ -11,19 +11,32 @@ import { test, expect, type Page } from '@playwright/test';
 const EQUIPEES = [
   '/fr/guide/comment-faire-focus-stacking-pour-photographier-bague',
   '/en/guide/how-to-do-focus-stacking-for-ring-photography',
+  '/de-ch/guide/welche-ausrustung-fur-schmuckfotografie-wahlen',
+  '/fr/guide/comment-photographier-lunettes-e-commerce',
   '/fr/blog/studio-ia-vs-ia-generative',
   '/en/blog/studio-ia-vs-ia-generative',
+  '/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026',
   '/fr/studio-photo/alphashot-pro-g2',
   '/en/studio-photo/alphashot-pro-g2',
   '/de-ch/fotostudio/alphashot-pro-g2',
+  '/fr/studio-photo/alphastudio-xxl-v2',
+  '/fr/studio-photo/e-comm-studio-plus',
+  '/fr/ia-photo-produit',
+  '/de-ch/ia-photo-produit',
+  '/fr/studios-photo-automatises',
+  '/en/studios-photo-automatises',
+  '/fr/solutions/documentation-technique-visuelle',
 ];
 
-/** Pages gelées (expérience SEO ou PR ouverte) : aucune barre ajoutée. */
+/** Pages gelées (expérience SEO ou PR ouverte) ou exclues par la règle : aucune barre ajoutée. */
 const GELEES = [
   '/fr/packshot-e-commerce',
   '/fr/industrie/mode-textile',
   '/fr/guide/comment-faire-photos-multi-angles-chaussures',
   '/fr/blog/budget-studio-photo-automatise',
+  '/fr/blog/prestataire-packshot-vs-studio-interne',
+  '/fr/packshot-amazon',
+  '/fr',
 ];
 
 const BARRE = 'nav.fixed[aria-label]';
@@ -80,7 +93,7 @@ test.describe('Barre de sommaire, desktop', () => {
 
       for (const url of EQUIPEES) {
         test(`apparition, section active, ancres, disparition — ${url}`, async ({ page }) => {
-          await page.goto(url);
+          await page.goto(url, { waitUntil: 'networkidle' });
           const depart = await etat(page);
           expect(depart.present, 'barre rendue').toBe(true);
           expect(depart.visible, 'masquée en haut de page').toBe(false);
@@ -91,9 +104,9 @@ test.describe('Barre de sommaire, desktop', () => {
 
           for (const id of cibles) {
             await defilerVers(page, id);
+            await expect.poll(async () => (await etat(page)).visible, { message: `visible sur #${id}`, timeout: 3000 }).toBe(true);
+            await expect.poll(async () => (await etat(page)).actif, { message: `section active sur #${id}`, timeout: 3000 }).toBe(`#${id}`);
             const e = await etat(page);
-            expect(e.visible, `visible sur #${id}`).toBe(true);
-            expect(e.actif, `section active sur #${id}`).toBe(`#${id}`);
             expect(Math.abs(e.haut! - e.entete), 'collée sous l’en-tête').toBeLessThanOrEqual(1);
             expect(e.liste!, 'liste dans le cadre').toBeLessThanOrEqual(e.cadre! + 1);
             expect(e.collantes, 'une seule navigation collante').toBe(1);
@@ -111,8 +124,7 @@ test.describe('Barre de sommaire, desktop', () => {
           expect(position, 'cible dans l’écran').toBeLessThan(900);
 
           await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-          await page.waitForTimeout(250);
-          expect((await etat(page)).visible, 'masquée en fin de page').toBe(false);
+          await expect.poll(async () => (await etat(page)).visible, { message: 'masquée en fin de page', timeout: 3000 }).toBe(false);
         });
       }
     });

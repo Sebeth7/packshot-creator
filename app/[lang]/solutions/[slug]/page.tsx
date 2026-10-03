@@ -6,6 +6,8 @@ import { solutions } from '@/data/solutions';
 import { NOINDEX_EN_SOLUTIONS_SLUGS } from '@/lib/seo-config';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import { getMachineImage } from '@/lib/machine-images';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 import {
   CheckCircle,
   ArrowRight,
@@ -80,8 +82,29 @@ export default async function SolutionPage({ params }: PageProps) {
   /* Icons for stats */
   const statIcons = [TrendingDown, Factory, ImageIcon];
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active (data/navigation/pages-longues.ts).
+  const barre = barreActive('solution', lang as Langue, slug);
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        { id: 'probleme', libelle: solution.probleme.titre },
+        { id: 'workflow', libelle: solution.workflow.titre },
+        { id: 'secteurs', libelle: solution.secteurs.titre },
+        ...(recommendedMachines.length > 0 ? [{ id: 'systemes', libelle: isFr ? 'Les systèmes adaptés à ce besoin' : 'Systems tailored to this need' }] : []),
+        ...(solution.faq && solution.faq.length > 0 ? [{ id: 'faq', libelle: isFr ? 'Questions fréquentes' : 'Frequently asked questions' }] : []),
+      ]
+    : [];
+
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
       {/* ═══════════════════════════════════════════════════════════
           HERO — Centered layout, problem-first
           ═══════════════════════════════════════════════════════════ */}
@@ -107,7 +130,7 @@ export default async function SolutionPage({ params }: PageProps) {
       {/* ═══════════════════════════════════════════════════════════
           LE PROBLÈME EN CHIFFRES — fond white, rows horizontales
           ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id={ancre('probleme')} className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Left — sticky heading */}
@@ -161,7 +184,7 @@ export default async function SolutionPage({ params }: PageProps) {
       {/* ═══════════════════════════════════════════════════════════
           WORKFLOW — fond very-peri-50, split sticky + étapes numérotées
           ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-32 bg-very-peri-50">
+      <section id={ancre('workflow')} className="py-20 lg:py-32 bg-very-peri-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Left — sticky heading */}
@@ -246,7 +269,7 @@ export default async function SolutionPage({ params }: PageProps) {
       {/* ═══════════════════════════════════════════════════════════
           SECTEURS CONCERNÉS — fond white, grid cards avec liens industrie
           ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id={ancre('secteurs')} className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView direction="right" className="text-center mb-16">
             <span className="text-xs font-semibold text-primary-orbitvu uppercase tracking-[0.2em] mb-4 block">
@@ -304,7 +327,7 @@ export default async function SolutionPage({ params }: PageProps) {
           SYSTÈMES RECOMMANDÉS — fond future-dusk-900, cartes machines
           ═══════════════════════════════════════════════════════════ */}
       {recommendedMachines.length > 0 && (
-        <section className="py-20 lg:py-32 bg-future-dusk-900">
+        <section id={ancre('systemes')} className="py-20 lg:py-32 bg-future-dusk-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <ScrollReveal>
               <div className="text-center mb-16">
@@ -420,7 +443,7 @@ export default async function SolutionPage({ params }: PageProps) {
           FAQ — fond future-dusk-0, split sticky heading + accordion
           ═══════════════════════════════════════════════════════════ */}
       {solution.faq && solution.faq.length > 0 && (
-        <section className="py-20 lg:py-32 bg-future-dusk-0">
+        <section id={ancre('faq')} className="py-20 lg:py-32 bg-future-dusk-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
               {/* Left — sticky heading */}
