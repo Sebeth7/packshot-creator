@@ -58,10 +58,19 @@ Sébastien (voir `01-RAYON-ACTION.md`).
 
 ## Étape 2 — Travailler
 
+Avant de créer ou de modifier une page, appliquer les standards permanents
+(`docs/standards/README.md`) :
+- **page longue** : forme de navigation selon sa famille de gabarits
+  (`data/navigation/pages-longues.ts`, D44) ; jamais deux navigations collantes ;
+- **dimension, charge ou encombrement d'une machine** : valeur du référentiel
+  `data/produits/fiches-techniques.ts`, avec sa source (D45) ; une contradiction
+  se signale, elle ne se tranche pas en silence.
+
 Pendant le travail, à répétition :
 
 ```bash
 npx tsc --noEmit        # rapide, à lancer souvent
+npx vitest run          # dimensions (D45), registre de navigation (D44), SEO, ROI
 ```
 
 Avant de considérer le travail terminé :

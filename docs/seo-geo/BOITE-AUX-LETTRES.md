@@ -67,6 +67,61 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : D44, D45, contrôles permanents
+**Bloque** : rien ; information demandée par Laurent (arbitrages du 03/10). Applicable à la fusion de chaque PR, sur GO de Laurent.
+
+**Contexte** — Laurent a retenu le 03/10, pour présentation au GO de fusion, le renforcement de la CI (#86) et les deux corrections d'interface (#84, #85). Elles touchent des fichiers et des pages de ton périmètre.
+
+**Ce qui change pour tes PR, après la fusion de #86** (`.github/workflows/pr-checks.yml`) :
+- `npx vitest run` s'exécute sur chaque PR (environ 400 tests ; cohérence des dimensions produit, D45, et registre de navigation, D44) ;
+- après le build : Chromium et parcours Playwright ciblés (`machine-selector`, puis `sommaire-blog` et `navigation-pages-longues` à la fusion de #84 et #85, puis `anchors` après le lot AR-01). Le résumé du job liste les specs exécutés et ceux qui manquent ; aucun passage vert sans test exécuté ;
+- durée : environ 40 s de plus aujourd'hui, environ 2 min de parcours quand les quatre specs seront actifs [Inférence, mesure locale] ;
+- `garde-consequences` : une PR qui touche les deux catalogues de machines (`machines.ts`), `data/produits/`, `TableOfContents.tsx`, les `SommaireCollant.tsx` ou `data/navigation/` doit porter une section « Rayon d'action » ;
+- une dimension, une charge ou un encombrement modifié dans un catalogue sans mise à jour de `data/produits/fiches-techniques.ts` fait échouer Vitest (#83, D45). Les questions produit sont dans Q20.
+
+**Ce qui change à l'écran, à la fusion de #84 et #85** :
+- #84 : sommaire du blog corrigé (titre visé atteint, liste latérale plafonnée), y compris sur les pages dédiées de #64 et #27, sans modifier leurs fichiers ;
+- #85 : barre de sommaire collante, desktop, sur 90 pages : guides, fiches machines, IA photo produit, solutions, deux articles. Studios n'est pas concernée (chantier commercial). Les pages gelées sont listées dans `data/navigation/pages-longues.ts`.
+
+**La question** — Sébastien prend-il connaissance de ces contraintes ? Aucune décision n'est attendue ; une objection se porte à Laurent avant les GO de fusion.
+
+---
+
+### Q21 · 2026-10-03 · D44 et D45 : standards permanents, applicables aux deux environnements — mention proposée pour `/CLAUDE.md` — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : gouvernance, standards permanents
+**Bloque** : rien ; les deux règles sont en vigueur côté Laurent. Seule la mention dans `/CLAUDE.md`, qui relève de Sébastien (Q19, option A), attend sa décision.
+
+**Contexte** — Laurent a validé le 03/10 deux règles permanentes, D44 (R-UX-LONG, navigation des pages longues) et D45 (R-PRODUCT-DIM, caractéristiques dimensionnelles des produits). Elles visent toutes les pages, présentes et futures. Les catalogues de machines (`components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`) et une partie des gabarits concernés sont dans ton périmètre.
+
+**Vérifié** — Références stables : `docs/standards/README.md`, `docs/standards/R-UX-LONG.md`, `docs/standards/R-PRODUCT-DIM.md`. Mise en œuvre en PR brouillon, aucune fusionnée :
+- PRODUCT-TEST (#83) : référentiel et contrôle Vitest des dimensions ;
+- UX-BLOG (#84) : sommaire du blog ;
+- UX-STICKY : barre collante mutualisée et registre ;
+- CI : Vitest et specs de navigation en CI.
+
+Ce que D45 change pour ton environnement : une dimension, une charge ou un encombrement d'une machine ne se modifie plus dans un catalogue sans le référentiel `data/produits/fiches-techniques.ts`, sa source et sa date. Le test échoue sinon, après la PR CI. Les questions produit sont dans Q20.
+
+**La question** — Sébastien prend-il connaissance de D44 et D45, et accepte-t-il d'ajouter à `/CLAUDE.md` le renvoi ci-dessous, pour que ton environnement les applique sans passer par `docs/seo-geo/` ?
+
+Texte proposé, à insérer après la section 1 de `/CLAUDE.md` :
+
+> ## Standards permanents
+>
+> Deux règles s'appliquent à toute page et à toute donnée produit, quel que soit l'environnement Claude : `docs/standards/README.md`.
+> - **R-UX-LONG (D44)** — navigation des pages longues : registre `data/navigation/pages-longues.ts`, composant `components/navigation/SommaireCollant.tsx`, jamais deux navigations collantes.
+> - **R-PRODUCT-DIM (D45)** — dimensions, encombrements, charges : référentiel `data/produits/fiches-techniques.ts`, contrôlé par `npx vitest run`. Une contradiction se signale avec ses deux sources ; elle ne se tranche pas en silence.
+
+**Options**
+- A : prise de connaissance et ajout du renvoi → les deux environnements appliquent les mêmes standards dès la session suivante.
+- B : prise de connaissance sans ajout → D44 et D45 restent appliquées par le Claude de Laurent et contrôlées par les tests ; ton environnement les découvre par les échecs de test.
+
+**Ma recommandation** — A : le contrôle automatique existe déjà, le renvoi évite qu'une modification légitime des catalogues échoue sans explication.
+
+---
+
 ### Q19 · 2026-10-01 · Pour information — D42, standard éditorial, et D43, appels payants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : gouvernance
