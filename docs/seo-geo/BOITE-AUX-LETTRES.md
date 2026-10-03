@@ -94,7 +94,7 @@ dans `DECISIONS.md`.
 | Q20.12 | Retirés du catalogue PSC, actifs chez Orbitvu | Alphadesk, XL v2, XL Wine v2, Alphashot G2 : `delisted` (fiches servies, hors sitemap) | Pages « Alphadesk » et « Alphashot XL » actives sur orbitvu.com | Statut commercial à afficher ; XL v2 : D29 inchangée, aucune redirection touchée |
 | Q20.13 | Catégories de taille | Sélecteur : 360 et Pro G2 en « moyen » ; XL Pro v2 et XL v2 en « grand » | Calculateur ROI : 360 et Pro G2 en « petit » seulement ; XL G2 en « moyen » (choix « Seb 07/08 ») | Faut-il aligner, et dans quel sens ? |
 | Q20.14 | Cadences | Sélecteur : Alphadesk 480, Alphatable 500, Furniture 60 par jour | Calculateur ROI et fiches : 300, 300, 40 | Valeur à retenir |
-| Q20.15 | Contenus historiques | Registre, entrées H1 à H17 : guide d'achat 2026 et comparatif Orbitvu (« AlphaShot G2 » 100 × 80 × 80, « AlphaShot XXL » 200 × 150 × 150), article Pro G2 « 50 × 50 × 50 cm », hub mobilier « 2,5 m » | Référentiel | Correction dans ton circuit (prose), coordonnée avec #64 et #27 pour les deux pages dédiées |
+| Q20.15 | Contenus historiques | Registre, entrées H1 à H17 (H18 relève de Q20.16 ; H19, un prix, est hors D45) : guide d'achat 2026 et comparatif Orbitvu (« AlphaShot G2 » 100 × 80 × 80, « AlphaShot XXL » 200 × 150 × 150), article Pro G2 « 50 × 50 × 50 cm », hub mobilier « 2,5 m » | Référentiel | Correction dans ton circuit (prose), coordonnée avec #64 et #27 pour les deux pages dédiées |
 | Q20.16 | Analyse des leads | `lib/lead-enrichment.ts` : gabarits « 32x27 », « 68x62 », « 108x100 », « 74x68 cm » ; XXL, Compact, XL G2 absents | Référentiel ; analyse au registre, § 3 | Accord pour générer la liste depuis les catalogues ? |
 
 **Options**
