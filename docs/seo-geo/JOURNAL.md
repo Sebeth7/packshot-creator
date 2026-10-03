@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · D45 — référentiel des dimensions, contrôle de cohérence, registre des écarts, Q20 · Claude de Laurent
+
+**Chantier** : D45 (R-PRODUCT-DIM), PR PRODUCT-TEST | **PR** : brouillon, branche `ccr-79f70eb9-product-test` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Référentiel `data/produits/fiches-techniques.ts` (17 machines : valeurs consommées par le site, fiche fabricant relevée le 03/10, statut par caractéristique) ; écarts commerciaux connus `data/produits/ecarts-connus.ts` ; test `lib/produits/__tests__/coherence-dimensions.test.ts` (23 tests) ; script `scripts/produits/inventaire-mentions.mts` ; registre `docs/standards/registre-ecarts-dimensions.md` ; Q20 dans `BOITE-AUX-LETTRES.md`. **Aucune valeur affichée ni aucun catalogue modifiés.**
+
+**Pourquoi** — Audit du 03/10 : dimensions saisies à la main dans deux catalogues, synchronisées deux fois à la main (28/09, 01/10) ; champs voisins déjà divergents ; contenus libres faux (guide d'achat 2026, comparatif Orbitvu, article Pro G2, hub mobilier, prompt des leads). Consigne de Laurent du 03/10 : référentiel obligatoire immédiatement, aucune valeur commerciale contradictoire propagée avant validation de Sébastien.
+
+**Fichiers** — `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `scripts/produits/inventaire-mentions.mts`, `docs/standards/registre-ecarts-dimensions.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une modification de dimension, de charge ou d'encombrement dans un catalogue, une landing (Mode, F5), la FAQ d'une fiche ou une traduction, sans mise à jour du référentiel, fait échouer Vitest. La valeur XXL retirée (100 × 70 × 190) ne peut plus revenir. Bloquant en CI seulement après la PR CI (Vitest n'y tourne pas aujourd'hui).
+
+**Vérifié** —
+- `npx vitest run` : 20 fichiers, 400 tests verts (377 avant + 23).
+- Détection prouvée par trois mutations temporaires, fichiers restaurés à l'identique : XXL `w: 70` dans le catalogue ROI → 6 échecs ; « 190 × 70 × 100 » dans `en.json` (Mode) → 4 échecs ; cadence XXL modifiée dans le sélecteur → 1 échec.
+- Limites fonctionnelles sur `evaluateMachine` : XXL 90 cm accepté, 91 refusé ; rotation (190 × 100 × 90, 90 × 190 × 100 acceptés ; 191 et 101 refusés) ; 100 kg accepté, 101 refusé ; chaque machine accepte son objet maximal et refuse 1 cm de plus ; chaque charge chiffrée acceptée, 1 kg de plus refusé.
+- `npx tsc --noEmit`, eslint sur les fichiers ajoutés, `verifier-json` (180), `npx next build` (371 pages) : verts.
+- Inventaire : 81 triplets libres, 13 sans correspondance (registre, § 2).
+- Statuts du référentiel : contrôlés par le test contre les valeurs en présence (une contradiction doit être « écart » ou « à arbitrer » et citer un point de Q20).
+
+**Supposé** — Les pages orbitvu.com décrivent les produits actuels du fabricant ; elles ne suffisent pas à établir une correspondance de version avec les noms PSC (« Pro v2 », « v2 »).
+**Non regardé** — Brochures PDF Orbitvu ; notes Pipedrive produites par le prompt des leads (aucun accès, appels Gemini payants exclus) ; Preview et production.
+
+**Suite** — Réponse de Sébastien à Q20, puis PR PRODUCT-DATA (catégorie A d'abord : XL G2 et Micro, encombrements) ; dérivation des catalogues depuis le référentiel ; valeurs F5 après le 23/11, Mode après le 26/11.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
