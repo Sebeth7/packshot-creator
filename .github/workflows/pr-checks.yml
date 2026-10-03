@@ -43,6 +43,11 @@ jobs:
       - name: Intégrité des JSON
         run: node scripts/seo/verifier-json.mjs
 
+      - name: Tests unitaires (Vitest)
+        # ~400 tests, ~5 s en local : cohérence des dimensions produit (D45),
+        # registre de navigation des pages longues (D44), SEO, conseiller ROI.
+        run: npx vitest run
+
       - name: Lint
         run: npx eslint --max-warnings=0 .
         continue-on-error: true
@@ -58,3 +63,50 @@ jobs:
 
       - name: Build de production
         run: npx next build
+
+      # Parcours navigateur ciblés, sur le build de production ci-dessus : sélecteur
+      # de machines, sommaire du blog et barre des pages longues (D44). Chaque spec
+      # attendu est inventorié dans le résumé du job : présent, il est exécuté ;
+      # absent de la branche testée, il est signalé avec la PR qui l'apporte. Le job
+      # échoue si aucun spec n'est présent : pas de passage vert sans test exécuté.
+      - name: Navigateur Chromium (Playwright)
+        run: npx playwright install --with-deps chromium
+
+      - name: Parcours navigateur (navigation, sélecteur)
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+        run: |
+          # spec:PR qui l'apporte
+          ATTENDUS="machine-selector:#86 sommaire-blog:#84 navigation-pages-longues:#85"
+          # spec:condition d'activation (spec présent sur main, pas encore exécuté ici)
+          DIFFERES="anchors:AR-01"
+          PRESENTS=""
+          {
+            echo "### Parcours navigateur : specs attendus"
+            echo ""
+            echo "| Spec | État dans cette branche |"
+            echo "|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          for entree in $ATTENDUS; do
+            spec="e2e/${entree%%:*}.spec.ts"; pr="${entree##*:}"
+            if [ -f "$spec" ]; then
+              PRESENTS="$PRESENTS $spec"
+              echo "| \`$spec\` | exécuté |" >> "$GITHUB_STEP_SUMMARY"
+              echo "Spec présent, exécuté : $spec"
+            else
+              echo "| \`$spec\` | absent, non exécuté : arrive avec $pr |" >> "$GITHUB_STEP_SUMMARY"
+              echo "::notice::Spec absent de cette branche, non exécuté : $spec (arrive avec $pr)"
+            fi
+          done
+          for entree in $DIFFERES; do
+            spec="e2e/${entree%%:*}.spec.ts"; condition="${entree##*:}"
+            echo "| \`$spec\` | non exécuté : activation après $condition |" >> "$GITHUB_STEP_SUMMARY"
+            echo "::notice::Spec non exécuté par ce job : $spec (activation après $condition)"
+          done
+          if [ -z "$PRESENTS" ]; then
+            echo "::error::Aucun spec de parcours présent : rien ne serait vérifié."
+            exit 1
+          fi
+          npx next start -p 3000 > /tmp/next-start.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:3000/fr && break; sleep 2; done
+          npx playwright test $PRESENTS --project=chromium --workers=2 --reporter=line

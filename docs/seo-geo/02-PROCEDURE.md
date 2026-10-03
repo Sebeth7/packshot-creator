@@ -140,7 +140,7 @@ Trois workflows se déclenchent. Tous doivent être verts.
 
 | Workflow | Ce qu'il vérifie |
 |---|---|
-| `pr-checks` | `tsc --noEmit`, `next build`, validité des JSON, lint |
+| `pr-checks` | `tsc --noEmit`, validité des JSON, Vitest (dont la cohérence des dimensions, D45, et le registre de navigation, D44), lint, `next build`, puis parcours Playwright sur ce build : sélecteur de machines, sommaire du blog, barre des pages longues. Le résumé du job liste chaque spec attendu : exécuté, absent de la branche (avec la PR qui l'apporte) ou différé ; aucun passage vert sans test exécuté |
 | `garde-consequences` | Rappelle ce qui dépend des fichiers touchés ; exige la section « Rayon d'action » si le diff déborde |
 | `garde-journal` | `JOURNAL.md` a bien une entrée nouvelle |
 

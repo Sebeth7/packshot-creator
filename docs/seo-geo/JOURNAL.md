@@ -34,6 +34,63 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · CI — inventaire explicite des specs de parcours, sans `--pass-with-no-tests` (revue pré-fusion) · Claude de Laurent
+
+**Chantier** : D44, D45, revue pré-fusion #83 à #87 | **PR** : #86 | **Base** : `main` `de6c4cd`
+
+**Quoi** — L'étape « Parcours navigateur » inventorie chaque spec attendu dans le résumé du job : présent, exécuté ; absent, signalé avec la PR qui l'apporte (#84, #85) ; `anchors` signalé « activation après AR-01 ». `--pass-with-no-tests` est retiré : le job échoue si aucun spec n'est présent.
+
+**Pourquoi** — Mesuré en local : Playwright ignore déjà un filtre sans correspondance quand un autre en a une ; `--pass-with-no-tests` ne servait donc qu'à rendre vert un passage sans aucun test exécuté (code de sortie 0 au lieu de 1). Le rapport ne distinguait pas les specs exécutés des specs à venir.
+
+**Fichiers** — `.github/workflows/pr-checks.yml`, `docs/seo-geo/JOURNAL.md`
+
+**Vérifié** — YAML valide ; étape simulée en local : branche actuelle (1 spec exécuté, 3 signalés, sortie 0) et arbre sans spec (sortie 1, erreur explicite) ; filtre `e2e/machine-selector.spec.ts` : 12 tests sélectionnés avec la configuration du dépôt.
+**Supposé** — rien.
+**Non regardé** — `retries: 2` en CI dans `playwright.config.ts` (réglage existant) : un test réussi au deuxième essai est compté « flaky », pas en échec.
+
+**Corrections de l'entrée précédente** — Durée mesurée sur la CI de cette PR : 40 s d'étapes ajoutées, et non 3 à 4 minutes. `anchors` s'active après le lot AR-01, et non après #85 : la revue pré-fusion propose de séparer l'ancre `#calculateur-roi` de la barre.
+
+---
+
+## 2026-10-03 · CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit · Claude de Laurent
+
+**Chantier** : D44, D45, contrôles permanents, PR CI | **PR** : brouillon, branche `ccr-79f70eb9-ci` | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- `pr-checks.yml` : étape Vitest après l'intégrité des JSON. Après le build : installation de Chromium, serveur de production local, specs Playwright `machine-selector`, `sommaire-blog`, `navigation-pages-longues` (Chromium, 2 workers ; les specs absents de la branche testée sont ignorés).
+- `scripts/seo/verifier-consequences.mjs` et `01-RAYON-ACTION.md` : catalogues de machines, `data/produits/`, `TableOfContents.tsx`, `SommaireCollant.tsx`, `data/navigation/` passent en rayon large.
+- `02-PROCEDURE.md` : table de la porte CI.
+- `e2e/machine-selector.spec.ts` réécrit sur le parcours réel.
+
+**Pourquoi** — Audit du 03/10 : la CI n'exécutait ni Vitest ni Playwright. Le spec du sélecteur échouait à 11 tests sur 14 sur le build de `main` : barre de recherche, tri par prix, bouton « Voir les détails » et cartes `rounded-xl` n'existent plus.
+
+**Spec du sélecteur** — Assertions dérivées du catalogue affiché (`components/machine-selector/lib/machines.ts`), au lieu de constantes :
+- une carte par machine non délistée, dans l'ordre du catalogue ;
+- taille maximale affichée par carte (D45) ;
+- liste exacte par filtre de taille et d'automatisation, avec compteur ;
+- aperçu : ouverture, points forts, taille, fermeture par bouton et par Échap ;
+- lien « Voir la fiche » ; réinitialisation ; bloc d'aide ; EN et de-ch ; mobile sans débordement.
+
+Tests retirés parce que la fonction n'existe plus dans l'interface : recherche par nom, tri par prix. Aucun test désactivé.
+
+**Fichiers** — `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/02-PROCEDURE.md`, `e2e/machine-selector.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une PR qui casse la cohérence des dimensions, le registre de navigation, le sommaire du blog, la barre des pages longues ou le sélecteur est rouge avant fusion. Les PR qui touchent les catalogues de machines ou la navigation doivent déclarer leur rayon d'action, celles de Sébastien comprises.
+
+**Vérifié** —
+- Spec du sélecteur réécrit : 12/12 sur le build de `main` (ancienne version : 3/14).
+- Commande Playwright de la CI rejouée sur le build de la branche : 12/12 en 8 s.
+- Vitest : 377 tests en 3 s.
+- YAML valide ; `verifier-consequences` reconnaît les quatre nouveaux motifs.
+- `tsc`, `verifier-json`, eslint, `next build`.
+
+**Supposé** — Dépôt public : minutes GitHub Actions non facturées [Non vérifié : facturation du compte non consultée]. Durée ajoutée au job estimée à 3 à 4 minutes (installation de Chromium surtout) ; mesurée sur la CI de cette PR.
+**Non regardé** — Firefox, WebKit, mobile émulé en CI (seul Chromium y tourne). `e2e/anchors.spec.ts` n'est pas ajouté : son test « #calculateur-roi » échoue sur `main`, défaut corrigé par #85 ; à ajouter après la fusion de #85.
+
+**Suite** — Après fusion de #84 et #85, leurs specs s'exécutent sans modification du workflow. Ajouter `anchors` à la commande après #85.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé

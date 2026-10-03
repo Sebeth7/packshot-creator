@@ -95,6 +95,14 @@ le voit, et sous quel délai. **C'est l'outil de travail de ce document.**
 | `lib/pipedrive.ts`, `lib/supabase.ts` | CRM et base | Un lead qui n'arrive pas dans Pipedrive est un lead mort |
 | Calculateur ROI : `lib/roiChat/**`, `lib/roiEngine/**`, `app/calculateur-roi`, `roi-pro`, `roi-preview` | Coût API Anthropic **par requête**, et un tunnel de conversion | Une boucle de prompt fait dériver le coût sans erreur visible. `ROI_CHAT_MONTHLY_TOKEN_ALERT` est le garde-fou |
 
+### Données produit et navigation des pages longues (D44, D45)
+
+| Fichier | Ce qui en dépend | Si on se trompe | Comment on le voit |
+|---|---|---|---|
+| `components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`, `data/produits/` | 39 fiches (spécifications, FAQ visible, FAQPage), sélecteur, assistant, moteur et conseiller ROI, rapport PDF, hubs, solutions, landings Amazon / Industriel | Une dimension, une charge ou un encombrement contradictoire entre pages ; une recommandation de machine modifiée | `npx vitest run lib/produits` (référentiel D45, `docs/standards/R-PRODUCT-DIM.md`) |
+| `components/blog/TableOfContents.tsx` | Sommaire des 122 articles du gabarit commun et de 6 pages dédiées | Navigation du blog inutilisable, titre visé masqué ou hors écran | `e2e/sommaire-blog.spec.ts` |
+| `components/navigation/SommaireCollant.tsx`, `components/landings/SommaireCollant.tsx`, `data/navigation/` | Barre de Mode (mesure jusqu'au 26/11/2026) et des familles équipées : guides, fiches, solutions, landings | Barre qui masque un titre, double navigation collante, page gelée modifiée | `e2e/navigation-pages-longues.spec.ts` ; registre `data/navigation/pages-longues.ts` (`docs/standards/R-UX-LONG.md`) |
+
 ### Fichiers partagés avec Sébastien
 
 Rayon large pour une autre raison : la collision.
