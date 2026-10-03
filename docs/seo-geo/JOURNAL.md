@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios et CTA de prestataire (périmètre validé par Laurent) · Claude de Laurent
+
+**Chantier** : Maillage V2, lot AR-01 | **PR** : brouillon autonome du propriétaire du lot Maillage V2 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- La section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` porte l'`id` permanent `calculateur-roi`, indépendant de la barre de sommaire (`barreActive()`).
+- Le CTA « btnRoi » de `prestataire-packshot-vs-studio-interne` (FR, EN) vise `#calculateur-roi` au lieu de `#roi`, ancre inexistante.
+- Le CTA de la section ROI garde sa destination : le calculateur `/calculateur-roi`.
+
+**Pourquoi** — 19 liens dans le code (8 fichiers), soit 39 liens rendus sur 17 pages, visent la section ROI de Studios ; sur `main`, ni `#calculateur-roi` ni `#roi` n'existent et le visiteur arrive en haut de page. Ancre retirée le 22/03/2026 (`d5a7fea`).
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut), `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx` (un `hash`), `e2e/anchors.spec.ts` (cinq tests ajoutés)
+
+**Effet attendu** — Les 39 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. Témoin du pilote (`studio-photo/selecteur-machines`) non modifié.
+
+**Vérifié** — Build local : `anchors.spec` 12/12 (7 existants, 5 ajoutés) ; sur `main`, 6/7. HTML rendu de Studios (FR, EN, de-ch) : seule différence avec `main`, l'attribut `id`. Arrivée mesurée à 390 et 1 440 px : titre sous l'en-tête.
+**Supposé** — Aucun effet d'indexation : un attribut `id` et un fragment d'URL interne.
+**Non regardé** — Inventaire Maillage V2 (22 liens) : écart avec les 19 liens trouvés non expliqué. Effet sur les mesures d'audience de Studios.
+
+**Suite** — PR brouillon du propriétaire Maillage V2 ; réservation du fichier Studios à coordonner avec Landings & Hubs ; publication envisagée au J0 du 29/10 (P2 sous réserve). Après fusion de #86 : passer `anchors` de la liste des différés à celle des attendus dans `pr-checks.yml`.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
