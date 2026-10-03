@@ -20,6 +20,8 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 
 // Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
 // Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
@@ -518,6 +520,23 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const faqItems = machine.faqItems || [];
   const keyStats = machine.keyStats || [];
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active pour cette fiche.
+  const barre = barreActive('fiche-machine', lang as Langue, machine.id);
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        ...(gallery.video ? [{ id: 'en-action', libelle: tx(lang, `Le ${machine.nom} en action`, `The ${machine.nom} in action`, `Der ${machine.nom} in Aktion`) }] : []),
+        { id: 'avantages', libelle: tx(lang, 'Avantages clés', 'Key advantages', 'Wichtige Vorteile') },
+        { id: 'caracteristiques', libelle: tx(lang, 'Caractéristiques', 'Specifications', 'Technische Daten') },
+        ...(gallery.software && gallery.software.length > 0 ? [{ id: 'logiciel', libelle: tx(lang, 'Logiciel tout-en-un', 'All-in-one software', 'All-in-one-Software') }] : []),
+        ...(gallery.accessories && gallery.accessories.length > 0 ? [{ id: 'accessoires', libelle: tx(lang, 'Complétez votre système', 'Complete your system', 'Ergänzen Sie Ihr System') }] : []),
+        ...(similarMachines.length > 0 ? [{ id: 'systemes-similaires', libelle: tx(lang, 'Systèmes similaires', 'Similar systems', 'Ähnliche Systeme') }] : []),
+        { id: 'formation', libelle: tx(lang, `Maîtrisez votre ${machine.nom}`, `Master your ${machine.nom}`, `Meistern Sie Ihren ${machine.nom}`) },
+        ...(faqItems.length > 0 ? [{ id: 'faq', libelle: tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen') }] : []),
+      ]
+    : [];
+
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
@@ -552,6 +571,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
+
       {/* Hero Product */}
       <HeroSection
         layout="split"
@@ -767,7 +794,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Full-width Video Demo */}
       {gallery.video && (
-        <section className="py-20 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+        <section id={ancre('en-action')} className="py-20 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
             <FadeInView>
@@ -830,7 +857,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       )}
 
       {/* Key Advantages — Featured first + 2-col grid */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id={ancre('avantages')} className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -904,7 +931,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       </section>
 
       {/* Specs & Use Cases — Merged split layout */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
+      <section id={ancre('caracteristiques')} className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -1003,7 +1030,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Software Features */}
       {gallery.software && gallery.software.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('logiciel')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -1045,7 +1072,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Accessories */}
       {gallery.accessories && gallery.accessories.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('accessoires')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -1087,7 +1114,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #D Similar Machines */}
       {similarMachines.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('systemes-similaires')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
             <div className="text-center mb-12 lg:mb-16">
@@ -1142,7 +1169,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       )}
 
       {/* Training Recommendation — Inverted split: content left, gradient right */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section id={ancre('formation')} className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             <FadeInView direction="left" className="lg:col-span-7">
@@ -1212,7 +1239,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #C FAQ — Split: sticky heading left + accordion right */}
       {faqItems.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('faq')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
