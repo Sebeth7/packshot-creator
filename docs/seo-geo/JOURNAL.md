@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · Revue pré-fusion — lot 1 V4.3 ouvert (#88 à #92), conséquence D44 sur #85 · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Revue complétée : PR #88 à #92 du lot 1 relevées ; #91 (A03) touche trois guides équipés par #85, 4 `href` de `introText` seulement. Gel D44 de ces guides soumis à Laurent (lecture stricte ou proportionnée).
+
+**Pourquoi** — Information de la session « Réparations lot 1 V4.3 », vérifiée sur GitHub (fichiers de #91).
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`
+
+**Vérifié** — Fichiers de #88 à #92 sur GitHub : JSON de contenu et `JOURNAL.md` seulement. Diff de #91 : 3 JSON de guides, champ `introText`, 4 liens ; aucune étape modifiée.
+**Supposé** — rien.
+**Non regardé** — contenu des diffs de #88, #89, #90, #92 ; comportement de `/fr/calculateur-roi` rapporté par l'autre session.
+
+**Suite** — Arbitrage de Laurent, avec celui de Studios.
+
+---
+
 ## 2026-10-03 · Revue pré-fusion — correction de l'inventaire ROI (lien `#roi` de prestataire) · Claude de Laurent
 
 **Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`

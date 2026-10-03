@@ -62,7 +62,7 @@ Aucun fichier de code n'est partagé entre les cinq PR.
 | A7 | #85 : l'`id` `calculateur-roi` de Studios dépend de `barreActive()` | Diff de #85 sur Studios | Lot AR-01 autonome préparé (§ 4). **Non poussé : arbitrage** |
 | A8 | #85 modifie la page Studios, en pilote coordonné | Diff de #85 | Retrait préparé et testé (§ 3). **Non poussé : arbitrage** |
 | A9 | Activation d'`anchors.spec` liée à #85 dans la documentation | `ETAT.md` F4 bis, JOURNAL de #86 | Liée à AR-01. Corrigé, #86 et #87 |
-| A10 | `e2e/roi-calculator.spec.ts` cherche un calculateur intégré à Studios, retiré le 22/03/2026 (commit `d5a7fea`) | Lecture du spec | Signalé seulement. Ne pas l'ajouter à la CI en l'état : il échouerait même après AR-01, la section ROI étant une accroche |
+| A10 | `e2e/roi-calculator.spec.ts` cherche un calculateur intégré à Studios, retiré le 22/03/2026 (commit `d5a7fea`) | Lecture du spec. [Non vérifié] Selon la session « Réparations lot 1 », `/fr/calculateur-roi` n'affiche plus que le conseiller conversationnel (`/api/roi-chat` à chaque envoi), l'assistant à étapes n'existant plus qu'en EN et de-ch : toute réécriture du spec devra simuler `/api/roi-pdf`, `/api/roi-lead` et `/api/roi-chat` | Signalé seulement. Ne pas l'ajouter à la CI en l'état : il échouerait même après AR-01, la section ROI étant une accroche |
 | A11 | Q20.15 citait H1 à H17, le registre en compte 19 | Registre de #83 | Corrigé le 03/10 (`e4f7ab5`) |
 | A12 | Inventaire ROI de la première version de cette revue incomplet : le CTA de `prestataire-packshot-vs-studio-interne` pointe vers `/studios-photo-automatises#roi`, ancre également absente (1 lien dans le code, 2 rendus FR et EN) | `page.tsx` l. 374 ; HTML rendu. Signalé par la session « Réparations lot 1 V4.3 » (F-024, F-025), vérifié | Inventaire corrigé au § 4 ; non couvert par le patch AR-01 actuel, options au § 4 |
 
@@ -111,12 +111,12 @@ Variante écartée : désactivation par le registre en laissant le code de #85 d
 
 **PR éditoriales ouvertes** (#27, #59, #60, #64, #70, #77, #79, #82) : aucun fichier de code commun avec #85.
 
-**Lot 1 V4.3 en préparation** : information de la session « Réparations lot 1 V4.3 » du 03/10, non établie par GitHub au moment de la revue. Ses PR (C08, A04a, A02, A03, A04b) ne touchent aucun fichier de #83 à #87, ni ceux des correctifs proposés. Une conséquence pour #85 :
-- A03 modifie trois guides : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN), `comment-photographier-lunettes-e-commerce` (FR) ;
-- D44 gèle les pages touchées par une PR éditoriale ouverte : ces trois guides devraient entrer comme exceptions au registre tant que A03 est ouverte, comme les guides de #27 ;
-- `e2e/navigation-pages-longues.spec.ts` prend `comment-photographier-lunettes-e-commerce` comme page équipée de référence : à remplacer par un autre guide si A03 l'ouvre.
+**Lot 1 V4.3** (session « Réparations lot 1 V4.3 ») : PR brouillon #88 (C08), #89 (A04a), #90 (A02), #91 (A03), #92 (A04b), ouvertes le 03/10, base `de6c4cd`. Vérifié sur GitHub : elles ne modifient que des JSON de contenu (`content/blog/**`, `content/guides/**`, `alternates.json`) et `JOURNAL.md`, aucun fichier de #83 à #87 ni des correctifs proposés. Les articles de #89, #90 et #92 utilisent le sommaire du blog : le correctif de #84 s'y applique sans toucher leurs fichiers, comme pour les pages de #64. Une conséquence pour #85 :
+- #91 (A03) modifie trois guides : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN), `comment-photographier-lunettes-e-commerce` (FR). Vérifié sur GitHub : 4 `href` du champ `introText` seulement, aucune étape ni titre modifié ;
+- la barre de #85 sur ces guides et le spec qui prend `comment-photographier-lunettes-e-commerce` comme référence ne sont donc pas affectés techniquement ;
+- D44 gèle toutefois les pages touchées par une PR éditoriale ouverte, comme les guides de #27. Lecture stricte : ces trois guides passent en exception au registre tant que #91 est ouverte, et le spec change de page de référence. Lecture proportionnée : pas de gel, puisque #91 ne change ni texte ni structure.
 
-Ces ajustements suivront l'ouverture des PR du lot 1, avec l'arbitrage Studios.
+Décision de Laurent ; l'ajustement éventuel suivra l'arbitrage Studios, dans le même push sur #85.
 
 ---
 
@@ -275,7 +275,7 @@ Je n'ai pas accès au tableau V4.3. Lignes proposées :
 
 ## 10. GO encore nécessaires
 
-1. **Studios / #85** : retrait de Studios (variante préparée, recommandée), désactivation par le registre, ou maintien. Je pousse sur #85 seulement après cet arbitrage. Ajustements liés au lot 1 (guides de A03) dans le même push.
+1. **Studios / #85** : retrait de Studios (variante préparée, recommandée), désactivation par le registre, ou maintien. Je pousse sur #85 seulement après cet arbitrage. Dans le même push : gel ou non des trois guides de #91 (lecture stricte ou proportionnée de D44).
 2. **AR-01** :
    - rattachement au lot Maillage V2 autonome ;
    - création d'une PR brouillon dédiée (aucune PR créée sans accord) ;
