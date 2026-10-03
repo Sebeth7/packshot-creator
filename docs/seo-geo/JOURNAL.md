@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · Revue pré-fusion #83 à #87 : alignement V4.3, Studios, AR-01, couverture CI · Claude de Laurent
+
+**Chantier** : D44, D45, revue pré-fusion demandée par le pilotage global | **PR** : #87 (documentation), corrections poussées sur #83 et #86 | **Base** : `main` `de6c4cd`
+
+**Quoi** — `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`. Statuts de D44 et D45 à trois niveaux (principe approuvé, inscription en brouillon, application à la fusion). `ETAT.md` : `main` réel, têtes, arbitrages. Correctifs Studios et AR-01 versionnés en patch, non appliqués.
+
+**Pourquoi** — Revue du pilotage du 03/10 : collision de #85 avec le pilote Studios, ancre `#calculateur-roi` conditionnée à la barre, couverture CI à expliciter, statuts des règles à distinguer.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/propositions-2026-10-03/*.patch`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/*.md`
+
+**Vérifié** — Fusion d'essai locale (#87, #83, #86, AR-01, #84, #85 en variante) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; build vert ; Vitest 408/408 ; parcours 74/74 ; 37 liens ROI aboutis ; pages gelées sans différence hors AR-01 et balisage du sommaire du blog ; JSON-LD identique.
+**Supposé** — Effet d'indexation nul de l'attribut `id` d'AR-01 [Inférence].
+**Non regardé** — Programme Directeur V4.3, inventaire Maillage V2 (22 liens), scénario P2, tableau de suivi : absents du dépôt.
+
+**Suite** — Arbitrages de Laurent : Studios / #85, AR-01 (rattachement, date), pages IA, Preview de #84, libellé actif, GO d'infrastructure de #86, GO de fusion par PR.
+
+---
+
 ## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
 
 **Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`

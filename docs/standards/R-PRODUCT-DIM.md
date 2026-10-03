@@ -1,6 +1,7 @@
 # R-PRODUCT-DIM — Caractéristiques dimensionnelles des produits
 
 **Décision** : D45 (`docs/seo-geo/DECISIONS.md`), Laurent, 03/10/2026.
+**Statut** : principe approuvé le 03/10/2026 ; inscrit par #87 (brouillon au 03/10) ; appliqué à la fusion des PR de mise en œuvre : #83 (référentiel, contrôle) ; contrôle en CI : #86.
 **Portée** : toute caractéristique dimensionnelle d'une machine affichée, calculée ou transmise par le site, dans les trois langues, quel que soit l'environnement Claude qui la modifie.
 **Mise en œuvre** : référentiel `data/produits/fiches-techniques.ts` ; écarts connus `data/produits/ecarts-connus.ts` ; contrôle `lib/produits/__tests__/coherence-dimensions.test.ts` ; registre `docs/standards/registre-ecarts-dimensions.md` ; inventaire `npx tsx scripts/produits/inventaire-mentions.mts`.
 
@@ -26,7 +27,7 @@ Une contradiction non résolue reste inscrite comme telle. Une valeur fabricant 
 | Génération ou version commerciale | Nom PSC, nom fabricant, correspondance `etablie`, `non-etablie` ou `sans-source` | `nomPsc`, `fabricant.nom`, `version` | — |
 | Source primaire | Page ou document du fabricant, recopié mot pour mot. Un fichier dérivé du code n'en est pas une | `fabricant.source.url`, `intitule` | — |
 | Date de vérification | Date et heure du relevé | `fabricant.source.releveLe` | UTC |
-| Statut de validation métier | `conforme`, `ecart` (erreur démontrée, catégorie A), `a-arbitrer` (catégorie B), `non-verifiable` ; points de Q20 | `statuts`, `q20` | — |
+| Statut de validation métier | `conforme` (correspondance numérique avec la fiche fabricant consultée ; ne valide pas la version commerciale), `ecart` (erreur démontrée, catégorie A), `a-arbitrer` (catégorie B), `non-verifiable` ; points de Q20 | `statuts`, `q20` | — |
 
 Un nom PSC suffixé (« Pro v2 », « v2 ») et un nom fabricant sans suffixe ne sont réputés identiques qu'après validation écrite de Sébastien (même logique que D29 pour XL v2 / XL G2).
 

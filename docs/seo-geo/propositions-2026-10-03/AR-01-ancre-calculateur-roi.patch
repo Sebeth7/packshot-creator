@@ -1,0 +1,102 @@
+From 013659353cb170cae462567c958e8cc2a3bb90a0 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 3 Oct 2026 10:42:25 +0000
+Subject: [PATCH] fix(maillage): ancre permanente #calculateur-roi sur Studios
+ (AR-01, proposition)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+La section ROI de /studios-photo-automatises porte l'id calculateur-roi,
+cible de 18 liens internes (37 liens rendus). Indépendant de la barre de
+sommaire. anchors.spec : 10/10 sur build local, 6/7 sur main.
+
+Branche locale de proposition : non poussée, en attente d'arbitrage.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01G8ncZVYE7Nr4HDnNc59aw4
+---
+ app/[lang]/studios-photo-automatises/page.tsx |  4 +++-
+ docs/seo-geo/JOURNAL.md                       | 20 +++++++++++++++++++
+ e2e/anchors.spec.ts                           | 18 +++++++++++++++++
+ 3 files changed, 41 insertions(+), 1 deletion(-)
+
+diff --git a/app/[lang]/studios-photo-automatises/page.tsx b/app/[lang]/studios-photo-automatises/page.tsx
+index 04f4717..7518b7f 100644
+--- a/app/[lang]/studios-photo-automatises/page.tsx
++++ b/app/[lang]/studios-photo-automatises/page.tsx
+@@ -290,8 +290,10 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang:
+ 
+       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           6. ROI TEASER — Gradient + floating card
++          Ancre permanente #calculateur-roi : cible des liens « Calculer mon ROI »
++          du blog et du sélecteur (AR-01). Ne pas la conditionner ni la renommer.
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+-      <section className="py-20 lg:py-32 relative overflow-hidden">
++      <section id="calculateur-roi" className="py-20 lg:py-32 relative overflow-hidden">
+         <div className="absolute inset-0 bg-gradient-to-br from-very-peri-600 via-very-peri-500 to-future-dusk-700" />
+         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
+ 
+diff --git a/docs/seo-geo/JOURNAL.md b/docs/seo-geo/JOURNAL.md
+index bdc2778..36ebe9c 100644
+--- a/docs/seo-geo/JOURNAL.md
++++ b/docs/seo-geo/JOURNAL.md
+@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
+ 
+ ---
+ 
++## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios (proposition, non publiée) · Claude de Laurent
++
++**Chantier** : maillage, lot AR-01 | **PR** : aucune, en attente d'arbitrage (revue pré-fusion #83 à #87) | **Base** : `main` `de6c4cd`
++
++**Quoi** — La section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` porte l'`id` permanent `calculateur-roi`, indépendant de la barre de sommaire (#85).
++
++**Pourquoi** — 18 liens dans le code (7 fichiers), soit 37 liens rendus sur 15 pages (FR, EN, de-ch), pointent vers `/studios-photo-automatises#calculateur-roi`. Sur `main`, l'ancre n'existe pas : le visiteur arrive en haut de la page. `e2e/anchors.spec.ts` échoue sur ce point.
++
++**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut), `e2e/anchors.spec.ts` (trois tests ajoutés)
++
++**Effet attendu** — Les 37 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. HTML de Studios inchangé à l'attribut près.
++
++**Vérifié** — Build local : `anchors.spec` 10/10 (7/7 existants, 3 ajoutés) ; sur `main`, 6/7. HTML rendu FR, EN, de-ch comparé à `main` : seule différence, l'attribut `id`. Arrivée mesurée à 390 et 1 440 px : titre à 200 et 280 px, sous l'en-tête de 65 px.
++**Supposé** — Aucun effet d'indexation : un attribut `id` sans changement de texte, d'URL ni de lien.
++**Non regardé** — Inventaire Maillage V2 (22 liens) : document non disponible dans le dépôt, écart avec les 18 liens trouvés non expliqué. Effet sur les mesures d'audience de Studios.
++
++**Suite** — Arbitrage de Laurent : rattachement au lot Maillage V2, date de publication au regard du J0 Studios proposé le 29/10.
++
++---
++
+ ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
+ 
+ **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
+diff --git a/e2e/anchors.spec.ts b/e2e/anchors.spec.ts
+index 27cc804..8700e4e 100644
+--- a/e2e/anchors.spec.ts
++++ b/e2e/anchors.spec.ts
+@@ -47,6 +47,24 @@ test.describe('Anchor Links', () => {
+     await expect(el).toBeAttached();
+   });
+ 
++  // AR-01 : l'ancre est la cible de liens internes dans les trois langues (blog, sélecteur).
++  for (const lang of ['en', 'de-ch']) {
++    test(`#calculateur-roi exists on /${lang}/studios-photo-automatises`, async ({ page }) => {
++      await page.goto(`/${lang}/studios-photo-automatises`);
++      await expect(page.locator('#calculateur-roi')).toBeAttached();
++    });
++  }
++
++  test('le lien « Calculer mon ROI » du sélecteur atteint la section ROI de Studios', async ({ page }) => {
++    await page.goto('/fr/studio-photo/selecteur-machines');
++    const href = await page.locator('a[href$="#calculateur-roi"]').first().getAttribute('href');
++    expect(href).toBe('/fr/studios-photo-automatises#calculateur-roi');
++    await page.goto(href!);
++    const section = page.locator('#calculateur-roi');
++    await expect(section).toBeAttached();
++    await expect(section.locator('a[href="/fr/calculateur-roi"]')).toBeAttached();
++  });
++
+   test('#secteurs exists on /fr/industrie', async ({ page }) => {
+     await page.goto('/fr/industrie');
+     const hasId = await page.evaluate(() => !!document.getElementById('secteurs'));
+-- 
+2.43.0
+

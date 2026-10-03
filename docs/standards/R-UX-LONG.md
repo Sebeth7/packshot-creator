@@ -1,6 +1,7 @@
 # R-UX-LONG — Navigation des pages longues
 
 **Décision** : D44 (`docs/seo-geo/DECISIONS.md`), Laurent, 03/10/2026.
+**Statut** : principe approuvé le 03/10/2026 ; inscrit par #87 (brouillon au 03/10) ; appliqué à la fusion des PR de mise en œuvre : #84 (forme B), #85 (forme A, registre) ; contrôle en CI : #86.
 **Portée** : toutes les pages du site, existantes et futures, FR, EN et de-ch, produites par les deux environnements Claude.
 **Mise en œuvre** : registre `data/navigation/pages-longues.ts` ; composants `components/navigation/SommaireCollant.tsx` (forme A) et `components/blog/TableOfContents.tsx` (forme B).
 **Mesures de référence** : audit du 03/10/2026, 309 URL à 1 440 et 390 px.

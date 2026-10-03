@@ -23,9 +23,9 @@ vont en C ou D, ses mesures en E.
 
 | | |
 |---|---|
-| Contrôle | 03/10/2026, Claude de Laurent (mission « Standard UX et fiabilité des données produit ») |
-| `main` | `8c0dd06` — fusion de #80, 02/10 à 12:48:08 UTC ; production Vercel `success` à 12:49:13 UTC |
-| Dernière mise à jour documentaire | 03/10 — Claude de Laurent : D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée) ; 02/10, #80 (Claude de Sébastien) |
+| Contrôle | 03/10/2026, Claude de Laurent (revue pré-fusion #83 à #87, relevé GitHub) |
+| `main` | `de6c4cd` — fusion de #81 (documentation seule), 02/10 à 13:47:51 UTC ; relevé sur GitHub le 03/10, inchangé à l'heure de la revue. Avant : `8c0dd06`, fusion de #80. Statut du déploiement de production de `de6c4cd` : non relevé par ce contrôle |
+| Dernière mise à jour documentaire | 03/10 — Claude de Laurent : revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
 | PR ouvertes | 15 au 03/10 : les 9 du registre du 02/10 (#27, #59, #60, #64, #65, #67, #70, #77, #79) ; #82 (landing catalogue Orbitvu All-in-One, brouillon, bloquée, absente de ce fichier avant le 03/10, propriétaire non établi par le dépôt) ; #83 à #87 (D44, D45, chantier du 03/10) |
 | Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit, portée par #83) ; Q21 (D44, D45 et `/CLAUDE.md`, portée par #87) |
 
@@ -35,8 +35,10 @@ Règles transverses en vigueur, rappel :
 - **D41** : satellites AI Act B, C, D non créés ; #61 à #63 ne se rouvrent pas.
 - **D42** : circuit éditorial en huit étapes ; une CI verte ou une fusion ne valent pas validation.
 - **D43** : 200 USD par mois pour les services payants de recherche SEO/GEO, GO explicite de Laurent avant tout appel. Aucun registre de consommation dans `docs/seo-geo/` au 02/10 : la consommation d'octobre n'y est pas établie ; toute demande de GO l'indique, sans supposer un solde de 200 USD.
-- **D44** (R-UX-LONG) : navigation des pages longues par famille de gabarits ; jamais deux navigations collantes ; registre `data/navigation/pages-longues.ts` (une fois #85 fusionnée). Référence : `docs/standards/R-UX-LONG.md`.
-- **D45** (R-PRODUCT-DIM) : dimensions, encombrements et charges des machines : référentiel obligatoire, contradictions conservées, aucune valeur commerciale contradictoire remplacée avant la réponse de Sébastien (Q20). Référence : `docs/standards/R-PRODUCT-DIM.md`.
+
+Approuvées par Laurent le 03/10, **non encore applicables sur `main`** (inscription en PR brouillon ; application à la fusion de chaque PR de mise en œuvre) :
+- **D44** (R-UX-LONG) : navigation des pages longues par famille de gabarits ; jamais deux navigations collantes. Règle écrite : #87 ; mise en œuvre : #84 (blog), #85 (barre, registre `data/navigation/pages-longues.ts`) ; CI : #86. Référence : `docs/standards/R-UX-LONG.md`.
+- **D45** (R-PRODUCT-DIM) : dimensions, encombrements et charges des machines : référentiel obligatoire, contradictions conservées, aucune valeur commerciale contradictoire remplacée avant la réponse de Sébastien (Q20). Règle écrite : #87 ; référentiel et contrôle : #83 ; CI : #86. Référence : `docs/standards/R-PRODUCT-DIM.md`.
 
 ---
 
@@ -54,11 +56,11 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #65 | D40 proposée : circuit Preview Vercel → Sébastien (documentation) | Claude de Laurent | Brouillon ; tête `c5e15a8`, 53 commits de retard ; conflits `DECISIONS`, `ETAT`, `JOURNAL` | D40 non en vigueur ; 17 modifications imposées par D42 et D43 (JOURNAL du 01/10, « arbitrages finaux ») | Sort à arbitrer par Laurent (C) |
 | #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée avant toute décision sur #67 : version active du Worker confirmée (présence du bloc D36), puis `www` contrôlé. Déploiement après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, non vérifié par ce rangement | Lecture Cloudflare READ ONLY, puis contrôle de `www` (C). Aucun nouveau déploiement autorisé |
 | #70 | Ubersuggest : `metaTitle` de `/fr/blog/photographie-2d-de-produits` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `ef0bc89` | Point ouvert : un `<title>` relève-t-il du copywriting réservé à Sébastien ? | Arbitrage séparé de Laurent |
-| #83 | D45 — référentiel des dimensions, contrôle Vitest (23 tests), registre des écarts, Q20 | Claude de Laurent | Brouillon ; tête `9297461` ; aucune valeur affichée modifiée | Bloquant en CI seulement après #86 | GO de fusion de Laurent ; réponse de Sébastien à Q20 pour la suite (PR PRODUCT-DATA) |
-| #84 | D44 — sommaire du blog : titre visé atteint (mobile, desktop), liste latérale plafonnée | Claude de Laurent | Brouillon ; tête `a4b27c6` ; spec 8/8 | Change le comportement des 6 pages dédiées de #64 et #27 sans modifier leurs fichiers | Preview par Laurent ; information de Sébastien ; GO de fusion |
-| #85 | D44 — barre de sommaire collante mutualisée, registre, 96 pages (guides, fiches, IA, gamme, solutions, 2 articles) | Claude de Laurent | Brouillon ; tête `1e0118b` ; spec 47 tests, 94/94 | Choix de conception du libellé actif (CLS) ; Mode et F5 non touchées | Preview d'une page par famille ; décision de conception ; GO de fusion |
-| #86 | CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | Claude de Laurent | Brouillon ; tête `894c26b` ; CI verte (Vitest 4 s, Chromium 22 s, parcours 14 s) | Modification d'infrastructure ; nouvelle exigence pour les PR qui touchent les catalogues de machines | GO de Laurent ; information de Sébastien |
-| #87 | UX-GOV : D44, D45, `docs/standards/`, Q21, ce fichier, `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier |
+| #83 | D45 — référentiel des dimensions, contrôle Vitest (23 tests), registre des écarts, Q20 | Claude de Laurent | Brouillon ; tête `1c31ac6`, CI verte ; garde de la valeur retirée : capacité et objet distingués (revue pré-fusion) ; aucune valeur affichée modifiée | Vitest exécuté en CI seulement après #86 (le workflow de `main` n'en lance pas) | GO de fusion de Laurent ; réponse de Sébastien à Q20 pour la suite (PR PRODUCT-DATA) |
+| #84 | D44 — sommaire du blog : titre visé atteint (mobile, desktop), liste latérale plafonnée | Claude de Laurent | Brouillon ; tête `a4b27c6`, CI verte ; spec 8/8 | Change le comportement des 6 pages dédiées de #64 et #27 sans modifier leurs fichiers | Contrôle de la Preview par Laurent (liste courte : revue pré-fusion, § 8) ; information de Sébastien ; GO de fusion |
+| #85 | D44 — barre de sommaire collante mutualisée, registre, 96 pages (guides, fiches, IA, gamme, solutions, 2 articles) | Claude de Laurent | Brouillon ; tête `1e0118b`, CI verte ; spec 47 tests, 94/94 | **Studios** : la PR modifie `studios-photo-automatises/page.tsx`, page du pilote Studios (J0 proposé le 29/10) ; retrait proposé et préparé (93 pages), non poussé ; ancre `#calculateur-roi` conditionnée à la barre. Choix de conception du libellé actif | Arbitrage Studios de Laurent ; Preview d'une page par famille ; décision de conception ; GO de fusion |
+| #86 | CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | Claude de Laurent | Brouillon ; tête `5cc5bf8`, CI verte ; inventaire explicite des specs dans le résumé du job, `--pass-with-no-tests` retiré (revue pré-fusion) | Modification d'infrastructure ; `anchors.spec` non exécuté avant AR-01 | GO de Laurent ; information de Sébastien |
+| #87 | UX-GOV : D44, D45, `docs/standards/`, Q21, ce fichier, état du chantier, revue pré-fusion | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier |
 | #27 | Maillage article → offre (Q3, 14 liens) et contrôle `curl.exe` du lot F | Claude de Laurent | Ouverte, non brouillon, inactive depuis le 23/09 ; 164 commits de retard ; conflit sur un fichier supprimé par #71 | Historique : ne pas fusionner globalement. Revue demandée à Sébastien depuis le 23/09, non rendue | Aucun développement ; sort sur GO distinct de Laurent, preuves conservées (JOURNAL du 02/10) |
 
 ---
@@ -82,7 +84,9 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | D33 — fiche Google (hors dépôt) | 25/09 | Si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33 |
 | P0-J — GO après le 08/10 | 25/09 | Voir E |
 | D42 — positionner chaque PR de contenu dans le circuit en huit étapes | 01/10 | PR ouvertes touchant `content/**`, `messages/**` ou un composant de landing : #27, #59, #60, #64, #70, #77, et #79 (`content/revue-interne/**`). Étape atteinte non établie (relevé du 01/10 sur `main` `6b80e6a`). #65 et #67 ne touchent aucun fichier de contenu ; #66 est acquise (arbitrage 6) |
-| D44, D45 — ordre de fusion et GO | 03/10 | Proposé : #87, #83, #86, #84, #85 (les specs de #84 et #85 s'activent en CI à leur fusion). Chaque fusion sur GO distinct ; aucune fusion automatique. Détail : `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` |
+| D44, D45 — ordre de fusion et GO | 03/10 | Proposé après revue : #87, #83, #86, puis AR-01 (lot autonome, si arbitré), #84, #85 (variante sans Studios si arbitrée). Fusion d'essai locale de cette séquence : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; build vert ; Vitest 408/408 ; parcours 74/74. Chaque fusion sur GO distinct ; aucune fusion automatique. Détail : `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md` |
+| Studios — #85 et pilote coordonné | 03/10 | #85 modifie `app/[lang]/studios-photo-automatises/page.tsx` (barre, cinq `id` conditionnés). Proposé : retirer Studios de #85 (page identique à `main`, famille `landing-gamme` en HOLD jusqu'au J0 coordonné, 29/10 proposé, sous réserve de Laurent). Variante testée en local, non poussée |
+| AR-01 — ancre `#calculateur-roi` | 03/10 | 18 liens dans le code (7 fichiers), 37 liens rendus sur 15 pages, vers une ancre absente de `main`. Correctif préparé hors #85 : `id` permanent sur la section ROI de Studios, trois tests ajoutés à `anchors.spec`. Rattachement au lot Maillage V2 et date de publication à arbitrer (baseline Studios) |
 | D44 — libellé actif de la barre (#85) | 03/10 | Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros. CLS de défilement : 0, contre 0,036 à 1 024 px sur la barre de Mode. La bascule de Mode après le 26/11 changera l'emplacement du libellé |
 | Branches — suppressions éventuelles | 02/10 | 39 branches sans commit absent de `main` ; 3 branches de PR fermées sans fusion ; décision sur GO seulement. Registre : `REVUE-PR-BRANCHES-2026-10-02.md`, § 4 et § 6 |
 
@@ -198,7 +202,7 @@ Acquis : #44, #46, #50, #52, #69, #74 (et #72 pour la police). Ne pas recréer d
 - Contenus historiques à dimensions fausses (registre `docs/standards/registre-ecarts-dimensions.md`, H1 à H19) : circuit de Sébastien ; `guide-achat-studio-2026` et `orbitvu-vs-concurrents` coordonnés avec #64 et #27.
 - `lib/lead-enrichment.ts` : liste de machines du prompt à générer depuis les catalogues, sur accord de Sébastien (Q20.16) ; aucun test sans GO (appels Gemini payants).
 - Images d'articles sans dimensions : elles allongent la page pendant le défilement (cause racine du troisième défaut corrigé par #84) ; contenus de Sébastien.
-- `e2e/anchors.spec.ts` à ajouter à la CI après fusion de #85.
+- `e2e/anchors.spec.ts` à ajouter à la CI après le lot AR-01 (ancre `#calculateur-roi` permanente), et non après #85 : revue pré-fusion du 03/10.
 - Mode : bascule sur le composant mutualisé après le 26/11 (parité, décision de Laurent). F5 : réexamen après le 23/11.
 - `guide-achat-studio-2026` : débordement horizontal à 1 024 px, préexistant (page sous #64).
 
@@ -318,6 +322,8 @@ Closes : Q1 et Q3 le 17/09 ; Q2, Q4, Q6, Q12, Q13, Q14 et Q15 par Laurent le 25/
 | D41 | En vigueur | `main` (#73) |
 | D42 | En vigueur depuis la décision de Laurent du 01/10, applicable aux PR déjà ouvertes | `main` (#76, fusionnée le 02/10, `9400eaa`) |
 | D43 | En vigueur depuis la décision de Laurent du 02/10 : 200 USD par mois, GO explicite avant tout appel payant | `main` (#76, fusionnée le 02/10, `9400eaa`) |
+| D44 | Principe approuvé par Laurent le 03/10 ; inscription préparée, non fusionnée ; application à la fusion de #87 (règle), #84 et #85 (mise en œuvre), #86 (CI) | #87, brouillon |
+| D45 | Principe approuvé par Laurent le 03/10 ; inscription préparée, non fusionnée ; application à la fusion de #87 (règle), #83 (référentiel), #86 (CI) | #87, brouillon |
 
 ### Accès de Laurent — vérifiés au dashboard le 16/09
 

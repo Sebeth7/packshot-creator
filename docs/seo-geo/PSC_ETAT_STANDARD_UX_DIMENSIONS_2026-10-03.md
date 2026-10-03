@@ -4,13 +4,15 @@ Photographie du **03/10/2026**, Claude de Laurent. Base de toutes les branches :
 
 Document de reprise pour le pilotage global : il suffit pour reprendre les travaux sans relire la conversation.
 
+**Mise à jour du 03/10 après la revue pré-fusion** : `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md` fait foi pour l'ordre d'intégration, la collision Studios / #85 et le lot AR-01. Têtes au moment de la revue : #83 `1c31ac6`, #84 `a4b27c6`, #85 `1e0118b`, #86 `5cc5bf8`, #87 (commit de la revue).
+
 ---
 
 ## 1. Les deux règles
 
 | Règle | Décision | Statut | Référence stable | Registre | Contrôle |
 |---|---|---|---|---|---|
-| R-UX-LONG — navigation des pages longues | D44 | Inscrite dans `DECISIONS.md` par #87 (brouillon) | `docs/standards/R-UX-LONG.md` | `data/navigation/pages-longues.ts` (#85) | Vitest `lib/navigation/__tests__/` (#85) ; specs `e2e/navigation-pages-longues.spec.ts` (#85), `e2e/sommaire-blog.spec.ts` (#84) |
+| R-UX-LONG — navigation des pages longues | D44 | Principe approuvé le 03/10 ; inscription préparée dans `DECISIONS.md` (#87, brouillon) ; application à la fusion des PR de mise en œuvre | `docs/standards/R-UX-LONG.md` | `data/navigation/pages-longues.ts` (#85) | Vitest `lib/navigation/__tests__/` (#85) ; specs `e2e/navigation-pages-longues.spec.ts` (#85), `e2e/sommaire-blog.spec.ts` (#84) |
 | R-PRODUCT-DIM — dimensions, encombrements, charges | D45 | Idem | `docs/standards/R-PRODUCT-DIM.md` | `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `docs/standards/registre-ecarts-dimensions.md` (#83) | Vitest `lib/produits/__tests__/coherence-dimensions.test.ts` (#83) |
 
 Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md` et `02-PROCEDURE.md` (étape 2).
@@ -23,10 +25,10 @@ Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md`
 
 | PR | Objet | Branche | Tête | Fichiers principaux | GO restant |
 |---|---|---|---|---|---|
-| #83 PRODUCT-TEST | Référentiel, test de cohérence (23 tests), registre des écarts, script d'inventaire, Q20 | `ccr-79f70eb9-product-test` | `9297461` | `data/produits/*`, `lib/produits/*`, `scripts/produits/*`, `docs/standards/registre-ecarts-dimensions.md`, `BOITE-AUX-LETTRES.md` | Fusion (Laurent) |
+| #83 PRODUCT-TEST | Référentiel, test de cohérence (23 tests), registre des écarts, script d'inventaire, Q20 | `ccr-79f70eb9-product-test` | `1c31ac6` | `data/produits/*`, `lib/produits/*`, `scripts/produits/*`, `docs/standards/registre-ecarts-dimensions.md`, `BOITE-AUX-LETTRES.md` | Fusion (Laurent) |
 | #84 UX-BLOG | Sommaire du blog : titre visé atteint, liste latérale plafonnée, ARIA | `ccr-79f70eb9-ux-blog` | `a4b27c6` | `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` | Preview par Laurent ; information de Sébastien (pages de #64 et #27) ; fusion |
 | #85 UX-STICKY | Barre collante mutualisée, registre, 96 pages ; ancre `#calculateur-roi` réparée | `ccr-79f70eb9-ux-sticky` | `1e0118b` | `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, 7 gabarits, spec et test | Décision de conception (libellé actif) ; Preview ; information de Sébastien ; fusion |
-| #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `894c26b` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | GO d'infrastructure ; information de Sébastien ; fusion |
+| #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `5cc5bf8` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | GO d'infrastructure ; information de Sébastien ; fusion |
 | #87 UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | `3d3444e` et suivants | `docs/**` seulement | Fusion |
 
 Ordre de fusion proposé : #87 (UX-GOV), #83, #86, #84, #85. Les specs de #84 et #85 s'exécutent en CI dès leur fusion, sans retoucher le workflow (`--pass-with-no-tests`).
@@ -47,7 +49,7 @@ Conflits attendus, sans enjeu :
 | Guides | A (barre) | 44 équipées ; tout guide futur | ADOPT ; 3 guides FR gelés par #27 |
 | Fiches machines | A | 39 ; toute fiche future | ADAPT |
 | IA photo produit | A | 3 | ADAPT |
-| Gamme des studios | A | 3 | ADAPT |
+| Gamme des studios (Studios) | A | 3 | ADAPT dans #85 ; **retrait proposé** (HOLD jusqu'au J0 du pilote Studios, 29/10 proposé), variante préparée, non poussée |
 | Solutions | A | 3 | ADAPT |
 | Articles dédiés sans sommaire | A | `studio-ia-vs-ia-generative`, `comparatif-orbitvu-ortery-styleshoots-2026` (FR, EN) | ADOPT |
 | Blog, gabarit commun | B (latéral corrigé) | 122 | KEEP |
@@ -97,7 +99,7 @@ Comparaison avec les fiches Orbitvu du 03/10 :
 
 | Statut | Produits |
 |---|---|
-| Objet maximal conforme | 11 : 360, Pro G2, XL G2, XL v2, Compact, XXL, Alphatable, Alphadesk, Fashion Studio, Bike, E-Comm |
+| Objet maximal : correspondance numérique avec la fiche consultée | 11 : 360, Pro G2, XL G2, XL v2, Compact, XXL, Alphatable, Alphadesk, Fashion Studio, Bike, E-Comm. Aucune version commerciale validée par ce décompte (XL v2, Compact, XXL, Fashion Studio, Alphatable, Alphadesk : Q20.2, Q20.12) |
 | Écart démontré, catégorie A | Encombrement XL G2 (le site reprend l'XL ancienne génération) ; encombrement Micro (52 contre 54 cm) |
 | À arbitrer, catégorie B | Furniture Studio (trois sources divergentes) ; encombrements XXL, Alphatable, Alphadesk ; charges E-Comm et Fashion Studio ; versions « Pro v2 » ; axes XL Pro v2 |
 | Non vérifiable | XL Wine v2, Fashion Studio Basic, Alphashot G2, XL Pro v2 (pas de page Orbitvu) |
