@@ -6,6 +6,8 @@ Document de reprise pour le pilotage global : il suffit pour reprendre les trava
 
 **Mise à jour du 03/10 après la revue pré-fusion** : `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md` fait foi pour l'ordre d'intégration, la collision Studios / #85 et le lot AR-01. Têtes au moment de la revue : #83 `1c31ac6`, #84 `a4b27c6`, #85 `1e0118b`, #86 `5cc5bf8`, #87 (commit de la revue).
 
+**Mise à jour du 03/10 après les arbitrages de Laurent** : § 11 de la revue. #85 à `c331c40` (90 pages, Studios hors périmètre, guides de #91 en HOLD temporaire) ; AR-01 confié au propriétaire Maillage V2 ; libellé actif fixe retenu ; Q22 (information de Sébastien).
+
 ---
 
 ## 1. Les deux règles
@@ -27,7 +29,7 @@ Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md`
 |---|---|---|---|---|---|
 | #83 PRODUCT-TEST | Référentiel, test de cohérence (23 tests), registre des écarts, script d'inventaire, Q20 | `ccr-79f70eb9-product-test` | `1c31ac6` | `data/produits/*`, `lib/produits/*`, `scripts/produits/*`, `docs/standards/registre-ecarts-dimensions.md`, `BOITE-AUX-LETTRES.md` | Fusion (Laurent) |
 | #84 UX-BLOG | Sommaire du blog : titre visé atteint, liste latérale plafonnée, ARIA | `ccr-79f70eb9-ux-blog` | `a4b27c6` | `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` | Preview par Laurent ; information de Sébastien (pages de #64 et #27) ; fusion |
-| #85 UX-STICKY | Barre collante mutualisée, registre, 96 pages ; ancre `#calculateur-roi` réparée | `ccr-79f70eb9-ux-sticky` | `1e0118b` | `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, 7 gabarits, spec et test | Décision de conception (libellé actif) ; Preview ; information de Sébastien ; fusion |
+| #85 UX-STICKY | Barre collante mutualisée, registre, 90 pages ; Studios hors périmètre ; guides de #91 en HOLD temporaire | `ccr-79f70eb9-ux-sticky` | `c331c40` | `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, 6 gabarits, spec et test | Preview ; information de Sébastien (Q22) ; fusion |
 | #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `5cc5bf8` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | GO d'infrastructure ; information de Sébastien ; fusion |
 | #87 UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | `3d3444e` et suivants | `docs/**` seulement | Fusion |
 
@@ -46,10 +48,10 @@ Conflits attendus, sans enjeu :
 
 | Famille | Forme | Pages | Statut |
 |---|---|---|---|
-| Guides | A (barre) | 44 équipées ; tout guide futur | ADOPT ; 3 guides FR gelés par #27 |
+| Guides | A (barre) | 41 équipées ; tout guide futur | ADOPT ; 3 guides FR gelés par #27 ; 3 guides de #91 en HOLD temporaire |
 | Fiches machines | A | 39 ; toute fiche future | ADAPT |
 | IA photo produit | A | 3 | ADAPT |
-| Gamme des studios (Studios) | A | 3 | ADAPT dans #85 ; **retrait proposé** (HOLD jusqu'au J0 du pilote Studios, 29/10 proposé), variante préparée, non poussée |
+| Gamme des studios (Studios) | — | 0 | HOLD : retirée de #85 sur décision de Laurent du 03/10 ; barre dans le chantier commercial, sous validation spécifique |
 | Solutions | A | 3 | ADAPT |
 | Articles dédiés sans sommaire | A | `studio-ia-vs-ia-generative`, `comparatif-orbitvu-ortery-styleshoots-2026` (FR, EN) | ADOPT |
 | Blog, gabarit commun | B (latéral corrigé) | 122 | KEEP |
@@ -63,7 +65,7 @@ Conflits attendus, sans enjeu :
 | `prestataire-packshot-vs-studio-interne` | C | 2 | EXCLUDE (6 362 à 6 613 px, sous le seuil de 7 200 px) |
 | AI Act | — | aucune page publiée | HOLD (#59, #60, #77, #79 ; D41, D42) |
 
-Contrôle du registre sur build local : 116 pages, 116 conformes (96 équipées, 20 gelées ou exclues sans barre).
+Contrôle du registre sur build local de `c331c40` : 116 pages, 116 conformes (90 avec la barre commune, 3 avec la barre d'origine de Mode, 23 sans barre).
 
 ---
 

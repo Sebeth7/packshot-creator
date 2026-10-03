@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · Arbitrages UX / dimensions du 03/10 : finalisation de #83 à #87 · Claude de Laurent
+
+**Chantier** : D44, D45, alignement V4.3 | **PR** : #87 (documentation), #85 (`c331c40`) | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- Revue, § 11 : décisions de Laurent appliquées, état final des PR, réconciliation des guides de #91, coordination d'AR-01, build cumulé incluant #88 à #92, ordre de fusion, checklist Preview de #84 et #85, GO résiduels.
+- Q22 : information de Sébastien sur les contraintes de CI (#86) et les changements d'interface (#84, #85).
+- `docs/standards/R-UX-LONG.md` : libellé actif fixe (décision du 03/10) ; Studios en HOLD ; exceptions temporaires pour les PR éditoriales ouvertes (#91).
+- Patch AR-01 mis au périmètre validé (`id` permanent, `hash` de prestataire, 5 tests) ; patch de la variante de #85 retiré, puisque appliqué.
+- `ETAT.md`, état du chantier : décisions et têtes à jour ; 20 PR ouvertes.
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 après la revue pré-fusion.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/propositions-2026-10-03/`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`
+
+**Vérifié** —
+- #85 (`c331c40`) : Vitest 385/385, spec de navigation 45/45, registre 116/116 conforme (90 pages équipées).
+- AR-01 : `anchors` 12/12 ; 39 liens aboutis ; témoin non modifié.
+- Build cumulé (#83 à #87, AR-01, #88 à #92) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; Vitest 408/408 ; parcours 77/77.
+- Scénario « #91 fusionnée » : guides éligibles, 6/6.
+**Supposé** — rien.
+**Non regardé** — propriétaire Landings & Hubs (non nommé dans le dépôt) ; Programme Directeur V4.3 et addendum marché n° 14 (hors dépôt).
+
+**Suite** — GO de Laurent (Preview de #84 et #85, infrastructure de #86, fusions) ; PR AR-01 du propriétaire Maillage V2 ; réponses de Sébastien à Q20, Q21, Q22.
+
+---
+
 ## 2026-10-03 · Revue pré-fusion — lot 1 V4.3 ouvert (#88 à #92), conséquence D44 sur #85 · Claude de Laurent
 
 **Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`

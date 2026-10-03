@@ -16,7 +16,7 @@ Trois comportements, jamais cumulés sur une page :
 
 | Forme | Quoi | Composant | Où aujourd'hui |
 |---|---|---|---|
-| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, gamme des studios, solutions, deux articles dédiés ; Mode (composant d'origine jusqu'au 26/11) |
+| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, deux articles dédiés ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
 | **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` | Articles du blog (gabarit commun) et quatre pages dédiées |
 | **C** | Sommaire statique dans la page, ou pas de navigation persistante | — | F5 (choix délibéré), pages courtes, pages de liste, outils, pages légales |
 
@@ -53,7 +53,7 @@ Classement : **ADOPT** (intégration directe) ; **ADAPT** (gabarit à adapter : 
 | Apparition | Quand le sommaire de la page (`ancreSommaire`) sort de l'écran ; à défaut, quand la première section atteint le bas de la barre |
 | Disparition | Avant la zone finale (`ancreFin` : formulaire, CTA) ; à défaut, après la dernière entrée |
 | Masquage | Opacité et `visibility: hidden` : non focalisable, aucun décalage du contenu |
-| Section active | Numéro souligné, `aria-current="location"` ; libellé affiché dans un emplacement fixe à droite des numéros, tronqué au-delà de 28 rem. Les numéros ne bougent pas quand la section change (CLS de défilement nul) |
+| Section active | Numéro souligné, `aria-current="location"` ; libellé affiché dans un emplacement fixe à droite des numéros, tronqué au-delà de 28 rem. Les numéros ne bougent pas quand la section change (CLS de défilement nul) Décision de Laurent du 03/10 : emplacement fixe retenu ; le déplacement dynamique de la barre de Mode n'est pas repris. |
 | Entrées | 4 à 12 ; numérotées `01`, `02`… dans l'ordre de la page |
 | Ancres | Le composant fixe le `scroll-margin-top` des sections ciblées : en-tête + barre + 16 px (129 px au 03/10). Les pages portent seulement les `id`, et seulement si la barre est active (une page gelée reste identique) |
 | Libellés | Titres existants de la page, jamais un texte nouveau ; titre de barre et nom accessible : « Sommaire / Contents / Inhalt », « Accès rapide aux sections / Quick access to sections / Schnellzugriff auf die Abschnitte » (valeurs validées sur Mode) |
@@ -83,7 +83,8 @@ Sommaire de page éventuel, liens « Retour au sommaire » si la page en a. Aucu
 | Cas | Traitement |
 |---|---|
 | Page sous expérience SEO (F5 jusqu'au 23/11/2026 ; Mode et hub mode-textile jusqu'au 26/11/2026 ; accueil et M5 jusqu'au 28/10/2026) | HOLD : aucune modification de la page, navigation comprise |
-| Page touchée par une PR éditoriale ouverte | HOLD jusqu'à la clôture de la PR (registre : #27, #64) |
+| Page touchée par une PR éditoriale ouverte | HOLD jusqu'à la clôture de la PR (registre : #27, #64, #91). Exception temporaire, jamais permanente : à la clôture, contrôle sur `main` et retrait de l'exception si la page reste éligible |
+| Page d'un pilote commercial coordonné (Studios : Landings & Hubs, Maillage V2) | HOLD jusqu'à la validation spécifique du chantier commercial |
 | Pages légales, de liste, d'outil, formulaires | EXCLUDE |
 | `industrie-defense` | EXCLUDE (D10) |
 | Libellés qui exigeraient un texte nouveau | EXCLUDE ou circuit éditorial D42 (copywriting de Sébastien) |

@@ -6,6 +6,8 @@ Aucune fusion, aucune publication, aucun appel payant. Aucune modification Cloud
 
 Le Programme Directeur SEO/GEO V4.3, l'inventaire Maillage V2, le scénario P2 et le tableau de suivi V4.3 ne figurent pas dans le dépôt. Je n'ai pas accès à ces documents. Les éléments qui en viennent sont repris de la demande du pilotage et signalés comme tels.
 
+> **Mise à jour après les arbitrages de Laurent du 03/10** : le § 11 consigne les décisions appliquées, l'état final des PR, l'ordre de fusion et la liste résiduelle des GO. Il prévaut sur les §§ 3, 4, 7, 8 et 10, conservés pour la trace de la revue.
+
 ---
 
 ## 1. État actuel vérifié des cinq PR
@@ -292,20 +294,150 @@ Je n'ai pas accès au tableau V4.3. Lignes proposées :
 
 ---
 
+## 11. Arbitrages du 03/10 et finalisation
+
+### 11.1 Décisions de Laurent et leur application
+
+| Sujet | Décision | Application |
+|---|---|---|
+| Studios dans #85 | Variante « 85-sans-studios » retenue ; barre de Studios intégrée au chantier commercial, sous validation spécifique | Appliqué dans #85 (`c331c40`) : `studios-photo-automatises/page.tsx` identique à `main` ; famille `landing-gamme` en HOLD |
+| Pages IA dans #85 | Hors pilote Studios ; deuxième vague commerciale (addendum marché du 02/10, conditionnée par #77 et la validation des claims) ; équipement conservé | Barre conservée ; changement journalisé (JOURNAL de #85, note du registre) pour la restructuration éditoriale |
+| Guides de #91 | Formulation actuelle de D44 : HOLD jusqu'à la clôture de la PR éditoriale ; pas d'exception permanente | Trois exceptions temporaires dans #85 (motif « PR #91 ouverte », sortie « clôture de #91 ; si fusionnée, contrôle sur `main` puis retrait ») |
+| AR-01 | Confié au propriétaire du lot Maillage V2, PR brouillon autonome ; périmètre validé ; publication envisagée au J0 du 29/10 (P2 sous réserve) | Patch mis à jour au périmètre validé (§ 11.4) ; coordination écrite avec la session « Réparations lot 1 V4.3 » ; aucune PR créée par cette session |
+| Libellé actif de la barre | Emplacement fixe à droite des numéros ; pas de déplacement dynamique façon Mode | Conservé dans #85 ; inscrit dans `docs/standards/R-UX-LONG.md` |
+| CI (#86) | Principe retenu pour le GO : Vitest, Playwright ciblé, inventaire des tests exécutés, `anchors` après AR-01, aucun `--pass-with-no-tests` | Déjà en place dans #86 (`5cc5bf8`) ; information de Sébastien : Q22 (`BOITE-AUX-LETTRES.md`, #87) |
+
+### 11.2 État des PR au moment de la finalisation
+
+`main` : `de6c4cd`, inchangé. PR ouvertes : 20 (les 15 du § 1 et #88 à #92, lot 1 V4.3).
+
+| PR | Tête | Contenu final |
+|---|---|---|
+| #87 | commit de cette mise à jour | Gouvernance, revue, Q21, Q22, patch AR-01 |
+| #83 | `1c31ac6` | Référentiel, 23 tests, Q20 ; inchangé |
+| #86 | `5cc5bf8` | CI ; inchangé |
+| #84 | `a4b27c6` | Sommaire du blog ; inchangé |
+| #85 | `c331c40` | 90 pages équipées par la barre commune ; Studios hors périmètre ; guides de #91 en HOLD temporaire |
+
+**#85 corrigée et testée** (build local de `c331c40`) :
+- types, eslint et build verts ; Vitest 385/385 ;
+- `navigation-pages-longues` 45/45 ;
+- registre : 116 pages contrôlées à 1 440 px, toutes conformes. 90 avec la barre commune, 3 avec la barre d'origine de Mode, 23 sans barre ;
+- `anchors` 6/7 : le test `#calculateur-roi` échoue comme sur `main`. AR-01 le corrige, pas #85.
+
+### 11.3 Réconciliation des trois guides de #91
+
+- **#91 est ouverte** au moment de la finalisation (tête `a045960`). Les trois guides sont donc en exception temporaire dans #85 :
+  - `comment-creer-vues-multi-angles-automatique-objet` (FR) ;
+  - `how-to-create-automatic-multi-angle-views-of-an-object` (EN) ;
+  - `comment-photographier-lunettes-e-commerce` (FR).
+- **Test de navigation adapté** : `comment-photographier-lunettes-e-commerce` passe dans les pages gelées ; `comment-obtenir-couleurs-fideles-photographie-produit` devient le guide équipé de référence.
+- **Si #91 est fusionnée avant #85**, scénario vérifié par anticipation sur un build cumulé local incluant #91, exceptions retirées : les trois guides passent le test complet de la barre à 1 024 et 1 440 px (6/6). Ils restent éligibles. Il suffira alors de retirer les trois lignes d'exception et de remettre le guide de référence, avec contrôle sur le nouveau `main`.
+- **Si #85 est fusionnée avant #91** : retrait des exceptions à la clôture de #91, par une PR courte.
+
+### 11.4 Coordination d'AR-01
+
+**Périmètre validé, appliqué au patch** `docs/seo-geo/propositions-2026-10-03/AR-01-ancre-calculateur-roi.patch` (base `de6c4cd`) :
+- `id="calculateur-roi"` permanent sur la section ROI existante de Studios, sans `barreActive()` ni `ancre()` ;
+- `hash: 'roi'` remplacé par `hash: 'calculateur-roi'` dans `prestataire-packshot-vs-studio-interne` (FR, EN) ;
+- `e2e/anchors.spec.ts` : 5 tests ajoutés (ancre en EN et de-ch ; sélecteur → section ROI → bouton vers le calculateur ; CTA de prestataire en FR et EN) ;
+- destination du CTA de la section conservée : `/calculateur-roi` ;
+- témoin du pilote (`studio-photo/selecteur-machines`) non modifié : HTML identique à `main`.
+
+**Résultats sur build local** :
+- `anchors` 12/12, contre 6/7 sur `main` ;
+- 39 liens rendus sur 39 aboutissent à la section ROI ;
+- HTML de Studios différent de `main` du seul attribut `id` ;
+- HTML de la page prestataire différent du seul `href` du CTA.
+
+**Coordination.**
+- Message écrit à la session « Réparations lot 1 V4.3 » (`session_01HvtQaYDY4DZjcYNvRz4uVS`), qui met en œuvre les lignes Maillage V2 du lot 1 : périmètre, patch, tests, contraintes.
+- Je lui demande de confirmer qu'elle porte AR-01 et prépare la PR brouillon. Je n'ai créé aucune PR.
+- Réservation du fichier Studios à coordonner avec le propriétaire Landings & Hubs. Je ne connais pas ce propriétaire : le dépôt ne le nomme pas.
+- Après la fusion de #86, la PR AR-01 devra déplacer `anchors` de la liste des specs différés à celle des attendus dans `pr-checks.yml`.
+
+### 11.5 Build cumulé final
+
+Fusion d'essai locale de `main` + #87 + #83 + #86 + AR-01 + #84 + #85 (`c331c40`) + #88 + #89 + #90 + #91 + #92 :
+- conflits limités à `JOURNAL.md` (à chaque étape) et `BOITE-AUX-LETTRES.md` (#83 et #87) ;
+- aucun fichier de code en conflit ;
+- types verts ; 180 JSON valides ; Vitest 408/408 ; build vert ;
+- `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `anchors` : **77/77** ;
+- liens ROI : 39 sur 39 aboutissent ;
+- registre : 90 pages avec la barre commune.
+
+**Pages gelées** (HTML comparé à `main`) :
+- accueil, Mode, F5, mode-textile, guides de #27, budget : aucune différence ;
+- Studios : l'attribut AR-01 seul ;
+- prestataire : le `href` du CTA seul ;
+- 6 pages dédiées du blog : balisage du sommaire (#84) seul ;
+- trois guides de #91 : les liens de l'introduction (#91) seuls, sans barre.
+
+**Lot 1 (#88 à #92)** : aucune collision de fichier avec #83 à #87 ni avec AR-01.
+- Les articles de #89, #90 et #92 utilisent le sommaire du blog : le correctif de #84 s'y applique sans toucher leurs fichiers.
+- Seule conséquence : #91 et ses trois guides (§ 11.3).
+
+### 11.6 Ordre de fusion actualisé
+
+Ordre proposé, pas une autorisation : chaque fusion demande un GO distinct de Laurent.
+
+| Étape | PR | Condition | Après fusion |
+|---|---|---|---|
+| 1 | #87 | GO de Laurent | Q21 et Q22 visibles du Claude de Sébastien sur `main` |
+| 2 | #83 | GO de Laurent | `npx vitest run lib/produits` sur `main` |
+| 3 | #86 | GO d'infrastructure ; Sébastien informé (Q22) | Résumé du job de la PR suivante : specs exécutés et différés |
+| 4 | #84 | Preview contrôlée par Laurent (§ 11.7) | `sommaire-blog` en CI ; `smoke.mjs` ; Chrome sur `www` |
+| 5 | #85 | Preview contrôlée par Laurent (§ 11.7) ; selon l'état de #91, exceptions maintenues ou retirées (§ 11.3) | `navigation-pages-longues` en CI ; `smoke.mjs` ; Chrome sur `www` |
+| — | AR-01 (PR du propriétaire Maillage V2) | Après #86 ; réservation Studios coordonnée ; publication au J0 du 29/10 si P2 est validé | `anchors` passe de « différé » à « exécuté » |
+| — | #88 à #92 (lot 1) | Circuit propre à la session Réparations (publication envisagée du 12 au 16/10) | Si #91 est fusionnée : § 11.3 |
+
+**Calendrier** (dates de `ETAT.md`, section E) :
+- les fusions 1 à 3 n'ont aucun effet sur le rendu ;
+- #84 touche le blog : aucune mesure en cours sur le blog ;
+- #85 ne touche ni Mode, ni F5, ni l'accueil, ni Studios ; JSON-LD inchangé, donc sans effet attendu sur les mesures « Fils d'Ariane » (#55) et « Fiches marchand » (#22) [Inférence] ;
+- AR-01 au 29/10 coïncide avec le J+28 de Mode, sans toucher la page Mode.
+
+### 11.7 Checklist Preview
+
+**#84** : URL et attendus au § 8 (inchangés). Preview : `https://sysnext-git-ccr-79f70eb9-ux-blog-sebs-projects-ca1e93a7.vercel.app`.
+
+**#85** : Preview `https://sysnext-git-ccr-79f70eb9-ux-sticky-sebs-projects-ca1e93a7.vercel.app` (connexion Vercel), à comparer avec `https://sysnext.vercel.app`. Desktop 1 440 et 1 024 px, puis tablette 768 px (aucune barre attendue).
+
+| Famille | URL | Attendu |
+|---|---|---|
+| Guide | `/fr/guide/comment-faire-focus-stacking-pour-photographier-bague` | Barre après la première étape ; clic sur une étape : titre sous la barre ; barre masquée en fin de page |
+| Fiche | `/fr/studio-photo/alphashot-pro-g2` | Huit entrées ; colonne FAQ collante compatible |
+| IA photo produit | `/fr/ia-photo-produit` | Cinq entrées ; CTA vers `#resultats` arrêté sous la barre |
+| Solution | `/fr/solutions/documentation-technique-visuelle` | Barre et colonnes collantes compatibles |
+| Article dédié | `/fr/blog/studio-ia-vs-ia-generative` | Barre sur une page sans sommaire |
+| Pages gelées | `/fr/studios-photo-automatises`, `/fr/guide/comment-photographier-lunettes-e-commerce`, `/fr/packshot-mode` | Aucune barre ajoutée ; Mode avec sa barre d'origine |
+
+### 11.8 GO résiduels
+
+**De Laurent :**
+1. Contrôle de la Preview de #84.
+2. Contrôle de la Preview de #85.
+3. GO d'infrastructure de #86.
+4. GO de fusion, une PR à la fois, dans l'ordre du § 11.6.
+5. Validation finale du scénario P2 (J0 du 29/10) pour la publication d'AR-01.
+6. Désignation, si besoin, du propriétaire Landings & Hubs pour la réservation du fichier Studios.
+7. Plus tard, validation spécifique de la barre de Studios dans le chantier commercial.
+
+**De Sébastien :**
+1. Q20 (#83) : caractéristiques produit contradictoires. Elle conditionne la PR PRODUCT-DATA ; aucune valeur affichée n'est modifiée d'ici là.
+2. Q21 (#87) : renvoi aux standards dans `/CLAUDE.md`.
+3. Q22 (#87) : prise de connaissance des contraintes de CI et des changements d'interface. Aucune décision attendue.
+
+---
+
 ## Annexe — reproduire
 
-Les deux correctifs proposés sont versionnés comme documentation, sans effet sur le site, dans `docs/seo-geo/propositions-2026-10-03/` :
-- `AR-01-ancre-calculateur-roi.patch` : `id` permanent et trois tests, à appliquer sur `main` ;
-- `85-sans-studios.patch` : retrait de Studios, registre et tests, à appliquer sur la branche de #85.
+Le correctif AR-01, au périmètre validé par Laurent, est versionné comme documentation, sans effet sur le site : `docs/seo-geo/propositions-2026-10-03/AR-01-ancre-calculateur-roi.patch`. La variante de #85 sans Studios est appliquée dans #85 (`c331c40`) ; son patch a été retiré.
 
 ```bash
 git fetch origin
 # AR-01, sur une branche partie de main (le bloc JOURNAL peut demander une reprise manuelle)
 git am -3 docs/seo-geo/propositions-2026-10-03/AR-01-ancre-calculateur-roi.patch
-# Variante de #85, sur ccr-79f70eb9-ux-sticky
-git am -3 docs/seo-geo/propositions-2026-10-03/85-sans-studios.patch
 npx vitest run
 PLAYWRIGHT_BASE_URL=http://localhost:3000 npx playwright test machine-selector sommaire-blog navigation-pages-longues anchors --project=chromium
 ```
-
-Sur arbitrage : AR-01 devient une PR brouillon du lot Maillage V2 ; la variante devient un commit sur #85.

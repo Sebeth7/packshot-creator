@@ -1,26 +1,42 @@
-From 013659353cb170cae462567c958e8cc2a3bb90a0 Mon Sep 17 00:00:00 2001
+From 90b2f917b0135e516b79d50ad53eb8b3698c20b0 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
-Date: Sat, 3 Oct 2026 10:42:25 +0000
+Date: Sat, 3 Oct 2026 14:38:00 +0000
 Subject: [PATCH] fix(maillage): ancre permanente #calculateur-roi sur Studios
- (AR-01, proposition)
+ et CTA de prestataire (AR-01)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-La section ROI de /studios-photo-automatises porte l'id calculateur-roi,
-cible de 18 liens internes (37 liens rendus). Indépendant de la barre de
-sommaire. anchors.spec : 10/10 sur build local, 6/7 sur main.
-
-Branche locale de proposition : non poussée, en attente d'arbitrage.
+- Section ROI de /studios-photo-automatises : id="calculateur-roi"
+  permanent, indépendant de la barre de sommaire.
+- CTA « btnRoi » de prestataire-packshot-vs-studio-interne (FR, EN) :
+  hash 'roi' (ancre inexistante) remplacé par 'calculateur-roi'.
+- anchors.spec : cinq tests ajoutés ; 12/12 sur build local, 6/7 sur main.
+Le CTA de la section garde sa destination /calculateur-roi ; le témoin
+du pilote (sélecteur) n'est pas modifié. 39 liens rendus aboutissent.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01G8ncZVYE7Nr4HDnNc59aw4
 ---
- app/[lang]/studios-photo-automatises/page.tsx |  4 +++-
- docs/seo-geo/JOURNAL.md                       | 20 +++++++++++++++++++
- e2e/anchors.spec.ts                           | 18 +++++++++++++++++
- 3 files changed, 41 insertions(+), 1 deletion(-)
+ .../page.tsx                                  |  2 +-
+ app/[lang]/studios-photo-automatises/page.tsx |  4 ++-
+ docs/seo-geo/JOURNAL.md                       | 23 ++++++++++++++++
+ e2e/anchors.spec.ts                           | 27 +++++++++++++++++++
+ 4 files changed, 54 insertions(+), 2 deletions(-)
 
+diff --git a/app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx b/app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx
+index 184c09d..c65a324 100644
+--- a/app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx
++++ b/app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx
+@@ -371,7 +371,7 @@ export default async function PrestataireVsStudioPage({ params }: { params: Prom
+             </p>
+             <div className="flex flex-wrap justify-center gap-4">
+               <Button asChild size="lg" className="bg-white text-very-peri-700 hover:bg-very-peri-50 rounded-xl shadow-lg">
+-                <Link href={{ pathname: '/studios-photo-automatises', hash: 'roi' }}>
++                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}>
+                   <Calculator className="mr-2 h-4 w-4" />
+                   {t('cta.btnRoi')}
+                 </Link>
 diff --git a/app/[lang]/studios-photo-automatises/page.tsx b/app/[lang]/studios-photo-automatises/page.tsx
 index 04f4717..7518b7f 100644
 --- a/app/[lang]/studios-photo-automatises/page.tsx
@@ -38,30 +54,33 @@ index 04f4717..7518b7f 100644
          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
  
 diff --git a/docs/seo-geo/JOURNAL.md b/docs/seo-geo/JOURNAL.md
-index bdc2778..36ebe9c 100644
+index bdc2778..8d4dc54 100644
 --- a/docs/seo-geo/JOURNAL.md
 +++ b/docs/seo-geo/JOURNAL.md
-@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
+@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
  
  ---
  
-+## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios (proposition, non publiée) · Claude de Laurent
++## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios et CTA de prestataire (périmètre validé par Laurent) · Claude de Laurent
 +
-+**Chantier** : maillage, lot AR-01 | **PR** : aucune, en attente d'arbitrage (revue pré-fusion #83 à #87) | **Base** : `main` `de6c4cd`
++**Chantier** : Maillage V2, lot AR-01 | **PR** : brouillon autonome du propriétaire du lot Maillage V2 | **Base** : `main` `de6c4cd`
 +
-+**Quoi** — La section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` porte l'`id` permanent `calculateur-roi`, indépendant de la barre de sommaire (#85).
++**Quoi** —
++- La section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` porte l'`id` permanent `calculateur-roi`, indépendant de la barre de sommaire (`barreActive()`).
++- Le CTA « btnRoi » de `prestataire-packshot-vs-studio-interne` (FR, EN) vise `#calculateur-roi` au lieu de `#roi`, ancre inexistante.
++- Le CTA de la section ROI garde sa destination : le calculateur `/calculateur-roi`.
 +
-+**Pourquoi** — 18 liens dans le code (7 fichiers), soit 37 liens rendus sur 15 pages (FR, EN, de-ch), pointent vers `/studios-photo-automatises#calculateur-roi`. Sur `main`, l'ancre n'existe pas : le visiteur arrive en haut de la page. `e2e/anchors.spec.ts` échoue sur ce point.
++**Pourquoi** — 19 liens dans le code (8 fichiers), soit 39 liens rendus sur 17 pages, visent la section ROI de Studios ; sur `main`, ni `#calculateur-roi` ni `#roi` n'existent et le visiteur arrive en haut de page. Ancre retirée le 22/03/2026 (`d5a7fea`).
 +
-+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut), `e2e/anchors.spec.ts` (trois tests ajoutés)
++**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut), `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx` (un `hash`), `e2e/anchors.spec.ts` (cinq tests ajoutés)
 +
-+**Effet attendu** — Les 37 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. HTML de Studios inchangé à l'attribut près.
++**Effet attendu** — Les 39 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. Témoin du pilote (`studio-photo/selecteur-machines`) non modifié.
 +
-+**Vérifié** — Build local : `anchors.spec` 10/10 (7/7 existants, 3 ajoutés) ; sur `main`, 6/7. HTML rendu FR, EN, de-ch comparé à `main` : seule différence, l'attribut `id`. Arrivée mesurée à 390 et 1 440 px : titre à 200 et 280 px, sous l'en-tête de 65 px.
-+**Supposé** — Aucun effet d'indexation : un attribut `id` sans changement de texte, d'URL ni de lien.
-+**Non regardé** — Inventaire Maillage V2 (22 liens) : document non disponible dans le dépôt, écart avec les 18 liens trouvés non expliqué. Effet sur les mesures d'audience de Studios.
++**Vérifié** — Build local : `anchors.spec` 12/12 (7 existants, 5 ajoutés) ; sur `main`, 6/7. HTML rendu de Studios (FR, EN, de-ch) : seule différence avec `main`, l'attribut `id`. Arrivée mesurée à 390 et 1 440 px : titre sous l'en-tête.
++**Supposé** — Aucun effet d'indexation : un attribut `id` et un fragment d'URL interne.
++**Non regardé** — Inventaire Maillage V2 (22 liens) : écart avec les 19 liens trouvés non expliqué. Effet sur les mesures d'audience de Studios.
 +
-+**Suite** — Arbitrage de Laurent : rattachement au lot Maillage V2, date de publication au regard du J0 Studios proposé le 29/10.
++**Suite** — PR brouillon du propriétaire Maillage V2 ; réservation du fichier Studios à coordonner avec Landings & Hubs ; publication envisagée au J0 du 29/10 (P2 sous réserve). Après fusion de #86 : passer `anchors` de la liste des différés à celle des attendus dans `pr-checks.yml`.
 +
 +---
 +
@@ -69,10 +88,10 @@ index bdc2778..36ebe9c 100644
  
  **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
 diff --git a/e2e/anchors.spec.ts b/e2e/anchors.spec.ts
-index 27cc804..8700e4e 100644
+index 27cc804..3612090 100644
 --- a/e2e/anchors.spec.ts
 +++ b/e2e/anchors.spec.ts
-@@ -47,6 +47,24 @@ test.describe('Anchor Links', () => {
+@@ -47,6 +47,33 @@ test.describe('Anchor Links', () => {
      await expect(el).toBeAttached();
    });
  
@@ -93,6 +112,15 @@ index 27cc804..8700e4e 100644
 +    await expect(section).toBeAttached();
 +    await expect(section.locator('a[href="/fr/calculateur-roi"]')).toBeAttached();
 +  });
++
++  for (const lang of ['fr', 'en']) {
++    test(`le CTA ROI de prestataire-packshot-vs-studio-interne vise #calculateur-roi (${lang})`, async ({ page }) => {
++      await page.goto(`/${lang}/blog/prestataire-packshot-vs-studio-interne`);
++      const vers = await page.locator('a[href*="/studios-photo-automatises#"]').evaluateAll((liens) => liens.map((a) => a.getAttribute('href')));
++      expect(vers.length).toBeGreaterThan(0);
++      for (const href of vers) expect(href).toBe(`/${lang}/studios-photo-automatises#calculateur-roi`);
++    });
++  }
 +
    test('#secteurs exists on /fr/industrie', async ({ page }) => {
      await page.goto('/fr/industrie');
