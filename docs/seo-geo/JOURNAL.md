@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
+
+**Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)
+
+**Quoi** — GO de Laurent du 03/10 : préparer la fusion de #83, sans fusionner. Conflits documentaires résolus en ajout seul :
+- `BOITE-AUX-LETTRES.md` : Q22 et Q21 (#87), puis Q20 (#83) ; Q19 inchangée ;
+- `JOURNAL.md` : les 5 entrées de #87 et les 2 de #83 conservées, classées de la plus récente à la plus ancienne d'après l'heure de leur commit.
+
+Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/produits/` et `docs/standards/registre-ecarts-dimensions.md` sont identiques à `1c31ac6`. Diff net contre `main` inchangé avant cette entrée : 8 fichiers, + 1 083 lignes, aucune suppression.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 fichiers valides ; eslint vert sur `data/produits`, `lib/produits`, `scripts/produits` ;
+- `npx vitest run` : 20 fichiers, 400 tests (377 + 23), verts ;
+- `npx next build` vert, 371 pages ;
+- mutations temporaires, retirées ou restaurées à l'identique (`git diff` vide) : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » dans un fichier temporaire de `content/` → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL. » → 0 échec ; XXL `w: 91` dans le catalogue du sélecteur → 1 échec ;
+- aucun écart contre `main` dans `components/`, `messages/`, `app/`, `content/`, `lib/lead-enrichment.ts`, `public/`, `i18n/`, `cloudflare-worker/` ; le référentiel n'est importé par aucun fichier du site ;
+- `docs/standards/README.md`, sur `main` depuis #87, renvoie à `registre-ecarts-dimensions.md`, absent de `main` : le lien n'aboutit qu'à la fusion de #83.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview Vercel (aucun rendu modifié) ; `ETAT.md`, volontairement non modifié (réservations de la session « Réparations lot 1 V4.3 ») ; Vitest en CI, absent du workflow de `main` tant que #86 n'est pas fusionnée.
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent sur la tête finale ; réponse de Sébastien à Q20 pour PRODUCT-DATA, sans effet sur le référentiel de test.
+
+---
+
 ## 2026-10-03 · Arbitrages UX / dimensions du 03/10 : finalisation de #83 à #87 · Claude de Laurent
 
 **Chantier** : D44, D45, alignement V4.3 | **PR** : #87 (documentation), #85 (`c331c40`) | **Base** : `main` `de6c4cd`
