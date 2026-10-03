@@ -10,7 +10,7 @@ Document de reprise pour le pilotage global : il suffit pour reprendre les trava
 
 | Règle | Décision | Statut | Référence stable | Registre | Contrôle |
 |---|---|---|---|---|---|
-| R-UX-LONG — navigation des pages longues | D44 | Inscrite dans `DECISIONS.md` par la PR UX-GOV (brouillon) | `docs/standards/R-UX-LONG.md` | `data/navigation/pages-longues.ts` (#85) | Vitest `lib/navigation/__tests__/` (#85) ; specs `e2e/navigation-pages-longues.spec.ts` (#85), `e2e/sommaire-blog.spec.ts` (#84) |
+| R-UX-LONG — navigation des pages longues | D44 | Inscrite dans `DECISIONS.md` par #87 (brouillon) | `docs/standards/R-UX-LONG.md` | `data/navigation/pages-longues.ts` (#85) | Vitest `lib/navigation/__tests__/` (#85) ; specs `e2e/navigation-pages-longues.spec.ts` (#85), `e2e/sommaire-blog.spec.ts` (#84) |
 | R-PRODUCT-DIM — dimensions, encombrements, charges | D45 | Idem | `docs/standards/R-PRODUCT-DIM.md` | `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `docs/standards/registre-ecarts-dimensions.md` (#83) | Vitest `lib/produits/__tests__/coherence-dimensions.test.ts` (#83) |
 
 Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md` et `02-PROCEDURE.md` (étape 2).
@@ -27,9 +27,9 @@ Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md`
 | #84 UX-BLOG | Sommaire du blog : titre visé atteint, liste latérale plafonnée, ARIA | `ccr-79f70eb9-ux-blog` | `a4b27c6` | `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` | Preview par Laurent ; information de Sébastien (pages de #64 et #27) ; fusion |
 | #85 UX-STICKY | Barre collante mutualisée, registre, 96 pages ; ancre `#calculateur-roi` réparée | `ccr-79f70eb9-ux-sticky` | `1e0118b` | `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, 7 gabarits, spec et test | Décision de conception (libellé actif) ; Preview ; information de Sébastien ; fusion |
 | #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `894c26b` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | Lecture de la CI ; GO d'infrastructure ; information de Sébastien ; fusion |
-| UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | voir la PR | `docs/**` seulement | Fusion |
+| #87 UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | `3d3444e` puis ce commit | `docs/**` seulement | Fusion |
 
-Ordre de fusion proposé : UX-GOV, #83, #86, #84, #85. Les specs de #84 et #85 s'exécutent en CI dès leur fusion, sans retoucher le workflow (`--pass-with-no-tests`).
+Ordre de fusion proposé : #87 (UX-GOV), #83, #86, #84, #85. Les specs de #84 et #85 s'exécutent en CI dès leur fusion, sans retoucher le workflow (`--pass-with-no-tests`).
 
 Conflits attendus, sans enjeu :
 - haut de `JOURNAL.md` entre ces cinq PR, comme pour toutes les PR ouvertes ;

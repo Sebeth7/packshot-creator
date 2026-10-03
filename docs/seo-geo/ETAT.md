@@ -25,9 +25,9 @@ vont en C ou D, ses mesures en E.
 |---|---|
 | Contrôle | 03/10/2026, Claude de Laurent (mission « Standard UX et fiabilité des données produit ») |
 | `main` | `8c0dd06` — fusion de #80, 02/10 à 12:48:08 UTC ; production Vercel `success` à 12:49:13 UTC |
-| Dernière mise à jour documentaire | 03/10 — Claude de Laurent : D44 et D45 inscrites, `docs/standards/`, Q21 (PR UX-GOV, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée) ; 02/10, #80 (Claude de Sébastien) |
-| PR ouvertes | 15 au 03/10 : les 9 du registre du 02/10 (#27, #59, #60, #64, #65, #67, #70, #77, #79) ; #82 (landing catalogue Orbitvu All-in-One, brouillon, bloquée, absente de ce fichier avant le 03/10, propriétaire non établi par le dépôt) ; #83 à #87 (D44, D45, ce chantier) |
-| Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit, portée par #83) ; Q21 (D44, D45 et `/CLAUDE.md`, portée par la PR UX-GOV) |
+| Dernière mise à jour documentaire | 03/10 — Claude de Laurent : D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée) ; 02/10, #80 (Claude de Sébastien) |
+| PR ouvertes | 15 au 03/10 : les 9 du registre du 02/10 (#27, #59, #60, #64, #65, #67, #70, #77, #79) ; #82 (landing catalogue Orbitvu All-in-One, brouillon, bloquée, absente de ce fichier avant le 03/10, propriétaire non établi par le dépôt) ; #83 à #87 (D44, D45, chantier du 03/10) |
+| Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit, portée par #83) ; Q21 (D44, D45 et `/CLAUDE.md`, portée par #87) |
 
 Règles transverses en vigueur, rappel :
 - **D29** : aucune redirection XL v2 / XL G2, nouvelle ou annulée, avant validation du mapping produit.
@@ -58,7 +58,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #84 | D44 — sommaire du blog : titre visé atteint (mobile, desktop), liste latérale plafonnée | Claude de Laurent | Brouillon ; tête `a4b27c6` ; spec 8/8 | Change le comportement des 6 pages dédiées de #64 et #27 sans modifier leurs fichiers | Preview par Laurent ; information de Sébastien ; GO de fusion |
 | #85 | D44 — barre de sommaire collante mutualisée, registre, 96 pages (guides, fiches, IA, gamme, solutions, 2 articles) | Claude de Laurent | Brouillon ; tête `1e0118b` ; spec 47 tests, 94/94 | Choix de conception du libellé actif (CLS) ; Mode et F5 non touchées | Preview d'une page par famille ; décision de conception ; GO de fusion |
 | #86 | CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | Claude de Laurent | Brouillon ; tête `894c26b` | Modification d'infrastructure ; nouvelle exigence pour les PR qui touchent les catalogues de machines | Lecture de la CI de la PR ; GO de Laurent ; information de Sébastien |
-| UX-GOV | D44, D45, `docs/standards/`, Q21, ce fichier, `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier ou avec #83 à #86 |
+| #87 | UX-GOV : D44, D45, `docs/standards/`, Q21, ce fichier, `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier |
 | #27 | Maillage article → offre (Q3, 14 liens) et contrôle `curl.exe` du lot F | Claude de Laurent | Ouverte, non brouillon, inactive depuis le 23/09 ; 164 commits de retard ; conflit sur un fichier supprimé par #71 | Historique : ne pas fusionner globalement. Revue demandée à Sébastien depuis le 23/09, non rendue | Aucun développement ; sort sur GO distinct de Laurent, preuves conservées (JOURNAL du 02/10) |
 
 ---
@@ -82,7 +82,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | D33 — fiche Google (hors dépôt) | 25/09 | Si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33 |
 | P0-J — GO après le 08/10 | 25/09 | Voir E |
 | D42 — positionner chaque PR de contenu dans le circuit en huit étapes | 01/10 | PR ouvertes touchant `content/**`, `messages/**` ou un composant de landing : #27, #59, #60, #64, #70, #77, et #79 (`content/revue-interne/**`). Étape atteinte non établie (relevé du 01/10 sur `main` `6b80e6a`). #65 et #67 ne touchent aucun fichier de contenu ; #66 est acquise (arbitrage 6) |
-| D44, D45 — ordre de fusion et GO | 03/10 | Proposé : UX-GOV, #83, #86, #84, #85 (les specs de #84 et #85 s'activent en CI à leur fusion). Chaque fusion sur GO distinct ; aucune fusion automatique. Détail : `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` |
+| D44, D45 — ordre de fusion et GO | 03/10 | Proposé : #87, #83, #86, #84, #85 (les specs de #84 et #85 s'activent en CI à leur fusion). Chaque fusion sur GO distinct ; aucune fusion automatique. Détail : `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` |
 | D44 — libellé actif de la barre (#85) | 03/10 | Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros. CLS de défilement : 0, contre 0,036 à 1 024 px sur la barre de Mode. La bascule de Mode après le 26/11 changera l'emplacement du libellé |
 | Branches — suppressions éventuelles | 02/10 | 39 branches sans commit absent de `main` ; 3 branches de PR fermées sans fusion ; décision sur GO seulement. Registre : `REVUE-PR-BRANCHES-2026-10-02.md`, § 4 et § 6 |
 
