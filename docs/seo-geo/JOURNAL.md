@@ -34,6 +34,49 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · D44 — sommaire du blog : titre visé atteint en mobile et en desktop, liste latérale utilisable sur toute la hauteur · Claude de Laurent
+
+**Chantier** : D44 (R-UX-LONG), PR UX-BLOG | **PR** : brouillon, branche `ccr-79f70eb9-ux-blog` | **Base** : `main` `de6c4cd`
+
+**Quoi** — `components/blog/TableOfContents.tsx` :
+- sommaire repliable : le panneau se replie avant le défilement ;
+- arrivée : position du titre vérifiée, jusqu'à trois corrections ;
+- liste latérale : hauteur maximale `calc(100vh - 10rem)`, défilement interne, entrée active gardée visible, recentrage suspendu pendant un défilement lancé depuis le sommaire ;
+- `aria-current="location"`, `aria-expanded` et `aria-controls`, focus visible ;
+- mouvement réduit respecté.
+
+Spec `e2e/sommaire-blog.spec.ts` (8 tests). Aucun contenu, aucun `id` de titre, aucune adresse modifiés.
+
+**Pourquoi** — Défauts mesurés le 03/10 sur `main` :
+- mobile 390 px : après clic, titre visé à −810 px et −191 px ;
+- desktop : 29 sommaires latéraux dépassaient 804 px de hauteur utile, jusqu'à 1 670 px ;
+- troisième défaut trouvé pendant ce chantier : les images d'articles sans dimensions se chargent pendant le défilement et allongent la page (+1 277 px et +3 662 px sur deux articles) ; un clic sur une entrée lointaine s'arrêtait plus haut que le titre (titre à 1 372 px et 3 759 px du haut de l'écran au lieu de 96 px). Contrôle : avec les images déjà chargées, le titre arrive à 96 px.
+
+**Fichiers** — `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Navigation dans les 122 articles du gabarit commun et les 6 pages dédiées : titre visé visible sous l'en-tête après clic, toucher ou Entrée ; dernières entrées des longs sommaires atteignables.
+
+**Vérifié** —
+- Spec `sommaire-blog` sur build local de la branche : 8/8. Sur build local de `main` : 8/8 en échec (3 desktop sur le défaut lui-même ; 4 mobile parce que le bouton n'a pas d'`aria-expanded` sur `main` ; 1 faute d'`aria-current`).
+- Comparaison `main` / branche, 11 pages (les 6 dédiées et 5 articles du gabarit commun) × 7 largeurs (360, 390, 768, 1 024, 1 280, 1 440, 1 920) :
+  - 0 écart de hauteur de page ;
+  - liste latérale plus haute que la fenêtre : 16 cas sur `main`, 0 sur la branche ;
+  - aucune double navigation collante ;
+  - débordement horizontal : 1 cas, identique sur `main` (`/fr/blog/guide-achat-studio-2026` à 1 024 px, préexistant, page sous #64).
+- `tsc`, eslint, `next build` (371 pages), Vitest 377/377.
+
+**Effet sur les pages protégées (#64, #27)** — Leurs fichiers ne sont pas modifiés. Comportement changé, mesuré :
+- `blendai-vs-flair…`, `blendai-vs-photoroom…`, `comment-calculer-le-roi…` et `guide-achat-studio-2026` : liste latérale plafonnée et défilante ; pas de sommaire mobile, comme avant ;
+- `orbitvu-vs-concurrents` et `ia-photo-produit-guide-2026` : repliable corrigé, `aria-expanded` ajouté ;
+- hauteur de page inchangée aux 7 largeurs.
+
+**Supposé** — Les navigateurs sans évènement `scrollend` (Safari selon les versions) utilisent la garde de 2 s ; non testé dans Safari.
+**Non regardé** — Firefox, Safari, lecteur d'écran réel ; Preview et `www` (R4) ; images d'articles sans dimensions (cause racine, contenu de Sébastien) ; le débordement à 1 024 px de `guide-achat-studio-2026`.
+
+**Suite** — Preview contrôlée par Laurent (desktop, tablette, mobile) ; GO de fusion distinct ; contrôle Chrome sur `www` après fusion.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
