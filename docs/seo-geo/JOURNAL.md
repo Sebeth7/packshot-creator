@@ -65,6 +65,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
+
+**Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)
+
+**Quoi** — GO de Laurent du 03/10 : préparer la fusion de #83, sans fusionner. Conflits documentaires résolus en ajout seul :
+- `BOITE-AUX-LETTRES.md` : Q22 et Q21 (#87), puis Q20 (#83) ; Q19 inchangée ;
+- `JOURNAL.md` : les 5 entrées de #87 et les 2 de #83 conservées, classées de la plus récente à la plus ancienne d'après l'heure de leur commit.
+
+Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/produits/` et `docs/standards/registre-ecarts-dimensions.md` sont identiques à `1c31ac6`. Diff net contre `main` inchangé avant cette entrée : 8 fichiers, + 1 083 lignes, aucune suppression.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 fichiers valides ; eslint vert sur `data/produits`, `lib/produits`, `scripts/produits` ;
+- `npx vitest run` : 20 fichiers, 400 tests (377 + 23), verts ;
+- `npx next build` vert, 371 pages ;
+- mutations temporaires, retirées ou restaurées à l'identique (`git diff` vide) : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » dans un fichier temporaire de `content/` → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL. » → 0 échec ; XXL `w: 91` dans le catalogue du sélecteur → 1 échec ;
+- aucun écart contre `main` dans `components/`, `messages/`, `app/`, `content/`, `lib/lead-enrichment.ts`, `public/`, `i18n/`, `cloudflare-worker/` ; le référentiel n'est importé par aucun fichier du site ;
+- `docs/standards/README.md`, sur `main` depuis #87, renvoie à `registre-ecarts-dimensions.md`, absent de `main` : le lien n'aboutit qu'à la fusion de #83.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview Vercel (aucun rendu modifié) ; `ETAT.md`, volontairement non modifié (réservations de la session « Réparations lot 1 V4.3 ») ; Vitest en CI, absent du workflow de `main` tant que #86 n'est pas fusionnée.
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent sur la tête finale ; réponse de Sébastien à Q20 pour PRODUCT-DATA, sans effet sur le référentiel de test.
+
+---
+
 ## 2026-10-03 · Arbitrages UX / dimensions du 03/10 : finalisation de #83 à #87 · Claude de Laurent
 
 **Chantier** : D44, D45, alignement V4.3 | **PR** : #87 (documentation), #85 (`c331c40`) | **Base** : `main` `de6c4cd`
@@ -146,6 +171,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · PRODUCT-TEST — garde de la valeur retirée : capacité et objet distingués ; « conforme » défini (revue pré-fusion) · Claude de Laurent
+
+**Chantier** : D45, revue pré-fusion #83 à #87 | **PR** : #83 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- La garde « valeur retirée » ne signale plus tout triplet 100 / 70 / 190 : elle le signale quand le texte l'énonce comme capacité (catalogue, « maximal », « jusqu'à », nom de machine seul), pas quand il décrit un objet photographié (« un objet de 100 × 70 × 190 cm tient dans l'XXL »). Cinq cas synthétiques fixent la distinction dans le test.
+- Statut `conforme` défini comme une correspondance numérique avec la fiche fabricant consultée, sans validation de la version commerciale (référentiel et registre).
+
+**Pourquoi** — Revue du pilotage du 03/10 : l'ancienne garde confondait la régression de la capacité XXL avec la mention légitime d'un objet de même dimension ; le décompte « 11 conformes » pouvait se lire comme une validation des versions.
+
+**Fichiers** — `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `data/produits/fiches-techniques.ts` (commentaire), `docs/standards/registre-ecarts-dimensions.md`
+
+**Vérifié** — 23 tests, verts. Deux mutations temporaires : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL » → 0 échec. `evaluateMachine` : un objet de 100 × 70 × 190 reste accepté sur l'XXL.
+**Supposé** — rien.
+**Non regardé** — formulations rédactionnelles non prévues par les deux listes de mots (objet, capacité) : une mention ambiguë reste signalée, ce qui est le sens prudent.
+
+**Suite** — Aucune valeur affichée modifiée. PR PRODUCT-DATA toujours subordonnée à Q20.
+
+---
+
 ## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
 
 **Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`
@@ -172,6 +217,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — `/CLAUDE.md`, volontairement non modifié (décision de Sébastien, Q19 option A) ; `06-CHANTIERS.md`, arrêté au 19/09.
 
 **Suite** — GO de fusion dans l'ordre UX-GOV, #83, #86, #84, #85 ; réponses de Sébastien à Q20 et Q21.
+
+---
+
+## 2026-10-03 · D45 — référentiel des dimensions, contrôle de cohérence, registre des écarts, Q20 · Claude de Laurent
+
+**Chantier** : D45 (R-PRODUCT-DIM), PR PRODUCT-TEST | **PR** : brouillon, branche `ccr-79f70eb9-product-test` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Référentiel `data/produits/fiches-techniques.ts` (17 machines : valeurs consommées par le site, fiche fabricant relevée le 03/10, statut par caractéristique) ; écarts commerciaux connus `data/produits/ecarts-connus.ts` ; test `lib/produits/__tests__/coherence-dimensions.test.ts` (23 tests) ; script `scripts/produits/inventaire-mentions.mts` ; registre `docs/standards/registre-ecarts-dimensions.md` ; Q20 dans `BOITE-AUX-LETTRES.md`. **Aucune valeur affichée ni aucun catalogue modifiés.**
+
+**Pourquoi** — Audit du 03/10 : dimensions saisies à la main dans deux catalogues, synchronisées deux fois à la main (28/09, 01/10) ; champs voisins déjà divergents ; contenus libres faux (guide d'achat 2026, comparatif Orbitvu, article Pro G2, hub mobilier, prompt des leads). Consigne de Laurent du 03/10 : référentiel obligatoire immédiatement, aucune valeur commerciale contradictoire propagée avant validation de Sébastien.
+
+**Fichiers** — `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `scripts/produits/inventaire-mentions.mts`, `docs/standards/registre-ecarts-dimensions.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une modification de dimension, de charge ou d'encombrement dans un catalogue, une landing (Mode, F5), la FAQ d'une fiche ou une traduction, sans mise à jour du référentiel, fait échouer Vitest. La valeur XXL retirée (100 × 70 × 190) ne peut plus revenir. Bloquant en CI seulement après la PR CI (Vitest n'y tourne pas aujourd'hui).
+
+**Vérifié** —
+- `npx vitest run` : 20 fichiers, 400 tests verts (377 avant + 23).
+- Détection prouvée par trois mutations temporaires, fichiers restaurés à l'identique : XXL `w: 70` dans le catalogue ROI → 6 échecs ; « 190 × 70 × 100 » dans `en.json` (Mode) → 4 échecs ; cadence XXL modifiée dans le sélecteur → 1 échec.
+- Limites fonctionnelles sur `evaluateMachine` : XXL 90 cm accepté, 91 refusé ; rotation (190 × 100 × 90, 90 × 190 × 100 acceptés ; 191 et 101 refusés) ; 100 kg accepté, 101 refusé ; chaque machine accepte son objet maximal et refuse 1 cm de plus ; chaque charge chiffrée acceptée, 1 kg de plus refusé.
+- `npx tsc --noEmit`, eslint sur les fichiers ajoutés, `verifier-json` (180), `npx next build` (371 pages) : verts.
+- Inventaire : 81 triplets libres, 13 sans correspondance (registre, § 2).
+- Statuts du référentiel : contrôlés par le test contre les valeurs en présence (une contradiction doit être « écart » ou « à arbitrer » et citer un point de Q20).
+
+**Supposé** — Les pages orbitvu.com décrivent les produits actuels du fabricant ; elles ne suffisent pas à établir une correspondance de version avec les noms PSC (« Pro v2 », « v2 »).
+**Non regardé** — Brochures PDF Orbitvu ; notes Pipedrive produites par le prompt des leads (aucun accès, appels Gemini payants exclus) ; Preview et production.
+
+**Suite** — Réponse de Sébastien à Q20, puis PR PRODUCT-DATA (catégorie A d'abord : XL G2 et Micro, encombrements) ; dérivation des catalogues depuis le référentiel ; valeurs F5 après le 23/11, Mode après le 26/11.
 
 ---
 
