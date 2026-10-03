@@ -10,6 +10,8 @@ import { sanitizeHtml } from '@/lib/sanitize';
 import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageSections';
 import { ArticleCTA } from '@/components/blog';
 import { tx } from '@/lib/locale-text';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -70,6 +72,16 @@ export default async function GuidePage({ params }: PageProps) {
 
   if (!guide) notFound();
 
+  // Barre de sommaire collante (D44) : étapes, puis FAQ. Les id ne sont posés que si elle est active.
+  const barre = barreActive('guide', lang as Lang, slug);
+  const titreFaq = tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen');
+  const entreesSommaire = barre
+    ? [
+        ...guide.steps.map((step, i) => ({ id: `etape-${i + 1}`, libelle: step.title })),
+        ...(guide.faqs.length > 0 ? [{ id: 'faq', libelle: titreFaq }] : []),
+      ]
+    : [];
+
   const h1Source = guide.h1 || guide.title;
   const cleanTitle = h1Source.replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}]/gu, '').trim();
 
@@ -111,6 +123,14 @@ export default async function GuidePage({ params }: PageProps) {
   return (
     <>
       <SchemaOrg schema={[howToSchema, breadcrumbs, ...(faqSchema ? [faqSchema] : [])]} />
+
+      {barre && entreesSommaire.length > 0 && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Lang].titre}
+          libelle={LIBELLES_BARRE[lang as Lang].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 py-16 md:py-20">
@@ -189,7 +209,7 @@ export default async function GuidePage({ params }: PageProps) {
             <StaggerContainer stagger={0.08} className="space-y-16">
               {guide.steps.map((step, i) => (
                 <StaggerItem key={i}>
-                  <div className="relative">
+                  <div className="relative" id={barre ? `etape-${i + 1}` : undefined}>
                     {/* Step number */}
                     <div className="flex items-center gap-4 mb-6">
                       <span className="flex items-center justify-center w-10 h-10 rounded-full bg-very-peri-100 text-very-peri-700 font-heading font-bold text-lg shrink-0">
@@ -235,11 +255,11 @@ export default async function GuidePage({ params }: PageProps) {
 
       {/* FAQ */}
       {guide.faqs.length > 0 && (
-        <section className="py-16 bg-neutral-50">
+        <section className="py-16 bg-neutral-50" id={barre ? 'faq' : undefined}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-future-dusk-900 mb-10">
-                {tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen')}
+                {titreFaq}
               </h2>
             </FadeInView>
             <StaggerContainer stagger={0.08} className="space-y-4">
