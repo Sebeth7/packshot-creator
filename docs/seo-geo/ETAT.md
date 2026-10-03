@@ -23,11 +23,11 @@ vont en C ou D, ses mesures en E.
 
 | | |
 |---|---|
-| Contrôle | 02/10/2026, 13:10 UTC, Claude de Laurent |
+| Contrôle | 03/10/2026, Claude de Laurent (mission « Standard UX et fiabilité des données produit ») |
 | `main` | `8c0dd06` — fusion de #80, 02/10 à 12:48:08 UTC ; production Vercel `success` à 12:49:13 UTC |
-| Dernière mise à jour documentaire | 02/10 — Claude de Laurent : rangement GitHub (#81, brouillon, documentation seule), précisé le 02/10 avant GO. Avant : 02/10, #80 (Claude de Sébastien) ; 02/10, #76 (D43 à 200 USD par mois) |
-| PR ouvertes | 10 sur GitHub depuis l'ouverture de #81 (documentaire, ce rangement). Les 9 PR opérationnelles inventoriées avant #81 : #27, #59, #60, #64, #65, #67, #70, #77, #79 — toutes en conflit avec `main` au moins sur le haut du JOURNAL |
-| Questions ouvertes | Q10, Q19 (`BOITE-AUX-LETTRES.md`) |
+| Dernière mise à jour documentaire | 03/10 — Claude de Laurent : D44 et D45 inscrites, `docs/standards/`, Q21 (PR UX-GOV, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée) ; 02/10, #80 (Claude de Sébastien) |
+| PR ouvertes | 15 au 03/10 : les 9 du registre du 02/10 (#27, #59, #60, #64, #65, #67, #70, #77, #79) ; #82 (landing catalogue Orbitvu All-in-One, brouillon, bloquée, absente de ce fichier avant le 03/10, propriétaire non établi par le dépôt) ; #83 à #87 (D44, D45, ce chantier) |
+| Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit, portée par #83) ; Q21 (D44, D45 et `/CLAUDE.md`, portée par la PR UX-GOV) |
 
 Règles transverses en vigueur, rappel :
 - **D29** : aucune redirection XL v2 / XL G2, nouvelle ou annulée, avant validation du mapping produit.
@@ -35,6 +35,8 @@ Règles transverses en vigueur, rappel :
 - **D41** : satellites AI Act B, C, D non créés ; #61 à #63 ne se rouvrent pas.
 - **D42** : circuit éditorial en huit étapes ; une CI verte ou une fusion ne valent pas validation.
 - **D43** : 200 USD par mois pour les services payants de recherche SEO/GEO, GO explicite de Laurent avant tout appel. Aucun registre de consommation dans `docs/seo-geo/` au 02/10 : la consommation d'octobre n'y est pas établie ; toute demande de GO l'indique, sans supposer un solde de 200 USD.
+- **D44** (R-UX-LONG) : navigation des pages longues par famille de gabarits ; jamais deux navigations collantes ; registre `data/navigation/pages-longues.ts` (une fois #85 fusionnée). Référence : `docs/standards/R-UX-LONG.md`.
+- **D45** (R-PRODUCT-DIM) : dimensions, encombrements et charges des machines : référentiel obligatoire, contradictions conservées, aucune valeur commerciale contradictoire remplacée avant la réponse de Sébastien (Q20). Référence : `docs/standards/R-PRODUCT-DIM.md`.
 
 ---
 
@@ -52,6 +54,11 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #65 | D40 proposée : circuit Preview Vercel → Sébastien (documentation) | Claude de Laurent | Brouillon ; tête `c5e15a8`, 53 commits de retard ; conflits `DECISIONS`, `ETAT`, `JOURNAL` | D40 non en vigueur ; 17 modifications imposées par D42 et D43 (JOURNAL du 01/10, « arbitrages finaux ») | Sort à arbitrer par Laurent (C) |
 | #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée avant toute décision sur #67 : version active du Worker confirmée (présence du bloc D36), puis `www` contrôlé. Déploiement après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, non vérifié par ce rangement | Lecture Cloudflare READ ONLY, puis contrôle de `www` (C). Aucun nouveau déploiement autorisé |
 | #70 | Ubersuggest : `metaTitle` de `/fr/blog/photographie-2d-de-produits` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `ef0bc89` | Point ouvert : un `<title>` relève-t-il du copywriting réservé à Sébastien ? | Arbitrage séparé de Laurent |
+| #83 | D45 — référentiel des dimensions, contrôle Vitest (23 tests), registre des écarts, Q20 | Claude de Laurent | Brouillon ; tête `9297461` ; aucune valeur affichée modifiée | Bloquant en CI seulement après #86 | GO de fusion de Laurent ; réponse de Sébastien à Q20 pour la suite (PR PRODUCT-DATA) |
+| #84 | D44 — sommaire du blog : titre visé atteint (mobile, desktop), liste latérale plafonnée | Claude de Laurent | Brouillon ; tête `a4b27c6` ; spec 8/8 | Change le comportement des 6 pages dédiées de #64 et #27 sans modifier leurs fichiers | Preview par Laurent ; information de Sébastien ; GO de fusion |
+| #85 | D44 — barre de sommaire collante mutualisée, registre, 96 pages (guides, fiches, IA, gamme, solutions, 2 articles) | Claude de Laurent | Brouillon ; tête `1e0118b` ; spec 47 tests, 94/94 | Choix de conception du libellé actif (CLS) ; Mode et F5 non touchées | Preview d'une page par famille ; décision de conception ; GO de fusion |
+| #86 | CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | Claude de Laurent | Brouillon ; tête `894c26b` | Modification d'infrastructure ; nouvelle exigence pour les PR qui touchent les catalogues de machines | Lecture de la CI de la PR ; GO de Laurent ; information de Sébastien |
+| UX-GOV | D44, D45, `docs/standards/`, Q21, ce fichier, `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier ou avec #83 à #86 |
 | #27 | Maillage article → offre (Q3, 14 liens) et contrôle `curl.exe` du lot F | Claude de Laurent | Ouverte, non brouillon, inactive depuis le 23/09 ; 164 commits de retard ; conflit sur un fichier supprimé par #71 | Historique : ne pas fusionner globalement. Revue demandée à Sébastien depuis le 23/09, non rendue | Aucun développement ; sort sur GO distinct de Laurent, preuves conservées (JOURNAL du 02/10) |
 
 ---
@@ -75,6 +82,8 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | D33 — fiche Google (hors dépôt) | 25/09 | Si elle déclare l'espagnol parlé, la corriger ; sa mention « Allemand non parlé » est à revoir au regard de D33 |
 | P0-J — GO après le 08/10 | 25/09 | Voir E |
 | D42 — positionner chaque PR de contenu dans le circuit en huit étapes | 01/10 | PR ouvertes touchant `content/**`, `messages/**` ou un composant de landing : #27, #59, #60, #64, #70, #77, et #79 (`content/revue-interne/**`). Étape atteinte non établie (relevé du 01/10 sur `main` `6b80e6a`). #65 et #67 ne touchent aucun fichier de contenu ; #66 est acquise (arbitrage 6) |
+| D44, D45 — ordre de fusion et GO | 03/10 | Proposé : UX-GOV, #83, #86, #84, #85 (les specs de #84 et #85 s'activent en CI à leur fusion). Chaque fusion sur GO distinct ; aucune fusion automatique. Détail : `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` |
+| D44 — libellé actif de la barre (#85) | 03/10 | Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros. CLS de défilement : 0, contre 0,036 à 1 024 px sur la barre de Mode. La bascule de Mode après le 26/11 changera l'emplacement du libellé |
 | Branches — suppressions éventuelles | 02/10 | 39 branches sans commit absent de `main` ; 3 branches de PR fermées sans fusion ; décision sur GO seulement. Registre : `REVUE-PR-BRANCHES-2026-10-02.md`, § 4 et § 6 |
 
 ### Contrôles Chrome sur `www` (R4)
@@ -109,6 +118,9 @@ Le contrôle sur `sysnext.vercel.app` est fait et consigné au JOURNAL pour chaq
 | #80 — contrôle de bout en bout du formulaire de-ch | Claude de Sébastien (JOURNAL du 02/10) | 02/10 | Envoi réel depuis `/de-ch/kontakt` (il crée un vrai deal et deux courriels), puis suppression de la fiche test ; confirmation en allemand à décider ; test e2e qui envoie le formulaire dans les trois langues à écrire. Exécutant non désigné dans le JOURNAL |
 | Academy (#71) — reliquat légal, audit Qualiopi du 16/10 | Claude de Sébastien (JOURNAL du 30/09) | 30/09 | CGU (article 1, article 4, article 5 « PackshotCreator Academy est certifié Qualiopi ») et politique de confidentialité citent encore le simulateur OPCO ou l'Academy comme entité certifiée ; formulation « formation(s) certifiée(s) Qualiopi », une vingtaine d'occurrences au moins, à arbitrer avec la consultante ; fiche Master du catalogue (« à distance » pour une formation en présentiel). À trancher : « suivi post-formation » du guide d'achat ; « Formateurs experts 10+ ans » et témoignages Marie D. et Camille R. (comparatif Orbitvu) ; « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget). Textes légaux non modifiés par le Claude de Laurent |
 | Branches sans PR portant des commits absents de `main` | Laurent | 19/09, recompté le 02/10 | Sur clone complet : `feat/sysnext-industrial` (4 commits, mini-site Sysnext Industrial) et `feat/geo-referentiels-prix` (2 commits, pages référentiels prix). Les 3 autres branches comptées le 19/09 n'en portent aucune (`REVUE-PR-BRANCHES-2026-10-02.md`, § 4). Pour information : conserver ou abandonner |
+| Q20 — caractéristiques produit contradictoires | Laurent (D45) | 03/10 | 16 points avec les deux valeurs et leur provenance : Furniture Studio, versions XXL et autres « Pro v2 », encombrements XXL, XL G2, Micro, Alphatable, Alphadesk, axes, XL Pro v2, charges E-Comm et Fashion, produits sans source, documents fabricant, produits retirés du catalogue PSC mais actifs chez Orbitvu, catégories de taille, cadences, contenus historiques, prompt des leads. Bloque la PR PRODUCT-DATA seulement |
+| Q21 — D44 et D45, mention dans `/CLAUDE.md` | Laurent | 03/10 | Prise de connaissance ; texte proposé pour `/CLAUDE.md`, décision de Sébastien (Q19, option A) |
+| Information — #84, #85, #86 | Laurent | 03/10 | #84 change le comportement du sommaire des pages dédiées de #64 et #27 ; #85 équipe les fiches, IA photo produit, la gamme et les solutions ; #86 impose la section « Rayon d'action » aux PR qui touchent les catalogues de machines |
 | Clarifier le `03 20 19 90 90` | — | 20/08 | Inchangé |
 
 ---
@@ -179,6 +191,16 @@ Acquis : #44, #46, #50, #52, #69, #74 (et #72 pour la police). Ne pas recréer d
 - Cloudflare : vérifier si la Managed Transform « Add security headers » est active. [Inférence] Source probable de `Referrer-Policy: same-origin` devant `www`. Aucune modification Cloudflare décidée.
 - Erreur React #418 intermittente, observée aussi sur des pages non modifiées par #66 (JOURNAL du 01/10) ; cause non établie.
 - Hub `/fr/industrie/mode-textile` : chiffres non sourcés, PR distincte recommandée.
+
+### F4 bis. Suites de D44 et D45 (03/10)
+
+- PRODUCT-DATA : correction des valeurs après Q20 ; catégorie A d'abord (encombrements XL G2 et Micro), puis dérivation des deux catalogues depuis le référentiel. Valeurs F5 après le 23/11, Mode après le 26/11.
+- Contenus historiques à dimensions fausses (registre `docs/standards/registre-ecarts-dimensions.md`, H1 à H19) : circuit de Sébastien ; `guide-achat-studio-2026` et `orbitvu-vs-concurrents` coordonnés avec #64 et #27.
+- `lib/lead-enrichment.ts` : liste de machines du prompt à générer depuis les catalogues, sur accord de Sébastien (Q20.16) ; aucun test sans GO (appels Gemini payants).
+- Images d'articles sans dimensions : elles allongent la page pendant le défilement (cause racine du troisième défaut corrigé par #84) ; contenus de Sébastien.
+- `e2e/anchors.spec.ts` à ajouter à la CI après fusion de #85.
+- Mode : bascule sur le composant mutualisé après le 26/11 (parité, décision de Laurent). F5 : réexamen après le 23/11.
+- `guide-achat-studio-2026` : débordement horizontal à 1 024 px, préexistant (page sous #64).
 
 ### F5. Données structurées (backlog de #55)
 

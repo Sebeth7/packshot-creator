@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
+
+**Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- D44 (R-UX-LONG) et D45 (R-PRODUCT-DIM) dans `DECISIONS.md`.
+- Références stables `docs/standards/README.md`, `R-UX-LONG.md`, `R-PRODUCT-DIM.md`.
+- Renvois depuis `docs/seo-geo/README.md` et `02-PROCEDURE.md` (étape 2, `npx vitest run`).
+- Q21 au Claude de Sébastien : prise de connaissance, texte proposé pour `/CLAUDE.md`.
+- `ETAT.md` : A, B (#83 à #86 et cette PR ; #82, absente jusque-là), C, D, F4 bis.
+- `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` pour le pilotage.
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : inscrire durablement les deux règles et les appliquer aux pages présentes et futures, sans fusion ni publication.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/README.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/README.md`, `docs/standards/R-UX-LONG.md`, `docs/standards/R-PRODUCT-DIM.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Les deux environnements Claude trouvent les standards depuis `docs/standards/`. L'environnement de Sébastien les trouvera depuis `/CLAUDE.md` si Q21 est acceptée.
+
+**Vérifié** —
+- D44 et D45 : identifiants libres sur toutes les branches du dépôt au 03/10. Même contrôle pour Q20 et Q21.
+- Faits cités : relus dans les PR #83 à #86. Le décompte « 11 produits conformes » est vérifié dans `fiches-techniques.ts`. Correction : la synthèse de l'audit disait 10.
+
+**Supposé** — Aucun.
+**Non regardé** — `/CLAUDE.md`, volontairement non modifié (décision de Sébastien, Q19 option A) ; `06-CHANTIERS.md`, arrêté au 19/09.
+
+**Suite** — GO de fusion dans l'ordre UX-GOV, #83, #86, #84, #85 ; réponses de Sébastien à Q20 et Q21.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
