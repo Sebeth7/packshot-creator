@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · Revue pré-fusion — correction de l'inventaire ROI (lien `#roi` de prestataire) · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Inventaire des liens ROI vers Studios corrigé dans la revue : 19 liens dans le code (39 rendus), dont 1 (2 rendus) vers `#roi` depuis le CTA de `prestataire-packshot-vs-studio-interne`. Option proposée : `hash` changé en `calculateur-roi`, non appliquée (propriétaire d'A01 à désigner). Conséquence D44 du lot 1 (guides de A03) consignée.
+
+**Pourquoi** — Signalement de la session « Réparations lot 1 V4.3 » (F-024, F-025), vérifié dans le code et le HTML rendu. La première version de la revue ne cherchait que `#calculateur-roi` et `#cout`.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/ETAT.md`
+
+**Vérifié** — `git grep "hash: 'roi'"` sur `main` : 1 occurrence (l. 374) ; HTML rendu : `/fr/` et `/en/studios-photo-automatises#roi`.
+**Supposé** — rien.
+**Non regardé** — inventaire Maillage V2 (22 liens) : toujours absent du dépôt.
+
+**Suite** — Arbitrage de Laurent : propriétaire d'A01, option `#roi`.
+
+---
+
 ## 2026-10-03 · Revue pré-fusion #83 à #87 : alignement V4.3, Studios, AR-01, couverture CI · Claude de Laurent
 
 **Chantier** : D44, D45, revue pré-fusion demandée par le pilotage global | **PR** : #87 (documentation), corrections poussées sur #83 et #86 | **Base** : `main` `de6c4cd`

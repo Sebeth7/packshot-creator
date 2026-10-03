@@ -64,8 +64,9 @@ Aucun fichier de code n'est partagé entre les cinq PR.
 | A9 | Activation d'`anchors.spec` liée à #85 dans la documentation | `ETAT.md` F4 bis, JOURNAL de #86 | Liée à AR-01. Corrigé, #86 et #87 |
 | A10 | `e2e/roi-calculator.spec.ts` cherche un calculateur intégré à Studios, retiré le 22/03/2026 (commit `d5a7fea`) | Lecture du spec | Signalé seulement. Ne pas l'ajouter à la CI en l'état : il échouerait même après AR-01, la section ROI étant une accroche |
 | A11 | Q20.15 citait H1 à H17, le registre en compte 19 | Registre de #83 | Corrigé le 03/10 (`e4f7ab5`) |
+| A12 | Inventaire ROI de la première version de cette revue incomplet : le CTA de `prestataire-packshot-vs-studio-interne` pointe vers `/studios-photo-automatises#roi`, ancre également absente (1 lien dans le code, 2 rendus FR et EN) | `page.tsx` l. 374 ; HTML rendu. Signalé par la session « Réparations lot 1 V4.3 » (F-024, F-025), vérifié | Inventaire corrigé au § 4 ; non couvert par le patch AR-01 actuel, options au § 4 |
 
-**Écart non résolu** : le pilotage cite 22 liens ROI inventoriés dans Maillage V2. J'en relève 18 dans le code et 37 rendus (§ 4). Sans l'inventaire Maillage V2, je ne peux pas expliquer cet écart.
+**Écart non résolu** : le pilotage cite 22 liens ROI inventoriés dans Maillage V2. J'en relève 19 dans le code (18 vers `#calculateur-roi`, 1 vers `#roi`) et 39 rendus (§ 4). Sans l'inventaire Maillage V2, je ne peux pas expliquer cet écart.
 
 ---
 
@@ -110,6 +111,13 @@ Variante écartée : désactivation par le registre en laissant le code de #85 d
 
 **PR éditoriales ouvertes** (#27, #59, #60, #64, #70, #77, #79, #82) : aucun fichier de code commun avec #85.
 
+**Lot 1 V4.3 en préparation** : information de la session « Réparations lot 1 V4.3 » du 03/10, non établie par GitHub au moment de la revue. Ses PR (C08, A04a, A02, A03, A04b) ne touchent aucun fichier de #83 à #87, ni ceux des correctifs proposés. Une conséquence pour #85 :
+- A03 modifie trois guides : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN), `comment-photographier-lunettes-e-commerce` (FR) ;
+- D44 gèle les pages touchées par une PR éditoriale ouverte : ces trois guides devraient entrer comme exceptions au registre tant que A03 est ouverte, comme les guides de #27 ;
+- `e2e/navigation-pages-longues.spec.ts` prend `comment-photographier-lunettes-e-commerce` comme page équipée de référence : à remplacer par un autre guide si A03 l'ouvre.
+
+Ces ajustements suivront l'ouverture des PR du lot 1, avec l'arbitrage Studios.
+
 ---
 
 ## 4. Stratégie indépendante pour AR-01
@@ -129,12 +137,17 @@ Variante écartée : désactivation par le registre en laissant le code de #85 d
 | `blog/ia-photo-produit-guide-2026` (#64) | 1 | FR 1, EN 1 |
 | `blog/orbitvu-vs-concurrents` (#64) | 1 | FR 1, EN 1 |
 | `studio-photo/selecteur-machines` | 1 | FR 1, EN 1, de-ch 1 (`/de-ch/fotostudio/maschinen-finder`) |
-| **Total** | **18 dans 7 fichiers** | **37 sur 15 pages** |
+| Sous-total `#calculateur-roi` | **18 dans 7 fichiers** | **37 sur 15 pages** |
+| `blog/prestataire-packshot-vs-studio-interne`, CTA « btnRoi », **vers `#roi`** | 1 | FR 1, EN 1 |
+| **Total des liens ROI vers Studios** | **19 dans 8 fichiers** | **39 sur 17 pages** |
 
 **Destinations et identifiants.**
 - Les destinations sont `/fr/`, `/en/` et `/de-ch/studios-photo-automatises#calculateur-roi`. Les trois pages répondent 200.
 - Aucun lien vers `#cout` dans le code, les contenus, les messages ou les tests de `main`, ni dans l'historique (`git log -S`). Aucun `id="cout"`.
 - Le correctif ajoute un identifiant et n'en retire aucun.
+- **Lien `#roi` (prestataire)** : le patch AR-01 actuel ne le couvre pas. Un élément ne porte qu'un `id`, et un `id` dupliqué est exclu. Deux options :
+  1. recommandé : changer `hash: 'roi'` en `hash: 'calculateur-roi'` dans `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx` (une ligne). La page n'est pas gelée par #27 ou #64 et n'a pas de barre (registre : sous le seuil). Mais elle est réservée par la session « Réparations lot 1 » en attendant que Laurent désigne le propriétaire d'A01 ;
+  2. écarté : un second élément vide `id="roi"` dans la section, alias hérité sans autre usage.
 
 **Section ROI de Studios et page autonome sont deux cibles distinctes** :
 - la section ROI de Studios (« Quel est le vrai coût de votre production photo actuelle ? ») est une accroche ; son bouton mène à la page autonome ;
@@ -253,8 +266,8 @@ Je n'ai pas accès au tableau V4.3. Lignes proposées :
 | #85 | Tête `1e0118b`, CI verte ; arbitrage Studios ouvert (variante à 93 pages prête) ; décision sur le libellé actif |
 | #86 | Tête `5cc5bf8`, CI verte ; inventaire des specs ; 40 s d'étapes ajoutées ; `anchors` après AR-01 |
 | #87 | D44 et D45 : principe approuvé / inscription en brouillon / application à la fusion ; `ETAT.md` à jour |
-| AR-01, nouvelle ligne du lot Maillage V2 | 18 liens (37 rendus) vers une ancre absente depuis le 22/03 ; correctif prêt (`propositions-2026-10-03/`) ; publication proposée au J0 du 29/10 |
-| Écart d'inventaire | 22 liens (Maillage V2) contre 18 dans le code et 37 rendus : à rapprocher |
+| AR-01, nouvelle ligne du lot Maillage V2 | 19 liens dans le code (39 rendus) vers Studios : 18 vers `#calculateur-roi`, ancre absente depuis le 22/03, correctif prêt (`propositions-2026-10-03/`) ; 1 vers `#roi` (prestataire), option à arbitrer. Publication proposée au J0 du 29/10. Propriétaire d'A01 à désigner |
+| Écart d'inventaire | 22 liens (Maillage V2) contre 19 dans le code et 39 rendus : à rapprocher |
 | Backlog | `e2e/roi-calculator.spec.ts` périmé (calculateur retiré de Studios le 22/03) |
 | Pages IA | Appartenance au pilote Landings & Hubs à confirmer avant la fusion de #85 |
 
@@ -262,11 +275,13 @@ Je n'ai pas accès au tableau V4.3. Lignes proposées :
 
 ## 10. GO encore nécessaires
 
-1. **Studios / #85** : retrait de Studios (variante préparée, recommandée), désactivation par le registre, ou maintien. Je pousse sur #85 seulement après cet arbitrage.
+1. **Studios / #85** : retrait de Studios (variante préparée, recommandée), désactivation par le registre, ou maintien. Je pousse sur #85 seulement après cet arbitrage. Ajustements liés au lot 1 (guides de A03) dans le même push.
 2. **AR-01** :
    - rattachement au lot Maillage V2 autonome ;
    - création d'une PR brouillon dédiée (aucune PR créée sans accord) ;
-   - date de publication : J0 du 29/10 recommandé.
+   - date de publication : J0 du 29/10 recommandé ;
+   - propriétaire d'A01, que la session « Réparations lot 1 » attend aussi ;
+   - lien `#roi` de `prestataire-packshot-vs-studio-interne` : changement du `hash` en `calculateur-roi` (recommandé).
 3. **Pages IA** : dans le pilote Landings & Hubs ou non. Si oui, même traitement que Studios.
 4. **#84** : contrôle de la Preview par Laurent (§ 8).
 5. **#85** : décision de conception sur le libellé actif, puis Preview d'une page par famille.
