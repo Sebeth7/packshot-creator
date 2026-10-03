@@ -9,8 +9,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
-import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
 import { getTestimonialsByCategory } from '@/data/testimonials';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
@@ -86,29 +84,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
     bold: (chunks: React.ReactNode) => <strong className="text-white font-semibold">{chunks}</strong>,
   };
 
-  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
-  // Les id ne sont posés que si la barre est active (data/navigation/pages-longues.ts).
-  const barre = barreActive('landing-gamme', lang as Langue, 'studios-photo-automatises');
-  const ancre = (id: string) => (barre ? id : undefined);
-  const entreesSommaire = barre
-    ? [
-        { id: 'orientation', libelle: t('orientation.heading') },
-        { id: 'studios', libelle: t('products.heading') },
-        { id: 'accompagnement', libelle: t('support.heading') },
-        { id: 'calculateur-roi', libelle: t('roiTeaser.heading') },
-        { id: 'faq', libelle: t('faqStudios.heading') },
-      ]
-    : [];
-
   return (
     <>
-      {barre && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Langue].titre}
-          libelle={LIBELLES_BARRE[lang as Langue].libelle}
-          entrees={entreesSommaire}
-        />
-      )}
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Full-bleed immersive, big type
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -173,7 +150,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. ORIENTATION — Page purpose: find the right system
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id={ancre('orientation')} className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInView direction="left">
@@ -262,7 +239,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. ACCOMPANIMENT — Numbered steps, editorial timeline
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id={ancre('accompagnement')} className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center mb-20">
@@ -314,7 +291,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. ROI TEASER — Gradient + floating card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id={ancre('calculateur-roi')} className="py-20 lg:py-32 relative overflow-hidden">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-very-peri-600 via-very-peri-500 to-future-dusk-700" />
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -346,7 +323,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           7. FAQ — Split sticky heading + accordion
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id={ancre('faq')} className="py-20 lg:py-32 bg-future-dusk-0">
+      <section className="py-20 lg:py-32 bg-future-dusk-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">

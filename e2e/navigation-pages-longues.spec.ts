@@ -12,7 +12,7 @@ const EQUIPEES = [
   '/fr/guide/comment-faire-focus-stacking-pour-photographier-bague',
   '/en/guide/how-to-do-focus-stacking-for-ring-photography',
   '/de-ch/guide/welche-ausrustung-fur-schmuckfotografie-wahlen',
-  '/fr/guide/comment-photographier-lunettes-e-commerce',
+  '/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit',
   '/fr/blog/studio-ia-vs-ia-generative',
   '/en/blog/studio-ia-vs-ia-generative',
   '/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026',
@@ -23,8 +23,6 @@ const EQUIPEES = [
   '/fr/studio-photo/e-comm-studio-plus',
   '/fr/ia-photo-produit',
   '/de-ch/ia-photo-produit',
-  '/fr/studios-photo-automatises',
-  '/en/studios-photo-automatises',
   '/fr/solutions/documentation-technique-visuelle',
 ];
 
@@ -32,7 +30,9 @@ const EQUIPEES = [
 const GELEES = [
   '/fr/packshot-e-commerce',
   '/fr/industrie/mode-textile',
+  '/fr/studios-photo-automatises',
   '/fr/guide/comment-faire-photos-multi-angles-chaussures',
+  '/fr/guide/comment-photographier-lunettes-e-commerce',
   '/fr/blog/budget-studio-photo-automatise',
   '/fr/blog/prestataire-packshot-vs-studio-interne',
   '/fr/packshot-amazon',

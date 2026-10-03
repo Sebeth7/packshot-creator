@@ -41,6 +41,8 @@ export interface RegleFamille {
 
 const PR27 = 'PR #27 ouverte (contenu du guide modifié par la PR)';
 const FIN_PR27 = 'clôture de #27';
+const PR91 = 'PR #91 ouverte (A03, lot 1 V4.3 : liens de introText modifiés)';
+const FIN_PR91 = 'clôture de #91 ; si fusionnée, contrôle sur main puis retrait de l’exception';
 
 export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
   {
@@ -53,6 +55,10 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
       { slug: 'comment-faire-photos-multi-angles-chaussures', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
       { slug: 'comment-positionner-montre-avant-shooting-photo', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
       { slug: 'realiser-animation-360-professionnelle-chaussures', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
+      // D44 : page touchée par une PR éditoriale ouverte, en HOLD jusqu'à sa clôture (exception temporaire).
+      { slug: 'comment-creer-vues-multi-angles-automatique-objet', langue: 'fr', motif: PR91, jusqua: FIN_PR91 },
+      { slug: 'how-to-create-automatic-multi-angle-views-of-an-object', langue: 'en', motif: PR91, jusqua: FIN_PR91 },
+      { slug: 'comment-photographier-lunettes-e-commerce', langue: 'fr', motif: PR91, jusqua: FIN_PR91 },
     ],
     note: 'Étapes numérotées = sections ; libellés = titres d’étape existants. 47 guides, 6 682 à 12 552 px.',
   },
@@ -84,16 +90,22 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     statut: 'ADAPT',
     portee: 'toutes',
     exceptions: [],
-    note: 'Cinq sections à titre dont la FAQ ; 11 026 à 12 149 px. Ancre existante #resultats réutilisée.',
+    note: 'Cinq sections à titre dont la FAQ ; 11 026 à 12 149 px. Ancre existante #resultats réutilisée. Hors pilote Studios ; deuxième vague commerciale (addendum marché du 02/10, conditionnée par #77 et la validation des claims) : la barre est à reprendre dans la restructuration éditoriale.',
   },
   {
     famille: 'landing-gamme',
     gabarit: 'app/[lang]/studios-photo-automatises/page.tsx',
     forme: 'barre',
-    statut: 'ADAPT',
-    portee: 'toutes',
-    exceptions: [],
-    note: 'Cinq sections à titre dont la FAQ ; 11 941 à 13 248 px. Ancre existante #studios réutilisée.',
+    statut: 'HOLD',
+    portee: [],
+    exceptions: [
+      {
+        slug: 'studios-photo-automatises',
+        motif: 'Pilote Studios coordonné avec Landings & Hubs et le Maillage V2 ; J0 commun proposé le 29/10/2026 (scénario P2). Arbitrage de Laurent du 03/10 : barre retirée de #85',
+        jusqua: 'chantier commercial Studios, sous validation spécifique',
+      },
+    ],
+    note: 'Éligible (cinq sections à titre dont la FAQ ; 11 941 à 13 248 px) mais gabarit non branché. Ancre #calculateur-roi : lot AR-01 autonome, sans lien avec la barre.',
   },
   {
     famille: 'solution',

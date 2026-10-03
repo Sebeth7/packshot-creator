@@ -34,8 +34,15 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     }
   });
 
-  it('contenus des PR ouvertes gelés (#27, #64)', () => {
+  it('pilote Studios gelé jusqu’au J0 coordonné', () => {
+    for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(false);
+  });
+
+  it('contenus des PR ouvertes gelés (#27, #64, #91)', () => {
     expect(barreActive('guide', 'fr', 'comment-faire-photos-multi-angles-chaussures')).toBe(false);
+    expect(barreActive('guide', 'fr', 'comment-creer-vues-multi-angles-automatique-objet')).toBe(false);
+    expect(barreActive('guide', 'en', 'how-to-create-automatic-multi-angle-views-of-an-object')).toBe(false);
+    expect(barreActive('guide', 'fr', 'comment-photographier-lunettes-e-commerce')).toBe(false);
     expect(barreActive('guide', 'fr', 'comment-positionner-montre-avant-shooting-photo')).toBe(false);
     expect(barreActive('guide', 'fr', 'realiser-animation-360-professionnelle-chaussures')).toBe(false);
     for (const l of LANGUES) {
@@ -59,7 +66,6 @@ describe('Registre de la navigation des pages longues (D44)', () => {
       expect(barreActive('guide', l, 'guide-futur')).toBe(true);
       expect(barreActive('fiche-machine', l, 'machine-future')).toBe(true);
       expect(barreActive('landing-ia', l, 'ia-photo-produit')).toBe(true);
-      expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(true);
       expect(barreActive('solution', l, 'solution-future')).toBe(true);
       expect(barreActive('blog-dedie-sans-sommaire', l, 'comparatif-orbitvu-ortery-styleshoots-2026')).toBe(true);
       expect(barreActive('blog-dedie-sans-sommaire', l, 'prestataire-packshot-vs-studio-interne')).toBe(false);

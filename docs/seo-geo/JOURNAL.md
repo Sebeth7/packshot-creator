@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · #85 — Studios retirée de la barre (arbitrage de Laurent), guides de #91 en HOLD, pages IA conservées · Claude de Laurent
+
+**Chantier** : D44, arbitrages du 03/10 après la revue pré-fusion | **PR** : #85 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- **Studios** : `app/[lang]/studios-photo-automatises/page.tsx` revient à l'état de `main`. Famille `landing-gamme` en HOLD ; la barre de Studios relève du chantier commercial, sous validation spécifique. L'ancre `#calculateur-roi` part dans le lot AR-01 (Maillage V2) : #85 ne la porte plus.
+- **Guides de #91** (A03, lot 1 V4.3) : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN) et `comment-photographier-lunettes-e-commerce` (FR) en exception temporaire jusqu'à la clôture de #91. Si #91 est fusionnée avant #85 : contrôle sur `main`, puis retrait de l'exception.
+- **Pages IA** (`/ia-photo-produit`, FR, EN, de-ch) : barre conservée. Hors pilote Studios ; deuxième vague commerciale selon l'addendum marché du 02/10 (conditionnée par #77 et la validation des claims). **Changement UX à reprendre lors de la restructuration éditoriale** : cinq entrées (titres de section existants), `id` posés par la barre, ancre `#resultats` réutilisée.
+- **Libellé actif** : emplacement fixe à droite des numéros, conservé (décision de Laurent du 03/10).
+- Tests : registre (Studios et guides de #91 gelés) ; spec de navigation (Studios et `comment-photographier-lunettes-e-commerce` passent dans les pages gelées ; `comment-obtenir-couleurs-fideles-photographie-produit` devient la page équipée de référence).
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 : pilote Studios coordonné avec Landings & Hubs et le Maillage V2 (J0 proposé le 29/10) ; formulation actuelle de D44 pour les pages touchées par une PR éditoriale ouverte.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`
+
+**Vérifié** — voir la description de #85 (build, Vitest, spec, comptage des pages).
+**Supposé** — rien.
+**Non regardé** — barre de Studios dans le chantier commercial (hors de cette PR).
+
+**Suite** — Retrait des exceptions de #91 à sa clôture ; activation de Studios sur validation spécifique.
+
+---
+
 ## 2026-10-03 · D44 — barre de sommaire collante mutualisée, trois pilotes puis 96 pages par famille de gabarits · Claude de Laurent
 
 **Chantier** : D44 (R-UX-LONG), PR UX-STICKY | **PR** : brouillon, branche `ccr-79f70eb9-ux-sticky` | **Base** : `main` `de6c4cd` | **Commits** : `9d9de22` (composant, registre, pilotes), puis généralisation
