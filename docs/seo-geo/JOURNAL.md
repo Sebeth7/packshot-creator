@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · A04b — liens externes morts et balises sans `href` : 11 corrections démontrées, 2 soumises à contrôle Chrome · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b (Maillage V2 PR-04 : F-030, F-031, F-033 à F-037, F-039, F-040, F-048, F-049 ; CA10 a) | **PR** : brouillon, branche `seo/a04b-liens-externes-balises-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — 13 occurrences dans 10 JSON, aucun mot modifié, en deux commits :
+- **Commit 1, corrections démontrées (11)** :
+  - Pixcap, 2 liens (F-030, F-031, EN Amazon) : balises retirées, texte conservé ; `pixcap.com` n'a aucun enregistrement A (DNS public Cloudflare, 03/10) ;
+  - 3 balises `<a id="">` sans `href` (F-034, F-035, F-037) : balises retirées, texte conservé ;
+  - Sensorama, 2 liens (F-036, F-040) : `…/wiki/Sensorama/` (404) → `…/wiki/Sensorama` (200) ;
+  - RealityCapture, 2 liens (F-048, F-049) : `https://www.capturingreality.com/` (301) → URL finale RealityScan (200).
+- **Commit 2, soumis à contrôle Chrome (2)** : MacroSphère (F-033, F-039) : balise retirée, texte conservé. `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` redirige (301) vers `fr.packshot-creator.com`, servi par notre Worker : le dépôt n'y a aucune règle (renvoi vers `www`), Next répond 307 puis 404 (vérifié en local) ; audit A : 404. La production étant derrière Cloudflare (403 aux scripts, R4) et le Worker déployé pouvant diverger (R5), la destination réelle se confirme dans Chrome.
+
+**Pourquoi** — Liens morts, malformés ou redirigés relevés par l'audit A et le Maillage V2. Décision de Laurent du 03/10 : CA10 (a), en distinguant les corrections démontrées des liens nécessitant un contrôle Chrome.
+
+**Fichiers** — `content/blog/en/how-to-get-best-amazon-product-photos.json`, `content/blog/en/potential-advantages-e-commerce-businesses.json`, `content/blog/en/product-photo-lighting.json`, `content/blog/fr/avantage-du-e-commerce-pour-les-entreprises.json`, `content/blog/en/use-photo-studio-virtual-reality.json`, `content/blog/fr/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle.json`, `content/blog/en/from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry.json`, `content/blog/fr/de-la-photographie-2d-aux-modeles-3d-de-vos-produits-introduction-a-la-photogrammetrie.json`, `content/blog/{en,fr}/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus de liens sortants morts ni de balises de lien inertes dans ces articles.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des 10 articles identique avant et après.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 14 pages sur 359. Les 10 articles : exactement les 13 modifications annoncées. `/fr/blog`, `/en/blog` : DOM servi identique, charge RSC seule (contenu embarqué, préexistant). `/fr` et `/en/studios-photo-automatises` : DOM servi identique, écart RSC limité à la sérialisation du sélecteur de machines, sans lien avec ce diff.
+- `next start` local : 10 articles en 200 ; plus aucune occurrence de `pixcap.com`, `<a id="">`, `Sensorama/`, `capturingreality.com`, `packshot-studio.com` dans leur DOM. Cibles conservées : Wikipédia 200, RealityScan 200 (conteneur, 03/10).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que la production renvoie bien un 404 pour l'ancienne URL MacroSphère : déduit du code du dépôt et de l'audit A, non vérifié en production.
+
+**Non regardé** — Preview Vercel (SSO) ; `www`. Hors lot : l'`alt` « macrosphere pour réaliser des animations 3D… » d'une image des mêmes articles.
+
+**Suite** — Contrôle Chrome par Laurent de l'URL MacroSphère avant le GO de fusion ; si elle mène à une page vivante, le commit 2 est retiré avant fusion. Information de Sébastien (CA10 a). Publication envisagée du 12 au 16/10. A17b viendra après sur 6 de ces fichiers.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
