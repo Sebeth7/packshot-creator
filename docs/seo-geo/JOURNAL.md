@@ -34,6 +34,87 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · Arbitrages UX / dimensions du 03/10 : finalisation de #83 à #87 · Claude de Laurent
+
+**Chantier** : D44, D45, alignement V4.3 | **PR** : #87 (documentation), #85 (`c331c40`) | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- Revue, § 11 : décisions de Laurent appliquées, état final des PR, réconciliation des guides de #91, coordination d'AR-01, build cumulé incluant #88 à #92, ordre de fusion, checklist Preview de #84 et #85, GO résiduels.
+- Q22 : information de Sébastien sur les contraintes de CI (#86) et les changements d'interface (#84, #85).
+- `docs/standards/R-UX-LONG.md` : libellé actif fixe (décision du 03/10) ; Studios en HOLD ; exceptions temporaires pour les PR éditoriales ouvertes (#91).
+- Patch AR-01 mis au périmètre validé (`id` permanent, `hash` de prestataire, 5 tests) ; patch de la variante de #85 retiré, puisque appliqué.
+- `ETAT.md`, état du chantier : décisions et têtes à jour ; 20 PR ouvertes.
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 après la revue pré-fusion.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/propositions-2026-10-03/`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`
+
+**Vérifié** —
+- #85 (`c331c40`) : Vitest 385/385, spec de navigation 45/45, registre 116/116 conforme (90 pages équipées).
+- AR-01 : `anchors` 12/12 ; 39 liens aboutis ; témoin non modifié.
+- Build cumulé (#83 à #87, AR-01, #88 à #92) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; Vitest 408/408 ; parcours 77/77.
+- Scénario « #91 fusionnée » : guides éligibles, 6/6.
+**Supposé** — rien.
+**Non regardé** — propriétaire Landings & Hubs (non nommé dans le dépôt) ; Programme Directeur V4.3 et addendum marché n° 14 (hors dépôt).
+
+**Suite** — GO de Laurent (Preview de #84 et #85, infrastructure de #86, fusions) ; PR AR-01 du propriétaire Maillage V2 ; réponses de Sébastien à Q20, Q21, Q22.
+
+---
+
+## 2026-10-03 · Revue pré-fusion — lot 1 V4.3 ouvert (#88 à #92), conséquence D44 sur #85 · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Revue complétée : PR #88 à #92 du lot 1 relevées ; #91 (A03) touche trois guides équipés par #85, 4 `href` de `introText` seulement. Gel D44 de ces guides soumis à Laurent (lecture stricte ou proportionnée).
+
+**Pourquoi** — Information de la session « Réparations lot 1 V4.3 », vérifiée sur GitHub (fichiers de #91).
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`
+
+**Vérifié** — Fichiers de #88 à #92 sur GitHub : JSON de contenu et `JOURNAL.md` seulement. Diff de #91 : 3 JSON de guides, champ `introText`, 4 liens ; aucune étape modifiée.
+**Supposé** — rien.
+**Non regardé** — contenu des diffs de #88, #89, #90, #92 ; comportement de `/fr/calculateur-roi` rapporté par l'autre session.
+
+**Suite** — Arbitrage de Laurent, avec celui de Studios.
+
+---
+
+## 2026-10-03 · Revue pré-fusion — correction de l'inventaire ROI (lien `#roi` de prestataire) · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Inventaire des liens ROI vers Studios corrigé dans la revue : 19 liens dans le code (39 rendus), dont 1 (2 rendus) vers `#roi` depuis le CTA de `prestataire-packshot-vs-studio-interne`. Option proposée : `hash` changé en `calculateur-roi`, non appliquée (propriétaire d'A01 à désigner). Conséquence D44 du lot 1 (guides de A03) consignée.
+
+**Pourquoi** — Signalement de la session « Réparations lot 1 V4.3 » (F-024, F-025), vérifié dans le code et le HTML rendu. La première version de la revue ne cherchait que `#calculateur-roi` et `#cout`.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/ETAT.md`
+
+**Vérifié** — `git grep "hash: 'roi'"` sur `main` : 1 occurrence (l. 374) ; HTML rendu : `/fr/` et `/en/studios-photo-automatises#roi`.
+**Supposé** — rien.
+**Non regardé** — inventaire Maillage V2 (22 liens) : toujours absent du dépôt.
+
+**Suite** — Arbitrage de Laurent : propriétaire d'A01, option `#roi`.
+
+---
+
+## 2026-10-03 · Revue pré-fusion #83 à #87 : alignement V4.3, Studios, AR-01, couverture CI · Claude de Laurent
+
+**Chantier** : D44, D45, revue pré-fusion demandée par le pilotage global | **PR** : #87 (documentation), corrections poussées sur #83 et #86 | **Base** : `main` `de6c4cd`
+
+**Quoi** — `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`. Statuts de D44 et D45 à trois niveaux (principe approuvé, inscription en brouillon, application à la fusion). `ETAT.md` : `main` réel, têtes, arbitrages. Correctifs Studios et AR-01 versionnés en patch, non appliqués.
+
+**Pourquoi** — Revue du pilotage du 03/10 : collision de #85 avec le pilote Studios, ancre `#calculateur-roi` conditionnée à la barre, couverture CI à expliciter, statuts des règles à distinguer.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/propositions-2026-10-03/*.patch`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/*.md`
+
+**Vérifié** — Fusion d'essai locale (#87, #83, #86, AR-01, #84, #85 en variante) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; build vert ; Vitest 408/408 ; parcours 74/74 ; 37 liens ROI aboutis ; pages gelées sans différence hors AR-01 et balisage du sommaire du blog ; JSON-LD identique.
+**Supposé** — Effet d'indexation nul de l'attribut `id` d'AR-01 [Inférence].
+**Non regardé** — Programme Directeur V4.3, inventaire Maillage V2 (22 liens), scénario P2, tableau de suivi : absents du dépôt.
+
+**Suite** — Arbitrages de Laurent : Studios / #85, AR-01 (rattachement, date), pages IA, Preview de #84, libellé actif, GO d'infrastructure de #86, GO de fusion par PR.
+
+---
+
 ## 2026-10-03 · PRODUCT-TEST — garde de la valeur retirée : capacité et objet distingués ; « conforme » défini (revue pré-fusion) · Claude de Laurent
 
 **Chantier** : D45, revue pré-fusion #83 à #87 | **PR** : #83 | **Base** : `main` `de6c4cd`
@@ -51,6 +132,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — formulations rédactionnelles non prévues par les deux listes de mots (objet, capacité) : une mention ambiguë reste signalée, ce qui est le sens prudent.
 
 **Suite** — Aucune valeur affichée modifiée. PR PRODUCT-DATA toujours subordonnée à Q20.
+
+---
+
+## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
+
+**Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- D44 (R-UX-LONG) et D45 (R-PRODUCT-DIM) dans `DECISIONS.md`.
+- Références stables `docs/standards/README.md`, `R-UX-LONG.md`, `R-PRODUCT-DIM.md`.
+- Renvois depuis `docs/seo-geo/README.md` et `02-PROCEDURE.md` (étape 2, `npx vitest run`).
+- Q21 au Claude de Sébastien : prise de connaissance, texte proposé pour `/CLAUDE.md`.
+- `ETAT.md` : A, B (#83 à #86 et cette PR ; #82, absente jusque-là), C, D, F4 bis.
+- `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` pour le pilotage.
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : inscrire durablement les deux règles et les appliquer aux pages présentes et futures, sans fusion ni publication.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/README.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/README.md`, `docs/standards/R-UX-LONG.md`, `docs/standards/R-PRODUCT-DIM.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Les deux environnements Claude trouvent les standards depuis `docs/standards/`. L'environnement de Sébastien les trouvera depuis `/CLAUDE.md` si Q21 est acceptée.
+
+**Vérifié** —
+- D44 et D45 : identifiants libres sur toutes les branches du dépôt au 03/10. Même contrôle pour Q20 et Q21.
+- Faits cités : relus dans les PR #83 à #86. Le décompte « 11 produits conformes » est vérifié dans `fiches-techniques.ts`. Correction : la synthèse de l'audit disait 10.
+
+**Supposé** — Aucun.
+**Non regardé** — `/CLAUDE.md`, volontairement non modifié (décision de Sébastien, Q19 option A) ; `06-CHANTIERS.md`, arrêté au 19/09.
+
+**Suite** — GO de fusion dans l'ordre UX-GOV, #83, #86, #84, #85 ; réponses de Sébastien à Q20 et Q21.
 
 ---
 
