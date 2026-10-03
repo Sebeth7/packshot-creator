@@ -68,6 +68,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - axe-core à 390 et 1 440 px : 0 violation dans la barre. Violations de la page : `color-contrast` (pied de page) et `heading-order`, identiques sur `main`.
 - `tsc`, eslint (5 avertissements préexistants sur la fiche), `next build` (371 pages), Vitest 384/384.
 
+**Défaut préexistant corrigé** — Le CTA « Calculer mon ROI » du sélecteur (`app/[lang]/studio-photo/selecteur-machines/page.tsx:149`) pointe vers `/studios-photo-automatises#calculateur-roi`. Sur `main`, cette ancre n'existe pas : le lien ouvre le haut de la page, et `e2e/anchors.spec.ts` (« #calculateur-roi exists ») échoue sur le build de `main`. La section visée (coût de la production, `roiTeaser`) reçoit désormais l'`id` `calculateur-roi`. `anchors.spec.ts` et le spec navigation : 54/54.
+
 **Supposé** — Les ancres existantes `#resultats` (IA photo produit) et `#studios` (gamme), réutilisées, reçoivent sur desktop le décalage de 129 px : les CTA internes qui y mènent s'arrêtent sous la barre au lieu de 0 px. Effet tenu pour souhaitable ; non validé par Sébastien.
 **Non regardé** — Firefox, Safari, lecteur d'écran réel ; Preview (SSO) et `www` (R4) ; pages EN non indexées ; Mode non modifiée.
 

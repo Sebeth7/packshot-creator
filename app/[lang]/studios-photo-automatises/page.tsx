@@ -95,7 +95,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         { id: 'orientation', libelle: t('orientation.heading') },
         { id: 'studios', libelle: t('products.heading') },
         { id: 'accompagnement', libelle: t('support.heading') },
-        { id: 'cout', libelle: t('roiTeaser.heading') },
+        { id: 'calculateur-roi', libelle: t('roiTeaser.heading') },
         { id: 'faq', libelle: t('faqStudios.heading') },
       ]
     : [];
@@ -314,7 +314,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. ROI TEASER — Gradient + floating card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id={ancre('cout')} className="py-20 lg:py-32 relative overflow-hidden">
+      <section id={ancre('calculateur-roi')} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-very-peri-600 via-very-peri-500 to-future-dusk-700" />
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
