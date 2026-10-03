@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · C08 = D1-H01 — `hreflang` de l'article IA, une seule correction pour les audits A, C et D · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, C08 (Maillage V2 PR-08, ligne G-001 ; audit D H01) | **PR** : brouillon, branche `seo/c08-hreflang-article-ia-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Une clé ajoutée à `content/blog/alternates.json` : `native-2026-05-02-generer-images-produit-ia` → `{"fr": "generer-images-produit-ia", "en": null}`. `/fr/blog/generer-images-produit-ia` émet désormais ses balises `alternate` `fr`, `fr-CH` et `x-default`, auto-référentes. Aucun `en`, aucun `de-CH` : l'article n'existe qu'en français (antérieur à D38).
+
+**Pourquoi** — Article natif du 02/05 jamais inscrit dans `alternates.json` : `getBlogAlternates()` renvoyait `{fr: null, en: null}`, donc aucune balise `alternate` (audit D H01, Maillage V2 G-001, Kit A–E C08). V4.3 : une seule correction pour C08 et D1-H01. `"en": null` suit le type `AlternatesEntry` (`lib/content.ts`), qui exige la clé `en`.
+
+**Fichiers** — `content/blog/alternates.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Signal de langue cohérent pour la page FR (France et Suisse romande). Aucun effet attendu sur l'indexation des autres pages.
+
+**Vérifié** (local, build de production, variables factices) —
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 (dont `locale-switch-de-ch.test.ts`) ; `next build` vert.
+- Diff du HTML prérendu `main` / branche, après neutralisation de l'identifiant de build (deux builds de `main` : 0 écart) : **1 page sur 359** modifiée, `fr/blog/generer-images-produit-ia.html`, + 3 balises `<link rel="alternate">` (`fr`, `fr-CH`, `x-default`) et la même chose dans la charge utile RSC. Aucune autre page.
+- `next start` local : la page répond 200, canonique inchangée, pas de balise `robots`. Sélecteur de langue : EN → `/en/blog`, DE-CH → `/de-ch/blog`, comme avant. `/en/ia-photo-produit` et `/de-ch/ia-photo-produit` ne lient toujours pas l'article (traduction nulle).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec **identique sur `main`** (`language-switch` : « should translate header and footer »).
+- ESLint : 300 problèmes, identiques sur `main` (étape CI `continue-on-error`).
+- Appels payants : aucun.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; Search Console.
+
+**Suite** — Revue de la Preview, puis GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10. Après fusion : `smoke.mjs` sur `sysnext.vercel.app` (contrôle `hreflang` et `x-default`), puis Chrome sur `www`. D1 ne retouche pas H01 ; L11, H08 et L17 restent dans D1.
+
+---
+
 ## 2026-10-02 · #81 — trois précisions avant GO : transmission AI Act, Worker D36, nombre de PR · Claude de Laurent
 
 **Chantier** : gouvernance, rangement GitHub du 02/10 | **PR** : #81, brouillon, documentation seule, branche `claude/brave-cray-som6hl` | **Base** : `main` `8c0dd06`, inchangé
