@@ -26,10 +26,12 @@ Index : `docs/standards/README.md`, avec renvois depuis `docs/seo-geo/README.md`
 | #83 PRODUCT-TEST | Référentiel, test de cohérence (23 tests), registre des écarts, script d'inventaire, Q20 | `ccr-79f70eb9-product-test` | `9297461` | `data/produits/*`, `lib/produits/*`, `scripts/produits/*`, `docs/standards/registre-ecarts-dimensions.md`, `BOITE-AUX-LETTRES.md` | Fusion (Laurent) |
 | #84 UX-BLOG | Sommaire du blog : titre visé atteint, liste latérale plafonnée, ARIA | `ccr-79f70eb9-ux-blog` | `a4b27c6` | `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` | Preview par Laurent ; information de Sébastien (pages de #64 et #27) ; fusion |
 | #85 UX-STICKY | Barre collante mutualisée, registre, 96 pages ; ancre `#calculateur-roi` réparée | `ccr-79f70eb9-ux-sticky` | `1e0118b` | `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, 7 gabarits, spec et test | Décision de conception (libellé actif) ; Preview ; information de Sébastien ; fusion |
-| #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `894c26b` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | Lecture de la CI ; GO d'infrastructure ; information de Sébastien ; fusion |
-| #87 UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | `3d3444e` puis ce commit | `docs/**` seulement | Fusion |
+| #86 CI | Vitest et Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | `ccr-79f70eb9-ci` | `894c26b` | `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `01-RAYON-ACTION.md`, `e2e/machine-selector.spec.ts` | GO d'infrastructure ; information de Sébastien ; fusion |
+| #87 UX-GOV | D44, D45, `docs/standards/`, Q21, `ETAT.md`, ce document | `ccr-79f70eb9-7ls0wm` | `3d3444e` et suivants | `docs/**` seulement | Fusion |
 
 Ordre de fusion proposé : #87 (UX-GOV), #83, #86, #84, #85. Les specs de #84 et #85 s'exécutent en CI dès leur fusion, sans retoucher le workflow (`--pass-with-no-tests`).
+
+CI sur la tête de chaque PR au 03/10 : verte pour #83, #84, #85 et #86 (types, build, journal, conséquences). #86 exécute déjà Vitest et le spec du sélecteur (12/12) ; les specs de #84 et #85 s'y ajoutent à leur fusion.
 
 Conflits attendus, sans enjeu :
 - haut de `JOURNAL.md` entre ces cinq PR, comme pour toutes les PR ouvertes ;
@@ -119,7 +121,7 @@ Q20 (#83) : prête, 16 points, avec chaque fois les deux valeurs et leur provena
 1. GO de fusion de Laurent pour chaque PR, dans l'ordre proposé.
 2. Contrôle des Preview de #84 et #85 : desktop, tablette, mobile ; une page par famille.
 3. Décision de conception du libellé actif (#85) ; plus tard, bascule de Mode après le 26/11.
-4. GO d'infrastructure pour #86 ; lecture de sa CI.
+4. GO d'infrastructure pour #86. Sa CI est verte au premier passage : 40 s d'étapes ajoutées (Vitest 4 s, Chromium 22 s, parcours 14 s).
 5. Réponse de Sébastien à Q20, puis PR PRODUCT-DATA : catégorie A d'abord, puis dérivation des catalogues depuis le référentiel.
 6. Réponse de Sébastien à Q21 : renvoi dans `/CLAUDE.md`.
 7. Après chaque fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis Chrome sur `www` (R4).
