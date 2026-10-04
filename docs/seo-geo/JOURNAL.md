@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-04 · État de coordination V4.3 après la fusion de #87, #83 et #86 : ETAT, statut de D44 et D45, réservation de Studios pour AR-01 · Claude de Laurent
+
+**Chantier** : coordination V4.3, documentation seule | **PR** : brouillon, branche `claude/new-session-i2yw5o` | **Base** : `main` `0ac062b`
+
+**Quoi** —
+- `ETAT.md`, mis à jour :
+  - section A : `main` = `0ac062b`, 18 PR ouvertes, questions ouvertes, application de D44 et D45 ;
+  - section B : #83, #86 et #87 retirées ; #84 et #85 actualisées ; #88 à #93 (lot 1 V4.3) ajoutées ; nouvelle sous-section « Réservations de fichiers en cours » ;
+  - section C : ordre de fusion et ligne AR-01 actualisés ;
+  - F4 bis : `anchors` ;
+  - section G : #86, #83, #87 ;
+  - Référence : décisions récentes et questions.
+- `DECISIONS.md` : une ligne « Statut au 2026-10-04 » ajoutée sous D44 et sous D45. Les lignes de statut existantes et le texte des décisions ne changent pas.
+- Réservation inscrite : `app/[lang]/studios-photo-automatises/page.tsx` est réservé au propriétaire d'AR-01 (#93), seulement pour l'identifiant permanent `id="calculateur-roi"`, jusqu'à la clôture de #93. Landings & Hubs reprend ensuite la landing pour le chantier commercial coordonné ; aucun responsable nominatif n'est désigné dans le dépôt.
+
+**Pourquoi** — GO documentaire de Laurent du 04/10 : enregistrer l'état réel après les trois fusions de fondation.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`. Aucun fichier applicatif, aucune donnée commerciale, aucune autre branche.
+
+**Vérifié** (GitHub et dépôt, 04/10) —
+- Fusions : #87 le 03/10 à 17:51:00 UTC (`17a4248`), #83 le 03/10 à 19:49:01 UTC (`1bc7195`), #86 le 04/10 à 06:23:59 UTC (`0ac062b`).
+- Déploiement Vercel de `0ac062b` : `success` à 06:25:10 UTC (statut GitHub du commit).
+- 18 PR ouvertes, toutes en conflit avec `main` ; pour #84, #85 et #88 à #93, sur `JOURNAL.md` seulement.
+- Têtes du lot 1 : #88 `3c56079`, #89 `43dd0eb`, #90 `a829c50`, #91 `7dc9f41`, #92 `5a74aba`, #93 `a1b151e`.
+- Fichiers sur `main` :
+  - `pr-checks.yml` lance Vitest ; `ATTENDUS` = `machine-selector`, `sommaire-blog`, `navigation-pages-longues` ; `DIFFERES` = `anchors:AR-01/#93` ;
+  - `data/produits/` et `docs/standards/` présents ;
+  - `data/navigation/pages-longues.ts` absent.
+
+**Supposé** — Rien.
+
+**Non regardé** — `www` ; état des Previews ; contenu des autres PR au-delà des documents qu'elles touchent.
+
+**Suite** — Selon la consigne de Laurent du 04/10, aucune reprise automatique de `main` dans #88 à #93 : chaque PR est actualisée à l'approche de son GO. Dans #93, sur instruction : reprise de `main`, puis passage d'`anchors` de `DIFFERES` à `ATTENDUS`. Fusion de cette PR documentaire sur GO distinct.
+
+---
+
 ## 2026-10-04 · CI (#86) actualisée depuis `main` `1bc7195`, après la fusion de #87 et de #83 · Claude de Laurent
 
 **Chantier** : D44, D45, contrôles permanents ; préparation du GO de fusion de #86 | **PR** : #86, brouillon | **Base intégrée** : `main` `1bc7195`, par commit de fusion `9e874e1` (pas de rebase)
