@@ -67,6 +67,99 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : D44, D45, contrôles permanents
+**Bloque** : rien ; information demandée par Laurent (arbitrages du 03/10). Applicable à la fusion de chaque PR, sur GO de Laurent.
+
+**Contexte** — Laurent a retenu le 03/10, pour présentation au GO de fusion, le renforcement de la CI (#86) et les deux corrections d'interface (#84, #85). Elles touchent des fichiers et des pages de ton périmètre.
+
+**Ce qui change pour tes PR, après la fusion de #86** (`.github/workflows/pr-checks.yml`) :
+- `npx vitest run` s'exécute sur chaque PR (environ 400 tests ; cohérence des dimensions produit, D45, et registre de navigation, D44) ;
+- après le build : Chromium et parcours Playwright ciblés (`machine-selector`, puis `sommaire-blog` et `navigation-pages-longues` à la fusion de #84 et #85, puis `anchors` après le lot AR-01). Le résumé du job liste les specs exécutés et ceux qui manquent ; aucun passage vert sans test exécuté ;
+- durée : environ 40 s de plus aujourd'hui, environ 2 min de parcours quand les quatre specs seront actifs [Inférence, mesure locale] ;
+- `garde-consequences` : une PR qui touche les deux catalogues de machines (`machines.ts`), `data/produits/`, `TableOfContents.tsx`, les `SommaireCollant.tsx` ou `data/navigation/` doit porter une section « Rayon d'action » ;
+- une dimension, une charge ou un encombrement modifié dans un catalogue sans mise à jour de `data/produits/fiches-techniques.ts` fait échouer Vitest (#83, D45). Les questions produit sont dans Q20.
+
+**Ce qui change à l'écran, à la fusion de #84 et #85** :
+- #84 : sommaire du blog corrigé (titre visé atteint, liste latérale plafonnée), y compris sur les pages dédiées de #64 et #27, sans modifier leurs fichiers ;
+- #85 : barre de sommaire collante, desktop, sur 90 pages : guides, fiches machines, IA photo produit, solutions, deux articles. Studios n'est pas concernée (chantier commercial). Les pages gelées sont listées dans `data/navigation/pages-longues.ts`.
+
+**La question** — Sébastien prend-il connaissance de ces contraintes ? Aucune décision n'est attendue ; une objection se porte à Laurent avant les GO de fusion.
+
+---
+
+### Q21 · 2026-10-03 · D44 et D45 : standards permanents, applicables aux deux environnements — mention proposée pour `/CLAUDE.md` — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : gouvernance, standards permanents
+**Bloque** : rien ; les deux règles sont en vigueur côté Laurent. Seule la mention dans `/CLAUDE.md`, qui relève de Sébastien (Q19, option A), attend sa décision.
+
+**Contexte** — Laurent a validé le 03/10 deux règles permanentes, D44 (R-UX-LONG, navigation des pages longues) et D45 (R-PRODUCT-DIM, caractéristiques dimensionnelles des produits). Elles visent toutes les pages, présentes et futures. Les catalogues de machines (`components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`) et une partie des gabarits concernés sont dans ton périmètre.
+
+**Vérifié** — Références stables : `docs/standards/README.md`, `docs/standards/R-UX-LONG.md`, `docs/standards/R-PRODUCT-DIM.md`. Mise en œuvre en PR brouillon, aucune fusionnée :
+- PRODUCT-TEST (#83) : référentiel et contrôle Vitest des dimensions ;
+- UX-BLOG (#84) : sommaire du blog ;
+- UX-STICKY : barre collante mutualisée et registre ;
+- CI : Vitest et specs de navigation en CI.
+
+Ce que D45 change pour ton environnement : une dimension, une charge ou un encombrement d'une machine ne se modifie plus dans un catalogue sans le référentiel `data/produits/fiches-techniques.ts`, sa source et sa date. Le test échoue sinon, après la PR CI. Les questions produit sont dans Q20.
+
+**La question** — Sébastien prend-il connaissance de D44 et D45, et accepte-t-il d'ajouter à `/CLAUDE.md` le renvoi ci-dessous, pour que ton environnement les applique sans passer par `docs/seo-geo/` ?
+
+Texte proposé, à insérer après la section 1 de `/CLAUDE.md` :
+
+> ## Standards permanents
+>
+> Deux règles s'appliquent à toute page et à toute donnée produit, quel que soit l'environnement Claude : `docs/standards/README.md`.
+> - **R-UX-LONG (D44)** — navigation des pages longues : registre `data/navigation/pages-longues.ts`, composant `components/navigation/SommaireCollant.tsx`, jamais deux navigations collantes.
+> - **R-PRODUCT-DIM (D45)** — dimensions, encombrements, charges : référentiel `data/produits/fiches-techniques.ts`, contrôlé par `npx vitest run`. Une contradiction se signale avec ses deux sources ; elle ne se tranche pas en silence.
+
+**Options**
+- A : prise de connaissance et ajout du renvoi → les deux environnements appliquent les mêmes standards dès la session suivante.
+- B : prise de connaissance sans ajout → D44 et D45 restent appliquées par le Claude de Laurent et contrôlées par les tests ; ton environnement les découvre par les échecs de test.
+
+**Ma recommandation** — A : le contrôle automatique existe déjà, le renvoi évite qu'une modification légitime des catalogues échoue sans explication.
+
+---
+
+### Q20 · 2026-10-03 · Caractéristiques produit contradictoires : dimensions, encombrements, charges, versions — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : D45 (R-PRODUCT-DIM), référentiel des dimensions
+**Bloque** : la PR PRODUCT-DATA (correction des valeurs des catalogues de machines) ; rien d'autre. Le contrôle de cohérence et le référentiel sont livrés sans modifier aucune valeur affichée.
+
+**Contexte** — Audit du 03/10 (309 URL, livrable `03-AUDIT-DIMENSIONS-PRODUITS.md`) et relevé des fiches publiques Orbitvu le 03/10 à 05:54 UTC (HTML brut, 13 pages). Les deux catalogues de machines (`components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`) sont ton périmètre : aucune valeur n'y est modifiée sans ta réponse.
+
+**Vérifié** — Référentiel `data/produits/fiches-techniques.ts` ; registre `docs/standards/registre-ecarts-dimensions.md` ; test `lib/produits/__tests__/coherence-dimensions.test.ts` (23 tests, verts). Les deux catalogues portent des dimensions identiques entre eux ; les écarts ci-dessous opposent le site au fabricant, ou deux textes du site.
+
+**Les questions** — Pour chaque point : les deux valeurs, leur provenance, la réponse attendue.
+
+| Point | Objet | Valeur du site (provenance) | Autre valeur (provenance) | Réponse attendue |
+|---|---|---|---|---|
+| Q20.1 | Furniture Studio | Objet 250 × 200 × 180 cm, charge 500 kg, encombrement 500 × 400 × 300 cm (catalogues) | 300 × 300 × 200, 4 000 kg, 670 × 588 × 302, bloc identique à l'E-comm Studio+ (orbitvu.com/products/furniture-studio) ; « Plateforme de 1 000 kg, version 4 000 kg » (landing F5, gelée jusqu'au 23/11) ; « jusqu'à 4 tonnes » (article meubles-décorations) ; « hauteur 2,5 m », « jusqu'à 3 mètres » (hub mobilier-decoration) | Les bonnes valeurs, et le document qui les porte |
+| Q20.2 | Versions | « Alphastudio XXL Pro v2 », « Alphastudio Compact Pro v2 », « Fashion Studio Pro v2 », « Alphatable v2 », « Alphadesk v2 » (catalogues) | « Alphastudio XXL », « Alphastudio Compact », « Fashion Studio », « Alphatable », « Alphadesk » (orbitvu.com) | Ces produits sont-ils les mêmes ? Sinon, quelle source décrit la version vendue ? |
+| Q20.3 | XXL, encombrement | 277 × 190 × 273 cm ; FAQ « espace dédié d'environ 8 à 10 m² » (catalogues) | « Dimensions 247 cm x 139 cm x 164 cm », 340 kg (orbitvu.com/products/alphastudio-xxl) | Encombrement machine, espace recommandé, ou les deux à distinguer ? |
+| Q20.4 | XL G2, encombrement | 142 × 87 × 176 cm (catalogues ; ce sont les valeurs de l'Alphashot XL ancienne génération) | 88 × 140 × 197 cm (W × D × H), 140 kg (orbitvu.com/products/alphashot-xl-g2) | Catégorie A proposée : remplacer par la valeur fabricant ? |
+| Q20.5 | Encombrements Micro, Alphatable, Alphadesk | Micro 83 × 52 × 72 ; Alphatable 338 × 191 × 268 ; Alphadesk 137 × 123 × 155 (catalogues) | Micro 83 × 54 × 72 ; Alphatable 255 × 191 × 248 ; Alphadesk 156 × 124 × 138 (orbitvu.com) ; Micro : objet « up to 18 cm long », le site affiche 18 × 15 × 16 | Micro : catégorie A proposée. Alphatable, Alphadesk : version (Q20.2) puis valeur |
+| Q20.6 | Ordre des axes | Catalogues : `l`, `w`, `h` sans définition ; XXL l = 100, w = 90, h = 190 | Orbitvu ne précise les axes que pour l'XL G2 (« W × D × H ») ; XXL « 190 cm x 90 cm x 100 cm » sans axes | Valider la convention largeur × profondeur × hauteur, et l'affectation XXL (190 en hauteur ?) |
+| Q20.7 | XL Pro v2 | 50 × 70 × 30 cm, hauteur 30 ; encombrement 142 × 87 × 176 (catalogues) | Pas de page Orbitvu ; articles meubles-décorations FR/EN : 70 cm de haut, 50 de large, 30 de profondeur ; articles « 5 appareils photo » FR/EN : encombrement « 142 x 250 x 124 cm » | Source applicable, hauteur réelle, encombrement |
+| Q20.8 | E-Comm Studio+, charge | « 1000 kg (4000 kg option) », calcul sur 1 000 kg (catalogues) | « Max object weight 4000 kg », sans option (orbitvu.com/products/e-comm-studio) | Charge standard et option |
+| Q20.9 | Fashion Studio Pro v2, charge | « 200 kg/m² », calcul non limitant (catalogues) | Charge ponctuelle 35 kg, surfacique 200 kg (orbitvu.com/products/fashion-studio) | Unité et valeurs à afficher |
+| Q20.10 | Produits sans source | XL Wine v2, Fashion Studio Basic, Alphashot G2 (catalogues) | Aucune page dans la navigation produit Orbitvu au 03/10 | Brochure ou fiche applicable |
+| Q20.11 | Documents fabricant | — | Pages publiques orbitvu.com seulement | Quels documents techniques font foi (brochures datées, fiches distributeur) ? Peuvent-ils être archivés dans le dépôt ? |
+| Q20.12 | Retirés du catalogue PSC, actifs chez Orbitvu | Alphadesk, XL v2, XL Wine v2, Alphashot G2 : `delisted` (fiches servies, hors sitemap) | Pages « Alphadesk » et « Alphashot XL » actives sur orbitvu.com | Statut commercial à afficher ; XL v2 : D29 inchangée, aucune redirection touchée |
+| Q20.13 | Catégories de taille | Sélecteur : 360 et Pro G2 en « moyen » ; XL Pro v2 et XL v2 en « grand » | Calculateur ROI : 360 et Pro G2 en « petit » seulement ; XL G2 en « moyen » (choix « Seb 07/08 ») | Faut-il aligner, et dans quel sens ? |
+| Q20.14 | Cadences | Sélecteur : Alphadesk 480, Alphatable 500, Furniture 60 par jour | Calculateur ROI et fiches : 300, 300, 40 | Valeur à retenir |
+| Q20.15 | Contenus historiques | Registre, entrées H1 à H17 (H18 relève de Q20.16 ; H19, un prix, est hors D45) : guide d'achat 2026 et comparatif Orbitvu (« AlphaShot G2 » 100 × 80 × 80, « AlphaShot XXL » 200 × 150 × 150), article Pro G2 « 50 × 50 × 50 cm », hub mobilier « 2,5 m » | Référentiel | Correction dans ton circuit (prose), coordonnée avec #64 et #27 pour les deux pages dédiées |
+| Q20.16 | Analyse des leads | `lib/lead-enrichment.ts` : gabarits « 32x27 », « 68x62 », « 108x100 », « 74x68 cm » ; XXL, Compact, XL G2 absents | Référentiel ; analyse au registre, § 3 | Accord pour générer la liste depuis les catalogues ? |
+
+**Options**
+- A : réponse point par point, documents joints ou cités → PRODUCT-DATA corrige les catalogues et les messages (hors gels F5 et Mode), puis les catalogues dérivent du référentiel.
+- B : réponse partielle (catégorie A seulement : Q20.4, Q20.5 Micro) → corrections limitées à ces valeurs ; le reste reste inscrit « à arbitrer ».
+
+**Ma recommandation** — A pour Q20.1 à Q20.3 (elles touchent des pages commerciales et le calcul) ; B suffit pour démarrer.
+
+---
+
 ### Q19 · 2026-10-01 · Pour information — D42, standard éditorial, et D43, appels payants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : gouvernance

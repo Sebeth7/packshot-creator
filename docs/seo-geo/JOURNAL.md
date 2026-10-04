@@ -34,6 +34,132 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
+
+**Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)
+
+**Quoi** — GO de Laurent du 03/10 : préparer la fusion de #83, sans fusionner. Conflits documentaires résolus en ajout seul :
+- `BOITE-AUX-LETTRES.md` : Q22 et Q21 (#87), puis Q20 (#83) ; Q19 inchangée ;
+- `JOURNAL.md` : les 5 entrées de #87 et les 2 de #83 conservées, classées de la plus récente à la plus ancienne d'après l'heure de leur commit.
+
+Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/produits/` et `docs/standards/registre-ecarts-dimensions.md` sont identiques à `1c31ac6`. Diff net contre `main` inchangé avant cette entrée : 8 fichiers, + 1 083 lignes, aucune suppression.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 180 fichiers valides ; eslint vert sur `data/produits`, `lib/produits`, `scripts/produits` ;
+- `npx vitest run` : 20 fichiers, 400 tests (377 + 23), verts ;
+- `npx next build` vert, 371 pages ;
+- mutations temporaires, retirées ou restaurées à l'identique (`git diff` vide) : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » dans un fichier temporaire de `content/` → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL. » → 0 échec ; XXL `w: 91` dans le catalogue du sélecteur → 1 échec ;
+- aucun écart contre `main` dans `components/`, `messages/`, `app/`, `content/`, `lib/lead-enrichment.ts`, `public/`, `i18n/`, `cloudflare-worker/` ; le référentiel n'est importé par aucun fichier du site ;
+- `docs/standards/README.md`, sur `main` depuis #87, renvoie à `registre-ecarts-dimensions.md`, absent de `main` : le lien n'aboutit qu'à la fusion de #83.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview Vercel (aucun rendu modifié) ; `ETAT.md`, volontairement non modifié (réservations de la session « Réparations lot 1 V4.3 ») ; Vitest en CI, absent du workflow de `main` tant que #86 n'est pas fusionnée.
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent sur la tête finale ; réponse de Sébastien à Q20 pour PRODUCT-DATA, sans effet sur le référentiel de test.
+
+---
+
+## 2026-10-03 · Arbitrages UX / dimensions du 03/10 : finalisation de #83 à #87 · Claude de Laurent
+
+**Chantier** : D44, D45, alignement V4.3 | **PR** : #87 (documentation), #85 (`c331c40`) | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- Revue, § 11 : décisions de Laurent appliquées, état final des PR, réconciliation des guides de #91, coordination d'AR-01, build cumulé incluant #88 à #92, ordre de fusion, checklist Preview de #84 et #85, GO résiduels.
+- Q22 : information de Sébastien sur les contraintes de CI (#86) et les changements d'interface (#84, #85).
+- `docs/standards/R-UX-LONG.md` : libellé actif fixe (décision du 03/10) ; Studios en HOLD ; exceptions temporaires pour les PR éditoriales ouvertes (#91).
+- Patch AR-01 mis au périmètre validé (`id` permanent, `hash` de prestataire, 5 tests) ; patch de la variante de #85 retiré, puisque appliqué.
+- `ETAT.md`, état du chantier : décisions et têtes à jour ; 20 PR ouvertes.
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 après la revue pré-fusion.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/propositions-2026-10-03/`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`
+
+**Vérifié** —
+- #85 (`c331c40`) : Vitest 385/385, spec de navigation 45/45, registre 116/116 conforme (90 pages équipées).
+- AR-01 : `anchors` 12/12 ; 39 liens aboutis ; témoin non modifié.
+- Build cumulé (#83 à #87, AR-01, #88 à #92) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; Vitest 408/408 ; parcours 77/77.
+- Scénario « #91 fusionnée » : guides éligibles, 6/6.
+**Supposé** — rien.
+**Non regardé** — propriétaire Landings & Hubs (non nommé dans le dépôt) ; Programme Directeur V4.3 et addendum marché n° 14 (hors dépôt).
+
+**Suite** — GO de Laurent (Preview de #84 et #85, infrastructure de #86, fusions) ; PR AR-01 du propriétaire Maillage V2 ; réponses de Sébastien à Q20, Q21, Q22.
+
+---
+
+## 2026-10-03 · Revue pré-fusion — lot 1 V4.3 ouvert (#88 à #92), conséquence D44 sur #85 · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Revue complétée : PR #88 à #92 du lot 1 relevées ; #91 (A03) touche trois guides équipés par #85, 4 `href` de `introText` seulement. Gel D44 de ces guides soumis à Laurent (lecture stricte ou proportionnée).
+
+**Pourquoi** — Information de la session « Réparations lot 1 V4.3 », vérifiée sur GitHub (fichiers de #91).
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`
+
+**Vérifié** — Fichiers de #88 à #92 sur GitHub : JSON de contenu et `JOURNAL.md` seulement. Diff de #91 : 3 JSON de guides, champ `introText`, 4 liens ; aucune étape modifiée.
+**Supposé** — rien.
+**Non regardé** — contenu des diffs de #88, #89, #90, #92 ; comportement de `/fr/calculateur-roi` rapporté par l'autre session.
+
+**Suite** — Arbitrage de Laurent, avec celui de Studios.
+
+---
+
+## 2026-10-03 · Revue pré-fusion — correction de l'inventaire ROI (lien `#roi` de prestataire) · Claude de Laurent
+
+**Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
+
+**Quoi** — Inventaire des liens ROI vers Studios corrigé dans la revue : 19 liens dans le code (39 rendus), dont 1 (2 rendus) vers `#roi` depuis le CTA de `prestataire-packshot-vs-studio-interne`. Option proposée : `hash` changé en `calculateur-roi`, non appliquée (propriétaire d'A01 à désigner). Conséquence D44 du lot 1 (guides de A03) consignée.
+
+**Pourquoi** — Signalement de la session « Réparations lot 1 V4.3 » (F-024, F-025), vérifié dans le code et le HTML rendu. La première version de la revue ne cherchait que `#calculateur-roi` et `#cout`.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/ETAT.md`
+
+**Vérifié** — `git grep "hash: 'roi'"` sur `main` : 1 occurrence (l. 374) ; HTML rendu : `/fr/` et `/en/studios-photo-automatises#roi`.
+**Supposé** — rien.
+**Non regardé** — inventaire Maillage V2 (22 liens) : toujours absent du dépôt.
+
+**Suite** — Arbitrage de Laurent : propriétaire d'A01, option `#roi`.
+
+---
+
+## 2026-10-03 · Revue pré-fusion #83 à #87 : alignement V4.3, Studios, AR-01, couverture CI · Claude de Laurent
+
+**Chantier** : D44, D45, revue pré-fusion demandée par le pilotage global | **PR** : #87 (documentation), corrections poussées sur #83 et #86 | **Base** : `main` `de6c4cd`
+
+**Quoi** — `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`. Statuts de D44 et D45 à trois niveaux (principe approuvé, inscription en brouillon, application à la fusion). `ETAT.md` : `main` réel, têtes, arbitrages. Correctifs Studios et AR-01 versionnés en patch, non appliqués.
+
+**Pourquoi** — Revue du pilotage du 03/10 : collision de #85 avec le pilote Studios, ancre `#calculateur-roi` conditionnée à la barre, couverture CI à expliciter, statuts des règles à distinguer.
+
+**Fichiers** — `docs/seo-geo/PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, `docs/seo-geo/propositions-2026-10-03/*.patch`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/*.md`
+
+**Vérifié** — Fusion d'essai locale (#87, #83, #86, AR-01, #84, #85 en variante) : conflits limités à `JOURNAL.md` et `BOITE-AUX-LETTRES.md` ; build vert ; Vitest 408/408 ; parcours 74/74 ; 37 liens ROI aboutis ; pages gelées sans différence hors AR-01 et balisage du sommaire du blog ; JSON-LD identique.
+**Supposé** — Effet d'indexation nul de l'attribut `id` d'AR-01 [Inférence].
+**Non regardé** — Programme Directeur V4.3, inventaire Maillage V2 (22 liens), scénario P2, tableau de suivi : absents du dépôt.
+
+**Suite** — Arbitrages de Laurent : Studios / #85, AR-01 (rattachement, date), pages IA, Preview de #84, libellé actif, GO d'infrastructure de #86, GO de fusion par PR.
+
+---
+
+## 2026-10-03 · PRODUCT-TEST — garde de la valeur retirée : capacité et objet distingués ; « conforme » défini (revue pré-fusion) · Claude de Laurent
+
+**Chantier** : D45, revue pré-fusion #83 à #87 | **PR** : #83 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- La garde « valeur retirée » ne signale plus tout triplet 100 / 70 / 190 : elle le signale quand le texte l'énonce comme capacité (catalogue, « maximal », « jusqu'à », nom de machine seul), pas quand il décrit un objet photographié (« un objet de 100 × 70 × 190 cm tient dans l'XXL »). Cinq cas synthétiques fixent la distinction dans le test.
+- Statut `conforme` défini comme une correspondance numérique avec la fiche fabricant consultée, sans validation de la version commerciale (référentiel et registre).
+
+**Pourquoi** — Revue du pilotage du 03/10 : l'ancienne garde confondait la régression de la capacité XXL avec la mention légitime d'un objet de même dimension ; le décompte « 11 conformes » pouvait se lire comme une validation des versions.
+
+**Fichiers** — `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `data/produits/fiches-techniques.ts` (commentaire), `docs/standards/registre-ecarts-dimensions.md`
+
+**Vérifié** — 23 tests, verts. Deux mutations temporaires : « Capacité maximale de l'Alphastudio XXL : 100 × 70 × 190 cm » → 1 échec ; « Un meuble de 190 × 100 × 70 cm se photographie dans l'Alphastudio XXL » → 0 échec. `evaluateMachine` : un objet de 100 × 70 × 190 reste accepté sur l'XXL.
+**Supposé** — rien.
+**Non regardé** — formulations rédactionnelles non prévues par les deux listes de mots (objet, capacité) : une mention ambiguë reste signalée, ce qui est le sens prudent.
+
+**Suite** — Aucune valeur affichée modifiée. PR PRODUCT-DATA toujours subordonnée à Q20.
+
+---
+
 ## 2026-10-03 · CI — inventaire explicite des specs de parcours, sans `--pass-with-no-tests` (revue pré-fusion) · Claude de Laurent
 
 **Chantier** : D44, D45, revue pré-fusion #83 à #87 | **PR** : #86 | **Base** : `main` `de6c4cd`
@@ -49,6 +175,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — `retries: 2` en CI dans `playwright.config.ts` (réglage existant) : un test réussi au deuxième essai est compté « flaky », pas en échec.
 
 **Corrections de l'entrée précédente** — Durée mesurée sur la CI de cette PR : 40 s d'étapes ajoutées, et non 3 à 4 minutes. `anchors` s'active après le lot AR-01, et non après #85 : la revue pré-fusion propose de séparer l'ancre `#calculateur-roi` de la barre.
+
+---
+
+## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
+
+**Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- D44 (R-UX-LONG) et D45 (R-PRODUCT-DIM) dans `DECISIONS.md`.
+- Références stables `docs/standards/README.md`, `R-UX-LONG.md`, `R-PRODUCT-DIM.md`.
+- Renvois depuis `docs/seo-geo/README.md` et `02-PROCEDURE.md` (étape 2, `npx vitest run`).
+- Q21 au Claude de Sébastien : prise de connaissance, texte proposé pour `/CLAUDE.md`.
+- `ETAT.md` : A, B (#83 à #86 et cette PR ; #82, absente jusque-là), C, D, F4 bis.
+- `PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md` pour le pilotage.
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : inscrire durablement les deux règles et les appliquer aux pages présentes et futures, sans fusion ni publication.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/README.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/PSC_ETAT_STANDARD_UX_DIMENSIONS_2026-10-03.md`, `docs/standards/README.md`, `docs/standards/R-UX-LONG.md`, `docs/standards/R-PRODUCT-DIM.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Les deux environnements Claude trouvent les standards depuis `docs/standards/`. L'environnement de Sébastien les trouvera depuis `/CLAUDE.md` si Q21 est acceptée.
+
+**Vérifié** —
+- D44 et D45 : identifiants libres sur toutes les branches du dépôt au 03/10. Même contrôle pour Q20 et Q21.
+- Faits cités : relus dans les PR #83 à #86. Le décompte « 11 produits conformes » est vérifié dans `fiches-techniques.ts`. Correction : la synthèse de l'audit disait 10.
+
+**Supposé** — Aucun.
+**Non regardé** — `/CLAUDE.md`, volontairement non modifié (décision de Sébastien, Q19 option A) ; `06-CHANTIERS.md`, arrêté au 19/09.
+
+**Suite** — GO de fusion dans l'ordre UX-GOV, #83, #86, #84, #85 ; réponses de Sébastien à Q20 et Q21.
 
 ---
 
@@ -88,6 +243,33 @@ Tests retirés parce que la fonction n'existe plus dans l'interface : recherche 
 **Non regardé** — Firefox, WebKit, mobile émulé en CI (seul Chromium y tourne). `e2e/anchors.spec.ts` n'est pas ajouté : son test « #calculateur-roi » échoue sur `main`, défaut corrigé par #85 ; à ajouter après la fusion de #85.
 
 **Suite** — Après fusion de #84 et #85, leurs specs s'exécutent sans modification du workflow. Ajouter `anchors` à la commande après #85.
+
+---
+
+## 2026-10-03 · D45 — référentiel des dimensions, contrôle de cohérence, registre des écarts, Q20 · Claude de Laurent
+
+**Chantier** : D45 (R-PRODUCT-DIM), PR PRODUCT-TEST | **PR** : brouillon, branche `ccr-79f70eb9-product-test` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Référentiel `data/produits/fiches-techniques.ts` (17 machines : valeurs consommées par le site, fiche fabricant relevée le 03/10, statut par caractéristique) ; écarts commerciaux connus `data/produits/ecarts-connus.ts` ; test `lib/produits/__tests__/coherence-dimensions.test.ts` (23 tests) ; script `scripts/produits/inventaire-mentions.mts` ; registre `docs/standards/registre-ecarts-dimensions.md` ; Q20 dans `BOITE-AUX-LETTRES.md`. **Aucune valeur affichée ni aucun catalogue modifiés.**
+
+**Pourquoi** — Audit du 03/10 : dimensions saisies à la main dans deux catalogues, synchronisées deux fois à la main (28/09, 01/10) ; champs voisins déjà divergents ; contenus libres faux (guide d'achat 2026, comparatif Orbitvu, article Pro G2, hub mobilier, prompt des leads). Consigne de Laurent du 03/10 : référentiel obligatoire immédiatement, aucune valeur commerciale contradictoire propagée avant validation de Sébastien.
+
+**Fichiers** — `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `lib/produits/dimensions.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts`, `scripts/produits/inventaire-mentions.mts`, `docs/standards/registre-ecarts-dimensions.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une modification de dimension, de charge ou d'encombrement dans un catalogue, une landing (Mode, F5), la FAQ d'une fiche ou une traduction, sans mise à jour du référentiel, fait échouer Vitest. La valeur XXL retirée (100 × 70 × 190) ne peut plus revenir. Bloquant en CI seulement après la PR CI (Vitest n'y tourne pas aujourd'hui).
+
+**Vérifié** —
+- `npx vitest run` : 20 fichiers, 400 tests verts (377 avant + 23).
+- Détection prouvée par trois mutations temporaires, fichiers restaurés à l'identique : XXL `w: 70` dans le catalogue ROI → 6 échecs ; « 190 × 70 × 100 » dans `en.json` (Mode) → 4 échecs ; cadence XXL modifiée dans le sélecteur → 1 échec.
+- Limites fonctionnelles sur `evaluateMachine` : XXL 90 cm accepté, 91 refusé ; rotation (190 × 100 × 90, 90 × 190 × 100 acceptés ; 191 et 101 refusés) ; 100 kg accepté, 101 refusé ; chaque machine accepte son objet maximal et refuse 1 cm de plus ; chaque charge chiffrée acceptée, 1 kg de plus refusé.
+- `npx tsc --noEmit`, eslint sur les fichiers ajoutés, `verifier-json` (180), `npx next build` (371 pages) : verts.
+- Inventaire : 81 triplets libres, 13 sans correspondance (registre, § 2).
+- Statuts du référentiel : contrôlés par le test contre les valeurs en présence (une contradiction doit être « écart » ou « à arbitrer » et citer un point de Q20).
+
+**Supposé** — Les pages orbitvu.com décrivent les produits actuels du fabricant ; elles ne suffisent pas à établir une correspondance de version avec les noms PSC (« Pro v2 », « v2 »).
+**Non regardé** — Brochures PDF Orbitvu ; notes Pipedrive produites par le prompt des leads (aucun accès, appels Gemini payants exclus) ; Preview et production.
+
+**Suite** — Réponse de Sébastien à Q20, puis PR PRODUCT-DATA (catégorie A d'abord : XL G2 et Micro, encombrements) ; dérivation des catalogues depuis le référentiel ; valeurs F5 après le 23/11, Mode après le 26/11.
 
 ---
 
