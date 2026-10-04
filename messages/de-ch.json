@@ -10,7 +10,12 @@
       "subtitle": "Automatisierte Orbitvu-Fotostudios + KI von BlendAI.studio + Qualiopi-Schulungen. Der Ansatz, der Chanel, Amazon und über 5'000 Unternehmen in Frankreich und der Schweiz ausrüstet.",
       "cta": "Kostenlose Demo anfordern",
       "ctaSecondary": "Meinen ROI in 2 Min. berechnen",
-      "microStats": "Durchschnittlicher ROI: 6–12 Monate | Senkung der Fotokosten: über 60 %"
+      "microStats": "Durchschnittlicher ROI: 6–12 Monate | Senkung der Fotokosten: über 60 %",
+      "video": {
+        "title": "Orbitvu-Fotostudios: Überblick über das Sortiment",
+        "pause": "Video pausieren",
+        "play": "Video abspielen"
+      }
     },
     "socialProof": {
       "heading": "Sie erstellen ihre Packshots mit uns",

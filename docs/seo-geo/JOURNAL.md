@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-04 · Accueil : film de la gamme Orbitvu dans le hero (split, muet, R2) · Claude de Sébastien
+
+**Chantier** : demande directe de Sébastien du 04/10, hors 06-CHANTIERS | **PR** : à venir | **Commit** : voir PR
+
+**Quoi** — Hero de l'accueil (FR, EN, DE-CH) : « centré sur fond vidéo » devient « split ». Texte à gauche ; à droite, le film de présentation de la gamme Orbitvu (16:9, 42 s, 1080p, R2) en entier, lu muet en boucle, avec un bouton pause. Sous 768 px ou en mouvement réduit : image fixe, sans téléchargement de la vidéo (même règle que l'ancien `HeroVideo`).
+
+**Pourquoi** — Film fourni par Sébastien ; mise en page et lecture muette décidées par lui le 04/10. La vidéo porte des textes anglais incrustés, avec le logo Orbitvu en ouverture et en fermeture. En fond `object-cover` sous le titre centré, ils se seraient superposés au H1.
+
+**Fichiers** — `app/[lang]/page.tsx`, `components/hero/HeroVideoPanel.tsx` (nouveau), `components/hero/index.ts`, `components/hero/types.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (clés `home.hero.video.title|pause|play`), `public/images/hero/orbitvu-gamme-2026-poster.avif` (nouveau, 23 Ko, plan à 30,6 s sans texte incrusté). Hors repo : `https://videos.packshot-creator.com/orbitvu-gamme-2026-1080p.mp4` (12,6 Mo), envoyé sur le bucket `packshot-videos` le 04/10.
+
+**Effet attendu** — Immédiat au déploiement. Poids vidéo par visite sur ordinateur : jusqu'à 12,6 Mo si le film tourne en entier, contre 0,6 Mo pour l'ancienne boucle (× 21). Servi par R2, sortie non facturée : 10 000 visites/mois ≈ 126 Go, 0 €. Mobile : 0 octet de vidéo, comme avant.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint vert sur les fichiers modifiés ; `npm run build` vert (371 pages).
+- R2 : objet relu après envoi, empreinte SHA-256 identique au fichier fourni (`dfec693b…`).
+- Playwright, Chrome du Mac visible, sur `next start` :
+  - desktop 1440 FR et DE-CH : réponse `206 video/mp4`, `readyState` 4, lecture en cours, `muted`, aucun bouton son ; bouton pause libellé dans la langue, il met bien en pause ; panneau de 576 × 324 px, hero de 730 px ;
+  - mobile 390 : aucune balise `video`, image fixe présente, aucune requête vers R2.
+- Une vidéo R2 déjà en production (`Xq0vG-cr2bc.mp4`) répond aussi `206` : la règle WAF Skip couvre toujours `videos.packshot-creator.com`.
+
+**Supposé** — Droits d'usage du film acquis (fourni par Sébastien, distributeur officiel Orbitvu).
+
+**Non regardé** —
+- Safari, Firefox, iOS réel.
+- Lighthouse et CWV avant/après : l'image fixe devient l'élément le plus visible du hero sur mobile.
+- `www` dans Chrome (Worker + WAF) : à faire après déploiement.
+- Lisibilité des petits textes incrustés (≈ 9 px à 576 px de large ; les grandes lignes font 15 à 18 px).
+- `hero-range-2025.mp4` et son affiche ne sont plus référencés par l'accueil ; laissés en place.
+
+**Suite** — Contrôle sur `www` après fusion. Option : la piste audio du fichier 1080p est inutile en lecture muette (≈ 0,5 Mo, 4 % du poids) et pourrait être retirée par remux.
+
+---
+
 ## 2026-10-04 · CI (#86) actualisée depuis `main` `1bc7195`, après la fusion de #87 et de #83 · Claude de Laurent
 
 **Chantier** : D44, D45, contrôles permanents ; préparation du GO de fusion de #86 | **PR** : #86, brouillon | **Base intégrée** : `main` `1bc7195`, par commit de fusion `9e874e1` (pas de rebase)
