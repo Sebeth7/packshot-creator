@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-04 · Accueil : film de la gamme Orbitvu dans le hero (split, muet, R2) · Claude de Sébastien
 
-**Chantier** : demande directe de Sébastien du 04/10, hors 06-CHANTIERS | **PR** : à venir | **Commit** : voir PR
+**Chantier** : demande directe de Sébastien du 04/10, hors 06-CHANTIERS | **PR** : #95 | **Commit** : `52d0b4f`
 
 **Quoi** — Hero de l'accueil (FR, EN, DE-CH) : « centré sur fond vidéo » devient « split ». Texte à gauche ; à droite, le film de présentation de la gamme Orbitvu (16:9, 42 s, 1080p, R2) en entier, lu muet en boucle, avec un bouton pause. Sous 768 px ou en mouvement réduit : image fixe, sans téléchargement de la vidéo (même règle que l'ancien `HeroVideo`).
 
