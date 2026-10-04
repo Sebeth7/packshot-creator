@@ -34,6 +34,36 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-04 · Landing catalogue All-in-One : film de la gamme Orbitvu à la place de la boucle de la home · Claude de Sébastien
+
+**Chantier** : demande directe de Sébastien du 04/10, sur la Preview de cette branche | **PR** : #82 (brouillon, ne pas fusionner) | **Commit** : voir PR
+
+**Quoi** — Le panneau vidéo du hero ne réutilise plus `hero-range-2025.mp4` recadré. Il lit le film de présentation de la gamme Orbitvu en version 540p sans piste audio (R2, 3,5 Mo, 42 s), en entier. Le panneau passe de 2,2:1 et 2:1 à 16:9 dès 640 px ; sous 640 px, le bandeau reste en 2,4:1 avec l'image fixe. `VideoStudio`, la pause hors champ et la coordination avec le ruban sont inchangés.
+
+**Pourquoi** — Demande de Sébastien du 04/10 : remplacer « le gif actuel » de cette page par `hero-video.mp4`. Les textes anglais incrustés interdisent tout recadrage : un ratio 2:1 rognait le bas de l'image (« Up to 250 products per day »).
+
+**Fichiers** — `components/landings/catalogue-all-in-one/CatalogueAllInOne.tsx`, `e2e/catalogue-all-in-one.spec.ts` (URL de la vidéo et de l'affiche), `public/images/hero/orbitvu-gamme-2026-poster.avif` (nouveau, 23 Ko, plan à 30,6 s sans texte, identique à celui de la PR #95). Hors repo : `https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4`, envoyé le 04/10.
+
+**Effet attendu** — Immédiat sur la Preview. Le panneau gagne environ 46 px de hauteur à 1440 px (686 × 386). Poids vidéo sur ordinateur : jusqu'à 3,5 Mo, contre 0,6 Mo auparavant. Mobile : 0 octet de vidéo, comme avant.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `npm run build` vert (373 pages).
+- `e2e/catalogue-all-in-one.spec.ts` sur `next start`, Chrome du Mac : 33/33.
+- Playwright, Chrome visible :
+  - desktop 1440 : `206 video/mp4`, `readyState` 4, lecture muette en cours ;
+  - mobile 390 : image fixe, aucune requête vers R2.
+- Fichier R2 relu après envoi : empreinte SHA-256 identique au fichier fourni (`daa432dc…`).
+
+**Supposé** — Droits d'usage du film acquis (fourni par Sébastien).
+
+**Non regardé** —
+- Safari et Firefox.
+- Le cadrage de l'image fixe en 2,4:1 sous 640 px : elle est centrée et le studio reste visible sur la capture à 390 px, mais toutes les largeurs n'ont pas été passées en revue.
+
+**Suite** — La PR #95 (accueil) ajoute la même affiche au même chemin : contenu identique, pas de conflit attendu à la fusion de `main`.
+
+---
+
 ## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5.1 : section catalogue compacte, priorité au ruban, métadonnées préparées · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg`, partie de `4412966` (HEAD transmis, vérifié identique sur origin) | **Base** : `main` `de6c4cd` (inchangée)

@@ -9,10 +9,10 @@
  * commune à la France et à la Suisse. Header et Footer partagés non modifiés
  * (variante compacte de la maquette : arbitrage ouvert).
  *
- * Vidéo : fichiers de la home (public/images/hero/), lus par VideoStudio, variante
- * locale de HeroVideo (non modifié). Pages du catalogue : exports réels du PDF de
- * contrôle depuis la V5 (visuels.ts) ; téléchargement du PDF non activé. Aucun lien
- * vers F5 (D37).
+ * Vidéo : film de présentation de la gamme Orbitvu (version 540p muette, Cloudflare R2),
+ * lu par VideoStudio, variante locale de HeroVideo (non modifié). Pages du catalogue :
+ * exports réels du PDF de contrôle depuis la V5 (visuels.ts) ; téléchargement du PDF
+ * non activé. Aucun lien vers F5 (D37).
  */
 import Image from 'next/image';
 import { ArrowRight, Phone, Sparkles } from 'lucide-react';
@@ -31,16 +31,15 @@ import { VISUELS, VISUELS_GAMME } from './visuels';
 
 const ANCRE_FORMULAIRE = 'catalogue';
 
-// Vidéo de la page d'accueil, réutilisée telle quelle (aucune copie du fichier).
-// Recadrage V4 : la source (2280 × 780) porte, autour du flacon, un rectangle
-// translucide incrusté dans toutes ses images (x ≈ 0 à 1130). Le panneau montre la
-// partie droite, studio et écran (x ≈ 1180 à 2280) : agrandissement ancré à droite,
-// égal à ratio du panneau × 780 / 1100. Même fichier, aucun flou ni masque ajouté.
+// Film de présentation de la gamme Orbitvu (04/10/2026), version 540p sans piste audio
+// (960 × 540, 42 s, 3,5 Mo) sur Cloudflare R2, comme les démos des fiches produit. La
+// version 1080p avec son est celle du hero de l'accueil ; même affiche (plan à 30,6 s,
+// sans texte incrusté). Les textes anglais incrustés imposent le cadre 16:9 entier dès
+// que la vidéo joue (≥ 768 px) : aucun recadrage ni agrandissement.
 const VIDEO_GAMME = {
-  src: '/images/hero/hero-range-2025.mp4',
-  poster: '/images/hero/hero-range-2025-poster.avif',
-  cadrage: '100% 50%',
-  agrandissement: 'origin-right scale-[1.7] sm:scale-[1.56] lg:scale-[1.42]',
+  src: 'https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4',
+  poster: '/images/hero/orbitvu-gamme-2026-poster.avif',
+  cadrage: '50% 50%',
 };
 
 const TRAME = {
@@ -86,8 +85,7 @@ export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: bo
                 src={VIDEO_GAMME.src}
                 poster={VIDEO_GAMME.poster}
                 cadrage={VIDEO_GAMME.cadrage}
-                mediaClassName={VIDEO_GAMME.agrandissement}
-                className="aspect-[2.4/1] bg-future-dusk-800 sm:aspect-[2.2/1] sm:rounded-2xl sm:shadow-2xl sm:shadow-black/40 sm:ring-1 sm:ring-white/10 lg:aspect-[2/1]"
+                className="aspect-[2.4/1] bg-future-dusk-800 sm:aspect-video sm:rounded-2xl sm:shadow-2xl sm:shadow-black/40 sm:ring-1 sm:ring-white/10"
               />
             </div>
 

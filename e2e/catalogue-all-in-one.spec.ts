@@ -11,8 +11,8 @@ import { test, expect, type Page, type Route } from '@playwright/test';
 
 const URL_PAGE = '/fr/catalogue-orbitvu-all-in-one';
 const H1 = 'Vos produits comme vous ne les avez jamais vus.';
-const VIDEO = '/images/hero/hero-range-2025.mp4';
-const POSTER = '/images/hero/hero-range-2025-poster.avif';
+const VIDEO = 'https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4';
+const POSTER = '/images/hero/orbitvu-gamme-2026-poster.avif';
 const PDF_SIMULE = 'https://exemple.test/catalogue-simule.pdf';
 
 async function simulerApi(page: Page, status: number, body: unknown, delai = 0) {
@@ -73,7 +73,7 @@ test.describe('Landing catalogue All-in-One', () => {
     await expect(page.getByRole('button', { name: 'Recevoir le catalogue' })).toBeVisible();
   });
 
-  test('vidéo de la home en desktop : muette, en boucle, bouton pause', async ({ page }) => {
+  test('film de la gamme en desktop : muet, en boucle, bouton pause', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(URL_PAGE);
     const video = page.locator('section[aria-labelledby="catalogue-titre"] video');
@@ -89,7 +89,7 @@ test.describe('Landing catalogue All-in-One', () => {
   test('mobile : image fixe, la vidéo n’est pas téléchargée', async ({ page }) => {
     const mp4: string[] = [];
     page.on('request', (r) => {
-      if (r.url().includes('hero-range-2025.mp4')) mp4.push(r.url());
+      if (r.url().includes('orbitvu-gamme-2026-540p.mp4')) mp4.push(r.url());
     });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(URL_PAGE);
