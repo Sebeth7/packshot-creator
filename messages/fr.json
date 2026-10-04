@@ -10,7 +10,12 @@
       "subtitle": "Studios photo automatisés Orbitvu + IA BlendAI.studio + Formations Qualiopi. L'approche qui équipe Chanel, Amazon et 5000+ entreprises en France et en Suisse.",
       "cta": "Demander une démo gratuite",
       "ctaSecondary": "Calculer mon ROI en 2 min",
-      "microStats": "ROI moyen : 6-12 mois | Réduction des coûts photo : 60+%"
+      "microStats": "ROI moyen : 6-12 mois | Réduction des coûts photo : 60+%",
+      "video": {
+        "title": "Studios photo Orbitvu : présentation de la gamme",
+        "pause": "Mettre la vidéo en pause",
+        "play": "Lire la vidéo"
+      }
     },
     "socialProof": {
       "heading": "Ils produisent leurs packshots avec nous",
