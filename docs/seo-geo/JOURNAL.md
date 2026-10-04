@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-04 · CI (#86) actualisée depuis `main` `1bc7195`, après la fusion de #87 et de #83 · Claude de Laurent
+
+**Chantier** : D44, D45, contrôles permanents ; préparation du GO de fusion de #86 | **PR** : #86, brouillon | **Base intégrée** : `main` `1bc7195`, par commit de fusion `9e874e1` (pas de rebase)
+
+**Quoi** —
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu en ajout seul ; 8 entrées de `main` (#87, #83) et 2 de #86 conservées, classées de la plus récente à la plus ancienne d'après l'heure de leur commit. `02-PROCEDURE.md` fusionné automatiquement (sections distinctes).
+- `pr-checks.yml` : `anchors.spec.ts` étiqueté « différé » et rattaché à #93 (`DIFFERES="anchors:AR-01/#93"`). Le résumé du job distingue trois états : exécuté ; absent, arrive avec #84 ou #85 ; différé, activation après AR-01/#93. Aucun autre changement technique.
+- `scripts/seo/verifier-consequences.mjs`, `e2e/machine-selector.spec.ts` et `01-RAYON-ACTION.md` identiques à `5cc5bf8`.
+
+**Vérifié** —
+- `verifier-json` : 180 fichiers valides ; `npx tsc --noEmit` vert ; eslint vert sur le script et le spec ;
+- `npx vitest run` : 20 fichiers, 400 tests, verts ;
+- `npx next build` vert, 371 pages, avec les variables factices de la CI ;
+- spec `machine-selector` sur ce build servi par `next start` : 12/12 en 9,3 s, 2 workers, sans nouvel essai. Navigateur local : Chromium préinstallé (`/opt/pw-browsers/chromium`) ; la version attendue par Playwright 1.58 est absente de l'environnement local, la CI l'installe (`npx playwright install --with-deps chromium`) ;
+- étape d'inventaire extraite du workflow et simulée : branche actuelle (1 spec exécuté, 2 absents avec leur PR, 1 différé ; sortie 0) ; arbre sans spec (sortie 1, erreur explicite) ;
+- `--pass-with-no-tests` absent de `.github/`, `package.json`, `playwright.config.ts` et `scripts/` ;
+- aucun fichier applicatif modifié contre `main` (`app/`, `components/`, `lib/`, `messages/`, `content/`, `public/`, `i18n/`, `data/`, `cloudflare-worker/`, configurations) ;
+- aucun appel payant ni lead possible en CI : aucun secret référencé par les workflows ; seules des valeurs Supabase factices (`exemple.supabase.co`) ; clés Resend, Pipedrive, Anthropic et Gemini absentes de l'environnement du job ; `fetch` simulé dans les quatre fichiers de tests unitaires qui l'appellent ; le spec ne remplit ni ne soumet aucun formulaire (« Demander un devis » : visibilité seulement) ;
+- `verifier-consequences` : diff de #86 en effet local ; motifs D44 et D45 reconnus en rayon large.
+
+**Supposé** — Aucun.
+**Non regardé** — `ETAT.md`, volontairement non modifié ; `BOITE-AUX-LETTRES.md`, non modifié (Q22, sur `main`, décrit déjà le comportement de #86 ; une nouvelle entrée créerait un conflit pour #88 à #93) ; Firefox, WebKit et mobile émulé, hors CI.
+
+**Suite** — CI réelle sur la nouvelle tête ; information de Sébastien sur la PR (renvoi à Q22) ; GO de fusion distinct de Laurent. Après la fusion de #86, `anchors` passe de `DIFFERES` à `ATTENDUS` dans la PR qui l'active (AR-01, #93).
+
+---
+
 ## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
 
 **Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)
@@ -160,6 +187,24 @@ Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/prod
 
 ---
 
+## 2026-10-03 · CI — inventaire explicite des specs de parcours, sans `--pass-with-no-tests` (revue pré-fusion) · Claude de Laurent
+
+**Chantier** : D44, D45, revue pré-fusion #83 à #87 | **PR** : #86 | **Base** : `main` `de6c4cd`
+
+**Quoi** — L'étape « Parcours navigateur » inventorie chaque spec attendu dans le résumé du job : présent, exécuté ; absent, signalé avec la PR qui l'apporte (#84, #85) ; `anchors` signalé « activation après AR-01 ». `--pass-with-no-tests` est retiré : le job échoue si aucun spec n'est présent.
+
+**Pourquoi** — Mesuré en local : Playwright ignore déjà un filtre sans correspondance quand un autre en a une ; `--pass-with-no-tests` ne servait donc qu'à rendre vert un passage sans aucun test exécuté (code de sortie 0 au lieu de 1). Le rapport ne distinguait pas les specs exécutés des specs à venir.
+
+**Fichiers** — `.github/workflows/pr-checks.yml`, `docs/seo-geo/JOURNAL.md`
+
+**Vérifié** — YAML valide ; étape simulée en local : branche actuelle (1 spec exécuté, 3 signalés, sortie 0) et arbre sans spec (sortie 1, erreur explicite) ; filtre `e2e/machine-selector.spec.ts` : 12 tests sélectionnés avec la configuration du dépôt.
+**Supposé** — rien.
+**Non regardé** — `retries: 2` en CI dans `playwright.config.ts` (réglage existant) : un test réussi au deuxième essai est compté « flaky », pas en échec.
+
+**Corrections de l'entrée précédente** — Durée mesurée sur la CI de cette PR : 40 s d'étapes ajoutées, et non 3 à 4 minutes. `anchors` s'active après le lot AR-01, et non après #85 : la revue pré-fusion propose de séparer l'ancre `#calculateur-roi` de la barre.
+
+---
+
 ## 2026-10-03 · D44 et D45 inscrites : standards permanents, `docs/standards/`, Q21, état du chantier · Claude de Laurent
 
 **Chantier** : gouvernance, PR UX-GOV | **PR** : brouillon, documentation seule, branche `ccr-79f70eb9-7ls0wm` | **Base** : `main` `de6c4cd`
@@ -186,6 +231,45 @@ Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/prod
 **Non regardé** — `/CLAUDE.md`, volontairement non modifié (décision de Sébastien, Q19 option A) ; `06-CHANTIERS.md`, arrêté au 19/09.
 
 **Suite** — GO de fusion dans l'ordre UX-GOV, #83, #86, #84, #85 ; réponses de Sébastien à Q20 et Q21.
+
+---
+
+## 2026-10-03 · CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit · Claude de Laurent
+
+**Chantier** : D44, D45, contrôles permanents, PR CI | **PR** : brouillon, branche `ccr-79f70eb9-ci` | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- `pr-checks.yml` : étape Vitest après l'intégrité des JSON. Après le build : installation de Chromium, serveur de production local, specs Playwright `machine-selector`, `sommaire-blog`, `navigation-pages-longues` (Chromium, 2 workers ; les specs absents de la branche testée sont ignorés).
+- `scripts/seo/verifier-consequences.mjs` et `01-RAYON-ACTION.md` : catalogues de machines, `data/produits/`, `TableOfContents.tsx`, `SommaireCollant.tsx`, `data/navigation/` passent en rayon large.
+- `02-PROCEDURE.md` : table de la porte CI.
+- `e2e/machine-selector.spec.ts` réécrit sur le parcours réel.
+
+**Pourquoi** — Audit du 03/10 : la CI n'exécutait ni Vitest ni Playwright. Le spec du sélecteur échouait à 11 tests sur 14 sur le build de `main` : barre de recherche, tri par prix, bouton « Voir les détails » et cartes `rounded-xl` n'existent plus.
+
+**Spec du sélecteur** — Assertions dérivées du catalogue affiché (`components/machine-selector/lib/machines.ts`), au lieu de constantes :
+- une carte par machine non délistée, dans l'ordre du catalogue ;
+- taille maximale affichée par carte (D45) ;
+- liste exacte par filtre de taille et d'automatisation, avec compteur ;
+- aperçu : ouverture, points forts, taille, fermeture par bouton et par Échap ;
+- lien « Voir la fiche » ; réinitialisation ; bloc d'aide ; EN et de-ch ; mobile sans débordement.
+
+Tests retirés parce que la fonction n'existe plus dans l'interface : recherche par nom, tri par prix. Aucun test désactivé.
+
+**Fichiers** — `.github/workflows/pr-checks.yml`, `scripts/seo/verifier-consequences.mjs`, `docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/02-PROCEDURE.md`, `e2e/machine-selector.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une PR qui casse la cohérence des dimensions, le registre de navigation, le sommaire du blog, la barre des pages longues ou le sélecteur est rouge avant fusion. Les PR qui touchent les catalogues de machines ou la navigation doivent déclarer leur rayon d'action, celles de Sébastien comprises.
+
+**Vérifié** —
+- Spec du sélecteur réécrit : 12/12 sur le build de `main` (ancienne version : 3/14).
+- Commande Playwright de la CI rejouée sur le build de la branche : 12/12 en 8 s.
+- Vitest : 377 tests en 3 s.
+- YAML valide ; `verifier-consequences` reconnaît les quatre nouveaux motifs.
+- `tsc`, `verifier-json`, eslint, `next build`.
+
+**Supposé** — Dépôt public : minutes GitHub Actions non facturées [Non vérifié : facturation du compte non consultée]. Durée ajoutée au job estimée à 3 à 4 minutes (installation de Chromium surtout) ; mesurée sur la CI de cette PR.
+**Non regardé** — Firefox, WebKit, mobile émulé en CI (seul Chromium y tourne). `e2e/anchors.spec.ts` n'est pas ajouté : son test « #calculateur-roi » échoue sur `main`, défaut corrigé par #85 ; à ajouter après la fusion de #85.
+
+**Suite** — Après fusion de #84 et #85, leurs specs s'exécutent sans modification du workflow. Ajouter `anchors` à la commande après #85.
 
 ---
 
