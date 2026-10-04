@@ -25,6 +25,32 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D45 · 2026-10-03 · R-PRODUCT-DIM : caractéristiques dimensionnelles des produits, référentiel obligatoire et contradictions conservées
+
+**Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
+**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le référentiel et son contrôle avec #83 ; leur exécution en CI avec #86. Correction des valeurs contradictoires subordonnée à la réponse de Sébastien (Q20). Référence stable : `docs/standards/R-PRODUCT-DIM.md`
+
+**La décision** — Une caractéristique dimensionnelle produit possède une définition non ambiguë, une référence de version et une source traçable, et ne diverge pas entre les consommateurs du site. Distinguer toujours : dimensions maximales du produit photographiable, encombrement extérieur de la machine, plateau, charge maximale (avec son type), ordre des axes, unités, génération ou version commerciale, source primaire, date de vérification, statut de validation métier. Préférer une donnée partagée à des valeurs saisies indépendamment. Une contradiction non résolue est conservée comme telle, avec ses deux sources. Catégorie A (même produit, valeur du site différente de la source) : correction technique possible, avec source, tests et contrôle des consommateurs. Catégorie B (version non établie, sources contradictoires, source absente) : aucune valeur remplacée avant la réponse de Sébastien.
+
+**Le contexte** — Audit du 03/10/2026 (livrable `03-AUDIT-DIMENSIONS-PRODUITS.md`) : dimensions saisies à la main dans deux catalogues (`components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`), synchronisées deux fois à la main (28/09, 01/10) ; cadences et catégories de taille déjà divergentes ; textes libres faux (guide d'achat 2026, comparatif Orbitvu, article Pro G2, hub mobilier, prompt des leads). Fiches publiques Orbitvu relevées le 03/10 à 05:54 UTC : 11 correspondances numériques de l’objet maximal avec les fiches fabricant consultées (sans validation des versions commerciales), encombrements divergents pour 5 produits, Furniture Studio contradictoire sur trois sources. Mise en œuvre : PR PRODUCT-TEST (#83) ; contrôle en CI : PR #86 ; questions à Sébastien : Q20.
+
+**Ce qu'elle interdit** — Modifier une dimension, une charge ou un encombrement dans un catalogue sans le référentiel et sa source ; corriger automatiquement une valeur fabricant supposée erronée ; assimiler deux générations de produits ou un nom PSC suffixé à un nom fabricant sans validation de Sébastien ; harmoniser le catalogue en recopiant une fiche publique quand la version commerciale n'est pas établie ; réintroduire une valeur retirée (XXL 100 × 70 × 190 cm) ; modifier une redirection XL au titre de cette règle (D29).
+
+---
+
+## D44 · 2026-10-03 · R-UX-LONG : navigation des pages longues, une règle par famille de gabarits
+
+**Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
+**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
+
+**La décision** — Toute page longue reçoit une navigation adaptée à sa structure et à son gabarit, dès lors qu'elle améliore réellement l'accès aux sections ; la règle s'applique aux pages existantes et futures, FR, EN et de-ch, par famille de gabarits. Trois comportements : (A) sommaire horizontal collant sous l'en-tête, desktop (≥ 1 024 px), composant mutualisé `components/navigation/SommaireCollant.tsx` ; (B) sommaire latéral existant du blog, corrigé et utilisable sur toute la hauteur de l'écran ; (C) sommaire statique ou aucune navigation persistante quand un élément collant dégraderait l'expérience. Une page ne cumule jamais deux navigations collantes. Éligibilité : longueur rendue (≥ 7 200 px à 1 440 px, indicatif), au moins quatre sections de contenu hors FAQ (indicatif), bénéfice écrit, libellés sans texte nouveau, absence de conflit. Les pages sous expérience SEO ou touchées par une PR éditoriale ouverte sont en HOLD jusqu'à leur date de sortie.
+
+**Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
+
+**Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+---
+
 ## D43 · 2026-10-02 · Services payants de recherche SEO/GEO : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel
 
 **Décidé par** : Laurent — décision du 02/10, qui remplace sur le budget ses arbitrages du 01/10
