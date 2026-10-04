@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-04 · CI (#86) actualisée depuis `main` `1bc7195`, après la fusion de #87 et de #83 · Claude de Laurent
+
+**Chantier** : D44, D45, contrôles permanents ; préparation du GO de fusion de #86 | **PR** : #86, brouillon | **Base intégrée** : `main` `1bc7195`, par commit de fusion `9e874e1` (pas de rebase)
+
+**Quoi** —
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu en ajout seul ; 8 entrées de `main` (#87, #83) et 2 de #86 conservées, classées de la plus récente à la plus ancienne d'après l'heure de leur commit. `02-PROCEDURE.md` fusionné automatiquement (sections distinctes).
+- `pr-checks.yml` : `anchors.spec.ts` étiqueté « différé » et rattaché à #93 (`DIFFERES="anchors:AR-01/#93"`). Le résumé du job distingue trois états : exécuté ; absent, arrive avec #84 ou #85 ; différé, activation après AR-01/#93. Aucun autre changement technique.
+- `scripts/seo/verifier-consequences.mjs`, `e2e/machine-selector.spec.ts` et `01-RAYON-ACTION.md` identiques à `5cc5bf8`.
+
+**Vérifié** —
+- `verifier-json` : 180 fichiers valides ; `npx tsc --noEmit` vert ; eslint vert sur le script et le spec ;
+- `npx vitest run` : 20 fichiers, 400 tests, verts ;
+- `npx next build` vert, 371 pages, avec les variables factices de la CI ;
+- spec `machine-selector` sur ce build servi par `next start` : 12/12 en 9,3 s, 2 workers, sans nouvel essai. Navigateur local : Chromium préinstallé (`/opt/pw-browsers/chromium`) ; la version attendue par Playwright 1.58 est absente de l'environnement local, la CI l'installe (`npx playwright install --with-deps chromium`) ;
+- étape d'inventaire extraite du workflow et simulée : branche actuelle (1 spec exécuté, 2 absents avec leur PR, 1 différé ; sortie 0) ; arbre sans spec (sortie 1, erreur explicite) ;
+- `--pass-with-no-tests` absent de `.github/`, `package.json`, `playwright.config.ts` et `scripts/` ;
+- aucun fichier applicatif modifié contre `main` (`app/`, `components/`, `lib/`, `messages/`, `content/`, `public/`, `i18n/`, `data/`, `cloudflare-worker/`, configurations) ;
+- aucun appel payant ni lead possible en CI : aucun secret référencé par les workflows ; seules des valeurs Supabase factices (`exemple.supabase.co`) ; clés Resend, Pipedrive, Anthropic et Gemini absentes de l'environnement du job ; `fetch` simulé dans les quatre fichiers de tests unitaires qui l'appellent ; le spec ne remplit ni ne soumet aucun formulaire (« Demander un devis » : visibilité seulement) ;
+- `verifier-consequences` : diff de #86 en effet local ; motifs D44 et D45 reconnus en rayon large.
+
+**Supposé** — Aucun.
+**Non regardé** — `ETAT.md`, volontairement non modifié ; `BOITE-AUX-LETTRES.md`, non modifié (Q22, sur `main`, décrit déjà le comportement de #86 ; une nouvelle entrée créerait un conflit pour #88 à #93) ; Firefox, WebKit et mobile émulé, hors CI.
+
+**Suite** — CI réelle sur la nouvelle tête ; information de Sébastien sur la PR (renvoi à Q22) ; GO de fusion distinct de Laurent. Après la fusion de #86, `anchors` passe de `DIFFERES` à `ATTENDUS` dans la PR qui l'active (AR-01, #93).
+
+---
+
 ## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
 
 **Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)

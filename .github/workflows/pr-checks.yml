@@ -79,7 +79,7 @@ jobs:
           # spec:PR qui l'apporte
           ATTENDUS="machine-selector:#86 sommaire-blog:#84 navigation-pages-longues:#85"
           # spec:condition d'activation (spec présent sur main, pas encore exécuté ici)
-          DIFFERES="anchors:AR-01"
+          DIFFERES="anchors:AR-01/#93"
           PRESENTS=""
           {
             echo "### Parcours navigateur : specs attendus"
@@ -100,8 +100,8 @@ jobs:
           done
           for entree in $DIFFERES; do
             spec="e2e/${entree%%:*}.spec.ts"; condition="${entree##*:}"
-            echo "| \`$spec\` | non exécuté : activation après $condition |" >> "$GITHUB_STEP_SUMMARY"
-            echo "::notice::Spec non exécuté par ce job : $spec (activation après $condition)"
+            echo "| \`$spec\` | différé, non exécuté : activation après $condition |" >> "$GITHUB_STEP_SUMMARY"
+            echo "::notice::Spec différé, non exécuté par ce job : $spec (activation après $condition)"
           done
           if [ -z "$PRESENTS" ]; then
             echo "::error::Aucun spec de parcours présent : rien ne serait vérifié."
