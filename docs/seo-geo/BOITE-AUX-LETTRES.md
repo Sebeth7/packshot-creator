@@ -79,10 +79,21 @@ dans `DECISIONS.md`.
 - `lib/catalogue/resend.ts` : la demande de consultant envoie une notification interne aux adresses de `NOTIFICATION_EMAIL`, convention de `/api/submit-survey`. Aucune adresse n'est codée en dur. `/api/contact` et `/api/roi-lead` codent les leurs en dur (`sebastien.jourdan@`, `stephane.gormand@`).
 - Mention du formulaire : « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » La politique de confidentialité (`privacy` dans `messages/fr.json`) ne nomme ni Pipedrive ni Resend, alors que `/api/contact` les utilise déjà.
 
+**Complément du 06/10, après lecture de tes règles brochure du 02/10** — Laurent a fixé le 06/10 qu'une demande de brochure est un lead PackshotCreator (compté à part, ni démonstration ni affaire), que les téléphones restent visibles et qu'aucune interdiction d'appel n'est codée. En conséquence :
+- chaque demande reçoit une note « [Brochure] » et une notification interne `[Brochure] entreprise`, sans la mention « ne pas appeler » de ton § 5 ;
+- l'e-mail porte « Demander une démo » et « Calculer mon ROI », libellés déjà publiés par `ArticleCTA`, texte à relire ;
+- GA4 : `form_submit` (`brochure_form`), `brochure_download`.
+
+Restent ouverts :
+- ton étiquette Pipedrive « Brochure » (§ 6) ;
+- ta question de qualification et ta case de suivi (§ 4), absentes du formulaire validé.
+
 **La question** —
-1. Demande de consultant : la note et la notification interne suffisent-elles en V1, ou faut-il un Lead Pipedrive, voire une affaire (pipeline et étape) ?
-2. `NOTIFICATION_EMAIL` est-elle définie sur Vercel (Preview et Production), et avec quelles adresses pour cette notification ?
+1. Demande de consultant : la note et la notification interne suffisent-elles en V1, ou faut-il un Lead Pipedrive, voire une affaire (pipeline et étape) ? Et pour toute demande : faut-il l'étiquette « Brochure » de ton § 6 ? Si oui, quel identifiant d'étiquette ?
+2. `NOTIFICATION_EMAIL` est-elle définie sur Vercel (Preview et Production), et avec quelles adresses pour ces notifications ?
 3. La politique de confidentialité doit-elle nommer les sous-traitants (CRM, e-mail) avant la publication ?
+4. La mention du formulaire validé dit « Un consultant vous contacte uniquement si vous en faites la demande ». Si l'équipe appelle un lead brochure sans case cochée, elle contredit ce texte. Faut-il garder la mention (et ne pas appeler sans demande), ou la réécrire (texte de ta voix) ?
+5. Le texte de l'e-mail (copydeck V2 et liens de retour) te convient-il ?
 
 **Options**
 - A : V1 telle quelle (note et notification) ; `NOTIFICATION_EMAIL` renseignée par toi ; politique relue à part → activation possible sans nouveau code CRM.

@@ -34,6 +34,55 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) : alignement sur les règles brochure de Sébastien du 02/10 · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `f5462b5`
+
+**Quoi** —
+- Note Pipedrive typée « [Brochure] » : « lead brochure », ni demande de démonstration ni affaire qualifiée. Elle porte l'identifiant de brochure, la langue et le signalement des adresses grand public. Plus aucune phrase d'interdiction d'appel.
+- Notification interne pour chaque nouvelle demande (objet `[Brochure] entreprise`), avec la demande de consultant en tête quand elle existe.
+- E-mail : chemins de retour « Demander une démo » et « Calculer mon ROI ».
+- GA4 : `form_submit` (`brochure_form`), `brochure_download`, `form_error`.
+- Limite de fréquence portée à 5 demandes par heure et par IP.
+
+**Pourquoi** — Document « Formulaire brochure — règles de maillage pour Laurent » (Sébastien, 02/10), fourni par Laurent le 06/10 et lu en entier. Il est confronté au code de #82. Les faits métier de Laurent du 06/10 priment sur le même point :
+- la demande de brochure est un lead, à compter à part ;
+- téléphones conservés ;
+- aucune interdiction d'appel codée ;
+- landing validée par Sébastien, FR seule ;
+- PDF tel quel.
+
+**Fichiers** — `lib/catalogue/crm.ts`, `courriel.ts`, `resend.ts`, `services.ts`, `gestionnaire.ts`, `schema.ts` (constantes `BROCHURE_ID`, `LANGUE_CATALOGUE`), `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement), tests du catalogue.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Ensuite :
+- chaque demande donne une note `[Brochure]`, un e-mail au prospect et une notification interne ;
+- GA4 compte une conversion `form_submit` par demande acceptée ; Pipedrive reste la source du volume.
+
+**Vérifié** —
+- Écarts traités, par paragraphe du document :
+  - § 3 règle 7 et § 5 : chemins de retour dans l'e-mail, libellés et destinations déjà publiés (`blogArticle.ctaDemo` vers `/contact`, `blogArticle.ctaRoi` vers `/calculateur-roi`, comme `ArticleCTA`), adresses fixes ;
+  - § 4 : adresse grand public signalée, jamais refusée ; 5 demandes par heure et par IP ;
+  - § 5 : notification `[Brochure] entreprise` lue dans `NOTIFICATION_EMAIL`, sans la mention « ne pas appeler » (écartée par le fait du 06/10) ;
+  - § 6 : `form_submit`, `form_name: 'brochure_form'`, `brochure_id`, `page_type`, `locale` ; `brochure_download`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint de la landing : 0 avertissement ;
+  - `npx vitest run` : 493/493, dont 93 pour le catalogue ;
+  - `npx next build` vert (373 pages) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+- Contre-épreuves (fichier restauré à l'identique) : notification limitée au consultant → 3 échecs ; consultant déclaré accepté sans notification → 5 échecs.
+- PDF joint à la mission : SHA-256 identique au fichier contrôlé le matin (`0d72b207…`).
+
+**Supposé** — Les libellés publiés « Demander une démo » et « Calculer mon ROI » conviennent à l'e-mail. Le texte de l'e-mail reste à relire par Sébastien (§ 4 et § 5 : textes client écrits par lui).
+
+**Non regardé** —
+- Étiquette Pipedrive « Brochure » (§ 6) : identifiant non connu, renvoyé à Q23.
+- Lien vers la fiche ou le secteur d'origine : la landing est autonome ; aucune page d'origine, et `machineContext` est absent.
+- Lien vers la démonstration sur l'état de succès (§ 4) : landing validée, interface non modifiée.
+
+**Suite** — Q23 complétée. GO R2, puis GO de test réel.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : parcours fonctionnel V1 (Pipedrive, Resend, consultant, PDF R2, GA4), sans appel réel · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `7aa3001` (code), `ffee83c` (fusion de `main` `9b19e6d`, #95)
