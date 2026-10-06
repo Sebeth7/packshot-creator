@@ -34,6 +34,44 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) : PDF en ligne sur R2, `enLigne = true`, services réels toujours fermés · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `1ad2aad`
+
+**Quoi** — `PDF_CATALOGUE.enLigne` passe à `true` (`lib/catalogue/pdf.ts`). `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux : `/api/catalogue` répond toujours 503 et n'appelle ni Resend ni Pipedrive.
+
+**Pourquoi** — GO de Laurent du 06/10, après son envoi du PDF sur R2 et son contrôle depuis son poste Windows (fait métier). URL : `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf`.
+- Résultats de Laurent : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5`.
+- `X-Robots-Tag: noindex` présent, mais deux fois.
+
+**Fichiers** — `lib/catalogue/pdf.ts`, `app/api/catalogue/route.ts` (commentaire), `lib/catalogue/__tests__/services-reels.test.ts`. Hors dépôt : objet R2 `packshot-videos/catalogues/orbitvu-all-in-one-2026-fr.pdf` et règle d'en-tête de réponse, posés par Laurent le 06/10. La session n'a rien écrit sur Cloudflare ni sur R2.
+
+**Effet attendu** — Aucun pour le visiteur tant que les services réels sont fermés. Au GO de test réel, la route pourra remettre ce lien.
+
+**Vérifié** —
+- Relecture de l'URL publique depuis la session, en lecture seule :
+  - HTTP 200, `content-type: application/pdf`, `content-length: 15380434` ;
+  - SHA-256 du fichier téléchargé identique ;
+  - `x-robots-tag: noindex` reçu deux fois ;
+  - `last-modified` du 06/10 à 07:43:41 GMT, `etag` `cf2fbde2dd4342349cad59dba525af62`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint : 0 avertissement ;
+  - `npx vitest run` : 494/494 ; nouveau test : PDF en ligne et secrets présents, services réels faux → 503, aucun appel ;
+  - `npx next build` vert (373 pages) ;
+  - `/api/catalogue` locale : 503 `catalogue_unavailable` ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+
+**Supposé** — Aucun.
+
+**Non regardé** —
+- Origine du doublon `X-Robots-Tag` (règle de transformation en double, ou autre source) : ne pas modifier Cloudflare dans cette mission.
+- Configuration exacte de la règle posée par Laurent (expression, portée) : non lisible avec le jeton de la session.
+- `05-INFRA.md` non mis à jour, faute de connaître la règle exacte.
+
+**Suite** — GO distinct de Laurent pour les tests réels contrôlés de Resend et Pipedrive. Q23 reste ouverte.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : alignement sur les règles brochure de Sébastien du 02/10 · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `f5462b5`
