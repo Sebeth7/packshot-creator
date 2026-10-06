@@ -278,10 +278,31 @@ describe('données personnelles hors des journaux et des erreurs', () => {
 });
 
 describe('J — activation : rien de réel sans les interrupteurs du code', () => {
-  it('interrupteurs du code : services réels non autorisés, PDF hors ligne, publication fermée', () => {
+  it('interrupteurs du code : PDF en ligne (06/10), services réels non autorisés, publication fermée', () => {
+    expect(PDF_CATALOGUE.enLigne).toBe(true);
     expect(SERVICES_REELS_AUTORISES).toBe(false);
-    expect(PDF_CATALOGUE.enLigne).toBe(false);
     expect(PUBLICATION_AUTORISEE).toBe(false);
+  });
+
+  it('PDF en ligne ne suffit pas : sans services réels, la route reste fermée (503), aucun appel', async () => {
+    const pipedrive = fauxPipedrive();
+    const resend = fauxResend();
+    const opts = { fetch: pipedrive.fetch, clientCourriel: () => resend.client };
+    // Interrupteurs du code tels quels (PDF en ligne, services réels faux), tous les secrets présents.
+    for (const VERCEL_ENV of ['preview', 'production', undefined]) {
+      const env = { ...ENV, VERCEL: '1', ...(VERCEL_ENV ? { VERCEL_ENV } : {}) };
+      expect(servicesCatalogue(env, opts)).toBe(SERVICES_DESACTIVES);
+    }
+    const g = creerGestionnaireCatalogue({
+      services: servicesCatalogue({ ...ENV, VERCEL: '1', VERCEL_ENV: 'preview' }, opts),
+      limiter: () => ({ ok: true, resetInSec: 0 }),
+      journal: () => {},
+    });
+    const res = await g(requete(corps));
+    expect(res.status).toBe(503);
+    expect(await res.json()).toEqual({ ok: false, error: 'catalogue_unavailable' });
+    expect(pipedrive.appels).toHaveLength(0);
+    expect(resend.envois).toHaveLength(0);
   });
 
   it('avec tous les secrets, Preview comme production : route fermée tant que les interrupteurs sont faux', () => {

@@ -8,10 +8,14 @@
  * CropBox identiques, polices incorporées, aucun lien cliquable (JOURNAL).
  *
  * Le fichier n'est jamais versionné dans le dépôt : il est servi par le bucket
- * R2 `packshot-videos` sous `videos.packshot-creator.com`. `enLigne` passe à
- * `true` dans un commit relu, une fois l'objet envoyé (GO R2 de Laurent) et son
- * empreinte contrôlée à cette URL. Tant qu'il est faux, `/api/catalogue` reste
- * fermée : aucun lien n'est remis vers un fichier absent.
+ * R2 `packshot-videos` sous `videos.packshot-creator.com`.
+ *
+ * EN LIGNE depuis le 06/10/2026 : envoyé sur R2 par Laurent, contrôlé depuis son
+ * poste (HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 identique,
+ * `X-Robots-Tag: noindex`), puis relu depuis la session de Claude (mêmes
+ * résultats ; l'en-tête `X-Robots-Tag` y apparaît deux fois, origine non établie).
+ * `enLigne` ne dit que la disponibilité du fichier : la route reste fermée tant
+ * que `SERVICES_REELS_AUTORISES` est faux (`services.ts`).
  */
 export interface PdfCatalogue {
   url: string;
@@ -26,5 +30,5 @@ export const PDF_CATALOGUE: PdfCatalogue = {
   sha256: '0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5',
   octets: 15_380_434,
   pages: 28,
-  enLigne: false,
+  enLigne: true,
 };
