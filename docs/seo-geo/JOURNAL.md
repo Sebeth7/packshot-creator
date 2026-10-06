@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Micro-fix de casse de marque Orbitvu : 1 occurrence visible FR + 5 JSON-LD EN · Claude de Laurent
+
+**Chantier** : typographie, hors 06-CHANTIERS | **PR** : brouillon, branche `claude/trusting-mccarthy-km2erk` | **Base** : `main` `30482a0`
+
+**Quoi** — Micro-fix de casse de marque, 6 corrections : `orbitvu` → `Orbitvu` dans le champ `tool` du guide lunettes FR (1 occurrence visible : badge du hero, repris dans le JSON-LD `HowToTool`) ; `OrbitVu` → `Orbitvu` dans 5 champs `structuredText` de 4 guides EN (5 occurrences JSON-LD `HowToStep.text`, non affichées). Aucune URL, metadata keyword, slug ou logique modifiée ; aucun autre contenu touché.
+
+**Pourquoi** — Source : audit ciblé de casse du 06/10 sur `main` `e830419`. Seule occurrence minuscule visible du périmètre rendu, et seules occurrences `OrbitVu` du dépôt.
+
+**Fichiers** — `content/guides/fr/comment-photographier-lunettes-e-commerce.json`, `content/guides/en/consistent-product-image-collection.json`, `content/guides/en/enhance-lipstick-texture-photo-ai.json`, `content/guides/en/how-to-get-accurate-colors-in-product-photography.json`, `content/guides/en/how-to-take-multi-angle-photos-of-shoes.json`
+
+**Effet attendu** — Après fusion, marque en casse éditoriale sur `/fr/guide/comment-photographier-lunettes-e-commerce` et dans le JSON-LD des 4 guides EN. Aucun effet de classement attendu.
+
+**Vérifié** — Aucune des 6 PR ouvertes au 06/10 (#27, #64, #65, #70, #79, #82) ne touche les 5 fichiers. `verifier-json` 195 ; `tsc` vert ; Vitest 476/476 ; `next build` vert (386 pages). HTML du build : guide FR « le logiciel Orbitvu » (badge et `HowToTool`), 0 « le logiciel orbitvu » ; 4 guides EN, 0 `OrbitVu`. 0 `OrbitVu` dans le dépôt.
+**Supposé** — Aucun.
+**Non regardé** — Meta keywords en minuscules (14), URLs, slugs, classes CSS, identifiants, `STUDIO ORBITVU` de `app/[lang]/industrie/[slug]/page.tsx` : laissés volontairement. Preview et `www` non contrôlés.
+
+**Suite** — CI ; contrôle de la Preview ; GO de fusion de Laurent.
+
+---
+
 ## 2026-10-06 · #85 actualisée depuis `main` `3b427d7` (fusion de #91) : exceptions temporaires de #91 retirées · Claude de Laurent
 
 **Chantier** : D44 | **PR** : #85, brouillon | **Base intégrée** : `main` `3b427d7`, par commit de fusion `f49a437` (pas de rebase)
