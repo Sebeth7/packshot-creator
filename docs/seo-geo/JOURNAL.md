@@ -34,6 +34,72 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) : parcours fonctionnel V1 (Pipedrive, Resend, consultant, PDF R2, GA4), sans appel réel · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `7aa3001` (code), `ffee83c` (fusion de `main` `9b19e6d`, #95)
+
+**Quoi** — `/api/catalogue` reçoit ses adaptateurs, tous verrouillés :
+- trace durable dans Pipedrive : personne retrouvée par e-mail (sinon créée), organisation par nom exact (sinon créée), note « Demande de catalogue » portant le requestId, puis le suivi (e-mail, consultant) ;
+- e-mail du lien au prospect par Resend, texte existant de `courriel.ts` ;
+- consultant demandé : mention explicite dans la note et notification interne aux destinataires de `NOTIFICATION_EMAIL` ;
+- URL R2 du PDF dans `lib/catalogue/pdf.ts`, `enLigne = false` ;
+- événements GA4 accompagnés de paramètres de contexte sans donnée personnelle.
+
+**Aucune affaire n'est créée**, ni pour une brochure seule, ni pour une demande de consultant. Interrupteur `SERVICES_REELS_AUTORISES = false` : la route répond toujours 503. En production, elle reste fermée tant que `PUBLICATION_AUTORISEE` est faux.
+
+**Pourquoi** — Mission de Laurent du 06/10 : finalisation fonctionnelle avant publication. Landing validée par Sébastien (fait rapporté par Laurent le 06/10). Une demande de brochure n'est pas un lead qualifié : ni appel automatique, ni affaire créée en silence, ni étape Pipedrive choisie sans Sébastien.
+
+**Fichiers** —
+- Nouveaux : `lib/catalogue/pipedrive.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/pdf.ts`, `lib/catalogue/__tests__/services-reels.test.ts`, `lib/catalogue/__tests__/mesure-ga4.test.ts`, `lib/catalogue/__tests__/doublures.ts`.
+- Modifiés : `lib/catalogue/services.ts`, `gestionnaire.ts`, `crm.ts`, `activation.ts`, `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement ; champs et textes inchangés), tests existants du catalogue.
+- Hors dépôt : aucun ; le PDF n'est pas versionné.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Après GO R2 (`enLigne = true`) et GO de test réel (`SERVICES_REELS_AUTORISES = true`), sur la Preview :
+- une demande crée ou retrouve la personne et l'organisation, puis écrit une note ;
+- le prospect reçoit un e-mail portant le lien ;
+- si un consultant est demandé, l'équipe reçoit une notification.
+
+**Vérifié** —
+- **PDF désigné** (fait métier de Laurent du 06/10), `All_in_One_FR_online_pages_web_version.pdf` :
+  - 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5` ; c'est le nom et la taille du fichier propre décrit dans le brief initial ;
+  - 28 pages, A4 paysage 841,89 × 595,28 pt ; MediaBox, CropBox, BleedBox, TrimBox et ArtBox identiques sur les 28 pages, sans rotation ;
+  - PDF 1.6 linéarisé ; 32 polices incorporées sur 32 ; ni lien, ni formulaire, ni JavaScript, ni chiffrement ;
+  - rendu des 28 pages sans erreur par Poppler et par PDFium 156 (moteur de Chrome, hors interface du navigateur) ; analyse pypdf sans avertissement ;
+  - texte identique mot pour mot (2 408 mots) au PDF QA du 02/10 ; rendu aligné : écarts limités aux contours ;
+  - **utilisé tel quel, aucun fichier dérivé**.
+- **QR du PDF** : mêmes 13 pages et mêmes destinations que le 02/10. Les adresses `orbitvu.fr` répondent 200 après redirection le 06/10. YouTube répond 429 : non vérifié.
+- **K1–K6 du dépôt** comparés au nouveau PDF : écarts limités aux contours. Aucun réexport.
+- **Contrôles** :
+  - `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; `npx vitest run` : 489/489, dont 89 pour le catalogue ; eslint des fichiers de la landing : 0 avertissement ;
+  - `npx next build` vert (373 pages, valeurs factices) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5 ;
+  - contrôle local à 1440, 1024, 768, 390 et 320 : aucun débordement ; vidéo 16:9 et une requête MP4 à partir de 768 ; aucune requête MP4 en dessous.
+- **Contre-épreuves**, fichier restauré à l'identique ensuite : dédoublonnage désactivé → le test F échoue ; création d'affaire ajoutée → les tests A et B échouent.
+- **R2**, en lecture seule (API Cloudflare) :
+  - un seul bucket, `packshot-videos` (WEUR) ;
+  - `videos.` figure dans les `PASSTHROUGH_HOSTS` du Worker ; règle WAF 4 « Skip SBFM » sur cet hôte (05-INFRA) ;
+  - objet cible absent (404 le 06/10) ;
+  - `wrangler r2 object put` n'accepte aucun en-tête libre : `X-Robots-Tag` passe par une règle de transformation de réponse.
+
+**Supposé** —
+- Les secrets `PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY` et `RESEND_FROM_EMAIL` de Vercel sont ceux qu'utilise `/api/contact`.
+- La présence de `NOTIFICATION_EMAIL` sur Vercel n'est pas établie (seul `/api/submit-survey` la lit, avec une adresse de repli).
+- Les réponses de l'API Pipedrive v1 (`persons/search` avec `exact_match`, `notes?person_id`) suivent les formes déjà exploitées par `/api/contact`. Non testé en réel.
+
+**Non regardé** —
+- Preview Vercel (SSO) ; production (R4).
+- Document « Formulaire brochure — règles de maillage pour Laurent.md », non fourni à la session : les règles appliquées sont celles des sections 7 à 15 de la mission.
+- Lecteurs PDF de Chrome, Safari et Firefox, et mobile réel.
+- Deux requêtes simultanées sur deux instances : fenêtre de doublon de note possible.
+
+**Suite** —
+- GO R2 : upload et règle `X-Robots-Tag`, contrôle `curl.exe` depuis le poste de Laurent (D23), puis `enLigne = true`.
+- GO de test réel Pipedrive et Resend depuis la Preview (`SERVICES_REELS_AUTORISES = true`, commit relu).
+- Q23 à Sébastien.
+- Validation de la Preview, puis GO de publication.
+
+---
+
 ## 2026-10-04 · Landing catalogue All-in-One (#82) actualisée depuis `main` `0ac062b` · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Base intégrée** : `main` `0ac062b` (fusions de #87, #83 et #86), par commit de fusion (pas de rebase) | **Tête de départ** : `41e45ee` (commit de Sébastien du 04/10, conservé tel quel)

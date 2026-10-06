@@ -67,6 +67,31 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q23 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82)
+**Bloque** : le test réel du parcours (GO de Laurent) pour les points 1 et 2 ; rien d'autre. Le code est prêt et verrouillé (`SERVICES_REELS_AUTORISES = false`).
+
+**Contexte** — Mission de Laurent du 06/10 : rendre #82 prête à l'activation. Une demande de brochure n'est pas un lead qualifié. Elle ne crée donc qu'une personne, une organisation et une note Pipedrive, sans affaire. Le choix de l'objet commercial (Lead ou Deal, pipeline, étape) t'est réservé.
+
+**Vérifié** —
+- `lib/catalogue/pipedrive.ts` : personne retrouvée par e-mail, organisation par nom exact, note portant le requestId. Aucun appel à `/deals` ni à `/leads` (tests A et B).
+- `lib/catalogue/resend.ts` : la demande de consultant envoie une notification interne aux adresses de `NOTIFICATION_EMAIL`, convention de `/api/submit-survey`. Aucune adresse n'est codée en dur. `/api/contact` et `/api/roi-lead` codent les leurs en dur (`sebastien.jourdan@`, `stephane.gormand@`).
+- Mention du formulaire : « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » La politique de confidentialité (`privacy` dans `messages/fr.json`) ne nomme ni Pipedrive ni Resend, alors que `/api/contact` les utilise déjà.
+
+**La question** —
+1. Demande de consultant : la note et la notification interne suffisent-elles en V1, ou faut-il un Lead Pipedrive, voire une affaire (pipeline et étape) ?
+2. `NOTIFICATION_EMAIL` est-elle définie sur Vercel (Preview et Production), et avec quelles adresses pour cette notification ?
+3. La politique de confidentialité doit-elle nommer les sous-traitants (CRM, e-mail) avant la publication ?
+
+**Options**
+- A : V1 telle quelle (note et notification) ; `NOTIFICATION_EMAIL` renseignée par toi ; politique relue à part → activation possible sans nouveau code CRM.
+- B : Lead ou affaire pour la demande de consultant → petite PR à part, avec l'identifiant de pipeline et d'étape que tu fixes.
+
+**Ma recommandation** — A, parce que la demande de consultant reste distinguée (note et notification), sans créer d'objet commercial que tu n'as pas choisi.
+
+---
+
 ### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : D44, D45, contrôles permanents
