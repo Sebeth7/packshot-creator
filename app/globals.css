@@ -340,7 +340,7 @@
 @media (max-width: 640px) {
   .prose .table-wrap thead th { white-space: normal; }
   .prose .table-wrap thead th,
-  .prose .table-wrap tbody td { padding: 0.6rem 0.75rem; overflow-wrap: anywhere; }
+  .prose .table-wrap tbody td { padding: 0.6rem 0.75rem; overflow-wrap: break-word; hyphens: auto; }
 }
 
 /* Vidéos YouTube — façade locale (lib/youtube.ts) puis lecteur après accord
