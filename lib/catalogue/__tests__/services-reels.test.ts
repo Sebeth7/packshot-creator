@@ -5,17 +5,19 @@
  *
  * Scénarios de la mission du 06/10/2026 : A (brochure seule), B (consultant),
  * C (échec du stockage), D (échec de l'e-mail), E (échec CRM secondaire),
- * F (idempotence entre instances), J (activation).
+ * F (idempotence entre instances), J (activation), K (contrat Pipedrive v2 :
+ * personnes et organisations en v2, notes en v1, jeton hors des URL v2).
  */
 import { describe, it, expect, vi } from 'vitest';
 import { creerGestionnaireCatalogue } from '@/lib/catalogue/gestionnaire';
 import { SERVICES_DESACTIVES, servicesCatalogue, type InterrupteursCatalogue } from '@/lib/catalogue/services';
 import { SERVICES_REELS_AUTORISES, PUBLICATION_AUTORISEE } from '@/lib/catalogue/activation';
 import { PDF_CATALOGUE } from '@/lib/catalogue/pdf';
-import { stockagePipedrive } from '@/lib/catalogue/pipedrive';
-import { fauxPipedrive, fauxResend } from './doublures';
+import { ErreurPipedrive, stockagePipedrive } from '@/lib/catalogue/pipedrive';
+import type { DemandeCatalogue } from '@/lib/catalogue/schema';
+import { JETON_DOUBLURE, fauxPipedrive, fauxResend } from './doublures';
 
-const JETON = 'jeton-pipedrive-secret';
+const JETON = JETON_DOUBLURE;
 const ENV = {
   PIPEDRIVE_API_TOKEN: JETON,
   RESEND_API_KEY: 'cle-resend',
@@ -102,6 +104,7 @@ describe('A — demande de brochure seule', () => {
     }
     expect(note.content).not.toMatch(/ne pas appeler|pas d.appel/i);
     expect(aucuneAffaire(pipedrive.appels)).toBe(true);
+    expect(pipedrive.violations).toEqual([]);
 
     expect(resend.envois).toHaveLength(2);
     const e = resend.envois.find((m) => m.to.includes('claire@gmail.com'))!;
@@ -135,8 +138,9 @@ describe('A — demande de brochure seule', () => {
     expect((await g(requete(corps))).status).toBe(200);
     expect(pipedrive.personnes).toHaveLength(1);
     expect(pipedrive.personnes[0].org_id).toBe(1);
-    expect(pipedrive.appels.some((a) => a.methode === 'PUT' && a.chemin.startsWith('/persons/'))).toBe(false);
+    expect(pipedrive.appels.some((a) => /^(PUT|PATCH)$/.test(a.methode) && a.chemin.startsWith('/persons/'))).toBe(false);
     expect(pipedrive.notes[0].person_id).toBe(2);
+    expect(pipedrive.violations).toEqual([]);
   });
 });
 
@@ -249,6 +253,7 @@ describe('F — idempotence au-delà de la mémoire d’une instance', () => {
     expect(pipedrive.personnes).toHaveLength(1);
     expect(resend.envois).toHaveLength(2); // lien + notification interne, une seule fois chacun
     expect(instance2.journal).toHaveBeenCalledWith('catalogue.demande.rejouee', expect.any(Object));
+    expect(pipedrive.violations).toEqual([]);
   });
 
   it('nouvelle demande de la même personne : nouvelle note, personne non dupliquée', async () => {
@@ -341,5 +346,158 @@ describe('J — activation : rien de réel sans les interrupteurs du code', () =
     expect(PDF_CATALOGUE.sha256).toBe('0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5');
     expect(PDF_CATALOGUE.octets).toBe(15_380_434);
     expect(PDF_CATALOGUE.pages).toBe(28);
+  });
+});
+
+describe('K — contrat Pipedrive v2 (migration du 06/10) : personnes et organisations en v2, notes en v1', () => {
+  const trace = (appels: ReturnType<typeof fauxPipedrive>['appels']) =>
+    appels.map((a) => `${a.version} ${a.methode} ${a.chemin.replace(/\/\d+$/, '/{id}')}`);
+  const demande: DemandeCatalogue = {
+    ...corps,
+    country: 'CH',
+    pageSource: 'catalogue_all_in_one',
+    recueLe: '2026-10-06T09:00:00.000Z',
+  };
+
+  it('nouvelle personne : appels du contrat dans l’ordre, adresses officielles, aucune violation', async () => {
+    const { g, pipedrive } = banc();
+    expect((await g(requete(corps))).status).toBe(200);
+    expect(trace(pipedrive.appels)).toEqual([
+      'v2 GET /persons/search',
+      'v2 GET /organizations/search',
+      'v2 POST /organizations',
+      'v2 POST /persons',
+      'v1 POST /notes',
+      'v1 PUT /notes/{id}',
+    ]);
+    for (const a of pipedrive.appels) {
+      const prefixe = a.version === 'v2' ? 'https://api.pipedrive.com/api/v2/' : 'https://api.pipedrive.com/v1/';
+      expect(`${a.url.origin}${a.url.pathname}`.startsWith(prefixe)).toBe(true);
+    }
+    expect(pipedrive.violations).toEqual([]);
+  });
+
+  it('personne connue sans organisation : notes relues en v1, rattachement par PATCH v2 portant { org_id } seul', async () => {
+    const pipedrive = fauxPipedrive();
+    pipedrive.personnes.push({ id: 7, name: 'Claire', email: 'claire@gmail.com', org_id: null });
+    const { g } = banc({ pipedrive });
+    expect((await g(requete(corps))).status).toBe(200);
+    expect(trace(pipedrive.appels)).toEqual([
+      'v2 GET /persons/search',
+      'v1 GET /notes',
+      'v2 GET /organizations/search',
+      'v2 POST /organizations',
+      'v2 PATCH /persons/{id}',
+      'v1 POST /notes',
+      'v1 PUT /notes/{id}',
+    ]);
+    const rattachement = pipedrive.appels.find((a) => a.methode === 'PATCH')!;
+    expect(rattachement.chemin).toBe('/persons/7');
+    expect(rattachement.corps).toEqual({ org_id: pipedrive.organisations[0].id });
+    expect(pipedrive.personnes).toEqual([{ id: 7, name: 'Claire', email: 'claire@gmail.com', org_id: pipedrive.organisations[0].id }]);
+    expect(pipedrive.notes[0].person_id).toBe(7);
+    expect(pipedrive.violations).toEqual([]);
+  });
+
+  it('jeton : en-tête x-api-token en v2, jamais dans une URL v2 ; paramètre api_token en v1 (notes) seulement', async () => {
+    const { g, pipedrive } = banc();
+    await g(requete({ ...corps, consultantOptIn: true }));
+    const v2 = pipedrive.appels.filter((a) => a.version === 'v2');
+    const v1 = pipedrive.appels.filter((a) => a.version === 'v1');
+    expect(v2).toHaveLength(4);
+    expect(v1).toHaveLength(2);
+    for (const a of v2) {
+      expect(a.entetes['x-api-token']).toBe(JETON);
+      expect(a.url.href).not.toContain(JETON);
+      expect(a.url.searchParams.has('api_token')).toBe(false);
+    }
+    for (const a of v1) {
+      expect(a.url.searchParams.get('api_token')).toBe(JETON);
+      expect(a.entetes['x-api-token']).toBeUndefined();
+    }
+  });
+
+  it('recherches v2 : term, fields, exact_match et limit du contrat, sans pagination par décalage', async () => {
+    const { g, pipedrive } = banc();
+    await g(requete(corps));
+    const params = (chemin: string) => Object.fromEntries(pipedrive.appels.find((a) => a.chemin === chemin)!.url.searchParams);
+    expect(params('/persons/search')).toEqual({ term: 'claire@gmail.com', fields: 'email', exact_match: 'true', limit: '1' });
+    expect(params('/organizations/search')).toEqual({ term: 'Atelier Exemple', fields: 'name', exact_match: 'true', limit: '1' });
+  });
+
+  it('créations v2 : emails au pluriel (value, primary, label) et org_id, jamais le champ v1 « email » ; organisation { name }', async () => {
+    const { g, pipedrive } = banc();
+    await g(requete(corps));
+    const personne = pipedrive.appels.find((a) => a.methode === 'POST' && a.chemin === '/persons')!;
+    expect(personne.corps).toEqual({
+      name: 'Claire',
+      emails: [{ value: 'claire@gmail.com', primary: true, label: 'work' }],
+      org_id: pipedrive.organisations[0].id,
+    });
+    expect(personne.entetes['content-type']).toBe('application/json');
+    const organisation = pipedrive.appels.find((a) => a.methode === 'POST' && a.chemin === '/organizations')!;
+    expect(organisation.corps).toEqual({ name: 'Atelier Exemple' });
+  });
+
+  it.each([400, 401, 403, 404, 410, 429, 500])(
+    'réponse v2 en erreur (HTTP %i, success:false) : échec, ni jeton ni donnée saisie dans le message',
+    async (statut) => {
+      const pipedrive = fauxPipedrive((m, c) => (c === '/persons/search' ? statut : undefined));
+      const erreur = await stockagePipedrive({ jeton: JETON, fetch: pipedrive.fetch })
+        .enregistrer(demande)
+        .catch((e: Error) => e);
+      expect(erreur).toBeInstanceOf(ErreurPipedrive);
+      expect((erreur as Error).message).toBe(`Pipedrive recherche de personne : HTTP ${statut}`);
+      for (const interdit of [JETON, corps.email, corps.company, corps.firstName]) {
+        expect((erreur as Error).message).not.toContain(interdit);
+      }
+      expect(pipedrive.personnes).toHaveLength(0);
+      expect(pipedrive.notes).toHaveLength(0);
+    },
+  );
+
+  it('forme v2 inattendue (résultat de recherche sans identifiant) : échec, aucune personne, aucune note, aucun e-mail', async () => {
+    const pipedrive = fauxPipedrive();
+    pipedrive.fetchFaux.mockResolvedValueOnce(Response.json({ success: true, data: { items: [{ result_score: 1, item: {} }] } }));
+    const { g, resend } = banc({ pipedrive });
+    expect((await g(requete(corps))).status).toBe(500);
+    expect(pipedrive.personnes).toHaveLength(0);
+    expect(pipedrive.notes).toHaveLength(0);
+    expect(resend.envois).toHaveLength(0);
+  });
+
+  it('création v2 sans identifiant numérique : échec, aucune note', async () => {
+    const pipedrive = fauxPipedrive();
+    const vraiFetch = pipedrive.fetchFaux.getMockImplementation()!;
+    pipedrive.fetchFaux.mockImplementation(async (entree, init) =>
+      init?.method === 'POST' && String(entree).endsWith('/api/v2/persons')
+        ? Response.json({ success: true, data: { id: '12' } })
+        : vraiFetch(entree, init),
+    );
+    const { g } = banc({ pipedrive });
+    expect((await g(requete(corps))).status).toBe(500);
+    expect(pipedrive.notes).toHaveLength(0);
+  });
+
+  it('la doublure refuse une régression : v1 pour une personne, v2 pour une note, PUT en v2, jeton dans l’URL, champ « email »', async () => {
+    const { fetch, violations } = fauxPipedrive();
+    const v1 = 'https://api.pipedrive.com/v1';
+    const v2 = 'https://api.pipedrive.com/api/v2';
+    const entete = { 'x-api-token': JETON };
+    const statut = async (url: string, init?: RequestInit) => (await fetch(url, init)).status;
+    expect(await statut(`${v1}/persons/search?term=x&api_token=${JETON}`)).toBe(410);
+    expect(await statut(`${v1}/organizations?api_token=${JETON}`, { method: 'POST', body: '{"name":"X"}' })).toBe(410);
+    expect(await statut(`${v2}/notes`, { headers: entete })).toBe(410);
+    expect(await statut(`${v2}/persons/7`, { method: 'PUT', headers: entete, body: '{}' })).toBe(405);
+    expect(await statut(`${v2}/persons/search?term=x&api_token=${JETON}`, { headers: entete })).toBe(401);
+    expect(await statut(`${v2}/persons/search?term=x`)).toBe(401);
+    expect(
+      await statut(`${v2}/persons`, {
+        method: 'POST',
+        headers: entete,
+        body: JSON.stringify({ name: 'X', email: [{ value: 'x@exemple.test', primary: true, label: 'work' }] }),
+      }),
+    ).toBe(400);
+    expect(violations).toHaveLength(7);
   });
 });
