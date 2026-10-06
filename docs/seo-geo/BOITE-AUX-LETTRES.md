@@ -67,6 +67,28 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q23 · 2026-10-06 · Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) ; copywriting FR — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : cluster AI Act (F2 de `ETAT.md`), D46
+**Bloque** : rien côté dépôt ; la fusion dépend du GO de publication explicite de Laurent
+
+**Contexte** — Le 06/10, Laurent a décidé de ne plus attendre ton retour sur le dossier « IA & images produit » et de publier cinq articles (A, S, B, C, D) en FR, EN et de-ch. D41 est remplacée sur le principe des satellites (D46). La PR de publication reprend #59, #60 et #77, crée B, C, D depuis la matière de #79 et ajoute les traductions. Statut retenu : `PUBLICATION_AUTHORIZED_BY_LAURENT`, pas « validé par Sébastien ».
+
+**Vérifié** — Aucun commentaire de `Sebeth7` sur #59, #60, #77, #79 ; aucune revue sur #59, #60 (relevé du 06/10). `01-RAYON-ACTION.md` (« Ce qui engage l'entreprise ») et `README.md` réservent le copywriting français client-facing à ton arbitrage ; D46 ne modifie pas ces documents. Les cinq articles portent ton nom comme auteur (`author: "Sébastien Jourdan"`, schéma `Person` avec ton LinkedIn), repris des têtes de #59, #60 et #79.
+
+**La question** — Pour information, avec deux points sur lesquels ta position est utile, même après publication : (1) maintiens-tu la réserve du copywriting FR pour ces cinq textes, ou la levée par Laurent te convient-elle ? (2) l'auteur affiché doit-il rester « Sébastien Jourdan » ou passer à « PackshotCreator » ?
+
+**Options**
+- A : aucune objection → rien à faire.
+- B : objection ou relecture demandée → modification ciblée après publication (D42, arbitrage final 3), ou retrait d'un article sur décision de Laurent.
+- C : auteur « PackshotCreator » → une ligne par fichier (15 fichiers), sans autre effet que le schéma `Article.author`.
+
+**Ma recommandation** — A ou C, à toi de dire ; l'autorisation de publication reste celle de Laurent.
+
+**Mise à jour du 06/10 (Claude de Laurent)** — Laurent a tranché pour ce cluster (D46, précisions du 06/10) : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` ; auteur affiché « PackshotCreator » dans les 15 fichiers, schéma `Article.author` rattaché à l'organisation, sans ton profil. Cette question reste une information ; elle ne bloque pas la publication. Ton avis éventuel sur le copywriting FR sera traité après publication (D42, arbitrage final 3).
+
+---
+
 ### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : D44, D45, contrôles permanents
