@@ -34,7 +34,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from '@/components/animations';
-import { HeroSection, HeroVideo } from '@/components/hero';
+import { HeroSection, HeroVideoPanel } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
@@ -48,6 +48,14 @@ export function generateStaticParams() {
 }
 
 /* ──────────────────────────── Static data ──────────────────────────── */
+
+// Film de présentation de la gamme Orbitvu (16:9, 42 s), lu muet, sur Cloudflare R2
+// comme les démos des fiches produit. Textes incrustés en anglais : affiché entier,
+// en panneau, jamais en fond recadré sous le titre.
+const HERO_VIDEO = {
+  src: 'https://videos.packshot-creator.com/orbitvu-gamme-2026-1080p.mp4',
+  poster: '/images/hero/orbitvu-gamme-2026-poster.avif',
+};
 
 const CLIENT_LOGOS = [
   { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
@@ -164,14 +172,19 @@ export default async function HomePage({
   return (
     <>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          1. HERO — Centered, video background, display typography
+          1. HERO — Split : texte à gauche, film de la gamme à droite
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <HeroSection
-        layout="centered"
-        backgroundVideo={
-          <HeroVideo
-            src="/images/hero/hero-range-2025.mp4"
-            poster="/images/hero/hero-range-2025-poster.avif"
+        layout="split"
+        media={
+          <HeroVideoPanel
+            src={HERO_VIDEO.src}
+            poster={HERO_VIDEO.poster}
+            title={t('hero.video.title')}
+            labels={{
+              pause: t('hero.video.pause'),
+              play: t('hero.video.play'),
+            }}
           />
         }
         badge={{
@@ -186,7 +199,7 @@ export default async function HomePage({
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
       >
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <Button
             asChild
             size="lg"

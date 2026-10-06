@@ -101,6 +101,14 @@ désynchroniser.
 | `04-SURFACES-SEO.md` | Quel fichier pilote quelle sortie SEO |
 | `07-VERIFICATION.md` | Comment prouver qu'un changement marche |
 
+### Standards permanents — avant de créer ou de modifier une page
+
+| Fichier | Contenu |
+|---|---|
+| `docs/standards/README.md` | Index des règles structurelles applicables à toutes les pages, présentes et futures |
+| `docs/standards/R-UX-LONG.md` | D44 — navigation des pages longues (barre collante, sommaire latéral du blog, navigation statique), registre `data/navigation/pages-longues.ts` |
+| `docs/standards/R-PRODUCT-DIM.md` | D45 — dimensions, encombrements, charges des machines, référentiel `data/produits/fiches-techniques.ts` |
+
 ### Vivant — lu et écrit à chaque session
 
 | Fichier | Nature |
