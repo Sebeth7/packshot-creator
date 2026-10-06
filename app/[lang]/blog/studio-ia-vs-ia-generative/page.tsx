@@ -13,6 +13,8 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import { Button } from '@/components/ui/button';
 import { buildLanguages } from '@/lib/hreflang';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
 
@@ -79,8 +81,32 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
     studio: t(`comparison.${key}.studio`),
   }));
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  const barre = barreActive('blog-dedie-sans-sommaire', lang as Langue, 'studio-ia-vs-ia-generative');
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        { id: 'introduction', libelle: t('intro.heading') },
+        { id: 'marche', libelle: t('marketOverview.heading') },
+        { id: 'ia-generative', libelle: t('aiPure.heading') },
+        { id: 'studio-plus-ia', libelle: t('studioPlusIa.heading') },
+        { id: 'comparatif', libelle: t('comparison.heading') },
+        { id: 'pour-qui-ia-generative', libelle: t('whoNeedsAiPure.heading') },
+        { id: 'pour-qui-studio', libelle: t('whoNeedsStudio.heading') },
+        { id: 'faq', libelle: t('faq.heading') },
+      ]
+    : [];
+
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Compact blog hero, left-aligned
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -117,7 +143,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
 
       {/* --- Introduction --- */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('introduction')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -136,7 +162,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       </section>
 
       {/* --- Market Overview --- */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('marche')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -158,7 +184,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       </section>
 
       {/* --- AI Generative Pure --- */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('ia-generative')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -264,7 +290,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       </section>
 
       {/* --- Studio + IA --- */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('studio-plus-ia')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -318,7 +344,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. COMPARISON TABLE
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('comparatif')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-10 text-center">
@@ -380,7 +406,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
 
       {/* Who needs AI pure */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('pour-qui-ia-generative')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -402,7 +428,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       </section>
 
       {/* Who needs Studio + IA */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section id={ancre('pour-qui-studio')} className="py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-8">
@@ -442,7 +468,7 @@ export default async function StudioIaVsIaGenerativePage({ params }: { params: P
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. FAQ (details/summary, no client JS)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-16 lg:py-20 bg-neutral-50">
+      <section id={ancre('faq')} className="py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <TextReveal as="h2" className="text-3xl sm:text-4xl font-heading font-bold text-future-dusk-900 mb-10 text-center">

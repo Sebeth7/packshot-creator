@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · #85 actualisée depuis `main` `3b427d7` (fusion de #91) : exceptions temporaires de #91 retirées · Claude de Laurent
+
+**Chantier** : D44 | **PR** : #85, brouillon | **Base intégrée** : `main` `3b427d7`, par commit de fusion `f49a437` (pas de rebase)
+
+**Quoi** —
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union (entrées de `main` dans leur ordre, les 2 entrées de #85 du 03/10 à leur place). `app/[lang]/ia-photo-produit/page.tsx` fusionné automatiquement : barre de #85 et retrait de la note BlendAI de #97 tous deux présents.
+- `data/navigation/pages-longues.ts` : retrait des 3 exceptions temporaires de #91 (`comment-creer-vues-multi-angles-automatique-objet` FR, `how-to-create-automatic-multi-angle-views-of-an-object` EN, `comment-photographier-lunettes-e-commerce` FR) et des constantes `PR91`, `FIN_PR91`. Condition de sortie inscrite le 03/10 remplie : #91 fusionnée le 06/10 (`3b427d7`).
+- Tests : `registre-pages-longues.test.ts`, les 3 guides attendus équipés (et non plus gelés) ; `navigation-pages-longues.spec.ts`, guide lunettes FR retiré de `GELEES`.
+- Aucune autre règle D44 modifiée : exceptions #27, Mode, F5, Studios, pages de #64, HOLD et EXCLUDE inchangés.
+
+**Vérifié** —
+- Aucune autre raison de gel du guide lunettes FR : absent des exceptions #27 et des gels ; aucune PR ouverte ne touche les 3 guides (relevé GitHub du 06/10).
+- `verifier-json` 195 ; `tsc` vert ; Vitest 409/409 (dont 9 du registre) ; eslint vert sur les fichiers touchés ; `next build` vert (386 pages).
+- Build local : `navigation-pages-longues` 44/44 ; `sommaire-blog` et `machine-selector` 37/37 ; contrôle ciblé des 3 guides (spec temporaire hors dépôt) 12/12 : barre, section active, ancres, une seule navigation collante, masquage en fin de page à 1 024 et 1 440 px ; aucune barre ni débordement à 390 et 768 px.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview et `www` ; `docs/standards/R-UX-LONG.md` cite encore #91 en exemple d'exception (ligne 86), non modifié (documentation sur `main`, hors périmètre).
+
+**Suite** — CI sur la nouvelle tête ; contrôle de la Preview par Laurent ; GO de fusion individuel.
+
+---
+
 ## 2026-10-06 · D36 reconstruite depuis `main` `2a53727` : `noindex` de l'origine `sysnext.vercel.app`, partie Next seule, remplace #67 · Claude de Laurent
 
 **Chantier** : D36 | **PR** : #99, brouillon, non fusionnée, branche `claude/busy-feynman-0vnf1j` | **Base** : `main` `2a53727` (#92) | **Remplace** : #67, non modifiée, fermeture sur GO de Laurent
@@ -755,6 +777,29 @@ Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/prod
 
 ---
 
+## 2026-10-03 · #85 — Studios retirée de la barre (arbitrage de Laurent), guides de #91 en HOLD, pages IA conservées · Claude de Laurent
+
+**Chantier** : D44, arbitrages du 03/10 après la revue pré-fusion | **PR** : #85 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- **Studios** : `app/[lang]/studios-photo-automatises/page.tsx` revient à l'état de `main`. Famille `landing-gamme` en HOLD ; la barre de Studios relève du chantier commercial, sous validation spécifique. L'ancre `#calculateur-roi` part dans le lot AR-01 (Maillage V2) : #85 ne la porte plus.
+- **Guides de #91** (A03, lot 1 V4.3) : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN) et `comment-photographier-lunettes-e-commerce` (FR) en exception temporaire jusqu'à la clôture de #91. Si #91 est fusionnée avant #85 : contrôle sur `main`, puis retrait de l'exception.
+- **Pages IA** (`/ia-photo-produit`, FR, EN, de-ch) : barre conservée. Hors pilote Studios ; deuxième vague commerciale selon l'addendum marché du 02/10 (conditionnée par #77 et la validation des claims). **Changement UX à reprendre lors de la restructuration éditoriale** : cinq entrées (titres de section existants), `id` posés par la barre, ancre `#resultats` réutilisée.
+- **Libellé actif** : emplacement fixe à droite des numéros, conservé (décision de Laurent du 03/10).
+- Tests : registre (Studios et guides de #91 gelés) ; spec de navigation (Studios et `comment-photographier-lunettes-e-commerce` passent dans les pages gelées ; `comment-obtenir-couleurs-fideles-photographie-produit` devient la page équipée de référence).
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 : pilote Studios coordonné avec Landings & Hubs et le Maillage V2 (J0 proposé le 29/10) ; formulation actuelle de D44 pour les pages touchées par une PR éditoriale ouverte.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`
+
+**Vérifié** — voir la description de #85 (build, Vitest, spec, comptage des pages).
+**Supposé** — rien.
+**Non regardé** — barre de Studios dans le chantier commercial (hors de cette PR).
+
+**Suite** — Retrait des exceptions de #91 à sa clôture ; activation de Studios sur validation spécifique.
+
+---
+
 ## 2026-10-03 · Revue pré-fusion — lot 1 V4.3 ouvert (#88 à #92), conséquence D44 sur #85 · Claude de Laurent
 
 **Chantier** : revue pré-fusion #83 à #87 | **PR** : #87 | **Base** : `main` `de6c4cd`
@@ -912,6 +957,49 @@ Tests retirés parce que la fonction n'existe plus dans l'interface : recherche 
 **Non regardé** — Firefox, WebKit, mobile émulé en CI (seul Chromium y tourne). `e2e/anchors.spec.ts` n'est pas ajouté : son test « #calculateur-roi » échoue sur `main`, défaut corrigé par #85 ; à ajouter après la fusion de #85.
 
 **Suite** — Après fusion de #84 et #85, leurs specs s'exécutent sans modification du workflow. Ajouter `anchors` à la commande après #85.
+
+---
+
+## 2026-10-03 · D44 — barre de sommaire collante mutualisée, trois pilotes puis 96 pages par famille de gabarits · Claude de Laurent
+
+**Chantier** : D44 (R-UX-LONG), PR UX-STICKY | **PR** : brouillon, branche `ccr-79f70eb9-ux-sticky` | **Base** : `main` `de6c4cd` | **Commits** : `9d9de22` (composant, registre, pilotes), puis généralisation
+
+**Quoi** —
+- `components/navigation/SommaireCollant.tsx` : version commune de la barre de Mode. Elle apporte ancres configurables, début et fin, rien sous 1 024 px, décalage des ancres calculé sur l'en-tête. Numéros fixes et libellé actif dans un emplacement unique : CLS de défilement nul.
+- `data/navigation/pages-longues.ts` : registre par famille, avec pages gelées et exceptions motivées.
+- Gabarits équipés, `id` posés seulement si la barre est active, libellés tirés des titres existants :
+  - guides (`guide/[slug]`) ;
+  - fiches (`studio-photo/[slug]`) ;
+  - `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` ;
+  - `ia-photo-produit`, `studios-photo-automatises` ;
+  - `solutions/[slug]`.
+- Tests : `lib/navigation/__tests__/registre-pages-longues.test.ts` (7), `e2e/navigation-pages-longues.spec.ts` (47).
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : généraliser par famille de gabarits, en conservant les navigations adaptées. Audit du 03/10 : 47 guides, 39 fiches et plusieurs landings longues sans navigation.
+
+**Fichiers** — `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/studio-ia-vs-ia-generative/page.tsx`, `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `app/[lang]/solutions/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Navigation desktop sur 96 pages indexables. Une nouvelle page d'une famille équipée (guide, fiche, solution) reçoit la barre sans autre geste. Aucun effet sur l'indexation : ni URL, ni canonique, ni hreflang, ni contenu.
+
+**Décision de conception à valider** — La barre de Mode insère le libellé actif après le numéro actif : les numéros suivants se décalent à chaque changement de section. CLS mesuré pendant le défilement sur `main` : 0,036 à 1 024 px, 0,021 à 1 440 px ; 0,080 sur un guide de 12 étapes avec la même mécanique. Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros : CLS 0 sur toutes les pages équipées. Mode reste sur son composant jusqu'au 26/11. Sa bascule changera l'emplacement du libellé : décision de Laurent, après contrôle de parité.
+
+**Vérifié** (build local, `main` `de6c4cd` en référence) —
+- Registre : 116 pages contrôlées, 116 conformes ; 96 équipées (44 guides, 39 fiches, 3 IA photo produit, 3 gamme, 3 solutions, 2 comparatifs, 2 studio-ia) ; 20 gelées ou exclues sans barre (F5, Mode avec sa barre d'origine, hub mode-textile, accueil, 3 guides de #27, budget, prestataire, Amazon).
+- `e2e/navigation-pages-longues.spec.ts` : 94/94 sur deux passages (47 tests). Couvre 17 pages équipées à 1 024 et 1 440 px, 3 pages à 390 et 768 px, 7 pages gelées ou exclues.
+- Comparaison `main` / branche, 116 pages à 390 et 1 440 px (232 combinaisons), puis 16 pages représentatives aux 7 largeurs (360 à 1 920, 112 combinaisons) :
+  - 0 écart de hauteur de page ;
+  - 0 largeur de tableau ou d'illustration modifiée ;
+  - 0 débordement horizontal nouveau (débordement de l'accueil à 390 px, préexistant) ;
+  - 0 régression de CLS. Deux valeurs isolées sous 1 024 px (solutions à 768 px, IA de-ch à 390 px) remesurées cinq fois : 0 sur `main` comme sur la branche.
+- axe-core à 390 et 1 440 px : 0 violation dans la barre. Violations de la page : `color-contrast` (pied de page) et `heading-order`, identiques sur `main`.
+- `tsc`, eslint (5 avertissements préexistants sur la fiche), `next build` (371 pages), Vitest 384/384.
+
+**Défaut préexistant corrigé** — Le CTA « Calculer mon ROI » du sélecteur (`app/[lang]/studio-photo/selecteur-machines/page.tsx:149`) pointe vers `/studios-photo-automatises#calculateur-roi`. Sur `main`, cette ancre n'existe pas : le lien ouvre le haut de la page, et `e2e/anchors.spec.ts` (« #calculateur-roi exists ») échoue sur le build de `main`. La section visée (coût de la production, `roiTeaser`) reçoit désormais l'`id` `calculateur-roi`. `anchors.spec.ts` et le spec navigation : 54/54.
+
+**Supposé** — Les ancres existantes `#resultats` (IA photo produit) et `#studios` (gamme), réutilisées, reçoivent sur desktop le décalage de 129 px : les CTA internes qui y mènent s'arrêtent sous la barre au lieu de 0 px. Effet tenu pour souhaitable ; non validé par Sébastien.
+**Non regardé** — Firefox, Safari, lecteur d'écran réel ; Preview (SSO) et `www` (R4) ; pages EN non indexées ; Mode non modifiée.
+
+**Suite** — Preview contrôlée par Laurent sur une page par famille ; GO de fusion distinct. Après le 26/11 : bascule de Mode (parité, décision). Après le 23/11 : réexamen de F5. Clôture de #27 et #64 : sortie des pages gelées.
 
 ---
 
