@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · A02 (#90) actualisée depuis `main` `a168b33` (fusion de #89) : patch inchangé, conflit de journal résolu par union · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `a168b33` ; tête précédente `3309244`
+
+**Quoi** — `main` `a168b33` (fusion de #89) fusionnée dans la branche, sans rebase. Seul conflit : `JOURNAL.md`, deux insertions (06/10 et 03/10), résolues par union, ordre chronologique conservé. Aucune modification de contenu : les 2 JSON sont identiques octet pour octet au patch d'origine `a829c50`.
+
+**Pourquoi** — La fusion de #89 rendait #90 de nouveau conflictuelle (6 commits de retard).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`. Diff contre `main` : `content/blog/en/what-return-on-investment-with-an-internal-photo-studio.json`, `content/blog/fr/quel-retour-sur-investissement-avec-un-studio-photo-en-interne.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Inchangé par rapport à l'entrée A02 du 03/10.
+
+**Vérifié** —
+- Texte visible des 2 articles identique à `main` ; 0 ligne de `main` ni de `3309244` retirée de `JOURNAL.md`.
+- `tsc` vert ; `verifier-json` : 195 JSON valides ; Vitest 400/400 ; `next build` vert (386 pages).
+- `next start` local, desktop 1280 et mobile 390 : les 2 articles en 200 ; 0 lien `http://gs-new…` ; 2 liens Orbitvu par article ; ancre lunetterie vers `/{fr,en}/industrie/lunetterie` ; « Photoshop » non lié en EN ; 0 lien vide ; aucun débordement horizontal ; 0 erreur de page.
+- Parcours de la CI `machine-selector` et `sommaire-blog` : 37/37.
+- Cibles Orbitvu et lunetterie : relevé du 06/10 non refait (aucun changement détecté). Appels payants : aucun.
+
+**Supposé** — Que l'URL Orbitvu vue par un visiteur est celle relevée depuis le conteneur (R4).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante) ; `ETAT.md`, non modifié.
+
+**Suite** — CI et Preview sur la nouvelle tête ; QA de Laurent ; GO de fusion distinct.
+
+---
+
 ## 2026-10-06 · A02 (#90) actualisée depuis `main` `8247217` (#96) : URL Orbitvu, lien Photoshop, ancres lunetterie inchangés · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `a829c50`
