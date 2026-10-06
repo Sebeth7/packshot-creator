@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-06 · D36 reconstruite depuis `main` `2a53727` : `noindex` de l'origine `sysnext.vercel.app`, partie Next seule, remplace #67 · Claude de Laurent
 
-**Chantier** : D36 | **PR** : #NOUVELLE_PR_D36, brouillon, non fusionnée, branche `claude/busy-feynman-0vnf1j` | **Base** : `main` `2a53727` (#92) | **Remplace** : #67, non modifiée, fermeture sur GO de Laurent
+**Chantier** : D36 | **PR** : #99, brouillon, non fusionnée, branche `claude/busy-feynman-0vnf1j` | **Base** : `main` `2a53727` (#92) | **Remplace** : #67, non modifiée, fermeture sur GO de Laurent
 
 **Quoi** — Règle `headers()` de `next.config.ts` : `X-Robots-Tag: noindex` et `X-Packshot-Origin-Noindex: 1` sur les documents HTML de `sysnext.vercel.app` en accès direct. Reprise de la partie Next de #67 (`43e14b3`, `02c093c`), sans sa partie Worker ; test `lib/seo/__tests__/origine-noindex-d36.test.ts` (67 cas) repris de #67 sans modification.
 
