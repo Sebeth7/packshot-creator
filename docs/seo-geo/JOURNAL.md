@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) : variable `CATALOGUE_NOTIFICATION_EMAIL`, note « [Brochure] » épinglée, alignement sur le principe du parcours Contact · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `a02f293`
+
+**Quoi** — R1 : la notification interne du catalogue lit exclusivement `CATALOGUE_NOTIFICATION_EMAIL`, sans repli sur `NOTIFICATION_EMAIL`. R2 : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag = 1`, à la création et à la mise à jour du suivi). Aucun appel réel ; les interrupteurs restent faux.
+
+**Pourquoi** — Décisions de Laurent du 06/10, après la comparaison des parcours Contact et Brochure. Le parcours Brochure suit déjà le principe commercial de Contact (enregistrement du lead → notification interne → e-mail au prospect → suivi humain possible). Il n'en reprend pas les faiblesses techniques : v1 hors support, échecs Resend non détectés, HTML non échappé, organisation approximative, réponse 200 sans trace, destinataires codés en dur, promesse « 24 heures ouvrées », affaire d'office. `NOTIFICATION_EMAIL` est lue par le questionnaire : la changer en production aurait détourné ses notifications. Le code Resend de #82 n'est pas simplifiable par réutilisation : `/api/contact` n'a pas de module partagé, et ses conventions communes (expéditeur `PackshotCreator <RESEND_FROM_EMAIL>`) sont déjà celles du catalogue.
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/resend.ts` (commentaires), `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`, `.env.example` (variable documentée).
+
+**Effet attendu** — Aucun pour le visiteur tant que la route est fermée. Au test réel : notification à `leads@sysnext.com` une fois la variable créée sur Vercel ; note « [Brochure] » en tête de la fiche personne.
+
+**Vérifié** —
+- Variable absente, vide, sans adresse valide, ou `NOTIFICATION_EMAIL` seule présente : aucune notification, absence journalisée (`catalogue.notification.non_configuree`) et consignée dans la note, `contactRequestAccepted` faux, seul l'e-mail au prospect part (4 tests). Avec les deux variables, seule celle du catalogue reçoit.
+- Note : `pinned_to_person_flag: 1` à la création (avec `person_id` et `org_id`) et à la mise à jour ; aucun autre drapeau d'épinglage ; demande rejouée sans nouvelle note ; aucune affaire ni Lead. La doublure n'accepte que 0 ou 1 (documentation Pipedrive) et refuse tout autre épinglage.
+- Contre-épreuves (code remis à l'identique, `cmp`) : repli sur `NOTIFICATION_EMAIL` → 1 échec ; lecture de `NOTIFICATION_EMAIL` seule → 6 ; note non épinglée à la création → 1 ; drapeau absent de la mise à jour → 1 ; drapeau booléen → 21.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 518/518 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 ; Playwright : 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Supposé** — Qu'une mise à jour `PUT /v1/notes/{id}` ne retire pas l'épinglage : le drapeau y est renvoyé pour ne pas en dépendre. Que Pipedrive admette plusieurs notes épinglées sur une même personne (demandes répétées) : non vérifié en réel.
+
+**Non regardé** —
+- Vercel : `CATALOGUE_NOTIFICATION_EMAIL` n'est pas créée (hors GO de cette mission).
+- `/api/contact` : non modifiée ; ses problèmes techniques sont un chantier séparé, signalé dans Q23.
+- Formulaire : ni nom ni téléphone ajoutés (faible friction, décision de Laurent) ; mention P3 inchangée, en attente de Sébastien.
+
+**Suite** — Avant le GO d'exécution du test réel : création de `CATALOGUE_NOTIFICATION_EMAIL` (Preview) et contrôle des autres variables sous GO séparé, domaine Resend, deux adresses de test.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : Pipedrive en API v2 (personnes, organisations), décisions T1, T2, P3, P5 consignées · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `c0e4b89`

@@ -120,6 +120,20 @@ Restent ouverts :
 
 **Bloque, après ces réponses** — le GO d'exécution du test réel attend encore le contrôle Vercel de la Preview (`PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `NOTIFICATION_EMAIL`, `PIPEDRIVE_DOMAIN`), le statut du domaine dans Resend et deux adresses de test absentes de Pipedrive. La publication attend en plus P1 à P4.
 
+**Complément du 06/10, alignement sur le parcours Contact (décisions de Laurent)** —
+- Le parcours Brochure est déjà aligné, sur le plan fonctionnel, sur le principe commercial de `/api/contact` : enregistrement du lead → notification interne → e-mail au prospect → suivi humain possible.
+- Il ne recopie pas les faiblesses techniques de `/api/contact`, qui restent un chantier séparé, hors #82 (pour toi) :
+  - points d'accès Pipedrive v1 hors support depuis le 01/08/2026 ;
+  - échecs Resend non détectés (le SDK renvoie `{ error }` sans lever, le `.catch` ne voit rien) ;
+  - HTML de la notification interne non échappé ;
+  - recherche d'organisation approximative (ni `fields` ni `exact_match`) et personne rattachée à l'organisation trouvée par un `PUT` systématique ;
+  - réponse 200 même si tout a échoué, identifiants Pipedrive renvoyés au navigateur ;
+  - ni limitation de débit, ni champ piège ;
+  - destinataires internes codés en dur ; promesse « 24 heures ouvrées » ; affaire créée d'office (non reprises pour la brochure, P1 restant ouvert).
+- R1, décidé et implémenté sur #82 (`a02f293`) : la notification du catalogue lit **exclusivement** `CATALOGUE_NOTIFICATION_EMAIL`, sans repli sur `NOTIFICATION_EMAIL` (questionnaire). Destinataire métier prévu : `leads@sysnext.com`. La variable n'existe pas encore sur Vercel : elle sera créée par un humain (Preview, puis Production à la publication) sous un GO séparé. Absente, la notification n'est pas envoyée, l'absence est journalisée et consignée dans la note, et une demande de consultant n'est pas déclarée transmise. Ce point remplace le point 5 de « Ce qui te reste ».
+- R2, décidé et implémenté sur #82 (`a02f293`) : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag`), à l'image de la note épinglée sur l'affaire de `/api/contact`. Aucune affaire, aucun Lead.
+- Formulaire : ni nom ni téléphone ajoutés (landing à faible friction, décision de Laurent). La mention P3 attend toujours ta validation et n'est pas modifiée.
+
 **Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
 
 ---
