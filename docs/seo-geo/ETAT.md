@@ -23,10 +23,10 @@ vont en C ou D, ses mesures en E.
 
 | | |
 |---|---|
-| Contrôle | 06/10/2026, Claude de Laurent (cluster AI Act, relevé GitHub) |
-| `main` | `9b19e6d` — fusion de #95 (hero vidéo de l'accueil, Claude de Sébastien), 04/10 à 09:10:40 UTC ; relevé le 06/10. Fusionnées depuis le 03/10 : #87, #83, #86, #95. Statut du déploiement de production : non relevé par ce contrôle |
-| Dernière mise à jour documentaire | 06/10 — Claude de Laurent : cluster AI Act, D46, Q23 (PR #96). Avant : 03/10 — Claude de Laurent : revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
-| PR ouvertes | 20 au 06/10 : #27, #59, #60, #64, #65, #67, #70, #77, #79, #82, #84, #85, #88 à #94, et #96 (cluster AI Act, qui intègre #59, #60 et #77) |
+| Contrôle | 06/10/2026, Claude de Laurent (synchronisation de #96 avec `main` `1e0901b`, relevé GitHub) |
+| `main` | `1e0901b` — fusion de #84 (sommaire du blog, D44), 06/10 à 10:26:23 UTC ; relevé le 06/10. Fusionnées depuis le 03/10 : #87, #83, #86, #95, #84. Production de #84 contrôlée par Laurent dans Chrome sur `www` le 06/10 (molette, dernière entrée et « Sources » accessibles) ; déploiement non relevé par script (R4) |
+| Dernière mise à jour documentaire | 06/10 — Claude de Laurent : #96 synchronisée avec `main` `1e0901b` (#84), sommaire de A vérifié, CTA de fin d'article localisés. Avant : 06/10 — cluster AI Act, D46, Q23 (PR #96). Avant : 03/10 — Claude de Laurent : revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
+| PR ouvertes | 19 au 06/10 : #27, #59, #60, #64, #65, #67, #70, #77, #79, #82, #85, #88 à #94, et #96 (cluster AI Act, qui intègre #59, #60 et #77) |
 | Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit) ; Q21 (D44, D45 et `/CLAUDE.md`) ; Q22 (pour information : CI et interface) ; Q23 (pour information : cluster AI Act, D46, copywriting FR et auteur) |
 
 Règles transverses en vigueur, rappel :
@@ -37,7 +37,7 @@ Règles transverses en vigueur, rappel :
 - **D43** : 200 USD par mois pour les services payants de recherche SEO/GEO, GO explicite de Laurent avant tout appel. Aucun registre de consommation dans `docs/seo-geo/` au 02/10 : la consommation d'octobre n'y est pas établie ; toute demande de GO l'indique, sans supposer un solde de 200 USD.
 
 Approuvées par Laurent le 03/10, **non encore applicables sur `main`** (inscription en PR brouillon ; application à la fusion de chaque PR de mise en œuvre) :
-- **D44** (R-UX-LONG) : navigation des pages longues par famille de gabarits ; jamais deux navigations collantes. Règle écrite : #87 ; mise en œuvre : #84 (blog), #85 (barre, registre `data/navigation/pages-longues.ts`) ; CI : #86. Référence : `docs/standards/R-UX-LONG.md`.
+- **D44** (R-UX-LONG) : navigation des pages longues par famille de gabarits ; jamais deux navigations collantes. Règle écrite : #87 ; mise en œuvre : #84 (blog, fusionnée le 06/10), #85 (barre, registre `data/navigation/pages-longues.ts`) ; CI : #86. Référence : `docs/standards/R-UX-LONG.md`.
 - **D45** (R-PRODUCT-DIM) : dimensions, encombrements et charges des machines : référentiel obligatoire, contradictions conservées, aucune valeur commerciale contradictoire remplacée avant la réponse de Sébastien (Q20). Règle écrite : #87 ; référentiel et contrôle : #83 ; CI : #86. Référence : `docs/standards/R-PRODUCT-DIM.md`.
 
 ---
@@ -48,7 +48,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 
 | PR | Objet | Propriétaire | Statut | Blocage | Prochain geste |
 |---|---|---|---|---|---|
-| #96 | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; techniquement prêt (checkpoint final du 06/10, `CLUSTER.md` § 10) ; auteur « PackshotCreator » ; `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` | Contrôle humain de la Preview (checklist § 11) ; date réelle de publication | « GO MERGE #96 » de Laurent, puis fusion et contrôle J0 |
+| #96 | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; synchronisée le 06/10 avec `main` `1e0901b` (#84) par fusion, sans rebase ; 15 articles identiques à l'octet à la tête précédente `8d5b131` ; sommaire de A conforme (spec `sommaire-blog` 25/25, `CLUSTER.md` § 12) ; date de publication `2026-10-06` maintenue ; auteur « PackshotCreator » ; `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` | Contrôle Chrome final de la Preview (checklist § 11) | « GO MERGE #96 » de Laurent, puis fusion et contrôle J0 |
 | #59 | Pilier AI Act A, FR | Claude de Laurent | Brouillon ; tête `2a36322` **intégrée à #96** | — | Se ferme avec #96 (aucun développement séparé) |
 | #60 | Article Suisse S, FR | Claude de Laurent | Brouillon ; tête `74ae921` **intégrée à #96** | — | Se ferme avec #96 |
 | #77 | AI Act : deux formulations juridiques corrigées (FR, EN, de-ch) | Claude de Laurent | Brouillon ; tête `a207fe3` **intégrée à #96** (liens vers A ajoutés dans les mêmes paragraphes) | — | Se ferme avec #96 |
@@ -58,7 +58,6 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée avant toute décision sur #67 : version active du Worker confirmée (présence du bloc D36), puis `www` contrôlé. Déploiement après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, non vérifié par ce rangement | Lecture Cloudflare READ ONLY, puis contrôle de `www` (C). Aucun nouveau déploiement autorisé |
 | #70 | Ubersuggest : `metaTitle` de `/fr/blog/photographie-2d-de-produits` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `ef0bc89` | Point ouvert : un `<title>` relève-t-il du copywriting réservé à Sébastien ? | Arbitrage séparé de Laurent |
 | #83 | D45 — référentiel des dimensions, contrôle Vitest (23 tests), registre des écarts, Q20 | Claude de Laurent | Brouillon ; tête `1c31ac6`, CI verte ; garde de la valeur retirée : capacité et objet distingués (revue pré-fusion) ; aucune valeur affichée modifiée | Vitest exécuté en CI seulement après #86 (le workflow de `main` n'en lance pas) | GO de fusion de Laurent ; réponse de Sébastien à Q20 pour la suite (PR PRODUCT-DATA) |
-| #84 | D44 — sommaire du blog : titre visé atteint (mobile, desktop), liste latérale plafonnée | Claude de Laurent | Brouillon ; tête `a4b27c6`, CI verte ; spec 8/8 | Change le comportement des 6 pages dédiées de #64 et #27 sans modifier leurs fichiers | Contrôle de la Preview par Laurent (liste courte : revue pré-fusion, § 8) ; information de Sébastien ; GO de fusion |
 | #85 | D44 — barre de sommaire collante mutualisée, registre, 90 pages (guides, fiches, IA, solutions, 2 articles) | Claude de Laurent | Brouillon ; tête `c331c40` ; Studios retirée et guides de #91 en HOLD temporaire (arbitrages du 03/10) ; spec 45/45 | — | Preview d'une page par famille ; GO de fusion ; retrait des exceptions de #91 à sa clôture |
 | #86 | CI — Vitest et parcours Playwright ciblés dans `pr-checks`, garde-conséquences étendu, spec du sélecteur réécrit | Claude de Laurent | Brouillon ; tête `5cc5bf8`, CI verte ; inventaire explicite des specs dans le résumé du job, `--pass-with-no-tests` retiré (revue pré-fusion) | Modification d'infrastructure ; `anchors.spec` non exécuté avant AR-01 | GO de Laurent ; information de Sébastien |
 | #87 | UX-GOV : D44, D45, `docs/standards/`, Q21, Q22, ce fichier, état du chantier, revue pré-fusion et finalisation | Claude de Laurent | Brouillon, documentation seule ; branche `ccr-79f70eb9-7ls0wm` | — | GO de fusion de Laurent ; à fusionner en premier |
@@ -76,6 +75,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #27 — sort de la PR | 02/10 | Preuves conservées : contrôle `curl.exe` du lot F et liste des 14 liens cités au JOURNAL du 02/10 ; branche `content/maillage-q3` conservée. Fermeture possible sur GO distinct |
 | Lot F — clôture du contrôle `curl.exe` (Worker déployé le 23/09, version `05c5c47c`) | 23/09 | Résultat « tout conforme » consigné le 23/09 dans le JOURNAL de la branche de #27 (`e81e5c0`), jamais fusionné ; cité au JOURNAL du 02/10. À confirmer par Laurent pour clore |
 | Cluster AI Act (#96) — contrôle humain de la Preview, puis « GO MERGE #96 » | 06/10 | Décisions de Laurent du 06/10 appliquées (D46 complétée : publication par Laurent, exception D16, auteur « PackshotCreator », date réelle, visuels autorisés après QA). Reste : checklist Preview (`CLUSTER.md` § 11), date réelle de publication au dernier commit, GO de fusion |
+| CTA de fin d'article (« Réservez votre démo », « Calculez votre ROI ») — observation de Laurent sur la Preview #96 | 06/10 | Les 15 articles portent `components/blog/ArticleCTA.tsx` (« Demander une démo », « Calculer mon ROI », bandeau sans visuel), commun à 201 pages (articles et guides). Les cartes « Réservez votre démo » / « Calculez votre ROI » appartiennent à la section finale de l'accueil (`app/[lang]/page.tsx`, `FloatingCalendar`) et de 6 autres gabarits : 114 pages au total, aucune sur le blog. À confirmer : quel bloc est visé. Recommandation : PR dédiée, hors #96 (`CLUSTER.md` § 12) |
 | Zalando (A, S, D) | 06/10 | Page « Updated October 1, 2026 » relevée : intitulé « required by December 2026 » et « We strongly recommend » ; formulation prudente citée, sans obligation certaine (#96) |
 | #64 — date de création | 01/10 | D33 dit 2001 ; faits métier du 30/09 cités par #64 : Sysnext 2001, lancement de PackshotCreator 2004 ; `foundingDate` 2004 ; le site affiche 2001, 2003 et 2004 selon les pages. `DECISIONS.md` non modifié |
 | #64 — autres points | 30/09 | Délai : 10 jours (D32, F5) contre 12 jours (#64) ; showroom : D1 et `00-BRIEFING.md` citent Saint-Bonnet-de-Mure, #64 Beynost ; claims non sourcés restants dans `guide-achat-studio-2026` et `comment-calculer-le-roi-…` |
@@ -254,6 +254,7 @@ Liste complète du 28/09 au 02/10, commits de fusion compris : `REVUE-PR-BRANCHE
 
 | PR | Objet | Fusion (UTC) | Reste |
 |---|---|---|---|
+| #84 | D44 — sommaire du blog : titre visé atteint en mobile et en desktop, liste latérale plafonnée et défilante, entrée active juste, molette du lecteur respectée | 06/10 10:26 | Contrôlée par Laurent dans Chrome sur `www` le 06/10 ; Firefox, Safari et appareils réels non regardés |
 | #80 | `/api/contact` accepte `de-ch` : les demandes des pages de-ch étaient refusées en 400 (Claude de Sébastien) | 02/10 12:48 | Contrôle de bout en bout (D) ; ne pas recréer le correctif |
 | #76 | D42, D43 (200 USD par mois), réconciliation avec D40 | 02/10 04:42 | Q19 ; harmonisation de #65 |
 | #66, #78 | Landing Mode FR, EN, de-ch ; documentation | 01/10 16:26 et 17:30 | Chrome ; mesure (E) |

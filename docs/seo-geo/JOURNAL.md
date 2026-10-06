@@ -34,6 +34,36 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Cluster AI Act (#96) synchronisé avec `main` `1e0901b` (#84) : sommaire de A vérifié, 15 articles intacts, CTA de fin d'article localisés · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 ; D44 (effet de #84 sur A) | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `1e0901b` ; tête précédente `8d5b131`
+
+**Quoi** —
+- `main` `1e0901b` (fusion de #84) fusionné dans #96, sans rebase (`dfa792a`). Un conflit, ce fichier : toutes les entrées conservées, entrée #84 (09:01 UTC) placée au-dessus des deux entrées #96 du 06/10 (06:33 et 07:12 UTC).
+- Aucun article modifié. `ETAT.md` (main, #84 livrée, #96, point CTA) et `CLUSTER.md` (§ 10 renvoyé au § 12, § 11 complété pour le sommaire de A, § 12 nouveau).
+
+**Pourquoi** — Mission de Laurent du 06/10 : #84 fusionnée et vérifiée par Laurent sur `www` ; #96 n'était plus fusionnable (`dirty`, 4 commits de retard) et devait reprendre le sommaire corrigé avant le contrôle Chrome final.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md` ; par la fusion : `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` (contenu de `main`).
+
+**Effet attendu** — À la fusion de #96 : les 15 articles avec le sommaire de #84 ; le spec `sommaire-blog` couvre A en CI sans modification (25 tests au lieu de 18).
+
+**Vérifié** —
+- Intégrité : `git diff 8d5b131 dfa792a` = les 3 fichiers de #84 ; les 46 fichiers de #96 identiques à l'octet. JOURNAL : 0 ligne retirée par rapport à `main` comme à `8d5b131`.
+- QA 15 URL × 5 formats sur le build local de `dfa792a`, comparée champ par champ à celle de `8d5b131` : 0 écart (meta, canonique, robots, hreflang, JSON-LD, fil d'Ariane, liens, images, tableaux, FAQ) ; 0 débordement ; 0 erreur de console ; liens internes en 200.
+- Sommaire de A (22 entrées), vrais viewports : 1 321 × 727, 1 440 × 900, 1 180 × 727, 1 024 × 768 : colonne collée à 96 px, liste plafonnée (567 à 740 px pour 954 px de contenu) et défilante, « Sources » et première entrée → titre à 96 px avec entrée active juste et visible, 21/21 entrées focalisées visibles au clavier, second clic à 150 ms → second titre, molette pendant le défilement → page laissée où le lecteur l'amène, pied de page non recouvert, 0 débordement. 390, 360, 820 px : « 3. Recolorisation », première, milieu, « Sources » → titre à 96 px, premier titre visible sous l'en-tête (« 4. Produit réel… » plus bas, à 1 246 px ou au-delà), panneau replié avant tout défilement.
+- Spec `sommaire-blog` : 25/25, dont 12 tests sur A. `tsc` vert ; `verifier-json` 195 fichiers valides ; `next build` vert, 386 pages (`main` 371) ; Vitest 400/400 ; ESLint sans erreur sur les deux fichiers de #84 (#96 ne modifie aucun fichier TS ou JS).
+- Suite Playwright complète, Chromium : branche 509 tests, 410 réussis, 99 échecs ; `main` `1e0901b` (même méthode, worktree) 502 tests, 403 réussis, 99 échecs ; listes d'échecs identiques, aucune page du cluster en cause (redirections, ancien calculateur ROI, responsive, seo, anchors AR-01).
+- CTA : « Réservez votre démo » et « Calculez votre ROI » ne sont rendus sur aucune page du blog. Bandeau de fin d'article = `components/blog/ArticleCTA.tsx` (201 pages, articles et guides) ; cartes = section finale de l'accueil et de 6 autres gabarits (114 pages). Détail : `CLUSTER.md` § 12.
+- Date : 15 articles en `2026-10-06`, publication envisagée le 06/10 : aucun changement.
+
+**Supposé** — Vérification de #84 en production : constat de Laurent dans Chrome sur `www` (`WWW_PR84 = VERIFIED`), non refait ici (R4).
+**Non regardé** — Preview de la nouvelle tête dans Chrome (contrôle humain, § 11) ; `www` (R4) ; Firefox, Safari, appareils réels ; sommaire de A en EN et de-ch (couvert par la QA de #84 du 06/10, non refait).
+
+**Suite** — CI et Preview sur la nouvelle tête ; contrôle Chrome final de Laurent (`CLUSTER.md` § 11) ; décision de Laurent sur le bloc CTA visé et sur une PR dédiée ; « GO MERGE #96 ». À la fusion de la seconde de #82 et #96 : numéro de la « Q23 » à arbitrer (collision consignée par #82).
+
+---
+
 ## 2026-10-06 · #84 finalisée : sommaire du blog vérifié sur l'article A du cluster AI Act, entrée active juste, molette respectée · Claude de Laurent
 
 **Chantier** : D44 (R-UX-LONG), forme B | **PR** : #84, brouillon, branche `ccr-79f70eb9-ux-blog` | **Base** : `main` `9b19e6d`, fusionnée dans la branche (`063fd18`), tête précédente `a4b27c6`

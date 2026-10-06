@@ -166,6 +166,8 @@ Non contrôlé : Preview Vercel (SSO), `www` (R4), Safari, Firefox, appareils r�
 
 ## 10. Checkpoint final avant fusion (06/10/2026, mission de continuation)
 
+État au moment de cette mission, conservé tel quel. État courant : § 12 (synchronisation avec `main` `1e0901b`).
+
 ```
 MAIN = 9b19e6dfc40403e8a98bd030ea2a441fc88517dd (inchangé depuis la mission initiale)
 PR96_HEAD = voir la PR (commit de la mission de continuation)
@@ -239,11 +241,100 @@ READY_TO_PUBLISH = NO tant que PREVIEW_HUMAN_VERIFIED = NO ; techniquement prêt
 
 Preview de la branche : `https://sysnext-git-ccr-e0a4796e-2p18xn-sebs-projects-ca1e93a7.vercel.app` (connexion Vercel). Désactiver la traduction automatique de Chrome sur les pages de-ch (piège B5).
 
-1. **A FR, desktop** — `/fr/blog/ai-act-images-produit` : en-tête, encadré « L'essentiel », 4 tableaux lisibles, 6 figures avec légende, sommaire latéral (clic sur « Sept cas concrets »), FAQ (7) qui s'ouvre, liens vers B, C, D, S.
-2. **A FR, mobile** — même URL : aucun défilement horizontal de la page ; tableaux défilant dans leur cadre ; sommaire repliable.
+1. **A FR, desktop** — `/fr/blog/ai-act-images-produit` : en-tête, encadré « L'essentiel », 4 tableaux lisibles, 6 figures avec légende, FAQ (7) qui s'ouvre, liens vers B, C, D, S. Sommaire latéral (#84) : liste défilante sous l'en-tête, molette dans la liste jusqu'à « Sources », clic sur « Sources » puis sur « Sept cas concrets », molette de la page pendant le défilement (la page reste où on l'amène).
+2. **A FR, mobile** — même URL : aucun défilement horizontal de la page ; tableaux défilant dans leur cadre ; sommaire repliable : « 3. Recolorisation » amène sur son titre, sous l'en-tête (pas sur « 4. Produit réel… »), panneau replié.
 3. **B ou C, mobile** — `/fr/blog/mannequin-invisible-modele-virtuel-avatar` : en-tête (personne synthétique annoncée dans la note), tableau, figure bijoux, FAQ.
 4. **D, desktop et mobile** — `/fr/blog/images-ia-metadonnees-marketplaces` : tableau IPTC / XMP / C2PA, bloc ExifTool sur fond sombre qui défile dans son cadre en mobile, sans élargir la page.
 5. **S de-ch** — `/de-ch/blog/ki-bilder-e-commerce-schweiz` : texte entièrement allemand, « ss » sans « ß », liens Fedlex et admin.ch en allemand, sélecteur de langue vers FR et EN de S.
 6. **Navigation** — depuis A FR : lien vers B, retour vers A depuis B ; sélecteur de langue de A vers `/en/blog/ai-act-product-images` et `/de-ch/blog/ai-act-produktbilder`.
 
 Résultat à consigner : `PREVIEW_HUMAN_VERIFIED = YES | NO`, avec les écarts relevés.
+
+## 12. Synchronisation avec `main` `1e0901b` (#84), 06/10/2026
+
+Mission de Laurent du 06/10 : synchroniser #96 avec `main` après la fusion de #84 et sa vérification sur `www` par Laurent (`WWW_PR84 = VERIFIED`), rejouer les contrôles, préparer le contrôle Chrome final. Aucune fusion de #96.
+
+### Fresh-check
+
+| Élément | Constat |
+|---|---|
+| `main` | `1e0901ba8a773775d9bc0cd16c69cf53d2e12186`, fusion de #84 le 06/10 à 10:26:23 UTC. Depuis `9b19e6d` : `a4b27c6`, `063fd18`, `a26c58c`, `1e0901b` ; fichiers : `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md` |
+| #96 avant | tête `8d5b131`, base `9b19e6d`, 4 commits de retard, `mergeable_state = dirty` (conflit du JOURNAL) |
+| #82 | Fichiers communs : `JOURNAL.md`, `ETAT.md`, `BOITE-AUX-LETTRES.md` (mêmes lignes d'`ETAT`, § A). Collision de numéro : #82 et #96 portent chacune une « Q23 » ; #82 l'a consignée et renvoie l'arbitrage à la fusion de la seconde des deux PR. Aucun fichier de code commun |
+| #85 | `JOURNAL.md` ; deux pages dédiées du blog (`comparatif-orbitvu-ortery-styleshoots-2026`, `studio-ia-vs-ia-generative`), aucun fichier de #96 |
+| #93 | `JOURNAL.md` ; `prestataire-packshot-vs-studio-interne`, aucun fichier de #96 |
+| #94 | `DECISIONS.md`, `ETAT.md`, `JOURNAL.md` (documentation seule) |
+| Autres PR ouvertes | Aucune ne touche les 15 articles, `alternates.json`, `globals.css`, `llms.txt`, `ArticleCTA.tsx` ni le gabarit d'article |
+
+### Fusion de `main`
+
+- Commit `dfa792a` : `main` fusionné dans la branche, sans rebase ni réécriture.
+- Un conflit, `docs/seo-geo/JOURNAL.md`. Toutes les entrées des deux côtés sont conservées. L'entrée #84 du 06/10 (commit de 09:01 UTC) est placée au-dessus des deux entrées #96 du 06/10 (06:33 et 07:12 UTC). Contrôle : 0 ligne retirée par rapport à `main`, 0 par rapport à `8d5b131`.
+- `git diff 8d5b131 dfa792a` : les 3 fichiers de #84, rien d'autre. Les 46 fichiers de #96 sont identiques à l'octet à `8d5b131` : textes, FAQ, images, tableaux, maillage, auteur, note de C, sources, réserves juridiques, D46, corrections de #77.
+- Dates : les 15 articles portent `2026-10-06`, sans `dateModified` (le schéma reprend la date de publication). Publication envisagée le 06/10 : aucun changement (`PUBLICATION_DATE_CHANGE_REQUIRED = NO`).
+
+### Les 15 pages après synchronisation
+
+QA navigateur, 15 URL × 5 formats (1440, 1180, 820 tactile, 390 et 360 mobiles), build local de `dfa792a`, comparée champ par champ à la QA de `8d5b131` : **0 écart**. Champs comparés : `<title>`, `h1`, description, canonique, robots, Open Graph, hreflang (5 par page), JSON-LD (`Organization`, `BreadcrumbList`, `Article`, `FAQPage`), fil d'Ariane, liens de l'article, nombre de `h2` et `h3`, images, tableaux. Statut 200, débordement de page nul, images chargées, 0 erreur de console, 0 requête en échec, 0 ancre cassée, liens internes en 200.
+
+### Sommaire de A (#84) — `/fr/blog/ai-act-images-produit`, 22 entrées
+
+Mesures en fin de défilement, vrais viewports Playwright (Chromium du conteneur), build local de `dfa792a`. En-tête collant : bas à 65 px ; marge de défilement des titres : 96 px.
+
+| Desktop | Colonne | Liste | « Sources » (dernière) | Première | Clavier | Second clic (150 ms) | Molette pendant le défilement | Entrée active en lecture | Pied de page | Débordement |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 321 × 727 | collée à 96 px, bas à 699 px | `max-height` 567 px, contenu 954 px, défilement interne | titre à 96 px, entrée active = Sources, visible | titre à 96 px, entrée active juste | 21/21 entrées focalisées visibles ; Entrée sur Sources → 96 px | titre à 96 px, entrée active juste | défilement interrompu, page laissée où le lecteur l'amène | 1 entrée, = dernier titre franchi, visible | non recouvert | 0 |
+| 1 440 × 900 | collée à 96 px, bas à 872 px | 740 px / 954 px, défilement interne | idem | idem | idem | idem | idem | idem | idem | 0 |
+| 1 180 × 727 | collée à 96 px, bas à 699 px | 567 px / 954 px, défilement interne | idem | idem | idem | idem | idem | idem | idem | 0 |
+| 1 024 × 768 | collée à 96 px, bas à 740 px | 608 px / 954 px, défilement interne | idem | idem | idem | idem | idem | idem | idem | 0 |
+
+| Repliable | « 3. Recolorisation » | Première (« L'essentiel ») | Milieu (« 4. Produit réel… ») | Dernière (« Sources ») | Panneau | Débordement |
+|---|---|---|---|---|---|---|
+| 390 × 844 | titre à 96 px, premier titre visible ; « 4. Produit réel… » à 1 507 px | 96 px | 96 px | 96 px | replié avant tout défilement, `aria-expanded = false` | 0 |
+| 360 × 740 | 96 px ; suivant à 1 559 px | 96 px | 96 px | 96 px | idem | 0 |
+| 820 × 1180 | 96 px ; suivant à 1 246 px | 96 px | 96 px | 96 px | idem | 0 |
+
+Avant #84, sur `main` + #96, ce même scénario plaçait le titre de « 3. Recolorisation » à −809, −826 et −707 px (JOURNAL de #84). Le défaut mobile noté au § 10 (`TOC_CURRENT_IMPLEMENTATION_OK`, mobile) n'est plus reproduit.
+
+### Tests
+
+| Contrôle | Branche (`dfa792a`) | `main` `1e0901b` |
+|---|---|---|
+| `npx tsc --noEmit` | vert | — |
+| `node scripts/seo/verifier-json.mjs` | 195 fichiers valides | — |
+| `npx next build` (variables factices) | vert, 386 pages | vert, 371 pages |
+| `npx vitest run` | 400/400 (20 fichiers) | — |
+| ESLint | #96 ne modifie aucun fichier TS ou JS ; `TableOfContents.tsx` et `sommaire-blog.spec.ts` (apportés par #84) : 0 erreur | — |
+| Spec `sommaire-blog` (#84) | 25/25 ; A couvert par 12 tests (repliable 390, 360, 820 ; latéral aux 4 viewports ; clavier, clics rapprochés, molette, pied de page ; ouvertures répétées) | 18 tests (A absent) |
+| Suite Playwright complète, Chromium | 509 tests : 410 réussis, 99 échecs | 502 tests : 403 réussis, 99 échecs |
+
+Listes d'échecs identiques entre la branche et `main` (99 = 99, aucun écart dans un sens ni dans l'autre). Les 7 tests de plus sur la branche sont ceux du sommaire sur A, tous réussis. Échecs communs, préexistants : `redirections` (50, redirections hors `next start`), `roi-calculator` (22, ancien parcours du calculateur), `responsive` (13), `seo` (9, titres et descriptions hors bornes de pages existantes, hreflang de `/fr/packshot-bijoux`), `anchors` (`#calculateur-roi` sur Studios, AR-01 / #93), `cta-destinations`, `cookie-banner`, `language-switch`, `mobile-overflow` (1 chacun). Aucun ne porte sur une page du cluster. La CI de la PR n'exécute que `machine-selector`, `sommaire-blog` et `navigation-pages-longues` (si présent).
+
+### CTA de fin d'article — rayon d'action (aucune modification dans #96)
+
+Constat dans le code et le HTML servi (R7) : les libellés « Réservez votre démo » et « Calculez votre ROI » ne sont rendus sur **aucune page du blog**.
+
+| Bloc | Fichiers | Rendu | Pages |
+|---|---|---|---|
+| Bandeau de fin d'article, commun au blog et aux guides | `components/blog/ArticleCTA.tsx` ; libellés `blogArticle.ctaHeading`, `ctaDescription`, `ctaDemo`, `ctaRoi` de `messages/fr.json`, `en.json`, `de-ch.json` ; appelé par `app/[lang]/blog/[slug]/page.tsx`, les 6 pages dédiées du blog et `app/[lang]/guide/[slug]/page.tsx` | Bandeau violet sans visuel : « Découvrez nos solutions », boutons « Demander une démo » → `/contact` et « Calculer mon ROI » → `/calculateur-roi` (EN « Request a demo », « Calculate my ROI » ; de-ch « Demo anfragen », « Meinen ROI berechnen ») | 201 pages prérendues de la branche : 154 articles (75 FR, 69 EN, 10 de-ch, dont les 15 du cluster) et 47 guides ; 186 sur `main` |
+| Cartes « Réservez votre démo » / « Calculez votre ROI » | Accueil : `app/[lang]/page.tsx` (section finale), `components/animations/FloatingCalendar.tsx`, `home.finalCta.card1` et `card2`. Variantes codées séparément : `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/solutions/[slug]/page.tsx`, `components/templates/PackshotLandingTemplate.tsx`, `app/[lang]/besoins-photographie-produit/page.tsx`, `app/[lang]/questions-cles-photographie-produit/page.tsx` | Carte démo avec illustration de calendrier, carte ROI sans visuel | 114 pages (42 FR, 42 EN, 30 de-ch) : accueil, secteurs, fiches studio, solutions, landings packshot, besoins, questions clés |
+
+- `CTA_SHARED_BEYOND_AI_ACT = YES` dans les deux cas.
+- Modifier `ArticleCTA` change 201 pages, dont 186 hors cluster. Les cartes relèvent de 7 implémentations distinctes et de 114 pages, toutes hors cluster. Les deux touchent la conversion et l'identité visuelle, et demandent des visuels réels (personne, studio, démonstration) qui ne sont pas dans le dépôt ; la mission exclut toute génération d'image dans #96.
+- Recommandation : **PR dédiée**, hors #96, après confirmation par Laurent du bloc visé et choix des visuels. #96 garde le bandeau actuel, identique à celui des 139 autres articles.
+
+### Checkpoint après synchronisation
+
+```
+MAIN_SHA = 1e0901ba8a773775d9bc0cd16c69cf53d2e12186
+PR96_HEAD_BEFORE = 8d5b1319df360628653a60d59dc5b14606f6c26d
+MAIN_SYNCED = YES (dfa792a, fusion sans rebase)
+JOURNAL_CONFLICT_RESOLVED = YES (0 ligne perdue)
+ARTICLES_15_INTACT = YES (identiques à l'octet à 8d5b131 ; QA 15 × 5 : 0 écart)
+D44_FROM_PR84_PRESENT = YES
+A_DESKTOP_TOC = PASS ; A_INTERNAL_SCROLL = PASS ; A_LAST_ENTRY_ACCESSIBLE = YES ; A_ACTIVE_ENTRY = PASS
+A_MOBILE_390 = PASS ; A_MOBILE_360 = PASS ; A_TABLET_820 = PASS
+RECOLORISATION_TARGET = PASS ; TARGET_HEADING_VISIBLE = YES ; WRONG_SECTION_REACHED = NO
+PUBLICATION_DATE = 2026-10-06 ; PUBLICATION_DATE_CHANGE_REQUIRED = NO
+PREVIEW_HUMAN_VERIFIED = NO (contrôle Chrome final de Laurent, § 11)
+```
