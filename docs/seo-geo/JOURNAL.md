@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · ROI (#93) — CTA directs vers le calculateur réel, option B d'AR-01 abandonnée (D47) · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A01 = AR-01, révisé | **PR** : #93 (brouillon, ne pas fusionner) | **Base** : `main` `8247217` (#96)
+
+**Quoi** —
+- Décision de Laurent du 06/10 (D47) : les CTA ROI de 7 sources visent le calculateur localisé (FR `/fr/calculateur-roi`, EN `/en/calculateur-roi`, de-ch `/de-ch/roi-rechner`), sans détour par `/studios-photo-automatises#…`. Elle remplace l'option B du 03/10 (ancre permanente sur la section ROI de Studios), décrite dans l'entrée AR-01 du 03/10 ci-dessous, qui n'est plus la décision courante.
+- 18 expressions dans 7 fichiers : `blendai-vs-flair` (2), `blendai-vs-photoroom` (2), `comment-calculer-le-roi-…` (6), `guide-achat-studio-2026` (5), `ia-photo-produit-guide-2026` (1, balise `<a>` brute devenue `<Link>`), `orbitvu-vs-concurrents` (1, idem), `prestataire-packshot-vs-studio-interne` (1, ancien `hash: 'roi'`). Seuls les `href` changent ; l'id interne `calculateur-roi-gratuit` est inchangé.
+- Studios : retour à l'état de `main` ; l'`id="calculateur-roi"` et le commentaire ajoutés par la branche le 03/10 sont retirés. Studios n'est pas transformée en cible.
+- Témoin du pilote Studios (`studio-photo/selecteur-machines`, FR, EN, de-ch) : volontairement inchangé. Son lien vise toujours `/studios-photo-automatises#calculateur-roi`, ancre absente : le visiteur arrive en haut de Studios, comme sur `main`.
+- `e2e/anchors.spec.ts` : retour à `main`, plus 16 tests ciblés (7 sources × FR, EN : aucun lien `/studios-photo-automatises#…`, au moins le nombre de liens corrigés vers le calculateur ; destinations FR et EN en 200). Les 7 tests de l'option B sont retirés. Témoin exclu, exclusion écrite dans le spec.
+- `e2e/roi-calculator.spec.ts` (réécriture du 03/10 conservée) : les 3 tests de Studios vérifient le bouton de la section ROI vers le calculateur, présent sur `main`, sans supposer d'`id`. Toute requête `/api/**` est simulée.
+- CI : `pr-checks.yml` inchangé ; `anchors` reste différé, `roi-calculator` n'est pas ajouté.
+
+**Pourquoi** — Les 19 liens du code visaient une ancre absente de Studios depuis le 22/03 (`d5a7fea`). Laurent retient la destination directe vers l'outil réel plutôt que la réparation de l'ancre.
+
+**Unités de comptage** —
+- Sur `main` `8247217` : 19 expressions dans 8 fichiers, 39 liens rendus sur 17 pages.
+- Corrigées : 18 expressions dans 7 fichiers ; 36 liens rendus sur 14 pages (7 articles × FR, EN).
+- Restant volontairement : 1 expression (sélecteur), 3 liens rendus (FR, EN, de-ch).
+
+**Fichiers** — 7 pages d'articles sous `app/[lang]/blog/`, `e2e/anchors.spec.ts`, `e2e/roi-calculator.spec.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Un clic sur « Calculer mon ROI » depuis ces 14 pages ouvre le calculateur de la langue, au lieu du haut de Studios. [Inférence] Le trafic de Studios, les sessions du calculateur et l'usage de l'API du conseiller FR peuvent bouger ; aucune causalité n'est affirmée. Le Header et le Footer lient Studios sur toutes les pages : l'ensemble des pages qui lient Studios ne change pas.
+
+**Vérifié** (local, build de production, variables d'environnement factices, sans clé d'API) —
+- `tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest 400/400 ; `next build` vert, 386 pages.
+- HTML et RSC prérendus contre `main` `8247217`, identifiant de build et chemins `/_next/static` normalisés : 56 fichiers différents, soit les 14 pages sources (HTML, RSC et 2 segments chacune). Studios, sélecteur et toutes les autres pages : identiques. Sur les 14 pages : 36 `href` changés, texte visible identique, JSON-LD identique ; pour les 2 balises devenues `<Link>`, seul l'ordre des attributs `href` et `class` diffère.
+- Playwright, Chromium (`anchors`, `roi-calculator`, `cta-destinations`, `internal-links`, `internal-links-all`, `language-switch`, `machine-selector`, `sommaire-blog`) : branche 112/115, `main` 73/98. Les 3 échecs de la branche existent à l'identique sur `main` : `anchors` « #calculateur-roi exists » (témoin), `cta-destinations` « Découvrir nos studios », `language-switch` « header and footer ». Sur `main`, les 22 autres échecs sont l'ancienne spec ROI. Aucun échec nouveau.
+- `anchors` : 22/23 sur la branche ; les 16 nouveaux tests passent. `roi-calculator` : 23/23.
+- Contre-épreuve, specs de la branche sur le build de `main` : les 14 tests des sources échouent (détour détecté), les 2 destinations passent ; `roi-calculator` 23/23.
+- Appels réels à `/api/roi-chat`, `/api/roi-pdf`, `/api/roi-lead` : 0 ; aucun lead, aucun coût.
+
+**Supposé** — Aucun effet d'indexation propre aux 36 `href` au-delà du transfert de ces liens internes de Studios vers le calculateur [Inférence, cela repose sur des schémas observés].
+
+**Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; GA4 (hors périmètre, D47) ; Firefox, WebKit, mobile ; CI de la nouvelle tête au moment de l'écriture.
+
+**Suite** — Contrôle de la Preview par Laurent (clic sur « Calculer mon ROI » depuis prestataire et un guide, FR et EN) ; arbitrage de la date de fusion ; GO de fusion distinct ; réconciliation de #94 (GO séparé) ; décision séparée sur `anchors` et `roi-calculator` en CI.
+
+---
+
 ## 2026-10-06 · P0 intégrité : note BlendAI 4,9/5 sur 100 avis, sans source, retirée (JSON-LD, FAQ, chaînes mortes) · Claude de Laurent
 
 **Chantier** : P0 intégrité, hors 06-CHANTIERS ; ne lance pas le nettoyage BlendAI global | **PR** : #97, brouillon, branche `claude/dazzling-fermi-1qerqb` | **Commit** : `b2199b7` | **Base** : `main` `1e0901b`, puis `8247217` (fusion de #96) fusionné dans la branche, sans rebase
@@ -297,6 +337,52 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — `ETAT.md`, volontairement non modifié ; `BOITE-AUX-LETTRES.md`, non modifié (Q22, sur `main`, décrit déjà le comportement de #86 ; une nouvelle entrée créerait un conflit pour #88 à #93) ; Firefox, WebKit et mobile émulé, hors CI.
 
 **Suite** — CI réelle sur la nouvelle tête ; information de Sébastien sur la PR (renvoi à Q22) ; GO de fusion distinct de Laurent. Après la fusion de #86, `anchors` passe de `DIFFERES` à `ATTENDUS` dans la PR qui l'active (AR-01, #93).
+
+---
+
+## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios, CTA de prestataire, spec ROI sur l'outil réellement servi · Claude de Laurent
+
+> **Remplacée le 06/10 (D47).** Option B abandonnée : les CTA ROI visent le calculateur localisé ; Studios ne reçoit aucun `id`. Entrée conservée comme historique de la branche ; voir l'entrée du 06/10 « ROI (#93) — CTA directs vers le calculateur réel ».
+
+**Chantier** : V4.3, lot 1, A01 = AR-01 (Maillage V2 PR-01 : F-007 à F-029) | **PR** : brouillon autonome, branche `seo/a01-ancre-calculateur-roi-2026-10-03` | **Base** : `main` `de6c4cd` | **Propriétaire** : Claude de Laurent, désigné par Laurent le 03/10 (GO direct)
+
+**Quoi** —
+- Section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` : `id="calculateur-roi"` permanent, sans condition ni barre de sommaire. Son bouton garde sa destination, le calculateur autonome.
+- CTA « btnRoi » de `prestataire-packshot-vs-studio-interne` (FR, EN) : `hash: 'roi'` (ancre inexistante) → `hash: 'calculateur-roi'`.
+- `e2e/anchors.spec.ts` : 7 tests ajoutés. Ancre en EN et de-ch, unicité dans les 3 langues, sélecteur → section → calculateur, CTA de prestataire FR et EN, 17 pages sources.
+- `e2e/roi-calculator.spec.ts` réécrit sur l'outil réellement servi :
+  - section de Studios dans les 3 langues ;
+  - assistant à étapes sur `/en/calculateur-roi` et `/de-ch/roi-rechner` ;
+  - conseiller conversationnel sur `/fr/calculateur-roi`.
+  Chaque assertion de l'ancienne spec a un remplaçant. Toute requête vers `/api/` est simulée (`page.route`) et le formulaire e-mail n'est jamais soumis.
+
+**Pourquoi** — Les liens « Calculer mon ROI » des articles et du sélecteur visent la section ROI de Studios, dont l'ancre a disparu le 22/03/2026 (`d5a7fea`) : le visiteur arrive en haut de page. L'ancienne spec ROI attendait l'assistant intégré à Studios, remplacé par un teaser le même jour ; en FR, l'assistant a été remplacé par le conseiller (GO Sébastien 06/08). Décision de Laurent du 03/10 : option B (ancre sur la section existante), propriétaire désigné, PR autonome.
+
+**Unités de comptage** (tenues séparées) —
+- Lignes Maillage V2 : 22 lignes de liens (F-007 à F-028) et 1 ligne de tests (F-029). Une ligne par expression du code, mais 2 lignes pour prestataire (FR, EN) et 3 pour le sélecteur (FR, EN, de-ch).
+- Expressions de liens dans le code : 19, dans 8 fichiers. 18 visaient déjà `#calculateur-roi` ; 1 visait `#roi`, corrigée ici.
+- Liens rendus : 39, sur 17 pages prérendues. 34 sur les articles (17 expressions × FR et EN), 2 sur prestataire, 3 sur le sélecteur (FR, EN, de-ch).
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut et un commentaire), `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx` (un `hash`), `e2e/anchors.spec.ts`, `e2e/roi-calculator.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Les 39 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. Témoin du pilote et 5 sources inchangés.
+
+**Vérifié** (local, build de production, variables factices) —
+- `verifier-json` : 180 JSON valides. `tsc` vert. Vitest 377/377. `next build` vert. ESLint : 300 problèmes, identiques sur `main` ; 0 sur les deux specs.
+- Diff du HTML prérendu : 5 pages sur 359.
+  - Studios FR, EN et de-ch : identiques à `main` à l'attribut `id` près, DOM et charge RSC compris.
+  - Prestataire FR et EN : identiques au fragment près.
+  - Témoin `studio-photo/selecteur-machines` (FR, EN, de-ch) : identique.
+- `id="calculateur-roi"` : 1 seul par page Studios. 39 liens rendus vers Studios avec fragment, sur 17 pages, tous en `#calculateur-roi`.
+- Arrivée sur `#calculateur-roi` à 390 et 1 440 px, dans les 3 langues : titre à 200 et 280 px du haut, sous l'en-tête (65 px).
+- `anchors` + `roi-calculator` : 37/37, trois passes.
+- Appels payants et leads : aucun ; `/api/roi-pdf`, `/api/roi-lead` et `/api/roi-chat` simulés.
+
+**Supposé** — Aucun effet d'indexation : un attribut `id` et un fragment d'URL interne.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; effet sur les mesures d'audience de Studios ; les liens vers le calculateur hors section ROI (PR-10, PR-12 du Maillage V2, hors lot).
+
+**Suite** — Fichier Studios réservé au seul correctif AR-01 jusqu'à sa clôture ; ensuite, Landings & Hubs reprend la landing. Publication envisagée au J0 Studios du 29/10, si le scénario P2 est validé. Après fusion de #86 : passer `anchors` des specs différés aux specs attendus dans `pr-checks.yml`.
 
 ---
 

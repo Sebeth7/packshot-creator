@@ -653,7 +653,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 <strong>Sur 3 ans, l'écart avec les coûts traditionnels reste très significatif</strong> — utilisez le calculateur ROI pour estimer l'économie sur votre volume.
               </p>
               <p className="mb-6">
-                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Calculer votre ROI personnalisé
                 </Link>
               </p>
@@ -709,7 +709,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                   <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Demander une démo BlendAI</Link> — Testez BlendAI gratuitement sur vos propres produits (10-20 images)
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Estimez vos économies réelles avec l'approche Hardware Orbitvu + IA BlendAI
+                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Estimez vos économies réelles avec l'approche Hardware Orbitvu + IA BlendAI
                 </li>
                 <li className="text-future-dusk-600">
                   <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Maîtrisez votre studio Orbitvu avec nos formations Qualiopi (financement OPCO possible)
