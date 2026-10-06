@@ -8,21 +8,25 @@ import {
   type RequeteCatalogue,
   type ReponseCatalogue,
 } from './schema';
-import type { ServicesCatalogue } from './services';
+import type { EnregistrementCatalogue, ServicesCatalogue } from './services';
+import type { SuiviCatalogue } from './crm';
 
 /**
  * Traitement de `POST /api/catalogue`, séparé de la route pour être testé avec
  * des services simulés (`lib/catalogue/__tests__/gestionnaire.test.ts`).
  *
- * Ordre : limitation → validation → champ piège → idempotence → disponibilité
- * (PDF et stockage) → enregistrement durable → e-mail et CRM.
- * Aucun succès n'est renvoyé sans enregistrement réussi et URL de PDF.
+ * Ordre : limitation → validation → champ piège → idempotence de l'instance →
+ * disponibilité (PDF et stockage) → trace durable (dédoublonnée par requestId)
+ * → e-mail du lien et, si demandé, transmission du consultant → suivi consigné
+ * dans la trace.
+ * Aucun succès n'est renvoyé sans trace durable et URL de PDF. Une demande
+ * reconnue par la trace comme déjà enregistrée ne rejoue aucun effet.
  *
- * Limites connues, à qualifier avant activation :
+ * Limites connues :
  * - la limitation (`lib/rate-limit.ts`) et le registre d'idempotence vivent en
  *   mémoire de l'instance : sur Vercel, plusieurs instances ne partagent pas
- *   leurs compteurs. C'est un frein, pas un anti-abus distribué. L'unicité
- *   durable de `requestId` relève du stockage.
+ *   leurs compteurs. C'est un frein, pas un anti-abus distribué. Entre
+ *   instances, c'est la trace durable qui reconnaît un requestId déjà vu.
  * - le journal ne contient aucune donnée personnelle (ni e-mail, ni prénom, ni
  *   entreprise) : seulement `requestId`, tiré au hasard par le navigateur, et le pays.
  */
@@ -110,27 +114,57 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
       ...(requete.attribution ? { attribution: requete.attribution } : {}),
     };
 
+    let enregistrement: EnregistrementCatalogue;
     try {
-      await services.stockage.enregistrer(demande);
+      enregistrement = await services.stockage.enregistrer(demande);
     } catch {
       journal('catalogue.stockage.echec', contexte);
       return { status: 500, body: { ok: false, error: 'technical' } };
     }
+    for (const anomalie of enregistrement.anomalies ?? []) journal(anomalie, contexte);
+
+    // Demande déjà tracée (nouvel essai, autre instance) : aucun effet rejoué ;
+    // la réponse reprend le suivi consigné, sinon ne présume rien.
+    if (enregistrement.dejaEnregistree) {
+      journal('catalogue.demande.rejouee', contexte);
+      return {
+        status: 200,
+        body: {
+          ok: true,
+          pdfUrl,
+          emailSent: enregistrement.suivi?.emailSent === true,
+          contactRequestAccepted: enregistrement.suivi?.consultant === 'transmis',
+        },
+      };
+    }
 
     // La demande est acceptée : les effets suivants ne la remettent pas en cause,
     // mais leur échec est dit tel quel au visiteur (emailSent, contactRequestAccepted).
-    const { courriel, crm } = services;
+    const { courriel, consultant } = services;
+    if (demande.consultantOptIn && !consultant) journal('catalogue.consultant.non_configure', contexte);
     const envoiLien = courriel ? courriel.envoyerLien(demande, pdfUrl) : null;
-    const contactCrm = crm ? crm.synchroniserContact(demande) : null;
-    const demandeConsultant = demande.consultantOptIn && crm ? crm.transmettreDemandeConsultant(demande) : null;
-    const [envoi, contact, consultant] = await Promise.allSettled([envoiLien, contactCrm, demandeConsultant]);
+    const transmission = demande.consultantOptIn && consultant ? consultant.transmettre(demande, enregistrement) : null;
+    const [envoi, transmis] = await Promise.allSettled([envoiLien, transmission]);
 
     if (envoi.status === 'rejected') journal('catalogue.courriel.echec', contexte);
-    if (contact.status === 'rejected') journal('catalogue.crm.contact.echec', contexte);
-    if (consultant.status === 'rejected') journal('catalogue.crm.consultant.echec', contexte);
+    if (transmis.status === 'rejected') journal('catalogue.consultant.echec', contexte);
 
     const emailSent = envoiLien !== null && envoi.status === 'fulfilled' && envoi.value?.envoye === true;
-    const contactRequestAccepted = demandeConsultant !== null && consultant.status === 'fulfilled';
+    const contactRequestAccepted = transmission !== null && transmis.status === 'fulfilled';
+
+    // Ce qui a réellement été fait est consigné dans la trace ; un échec ici ne
+    // change rien pour le visiteur, il est seulement signalé.
+    if (services.stockage.consignerSuivi) {
+      const suivi: SuiviCatalogue = {
+        emailSent,
+        consultant: !demande.consultantOptIn ? 'non_demande' : contactRequestAccepted ? 'transmis' : 'non_transmis',
+      };
+      try {
+        await services.stockage.consignerSuivi(enregistrement.reference, demande, suivi);
+      } catch {
+        journal('catalogue.crm.suivi.echec', contexte);
+      }
+    }
 
     return {
       status: 200,

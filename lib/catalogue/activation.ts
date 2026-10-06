@@ -1,16 +1,25 @@
 /**
  * Interrupteurs de la landing catalogue All-in-One.
  *
- * Tant que Laurent n'a pas donné le GO de publication (PDF paysage autorisé,
- * droits Orbitvu, contrôle des QR, stockage des demandes, règle CRM), la page
- * répond 404 sur l'environnement de production Vercel : une fusion accidentelle
- * ne la rend pas publique. Elle reste servie en local et sur les Preview Vercel,
- * protégées par le SSO de l'équipe.
+ * Tant que Laurent n'a pas donné le GO de publication, la page répond 404 sur
+ * l'environnement de production Vercel : une fusion accidentelle ne la rend pas
+ * publique. Elle reste servie en local et sur les Preview Vercel, protégées par
+ * le SSO de l'équipe.
  *
- * Basculer `PUBLICATION_AUTORISEE` est un changement de code, relu en PR : une
- * variable d'environnement ne suffit pas à publier la page.
+ * Basculer un interrupteur est un changement de code, relu en PR : une variable
+ * d'environnement ne suffit ni à publier la page, ni à déclencher un appel réel.
  */
 export const PUBLICATION_AUTORISEE = false;
+
+/**
+ * Appels réels à Pipedrive (trace de la demande) et à Resend (e-mail du lien,
+ * notification interne) depuis `/api/catalogue`. Faux tant que Laurent n'a pas
+ * donné le GO d'un test réel (mission du 06/10/2026 : aucun e-mail ni prospect
+ * réel). Même vrai, la route reste fermée sans PDF en ligne
+ * (`lib/catalogue/pdf.ts`), sans secrets, et en production sans
+ * `PUBLICATION_AUTORISEE` (`lib/catalogue/services.ts`).
+ */
+export const SERVICES_REELS_AUTORISES = false;
 
 type Env = Readonly<Record<string, string | undefined>>;
 

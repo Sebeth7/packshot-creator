@@ -7,9 +7,11 @@ import { creerGestionnaireCatalogue, type DependancesCatalogue } from '@/lib/cat
 import {
   SERVICES_DESACTIVES,
   servicesCatalogue,
+  type EnregistrementCatalogue,
   type ServicesCatalogue,
 } from '@/lib/catalogue/services';
 import type { DemandeCatalogue } from '@/lib/catalogue/schema';
+import type { SuiviCatalogue } from '@/lib/catalogue/crm';
 
 const PDF = 'https://exemple.test/catalogue.pdf';
 
@@ -32,19 +34,23 @@ function requete(body: unknown, ip = '203.0.113.7') {
 }
 
 function doublures(surcharge: Partial<ServicesCatalogue> = {}) {
-  const enregistrer = vi.fn<(d: DemandeCatalogue) => Promise<void>>(async () => {});
+  const enregistrer = vi.fn<(d: DemandeCatalogue) => Promise<EnregistrementCatalogue>>(async () => ({
+    reference: 'note-1',
+    personId: 7,
+    dejaEnregistree: false,
+  }));
+  const consignerSuivi = vi.fn<(r: string, d: DemandeCatalogue, s: SuiviCatalogue) => Promise<void>>(async () => {});
   const envoyerLien = vi.fn<(d: DemandeCatalogue, u: string) => Promise<{ envoye: boolean }>>(async () => ({ envoye: true }));
-  const synchroniserContact = vi.fn<(d: DemandeCatalogue) => Promise<void>>(async () => {});
-  const transmettreDemandeConsultant = vi.fn<(d: DemandeCatalogue) => Promise<void>>(async () => {});
+  const transmettre = vi.fn<(d: DemandeCatalogue, e: EnregistrementCatalogue) => Promise<void>>(async () => {});
   const services: ServicesCatalogue = {
     mode: 'desactive',
     pdfUrl: async () => PDF,
-    stockage: { enregistrer },
+    stockage: { enregistrer, consignerSuivi },
     courriel: { envoyerLien },
-    crm: { synchroniserContact, transmettreDemandeConsultant },
+    consultant: { transmettre },
     ...surcharge,
   };
-  return { services, enregistrer, envoyerLien, synchroniserContact, transmettreDemandeConsultant };
+  return { services, enregistrer, consignerSuivi, envoyerLien, transmettre };
 }
 
 function gestionnaire(services: ServicesCatalogue, autres: Partial<DependancesCatalogue> = {}) {
@@ -75,9 +81,10 @@ describe('POST /api/catalogue — parcours accepté', () => {
       recueLe: '2026-10-02T12:00:00.000Z',
     });
     expect(d.envoyerLien).toHaveBeenCalledWith(demande, PDF);
-    expect(d.synchroniserContact).toHaveBeenCalledTimes(1);
     // Pas de consultant demandé : aucune transmission à l'équipe.
-    expect(d.transmettreDemandeConsultant).not.toHaveBeenCalled();
+    expect(d.transmettre).not.toHaveBeenCalled();
+    // Ce qui a été fait est consigné dans la trace.
+    expect(d.consignerSuivi).toHaveBeenCalledWith('note-1', demande, { emailSent: true, consultant: 'non_demande' });
   });
 
   it('consultant demandé et transmis : contactRequestAccepted vrai', async () => {
@@ -85,7 +92,9 @@ describe('POST /api/catalogue — parcours accepté', () => {
     const { g } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toMatchObject({ ok: true, contactRequestAccepted: true });
-    expect(d.transmettreDemandeConsultant).toHaveBeenCalledTimes(1);
+    expect(d.transmettre).toHaveBeenCalledTimes(1);
+    expect(d.transmettre.mock.calls[0][1]).toMatchObject({ reference: 'note-1', personId: 7 });
+    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, consultant: 'transmis' });
   });
 
   it('conserve le pays et l’attribution first-touch', async () => {
@@ -121,31 +130,46 @@ describe('POST /api/catalogue — échecs dits tels quels', () => {
     expect(await (await g(requete(corps))).json()).toMatchObject({ ok: true, emailSent: false });
   });
 
-  it('CRM en échec sur la demande de consultant : contactRequestAccepted faux', async () => {
+  it('transmission du consultant en échec : contactRequestAccepted faux, consigné tel quel', async () => {
     const d = doublures();
-    d.transmettreDemandeConsultant.mockRejectedValueOnce(new Error('pipedrive 500'));
+    d.transmettre.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
-    expect(journal).toHaveBeenCalledWith('catalogue.crm.consultant.echec', expect.any(Object));
+    expect(journal).toHaveBeenCalledWith('catalogue.consultant.echec', expect.any(Object));
+    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, consultant: 'non_transmis' });
   });
 
-  it('CRM absent : une demande de consultant n’est jamais déclarée prise en compte', async () => {
-    const d = doublures({ crm: null });
-    const { g } = gestionnaire(d.services);
+  it('transmission non configurée : une demande de consultant n’est jamais déclarée prise en compte', async () => {
+    const d = doublures({ consultant: null });
+    const { g, journal } = gestionnaire(d.services);
     expect(await (await g(requete({ ...corps, consultantOptIn: true }))).json()).toMatchObject({
       ok: true,
       contactRequestAccepted: false,
     });
+    expect(journal).toHaveBeenCalledWith('catalogue.consultant.non_configure', expect.any(Object));
   });
 
-  it('CRM en échec sur le contact seul : la demande reste acceptée', async () => {
+  it('écart secondaire du CRM signalé par la trace : demande acceptée, écart au journal', async () => {
     const d = doublures();
-    d.synchroniserContact.mockRejectedValueOnce(new Error('pipedrive 500'));
+    d.enregistrer.mockResolvedValueOnce({
+      reference: 'note-1',
+      dejaEnregistree: false,
+      anomalies: ['catalogue.crm.organisation.echec'],
+    });
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete(corps));
     expect(res.status).toBe(200);
-    expect(journal).toHaveBeenCalledWith('catalogue.crm.contact.echec', expect.any(Object));
+    expect(journal).toHaveBeenCalledWith('catalogue.crm.organisation.echec', expect.any(Object));
+  });
+
+  it('suivi non consigné : la réponse ne change pas, l’échec est signalé', async () => {
+    const d = doublures();
+    d.consignerSuivi.mockRejectedValueOnce(new Error('pipedrive 500'));
+    const { g, journal } = gestionnaire(d.services);
+    const res = await g(requete(corps));
+    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
+    expect(journal).toHaveBeenCalledWith('catalogue.crm.suivi.echec', expect.any(Object));
   });
 
   it('stockage en échec : erreur technique, aucun e-mail ni CRM', async () => {
@@ -156,8 +180,8 @@ describe('POST /api/catalogue — échecs dits tels quels', () => {
     expect(res.status).toBe(500);
     expect(await res.json()).toEqual({ ok: false, error: 'technical' });
     expect(d.envoyerLien).not.toHaveBeenCalled();
-    expect(d.synchroniserContact).not.toHaveBeenCalled();
-    expect(d.transmettreDemandeConsultant).not.toHaveBeenCalled();
+    expect(d.transmettre).not.toHaveBeenCalled();
+    expect(d.consignerSuivi).not.toHaveBeenCalled();
   });
 
   it('PDF absent : catalogue indisponible, rien n’est enregistré', async () => {
@@ -225,7 +249,9 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
   it('double clic : deux requêtes simultanées, un seul enregistrement, même réponse', async () => {
     const d = doublures();
     let liberer: () => void = () => {};
-    d.enregistrer.mockImplementationOnce(() => new Promise<void>((r) => { liberer = r; }));
+    d.enregistrer.mockImplementationOnce(
+      () => new Promise<EnregistrementCatalogue>((r) => { liberer = () => r({ reference: 'note-1', dejaEnregistree: false }); }),
+    );
     const { g } = gestionnaire(d.services);
     const p1 = g(requete({ ...corps, consultantOptIn: true }));
     const p2 = g(requete({ ...corps, consultantOptIn: true }));
@@ -235,7 +261,36 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     expect(await r1.json()).toEqual(await r2.json());
     expect(d.enregistrer).toHaveBeenCalledTimes(1);
     expect(d.envoyerLien).toHaveBeenCalledTimes(1);
-    expect(d.transmettreDemandeConsultant).toHaveBeenCalledTimes(1);
+    expect(d.transmettre).toHaveBeenCalledTimes(1);
+  });
+
+  it('demande déjà tracée (autre instance) : aucun effet rejoué, suivi consigné repris', async () => {
+    const d = doublures();
+    d.enregistrer.mockResolvedValueOnce({
+      reference: 'note-1',
+      dejaEnregistree: true,
+      suivi: { emailSent: true, consultant: 'transmis' },
+    });
+    const { g, journal } = gestionnaire(d.services);
+    const res = await g(requete({ ...corps, consultantOptIn: true }));
+    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: true });
+    expect(d.envoyerLien).not.toHaveBeenCalled();
+    expect(d.transmettre).not.toHaveBeenCalled();
+    expect(d.consignerSuivi).not.toHaveBeenCalled();
+    expect(journal).toHaveBeenCalledWith('catalogue.demande.rejouee', expect.any(Object));
+  });
+
+  it('demande déjà tracée sans suivi lisible : rien n’est présumé', async () => {
+    const d = doublures();
+    d.enregistrer.mockResolvedValueOnce({ reference: 'note-1', dejaEnregistree: true, suivi: null });
+    const { g } = gestionnaire(d.services);
+    expect(await (await g(requete(corps))).json()).toEqual({
+      ok: true,
+      pdfUrl: PDF,
+      emailSent: false,
+      contactRequestAccepted: false,
+    });
+    expect(d.envoyerLien).not.toHaveBeenCalled();
   });
 
   it('nouvel essai après acceptation, même requestId : aucun effet rejoué', async () => {
@@ -289,7 +344,7 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
   });
 });
 
-describe('services réels : rien n’est branché', () => {
+describe('services réels : fermés par défaut', () => {
   it('par défaut, la route est fermée : 503, aucun succès', async () => {
     const { g } = gestionnaire(SERVICES_DESACTIVES);
     const res = await g(requete(corps));

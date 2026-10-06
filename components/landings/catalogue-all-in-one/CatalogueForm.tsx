@@ -17,12 +17,7 @@ import { PageCatalogue } from './PageCatalogue';
 import { SansCoupure } from './SansCoupure';
 import { VISUELS } from './visuels';
 import { LienTelephone } from './LienTelephone';
-import {
-  mesurerDemandeAcceptee,
-  mesurerDemandeConsultantAcceptee,
-  mesurerEchec,
-  mesurerOuverturePdf,
-} from './mesure';
+import { mesurerOuverturePdf, mesurerReponse } from './mesure';
 
 /**
  * Formulaire de la landing catalogue, propre à cette page : il n'utilise ni
@@ -119,12 +114,10 @@ export function CatalogueForm() {
       reponse = null;
     }
 
+    // GA4 : succès seulement sur réponse acceptée du serveur (evenementsReponse).
+    mesurerReponse(reponse, valeurs.country);
+
     if (reponse?.ok === true && typeof reponse.pdfUrl === 'string') {
-      // En simulation locale, rien n'a été accepté : aucun événement de succès.
-      if (!reponse.simulated) {
-        mesurerDemandeAcceptee(valeurs.country);
-        if (reponse.contactRequestAccepted) mesurerDemandeConsultantAcceptee(valeurs.country);
-      }
       setEtat({ type: 'succes', reponse });
       return;
     }
@@ -133,19 +126,15 @@ export function CatalogueForm() {
       for (const [nom, message] of Object.entries(reponse.fieldErrors)) {
         if (message) setError(nom as keyof ChampsCatalogue, { type: 'server', message }, { shouldFocus: true });
       }
-      mesurerEchec('invalid');
       setEtat({ type: 'saisie' });
       return;
     }
 
     if (reponse?.ok === false && reponse.error === 'rate_limited') {
-      mesurerEchec('rate_limited');
       setEtat({ type: 'limitation' });
     } else if (reponse?.ok === false && reponse.error === 'catalogue_unavailable') {
-      mesurerEchec('catalogue_unavailable');
       setEtat({ type: 'indisponible' });
     } else {
-      mesurerEchec('technical');
       setEtat({ type: 'erreur' });
     }
   }

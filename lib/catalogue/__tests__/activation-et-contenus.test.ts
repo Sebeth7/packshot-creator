@@ -1,11 +1,17 @@
 /**
  * Landing catalogue All-in-One : page non publiée en production avant GO,
- * page FR seule pour le sélecteur de langue, e-mail et règle CRM préparés sans envoi.
+ * page FR seule pour le sélecteur de langue, e-mail et règle CRM (aucune affaire).
  */
 import { describe, it, expect } from 'vitest';
 import { PUBLICATION_AUTORISEE, pageCatalogueServie, simulationAutorisee } from '@/lib/catalogue/activation';
 import { composerCourrielCatalogue } from '@/lib/catalogue/courriel';
-import { regleCrmCatalogue, noteCrmCatalogue, ETAPE_PIPEDRIVE_CATALOGUE } from '@/lib/catalogue/crm';
+import {
+  regleCrmCatalogue,
+  noteCrmCatalogue,
+  noteCrmCatalogueHtml,
+  lireSuiviNote,
+  ETAPE_PIPEDRIVE_CATALOGUE,
+} from '@/lib/catalogue/crm';
 import { localeSwitchHref, navPinLocale } from '@/i18n/deChCoverage';
 import type { DemandeCatalogue } from '@/lib/catalogue/schema';
 
@@ -83,10 +89,14 @@ describe('e-mail de transmission du lien (composé, non envoyé)', () => {
   });
 });
 
-describe('règle CRM proposée (non branchée)', () => {
-  it('affaire seulement si un consultant est demandé', () => {
-    expect(regleCrmCatalogue(demande)).toEqual({ synchroniserContact: true, creerAffaire: false });
-    expect(regleCrmCatalogue({ ...demande, consultantOptIn: true }).creerAffaire).toBe(true);
+describe('règle CRM V1 (06/10/2026) : trace sans affaire', () => {
+  it('aucune affaire, ni pour une brochure seule, ni pour une demande de consultant', () => {
+    expect(regleCrmCatalogue(demande)).toEqual({ synchroniserContact: true, creerAffaire: false, signalerConsultant: false });
+    expect(regleCrmCatalogue({ ...demande, consultantOptIn: true })).toEqual({
+      synchroniserContact: true,
+      creerAffaire: false,
+      signalerConsultant: true,
+    });
   });
 
   it('étape Pipedrive non fixée : aucune étape existante réutilisée par défaut', () => {
@@ -100,5 +110,17 @@ describe('règle CRM proposée (non branchée)', () => {
     expect(note).toContain('Demande de consultant : non');
     expect(note).toContain('Source : perplexity.ai');
     expect(note.toLowerCase()).not.toContain('marketing');
+  });
+
+  it('version Pipedrive : champs saisis échappés, suivi relu à l’identique', () => {
+    const html = noteCrmCatalogueHtml({ ...demande, company: 'A <script>' }, { emailSent: true, consultant: 'transmis' });
+    expect(html).toContain('Entreprise : A &lt;script&gt;');
+    expect(html).not.toContain('<script>');
+    expect(lireSuiviNote(html)).toEqual({ emailSent: true, consultant: 'transmis' });
+    expect(lireSuiviNote(noteCrmCatalogueHtml(demande, { emailSent: false, consultant: 'non_transmis' }))).toEqual({
+      emailSent: false,
+      consultant: 'non_transmis',
+    });
+    expect(lireSuiviNote(noteCrmCatalogueHtml(demande))).toBeNull();
   });
 });
