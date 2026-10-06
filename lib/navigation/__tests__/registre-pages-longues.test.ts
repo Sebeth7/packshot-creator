@@ -38,11 +38,8 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(false);
   });
 
-  it('contenus des PR ouvertes gelés (#27, #64, #91)', () => {
+  it('contenus des PR ouvertes gelés (#27, #64)', () => {
     expect(barreActive('guide', 'fr', 'comment-faire-photos-multi-angles-chaussures')).toBe(false);
-    expect(barreActive('guide', 'fr', 'comment-creer-vues-multi-angles-automatique-objet')).toBe(false);
-    expect(barreActive('guide', 'en', 'how-to-create-automatic-multi-angle-views-of-an-object')).toBe(false);
-    expect(barreActive('guide', 'fr', 'comment-photographier-lunettes-e-commerce')).toBe(false);
     expect(barreActive('guide', 'fr', 'comment-positionner-montre-avant-shooting-photo')).toBe(false);
     expect(barreActive('guide', 'fr', 'realiser-animation-360-professionnelle-chaussures')).toBe(false);
     for (const l of LANGUES) {
@@ -51,6 +48,12 @@ describe('Registre de la navigation des pages longues (D44)', () => {
         expect(barreActive('blog-dedie-avec-sommaire', l, slug)).toBe(false);
       }
     }
+  });
+
+  it('guides de #91 équipés depuis sa fusion (06/10) : plus d’exception temporaire', () => {
+    expect(barreActive('guide', 'fr', 'comment-creer-vues-multi-angles-automatique-objet')).toBe(true);
+    expect(barreActive('guide', 'en', 'how-to-create-automatic-multi-angle-views-of-an-object')).toBe(true);
+    expect(barreActive('guide', 'fr', 'comment-photographier-lunettes-e-commerce')).toBe(true);
   });
 
   it('pages pilotes équipées', () => {

@@ -32,7 +32,6 @@ const GELEES = [
   '/fr/industrie/mode-textile',
   '/fr/studios-photo-automatises',
   '/fr/guide/comment-faire-photos-multi-angles-chaussures',
-  '/fr/guide/comment-photographier-lunettes-e-commerce',
   '/fr/blog/budget-studio-photo-automatise',
   '/fr/blog/prestataire-packshot-vs-studio-interne',
   '/fr/packshot-amazon',

@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · #85 actualisée depuis `main` `3b427d7` (fusion de #91) : exceptions temporaires de #91 retirées · Claude de Laurent
+
+**Chantier** : D44 | **PR** : #85, brouillon | **Base intégrée** : `main` `3b427d7`, par commit de fusion `f49a437` (pas de rebase)
+
+**Quoi** —
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union (entrées de `main` dans leur ordre, les 2 entrées de #85 du 03/10 à leur place). `app/[lang]/ia-photo-produit/page.tsx` fusionné automatiquement : barre de #85 et retrait de la note BlendAI de #97 tous deux présents.
+- `data/navigation/pages-longues.ts` : retrait des 3 exceptions temporaires de #91 (`comment-creer-vues-multi-angles-automatique-objet` FR, `how-to-create-automatic-multi-angle-views-of-an-object` EN, `comment-photographier-lunettes-e-commerce` FR) et des constantes `PR91`, `FIN_PR91`. Condition de sortie inscrite le 03/10 remplie : #91 fusionnée le 06/10 (`3b427d7`).
+- Tests : `registre-pages-longues.test.ts`, les 3 guides attendus équipés (et non plus gelés) ; `navigation-pages-longues.spec.ts`, guide lunettes FR retiré de `GELEES`.
+- Aucune autre règle D44 modifiée : exceptions #27, Mode, F5, Studios, pages de #64, HOLD et EXCLUDE inchangés.
+
+**Vérifié** —
+- Aucune autre raison de gel du guide lunettes FR : absent des exceptions #27 et des gels ; aucune PR ouverte ne touche les 3 guides (relevé GitHub du 06/10).
+- `verifier-json` 195 ; `tsc` vert ; Vitest 409/409 (dont 9 du registre) ; eslint vert sur les fichiers touchés ; `next build` vert (386 pages).
+- Build local : `navigation-pages-longues` 44/44 ; `sommaire-blog` et `machine-selector` 37/37 ; contrôle ciblé des 3 guides (spec temporaire hors dépôt) 12/12 : barre, section active, ancres, une seule navigation collante, masquage en fin de page à 1 024 et 1 440 px ; aucune barre ni débordement à 390 et 768 px.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview et `www` ; `docs/standards/R-UX-LONG.md` cite encore #91 en exemple d'exception (ligne 86), non modifié (documentation sur `main`, hors périmètre).
+
+**Suite** — CI sur la nouvelle tête ; contrôle de la Preview par Laurent ; GO de fusion individuel.
+
+---
+
 ## 2026-10-06 · A04b (#92) actualisée depuis `main` `c236705` : patch des 10 articles inchangé, MacroSphère morte, retrait conservé · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A04b | **PR** : #92, brouillon | **Base intégrée** : `main` `c236705`, par commit de fusion `ad807a5` (pas de rebase, pas de force-push)

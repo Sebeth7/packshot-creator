@@ -41,8 +41,6 @@ export interface RegleFamille {
 
 const PR27 = 'PR #27 ouverte (contenu du guide modifié par la PR)';
 const FIN_PR27 = 'clôture de #27';
-const PR91 = 'PR #91 ouverte (A03, lot 1 V4.3 : liens de introText modifiés)';
-const FIN_PR91 = 'clôture de #91 ; si fusionnée, contrôle sur main puis retrait de l’exception';
 
 export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
   {
@@ -55,10 +53,6 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
       { slug: 'comment-faire-photos-multi-angles-chaussures', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
       { slug: 'comment-positionner-montre-avant-shooting-photo', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
       { slug: 'realiser-animation-360-professionnelle-chaussures', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
-      // D44 : page touchée par une PR éditoriale ouverte, en HOLD jusqu'à sa clôture (exception temporaire).
-      { slug: 'comment-creer-vues-multi-angles-automatique-objet', langue: 'fr', motif: PR91, jusqua: FIN_PR91 },
-      { slug: 'how-to-create-automatic-multi-angle-views-of-an-object', langue: 'en', motif: PR91, jusqua: FIN_PR91 },
-      { slug: 'comment-photographier-lunettes-e-commerce', langue: 'fr', motif: PR91, jusqua: FIN_PR91 },
     ],
     note: 'Étapes numérotées = sections ; libellés = titres d’étape existants. 47 guides, 6 682 à 12 552 px.',
   },
