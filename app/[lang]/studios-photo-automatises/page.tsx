@@ -290,10 +290,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. ROI TEASER — Gradient + floating card
-          Ancre permanente #calculateur-roi : cible des liens « Calculer mon ROI »
-          du blog et du sélecteur (AR-01). Ne pas la conditionner ni la renommer.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="calculateur-roi" className="py-20 lg:py-32 relative overflow-hidden">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-very-peri-600 via-very-peri-500 to-future-dusk-700" />
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
