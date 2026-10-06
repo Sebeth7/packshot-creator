@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Cluster AI Act — cinq articles en FR, EN et de-ch prêts pour une publication coordonnée (D46) · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 | **PR** : #__PR__, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d`
+
+**Quoi**
+- #59 (A), #60 (S) et #77 fusionnées dans la branche (historique et entrées de JOURNAL conservés, insertion chronologique, contrôle par comptage de lignes) ; contenus identiques aux têtes `2a36322`, `74ae921`, `a207fe3` avant les modifications ci-dessous.
+- B (`retouche-ia-photo-produit`), C (`mannequin-invisible-modele-virtuel-avatar`), D (`images-ia-metadonnees-marketplaces`) créés comme articles du blog depuis la matière de #79 (textes du 02/10, FAQ, 5 AVIF identiques à l'octet). Non repris : pages `/revue-interne/`, garde Preview, 8 modules SVG, notes de relecture. #79 n'est pas fusionnée.
+- Registre juridique du 06/10 (`docs/seo-geo/cluster-ai-act-2026-10-06/REGISTRE-JURIDIQUE.md`) appliqué : statut des lignes directrices C(2026) 5054 (contenu approuvé le 20/07/2026, adoption formelle annoncée, non constatée au 06/10) ; article 50(5) ; paraphrase de l'exception de l'article 50(2) ; aide Google 6324350 (versions FR et DE : refus du produit ; EN restructurée : sans) ; PFPDT (« messages vocaux », réserve pénale) ; calendrier suisse (Chancellerie « d'ici à la fin 2026 », Portail PME « printemps 2027 »).
+- Zalando, page « Updated October 1, 2026 » relevée le 06/10 : « Invisible marking (required by December 2026) », « We strongly recommend… », « You must embed identifying data… ». Formulation prudente conservée, désormais citée : intitulé et recommandation rapportés tels quels, sans conversion en obligation certaine. **ZALANDO_STATUS = SOURCE RECONTRÔLÉE, AMBIGUË DANS LA SOURCE ; FORMULATION PRUDENTE CITÉE.**
+- EN des cinq articles et de-ch des cinq (adaptation suisse : phrase de cadrage UE / Suisse dans A, B, C, D ; UWG renvoyé à S dans A ; droit français toujours « in Frankreich » ; sources officielles suisses en version allemande ou anglaise vérifiée).
+- Maillage : A → B, C, D, S ; B → A, D ; C → A, B, D ; D → A, C ; S → A, D ; de-ch A, B, C, D → S ; `generer-images-produit-ia` (FR) et articles « migrer » (FR, EN, de-ch) → A ; `llms.txt` → A, S. Aucun lien vers F5, aucun fichier de Mode modifié.
+- `alternates.json` : 5 entrées ; `globals.css` : en-têtes de tableau sur plusieurs lignes et cellules resserrées sous 640 px, blocs `<pre>` du blog en défilement interne.
+- D46 inscrite ; D41 marquée remplacée sur le seul principe des satellites ; Q23 (information de Sébastien).
+
+**Pourquoi** — Mission de Laurent du 06/10 : publier le cluster sans attendre le retour de Sébastien, de façon coordonnée, après checkpoint et GO de publication explicite.
+
+**Fichiers** — `content/blog/{fr,en,de-ch}/` (15 articles du cluster ; `generer-images-produit-ia`, articles « migrer »), `content/blog/alternates.json`, `public/images/blog/{retouche-ia-photo-produit,mannequin-invisible-modele-virtuel-avatar,images-ia-metadonnees-marketplaces}/`, `app/globals.css`, `public/llms.txt`, `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,BOITE-AUX-LETTRES}.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/`
+
+**Effet attendu** — Aucun avant la fusion. Après fusion : 15 URL indexables, hreflang complet (fr, fr-CH, en, de-CH, x-default) ; pilier mis en avant en tête de `/fr/blog`, `/en/blog`, `/de-ch/blog`.
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; Vitest 400/400 ; `next build` vert, 386 pages (371 sur `main`).
+- `next start`, Chromium, 15 URL × 5 formats (1440 × 900, 1180 × 820, 820 × 1180 tactile, 390 × 844 et 360 × 740 mobiles) : 200, 0 débordement de page, toutes les images chargées, 0 erreur de console, 0 requête en échec, un seul `h1`, FAQ visibles = `FAQPage` (A 7, B 5, C 5, D 5, S aucune), 0 ancre cassée, liens internes en 200. Tableaux : aucune colonne hors champ à 820 px et au-delà ; à 390 et 360 px, défilement interne pour les tableaux de A (4) et de D (1), comme pour A sur `main` avant cette PR.
+- Métadonnées : title de 49 à 62 caractères, description de 125 à 155, canonique propre à chaque URL, aucune balise `robots`, hreflang identiques sur les trois langues de chaque article, `og:image` = image d'en-tête, JSON-LD Organization, BreadcrumbList, Article (+ FAQPage) ; 15 URL au sitemap ; sélecteur de langue vers l'article correspondant.
+- e2e `seo`, `language-switch`, `mobile-overflow`, `machine-selector`, `internal-links`, `internal-links-all`, `responsive` : branche et `main` (worktree, même build) : 299 réussis, 24 échecs chacun, listes identiques.
+- `globals.css`, six articles existants à tableau (`alphashot-xl-g2` et « migrer », 3 langues) : à 1440 px inchangés ; à 390 px, colonnes hors champ réduites (ex. `migrer` FR : 570 → 410 px de large), aucune page dégradée.
+- BlendAI : 0 occurrence dans les 15 articles. F5 : 0 lien.
+- Baseline GSC (`gsc-crawl-seo`, site 3, données au 03/10) : `CLUSTER.md`, section 6.
+
+**Supposé** — [Inférence] La césure (`hyphens: auto`) s'applique sur Chrome et Safari grand public ; le Chromium du conteneur ne l'applique pas. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox, appareils réels ; Légifrance et Amazon (inaccessibles par script le 06/10) ; template du blog : `twitter:*` hérité du site, `og:url`, `og:locale` et `inLanguage` de l'`Article` absents sur tous les articles (BL-43-1, PR distincte) ; `og:image` en AVIF, non lu par plusieurs réseaux sociaux (préexistant).
+
+**Suite** — Checkpoint de la mission ; GO de publication explicite de Laurent ; fusion ; contrôle J0 sur `sysnext.vercel.app` puis `www` dans Chrome ; mesure J+7, J+28, J+56 ; [Inférence] GitHub marquera #59, #60 et #77 comme fusionnées à la fusion de cette PR, leurs têtes étant incluses ; #79 reste ouverte (REVIEW ONLY) ou se ferme sur décision de Laurent.
+
+---
+
 ## 2026-10-04 · Accueil : film de la gamme Orbitvu dans le hero (split, muet, R2) · Claude de Sébastien
 
 **Chantier** : demande directe de Sébastien du 04/10, hors 06-CHANTIERS | **PR** : #95 | **Commit** : `52d0b4f`
