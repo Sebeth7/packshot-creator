@@ -45,6 +45,7 @@ PackshotCreator adresse 16 secteurs avec des pages dédiées sous `/industrie/*`
 ## Ressources éditoriales
 
 - [Blog](https://www.packshot-creator.com/fr/blog) : articles e-commerce, retouche, IA photo.
+- [AI Act et images produit](https://www.packshot-creator.com/fr/blog/ai-act-images-produit) : article 50 du règlement européen sur l'IA appliqué aux images produit (marquage par l'outil, mention visible des hypertrucages, cas pratiques, plateformes), sources datées ; version suisse : [Images IA et e-commerce en Suisse](https://www.packshot-creator.com/fr/blog/images-ia-ecommerce-suisse).
 - [Guides](https://www.packshot-creator.com/fr/guide) : guides techniques packshot par type de produit.
 - [Questions clés photographie produit](https://www.packshot-creator.com/fr/questions-cles-photographie-produit)
 

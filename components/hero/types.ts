@@ -51,3 +51,17 @@ export interface HeroVideoProps {
   poster: string;
   className?: string;
 }
+
+export interface HeroVideoPanelProps {
+  /** MP4 16:9 (Cloudflare R2), toujours lu muet. */
+  src: string;
+  /** Image fixe AVIF : affiche de la vidéo, seule visible sous 768 px. */
+  poster: string;
+  /** Nom accessible de la vidéo et texte alternatif de l'image fixe. */
+  title: string;
+  labels: {
+    pause: string;
+    play: string;
+  };
+  className?: string;
+}
