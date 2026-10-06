@@ -34,6 +34,67 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · D36 reconstruite depuis `main` `2a53727` : `noindex` de l'origine `sysnext.vercel.app`, partie Next seule, remplace #67 · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #99, brouillon, non fusionnée, branche `claude/busy-feynman-0vnf1j` | **Base** : `main` `2a53727` (#92) | **Remplace** : #67, non modifiée, fermeture sur GO de Laurent
+
+**Quoi** — Règle `headers()` de `next.config.ts` : `X-Robots-Tag: noindex` et `X-Packshot-Origin-Noindex: 1` sur les documents HTML de `sysnext.vercel.app` en accès direct. Reprise de la partie Next de #67 (`43e14b3`, `02c093c`), sans sa partie Worker ; test `lib/seo/__tests__/origine-noindex-d36.test.ts` (67 cas) repris de #67 sans modification.
+
+**Pourquoi** — D36 (25/09). Au 06/10, l'origine reste indexable : `https://sysnext.vercel.app/fr`, `/en` et `/de-ch` sans `X-Robots-Tag`, `/fr` sans balise `robots` (`curl`, 06/10 à 15:09 UTC). La protection de `www`, le retrait par le Worker, est active depuis le 01/10 : seule la partie Next de #67 restait à livrer. #67 (base `7ad0ca3`) est en conflit : test Worker ajouté des deux côtés, JOURNAL, ETAT. Son bloc Worker est déjà dans `main` (#68, `92c3c58`), à l'identique.
+
+**Worker au 06/10, lecture seule (API Cloudflare)** —
+- version active `107715bc-be59-43c2-a465-15cefd03f516` (n° 93), à 100 %, déployée le 01/10 à 06:59:53 UTC par `wrangler`, 82 s après la fusion de #68 ; version précédente `27b0153c` (25/09). Ce déploiement n'était pas consigné ici ;
+- bloc D36 présent. Script actif identique à `cloudflare-worker/src/index.js` de `main` après retrait des commentaires, des lignes vides, de 3 lignes d'assistant `__name22` ajoutées par wrangler et de 2 commentaires du bundler ;
+- routes `www.packshot-creator.com/*`, `packshot-creator.com/*`, `*.packshot-creator.com/*` vers `packshot-router`, conformes à `wrangler.toml` ;
+- `WEBFLOW_ORIGIN` figure dans la configuration du Worker actif, alors qu'elle a été retirée de `wrangler.toml` le 28/09. Le code ne la lit pas. Hors périmètre, non traité.
+
+**`www` au 06/10** —
+- Contrôle de Laurent dans Chrome, rapporté : `/fr`, `/en` et `/de-ch` sont des pages réelles et indexables. `X-Robots-Tag` lu par un `fetch` de même origine, **pas sur la requête document initiale** de l'onglet Réseau : l'absence de l'en-tête sur le document initial n'est pas vérifiée directement.
+- Par script : `robots.txt` et `llms.txt` en 200, `x-served-by: nextjs`, sans `X-Robots-Tag`. HTML en 403 de challenge Cloudflare (R4), sans valeur de preuve.
+
+**Fichiers** — `next.config.ts` (constante `ORIGINE_VERCEL_NOINDEX` et `headers()` ; `images` et `redirects()` inchangés), `lib/seo/__tests__/origine-noindex-d36.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier du Worker.
+
+**Effet attendu** — Après fusion :
+- origine en accès direct : `X-Robots-Tag: noindex` et le marqueur sur le HTML. Sortie progressive de l'origine des index qui respectent l'en-tête, au rythme de leurs recrawls ; d'anciennes citations peuvent persister ;
+- `www` : aucun changement. La règle Next est écartée si la requête porte un en-tête `cf-*` ; sinon, le Worker retire en-tête et marqueur.
+
+**Vérifié** —
+- Fraîcheur : `main` `2a53727` ; #67 ouverte, brouillon, tête `62ebfae`, `mergeable_state: dirty`, non modifiée.
+- Patch `next.config.ts` de #67 appliqué sans conflit sur `main`. Seul changement de texte : le commentaire indique que le Worker porte le retrait depuis le 01/10 (#68).
+- Vitest : 467/467 sur la branche, 400/400 sur `main` ; test D36 : 67/67.
+- Mutations :
+  - le test D36 échoue sur la configuration de `main` (aucune règle `headers()`) ;
+  - avec un Worker privé du bloc D36 : 9 échecs, tous dans la chaîne « en-têtes Cloudflare retirés par Vercel ».
+- `tsc` vert. ESLint : 0 message sur les 2 fichiers. `verifier-json` : 195 JSON valides. `npx next build` vert (valeurs factices) ; `routes-manifest.json` porte la règle, regex `^(?:/((?!_next/|_vercel/|api/)[^.]*))(?:/)?$`.
+- Build de la branche contre build de `main` :
+  - `routes-manifest.json` ne diffère que par `headers` ;
+  - 374 HTML, 378 `.meta` et 3 293 `.rsc` identiques, identifiant de build neutralisé ; aucun `.meta` ne porte `X-Robots-Tag` ni le marqueur ;
+  - `sitemap.xml` ne diffère que par `lastmod`, heure du build (`app/sitemap.ts`, préexistant).
+- `next start` du build de la branche, 21 chemins × 6 profils d'en-têtes :
+  - hôte `sysnext.vercel.app` sans en-tête `cf-*` : `noindex` et marqueur sur les 11 documents HTML (`/` en 307, `/fr`, `/en`, `/de-ch`, `/fr/contact`, `/de-ch/kontakt`, `/calculateur-roi`, `/etude-clients-2026`, `/roi-pro`, `/fr/outil-financement`, `/fr/blog`) ; rien sur `robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.ico`, `icon.png`, une image, un chunk JS, `/_next/image`, `/_vercel/*` (404) et `/api/og` ;
+  - même hôte avec `cf-worker`, `cf-ray` ou `cf-connecting-ip` ; hôte `www.packshot-creator.com` ; `localhost` : 0 en-tête sur les 21 chemins.
+- Chaîne `www` → Worker du dépôt → `next start` servi sous l'hôte `sysnext.vercel.app`, 12 chemins, en-têtes `cf-*` transmis puis retirés :
+  - 24 réponses `www`, 0 `X-Robots-Tag`, 0 marqueur ; statut, balise `robots` et canonical identiques à la référence ;
+  - contrôle négatif, Worker privé du bloc D36 et en-têtes retirés : 9 écarts, `noindex` sur le HTML de `www`.
+- `smoke.mjs` vert sur ce build servi sous l'hôte `sysnext.vercel.app`, en-tête présent : 17 pages, 3 ressources.
+
+**Supposé** —
+- [Non vérifié] Vercel transmet `cf-worker`, `cf-ray` ou `cf-connecting-ip` à son routage pour les requêtes relayées par le Worker. La protection de `www` n'en dépend pas : le retrait par le Worker suffit, chaîne rejouée dans le pire cas.
+- [Inférence] Vercel applique les règles `headers()` à chaque requête, à la couche de routage, y compris pour une réponse servie depuis son cache. Aucun `.meta` de prérendu ne porte l'en-tête ; le retrait par le Worker couvre le cas contraire.
+- [Inférence] Le Worker actif se comporte comme celui du dépôt testé ici : code identique après normalisation.
+
+**Non regardé** — Preview Vercel : sous SSO, hôte `sysnext-git-…` hors règle par construction, et hors Worker : elle ne prouve rien sur D36. Cloudflare, Worker, dashboards : non touchés, aucun déploiement. Balise `robots`, canonical, hreflang, sitemap, `robots.txt`, `llms.txt` : non modifiés. `WEBFLOW_ORIGIN` : hors périmètre. Formulaires : aucun fichier concerné, non testés. Playwright : non lancé.
+
+**Suite** — GO de fusion de Laurent. Immédiatement après la fusion, sur GO séparé :
+1. `curl -sI https://sysnext.vercel.app/fr`, `/en`, `/de-ch`, un article : `x-robots-tag: noindex` et `x-packshot-origin-noindex: 1` ; `/robots.txt` : ni l'un ni l'autre ;
+2. Chrome sur `https://www.packshot-creator.com/fr?v=<horodatage>`, `/en`, `/de-ch` : ni l'un ni l'autre, **sur la requête document de l'onglet Réseau** ; présent : `git revert` du commit de fusion ;
+3. `node scripts/seo/smoke.mjs https://sysnext.vercel.app` ;
+4. JOURNAL.
+
+Après la fusion, aucun retour arrière du Worker vers une version sans le retrait tant que cette PR n'est pas révertée. #67 : fermeture « remplacée », sur GO de Laurent.
+
+---
+
 ## 2026-10-06 · A04b (#92) actualisée depuis `main` `c236705` : patch des 10 articles inchangé, MacroSphère morte, retrait conservé · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A04b | **PR** : #92, brouillon | **Base intégrée** : `main` `c236705`, par commit de fusion `ad807a5` (pas de rebase, pas de force-push)
