@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Clôture fast-forward #97 / #93 / #90 : trois fusions, `main` final `be8cbea`, `www` contrôlé · Claude de Laurent
+
+**Chantier** : P0 intégrité (#97) ; D47, AR-01 (#93) ; V4.3 lot 1, A02 (#90) | **PR** : documentation seule, branche `claude/stoic-goodall-nrerhy` | **Base** : `main` `be8cbea`
+
+**Quoi** — Clôture des trois fusions du 06/10, faites dans cet ordre sur GO distincts de Laurent, en mode merge :
+- #97 fusionnée (`df01b04`, 14:09:37 UTC) : suppression de la note BlendAI non sourcée 4,9/5 × 100 ; contrôle `www` PASS.
+- #93 fusionnée (`6cbb903`, 14:18:56 UTC) : D47, CTA ROI directs vers les calculateurs localisés ; contrôle `www` FR/EN PASS, aucun détour par Studios.
+- #90 fusionnée (`be8cbea`, 14:24:54 UTC) : liens des articles ROI interne corrigés ; contrôle `www` FR/EN PASS.
+- `main` final vérifié : `be8cbea`.
+- NEW_P0 = 0 ; NEW_P1 = 0.
+- FAST_FORWARD_97_93_90_WWW_VERIFIED = YES.
+
+**Pourquoi** — Rituel de fin d'intervention. `ETAT.md` décrivait encore #93 en brouillon et AR-01 en attente d'une date de fusion.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` ; `docs/seo-geo/ETAT.md` (B : ligne #93 retirée, PR fusionnée ; C : ligne AR-01 close ; F4 : observation P3 ; G : ligne #97, #93, #90). Aucun fichier applicatif, aucun test.
+
+**Effet attendu** — Aucun sur le site.
+
+**Vérifié** —
+- Avant chaque fusion : fresh-check, PR `clean`, CI 4/4 verte. Après reprise de `main`, patch hors `docs/seo-geo/` identique au patch validé (#93 : `58c585e` ; #90 : `703bf69`) ; `JOURNAL.md` résolu par union, 0 ligne retirée.
+- `sysnext.vercel.app` après chaque déploiement (hors Cloudflare, R4) :
+  - #97 : 0 « 4,9/5 » et 0 `AggregateRating` sur `/fr` et `/en/ia-photo-produit` et FR/EN `studio-ia-vs-ia-generative` ; 4,7/5 × 83 visible sur `/fr`, `/en` et Studios FR/EN ;
+  - #93 : 7 sources FR et EN en 200, 0 lien vers `/studios-photo-automatises#…` ; `/fr/calculateur-roi`, `/en/calculateur-roi`, `/de-ch/roi-rechner` en 200 ; témoin du sélecteur inchangé ; aucun `id="calculateur-roi"` sur Studios ; aucun formulaire envoyé, aucun appel d'API ;
+  - #90 : 2 articles en 200, 0 lien `http://gs-new…`, 2 liens Orbitvu par article, ancre lunetterie vers `/{fr,en}/industrie/lunetterie` (200), « Photoshop » non lié en EN.
+- `www` : contrôle Chrome de Laurent, PASS pour les trois PR (déclaré par Laurent le 06/10).
+- D47 présente dans `DECISIONS.md`, non modifiée. Sa ligne « Statut » cite encore « PR #93 (brouillon) » : application effective depuis la fusion `6cbb903`.
+- P3 : ancre EN « Packshot for the`<strong>`optics`</strong>` And eyewear » (rendu « theoptics »). Texte identique dans `f529bd5` (20/09) et `6cbb903` (avant #90) : antériorité à #90 établie par git ; #90 n'a modifié que le `href`.
+
+**Supposé** — Le contrôle `www` de Laurent couvre les pages de la checklist consolidée du 06/10 : FR `/ia-photo-produit`, FR `studio-ia-vs-ia-generative`, prestataire FR/EN, articles ROI interne FR/EN.
+
+**Non regardé** — `www` par script (R4) ; Firefox, Safari, appareils réels ; GA4 ; Search Console.
+
+**Suite** —
+- #94 : `PR94_STATUS = SUPERSEDED_BY_D47_AND_CURRENT_MAIN`, `PR94_MERGE = FORBIDDEN`. Sa réservation de Studios pour `id="calculateur-roi"` est caduque depuis D47. Ni reprise ni réparation ; fermeture sur GO explicite de Laurent seulement.
+- P3 de l'ancre EN inscrit en `ETAT.md`, F4 ; non corrigé ici.
+- Fusion de cette PR documentaire : GO distinct de Laurent.
+
+---
+
 ## 2026-10-06 · A02 (#90) actualisée depuis `main` `a168b33` (fusion de #89) : patch inchangé, conflit de journal résolu par union · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `a168b33` ; tête précédente `3309244`
