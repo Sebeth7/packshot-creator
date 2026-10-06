@@ -954,7 +954,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link></li>
               <li className="text-future-dusk-600"><strong>Hub Studios Photo Automatisés</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Gamme Orbitvu 2026</Link></li>
-              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
+              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</Link></li>
               <li className="text-future-dusk-600"><strong>Academy</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations aux studios photo Orbitvu</Link></li>
             </ul>
 

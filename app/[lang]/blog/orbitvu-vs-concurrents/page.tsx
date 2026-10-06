@@ -757,7 +757,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Gamme Orbitvu Complète</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Studios Photo Automatisés</Link></li>
               <li className="text-future-dusk-600"><strong>Intégration IA</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link></li>
-              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <a href={`/${lang}/studios-photo-automatises#calculateur-roi`} className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</a></li>
+              <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</Link></li>
               <li className="text-future-dusk-600"><strong>Formations</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Academy PackshotCreator</Link></li>
             </ul>
 
