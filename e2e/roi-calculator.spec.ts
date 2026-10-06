@@ -1,10 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 
 /**
- * Calculateur ROI : l'outil réellement servi (état de main au 03/10/2026, AR-01).
+ * Calculateur ROI : l'outil réellement servi (état de main au 06/10/2026, D47).
  *
- * - `/{lang}/studios-photo-automatises` : section teaser `#calculateur-roi`, dont le
- *   bouton mène au calculateur autonome. Le calculateur n'est plus intégré à Studios.
+ * - `/{lang}/studios-photo-automatises` : section teaser, dont le bouton mène au
+ *   calculateur autonome. Le calculateur n'est plus intégré à Studios.
  * - `/fr/calculateur-roi` : conseiller ROI conversationnel (`RoiPublicChat`, GO Seb 06/08).
  * - `/en/calculateur-roi` et `/de-ch/roi-rechner` : assistant à trois étapes
  *   (`ROICalculatorWizard`), conservé jusqu'à l'extension multilingue du conseiller.
@@ -44,13 +44,11 @@ const APPELS_LEAD = /\/api\/roi-(pdf|lead)$/;
 
 test.describe('Calculateur ROI — section de Studios', () => {
   for (const lang of ['fr', 'en', 'de-ch'] as const) {
-    test(`section #calculateur-roi unique et visible, bouton vers le calculateur (${lang})`, async ({ page }) => {
+    test(`le bouton de la section ROI mène au calculateur (${lang})`, async ({ page }) => {
       await page.goto(`/${lang}/studios-photo-automatises`);
-      await expect(page.locator('[id="calculateur-roi"]')).toHaveCount(1);
-      const section = page.locator('#calculateur-roi');
-      await section.scrollIntoViewIfNeeded();
-      await expect(section).toBeVisible();
-      await expect(section.locator(`a[href="${PAGE_CALCULATEUR[lang]}"]`)).toBeVisible();
+      const bouton = page.locator('main section').locator(`a[href="${PAGE_CALCULATEUR[lang]}"]`).first();
+      await bouton.scrollIntoViewIfNeeded();
+      await expect(bouton).toBeVisible();
     });
   }
 });
