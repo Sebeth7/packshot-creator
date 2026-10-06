@@ -581,6 +581,39 @@ Une première version de la correction de la molette interrompait aussi sur un a
 
 ---
 
+## 2026-10-03 · A03 — 4 liens de guides vers leur destination finale, sans passer par une redirection · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A03 (Maillage V2 PR-03 : F-045, F-046, F-047, F-068 ; CA10 a) | **PR** : brouillon, branche `seo/a03-redirections-internes-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Dans le champ `introText` de 3 guides, 4 `href` qui passaient par une redirection du Worker pointent directement vers leur destination finale :
+- `/fr/industrie/pieces-techniques` → `/fr/industrie/pieces-techniques-industrie` (F-045) ;
+- `/fr/industrie/objets-art-antiquite` → `/fr/industrie` (F-046) ;
+- `/fr/industrie/simplifiez-production-de-vos-visuels-optique-lunetterie` → `/fr/industrie/lunetterie` (F-047) ;
+- `/en/industrie/pieces-techniques` → `/en/industrie/pieces-techniques-industrie` (F-068).
+Aucun mot modifié. Worker et `next.config.ts` non touchés.
+
+**Pourquoi** — Redirections internes évitables (audits A, C, E ; Maillage V2). Destinations lues dans `cloudflare-worker/src/index.js` du dépôt (l. 1060, 1211, 1212, 1217). Décision de Laurent du 03/10 : CA10 (a), avec information de Sébastien.
+
+**Fichiers** — `content/guides/fr/comment-creer-vues-multi-angles-automatique-objet.json`, `content/guides/en/how-to-create-automatic-multi-angle-views-of-an-object.json`, `content/guides/fr/comment-photographier-lunettes-e-commerce.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Liens internes directs, sans saut 301 ; plus de dépendance de ces liens au Worker.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des 3 guides identique ; seul `introText` change.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 3 pages sur 359 (les 3 guides), exactement les 4 `href` annoncés.
+- `next start` local : guides 200 ; nouvelles cibles 200 (`/en/industrie/pieces-techniques-industrie` en `noindex, follow`, comme avant le saut) ; anciennes URL 404 sans le Worker (piège E5), ce qui confirme qu'elles ne vivaient que par la redirection.
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`. `redirections.spec.ts` : échecs locaux sans rapport avec ce diff (aucun fichier de redirection modifié), mesurés à part sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que le Worker actif en production applique les mêmes sauts que le dépôt (R5) : sans effet sur cette PR, qui ne dépend plus du Worker.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; le choix d'une cible plus précise que le hub pour « artisanaux ou de collection » (éditorial, hors lot).
+
+**Suite** — Information de Sébastien (CA10 a). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10.
+
+---
+
 ## 2026-10-03 · C08 = D1-H01 — `hreflang` de l'article IA, une seule correction pour les audits A, C et D · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, C08 (Maillage V2 PR-08, ligne G-001 ; audit D H01) | **PR** : brouillon, branche `seo/c08-hreflang-article-ia-2026-10-03` | **Base** : `main` `de6c4cd`
