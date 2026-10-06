@@ -34,6 +34,49 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · #84 finalisée : sommaire du blog vérifié sur l'article A du cluster AI Act, entrée active juste, molette respectée · Claude de Laurent
+
+**Chantier** : D44 (R-UX-LONG), forme B | **PR** : #84, brouillon, branche `ccr-79f70eb9-ux-blog` | **Base** : `main` `9b19e6d`, fusionnée dans la branche (`063fd18`), tête précédente `a4b27c6`
+
+**Quoi** —
+- Synchronisation : `main` fusionné dans la branche, sans rebase (22 commits de retard). Un conflit, ce fichier : entrées de `main` conservées à l'identique, entrée #84 du 03/10 replacée à sa date (après « D45 — référentiel », 07:17 UTC ; avant « CI — Vitest », 08:50 UTC). Aucune ligne supprimée.
+- `components/blog/TableOfContents.tsx`, trois corrections, le reste inchangé (repli avant défilement, liste plafonnée `calc(100vh - 10rem)`, corrections d'arrivée) :
+  - entrée active calculée sur la position des titres (dernier titre arrivé à sa marge de défilement, 96 px), à chaque défilement ; le titre atteint par un clic devient l'entrée active. L'`IntersectionObserver` sur une ligne à 20 % de la fenêtre est retiré ;
+  - un geste du lecteur hors du sommaire (molette, toucher, clic, touche) arrête les corrections d'arrivée ;
+  - un clic sur une autre entrée remplace le défilement en cours ; les gestes faits dans le sommaire n'interrompent pas.
+- `e2e/sommaire-blog.spec.ts` : 8 tests deviennent 18 sur `main`, 25 quand l'article A est présent (#96).
+
+**Pourquoi** — QA Chrome de la Preview #96, article A (`/fr/blog/ai-act-images-produit`, 22 entrées) : à 1 321 × 727, liste de 884 px sans défilement interne ; à 390 px, titre de « 3. Recolorisation » à environ 717 px au-dessus de l'écran. Ces deux défauts viennent du code de `main`, que #84 corrige. Mesures du 06/10 sur A, build local `main` + #96 :
+- desktop, 4 viewports : sommaire de 990 px, 5 à 8 entrées hors écran, dernière entrée non cliquable ;
+- mobile 390, 360, 820 px : titre visé à −809, −826 et −707 px.
+
+Deux défauts du code de #84 au 03/10, mesurés sur A avec #84 + #96 :
+- entrée active fausse après un clic sur la première entrée (4 viewports sur 4), absente après la dernière à 1 024 × 768 ;
+- molette du lecteur pendant le défilement annulée : page ramenée de force sur le titre (`scrollY` 9 419 → 18 565). Sur `main`, la page restait où le lecteur l'amenait.
+
+Une première version de la correction de la molette interrompait aussi sur un appui dans le sommaire : la liste recentrée bougeait sous le pointeur, un second clic rapproché (150 ms) était perdu. Corrigé avant commit ; le test « deux clics rapprochés » le couvre.
+
+**Fichiers** — `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Navigation dans les 122 articles du gabarit commun et les 6 pages dédiées : toutes les entrées atteignables, titre visé sous l'en-tête après clic, toucher ou Entrée, entrée active juste et visible, molette du lecteur jamais contrariée.
+
+**Vérifié** —
+- Builds locaux de production, vrais viewports Playwright (Chromium 141), mesures de position en fin de défilement :
+  - A en FR, EN, de-ch ; anciens articles : sommaire court (3 entrées), long (41), images chargées en route (deux articles), tableau. 1 321 × 727, 1 440 × 900, 1 180 × 727, 1 024 × 768 ; 390, 360, 820 px ; mouvement réduit. 64 cas, 0 écart : liste dans la fenêtre, défilement interne quand elle dépasse, dernière entrée atteinte, titre à 96 px du haut (31 px sous l'en-tête de 65 px) et premier titre visible, entrée active juste et visible, focus clavier visible sur chaque entrée, pied de page non recouvert, contenu principal immobile, aucun débordement horizontal, repli du panneau environ 30 ms avant le premier défilement ;
+  - pages dédiées : `guide-achat-studio-2026` et `comment-calculer-le-roi…` (latéral, 4 viewports), `orbitvu-vs-concurrents` et `ia-photo-produit-guide-2026` (repliable, 390, 360, 820 px, mouvement réduit) : 0 écart, hors le débordement horizontal à 1 024 px de `guide-achat-studio-2026`, identique sur `main` ;
+  - clics rapprochés (150 et 400 ms) : la page finit sur le second titre ; molette 300 ms après un clic : page laissée où le lecteur l'amène.
+- 151 pages de blog servies par `main` + #96 et par #84 + #96 : `id`, liens, JSON-LD, `<title>`, description, canonique, hreflang et titres identiques ; HTML identique hors balisage du sommaire.
+- Spec `sommaire-blog` : 18/18 sur la branche ; 25/25 sur #84 + #96. Contre-épreuves, sans mutation du code : code de `main` + #96, 24 échecs sur 25 (dont « bas du sommaire dans la fenêtre » ×10, « 3. Recolorisation : titre sous l'en-tête » à 390, 360 et 820 px) ; code de #84 au 03/10 + #96, 10 échecs (entrée active, molette, second clic).
+- `npx tsc --noEmit` vert ; eslint vert sur les deux fichiers ; `npx next build` vert (371 pages) ; Vitest 400/400 ; `verifier-json` 180 fichiers valides.
+- `e2e/anchors.spec.ts` : 6/7 sur la branche comme sur `main` + #96 ; l'échec, identique, est `#calculateur-roi` sur Studios (AR-01, #93), spec différé en CI.
+
+**Supposé** — Safari et Firefox : `scrollend` absent selon les versions, garde de 2 s ; non testé.
+**Non regardé** — Firefox, Safari, iOS et Android réels, lecteur d'écran réel ; Preview contrôlée dans Chrome par un humain ; `www` (R4). `docs/seo-geo/ETAT.md` non modifié : la ligne #84 date du 03/10, et #96 réécrit ce fichier (collision évitée).
+
+**Suite** — CI sur la nouvelle tête ; contrôle Chrome de la Preview par Laurent ; GO de fusion distinct. Fusion de #84 avant ou après #96 : aucun fichier commun hors ce journal ; à la fusion de #96, le spec couvre A sans modification.
+
+---
+
 ## 2026-10-04 · Accueil : film de la gamme Orbitvu dans le hero (split, muet, R2) · Claude de Sébastien
 
 **Chantier** : demande directe de Sébastien du 04/10, hors 06-CHANTIERS | **PR** : #95 | **Commit** : `52d0b4f`

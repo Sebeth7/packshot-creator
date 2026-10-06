@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { ChevronDown, List } from 'lucide-react';
 import type { HeadingData } from '@/lib/blog-utils';
 
@@ -22,6 +22,11 @@ interface TableOfContentsProps {
  *   calculée sur la fenêtre et défile seule ; l'entrée active reste visible. Sans
  *   cela, 29 sommaires dépassaient la hauteur utile à 1 440 × 900 et leurs dernières
  *   entrées restaient inaccessibles.
+ * - Entrée active : calculée sur la position des titres, pas sur un franchissement de
+ *   ligne ; le titre atteint par un clic devient l'entrée active.
+ * - Un geste du lecteur hors du sommaire pendant le défilement (molette, toucher, clic,
+ *   touche) arrête les corrections d'arrivée ; un clic sur une autre entrée remplace le
+ *   défilement en cours.
  * - Les `id` des titres ne sont pas calculés ici (`processHtmlContent`) : ancres
  *   historiques inchangées. L'adresse de la page n'est pas modifiée au clic.
  */
@@ -34,8 +39,10 @@ export function TableOfContents({
   const [activeId, setActiveId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [cible, setCible] = useState<string | null>(null);
+  const racineRef = useRef<HTMLElement>(null);
   const listeRef = useRef<HTMLDivElement>(null);
   const enDefilement = useRef(false);
+  const annulerDefilement = useRef<(() => void) | null>(null);
   const [finDefilement, setFinDefilement] = useState(0);
   const panneauId = useId();
 
@@ -48,6 +55,7 @@ export function TableOfContents({
   function lancerDefilement(id: string) {
     const el = document.getElementById(id);
     if (!el) return;
+    annulerDefilement.current?.(); // un nouveau clic remplace le défilement en cours
     enDefilement.current = true;
     let corrections = 0;
     let garde = 0;
@@ -57,6 +65,25 @@ export function TableOfContents({
       window.clearTimeout(garde);
       garde = window.setTimeout(arrivee, 2000); // navigateurs sans « scrollend »
     };
+    const terminer = (atteint: boolean) => {
+      window.removeEventListener('scrollend', arrivee);
+      window.clearTimeout(garde);
+      for (const type of INTERRUPTIONS) window.removeEventListener(type, interrompre);
+      annulerDefilement.current = null;
+      enDefilement.current = false;
+      // Titre demandé actif, même s'il n'a pas pu monter sous l'en-tête (fin de page).
+      if (atteint) setActiveId(id);
+      setFinDefilement((n) => n + 1);
+    };
+    // Le lecteur reprend la main hors du sommaire (molette, toucher, clic, touche) : plus
+    // aucune correction. Sans cela, la page était ramenée de force sur le titre (mesuré le
+    // 06/10 à 1 440 px). Un geste dans le sommaire n'interrompt pas : un clic sur une autre
+    // entrée remplace le défilement, et relancer le recentrage de la liste entre l'appui
+    // et le relâchement déplaçait l'entrée sous le pointeur (clic perdu, mesuré le 06/10).
+    function interrompre(e: Event) {
+      if (e.target instanceof Node && racineRef.current?.contains(e.target)) return;
+      terminer(false);
+    }
     function arrivee() {
       window.removeEventListener('scrollend', arrivee);
       window.clearTimeout(garde);
@@ -74,34 +101,66 @@ export function TableOfContents({
           defilerVers(el!);
           return;
         }
-        enDefilement.current = false;
-        setFinDefilement((n) => n + 1);
+        terminer(true);
       }, 600);
     }
+    for (const type of INTERRUPTIONS) window.addEventListener(type, interrompre, { passive: true });
+    annulerDefilement.current = () => terminer(false);
     armer();
     defilerVers(el);
   }
 
+  useEffect(() => () => annulerDefilement.current?.(), []);
+
+  /**
+   * Entrée active : le dernier titre arrivé sous l'en-tête, là où le sommaire le pose
+   * (sa marge de défilement, 96 px). Calculée sur la position, à chaque défilement.
+   * L'ancien `IntersectionObserver` (ligne à 20 % de la fenêtre) ne voyait ni un titre
+   * posé à 96 px au-dessus de cette ligne, ni un titre franchi entre deux images d'un
+   * défilement rapide : mesuré le 06/10 sur /fr/blog/ai-act-images-produit, entrée
+   * active fausse après un clic sur la première entrée, absente après la dernière.
+   */
   useEffect(() => {
     if (headings.length === 0) return;
+    const titres = headings
+      .map(({ id }) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    let marges: number[] = [];
+    let image = 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-20% 0px -80% 0px' }
-    );
+    const mesurerMarges = () => {
+      marges = titres.map((el) => parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
+    };
+    const calculer = () => {
+      image = 0;
+      let actif = '';
+      let plusBas = -Infinity;
+      titres.forEach((el, i) => {
+        const haut = el.getBoundingClientRect().top;
+        if (haut <= marges[i] + 8 && haut > plusBas) {
+          plusBas = haut;
+          actif = el.id;
+        }
+      });
+      if (actif) setActiveId(actif);
+    };
+    const planifier = () => {
+      if (!image) image = requestAnimationFrame(calculer);
+    };
+    const redimensionner = () => {
+      mesurerMarges();
+      planifier();
+    };
 
-    for (const { id } of headings) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-
-    return () => observer.disconnect();
+    mesurerMarges();
+    calculer();
+    window.addEventListener('scroll', planifier, { passive: true });
+    window.addEventListener('resize', redimensionner);
+    return () => {
+      window.removeEventListener('scroll', planifier);
+      window.removeEventListener('resize', redimensionner);
+      cancelAnimationFrame(image);
+    };
   }, [headings]);
 
   // Défilement différé : il part une fois le panneau replié et la page remise en page.
@@ -165,7 +224,7 @@ export function TableOfContents({
 
   if (collapsible) {
     return (
-      <div className={className}>
+      <div ref={racineRef as RefObject<HTMLDivElement>} className={className}>
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
@@ -191,7 +250,7 @@ export function TableOfContents({
   }
 
   return (
-    <nav className={className}>
+    <nav ref={racineRef} className={className}>
       <h2 className="text-sm font-bold text-future-dusk-900 mb-4 uppercase tracking-wide flex items-center gap-2">
         <List className="h-4 w-4" />
         {title}
@@ -206,6 +265,9 @@ export function TableOfContents({
     </nav>
   );
 }
+
+/** Gestes du lecteur qui interrompent un défilement lancé depuis le sommaire. */
+const INTERRUPTIONS = ['wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
 
 function defilerVers(el: HTMLElement) {
   const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
