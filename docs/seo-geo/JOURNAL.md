@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · P0 intégrité : note BlendAI 4,9/5 sur 100 avis, sans source, retirée (JSON-LD, FAQ, chaînes mortes) · Claude de Laurent
+
+**Chantier** : P0 intégrité, hors 06-CHANTIERS ; ne lance pas le nettoyage BlendAI global | **PR** : #97, brouillon, branche `claude/dazzling-fermi-1qerqb` | **Commit** : `b2199b7` | **Base** : `main` `1e0901b`, puis `8247217` (fusion de #96) fusionné dans la branche, sans rebase
+
+**Quoi** — Retrait de la seule note `4,9/5` / `100 avis` attachée à l'offre IA, et de rien d'autre :
+- `app/[lang]/ia-photo-produit/page.tsx` : bloc `aggregateRating` (4,9 ; 100 ; 5) du JSON-LD `SoftwareApplication` BlendAI, rendu en FR et EN (déjà absent en de-ch, D31). Le reste du bloc est inchangé ;
+- `blogStudioIa.faq.q3.answer` (FR, EN, de-ch) : proposition « , avec une note de satisfaction de 4,9/5 » / « , with a 4.9/5 satisfaction rating » supprimée ; la phrase devient « Plus de 100 marques l'utilisent. » / « Over 100 brands use it. ». Texte visible et `FAQPage` de `/fr` et `/en/blog/studio-ia-vs-ia-generative` ; en de-ch, chaîne morte (article jamais servi en de-ch, `i18n/deChCoverage.ts`) ;
+- `iaPhotoProduit.socialProof.stat3` et `stat3Label` (FR, EN, de-ch) : clés mortes (aucune référence dans le code, la page n'affiche pas ce bloc), retirées.
+
+**Pourquoi** — Aucune source établie pour 4,9/5 ni pour 100 avis. Avant : `AggregateRating` dans le JSON-LD de 2 pages ; note visible et dans `FAQPage` sur 2 pages ; `4.9/5` présent dans le flux RSC du HTML brut de 355 pages sur 359 (`NextIntlClientProvider` reçoit tout `messages/<langue>.json`, constat déjà relevé dans ce journal). Agrégat Google légitime (`data/testimonials.ts`, `GMB_AGGREGATE` 4,7 / 83) non touché.
+
+**Fichiers** — `app/[lang]/ia-photo-produit/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Au déploiement : plus aucun `AggregateRating` dans le JSON-LD du site (l'agrégat Google n'est rendu qu'en texte ; les 32 `Review` restent) ; Google retire l'éventuel extrait d'étoiles de `/fr` et `/en/ia-photo-produit` au recrawl (J+3 à J+14). Aucun effet attendu sur les autres pages hors disparition des chaînes du flux RSC.
+
+**Vérifié** —
+- Clés de messages, `main` contre branche, par langue : 2 clés supprimées (`stat3`, `stat3Label`), 1 modifiée (`q3.answer`), aucune autre ; édition par lignes, sans reformatage ; `verifier-json` 180 fichiers valides.
+- `npx tsc --noEmit` vert ; eslint vert sur la page ; Vitest 400/400 ; `npx next build` vert (371 pages), valeurs factices de la CI, aucun `MISSING_MESSAGE`.
+- 359 HTML prérendus, build de `main` contre build de la branche : JSON-LD parsé différent sur 4 pages exactement (`/fr` et `/en/ia-photo-produit` : `aggregateRating` retiré ; `/fr` et `/en/blog/studio-ia-vs-ia-generative` : texte de la réponse 3) ; texte visible différent sur 2 pages (les deux articles, réponse 3) ; `<title>`, description, robots, canonique, hreflang et OG identiques sur 359 pages.
+- Après : `4.9/5`, `4,9/5`, `AggregateRating`, `"reviewCount":100`, « note de satisfaction », « satisfaction rating », `Kundenzufriedenheit` : 0 occurrence dans le JSON-LD, le texte visible et le flux RSC des 359 pages.
+- Agrégat Google préservé : « 4,7/5 sur 83 avis » visible sur `/fr` et `/fr/studios-photo-automatises`, « 4.7/5 over 83 reviews » sur `/en` et `/en/studios-photo-automatises`, avant comme après ; 32 blocs JSON-LD `Review`, avant comme après.
+- `e2e/seo.spec.ts` (Chromium préinstallé, `next start`) : 227/236 sur la branche ; les 9 mêmes échecs sur `main` `1e0901b` (titres de plus de 70 caractères, descriptions, hreflang de `/fr/packshot-bijoux`), aucun lié à ce diff.
+- Après fusion de `main` `8247217` (#96) dans la branche, mêmes contrôles refaits contre un build de `8247217` : `verifier-json` 195 fichiers ; `tsc` vert ; Vitest 400/400 ; `next build` vert (386 pages) ; 374 HTML : JSON-LD différent sur les 4 mêmes pages, texte visible sur les 2 mêmes, `<head>` identique sur 374 ; `4.9/5` dans le flux RSC de 370 pages avant, 0 après ; agrégat Google et 32 `Review` inchangés ; `seo.spec` 227/236, les 9 mêmes échecs sur `8247217`. #96 n'apporte aucune occurrence nouvelle de la note.
+- Collisions, 19 PR ouvertes : seule #85 touche `app/[lang]/ia-photo-produit/page.tsx` (barre D44, hunks avant la ligne 590 ; ce diff à la ligne 701) ; #64 et #27 touchent `messages/*.json` sans toucher ces clés ; fusion simulée (`git merge-tree`) de la branche avec chacune des 19 : résultat dans la PR.
+
+**Supposé** — Qu'aucune source de la note n'existe hors du dépôt : l'audit la donne NON ÉTABLIE ; aucune trace dans `docs/`, `data/` ni `content/`.
+**Non regardé** — Preview Vercel et `www` dans Chrome (R4) ; Test des résultats enrichis de Google ; « Plus de 100 marques », `stat1` (100+ marques) et `stat2` (5 000+ visuels) : autres affirmations, non sourcées elles aussi, hors périmètre (nettoyage BlendAI) ; « fidèles à 100 % » de la description `SoftwareApplication` (RV28-E12) ; `ETAT.md`, non modifié : #96 le réécrivait (fusionnée pendant ce chantier), #94 le réécrit encore, une modification créerait une collision ; documents non servis (`sessions/`, `livrables/`, `PLAN_PROD.md`) qui citent encore 4,9/5.
+
+**Suite** — CI et Preview ; contrôle Chrome de la Preview par Laurent ; GO de fusion de Laurent, distinct. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, contrôle Chrome de `/fr/ia-photo-produit` sur `www`.
+
+---
+
 ## 2026-10-06 · A04a (#89) actualisée depuis `main` `8247217` (#96) : liens Skeelbox retirés, conflit de journal résolu · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A04a | **PR** : #89, brouillon | **Branche** : `seo/a04a-liens-skeelbox-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `43dd0eb`
