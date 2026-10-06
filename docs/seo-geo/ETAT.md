@@ -25,8 +25,8 @@ vont en C ou D, ses mesures en E.
 |---|---|
 | Contrôle | 06/10/2026, Claude de Laurent (cluster AI Act, relevé GitHub) |
 | `main` | `9b19e6d` — fusion de #95 (hero vidéo de l'accueil, Claude de Sébastien), 04/10 à 09:10:40 UTC ; relevé le 06/10. Fusionnées depuis le 03/10 : #87, #83, #86, #95. Statut du déploiement de production : non relevé par ce contrôle |
-| Dernière mise à jour documentaire | 06/10 — Claude de Laurent : cluster AI Act, D46, Q23 (PR #__PR__). Avant : 03/10 — Claude de Laurent : revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
-| PR ouvertes | 20 au 06/10 : #27, #59, #60, #64, #65, #67, #70, #77, #79, #82, #84, #85, #88 à #94, et #__PR__ (cluster AI Act, qui intègre #59, #60 et #77) |
+| Dernière mise à jour documentaire | 06/10 — Claude de Laurent : cluster AI Act, D46, Q23 (PR #96). Avant : 03/10 — Claude de Laurent : revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites, `docs/standards/`, Q21 (#87, brouillon). Avant : 02/10, #81 (rangement GitHub, fusionnée, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
+| PR ouvertes | 20 au 06/10 : #27, #59, #60, #64, #65, #67, #70, #77, #79, #82, #84, #85, #88 à #94, et #96 (cluster AI Act, qui intègre #59, #60 et #77) |
 | Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit) ; Q21 (D44, D45 et `/CLAUDE.md`) ; Q22 (pour information : CI et interface) ; Q23 (pour information : cluster AI Act, D46, copywriting FR et auteur) |
 
 Règles transverses en vigueur, rappel :
@@ -48,11 +48,11 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 
 | PR | Objet | Propriétaire | Statut | Blocage | Prochain geste |
 |---|---|---|---|---|---|
-| #__PR__ | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; build vert (386 pages), QA 15 URL × 5 formats sans anomalie bloquante, e2e identiques à `main` | GO de publication explicite de Laurent (checkpoint de la mission) ; points ouverts en C | Preview humaine (SSO) ; GO ; fusion ; contrôle J0 |
-| #59 | Pilier AI Act A, FR | Claude de Laurent | Brouillon ; tête `2a36322` **intégrée à #__PR__** | — | Se ferme avec #__PR__ (aucun développement séparé) |
-| #60 | Article Suisse S, FR | Claude de Laurent | Brouillon ; tête `74ae921` **intégrée à #__PR__** | — | Se ferme avec #__PR__ |
-| #77 | AI Act : deux formulations juridiques corrigées (FR, EN, de-ch) | Claude de Laurent | Brouillon ; tête `a207fe3` **intégrée à #__PR__** (liens vers A ajoutés dans les mêmes paragraphes) | — | Se ferme avec #__PR__ |
-| #79 | Previews privées AI Act B, C, D — REVIEW ONLY | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `a4a62ac` ; matière reprise dans #__PR__ (textes, 5 AVIF), pages et modules non repris | Ne se fusionne pas (D46) | Fermeture sur décision de Laurent après la publication |
+| #96 | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; build vert (386 pages), QA 15 URL × 5 formats sans anomalie bloquante, e2e identiques à `main` | GO de publication explicite de Laurent (checkpoint de la mission) ; points ouverts en C | Preview humaine (SSO) ; GO ; fusion ; contrôle J0 |
+| #59 | Pilier AI Act A, FR | Claude de Laurent | Brouillon ; tête `2a36322` **intégrée à #96** | — | Se ferme avec #96 (aucun développement séparé) |
+| #60 | Article Suisse S, FR | Claude de Laurent | Brouillon ; tête `74ae921` **intégrée à #96** | — | Se ferme avec #96 |
+| #77 | AI Act : deux formulations juridiques corrigées (FR, EN, de-ch) | Claude de Laurent | Brouillon ; tête `a207fe3` **intégrée à #96** (liens vers A ajoutés dans les mêmes paragraphes) | — | Se ferme avec #96 |
+| #79 | Previews privées AI Act B, C, D — REVIEW ONLY | Claude de Laurent | Brouillon, `DO_NOT_MERGE` ; tête `a4a62ac` ; matière reprise dans #96 (textes, 5 AVIF), pages et modules non repris | Ne se fusionne pas (D46) | Fermeture sur décision de Laurent après la publication |
 | #64 | D33, patch factuel (showroom Beynost, Orbitvu 2023, conditions commerciales, allemand, garantie, D25, comparatif Orbitvu) | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `63e1e92`, 31 commits de retard | Fusion sur décision explicite de Laurent et de Sébastien ; points ouverts en C | Contrôle de la Preview par Laurent (desktop, tablette, mobile) |
 | #65 | D40 proposée : circuit Preview Vercel → Sébastien (documentation) | Claude de Laurent | Brouillon ; tête `c5e15a8`, 53 commits de retard ; conflits `DECISIONS`, `ETAT`, `JOURNAL` | D40 non en vigueur ; 17 modifications imposées par D42 et D43 (JOURNAL du 01/10, « arbitrages finaux ») | Sort à arbitrer par Laurent (C) |
 | #67 | D36 : `noindex` de l'origine `sysnext.vercel.app` | Claude de Laurent | Brouillon, « DO NOT MERGE » ; tête `62ebfae`, 60 commits de retard ; conflit sur le test Worker (#68) | Porte imposée avant toute décision sur #67 : version active du Worker confirmée (présence du bloc D36), puis `www` contrôlé. Déploiement après #68 rapporté le 01/10 par les transmissions de pilotage ; non consigné au JOURNAL, non vérifié par ce rangement | Lecture Cloudflare READ ONLY, puis contrôle de `www` (C). Aucun nouveau déploiement autorisé |
@@ -75,8 +75,8 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #65 — harmoniser ou fermer | 01/10 | #76 est fusionnée : si #65 est conservée, elle reprend `main` (`8c0dd06` au moins) et applique les 17 modifications listées au JOURNAL du 01/10 (« arbitrages finaux »), budget D43 du 02/10 compris. Fusion après validation et autorisation finale de Laurent. Aucune modification de protection Vercel, de lien public ni d'autorisation |
 | #27 — sort de la PR | 02/10 | Preuves conservées : contrôle `curl.exe` du lot F et liste des 14 liens cités au JOURNAL du 02/10 ; branche `content/maillage-q3` conservée. Fermeture possible sur GO distinct |
 | Lot F — clôture du contrôle `curl.exe` (Worker déployé le 23/09, version `05c5c47c`) | 23/09 | Résultat « tout conforme » consigné le 23/09 dans le JOURNAL de la branche de #27 (`e81e5c0`), jamais fusionné ; cité au JOURNAL du 02/10. À confirmer par Laurent pour clore |
-| Cluster AI Act (#__PR__) — GO de publication | 06/10 | Checkpoint rendu le 06/10 ; fusion sur GO explicite de Laurent seulement. Points à trancher au GO : contradiction D46 / `01-RAYON-ACTION.md` (copywriting FR réservé à Sébastien) ; auteur affiché « Sébastien Jourdan » ; visuels B0, C0, D0 non validés (écarts au brief) ; date `2026-10-06` à ajuster si la fusion a lieu un autre jour |
-| Zalando (A, S, D) | 06/10 | Page « Updated October 1, 2026 » relevée : intitulé « required by December 2026 » et « We strongly recommend » ; formulation prudente citée, sans obligation certaine (#__PR__) |
+| Cluster AI Act (#96) — GO de publication | 06/10 | Checkpoint rendu le 06/10 ; fusion sur GO explicite de Laurent seulement. Points à trancher au GO : contradiction D46 / `01-RAYON-ACTION.md` (copywriting FR réservé à Sébastien) ; auteur affiché « Sébastien Jourdan » ; visuels B0, C0, D0 non validés (écarts au brief) ; date `2026-10-06` à ajuster si la fusion a lieu un autre jour |
+| Zalando (A, S, D) | 06/10 | Page « Updated October 1, 2026 » relevée : intitulé « required by December 2026 » et « We strongly recommend » ; formulation prudente citée, sans obligation certaine (#96) |
 | #64 — date de création | 01/10 | D33 dit 2001 ; faits métier du 30/09 cités par #64 : Sysnext 2001, lancement de PackshotCreator 2004 ; `foundingDate` 2004 ; le site affiche 2001, 2003 et 2004 selon les pages. `DECISIONS.md` non modifié |
 | #64 — autres points | 30/09 | Délai : 10 jours (D32, F5) contre 12 jours (#64) ; showroom : D1 et `00-BRIEFING.md` citent Saint-Bonnet-de-Mure, #64 Beynost ; claims non sourcés restants dans `guide-achat-studio-2026` et `comment-calculer-le-roi-…` |
 | #70 — `<title>` et copywriting | 30/09 | Point de gouvernance ouvert, à trancher avant toute fusion |
@@ -148,7 +148,7 @@ Le contrôle sur `sysnext.vercel.app` est fait et consigné au JOURNAL pour chaq
 | P0-D/E — Worker `27b0153c` : 30 premiers sauts | 25/09 | 09/10 | GSC, couverture et pages de destination | Rollback disponible : `05c5c47c-4b60-41af-9acd-b3778be1e508` |
 | `sku` et `priceValidUntil` des 51 fiches (#22) | 20/09 | Lisible depuis ~04/10 (J+14) | GSC, « Fiches marchand » | 2 des 4 champs manquants comblés ; les 2 autres relèvent de D32 |
 | Bascule des réponses IA sur le dossier suisse | 22/08 | ~début octobre, si les mails sont partis | Sondes `geo-ultimate` | — |
-| Cluster AI Act (#__PR__) | À la fusion (J0) | **J+7 technique, J+28 SEO/GEO, J+56 consolidation** | GSC par URL et par requête ; réponses IA (méthode à définir) | Baseline et variables concomitantes : `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md`, section 6 |
+| Cluster AI Act (#96) | À la fusion (J0) | **J+7 technique, J+28 SEO/GEO, J+56 consolidation** | GSC par URL et par requête ; réponses IA (méthode à définir) | Baseline et variables concomitantes : `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md`, section 6 |
 | TDE | — | **HOLD** | — | Correctifs méthodologiques avant toute nouvelle exécution (consigne de Laurent du 02/10). Aucun document TDE dans le dépôt |
 
 ---
@@ -170,7 +170,7 @@ chantiers `C<n>`, arrêté au 19/09 : `06-CHANTIERS.md`.
 
 ### F2. AI Act
 
-06/10 : A, S, B, C, D réunis dans #__PR__ (D46), avec #77 ; #79 reste matière de revue. Anciennes PR #43, #53, #61 à #63 fermées sans fusion, à ne pas rouvrir. Dossier : `docs/seo-geo/cluster-ai-act-2026-10-06/`.
+06/10 : A, S, B, C, D réunis dans #96 (D46), avec #77 ; #79 reste matière de revue. Anciennes PR #43, #53, #61 à #63 fermées sans fusion, à ne pas rouvrir. Dossier : `docs/seo-geo/cluster-ai-act-2026-10-06/`.
 
 - BL-43-1 : gabarit des articles, `og:url`, `og:site_name`, `og:locale` et carte `twitter` par article, import `HeadingData` inutilisé (`app/[lang]/blog/[slug]/page.tsx`, #43 `4aa305e`). PR applicative distincte, rayon large (125 articles JSON), réécrite sur `main`, sans cherry-pick.
 - BL-43-2 : E1/E2, `generer-images-produit-ia` (corps l. 16, FAQ l. 36) attribue à l'AI Act une règle de non-tromperie qui relève du droit de la consommation (#43 `4aa305e`). Correction proposée dans #77 ; validation de Sébastien ; renvoi vers A seulement après sa publication.
@@ -181,8 +181,8 @@ chantiers `C<n>`, arrêté au 19/09 : `06-CHANTIERS.md`.
   - RV28-E8 à RV28-E13, contenus du site, formulations présentes sur `main` `2ef01b2` : BlendAI.studio « solution propriétaire » et JSON-LD `provider` (E8) ; FTC et Californie dans `studio-ia-vs-ia-generative` (E9, E10) ; « photo réelle auditable, métadonnées préservées » (E11) ; « zéro hallucination », « jamais au produit », « fidèles à 100 % » (E12) ; témoignage « ne font pas la différence » (E13) ;
   - RV28-H1 à RV28-H3, site blendai.studio, hors dépôt : « Résultats indiscernables du réel », « Conformité juridique garantie », pages légales en 404 au 28/09 ; état actuel NON VÉRIFIÉ ;
   - faits BlendAI de l'évaluation du 28/09, déclaratifs et non reconfirmés : marquage des exports en développement, mannequins virtuels non vérifiés, société exploitante en création.
-- Style commun des tableaux : corrigé sous 640 px par #__PR__ (en-têtes sur plusieurs lignes) ; défilement interne maintenu pour les tableaux larges (A, D) en mobile.
-- BL-43-1 (gabarit : `twitter:*`, `og:url`, `og:locale`, `inLanguage`) : non traité par #__PR__, toujours ouvert. `og:image` en AVIF : non lu par plusieurs réseaux sociaux, préexistant.
+- Style commun des tableaux : corrigé sous 640 px par #96 (en-têtes sur plusieurs lignes) ; défilement interne maintenu pour les tableaux larges (A, D) en mobile.
+- BL-43-1 (gabarit : `twitter:*`, `og:url`, `og:locale`, `inLanguage`) : non traité par #96, toujours ouvert. `og:image` en AVIF : non lu par plusieurs réseaux sociaux, préexistant.
 
 ### F3. Academy et Qualiopi
 
@@ -325,7 +325,7 @@ Closes : Q1 et Q3 le 17/09 ; Q2, Q4, Q6, Q12, Q13, Q14 et Q15 par Laurent le 25/
 |---|---|---|
 | D39 | En vigueur | `main` (#66) |
 | D40 | **Proposée**, non fusionnée ; en vigueur à la fusion de #65, selon son propre statut | #65, tête `c5e15a8` |
-| D46 | En vigueur pour la préparation ; publication sur GO explicite de Laurent | #__PR__ |
+| D46 | En vigueur pour la préparation ; publication sur GO explicite de Laurent | #96 |
 | D41 | Remplacée par D46 sur le principe des satellites ; maintenue pour #61 à #63 | `main` (#73) |
 | D42 | En vigueur depuis la décision de Laurent du 01/10, applicable aux PR déjà ouvertes | `main` (#76, fusionnée le 02/10, `9400eaa`) |
 | D43 | En vigueur depuis la décision de Laurent du 02/10 : 200 USD par mois, GO explicite avant tout appel payant | `main` (#76, fusionnée le 02/10, `9400eaa`) |

@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-06 · Cluster AI Act — cinq articles en FR, EN et de-ch prêts pour une publication coordonnée (D46) · Claude de Laurent
 
-**Chantier** : cluster AI Act (F2), D46 | **PR** : #__PR__, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d`
+**Chantier** : cluster AI Act (F2), D46 | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d`
 
 **Quoi**
 - #59 (A), #60 (S) et #77 fusionnées dans la branche (historique et entrées de JOURNAL conservés, insertion chronologique, contrôle par comptage de lignes) ; contenus identiques aux têtes `2a36322`, `74ae921`, `a207fe3` avant les modifications ci-dessous.
