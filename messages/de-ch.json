@@ -10,7 +10,12 @@
       "subtitle": "Automatisierte Orbitvu-Fotostudios + KI von BlendAI.studio + Qualiopi-Schulungen. Der Ansatz, der Chanel, Amazon und über 5'000 Unternehmen in Frankreich und der Schweiz ausrüstet.",
       "cta": "Kostenlose Demo anfordern",
       "ctaSecondary": "Meinen ROI in 2 Min. berechnen",
-      "microStats": "Durchschnittlicher ROI: 6–12 Monate | Senkung der Fotokosten: über 60 %"
+      "microStats": "Durchschnittlicher ROI: 6–12 Monate | Senkung der Fotokosten: über 60 %",
+      "video": {
+        "title": "Orbitvu-Fotostudios: Überblick über das Sortiment",
+        "pause": "Video pausieren",
+        "play": "Video abspielen"
+      }
     },
     "socialProof": {
       "heading": "Sie erstellen ihre Packshots mit uns",
@@ -444,9 +449,7 @@
       "stat1": "100+",
       "stat1Label": "nutzende Marken",
       "stat2": "5 000+",
-      "stat2Label": "erstellte Bilder",
-      "stat3": "4.9/5",
-      "stat3Label": "Kundenzufriedenheit"
+      "stat2Label": "erstellte Bilder"
     },
     "compatible": {
       "heading": "Kompatibel mit allen Orbitvu-Systemen",
@@ -3127,7 +3130,7 @@
       },
       "q3": {
         "question": "Qu'est-ce que BlendAI.studio ?",
-        "answer": "BlendAI.studio est la solution propriétaire de photo produit par IA développée par PackshotCreator. Elle part d'un packshot professionnel (idéalement Orbitvu) et génère des variantes lifestyle, des arrière-plans et des retouches sans jamais toucher au produit lui-même. Le professionnel garde le contrôle total sur ses styles et sa direction artistique. Plus de 100 marques l'utilisent, avec une note de satisfaction de 4,9/5. À partir de 75 euros par mois."
+        "answer": "BlendAI.studio est la solution propriétaire de photo produit par IA développée par PackshotCreator. Elle part d'un packshot professionnel (idéalement Orbitvu) et génère des variantes lifestyle, des arrière-plans et des retouches sans jamais toucher au produit lui-même. Le professionnel garde le contrôle total sur ses styles et sa direction artistique. Plus de 100 marques l'utilisent. À partir de 75 euros par mois."
       },
       "q4": {
         "question": "Peut-on faire du 360° avec l'IA générative ?",

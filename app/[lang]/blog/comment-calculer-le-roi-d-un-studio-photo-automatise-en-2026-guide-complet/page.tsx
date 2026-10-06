@@ -377,7 +377,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <Callout type="info" title="Calculez Votre ROI Personnalisé">
                   Estimez le retour sur investissement de votre futur studio photo en 5 minutes avec notre calculateur gratuit. Obtenez une recommandation machine adaptée à vos besoins.{' '}
-                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
+                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
                     Lancer le calculateur gratuit →
                   </Link>
                 </Callout>
@@ -409,7 +409,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600">
                     Investissement initial (machine + installation + formation) : variable selon le modèle retenu —{' '}
-                    <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                    <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                       obtenez votre chiffrage exact en 5 minutes
                     </Link>
                   </li>
@@ -427,7 +427,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <Callout type="success" title="Une Économie Récurrente Significative">
                   Dans cet exemple, le studio génère une <strong>économie nette de 67 000€/an</strong> dès la première année d'exploitation. Le délai de retour et le ROI cumulé exacts varient selon le modèle choisi :{' '}
-                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="underline font-semibold">
+                  <Link href="/calculateur-roi" className="underline font-semibold">
                     calculez les vôtres gratuitement →
                   </Link>
                 </Callout>
@@ -462,7 +462,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 </div>
                 <p className="mb-4 text-sm text-future-dusk-500 italic">
                   * Le montant de l'investissement et le ROI cumulé dépendent du modèle retenu et de votre volume.{' '}
-                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Obtenez votre projection personnalisée
                   </Link>.
                 </p>
@@ -505,7 +505,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <div className="text-center my-10">
                   <Link
-                    href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}
+                    href="/calculateur-roi"
                     className="inline-block bg-very-peri-600 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-very-peri-700 transition-colors shadow-lg"
                   >
                     Calculer Votre ROI Maintenant →
@@ -607,7 +607,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Vos Prochaines Étapes</h3>
                 <div className="flex flex-col sm:flex-row gap-4 my-8">
                   <Link
-                    href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }}
+                    href="/calculateur-roi"
                     className="inline-block bg-very-peri-600 hover:bg-very-peri-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors text-center"
                   >
                     Calculer Mon ROI
