@@ -25,6 +25,26 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D46 · 2026-10-06 · Cluster AI Act : cinq articles (A, S, B, C, D) préparés en FR, EN et de-ch pour une publication coordonnée ; D41 remplacée sur le principe des satellites
+
+**Décidé par** : Laurent — mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026
+**Statut** : en vigueur pour la préparation. **Remplace D41 sur le seul principe de non-création des satellites B, C et D** ; le reste de D41 est maintenu (voir ci-dessous). La fusion, donc la mise en production, reste subordonnée au GO de publication explicite de Laurent, donné après le checkpoint de la mission. Statut de publication à employer : `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_BY_SEBASTIEN`.
+
+**La décision** — Termes de la mission, reproduits : « Laurent décide de ne plus attendre le retour de Sébastien pour publier le dossier AI Act. » Publier un cluster de cinq articles : A (pilier européen), S (Suisse), B (retouche IA), C (mannequins virtuels, personnes synthétiques), D (métadonnées, marketplaces), en FR, EN et de-ch. Nouvel état : A, S à publier ; B, C, D à créer et publier. Les vrais articles B, C, D sont construits depuis le `main` courant ; #79 sert de matière (textes, visuels, provenance) et n'est pas fusionnée ; les anciennes PR #61, #62 et #63 ne sont pas réutilisées telles quelles.
+
+**Ce qui reste de D41** — #61, #62 et #63 ne se rouvrent pas. Les mesures D16 du 30/09 ne sont pas présentées comme un verdict favorable : critère 2 non rempli pour B et C, critère 3 non rempli pour D, motif de Laurent du 30/09 inchangé. Aucune nouvelle mesure D16 n'a été faite le 06/10 (un volume de recherche exigerait un appel payant, exclu par la mission) ; relevé gratuit du 06/10 dans `gsc-crawl-seo` : 2 impressions en 90 jours sur les requêtes du thème. La création de B, C, D repose sur la décision de Laurent, pas sur D16.
+
+**Articulation, sans réécriture des décisions antérieures**
+- D16 (création : trois critères, validation explicite de Sébastien) et D42, étape 5 (validation de Sébastien) : la mission remplace, pour ce cluster, l'attente de la validation de Sébastien par l'autorisation de publication de Laurent. Aucune validation de Sébastien n'est établie (relevé GitHub du 06/10 : aucun commentaire de `Sebeth7` sur #59, #60, #77 et #79, aucune revue sur #59 et #60).
+- `01-RAYON-ACTION.md` (texte de Sébastien du 16/09) classe le copywriting français client-facing parmi ce qui engage l'entreprise et relève de son arbitrage, et `README.md` rappelle que la prose française est sa voix. D46 ne modifie pas ces documents. Le point est porté au checkpoint de la mission comme contradiction non résolue par D46.
+- D38 (publication trilingue coordonnée, de-ch adapté au périmètre suisse) : appliquée.
+
+**Le contexte** — #59 (A) et #60 (S) prêts depuis le 02/10, transmis à Sébastien selon le pilotage du 02/10, sans retour établi sur GitHub. #79 : previews privées B, C, D finalisées le 02/10.
+
+**Ce qu'elle interdit** — Publier les pages `/revue-interne/` de #79 ; fusionner #79 ; présenter la publication comme validée par Sébastien ; fusionner sans le GO de publication explicite de Laurent.
+
+---
+
 ## D45 · 2026-10-03 · R-PRODUCT-DIM : caractéristiques dimensionnelles des produits, référentiel obligatoire et contradictions conservées
 
 **Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
@@ -249,7 +269,7 @@ Arbitrage final 4 — corrections typographiques ponctuelles :
 ## D41 · 2026-09-30 · Cluster AI Act : satellites B, C et D non créés, matière indispensable réintégrée dans le pilier A
 
 **Décidé par** : Laurent — consignée le 2026-10-01
-**Statut** : en vigueur — application de D16 et D27, qu'elle n'amende pas
+**Statut** : **remplacée par D46 (06/10/2026) sur le seul principe de non-création des satellites B, C et D** ; le reste est maintenu (#61, #62 et #63 ne se rouvrent pas ; mesures du 30/09 non présentées comme un verdict favorable). Texte d'origine ci-dessous, inchangé — application de D16 et D27, qu'elle n'amende pas
 
 **La décision** — Ne pas créer les satellites B (retouche IA, #61), C (mannequins virtuels et personnes synthétiques, #62) et D (métadonnées et marketplaces, #63) : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Réintégrer dans le pilier A (#59) la seule matière indispensable au lecteur. Fermer #61, #62 et #63 sans fusion.
 

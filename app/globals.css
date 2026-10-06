@@ -334,6 +334,14 @@
 .prose .table-wrap tbody tr:nth-child(even) { background: var(--very-peri-0-5); }
 .prose .table-wrap tbody tr:last-child td { border-bottom: 0; }
 .prose .table-wrap td:first-child { font-weight: 600; color: var(--future-dusk-9); }
+/* Petits écrans : en-têtes sur plusieurs lignes et cellules resserrées, pour que
+   les colonnes tiennent dans la largeur au lieu de repousser la dernière hors
+   champ (relevé par #59, #60 et #79, backlog F2 de ETAT.md). */
+@media (max-width: 640px) {
+  .prose .table-wrap thead th { white-space: normal; }
+  .prose .table-wrap thead th,
+  .prose .table-wrap tbody td { padding: 0.6rem 0.75rem; }
+}
 
 /* Vidéos YouTube — façade locale (lib/youtube.ts) puis lecteur après accord
    (components/blog/YouTubeConsent.tsx). Boîte 16:9 réservée dès le rendu :
