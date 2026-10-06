@@ -1,6 +1,6 @@
 # Cluster AI Act — publication coordonnée de cinq articles en FR, EN et de-ch
 
-Dossier de la mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026 (Claude de Laurent). Décision : D46. Registre juridique : `REGISTRE-JURIDIQUE.md` (même dossier). Statut de publication à employer : `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_BY_SEBASTIEN`.
+Dossier de la mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026 (Claude de Laurent). Décision : D46. Registre juridique : `REGISTRE-JURIDIQUE.md` (même dossier). Statut de publication : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` (précisions de Laurent du 06/10, mission de continuation, consignées dans D46). Ne jamais écrire que les articles sont validés par Sébastien.
 
 ---
 
@@ -75,6 +75,18 @@ Toutes les illustrations sont générées par IA (création ChatGPT selon les pa
 
 ALT et légendes : ceux des sources (#59, #60, #79), traduits en EN et de-ch. Formats : AVIF, 1 092 à 1 672 px de large, 11 à 178 Ko.
 
+**QA finale des visuels B, C, D (06/10, mission de continuation, § 7)** — utilisation autorisée par Laurent après cette QA ; ce n'est pas une validation de Sébastien.
+
+| Visuel | Marque tierce | Texte parasite | Personne | Cohérence section | ALT, légende, mention IA | Rendu |
+|---|---|---|---|---|---|---|
+| B0 (en-tête de B) | Aucune (cadran sans logo, contrôle à 100 %) | Aucun | Aucune | Montre d'occasion, lumière rasante : rayures, sujet de B | Mention IA dans la note d'ouverture (FR, EN, de-ch) | Pleine largeur, sans recadrage, 1440 à 360 px |
+| B1 (Détourage) | Aucune | Aucun | Aucune | Chaînette et pierre ajourée citées juste avant | ALT et légende « Illustration générée par IA… » | Chargée, ratio 1,78 |
+| C0 (en-tête de C) | Aucune | Aucun | Personne générée par IA selon la provenance de #79 (bloc C2PA du PNG source : chaînes « trainedAlgorithmicMedia », « OpenAI », signature non vérifiée) ; ressemblance avec une personne réelle : non vérifiable | Vêtement sans corps, puis porté | Note d'ouverture précisée : « la personne qui porte la blouse est entièrement synthétique, ce n'est pas une personne réelle » (3 langues) | Pleine largeur, sans recadrage |
+| C2 (liste « Bijou ») | Aucune identifiable ; cadran de la montre : quelques signes de pseudo-texte illisibles à 100 %, imperceptibles à la taille d'affichage (662 px) [Inférence] | Voir colonne précédente | Fragments d'une personne générée (oreille, main, poignet) | Point « Bijou » | ALT et légende « Illustration générée par IA… » | Chargée |
+| D0 (en-tête de D) | Aucune (chaussure sans logo) | Aucun texte sur les panneaux | Aucune | Parcours d'une image produit, de la prise de vue au colis | Mention IA dans la note d'ouverture | Pleine largeur, sans recadrage |
+
+Aucun visuel retiré. Aucune nouvelle génération.
+
 ## 6. Mesure
 
 ### Baseline (avant publication), `gsc-crawl-seo`, site 3, table `gsc_metrics` (requête × page)
@@ -108,7 +120,7 @@ Variables concomitantes à ne pas attribuer au cluster : Mode (J+28 le 29/10, J+
 
 ## 7. SEO par article et par langue (relevé sur `next start` local, build de la branche, 06/10/2026)
 
-Communs aux 15 URL : `ROBOTS` = aucune balise (indexable) ; `CANONICAL` = URL absolue de la page elle-même ; `HREFLANG` = fr, fr-CH, en, de-CH, x-default (fr), identiques sur les trois langues d'un article ; `BREADCRUMB` = accueil de la langue › blog › article ; `DATE_PUBLISHED` = `DATE_MODIFIED` = 2026-10-06 (à ajuster si la fusion a lieu un autre jour) ; `AUTHOR` = « Sébastien Jourdan » (schéma `Person`, point ouvert, Q23) ; `OG_TITLE` = title ; `OG_DESCRIPTION` = description ; `OG_IMAGE` = image d'en-tête (AVIF) ; `TWITTER` = carte `summary_large_image` héritée du site (titre du site, pas celui de l'article : BL-43-1) ; `og:url`, `og:locale` et `Article.inLanguage` absents (gabarit, BL-43-1) ; `SITEMAP` = présent (15/15).
+Communs aux 15 URL : `ROBOTS` = aucune balise (indexable) ; `CANONICAL` = URL absolue de la page elle-même ; `HREFLANG` = fr, fr-CH, en, de-CH, x-default (fr), identiques sur les trois langues d'un article ; `BREADCRUMB` = accueil de la langue › blog › article ; `DATE_PUBLISHED` = `DATE_MODIFIED` = 2026-10-06 dans la branche, à remplacer au dernier commit avant fusion par la date réelle de publication, identique dans les trois langues d'un article ; `AUTHOR` = « PackshotCreator » (schéma : `{"@id": "…/#organization"}`, aucun profil personnel ni `sameAs`), appliqué le 06/10 (mission de continuation) ; `OG_TITLE` = title ; `OG_DESCRIPTION` = description ; `OG_IMAGE` = image d'en-tête (AVIF) ; `TWITTER` = carte `summary_large_image` héritée du site (titre du site, pas celui de l'article : BL-43-1) ; `og:url`, `og:locale` et `Article.inLanguage` absents (gabarit, BL-43-1) ; `SITEMAP` = présent (15/15).
 
 | Article | Langue | Slug | Title (car.) | Description (car.) | H1 = title éditorial | JSON-LD | FAQ visibles / FAQPage |
 |---|---|---|---|---|---|---|---|
@@ -152,26 +164,50 @@ Communs aux 15 URL : `ROBOTS` = aucune balise (indexable) ; `CANONICAL` = URL ab
 
 Non contrôlé : Preview Vercel (SSO), `www` (R4), Safari, Firefox, appareils réels.
 
-## 10. Checkpoint avant fusion (06/10/2026)
+## 10. Checkpoint final avant fusion (06/10/2026, mission de continuation)
 
-| Rubrique | État |
-|---|---|
-| A_READY | Oui sur le plan technique et éditorial ; sources recontrôlées le 06/10 |
-| B_READY | Oui ; visuels B0 et B1 non validés par Laurent (statuts de #79) |
-| C_READY | Oui ; visuel C0 « à valider » (personne générée photoréaliste, écart au brief) |
-| D_READY | Oui ; visuel D0 « à valider » ; D3 (capture technique datée) absent |
-| S_READY | Oui |
-| FR_READY | Oui (5/5) |
-| EN_READY | Oui (5/5) |
-| DE_CH_READY | Oui (5/5), adaptation suisse |
-| LEGAL_QA | Registre du 06/10 : 0 affirmation non trouvée, 1 modifiée (Google EN) et corrigée, réserves appliquées ; Légifrance et Amazon inaccessibles par script |
-| SEO_QA | Vert pour les champs portés par l'article ; lacunes du gabarit (BL-43-1) préexistantes |
-| GEO_QA | Vert |
-| LINKING_QA | Vert : maillage fermé, liens en 200 dans les 3 langues, aucun lien vers F5 |
-| VISUAL_QA | Vert en local (75 contrôles) ; Preview humaine non faite |
-| CI | Voir la PR |
-| PREVIEW | Voir la PR (SSO : contrôle humain) |
-| BLOCKERS | Voir ci-dessous |
+```
+MAIN = 9b19e6dfc40403e8a98bd030ea2a441fc88517dd (inchangé depuis la mission initiale)
+PR96_HEAD = voir la PR (commit de la mission de continuation)
+
+A_READY = YES
+S_READY = YES
+B_READY = YES
+C_READY = YES
+D_READY = YES
+
+FR_READY = YES (5/5)
+EN_READY = YES (5/5)
+DE_CH_READY = YES (5/5, adaptation suisse)
+
+LEGAL_QA = YES — registre du 06/10 ; réserves appliquées (lignes directrices non formellement adoptées, Google FR/DE ≠ EN, Zalando citée sans obligation certaine) ; Amazon et Légifrance : dernières lectures datées du 30/09, non revérifiables par script
+SEO_QA = YES pour les champs portés par l'article ; BL-43-1 (gabarit global) hors #96
+GEO_QA = YES
+LINKING_QA = YES — liens internes en 200 dans les 3 langues ; aucun lien vers F5 ; aucun fichier de Mode modifié
+UX_QA = YES — 15 URL × 5 formats : 0 débordement de page, tableaux et <pre> contenus dans leur cadre
+VISUAL_QA = YES — QA finale B, C, D (§ 5) ; aucun visuel retiré
+
+READING_WIDTH_OK = YES — article = 656 px (max-w-prose) sur les 15 URL à 1440 et 1180 px, identique à l'article témoin migrer-ancien-packshotcreator ; seul le <code> de D dépasse, dans son <pre> à défilement interne
+TOC_CURRENT_IMPLEMENTATION_OK = YES (desktop) — 15/15 : entrées = titres, clic → titre à 96 px du haut ; mobile : liste repliable présente, mais après un toucher le titre visé finit au-dessus de l'écran (de −230 à −795 px), comportement identique sur 4 articles existants (gabarit actuel, défaut corrigé par #84) ; non bloquant selon la mission (§ 13)
+D44_PR84_NOT_DUPLICATED = YES — components/blog/TableOfContents.tsx non modifié ; aucune barre collante ajoutée
+
+CI = SUCCESS sur la tête précédente 9aaaecc ; à relire sur la nouvelle tête
+PREVIEW_DEPLOYED = YES sur 9aaaecc ; à relire sur la nouvelle tête
+PREVIEW_HUMAN_VERIFIED = NO
+
+BLOCKERS = contrôle humain de la Preview (checklist § 11) ; date réelle de publication à inscrire au dernier commit avant fusion
+READY_TO_PUBLISH = NO tant que PREVIEW_HUMAN_VERIFIED = NO ; techniquement prêt
+```
+
+### Décisions de Laurent appliquées (06/10, mission de continuation)
+
+| Point | Décision | Application |
+|---|---|---|
+| Validation de Sébastien | `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED`, pour ce cluster seulement ; D42 inchangée hors cluster | D46 complétée ; Q23 reste une information, sans valeur de blocage |
+| D16 | `D16_EXCEPTION = YES`, périmètre AI Act B, C, D, autorité Laurent, 06/10/2026 ; D16 inchangée pour les articles futurs ; aucun appel DataForSEO | D46 complétée |
+| Auteur | « PackshotCreator » | 15 fichiers ; schéma `Article.author` = organisation, sans profil personnel |
+| Date | Date réelle de publication | À appliquer au dernier commit avant fusion |
+| Visuels B, C, D | Utilisation autorisée après QA finale | QA du § 5 ; note de C précisée (personne synthétique) |
 
 ### Contradictions résolues
 
@@ -181,21 +217,33 @@ Non contrôlé : Preview Vercel (SSO), `www` (R4), Safari, Firefox, appareils r�
 - Lignes directrices « publiées le 20 juillet » / document « Approval of the content of the draft Communication » : formulation corrigée dans les 15 articles.
 - Google : refus du produit présent dans les aides FR et DE, absent de l'aide EN restructurée : les trois versions sont décrites.
 - #77 : intégrée (corrections présentes dans les articles qui restent publics, liens vers A ajoutés).
+- Validation de Sébastien et copywriting FR : décision de Laurent pour ce cluster (`AUTHORIZED_FOR_THIS_CLUSTER = YES`) ; `01-RAYON-ACTION.md` et `README.md` non modifiés.
+- Auteur : « PackshotCreator ».
+- D16 : exception explicite de Laurent.
 
 ### Contradictions restantes
 
-- **D46 / `01-RAYON-ACTION.md` et `README.md`** : le copywriting français client-facing relève de l'arbitrage de Sébastien ; la mission autorise la publication par Laurent sans son retour. Non résolu par D46 ; Q23 transmise.
-- **Auteur affiché** : « Sébastien Jourdan » (schéma `Person` lié à son profil) sur des textes qu'il n'a pas validés. À trancher au GO.
-- **D16** : critères 2 (B, C) et 3 (D) non remplis selon les mesures du 30/09 ; aucune nouvelle mesure (appel payant exclu). La création repose sur la décision de Laurent.
-- **Articles « migrer »** : la phrase « Un seul cas limite y est signalé » attribuée à l'analyse d'Orbitvu ne rend pas compte de cette page, qui en signale plusieurs et se contredit (registre, § 15) ; lien Orbitvu à la place des lignes directrices (BL-43-3, E3 à E6). Non modifié : prose de Sébastien, hors périmètre de #77.
+- **Articles « migrer »** : la phrase « Un seul cas limite y est signalé » attribuée à l'analyse d'Orbitvu ne rend pas compte de cette page, qui en signale plusieurs et se contredit (registre, § 15) ; lien Orbitvu à la place des lignes directrices (BL-43-3, E3 à E6). Non modifié : hors périmètre de #77.
 - **Calendrier suisse** : Chancellerie fédérale « d'ici à la fin 2026 » contre Portail PME « printemps 2027 » : les deux sont cités dans S.
+- **Sommaire mobile** : défaut du gabarit commun, corrigé par #84, non dupliqué ici.
 
 ### Points non établis
 
-- Validation de Sébastien (aucune trace).
-- Validation par Laurent des visuels B0, B1, C0, C2, D0.
 - Adoption formelle des lignes directrices de la Commission (non constatée au 06/10).
 - Contenu actuel des pages Amazon et Légifrance citées (inaccessibles par script le 06/10 ; dernière lecture : 30/09).
 - Statut exact du marquage invisible Zalando (la source mêle recommandation et exigence).
-- Droits d'utilisation des illustrations générées.
+- Droits d'utilisation des illustrations générées ; ressemblance éventuelle de C0 avec une personne réelle.
 - Comportement du `www` derrière Cloudflare (R4) et rendu de la Preview Vercel (SSO).
+
+## 11. Checklist de contrôle humain de la Preview (Laurent)
+
+Preview de la branche : `https://sysnext-git-ccr-e0a4796e-2p18xn-sebs-projects-ca1e93a7.vercel.app` (connexion Vercel). Désactiver la traduction automatique de Chrome sur les pages de-ch (piège B5).
+
+1. **A FR, desktop** — `/fr/blog/ai-act-images-produit` : en-tête, encadré « L'essentiel », 4 tableaux lisibles, 6 figures avec légende, sommaire latéral (clic sur « Sept cas concrets »), FAQ (7) qui s'ouvre, liens vers B, C, D, S.
+2. **A FR, mobile** — même URL : aucun défilement horizontal de la page ; tableaux défilant dans leur cadre ; sommaire repliable.
+3. **B ou C, mobile** — `/fr/blog/mannequin-invisible-modele-virtuel-avatar` : en-tête (personne synthétique annoncée dans la note), tableau, figure bijoux, FAQ.
+4. **D, desktop et mobile** — `/fr/blog/images-ia-metadonnees-marketplaces` : tableau IPTC / XMP / C2PA, bloc ExifTool sur fond sombre qui défile dans son cadre en mobile, sans élargir la page.
+5. **S de-ch** — `/de-ch/blog/ki-bilder-e-commerce-schweiz` : texte entièrement allemand, « ss » sans « ß », liens Fedlex et admin.ch en allemand, sélecteur de langue vers FR et EN de S.
+6. **Navigation** — depuis A FR : lien vers B, retour vers A depuis B ; sélecteur de langue de A vers `/en/blog/ai-act-product-images` et `/de-ch/blog/ai-act-produktbilder`.
+
+Résultat à consigner : `PREVIEW_HUMAN_VERIFIED = YES | NO`, avec les écarts relevés.

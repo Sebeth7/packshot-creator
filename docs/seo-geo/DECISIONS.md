@@ -41,6 +41,16 @@ Append-only. Plus récent en haut.
 
 **Le contexte** — #59 (A) et #60 (S) prêts depuis le 02/10, transmis à Sébastien selon le pilotage du 02/10, sans retour établi sur GitHub. #79 : previews privées B, C, D finalisées le 02/10.
 
+**Précisions de Laurent du 06/10/2026 (mission de continuation de #96)**, reproduites sans ajout :
+- `PUBLICATION_AUTHORITY = LAURENT` ; `SEBASTIEN_VALIDATION = NOT_RECEIVED`. Laurent décide de ne plus attendre la validation de Sébastien pour publier ce dossier. Cette décision vaut uniquement pour ce cluster ; elle ne supprime ni D42 ni les circuits métier habituels. Ne jamais écrire que les cinq articles ont été validés par Sébastien. Q23 reste une information, sans valeur de blocage. Copywriting sans Sébastien : `AUTHORIZED_FOR_THIS_CLUSTER = YES`.
+- `D16_EXCEPTION = YES` ; `SCOPE = AI Act B/C/D uniquement` ; `AUTHORITY = Laurent` ; `DATE = 06/10/2026`. L'exception ne modifie pas D16 pour les futurs articles ; aucun appel DataForSEO pour la justifier rétroactivement.
+- Auteur affiché : « PackshotCreator » ; aucun profil personnel en `author.sameAs` ; aucune attribution à Laurent.
+- `datePublished` = date réelle de publication ; `dateModified` = date réelle du dernier changement significatif ; cohérentes dans les trois langues d'un article.
+- Visuels B, C, D : utilisation autorisée après la QA finale ; ce n'est pas une validation de Sébastien.
+- Fusion de #96 : uniquement sur « GO MERGE #96 » explicite de Laurent.
+
+`01-RAYON-ACTION.md` et `README.md` ne sont pas modifiés par ces précisions.
+
 **Ce qu'elle interdit** — Publier les pages `/revue-interne/` de #79 ; fusionner #79 ; présenter la publication comme validée par Sébastien ; fusionner sans le GO de publication explicite de Laurent.
 
 ---

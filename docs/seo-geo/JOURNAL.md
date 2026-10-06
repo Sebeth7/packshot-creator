@@ -34,6 +34,42 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Cluster AI Act (#96) — continuation : auteur « PackshotCreator », décisions de Laurent consignées, QA finale · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d` (inchangé depuis la mission initiale, fresh-check du 06/10)
+
+**Quoi**
+- Auteur des 15 articles : « Sébastien Jourdan » → « PackshotCreator ». Le schéma `Article.author` pointe désormais vers l'organisation (`…/#organization`), sans profil LinkedIn personnel.
+- C (FR, EN, de-ch) : la note d'ouverture précise que la personne de l'image d'en-tête est entièrement synthétique.
+- D46 complétée par les précisions de Laurent : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` (ce cluster seulement) ; `D16_EXCEPTION = YES` (AI Act B, C, D, Laurent, 06/10, D16 inchangée pour la suite) ; date réelle de publication ; fusion sur « GO MERGE #96 » seulement. Q23 mise à jour (information, sans blocage).
+- `CLUSTER.md` : QA finale des visuels B, C, D ; checkpoint final ; checklist de contrôle humain de la Preview (§ 11).
+- Rien d'autre : ni `TableOfContents.tsx` (#84), ni gabarit SEO (BL-43-1), ni BlendAI, ni ROI / #93, ni Studios, ni `pr-checks.yml`.
+
+**Pourquoi** — Mission de continuation de Laurent du 06/10 : finaliser #96 sans élargir son rayon.
+
+**Fichiers** — 15 articles du cluster (`author`, note de C), `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,BOITE-AUX-LETTRES}.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md`
+
+**Effet attendu** — Aucun avant la fusion.
+
+**Vérifié**
+- Fresh-check : `main` `9b19e6d`, tête de #96 `9aaaecc` avant ce commit, identiques à l'état de référence.
+- `verifier-json` 195 valides ; `next build` vert, 386 pages ; schéma `Article.author` = organisation sur les 15 URL.
+- QA 15 URL × 5 formats (1440, 1180, 820, 390, 360) : 0 anomalie (200, 0 débordement de page, images chargées, 0 erreur de console, 0 requête en échec, liens internes en 200, 1 `h1`, FAQ = `FAQPage`, `html lang` conforme, 5 hreflang, aucune balise `robots`, 0 « ß », 0 tiret cadratin) ; tableaux larges de A et D en défilement interne à 390 et 360 px.
+- Largeur de lecture : article de 656 px (`max-w-prose`) sur les 15 URL à 1440 et 1180 px, comme l'article témoin `migrer-ancien-packshotcreator` ; seul le `<code>` de D dépasse, à l'intérieur de son `<pre>`.
+- Sommaire : desktop, 15/15 (entrées = titres ; clic → titre à 96 px du haut). Mobile : après un toucher, le titre visé finit au-dessus de l'écran ; même mesure sur 4 articles existants (`migrer` FR et EN, `generer-images-produit-ia`, `alphashot-xl-g2`) : défaut du gabarit actuel, corrigé par #84, non dupliqué ici.
+- Langue : aucune phrase française accidentelle en EN ou de-ch (seuls des noms officiels français, attendus).
+- Anti-cannibalisation : aucun H2 ni aucune FAQ en double entre A, S, B, C, D (hors « Sources »).
+- Visuels B0, B1, C0, C2, D0 contrôlés à 100 % : aucune marque identifiable, aucun texte lisible ; cadran de la montre de C2 : quelques signes de pseudo-texte illisibles, imperceptibles à la taille d'affichage [Inférence]. Aucun visuel retiré.
+- e2e (7 specs) sur la branche : 299 réussis, 24 échecs, liste identique à `main` (`9b19e6d`, inchangé).
+
+**Supposé** — [Inférence] La personne de C0 ne ressemble à aucune personne réelle identifiable : provenance générée par IA (#79), ressemblance non vérifiable. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO, contrôle humain de Laurent), `www` (R4), Safari, Firefox, appareils réels.
+
+**Suite** — Contrôle humain de la Preview (checklist `CLUSTER.md` § 11) ; date réelle de publication au dernier commit ; « GO MERGE #96 » de Laurent.
+
+---
+
 ## 2026-10-06 · Cluster AI Act — cinq articles en FR, EN et de-ch prêts pour une publication coordonnée (D46) · Claude de Laurent
 
 **Chantier** : cluster AI Act (F2), D46 | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d`

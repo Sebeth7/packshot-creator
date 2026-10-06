@@ -48,7 +48,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 
 | PR | Objet | Propriétaire | Statut | Blocage | Prochain geste |
 |---|---|---|---|---|---|
-| #96 | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; build vert (386 pages), QA 15 URL × 5 formats sans anomalie bloquante, e2e identiques à `main` | GO de publication explicite de Laurent (checkpoint de la mission) ; points ouverts en C | Preview humaine (SSO) ; GO ; fusion ; contrôle J0 |
+| #96 | Cluster AI Act : A, S, B, C, D en FR, EN et de-ch ; intègre #59, #60 et #77 ; D46 ; registre juridique du 06/10 | Claude de Laurent | Brouillon ; techniquement prêt (checkpoint final du 06/10, `CLUSTER.md` § 10) ; auteur « PackshotCreator » ; `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` | Contrôle humain de la Preview (checklist § 11) ; date réelle de publication | « GO MERGE #96 » de Laurent, puis fusion et contrôle J0 |
 | #59 | Pilier AI Act A, FR | Claude de Laurent | Brouillon ; tête `2a36322` **intégrée à #96** | — | Se ferme avec #96 (aucun développement séparé) |
 | #60 | Article Suisse S, FR | Claude de Laurent | Brouillon ; tête `74ae921` **intégrée à #96** | — | Se ferme avec #96 |
 | #77 | AI Act : deux formulations juridiques corrigées (FR, EN, de-ch) | Claude de Laurent | Brouillon ; tête `a207fe3` **intégrée à #96** (liens vers A ajoutés dans les mêmes paragraphes) | — | Se ferme avec #96 |
@@ -75,7 +75,7 @@ Les 9 PR opérationnelles inventoriées avant #81 ; #81, documentaire, n'y figur
 | #65 — harmoniser ou fermer | 01/10 | #76 est fusionnée : si #65 est conservée, elle reprend `main` (`8c0dd06` au moins) et applique les 17 modifications listées au JOURNAL du 01/10 (« arbitrages finaux »), budget D43 du 02/10 compris. Fusion après validation et autorisation finale de Laurent. Aucune modification de protection Vercel, de lien public ni d'autorisation |
 | #27 — sort de la PR | 02/10 | Preuves conservées : contrôle `curl.exe` du lot F et liste des 14 liens cités au JOURNAL du 02/10 ; branche `content/maillage-q3` conservée. Fermeture possible sur GO distinct |
 | Lot F — clôture du contrôle `curl.exe` (Worker déployé le 23/09, version `05c5c47c`) | 23/09 | Résultat « tout conforme » consigné le 23/09 dans le JOURNAL de la branche de #27 (`e81e5c0`), jamais fusionné ; cité au JOURNAL du 02/10. À confirmer par Laurent pour clore |
-| Cluster AI Act (#96) — GO de publication | 06/10 | Checkpoint rendu le 06/10 ; fusion sur GO explicite de Laurent seulement. Points à trancher au GO : contradiction D46 / `01-RAYON-ACTION.md` (copywriting FR réservé à Sébastien) ; auteur affiché « Sébastien Jourdan » ; visuels B0, C0, D0 non validés (écarts au brief) ; date `2026-10-06` à ajuster si la fusion a lieu un autre jour |
+| Cluster AI Act (#96) — contrôle humain de la Preview, puis « GO MERGE #96 » | 06/10 | Décisions de Laurent du 06/10 appliquées (D46 complétée : publication par Laurent, exception D16, auteur « PackshotCreator », date réelle, visuels autorisés après QA). Reste : checklist Preview (`CLUSTER.md` § 11), date réelle de publication au dernier commit, GO de fusion |
 | Zalando (A, S, D) | 06/10 | Page « Updated October 1, 2026 » relevée : intitulé « required by December 2026 » et « We strongly recommend » ; formulation prudente citée, sans obligation certaine (#96) |
 | #64 — date de création | 01/10 | D33 dit 2001 ; faits métier du 30/09 cités par #64 : Sysnext 2001, lancement de PackshotCreator 2004 ; `foundingDate` 2004 ; le site affiche 2001, 2003 et 2004 selon les pages. `DECISIONS.md` non modifié |
 | #64 — autres points | 30/09 | Délai : 10 jours (D32, F5) contre 12 jours (#64) ; showroom : D1 et `00-BRIEFING.md` citent Saint-Bonnet-de-Mure, #64 Beynost ; claims non sourcés restants dans `guide-achat-studio-2026` et `comment-calculer-le-roi-…` |
@@ -120,7 +120,7 @@ Le contrôle sur `sysnext.vercel.app` est fait et consigné au JOURNAL pour chaq
 | Sujet | Demandé par | Depuis | Détail |
 |---|---|---|---|
 | Q19 — prise de connaissance de D42 (standard éditorial, applicable aux contenus des deux environnements Claude) et de D43 (pour information) | Laurent (D42, arbitrage 5) | 01/10 | Transmission seule ; `/CLAUDE.md` et le périmètre du Claude de Sébastien non modifiés ; aucun arbitrage n'étend D43 à son environnement |
-| Q23 — cluster AI Act publié sur autorisation de Laurent (D46) : copywriting FR, auteur affiché | Laurent | 06/10 | Information ; la publication ne l'attend pas. Ligne précédente conservée : |
+| Q23 — cluster AI Act publié sur autorisation de Laurent (D46) | Laurent | 06/10 | Information seulement, sans blocage ; auteur passé à « PackshotCreator » le 06/10. Ligne précédente conservée : |
 | Dossier « IA & images produit » (AI Act) — relecture | Laurent | 02/10 | **Transmission** : rapportée par le pilotage externe du 02/10, message intitulé « Dossier IA & images produit : nos 5 articles sont prêts pour ta relecture » ; information du pilotage, non établie par GitHub (les descriptions de #59 et #60 portent encore « mail à Sébastien non envoyé »). Périmètre des 5 articles non établi par GitHub ; [Inférence] A (#59), S (#60) et B, C, D (#79). **Accusé de réception** : non établi. **Validation métier** (D42, étape 5) : non établie, aucune trace GitHub (0 revue, 0 commentaire de `Sebeth7`) |
 | Autres validations (D42, étape 5) | Laurent | — | #77 : « non transmise » selon sa description du 01/10, état ultérieur non établi. #64 : après contrôle de la Preview par Laurent. Seule demande formelle sur GitHub : revue de #27, demandée le 23/09, dont le sort est d'abord à décider par Laurent |
 | #80 — contrôle de bout en bout du formulaire de-ch | Claude de Sébastien (JOURNAL du 02/10) | 02/10 | Envoi réel depuis `/de-ch/kontakt` (il crée un vrai deal et deux courriels), puis suppression de la fiche test ; confirmation en allemand à décider ; test e2e qui envoie le formulaire dans les trois langues à écrire. Exécutant non désigné dans le JOURNAL |
@@ -325,7 +325,7 @@ Closes : Q1 et Q3 le 17/09 ; Q2, Q4, Q6, Q12, Q13, Q14 et Q15 par Laurent le 25/
 |---|---|---|
 | D39 | En vigueur | `main` (#66) |
 | D40 | **Proposée**, non fusionnée ; en vigueur à la fusion de #65, selon son propre statut | #65, tête `c5e15a8` |
-| D46 | En vigueur pour la préparation ; publication sur GO explicite de Laurent | #96 |
+| D46 | En vigueur pour la préparation, complétée le 06/10 (publication par Laurent, exception D16 pour B, C, D) ; fusion sur « GO MERGE #96 » | #96 |
 | D41 | Remplacée par D46 sur le principe des satellites ; maintenue pour #61 à #63 | `main` (#73) |
 | D42 | En vigueur depuis la décision de Laurent du 01/10, applicable aux PR déjà ouvertes | `main` (#76, fusionnée le 02/10, `9400eaa`) |
 | D43 | En vigueur depuis la décision de Laurent du 02/10 : 200 USD par mois, GO explicite avant tout appel payant | `main` (#76, fusionnée le 02/10, `9400eaa`) |
