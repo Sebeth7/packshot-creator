@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · A04b (#92) actualisée depuis `main` `c236705` : patch des 10 articles inchangé, MacroSphère morte, retrait conservé · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b | **PR** : #92, brouillon | **Base intégrée** : `main` `c236705`, par commit de fusion `ad807a5` (pas de rebase, pas de force-push)
+
+**Quoi** — Mission V4.3 lot 1 du 06/10 (#92 → #91 → #88) : actualisation de #92, 124 commits de retard. Un seul conflit, d'insertion en tête de `JOURNAL.md`, résolu par union (entrées de `main` puis entrée A04b ; 0 ligne perdue de part et d'autre). Aucun contenu métier modifié.
+
+**MacroSphère (F-033, F-039)** — Contrôle unique de la destination : `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` → 301 → `fr.packshot-creator.com/…`. Chromium du conteneur : défi Cloudflare « Just a moment… », 403 (R4, non probant). Worker déployé `packshot-router` (lecture seule, modifié le 01/10) : identique au dépôt aux commentaires près, aucune règle pour ce chemin, renvoi vers `www` chemin conservé. Application (`sysnext.vercel.app`, hors Cloudflare) : 307 vers `/fr/collections/3d/products/macrosphere-3d-jewelry-animation`, puis **404**. Retrait préparé (`8793731`) conservé.
+
+**Vérifié** — Les 10 JSON de `content/blog/` ont exactement le blob de `5a74aba` ; diff `main` → branche sur `content/` identique au patch validé. `verifier-json` : 195 JSON valides ; `tsc` vert ; Vitest 400/400 ; `next build` vert (386 pages). HTML prérendu des 10 articles : 0 occurrence de `pixcap.com`, `<a id="">`, `wiki/Sensorama/`, `capturingreality.com`, `packshot-studio.com` ; cibles Sensorama et RealityScan présentes.
+
+**Supposé** — Qu'un visiteur dans Chrome obtient la même 404 : déduit du Worker déployé et de l'application ; non observé dans un Chrome réel (aucun accès Chrome dans cette session).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` dans Chrome ; les autres liens (audit acquis, non rejoué).
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent (`GO MERGE #92`) ; puis #91, puis #88.
+
+---
+
 ## 2026-10-06 · Clôture fast-forward #97 / #93 / #90 : trois fusions, `main` final `be8cbea`, `www` contrôlé · Claude de Laurent
 
 **Chantier** : P0 intégrité (#97) ; D47, AR-01 (#93) ; V4.3 lot 1, A02 (#90) | **PR** : documentation seule, branche `claude/stoic-goodall-nrerhy` | **Base** : `main` `be8cbea`
@@ -526,6 +544,40 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — Preview Vercel (SSO) ; `www` ; le fond de la statistique citée.
 
 **Suite** — Information de Sébastien : lien retiré, statistique à arbitrer (AA5 b). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10, ou plus tôt sur GO exprès.
+
+---
+
+## 2026-10-03 · A04b — liens externes morts et balises sans `href` : 11 corrections démontrées, 2 soumises à contrôle Chrome · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b (Maillage V2 PR-04 : F-030, F-031, F-033 à F-037, F-039, F-040, F-048, F-049 ; CA10 a) | **PR** : brouillon, branche `seo/a04b-liens-externes-balises-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — 13 occurrences dans 10 JSON, aucun mot modifié, en deux commits :
+- **Commit 1, corrections démontrées (11)** :
+  - Pixcap, 2 liens (F-030, F-031, EN Amazon) : balises retirées, texte conservé ; `pixcap.com` n'a aucun enregistrement A (DNS public Cloudflare, 03/10) ;
+  - 3 balises `<a id="">` sans `href` (F-034, F-035, F-037) : balises retirées, texte conservé ;
+  - Sensorama, 2 liens (F-036, F-040) : `…/wiki/Sensorama/` (404) → `…/wiki/Sensorama` (200) ;
+  - RealityCapture, 2 liens (F-048, F-049) : `https://www.capturingreality.com/` (301) → URL finale RealityScan (200).
+- **Commit 2, soumis à contrôle Chrome (2)** : MacroSphère (F-033, F-039) : balise retirée, texte conservé. `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` redirige (301) vers `fr.packshot-creator.com`, servi par notre Worker : le dépôt n'y a aucune règle (renvoi vers `www`), Next répond 307 puis 404 (vérifié en local) ; audit A : 404. La production étant derrière Cloudflare (403 aux scripts, R4) et le Worker déployé pouvant diverger (R5), la destination réelle se confirme dans Chrome.
+
+**Pourquoi** — Liens morts, malformés ou redirigés relevés par l'audit A et le Maillage V2. Décision de Laurent du 03/10 : CA10 (a), en distinguant les corrections démontrées des liens nécessitant un contrôle Chrome.
+
+**Fichiers** — `content/blog/en/how-to-get-best-amazon-product-photos.json`, `content/blog/en/potential-advantages-e-commerce-businesses.json`, `content/blog/en/product-photo-lighting.json`, `content/blog/fr/avantage-du-e-commerce-pour-les-entreprises.json`, `content/blog/en/use-photo-studio-virtual-reality.json`, `content/blog/fr/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle.json`, `content/blog/en/from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry.json`, `content/blog/fr/de-la-photographie-2d-aux-modeles-3d-de-vos-produits-introduction-a-la-photogrammetrie.json`, `content/blog/{en,fr}/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus de liens sortants morts ni de balises de lien inertes dans ces articles.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des 10 articles identique avant et après.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 14 pages sur 359. Les 10 articles : exactement les 13 modifications annoncées. `/fr/blog`, `/en/blog` : DOM servi identique, charge RSC seule (contenu embarqué, préexistant). `/fr` et `/en/studios-photo-automatises` : DOM servi identique, écart RSC limité à la sérialisation du sélecteur de machines, sans lien avec ce diff.
+- `next start` local : 10 articles en 200 ; plus aucune occurrence de `pixcap.com`, `<a id="">`, `Sensorama/`, `capturingreality.com`, `packshot-studio.com` dans leur DOM. Cibles conservées : Wikipédia 200, RealityScan 200 (conteneur, 03/10).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que la production renvoie bien un 404 pour l'ancienne URL MacroSphère : déduit du code du dépôt et de l'audit A, non vérifié en production.
+
+**Non regardé** — Preview Vercel (SSO) ; `www`. Hors lot : l'`alt` « macrosphere pour réaliser des animations 3D… » d'une image des mêmes articles.
+
+**Suite** — Contrôle Chrome par Laurent de l'URL MacroSphère avant le GO de fusion ; si elle mène à une page vivante, le commit 2 est retiré avant fusion. Information de Sébastien (CA10 a). Publication envisagée du 12 au 16/10. A17b viendra après sur 6 de ces fichiers.
 
 ---
 
