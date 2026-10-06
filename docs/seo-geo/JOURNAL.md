@@ -34,6 +34,51 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · A02 (#90) actualisée depuis `main` `a168b33` (fusion de #89) : patch inchangé, conflit de journal résolu par union · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `a168b33` ; tête précédente `3309244`
+
+**Quoi** — `main` `a168b33` (fusion de #89) fusionnée dans la branche, sans rebase. Seul conflit : `JOURNAL.md`, deux insertions (06/10 et 03/10), résolues par union, ordre chronologique conservé. Aucune modification de contenu : les 2 JSON sont identiques octet pour octet au patch d'origine `a829c50`.
+
+**Pourquoi** — La fusion de #89 rendait #90 de nouveau conflictuelle (6 commits de retard).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`. Diff contre `main` : `content/blog/en/what-return-on-investment-with-an-internal-photo-studio.json`, `content/blog/fr/quel-retour-sur-investissement-avec-un-studio-photo-en-interne.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Inchangé par rapport à l'entrée A02 du 03/10.
+
+**Vérifié** —
+- Texte visible des 2 articles identique à `main` ; 0 ligne de `main` ni de `3309244` retirée de `JOURNAL.md`.
+- `tsc` vert ; `verifier-json` : 195 JSON valides ; Vitest 400/400 ; `next build` vert (386 pages).
+- `next start` local, desktop 1280 et mobile 390 : les 2 articles en 200 ; 0 lien `http://gs-new…` ; 2 liens Orbitvu par article ; ancre lunetterie vers `/{fr,en}/industrie/lunetterie` ; « Photoshop » non lié en EN ; 0 lien vide ; aucun débordement horizontal ; 0 erreur de page.
+- Parcours de la CI `machine-selector` et `sommaire-blog` : 37/37.
+- Cibles Orbitvu et lunetterie : relevé du 06/10 non refait (aucun changement détecté). Appels payants : aucun.
+
+**Supposé** — Que l'URL Orbitvu vue par un visiteur est celle relevée depuis le conteneur (R4).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante) ; `ETAT.md`, non modifié.
+
+**Suite** — CI et Preview sur la nouvelle tête ; QA de Laurent ; GO de fusion distinct.
+
+---
+
+## 2026-10-06 · A02 (#90) actualisée depuis `main` `8247217` (#96) : URL Orbitvu, lien Photoshop, ancres lunetterie inchangés · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `a829c50`
+
+**Quoi** — `main` `8247217` fusionnée dans la branche, sans rebase ni force-push. Seul conflit : `JOURNAL.md` (insertion en tête), résolu par union : toutes les entrées de `main` conservées, entrée A02 du 03/10 placée à sa date. Aucune modification de contenu ajoutée.
+
+**Pourquoi** — #90 était en conflit avec `main` et sa CI du 03/10 précédait #86 (ni Vitest ni parcours Playwright). Consigne de Laurent du 06/10 : actualiser #90 après #89.
+
+**Vérifié** (06/10, conteneur) — hôte `gs-new-features-and-accelerated-content-creation` : NXDOMAIN (DNS public Cloudflare) ; URL Orbitvu cible : 200 ; `sysnext.vercel.app/fr/industrie/lunetterie` : 200, indexable ; `/en/industrie/lunetterie` : 200, `noindex, follow` (état attendu, inchangé) ; aucune PR ouverte ne touche les deux JSON de #90. Diff métier contre `main` identique à celui du 03/10 (2 JSON, 7 modifications d'attributs).
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante de la CI).
+
+**Suite** — QA express de #90 après le sort de #89 ; GO de fusion distinct de Laurent.
+
+---
+
 ## 2026-10-06 · ROI (#93) — CTA directs vers le calculateur réel, option B d'AR-01 abandonnée (D47) · Claude de Laurent
 
 **Chantier** : V4.3, lot 1, A01 = AR-01, révisé | **PR** : #93 (brouillon, ne pas fusionner) | **Base** : `main` `8247217` (#96)
@@ -337,6 +382,37 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — `ETAT.md`, volontairement non modifié ; `BOITE-AUX-LETTRES.md`, non modifié (Q22, sur `main`, décrit déjà le comportement de #86 ; une nouvelle entrée créerait un conflit pour #88 à #93) ; Firefox, WebKit et mobile émulé, hors CI.
 
 **Suite** — CI réelle sur la nouvelle tête ; information de Sébastien sur la PR (renvoi à Q22) ; GO de fusion distinct de Laurent. Après la fusion de #86, `anchors` passe de `DIFFERES` à `ATTENDUS` dans la PR qui l'active (AR-01, #93).
+
+---
+
+## 2026-10-03 · A02 — articles « ROI interne » : URL Orbitvu restaurée, lien Photoshop retiré, ancres lunetterie corrigées · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 (Maillage V2 PR-02 : F-002 à F-006, A-004, A-008 ; AR-02, CA10 a) | **PR** : brouillon, branche `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — 7 modifications d'attributs, aucun mot changé :
+- 4 `href` `http://gs-new-features-and-accelerated-content-creation/` (hôte inexistant, chemin tronqué) → `https://orbitvu.com/blog/orbitvu-station-2220-fast-hermes-brings-new-features-and-accelerated-content-creation` (F-002, F-003 en EN ; F-005, F-006 en FR) ;
+- balise du lien « Photoshop » retirée en EN, mot conservé (F-004) ;
+- ancre « Le packshot pour l'optique et la lunetterie » → `/fr/industrie/lunetterie` au lieu de `/fr/industrie/pieces-techniques-industrie` (A-004) ; même correction en EN vers `/en/industrie/lunetterie` (A-008).
+
+**Pourquoi** — Hôte `gs-new-…` sans DNS (audit A, Maillage V2). Décision de Laurent du 03/10 : AR-02 (une URL Orbitvu officielle, 4 occurrences ; retrait de la seule balise Photoshop) et CA10 (a). Lunetterie en HOLD : correction de destination seulement, aucun lien nouveau.
+
+**Fichiers** — `content/blog/fr/quel-retour-sur-investissement-avec-un-studio-photo-en-interne.json`, `content/blog/en/what-return-on-investment-with-an-internal-photo-studio.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus de lien vers un hôte inexistant ; l'ancre lunetterie mène au hub lunetterie.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des deux articles identique avant et après ; 0 occurrence de `http://gs-new` ; URL Orbitvu : 200 depuis le conteneur le 03/10 (titre « Orbitvu Station 22.2.0 “Fast Hermes” brings new features and accelerated content creation »).
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 6 pages sur 359. Les 2 articles : exactement les 7 modifications annoncées. `/fr/blog`, `/en/blog` : DOM servi identique, charge RSC seule (contenu des articles embarqué, préexistant). `/fr` et `/en/studios-photo-automatises` (cible du pilote) : **DOM servi identique** ; la charge RSC ne diffère que par la sérialisation du sélecteur de machines (ligne en ligne ou référencée), contenu identique, sans lien avec ce diff.
+- `next start` local : articles 200, liens conformes ; `/fr/industrie/lunetterie` 200 (indexable) ; `/en/industrie/lunetterie` 200 (`noindex, follow`, comme l'ancienne cible EN).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www`. Hors lot, constaté : en FR, « Photoshop » pointe vers `adobe.com` (lien conservé) ; en EN, il n'est plus lié. Parité FR/EN de ce lien à arbitrer avec B2 si utile.
+
+**Suite** — Information de Sébastien (CA10 a). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10. B2 (prose ROI) viendra après sur les mêmes fichiers.
 
 ---
 
