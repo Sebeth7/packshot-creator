@@ -25,6 +25,75 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D47 · 2026-10-06 · Destination canonique des CTA ROI : le calculateur localisé, sans détour par Studios ; option B d'AR-01 remplacée
+
+**Décidé par** : Laurent — mission « ROI / PR #93 — exécution, destination canonique directe vers le vrai calculateur » du 06/10/2026
+**Statut** : en vigueur. Mise en œuvre : PR #93 (brouillon) ; application effective à sa fusion, sur GO distinct de Laurent ; date de fusion à arbitrer avant la fusion.
+
+**La décision** — Les CTA ROI des sept sources qui passaient par Studios visent le calculateur localisé : FR `/fr/calculateur-roi`, EN `/en/calculateur-roi`, de-ch `/de-ch/roi-rechner`. Studios n'est pas transformée en cible : aucun `id="calculateur-roi"` n'y est ajouté. Le témoin du pilote Studios (`studio-photo/selecteur-machines`) reste inchangé. GA4 est traité séparément. `anchors` et `roi-calculator` ne sont pas activés en CI par #93.
+
+**Le contexte** — L'option B d'AR-01, décidée le 03/10 (`ETAT.md`, C ; revue `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, § 11.4), faisait de la section ROI de Studios la cible des liens « Calculer mon ROI », par un `id` permanent. Elle est remplacée sur ce point. Sur `main` `8247217` : 19 expressions dans 8 fichiers visaient `/studios-photo-automatises#calculateur-roi` (18) ou `#roi` (1, prestataire) ; aucune des deux ancres n'existe sur Studios depuis le 22/03/2026 (`d5a7fea`), le visiteur arrivait en haut de page. #93 corrige 18 expressions dans 7 fichiers (36 liens rendus sur 14 pages, FR et EN) ; l'expression du sélecteur (3 liens rendus, FR, EN, de-ch) est l'exception volontaire du témoin. Le calculateur FR est un conseiller adossé à une API facturée.
+
+**Ce qu'elle interdit** — Ajouter un `id="calculateur-roi"` à Studios pour rétablir l'option B ou pour rendre le témoin fonctionnel ; modifier le lien du témoin sans nouvelle décision ; faire pointer un nouveau CTA ROI vers `/studios-photo-automatises#…` ; appeler réellement l'API du calculateur dans un test sans GO explicite (D43) ; ajouter un événement GA4 au titre de cette décision.
+
+---
+
+## D46 · 2026-10-06 · Cluster AI Act : cinq articles (A, S, B, C, D) préparés en FR, EN et de-ch pour une publication coordonnée ; D41 remplacée sur le principe des satellites
+
+**Décidé par** : Laurent — mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026
+**Statut** : en vigueur pour la préparation. **Remplace D41 sur le seul principe de non-création des satellites B, C et D** ; le reste de D41 est maintenu (voir ci-dessous). La fusion, donc la mise en production, reste subordonnée au GO de publication explicite de Laurent, donné après le checkpoint de la mission. Statut de publication à employer : `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_BY_SEBASTIEN`.
+
+**La décision** — Termes de la mission, reproduits : « Laurent décide de ne plus attendre le retour de Sébastien pour publier le dossier AI Act. » Publier un cluster de cinq articles : A (pilier européen), S (Suisse), B (retouche IA), C (mannequins virtuels, personnes synthétiques), D (métadonnées, marketplaces), en FR, EN et de-ch. Nouvel état : A, S à publier ; B, C, D à créer et publier. Les vrais articles B, C, D sont construits depuis le `main` courant ; #79 sert de matière (textes, visuels, provenance) et n'est pas fusionnée ; les anciennes PR #61, #62 et #63 ne sont pas réutilisées telles quelles.
+
+**Ce qui reste de D41** — #61, #62 et #63 ne se rouvrent pas. Les mesures D16 du 30/09 ne sont pas présentées comme un verdict favorable : critère 2 non rempli pour B et C, critère 3 non rempli pour D, motif de Laurent du 30/09 inchangé. Aucune nouvelle mesure D16 n'a été faite le 06/10 (un volume de recherche exigerait un appel payant, exclu par la mission) ; relevé gratuit du 06/10 dans `gsc-crawl-seo` : 2 impressions en 90 jours sur les requêtes du thème. La création de B, C, D repose sur la décision de Laurent, pas sur D16.
+
+**Articulation, sans réécriture des décisions antérieures**
+- D16 (création : trois critères, validation explicite de Sébastien) et D42, étape 5 (validation de Sébastien) : la mission remplace, pour ce cluster, l'attente de la validation de Sébastien par l'autorisation de publication de Laurent. Aucune validation de Sébastien n'est établie (relevé GitHub du 06/10 : aucun commentaire de `Sebeth7` sur #59, #60, #77 et #79, aucune revue sur #59 et #60).
+- `01-RAYON-ACTION.md` (texte de Sébastien du 16/09) classe le copywriting français client-facing parmi ce qui engage l'entreprise et relève de son arbitrage, et `README.md` rappelle que la prose française est sa voix. D46 ne modifie pas ces documents. Le point est porté au checkpoint de la mission comme contradiction non résolue par D46.
+- D38 (publication trilingue coordonnée, de-ch adapté au périmètre suisse) : appliquée.
+
+**Le contexte** — #59 (A) et #60 (S) prêts depuis le 02/10, transmis à Sébastien selon le pilotage du 02/10, sans retour établi sur GitHub. #79 : previews privées B, C, D finalisées le 02/10.
+
+**Précisions de Laurent du 06/10/2026 (mission de continuation de #96)**, reproduites sans ajout :
+- `PUBLICATION_AUTHORITY = LAURENT` ; `SEBASTIEN_VALIDATION = NOT_RECEIVED`. Laurent décide de ne plus attendre la validation de Sébastien pour publier ce dossier. Cette décision vaut uniquement pour ce cluster ; elle ne supprime ni D42 ni les circuits métier habituels. Ne jamais écrire que les cinq articles ont été validés par Sébastien. Q23 reste une information, sans valeur de blocage. Copywriting sans Sébastien : `AUTHORIZED_FOR_THIS_CLUSTER = YES`.
+- `D16_EXCEPTION = YES` ; `SCOPE = AI Act B/C/D uniquement` ; `AUTHORITY = Laurent` ; `DATE = 06/10/2026`. L'exception ne modifie pas D16 pour les futurs articles ; aucun appel DataForSEO pour la justifier rétroactivement.
+- Auteur affiché : « PackshotCreator » ; aucun profil personnel en `author.sameAs` ; aucune attribution à Laurent.
+- `datePublished` = date réelle de publication ; `dateModified` = date réelle du dernier changement significatif ; cohérentes dans les trois langues d'un article.
+- Visuels B, C, D : utilisation autorisée après la QA finale ; ce n'est pas une validation de Sébastien.
+- Fusion de #96 : uniquement sur « GO MERGE #96 » explicite de Laurent.
+
+`01-RAYON-ACTION.md` et `README.md` ne sont pas modifiés par ces précisions.
+
+**Ce qu'elle interdit** — Publier les pages `/revue-interne/` de #79 ; fusionner #79 ; présenter la publication comme validée par Sébastien ; fusionner sans le GO de publication explicite de Laurent.
+
+---
+
+## D45 · 2026-10-03 · R-PRODUCT-DIM : caractéristiques dimensionnelles des produits, référentiel obligatoire et contradictions conservées
+
+**Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
+**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le référentiel et son contrôle avec #83 ; leur exécution en CI avec #86. Correction des valeurs contradictoires subordonnée à la réponse de Sébastien (Q20). Référence stable : `docs/standards/R-PRODUCT-DIM.md`
+
+**La décision** — Une caractéristique dimensionnelle produit possède une définition non ambiguë, une référence de version et une source traçable, et ne diverge pas entre les consommateurs du site. Distinguer toujours : dimensions maximales du produit photographiable, encombrement extérieur de la machine, plateau, charge maximale (avec son type), ordre des axes, unités, génération ou version commerciale, source primaire, date de vérification, statut de validation métier. Préférer une donnée partagée à des valeurs saisies indépendamment. Une contradiction non résolue est conservée comme telle, avec ses deux sources. Catégorie A (même produit, valeur du site différente de la source) : correction technique possible, avec source, tests et contrôle des consommateurs. Catégorie B (version non établie, sources contradictoires, source absente) : aucune valeur remplacée avant la réponse de Sébastien.
+
+**Le contexte** — Audit du 03/10/2026 (livrable `03-AUDIT-DIMENSIONS-PRODUITS.md`) : dimensions saisies à la main dans deux catalogues (`components/machine-selector/lib/machines.ts`, `components/calculators/ROICalculator/lib/machines.ts`), synchronisées deux fois à la main (28/09, 01/10) ; cadences et catégories de taille déjà divergentes ; textes libres faux (guide d'achat 2026, comparatif Orbitvu, article Pro G2, hub mobilier, prompt des leads). Fiches publiques Orbitvu relevées le 03/10 à 05:54 UTC : 11 correspondances numériques de l’objet maximal avec les fiches fabricant consultées (sans validation des versions commerciales), encombrements divergents pour 5 produits, Furniture Studio contradictoire sur trois sources. Mise en œuvre : PR PRODUCT-TEST (#83) ; contrôle en CI : PR #86 ; questions à Sébastien : Q20.
+
+**Ce qu'elle interdit** — Modifier une dimension, une charge ou un encombrement dans un catalogue sans le référentiel et sa source ; corriger automatiquement une valeur fabricant supposée erronée ; assimiler deux générations de produits ou un nom PSC suffixé à un nom fabricant sans validation de Sébastien ; harmoniser le catalogue en recopiant une fiche publique quand la version commerciale n'est pas établie ; réintroduire une valeur retirée (XXL 100 × 70 × 190 cm) ; modifier une redirection XL au titre de cette règle (D29).
+
+---
+
+## D44 · 2026-10-03 · R-UX-LONG : navigation des pages longues, une règle par famille de gabarits
+
+**Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
+**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
+
+**La décision** — Toute page longue reçoit une navigation adaptée à sa structure et à son gabarit, dès lors qu'elle améliore réellement l'accès aux sections ; la règle s'applique aux pages existantes et futures, FR, EN et de-ch, par famille de gabarits. Trois comportements : (A) sommaire horizontal collant sous l'en-tête, desktop (≥ 1 024 px), composant mutualisé `components/navigation/SommaireCollant.tsx` ; (B) sommaire latéral existant du blog, corrigé et utilisable sur toute la hauteur de l'écran ; (C) sommaire statique ou aucune navigation persistante quand un élément collant dégraderait l'expérience. Une page ne cumule jamais deux navigations collantes. Éligibilité : longueur rendue (≥ 7 200 px à 1 440 px, indicatif), au moins quatre sections de contenu hors FAQ (indicatif), bénéfice écrit, libellés sans texte nouveau, absence de conflit. Les pages sous expérience SEO ou touchées par une PR éditoriale ouverte sont en HOLD jusqu'à leur date de sortie.
+
+**Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
+
+**Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+---
+
 ## D43 · 2026-10-02 · Services payants de recherche SEO/GEO : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel
 
 **Décidé par** : Laurent — décision du 02/10, qui remplace sur le budget ses arbitrages du 01/10
@@ -223,7 +292,7 @@ Arbitrage final 4 — corrections typographiques ponctuelles :
 ## D41 · 2026-09-30 · Cluster AI Act : satellites B, C et D non créés, matière indispensable réintégrée dans le pilier A
 
 **Décidé par** : Laurent — consignée le 2026-10-01
-**Statut** : en vigueur — application de D16 et D27, qu'elle n'amende pas
+**Statut** : **remplacée par D46 (06/10/2026) sur le seul principe de non-création des satellites B, C et D** ; le reste est maintenu (#61, #62 et #63 ne se rouvrent pas ; mesures du 30/09 non présentées comme un verdict favorable). Texte d'origine ci-dessous, inchangé — application de D16 et D27, qu'elle n'amende pas
 
 **La décision** — Ne pas créer les satellites B (retouche IA, #61), C (mannequins virtuels et personnes synthétiques, #62) et D (métadonnées et marketplaces, #63) : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Réintégrer dans le pilier A (#59) la seule matière indispensable au lecteur. Fermer #61, #62 et #63 sans fusion.
 

@@ -721,17 +721,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
             },
-            // D31 : aucune note agrégée d'avis clients sur /de-ch.
-            ...(lang !== 'de-ch'
-              ? {
-                  aggregateRating: {
-                    '@type': 'AggregateRating',
-                    ratingValue: 4.9,
-                    reviewCount: 100,
-                    bestRating: 5,
-                  },
-                }
-              : {}),
+            // Aucune note agrégée : 4,9/5 sur 100 avis, sans source établie, retirée le 06/10/2026.
             provider: {
               '@type': 'Organization',
               name: 'PackshotCreator',
