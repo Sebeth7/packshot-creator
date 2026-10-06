@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) actualisée depuis `main` `1e0901b` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `dc7c2e6` (fusion)
+
+**Quoi** — `main` `1e0901b` fusionnée dans la branche de #82, sans rebase, avant toute configuration de la Preview ou tout test réel. Entrés sur `main` depuis `9b19e6d` : `a4b27c6`, `063fd18`, `a26c58c`, `1e0901b` (#84, sommaire du blog, D44) ; fichiers `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Pourquoi** — GO de Laurent du 06/10 : GitHub déclarait #82 en conflit (`mergeable_state: dirty`).
+
+**Fichiers** — Conflit unique : `docs/seo-geo/JOURNAL.md`, entrées ajoutées en tête des deux côtés. Résolution : toutes les entrées conservées à l'identique ; l'entrée #84 du 06/10 (commit `a26c58c`, 09:01 UTC) placée par heure, entre l'entrée #82 de 09:47 UTC et celle de 08:50 UTC. `components/blog/TableOfContents.tsx` et `e2e/sommaire-blog.spec.ts` repris de `main` sans changement. `ETAT.md` : lignes « Contrôle », « `main` » et « Dernière mise à jour ».
+
+**Effet attendu** — Aucun pour le visiteur. #82 redevient fusionnable sans conflit ; son périmètre (`lib/catalogue`, `app/api/catalogue`, landing) est inchangé par la fusion.
+
+**Vérifié** —
+- Aucune ligne du JOURNAL de `main` ni de celui de #82 absente du fichier fusionné (comptage ligne à ligne) ; fichiers de #84 identiques à `main`.
+- Invariants de #82 : `PDF_CATALOGUE.enLigne = true`, `SERVICES_REELS_AUTORISES = false`, `PUBLICATION_AUTORISEE = false`, personnes et organisations Pipedrive en v2, notes en v1, `CATALOGUE_NOTIFICATION_EMAIL` sans repli, note « [Brochure] » épinglée, aucun appel `/deals` ni `/leads`, formulaire et mention P3 inchangés.
+- Contrôles sur la tête fusionnée : voir la description de #82 (tsc, eslint, `verifier-json`, Vitest, build, Playwright landing et sommaire, `/api/catalogue` en 503, gardes).
+
+**Supposé** — Aucun.
+
+**Non regardé** — La ligne #84 de `ETAT.md` (« Brouillon ; tête `a4b27c6` ») n'est pas réécrite, alors que #84 est fusionnée : chantier distinct, à mettre à jour par sa propre session. #96 n'est pas fusionnée : la collision du numéro Q23 reste ouverte.
+
+**Suite** — Configuration de la Preview (`CATALOGUE_NOTIFICATION_EMAIL` et autres variables) sous GO séparé, puis GO d'exécution du test réel.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : variable `CATALOGUE_NOTIFICATION_EMAIL`, note « [Brochure] » épinglée, alignement sur le principe du parcours Contact · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `a02f293`
