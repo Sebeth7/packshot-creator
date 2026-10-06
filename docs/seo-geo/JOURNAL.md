@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · A04b (#92) actualisée depuis `main` `c236705` : patch des 10 articles inchangé, MacroSphère morte, retrait conservé · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b | **PR** : #92, brouillon | **Base intégrée** : `main` `c236705`, par commit de fusion `ad807a5` (pas de rebase, pas de force-push)
+
+**Quoi** — Mission V4.3 lot 1 du 06/10 (#92 → #91 → #88) : actualisation de #92, 124 commits de retard. Un seul conflit, d'insertion en tête de `JOURNAL.md`, résolu par union (entrées de `main` puis entrée A04b ; 0 ligne perdue de part et d'autre). Aucun contenu métier modifié.
+
+**MacroSphère (F-033, F-039)** — Contrôle unique de la destination : `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` → 301 → `fr.packshot-creator.com/…`. Chromium du conteneur : défi Cloudflare « Just a moment… », 403 (R4, non probant). Worker déployé `packshot-router` (lecture seule, modifié le 01/10) : identique au dépôt aux commentaires près, aucune règle pour ce chemin, renvoi vers `www` chemin conservé. Application (`sysnext.vercel.app`, hors Cloudflare) : 307 vers `/fr/collections/3d/products/macrosphere-3d-jewelry-animation`, puis **404**. Retrait préparé (`8793731`) conservé.
+
+**Vérifié** — Les 10 JSON de `content/blog/` ont exactement le blob de `5a74aba` ; diff `main` → branche sur `content/` identique au patch validé. `verifier-json` : 195 JSON valides ; `tsc` vert ; Vitest 400/400 ; `next build` vert (386 pages). HTML prérendu des 10 articles : 0 occurrence de `pixcap.com`, `<a id="">`, `wiki/Sensorama/`, `capturingreality.com`, `packshot-studio.com` ; cibles Sensorama et RealityScan présentes.
+
+**Supposé** — Qu'un visiteur dans Chrome obtient la même 404 : déduit du Worker déployé et de l'application ; non observé dans un Chrome réel (aucun accès Chrome dans cette session).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` dans Chrome ; les autres liens (audit acquis, non rejoué).
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent (`GO MERGE #92`) ; puis #91, puis #88.
+
+---
+
 ## 2026-10-06 · Clôture fast-forward #97 / #93 / #90 : trois fusions, `main` final `be8cbea`, `www` contrôlé · Claude de Laurent
 
 **Chantier** : P0 intégrité (#97) ; D47, AR-01 (#93) ; V4.3 lot 1, A02 (#90) | **PR** : documentation seule, branche `claude/stoic-goodall-nrerhy` | **Base** : `main` `be8cbea`
