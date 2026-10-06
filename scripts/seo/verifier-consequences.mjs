@@ -119,6 +119,24 @@ const RAYON_LARGE = [
     delai: 'next build',
   },
   {
+    motif: /^(components\/(machine-selector|calculators\/ROICalculator)\/lib\/machines\.ts|data\/produits\/)/,
+    depend: '39 fiches, sélecteur, assistant, moteur et conseiller ROI, rapport PDF, hubs, solutions, landings Amazon / Industriel ; référentiel D45',
+    casse: 'dimension, charge ou encombrement contradictoire entre pages ; recommandation de machine modifiée',
+    delai: 'immédiat au déploiement — `npx vitest run lib/produits` le voit avant',
+  },
+  {
+    motif: /^components\/blog\/TableOfContents\.tsx$/,
+    depend: 'sommaire des 122 articles du gabarit commun et de 6 pages dédiées (D44)',
+    casse: 'navigation du blog inutilisable, titre visé masqué ou hors écran',
+    delai: 'immédiat — e2e/sommaire-blog.spec.ts',
+  },
+  {
+    motif: /^(components\/(landings|navigation)\/SommaireCollant\.tsx|data\/navigation\/)/,
+    depend: 'barre de sommaire de Mode (mesure jusqu’au 26/11/2026) et des familles équipées : guides, fiches, solutions, landings (D44)',
+    casse: 'barre qui masque un titre, double navigation collante, page gelée modifiée',
+    delai: 'immédiat — e2e/navigation-pages-longues.spec.ts',
+  },
+  {
     motif: /^messages\/.*\.json$/,
     depend: '≈175 000 lignes, modifiées des deux côtés',
     casse: 'JSON cassé, ou conflit immergeable si reformatage global',

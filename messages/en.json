@@ -10,7 +10,12 @@
       "subtitle": "Orbitvu automated photo studios + BlendAI.studio AI + Qualiopi certified training. The approach trusted by Chanel, Amazon and 5000+ companies in France and Switzerland.",
       "cta": "Request a free demo",
       "ctaSecondary": "Calculate my ROI in 2 min",
-      "microStats": "Average ROI: 6-12 months | Photo cost reduction: 60+%"
+      "microStats": "Average ROI: 6-12 months | Photo cost reduction: 60+%",
+      "video": {
+        "title": "Orbitvu photo studios: range overview",
+        "pause": "Pause video",
+        "play": "Play video"
+      }
     },
     "hybrid": {
       "label": "Our approach",
@@ -503,8 +508,6 @@
       "stat1Label": "brands using BlendAI",
       "stat2": "5,000+",
       "stat2Label": "visuals created",
-      "stat3": "4.9/5",
-      "stat3Label": "client satisfaction",
       "quote": "Simple, fast and super effective — a real daily time-saver.",
       "quoteName": "Marketing Team - Grosfilley",
       "quoteCompany": "Premium accessories brand"
@@ -3203,7 +3206,7 @@
       },
       "q3": {
         "question": "What is BlendAI.studio?",
-        "answer": "BlendAI.studio is PackshotCreator's proprietary AI product photography solution. It starts from a professional packshot (ideally from Orbitvu) and generates lifestyle variants, backgrounds and retouching without ever modifying the product itself. Over 100 brands use it, with a 4.9/5 satisfaction rating. From EUR 75 per month."
+        "answer": "BlendAI.studio is PackshotCreator's proprietary AI product photography solution. It starts from a professional packshot (ideally from Orbitvu) and generates lifestyle variants, backgrounds and retouching without ever modifying the product itself. Over 100 brands use it. From EUR 75 per month."
       },
       "q4": {
         "question": "Can generative AI produce 360 views?",
