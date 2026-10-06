@@ -25,6 +25,19 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D47 · 2026-10-06 · Destination canonique des CTA ROI : le calculateur localisé, sans détour par Studios ; option B d'AR-01 remplacée
+
+**Décidé par** : Laurent — mission « ROI / PR #93 — exécution, destination canonique directe vers le vrai calculateur » du 06/10/2026
+**Statut** : en vigueur. Mise en œuvre : PR #93 (brouillon) ; application effective à sa fusion, sur GO distinct de Laurent ; date de fusion à arbitrer avant la fusion.
+
+**La décision** — Les CTA ROI des sept sources qui passaient par Studios visent le calculateur localisé : FR `/fr/calculateur-roi`, EN `/en/calculateur-roi`, de-ch `/de-ch/roi-rechner`. Studios n'est pas transformée en cible : aucun `id="calculateur-roi"` n'y est ajouté. Le témoin du pilote Studios (`studio-photo/selecteur-machines`) reste inchangé. GA4 est traité séparément. `anchors` et `roi-calculator` ne sont pas activés en CI par #93.
+
+**Le contexte** — L'option B d'AR-01, décidée le 03/10 (`ETAT.md`, C ; revue `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, § 11.4), faisait de la section ROI de Studios la cible des liens « Calculer mon ROI », par un `id` permanent. Elle est remplacée sur ce point. Sur `main` `8247217` : 19 expressions dans 8 fichiers visaient `/studios-photo-automatises#calculateur-roi` (18) ou `#roi` (1, prestataire) ; aucune des deux ancres n'existe sur Studios depuis le 22/03/2026 (`d5a7fea`), le visiteur arrivait en haut de page. #93 corrige 18 expressions dans 7 fichiers (36 liens rendus sur 14 pages, FR et EN) ; l'expression du sélecteur (3 liens rendus, FR, EN, de-ch) est l'exception volontaire du témoin. Le calculateur FR est un conseiller adossé à une API facturée.
+
+**Ce qu'elle interdit** — Ajouter un `id="calculateur-roi"` à Studios pour rétablir l'option B ou pour rendre le témoin fonctionnel ; modifier le lien du témoin sans nouvelle décision ; faire pointer un nouveau CTA ROI vers `/studios-photo-automatises#…` ; appeler réellement l'API du calculateur dans un test sans GO explicite (D43) ; ajouter un événement GA4 au titre de cette décision.
+
+---
+
 ## D46 · 2026-10-06 · Cluster AI Act : cinq articles (A, S, B, C, D) préparés en FR, EN et de-ch pour une publication coordonnée ; D41 remplacée sur le principe des satellites
 
 **Décidé par** : Laurent — mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026
