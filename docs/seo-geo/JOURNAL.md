@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · A04a (#89) actualisée depuis `main` `8247217` (#96) : liens Skeelbox retirés, conflit de journal résolu · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04a | **PR** : #89, brouillon | **Branche** : `seo/a04a-liens-skeelbox-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `43dd0eb`
+
+**Quoi** — `main` `8247217` fusionnée dans la branche, sans rebase. Seul conflit : `JOURNAL.md` (insertion en tête) ; toutes les entrées de `main` conservées, entrée A04a du 03/10 placée à sa date. Aucune modification de contenu ajoutée : le diff contre `main` reste le retrait des 2 liens Skeelbox.
+
+**Pourquoi** — #89 avait 90 commits de retard et n'était plus fusionnable ; sa CI du 03/10 précédait #86 (ni Vitest ni parcours Playwright).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` (résolution et cette entrée). Diff contre `main` : `content/blog/en/impact-photographs-product-sheet.json`, `content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Inchangé par rapport à l'entrée A04a du 03/10 : plus aucun lien sortant vers `skeelbox.com`.
+
+**Vérifié** —
+- Diff des 2 JSON contre `main` : seul le champ `content` change ; une balise `<a>` retirée par fichier (2 liens `skeelbox.com` avant, 0 après) ; texte visible identique ; statistique, liens voisins et métadonnées inchangés.
+- `https://www.skeelbox.com/etude-abandon-panier/`, avec et sans `/` final (06/10, conteneur) : 301 vers `https://cemater.com/`, 200, titre « Ojol333: Content Dispatch Layer untuk Menyampaikan Informasi Game Online… » ; la racine de `skeelbox.com` redirige au même endroit.
+- `tsc` vert ; `verifier-json` : 195 JSON valides ; Vitest 400/400 ; `next build` vert (386 pages).
+- `next start` local, desktop 1280 et mobile 390 : les 2 articles en 200 ; 0 lien `skeelbox` ; paragraphe sans balise ni espace parasite, « (Skeelbox) » présent ; 0 lien vide ; 0 erreur de page.
+- Parcours de la CI `machine-selector` et `sommaire-blog` : 37/37 (Chromium préinstallé du conteneur, révision 1194 ; la CI utilise la sienne).
+- Appels payants : aucun.
+
+**Supposé** — Que la redirection observée depuis le conteneur est celle que voit un visiteur (R4).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante de la CI) ; `ETAT.md`, non modifié pour ne pas étendre les conflits de #90 et #92 ; fond de la statistique citée (AA5 b).
+
+**Suite** — CI et Preview sur la nouvelle tête ; QA humaine de Laurent ; GO de fusion distinct. #90 puis #92 seront actualisées après le sort de #89, une à la fois.
+
+---
+
 ## 2026-10-06 · Cluster AI Act (#96) synchronisé avec `main` `1e0901b` (#84) : sommaire de A vérifié, 15 articles intacts, CTA de fin d'article localisés · Claude de Laurent
 
 **Chantier** : cluster AI Act (F2), D46 ; D44 (effet de #84 sur A) | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `1e0901b` ; tête précédente `8d5b131`
@@ -237,6 +265,34 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — `ETAT.md`, volontairement non modifié ; `BOITE-AUX-LETTRES.md`, non modifié (Q22, sur `main`, décrit déjà le comportement de #86 ; une nouvelle entrée créerait un conflit pour #88 à #93) ; Firefox, WebKit et mobile émulé, hors CI.
 
 **Suite** — CI réelle sur la nouvelle tête ; information de Sébastien sur la PR (renvoi à Q22) ; GO de fusion distinct de Laurent. Après la fusion de #86, `anchors` passe de `DIFFERES` à `ATTENDUS` dans la PR qui l'active (AR-01, #93).
+
+---
+
+## 2026-10-03 · A04a — liens Skeelbox retirés, statistique et texte inchangés · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04a (Maillage V2 PR-04, lignes F-032 et F-038 ; AA5 option a) | **PR** : brouillon, branche `seo/a04a-liens-skeelbox-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Dans deux articles, la balise `<a href="https://www.skeelbox.com/etude-abandon-panier/" id="">Skeelbox</a>` est remplacée par le mot « Skeelbox ». La phrase, la statistique qu'elle cite et la parenthèse restent identiques.
+
+**Pourquoi** — Le 03/10, depuis le conteneur, `https://www.skeelbox.com/etude-abandon-panier/` répond 301 vers `https://cemater.com/`, dont le titre est celui d'un site de jeux en ligne sans rapport (relevés à 08:50 et 10:56 UTC). Le lien envoie le lecteur vers un domaine tiers. Décision de Laurent du 03/10 : retrait des deux liens (AA5 option a), CA10 (a) avec information de Sébastien ; le sort de la statistique (AA5 option b) reste à Sébastien.
+
+**Fichiers** — `content/blog/en/impact-photographs-product-sheet.json`, `content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus aucun lien sortant vers ce domaine depuis le site.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des deux articles identique avant et après (balises retirées, comparaison du texte) ; 0 occurrence de `skeelbox.com` dans les deux JSON.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu `main` / branche : 4 pages sur 359. Les 2 articles : lien retiré, mot conservé. `/fr/blog` et `/en/blog` : DOM servi identique ; seule leur charge utile RSC change, car elle embarque le contenu complet des articles (comportement préexistant).
+- `next start` local : les 2 articles répondent 200, 0 lien vers `skeelbox.com` dans le DOM, texte « (Skeelbox) » présent.
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que la redirection observée depuis le conteneur est celle que voit un visiteur : à confirmer dans Chrome (R4 ne s'applique qu'à `www`, mais la redirection est servie par un tiers).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; le fond de la statistique citée.
+
+**Suite** — Information de Sébastien : lien retiré, statistique à arbitrer (AA5 b). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10, ou plus tôt sur GO exprès.
 
 ---
 
