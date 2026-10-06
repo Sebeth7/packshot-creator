@@ -16,9 +16,10 @@ import { rateLimit } from '@/lib/rate-limit';
 // Recherche et écritures Pipedrive successives, puis Resend.
 export const maxDuration = 30;
 
-// 5 demandes par adresse IP et par fenêtre de 10 minutes (compteur en mémoire de l'instance).
+// 5 demandes par adresse IP et par heure, comme /api/roi-lead (règles brochure de
+// Sébastien, § 4) ; compteur en mémoire de l'instance.
 const LIMITE = 5;
-const FENETRE_MS = 10 * 60 * 1000;
+const FENETRE_MS = 60 * 60 * 1000;
 
 const gestionnaire = creerGestionnaireCatalogue({
   services: servicesCatalogue(),

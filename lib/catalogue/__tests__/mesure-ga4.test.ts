@@ -22,26 +22,28 @@ function navigateur(attribution: Record<string, string> | null) {
 }
 
 describe('événements selon la réponse du serveur', () => {
-  it('succès : catalogue_request_accepted, et consultant_request_accepted seulement si transmis', () => {
+  it('succès serveur : un seul form_submit, la demande de consultant en paramètre (aucun double comptage)', () => {
     const ok = { ok: true as const, pdfUrl: 'https://x.test/c.pdf', emailSent: true, contactRequestAccepted: false };
-    expect(evenementsReponse(ok, 'FR').map((e) => e.nom)).toEqual(['catalogue_request_accepted']);
-    expect(evenementsReponse({ ...ok, contactRequestAccepted: true }, 'CH').map((e) => e.nom)).toEqual([
-      'catalogue_request_accepted',
-      'consultant_request_accepted',
+    expect(evenementsReponse(ok, 'FR')).toEqual([
+      { nom: 'form_submit', parametres: { country: 'FR', email_sent: 'true', consultant_request: 'none' } },
     ]);
-    expect(evenementsReponse(ok, 'FR')[0].parametres).toEqual({ country: 'FR', email_sent: 'true' });
+    const accepte = evenementsReponse({ ...ok, contactRequestAccepted: true }, 'CH', true);
+    expect(accepte).toHaveLength(1);
+    expect(accepte[0]).toMatchObject({ nom: 'form_submit', parametres: { consultant_request: 'accepted' } });
+    // Consultant demandé mais transmission non confirmée : jamais « accepted ».
+    expect(evenementsReponse(ok, 'FR', true)[0].parametres.consultant_request).toBe('not_confirmed');
   });
 
   it('simulation locale : aucun événement', () => {
     expect(evenementsReponse({ ok: true, pdfUrl: 'about:blank', emailSent: false, contactRequestAccepted: false, simulated: true }, 'FR')).toEqual([]);
   });
 
-  it('échecs : catalogue_request_failed avec la raison, jamais un succès', () => {
-    expect(evenementsReponse({ ok: false, error: 'catalogue_unavailable' }, 'FR')).toEqual([
-      { nom: 'catalogue_request_failed', parametres: { reason: 'catalogue_unavailable' } },
+  it('échecs : form_error avec la raison, jamais un form_submit', () => {
+    expect(evenementsReponse({ ok: false, error: 'catalogue_unavailable' }, 'FR', true)).toEqual([
+      { nom: 'form_error', parametres: { reason: 'catalogue_unavailable' } },
     ]);
     expect(evenementsReponse({ ok: false, error: 'rate_limited', retryAfterSec: 60 }, 'FR')[0].parametres.reason).toBe('rate_limited');
-    expect(evenementsReponse(null, 'FR')).toEqual([{ nom: 'catalogue_request_failed', parametres: { reason: 'technical' } }]);
+    expect(evenementsReponse(null, 'FR')).toEqual([{ nom: 'form_error', parametres: { reason: 'technical' } }]);
   });
 });
 
@@ -57,7 +59,10 @@ describe('paramètres de contexte sans donnée personnelle', () => {
         landingPage: '/fr/catalogue-orbitvu-all-in-one?utm_source=perplexity.ai&email=claire@gmail.com',
       }),
     ).toEqual({
-      form_name: 'catalogue_all_in_one',
+      form_name: 'brochure_form',
+      brochure_id: 'orbitvu_all_in_one_2026_fr',
+      page_type: 'landing_catalogue',
+      locale: 'fr',
       page_source: 'catalogue_all_in_one',
       cta_location: 'landing_catalogue_formulaire',
       utm_source: 'perplexity.ai',
@@ -77,7 +82,10 @@ describe('paramètres de contexte sans donnée personnelle', () => {
 
   it('sans attribution : seuls les paramètres fixes', () => {
     expect(parametresContexte(null)).toEqual({
-      form_name: 'catalogue_all_in_one',
+      form_name: 'brochure_form',
+      brochure_id: 'orbitvu_all_in_one_2026_fr',
+      page_type: 'landing_catalogue',
+      locale: 'fr',
       page_source: 'catalogue_all_in_one',
       cta_location: 'landing_catalogue_formulaire',
     });
@@ -87,17 +95,37 @@ describe('paramètres de contexte sans donnée personnelle', () => {
 describe('émission réelle par gtag (consentement donné)', () => {
   it('succès : paramètres de contexte joints, aucune donnée saisie', () => {
     const gtag = navigateur({ utmSource: 'google', landingPage: '/fr/catalogue-orbitvu-all-in-one' });
-    mesurerReponse({ ok: true, pdfUrl: 'https://x.test/c.pdf', emailSent: false, contactRequestAccepted: true }, 'CH');
-    expect(gtag.mock.calls.map((c) => c[1])).toEqual(['catalogue_request_accepted', 'consultant_request_accepted']);
-    expect(gtag.mock.calls[0][2]).toMatchObject({ page_source: 'catalogue_all_in_one', utm_source: 'google', country: 'CH', email_sent: 'false' });
+    mesurerReponse({ ok: true, pdfUrl: 'https://x.test/c.pdf', emailSent: false, contactRequestAccepted: true }, 'CH', true);
+    expect(gtag.mock.calls.map((c) => c[1])).toEqual(['form_submit']);
+    expect(gtag.mock.calls[0][2]).toMatchObject({
+      form_name: 'brochure_form',
+      brochure_id: 'orbitvu_all_in_one_2026_fr',
+      page_source: 'catalogue_all_in_one',
+      utm_source: 'google',
+      country: 'CH',
+      email_sent: 'false',
+      consultant_request: 'accepted',
+    });
     const tout = JSON.stringify(gtag.mock.calls);
     for (const pii of PII) expect(tout).not.toContain(pii);
   });
 
-  it('ouverture du PDF mesurée avec le contexte', () => {
+  it('téléchargement : brochure_download au clic seulement, avec l’identifiant de la brochure', () => {
     const gtag = navigateur(null);
+    mesurerReponse({ ok: true, pdfUrl: 'https://x.test/c.pdf', emailSent: true, contactRequestAccepted: false }, 'FR');
+    expect(gtag.mock.calls.map((c) => c[1])).not.toContain('brochure_download');
     mesurerOuverturePdf();
-    expect(gtag).toHaveBeenCalledWith('event', 'catalogue_pdf_open_click', expect.objectContaining({ page_source: 'catalogue_all_in_one' }));
+    expect(gtag).toHaveBeenLastCalledWith(
+      'event',
+      'brochure_download',
+      expect.objectContaining({ brochure_id: 'orbitvu_all_in_one_2026_fr', page_source: 'catalogue_all_in_one' }),
+    );
+  });
+
+  it('simulation locale : aucun form_submit', () => {
+    const gtag = navigateur(null);
+    mesurerReponse({ ok: true, pdfUrl: 'about:blank', emailSent: false, contactRequestAccepted: false, simulated: true }, 'FR');
+    expect(gtag).not.toHaveBeenCalled();
   });
 
   it('sans consentement (gtag absent) : rien n’est émis, aucune erreur', () => {

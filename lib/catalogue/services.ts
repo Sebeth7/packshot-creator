@@ -4,18 +4,19 @@ import type { SuiviCatalogue } from './crm';
 import { PUBLICATION_AUTORISEE, SERVICES_REELS_AUTORISES, simulationAutorisee } from './activation';
 import { PDF_CATALOGUE } from './pdf';
 import { stockagePipedrive } from './pipedrive';
-import { courrielResend, destinatairesNotification, notificationConsultantResend, type ClientCourriel } from './resend';
+import { courrielResend, destinatairesNotification, notificationInterneResend, type ClientCourriel } from './resend';
 
 /**
  * Services de la route `/api/catalogue`, injectés pour être remplacés par des
  * doublures dans les tests.
  *
  * ÉTAT AU 06/10/2026 — ADAPTATEURS ÉCRITS, AUCUN APPEL RÉEL.
- * - trace durable : Pipedrive, personne + organisation + note, dédoublonnée
- *   par requestId (`pipedrive.ts`, règle dans `crm.ts`) ; aucune affaire ;
+ * - trace durable du lead brochure : Pipedrive, personne + organisation + note
+ *   « [Brochure] », dédoublonnée par requestId (`pipedrive.ts`, règle dans
+ *   `crm.ts`) ; aucune affaire ;
  * - e-mail du lien au prospect : Resend (`resend.ts`, texte de `courriel.ts`) ;
- * - demande de consultant : notification interne Resend à `NOTIFICATION_EMAIL`,
- *   en plus de la mention dans la note ;
+ * - notification interne de chaque nouvelle demande, consultant demandé mis en
+ *   tête : Resend à `NOTIFICATION_EMAIL` ;
  * - PDF : URL R2 de `pdf.ts`.
  *
  * Les services réels ne sont assemblés que si TOUT est réuni :
@@ -50,9 +51,13 @@ export interface CourrielCatalogue {
   envoyerLien(demande: DemandeCatalogue, pdfUrl: string): Promise<{ envoye: boolean }>;
 }
 
-export interface ConsultantCatalogue {
-  /** Transmission à l'équipe d'une demande de consultant ; lève en cas d'échec. */
-  transmettre(demande: DemandeCatalogue, enregistrement: EnregistrementCatalogue): Promise<void>;
+export interface NotificationCatalogue {
+  /**
+   * Notification interne d'une nouvelle demande (lead brochure), qui porte aussi
+   * la demande de consultant. Lève en cas d'échec : une demande de consultant
+   * n'est déclarée prise en compte que si elle a été transmise.
+   */
+  notifier(demande: DemandeCatalogue, enregistrement: EnregistrementCatalogue): Promise<void>;
 }
 
 export interface ServicesCatalogue {
@@ -61,7 +66,7 @@ export interface ServicesCatalogue {
   pdfUrl(): Promise<string | null>;
   stockage: StockageCatalogue | null;
   courriel: CourrielCatalogue | null;
-  consultant: ConsultantCatalogue | null;
+  notification: NotificationCatalogue | null;
 }
 
 export const SERVICES_DESACTIVES: ServicesCatalogue = {
@@ -69,7 +74,7 @@ export const SERVICES_DESACTIVES: ServicesCatalogue = {
   pdfUrl: async () => null,
   stockage: null,
   courriel: null,
-  consultant: null,
+  notification: null,
 };
 
 /**
@@ -83,7 +88,7 @@ export const SERVICES_SIMULATION: ServicesCatalogue = {
   pdfUrl: async () => 'about:blank',
   stockage: { enregistrer: async () => ({ reference: 'simulation', dejaEnregistree: false }) },
   courriel: null,
-  consultant: null,
+  notification: null,
 };
 
 export interface InterrupteursCatalogue {
@@ -130,7 +135,7 @@ export function servicesCatalogue(
     pdfUrl: async () => PDF_CATALOGUE.url,
     stockage: stockagePipedrive({ jeton, fetch: options.fetch }),
     courriel: courrielResend(client, expediteur),
-    consultant:
-      destinataires.length > 0 ? notificationConsultantResend(client, expediteur, destinataires, domainePipedrive) : null,
+    notification:
+      destinataires.length > 0 ? notificationInterneResend(client, expediteur, destinataires, domainePipedrive) : null,
   };
 }

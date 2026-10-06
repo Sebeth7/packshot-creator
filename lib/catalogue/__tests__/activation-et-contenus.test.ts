@@ -4,12 +4,13 @@
  */
 import { describe, it, expect } from 'vitest';
 import { PUBLICATION_AUTORISEE, pageCatalogueServie, simulationAutorisee } from '@/lib/catalogue/activation';
-import { composerCourrielCatalogue } from '@/lib/catalogue/courriel';
+import { composerCourrielCatalogue, LIENS_RETOUR } from '@/lib/catalogue/courriel';
 import {
   regleCrmCatalogue,
   noteCrmCatalogue,
   noteCrmCatalogueHtml,
   lireSuiviNote,
+  domaineGrandPublic,
   ETAPE_PIPEDRIVE_CATALOGUE,
 } from '@/lib/catalogue/crm';
 import { localeSwitchHref, navPinLocale } from '@/i18n/deChCoverage';
@@ -77,6 +78,29 @@ describe('e-mail de transmission du lien (composé, non envoyé)', () => {
     }
   });
 
+  it('chemins de retour : démonstration et calculateur ROI, libellés publiés, adresses fixes du site', () => {
+    expect(LIENS_RETOUR.map((l) => [l.libelle, l.url])).toEqual([
+      ['Demander une démo', 'https://www.packshot-creator.com/fr/contact'],
+      ['Calculer mon ROI', 'https://www.packshot-creator.com/fr/calculateur-roi'],
+    ]);
+    for (const partie of [c.texte, c.html]) {
+      for (const l of LIENS_RETOUR) {
+        expect(partie).toContain(l.url);
+        expect(partie).toContain(l.libelle);
+      }
+      // D37 : aucun lien vers F5 avant le 23/11 ; aucune URL hors du site et du PDF.
+      expect(partie).not.toContain('packshot-e-commerce');
+      const urls = partie.match(/https?:[^\s"<]+/g) ?? [];
+      for (const u of urls) expect(u === pdf || u.startsWith('https://www.packshot-creator.com/fr/')).toBe(true);
+    }
+  });
+
+  it('aucune promesse d’appel ni de délai de rappel', () => {
+    for (const partie of [c.texte, c.html]) {
+      expect(partie.toLowerCase()).not.toMatch(/vous rappel|recontacter sous|24 heures|sous 24/);
+    }
+  });
+
   it('aucun contenu marketing, aucune pièce jointe annoncée', () => {
     for (const partie of [c.texte, c.html]) {
       expect(partie.toLowerCase()).not.toMatch(/newsletter|lettre d.information|promotion|offre|pièce jointe/);
@@ -89,7 +113,7 @@ describe('e-mail de transmission du lien (composé, non envoyé)', () => {
   });
 });
 
-describe('règle CRM V1 (06/10/2026) : trace sans affaire', () => {
+describe('règle CRM V1 (06/10/2026) : lead brochure tracé, sans affaire', () => {
   it('aucune affaire, ni pour une brochure seule, ni pour une demande de consultant', () => {
     expect(regleCrmCatalogue(demande)).toEqual({ synchroniserContact: true, creerAffaire: false, signalerConsultant: false });
     expect(regleCrmCatalogue({ ...demande, consultantOptIn: true })).toEqual({
@@ -105,22 +129,41 @@ describe('règle CRM V1 (06/10/2026) : trace sans affaire', () => {
 
   it('la note porte l’intention, le pays, la demande de consultant et l’attribution', () => {
     const note = noteCrmCatalogue(demande);
-    expect(note).toContain('catalogue_download');
+    expect(note).toContain('[Brochure]');
+    expect(note).toContain('Type : lead brochure. Ni une demande de démonstration, ni une affaire qualifiée.');
     expect(note).toContain('Pays : Suisse');
-    expect(note).toContain('Demande de consultant : non');
+    expect(note).toContain('Demande de consultant : non.');
+    expect(note).toContain('Brochure : orbitvu_all_in_one_2026_fr (langue : fr)');
     expect(note).toContain('Source : perplexity.ai');
     expect(note.toLowerCase()).not.toContain('marketing');
+    // Aucune interdiction ni consigne d'appel codée (fait métier de Laurent du 06/10).
+    expect(note).not.toMatch(/ne pas appeler|pas d.appel/i);
+    expect(noteCrmCatalogue({ ...demande, consultantOptIn: true })).toContain(
+      'Demande de consultant : OUI, le prospect demande à être recontacté.',
+    );
+  });
+
+  it('adresse grand public acceptée et seulement signalée dans la note', () => {
+    expect(domaineGrandPublic('claire@Gmail.com')).toBe('gmail.com');
+    expect(domaineGrandPublic('anna@bluewin.ch')).toBe('bluewin.ch');
+    expect(domaineGrandPublic('a@hotmail.fr')).toBe('hotmail.fr');
+    expect(domaineGrandPublic('claire@atelier-exemple.fr')).toBeNull();
+    expect(noteCrmCatalogue(demande)).not.toContain('domaine grand public');
+    expect(noteCrmCatalogue({ ...demande, email: 'claire@outlook.com' })).toContain('E-mail : domaine grand public (outlook.com)');
   });
 
   it('version Pipedrive : champs saisis échappés, suivi relu à l’identique', () => {
-    const html = noteCrmCatalogueHtml({ ...demande, company: 'A <script>' }, { emailSent: true, consultant: 'transmis' });
+    const suivi = { emailSent: true, notification: 'transmise', consultant: 'transmis' } as const;
+    const html = noteCrmCatalogueHtml({ ...demande, company: 'A <script>' }, suivi);
     expect(html).toContain('Entreprise : A &lt;script&gt;');
     expect(html).not.toContain('<script>');
-    expect(lireSuiviNote(html)).toEqual({ emailSent: true, consultant: 'transmis' });
-    expect(lireSuiviNote(noteCrmCatalogueHtml(demande, { emailSent: false, consultant: 'non_transmis' }))).toEqual({
-      emailSent: false,
-      consultant: 'non_transmis',
-    });
+    expect(lireSuiviNote(html)).toEqual(suivi);
+    for (const s of [
+      { emailSent: false, notification: 'non_transmise', consultant: 'non_transmis' },
+      { emailSent: true, notification: 'non_configuree', consultant: 'non_demande' },
+    ] as const) {
+      expect(lireSuiviNote(noteCrmCatalogueHtml(demande, s))).toEqual(s);
+    }
     expect(lireSuiviNote(noteCrmCatalogueHtml(demande))).toBeNull();
   });
 });

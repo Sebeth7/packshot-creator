@@ -41,16 +41,16 @@ function doublures(surcharge: Partial<ServicesCatalogue> = {}) {
   }));
   const consignerSuivi = vi.fn<(r: string, d: DemandeCatalogue, s: SuiviCatalogue) => Promise<void>>(async () => {});
   const envoyerLien = vi.fn<(d: DemandeCatalogue, u: string) => Promise<{ envoye: boolean }>>(async () => ({ envoye: true }));
-  const transmettre = vi.fn<(d: DemandeCatalogue, e: EnregistrementCatalogue) => Promise<void>>(async () => {});
+  const notifier = vi.fn<(d: DemandeCatalogue, e: EnregistrementCatalogue) => Promise<void>>(async () => {});
   const services: ServicesCatalogue = {
     mode: 'desactive',
     pdfUrl: async () => PDF,
     stockage: { enregistrer, consignerSuivi },
     courriel: { envoyerLien },
-    consultant: { transmettre },
+    notification: { notifier },
     ...surcharge,
   };
-  return { services, enregistrer, consignerSuivi, envoyerLien, transmettre };
+  return { services, enregistrer, consignerSuivi, envoyerLien, notifier };
 }
 
 function gestionnaire(services: ServicesCatalogue, autres: Partial<DependancesCatalogue> = {}) {
@@ -81,10 +81,15 @@ describe('POST /api/catalogue — parcours accepté', () => {
       recueLe: '2026-10-02T12:00:00.000Z',
     });
     expect(d.envoyerLien).toHaveBeenCalledWith(demande, PDF);
-    // Pas de consultant demandé : aucune transmission à l'équipe.
-    expect(d.transmettre).not.toHaveBeenCalled();
+    // Lead brochure : l'équipe est notifiée, sans demande de consultant.
+    expect(d.notifier).toHaveBeenCalledTimes(1);
+    expect(d.notifier.mock.calls[0][0].consultantOptIn).toBe(false);
     // Ce qui a été fait est consigné dans la trace.
-    expect(d.consignerSuivi).toHaveBeenCalledWith('note-1', demande, { emailSent: true, consultant: 'non_demande' });
+    expect(d.consignerSuivi).toHaveBeenCalledWith('note-1', demande, {
+      emailSent: true,
+      notification: 'transmise',
+      consultant: 'non_demande',
+    });
   });
 
   it('consultant demandé et transmis : contactRequestAccepted vrai', async () => {
@@ -92,9 +97,9 @@ describe('POST /api/catalogue — parcours accepté', () => {
     const { g } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toMatchObject({ ok: true, contactRequestAccepted: true });
-    expect(d.transmettre).toHaveBeenCalledTimes(1);
-    expect(d.transmettre.mock.calls[0][1]).toMatchObject({ reference: 'note-1', personId: 7 });
-    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, consultant: 'transmis' });
+    expect(d.notifier).toHaveBeenCalledTimes(1);
+    expect(d.notifier.mock.calls[0][1]).toMatchObject({ reference: 'note-1', personId: 7 });
+    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, notification: 'transmise', consultant: 'transmis' });
   });
 
   it('conserve le pays et l’attribution first-touch', async () => {
@@ -130,24 +135,39 @@ describe('POST /api/catalogue — échecs dits tels quels', () => {
     expect(await (await g(requete(corps))).json()).toMatchObject({ ok: true, emailSent: false });
   });
 
-  it('transmission du consultant en échec : contactRequestAccepted faux, consigné tel quel', async () => {
+  it('notification en échec avec consultant demandé : contactRequestAccepted faux, consigné tel quel', async () => {
     const d = doublures();
-    d.transmettre.mockRejectedValueOnce(new Error('resend indisponible'));
+    d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
-    expect(journal).toHaveBeenCalledWith('catalogue.consultant.echec', expect.any(Object));
-    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, consultant: 'non_transmis' });
+    expect(journal).toHaveBeenCalledWith('catalogue.notification.echec', expect.any(Object));
+    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({
+      emailSent: true,
+      notification: 'non_transmise',
+      consultant: 'non_transmis',
+    });
   });
 
-  it('transmission non configurée : une demande de consultant n’est jamais déclarée prise en compte', async () => {
-    const d = doublures({ consultant: null });
+  it('notification en échec sur une brochure seule : la brochure reste remise, l’échec est consigné', async () => {
+    const d = doublures();
+    d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
+    const { g, journal } = gestionnaire(d.services);
+    const res = await g(requete(corps));
+    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
+    expect(journal).toHaveBeenCalledWith('catalogue.notification.echec', expect.any(Object));
+    expect(d.consignerSuivi.mock.calls[0][2]).toMatchObject({ notification: 'non_transmise', consultant: 'non_demande' });
+  });
+
+  it('notification non configurée : jamais présumée, une demande de consultant n’est pas déclarée prise en compte', async () => {
+    const d = doublures({ notification: null });
     const { g, journal } = gestionnaire(d.services);
     expect(await (await g(requete({ ...corps, consultantOptIn: true }))).json()).toMatchObject({
       ok: true,
       contactRequestAccepted: false,
     });
-    expect(journal).toHaveBeenCalledWith('catalogue.consultant.non_configure', expect.any(Object));
+    expect(journal).toHaveBeenCalledWith('catalogue.notification.non_configuree', expect.any(Object));
+    expect(d.consignerSuivi.mock.calls[0][2]).toMatchObject({ notification: 'non_configuree', consultant: 'non_transmis' });
   });
 
   it('écart secondaire du CRM signalé par la trace : demande acceptée, écart au journal', async () => {
@@ -180,7 +200,7 @@ describe('POST /api/catalogue — échecs dits tels quels', () => {
     expect(res.status).toBe(500);
     expect(await res.json()).toEqual({ ok: false, error: 'technical' });
     expect(d.envoyerLien).not.toHaveBeenCalled();
-    expect(d.transmettre).not.toHaveBeenCalled();
+    expect(d.notifier).not.toHaveBeenCalled();
     expect(d.consignerSuivi).not.toHaveBeenCalled();
   });
 
@@ -261,7 +281,7 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     expect(await r1.json()).toEqual(await r2.json());
     expect(d.enregistrer).toHaveBeenCalledTimes(1);
     expect(d.envoyerLien).toHaveBeenCalledTimes(1);
-    expect(d.transmettre).toHaveBeenCalledTimes(1);
+    expect(d.notifier).toHaveBeenCalledTimes(1);
   });
 
   it('demande déjà tracée (autre instance) : aucun effet rejoué, suivi consigné repris', async () => {
@@ -269,13 +289,13 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     d.enregistrer.mockResolvedValueOnce({
       reference: 'note-1',
       dejaEnregistree: true,
-      suivi: { emailSent: true, consultant: 'transmis' },
+      suivi: { emailSent: true, notification: 'transmise', consultant: 'transmis' },
     });
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: true });
     expect(d.envoyerLien).not.toHaveBeenCalled();
-    expect(d.transmettre).not.toHaveBeenCalled();
+    expect(d.notifier).not.toHaveBeenCalled();
     expect(d.consignerSuivi).not.toHaveBeenCalled();
     expect(journal).toHaveBeenCalledWith('catalogue.demande.rejouee', expect.any(Object));
   });

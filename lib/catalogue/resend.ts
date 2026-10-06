@@ -1,7 +1,7 @@
 import { composerCourrielCatalogue } from './courriel';
 import { noteCrmCatalogue } from './crm';
 import type { DemandeCatalogue } from './schema';
-import type { ConsultantCatalogue, CourrielCatalogue, EnregistrementCatalogue } from './services';
+import type { CourrielCatalogue, EnregistrementCatalogue, NotificationCatalogue } from './services';
 
 /**
  * Envois Resend de la landing catalogue, sur le modèle des routes existantes
@@ -9,11 +9,12 @@ import type { ConsultantCatalogue, CourrielCatalogue, EnregistrementCatalogue } 
  *
  * - Au prospect : l'e-mail transactionnel de `courriel.ts` (lien, jamais de
  *   pièce jointe, aucune séquence marketing).
- * - À l'équipe, seulement si un consultant est demandé : une notification
- *   interne adressée aux destinataires de `NOTIFICATION_EMAIL` (convention de
- *   `/api/submit-survey`, adresses séparées par des virgules). Aucune adresse
+ * - À l'équipe, pour chaque nouvelle demande : une notification interne
+ *   « [Brochure] entreprise » adressée aux destinataires de `NOTIFICATION_EMAIL`
+ *   (convention de `/api/submit-survey`, adresses séparées par des virgules),
+ *   avec la demande de consultant en tête quand elle existe. Aucune adresse
  *   n'est codée en dur : sans destinataire configuré, la notification n'existe
- *   pas et la demande de consultant n'est pas déclarée prise en compte.
+ *   pas et une demande de consultant n'est pas déclarée prise en compte.
  *
  * Resend répond `{ data, error }` sans lever : un envoi n'est tenu pour fait
  * que sur un identifiant de message retourné.
@@ -63,33 +64,43 @@ function echapper(valeur: string): string {
   return valeur.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-export function notificationConsultantResend(
+/** Objet de la notification interne : `[Brochure] entreprise`, signal consultant visible. */
+export function objetNotification(demande: DemandeCatalogue): string {
+  return demande.consultantOptIn
+    ? `[Brochure] ${demande.company} - DEMANDE À ÊTRE RECONTACTÉ`
+    : `[Brochure] ${demande.company}`;
+}
+
+/**
+ * Notification interne de CHAQUE nouvelle demande (lead brochure), règles
+ * brochure de Sébastien (§ 5) et fait métier de Laurent du 06/10 : l'équipe sait
+ * qu'un lead brochure existe. Aucune consigne d'appel ni d'interdiction d'appel,
+ * aucune relance ; la demande de consultant est mise en tête quand elle existe.
+ */
+export function notificationInterneResend(
   client: ClientCourriel,
   expediteur: string,
   destinataires: string[],
   domainePipedrive: string,
-): ConsultantCatalogue {
+): NotificationCatalogue {
   return {
-    async transmettre(demande: DemandeCatalogue, enregistrement: EnregistrementCatalogue) {
+    async notifier(demande: DemandeCatalogue, enregistrement: EnregistrementCatalogue) {
       const fiche = enregistrement.personId ? `https://${domainePipedrive}/person/${enregistrement.personId}` : null;
-      const lignes = [
-        `Prénom : ${demande.firstName}`,
-        `E-mail : ${demande.email}`,
-        ...noteCrmCatalogue(demande).split('\n'),
-      ];
+      const entete = demande.consultantOptIn
+        ? 'LE PROSPECT DEMANDE À ÊTRE RECONTACTÉ (case consultant cochée sur la landing catalogue Orbitvu All-in-One).'
+        : 'Nouveau lead brochure : demande du catalogue Orbitvu All-in-One sur la landing.';
+      const lignes = [`Prénom : ${demande.firstName}`, `E-mail : ${demande.email}`, ...noteCrmCatalogue(demande).split('\n')];
       const html = [
-        '<p><strong>Demande de consultant cochée sur la landing catalogue Orbitvu All-in-One.</strong></p>',
+        `<p><strong>${echapper(entete)}</strong></p>`,
         fiche ? `<p><a href="${echapper(fiche)}">Fiche Pipedrive de la personne</a></p>` : '',
         `<p>${lignes.map(echapper).join('<br>')}</p>`,
       ].join('\n');
       const r = await client.emails.send({
         from: expediteurComplet(expediteur),
         to: destinataires,
-        subject: `[Site Web] Demande de consultant (catalogue All-in-One) - ${demande.company}`,
+        subject: objetNotification(demande),
         html,
-        text: ['Demande de consultant cochée sur la landing catalogue Orbitvu All-in-One.', fiche, ...lignes]
-          .filter(Boolean)
-          .join('\n'),
+        text: [entete, fiche, ...lignes].filter(Boolean).join('\n'),
       });
       if (r.error || !r.data?.id) throw new Error('notification interne non confirmée');
     },

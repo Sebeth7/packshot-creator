@@ -83,8 +83,11 @@ describe('A — demande de brochure seule', () => {
     expect(note.person_id).toBe(pipedrive.personnes[0].id);
     expect(note.org_id).toBe(pipedrive.organisations[0].id);
     for (const attendu of [
-      'Demande de catalogue (brochure)',
-      'Demande de consultant : non',
+      '[Brochure] Demande du catalogue Orbitvu All-in-One',
+      'Type : lead brochure',
+      'Demande de consultant : non.',
+      'Brochure : orbitvu_all_in_one_2026_fr (langue : fr)',
+      'E-mail : domaine grand public (gmail.com)',
       'Pays : Suisse',
       'Produits : Montres',
       'Page : catalogue_all_in_one',
@@ -92,20 +95,36 @@ describe('A — demande de brochure seule', () => {
       'Reçue le : 2026-10-06T09:00:00.000Z',
       `Identifiant : ${corps.requestId}`,
       'lien par e-mail confirmé',
+      'notification interne transmise',
       'consultant non demandé',
     ]) {
       expect(note.content).toContain(attendu);
     }
+    expect(note.content).not.toMatch(/ne pas appeler|pas d.appel/i);
     expect(aucuneAffaire(pipedrive.appels)).toBe(true);
 
-    expect(resend.envois).toHaveLength(1);
-    const e = resend.envois[0];
+    expect(resend.envois).toHaveLength(2);
+    const e = resend.envois.find((m) => m.to.includes('claire@gmail.com'))!;
     expect(e.to).toEqual(['claire@gmail.com']);
     expect(e.from).toBe('PackshotCreator <catalogue@exemple.test>');
     expect(e.subject).toBe('Votre catalogue Orbitvu All-in-One');
     expect(e.html).toContain(PDF_CATALOGUE.url);
     expect(e.html).toContain('/fr/confidentialite');
+    expect(e.html).toContain('+33 (0)1 47 42 66 66');
+    expect(e.html).toContain('+41 44 580 43 84');
     expect(Object.keys(e)).not.toContain('attachments');
+
+    // Notification interne du lead brochure : objet distinct, aucune consigne d'appel, aucune adresse en dur.
+    const interne = resend.envois.find((m) => m.to.includes('equipe-a@exemple.test'))!;
+    expect(interne.to).toEqual(['equipe-a@exemple.test', 'equipe-b@exemple.test']);
+    expect(interne.subject).toBe('[Brochure] Atelier Exemple');
+    expect(interne.html).toContain('Nouveau lead brochure');
+    expect(interne.html).toContain('Ni une demande de démonstration, ni une affaire qualifiée.');
+    expect(interne.html).toContain('Pays : Suisse');
+    expect(interne.html).toContain('Produits : Montres');
+    expect(interne.html).toContain('Source : perplexity.ai');
+    expect(interne.html).toContain(`https://packshotcreator.pipedrive.com/person/${pipedrive.personnes[0].id}`);
+    expect(`${interne.subject} ${interne.html} ${interne.text}`).not.toMatch(/ne pas appeler|pas d.appel|recontacté/i);
   });
 
   it('personne déjà connue : réutilisée, jamais dupliquée ni déplacée vers une autre organisation', async () => {
@@ -122,17 +141,19 @@ describe('A — demande de brochure seule', () => {
 });
 
 describe('B — consultant demandé', () => {
-  it('note explicite et notification interne aux destinataires configurés ; contactRequestAccepted vrai', async () => {
+  it('note explicite et notification « demande à être recontacté » ; contactRequestAccepted vrai ; aucune affaire', async () => {
     const { g, pipedrive, resend } = banc();
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF_CATALOGUE.url, emailSent: true, contactRequestAccepted: true });
-    expect(pipedrive.notes[0].content).toContain('Demande de consultant : OUI');
-    expect(pipedrive.notes[0].content).toContain('consultant notification interne transmise');
+    expect(pipedrive.notes[0].content).toContain('Demande de consultant : OUI, le prospect demande à être recontacté.');
+    expect(pipedrive.notes[0].content).toContain('consultant demande transmise à l’équipe');
     expect(aucuneAffaire(pipedrive.appels)).toBe(true);
 
+    expect(resend.envois).toHaveLength(2);
     const interne = resend.envois.find((m) => m.to.includes('equipe-a@exemple.test'));
     expect(interne?.to).toEqual(['equipe-a@exemple.test', 'equipe-b@exemple.test']);
-    expect(interne?.subject).toBe('[Site Web] Demande de consultant (catalogue All-in-One) - Atelier Exemple');
+    expect(interne?.subject).toBe('[Brochure] Atelier Exemple - DEMANDE À ÊTRE RECONTACTÉ');
+    expect(interne?.html).toContain('LE PROSPECT DEMANDE À ÊTRE RECONTACTÉ');
     expect(interne?.html).toContain(`https://packshotcreator.pipedrive.com/person/${pipedrive.personnes[0].id}`);
     expect(interne?.html).toContain('claire@gmail.com');
   });
@@ -145,22 +166,18 @@ describe('B — consultant demandé', () => {
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toMatchObject({ ok: true, emailSent: true, contactRequestAccepted: false });
     expect(pipedrive.notes[0].content).toContain('notification interne NON transmise');
+    expect(pipedrive.notes[0].content).toContain('consultant demande NON transmise');
   });
 
-  it('sans NOTIFICATION_EMAIL : aucune adresse en dur, la demande n’est pas déclarée prise en compte', async () => {
+  it('sans NOTIFICATION_EMAIL : aucune adresse en dur, rien n’est présumé', async () => {
     const env = { ...ENV, NOTIFICATION_EMAIL: '' };
-    const { g, resend, services, journal } = banc({ env });
-    expect(services.consultant).toBeNull();
+    const { g, resend, services, journal, pipedrive } = banc({ env });
+    expect(services.notification).toBeNull();
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toMatchObject({ ok: true, contactRequestAccepted: false });
     expect(resend.envois.map((m) => m.to)).toEqual([['claire@gmail.com']]);
-    expect(journal).toHaveBeenCalledWith('catalogue.consultant.non_configure', expect.any(Object));
-  });
-
-  it('consultant non demandé : aucune notification interne', async () => {
-    const { g, resend } = banc();
-    await g(requete(corps));
-    expect(resend.envois.every((m) => !m.to.includes('equipe-a@exemple.test'))).toBe(true);
+    expect(journal).toHaveBeenCalledWith('catalogue.notification.non_configuree', expect.any(Object));
+    expect(pipedrive.notes[0].content).toContain('notification interne non configurée');
   });
 });
 
@@ -171,7 +188,7 @@ describe('C — échec du stockage', () => {
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(res.status).toBe(500);
     expect(await res.json()).toEqual({ ok: false, error: 'technical' });
-    expect(resend.envois).toHaveLength(0);
+    expect(resend.envois).toHaveLength(0); // ni e-mail au prospect, ni notification interne
   });
 
   it('Pipedrive injoignable : erreur technique', async () => {
@@ -230,7 +247,7 @@ describe('F — idempotence au-delà de la mémoire d’une instance', () => {
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF_CATALOGUE.url, emailSent: true, contactRequestAccepted: true });
     expect(pipedrive.notes).toHaveLength(1);
     expect(pipedrive.personnes).toHaveLength(1);
-    expect(resend.envois).toHaveLength(2); // lien + notification interne, une seule fois
+    expect(resend.envois).toHaveLength(2); // lien + notification interne, une seule fois chacun
     expect(instance2.journal).toHaveBeenCalledWith('catalogue.demande.rejouee', expect.any(Object));
   });
 

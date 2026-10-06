@@ -2,12 +2,27 @@
  * E-mail transactionnel envoyé au prospect après une demande acceptée.
  *
  * Structure reprise du copydeck V2 du 02/10/2026 (§ 5.6), à relire par
- * Sébastien avant tout envoi. AUCUN ENVOI N'EST BRANCHÉ : cette fonction compose
- * le message, elle n'appelle aucun service. Le PDF n'est pas joint : le message
- * porte un lien. Aucun contenu marketing.
+ * Sébastien avant tout envoi. Cette fonction compose le message ; l'envoi est
+ * fait par `resend.ts`. Le PDF n'est jamais joint : le message porte un lien.
+ * Aucun contenu marketing, aucune relance.
+ *
+ * Chemins de retour vers le site (règles brochure de Sébastien du 02/10, § 3
+ * règle 7 et § 5) : démonstration et calculateur ROI, avec les libellés déjà
+ * publiés sur le site (`blogArticle.ctaDemo`, `blogArticle.ctaRoi`, mêmes
+ * destinations que `ArticleCTA`). Adresses fixes, construites côté serveur :
+ * rien n'est repris d'une URL envoyée par le navigateur. Aucun lien vers F5
+ * avant le 23/11 (D37). Les téléphones France et Suisse restent visibles
+ * (décision de Laurent du 06/10).
  */
 
-const URL_CONFIDENTIALITE = 'https://www.packshot-creator.com/fr/confidentialite';
+const SITE = 'https://www.packshot-creator.com';
+const URL_CONFIDENTIALITE = `${SITE}/fr/confidentialite`;
+
+/** Chemins de retour : libellé publié → page du site. */
+export const LIENS_RETOUR = [
+  { libelle: 'Demander une démo', url: `${SITE}/fr/contact` },
+  { libelle: 'Calculer mon ROI', url: `${SITE}/fr/calculateur-roi` },
+] as const;
 
 export interface CourrielCompose {
   objet: string;
@@ -36,6 +51,8 @@ export function composerCourrielCatalogue({ firstName, pdfUrl }: { firstName: st
     '',
     orientation,
     '',
+    ...LIENS_RETOUR.map((l) => `${l.libelle} : ${l.url}`),
+    '',
     "L'équipe PackshotCreator.",
     '',
     `Politique de confidentialité : ${URL_CONFIDENTIALITE}`,
@@ -45,6 +62,7 @@ export function composerCourrielCatalogue({ firstName, pdfUrl }: { firstName: st
     `<p>Bonjour ${echapper(firstName)},</p>`,
     `<p>Merci pour votre demande. Vous pouvez accéder au catalogue Orbitvu All-in-One depuis ce lien : <a href="${echapper(pdfUrl)}">Ouvrir le catalogue</a>.</p>`,
     `<p>${echapper(orientation)}</p>`,
+    `<p>${LIENS_RETOUR.map((l) => `<a href="${l.url}">${echapper(l.libelle)}</a>`).join(' · ')}</p>`,
     `<p>L'équipe PackshotCreator.</p>`,
     `<p style="font-size:12px;color:#6b7280"><a href="${URL_CONFIDENTIALITE}">Politique de confidentialité</a></p>`,
   ].join('\n');

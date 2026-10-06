@@ -115,7 +115,7 @@ export function CatalogueForm() {
     }
 
     // GA4 : succès seulement sur réponse acceptée du serveur (evenementsReponse).
-    mesurerReponse(reponse, valeurs.country);
+    mesurerReponse(reponse, valeurs.country, valeurs.consultantOptIn);
 
     if (reponse?.ok === true && typeof reponse.pdfUrl === 'string') {
       setEtat({ type: 'succes', reponse });

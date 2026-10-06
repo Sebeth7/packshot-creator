@@ -22,6 +22,10 @@ export type PaysCatalogue = (typeof PAYS_CATALOGUE)[number];
 /** Identifiant de la landing, conservé avec chaque demande (attribution interne). */
 export const PAGE_SOURCE_CATALOGUE = 'catalogue_all_in_one';
 
+/** Brochure remise (règles brochure de Sébastien, § 4 et § 6 : `brochureId`) ; V1 : FR seule. */
+export const BROCHURE_ID = 'orbitvu_all_in_one_2026_fr';
+export const LANGUE_CATALOGUE = 'fr';
+
 export const MESSAGES_VALIDATION = {
   firstName: 'Indiquez votre prénom.',
   email: 'Saisissez une adresse e-mail valide.',

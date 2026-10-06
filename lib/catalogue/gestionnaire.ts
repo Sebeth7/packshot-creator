@@ -17,8 +17,8 @@ import type { SuiviCatalogue } from './crm';
  *
  * Ordre : limitation → validation → champ piège → idempotence de l'instance →
  * disponibilité (PDF et stockage) → trace durable (dédoublonnée par requestId)
- * → e-mail du lien et, si demandé, transmission du consultant → suivi consigné
- * dans la trace.
+ * → e-mail du lien et notification interne (demande de consultant comprise) →
+ * suivi consigné dans la trace.
  * Aucun succès n'est renvoyé sans trace durable et URL de PDF. Une demande
  * reconnue par la trace comme déjà enregistrée ne rejoue aucun effet.
  *
@@ -140,23 +140,28 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
 
     // La demande est acceptée : les effets suivants ne la remettent pas en cause,
     // mais leur échec est dit tel quel au visiteur (emailSent, contactRequestAccepted).
-    const { courriel, consultant } = services;
-    if (demande.consultantOptIn && !consultant) journal('catalogue.consultant.non_configure', contexte);
+    // Chaque nouveau lead brochure est notifié à l'équipe ; la notification porte
+    // aussi la demande de consultant, qui n'est déclarée prise en compte que si
+    // elle a été transmise.
+    const { courriel, notification } = services;
+    if (!notification) journal('catalogue.notification.non_configuree', contexte);
     const envoiLien = courriel ? courriel.envoyerLien(demande, pdfUrl) : null;
-    const transmission = demande.consultantOptIn && consultant ? consultant.transmettre(demande, enregistrement) : null;
-    const [envoi, transmis] = await Promise.allSettled([envoiLien, transmission]);
+    const envoiNotification = notification ? notification.notifier(demande, enregistrement) : null;
+    const [envoi, notifie] = await Promise.allSettled([envoiLien, envoiNotification]);
 
     if (envoi.status === 'rejected') journal('catalogue.courriel.echec', contexte);
-    if (transmis.status === 'rejected') journal('catalogue.consultant.echec', contexte);
+    if (notifie.status === 'rejected') journal('catalogue.notification.echec', contexte);
 
     const emailSent = envoiLien !== null && envoi.status === 'fulfilled' && envoi.value?.envoye === true;
-    const contactRequestAccepted = transmission !== null && transmis.status === 'fulfilled';
+    const notificationTransmise = envoiNotification !== null && notifie.status === 'fulfilled';
+    const contactRequestAccepted = demande.consultantOptIn && notificationTransmise;
 
     // Ce qui a réellement été fait est consigné dans la trace ; un échec ici ne
     // change rien pour le visiteur, il est seulement signalé.
     if (services.stockage.consignerSuivi) {
       const suivi: SuiviCatalogue = {
         emailSent,
+        notification: !notification ? 'non_configuree' : notificationTransmise ? 'transmise' : 'non_transmise',
         consultant: !demande.consultantOptIn ? 'non_demande' : contactRequestAccepted ? 'transmis' : 'non_transmis',
       };
       try {
