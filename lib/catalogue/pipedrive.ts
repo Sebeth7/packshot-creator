@@ -19,6 +19,12 @@ import type { EnregistrementCatalogue, StockageCatalogue } from './services';
  * `null`) et créent une affaire, alors qu'ici un échec doit lever (aucun faux
  * succès) et qu'aucune affaire n'est créée.
  *
+ * Note épinglée sur la fiche de la personne (`pinned_to_person_flag`, 0 ou 1,
+ * documenté pour POST et PUT /v1/notes ; décision de Laurent du 06/10) : la
+ * trace « [Brochure] » reste en tête de la fiche, à l'image de la note épinglée
+ * sur l'affaire de `/api/contact`. Le drapeau est repris à la mise à jour du
+ * suivi. Aucune affaire, aucun Lead.
+ *
  * Dédoublonnage : la note porte le requestId. Avant d'écrire, les notes de la
  * personne sont relues ; si l'une porte déjà ce requestId, la demande est
  * reconnue comme rejouée et rien n'est réécrit. Limite : deux requêtes
@@ -180,7 +186,12 @@ export function stockagePipedrive({ jeton, fetch: f = fetch, bases = BASES_PIPED
       }
 
       const note = await appel<{ id: number }>('création de la note', 'v1', 'POST', '/notes', {
-        corps: { content: noteCrmCatalogueHtml(demande), person_id: personId, ...(orgId ? { org_id: orgId } : {}) },
+        corps: {
+          content: noteCrmCatalogueHtml(demande),
+          person_id: personId,
+          ...(orgId ? { org_id: orgId } : {}),
+          pinned_to_person_flag: 1,
+        },
       });
       if (!note?.id) throw new ErreurPipedrive('création de la note');
       return { reference: String(note.id), personId, dejaEnregistree: false, anomalies };
@@ -188,7 +199,7 @@ export function stockagePipedrive({ jeton, fetch: f = fetch, bases = BASES_PIPED
 
     async consignerSuivi(reference: string, demande: DemandeCatalogue, suivi: SuiviCatalogue): Promise<void> {
       await appel('mise à jour de la note', 'v1', 'PUT', `/notes/${encodeURIComponent(reference)}`, {
-        corps: { content: noteCrmCatalogueHtml(demande, suivi) },
+        corps: { content: noteCrmCatalogueHtml(demande, suivi), pinned_to_person_flag: 1 },
       });
     },
   };

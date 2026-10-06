@@ -10,8 +10,8 @@ import type { CourrielCatalogue, EnregistrementCatalogue, NotificationCatalogue 
  * - Au prospect : l'e-mail transactionnel de `courriel.ts` (lien, jamais de
  *   pièce jointe, aucune séquence marketing).
  * - À l'équipe, pour chaque nouvelle demande : une notification interne
- *   « [Brochure] entreprise » adressée aux destinataires de `NOTIFICATION_EMAIL`
- *   (convention de `/api/submit-survey`, adresses séparées par des virgules),
+ *   « [Brochure] entreprise » adressée aux destinataires de
+ *   `CATALOGUE_NOTIFICATION_EMAIL` (adresses séparées par des virgules),
  *   avec la demande de consultant en tête quand elle existe. Aucune adresse
  *   n'est codée en dur : sans destinataire configuré, la notification n'existe
  *   pas et une demande de consultant n'est pas déclarée prise en compte.
@@ -52,7 +52,7 @@ export function courrielResend(client: ClientCourriel, expediteur: string): Cour
   };
 }
 
-/** Destinataires de `NOTIFICATION_EMAIL`, ou liste vide si la variable est absente. */
+/** Destinataires d'une liste d'adresses séparées par des virgules, ou liste vide si la variable est absente. */
 export function destinatairesNotification(valeur: string | undefined): string[] {
   return (valeur ?? '')
     .split(',')

@@ -16,7 +16,10 @@ import { courrielResend, destinatairesNotification, notificationInterneResend, t
  *   `crm.ts`) ; aucune affaire ;
  * - e-mail du lien au prospect : Resend (`resend.ts`, texte de `courriel.ts`) ;
  * - notification interne de chaque nouvelle demande, consultant demandé mis en
- *   tête : Resend à `NOTIFICATION_EMAIL` ;
+ *   tête : Resend aux adresses de `CATALOGUE_NOTIFICATION_EMAIL` (variable
+ *   propre au catalogue, décision de Laurent du 06/10 ; destinataire métier
+ *   prévu : leads@sysnext.com). `NOTIFICATION_EMAIL`, lue par le questionnaire,
+ *   n'est jamais utilisée en repli ;
  * - PDF : URL R2 de `pdf.ts`.
  *
  * Les services réels ne sont assemblés que si TOUT est réuni :
@@ -127,7 +130,10 @@ export function servicesCatalogue(
   if (!jeton || !cle || !expediteur) return SERVICES_DESACTIVES;
 
   const client = (options.clientCourriel ?? ((k: string) => new Resend(k)))(cle);
-  const destinataires = destinatairesNotification(env.NOTIFICATION_EMAIL);
+  // Variable propre au catalogue, sans repli : absente, la notification n'existe
+  // pas, l'absence est journalisée à chaque demande et aucune demande de
+  // consultant n'est déclarée transmise (`gestionnaire.ts`).
+  const destinataires = destinatairesNotification(env.CATALOGUE_NOTIFICATION_EMAIL);
   const domainePipedrive = env.PIPEDRIVE_DOMAIN || 'packshotcreator.pipedrive.com';
 
   return {

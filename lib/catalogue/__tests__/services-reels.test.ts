@@ -6,7 +6,9 @@
  * Scénarios de la mission du 06/10/2026 : A (brochure seule), B (consultant),
  * C (échec du stockage), D (échec de l'e-mail), E (échec CRM secondaire),
  * F (idempotence entre instances), J (activation), K (contrat Pipedrive v2 :
- * personnes et organisations en v2, notes en v1, jeton hors des URL v2).
+ * personnes et organisations en v2, notes en v1, jeton hors des URL v2),
+ * L (notification : variable dédiée `CATALOGUE_NOTIFICATION_EMAIL`, sans repli),
+ * M (note « [Brochure] » épinglée sur la personne).
  */
 import { describe, it, expect, vi } from 'vitest';
 import { creerGestionnaireCatalogue } from '@/lib/catalogue/gestionnaire';
@@ -14,6 +16,7 @@ import { SERVICES_DESACTIVES, servicesCatalogue, type InterrupteursCatalogue } f
 import { SERVICES_REELS_AUTORISES, PUBLICATION_AUTORISEE } from '@/lib/catalogue/activation';
 import { PDF_CATALOGUE } from '@/lib/catalogue/pdf';
 import { ErreurPipedrive, stockagePipedrive } from '@/lib/catalogue/pipedrive';
+import { destinatairesNotification } from '@/lib/catalogue/resend';
 import type { DemandeCatalogue } from '@/lib/catalogue/schema';
 import { JETON_DOUBLURE, fauxPipedrive, fauxResend } from './doublures';
 
@@ -22,7 +25,7 @@ const ENV = {
   PIPEDRIVE_API_TOKEN: JETON,
   RESEND_API_KEY: 'cle-resend',
   RESEND_FROM_EMAIL: 'catalogue@exemple.test',
-  NOTIFICATION_EMAIL: 'equipe-a@exemple.test, equipe-b@exemple.test',
+  CATALOGUE_NOTIFICATION_EMAIL: 'equipe-a@exemple.test, equipe-b@exemple.test',
 };
 const TOUT_OUVERT: InterrupteursCatalogue = { servicesReels: true, pdfEnLigne: true, publication: true };
 
@@ -173,8 +176,8 @@ describe('B — consultant demandé', () => {
     expect(pipedrive.notes[0].content).toContain('consultant demande NON transmise');
   });
 
-  it('sans NOTIFICATION_EMAIL : aucune adresse en dur, rien n’est présumé', async () => {
-    const env = { ...ENV, NOTIFICATION_EMAIL: '' };
+  it('sans CATALOGUE_NOTIFICATION_EMAIL : aucune adresse en dur, rien n’est présumé', async () => {
+    const env = { ...ENV, CATALOGUE_NOTIFICATION_EMAIL: '' };
     const { g, resend, services, journal, pipedrive } = banc({ env });
     expect(services.notification).toBeNull();
     const res = await g(requete({ ...corps, consultantOptIn: true }));
@@ -498,6 +501,86 @@ describe('K — contrat Pipedrive v2 (migration du 06/10) : personnes et organis
         body: JSON.stringify({ name: 'X', email: [{ value: 'x@exemple.test', primary: true, label: 'work' }] }),
       }),
     ).toBe(400);
-    expect(violations).toHaveLength(7);
+    const note = (corps: Record<string, unknown>) =>
+      statut(`${v1}/notes?api_token=${JETON}`, { method: 'POST', body: JSON.stringify({ content: 'x', person_id: 1, ...corps }) });
+    expect(await note({ pinned_to_person_flag: 2 })).toBe(400);
+    expect(await note({ pinned_to_deal_flag: 1 })).toBe(400);
+    expect(violations).toHaveLength(9);
+  });
+});
+
+describe('L — notification catalogue : variable dédiée CATALOGUE_NOTIFICATION_EMAIL, sans repli (décision du 06/10)', () => {
+  const sansVariable = (): Record<string, string> =>
+    Object.fromEntries(Object.entries(ENV).filter(([cle]) => cle !== 'CATALOGUE_NOTIFICATION_EMAIL'));
+
+  it('seule la variable du catalogue est lue : NOTIFICATION_EMAIL (questionnaire) ne reçoit jamais la notification', async () => {
+    const env = { ...ENV, NOTIFICATION_EMAIL: 'questionnaire@exemple.test' };
+    const { g, resend } = banc({ env });
+    expect(await (await g(requete({ ...corps, consultantOptIn: true }))).json()).toMatchObject({ contactRequestAccepted: true });
+    const interne = resend.envois.find((m) => m.subject.startsWith('[Brochure]'))!;
+    expect(interne.to).toEqual(['equipe-a@exemple.test', 'equipe-b@exemple.test']);
+    expect(resend.envois.flatMap((m) => m.to)).not.toContain('questionnaire@exemple.test');
+  });
+
+  it.each([
+    ['absente, NOTIFICATION_EMAIL présente', () => ({ ...sansVariable(), NOTIFICATION_EMAIL: 'questionnaire@exemple.test' })],
+    ['absente', () => sansVariable()],
+    ['vide', () => ({ ...ENV, CATALOGUE_NOTIFICATION_EMAIL: '' })],
+    ['sans adresse valide', () => ({ ...ENV, CATALOGUE_NOTIFICATION_EMAIL: 'pas-une-adresse, ' })],
+  ])('variable %s : aucun repli, notification absente, consultant non déclaré transmis, absence journalisée et consignée', async (_cas, fabriquer) => {
+    const { g, resend, services, journal, pipedrive } = banc({ env: fabriquer() as Record<string, string> });
+    expect(services.mode).toBe('reel');
+    expect(services.notification).toBeNull();
+    const res = await g(requete({ ...corps, consultantOptIn: true }));
+    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF_CATALOGUE.url, emailSent: true, contactRequestAccepted: false });
+    expect(resend.envois.map((m) => m.to)).toEqual([['claire@gmail.com']]);
+    expect(journal).toHaveBeenCalledWith('catalogue.notification.non_configuree', expect.any(Object));
+    expect(pipedrive.notes[0].content).toContain('notification interne non configurée');
+    expect(pipedrive.notes[0].content).toContain('consultant demande NON transmise');
+  });
+
+  it('destinataire métier prévu (leads@sysnext.com) : une seule adresse retenue ; liste séparée par des virgules', () => {
+    expect(destinatairesNotification('leads@sysnext.com')).toEqual(['leads@sysnext.com']);
+    expect(destinatairesNotification(' a@exemple.test , b@exemple.test ')).toEqual(['a@exemple.test', 'b@exemple.test']);
+    expect(destinatairesNotification(undefined)).toEqual([]);
+  });
+});
+
+describe('M — note « [Brochure] » épinglée sur la fiche personne (pinned_to_person_flag, décision du 06/10)', () => {
+  it('nouvelle demande : note créée épinglée sur la personne, drapeau repris à la mise à jour du suivi, aucun autre épinglage', async () => {
+    const { g, pipedrive } = banc();
+    expect((await g(requete(corps))).status).toBe(200);
+    const creation = pipedrive.appels.find((a) => a.methode === 'POST' && a.chemin === '/notes')!;
+    expect(creation.corps).toEqual({
+      content: expect.stringContaining('[Brochure]'),
+      person_id: pipedrive.personnes[0].id,
+      org_id: pipedrive.organisations[0].id,
+      pinned_to_person_flag: 1,
+    });
+    const suivi = pipedrive.appels.find((a) => a.methode === 'PUT' && a.chemin.startsWith('/notes/'))!;
+    expect(suivi.corps).toEqual({ content: expect.stringContaining('lien par e-mail confirmé'), pinned_to_person_flag: 1 });
+    expect(pipedrive.notes).toHaveLength(1);
+    expect(pipedrive.notes[0].pinned_to_person_flag).toBe(1);
+    expect(pipedrive.violations).toEqual([]);
+  });
+
+  it('demande de consultant : même note épinglée, aucune affaire ni Lead', async () => {
+    const { g, pipedrive } = banc();
+    await g(requete({ ...corps, consultantOptIn: true }));
+    expect(pipedrive.notes[0].pinned_to_person_flag).toBe(1);
+    expect(pipedrive.notes[0].content).toContain('Demande de consultant : OUI');
+    expect(aucuneAffaire(pipedrive.appels)).toBe(true);
+    expect(pipedrive.violations).toEqual([]);
+  });
+
+  it('demande rejouée par une autre instance : aucune nouvelle note, épinglage inchangé', async () => {
+    const pipedrive = fauxPipedrive();
+    const resend = fauxResend();
+    await banc({ pipedrive, resend }).g(requete(corps));
+    const avant = pipedrive.appels.length;
+    await banc({ pipedrive, resend }).g(requete(corps));
+    expect(pipedrive.notes).toHaveLength(1);
+    expect(pipedrive.notes[0].pinned_to_person_flag).toBe(1);
+    expect(pipedrive.appels.slice(avant).some((a) => a.chemin.startsWith('/notes') && a.methode !== 'GET')).toBe(false);
   });
 });

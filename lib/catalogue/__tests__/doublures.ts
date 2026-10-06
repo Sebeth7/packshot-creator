@@ -8,7 +8,9 @@
  * - API v2 (`/api/v2`, jeton dans l'en-tête `x-api-token`, jamais dans l'URL) :
  *   GET /persons/search, POST /persons, PATCH /persons/{id},
  *   GET /organizations/search, POST /organizations ;
- * - API v1 (`/v1`, paramètre `api_token`) : GET /notes, POST /notes, PUT /notes/{id}.
+ * - API v1 (`/v1`, paramètre `api_token`) : GET /notes, POST /notes, PUT /notes/{id} ;
+ *   `pinned_to_person_flag` n'accepte que 0 ou 1 (documentation Pipedrive), les
+ *   autres drapeaux d'épinglage sont refusés.
  * Toute autre version, méthode ou authentification est refusée et consignée
  * dans `violations` : une régression vers la v1 fait échouer les tests.
  * Les réponses v2 reprennent les formes des modèles officiels (`success`,
@@ -65,7 +67,7 @@ export function fauxPipedrive(
 ) {
   const personnes: Array<{ id: number; name: string; email: string; org_id: number | null }> = [];
   const organisations: Array<{ id: number; name: string }> = [];
-  const notes: Array<{ id: number; content: string; person_id: number; org_id: number | null }> = [];
+  const notes: Array<{ id: number; content: string; person_id: number; org_id: number | null; pinned_to_person_flag: 0 | 1 }> = [];
   const appels: AppelPipedrive[] = [];
   const violations: string[] = [];
   let suivant = 100;
@@ -153,12 +155,20 @@ export function fauxPipedrive(
       const liste = notes.filter((n) => n.person_id === id);
       return ok(liste.length > 0 ? liste : null);
     }
+    if (route === 'POST /notes' || route === 'PUT /notes/{id}') {
+      const drapeaux = Object.keys(corps ?? {}).filter((k) => k.startsWith('pinned_to_'));
+      if (drapeaux.some((k) => k !== 'pinned_to_person_flag')) return refus(400, `épinglage hors personne : ${drapeaux.join(', ')}`);
+      const epingle = corps?.pinned_to_person_flag;
+      if (epingle !== undefined && epingle !== 0 && epingle !== 1) return refus(400, 'pinned_to_person_flag attend 0 ou 1');
+    }
     if (route === 'POST /notes') {
+      if (typeof corps?.content !== 'string' || typeof corps?.person_id !== 'number') return refus(400, 'note sans contenu ni personne');
       const n = {
         id: suivant++,
-        content: String(corps?.content),
-        person_id: corps?.person_id as number,
-        org_id: (corps?.org_id as number) ?? null,
+        content: corps.content,
+        person_id: corps.person_id,
+        org_id: (corps.org_id as number) ?? null,
+        pinned_to_person_flag: (corps.pinned_to_person_flag as 0 | 1 | undefined) ?? 0,
       };
       notes.push(n);
       return ok(n);
@@ -167,6 +177,7 @@ export function fauxPipedrive(
     const n = notes.find((x) => x.id === Number(chemin.split('/').pop()));
     if (!n) return Response.json({ success: false, error: 'note inconnue' }, { status: 404 });
     n.content = String(corps?.content);
+    if (corps?.pinned_to_person_flag !== undefined) n.pinned_to_person_flag = corps.pinned_to_person_flag as 0 | 1;
     return ok(n);
   });
 
