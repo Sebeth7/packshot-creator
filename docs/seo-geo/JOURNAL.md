@@ -34,6 +34,48 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-06 · Landing catalogue All-in-One (#82) : Pipedrive en API v2 (personnes, organisations), décisions T1, T2, P3, P5 consignées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `c0e4b89`
+
+**Quoi** — Les cinq appels « personnes » et « organisations » de `lib/catalogue/pipedrive.ts` passent en API v2 ; les notes restent en v1. Aucun appel réel : `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux.
+
+**Pourquoi** — Audit des prérequis du test réel (mission de Laurent du 06/10) : Pipedrive a déprécié au 01/01/2026, puis mis hors support le 01/08/2026, les points d'accès v1 des personnes et des organisations ([changelog](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support) : « may remain functional », sans engagement ni date de retrait). GO de Laurent du 06/10 pour une migration ciblée avant tout test réel.
+
+**Fichiers** — `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`.
+
+**Contrat appliqué** — vérifié sur le client officiel `pipedrive` 33.4.3 (`dist/versions/v2`, lu via jsdelivr) et la documentation développeurs :
+- base `https://api.pipedrive.com/api/v2` ; jeton dans l'en-tête `x-api-token`, jamais dans l'URL ;
+- `GET /persons/search` et `GET /organizations/search` (`term`, `fields`, `exact_match`, `limit`), réponse `data.items[].item` ; `exact_match` non sensible à la casse ;
+- `POST /persons` avec `emails` au pluriel (`value`, `primary`, `label`) et `org_id` ; `PATCH /persons/{id}` au lieu de PUT ; `POST /organizations` avec `name` ; réponse `{ success, data: { id } }` ;
+- notes en v1, inchangées (`api_token` en paramètre, comme `/api/contact`) : absentes de la liste de dépréciation, sans équivalent v2 ;
+- un identifiant non numérique dans une réponse fait échouer l'appel (500, aucun doublon, aucun faux succès).
+
+**Effet attendu** — Aucun pour le visiteur : la route reste en 503. Au test réel, les fiches seront écrites par l'API v2.
+
+**Vérifié** —
+- Doublure stricte : chaque route a sa version, sa méthode et son authentification ; tout écart est refusé (405, 410, 401, 400) et consigné.
+- 15 tests ajoutés (K) : ordre et adresses des appels, PATCH `{ org_id }` seul, jeton en en-tête et absent des URL v2, paramètres de recherche, corps de création, erreurs HTTP 400 à 500 sans jeton ni donnée saisie, formes de réponse inattendues, refus d'une régression par la doublure.
+- Contre-épreuves (code remis à l'identique ensuite, vérifié par `cmp`) : recherche de personne en v1 → 21 échecs ; `email` au singulier → 12 ; jeton aussi dans l'URL v2 → 21 ; PUT au lieu de PATCH → 1 ; organisation créée en v1 → 7.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 509/509 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 `catalogue_unavailable` ; Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Décisions de Laurent du 06/10 (Q23)** —
+- T1 : écritures de test autorisées sur le principe : deux personnes, deux organisations (`TEST PR82 A — à supprimer`, `TEST PR82 B — à supprimer`), deux notes, puis suppression. Exécution en attente d'un GO distinct.
+- T2 : destinataire métier des notifications catalogue : `leads@sysnext.com`. Configuration Vercel non vérifiée ; `NOTIFICATION_EMAIL` est partagée avec `/api/submit-survey`, ne pas la modifier en production. Variable dédiée proposée dans Q23, non codée.
+- P3 : nouvelle mention du formulaire proposée par Laurent, validation de Sébastien en attente. Formulaire non modifié.
+- P5 : migration v2 décidée et implémentée sur #82 (ce commit).
+
+**Supposé** — Que le jeton de production soit accepté par `https://api.pipedrive.com/api/v2` avec l'en-tête `x-api-token` : c'est l'adresse du client officiel, mais seul le premier appel réel le prouvera.
+
+**Non regardé** —
+- `/api/contact`, `/api/roi-lead`, `/api/roi-pdf`, `/api/submit-survey` et `lib/pipedrive.ts` : toujours en v1 en production, hors du périmètre du GO. Signalé à Sébastien dans Q23.
+- Variables Vercel (Preview) et domaine Resend : aucun accès depuis la session.
+- Collision de numéro : la branche `ccr-e0a4796e-2p18xn` (#96, cluster AI Act) emploie aussi « Q23 » pour une autre question. Signalée dans Q23, rien renuméroté ni modifié sur #96.
+
+**Suite** — Avant le GO d'exécution du test réel : contrôle Vercel des variables de la Preview (dont `NOTIFICATION_EMAIL`), statut du domaine Resend, deux adresses de test absentes de Pipedrive. P1, P2, P4 et la validation de P3 restent chez Sébastien.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : PDF en ligne sur R2, `enLigne = true`, services réels toujours fermés · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `1ad2aad`

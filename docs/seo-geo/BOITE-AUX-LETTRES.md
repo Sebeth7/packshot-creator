@@ -101,6 +101,27 @@ Restent ouverts :
 
 **Ma recommandation** — A, parce que la demande de consultant reste distinguée (note et notification), sans créer d'objet commercial que tu n'as pas choisi.
 
+**Complément du 06/10, réponses de Laurent** — Laurent a répondu lui-même à deux points de cette question (T1, T2) et formulé deux décisions (P3, P5). Tu restes destinataire de la validation de P3 et des points P1, P2, P4.
+
+| Point | Décision de Laurent du 06/10 | Statut |
+|---|---|---|
+| T1 — écritures de test dans Pipedrive | Deux personnes, deux organisations (`TEST PR82 A — à supprimer`, `TEST PR82 B — à supprimer`), deux notes, puis suppression après vérification. Aucune affaire, aucun Lead | Autorisation de principe ; exécution en attente d'un GO distinct de Laurent |
+| T2 — destinataires de la notification | `leads@sysnext.com` | Destinataire métier décidé ; configuration Vercel non vérifiée (aucun accès depuis la session) |
+| P3 — mention du formulaire | Remplacer « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » par : « Vos coordonnées sont utilisées pour vous transmettre le catalogue et assurer le suivi de votre demande. Notre équipe est également à votre disposition pour vous conseiller dans le choix du studio Orbitvu adapté à vos produits. » Case consultant facultative conservée ; téléphones France et Suisse visibles | Formulation proposée ; **ta validation est attendue avant la publication** ; formulaire non modifié (`components/landings/catalogue-all-in-one/contenu.ts`, `donnees.avant`) |
+| P5 — API Pipedrive | Personnes et organisations migrées en API v2 sur #82 (commit `c0e4b89`) ; notes en v1 | Migration décidée et implémentée sur #82 ; validée en réel seulement au test |
+
+**Ce qui te reste** —
+1. P3 : valider ou réécrire la mention proposée par Laurent.
+2. P1 : objet CRM définitif (note seule, étiquette « Brochure » et son identifiant, Lead ou affaire pour une demande de consultant). Avec la note seule, les leads brochure ne se comptent ni dans les filtres ni dans les rapports de Pipedrive (non vérifié en réel).
+3. P2 : texte de l'e-mail au prospect (`lib/catalogue/courriel.ts`).
+4. P4 : sous-traitants (Pipedrive, Resend) dans la politique de confidentialité, à aligner sur la mention P3 (suivi commercial). Indice DNS : les envois Resend passent par la région us-east-1 (`send.sysnext.com`).
+5. `NOTIFICATION_EMAIL` est lue aussi par `/api/submit-survey` (notifications du questionnaire). La mettre à `leads@sysnext.com` en production détournerait ces notifications. Proposition, non codée : une variable dédiée, par exemple `CATALOGUE_NOTIFICATION_EMAIL`, lue par la seule route catalogue. Ton avis ?
+6. Pour information : `lib/pipedrive.ts`, `/api/contact`, `/api/roi-lead`, `/api/roi-pdf` et `/api/submit-survey` appellent encore les points d'accès v1 des personnes, organisations et affaires, hors support depuis le 01/08/2026 ([changelog Pipedrive](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support)). Non modifiés : hors du périmètre de #82.
+
+**Bloque, après ces réponses** — le GO d'exécution du test réel attend encore le contrôle Vercel de la Preview (`PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `NOTIFICATION_EMAIL`, `PIPEDRIVE_DOMAIN`), le statut du domaine dans Resend et deux adresses de test absentes de Pipedrive. La publication attend en plus P1 à P4.
+
+**Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
+
 ---
 
 ### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
