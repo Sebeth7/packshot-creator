@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-07 · Landing IA Orbitvu — reconstruction de `/fr/ia-photo-produit` (vague 1, PR-3, FR seule) · Claude de Laurent
 
-**Chantier** : vague 1 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2, PR-3 (brief B7), GO de codage de Laurent du 07/10 (« CODAGE AUTORISÉ SUR CE PÉRIMÈTRE UNIQUEMENT ») | **PR** : brouillon, « DO NOT MERGE », branche `claude/inspiring-edison-dgtlr8` | **Base** : `main` `b806291` (fusion de #103 ; #102 fusionnée avant, dépendance levée)
+**Chantier** : vague 1 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2, PR-3 (brief B7), GO de codage de Laurent du 07/10 (« CODAGE AUTORISÉ SUR CE PÉRIMÈTRE UNIQUEMENT ») | **PR** : #105, brouillon, « DO NOT MERGE », branche `claude/inspiring-edison-dgtlr8` | **Base** : `main` `b806291` (fusion de #103 ; #102 fusionnée avant, dépendance levée)
 
 **Quoi** — `/fr/ia-photo-produit` reconstruite en landing commerciale sur les capacités Orbitvu AI Toolkit établies, avec le repli A4 :
 - composant FR dédié `_components/LandingIaOrbitvu.tsx`, appelé par `page.tsx` quand `lang = fr` ; EN et de-ch servent l'ancienne page, inchangée ;
