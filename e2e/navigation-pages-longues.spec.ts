@@ -21,7 +21,6 @@ const EQUIPEES = [
   '/de-ch/fotostudio/alphashot-pro-g2',
   '/fr/studio-photo/alphastudio-xxl-v2',
   '/fr/studio-photo/e-comm-studio-plus',
-  '/fr/ia-photo-produit',
   '/de-ch/ia-photo-produit',
   '/fr/solutions/documentation-technique-visuelle',
 ];
@@ -36,6 +35,8 @@ const GELEES = [
   '/fr/blog/prestataire-packshot-vs-studio-interne',
   '/fr/packshot-amazon',
   '/fr',
+  // Exception de registre : FR refondue par #105, navigation statique (forme C).
+  '/fr/ia-photo-produit',
 ];
 
 const BARRE = 'nav.fixed[aria-label]';

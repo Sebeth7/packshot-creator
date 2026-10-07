@@ -351,133 +351,117 @@
   },
   "iaPhotoProduit": {
     "meta": {
-      "title": "IA photo produit : l'IA intégrée au studio Orbitvu — PackshotCreator",
-      "description": "Orbitvu AI Toolkit dans Orbitvu Station : éclairage assisté, détourage, retouche, lecture d'étiquettes. Démo avec PackshotCreator, distributeur officiel.",
-      "keywords": "ia photo produit, photo produit ia, packshot ia, ia studio photo, orbitvu ai toolkit, orbitvu station, détourage automatique, retouche ia photo produit, ocr étiquette produit",
-      "ogDescription": "L'IA d'Orbitvu Station accompagne la production photo produit, de l'éclairage à la publication. Démonstration avec PackshotCreator, distributeur officiel Orbitvu."
+      "title": "IA photo produit : l’IA intégrée au studio Orbitvu — PackshotCreator",
+      "description": "IA photo produit avec Orbitvu Station : éclairage assisté, détourage IA, retouche photo produit, lecture d’étiquettes. Démo avec PackshotCreator.",
+      "keywords": "ia photo produit, photo produit ia, packshot ia, orbitvu, orbitvu station, détourage ia, retouche photo produit, ai photo assistant, ai masking, ai retoucher, ai ocr",
+      "ogDescription": "Orbitvu Station utilise l’IA avant et après la prise de vue : éclairage, détourage, retouche, étiquettes. Le point de départ reste le produit photographié."
     },
     "hero": {
-      "badge": "Orbitvu AI Toolkit",
-      "title": "L'IA intégrée à votre production photo produit, de la capture à la publication",
-      "subtitle": "Dans Orbitvu Station, le logiciel d'Orbitvu, l'IA intervient à chaque étape de la production : éclairage à la prise de vue, détourage, retouche, lecture des étiquettes. Le point de départ reste la photo de votre <bold>produit réel</bold>.",
-      "ctaPrimary": "Demander une démonstration",
-      "ctaSecondary": "Découvrir les fonctions IA Orbitvu",
-      "note": "PackshotCreator, distributeur officiel Orbitvu en France et en Suisse."
-    },
-    "toolkit": {
-      "heading": "Orbitvu AI Toolkit, l'IA d'Orbitvu Station",
-      "p1": "Orbitvu AI Toolkit désigne l'ensemble des outils d'intelligence artificielle d'Orbitvu Station. Quatre fonctions sont disponibles aujourd'hui : AI Photo Assistant pour l'éclairage, AI Masking pour le détourage, AI Retoucher pour la retouche et AI OCR pour la lecture des textes présents sur le produit.",
-      "p2": "Ces outils travaillent sur votre propre production, de la prise de vue à la préparation des fichiers. Orbitvu Station fonctionne avec les <studios>studios photo automatisés</studios> Orbitvu et, selon Orbitvu, aussi sans matériel Orbitvu, avec un appareil Canon compatible."
+      "surtitre": "IA photo produit · Orbitvu Station",
+      "title": "L’IA assiste la photo. Elle ne remplace pas le produit.",
+      "p1": "Orbitvu Station utilise l’IA avant et après la prise de vue : pour préparer l’éclairage, détourer une image, retoucher certains défauts ou extraire les informations d’une étiquette.",
+      "p2": "Le point de départ reste le produit que vous avez réellement photographié.",
+      "cta": "Voir le workflow sur mes produits",
+      "note": "PackshotCreator, distributeur officiel Orbitvu en France et en Suisse.",
+      "imageAlt": "Une opératrice place une botte dans un studio Orbitvu ouvert ; l’image s’affiche dans le logiciel sur l’écran voisin"
     },
     "workflow": {
-      "heading": "Le workflow, du produit à la publication",
+      "heading": "Un seul produit, plusieurs étapes de production",
+      "intro": "Prenons un sachet de café, de son arrivée au studio à sa fiche produit. L’IA d’Orbitvu Station intervient à certaines étapes, pas à toutes.",
+      "legendeIa": "Fonction IA d’Orbitvu Station",
+      "legendeSans": "Travail de prise de vue ou de diffusion",
       "s1": {
-        "title": "Produit réel",
-        "text": "Le produit est placé dans le studio : c'est lui que l'on photographie."
+        "titre": "Préparation et éclairage",
+        "texte": "Le produit est posé dans le studio, la lumière se règle.",
+        "outil": "AI Photo Assistant"
       },
       "s2": {
-        "title": "Prise de vue",
-        "text": "La capture se fait dans Orbitvu Station."
+        "titre": "Capture",
+        "texte": "L’appareil photographie le produit, sous un ou plusieurs angles.",
+        "outil": ""
       },
       "s3": {
-        "title": "Éclairage",
-        "text": "AI Photo Assistant propose des configurations d'éclairage selon le type de produit."
+        "titre": "Détourage IA",
+        "texte": "Le fond est retiré dans le flux de capture.",
+        "outil": "AI Masking"
       },
       "s4": {
-        "title": "Détourage",
-        "text": "AI Masking détoure le produit et supprime le fond."
+        "titre": "Retouche photo produit",
+        "texte": "Reflets, imperfections, couleurs, ombre.",
+        "outil": "AI Retoucher"
       },
       "s5": {
-        "title": "Retouche",
-        "text": "AI Retoucher traite reflets, imperfections et couleurs."
+        "titre": "Données",
+        "texte": "Les textes de l’étiquette deviennent des champs.",
+        "outil": "AI OCR"
       },
       "s6": {
-        "title": "Données",
-        "text": "AI OCR lit étiquettes, références et textes pour alimenter les métadonnées."
+        "titre": "Publication",
+        "texte": "Les fichiers validés partent vers votre site ou votre catalogue.",
+        "outil": ""
       },
-      "s7": {
-        "title": "Publication",
-        "text": "Images et données, une fois contrôlées, sont prêtes à publier."
-      }
+      "imageAlt": "Interface de capture d’Orbitvu Station : un sachet de café photographié sur fond blanc, avec ses vues en vignettes",
+      "legende": "Étape 2 : le sachet est photographié dans Orbitvu Station. On le retrouve plus bas, à l’étape des données."
     },
-    "priseDeVue": {
-      "heading": "À la prise de vue : AI Photo Assistant",
-      "p1": "Une bouteille, un bijou et un vêtement ne se photographient pas avec la même lumière. Le verre renvoie la lumière, le métal poli multiplie les reflets, un textile mat demande une lumière qui révèle sa texture. À chaque nouveau type de produit, il faut retrouver le bon réglage.",
-      "p2": "AI Photo Assistant reconnaît le type de produit placé dans le studio et propose des configurations d'éclairage adaptées. L'assistant propose ; l'opérateur choisit la configuration et lance la prise de vue.",
-      "p3": "Selon Orbitvu, AI Photo Assistant est disponible sur l''<proG2>Alphashot Pro G2</proG2> et l''<xlG2>Alphashot XL G2</xlG2>, avec les appareils photo compatibles. Pour un autre modèle, demandez-nous confirmation avant tout projet.",
-      "carteLien": "Voir la fiche"
+    "photoAssistant": {
+      "heading": "Le bon moment pour utiliser l’IA n’est pas toujours après la photo",
+      "p1": "Avant même de déclencher, AI Photo Assistant reconnaît le type de produit et propose plusieurs configurations d’éclairage adaptées, sur les systèmes compatibles. L’opérateur choisit, ajuste et décide du résultat.",
+      "p2": "Une bouteille en verre, une bague polie et un textile ne demandent pas la même lumière. C’est ici que l’assistance devient utile.",
+      "compatibles": "Systèmes compatibles",
+      "carteLien": "Voir la fiche",
+      "imageAlt": "Orbitvu Station pendant une prise de vue sur Alphashot Pro G2, panneau « AI Templates » ouvert",
+      "legende": "Prise de vue sur Alphashot Pro G2 dans Orbitvu Station, panneau « AI Templates » ouvert."
     },
-    "postProduction": {
-      "heading": "Après la prise de vue : AI Masking et AI Retoucher",
-      "masking": {
-        "title": "AI Masking : le détourage dans le workflow",
-        "p1": "AI Masking détoure le produit et supprime le fond dans le workflow d'Orbitvu Station, à la suite de la prise de vue. Le détourage isole le produit : pour un fond blanc uniforme, ou pour un fichier réutilisable dans une mise en page.",
-        "p2": "Un fond régulier dès la prise de vue facilite ce travail : notre guide explique comment <guideFondBlanc>obtenir un fond blanc parfait sans détourage</guideFondBlanc>."
-      },
-      "retoucher": {
-        "title": "AI Retoucher : la retouche assistée",
-        "p1": "AI Retoucher automatise la retouche de l'image : retrait des reflets et des imperfections, travail sur les couleurs, ajout d'une ombre. Il se pilote par des prompts, c'est-à-dire des consignes écrites, et par des presets, des réglages enregistrés que l'on réapplique d'une série à l'autre.",
-        "p2": "Sur certains produits, ces retouches prennent une place importante : les reflets d'une bouteille, les petites imperfections d'un <hubBijoux>bijou</hubBijoux> photographié en gros plan.",
-        "p3": "Un preset s'applique de la même façon à toute une série, ce qui aide à garder des visuels homogènes d'une référence à l'autre. La retouche part de la photo réelle du produit : comme toute retouche, son résultat se contrôle avant publication."
-      }
+    "masking": {
+      "heading": "Détourer sans sortir du flux",
+      "p1": "Une fois l’image capturée, AI Masking isole le produit dans le processus de production. Il travaille sur l’image en haute définition et garde des contours homogènes d’une photo à l’autre de la série.",
+      "p2": "Un fond régulier à la prise de vue reste le meilleur point de départ : voir notre guide pour <guideFondBlanc>obtenir un fond blanc sans détourage</guideFondBlanc>."
     },
-    "donnees": {
-      "heading": "Données produit : AI OCR",
-      "p1": "Un produit porte souvent du texte : étiquette, référence, numéro de pièce. Ces informations figurent sur la photo, mais il faut ensuite les retrouver dans la fiche produit. AI OCR lit ces textes sur la photo pour alimenter des métadonnées structurées.",
-      "p2": "C'est utile partout où l'étiquette fait partie de l'information, comme pour les <hubVin>vins et spiritueux</hubVin>, ou pour des pièces identifiées par leur référence. Sur les mesures et les données produit, voir aussi <articleXl>notre article consacré à l'Alphashot XL G2</articleXl>."
+    "retoucher": {
+      "heading": "Retoucher sans repartir de zéro",
+      "p1": "AI Retoucher travaille sur l’image déjà photographiée. Il retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et peut ajouter une ombre.",
+      "p2": "Une consigne écrite oriente le résultat ; les réglages retenus s’enregistrent pour les séries suivantes."
+    },
+    "ocr": {
+      "heading": "L’image peut aussi ramener ses données",
+      "p1": "AI OCR lit les informations visibles sur le produit ou son emballage — références, composition, description — et les place dans les champs prévus dans Orbitvu Station.",
+      "imageAlt": "Fenêtre AI OCR (bêta) d’Orbitvu Station : SKU, description et ingrédients lus sur l’emballage du sachet de café",
+      "legende": "Le même sachet : SKU, description et ingrédients lus sur l’emballage. Les textes restent modifiables avant l’enregistrement."
     },
     "generatif": {
-      "heading": "Ce qui est génératif aujourd'hui",
-      "p1": "Orbitvu décrit AI Retoucher comme s'appuyant sur l'IA générative. Elle intervient ici sur une photo existante du produit, pour la retoucher. La distinction compte : une retouche générative modifie une photo réelle, alors qu'une image générée de toutes pièces peut montrer un produit qui n'existe pas tel quel.",
-      "p2": "Au 7 octobre 2026, Orbitvu Station ne propose pas de génération de décors lifestyle complets ni de mannequins virtuels. La photo du produit réel reste la matière première.",
-      "p3": "Pour la méthode générale, hors studio, notre guide explique comment <article>générer des images produit avec l'IA</article>. Pour savoir ce qui doit être signalé, notre article détaille les <aiAct>obligations de transparence de l'AI Act</aiAct> appliquées aux images produit."
-    },
-    "onModel": {
-      "heading": "Annoncé par Orbitvu : On-model",
-      "p1": "Orbitvu annonce une fonction On-model, présentée comme « coming soon » au 7 octobre 2026. Elle n'est pas disponible aujourd'hui et aucune date de sortie n'est établie : elle n'est donc pas présentée ici comme une fonction utilisable."
-    },
-    "conditions": {
-      "heading": "Conditions et essai",
-      "p1": "Les outils IA sont réservés aux abonnés d'Orbitvu Station. Selon la page d'Orbitvu consultée le 7 octobre 2026, le plan présenté comprend 4 500 crédits par mois, un accès API, un mode hors ligne et un support prioritaire. AI Masking consomme 5 crédits par image.",
-      "p2": "Orbitvu propose aussi un essai complet de 30 jours, sans carte bancaire.",
-      "p3": "Le nombre de crédits consommés par AI Retoucher et AI OCR n'est pas repris ici, pas plus que le prix de l'abonnement. Démonstration et conditions sur demande auprès de PackshotCreator.",
-      "source": "Informations communiquées par Orbitvu, susceptibles d'évoluer."
+      "heading": "Et le génératif ?",
+      "p1": "Orbitvu indique qu’AI Retoucher peut retoucher une image automatiquement avec l’IA générative : il part toujours de la photo prise au studio.",
+      "p2": "La création de visuels portés à partir de photos produit, On-model, est annoncée par Orbitvu comme « coming soon », sans date.",
+      "p3": "Ce qu’il faut signaler sur une image retouchée ou générée : <aiAct>notre article sur l’AI Act et les images produit</aiAct>."
     },
     "demo": {
-      "heading": "Une démonstration avec vos produits",
-      "p1": "Le plus simple pour juger ces outils est de les voir à l'œuvre sur les produits que vous photographiez. PackshotCreator, distributeur officiel Orbitvu en France et en Suisse, vous présente Orbitvu Station et ses fonctions IA. Précisez dans votre demande les produits que vous photographiez : cela nous aide à préparer la démonstration.",
-      "cta": "Demander une démonstration"
+      "heading": "Venez avec un produit, pas avec un prompt",
+      "p1": "La meilleure façon de juger ce workflow est de partir d’un objet que vous connaissez : ses reflets, sa couleur, ses détails, son étiquette.",
+      "p2": "Nous le photographions, puis nous regardons où l’IA intervient réellement — et où elle n’a rien à faire.",
+      "cta": "Tester Orbitvu Station avec mes produits"
     },
     "faq": {
-      "heading": "Questions fréquentes sur l'IA photo produit",
-      "intro": "L'IA d'Orbitvu Station en sept questions.",
+      "heading": "Questions fréquentes sur l’IA photo produit",
+      "source": "Informations Orbitvu relevées le 7 octobre 2026 sur orbitvu.com ; elles peuvent évoluer.",
       "q1": {
-        "question": "Faut-il un studio Orbitvu pour utiliser ces fonctions IA ?",
-        "answer": "Pas forcément pour Orbitvu Station : selon Orbitvu, le logiciel fonctionne aussi sans matériel Orbitvu, avec un appareil Canon compatible. AI Photo Assistant est en revanche disponible sur l'Alphashot Pro G2 et l'Alphashot XL G2. Les fonctions disponibles dans votre configuration se vérifient en démonstration."
+        "question": "Faut-il un studio Orbitvu ?",
+        "answer": "Pas pour Orbitvu Station, qui fonctionne aussi seul avec un appareil photo Canon. AI Photo Assistant demande en revanche un système compatible : Alphashot Pro G2 ou Alphashot XL G2."
       },
       "q2": {
-        "question": "Sur quels studios AI Photo Assistant est-il disponible ?",
-        "answer": "Selon Orbitvu, au 7 octobre 2026 : sur l'Alphashot Pro G2 et l'Alphashot XL G2, avec les appareils photo compatibles. Pour un autre modèle, demandez-nous confirmation avant tout projet."
+        "question": "Comment accéder aux fonctions IA ?",
+        "answer": "Les outils d’IA photo produit d’Orbitvu Station (AI Mask, AI Retoucher, AI OCR) figurent dans l’offre Enterprise, avec 4 500 crédits par mois, l’API, un mode hors ligne et un support prioritaire. Les conditions avec PackshotCreator sont communiquées sur demande."
       },
       "q3": {
-        "question": "L'IA modifie-t-elle le produit photographié ?",
-        "answer": "Le point de départ est toujours la photo du produit réel. AI Masking travaille sur le fond. AI Retoucher retouche l'image (reflets, imperfections, couleurs), et Orbitvu indique qu'il s'appuie sur l'IA générative : comme toute retouche, le résultat se contrôle avant publication pour rester fidèle au produit."
+        "question": "Combien de crédits consomme un détourage ?",
+        "answer": "AI Masking consomme 5 crédits par image depuis la version 26.2 d’Orbitvu Station. La consommation d’AI Retoucher et d’AI OCR n’est pas indiquée ici."
       },
       "q4": {
-        "question": "Est-ce de l'IA générative ?",
-        "answer": "En partie. Orbitvu décrit AI Retoucher comme utilisant l'IA générative, appliquée à une photo existante. AI Photo Assistant, AI Masking et AI OCR servent à l'éclairage, au détourage et à la lecture des textes. Au 7 octobre 2026, la génération de décors lifestyle complets ou de mannequins virtuels n'est pas une fonction disponible d'Orbitvu Station."
+        "question": "Peut-on essayer Orbitvu Station ?",
+        "answer": "Oui : Orbitvu propose un essai de 30 jours en accès complet, sans carte bancaire, avec un compte Orbitvu Cloud et un appareil photo Canon."
       },
       "q5": {
-        "question": "Faut-il signaler les images retouchées par IA ?",
-        "answer": "La réponse dépend de ce que l'IA a modifié. Notre article sur l'AI Act et les images produit fait le point sur ce que les marques doivent signaler, et dans quels cas."
-      },
-      "q6": {
-        "question": "Combien coûte un détourage avec AI Masking ?",
-        "answer": "Selon Orbitvu, au 7 octobre 2026, AI Masking consomme 5 crédits par image, et le plan présenté comprend 4 500 crédits par mois. Le prix de l'abonnement n'est pas publié ici : conditions sur demande."
-      },
-      "q7": {
-        "question": "Peut-on essayer avant de s'engager ?",
-        "answer": "Orbitvu propose un essai complet de 30 jours sans carte bancaire (information Orbitvu au 7 octobre 2026). Vous pouvez aussi demander à PackshotCreator une démonstration d'Orbitvu Station et de ses fonctions IA."
+        "question": "L’IA modifie-t-elle le produit photographié ?",
+        "answer": "AI Masking travaille sur le fond. AI Retoucher retouche l’image : reflets, imperfections, couleurs, ombre. Chaque résultat se contrôle avant publication, et les textes lus par AI OCR restent modifiables avant l’enregistrement."
       }
     },
     "liens": {

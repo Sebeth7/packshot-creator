@@ -1,326 +1,282 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import type { ComponentProps, ReactNode } from 'react';
-import {
-  Sparkles, ArrowRight, Camera, Layout, GraduationCap, ChevronDown,
-  Lightbulb, Scissors, Paintbrush, ScanText, Info,
-} from 'lucide-react';
+import { ArrowRight, Camera, Layout, GraduationCap, ChevronDown } from 'lucide-react';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { Button } from '@/components/ui/button';
-import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
-import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import { tx } from '@/lib/locale-text';
 
 /**
- * Landing IA photo produit reconstruite (07/10/2026) : capacités Orbitvu AI Toolkit
- * établies par le fresh-check orbitvu.com de Laurent du 07/10, repli A4 (aucun prix
- * d'abonnement, aucun cas client, aucun visuel dont la publication n'est pas établie,
- * aucun claim BlendAI). Texte : namespace `iaPhotoProduit` de messages/fr.json.
+ * Landing IA photo produit (refonte du 07/10/2026) : le produit est réellement photographié,
+ * l'IA d'Orbitvu Station intervient avant et après la capture. Faits produit relus le
+ * 07/10/2026 sur orbitvu.com (voir JOURNAL). Texte : namespace `iaPhotoProduit` de
+ * messages/fr.json. Servie en FR seulement (D42, étape 7) : voir page.tsx.
  *
- * Servie en FR seulement pour l'instant : EN et de-ch gardent l'ancienne page jusqu'à la
- * traduction depuis la version FR validée (D42, étape 7). Voir page.tsx.
+ * Navigation : forme C de D44 (schéma du workflow avec liens vers les sections), sans
+ * barre collante ; exception `landing-ia` / fr dans data/navigation/pages-longues.ts.
+ *
+ * Visuels : uniquement des images réelles déjà publiées sur le site (fiches Alphashot
+ * XL G2 et Pro G2, article « migrer un ancien studio »). Aucun visuel IA généré, aucune
+ * interface reconstituée.
  */
 
 type Href = ComponentProps<typeof Link>['href'];
 
 const fiche = (slug: string): Href => ({ pathname: '/studio-photo/[slug]', params: { slug } });
-const secteur = (slug: string): Href => ({ pathname: '/industrie/[slug]', params: { slug } });
 const article = (slug: string): Href => ({ pathname: '/blog/[slug]', params: { slug } });
 const guide = (slug: string): Href => ({ pathname: '/guide/[slug]', params: { slug } });
 
-/** Ancre de la section 1, cible permanente du CTA secondaire du hero. */
-const ANCRE_FONCTIONS = 'fonctions-ia-orbitvu';
+type Visuel = { src: string; w: number; h: number };
 
-const ETAPES = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'] as const;
+const VISUELS = {
+  // Fiche Alphashot XL G2 (publiée par Sébastien le 07/07/2026).
+  hero: { src: '/images/machines/alphashot-xl-g2/packshot-operator.avif', w: 880, h: 586 },
+  capture: { src: '/images/machines/alphashot-xl-g2/soft-station-capture.avif', w: 1400, h: 875 },
+  ocr: { src: '/images/machines/alphashot-xl-g2/soft-ai-ocr.avif', w: 1400, h: 945 },
+  // Article « Migrer un ancien studio PackshotCreator » (PR #36, 25/09/2026).
+  photoAssistant: { src: '/images/blog/migrer-ancien-packshotcreator/orbitvu-station-assistant-eclairage-ia.avif', w: 1600, h: 1000 },
+} satisfies Record<string, Visuel>;
 
-// Visuels du catalogue déjà publiés sur les fiches (lib/machine-images.ts) ; aucun visuel de
-// résultat IA tant qu'IA-2 n'établit pas leur droit de publication.
 const MACHINES_ASSISTANT = [
   { slug: 'alphashot-pro-g2', nom: 'Alphashot Pro G2', src: '/images/machines/alphashot-pro-g2.avif', w: 996, h: 996 },
   { slug: 'alphashot-xl-g2', nom: 'Alphashot XL G2', src: '/images/machines/alphashot-xl-g2.avif', w: 1600, h: 893 },
 ];
 
+/** Étapes du workflow : ancre de la section qui les détaille, si elle existe. */
+const ETAPES = [
+  { cle: 's1', ancre: 'photo-assistant' },
+  { cle: 's2', ancre: null },
+  { cle: 's3', ancre: 'masking' },
+  { cle: 's4', ancre: 'retoucher' },
+  { cle: 's5', ancre: 'ocr' },
+  { cle: 's6', ancre: null },
+] as const;
+
 const lien = (href: Href) => function LienTexte(chunks: ReactNode) {
   return (
-    <Link href={href} className="text-very-peri-600 underline underline-offset-2 hover:text-very-peri-700">
+    <Link href={href} className="text-very-peri-700 underline underline-offset-2 hover:text-very-peri-800">
       {chunks}
     </Link>
   );
 };
 
-function Titre2({ children }: { children: string }) {
+const CONTENEUR = 'max-w-7xl mx-auto px-4 sm:px-6';
+const TITRE_2 = 'text-3xl lg:text-4xl font-heading font-bold text-future-dusk-900 leading-tight mb-5';
+const PARAGRAPHE = 'text-lg text-future-dusk-600 leading-relaxed';
+
+function Figure({ visuel, alt, legende, priorite = false, sizes }: {
+  visuel: Visuel;
+  alt: string;
+  legende?: string;
+  priorite?: boolean;
+  sizes: string;
+}) {
   return (
-    <h2 className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-6">
-      {children}
-    </h2>
+    <figure>
+      <Image
+        src={visuel.src}
+        alt={alt}
+        width={visuel.w}
+        height={visuel.h}
+        sizes={sizes}
+        priority={priorite}
+        loading={priorite ? undefined : 'lazy'}
+        className="w-full h-auto rounded-2xl border border-neutral-200 bg-white"
+      />
+      {legende && <figcaption className="mt-3 text-sm text-future-dusk-500 leading-relaxed">{legende}</figcaption>}
+    </figure>
   );
 }
 
-const PARAGRAPHE = 'text-lg text-future-dusk-600 leading-relaxed';
-
 export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
   const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
-  const gras = (chunks: ReactNode) => <strong className="text-amber-300 font-semibold">{chunks}</strong>;
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'IA Photo Produit', 'AI Product Photography', 'KI-Produktfotografie'), url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
   ];
 
-  const faqItems = [1, 2, 3, 4, 5, 6, 7].map((i) => ({
+  const faqItems = [1, 2, 3, 4, 5].map((i) => ({
     question: t(`faq.q${i}.question`),
     answer: t(`faq.q${i}.answer`),
   }));
 
-  // Barre de sommaire collante (D44) : libellés = titres H2 de la page. Les id ne sont
-  // posés que si la barre est active, sauf celui de la section 1 (cible du hero).
-  const barre = barreActive('landing-ia', lang as Langue, 'ia-photo-produit');
-  const ancre = (id: string) => (barre ? id : undefined);
-  const entreesSommaire = barre
-    ? [
-        { id: ANCRE_FONCTIONS, libelle: t('toolkit.heading') },
-        { id: 'prise-de-vue', libelle: t('priseDeVue.heading') },
-        { id: 'post-production', libelle: t('postProduction.heading') },
-        { id: 'donnees-produit', libelle: t('donnees.heading') },
-        { id: 'ia-generative', libelle: t('generatif.heading') },
-        { id: 'on-model', libelle: t('onModel.heading') },
-        { id: 'conditions', libelle: t('conditions.heading') },
-        { id: 'faq', libelle: t('faq.heading') },
-      ]
-    : [];
-
   return (
     <>
-      {barre && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Langue].titre}
-          libelle={LIBELLES_BARRE[lang as Langue].libelle}
-          entrees={entreesSommaire}
-        />
-      )}
-
-      {/* 0. Hero */}
-      <HeroSection
-        layout="centered"
-        align="left"
-        badge={{
-          icon: <Sparkles className="h-4 w-4" />,
-          label: t('hero.badge'),
-          colorClass: 'bg-very-peri-500/20 text-very-peri-200',
-        }}
-        title={t('hero.title')}
-        subtitle={t.rich('hero.subtitle', { bold: gras })}
-      >
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-2">
-          <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-14 text-base font-semibold rounded-xl shadow-lg shadow-very-peri-500/25">
-            <Link href="/contact">{t('hero.ctaPrimary')}</Link>
-          </Button>
-          <Button asChild size="lg" className="bg-transparent border border-future-dusk-400 text-white hover:bg-future-dusk-700/50 px-8 h-14 text-base rounded-xl">
-            <a href={`#${ANCRE_FONCTIONS}`}>
-              {t('hero.ctaSecondary')} <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
-        </div>
-        <p className="text-sm text-future-dusk-300">{t('hero.note')}</p>
-      </HeroSection>
-
-      {/* 1. Orbitvu AI Toolkit et workflow */}
-      <section id={ANCRE_FONCTIONS} className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <Titre2>{t('toolkit.heading')}</Titre2>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('toolkit.p1')}</p>
-            <p className={PARAGRAPHE}>{t.rich('toolkit.p2', { studios: lien('/studios-photo-automatises') })}</p>
+      {/* A. Hero : le produit photographié d'abord */}
+      <section className="bg-neutral-100">
+        <div className={`${CONTENEUR} py-14 lg:py-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center`}>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-future-dusk-500 mb-5">{t('hero.surtitre')}</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-future-dusk-900 leading-[1.05] tracking-tight mb-6">
+              {t('hero.title')}
+            </h1>
+            <p className={`${PARAGRAPHE} mb-3`}>{t('hero.p1')}</p>
+            <p className={`${PARAGRAPHE} mb-8`}>{t('hero.p2')}</p>
+            <Button asChild size="lg" className="w-full sm:w-auto h-auto min-h-14 py-3 whitespace-normal text-center bg-very-peri-600 hover:bg-very-peri-700 text-white px-8 text-base font-semibold rounded-xl">
+              <Link href="/contact">{t('hero.cta')}</Link>
+            </Button>
+            <p className="mt-4 text-sm text-future-dusk-500">{t('hero.note')}</p>
           </div>
-
-          <h3 className="mt-14 mb-6 text-xl lg:text-2xl font-heading font-bold text-future-dusk-900">
-            {t('workflow.heading')}
-          </h3>
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {ETAPES.map((etape, i) => (
-              <li key={etape} className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-very-peri-100 text-sm font-bold text-very-peri-700">
-                  {i + 1}
-                </span>
-                <p className="mt-3 font-heading font-semibold text-future-dusk-900">{t(`workflow.${etape}.title`)}</p>
-                <p className="mt-1 text-sm text-future-dusk-500 leading-relaxed">{t(`workflow.${etape}.text`)}</p>
-              </li>
-            ))}
-          </ol>
+          <Figure visuel={VISUELS.hero} alt={t('hero.imageAlt')} priorite sizes="(max-width: 1024px) 100vw, 600px" />
         </div>
       </section>
 
-      {/* 2 (A). Prise de vue : AI Photo Assistant */}
-      <section id={ancre('prise-de-vue')} className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-5 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-3">
-            <span className="inline-flex items-center justify-center h-11 w-11 rounded-2xl bg-very-peri-100 text-very-peri-700 mb-5">
-              <Lightbulb className="h-5 w-5" />
-            </span>
-            <Titre2>{t('priseDeVue.heading')}</Titre2>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('priseDeVue.p1')}</p>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('priseDeVue.p2')}</p>
-            <p className={PARAGRAPHE}>
-              {t.rich('priseDeVue.p3', { proG2: lien(fiche('alphashot-pro-g2')), xlG2: lien(fiche('alphashot-xl-g2')) })}
-            </p>
+      {/* B. Workflow : où l'IA intervient, et où elle n'intervient pas */}
+      <section id="workflow" className="py-16 lg:py-24 bg-white">
+        <div className={CONTENEUR}>
+          <div className="max-w-3xl mb-10">
+            <h2 className={TITRE_2}>{t('workflow.heading')}</h2>
+            <p className={PARAGRAPHE}>{t('workflow.intro')}</p>
           </div>
-          <ul className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            {MACHINES_ASSISTANT.map((m) => (
-              <li key={m.slug}>
-                <Link href={fiche(m.slug)} className="group flex items-center gap-4 rounded-2xl border border-neutral-200 bg-white p-4 hover:shadow-md transition-shadow">
-                  <span className="relative h-20 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-neutral-100">
-                    <Image src={m.src} alt={m.nom} width={m.w} height={m.h} sizes="96px" className="h-full w-full object-contain" loading="lazy" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block font-heading font-semibold text-future-dusk-900">{m.nom}</span>
-                    <span className="mt-1 inline-flex items-center text-sm text-very-peri-600">
-                      {t('priseDeVue.carteLien')} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="lg:col-span-5">
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm text-future-dusk-500" aria-hidden="true">
+                <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-very-peri-600" />{t('workflow.legendeIa')}</li>
+                <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-neutral-400" />{t('workflow.legendeSans')}</li>
+              </ul>
+              <ol className="relative border-l-2 border-neutral-200 ml-3">
+                {ETAPES.map(({ cle, ancre }, i) => {
+                  const outil = t(`workflow.${cle}.outil`);
+                  const titre = `${i + 1}. ${t(`workflow.${cle}.titre`)}`;
+                  return (
+                    <li key={cle} className="relative pl-7 pb-7 last:pb-0">
+                      <span
+                        className={`absolute -left-[9px] top-1.5 h-4 w-4 rounded-full ${outil ? 'bg-very-peri-600' : 'bg-white border-2 border-neutral-400'}`}
+                        aria-hidden="true"
+                      />
+                      <p className="font-heading font-semibold text-future-dusk-900">
+                        {ancre ? <a href={`#${ancre}`} className="hover:text-very-peri-700 hover:underline underline-offset-2">{titre}</a> : titre}
+                      </p>
+                      <p className="mt-1 text-future-dusk-600 leading-relaxed">{t(`workflow.${cle}.texte`)}</p>
+                      {outil && (
+                        <span className="mt-2 inline-block rounded-full bg-very-peri-50 px-3 py-1 text-xs font-semibold text-very-peri-700">
+                          IA · {outil}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+            <div className="lg:col-span-7">
+              <Figure visuel={VISUELS.capture} alt={t('workflow.imageAlt')} legende={t('workflow.legende')} sizes="(max-width: 1024px) 100vw, 700px" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* C. AI Photo Assistant : avant la photo */}
+      <section id="photo-assistant" className="py-16 lg:py-24 bg-neutral-50">
+        <div className={`${CONTENEUR} grid lg:grid-cols-12 gap-10 lg:gap-14 items-start`}>
+          <div className="lg:col-span-5">
+            <h2 className={TITRE_2}>{t('photoAssistant.heading')}</h2>
+            <p className={`${PARAGRAPHE} mb-4`}>{t('photoAssistant.p1')}</p>
+            <p className={`${PARAGRAPHE} mb-8`}>{t('photoAssistant.p2')}</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-future-dusk-500 mb-3">{t('photoAssistant.compatibles')}</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {MACHINES_ASSISTANT.map((m) => (
+                <li key={m.slug}>
+                  <Link href={fiche(m.slug)} className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 hover:border-very-peri-300 transition-colors">
+                    <span className="relative h-14 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+                      <Image src={m.src} alt={m.nom} width={m.w} height={m.h} sizes="64px" className="h-full w-full object-contain" loading="lazy" />
                     </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 3 (B). Post-production : AI Masking et AI Retoucher */}
-      <section id={ancre('post-production')} className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <Titre2>{t('postProduction.heading')}</Titre2>
+                    <span className="min-w-0">
+                      <span className="block font-heading font-semibold text-future-dusk-900">{m.nom}</span>
+                      <span className="inline-flex items-center text-sm text-very-peri-700">
+                        {t('photoAssistant.carteLien')} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            <div className="rounded-2xl border border-neutral-200 p-6 lg:p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 flex-shrink-0">
-                  <Scissors className="h-5 w-5" />
-                </span>
-                <h3 className="text-xl lg:text-2xl font-heading font-bold text-future-dusk-900">{t('postProduction.masking.title')}</h3>
-              </div>
-              <p className={`${PARAGRAPHE} mb-4`}>{t('postProduction.masking.p1')}</p>
-              <p className={PARAGRAPHE}>
-                {t.rich('postProduction.masking.p2', { guideFondBlanc: lien(guide('comment-obtenir-fond-blanc-parfait-sans-detourage-produit')) })}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 p-6 lg:p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 flex-shrink-0">
-                  <Paintbrush className="h-5 w-5" />
-                </span>
-                <h3 className="text-xl lg:text-2xl font-heading font-bold text-future-dusk-900">{t('postProduction.retoucher.title')}</h3>
-              </div>
-              <p className={`${PARAGRAPHE} mb-4`}>{t('postProduction.retoucher.p1')}</p>
-              <p className={`${PARAGRAPHE} mb-4`}>
-                {t.rich('postProduction.retoucher.p2', { hubBijoux: lien(secteur('bijoux-joaillerie')) })}
-              </p>
-              <p className={PARAGRAPHE}>{t('postProduction.retoucher.p3')}</p>
-            </div>
+          <div className="lg:col-span-7">
+            <Figure visuel={VISUELS.photoAssistant} alt={t('photoAssistant.imageAlt')} legende={t('photoAssistant.legende')} sizes="(max-width: 1024px) 100vw, 700px" />
           </div>
         </div>
       </section>
 
-      {/* 4 (C). Données produit : AI OCR */}
-      <section id={ancre('donnees-produit')} className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center justify-center h-11 w-11 rounded-2xl bg-very-peri-100 text-very-peri-700 mb-5">
-              <ScanText className="h-5 w-5" />
-            </span>
-            <Titre2>{t('donnees.heading')}</Titre2>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('donnees.p1')}</p>
+      {/* D et E. Après la capture : détourage et retouche */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className={`${CONTENEUR} grid lg:grid-cols-2 gap-12 lg:gap-16`}>
+          <div id="masking">
+            <h2 className={TITRE_2}>{t('masking.heading')}</h2>
+            <p className={`${PARAGRAPHE} mb-4`}>{t('masking.p1')}</p>
             <p className={PARAGRAPHE}>
-              {t.rich('donnees.p2', {
-                hubVin: lien(secteur('vin-spiritueux')),
-                articleXl: lien(article('alphashot-xl-g2-photo-mesures-donnees-produit')),
-              })}
+              {t.rich('masking.p2', { guideFondBlanc: lien(guide('comment-obtenir-fond-blanc-parfait-sans-detourage-produit')) })}
+            </p>
+          </div>
+          <div id="retoucher">
+            <h2 className={TITRE_2}>{t('retoucher.heading')}</h2>
+            <p className={`${PARAGRAPHE} mb-4`}>{t('retoucher.p1')}</p>
+            <p className={PARAGRAPHE}>{t('retoucher.p2')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* F. AI OCR : le même produit, ses données */}
+      <section id="ocr" className="py-16 lg:py-24 bg-neutral-50">
+        <div className={`${CONTENEUR} grid lg:grid-cols-12 gap-10 lg:gap-14 items-center`}>
+          <div className="lg:col-span-5 lg:order-2">
+            <h2 className={TITRE_2}>{t('ocr.heading')}</h2>
+            <p className={PARAGRAPHE}>{t('ocr.p1')}</p>
+          </div>
+          <div className="lg:col-span-7 lg:order-1">
+            <Figure visuel={VISUELS.ocr} alt={t('ocr.imageAlt')} legende={t('ocr.legende')} sizes="(max-width: 1024px) 100vw, 700px" />
+          </div>
+        </div>
+      </section>
+
+      {/* G. Encart génératif */}
+      <section className="py-14 lg:py-20 bg-white">
+        <div className={CONTENEUR}>
+          <div className="max-w-3xl rounded-2xl border border-neutral-200 p-6 lg:p-8">
+            <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">{t('generatif.heading')}</h2>
+            <p className="text-future-dusk-600 leading-relaxed mb-3">{t('generatif.p1')}</p>
+            <p className="text-future-dusk-600 leading-relaxed mb-3">{t('generatif.p2')}</p>
+            <p className="text-future-dusk-600 leading-relaxed">
+              {t.rich('generatif.p3', { aiAct: lien(article('ai-act-images-produit')) })}
             </p>
           </div>
         </div>
       </section>
 
-      {/* 5 (D). Ce qui est génératif aujourd'hui */}
-      <section id={ancre('ia-generative')} className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <Titre2>{t('generatif.heading')}</Titre2>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('generatif.p1')}</p>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('generatif.p2')}</p>
-            <p className={PARAGRAPHE}>
-              {t.rich('generatif.p3', {
-                article: lien(article('generer-images-produit-ia')),
-                aiAct: lien(article('ai-act-images-produit')),
-              })}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 6 (E). Annoncé par Orbitvu : On-model */}
-      <section id={ancre('on-model')} className="pb-16 lg:pb-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-6 lg:p-8">
-            <h2 className="text-2xl lg:text-3xl font-heading font-bold text-future-dusk-900 mb-4">{t('onModel.heading')}</h2>
-            <p className={PARAGRAPHE}>{t('onModel.p1')}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Conditions et essai */}
-      <section id={ancre('conditions')} className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <Titre2>{t('conditions.heading')}</Titre2>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('conditions.p1')}</p>
-            <p className={`${PARAGRAPHE} mb-4`}>{t('conditions.p2')}</p>
-            <p className={`${PARAGRAPHE} mb-6`}>{t('conditions.p3')}</p>
-            <p className="flex items-start gap-2 text-sm text-future-dusk-400">
-              <Info className="h-4 w-4 mt-0.5 flex-shrink-0" />
-              {t('conditions.source')}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Démonstration */}
+      {/* H. CTA final */}
       <section className="py-16 lg:py-24 bg-future-dusk-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className={CONTENEUR}>
           <div className="max-w-3xl">
-            <h2 className="text-3xl lg:text-5xl font-heading font-bold leading-[1.1] mb-6">{t('demo.heading')}</h2>
-            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8">{t('demo.p1')}</p>
-            <Button asChild size="lg" className="bg-very-peri-500 hover:bg-very-peri-600 text-white px-8 h-14 text-base font-semibold rounded-xl shadow-lg shadow-very-peri-500/25">
+            <h2 className="text-3xl lg:text-5xl font-heading font-bold leading-tight mb-6">{t('demo.heading')}</h2>
+            <p className="text-lg text-future-dusk-200 leading-relaxed mb-3">{t('demo.p1')}</p>
+            <p className="text-lg text-future-dusk-200 leading-relaxed mb-8">{t('demo.p2')}</p>
+            <Button asChild size="lg" className="w-full sm:w-auto h-auto min-h-14 py-3 whitespace-normal text-center bg-white text-future-dusk-900 hover:bg-neutral-100 px-8 text-base font-semibold rounded-xl">
               <Link href="/contact">{t('demo.cta')}</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* 9. FAQ */}
-      <section id={ancre('faq')} className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      {/* I. FAQ */}
+      <section id="faq" className="py-16 lg:py-24 bg-neutral-50">
+        <div className={CONTENEUR}>
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
-            <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-              <span className="text-xs font-semibold text-accent-orange uppercase tracking-[0.2em] mb-4 block">FAQ</span>
-              <h2 className="text-3xl lg:text-5xl font-heading font-bold text-future-dusk-900 leading-[1.1] mb-4">
-                {t('faq.heading')}
-              </h2>
-              <p className="text-future-dusk-500 leading-relaxed">{t('faq.intro')}</p>
+            <div className="lg:col-span-4">
+              <h2 className={TITRE_2}>{t('faq.heading')}</h2>
+              <p className="text-sm text-future-dusk-500 leading-relaxed">{t('faq.source')}</p>
             </div>
-            <div className="lg:col-span-8 space-y-4">
+            <div className="lg:col-span-8 space-y-3">
               {faqItems.map((faq, i) => (
-                <details key={i} className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:shadow-md [&[open]]:border-very-peri-200 transition-all duration-300">
-                  <summary className="flex items-center justify-between gap-4 p-6 lg:p-8 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                    <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug group-hover:text-very-peri-600 transition-colors">
-                      {faq.question}
-                    </h3>
+                <details key={i} className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden [&[open]]:border-very-peri-200">
+                  <summary className="flex items-center justify-between gap-4 p-5 lg:p-6 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-lg font-heading font-semibold text-future-dusk-900 text-left leading-snug">{faq.question}</h3>
                     <ChevronDown className="h-5 w-5 text-future-dusk-400 shrink-0 group-open:rotate-180 transition-transform duration-300" />
                   </summary>
-                  <div className="px-6 lg:px-8 pb-6 lg:pb-8 -mt-1">
-                    <p className="text-future-dusk-500 leading-relaxed">{faq.answer}</p>
+                  <div className="px-5 lg:px-6 pb-5 lg:pb-6 -mt-1">
+                    <p className="text-future-dusk-600 leading-relaxed">{faq.answer}</p>
                   </div>
                 </details>
               ))}
@@ -329,13 +285,11 @@ export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
         </div>
       </section>
 
-      {/* Liens de fin : les trois cartes existantes, descriptions sans chiffre non sourcé */}
-      <section className="py-20 bg-white border-t border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeInView className="mb-12">
-            <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">
-              {t('liens.heading')}
-            </span>
+      {/* Liens de fin existants */}
+      <section className="py-16 bg-white border-t border-neutral-100">
+        <div className={CONTENEUR}>
+          <FadeInView className="mb-10">
+            <span className="text-xs font-semibold text-future-dusk-400 uppercase tracking-[0.2em]">{t('liens.heading')}</span>
           </FadeInView>
           <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
             {[
@@ -345,11 +299,11 @@ export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
             ].map((carte) => (
               <Link key={carte.key} href={carte.href} className="group block px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-very-peri-500">{carte.icon}</span>
-                  <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-600 transition-colors">
+                  <span className="text-very-peri-600">{carte.icon}</span>
+                  <h3 className="font-heading font-bold text-future-dusk-900 group-hover:text-very-peri-700 transition-colors">
                     {t(`liens.${carte.key}.title`)}
                   </h3>
-                  <ArrowRight className="h-4 w-4 text-future-dusk-300 group-hover:text-very-peri-500 group-hover:translate-x-1 transition-all ml-auto" />
+                  <ArrowRight className="h-4 w-4 text-future-dusk-300 group-hover:text-very-peri-600 group-hover:translate-x-1 transition-all ml-auto" />
                 </div>
                 <p className="text-sm text-future-dusk-500 leading-relaxed">{t(`liens.${carte.key}.desc`)}</p>
               </Link>
