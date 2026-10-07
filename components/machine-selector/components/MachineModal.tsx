@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import { NavLink as Link } from '@/components/layout/NavLink';
-import { tx, pickL } from '@/lib/locale-text';
+import { tx, pickL, pickListL } from '@/lib/locale-text';
 import type { Machine, BilingualText } from '../lib/types';
 
 interface MachineModalProps {
@@ -16,10 +16,9 @@ interface MachineModalProps {
   showPrice?: boolean;
 }
 
-// Fonction pour obtenir le texte bilingue (de-ch → en, données machines non traduites en allemand)
+// Texte localisé des données machines : de-ch si fourni, sinon repli EN (pickL).
 function getText(text: BilingualText, locale: string): string {
-  if (locale === 'fr') return text.fr;
-  return text.en || text.fr;
+  return pickL(locale, text);
 }
 
 // Fonction utilitaire pour formater le prix
@@ -222,7 +221,7 @@ export function MachineModal({
                   {tx(locale, 'Cas d\'usage idéaux', 'Ideal use cases', 'Ideale Anwendungsfälle')}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {machine.useCases.map((useCase, index) => (
+                  {pickListL(locale, machine.useCases, machine.useCasesI18n).map((useCase, index) => (
                     <span
                       key={index}
                       className="inline-block px-3 py-1 bg-very-peri-100 text-very-peri-700 text-sm rounded-full"

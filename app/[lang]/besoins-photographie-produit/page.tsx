@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, ScrollReveal, TextReveal, SpringCard } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import { tx } from '@/lib/locale-text';
 import {
   Search,
   Camera,
@@ -70,7 +71,6 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
     return { pathname: '/industrie/[slug]' as const, params: { slug } };
   };
   const t = await getTranslations({ locale: lang, namespace: 'besoinsPhoto' });
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -89,14 +89,14 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
       <HeroSection
         badge={{
           icon: <Search className="h-4 w-4" />,
-          label: isFr ? 'Guide solution' : 'Solution guide',
+          label: tx(lang, 'Guide solution', 'Solution guide', 'Lösungsratgeber'),
           colorClass: 'bg-white/10 text-very-peri-200',
         }}
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
         ctas={[
           { label: t('hero.cta'), href: '/contact', variant: 'primary' },
-          { label: isFr ? 'Voir les studios' : 'View studios', href: '/studios-photo-automatises', variant: 'secondary' },
+          { label: tx(lang, 'Voir les studios', 'View studios', 'Studios ansehen'), href: '/studios-photo-automatises', variant: 'secondary' },
         ]}
       />
 
@@ -214,7 +214,7 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
           <FadeInView className="text-center mt-8">
             <Button asChild variant="outline" className="rounded-xl">
               <Link href="/industrie">
-                {isFr ? 'Voir les 14 secteurs' : 'View all 14 sectors'} <ArrowRight className="ml-2 h-4 w-4" />
+                {tx(lang, 'Voir les 14 secteurs', 'View all 14 sectors', 'Alle 14 Branchen ansehen')} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </FadeInView>
@@ -234,14 +234,15 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
                   {t('faq.heading')}
                 </h2>
                 <p className="mt-6 text-neutral-medium leading-relaxed">
-                  {isFr
-                    ? 'Vous avez d\'autres questions ? Contactez nos experts pour un diagnostic gratuit.'
-                    : 'Have more questions? Contact our experts for a free diagnostic.'}
+                  {tx(lang,
+                    'Vous avez d\'autres questions ? Contactez nos experts pour un diagnostic gratuit.',
+                    'Have more questions? Contact our experts for a free diagnostic.',
+                    'Weitere Fragen? Kontaktieren Sie unsere Experten für eine kostenlose Analyse.')}
                 </p>
                 <div className="mt-8">
                   <Button asChild variant="outline" className="rounded-xl">
                     <Link href="/questions-cles-photographie-produit">
-                      {isFr ? 'Les 9 questions cles' : 'The 9 key questions'} <ArrowRight className="ml-2 h-4 w-4" />
+                      {tx(lang, 'Les 9 questions cles', 'The 9 key questions', 'Die 9 Schlüsselfragen')} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -292,7 +293,7 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
                 <div className="w-full rounded-xl overflow-hidden mb-6">
                   <Image
                     src="/images/illustrations/cta-packshot-result.avif"
-                    alt="Résultat packshot professionnel"
+                    alt={tx(lang, 'Résultat packshot professionnel', 'Professional packshot result', 'Professionelles Packshot-Ergebnis')}
                     width={500}
                     height={375}
                     className="w-full h-auto rounded-xl"

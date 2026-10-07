@@ -18,6 +18,8 @@ interface BeforeAfterSliderProps {
   height: number;
   initialPosition?: number;
   className?: string;
+  /** Nom accessible du curseur, dans la langue de la page (défaut FR) */
+  handleLabel?: string;
 }
 
 export function BeforeAfterSlider({
@@ -27,6 +29,7 @@ export function BeforeAfterSlider({
   height,
   initialPosition = 50,
   className,
+  handleLabel = 'Curseur avant/après',
 }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
@@ -173,7 +176,7 @@ export function BeforeAfterSlider({
         <div
           role="slider"
           tabIndex={0}
-          aria-label="Curseur avant/après"
+          aria-label={handleLabel}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(position)}

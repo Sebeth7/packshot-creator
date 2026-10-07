@@ -14,6 +14,8 @@ interface VideoPlayerProps {
   title?: string;
   /** Badge optionnel en haut à gauche (ex. "Démo") */
   badge?: string;
+  /** Préfixe accessible du bouton de lecture, ponctuation comprise, dans la langue de la page (défaut FR) */
+  playLabel?: string;
   className?: string;
 }
 
@@ -26,7 +28,7 @@ interface VideoPlayerProps {
  *   inline sur iOS au lieu du plein écran forcé) et plein écran natif dispo.
  * - Tracking GA4 : video_start / video_progress (25/50/75) / video_complete.
  */
-export function VideoPlayer({ src, poster, title = 'Vidéo', badge, className = '' }: VideoPlayerProps) {
+export function VideoPlayer({ src, poster, title = 'Vidéo', badge, playLabel = 'Lire la vidéo :', className = '' }: VideoPlayerProps) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   // Jalons GA4 déjà émis (évite les doublons sur timeupdate)
@@ -92,7 +94,7 @@ export function VideoPlayer({ src, poster, title = 'Vidéo', badge, className = 
       onClick={handlePlay}
       role="button"
       tabIndex={0}
-      aria-label={`Lire la vidéo : ${title}`}
+      aria-label={`${playLabel} ${title}`}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePlay(); } }}
     >
       {poster && (

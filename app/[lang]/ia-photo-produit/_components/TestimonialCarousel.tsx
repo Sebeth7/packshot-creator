@@ -15,12 +15,17 @@ interface TestimonialCarouselProps {
   testimonials: Testimonial[];
   autoPlay?: boolean;
   interval?: number;
+  /** Libellés accessibles de la navigation, dans la langue de la page (défaut FR) */
+  labels?: { previous: string; next: string; item: string };
 }
+
+const LIBELLES_FR = { previous: 'Témoignage précédent', next: 'Témoignage suivant', item: 'Témoignage' };
 
 export default function TestimonialCarousel({
   testimonials,
   autoPlay = true,
   interval = 5000,
+  labels = LIBELLES_FR,
 }: TestimonialCarouselProps) {
   const [current, setCurrent] = useState(0);
   const total = testimonials.length;
@@ -79,7 +84,7 @@ export default function TestimonialCarousel({
           type="button"
           onClick={prev}
           className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-colors"
-          aria-label="Témoignage précédent"
+          aria-label={labels.previous}
         >
           <ChevronLeft className="h-4 w-4 text-white" />
         </button>
@@ -94,7 +99,7 @@ export default function TestimonialCarousel({
               className={`h-2 rounded-full transition-all duration-300 ${
                 idx === current ? 'w-6 bg-very-peri-400' : 'w-2 bg-white/20'
               }`}
-              aria-label={`Témoignage ${idx + 1}`}
+              aria-label={`${labels.item} ${idx + 1}`}
             />
           ))}
         </div>
@@ -103,7 +108,7 @@ export default function TestimonialCarousel({
           type="button"
           onClick={next}
           className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-colors"
-          aria-label="Témoignage suivant"
+          aria-label={labels.next}
         >
           <ChevronRight className="h-4 w-4 text-white" />
         </button>

@@ -104,7 +104,7 @@ export default async function AProposPage({ params }: PageProps) {
                 <div className="mt-8">
                   <Image
                     src="/images/illustrations/team-showroom.avif"
-                    alt="Équipe PackshotCreator dans le showroom"
+                    alt={tx(lang, 'Équipe PackshotCreator dans le showroom', 'PackshotCreator team in the showroom', 'PackshotCreator-Team im Showroom')}
                     width={1344}
                     height={768}
                     className="w-full h-auto rounded-2xl"
