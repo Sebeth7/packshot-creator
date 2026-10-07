@@ -87,6 +87,10 @@ dans `DECISIONS.md`.
 
 **Mise à jour du 06/10 (Claude de Laurent)** — Laurent a tranché pour ce cluster (D46, précisions du 06/10) : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` ; auteur affiché « PackshotCreator » dans les 15 fichiers, schéma `Article.author` rattaché à l'organisation, sans ton profil. Cette question reste une information ; elle ne bloque pas la publication. Ton avis éventuel sur le copywriting FR sera traité après publication (D42, arbitrage final 3).
 
+**Mise à jour du 07/10 (Claude de Laurent)** — La question historique ci-dessus est conservée telle quelle, y compris sa mention de l'auteur « Sébastien Jourdan » (état du 06/10 avant la décision de Laurent). État au 07/10 : #96 fusionnée le 06/10 à 12:41 UTC (`8247217`) sur GO de Laurent ; `SEBASTIEN_VALIDATION = NOT_RECEIVED` inchangé ; aucune réponse de Sébastien consignée. Les deux points posés (réserve du copywriting FR, auteur) restent ouverts pour information.
+
+**Risque de doublon de numéro** — La branche de #82 (`claude/magical-clarke-rkqimg`, tête `452d49b`, PR ouverte, HOLD, non fusionnée) ajoute à ce fichier une autre « Q23 » (« Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant… »), sans rapport avec celle-ci ; sa description le signale déjà. Rien n'est renuméroté ici et #82 n'est pas modifiée. Si #82 est un jour fusionnée en l'état, ce fichier portera deux Q23 : la numérotation se tranche à cette fusion, sur décision humaine.
+
 ---
 
 ### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
@@ -108,6 +112,8 @@ dans `DECISIONS.md`.
 - #85 : barre de sommaire collante, desktop, sur 90 pages : guides, fiches machines, IA photo produit, solutions, deux articles. Studios n'est pas concernée (chantier commercial). Les pages gelées sont listées dans `data/navigation/pages-longues.ts`.
 
 **La question** — Sébastien prend-il connaissance de ces contraintes ? Aucune décision n'est attendue ; une objection se porte à Laurent avant les GO de fusion.
+
+**Mise à jour du 07/10 (Claude de Laurent)** — Le texte ci-dessus, du 03/10, est conservé tel quel. Rectification du chiffre de #85 : la barre commune équipe finalement **93 pages**, et non 90 (description de #85, recompte du 06/10 sur build local de la tête `0d2633f` : 44 guides, 39 fiches, 4 articles dédiés, 3 IA photo produit, 3 solutions). Écart : les 3 guides de #91, en exception temporaire le 03/10, équipés le 06/10 après la fusion de #91 (`4b8c12a`). Studios reste hors périmètre (HOLD) ; les 3 pages Mode gardent leur barre d'origine. État des trois PR au 07/10 : #86 fusionnée le 04/10 (`0ac062b`), #84 le 06/10 (`1e0901b`), #85 le 06/10 (`30482a0`). Cette question reste une information ; aucune réponse de Sébastien n'est consignée au 07/10.
 
 ---
 

@@ -25,6 +25,37 @@ Append-only. Plus récent en haut.
 
 ---
 
+## Note d'exécution · 2026-10-07 · État de mise en œuvre de D36, D44, D45, D46 et D47 après les fusions du 03/10 au 06/10 — pas une décision
+
+**Rédigée par** : Claude de Laurent, sur GO documentaire de Laurent du 07/10/2026 (« PR documentaire consolidée »)
+**Nature** : note d'exécution. **Aucune décision nouvelle, aucun numéro D48.** Les décisions ci-dessous ne sont ni réécrites ni modifiées : leurs lignes « Statut » restent celles de leur date. Cette note dit seulement, au 07/10, ce qui est implémenté, ce qui est contrôlé et ce qui reste ouvert. Sources : GitHub (`merged_at`, commits de fusion sur `main` `30482a0`) ; preuves `www` transmises par la mission de Laurent du 07/10 ; JOURNAL du 07/10.
+
+**D36** (`noindex` de l'origine `sysnext.vercel.app`) — **implémentée et contrôlée.**
+- Partie Worker : #68, fusionnée le 01/10, Worker `107715bc` actif depuis le 01/10 (JOURNAL du 06/10). Partie Next : #99, fusionnée le 06/10 à 16:44 UTC (`e830419`). #67 fermée sans fusion le 06/10 à 16:56 UTC (remplacée par #99).
+- `sysnext.vercel.app` : 9 documents HTML sur 9 portent les en-têtes `noindex` attendus (mission du 07/10 ; liste des 9 URL non reprise ici).
+- `www` : Laurent a contrôlé 4 URL par requête HEAD PowerShell depuis son poste (D23) : HTTP 200, en-têtes D36 absents. Cette preuve vient de ces requêtes HEAD ; elle n'est pas attribuée aux captures Chrome.
+- La ligne « Statut » de D36 (« non exécutée au 25/09 ») est historique. Limite connue, inchangée : `smoke.mjs` lit la balise `robots`, pas l'en-tête.
+
+**D44** (R-UX-LONG) — **appliquée** : règle écrite par #87 (03/10, `17a4248`) ; forme B par #84 (06/10 à 10:26 UTC, `1e0901b`) ; forme A et registre par #85 (06/10 à 17:46 UTC, `30482a0`), **93 pages** équipées ; CI par #86 (04/10, `0ac062b`). Studios en HOLD ; Mode garde sa barre d'origine jusqu'au 26/11.
+- Réserve UX du 07/10 : la surbrillance de la section active est parfois décalée. Diagnostic P2 **proposé**, non arbitré ; aucune correction autorisée. La règle n'est pas modifiée.
+
+**D45** (R-PRODUCT-DIM) — **contrôles présents** : référentiel `data/produits/fiches-techniques.ts`, registre `data/produits/ecarts-connus.ts`, test `lib/produits/__tests__/coherence-dimensions.test.ts` (#83, fusionnée le 03/10 à 19:49 UTC, `1bc7195`), exécutés en CI depuis #86.
+- **Q20 reste ouverte** : aucune valeur contradictoire corrigée ; la PR PRODUCT-DATA attend la réponse de Sébastien.
+
+**D46** (cluster AI Act) — **#96 fusionnée** le 06/10 à 12:41 UTC (`8247217`), sur GO de Laurent.
+- #59, #60 et #77 sont marquées fusionnées par GitHub à 12:41:03 UTC : leurs têtes sont incluses dans #96, sans commit de fusion propre sur `main`.
+- QA `www` **partielle** : 5 pages FR représentatives PASS le 07/10. Les 15 versions linguistiques n'ont pas été contrôlées une à une. Présence sur `www` constatée le 07/10 ; instant du premier déploiement `www` non établi.
+- `SEBASTIEN_VALIDATION = NOT_RECEIVED`, inchangé. #79 reste ouverte, REVIEW ONLY, fermeture sur GO distinct.
+
+**D47** (CTA ROI) — **#93 fusionnée** le 06/10 à 14:18 UTC (`6cbb903`) : CTA ROI des 7 sources vers le calculateur localisé (`/fr/calculateur-roi`, `/en/calculateur-roi`, `/de-ch/roi-rechner`). Contrôle `www` FR/EN PASS le 06/10 (JOURNAL du 06/10).
+- La ligne « Statut » de D47 cite encore « PR #93 (brouillon) » : application effective depuis la fusion.
+- #94 fermée sans fusion le 06/10 à 14:59 UTC. Activation d'`anchors` et de `roi-calculator` en CI : toujours une décision séparée.
+- **AR-01 n'est pas rouvert** : clos le 06/10.
+
+**Ce que cette note n'est pas** — ni une décision (décision ≠ implémentation : chaque ligne ci-dessus constate une mise en œuvre, elle ne tranche rien) ; ni une preuve de publication (une fusion n'établit pas la présence sur `www`, qui se constate à part) ; ni une validation exhaustive (une QA partielle ne vaut pas contrôle de toutes les pages) ; ni une validation de Sébastien.
+
+---
+
 ## D47 · 2026-10-06 · Destination canonique des CTA ROI : le calculateur localisé, sans détour par Studios ; option B d'AR-01 remplacée
 
 **Décidé par** : Laurent — mission « ROI / PR #93 — exécution, destination canonique directe vers le vrai calculateur » du 06/10/2026
