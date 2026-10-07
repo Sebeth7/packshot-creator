@@ -416,7 +416,7 @@
       },
       "retoucher": {
         "title": "AI Retoucher : la retouche assistée",
-        "p1": "AI Retoucher automatise la retouche de l'image : retrait des reflets et des imperfections, travail sur les couleurs. Il se pilote par des prompts, c'est-à-dire des consignes écrites, et par des presets, des réglages enregistrés que l'on réapplique d'une série à l'autre.",
+        "p1": "AI Retoucher automatise la retouche de l'image : retrait des reflets et des imperfections, travail sur les couleurs, ajout d'une ombre. Il se pilote par des prompts, c'est-à-dire des consignes écrites, et par des presets, des réglages enregistrés que l'on réapplique d'une série à l'autre.",
         "p2": "Sur certains produits, ces retouches prennent une place importante : les reflets d'une bouteille, les petites imperfections d'un <hubBijoux>bijou</hubBijoux> photographié en gros plan.",
         "p3": "Un preset s'applique de la même façon à toute une série, ce qui aide à garder des visuels homogènes d'une référence à l'autre. La retouche part de la photo réelle du produit : comme toute retouche, son résultat se contrôle avant publication."
       }
@@ -453,7 +453,7 @@
       "intro": "L'IA d'Orbitvu Station en sept questions.",
       "q1": {
         "question": "Faut-il un studio Orbitvu pour utiliser ces fonctions IA ?",
-        "answer": "Pas forcément pour Orbitvu Station : selon Orbitvu, le logiciel fonctionne aussi sans matériel Orbitvu, avec un appareil Canon compatible. AI Photo Assistant est en revanche annoncé sur l'Alphashot Pro G2 et l'Alphashot XL G2. Les fonctions disponibles dans votre configuration se vérifient en démonstration."
+        "answer": "Pas forcément pour Orbitvu Station : selon Orbitvu, le logiciel fonctionne aussi sans matériel Orbitvu, avec un appareil Canon compatible. AI Photo Assistant est en revanche disponible sur l'Alphashot Pro G2 et l'Alphashot XL G2. Les fonctions disponibles dans votre configuration se vérifient en démonstration."
       },
       "q2": {
         "question": "Sur quels studios AI Photo Assistant est-il disponible ?",
