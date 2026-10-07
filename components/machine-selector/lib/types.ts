@@ -47,6 +47,7 @@ export interface Dimensions {
 export interface BilingualText {
   fr: string;
   en: string;
+  'de-ch'?: string;
 }
 
 // Machine Orbitvu
@@ -61,6 +62,8 @@ export interface Machine {
   poidsMax: string;                       // Description textuelle
   tailleCategories: ProductSizeCategory[];
   useCases: string[];
+  /** Traductions parallèles de `useCases` (même ordre, même longueur) ; absent → liste FR. */
+  useCasesI18n?: { en: string[]; 'de-ch': string[] };
   maintenanceAnnuelle: number;
   consommablesAnnuels: number;
   imageUrl?: string;

@@ -15,6 +15,8 @@ export interface SolutionSecteur {
   slug: string;
   nom: string;
   useCase: string;
+  /** Version de-ch de `useCase`, pour les pages secteur suisses qui l'affichent. */
+  useCaseDeCh?: string;
 }
 
 export interface Solution {
@@ -23,6 +25,8 @@ export interface Solution {
   description: string;
   hero: {
     badge: string;
+    /** Version de-ch de `badge`, pour les pages secteur suisses qui l'affichent. */
+    badgeDeCh?: string;
     titre: string;
     sousTitre: string;
     description: string;
@@ -66,6 +70,7 @@ export const solutions: Solution[] = [
       'Créez une documentation technique visuelle standardisée et toujours à jour. Studios photo automatisés pour bureaux d\'études, services techniques et gestionnaires de patrimoine.',
     hero: {
       badge: 'DOCUMENTATION TECHNIQUE',
+      badgeDeCh: 'TECHNISCHE DOKUMENTATION',
       titre: 'Vos manuels techniques sont obsolètes avant d\'être imprimés',
       sousTitre: 'La documentation visuelle standardisée change tout',
       description:
@@ -155,6 +160,7 @@ export const solutions: Solution[] = [
           slug: 'electronique-hightech',
           nom: 'Électronique & High-Tech',
           useCase: 'Documentation composants obsolescents (DMSMS), inspection PCB par focus stacking, base de référence macro.',
+          useCaseDeCh: 'Dokumentation obsoleter Bauteile (DMSMS), PCB-Inspektion per Focus-Stacking, Makro-Referenzdatenbank.',
         },
       ],
     },
@@ -206,6 +212,7 @@ export const solutions: Solution[] = [
       'Studios photo automatisés pour la documentation qualité produit : traçabilité visuelle, rapports de conformité, prototypage R&D. Répétabilité certifiable.',
     hero: {
       badge: 'QUALITÉ & TRAÇABILITÉ',
+      badgeDeCh: 'QUALITÄT & RÜCKVERFOLGBARKEIT',
       titre: 'Votre documentation qualité repose encore sur des photos smartphone ?',
       sousTitre: 'La traçabilité visuelle standardisée élimine les zones d\'ombre',
       description:
@@ -290,6 +297,7 @@ export const solutions: Solution[] = [
           slug: 'electronique-hightech',
           nom: 'Électronique & High-Tech',
           useCase: 'Inspection PCB par focus stacking, détection micro-défauts soudure, documentation composants.',
+          useCaseDeCh: 'PCB-Inspektion per Focus-Stacking, Erkennung von Mikro-Lötfehlern, Bauteildokumentation.',
         },
         {
           slug: 'automobile-pieces-detachees',

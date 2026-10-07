@@ -62,7 +62,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
   // ('YYYY-MM-DDTHH:mm:ss.sssZ') — on gère les deux sans doubler le suffixe T.
   const formatDate = (date: string) =>
     new Date(date.includes('T') ? date : date + 'T00:00:00').toLocaleDateString(
-      isFr ? 'fr-FR' : 'en-US',
+      isFr ? 'fr-FR' : lang === 'de-ch' ? 'de-CH' : 'en-US',
       { year: 'numeric', month: 'long', day: 'numeric' },
     );
 

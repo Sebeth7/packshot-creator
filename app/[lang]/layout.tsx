@@ -10,36 +10,40 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import { SmoothScroll } from '@/components/animations';
+import { tx } from '@/lib/locale-text';
 
 // Body font is now the native system stack (defined in globals.css :root --font-body)
 // — saves ~37 KB of WOFF2 + 1 <link rel="preload"> on every page.
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const isFr = lang === 'fr';
+  const titre = tx(lang, 'PackshotCreator - Studios Photo Automatises', 'PackshotCreator - Automated Photo Studios', 'PackshotCreator - Automatisierte Fotostudios');
+  const titreImage = tx(lang, 'PackshotCreator - Studios Photo Automatisés', 'PackshotCreator - Automated Photo Studios', 'PackshotCreator - Automatisierte Fotostudios');
   return {
     openGraph: {
-      title: isFr ? 'PackshotCreator - Studios Photo Automatises' : 'PackshotCreator - Automated Photo Studios',
-      description: isFr
-        ? 'Solutions de photographie produit automatisee. Studios photo Orbitvu, IA retouche, formations Qualiopi.'
-        : 'Automated product photography solutions. Orbitvu photo studios, AI retouching, Qualiopi training.',
+      title: titre,
+      description: tx(lang,
+        'Solutions de photographie produit automatisee. Studios photo Orbitvu, IA retouche, formations Qualiopi.',
+        'Automated product photography solutions. Orbitvu photo studios, AI retouching, Qualiopi training.',
+        'Lösungen für automatisierte Produktfotografie. Orbitvu-Fotostudios, KI-Retusche, Qualiopi-Schulungen.'),
       url: `https://www.packshot-creator.com/${lang}`,
       siteName: 'PackshotCreator',
-      locale: isFr ? 'fr_FR' : 'en_US',
+      locale: tx(lang, 'fr_FR', 'en_US', 'de_CH'),
       type: 'website',
       images: [{
-        url: `/api/og?title=${encodeURIComponent(isFr ? 'PackshotCreator - Studios Photo Automatisés' : 'PackshotCreator - Automated Photo Studios')}&type=page&lang=${lang}`,
+        url: `/api/og?title=${encodeURIComponent(titreImage)}&type=page&lang=${lang}`,
         width: 1200,
         height: 630,
       }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: isFr ? 'PackshotCreator - Studios Photo Automatises' : 'PackshotCreator - Automated Photo Studios',
-      description: isFr
-        ? 'Solutions de photographie produit automatisee.'
-        : 'Automated product photography solutions.',
-      images: [`/api/og?title=${encodeURIComponent(isFr ? 'PackshotCreator - Studios Photo Automatisés' : 'PackshotCreator - Automated Photo Studios')}&type=page&lang=${lang}`],
+      title: titre,
+      description: tx(lang,
+        'Solutions de photographie produit automatisee.',
+        'Automated product photography solutions.',
+        'Lösungen für automatisierte Produktfotografie.'),
+      images: [`/api/og?title=${encodeURIComponent(titreImage)}&type=page&lang=${lang}`],
     },
   };
 }

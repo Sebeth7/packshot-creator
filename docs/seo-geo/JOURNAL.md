@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · PACK-L — corrections i18n groupées EN/de-CH des gabarits (A07, A29 et reliquats compatibles) · Claude de Laurent
+
+**Chantier** : PACK-L (LANG_2 partiel et LANG_3 de l'audit LANG), GO de codage de Laurent du 07/10 (« GO CODAGE PACK-L = YES », une seule PR brouillon) | **PR** : brouillon, « DO NOT MERGE », branche `claude/great-hawking-9jywhk` | **Base** : `main` `35d250c` (fusion de #100)
+
+**Quoi** — Traduction EN et de-CH de chaînes que les gabarits servaient en français ou en anglais, sans aucun changement de rendu FR :
+- P1 : A07 (cas d'usage des fiches machines, traduction seule) ; A29 (deux guides `besoins-photographie-produit` et `questions-cles-photographie-produit`, libellés à trois langues).
+- P2/P3 : A08, A10, A11 (liste, meta description et JSON-LD construits depuis les cas d'usage traduits) ; A13, A15, A16 (ALT du hero, `aria-label` vidéo, galerie de-CH des fiches) ; A17, A18 (`SectorGrid`, secteurs connexes de-CH) ; A19 (`data/solutions.ts`, badges et cas d'usage de-CH) ; A25, A26 (libellés ARIA et ALT de la page IA) ; A27, A28 (ALT) ; A30 (métadonnées de `app/[lang]/layout.tsx`) ; A32 (format de date du blog de-CH) ; A34 (badge de `packshot-industriel`) ; A35 et la seule partie modale de A12 (`MachineModal.tsx`).
+- Données : champ parallèle optionnel `useCasesI18n` dans les deux `machines.ts` (16 entrées côté ROI, 15 côté sélecteur) et textes `'de-ch'` des avantages et limites du sélecteur (63 repris tels quels du catalogue ROI, 4 nouveaux). Aucune valeur FR ou EN existante modifiée ; aucune dimension, charge, prix, nom, version ni mapping (D45, Q20).
+- Helper `pickListL` dans `lib/locale-text.ts` ; test `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Pourquoi** — Registre LANG A01–A38 : 34 fiches et 2 guides de-CH affichaient du français ou de l'anglais (P1 A07, A29) ; reliquats P2/P3 dans les mêmes gabarits.
+
+**Fichiers** — `app/[lang]/{a-propos,besoins-photographie-produit,blog,ia-photo-produit,industrie,industrie/[slug],packshot-industriel,questions-cles-photographie-produit,studio-photo/[slug]}/page.tsx`, `app/[lang]/layout.tsx`, `app/[lang]/ia-photo-produit/_components/{FeaturesTabs,TestimonialCarousel}.tsx`, `components/calculators/ROICalculator/lib/{machines,types}.ts`, `components/machine-selector/lib/{machines,types}.ts`, `components/machine-selector/components/MachineModal.tsx`, `components/media/BeforeAfterSlider.tsx`, `components/shared/SectorGrid.tsx`, `components/video/VideoPlayer.tsx`, `data/solutions.ts`, `lib/locale-text.ts`, `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Exclus** — LANG_1 (A01 à A06) ; A09 et parties produit de A12 ; A14 (« IA Ready ») ; A20, A21 (`SchemaOrg.tsx`, #64) ; A22 à A24 (accueil gelé jusqu'au 28/10) ; A31, A36 à A38 ; A33 (`Header.tsx` : l'en-tête global modifiait l'accueil de-CH et les landings F5 et Mode de-CH ; fichier rétabli à l'identique de `main`). Entrée `alphastudio-compact-v2` des deux catalogues non touchée (gel F5) ; `PackshotEcommerce.tsx`, `SECTOR_PACKSHOT_MAP`, Worker, redirections, `next.config`, middleware absents du diff. Secteur connexe `mode-textile` laissé tel quel (gel Mode).
+
+**Effet attendu** — Pages EN et de-CH concernées entièrement dans leur langue dès le déploiement ; FR identique. [Inférence] Effet de classement non mesurable séparément des mesures en cours (M5, F5, Mode, AI Act). Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest complet 483/483 (23 fichiers) ; `npx next build` vert, variables factices de la CI.
+- HTML prérendu `main` / branche, scripts exécutables retirés, identifiant de build neutralisé : 374 pages, 304 identiques, 70 différentes (48 de-CH, 22 EN). **FR : 161/161 identiques.** Identiques aussi : accueil `fr`, `en`, `de-ch` ; `packshot-e-commerce` et `packshot-mode` en EN et de-CH ; `de-ch/industrie/mode` ; hubs Studios EN et de-CH.
+- Lignes retirées des deux `machines.ts` : 67/67 reprises à l'identique, avec seulement un champ `'de-ch'` en plus.
+- A30 : le repli de `app/[lang]/layout.tsx` change `twitter:title` et `twitter:description` (et `og:*` de `/de-ch/roi-rechner`) sur 17 pages de-CH sans métadonnées propres, dont l'article AI Act `/de-ch/blog/ai-act-produktbilder` (mesure J+7 du 13 ou 14/10) : à inscrire comme événement concomitant (ETAT E) si la PR est fusionnée avant. `<title>`, meta description, canonical et hreflang de ces pages inchangés.
+- Chromium sur `next start` de la branche : spec ad hoc hors dépôt 9/9 (fiches EN et de-CH, gel F5, fiche FR, deux guides de-CH, modale de-CH/EN/FR, métadonnées de-CH, secteurs, page IA, blog, badge) ; specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81.
+- Specs `seo`, `language-switch`, `youtube-consent` : 242 réussies, 10 échecs, tous sur des pages dont le HTML est identique à `main` (`/en`, pages FR, `/fr/packshot-bijoux` → 301 vers une page FR identique) ou dont `<title>` et meta description sont identiques à `main` (`/en/ia-photo-produit`, `/en/industrie`).
+- Fichiers des PR ouvertes (#27, #64, #65, #70, #79, #82) : aucun fichier de code commun ; seuls `JOURNAL.md` et `ETAT.md` sont partagés.
+
+**Supposé** — [Inférence] Les 10 échecs `seo` / `language-switch` sont préexistants : non rejoués sur `main`, déduits de l'identité du HTML. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel et `www` (R4). Qualité linguistique : relecture EN et DE humaine requise (D42), liste des chaînes nouvelles remise hors dépôt. Clés brutes `health` et `watchmaking` affichées en FR et EN sur les fiches (hors périmètre, FR et EN inchangés). `ETAT.md` A et B périmés depuis la fusion de #100 et #101 (B liste encore #100 ouverte) : signalé, non corrigé.
+
+**Suite** — Relecture EN et DE ; confirmation de Laurent sur la fiche `alphastudio-compact-v2` EN et de-CH, qui reçoit les corrections du gabarit commun (ALT du hero, `aria-label` vidéo, galerie et libellés de-CH) alors que ses propres cas d'usage restent en FR ; GO de fusion distinct ; après fusion : `smoke.mjs` sur `sysnext.vercel.app`, Chrome sur `www`.
+
+---
+
 ## 2026-10-07 · #101 — trois micro-corrections documentaires avant revue de fusion · Claude de Laurent
 
 **Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« Finalisation PR #101 ») | **PR** : #101, brouillon, « DO NOT MERGE » | **Tête de départ** : `b0bf16f` | **Base** : `main` `30482a0`

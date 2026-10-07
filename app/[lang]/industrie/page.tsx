@@ -367,7 +367,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
 
           {/* Compact grid — remaining sectors */}
           <FadeInView delay={0.3}>
-            <SectorGrid sectors={compactSectors} columns={4} />
+            <SectorGrid sectors={compactSectors} columns={4} lang={lang} />
           </FadeInView>
         </div>
       </section>
