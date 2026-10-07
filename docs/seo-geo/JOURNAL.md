@@ -58,13 +58,18 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - QA ciblée sur `sysnext` (Playwright, 8 URL en 1440 et 390 px, modale ouverte sur 2 machines, métadonnées) : 19/19 après un rejeu. Échec initial : `net::ERR_TIMED_OUT` sur `/de-ch/branchen/elektronik` en 1440 px ; la page répond 200 en 0,54 s et le rejeu isolé passe. Spec PACK-L : 9/9.
 - `<head>` de 11 pages identique au build testé de `0f257b2` (title, canonical, hreflang, description, `og:*`, `twitter:*`), dont `/de-ch/blog/ai-act-produktbilder`, `/fr/packshot-e-commerce` et `/fr/studio-photo/alphastudio-compact-v2`.
 - Rendu FR de production identique au build de `main` d'avant fusion sur 5 pages témoins : `/fr`, `/fr/packshot-e-commerce`, `/fr/studio-photo/alphastudio-compact-v2`, `/fr/studio-photo/alphashot-xl-g2`, `/fr/industrie`.
+- `www` dans Chrome, le 07/10 (rapport transmis par Laurent) : PASS. 9 pages en HTTP 200 : `/de-ch/fotostudio/alphashot-pro-g2`, `/de-ch/fotostudio/alphashot-xl-g2`, `/en/studio-photo/alphashot-pro-g2`, `/de-ch/produktfotografie-bedarf`, `/de-ch/wichtige-fragen-produktfotografie`, `/de-ch/fotostudio/maschinen-finder`, `/de-ch/ia-photo-produit`, `/de-ch/branchen/schmuck`, `/de-ch/branchen/uhren`.
+  - `lang` correct ; aucun débordement à 1280 px ni à 390 px (iframe) ; aucune image cassée ; aucun texte FR détecté par script (contrôle heuristique).
+  - Modale du sélecteur ouverte sur Alphashot Pro G2 : libellés, avantages et limites en allemand ; 390 px de large à 390 px, sans débordement.
+  - Title relevé sur chaque page ; canonical auto-référent ; hreflang : 5 entrées (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), 4 sur les deux secteurs (pas d'`en`).
+  - Aucune anomalie introduite par #102 ; réserves A, B, C visibles à l'identique. Aucune mutation.
 
 **Supposé** — [Inférence] L'échec `ERR_TIMED_OUT` est un délai réseau ponctuel du conteneur. Cela repose sur des schémas observés.
-**Non regardé** — `www` dans Chrome : aucun navigateur connecté à la session (R4) ; à faire par Laurent (`ETAT.md`, C). Statut de déploiement Vercel du commit de fusion : non lu, aucun outil disponible ; la mise en production est constatée par le contenu servi. Relecture EN et DE (15 groupes) : non rendue.
+**Non regardé** — Statut de déploiement Vercel du commit de fusion : non lu, aucun outil disponible ; la mise en production est constatée par le contenu servi. Relecture EN et DE (15 groupes) : non rendue.
 
 **Événement concomitant** — Fusion du 07/10 à 10:26 UTC, à ne pas attribuer à une mesure. A30 change `og:*` et `twitter:*` de 17 pages de-CH, dont `/de-ch/blog/ai-act-produktbilder` (J+7 AI Act le 13 ou 14/10). `<title>`, canonical et hreflang inchangés : métadonnées sociales seulement, aucune cause SEO démontrée.
 
-**Suite** — Contrôle `www` dans Chrome. Dettes séparées : A (unité « photos » de la modale), B (valeurs `spaceRequired` en FR, Q20), C (texte de la présentation Orbitvu en FR, hors dépôt ; elle nomme la machine « Alphashot 360 G2 », le catalogue « Alphashot 360 »). PACK-D9 débloqué ; mission menée dans sa propre session.
+**Suite** — Dettes séparées : A (unité « photos » de la modale), B (valeurs `spaceRequired` en FR, Q20), C (texte de la présentation Orbitvu en FR, hors dépôt ; elle nomme la machine « Alphashot 360 G2 », le catalogue « Alphashot 360 »). PACK-D9 débloqué ; mission menée dans sa propre session.
 
 ---
 
