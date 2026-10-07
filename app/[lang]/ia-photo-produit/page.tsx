@@ -19,6 +19,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal';
 import SpringCard from '@/components/animations/SpringCard';
 import FeaturesTabs from './_components/FeaturesTabs';
 import TestimonialCarousel from './_components/TestimonialCarousel';
+import LandingIaOrbitvu from './_components/LandingIaOrbitvu';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL } from '@/lib/locale-text';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
@@ -99,6 +100,12 @@ export function generateStaticParams() {
 
 export default async function IAPhotoProduitPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+
+  // FR : landing reconstruite sur les capacités Orbitvu AI Toolkit (07/10/2026).
+  // EN et de-ch gardent la page ci-dessous jusqu'à leur traduction depuis la version FR
+  // validée (D42, étape 7) ; leurs namespaces `iaPhotoProduit` ne sont pas modifiés.
+  if (lang === 'fr') return <LandingIaOrbitvu lang={lang} />;
+
   const t = await getTranslations({ locale: lang, namespace: 'iaPhotoProduit' });
 
   const boldOrange = (chunks: React.ReactNode) => <strong className="text-accent-orange font-semibold">{chunks}</strong>;

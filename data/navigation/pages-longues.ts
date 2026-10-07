@@ -84,7 +84,7 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     statut: 'ADAPT',
     portee: 'toutes',
     exceptions: [],
-    note: 'Cinq sections à titre dont la FAQ ; 11 026 à 12 149 px. Ancre existante #resultats réutilisée. Hors pilote Studios ; deuxième vague commerciale (addendum marché du 02/10, conditionnée par #77 et la validation des claims) : la barre est à reprendre dans la restructuration éditoriale.',
+    note: 'FR reconstruite le 07/10/2026 (landing IA Orbitvu, vague 1) : huit entrées dont la FAQ, libellés = titres H2 ; id de la section 1 permanent (cible du CTA du hero). EN et de-ch : ancienne page jusqu’à leur traduction depuis la version FR validée (D42, étape 7) ; cinq sections à titre dont la FAQ, 11 026 à 12 149 px au 03/10, ancre #resultats réutilisée.',
   },
   {
     famille: 'landing-gamme',
