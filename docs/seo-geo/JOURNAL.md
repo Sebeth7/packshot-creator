@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · #101 — trois micro-corrections documentaires avant revue de fusion · Claude de Laurent
+
+**Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« Finalisation PR #101 ») | **PR** : #101, brouillon, « DO NOT MERGE » | **Tête de départ** : `b0bf16f` | **Base** : `main` `30482a0`
+
+**Quoi** — Trois corrections dans les fichiers de #101, sans autre changement :
+- `docs/standards/R-UX-LONG.md`, tableau de la forme A : « deux articles dédiés » devient « quatre articles dédiés », c'est-à-dire `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` en FR et en EN. Le tableau s'aligne ainsi sur l'en-tête et sur le recompte de #85 (44 + 39 + 4 + 3 + 3 = 93).
+- `BOITE-AUX-LETTRES.md`, note du 07/10 sous Q23 : elle présentait à tort l'auteur comme encore à décider. Laurent l'a décidé le 06/10 (`AUTHOR = PackshotCreator`, `SCHEMA_AUTHOR = Organization`) et #96 l'a implémenté. Seule la réserve éventuelle de Sébastien sur le copywriting FR reste ouverte, pour information. La question historique est inchangée.
+- `ETAT.md`, A et B : le nombre de PR ouvertes distingue désormais trois états. Il y en avait 7 au relevé de préparation, avant la création de #101 ; il y en a 8 avec #101 ; il y en aura 7 après une fusion éventuelle de #101, seulement si aucune autre PR ne change. Le relevé historique des 7 PR est conservé. Ligne Q23 de A alignée sur la note rectifiée.
+
+**Vérifié** — `main` `30482a0` ; tête de #101 `b0bf16f`, CI 4/4 verte avant correction ; 8 PR ouvertes (GitHub, 07/10). Les 15 fichiers du cluster AI Act portent `author: "PackshotCreator"` sur `main`. `components/seo/SchemaOrg.tsx` (l. 231) ne produit un `Person` que pour un autre auteur.
+
+**Supposé** — Aucun.
+**Non regardé** — Aucun nouvel audit. Documents non reconstruits ; aucune autre ligne de #101 modifiée.
+
+**Suite** — CI sur la nouvelle tête ; revue de fusion par Laurent ; GO de fusion distinct.
+
+---
+
 ## 2026-10-07 · Resynchronisation documentaire post-fusions (03/10 → 06/10) et QA `www` du 07/10 · Claude de Laurent
 
 **Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« PR documentaire consolidée ») | **PR** : brouillon, « DO NOT MERGE », branche `claude/admiring-euler-njxp9x` | **Base** : `main` `30482a0`

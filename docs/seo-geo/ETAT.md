@@ -26,8 +26,8 @@ vont en C ou D, ses mesures en E.
 | Contrôle | 07/10/2026, Claude de Laurent (resynchronisation documentaire post-fusions ; relevé GitHub et `git` du 07/10) |
 | `main` | `30482a0` — fusion de #85 (barre D44), 06/10 à 17:46:14 UTC ; relevé le 07/10. Fusionnées depuis le 03/10 (horodatage `merged_at` GitHub, UTC) : #87 (03/10 17:51), #83 (03/10 19:49), #86 (04/10 06:23), #95 (04/10 09:10), #84 (06/10 10:26), #96 (06/10 12:41, avec #59, #60 et #77), #89 (13:29), #97 (14:09), #93 (14:18), #90 (14:24), #98 (14:56, documentation), #92 (15:17), #91 (15:52), #88 (16:03), #99 (16:44), #85 (17:46). Fermées sans fusion le 06/10 : #94 (14:59), #67 (16:56). SHA : G. QA `www` du 07/10 : C et G |
 | Dernière mise à jour documentaire | 07/10 — Claude de Laurent : resynchronisation post-fusions et QA `www` du 07/10 (PR brouillon, DO NOT MERGE). Avant : 06/10 — #98 (clôture #97, #93, #90, fusionnée `c236705`) ; 06/10 — #96 synchronisée avec `main` `1e0901b`. Avant : 03/10 — revue pré-fusion #83 à #87 (`PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`) ; D44 et D45 inscrites (#87). Avant : 02/10, #81 (rangement GitHub, `de6c4cd`) ; 02/10, #80 (Claude de Sébastien) |
-| PR ouvertes | 7 au 07/10 : #27, #64, #65, #70, #79, #82, #100 |
-| Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit) ; Q21 (D44, D45 et `/CLAUDE.md`) ; Q22 (pour information : CI et interface ; note du 07/10 : 93 pages, et non 90) ; Q23 (pour information : cluster AI Act, D46, copywriting FR et auteur ; risque de doublon de numéro avec la Q23 de la branche de #82, non fusionnée) |
+| PR ouvertes | **7 avant la création de #101** (relevé de préparation du 07/10, `main` `30482a0`) : #27, #64, #65, #70, #79, #82, #100. **8 avec #101** (brouillon, cette resynchronisation documentaire). **7 après une fusion éventuelle de #101**, seulement si aucune autre PR n'est ouverte, fermée ou fusionnée entre-temps |
+| Questions ouvertes | Q10, Q19 ; Q20 (caractéristiques produit) ; Q21 (D44, D45 et `/CLAUDE.md`) ; Q22 (pour information : CI et interface ; note du 07/10 : 93 pages, et non 90) ; Q23 (pour information : cluster AI Act, D46, copywriting FR ; auteur décidé par Laurent le 06/10 et implémenté dans #96 ; risque de doublon de numéro avec la Q23 de la branche de #82, non fusionnée) |
 
 Règles transverses en vigueur, rappel :
 - **D29** : aucune redirection XL v2 / XL G2, nouvelle ou annulée, avant validation du mapping produit.
@@ -46,7 +46,7 @@ Approuvées par Laurent le 03/10, **applicables sur `main` depuis la fusion de l
 
 ## B. Travaux actifs
 
-Les 7 PR ouvertes au 07/10 (relevé GitHub). Les PR fusionnées ou fermées depuis le 03/10 sont sorties de B (liste en A, détail en G). Inventaire antérieur, fichiers et conflits au 02/10 : `REVUE-PR-BRANCHES-2026-10-02.md`, § 2. Retard compté en commits de `main` `30482a0` absents de la branche.
+Les 7 PR ouvertes au relevé de préparation du 07/10, avant la création de #101 (GitHub). #101 n'y figure pas : elle porte cette mise à jour et sort de l'inventaire à sa fusion ou à sa fermeture. Les PR fusionnées ou fermées depuis le 03/10 sont sorties de B (liste en A, détail en G). Inventaire antérieur, fichiers et conflits au 02/10 : `REVUE-PR-BRANCHES-2026-10-02.md`, § 2. Retard compté en commits de `main` `30482a0` absents de la branche.
 
 | PR | Objet | Propriétaire | Statut | Blocage | Prochain geste |
 |---|---|---|---|---|---|

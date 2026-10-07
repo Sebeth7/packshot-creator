@@ -17,7 +17,7 @@ Trois comportements, jamais cumulés sur une page :
 
 | Forme | Quoi | Composant | Où aujourd'hui |
 |---|---|---|---|
-| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, deux articles dédiés (93 pages au 06/10, #85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
+| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, quatre articles dédiés (`studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026`, FR et EN) ; 93 pages au 06/10 (#85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
 | **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` | Articles du blog (gabarit commun) et quatre pages dédiées |
 | **C** | Sommaire statique dans la page, ou pas de navigation persistante | — | F5 (choix délibéré), pages courtes, pages de liste, outils, pages légales |
 
