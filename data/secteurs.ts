@@ -117,82 +117,61 @@ export const secteurs: Secteur[] = [
     titre: 'Packshot bijoux : équiper votre production photo en interne',
     description:
       'Packshot bijoux en interne : pierres, métaux polis, petites pièces, focus stacking et 360° de bague. Studios Orbitvu adaptés, démonstration avec vos bijoux.',
+    // Page rendue par un composant dédié (app/[lang]/industrie/[slug]/_components/HubBijoux.tsx).
+    // Les champs ci-dessous restent la source du texte du hero, de la section matière,
+    // du studio, de la retouche, de l’appel final et de la FAQ (FAQPage = FAQ visible).
     hero: {
-      titre: 'Packshot bijoux : équipez votre studio interne',
-      sousTitre: 'Pierres, métaux polis, sertissages : des visuels homogènes',
+      titre: 'Packshot bijoux : révéler chaque détail, retrouver le même rendu',
+      sousTitre: 'Bijoux & joaillerie',
       description:
-        'Studios photo automatisés Orbitvu pour joailliers et marques de bijoux : packshots, focus stacking et vues 360°, produits en série dans vos locaux.',
+        'Un bijou concentre en quelques centimètres tout ce qui complique une prise de vue : métal poli, facettes, serti, profondeur de champ, poussière.\n\nRéussir une image ne suffit pas. Il faut pouvoir réussir la suivante avec la même lumière, le même cadrage et la même précision.',
     },
     problematiques: {
-      titre: 'Défis du packshot bijoux',
+      titre: 'Le bijou ne pardonne rien à la prise de vue',
       items: [
-        'Restituer la brillance et le feu des pierres sans les noyer dans les reflets',
-        'Maîtriser les reflets de l\'or, de l\'argent et du platine polis, qui renvoient tout ce qui les entoure',
-        'Photographier des pièces de quelques millimètres : à cette échelle, une seule mise au point ne rend net qu\'une partie du bijou',
-        'Garder le même rendu d\'une collection à l\'autre, quels que soient l\'opérateur et le jour de prise de vue',
-        'Montrer une bague sous tous les angles, nette sur toute la rotation',
-        'Suivre le rythme des nouveautés et des réassorts sans dépendre d\'un photographe externe',
+        'Pierre, facettes, serti : chaque facette renvoie sa propre lumière. Entre les griffes, le serti doit rester lisible.',
+        'Métal poli, reflets : le métal reflète le studio et l’objectif. Un bon reflet se construit au moment de la prise de vue.',
+        'Petite pièce, profondeur de champ : à cette échelle, une mise au point ne couvre qu’une tranche du bijou.',
       ],
     },
     solutions: {
-      titre: 'Nos solutions pour le packshot bijoux',
+      titre: 'Un studio conçu pour les petites pièces réfléchissantes',
       items: [
         {
           type: 'hardware',
-          titre: 'Studios Orbitvu pour le bijou',
+          titre: 'Alphashot Micro Pro v2',
           description:
-            'Deux systèmes recommandés : l\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les pièces plus volumineuses.',
+            'Le studio photo Orbitvu pour les très petits objets : jusqu’à 18 cm de long et 1 kg, selon Orbitvu.',
           avantages: [
-            'Alphashot Micro Pro v2 : conçu pour les très petits objets, jusqu\'à 18 cm de long et 1 kg selon Orbitvu ; macro pour le détail des sertissages, des gravures et des poinçons',
-            'Superfocus (focus stacking) dans Orbitvu Station : plusieurs mises au point réunies en une image nette, de l\'avant à l\'arrière du bijou',
-            'Vues 360° : Orbitvu Station enchaîne la rotation du plateau et le Superfocus pour produire une animation de bague nette sous tous les angles',
-            'Alphashot Pro G2 : objets jusqu\'à 35 × 35 × 40 cm (axes non précisés par Orbitvu) et 10 kg ; son AI Photo Assistant reconnaît le type de produit et propose une configuration d\'éclairage',
-            'Réglages enregistrés et réutilisés : les mêmes conditions de prise de vue d\'une session à l\'autre',
+            'Prise de vue macro, pour lire un poinçon, une gravure ou le détail d’un serti.',
+            'Superfocus : plusieurs mises au point fusionnées en une seule image, nette sur toute la profondeur de la pièce.',
+            'Plateau tournant pour les vues à 360°.',
+            'Packshot, 360° et vidéo.',
           ],
         },
         {
-          titre: 'Orbitvu AI Toolkit, l\'IA d\'Orbitvu Station',
-          description:
-            'Les outils IA d\'Orbitvu Station interviennent après la prise de vue, sur la photo du bijou.',
+          titre: 'La retouche reste dans Orbitvu Station',
+          description: 'Détourage, retouche et réglages d’image se font dans le logiciel de prise de vue.',
           avantages: [
-            'AI Retoucher : retouche automatique des reflets indésirables, des imperfections et des couleurs, pilotée par des préréglages ou des consignes écrites',
-            'AI Masking : détourage et suppression du fond, directement dans le flux de production',
-            'Outils réservés par Orbitvu aux abonnés d\'Orbitvu Station ; conditions sur demande',
+            'Couleur, netteté et contraste, réglés sur toute l’image ou sur une seule couleur.',
+            'AI Masking : détourage et suppression du fond.',
+            'AI Retoucher : retouche des reflets indésirables, des imperfections et des couleurs.',
+            'AI Masking et AI Retoucher sont réservés aux abonnés d’Orbitvu Station.',
           ],
         },
       ],
     },
-    useCases: [
-      {
-        titre: 'Catalogue de collection',
-        processus: 'Photographier une nouvelle collection avec les réglages enregistrés de la précédente : même fond, même éclairage, même cadrage. Bagues, pendentifs et boucles d\'oreilles d\'une même ligne se présentent de la même façon, du catalogue à la boutique en ligne.',
-        fonctionsOrbitvu: ['Orbitvu Station', 'Réglages enregistrés', 'AI Masking'],
-        valeur: 'Des collections présentées de façon homogène, saison après saison',
-      },
-      {
-        titre: 'E-commerce multi-références',
-        processus: 'Alimenter une boutique qui décline chaque modèle en plusieurs métaux, pierres ou tailles. Chaque variante est photographiée dans les mêmes conditions, détourée dans le flux, puis exportée pour sa fiche produit.',
-        fonctionsOrbitvu: ['AI Masking', 'AI Retoucher', 'Orbitvu Station'],
-        valeur: 'Des fiches produit comparables d\'une variante à l\'autre',
-      },
-      {
-        titre: 'Vues 360° de bagues',
-        processus: 'Montrer une bague sous tous les angles : le plateau tournant de l\'Alphashot Micro Pro v2 et le Superfocus produisent une animation nette sur toute la rotation, à intégrer à la fiche produit.',
-        fonctionsOrbitvu: ['360°', 'Superfocus', 'Alphashot Micro Pro v2'],
-        valeur: 'La monture, le serti et la pierre visibles avant l\'achat',
-      },
-    ],
     cta: {
-      titre: 'Testez un studio Orbitvu avec vos bijoux',
+      titre: 'Apportez vos pièces difficiles',
       description:
-        'Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu.',
+        'Une démonstration n’a d’intérêt que si elle se fait avec les bijoux que vous devez réellement produire.\n\nApportez une pièce polie, un serti fin, une pierre claire ou simplement la référence qui vous pose problème aujourd’hui. Nous la photographions et nous regardons ensemble ce que le studio permet d’obtenir.',
     },
     faq: [
-      { question: 'Comment restituer la brillance des pierres et des métaux en packshot ?', answer: 'Par l\'éclairage d\'abord : les pierres ont besoin de lumière pour leur feu, les métaux polis de reflets contrôlés. Sur l\'Alphashot Pro G2, l\'AI Photo Assistant propose une configuration d\'éclairage adaptée au produit. Après la prise de vue, AI Retoucher peut atténuer les reflets indésirables.' },
-      { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
-      { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas avec les outils disponibles aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date de disponibilité ; nous ne la présentons pas comme disponible.' },
-      { question: 'Les packshots de bijoux conviennent-ils à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
-      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
+      { question: 'Peut-on obtenir une bague nette de l’avant à l’arrière en macro ?', answer: 'Oui, avec le Superfocus d’Orbitvu Station. Le studio prend plusieurs photos à des mises au point différentes, puis les fusionne en une seule image nette sur toute la profondeur de la bague. Un assistant guide la procédure : mise au point sur l’avant de la bague, puis sur l’arrière, puis nombre d’étapes.' },
+      { question: 'Comment garder le même rendu sur toute une collection ?', answer: 'En enregistrant la configuration dans un modèle Orbitvu Station : lumière, appareil photo, position du plateau tournant et paramètres d’édition. Chaque nouvelle pièce repart de ces réglages, et les corrections d’édition peuvent être appliquées aux autres images de la série.' },
+      { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Orbitvu indique des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Pour des pièces plus grandes, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },
+      { question: 'Peut-on faire des vues 360° d’une bague ?', answer: 'Oui. Le plateau tournant fait pivoter la bague pendant la prise de vue. On choisit dans Orbitvu Station le nombre d’images de la rotation, et le Superfocus peut s’appliquer à chaque angle. La rotation est ensuite exportée pour la fiche produit.' },
+      { question: 'Comment se passe une démonstration ?', answer: 'Vous venez avec quelques pièces représentatives, en particulier celles qui posent problème aujourd’hui. Nous les photographions dans le studio et regardons ensemble les images obtenues. Pour convenir d’une date, remplissez le formulaire de cette page.' },
     ],
   },
 

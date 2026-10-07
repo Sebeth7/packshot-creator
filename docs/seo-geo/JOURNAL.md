@@ -34,6 +34,48 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · Hub bijoux — refonte éditoriale, UX et visuelle (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 07/10, « Refonte éditoriale, UX et visuelle — PR #104 » ; texte imposé par la mission (hero, sections matière, collection, studio, 360°, appel final) | **PR** : #104, brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `06b18e2`, déjà contenu dans la branche ; tête avant refonte `e625c02`
+
+**Quoi** — `/fr/industrie/bijoux-joaillerie` (et `/en/…`, `noindex`, données FR) n'utilise plus le gabarit commun des hubs : page narrative dédiée.
+- `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` (nouveau) : hero (texte et appel avant l'image sur mobile), matière, cohérence de collection, studio, 360° (séquence sombre 1/2), retouche, appel final avec formulaire (séquence sombre 2/2, ancre `#tester`), FAQ (5), guides et autres secteurs en version compacte (titres seuls).
+- `app/[lang]/industrie/[slug]/page.tsx` : import et retour anticipé, seulement si `dataSlug === 'bijoux-joaillerie'` et `lang !== 'de-ch'`. Les 16 autres hubs et `/de-ch/branchen/schmuck` gardent le gabarit.
+- `components/maillage/MaillageSections.tsx` : export `sectorResourceLinks(slug, lang)`, mêmes liens que `SectorResources`, sans extrait. `SectorResources` inchangé.
+- `data/secteurs.ts`, entrée `bijoux-joaillerie` : hero, matière, studio, retouche, appel final et FAQ réécrits ; `useCases` (ajouté par la première version de #104) retiré. Title et meta description inchangés depuis la première version de #104.
+- `public/images/secteurs/bijoux/` : 4 recadrages AVIF, sans retouche, de captures d'écran Orbitvu Station publiées dans nos guides.
+
+Retirés de la page : « Défis du packshot bijoux », cartes numérotées, carte « Visuel solution » vide, badge et étiquettes « Petit », triplets de dimensions, bouton « Comparer tous les modèles » blanc sur blanc (lien conservé en lien texte), carte ROI vide (lien conservé), CTA « Découvrir nos formations » et « Demander un devis gratuit » du hero (remplacés par « Tester avec vos bijoux » vers le formulaire de la page).
+
+**Pourquoi** — Preview de la première version jugée par Laurent « techniquement fonctionnelle mais éditorialement et visuellement insuffisante » : structure de gabarit (défis → solutions → cartes), libellés génériques, placeholders, contraste nul d'un bouton.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `app/[lang]/industrie/[slug]/page.tsx`, `components/maillage/MaillageSections.tsx`, `data/secteurs.ts`, `public/images/secteurs/bijoux/*.avif` (4), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action (R8)** — Le gabarit partagé des 17 hubs est modifié par une branche gardée : vérifié par le HTML prérendu (ci-dessous), aucune autre page ne change. `MaillageSections.tsx` : ajout d'une fonction, aucun appelant existant modifié. `ContactForm` (réservé F5) non modifié : seules ses props existantes sont passées. Composant `SchemaOrg` et helpers inchangés.
+
+**Effet attendu** — [Inférence] Meilleure lisibilité pour un joaillier ; effet de classement non prévisible (1 clic / 18 impressions en 90 j, V2 `03` L10). Le hub perd ses liens vers `/fr/academy` et `/fr/contact` (CTA du hero) ; il garde ses liens vers les fiches Micro Pro v2 et Pro G2, le sélecteur, le calculateur ROI, les 4 ressources et les 6 secteurs. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; tête distante de #104 `e625c02`. PR ouvertes : #105, #104, #82, #79, #70, #65, #64, #27. Fichiers relus sur GitHub : aucune ne touche le gabarit des hubs, `MaillageSections.tsx`, `data/secteurs.ts`, `public/images/secteurs/`, le JSON de M30 ou le guide de M32. Communs : `JOURNAL.md` (toutes), `ETAT.md` (toutes sauf #79).
+- `npx tsc --noEmit` vert ; `npx eslint` sur les fichiers nouveaux et modifiés : 0 problème hors 1 erreur et 2 avertissements du gabarit, identiques sur `main` ; `verifier-json` : 195 JSON valides ; Vitest 483/483 (23 fichiers) ; `npx next build` vert (variables factices).
+- HTML prérendu de `main` contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés : 374 pages, **370 identiques, 4 différentes**, les mêmes que pour la première version de #104 (hub FR, hub EN, M30, M32). Les 16 autres hubs FR, les 16 EN et les 8 de-ch sont identiques.
+- Hub FR contre `main` : robots, canonical, hreflang et nombre de JSON-LD (4) identiques ; `FAQPage` = FAQ visible (5 questions) ; liens de ressources et d'autres secteurs identiques (mêmes `href`, mêmes ancres).
+- Mots, méthode V2 : `WORDS_MAIN` 1 124, `WORDS_MAIN_HORS_FORM` 1 045 (`main` : 684 / 605).
+- Rendu local (`next start`, Chromium) à 1 440, 1 024, 768 et 390 px, FR et EN : 1 H1 ; 0 débordement ; 0 erreur de page ; 8 images chargées, 8 alt renseignés ; 0 lien ou bouton de contraste inférieur à 3:1 ; 2 sections sombres ; CTA « Tester avec vos bijoux » dans le premier écran aux 4 largeurs (après choix du bandeau de cookies) ; à 390 et 768 px, H1, texte et CTA avant l'image ; le CTA amène au formulaire (`#tester`, 80 px sous le haut). Formulaire présent, non soumis ; secteur présélectionné « Horlogerie, bijouterie, joaillerie » (EN : « Watches, jewelry »).
+- Liens et images de la page : 14 liens internes et 4 nouvelles images en 200 (serveur local).
+- Texte visible : aucun de « Vos défis », « Nos solutions », « Enjeux », « Au-delà du packshot », « révolution », « sublim », « Hyperfocus », « conseils exclusifs », « visuels exceptionnels », « optimiser », « BlendAI », « −90 », « 20-50 », « Visuel solution », tiret cadratin, « axes non précisés ».
+- Playwright, specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`), configuration locale hors dépôt, supprimée après usage : 81/81.
+- Sources des faits produits affichés : référentiel D45 (`data/produits/fiches-techniques.ts` : Micro Pro v2 « small objects up to 18 cm long », 1 kg ; Pro G2 10 kg, `conforme`) ; catalogue `components/calculators/ROICalculator/lib/machines.ts` (macro, Super Focus, packshots, 360 et vidéos ; « petits produits ») ; guides FR de focus stacking (assistant Superfocus, étapes avant / arrière / nombre d'étapes ; Alphashot Micro Pro v2 et Orbitvu Station) ; infobulles et réglages lisibles sur les captures d'écran des guides (modèles, édition, rotation de 6 à 180 images).
+- Provenance des visuels : `/images/guides/67d9917f5e0a0980101b8a65.avif`, `67d991805e0a0980101b8a98.avif`, `67d991839ee10799cae56458.avif` (guides PackshotCreator publiés, prise de vue Alphashot Micro Pro v2 selon les guides) ; recadrages de `67d991805e0a0980101b8a95`, `…8a9b`, `67d99180406090f303cb444c`, `67d991831d2c1c71ab213bca` (captures Orbitvu Station des mêmes guides ; liste d'appareils photo et nom de session fautif exclus du cadre) ; `/images/machines/alphashot-micro-v2.avif` (visuel déjà affiché sur la fiche produit).
+
+**Supposé** — AI Masking et AI Retoucher, et leur réservation aux abonnés d'Orbitvu Station : fresh-check orbitvu.com de Laurent du 07/10 cité par la V2 (B7), non revérifié par cette session. Provenance Orbitvu de `/images/machines/alphashot-micro-v2.avif` : non revérifiée (image déjà en ligne sur la fiche).
+
+**Non regardé** — Preview Vercel (Vercel Authentication) et `www` (R4) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Le H2 « Un studio conçu pour les petites pièces réfléchissantes » est imposé par la mission ; « réfléchissantes » n'est porté que par le catalogue PackshotCreator. La phrase imposée de la section 360° contient « transformer », mot proscrit par la même mission : conservée mot pour mot. Le libellé du bouton du formulaire (« Envoyer ma demande ») vient de `ContactForm`, réservé : non modifié. Bandeau de cookies global : couvre le bas du premier écran avant choix, sur toutes les pages. JSON-LD `Organization` commun avec « IA BlendAI » : préexistant, hors périmètre.
+
+**Suite** — ASSET_REQUIRED : vue 360° réelle d'une bague (Orbitvu SUN ou vidéo ; emplacement prêt, `BAGUE_360` dans `HubBijoux.tsx`, rien n'est rendu tant qu'il est vide) ; paire avant / après Superfocus sur un bijou en haute définition (optionnel) ; médias de la page Micro v2 d'orbitvu.com, droits à confirmer. Nouvelle QA humaine de la Preview sur la nouvelle tête : la QA PASS du 07/10 porte sur `2538b51`, pas sur cette version. Information de Sébastien (D42, D15) à refaire sur la nouvelle tête. GO de fusion distinct.
+
+---
+
 ## 2026-10-07 · Hub bijoux — enrichissement commercial limité, vague 2 anticipée (B3) ; M30, M32 · Claude de Laurent
 
 **Chantier** : PR-4 de la V2 `PSC_LANDINGS_COCONS_FINAL_2026-10-07` (B3 ; `07` M27 à M33, M46), codage anticipé sur GO de Laurent du 07/10 | **PR** : #104, brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `35d250c`, puis `main` `b806291` (#102, #103) fusionné dans la branche
