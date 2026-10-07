@@ -34,6 +34,120 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · #101 — trois micro-corrections documentaires avant revue de fusion · Claude de Laurent
+
+**Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« Finalisation PR #101 ») | **PR** : #101, brouillon, « DO NOT MERGE » | **Tête de départ** : `b0bf16f` | **Base** : `main` `30482a0`
+
+**Quoi** — Trois corrections dans les fichiers de #101, sans autre changement :
+- `docs/standards/R-UX-LONG.md`, tableau de la forme A : « deux articles dédiés » devient « quatre articles dédiés », c'est-à-dire `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` en FR et en EN. Le tableau s'aligne ainsi sur l'en-tête et sur le recompte de #85 (44 + 39 + 4 + 3 + 3 = 93).
+- `BOITE-AUX-LETTRES.md`, note du 07/10 sous Q23 : elle présentait à tort l'auteur comme encore à décider. Laurent l'a décidé le 06/10 (`AUTHOR = PackshotCreator`, `SCHEMA_AUTHOR = Organization`) et #96 l'a implémenté. Seule la réserve éventuelle de Sébastien sur le copywriting FR reste ouverte, pour information. La question historique est inchangée.
+- `ETAT.md`, A et B : le nombre de PR ouvertes distingue désormais trois états. Il y en avait 7 au relevé de préparation, avant la création de #101 ; il y en a 8 avec #101 ; il y en aura 7 après une fusion éventuelle de #101, seulement si aucune autre PR ne change. Le relevé historique des 7 PR est conservé. Ligne Q23 de A alignée sur la note rectifiée.
+
+**Vérifié** — `main` `30482a0` ; tête de #101 `b0bf16f`, CI 4/4 verte avant correction ; 8 PR ouvertes (GitHub, 07/10). Les 15 fichiers du cluster AI Act portent `author: "PackshotCreator"` sur `main`. `components/seo/SchemaOrg.tsx` (l. 231) ne produit un `Person` que pour un autre auteur.
+
+**Supposé** — Aucun.
+**Non regardé** — Aucun nouvel audit. Documents non reconstruits ; aucune autre ligne de #101 modifiée.
+
+**Suite** — CI sur la nouvelle tête ; revue de fusion par Laurent ; GO de fusion distinct.
+
+---
+
+## 2026-10-07 · Resynchronisation documentaire post-fusions (03/10 → 06/10) et QA `www` du 07/10 · Claude de Laurent
+
+**Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« PR documentaire consolidée ») | **PR** : brouillon, « DO NOT MERGE », branche `claude/admiring-euler-njxp9x` | **Base** : `main` `30482a0`
+
+**Quoi** — Documentation seule, cinq fichiers : `ETAT.md` (A à H actualisées), `DECISIONS.md` (note d'exécution datée, sans D48), `BOITE-AUX-LETTRES.md` (notes datées sous Q22 et Q23), `docs/standards/R-UX-LONG.md` (statut, 93 pages, exceptions, réserve UX) et ce journal. Aucun code applicatif, aucun contenu éditorial, aucune redirection, aucun Worker, aucun service externe touché ; aucun nouvel audit SEO/GEO ; aucun appel payant.
+
+**Pourquoi** — `ETAT.md` décrivait encore `main` à `1e0901b` et 19 PR ouvertes ; #85, #88 à #92, #96 et #99 y figuraient en brouillon ; D44 et D45 y étaient « non encore applicables » ; Q22 et `R-UX-LONG.md` portaient 90 pages et l'exception #91.
+
+**Fresh-check (07/10, GitHub et `git`)** —
+- `main` = `30482a08fd4a6329d26eeed3e6ff2a87523e06b4` (fusion de #85), conforme au dernier état connu.
+- 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #100 ; tête de #100 : `78c5e364df6945bdbdd544d6d934c70bf7ea081e`, base `30482a0`, CI 4/4 verte sur la tête.
+- Les workflows de CI (`pr-checks`, `garde-journal`, `garde-consequences`) ne se déclenchent que sur `pull_request` : aucun contrôle de CI ne tourne sur `main` lui-même. Dernière CI de #85, sur `0d2633f` : 4/4 verte.
+
+**Fusions vérifiées sur GitHub** (`merged_at`, UTC ; commit de fusion sur `main`) —
+
+| PR | Objet | Commit | Fusion |
+|---|---|---|---|
+| #87 | UX-GOV : D44, D45, `docs/standards/` | `17a4248` | 03/10 17:51:00 |
+| #83 | D45 : référentiel des dimensions | `1bc7195` | 03/10 19:49:00 |
+| #86 | CI : Vitest et parcours Playwright | `0ac062b` | 04/10 06:23:59 |
+| #95 | Hero de l'accueil, film Orbitvu (Claude de Sébastien) | `9b19e6d` | 04/10 09:10:40 |
+| #84 | D44 : sommaire du blog | `1e0901b` | 06/10 10:26:23 |
+| #96 | Cluster AI Act (D46) | `8247217` | 06/10 12:41:01 |
+| #59, #60, #77 | Incluses dans #96 (têtes `2a36322`, `74ae921`, `a207fe3`, ancêtres de `main`), sans commit de fusion propre | — | 06/10 12:41:03 |
+| #89 | A04a : liens Skeelbox | `a168b33` | 06/10 13:29:15 |
+| #97 | Note BlendAI non sourcée retirée | `df01b04` | 06/10 14:09:37 |
+| #93 | D47 : CTA ROI directs | `6cbb903` | 06/10 14:18:56 |
+| #90 | A02 : liens ROI interne | `be8cbea` | 06/10 14:24:55 |
+| #98 | Documentation : clôture #97, #93, #90 | `c236705` | 06/10 14:56:50 |
+| #92 | A04b : liens morts, MacroSphère | `2a53727` | 06/10 15:17:30 |
+| #91 | A03 : quatre liens de guides | `3b427d7` | 06/10 15:52:23 |
+| #88 | C08 : `hreflang` de l'article IA | `62b3b8d` | 06/10 16:03:55 |
+| #99 | D36 : `noindex` de l'origine, partie Next | `e830419` | 06/10 16:44:29 |
+| #85 | D44 : barre collante, 93 pages | `30482a0` | 06/10 17:46:14 |
+
+Fermées sans fusion : #94 (06/10 14:59:03), #67 (06/10 16:56:07). Le commit de fusion porte parfois une seconde de moins que `merged_at` (#90, #92, #88, #99, #85) ; l'entrée du 06/10 sur #97, #93 et #90 cite l'heure du commit.
+
+**Contrôles `sysnext.vercel.app`** —
+- D36 / #99 : 9 documents HTML sur 9 portent les en-têtes `noindex` attendus (source : mission de Laurent du 07/10 ; liste des 9 URL non reprise).
+- #97, #93, #90 : contrôlés le 06/10 (entrée « Clôture fast-forward » ci-dessous).
+- #84, #85, #88, #89, #91, #92, #95, #96 : aucun contrôle `sysnext` post-fusion consigné au JOURNAL (relevé du 07/10). `smoke.mjs` post-fusion : non consigné.
+
+**Contrôles `www` du 07/10** (source : mission de Laurent du 07/10 ; QA représentative, pas exhaustive) —
+- #85 : PASS représentatif sur six familles ; Studios sans barre commune ; Mode avec une seule barre ; 768 px contrôlé via une iframe de même origine ; viewport principal limité à 1 321 px. Réserve : surbrillance de la section active parfois décalée ; diagnostic P2 **proposé**, aucune correction autorisée ici.
+- #88 : PASS sur l'URL exacte `/fr/blog/generer-images-produit-ia` ; canonical auto-référent ; `hreflang` fr, fr-CH, x-default ; ni en ni de-CH.
+- #89 : aucun lien Skeelbox dans le scan des 323 URL du sitemap ; mention éditoriale conservée.
+- #91 : `www` déjà PASS ; non retesté (consigne de Laurent).
+- #92 : MacroSphère retirée comme lien ; ancienne URL observée dans Chrome : destination finale HTTP 404 ; nombre de redirections intermédiaires **non établi**.
+- #95 : hero de l'accueil et vidéo Orbitvu PASS.
+- #96 : 5 pages FR représentatives PASS. Les 15 versions linguistiques n'ont pas été contrôlées une à une. Fusion le 06/10 ; présence sur `www` constatée le 07/10 ; instant du premier déploiement `www` **non établi**.
+- D36 / #99 : Laurent a contrôlé 4 URL par requête HEAD PowerShell depuis son poste (D23) : HTTP 200, en-têtes D36 absents. Cette preuve vient des requêtes HEAD, pas des captures Chrome.
+
+**Vérifié dans le dépôt, sans requête vers le site (R7)** —
+- 93 pages : description de #85 (recompte du 06/10 sur build local de `0d2633f` : 44 guides, 39 fiches, 4 articles dédiés, 3 IA photo produit, 3 solutions). Registre `data/navigation/pages-longues.ts` sur `main` : exceptions #27 et #64 présentes, aucune exception #91.
+- #88 : `content/blog/alternates.json` sur `main`, groupe de `generer-images-produit-ia` : `fr` seul, `en: null`.
+- #89 : 0 `href` vers Skeelbox dans `content/`, `messages/`, `app/`, `components/` ; mention textuelle présente dans 2 fichiers (`content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `content/blog/en/impact-photographs-product-sheet.json`).
+- #92 : 0 `href` vers MacroSphère et 0 `packshot-studio.com` dans `content/`.
+- Anomalie distincte, **hors périmètre de #92** : `content/blog/fr/eclairage-photos-produits.json` porte `<a id=""><strong id="">intelligence artificielle dédiée</strong></a>`, sans `href`, sur `main` `30482a0` ; ce fichier n'est pas dans le diff de #92 (10 articles). Non corrigée.
+- D45 : `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts` présents sur `main`.
+
+**Événements de mesure** —
+- #95 : hero de l'accueil modifié le 04/10 (fusion à 09:10 UTC). Modification antérieure à la fenêtre M5 (14/10 au 28/10) : consignée comme **événement de baseline**. Aucun gain SEO ne lui est attribué.
+- #96 : J0 = mise en production effective (`CLUSTER.md` § 6) ; fusion le 06/10, présence `www` constatée le 07/10 ; J0 tombe donc le 06/10 ou le 07/10 ; l'heure réelle du déploiement n'est pas établie.
+- Autres événements concomitants du 04/10 au 06/10, à ne pas attribuer à une mesure : #84, #85, #88 à #93, #97 (`ETAT.md`, E).
+- D36 : sortie progressive de l'origine des index, sans date de lecture fixée.
+- Lectures échues (canonique des 3 landings, `sku`, fils d'Ariane, lot F) : aucune consignée depuis le 04/10 ; aucune faite ici.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/standards/R-UX-LONG.md`.
+
+Détail des changements de `ETAT.md` :
+- B réduite aux 7 PR ouvertes ; #59, #60, #77, #67, #83, #85, #86, #87, #96, #99 sorties.
+- Lignes de C retirées, car exécutées : « Cluster AI Act — GO MERGE #96 » (remplacée par la QA restante), « D36 / #99 — fusion » (remplacée par le reliquat), « D44, D45 — ordre de fusion et GO », « AR-01 — CTA ROI » (clos ; reliquat : activation CI d'`anchors` et `roi-calculator`), « D44 — guides de #91 », « D44 — libellé actif ». Leur texte reste dans l'historique git de `ETAT.md` et dans les entrées du 03/10 et du 06/10 de ce journal.
+- Questions métier ouvertes conservées : #65, #27, lot F, CTA de fin d'article, Zalando, #64 (date, autres points), #70, D29, Q10, fiche Google, P0-J, D42, Studios, branches.
+- F4 : sommaire mobile marqué traité par #84 (non rouvert).
+
+**Effet attendu** — Aucun sur le site.
+
+**Supposé** —
+- Les preuves `www` du 07/10 et le résultat `sysnext` 9/9 sont repris de la mission de Laurent du 07/10, sans contre-contrôle dans cette session (aucun nouvel audit demandé ; #91 explicitement non retesté).
+- Registres V4.3 : le refresh de 36 lots et 582 occurrences a été effectué en lecture seule (mission du 07/10). Ses annexes ne sont pas mises à jour dans le dépôt ; ses classifications restent provisoires et ne sont pas des décisions ; chantier documentaire distinct.
+
+**Non regardé** — `www` et `sysnext` par script (R4, et consigne « aucun nouvel audit ») ; Preview Vercel ; Cloudflare, Supabase, n8n, Vercel ; contenu des branches des PR ouvertes au-delà des fichiers de gouvernance ; `06-CHANTIERS.md`, `REVUE-PR-BRANCHES-2026-10-02.md` et les autres documents de `docs/seo-geo/` (hors périmètre autorisé).
+
+**Collisions avec les PR ouvertes** (diff depuis la base de chaque branche) —
+- `JOURNAL.md` : les 7 (#27, #64, #65, #70, #79, #82, #100). #100 a la même base (`30482a0`) et insère en tête : conflit d'insertion certain à la fusion de la seconde des deux, à résoudre par union.
+- `ETAT.md` : #27, #64, #65, #70, #82. `DECISIONS.md` : #65. `BOITE-AUX-LETTRES.md` : #82, qui ajoute une seconde « Q23 » (catalogue All-in-One) ; non renumérotée ici, #82 non modifiée. `docs/standards/R-UX-LONG.md` : aucune.
+
+**Contradictions signalées, non résolues** —
+- Accueil : D44 (« Ce qu'elle interdit ») et `R-UX-LONG.md` § 4 gèlent l'accueil jusqu'au 28/10 ; #95 a modifié son hero le 04/10 à la demande de Sébastien. [Inférence] Le gel D44 vise la navigation ; son texte est plus large. Non arbitré.
+- Q23 en double (main et branche de #82), en attente d'une fusion de #82.
+- Lignes « Statut » historiques de D36 (« non exécutée au 25/09 ») et de D47 (« PR #93 (brouillon) ») : laissées telles quelles (append-only) ; la note d'exécution du 07/10 dit l'état réel.
+
+**Suite** — CI sur la PR ; relecture du diff par Laurent ; **GO de fusion distinct de Laurent** (aucune fusion par cette session). #79 : fermeture sur GO distinct. #100 : ne pas fusionner sans GO. #82 : HOLD. Réserve D44 et balise `<a>` sans `href` : deux anomalies distinctes, aucune correction décidée.
+
+---
+
 ## 2026-10-06 · #85 actualisée depuis `main` `3b427d7` (fusion de #91) : exceptions temporaires de #91 retirées · Claude de Laurent
 
 **Chantier** : D44 | **PR** : #85, brouillon | **Base intégrée** : `main` `3b427d7`, par commit de fusion `f49a437` (pas de rebase)
