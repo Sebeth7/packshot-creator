@@ -74,11 +74,17 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 - M46 : le gabarit rend `description` et `avantages` en texte brut ; aucun lien possible dans la carte IA sans modifier le gabarit : aucun changement.
 - Dimensions (D45) : Pro G2 35 × 35 × 40 cm, 10 kg, statut `conforme` ; Micro Pro v2 « jusqu'à 18 cm de long », 1 kg (référentiel : 18 conforme, 15 × 16 non vérifiables, Q20.5) ; aucune autre valeur.
 
+- QA humaine de la Preview Vercel authentifiée (Laurent, 07/10, tête `2538b51`), `/fr/industrie/bijoux-joaillerie` à 1 440, 1 024, 768 et 390 px : **PASS**.
+  - HTTP 200 ; title, canonical et hreflang conformes ; 1 H1 ; sections et FAQ (5) attendues ; 16 liens internes de la zone principale en 200.
+  - 0 débordement ; 5 images, 0 cassée ; CTA ROI vers `/fr/calculateur-roi` ; formulaire de démonstration présent (non soumis).
+  - Claims retirés absents du texte visible et des FAQ ; FAQ « portés » : non disponible aujourd'hui, On-model annoncé.
+  - Anomalies non bloquantes : « IA BlendAI » dans le JSON-LD `Organization` commun à tout le site (composant partagé, préexistant, hors périmètre de #104) ; pas de barre D44, conforme au classement EXCLUDE ci-dessus. Capture mobile non obtenue (outil).
+
 **Supposé** — Capacités et noms Orbitvu (Orbitvu AI Toolkit, AI Photo Assistant, AI Masking, AI Retoucher, On-model annoncé) : fresh-check orbitvu.com de Laurent du 07/10, cité par la V2, non revérifié par cette session.
 
-**Non regardé** — Preview Vercel (Vercel Authentication), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
+**Non regardé** — `sysnext.vercel.app` et `www` (R4) ; Preview Vercel non accessible à la session (Vercel Authentication), contrôlée par Laurent (ci-dessus) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
 
-**Suite** — Preview humaine desktop, tablette, mobile ; information de Sébastien (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. #102, fusionnée le 07/10, est un événement concomitant à déclarer à la mesure du hub (libellés de-ch du gabarit ; rendu FR inchangé selon #102). GO de fusion distinct de Laurent.
+**Suite** — Preview humaine faite (PASS) ; information de Sébastien, message préparé et non envoyé (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. #102, fusionnée le 07/10, est un événement concomitant à déclarer à la mesure du hub (libellés de-ch du gabarit ; rendu FR inchangé selon #102). GO de fusion distinct de Laurent.
 
 ---
 
