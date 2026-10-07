@@ -95,6 +95,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
+
+**Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
+
+**Quoi** — Aucune traduction. Gate claims sur les 21 candidates de la transmission et consignation des arbitrages de Laurent du 07/10 dans `docs/seo-geo/PACK-D9-GATE-2026-10-07.md`. Aucun fichier du site modifié.
+
+**Pourquoi** — La mission interdit de publier en anglais une affirmation dont le niveau de preuve n'est pas suffisant (BlendAI, chiffres non sourcés) :
+- 15 hubs : chacun rend au moins un claim litigieux. 11 rendent BlendAI (texte ou badge « BLENDAI.STUDIO » du gabarit sur les cartes `type: 'ia'`). Les 4 autres rendent des chiffres non sourcés : cadences (`automobile-pieces-detachees`, `pieces-techniques-industrie`, `sante-medical`), « Réduction de 70% » (`automobile-pieces-detachees`), « 100% hors ligne » (`defense-securite`). Classement : 15 `UNVERIFIED_RENDERED_CLAIM`, 0 `SAFE_TO_TRANSLATE` ; `casClients` (13 hubs) non rendu, non modifié.
+- 3 solutions : chiffres (« 5-50€ », « 20-30% », « divise le coût par 10 », « environ 1€ »), témoignages anonymes et « Cas client : Pompéi » rendus. Laurent, 07/10 : « HOLD les 3 ».
+- 3 articles : « leader mondial », « plus de 70 brevets », « plus de 20.000 utilisateurs dans 35 pays », « Nous fabriquons », « Depuis 2001 ». Laurent, 07/10 : « Cela concerne PackshotCreator (solutions Ortery) pas les memes infos pour Orbitvu », puis « HOLD les 3 ».
+
+**Fichiers** — `docs/seo-geo/PACK-D9-GATE-2026-10-07.md` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun effet sur le site. Les 31 pages restent servies en français ; `noindex, follow` conservé sur les 25 pages qui le portent.
+
+**Vérifié** —
+- Fresh-check : `main` `b806291` ; 8 PR ouvertes (#105, #104, #82, #79, #70, #65, #64, #27). #104 (tête `33fbf24`) : `data/secteurs.ts`, entrée `bijoux-joaillerie` seule, et 2 JSON ; #105 (tête `a86aa1c`) : aucune page D9. Aucune PR ne touche les fichiers cibles de PACK-D9 hors `data/secteurs.ts` (#104). Jumeaux FR : #70 (D9-01), #27 (D9-03).
+- Champs rendus lus dans les gabarits `app/[lang]/industrie/[slug]/page.tsx` et `app/[lang]/solutions/[slug]/page.tsx` ; `casClients` lu par aucun fichier de `app/`, `components/`, `lib/`, `scripts/`.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 (23 fichiers) ; `npx next build` vert sur `main` `b806291` (variables factices de la CI), 374 pages prérendues.
+- HTML prérendu, build de la branche contre build de `main` `b806291`, identifiant de build neutralisé, scripts exécutables retirés : 374 pages, **374 identiques** ; FR 161/161, de-CH 54/54, EN 155/155. Valeurs numériques du texte visible : 0 page différente. `noindex, follow` présent sur les 25 pages D9 qui le portent.
+- `verifier-consequences.mjs` : effet local, 3 fichiers, rien qui déborde.
+
+**Supposé** — [Inférence] Les fourchettes décrivant la situation du client (taille de catalogue) ne sont pas des claims sur l'offre ; elles ne changent aucun classement. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel, `sysnext.vercel.app` et `www` (R4) : aucun rendu modifié. Qualité linguistique : sans objet. Aucun audit LANG, B4 ni des 582 occurrences ; aucun appel payant ; aucun service externe.
+
+**Suite** — Décisions séparées : claims des hubs (BlendAI, cadences Q20.14, ROI en %, conformités ; D10 pour `defense-securite`) ; chiffres, témoignages et cas Pompéi des solutions ; sort des articles de la gamme PackshotCreator/Ortery. Traduction ensuite, depuis la FR retenue (D42, étape 7). D9-05 après #104 ; D9-16 après le 26/11 ; D9-24 à D9-31 selon la transmission.
+
+---
+
 ## 2026-10-07 · #102 fusionnée — PACK-L, contrôles post-fusion · Claude de Laurent
 
 **Chantier** : PACK-L, GO de fusion de Laurent du 07/10 | **PR** : #102, fusionnée | **Commit de fusion** : `bf8c1c7` (`main`), le 07/10/2026 à 10:26:33 UTC, parents `35d250c` et `0f257b2` | **Consigné dans** : PR documentaire brouillon, branche `claude/great-hawking-9jywhk`
