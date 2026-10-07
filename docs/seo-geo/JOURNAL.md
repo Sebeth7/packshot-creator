@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · #102 fusionnée — PACK-L, contrôles post-fusion · Claude de Laurent
+
+**Chantier** : PACK-L, GO de fusion de Laurent du 07/10 | **PR** : #102, fusionnée | **Commit de fusion** : `bf8c1c7` (`main`), le 07/10/2026 à 10:26:33 UTC, parents `35d250c` et `0f257b2` | **Consigné dans** : PR documentaire brouillon, branche `claude/great-hawking-9jywhk`
+
+**Quoi** — Fusion de #102 par commit de fusion (méthode du dépôt), tête `0f257b2` verrouillée à la fusion. L'arbre de `main` est identique à celui de `0f257b2`. Aucun autre changement de code.
+
+**Pourquoi** — GO de fusion de Laurent du 07/10, après une QA humaine de la Preview authentifiée : PASS avec trois réserves, toutes préexistantes (micro-contrôle ci-dessous).
+
+**Micro-contrôle des réserves de la Preview (avant fusion)** —
+- A, « Kapazität/Tag : 250 photos » : modale du sélecteur, `{machine.capaciteJour} photos`, unité codée en dur en FR. Ligne identique sur `main` `35d250c` et sur `0f257b2` : préexistante.
+- B, « Platzbedarf : Sol/Table robuste » : modale, `{machine.spaceRequired}`, valeur produit en FR (D45, Q20 ; A09 et partie produit de A12, exclues de PACK-L). Ligne identique : préexistante.
+- C, infobulle du visualiseur 360° « Regardez de plus près l'Alphashot 360 G2 » : absente du dépôt. Elle vient de la présentation Orbitvu hébergée `W2VVEnzxvCD8t2A8qqJNBQ/217258` (réponse JSONP de `orbitvu.co`, lue le 07/10). `OrbitvuViewer.tsx` et les identifiants sont inchangés : préexistante, contenu externe.
+
+**Fichiers** — aucun fichier du site dans cette consignation ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Pages EN et de-CH du périmètre dans leur langue ; FR inchangé.
+
+**Vérifié** —
+- Avant fusion : `main` `35d250c` ; tête `0f257b2`, aucun commit depuis ; `mergeable_state = clean` ; CI 4/4 verte ; aucune nouvelle PR ouverte.
+- `sysnext.vercel.app` sert le nouveau build à 10:27:47 UTC : marqueur de-CH d'A07 présent. Avant la fusion : cache `HIT`, ancien build.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 10:28:27 UTC : 17 pages et 3 ressources vertes.
+- QA ciblée sur `sysnext` (Playwright, 8 URL en 1440 et 390 px, modale ouverte sur 2 machines, métadonnées) : 19/19 après un rejeu. Échec initial : `net::ERR_TIMED_OUT` sur `/de-ch/branchen/elektronik` en 1440 px ; la page répond 200 en 0,54 s et le rejeu isolé passe. Spec PACK-L : 9/9.
+- `<head>` de 11 pages identique au build testé de `0f257b2` (title, canonical, hreflang, description, `og:*`, `twitter:*`), dont `/de-ch/blog/ai-act-produktbilder`, `/fr/packshot-e-commerce` et `/fr/studio-photo/alphastudio-compact-v2`.
+- Rendu FR de production identique au build de `main` d'avant fusion sur 5 pages témoins : `/fr`, `/fr/packshot-e-commerce`, `/fr/studio-photo/alphastudio-compact-v2`, `/fr/studio-photo/alphashot-xl-g2`, `/fr/industrie`.
+- `www` dans Chrome, le 07/10 (rapport transmis par Laurent) : PASS. 9 pages en HTTP 200 : `/de-ch/fotostudio/alphashot-pro-g2`, `/de-ch/fotostudio/alphashot-xl-g2`, `/en/studio-photo/alphashot-pro-g2`, `/de-ch/produktfotografie-bedarf`, `/de-ch/wichtige-fragen-produktfotografie`, `/de-ch/fotostudio/maschinen-finder`, `/de-ch/ia-photo-produit`, `/de-ch/branchen/schmuck`, `/de-ch/branchen/uhren`.
+  - `lang` correct ; aucun débordement à 1280 px ni à 390 px (iframe) ; aucune image cassée ; aucun texte FR détecté par script (contrôle heuristique).
+  - Modale du sélecteur ouverte sur Alphashot Pro G2 : libellés, avantages et limites en allemand ; 390 px de large à 390 px, sans débordement.
+  - Title relevé sur chaque page ; canonical auto-référent ; hreflang : 5 entrées (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), 4 sur les deux secteurs (pas d'`en`).
+  - Aucune anomalie introduite par #102 ; réserves A, B, C visibles à l'identique. Aucune mutation.
+
+**Supposé** — [Inférence] L'échec `ERR_TIMED_OUT` est un délai réseau ponctuel du conteneur. Cela repose sur des schémas observés.
+**Non regardé** — Statut de déploiement Vercel du commit de fusion : non lu, aucun outil disponible ; la mise en production est constatée par le contenu servi. Relecture EN et DE (15 groupes) : non rendue.
+
+**Événement concomitant** — Fusion du 07/10 à 10:26 UTC, à ne pas attribuer à une mesure. A30 change `og:*` et `twitter:*` de 17 pages de-CH, dont `/de-ch/blog/ai-act-produktbilder` (J+7 AI Act le 13 ou 14/10). `<title>`, canonical et hreflang inchangés : métadonnées sociales seulement, aucune cause SEO démontrée.
+
+**Suite** — Dettes séparées : A (unité « photos » de la modale), B (valeurs `spaceRequired` en FR, Q20), C (texte de la présentation Orbitvu en FR, hors dépôt ; elle nomme la machine « Alphashot 360 G2 », le catalogue « Alphashot 360 »). PACK-D9 débloqué ; mission menée dans sa propre session.
+
+---
+
 ## 2026-10-07 · PACK-L — corrections i18n groupées EN/de-CH des gabarits (A07, A29 et reliquats compatibles) · Claude de Laurent
 
 **Chantier** : PACK-L (LANG_2 partiel et LANG_3 de l'audit LANG), GO de codage de Laurent du 07/10 (« GO CODAGE PACK-L = YES », une seule PR brouillon) | **PR** : brouillon, « DO NOT MERGE », branche `claude/great-hawking-9jywhk` | **Base** : `main` `35d250c` (fusion de #100)
