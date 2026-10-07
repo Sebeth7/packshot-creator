@@ -114,71 +114,85 @@ export const secteurs: Secteur[] = [
   // 2. BIJOUX / JOAILLERIE
   {
     slug: 'bijoux-joaillerie',
-    titre: 'Photo Produit Bijoux & Joaillerie Haute Précision',
+    titre: 'Packshot bijoux : équiper votre production photo en interne',
     description:
-      'Studios photo automatisés pour bijoux : capture pierres précieuses, reflets or et argent. IA lifestyle luxe.',
+      'Packshot bijoux en interne : pierres, métaux polis, petites pièces, focus stacking et 360° de bague. Studios Orbitvu adaptés, démonstration avec vos bijoux.',
     hero: {
-      titre: 'Photo Bijoux Professionnelle : Précision & Luxe',
-      sousTitre: 'Capturez chaque détail : pierres, reflets métaux, sertissages',
+      titre: 'Packshot bijoux : équipez votre studio interne',
+      sousTitre: 'Pierres, métaux polis, sertissages : des visuels homogènes',
       description:
-        'Solutions packshot haute résolution pour bijoux et joaillerie + IA lifestyle mises en scène luxe (portés, ambiances haut de gamme).',
+        'Studios photo automatisés Orbitvu pour joailliers et marques de bijoux : packshots, focus stacking et vues 360°, produits en série dans vos locaux.',
     },
     problematiques: {
-      titre: 'Défis Photo Bijoux',
+      titre: 'Défis du packshot bijoux',
       items: [
-        'Capturer reflets métaux (or, argent, platine) sans surexposition',
-        'Photographier pierres précieuses avec brillance et feux réalistes',
-        'Profondeur de champ extrême (focus stacking bijoux 3D)',
-        'Taille produits minuscule nécessitant macrophotographie',
-        'Visuels portés lifestyle (mannequins, mains) coûteux et longs à produire',
+        'Restituer la brillance et le feu des pierres sans les noyer dans les reflets',
+        'Maîtriser les reflets de l\'or, de l\'argent et du platine polis, qui renvoient tout ce qui les entoure',
+        'Photographier des pièces de quelques millimètres : à cette échelle, une seule mise au point ne rend net qu\'une partie du bijou',
+        'Garder le même rendu d\'une collection à l\'autre, quels que soient l\'opérateur et le jour de prise de vue',
+        'Montrer une bague sous tous les angles, nette sur toute la rotation',
+        'Suivre le rythme des nouveautés et des réassorts sans dépendre d\'un photographe externe',
       ],
     },
     solutions: {
-      titre: 'Nos Solutions Bijoux',
+      titre: 'Nos solutions pour le packshot bijoux',
       items: [
         {
           type: 'hardware',
-          titre: 'Studios Orbitvu Joaillerie',
-          description: 'Packshot haute résolution avec focus stacking automatique',
+          titre: 'Studios Orbitvu pour le bijou',
+          description:
+            'Deux systèmes recommandés : l\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les pièces plus volumineuses.',
           avantages: [
-            'Focus stacking : netteté absolue sur toute la profondeur bijou 3D',
-            'Éclairage polarisé : contrôle reflets métaux, sublimation pierres',
-            'Macrophotographie : capture détails microscopiques (sertissages, poinçons)',
-            '360° bijoux : rotation interactive pour vente en ligne',
-            'Cohérence colorimétrique : or 18k rendu identique sur tout le catalogue',
+            'Alphashot Micro Pro v2 : conçu pour les très petits objets, jusqu\'à 18 cm de long et 1 kg selon Orbitvu ; macro pour le détail des sertissages, des gravures et des poinçons',
+            'Superfocus (focus stacking) dans Orbitvu Station : plusieurs mises au point réunies en une image nette, de l\'avant à l\'arrière du bijou',
+            'Vues 360° : Orbitvu Station enchaîne la rotation du plateau et le Superfocus pour produire une animation de bague nette sous tous les angles',
+            'Alphashot Pro G2 : objets jusqu\'à 35 × 35 × 40 cm (axes non précisés par Orbitvu) et 10 kg ; son AI Photo Assistant reconnaît le type de produit et propose une configuration d\'éclairage',
+            'Réglages enregistrés et réutilisés : les mêmes conditions de prise de vue d\'une session à l\'autre',
           ],
         },
         {
-          type: 'ia',
-          titre: 'BlendAI Lifestyle Luxe',
-          description: 'Visuels portés et mises en scène haut de gamme via IA',
+          titre: 'Orbitvu AI Toolkit, l\'IA d\'Orbitvu Station',
+          description:
+            'Les outils IA d\'Orbitvu Station interviennent après la prise de vue, sur la photo du bijou.',
           avantages: [
-            'Portés IA : bagues sur mains élégantes, colliers sur mannequins',
-            'Ambiances luxe : décors marbre, velours, écrin joaillerie',
-            'Styles personnalisés : ADN visuel marque (Cartier-like, Tiffany-like...)',
-            'Production rapide : 20-50 visuels lifestyle en 1h',
-            'ROI : -90% coûts vs shooting mannequin joaillerie',
+            'AI Retoucher : retouche automatique des reflets indésirables, des imperfections et des couleurs, pilotée par des préréglages ou des consignes écrites',
+            'AI Masking : détourage et suppression du fond, directement dans le flux de production',
+            'Outils réservés par Orbitvu aux abonnés d\'Orbitvu Station ; conditions sur demande',
           ],
         },
       ],
     },
-    casClients: [
+    useCases: [
       {
-        titre: 'Joaillier 150 créations/an',
-        description:
-          'Packshot focus stacking + 3 visuels lifestyle IA/bijou. Délais -75%. Qualité image 300% supérieure vs photographe manuel.',
+        titre: 'Catalogue de collection',
+        processus: 'Photographier une nouvelle collection avec les réglages enregistrés de la précédente : même fond, même éclairage, même cadrage. Bagues, pendentifs et boucles d\'oreilles d\'une même ligne se présentent de la même façon, du catalogue à la boutique en ligne.',
+        fonctionsOrbitvu: ['Orbitvu Station', 'Réglages enregistrés', 'AI Masking'],
+        valeur: 'Des collections présentées de façon homogène, saison après saison',
+      },
+      {
+        titre: 'E-commerce multi-références',
+        processus: 'Alimenter une boutique qui décline chaque modèle en plusieurs métaux, pierres ou tailles. Chaque variante est photographiée dans les mêmes conditions, détourée dans le flux, puis exportée pour sa fiche produit.',
+        fonctionsOrbitvu: ['AI Masking', 'AI Retoucher', 'Orbitvu Station'],
+        valeur: 'Des fiches produit comparables d\'une variante à l\'autre',
+      },
+      {
+        titre: 'Vues 360° de bagues',
+        processus: 'Montrer une bague sous tous les angles : le plateau tournant de l\'Alphashot Micro Pro v2 et le Superfocus produisent une animation nette sur toute la rotation, à intégrer à la fiche produit.',
+        fonctionsOrbitvu: ['360°', 'Superfocus', 'Alphashot Micro Pro v2'],
+        valeur: 'La monture, le serti et la pierre visibles avant l\'achat',
       },
     ],
     cta: {
-      titre: 'Sublimez vos bijoux',
+      titre: 'Testez un studio Orbitvu avec vos bijoux',
       description:
-        'Devis studio Orbitvu joaillerie + démo BlendAI lifestyle luxe gratuite.',
+        'Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu.',
     },
     faq: [
-      { question: 'Comment photographier les pierres précieuses avec leur brillance réelle ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé et le focus stacking automatique pour capturer les feux des pierres précieuses (diamants, saphirs, rubis) avec une netteté et une brillance fidèles.' },
-      { question: 'Qu\'est-ce que le focus stacking pour la photo bijoux ?', answer: 'Le focus stacking combine automatiquement plusieurs prises de vue à différentes profondeurs de champ pour obtenir une netteté absolue sur l\'ensemble du bijou 3D, des sertissages aux détails microscopiques.' },
-      { question: 'Peut-on créer des visuels portés bijoux sans mannequin ?', answer: 'Oui, BlendAI génère des visuels portés réalistes : bagues sur mains élégantes, colliers sur mannequins, dans des ambiances luxe (marbre, velours, écrin). Production de 20 à 50 visuels par heure.' },
-      { question: 'La photo packshot bijoux est-elle adaptée à la vente en ligne ?', answer: 'Les studios Orbitvu produisent des packshots HD fond blanc avec rotation 360° interactive, idéaux pour les fiches produit e-commerce joaillerie. Le détourage est automatique.' },
+      { question: 'Comment restituer la brillance des pierres et des métaux en packshot ?', answer: 'Par l\'éclairage d\'abord : les pierres ont besoin de lumière pour leur feu, les métaux polis de reflets contrôlés. Sur l\'Alphashot Pro G2, l\'AI Photo Assistant propose une configuration d\'éclairage adaptée au produit. Après la prise de vue, AI Retoucher peut atténuer les reflets indésirables.' },
+      { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
+      { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas avec les outils disponibles aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date de disponibilité ; nous ne la présentons pas comme disponible.' },
+      { question: 'Les packshots de bijoux conviennent-ils à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
+      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
     ],
   },
 

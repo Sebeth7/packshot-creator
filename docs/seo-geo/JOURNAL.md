@@ -34,6 +34,54 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-07 · Hub bijoux — enrichissement commercial limité, vague 2 anticipée (B3) ; M30, M32 · Claude de Laurent
+
+**Chantier** : PR-4 de la V2 `PSC_LANDINGS_COCONS_FINAL_2026-10-07` (B3 ; `07` M27 à M33, M46), codage anticipé sur GO de Laurent du 07/10 | **PR** : brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `35d250c`
+
+**Quoi** — Trois fichiers de site :
+- `data/secteurs.ts`, entrée `bijoux-joaillerie` seule : title, meta description, H1, hero, défis, deux cartes de solutions, trois cas d'usage (champ `useCases`, nouveau pour ce hub), CTA, FAQ (4 → 5). `casClients` retiré (champ non rendu). La carte IA n'a plus de `type` : le gabarit affiche « BLENDAI.STUDIO » sur toute carte `type: 'ia'`.
+- M30 : `content/blog/fr/ia-lumieres-virtuelles-revolution-packshot.json`, `href` `/fr/industrie/bijoux-joaillerie` → `/fr/industrie/horlogerie` ; ancre « horlogerie » et reste du champ inchangés (CA10 a).
+- M32 : `content/guides/de-ch/wie-uhr-vor-fotoshooting-positionieren.json`, `href` `/de-ch/branchen/schmuck` → `/de-ch/branchen/uhren` ; ancre inchangée (CA10 a).
+
+Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-map.ts`, `sector-related-map.ts`, `content-maillage.ts`, `secteurs-de-ch.ts` (`/de-ch/branchen/schmuck`), `machines.ts`, Worker, redirections, F5, Mode, accueil, Studios, prose du hub horlogerie, articles BlendAI.
+
+**Pourquoi** — V2 du 07/10 : le hub devient la surface commerciale « équiper la production photo bijoux en interne » (I06J), sans reprendre l'intention informationnelle du guide ni celle d'orbitvu.fr (`08`). Retraits imposés par B3 : « −90 % », « 20-50 visuels lifestyle en 1 h », BlendAI. Nomenclature IA Orbitvu (`05`, règle 5 ter). Repli de `11` et `12` appliqué sans réponse de Sébastien (S4).
+
+**Fichiers** — `data/secteurs.ts`, `content/blog/fr/ia-lumieres-virtuelles-revolution-packshot.json`, `content/guides/de-ch/wie-uhr-vor-fotoshooting-positionieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Hub aligné sur le lexique « packshot bijoux » ; effet de classement non prévisible (1 clic / 18 impressions en 90 j, V2 `03` L10). Hub horlogerie : un lien éditorial FR et un lien de-ch entrants de plus ; hub bijoux : deux de moins. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check du 07/10 : `main` `35d250c` ; 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #102. Fichiers des PR relus sur GitHub : aucune ne touche `data/secteurs.ts`, le JSON de M30 ou le guide de-ch de M32. #27 touche le guide FR de M31 (exclu). #102 touche le gabarit des hubs. Fichiers communs : `JOURNAL.md` (toutes) ; `ETAT.md` (#27, #64, #65, #70, #82, #102).
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 476/476 (22 fichiers) ; `npx eslint data/secteurs.ts` : 0 problème ; `npx next build` vert (variables factices).
+- HTML prérendu de `main` `35d250c` (arbre de travail séparé) contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés : 374 pages, **370 identiques, 4 différentes** :
+  - `/fr/industrie/bijoux-joaillerie` ;
+  - `/en/industrie/bijoux-joaillerie` (`noindex, follow`, données FR servies en EN, préexistant, D9) ;
+  - `/fr/blog/ia-lumieres-virtuelles-revolution-packshot` ;
+  - `/de-ch/guide/wie-uhr-vor-fotoshooting-positionieren`.
+  Les 16 autres hubs FR, les 16 EN et les 8 de-ch sont identiques.
+- M30 et M32 : un `href` changé chacun ; 0 ligne de texte visible modifiée ; title, description, canonical, hreflang identiques.
+- Hub FR :
+  - 0 lien ajouté, 0 retiré dans la zone principale (16 liens) ; aucun lien vers `/packshot-e-commerce` ni `/packshot-mode` ;
+  - canonical et hreflang identiques ; JSON-LD `Service` (nouveau nom) et `FAQPage` à 5 questions, égal à la FAQ visible ;
+  - zone principale sans « BlendAI », « −90 % », « 20-50 », « lifestyle », « polarisé ».
+- Mots, méthode V2 (`annexes/rendu_sysnext/METHODE.md`, reproduite à l'identique sur `main` : 684 / 605) : FR `WORDS_MAIN` 1 136, `WORDS_MAIN_HORS_FORM` **1 057** (cible 1 000, fourchette 950-1 100, maximum 1 300) ; EN 1 113 / 1 040.
+- Rendu local (`next start`, Chromium) à 1 440, 1 024, 768 et 390 px : 1 H1, 0 débordement, 0 erreur de page, formulaire présent. CTA du hero dans le premier écran à 1 440, 1 024 et 768 px. À 390 px, hors du premier écran comme sur `main`, à la même position (1 009 px, gabarit). H1 et hero raccourcis pour ne pas dégrader `main` à 1 024 px : au premier essai, le CTA finissait à 812 px pour 768 visibles.
+- D44 : C1 = 9 552 px à 1 440 (`main` : 8 017) ; C2 = 4 sections hors FAQ (`main` : 3). Évaluation déclenchée ; C4 (identifiants à ajouter au gabarit) et C5 (PR éditoriale ouverte sur la page) la tranchent en EXCLUDE ; registre inchangé.
+- Liens internes des trois pages modifiées : 30 sur 30 en 200, sans redirection (serveur local).
+- Playwright (Chromium préinstallé, configuration locale hors dépôt), specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 80/81 au premier passage. L'échec porte sur `/fr/ia-photo-produit` à 1 024 px, page identique à `main`. Non reproduit : spec complète 44/44 deux fois sur la branche, 44/44 sur `main`, test isolé 2/2 sur les deux.
+- M33 : `content/guides/alternates.json` ne donne aucun équivalent de-ch pour `comment-nettoyer-montre-avant-shooting` ni `animation-360-focus-stacking` (fr et en seulement) : liens laissés inchangés.
+- M46 : le gabarit rend `description` et `avantages` en texte brut ; aucun lien possible dans la carte IA sans modifier le gabarit : aucun changement.
+- Dimensions (D45) : Pro G2 35 × 35 × 40 cm, 10 kg, statut `conforme` ; Micro Pro v2 « jusqu'à 18 cm de long », 1 kg (référentiel : 18 conforme, 15 × 16 non vérifiables, Q20.5) ; aucune autre valeur.
+
+**Supposé** — Capacités et noms Orbitvu (Orbitvu AI Toolkit, AI Photo Assistant, AI Masking, AI Retoucher, On-model annoncé) : fresh-check orbitvu.com de Laurent du 07/10, cité par la V2, non revérifié par cette session.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
+
+**Suite** — Preview humaine desktop, tablette, mobile ; information de Sébastien (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. Si #102 est fusionnée avant, la déclarer comme événement concomitant. GO de fusion distinct de Laurent.
+
+---
+
 ## 2026-10-07 · #101 — trois micro-corrections documentaires avant revue de fusion · Claude de Laurent
 
 **Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« Finalisation PR #101 ») | **PR** : #101, brouillon, « DO NOT MERGE » | **Tête de départ** : `b0bf16f` | **Base** : `main` `30482a0`
