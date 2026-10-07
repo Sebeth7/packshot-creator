@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
-**Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
+**Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
 
 **Quoi** — Aucune traduction. Gate claims sur les 21 candidates de la transmission et consignation des arbitrages de Laurent du 07/10 dans `docs/seo-geo/PACK-D9-GATE-2026-10-07.md`. Aucun fichier du site modifié.
 
