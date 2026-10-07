@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-07 · Hub bijoux — enrichissement commercial limité, vague 2 anticipée (B3) ; M30, M32 · Claude de Laurent
 
-**Chantier** : PR-4 de la V2 `PSC_LANDINGS_COCONS_FINAL_2026-10-07` (B3 ; `07` M27 à M33, M46), codage anticipé sur GO de Laurent du 07/10 | **PR** : brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `35d250c`
+**Chantier** : PR-4 de la V2 `PSC_LANDINGS_COCONS_FINAL_2026-10-07` (B3 ; `07` M27 à M33, M46), codage anticipé sur GO de Laurent du 07/10 | **PR** : #104, brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `35d250c`, puis `main` `b806291` (#102, #103) fusionné dans la branche
 
 **Quoi** — Trois fichiers de site :
 - `data/secteurs.ts`, entrée `bijoux-joaillerie` seule : title, meta description, H1, hero, défis, deux cartes de solutions, trois cas d'usage (champ `useCases`, nouveau pour ce hub), CTA, FAQ (4 → 5). `casClients` retiré (champ non rendu). La carte IA n'a plus de `type` : le gabarit affiche « BLENDAI.STUDIO » sur toute carte `type: 'ia'`.
@@ -52,9 +52,9 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 **Effet attendu** — [Inférence] Hub aligné sur le lexique « packshot bijoux » ; effet de classement non prévisible (1 clic / 18 impressions en 90 j, V2 `03` L10). Hub horlogerie : un lien éditorial FR et un lien de-ch entrants de plus ; hub bijoux : deux de moins. Cela repose sur des schémas observés.
 
 **Vérifié** —
-- Fresh-check du 07/10 : `main` `35d250c` ; 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #102. Fichiers des PR relus sur GitHub : aucune ne touche `data/secteurs.ts`, le JSON de M30 ou le guide de-ch de M32. #27 touche le guide FR de M31 (exclu). #102 touche le gabarit des hubs. Fichiers communs : `JOURNAL.md` (toutes) ; `ETAT.md` (#27, #64, #65, #70, #82, #102).
-- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 476/476 (22 fichiers) ; `npx eslint data/secteurs.ts` : 0 problème ; `npx next build` vert (variables factices).
-- HTML prérendu de `main` `35d250c` (arbre de travail séparé) contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés : 374 pages, **370 identiques, 4 différentes** :
+- Fresh-check du 07/10 : `main` `35d250c` ; 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #102. Pendant le codage, #102 a été fusionnée (10:26 UTC) puis #103, documentation (10:55 UTC) : `main` `b806291`, fusionné dans la branche ; conflits de `JOURNAL.md` et `ETAT.md` résolus par union (ligne #100 retirée d'`ETAT.md` comme sur `main`). PR ouvertes ensuite : #27, #64, #65, #70, #79, #82, et #104. Fichiers des PR relus sur GitHub : aucune ne touche `data/secteurs.ts`, le JSON de M30 ou le guide de-ch de M32. #27 touche le guide FR de M31 (exclu). Fichiers communs : `JOURNAL.md` (toutes) ; `ETAT.md` (#27, #64, #65, #70, #82).
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 476/476 (22 fichiers) sur `35d250c`, 483/483 (23 fichiers) après fusion de `b806291` ; `npx eslint data/secteurs.ts` : 0 problème ; `npx next build` vert (variables factices), avant et après fusion.
+- HTML prérendu de `main` (arbre de travail séparé) contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés, contre `35d250c` puis contre `b806291` : 374 pages, **370 identiques, 4 différentes**, les mêmes dans les deux cas :
   - `/fr/industrie/bijoux-joaillerie` ;
   - `/en/industrie/bijoux-joaillerie` (`noindex, follow`, données FR servies en EN, préexistant, D9) ;
   - `/fr/blog/ia-lumieres-virtuelles-revolution-packshot` ;
@@ -69,7 +69,7 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 - Rendu local (`next start`, Chromium) à 1 440, 1 024, 768 et 390 px : 1 H1, 0 débordement, 0 erreur de page, formulaire présent. CTA du hero dans le premier écran à 1 440, 1 024 et 768 px. À 390 px, hors du premier écran comme sur `main`, à la même position (1 009 px, gabarit). H1 et hero raccourcis pour ne pas dégrader `main` à 1 024 px : au premier essai, le CTA finissait à 812 px pour 768 visibles.
 - D44 : C1 = 9 552 px à 1 440 (`main` : 8 017) ; C2 = 4 sections hors FAQ (`main` : 3). Évaluation déclenchée ; C4 (identifiants à ajouter au gabarit) et C5 (PR éditoriale ouverte sur la page) la tranchent en EXCLUDE ; registre inchangé.
 - Liens internes des trois pages modifiées : 30 sur 30 en 200, sans redirection (serveur local).
-- Playwright (Chromium préinstallé, configuration locale hors dépôt), specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 80/81 au premier passage. L'échec porte sur `/fr/ia-photo-produit` à 1 024 px, page identique à `main`. Non reproduit : spec complète 44/44 deux fois sur la branche, 44/44 sur `main`, test isolé 2/2 sur les deux.
+- Playwright (Chromium préinstallé, configuration locale hors dépôt), specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 80/81 au premier passage. L'échec porte sur `/fr/ia-photo-produit` à 1 024 px, page identique à `main`. Non reproduit : spec complète 44/44 deux fois sur la branche, 44/44 sur `main`, test isolé 2/2 sur les deux. Après fusion de `b806291` : 81/81 (premier passage : résumé à 80 réussis, le 81e non identifié par le filtre de sortie).
 - M33 : `content/guides/alternates.json` ne donne aucun équivalent de-ch pour `comment-nettoyer-montre-avant-shooting` ni `animation-360-focus-stacking` (fr et en seulement) : liens laissés inchangés.
 - M46 : le gabarit rend `description` et `avantages` en texte brut ; aucun lien possible dans la carte IA sans modifier le gabarit : aucun changement.
 - Dimensions (D45) : Pro G2 35 × 35 × 40 cm, 10 kg, statut `conforme` ; Micro Pro v2 « jusqu'à 18 cm de long », 1 kg (référentiel : 18 conforme, 15 × 16 non vérifiables, Q20.5) ; aucune autre valeur.
@@ -78,7 +78,80 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 
 **Non regardé** — Preview Vercel (Vercel Authentication), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
 
-**Suite** — Preview humaine desktop, tablette, mobile ; information de Sébastien (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. Si #102 est fusionnée avant, la déclarer comme événement concomitant. GO de fusion distinct de Laurent.
+**Suite** — Preview humaine desktop, tablette, mobile ; information de Sébastien (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. #102, fusionnée le 07/10, est un événement concomitant à déclarer à la mesure du hub (libellés de-ch du gabarit ; rendu FR inchangé selon #102). GO de fusion distinct de Laurent.
+
+---
+
+## 2026-10-07 · #102 fusionnée — PACK-L, contrôles post-fusion · Claude de Laurent
+
+**Chantier** : PACK-L, GO de fusion de Laurent du 07/10 | **PR** : #102, fusionnée | **Commit de fusion** : `bf8c1c7` (`main`), le 07/10/2026 à 10:26:33 UTC, parents `35d250c` et `0f257b2` | **Consigné dans** : PR documentaire brouillon, branche `claude/great-hawking-9jywhk`
+
+**Quoi** — Fusion de #102 par commit de fusion (méthode du dépôt), tête `0f257b2` verrouillée à la fusion. L'arbre de `main` est identique à celui de `0f257b2`. Aucun autre changement de code.
+
+**Pourquoi** — GO de fusion de Laurent du 07/10, après une QA humaine de la Preview authentifiée : PASS avec trois réserves, toutes préexistantes (micro-contrôle ci-dessous).
+
+**Micro-contrôle des réserves de la Preview (avant fusion)** —
+- A, « Kapazität/Tag : 250 photos » : modale du sélecteur, `{machine.capaciteJour} photos`, unité codée en dur en FR. Ligne identique sur `main` `35d250c` et sur `0f257b2` : préexistante.
+- B, « Platzbedarf : Sol/Table robuste » : modale, `{machine.spaceRequired}`, valeur produit en FR (D45, Q20 ; A09 et partie produit de A12, exclues de PACK-L). Ligne identique : préexistante.
+- C, infobulle du visualiseur 360° « Regardez de plus près l'Alphashot 360 G2 » : absente du dépôt. Elle vient de la présentation Orbitvu hébergée `W2VVEnzxvCD8t2A8qqJNBQ/217258` (réponse JSONP de `orbitvu.co`, lue le 07/10). `OrbitvuViewer.tsx` et les identifiants sont inchangés : préexistante, contenu externe.
+
+**Fichiers** — aucun fichier du site dans cette consignation ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Pages EN et de-CH du périmètre dans leur langue ; FR inchangé.
+
+**Vérifié** —
+- Avant fusion : `main` `35d250c` ; tête `0f257b2`, aucun commit depuis ; `mergeable_state = clean` ; CI 4/4 verte ; aucune nouvelle PR ouverte.
+- `sysnext.vercel.app` sert le nouveau build à 10:27:47 UTC : marqueur de-CH d'A07 présent. Avant la fusion : cache `HIT`, ancien build.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 10:28:27 UTC : 17 pages et 3 ressources vertes.
+- QA ciblée sur `sysnext` (Playwright, 8 URL en 1440 et 390 px, modale ouverte sur 2 machines, métadonnées) : 19/19 après un rejeu. Échec initial : `net::ERR_TIMED_OUT` sur `/de-ch/branchen/elektronik` en 1440 px ; la page répond 200 en 0,54 s et le rejeu isolé passe. Spec PACK-L : 9/9.
+- `<head>` de 11 pages identique au build testé de `0f257b2` (title, canonical, hreflang, description, `og:*`, `twitter:*`), dont `/de-ch/blog/ai-act-produktbilder`, `/fr/packshot-e-commerce` et `/fr/studio-photo/alphastudio-compact-v2`.
+- Rendu FR de production identique au build de `main` d'avant fusion sur 5 pages témoins : `/fr`, `/fr/packshot-e-commerce`, `/fr/studio-photo/alphastudio-compact-v2`, `/fr/studio-photo/alphashot-xl-g2`, `/fr/industrie`.
+- `www` dans Chrome, le 07/10 (rapport transmis par Laurent) : PASS. 9 pages en HTTP 200 : `/de-ch/fotostudio/alphashot-pro-g2`, `/de-ch/fotostudio/alphashot-xl-g2`, `/en/studio-photo/alphashot-pro-g2`, `/de-ch/produktfotografie-bedarf`, `/de-ch/wichtige-fragen-produktfotografie`, `/de-ch/fotostudio/maschinen-finder`, `/de-ch/ia-photo-produit`, `/de-ch/branchen/schmuck`, `/de-ch/branchen/uhren`.
+  - `lang` correct ; aucun débordement à 1280 px ni à 390 px (iframe) ; aucune image cassée ; aucun texte FR détecté par script (contrôle heuristique).
+  - Modale du sélecteur ouverte sur Alphashot Pro G2 : libellés, avantages et limites en allemand ; 390 px de large à 390 px, sans débordement.
+  - Title relevé sur chaque page ; canonical auto-référent ; hreflang : 5 entrées (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), 4 sur les deux secteurs (pas d'`en`).
+  - Aucune anomalie introduite par #102 ; réserves A, B, C visibles à l'identique. Aucune mutation.
+
+**Supposé** — [Inférence] L'échec `ERR_TIMED_OUT` est un délai réseau ponctuel du conteneur. Cela repose sur des schémas observés.
+**Non regardé** — Statut de déploiement Vercel du commit de fusion : non lu, aucun outil disponible ; la mise en production est constatée par le contenu servi. Relecture EN et DE (15 groupes) : non rendue.
+
+**Événement concomitant** — Fusion du 07/10 à 10:26 UTC, à ne pas attribuer à une mesure. A30 change `og:*` et `twitter:*` de 17 pages de-CH, dont `/de-ch/blog/ai-act-produktbilder` (J+7 AI Act le 13 ou 14/10). `<title>`, canonical et hreflang inchangés : métadonnées sociales seulement, aucune cause SEO démontrée.
+
+**Suite** — Dettes séparées : A (unité « photos » de la modale), B (valeurs `spaceRequired` en FR, Q20), C (texte de la présentation Orbitvu en FR, hors dépôt ; elle nomme la machine « Alphashot 360 G2 », le catalogue « Alphashot 360 »). PACK-D9 débloqué ; mission menée dans sa propre session.
+
+---
+
+## 2026-10-07 · PACK-L — corrections i18n groupées EN/de-CH des gabarits (A07, A29 et reliquats compatibles) · Claude de Laurent
+
+**Chantier** : PACK-L (LANG_2 partiel et LANG_3 de l'audit LANG), GO de codage de Laurent du 07/10 (« GO CODAGE PACK-L = YES », une seule PR brouillon) | **PR** : brouillon, « DO NOT MERGE », branche `claude/great-hawking-9jywhk` | **Base** : `main` `35d250c` (fusion de #100)
+
+**Quoi** — Traduction EN et de-CH de chaînes que les gabarits servaient en français ou en anglais, sans aucun changement de rendu FR :
+- P1 : A07 (cas d'usage des fiches machines, traduction seule) ; A29 (deux guides `besoins-photographie-produit` et `questions-cles-photographie-produit`, libellés à trois langues).
+- P2/P3 : A08, A10, A11 (liste, meta description et JSON-LD construits depuis les cas d'usage traduits) ; A13, A15, A16 (ALT du hero, `aria-label` vidéo, galerie de-CH des fiches) ; A17, A18 (`SectorGrid`, secteurs connexes de-CH) ; A19 (`data/solutions.ts`, badges et cas d'usage de-CH) ; A25, A26 (libellés ARIA et ALT de la page IA) ; A27, A28 (ALT) ; A30 (métadonnées de `app/[lang]/layout.tsx`) ; A32 (format de date du blog de-CH) ; A34 (badge de `packshot-industriel`) ; A35 et la seule partie modale de A12 (`MachineModal.tsx`).
+- Données : champ parallèle optionnel `useCasesI18n` dans les deux `machines.ts` (16 entrées côté ROI, 15 côté sélecteur) et textes `'de-ch'` des avantages et limites du sélecteur (63 repris tels quels du catalogue ROI, 4 nouveaux). Aucune valeur FR ou EN existante modifiée ; aucune dimension, charge, prix, nom, version ni mapping (D45, Q20).
+- Helper `pickListL` dans `lib/locale-text.ts` ; test `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Pourquoi** — Registre LANG A01–A38 : 34 fiches et 2 guides de-CH affichaient du français ou de l'anglais (P1 A07, A29) ; reliquats P2/P3 dans les mêmes gabarits.
+
+**Fichiers** — `app/[lang]/{a-propos,besoins-photographie-produit,blog,ia-photo-produit,industrie,industrie/[slug],packshot-industriel,questions-cles-photographie-produit,studio-photo/[slug]}/page.tsx`, `app/[lang]/layout.tsx`, `app/[lang]/ia-photo-produit/_components/{FeaturesTabs,TestimonialCarousel}.tsx`, `components/calculators/ROICalculator/lib/{machines,types}.ts`, `components/machine-selector/lib/{machines,types}.ts`, `components/machine-selector/components/MachineModal.tsx`, `components/media/BeforeAfterSlider.tsx`, `components/shared/SectorGrid.tsx`, `components/video/VideoPlayer.tsx`, `data/solutions.ts`, `lib/locale-text.ts`, `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Exclus** — LANG_1 (A01 à A06) ; A09 et parties produit de A12 ; A14 (« IA Ready ») ; A20, A21 (`SchemaOrg.tsx`, #64) ; A22 à A24 (accueil gelé jusqu'au 28/10) ; A31, A36 à A38 ; A33 (`Header.tsx` : l'en-tête global modifiait l'accueil de-CH et les landings F5 et Mode de-CH ; fichier rétabli à l'identique de `main`). Entrée `alphastudio-compact-v2` des deux catalogues non touchée (gel F5) ; `PackshotEcommerce.tsx`, `SECTOR_PACKSHOT_MAP`, Worker, redirections, `next.config`, middleware absents du diff. Secteur connexe `mode-textile` laissé tel quel (gel Mode).
+
+**Effet attendu** — Pages EN et de-CH concernées entièrement dans leur langue dès le déploiement ; FR identique. [Inférence] Effet de classement non mesurable séparément des mesures en cours (M5, F5, Mode, AI Act). Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest complet 483/483 (23 fichiers) ; `npx next build` vert, variables factices de la CI.
+- HTML prérendu `main` / branche, scripts exécutables retirés, identifiant de build neutralisé : 374 pages, 304 identiques, 70 différentes (48 de-CH, 22 EN). **FR : 161/161 identiques.** Identiques aussi : accueil `fr`, `en`, `de-ch` ; `packshot-e-commerce` et `packshot-mode` en EN et de-CH ; `de-ch/industrie/mode` ; hubs Studios EN et de-CH.
+- Lignes retirées des deux `machines.ts` : 67/67 reprises à l'identique, avec seulement un champ `'de-ch'` en plus.
+- A30 : le repli de `app/[lang]/layout.tsx` change `twitter:title` et `twitter:description` (et `og:*` de `/de-ch/roi-rechner`) sur 17 pages de-CH sans métadonnées propres, dont l'article AI Act `/de-ch/blog/ai-act-produktbilder` (mesure J+7 du 13 ou 14/10) : à inscrire comme événement concomitant (ETAT E) si la PR est fusionnée avant. `<title>`, meta description, canonical et hreflang de ces pages inchangés.
+- Chromium sur `next start` de la branche : spec ad hoc hors dépôt 9/9 (fiches EN et de-CH, gel F5, fiche FR, deux guides de-CH, modale de-CH/EN/FR, métadonnées de-CH, secteurs, page IA, blog, badge) ; specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81.
+- Specs `seo`, `language-switch`, `youtube-consent` : 242 réussies, 10 échecs, tous sur des pages dont le HTML est identique à `main` (`/en`, pages FR, `/fr/packshot-bijoux` → 301 vers une page FR identique) ou dont `<title>` et meta description sont identiques à `main` (`/en/ia-photo-produit`, `/en/industrie`).
+- Fichiers des PR ouvertes (#27, #64, #65, #70, #79, #82) : aucun fichier de code commun ; seuls `JOURNAL.md` et `ETAT.md` sont partagés.
+
+**Supposé** — [Inférence] Les 10 échecs `seo` / `language-switch` sont préexistants : non rejoués sur `main`, déduits de l'identité du HTML. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel et `www` (R4). Qualité linguistique : relecture EN et DE humaine requise (D42), liste des chaînes nouvelles remise hors dépôt. Clés brutes `health` et `watchmaking` affichées en FR et EN sur les fiches (hors périmètre, FR et EN inchangés). `ETAT.md` A et B périmés depuis la fusion de #100 et #101 (B liste encore #100 ouverte) : signalé, non corrigé.
+
+**Suite** — Relecture EN et DE ; confirmation de Laurent sur la fiche `alphastudio-compact-v2` EN et de-CH, qui reçoit les corrections du gabarit commun (ALT du hero, `aria-label` vidéo, galerie et libellés de-CH) alors que ses propres cas d'usage restent en FR ; GO de fusion distinct ; après fusion : `smoke.mjs` sur `sysnext.vercel.app`, Chrome sur `www`.
 
 ---
 

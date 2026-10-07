@@ -100,6 +100,8 @@ export interface Machine {
   poidsMax: string;                       // Description textuelle (peut être kg ou kg/m²)
   tailleCategories: ProductSizeCategory[]; // Catégories supportées
   useCases: string[];
+  /** Traductions parallèles de `useCases` (même ordre, même longueur) ; absent → liste FR. */
+  useCasesI18n?: { en: string[]; 'de-ch': string[] };
   maintenanceAnnuelle: number;            // € (0 selon specs actuelles)
   consommablesAnnuels: number;            // €
   imageUrl?: string;

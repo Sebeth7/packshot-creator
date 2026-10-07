@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { FadeInView, StaggerContainer, StaggerItem, ScrollReveal, TextReveal, SpringCard } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
+import { tx } from '@/lib/locale-text';
 import {
   HelpCircle,
   ArrowRight,
@@ -55,7 +56,6 @@ const CATEGORY_ICONS = [Lightbulb, Target, TrendingUp];
 export default async function QuestionsClesPhotographieProduitPage({ params }: PageProps) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'questionsCles' });
-  const isFr = lang === 'fr';
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -73,14 +73,14 @@ export default async function QuestionsClesPhotographieProduitPage({ params }: P
       <HeroSection
         badge={{
           icon: <HelpCircle className="h-4 w-4" />,
-          label: isFr ? 'Guide expert' : 'Expert guide',
+          label: tx(lang, 'Guide expert', 'Expert guide', 'Expertenratgeber'),
           colorClass: 'bg-white/10 text-very-peri-200',
         }}
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
         ctas={[
           { label: t('hero.cta'), href: '/contact', variant: 'primary' },
-          { label: isFr ? 'Voir les studios' : 'View studios', href: '/studios-photo-automatises', variant: 'secondary' },
+          { label: tx(lang, 'Voir les studios', 'View studios', 'Studios ansehen'), href: '/studios-photo-automatises', variant: 'secondary' },
         ]}
       />
 
@@ -135,14 +135,15 @@ export default async function QuestionsClesPhotographieProduitPage({ params }: P
                   {t('questions.heading')}
                 </h2>
                 <p className="mt-6 text-neutral-medium leading-relaxed">
-                  {isFr
-                    ? 'Les reponses a toutes vos questions pour faire le bon choix.'
-                    : 'Answers to all your questions to make the right choice.'}
+                  {tx(lang,
+                    'Les reponses a toutes vos questions pour faire le bon choix.',
+                    'Answers to all your questions to make the right choice.',
+                    'Die Antworten auf alle Ihre Fragen für die richtige Wahl.')}
                 </p>
                 <div className="mt-8">
                   <Button asChild className="bg-primary-orbitvu hover:bg-very-peri-600 text-white rounded-xl px-6 h-12">
                     <Link href="/besoins-photographie-produit">
-                      {isFr ? 'Identifier mon besoin' : 'Identify my need'} <ArrowRight className="ml-2 h-4 w-4" />
+                      {tx(lang, 'Identifier mon besoin', 'Identify my need', 'Meinen Bedarf ermitteln')} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -193,7 +194,7 @@ export default async function QuestionsClesPhotographieProduitPage({ params }: P
                 <div className="w-full rounded-xl overflow-hidden mb-6">
                   <Image
                     src="/images/illustrations/cta-packshot-result.avif"
-                    alt="Résultat packshot professionnel"
+                    alt={tx(lang, 'Résultat packshot professionnel', 'Professional packshot result', 'Professionelles Packshot-Ergebnis')}
                     width={500}
                     height={375}
                     className="w-full h-auto rounded-xl"

@@ -9,7 +9,7 @@ import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, Clip
 import { solutions } from '@/data/solutions';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
-import { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
+import { DEFAULT_SECTORS, sectorText } from '@/components/shared/SectorGrid';
 import { SECTOR_MACHINE_MAP } from '@/data/sector-machine-map';
 import { SECTOR_RELATED_MAP } from '@/data/sector-related-map';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
@@ -189,6 +189,10 @@ export default async function SecteurPage({ params }: PageProps) {
     ? relatedSectors
     : [...relatedSectors, ...fallbackSectors]
   ).slice(0, 6);
+  // Libellés des secteurs connexes : de-ch traduit ; EN laissé tel quel (pages /en/industrie/*
+  // servies en FR, hors de cette correction) ; page de-ch du hub mode inchangée (gel Mode, 26/11).
+  const nomSecteurConnexe = (s: (typeof DEFAULT_SECTORS)[number]) =>
+    lang === 'de-ch' && dataSlug !== 'mode-textile' ? sectorText(s, 'de-ch').name : s.name;
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
@@ -540,11 +544,11 @@ export default async function SecteurPage({ params }: PageProps) {
                             {solutionIcons[sol.slug] || <FileText className="h-5 w-5" />}
                           </span>
                           <h3 className="text-lg font-heading font-bold text-heading-dark mb-2 group-hover:text-very-peri-600 transition-colors">
-                            {sol.hero.badge}
+                            {lang === 'de-ch' ? (sol.hero.badgeDeCh ?? sol.hero.badge) : sol.hero.badge}
                           </h3>
                           {secteurData && (
                             <p className="text-sm text-neutral-medium leading-relaxed flex-1 mb-4">
-                              {secteurData.useCase}
+                              {lang === 'de-ch' ? (secteurData.useCaseDeCh ?? secteurData.useCase) : secteurData.useCase}
                             </p>
                           )}
                           <div className="flex items-center text-very-peri-600 text-sm font-medium">
@@ -829,7 +833,7 @@ export default async function SecteurPage({ params }: PageProps) {
                     <other.Icon className="h-4 w-4" />
                   </span>
                   <span className="text-sm font-medium text-future-dusk-800 group-hover:text-very-peri-600 transition-colors">
-                    {other.name}
+                    {nomSecteurConnexe(other)}
                   </span>
                 </Link>
               </StaggerItem>
