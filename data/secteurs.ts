@@ -125,14 +125,14 @@ export const secteurs: Secteur[] = [
       titre: 'Packshot bijoux : révéler chaque détail, retrouver le même rendu',
       sousTitre: 'Bijoux & joaillerie',
       description:
-        'Un bijou concentre en quelques centimètres tout ce qui complique une prise de vue : métal poli, facettes, serti, profondeur de champ, poussière.\n\nUne nouvelle référence doit ensuite garder le cadrage, le fond et la lumière des images déjà produites.',
+        'En quelques centimètres, une pièce de joaillerie réunit tout ce qui complique une prise de vue : métal poli, pierres facettées, serti, profondeur de champ, poussière.\n\nEt chaque nouvelle référence doit garder le cadrage, le fond et la lumière du reste de la collection.',
     },
     problematiques: {
       titre: 'Sur un bijou, la lumière se voit',
       items: [
-        'Pierre, facettes, serti : chaque facette renvoie sa propre lumière. Entre les griffes, le serti doit rester lisible.',
-        'Métal, reflets : sur un métal poli, la forme du reflet décrit aussi le volume.',
-        'Petite pièce, profondeur de champ : en macro, la pierre peut être nette pendant que l’arrière de l’anneau reste flou.',
+        'Pierres, facettes, serti : chaque facette renvoie sa propre lumière. Sur un pavage, des dizaines de petites pierres doivent briller sans se fondre ; entre les griffes, le serti doit rester lisible.',
+        'Métal, surfaces : sur un métal poli, la forme du reflet dessine le volume et le profil. Une texture martelée, un satiné ou une gravure n’apparaissent que si la lumière les accroche.',
+        'Macro, profondeur de champ : à cette échelle, la pierre centrale peut être nette pendant que l’arrière de l’anneau ou le fermoir d’une chaîne reste flou.',
       ],
     },
     solutions: {
@@ -150,15 +150,15 @@ export const secteurs: Secteur[] = [
         {
           titre: 'Retouche et export',
           description:
-            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nLe détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du bijou réel.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes.',
+            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nLe détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du produit réel.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes.',
           avantages: [],
         },
       ],
     },
     cta: {
-      titre: 'Testez le workflow avec les bijoux que vous photographiez',
+      titre: 'Essayez le studio sur vos propres pièces',
       description:
-        'Choisissez quelques pièces représentatives de ce que vous photographiez au quotidien, simples ou complexes.\n\nNous pourrons regarder ensemble la prise de vue, la lumière et la profondeur de champ, puis la cohérence d’une série, le traitement des images, les étapes où l’IA peut aider et les fichiers adaptés à vos usages.',
+        'Choisissez quelques références représentatives de votre production : du métal poli, un serti délicat, une pierre difficile à éclairer, une petite série déclinée en plusieurs variantes.\n\nNous pourrons regarder ensemble la prise de vue, la lumière et la profondeur de champ, la cohérence de la série, le traitement des images, les étapes où l’IA peut aider et les fichiers adaptés à vos usages.',
     },
     faq: [
       { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Au-delà, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },

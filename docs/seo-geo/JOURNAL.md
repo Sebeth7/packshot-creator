@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — reprise visuelle et lexicale : pièces, métaux, hero, macro, collection (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Reprise visuelle et lexicale #104 » ; fait métier de Laurent : la page répétait « bijou », « bague » et l’or jaune, alors que la joaillerie a un vocabulaire, des matières et des typologies plus riches | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant reprise `49932f2`
+
+**Quoi** — H1, ordre des sections, FAQ, métadonnées et claims validés (IQ Mask, AI Masking, AI Retoucher en bêta) inchangés.
+- Hero : deux tuiles 4:5 de même taille. À gauche, une bague en métal blanc sertie d’une pierre rouge (photo réelle du guide « Quels réglages faire pour photographier des bijoux ? », recadrée sur le fond seulement : `bague-metal-blanc-pierre-rouge.avif`) ; à droite, le visuel produit de l’Alphashot Micro Pro v2, son fond ramené à l’affichage au gris de la photo (`mix-blend-multiply`, fichier inchangé). Légende : « À gauche, une prise de vue réalisée dans un Alphashot Micro Pro v2 pour notre guide des réglages. À droite, le studio. »
+- Lumière : V104-1 passe d’un bandeau de 1 232 × 616 px à 480 × 320 px au plus, à droite de l’introduction ; les trois points et les deux mises au point Superfocus suivent. Texte : or jaune, or rose, métal blanc ; pavage ; texture martelée, satiné, gravure ; monture ; fermoir d’une chaîne.
+- Collection : V104-2 (générée) retirée et son fichier supprimé ; remplacée par le visuel réel trois pièces de l’article de Sébastien du 25/09 (`bijoux-profil-rendu-constant.avif` : bague en métal blanc, bracelet en métal jaune, bague en métal rose sertie de pierres de couleur). Légende : « Trois pièces, trois teintes de métal, un même fond. »
+- 360° : « Voir la bague sous tous ses angles » → « Montrer aussi le profil et l’arrière d’une pièce » ; profil d’une bague, galerie, bélière d’un pendentif, fermoir d’un bracelet.
+- Studio et retouche : légendes « Mise en place au centre du plateau, après nettoyage. » (étape 1 du guide) et « La bague ajourée posée plus haut, détourée avec l’IQ Mask d’Orbitvu Station. » ; « la photo du bijou réel » → « la photo du produit réel ».
+- Appel final : « Essayez le studio sur vos propres pièces » ; texte : références représentatives, métal poli, serti délicat, pierre difficile à éclairer, petite série déclinée en variantes ; bouton du hero « Tester avec vos références » ; titre du formulaire « Tester mon workflow ». Engagement « Nous pourrons regarder ensemble… » conservé.
+
+**Inventaire des visuels** — Retenus : bague `67d9918405afdf485e76dec4` (réelle ; captures Orbitvu Station du même guide avec le panneau « ALPHASHOT MICRO V2 ») ; trois pièces `blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif` (réelles en apparence, 1 600 × 520). Écartés : `guides/67d99183a2299f1c17eaaa90` (studio installé, mais une montre Rolex à l’écran) ; `illustrations/benefits-bijoux`, `hero/hero-landing-bijoux*`, `hero/hero-secteur-bijoux*`, `blog/…/collier-chainette-pendentif`, `blog/…/bijoux-portes-trois-gros-plans` (générés par IA) ; `hero/alphashot-micro-v2-slide*` (dessins au trait) ; `machines/alphashot-micro-v2/packshot-*` (300 px, provenance non établie) ; `guides/67d991842f685a27fca1fc0e` et `machines/alphashot-micro-v2/hw-reflection` (même bracelet, origine Orbitvu probable, non établie) ; `gallery/jewelry-macro` (vignette vidéo marquée Orbitvu, 600 px).
+
+**Comptage du corps visible (FR, hors formulaire)** — avant / après : « bijou » 6 / 2, « bijoux » 9 / 6, « bague(s) » 12 / 6, « or jaune » 0 / 1. Restent fixes : H1, surtitre, titres des guides liés, FAQ.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `public/images/secteurs/bijoux/bague-metal-blanc-pierre-rouge.avif` (nouveau, 1 120 × 1 400, 24 828 octets), `public/images/secteurs/bijoux/v104-2-collection-coherence.avif` (supprimé), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `main`, 370 identiques, 4 différentes ; contre `49932f2`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, FAQ (3, structurée et visible) identiques ; seul lien modifié : libellé de l’ancre `#tester`. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Tuiles du hero : 284 × 355 px à 1 440, 173 × 216 px à 390. 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Supposé** — Équivalence « Alphashot Micro V2 » (guides) et « Alphashot Micro Pro v2 » (fiche), déjà retenue dans les révisions précédentes. Le visuel trois pièces est une photographie réelle : son origine (prise de vue PackshotCreator, Orbitvu ou client) n’est pas documentée dans le dépôt, et une signature gravée, illisible, figure dans l’anneau de gauche. La légende n’en fait pas la preuve d’un modèle Orbitvu Station.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation du visuel trois pièces et de V104-1.
+
+**Suite** — Confirmation de Sébastien sur l’origine et les droits du visuel trois pièces avant fusion ; à défaut, le retirer et produire le visuel éditorial décrit dans la PR (bague, pendentif, paire de boucles d’oreilles, bracelet ; métal jaune, métal blanc, or rose ; pierres claires ; même fond, même lumière ; non généré). QA humaine finale de la Preview ; validation de Sébastien sur l’appel final ; GO de fusion distinct.
+
+---
+
 ## 2026-10-08 · Hub bijoux — révision ciblée : hero produit et studio, IA, appel final (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Révision ciblée #104 » ; fait métier de Laurent : le prospect vient avec les produits qu’il photographie au quotidien, simples ou complexes, et les images servent l’e-commerce, les catalogues, la documentation et des besoins internes | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant révision `77b90d2`
