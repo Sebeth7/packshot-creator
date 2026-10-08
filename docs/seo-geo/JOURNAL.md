@@ -66,7 +66,7 @@ Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni descriptio
 **Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; Firefox, Safari, appareils réels.
 - Hors triage, non modifié : `/fr`, `/en` et `/de-ch/studio-photo/selecteur-machines` portent un lien de retour (« Studios Photo ») dans leur `<h1>`.
 
-**Suite** — GO de Laurent, puis fusion ; après fusion, `smoke.mjs` sur `sysnext.vercel.app` et contrôle des 4 pages dans Chrome sur `www`. Gabarit commun à brancher sur `lib/blog-fil-ariane.ts` après #114. Titres : aucun titre FR modifié, la question D13 du `<title>` restant ouverte (ligne #70 ci-dessous dans `ETAT.md`) ; lot de 9 titres FR préparé pour Sébastien, hors dépôt.
+**Suite** — GO de Laurent, puis fusion ; après fusion, `smoke.mjs` sur `sysnext.vercel.app` et contrôle des 4 pages dans Chrome sur `www`. Gabarit commun à brancher sur `lib/blog-fil-ariane.ts` après #114. Titres : aucun titre FR modifié, la question D13 du `<title>` restant ouverte (ligne #70 ci-dessous dans `ETAT.md`) ; lot de 10 titres FR préparé pour Sébastien, hors dépôt ; 3 titles EN mécaniques dans #120.
 
 ---
 
