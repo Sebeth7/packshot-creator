@@ -174,7 +174,7 @@ export function MachineModal({
                   <div className="text-xs text-future-dusk-500 mb-1">
                     {tx(locale, 'Capacité/jour', 'Capacity/day', 'Kapazität/Tag')}
                   </div>
-                  <div className="font-semibold text-future-dusk-900">{machine.capaciteJour} photos</div>
+                  <div className="font-semibold text-future-dusk-900">{machine.capaciteJour} {tx(locale, 'photos', 'photos', 'Fotos')}</div>
                 </div>
                 <div className="bg-neutral-50 rounded-lg p-3">
                   <div className="text-xs text-future-dusk-500 mb-1">
