@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — nouveau hero éditorial V104-HERO (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Intégration du nouveau hero #104 » ; constat de Laurent : le hero pièce et machine se lisait comme un catalogue technique, sans désir ni contexte | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `09aad38`
+
+**Quoi** — Hero seulement, et ajustements nécessaires à son intégration. H1, chapeau, appels, vocabulaire, collection, V104-1, FAQ, IA, 360°, maillage et métadonnées inchangés.
+- Hero : le diptyque (bague en métal blanc et studio) est remplacé par une illustration générée par IA : un studio de photographie de petits objets, une bague posée dedans, son gros plan sur un écran, un bureau de joaillerie. ALT : « Illustration d’un studio de photographie de joaillerie avec un bijou placé dans le système et son image agrandie sur un écran. » Légende, visible à toutes les largeurs : « Illustration générée par IA, représentation éditoriale d’un workflow de photographie de joaillerie. »
+- Section studio : le visuel produit réel de l’Alphashot Micro Pro v2 (celui de la fiche), qui était dans le hero, revient à côté de la photo de mise en place (légende « L’Alphashot Micro Pro v2. »).
+- Le recadrage `bague-metal-blanc-pierre-rouge.avif`, ajouté en `09aad38` pour l’ancien hero et plus référencé, est supprimé.
+
+**Provenance** — HERO_ASSET_STATUS = EDITORIAL_ILLUSTRATION ; PROVENANCE = ChatGPT native image generation. Source : image jointe par Laurent au message du 08/10 (WebP 1 536 × 1 024, sRGB, 142 518 octets, SHA-256 `be55d60d…`) ; aucun ZIP ni fichier `V104-HERO_STUDIO_JOAILLERIE.png` reçu. Version web : `public/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif`, AVIF 1 536 × 1 024, qualité 62, 70 699 octets, PSNR 42,8 dB contre la source, sans recadrage ni retouche. Ce n’est ni une photo d’un studio Orbitvu, ni une capture d’Orbitvu Station, ni un résultat Alphashot, Superfocus ou IA.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `public/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif` (nouveau), `public/images/secteurs/bijoux/bague-metal-blanc-pierre-rouge.avif` (supprimé), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `09aad38`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens et FAQ (3, structurée et visible) identiques ; seul le visuel du hero est préchargé. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Visuel du hero : 584 × 390 px à 1 440, 456 × 304 à 1 024, 720 × 480 à 768, 358 × 239 à 390 (studio, écran et gros plan lisibles ; pas de recadrage mobile). 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Supposé** — [Inférence] L’image jointe au message est la sortie à résolution native de ChatGPT (1 536 × 1 024, comme V104-1) ; si le PNG d’origine est transmis, seul le fichier AVIF est à régénérer. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation de l’illustration.
+
+**Points relevés (R7)** — Le socle de la machine générée porte un logo et le nom « ORBITVU », et l’écran imite une interface de prise de vue : la légende visible est la seule chose qui distingue l’image d’un vrai studio. Le gros plan à l’écran est une bague pavée en or jaune, ce qui ramène l’or jaune et la bague en tête de page après la reprise du matin. Avec le retrait du recadrage, la page n’a plus de pièce réelle en métal blanc seule (le métal blanc reste dans le visuel trois pièces).
+
+**Suite** — QA humaine du hero sur la Preview ; confirmation de Sébastien sur le visuel trois pièces et sur l’appel final ; GO de fusion distinct.
+
+---
+
 ## 2026-10-08 · Hub bijoux — reprise visuelle et lexicale : pièces, métaux, hero, macro, collection (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Reprise visuelle et lexicale #104 » ; fait métier de Laurent : la page répétait « bijou », « bague » et l’or jaune, alors que la joaillerie a un vocabulaire, des matières et des typologies plus riches | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant reprise `49932f2`

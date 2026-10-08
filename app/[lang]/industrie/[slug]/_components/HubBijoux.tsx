@@ -22,15 +22,15 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * `components/calculators/ROICalculator/lib/machines.ts`, guides FR de focus stacking
  * (bague, bracelet, animation 360°) et infobulles d'Orbitvu Station visibles sur leurs captures.
  *
- * Visuels affichés (reprise visuelle du 08/10/2026 : plusieurs métaux, plusieurs familles de pièces) :
+ * Visuels affichés. Hero éditorial (08/10/2026), puis matière et lumière, puis studio et preuves réelles :
+ * - deux illustrations éditoriales générées par IA (V104-HERO et V104-1, ci-dessous), signalées comme telles
+ *   en légende selon la convention du cluster AI Act (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5) ;
  * - images réelles déjà publiées sur le site : /images/guides/* (guides PackshotCreator, Alphashot
  *   Micro Pro v2 et Orbitvu Station d'après les guides eux-mêmes) ; /images/secteurs/bijoux/superfocus-*
- *   et bague-metal-blanc-pierre-rouge.avif (recadrages, sans retouche, d'images de ces guides) ;
- *   /images/machines/alphashot-micro-v2.avif (visuel produit déjà utilisé sur la fiche, ici dans le hero) ;
+ *   (recadrages, sans retouche, de captures de ces guides) ; /images/machines/alphashot-micro-v2.avif
+ *   (visuel produit déjà utilisé sur la fiche, ici dans la section studio) ;
  *   /images/blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif (trois pièces, article
- *   de Sébastien du 25/09/2026 ; origine du fichier non documentée, voir COLLECTION_TROIS_PIECES) ;
- * - une illustration éditoriale générée par IA (V104-1, ci-dessous), signalée comme telle en légende
- *   selon la convention du cluster AI Act (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5).
+ *   de Sébastien du 25/09/2026 ; origine du fichier non documentée, voir COLLECTION_TROIS_PIECES).
  */
 
 type Sector = (typeof DEFAULT_SECTORS)[number];
@@ -48,6 +48,22 @@ interface HubBijouxProps {
  * une preuve produit ; la légende commence alors par « Illustration générée par IA ».
  */
 type Visuel = { src: string; alt: string; width: number; height: number; legende: string; illustration: boolean };
+
+/*
+ * Hero (EDITORIAL_ILLUSTRATION, jamais PRODUCT_PROOF). Provenance : ChatGPT native image generation, image
+ * fournie par Laurent le 08/10/2026 (WebP 1536 × 1024, sRGB), encodée en AVIF 1536 × 1024 (qualité 62) sans
+ * recadrage ni retouche. Ce n'est ni une photo d'un studio Orbitvu, ni une capture d'Orbitvu Station : le logo
+ * et le nom visibles sur le socle, l'interface et la bague à l'écran sont générés. Le vrai Alphashot Micro Pro v2
+ * et les vraies captures restent plus bas (sections lumière, studio, retouche).
+ */
+const V104_HERO: Visuel = {
+  src: '/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif',
+  alt: 'Illustration d’un studio de photographie de joaillerie avec un bijou placé dans le système et son image agrandie sur un écran.',
+  width: 1536,
+  height: 1024,
+  legende: 'représentation éditoriale d’un workflow de photographie de joaillerie.',
+  illustration: true,
+};
 
 /*
  * Illustration éditoriale (EDITORIAL_ILLUSTRATION, jamais PRODUCT_PROOF). Provenance : ChatGPT native image
@@ -133,15 +149,25 @@ function FigureVisuel({
   sizes,
   className = '',
   imageClassName = 'w-full h-auto rounded-md',
+  priority = false,
 }: {
   visuel: Visuel;
   sizes: string;
   className?: string;
   imageClassName?: string;
+  priority?: boolean;
 }) {
   return (
     <figure className={className}>
-      <Image src={visuel.src} alt={visuel.alt} width={visuel.width} height={visuel.height} sizes={sizes} className={imageClassName} />
+      <Image
+        src={visuel.src}
+        alt={visuel.alt}
+        width={visuel.width}
+        height={visuel.height}
+        sizes={sizes}
+        priority={priority}
+        className={imageClassName}
+      />
       <figcaption className="mt-2 text-sm text-neutral-medium">
         {visuel.illustration ? `Illustration générée par IA, ${visuel.legende}` : visuel.legende}
       </figcaption>
@@ -156,8 +182,8 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
 
   return (
     <>
-      {/* ── A. Hero. Mobile : surtitre et H1, puis la pièce et le studio, puis le texte et l'appel.
-          Desktop : texte à gauche, pièce et studio à droite sur toute la hauteur. ── */}
+      {/* ── A. Hero. Mobile : surtitre et H1, puis le visuel, puis le texte et l'appel.
+          Desktop : texte à gauche, visuel à droite sur toute la hauteur. ── */}
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-16 lg:pt-20 lg:pb-24 grid lg:grid-cols-12 lg:grid-rows-[1fr_auto_auto_1fr] gap-x-16">
           <div className="lg:col-span-6 lg:col-start-1 lg:row-start-2">
@@ -168,41 +194,14 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               {typo(secteur.hero.titre)}
             </h1>
           </div>
-          {/* Diptyque d'images réelles, sans montage, en deux tuiles 4:5 de même taille : la pièce et le studio.
-              Pièce : bague en métal blanc du guide « Quels réglages faire pour photographier des bijoux ? »
-              (/images/guides/67d9918405afdf485e76dec4.avif ; les captures Orbitvu Station du même guide montrent
-              cette bague avec le panneau « ALPHASHOT MICRO V2 »), recadrée 4:5 sur le fond seulement.
-              Studio : visuel produit de la fiche, recadré 4:5 par object-cover sur les côtés seulement
-              (machine entre 13 et 85 % de la largeur source). Son fond uniforme (236/237/237) est ramené à
-              l'affichage au gris du fond de la bague (223/219/221) par mix-blend-multiply sur #f1ecee ;
-              le fichier n'est pas modifié. */}
-          <figure className="mt-6 lg:mt-0 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-4 lg:self-center">
-            <div className="grid grid-cols-2 gap-3 lg:gap-4">
-              <Image
-                src="/images/secteurs/bijoux/bague-metal-blanc-pierre-rouge.avif"
-                alt="Bague en métal blanc sertie d’une pierre rouge facettée, tenue par des griffes, sur fond gris clair"
-                width={1120}
-                height={1400}
-                priority
-                sizes="(min-width: 1280px) 284px, (min-width: 1024px) 22vw, 46vw"
-                className="w-full h-auto rounded-md"
-              />
-              <div className="isolate overflow-hidden rounded-md bg-[#f1ecee]">
-                <Image
-                  src="/images/machines/alphashot-micro-v2.avif"
-                  alt="Studio photo Orbitvu Alphashot Micro Pro v2"
-                  width={1000}
-                  height={1000}
-                  priority
-                  sizes="(min-width: 1280px) 284px, (min-width: 1024px) 22vw, 46vw"
-                  className="w-full h-auto aspect-[4/5] object-cover mix-blend-multiply"
-                />
-              </div>
-            </div>
-            <figcaption className="mt-2 text-sm text-neutral-medium">
-              À gauche, une prise de vue réalisée dans un Alphashot Micro Pro v2 pour notre guide des réglages. À droite, le studio.
-            </figcaption>
-          </figure>
+          {/* Hero éditorial (V104-HERO, illustration générée par IA, légende toujours visible). Les preuves réelles
+              (studio, captures, détourage) suivent dans les sections B, D et F. */}
+          <FigureVisuel
+            visuel={V104_HERO}
+            priority
+            sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            className="mt-6 lg:mt-0 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-4 lg:self-center"
+          />
           <div className="mt-6 lg:mt-8 lg:col-span-6 lg:col-start-1 lg:row-start-3">
             {paragraphes(secteur.hero.description).map((p) => (
               <p key={p} className="text-lg text-neutral-medium leading-relaxed mb-4 max-w-xl">
@@ -317,19 +316,33 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
       {/* ── D. Le studio ── */}
       <section aria-labelledby="studio" className="bg-bg-warm-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Le visuel de la machine est dans le hero ; ici, la mise en place réelle de la bague ajourée du guide
-              de focus stacking (étape 1 du guide : nettoyer la pièce, la poser au centre du plateau). */}
-          <figure className="lg:col-span-6">
-            <Image
-              src="/images/guides/67d991805e0a0980101b8a98.avif"
-              alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
-              width={1200}
-              height={1200}
-              sizes="(min-width: 1024px) 520px, 92vw"
-              className="w-full max-w-[520px] h-auto mx-auto rounded-md"
-            />
-            <figcaption className="mt-2 text-sm text-neutral-medium max-w-[520px] mx-auto">Mise en place au centre du plateau, après nettoyage.</figcaption>
-          </figure>
+          {/* Le vrai studio (visuel produit de la fiche, revenu ici depuis que le hero est éditorial) et la mise en
+              place réelle de la bague ajourée du guide de focus stacking (étape 1 du guide : nettoyer la pièce, la
+              poser au centre du plateau). */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-3 sm:gap-4 items-start">
+            <figure>
+              <Image
+                src="/images/machines/alphashot-micro-v2.avif"
+                alt="Studio photo Orbitvu Alphashot Micro Pro v2"
+                width={1000}
+                height={1000}
+                sizes="(min-width: 1280px) 284px, (min-width: 1024px) 22vw, 46vw"
+                className="w-full h-auto rounded-md"
+              />
+              <figcaption className="mt-2 text-sm text-neutral-medium">L’Alphashot Micro Pro v2.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/images/guides/67d991805e0a0980101b8a98.avif"
+                alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
+                width={1200}
+                height={1200}
+                sizes="(min-width: 1280px) 284px, (min-width: 1024px) 22vw, 46vw"
+                className="w-full h-auto rounded-md"
+              />
+              <figcaption className="mt-2 text-sm text-neutral-medium">Mise en place au centre du plateau, après nettoyage.</figcaption>
+            </figure>
+          </div>
           <div className="lg:col-span-6">
             <h2 id="studio" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
               {secteur.solutions.titre}
