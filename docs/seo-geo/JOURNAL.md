@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Studios Wave 2 — landing FR intégrée, corrections d'intégrité EN et de-ch · Claude de Laurent
 
-**Chantier** : Studios Wave 2 (mission d'exécution de Laurent du 08/10 ; `GO_CODE_FR`, `GO_EN_DE_INTEGRITY` limité aux claims du registre L2 § 5, `GO_BRANCH`, `GO_PR_DRAFT`) | **PR** : brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : `main` `06b18e2`
+**Chantier** : Studios Wave 2 (mission d'exécution de Laurent du 08/10 ; `GO_CODE_FR`, `GO_EN_DE_INTEGRITY` limité aux claims du registre L2 § 5, `GO_BRANCH`, `GO_PR_DRAFT`) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` ; Preview `https://sysnext-git-claude-friendly-ritch-69eb32-sebs-projects-ca1e93a7.vercel.app` (protégée par authentification Vercel) | **Base** : `main` `06b18e2`
 
 **Quoi** — `/fr/studios-photo-automatises` rendue par un nouveau composant `LandingStudios.tsx` (texte de la proposition L3 revue par ChatGPT, sans ses notes ; schémas S1 et S2 en HTML ; médias réels seulement). EN et de-ch gardent l'ancien gabarit, avec retrait des claims du registre L2 § 5 (page, `<head>`, JSON-LD, messages livrés au navigateur).
 
