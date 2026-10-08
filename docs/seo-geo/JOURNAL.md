@@ -40,17 +40,17 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Quoi** — Deux commits :
 1. ALT : 119 ALT en français servis sur 46 articles et guides EN traduits en anglais ; 7 ALT en français de l'article de-ch `leitfaden-packshot-fotografie-warum-packshots-machen` traduits en allemand ; 21 `alt="__wf_reserved_decorative"` (15 fichiers) remplacés par `alt=""` ; `title` de l'iframe Vimeo EN repris de la version FR (F10). Coquille « massacra » (B4-0322) rendue par « mascara » dans l'ALT EN.
-2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch ; secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches affichés sous leur clé brute en FR et en EN : libellés repris de `FilterBar.tsx`, de-ch inchangé.
+2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch. Libellés des secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches (clés brutes en FR et en EN) : retirés de cette PR après l'ouverture de #110 (sprint parallèle, même fichier `app/[lang]/studio-photo/[slug]/page.tsx`), COLLISION_OTHER_SPRINT.
 
 **Pourquoi** — B4 (716 occurrences) et LANG (A01–A38) comptent les mêmes ALT en mauvaise langue (ponts PONT-01, PONT-02 de la réconciliation du 07/10) : une seule correction par occurrence. Registre B4 original absent (`B4_RAW_REGISTER = MISSING`) : seuls les cas prouvés par observation du fichier sont corrigés.
 
-**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx` ; `docs/seo-geo/JOURNAL.md`.
+**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx` ; `docs/seo-geo/JOURNAL.md`.
 
-**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios) ; FR des fiches lisible sur 7 fiches. Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
+**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios). Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
 
 **Vérifié**
 - `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
-- HTML prérendu contre `main` : 94 pages modifiées au total avec PR-A, toutes attendues ; fiches de-ch identiques ; accueil, F5, Mode, cluster AI Act identiques. Fiche `alphastudio-compact-v2` FR et EN : « industrial » → « Industrie & pièces techniques » / « Industry & technical parts » (gabarit commun ; entrée de `machines.ts` réservée à F5 non modifiée).
+- HTML prérendu contre `main` (PR-A + PR-B, après retrait du fichier des fiches) : seules les pages des JSON touchés, le sélecteur et Studios changent ; fiches identiques à `main` ; accueil, F5, Mode, cluster AI Act identiques.
 - ALT en français restants sur pages EN : uniquement les 3 pages EN servies en français (décision B1/D9) et les 2 fichiers EN de #109.
 - e2e : voir l'entrée PR-A (même build) ; `machine-selector` vert (le spec lit le texte visible, inchangé).
 
