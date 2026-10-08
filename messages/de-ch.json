@@ -581,77 +581,19 @@
   "studiosHardware": {
     "meta": {
       "title": "Automatisiertes Fotostudio für E-Commerce — PackshotCreator",
-      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots. 20 Orbitvu-Systeme, 500+ Fotos/Tag, durchschnittlicher ROI in 9 Monaten. 5000+ ausgerüstete Unternehmen. Kostenlose Demo.",
+      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots.",
       "keywords": "automatisiertes Fotostudio, Orbitvu Schweiz, Produktfotosystem, automatische Produktfotografie, ROI Fotostudio, automatisierter Packshot"
     },
     "hero": {
       "badge": "Offizieller Orbitvu-Distributor — Frankreich & Schweiz",
       "title": "Automatisiertes Fotostudio: Produzieren Sie Ihre Packshots intern.",
-      "subtitle": "Die Orbitvu-Systeme automatisieren Aufnahme, Freistellen und Retusche. Ihre Teams produzieren 500+ Fotos/Tag, ohne externen Fotografen. Durchschnittlicher ROI: 9 Monate.",
+      "subtitle": "Die Orbitvu-Systeme automatisieren Aufnahme, Freistellen und Retusche.",
       "ctaPrimary": "Systeme ansehen",
       "ctaSecondary": "Demo anfordern"
     },
-    "socialProof": {
-      "label": "5000+ ausgerüstete Unternehmen in der Schweiz und weltweit"
-    },
-    "threePillars": {
-      "heading": "Der Ansatz von PackshotCreator",
-      "subtitle": "Präzisions-Fotostudio + spezialisierte KI + zertifizierte Schulung. Alles, was Sie brauchen, um Ihre visuelle Produktion zu internalisieren.",
-      "capture": {
-        "title": "Aufnahme",
-        "description": "Orbitvu-Fotosysteme: Packshot, 360°, Video. Automatische Beleuchtung, weisser Hintergrund mit einem Klick, garantierte Konsistenz über Tausende von Produktbildern.",
-        "badge": "Studio"
-      },
-      "creation": {
-        "title": "Kreation",
-        "description": "BlendAI.studio verwandelt Ihre Packshots in Lifestyle-Bilder, unendlich variierbar. Die KI geht von einer professionellen Studioaufnahme aus — keine Halluzinationen, 100% Treue.",
-        "badge": "KI"
-      },
-      "formation": {
-        "title": "Schulung",
-        "description": "Qualiopi-zertifizierte Bildungseinrichtung. Zwei Schulungen: Essential Training (online) und Master Training (vor Ort). Förderung über OPCO möglich (Frankreich).",
-        "badge": "Qualiopi"
-      }
-    },
-    "photoTypes": {
-      "heading": "Welche Art von Produktbild produzieren Sie?",
-      "subtitle": "Packshot, 360°, 3D oder Flat-Lay — unsere Systeme sind auf jeden Bedarf abgestimmt.",
-      "still": {
-        "title": "Packshot weisser Hintergrund",
-        "description": "Produktfotos auf weissem Hintergrund, bereit für den E-Commerce. Automatisches Freistellen, optimierte Beleuchtung, identisches Ergebnis vom ersten bis zum tausendsten Produktbild.",
-        "stat1": "500+ Fotos/Tag",
-        "stat2": "Weisser Hintergrund mit einem Klick",
-        "stat3": "E-Commerce, Luxus, Industrie",
-        "cta": "Packshot-Systeme"
-      },
-      "threeSixty": {
-        "title": "360°-Foto & -Video",
-        "description": "Interaktive 360°-Ansichten für eine immersive Darstellung. Der Kunde dreht das Produkt, als hätte er es in der Hand. Reduziert Retouren um 25%.",
-        "stat1": "150+ Produkte/Tag",
-        "stat2": "360°-Spin in 90 Sekunden",
-        "stat3": "E-Commerce, Elektronik",
-        "cta": "360°-Systeme"
-      },
-      "fashion": {
-        "title": "Mode & Model",
-        "description": "Grossformate für getragene Kleidung, Ghost-Mannequin und Flat-Lay. Professionelle Mode-Beleuchtung, integriertes E-Commerce-Video.",
-        "stat1": "150+ Outfits/Tag",
-        "stat2": "Video + Foto kombiniert",
-        "stat3": "Mode, Luxus, Sport",
-        "cta": "Mode-Systeme"
-      },
-      "flatlay": {
-        "title": "Flat-Lay & Draufsicht",
-        "description": "Aufnahme aus der Vogelperspektive für flach liegende Textilien, Accessoires und kreative Kompositionen. Automatischer Bildausschnitt, ideal für Social Media und Kataloge.",
-        "stat1": "150 Fotos/Stunde",
-        "stat2": "Automatischer Bildausschnitt",
-        "stat3": "Mode, Schmuck, Textil",
-        "cta": "Flat-Lay-Systeme"
-      }
-    },
     "products": {
       "heading": "Finden Sie das passende System für Ihre Produktion",
-      "subtitle": "<bold>20 Orbitvu-Systeme</bold> — vom Packshot-Fotostudio bis zum E-Commerce-Fotostudio, vom Schmuckstück bis zum Möbel. Filtern Sie nach <bold>Produktgrösse</bold>, Inhaltstyp oder Produktionsvolumen, um Ihre Lösung mit wenigen Klicks zu identifizieren.",
+      "subtitle": "<bold>Orbitvu-Systeme</bold> — vom Packshot-Fotostudio bis zum E-Commerce-Fotostudio, vom Schmuckstück bis zum Möbel. Filtern Sie nach <bold>Produktgrösse</bold>, Inhaltstyp oder Produktionsvolumen, um Ihre Lösung mit wenigen Klicks zu identifizieren.",
       "ctaText": "Mehr erfahren",
       "viewAll": "Alle Systeme ansehen"
     },
@@ -660,158 +602,73 @@
       "heading": "Eine Begleitung von A bis Z",
       "subtitle": "Der Kauf des Systems ist erst der Anfang. Wir begleiten Sie bei jedem Schritt.",
       "step1title": "Persönliche Beratung",
-      "step1description": "Unsere Experten analysieren Ihre <bold>Bedürfnisse, Volumen und Anforderungen</bold>. <bold>Kostenlose</bold> Demonstration vor Ort oder per Video mit Ihren eigenen Produkten.",
-      "step2title": "Installation & zertifizierte Schulung",
-      "step2description": "Lieferung und Installation inbegriffen, <bold>Qualiopi-Schulung</bold> optional. Ihre Teams sind <bold>ab dem ersten Tag</bold> einsatzbereit.",
+      "step1description": "Unsere Experten analysieren Ihre <bold>Bedürfnisse, Volumen und Anforderungen</bold>. Demonstration vor Ort oder per Video mit Ihren eigenen Produkten.",
+      "step2title": "Installation & Schulung",
+      "step2description": "Lieferung und Installation werden separat in Rechnung gestellt, Schulung optional.",
       "step3title": "Laufende Begleitung",
-      "step3description": "<bold>Dedizierte Hotline</bold>. Wir bleiben an Ihrer Seite, um <bold>Ihre Ergebnisse zu maximieren</bold>."
+      "step3description": "Wir bleiben an Ihrer Seite, um <bold>Ihre Ergebnisse zu maximieren</bold>."
     },
     "roiTeaser": {
       "heading": "Was kostet Ihre aktuelle Fotoproduktion wirklich?",
-      "subtitle": "Externer Dienstleister, gebundene Zeit, Hin und Her... Berechnen Sie Ihren <bold>ROI in 2 Minuten</bold> und erfahren Sie, in wie vielen Monaten sich ein <bold>Orbitvu-System</bold> amortisiert.",
-      "cta": "Meinen ROI berechnen",
-      "stat": "Durchschnittlich festgestellter ROI: 9 Monate"
+      "subtitle": "Externer Dienstleister, gebundene Zeit, Hin und Her... Berechnen Sie Ihren <bold>ROI mit wenigen Fragen</bold> und erfahren Sie, in wie vielen Monaten sich ein <bold>Orbitvu-System</bold> amortisiert.",
+      "cta": "Meinen ROI berechnen"
     },
     "faqStudios": {
       "heading": "Häufige Fragen",
       "description": "Alles, was Sie wissen müssen, bevor Sie in ein <bold>automatisiertes Studio</bold> investieren.",
       "q1": {
         "question": "Welches Budget ist für ein automatisiertes Fotostudio einzuplanen?",
-        "answer": "Unsere Orbitvu-Systeme reichen von 12 000 € (exkl. MwSt., für kleine Objekte) bis 150 000 € (exkl. MwSt., E-Comm Studio+ für Grossformate). Das Budget hängt von der Grösse Ihrer Produkte und vom Produktionsvolumen ab. Der durchschnittliche ROI beträgt 9 Monate. Kontaktieren Sie uns für eine auf Ihren Fall zugeschnittene Offerte."
+        "answer": "Das Budget hängt von der Grösse Ihrer Produkte und vom Produktionsvolumen ab. Kontaktieren Sie uns für eine auf Ihren Fall zugeschnittene Offerte."
       },
       "q2": {
         "question": "Wie wähle ich das richtige System für meine Produkte?",
-        "answer": "Das hängt von der Grösse Ihrer Produkte und der gewünschten Art von Produktbild ab (Packshot, 360°, 3D, Video, Flat-Lay). Unser Selektor oben führt Sie mit wenigen Klicks ans Ziel. Für eine massgeschneiderte Empfehlung führen unsere Experten eine kostenlose Demonstration mit Ihren eigenen Produkten durch."
+        "answer": "Das hängt von der Grösse Ihrer Produkte und der gewünschten Art von Produktbild ab (Packshot, 360°, 3D, Video, Flat-Lay). Unser Selektor oben führt Sie mit wenigen Klicks ans Ziel. Für eine massgeschneiderte Empfehlung führen unsere Experten eine Demonstration mit Ihren eigenen Produkten durch."
       },
       "q3": {
         "question": "Kann man mit allen Systemen 360°-Fotografie machen?",
         "answer": "Die meisten unserer Systeme verfügen über einen motorisierten Drehteller für 360°-Ansichten. Der Alphashot Pro G2 ist der Spezialist für kleine Objekte, aber auch die Baureihen Alphashot Pro XL und Alphastudios bieten diese Funktion."
       },
       "q4": {
-        "question": "Ist die Kamera inbegriffen?",
-        "answer": "Die Orbitvu-Systeme sind mit den marktüblichen Spiegelreflex- und Hybridkameras von Canon kompatibel. Die Kamera ist nicht inbegriffen, aber wir beraten Sie zum für Ihren Einsatz am besten geeigneten Modell."
+        "question": "Welche Kamera kann ich verwenden?",
+        "answer": "Die Orbitvu-Systeme arbeiten mit den Canon-Kameras, die im offiziellen Kompatibilitätsleitfaden von Orbitvu aufgeführt sind. Wir beraten Sie zum für Ihren Einsatz am besten geeigneten Modell."
       },
       "q5": {
         "question": "Kann man ein System vor dem Kauf testen?",
-        "answer": "Ja. Wir organisieren kostenlose Demonstrationen — vor Ort in unserem Showroom in Lyon, per Video oder bei Ihnen mit Ihren eigenen Produkten. Das ist die beste Möglichkeit, das konkrete Ergebnis vor der Investition zu beurteilen."
+        "answer": "Ja. Wir organisieren Demonstrationen — in unserem Showroom nach Vereinbarung, per Video oder bei Ihnen mit Ihren eigenen Produkten. Das ist die beste Möglichkeit, das konkrete Ergebnis vor der Investition zu beurteilen."
       },
       "q6": {
-        "question": "Wie lange dauert die Lieferung?",
-        "answer": "Rechnen Sie mit 2 Wochen zwischen Bestellung und Produktionsstart (bis zu 4 Wochen bei grossen Systemen). Diese Frist umfasst die Lieferung und die Installation Ihres Systems. Wir übernehmen die gesamte Inbetriebnahme."
+        "question": "Sind Lieferung und Installation inbegriffen?",
+        "answer": "Nein. Lieferung und Installation werden separat in Rechnung gestellt. Wir übernehmen die gesamte Inbetriebnahme."
       }
     },
     "finalCta": {
       "heading": "Bereit, unsere Systeme in Aktion zu sehen?",
       "demo": {
         "heading": "Persönliche Demo — 30 Min.",
-        "description": "Unsere Experten zeigen Ihnen das für Ihre Produkte passende System. Vor Ort, per Video oder in unserem Showroom in Lyon.",
+        "description": "Unsere Experten zeigen Ihnen das für Ihre Produkte passende System. Vor Ort, per Video oder in unserem Showroom nach Vereinbarung.",
         "cta": "Meine Demo reservieren"
-      },
-      "guide": {
-        "heading": "Kaufratgeber 2026",
-        "description": "Vergleich der 20 Orbitvu-Systeme, Auswahlraster nach Branche und ROI-Rechner inbegriffen.",
-        "cta": "Ratgeber herunterladen"
       }
     },
     "crossLinks": {
       "heading": "Entdecken Sie unsere Lösungen",
       "ia": {
-        "title": "KI-Produktfotografie — BlendAI.studio",
-        "description": "Verwandeln Sie Ihre Packshots dank unserer eigenen KI-Plattform in Lifestyle-Bilder."
+        "title": "KI-Produktfotografie",
+        "description": "Verwandeln Sie Ihre Packshots mit KI in Lifestyle-Bilder."
       },
       "industrie": {
         "title": "Lösungen nach Branche",
         "description": "E-Commerce, Luxus, Mode, Industrie... Entdecken Sie unsere auf Ihren Bereich abgestimmten Lösungen."
       },
       "academy": {
-        "title": "Academy — zertifizierte Schulungen",
-        "description": "Schulungen einer Qualiopi-zertifizierten Bildungseinrichtung für Ihr Orbitvu-Studio (auf Französisch)."
+        "title": "Academy — Schulungen",
+        "description": "Schulungen für Ihr Orbitvu-Studio (auf Französisch)."
       }
     },
     "orientation": {
       "label": "UNSERE SYSTEME",
-      "heading": "20 Orbitvu-Systeme, vom Schmuckstück bis zum Möbel",
+      "heading": "Orbitvu-Systeme, vom Schmuckstück bis zum Möbel",
       "description": "Identifizieren Sie das <bold>passende System</bold> für Ihre Produkte, Ihr Volumen und Ihre Ziele. Vergleichen Sie die Eigenschaften, filtern Sie nach Einsatz und finden Sie Ihre Lösung mit <bold>wenigen Klicks</bold>.",
       "cta": "Katalog erkunden"
-    },
-    "trust": {
-      "heading": "Sie vertrauen uns",
-      "subtitle": "Renommierte Marken produzieren ihre Produktbilder mit unseren Orbitvu-Systemen",
-      "stat1value": "5000+",
-      "stat1label": "Ausgerüstete Kunden",
-      "stat2value": "25 Jahre",
-      "stat2label": "Foto-Expertise",
-      "stat3value": "50+",
-      "stat3label": "Von Orbitvu abgedeckte Länder"
-    },
-    "roiCalculator": {
-      "heading": "Berechnen Sie Ihren ROI in 2 Minuten",
-      "subtitle": "Erfahren Sie, in wie vielen Monaten sich Ihre Investition amortisiert",
-      "step1": {
-        "title": "Aktuelle Situation",
-        "operators": {
-          "label": "Wie viele Personen arbeiten an der Produktion Ihrer Produktbilder?",
-          "sublabel": "Inklusive Packshot + Lifestyle + Retuschen",
-          "tooltip": "Zählen Sie alle beteiligten Mitarbeitenden, auch teilweise",
-          "unit": "Person(en)"
-        },
-        "timePercentage": {
-          "label": "Wie viel Prozent ihrer Zeit entfällt auf die visuelle Produktion?",
-          "sublabel": "Gewichteter Durchschnitt bei mehreren Bediener:innen",
-          "tooltip": "Effektive Zeit: Shooting + Retuschen + Verwaltung (ohne Pausen, Admin)"
-        },
-        "externalProvider": {
-          "label": "Greifen Sie auf einen externen Dienstleister zurück?",
-          "budgetLabel": "Durchschnittliches monatliches Budget externer Dienstleister",
-          "tooltip": "Durchschnittlich pro Monat fakturierter Betrag"
-        },
-        "dailyCapacity": {
-          "label": "Wie viele fertiggestellte Fotos produzieren Sie pro Tag?",
-          "sublabel": "Pro Bediener:in, Aufnahmen + vollständige Retuschen",
-          "tooltip": "Fotos, die zu 100% bereit für die Veröffentlichung sind",
-          "unit": "Fotos/Tag/Bediener:in"
-        }
-      },
-      "step2": {
-        "title": "Produktionsziele",
-        "annualVolume": {
-          "label": "Wie viele Produktfotos müssen Sie pro Jahr erstellen?",
-          "sublabel": "Gesamtziel: Bestehendes + Neuheiten + Erneuerung",
-          "tooltip": "Zählen Sie ALLE produzierten Produktbilder",
-          "unit": "Fotos/Jahr"
-        },
-        "equipmentBudget": {
-          "label": "Aktuelles jährliches Budget für Fotoausrüstung und Software?",
-          "sublabel": "Material, Beleuchtung, Lizenzen, Raum (optional)",
-          "tooltip": "Abschreibung Material + Lizenzen + Miete dedizierter Raum",
-          "placeholder": "7 500 € (vorgeschlagener Wert)"
-        },
-        "productionSplit": {
-          "label": "Aufteilung Ihrer Produktion",
-          "sublabel": "Packshot weisser Hintergrund vs. Lifestyle/Inszenierungen",
-          "packshot": "Packshots weisser Hintergrund",
-          "lifestyle": "Lifestyle / Inszenierungen"
-        },
-        "productSize": {
-          "label": "Wie gross sind Ihre Produkte hauptsächlich?",
-          "sublabel": "Um das passende System zu empfehlen",
-          "small": "Klein (< 30 cm)",
-          "smallExamples": "Schmuck, Uhren, Kosmetik",
-          "medium": "Mittel (30-60 cm)",
-          "mediumExamples": "Schuhe, Taschen, Elektronik",
-          "large": "Gross (60-150 cm)",
-          "largeExamples": "Kleinmöbel, Sportausrüstung",
-          "veryLarge": "Sehr gross (> 150 cm)",
-          "veryLargeExamples": "Möbel, Velos, grosse Ausrüstungen"
-        }
-      },
-      "calculating": "Ihr ROI wird berechnet...",
-      "navigation": {
-        "back": "Zurück",
-        "next": "Weiter",
-        "calculate": "Meinen ROI berechnen",
-        "restart": "Neu starten"
-      }
     },
     "machineSelection": {
       "heading": "Finden Sie Ihr ideales System",
