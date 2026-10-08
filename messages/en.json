@@ -609,7 +609,7 @@
     "hours": "Hours",
     "hoursValue": "Mon-Fri 9am-6pm",
     "showroomTitle": "Lyon Showroom",
-    "showroomAddress": "22 Rue des Frères Lumière DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+    "showroomAddress": "198 allée de la Tour, 01700 Beynost",
     "faqTitle": "Frequently asked questions",
     "faq1Question": "What is the response time?",
     "faq1Answer": "We respond within 24 business hours.",
@@ -723,7 +723,7 @@
       "step1title": "Personalized consulting",
       "step1description": "Our experts analyze your <bold>needs, volumes and constraints</bold>. <bold>Free</bold> on-site or remote demo with your own products.",
       "step2title": "Installation & Certified training",
-      "step2description": "Delivery and installation included, <bold>Qualiopi training</bold> available as an option. Your teams are operational <bold>from day one</bold>.",
+      "step2description": "Delivery and installation charged extra, <bold>Qualiopi training</bold> billed separately. Your teams are operational <bold>from day one</bold>.",
       "step3title": "Continuous support",
       "step3description": "<bold>Dedicated hotline</bold>. We stay by your side to <bold>maximize your results</bold>."
     },
@@ -758,7 +758,7 @@
       },
       "q6": {
         "question": "What is the delivery time?",
-        "answer": "Allow 2 weeks from order to production start (up to 4 weeks for large systems). This includes delivery and installation of your system. We manage the entire deployment."
+        "answer": "Delivery currently takes about 12 days; this is an indication, not a guarantee. Installation time depends on the system and configuration. Delivery and installation are charged extra; training is billed separately."
       }
     },
     "finalCta": {
@@ -1986,7 +1986,7 @@
       },
       "step3": {
         "title": "Installation & training",
-        "description": "On-site installation and startup support included. <bold>Qualiopi training</bold> available as an option."
+        "description": "On-site installation charged extra, startup support included. <bold>Qualiopi training</bold> billed separately."
       }
     },
     "sectors": {
@@ -2730,7 +2730,7 @@
       "phone": "Phone",
       "email": "E-mail",
       "showroom": "Showroom (by appointment)",
-      "showroomValue": "22 rue des Frères Lumière, DELTAPARK, 69720 Saint-Bonnet-de-Mure, France",
+      "showroomValue": "198 allée de la Tour, 01700 Beynost, France",
       "switzerlandNote": "PackshotCreator is the official Orbitvu distributor for France and Switzerland: delivery, installation and training provided across both territories."
     },
     "article3": {
@@ -2894,7 +2894,7 @@
     },
     "intro": {
       "p1": "How much does an automated photo studio cost? It is a fair question, and we are going to answer it with the transparency you deserve. No hidden fees, no surprises: here are real market price ranges, the factors that influence pricing, and most importantly, the math that turns this expense into a profitable investment.",
-      "p2": "At PackshotCreator, we have been distributing the Orbitvu range for over 20 years. We know every machine, every use case, and we have helped more than 500 companies transition to automated photography. Here is what we have learned."
+      "p2": "At PackshotCreator, we have been distributing the Orbitvu range since 2023. We know every machine, every use case, and we have helped more than 500 companies transition to automated photography. Here is what we have learned."
     },
     "factors": {
       "heading": "What influences the price of an automated photo studio",
@@ -2986,8 +2986,8 @@
       "ctaCalculator": "Calculate my personalized ROI"
     },
     "included": {
-      "heading": "What is included in the price",
-      "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. No surprises, no additional costs to plan for.",
+      "heading": "What the offer covers",
+      "body": "The price of an Orbitvu studio is not just for the machine. It is a complete solution, ready to produce from the day it is delivered. Delivery and installation are charged extra; training is billed separately.",
       "i1": {
         "title": "Complete studio",
         "description": "Enclosure, LED lighting, motorized turntable, camera (depending on configuration)."
@@ -2997,7 +2997,7 @@
         "description": "Capture, automatic background removal (IQ Mask), multi-format export, updates included."
       },
       "i4": {
-        "title": "Installation and calibration",
+        "title": "Installation and calibration (charged extra)",
         "description": "On-site setup by our technicians, color and lighting calibration."
       },
       "i5": {

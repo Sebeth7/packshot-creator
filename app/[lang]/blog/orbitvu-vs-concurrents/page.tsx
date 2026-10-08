@@ -71,7 +71,7 @@ const faqItems = [
   },
   {
     question: 'Le SAV Orbitvu est-il efficace en France ?',
-    answer: "Oui, PackshotCreator assure le support officiel Orbitvu en France avec un showroom Paris 11e, un stock de pièces détachées livrables en 24h et 4 techniciens dédiés. Contrairement aux concurrents dont le SAV passe par la Pologne ou les Pays-Bas, tout est géré localement.",
+    answer: "Oui, PackshotCreator assure le support officiel Orbitvu en France.",
   },
   {
     question: 'Orbitvu est-il compatible avec les logiciels tiers et les PIM ?',
@@ -83,7 +83,7 @@ const faqItems = [
   },
   {
     question: 'Peut-on tester Orbitvu avant de l\'acheter ?',
-    answer: "Oui, PackshotCreator propose des démonstrations gratuites : soit on-site chez vous (déplacement avec machine pour tester vos produits réels, 2–4h), soit au showroom Paris (5–10 produits testés sur place). Demandez votre démo gratuite via le formulaire de contact.",
+    answer: "Oui, PackshotCreator propose des démonstrations gratuites : soit on-site chez vous (déplacement avec machine pour tester vos produits réels), soit au showroom près de Lyon. Demandez votre démo gratuite via le formulaire de contact.",
   },
   {
     question: 'Quelle est la différence principale entre Orbitvu et Photomatics ?',
@@ -402,7 +402,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               L'Histoire PackshotCreator
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>PackshotCreator</strong> (société française, fondée en 2004) a été l'un des <strong>pionniers européens</strong> des studios photo automatisés.
+              <strong>PackshotCreator</strong>, marque lancée en 2004 par la société française Sysnext, a été l'un des <strong>pionniers européens</strong> des studios photo automatisés.
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Gamme historique PackshotCreator</strong> (2004–2018) :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -410,7 +410,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               <li className="text-future-dusk-600">PackshotMacro (équivalent AlphaShot Micro)</li>
               <li className="text-future-dusk-600">PackshotRotator (équivalent AlphaShot 360)</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2018 : Partenariat Officiel Orbitvu</strong></p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2023 : Partenariat Officiel Orbitvu</strong></p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pourquoi PackshotCreator a arrêté sa fabrication ?</strong></p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>R&amp;D coûteuse</strong> : Développer une nouvelle génération machines = investissement 2–3M€</li>
@@ -604,7 +604,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
               3. Support Français Excellence : PackshotCreator
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Distributeur officiel France/Suisse depuis 2018.</strong>
+              <strong>Distributeur officiel France/Suisse depuis 2023.</strong>
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Garanties support</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">

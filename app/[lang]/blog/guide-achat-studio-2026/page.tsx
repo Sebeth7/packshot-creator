@@ -70,11 +70,11 @@ const tocHeadings = [
 const faqItems = [
   {
     question: "Quel délai entre la commande et l'installation d'un studio Orbitvu ?",
-    answer: "Pour les machines en stock France, le délai est de 2 à 3 semaines. Pour un import direct depuis la Pologne, comptez 6 à 10 semaines. En pratique, anticipez 8 à 12 semaines entre la commande et le go-live, en intégrant la livraison, l'installation et la formation initiale.",
+    answer: "Le délai de livraison est actuellement d'environ 12 jours, à titre indicatif et sans garantie. La durée d'installation dépend du système et de la configuration. La livraison et l'installation sont facturées en supplément ; la formation est facturée séparément.",
   },
   {
     question: "Quelle garantie est incluse avec un studio Orbitvu ?",
-    answer: "La garantie constructeur standard est de 2 ans (pièces et main d'œuvre), extensible jusqu'à 5 ans sur devis. Elle couvre les défauts matériels et les interventions technicien on-site, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
+    answer: "La garantie standard est d'un an ; une extension est possible. Elle couvre les défauts matériels, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
   },
   {
     question: "Peut-on louer un studio Orbitvu plutôt que l'acheter ?",
@@ -86,7 +86,7 @@ const faqItems = [
   },
   {
     question: "Quel modèle Orbitvu convient le mieux pour la majorité des e-commerçants ?",
-    answer: "L'AlphaShot G2 est recommandé pour 90% des cas : il couvre les produits jusqu'à 100 cm, offre une polyvalence maximale pour la mode, la chaussure et l'électronique, et affiche un ROI de 4 à 8 mois pour les volumes supérieurs à 1 000 produits par an. Les modules 360° et vidéo sont ajoutables à tout moment.",
+    answer: "L'AlphaShot G2 est recommandé pour 90% des cas : il couvre les produits jusqu'à 100 cm, offre une polyvalence maximale pour la mode, la chaussure et l'électronique, et son retour sur investissement se situe généralement entre 6 et 12 mois selon le volume, sans garantie. Les modules 360° et vidéo sont ajoutables à tout moment.",
   },
   {
     question: "Comment financer l'achat d'un studio photo automatisé ?",
@@ -324,7 +324,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
                   <div>1 000 produits/an : économies substantielles sur la sous-traitance photo</div>
                   <div>Investissement G2 : sur devis</div>
-                  <div>Délai retour : 5-6 mois ✅</div>
+                  <div>Délai retour : généralement 6 à 12 mois selon le volume, sans garantie</div>
                 </div>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Machine recommandée</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -341,7 +341,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
                   <div>5 000 produits/an : économies substantielles sur la sous-traitance photo</div>
                   <div>Investissement G2 ou 360 : sur devis</div>
-                  <div>Délai retour : 1-2 mois ✅✅</div>
+                  <div>Délai retour : généralement 6 à 12 mois selon le volume, sans garantie</div>
                 </div>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Machine recommandée</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -481,7 +481,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce qui n'est PAS inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Installation on-site (sur devis)</li>
+                  <li className="text-future-dusk-600">Livraison et installation on-site (facturées en supplément)</li>
                   <li className="text-future-dusk-600">Formation (Essential ou Master, facturée séparément)</li>
                   <li className="text-future-dusk-600">Maintenance année 2+ (sur devis)</li>
                 </ul>
@@ -505,7 +505,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>Financement</strong> : Leasing 48 mois : sur devis | Amortissement comptable : 5 ans<br />
-                  <strong>ROI</strong> : 4-8 mois si volume &gt; 1 000 produits/an
+                  <strong>ROI</strong> : généralement 6 à 12 mois selon le volume, sans garantie
                 </p>
 
                 <hr className="my-6 border-neutral-200" />
@@ -526,7 +526,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>Financement</strong> : Leasing 60 mois : sur devis | Crédit professionnel : Taux 2-3%<br />
-                  <strong>ROI</strong> : 2-4 mois si volume &gt; 5 000 produits/an
+                  <strong>ROI</strong> : généralement 6 à 12 mois selon le volume, 12 à 18 mois pour les plus grands Alphastudio, sans garantie
                 </p>
 
                 <Callout type="warning" title="Attention au sous-dimensionnement">
@@ -685,8 +685,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Premium</strong> (sur devis) : + interventions on-site illimitées</li>
                 </ul>
 
-                <Callout type="success" title="Garantie constructeur">
-                  Toutes les machines Orbitvu bénéficient d'une <strong>garantie constructeur 2 ans</strong> (pièces et main d'œuvre). Extension possible jusqu'à 5 ans.
+                <Callout type="success" title="Garantie">
+                  Toutes les machines Orbitvu bénéficient d'une <strong>garantie standard d'un an</strong>. Une extension est possible.
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -845,7 +845,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2 options</strong> :</p>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>Démo on-site chez vous</strong> : Nous venons avec la machine, test vos produits réels</li>
-                  <li className="text-future-dusk-600"><strong>Démo showroom Paris</strong> : Visite showroom + test 5-10 produits</li>
+                  <li className="text-future-dusk-600"><strong>Démo au showroom près de Lyon</strong> : Visite showroom + test 5-10 produits</li>
                 </ol>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Durée</strong> : 2-4h | <strong>Apportez</strong> : 5-10 produits représentatifs (faciles + complexes)</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous validez</strong> :</p>
@@ -886,7 +886,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Paiement comptant</strong> : Remise négociable -3-5%</li>
                   <li className="text-future-dusk-600"><strong>Financement formation OPCO</strong> : possible selon votre situation (organisme certifié Qualiopi)</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai livraison</strong> : 4-8 semaines (stock FR ou import Pologne)</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai de livraison</strong> : environ 12 jours actuellement, à titre indicatif et sans garantie</p>
 
                 <hr className="my-6 border-neutral-200" />
 
@@ -1059,7 +1059,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Polyvalence 80% produits e-commerce</li>
                   <li className="text-future-dusk-600">Rapport qualité/prix imbattable</li>
                   <li className="text-future-dusk-600">Évolutivité maximale (modules 360°, vidéo)</li>
-                  <li className="text-future-dusk-600">ROI 4-8 mois si volume &gt; 1 000 produits/an</li>
+                  <li className="text-future-dusk-600">ROI généralement de 6 à 12 mois selon le volume, sans garantie</li>
                 </ul>
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Vos Prochaines Étapes</h3>

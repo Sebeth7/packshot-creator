@@ -612,7 +612,7 @@
     "hours": "Horaires",
     "hoursValue": "Lun-Ven 9h-18h",
     "showroomTitle": "Showroom Lyon",
-    "showroomAddress": "22 Rue des Frères Lumière DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+    "showroomAddress": "198 allée de la Tour, 01700 Beynost",
     "faqTitle": "Questions fréquentes",
     "faq1Question": "Quel délai de réponse ?",
     "faq1Answer": "Nous vous répondons sous 24h ouvrées.",
@@ -726,7 +726,7 @@
       "step1title": "Conseil personnalisé",
       "step1description": "Nos experts analysent vos <bold>besoins, volumes et contraintes</bold>. Démonstration <bold>gratuite</bold> sur site ou en visio avec vos propres produits.",
       "step2title": "Installation & Formation certifiée",
-      "step2description": "Livraison et installation incluses, <bold>formation Qualiopi</bold> en option. Vos équipes sont opérationnelles <bold>dès le premier jour</bold>.",
+      "step2description": "Livraison et installation facturées en supplément, <bold>formation Qualiopi</bold> facturée séparément. Vos équipes sont opérationnelles <bold>dès le premier jour</bold>.",
       "step3title": "Accompagnement continu",
       "step3description": "<bold>Hotline dédiée</bold>. Nous restons à vos côtés pour <bold>maximiser vos résultats</bold>."
     },
@@ -761,7 +761,7 @@
       },
       "q6": {
         "question": "Quel est le délai de livraison ?",
-        "answer": "Comptez 2 entre la commande et la mise en production (jusqu’à 4 semaines pour des gros systèmes). Ce délai inclut la livraison et l'installation de votre système. Nous gérons l'intégralité du déploiement."
+        "answer": "Le délai de livraison est actuellement d'environ 12 jours, à titre indicatif et sans garantie. La durée d'installation dépend du système et de la configuration. La livraison et l'installation sont facturées en supplément ; la formation est facturée séparément."
       }
     },
     "finalCta": {
@@ -1989,7 +1989,7 @@
       },
       "step3": {
         "title": "Installation & formation",
-        "description": "Installation sur site et accompagnement au démarrage inclus. <bold>Formation Qualiopi</bold> en option."
+        "description": "Installation sur site facturée en supplément, accompagnement au démarrage inclus. <bold>Formation Qualiopi</bold> facturée séparément."
       }
     },
     "sectors": {
@@ -2733,7 +2733,7 @@
       "phone": "Téléphone",
       "email": "E-mail",
       "showroom": "Showroom (sur rendez-vous)",
-      "showroomValue": "22 rue des Frères Lumière, DELTAPARK, 69720 Saint-Bonnet-de-Mure",
+      "showroomValue": "198 allée de la Tour, 01700 Beynost",
       "switzerlandNote": "PackshotCreator est distributeur officiel Orbitvu pour la France et la Suisse : livraison, installation et formation assurées sur l'ensemble des deux territoires."
     },
     "article3": {
@@ -2897,7 +2897,7 @@
     },
     "intro": {
       "p1": "Combien coûte un studio photo automatisé ? La question est légitime, et nous allons y répondre avec la transparence que vous méritez. Pas de tarif caché, pas de surprise : voici les ordres de grandeur réels du marché, les facteurs qui influencent le prix, et surtout le calcul qui transforme cette dépense en investissement rentable.",
-      "p2": "Chez PackshotCreator, nous distribuons la gamme Orbitvu depuis plus de 20 ans. Nous connaissons chaque machine, chaque cas d'usage, et nous avons accompagné plus de 500 entreprises dans leur passage à la photo automatisée. Voici ce que nous avons appris."
+      "p2": "Chez PackshotCreator, nous distribuons la gamme Orbitvu depuis 2023. Nous connaissons chaque machine, chaque cas d'usage, et nous avons accompagné plus de 500 entreprises dans leur passage à la photo automatisée. Voici ce que nous avons appris."
     },
     "factors": {
       "heading": "Ce qui influence le prix d'un studio photo automatisé",
@@ -2989,8 +2989,8 @@
       "ctaCalculator": "Calculer mon ROI personnalisé"
     },
     "included": {
-      "heading": "Ce qui est inclus dans le prix",
-      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. Pas de surprise, pas de coût supplémentaire à prévoir.",
+      "heading": "Ce que comprend l'offre",
+      "body": "Le prix d'un studio Orbitvu n'est pas celui de la machine seule. C'est une solution complète, prête à produire dès la livraison. La livraison et l'installation sont facturées en supplément ; la formation est facturée séparément.",
       "i1": {
         "title": "Studio complet",
         "description": "Caisson, éclairage LED, plateau tournant motorisé, caméra (selon configuration)."
@@ -3000,7 +3000,7 @@
         "description": "Capture, détourage automatique (IQ Mask), export multi-formats, mises à jour incluses."
       },
       "i4": {
-        "title": "Installation et calibration",
+        "title": "Installation et calibration (facturées en supplément)",
         "description": "Mise en service sur site par nos techniciens, calibration couleur et éclairage."
       },
       "i5": {

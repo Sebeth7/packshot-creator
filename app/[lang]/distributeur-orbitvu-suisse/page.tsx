@@ -33,7 +33,7 @@ const FAQ = [
   {
     question: 'Qui est le distributeur officiel des studios photo Orbitvu en Suisse ?',
     answer:
-      'PackshotCreator, marque de la société française Sysnext, est le distributeur officiel des studios photo automatisés Orbitvu pour la Suisse et la France. L\'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025 : les entreprises suisses s\'adressent aujourd\'hui directement à PackshotCreator pour le conseil, la démonstration, la livraison, l\'installation, la formation et le SAV, en français comme en allemand. Contact Suisse : +41 44 580 43 84.',
+      'PackshotCreator, marque de la société française Sysnext, est le distributeur officiel des studios photo automatisés Orbitvu pour la Suisse et la France. L\'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025 : les entreprises suisses s\'adressent aujourd\'hui directement à PackshotCreator pour le conseil, la démonstration, la livraison, l\'installation, la formation et le SAV, en français, avec un accompagnement commercial possible en allemand. Contact Suisse : +41 44 580 43 84.',
   },
   {
     question: 'Où acheter un studio Orbitvu en Suisse ?',
@@ -180,7 +180,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
           <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900">
             <p className="text-xl text-future-dusk-700 leading-relaxed">
               PackshotCreator (société Sysnext) distribue les solutions du fabricant européen Orbitvu
-              depuis 2018 et en est le distributeur officiel pour la France et la Suisse. Les
+              depuis 2023 et en est le distributeur officiel pour la France et la Suisse. Les
               entreprises suisses bénéficient d&apos;un interlocuteur unique pour le conseil, la
               démonstration, la livraison, l&apos;installation, la formation et le support de leur
               studio photo automatisé.
