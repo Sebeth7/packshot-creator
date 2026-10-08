@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Médias externes et consentement — Vimeo, Sketchfab, saasphoto.com en façade ; bandeau cookies (Pixel 5, focus) · Claude de Laurent
+
+**Chantier** : médias externes, consentement et UX (mission de Laurent du 08/10, GO_CODE sur ce seul périmètre technique ; GO_MERGE = NO ; GO_PUBLICATION = NO) ; backlog F4 « Consentement » et « Bandeau cookies en Pixel 5 » | **PR** : brouillon, « DO NOT MERGE », branche `ccr-9f625584-mumrjt` | **Base** : `main` `06b18e2` (fusion de #106)
+
+**Quoi** — Les 6 iframes Vimeo, Sketchfab et saasphoto.com des articles passent, au rendu, en façade locale : aucune requête vers ces services avant un accord explicite, donné dans une fenêtre d'information, pour ce contenu seulement et sans rien mémoriser. Bandeau cookies recalé sur la zone visible de l'écran (défaut Pixel 5), nommé (repère `region`), focus géré à l'ouverture demandée et rendu à la fermeture.
+
+**Pourquoi** — Mesure du 08/10 (Chromium du conteneur, build local de `main` `06b18e2`, requêtes tierces interceptées et non transmises) :
+- Inventaire des 323 URL du sitemap, avant tout choix : 69 pages émettent au moins une requête hors du site servi. `orbitvu.co` 58 (20 fiches `studio-photo` FR et EN, 10 fiches `fotostudio` de-ch, 28 articles) ; `www.google.com` 3 (carte Google Maps des 3 pages contact) ; `videos.packshot-creator.com` 3 (vidéo de l'accueil, sous-domaine du site) ; `sketchfab.com` 2 ; `player.vimeo.com` 2 ; `saasphoto.com` 1 (et `/en/blog/photographie-de-produits-a-360-degres-en-interne`, hors sitemap, 200). Mesure d'audience : `www.googletagmanager.com` jamais demandé sans acceptation. YouTube : 0 requête.
+- Vimeo, Sketchfab, saasphoto.com et Google Maps : requête émise avant tout choix, après « Tout refuser », après « Tout accepter », après révocation dans la page (iframe toujours présente) et après rechargement. La catégorie « Vidéos YouTube » ne couvre aucun de ces services.
+- `e2e/cookie-banner.spec.ts` en Pixel 5 : 3 échecs reproduits (« Personnaliser » : clic intercepté par « Tout accepter » ou « Tout refuser »). Cause : `/fr` déborde de 49 px en largeur à 393 px (section « Vos défis » de l'accueil, `FloatingDashboard`) ; la fenêtre de mise en page passe à 442 × 818 px pour 393 × 727 px visibles, et le bandeau `fixed bottom-0` s'ancre 91 px sous le bas de l'écran. Le même débordement fait échouer `e2e/mobile-overflow.spec.ts` sur `/fr` (2 échecs, identiques sur `main`).
+- Clavier : après « Enregistrer mes choix », le focus tombait sur `body` ; depuis la fenêtre YouTube, « gérer mes préférences » ouvrait le bandeau en laissant le focus sur la façade : 93 tabulations pour l'atteindre.
+
+**Fichiers** — `lib/external-embeds.ts` (nouveau), `lib/blog-utils.ts`, `lib/youtube.ts` (8 utilitaires exportés, sans autre changement), `components/blog/YouTubeConsent.tsx`, `components/cookies/CookieBanner.tsx`, `app/[lang]/blog/[slug]/page.tsx` (libellés passés au rendu, condition de montage), `lib/__tests__/external-embeds.test.ts` (nouveau), `lib/__tests__/blog-utils.test.ts` (1 test adapté), `e2e/consentement-medias.spec.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier de `content/**`, `messages/*.json`, `app/[lang]/contact/page.tsx`, `components/analytics/**`, `app/globals.css`, Worker ni redirection.
+
+**Effet attendu** — À la mise en production, sur 6 articles (FR et EN) : façade 16:9 à la place de l'iframe (Sketchfab et saasphoto.com n'ont plus l'iframe de 300 × 150) ; aucune requête vers ces services sans clic sur « Autoriser et afficher le contenu ». Bandeau cookies : tous les boutons dans la zone visible, y compris sur `/fr` en mobile. Aucun effet SEO attendu : `<head>` et JSON-LD inchangés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 497/497 (24 fichiers) ; `npx next build` vert, 386 pages générées comme sur `main` (variables factices de la CI, `NEXT_PUBLIC_GA_MEASUREMENT_ID` factice pour mesurer la mesure d'audience). eslint : aucune erreur nouvelle (préexistantes : `set-state-in-effect` de `CookieBanner.tsx` l. 71 sur `main`, 2 `no-explicit-any` de `blog-utils.ts`).
+- HTML prérendu, build de la branche contre build de `main`, identifiant de build neutralisé : 374 pages ; `<head>` (hors scripts et feuilles) et JSON-LD identiques sur 374/374 ; corps identique sauf 6 pages, les 6 articles visés (1 iframe → 0, 1 façade).
+- `e2e/consentement-medias.spec.ts`, Desktop Chrome et Pixel 5 : 40/40 sur la branche ; contre-épreuve sur le build de `main` : 40/40 en échec.
+- `e2e/cookie-banner.spec.ts` et `e2e/youtube-consent.spec.ts` : 38/38 sur la branche (Desktop Chrome et Pixel 5), contre 35/38 sur `main` (les 3 échecs « Personnaliser » en Pixel 5).
+- `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow` : 200 réussis, 2 échecs, les 2 de `mobile-overflow` sur `/fr`, identiques sur `main`.
+- Mesure réseau sur la branche, mêmes scénarios : Vimeo, Sketchfab, saasphoto.com à 0 requête avant choix, après refus, après « Tout accepter », après rechargement et après navigation interne ; iframe créée et requête émise seulement après « Autoriser et afficher le contenu » ; iframe retirée et façade remise quand un choix sans contenus externes est enregistré. Google Maps et `orbitvu.co` : inchangés (différés, voir Suite).
+- Console : 0 erreur ni exception (hors requêtes tierces annulées) sur 9 pages (les 6 articles, un article YouTube, `/fr`, `/fr/contact`), Desktop et Pixel 5, sur `main` comme sur la branche.
+- `git merge-tree` contre les têtes de #104, #105, #107 à #115 : aucun conflit sur les fichiers du site.
+
+**Supposé** — [Inférence] Le recalage du bandeau repose sur `visualViewport`, mesuré dans l'émulation Pixel 5 de Chromium ; le comportement d'un Chrome Android réel sur la page qui déborde n'est pas observé. Cela repose sur des schémas observés. [Non vérifié] Aucun service tiers n'a été contacté : ce que les services font après chargement (cookies, autres domaines) n'est pas mesuré.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Safari, Firefox et appareils réels ; lecteurs d'écran. Contenu réel de saasphoto.com (302 puis 402 depuis le conteneur au 29/09). Qualification juridique des requêtes : hors champ, aucune conclusion de conformité.
+
+**Suite** —
+- Google Maps des 3 pages contact : **différée**, #109 modifie la même iframe (`app/[lang]/contact/page.tsx`, l. 153 à 160). Après le sort de #109 : façade du même modèle ; décision sur la catégorie de consentement (voir ci-dessous).
+- `orbitvu.co` (58 pages) : scripts des articles (32 dans 28 fichiers de `content/blog/**`, exécutés au chargement direct ; aucune requête après la navigation interne mesurée vers un article, visionneuse alors probablement absente [Inférence]) et visionneuse 360° des fiches (`OrbitvuViewer.tsx`, au défilement). **Décision** : consentement exigé ou non pour la visionneuse du fabricant ; en cas de façade, effet commercial sur les fiches à arbitrer.
+- Mesure d'audience à la révocation (constat du 08/10, cookies `_ga` et `_ga_<ID>` posés à la main) : après décochage de « Cookies analytiques », `window.gtag` reste défini, le script `gtag/js` reste dans la page, aucun drapeau `ga-disable-<ID>`, cookies `_ga*` conservés. Envoi effectif de données après révocation : non vérifié (gtag.js non chargé dans le test). `components/analytics/**` est à rayon large (mesure de Laurent) : non modifié.
+- Décisions de consentement : catégorie durable pour les autres services (libellé « Vidéos YouTube » du bandeau, article 6 de la politique de confidentialité, aucune modification sans validation) ; croix « Fermer » du bandeau rouvert, qui vaut « Tout refuser » ; textes de la fenêtre d'information (FR, EN, de-CH) à relire, gardés dans `lib/external-embeds.ts` faute de pouvoir toucher `messages/*.json`.
+- Débordement de 49 px de l'accueil en mobile : cause racine du défaut Pixel 5, non corrigé (accueil gelé jusqu'au 28/10, D44 et M5).
+- Inactifs : `introMedia` des guides (10 iframes `cdn.embedly.com`, 6 scripts `orbitvu.co`, champ non rendu par le gabarit) ; `components/media/VideoFacade.tsx` et `components/video/YouTubeFacade.tsx`, importés par aucun fichier (ils chargeraient `img.youtube.com` ou `i.ytimg.com` à l'affichage).
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
