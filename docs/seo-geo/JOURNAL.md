@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Repair Factory, PR-D — Worker : BL-042 et BL-018 vers leur équivalent exact (code seul, non déployé) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
+
+**Quoi** — `cloudflare-worker/src/index.js` : BL-042, `/ecommerce-jewelry-photography-tutorial` sort de `GONE_PATHS` et redirige en 301 vers `/en/blog/technique-photograph-jewelry-tutorial` (cible déjà utilisée par la variante `/en/blog/…`) ; BL-018, l'ancien article « boostez … 4 erreurs à éviter » redirige vers l'article exact au lieu de l'article voisin « 6 pratiques ». Test `cloudflare-worker/test/e-bl-pack-w.test.ts`.
+
+**Pourquoi** — Rapport E-BL (simulation sur 112 URL à backlinks) : BL-042 en 410 avec équivalent existant (correspondance HIGH), BL-018 vers une cible voisine. Simulation ≠ erreur live : comportement `www` non contrôlé (R4).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/test/e-bl-pack-w.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement (non autorisé par cette mission) : les backlinks de ces deux anciennes URL atteignent l'article correspondant. Les variantes `/amp/` de BL-042 passent de 410 à 404.
+
+**Vérifié**
+- R5 : Worker déployé `packshot-router` (modifié le 01/10 à 06:59:54 UTC) lu en lecture seule le 08/10 par l'API Cloudflare ; écart avec le dépôt limité aux commentaires retirés par l'empaquetage et aux enveloppes du bundler : aucune divergence de règle.
+- Cibles servies en 200 par `next start`, canonique auto-référente, sans `noindex`, présentes au sitemap.
+- Vitest Worker : 6 fichiers, 165 tests verts (`unicite-tables`, `legacy-redirects`, `lot-f`, nouveau test sur les hôtes www, en. et fr.) ; `tsc` vert. Arbre de l'application identique à `main` (build vert de `main` `06b18e2` le 08/10).
+
+**Supposé** — Aucun.
+**Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
+
+**Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
