@@ -359,16 +359,24 @@
     "hero": {
       "surtitre": "IA photo produit · Orbitvu Station",
       "title": "La photo produit réelle, assistée par l’IA",
-      "p1": "L’IA ne remplace pas le produit. Dans Orbitvu Station, elle propose un éclairage avant le déclenchement ; après la prise de vue, elle détoure l’image, la retouche et lit les étiquettes.",
+      "p1": "Le produit réel est le point de départ. Dans Orbitvu Station, l’IA aide ensuite à plusieurs étapes : elle propose un éclairage, détoure l’image, la retouche et lit les étiquettes.",
       "cta": "Demander une démonstration",
       "note": "PackshotCreator, distributeur officiel Orbitvu en France et en Suisse.",
-      "imageAlt": "Orbitvu Station pendant la prise de vue d’un sachet de café : vue principale et quatre angles en vignettes",
-      "legende": "Sachet de café en prise de vue sur Alphashot XL G2, dans Orbitvu Station."
+      "imageAlt": "Illustration : un pot cosmétique sur le plateau tournant d’un studio, entre appareil photo et éclairages, entouré de vignettes de l’image (détail, fond retiré, déclinaisons)",
+      "etapeIa": "Où intervient l’IA dans Orbitvu Station",
+      "actions": {
+        "eclairage": "Éclairage proposé",
+        "detourage": "Fond retiré",
+        "retouche": "Retouche",
+        "lecture": "Étiquette lue"
+      },
+      "etapeResultat": "Des images et des données prêtes à être utilisées",
+      "legende": "Illustration générée par IA, représentation conceptuelle du workflow. Produit fictif."
     },
     "captureEntiere": "Afficher la capture entière",
     "workflow": {
-      "heading": "Où l’IA intervient, de la prise de vue à la publication",
-      "intro": "Le même sachet de café, du studio à sa fiche produit.",
+      "heading": "Où l’IA intervient, de la prise de vue aux images prêtes à être utilisées",
+      "intro": "Un générateur d’images crée un visuel à partir d’une consigne ou d’une image existante. Ici, chaque traitement part de la photo du produit prise au studio.",
       "sansIa": "Sans IA",
       "phases": {
         "capture": "Capture",
@@ -410,36 +418,59 @@
         "titre": "Publication",
         "texte": "Fichiers recadrés au format attendu, envoyés vers la boutique en ligne, le PIM, le DAM ou un stockage.",
         "outil": ""
-      }
+      },
+      "captureAlt": "Capture d’écran d’Orbitvu Station pendant la prise de vue d’un sachet de café : vue principale et quatre angles en vignettes",
+      "captureLegende": "Prise de vue réelle : un sachet de café photographié sur Alphashot XL G2, dans Orbitvu Station."
     },
     "photoAssistant": {
       "heading": "Avant le déclenchement : préparer l’éclairage",
-      "p1": "AI Photo Assistant reconnaît le type de produit et propose plusieurs configurations d’éclairage adaptées. Le choix final revient à l’opérateur ; l’éclairage retenu s’enregistre dans un modèle de prise de vue.",
+      "lead": "Première intervention de l’IA, avant même la prise de vue.",
+      "entree": "Le produit posé dans le studio.",
+      "action": "AI Photo Assistant reconnaît le type de produit et propose plusieurs configurations d’éclairage.",
+      "resultat": "L’éclairage choisi par l’opérateur, enregistré dans un modèle de prise de vue.",
+      "utilite": "Trouver un éclairage adapté au type de produit avant de photographier.",
       "compatibles": "Disponible sur",
-      "carteLien": "Voir la fiche",
-      "imageAlt": "Orbitvu Station pendant la prise de vue d’un appareil photo instantané sur Alphashot Pro G2, panneau « AI Templates » ouvert",
-      "legende": "Autre séance, sur Alphashot Pro G2 : un appareil photo instantané, panneau « AI Templates » ouvert dans Orbitvu Station."
+      "carteLien": "Voir la fiche"
     },
     "masking": {
       "heading": "Détourer l’image dans Orbitvu Station",
-      "p1": "AI Masking retire le fond pendant la capture, sur l’image en haute définition, avec des contours homogènes sur toute la série."
+      "lead": "Le fond est retiré pendant la capture, sans étape de détourage séparée.",
+      "entree": "La photo du produit, au moment de la capture.",
+      "action": "AI Masking retire le fond, sur l’image en haute définition.",
+      "resultat": "Le produit détouré, avec des contours homogènes sur toute la série.",
+      "utilite": "Pas de détourage à la main après la séance."
     },
     "retoucher": {
       "heading": "Corriger une image déjà photographiée",
-      "p1": "AI Retoucher retouche automatiquement, avec l’IA générative, la photo prise au studio : il retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et ajoute une ombre.",
-      "p2": "Une consigne écrite oriente le résultat ; elle s’enregistre en préréglage pour les séries suivantes."
+      "lead": "La retouche peut être générative : elle part ici de la photographie du produit.",
+      "entree": "La photo prise au studio.",
+      "action": "AI Retoucher retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et ajoute une ombre, selon une consigne écrite.",
+      "resultat": "Une image retouchée, à contrôler avant usage.",
+      "utilite": "La consigne s’enregistre en préréglage et se réutilise sur les séries suivantes.",
+      "contexteAlt": "Illustration : gros plan sur le couvercle métallique d’un pot cosmétique, avec poussières et micro-irrégularités visibles",
+      "contexteLegende": "Illustration générée par IA : une image produit avant traitement, avec matière, reflets et poussières. Produit fictif."
     },
     "ocr": {
       "heading": "Lire les informations présentes sur le produit",
-      "p1": "AI OCR lit les références, la composition et la description imprimées sur le produit ou son emballage, puis remplit les champs de la séance. Ces données accompagnent les images sous forme de métadonnées.",
-      "imageAlt": "Fenêtre « (Beta) AI OCR » d’Orbitvu Station : SKU, description et ingrédients lus sur l’emballage du sachet de café",
-      "legende": "Le même sachet de café : la fenêtre AI OCR, marquée bêta, affiche le SKU, la description et les ingrédients lus sur l’emballage. Les textes restent modifiables avant l’enregistrement."
+      "lead": "Le même sachet de café : l’étiquette photographiée devient des données.",
+      "entree": "L’étiquette photographiée, sur le produit ou l’emballage.",
+      "action": "AI OCR lit les références, la composition et la description.",
+      "resultat": "Les champs de la séance remplis, modifiables avant l’enregistrement.",
+      "utilite": "Des données qui accompagnent les images, sans ressaisie.",
+      "etiquetteAlt": "Étiquette du sachet de café, agrandie : textes de description et mentions imprimées",
+      "etiquetteLegende": "L’étiquette du sachet",
+      "champsAlt": "Fenêtre « (Beta) AI OCR » d’Orbitvu Station : SKU, description et ingrédients lus sur l’emballage",
+      "champsLegende": "Les champs lus par AI OCR (fenêtre marquée bêta)",
+      "legende": "Visuel Orbitvu : l’étiquette du sachet, puis les textes lus et rangés dans les champs de la séance."
     },
     "demo": {
-      "heading": "Venez avec un produit, pas avec un prompt",
-      "p1": "Choisissez un produit représentatif de votre catalogue. La démonstration permet de suivre sa prise de vue, puis les traitements disponibles dans Orbitvu Station.",
-      "p2": "Vous voyez ce que l’outil automatise, ce qui reste sous le contrôle de l’opérateur et le résultat obtenu sur votre propre produit.",
-      "cta": "Demander une démonstration"
+      "usages": "Des images prêtes à être utilisées : e-commerce, catalogues, documentation, besoins internes.",
+      "heading": "Testez l’IA sur les produits que vous photographiez",
+      "p1": "Venez avec vos produits, votre façon de travailler et vos besoins d’images.",
+      "p2": "La démonstration permet de voir à quelles étapes l’IA d’Orbitvu Station peut être utile, et pour quels usages de vos images.",
+      "cta": "Tester mon workflow",
+      "imageAlt": "Illustration : un même pot cosmétique décliné en image principale, détail, fond isolé, vignettes et mises en situation",
+      "legende": "Illustration générée par IA : une prise de vue, plusieurs images et plusieurs usages. Les déclinaisons représentées sont conceptuelles, ce ne sont pas des résultats Orbitvu. Produit fictif."
     },
     "faq": {
       "heading": "Questions fréquentes sur l’IA photo produit",
@@ -490,6 +521,18 @@
         "title": "AI Act et images produit",
         "desc": "Ce qu’une marque doit signaler sur une image retouchée ou générée par IA."
       }
+    },
+    "deroule": {
+      "entree": "Entrée",
+      "action": "Ce que fait l’IA",
+      "resultat": "Résultat",
+      "utilite": "À quoi ça sert"
+    },
+    "controle": {
+      "accroche": "L’IA propose et traite ; l’opérateur garde la main.",
+      "texte": "Il choisit l’éclairage, contrôle le détourage et la retouche, corrige si besoin les textes lus, puis valide les images avant leur utilisation.",
+      "imageAlt": "Illustration : une opératrice examine sur un écran la photo d’un pot cosmétique avant de la valider",
+      "legende": "Illustration générée par IA. Personne et produit fictifs."
     }
   },
   "blog": {
