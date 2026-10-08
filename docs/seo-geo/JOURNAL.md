@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Ubersuggest résiduel, PR-B — titles : title trop court (ex-#70) et 10 SHORTEN_SAFE, sans texte nouveau · Claude de Laurent
 
-**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lots A, B et C) | **PR** : PR-B, brouillon, « DO NOT MERGE », branche `seo/ubersuggest-titles-2026-10-08` | **Base** : `main` `06b18e2`
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lots A, B et C) | **PR** : #119 (PR-B), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-titles-2026-10-08` | **Base** : `main` `06b18e2`
 
 **Quoi** — 11 titles modifiés (12 pages servies), aucun texte nouveau :
 - lot A : `/fr/blog/photographie-2d-de-produits`, `metaTitle` `null` devenu le candidat historique de #70, « Photographie 2D de produits : studios photo automatisés » (27 → 55 caractères), reconstruit depuis `main`. #70 n'est ni rebasée, ni modifiée, ni fermée ;
