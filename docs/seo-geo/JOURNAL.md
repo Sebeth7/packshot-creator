@@ -64,6 +64,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — Information de Sébastien (CA10 a ; D42, arbitrage final 3 : maillage et liens) ; décision du J0 du pilote Studios (fusion du commit EPL, ou retrait du commit) ; 25 liens vers Studios différés « après lecture du pilote » (D-081 à D-104, D-116) ; GO de fusion distinct.
 
+**Mise à jour du 08/10, finalisation (décision de Laurent)** — Aucune landing nouvelle ni refonte publiée ; #104, #105, #107 et #108 restent HOLD, les pages actuelles bijoux, IA, vin et Studios servent d'owners et de destinations. Un lien vers la page Studios actuelle n'est pas le lancement de la refonte Studios : le J0 du pilote n'est plus une décision préalable à la fusion de cette PR. Sa fusion est consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E), sans baseline payante. Revue finale du diff : 4 liens internes nouveaux (Studios ×2, vin ×2), 7 ancres re-ciblées (Studios ×3, horlogerie ×4 dont 1 de-ch ; correction de l'effet attendu ci-dessus, qui en annonçait 8), 2 libellés EN corrigés sur des cibles inchangées, 0 lien vers `/fr/packshot-e-commerce`, `/fr/packshot-mode` ou l'accueil ; texte visible inchangé hors libellés EN et coquille « Alphasmhot ». Sébastien : information (D42, arbitrage final 3), pas de validation.
+
 ---
 
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
