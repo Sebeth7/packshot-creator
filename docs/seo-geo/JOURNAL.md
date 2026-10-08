@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — finalisation visuelle : hero du pack, visuels 360° et retouche (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Finalisation visuelle #104 » (décision directeur : hero du pack, V104-1 conservée réduite, V104-2 abandonnée, visuel trois pièces conservé pour la Preview, deux visuels d’appoint) | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant finalisation `eeb8989`
+
+**Quoi** — Visuels seulement. H1, title, architecture, ordre des sections, vocabulaire, appels, FAQ, claims IA, métadonnées et maillage inchangés.
+- Hero : l’illustration de `eeb8989` (différente du fichier du pack, PSNR 11,4 dB) est remplacée par `V104-HERO_STUDIO_MONITOR_BIJOU.png` : studio, bague posée dedans, écran avec son gros plan. ALT et légende inchangés.
+- Section 360° : `V104-ICON_360_ROTATION.png` sous le texte, sur un cartouche clair (ses flèches se perdent sur le fond sombre), 528 × 134 px au plus. ALT : « Illustration éditoriale montrant plusieurs vues d’un bijou et une rotation. » Légende : « Illustration générée par IA, trois vues d’une même pièce et sa rotation. »
+- Section retouche et export : `V104-ICON_RETOUCHE_EXPORT.png` sous le texte, 440 × 127 px au plus, à côté de l’image IQ Mask réelle (560 × 560), qui reste dominante. ALT : « Illustration éditoriale montrant la retouche, le détourage et la diffusion d’une image de bijou. » Légende : « Illustration générée par IA, retouche, détourage et diffusion d’une image. »
+- V104-1 : KEEP, 480 × 320 px au plus, inchangée. V104-2 : ABANDONNÉE, non réintégrée. Visuel trois pièces : conservé pour la Preview, TO_CONFIRM.
+
+**Statuts** — V104_HERO, V104_360, V104_RETOUCHE_EXPORT : EDITORIAL_ILLUSTRATION ; provenance : ChatGPT native image generation, pack `PSC_104_BIJOUX_INTEGRATION_VISUELS_2026-10-08` fourni par Laurent (SHA-256 `2d884555…`, reçu deux fois, identique). V104_1 : EDITORIAL_ILLUSTRATION, KEEP. V104_2 : ABANDONNÉ. COLLECTION_CURRENT : TO_CONFIRM (origine et droits ; bloquant pour la fusion s’ils ne sont pas confirmés). Aucune de ces images n’est une photo d’un studio Orbitvu, une capture d’Orbitvu Station, une vraie vue 360° ni un résultat AI Masking ou AI Retoucher.
+
+**Fichiers web** — `public/images/secteurs/bijoux/v104-hero-studio-monitor-bijou.avif` (source PNG 1 448 × 1 086 ; AVIF 1 448 × 1 086, qualité 62, 49 172 octets, PSNR 43,4 dB ; sans recadrage), `v104-360-rotation.avif` (source PNG 2 172 × 724 transparent ; marges transparentes retirées, AVIF 1 200 × 306 avec transparence, 43 322 octets), `v104-retouche-export.avif` (source PNG 2 172 × 724 transparent ; AVIF 1 200 × 346 avec transparence, 67 186 octets). Supprimé : `v104-hero-studio-joaillerie.avif` (hero de `eeb8989`, plus référencé). PNG, ZIP, README et prompt du pack non commités.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, les trois AVIF ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `eeb8989`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens et FAQ (3, structurée et visible) identiques ; seul le hero est préchargé. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 10 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Hero : 584 × 438 px à 1 440, 456 × 342 à 1 024, 720 × 540 à 768, 358 × 269 à 390 (studio, écran et gros plan lisibles). Visuel 360° : 326 × 83 px à 390 ; retouche : 358 × 103 px à 390. 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Points relevés (R7)** — La bague à l’écran du hero (or jaune, pierre coussin, corps fendu) ressemble à celle de V104-1 : la même bague revient deux fois, ce que la mission demande d’éviter. L’or jaune reste majoritaire (hero, V104-1, Superfocus, mise en place, IQ Mask) ; le métal blanc vient des deux visuels d’appoint et du visuel trois pièces.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation des illustrations.
+
+**Suite** — QA humaine finale de la Preview ; confirmation de Sébastien sur le visuel trois pièces et sur l’appel final ; GO de fusion distinct. Aucune nouvelle variante visuelle #104 dans cette session.
+
+---
+
 ## 2026-10-08 · Hub bijoux — nouveau hero éditorial V104-HERO (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Intégration du nouveau hero #104 » ; constat de Laurent : le hero pièce et machine se lisait comme un catalogue technique, sans désir ni contexte | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `09aad38`

@@ -23,8 +23,10 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * (bague, bracelet, animation 360°) et infobulles d'Orbitvu Station visibles sur leurs captures.
  *
  * Visuels affichés. Hero éditorial (08/10/2026), puis matière et lumière, puis studio et preuves réelles :
- * - deux illustrations éditoriales générées par IA (V104-HERO et V104-1, ci-dessous), signalées comme telles
- *   en légende selon la convention du cluster AI Act (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5) ;
+ * - quatre illustrations éditoriales générées par IA (V104-HERO, V104-1, V104-360, V104-RETOUCHE-EXPORT,
+ *   ci-dessous), signalées comme telles en légende selon la convention du cluster AI Act
+ *   (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5). Hiérarchie : hero, puis images réelles, puis
+ *   V104-1 (480 px au plus), puis les deux petits visuels d'appoint (360°, retouche et export) ;
  * - images réelles déjà publiées sur le site : /images/guides/* (guides PackshotCreator, Alphashot
  *   Micro Pro v2 et Orbitvu Station d'après les guides eux-mêmes) ; /images/secteurs/bijoux/superfocus-*
  *   (recadrages, sans retouche, de captures de ces guides) ; /images/machines/alphashot-micro-v2.avif
@@ -50,18 +52,37 @@ interface HubBijouxProps {
 type Visuel = { src: string; alt: string; width: number; height: number; legende: string; illustration: boolean };
 
 /*
- * Hero (EDITORIAL_ILLUSTRATION, jamais PRODUCT_PROOF). Provenance : ChatGPT native image generation, image
- * fournie par Laurent le 08/10/2026 (WebP 1536 × 1024, sRGB), encodée en AVIF 1536 × 1024 (qualité 62) sans
- * recadrage ni retouche. Ce n'est ni une photo d'un studio Orbitvu, ni une capture d'Orbitvu Station : le logo
- * et le nom visibles sur le socle, l'interface et la bague à l'écran sont générés. Le vrai Alphashot Micro Pro v2
- * et les vraies captures restent plus bas (sections lumière, studio, retouche).
+ * Illustrations éditoriales du pack PSC_104_BIJOUX_INTEGRATION_VISUELS_2026-10-08 fourni par Laurent le
+ * 08/10/2026 (EDITORIAL_ILLUSTRATION, jamais PRODUCT_PROOF ; provenance : ChatGPT native image generation).
+ * Ni photo d'un studio Orbitvu, ni capture d'Orbitvu Station, ni vraie vue 360°, ni résultat AI Masking ou
+ * AI Retoucher. Le vrai Alphashot Micro Pro v2 et les vraies captures restent dans les sections lumière,
+ * studio et retouche.
+ * - V104_HERO : V104-HERO_STUDIO_MONITOR_BIJOU.png (1448 × 1086), AVIF à la même taille, sans recadrage.
+ * - V104_360, V104_RETOUCHE_EXPORT : V104-ICON_360_ROTATION.png et V104-ICON_RETOUCHE_EXPORT.png
+ *   (2172 × 724, fond transparent), marges transparentes retirées, AVIF 1200 px de large avec transparence.
  */
 const V104_HERO: Visuel = {
-  src: '/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif',
+  src: '/images/secteurs/bijoux/v104-hero-studio-monitor-bijou.avif',
   alt: 'Illustration d’un studio de photographie de joaillerie avec un bijou placé dans le système et son image agrandie sur un écran.',
-  width: 1536,
-  height: 1024,
+  width: 1448,
+  height: 1086,
   legende: 'représentation éditoriale d’un workflow de photographie de joaillerie.',
+  illustration: true,
+};
+const V104_360: Visuel = {
+  src: '/images/secteurs/bijoux/v104-360-rotation.avif',
+  alt: 'Illustration éditoriale montrant plusieurs vues d’un bijou et une rotation.',
+  width: 1200,
+  height: 306,
+  legende: 'trois vues d’une même pièce et sa rotation.',
+  illustration: true,
+};
+const V104_RETOUCHE_EXPORT: Visuel = {
+  src: '/images/secteurs/bijoux/v104-retouche-export.avif',
+  alt: 'Illustration éditoriale montrant la retouche, le détourage et la diffusion d’une image de bijou.',
+  width: 1200,
+  height: 346,
+  legende: 'retouche, détourage et diffusion d’une image.',
   illustration: true,
 };
 
@@ -149,12 +170,14 @@ function FigureVisuel({
   sizes,
   className = '',
   imageClassName = 'w-full h-auto rounded-md',
+  captionClassName = 'mt-2 text-sm text-neutral-medium',
   priority = false,
 }: {
   visuel: Visuel;
   sizes: string;
   className?: string;
   imageClassName?: string;
+  captionClassName?: string;
   priority?: boolean;
 }) {
   return (
@@ -168,7 +191,7 @@ function FigureVisuel({
         priority={priority}
         className={imageClassName}
       />
-      <figcaption className="mt-2 text-sm text-neutral-medium">
+      <figcaption className={captionClassName}>
         {visuel.illustration ? `Illustration générée par IA, ${visuel.legende}` : visuel.legende}
       </figcaption>
     </figure>
@@ -399,6 +422,13 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
                 {p}
               </p>
             ))}
+            {/* Visuel d'appoint (V104-360), petit, sur un cartouche clair : ses flèches se perdent sur le fond sombre. */}
+            <FigureVisuel
+              visuel={V104_360}
+              sizes="(min-width: 640px) 528px, calc(100vw - 64px)"
+              className="mt-10 max-w-[560px] rounded-xl bg-white p-4"
+              imageClassName="w-full h-auto"
+            />
           </div>
           {REEL_BAGUE_360 && (
             <figure className="lg:col-span-7">
@@ -425,6 +455,13 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
                 {p}
               </p>
             ))}
+            {/* Visuel d'appoint (V104-RETOUCHE-EXPORT), plus petit que l'image IQ Mask réelle à côté. */}
+            <FigureVisuel
+              visuel={V104_RETOUCHE_EXPORT}
+              sizes="(min-width: 640px) 440px, calc(100vw - 32px)"
+              className="mt-8 max-w-[440px]"
+              imageClassName="w-full h-auto"
+            />
           </div>
           <figure className="lg:col-span-6">
             <Image
