@@ -34,6 +34,36 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
+- `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
+- `guide-achat-studio-2026`, bloc « Support Technique France » : « Réponse < 2h ouvrées », « Intervention 24-48h (France métropolitaine) » et « Pièces détachées : Stock FR, livraison 24h » retirés ; « Interventions sur site : selon le contrat de maintenance » renvoie au contrat décrit juste en dessous.
+
+**Pourquoi** — Faits rappelés par Laurent le 08/10 : ROI de 6 à 12 mois en usage courant, jamais garanti ; aucun engagement de service (délai d'intervention, délai de réponse, pièces sous 24 h) établi. #109 retire ces mêmes engagements du comparatif Orbitvu et le ROI de 4 à 8 mois du guide d'achat, mais ces lignes restent sur `main` et sur la tête `0860462` de #109. `/en/blog/budget-studio-photo-automatise` : 363 impressions et 10 clics du 08/09 au 05/10 (`gsc-crawl-seo`, `gsc_metrics_page`, lecture seule).
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue, sérialisation d'origine, 6 lignes), `app/[lang]/blog/guide-achat-studio-2026/page.tsx` (3 lignes → 2), `lib/__tests__/claims-roi-sav.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Routes** — `blogBudget` n'est lu que par `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` : `/fr/…` et `/en/…` (200) ; `/de-ch/…` répond 404, les valeurs de-ch (en français) sont alignées par cohérence. Guide d'achat : `/fr/blog/guide-achat-studio-2026` et `/en/…` (même gabarit FR). Aucune page gelée (F5, Mode, accueil, #104, #105, #107, #108).
+
+**Effet attendu** — Aucun avant fusion. Après fusion : FAQ et `FAQPage` du guide budget alignés sur le fait ROI ; trois engagements de service non établis retirés du guide d'achat. Réduction d'un risque factuel ; aucun gain de trafic attendu.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; `npx vitest run` : 487/487 (25 fichiers), dont `claims-roi-sav.test.ts` 4/4. Les conditions du test échouent sur le contenu de `main` (6 textes ROI, 3 lignes de service).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
+- Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
+- Fusion simulée (`git merge-tree`) avec la tête de #109 : voir l'entrée de la PR.
+
+**Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
+**Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
+
+**Suite** — D42 : contrôle de la Preview par Laurent (desktop, tablette, mobile), validation ciblée de Sébastien sur les 4 phrases modifiées ; fusion sur GO distinct, de préférence après #109 ou avec elle (mêmes pages, lignes disjointes).
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`

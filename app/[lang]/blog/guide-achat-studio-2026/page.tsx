@@ -674,9 +674,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages support FR</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Hotline française</strong> : Réponse &lt; 2h ouvrées</li>
-                  <li className="text-future-dusk-600"><strong>Techniciens sur site</strong> : Intervention 24-48h (France métropolitaine)</li>
-                  <li className="text-future-dusk-600"><strong>Pièces détachées</strong> : Stock FR, livraison 24h</li>
+                  <li className="text-future-dusk-600"><strong>Hotline française</strong></li>
+                  <li className="text-future-dusk-600"><strong>Interventions sur site</strong> : selon le contrat de maintenance</li>
                   <li className="text-future-dusk-600"><strong>Mises à jour logicielles</strong> : Assistance installation gratuite</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Contrat maintenance</strong> :</p>

@@ -2968,7 +2968,7 @@
     },
     "roi": {
       "heading": "Retour sur investissement : les chiffres",
-      "body": "Un studio photo automatisé n'est pas une dépense, c'est un investissement dont le retour se mesure en mois, pas en années. Nos clients constatent un seuil de rentabilité dès 500 photos par an. Pour les gros volumes, le ROI est atteint dès le quatrième mois d'utilisation.",
+      "body": "Un studio photo automatisé n'est pas une dépense, c'est un investissement dont le retour se mesure en mois, pas en années. Nos clients constatent un seuil de rentabilité dès 500 photos par an. Le retour sur investissement se situe généralement entre 6 et 12 mois selon le volume, à titre indicatif et sans garantie.",
       "stat1": {
         "value": "6-12 mois",
         "label": "Retour sur investissement moyen"
@@ -3052,7 +3052,7 @@
       },
       "q5": {
         "question": "Quel retour sur investissement espérer ?",
-        "answer": "En moyenne, nos clients atteignent le seuil de rentabilité en 6 à 12 mois. Pour les entreprises qui produisent plus de 1 000 visuels par an, le ROI peut être atteint dès le 4e mois. Utilisez notre calculateur ROI en ligne pour une estimation personnalisée."
+        "answer": "En moyenne, nos clients atteignent le seuil de rentabilité en 6 à 12 mois, selon leur volume de production. Ce délai est indicatif et ne constitue pas une garantie. Utilisez notre calculateur ROI en ligne pour une estimation personnalisée."
       },
       "q6": {
         "question": "Y a-t-il des coûts cachés ?",

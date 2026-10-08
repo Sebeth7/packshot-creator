@@ -2965,7 +2965,7 @@
     },
     "roi": {
       "heading": "Return on investment: the numbers",
-      "body": "An automated photo studio is not an expense, it is an investment whose return is measured in months, not years. Our clients reach break-even from as few as 500 photos per year. For high-volume users, ROI is achieved as early as the fourth month of use.",
+      "body": "An automated photo studio is not an expense, it is an investment whose return is measured in months, not years. Our clients reach break-even from as few as 500 photos per year. Return on investment is typically reached within 6 to 12 months depending on volume; this is indicative and not guaranteed.",
       "stat1": {
         "value": "6-12 months",
         "label": "Average return on investment"
@@ -3049,7 +3049,7 @@
       },
       "q5": {
         "question": "What ROI can I expect?",
-        "answer": "On average, our clients reach break-even in 6 to 12 months. For companies producing more than 1,000 visuals per year, ROI can be achieved as early as the 4th month. Use our online ROI calculator for a personalized estimate."
+        "answer": "On average, our clients reach break-even in 6 to 12 months, depending on their production volume. This timeframe is indicative and not guaranteed. Use our online ROI calculator for a personalized estimate."
       },
       "q6": {
         "question": "Are there any hidden costs?",
