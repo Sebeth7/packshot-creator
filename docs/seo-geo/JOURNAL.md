@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Studios Wave 2 — landing FR intégrée, corrections d'intégrité EN et de-ch · Claude de Laurent
+
+**Chantier** : Studios Wave 2 (mission d'exécution de Laurent du 08/10 ; `GO_CODE_FR`, `GO_EN_DE_INTEGRITY` limité aux claims du registre L2 § 5, `GO_BRANCH`, `GO_PR_DRAFT`) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` ; Preview `https://sysnext-git-claude-friendly-ritch-69eb32-sebs-projects-ca1e93a7.vercel.app` (protégée par authentification Vercel) | **Base** : `main` `06b18e2`
+
+**Quoi** — `/fr/studios-photo-automatises` rendue par un nouveau composant `LandingStudios.tsx` (texte de la proposition L3 revue par ChatGPT, sans ses notes ; schémas S1 et S2 en HTML ; médias réels seulement). EN et de-ch gardent l'ancien gabarit, avec retrait des claims du registre L2 § 5 (page, `<head>`, JSON-LD, messages livrés au navigateur).
+
+**Pourquoi** — Registre L2 du 08/10 : 27 claims de la page actuelle, dont 19 résolus et 8 retirés-HOLD ; aucun ne reste dans la proposition FR. Les mêmes claims étaient rendus en EN et de-ch, et livrés dans les messages de toutes les pages (`getMessages()` du layout) : « 500+ photos/jour » figurait dans le HTML de 161 pages FR, « 500+ photos/day » dans 155 pages EN, « 500+ Fotos/Tag » dans 54 pages de-CH (build de `main` `06b18e2`) ; 0 sur la branche.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (nouveau), `app/[lang]/studios-photo-automatises/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespace `studiosHardware` seul), `public/images/studios/station-capture-mobile.avif` et `station-ai-ocr-mobile.avif` (recadrages des captures V02 et V03, nouveaux), `lib/__tests__/studios-claims.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun tant que la PR n'est pas fusionnée. Après publication (date non fixée ; aucune pendant M5, du 14/10 au 28/10) : page FR sans chiffre non sourcé, FAQPage égale à la FAQ visible (7 questions), plus d'`AggregateOffer` ni de `Review` sur les trois langues.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; 8 PR ouvertes (#107, #105, #104, #82, #70, #65, #64, #27). #64 : tête `63e1e92`, inchangée ; #105 : tête `f5ca7dd`, inchangée. #104 ajoute une fonction à `MaillageSections.tsx`, sans effet sur Studios. Aucune autre PR ne touche les fichiers Studios.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 493/493 (24 fichiers, dont `studios-claims.test.ts`, 10 tests) ; ESLint ciblé sans erreur ; `npx next build` vert (variables factices), 374 pages prérendues.
+- HTML prérendu, branche contre `main` `06b18e2` (identifiant de build et nom du CSS neutralisés, scripts exécutables retirés) : 374 pages, **371 identiques** ; différentes : les 3 pages Studios. Le CSS global change de nom sur toutes les pages : 14 classes ajoutées, aucune retirée (+897 octets). Le payload embarqué change sur toutes les pages des 3 langues (messages `studiosHardware`).
+- Page FR prérendue : title inchangé ; meta description de 153 caractères ; canonical et 5 hreflang inchangés ; un seul H1 ; JSON-LD = Organization, BreadcrumbList, Service (sans `offers`, sans BlendAI), FAQPage (7 questions, texte identique à la FAQ visible) ; aucun `id="calculateur-roi"` ; 0 image sans `alt` ; ni `hero-studios-wide.avif`, ni `Review`, ni `AggregateOffer`.
+- Playwright sur `next start` du build de la branche (Chromium du conteneur ; requêtes `/api/` simulées par les specs, aucun formulaire soumis) : 12 specs (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `roi-calculator`, `cta-destinations`, `seo`, `mobile-overflow`, `language-switch`, `internal-links`, `responsive`, `external-links`, `anchors`), 455 tests : **432 passés, 23 échecs**. Les 23 échecs rejoués sur le build de `main` `06b18e2` échouent à l'identique : historiques, aucune régression. Dont le témoin différé `anchors` « #calculateur-roi exists on /fr/studios-photo-automatises » (D47, non forcé). Deux tests de l'assistant EN (`roi-calculator`) ont échoué une fois sous charge puis passé seuls (3/3) ; ils n'utilisent pas `studiosHardware`.
+- Captures pleine page de `/fr/studios-photo-automatises` (build local) à 1920, 1440, 1024, 768, 390 et 360 px : aucun débordement horizontal ; aucune requête `/api/` ; aucune erreur JavaScript. Vidéo du hero lue à partir de 768 px ; en dessous, affiche fixe seule, en `fetchpriority="high"` (comportement inchangé de `HeroVideoPanel`). Les bandeaux de statut des médias ne s'affichent qu'en Preview Vercel et en développement : absents de ces captures.
+- Écart avec la maquette 390 : `HeroSection` (`layout="split"`, gabarit partagé, accueil compris) place le film avant le texte sous 1024 px ; gabarit conservé.
+
+**Supposé** — [Inférence] Le film V01 et les visuels Orbitvu réutilisés relèvent de `ORBITVU_REUSE_PERMISSION = TO_CONFIRM` (#105, décision de Laurent du 08/10) ; l'usage sur l'accueil ne prouve pas le droit de réutilisation. Publication bloquée tant que ce n'est pas établi. Cela repose sur des schémas observés.
+**Non regardé** — `www` et `sysnext.vercel.app` (R4) ; contrôle visuel de la Preview Vercel par Laurent (D42, étape 4) ; traduction EN et de-ch (D42, étape 7) ; claims EN et de-ch hors registre L2 § 5, laissés en place : « Personalized demo — 30 min », badge « 3D », noms de la FAQ q3 (« Alphashot Pro XL »), filtre « production volume », sous-titre du hero, image `hero-studios-wide.avif` du hero EN et de-ch ; `Organization` global (BlendAI, Qualiopi, adresse) ; composant mort `ThreePillarsSection.tsx`, dont le namespace `studiosHardware.threePillars` est supprimé des 3 langues.
+
+**Suite** — Collision avec #64 : 2 clés × 3 langues (`studiosHardware.support.step2description`, `studiosHardware.faqStudios.q6.answer`) ; cette PR supprime ces clés en FR et les réécrit en EN et de-ch (D32). Propriétaire proposé : la PR Studios. Sur GO distinct, #64 retire ses modifications de ces 6 chaînes ; aucune fusion de l'une ou l'autre avant cette décision. Ensuite : contrôle de la Preview par Laurent, puis information de Sébastien selon D15 ; le délai de 5 jours ouvrés n'est pas ouvert. Lien vers la page IA rendu seulement après publication vérifiée de #105 (`LIEN_PAGE_IA_PUBLIEE = false`).
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
