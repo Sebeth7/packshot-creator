@@ -34,6 +34,42 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (4 pages) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, résidu de UB-04 (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : à ouvrir, brouillon, branche `seo/ubersuggest-residuels-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Les gabarits `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient le fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Il passe désormais par le prop `breadcrumb` apporté par #74, rendu juste avant le `<h1>` :
+- `<nav>` étiqueté par langue (« Fil d'Ariane », « Breadcrumb ») ; séparateurs « / » masqués aux lecteurs d'écran ;
+- `font-sans` devient `font-heading`, pour la même raison que dans #74 : rendu inchangé ;
+- libellé du repère dans un nouveau module, `lib/blog-fil-ariane.ts`. Le gabarit commun garde sa propre copie : son fichier est modifié par #114.
+
+Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés. `BreadcrumbList` JSON-LD inchangé.
+
+**Pourquoi** — Résidu de UB-04, laissé hors périmètre de #74. Sur `main` `06b18e2`, le texte du H1 de ces 4 pages commençait par « Accueil/Blog/Comparatif », « Home/Blog/Comparison », « Accueil/Blog/Guide » ou « Home/Blog/Guide », et un `<div>` se trouvait dans le `<h1>`. Balayage des 374 pages prérendues de `main` : ce sont les 4 seules pages dont le fil d'Ariane est dans le H1.
+
+**Fichiers** — `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx`, `lib/blog-fil-ariane.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 des 4 pages ne contient plus que le titre de l'article. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** —
+- Collisions : aucune PR ouverte ne touche les 2 gabarits ni le nouveau module (relevé des fichiers des 15 PR ouvertes le 08/10).
+- HTML prérendu, `main` `06b18e2` contre la branche, identifiant de build et scripts neutralisés : 374 fichiers ; 370 identiques ; 4 différents (FR et EN des 2 articles), de 10 lignes chacun, toutes dues au déplacement du fil.
+- Sur les 4 pages : un seul `<h1>`, sans élément enfant, dont le texte est le titre de l'article ; `title`, `og:title`, `twitter:title`, canonical, hreflang, robots et `BreadcrumbList` identiques à `main`.
+- CSS compilée identique à `main` : mêmes fichiers, mêmes empreintes.
+- Chromium, `next start` de `main` et de la branche, 1440 et 390 px, animations neutralisées : 0 pixel différent sur les 8 captures de l'en-tête ; position, police, taille, graisse, interligne et couleur du fil identiques ; hauteur de page identique ; 0 erreur de page.
+- Arbre d'accessibilité : un seul `heading` de niveau 1 ; repère `navigation` « Fil d'Ariane » ou « Breadcrumb », avec 2 liens et la catégorie en texte.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert, variables factices de la CI ; ESLint : 0 problème sur les 3 fichiers.
+- `e2e/seo.spec.ts`, Chromium : 227 réussis et 9 échecs, sur `main` comme sur la branche, listes identiques.
+
+**Supposé** — [Inférence] Firefox et Safari rendent l'en-tête comme Chromium : même structure de blocs, mêmes règles CSS. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; Firefox, Safari, appareils réels.
+- Hors triage, non modifié : `/fr`, `/en` et `/de-ch/studio-photo/selecteur-machines` portent un lien de retour (« Studios Photo ») dans leur `<h1>`.
+
+**Suite** — GO de Laurent, puis fusion ; après fusion, `smoke.mjs` sur `sysnext.vercel.app` et contrôle des 4 pages dans Chrome sur `www`. Gabarit commun à brancher sur `lib/blog-fil-ariane.ts` après #114. Titres : aucun titre FR modifié, la question D13 du `<title>` restant ouverte (ligne #70 ci-dessous dans `ETAT.md`) ; lot de 9 titres FR préparé pour Sébastien, hors dépôt.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
