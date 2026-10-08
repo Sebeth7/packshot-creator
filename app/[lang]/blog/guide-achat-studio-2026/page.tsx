@@ -74,27 +74,27 @@ const faqItems = [
   },
   {
     question: "Quelle garantie est incluse avec un studio Orbitvu ?",
-    answer: "La garantie standard est d'un an ; une extension est possible. Elle couvre les défauts matériels, mais pas l'usure normale (ampoules, backgrounds) ni les dommages accidentels.",
+    answer: "La garantie standard est d'un an ; une extension est possible.",
   },
   {
     question: "Peut-on louer un studio Orbitvu plutôt que l'acheter ?",
-    answer: "Orbitvu ne propose pas de location classique. L'alternative est le leasing professionnel, qui permet de financer la machine sur 3 à 5 ans avec option d'achat en fin de contrat. Pour les entreprises souhaitant maîtriser leur trésorerie, c'est souvent la solution recommandée.",
+    answer: "Le leasing professionnel est une alternative à l'achat comptant. Sa durée et ses conditions dépendent de l'organisme financeur : contactez-nous pour en discuter.",
   },
   {
     question: "Est-il risqué d'acheter un Orbitvu d'occasion ?",
-    answer: "C'est déconseillé dans la plupart des cas : les machines d'occasion sont souvent hors garantie, la formation initiale n'est pas transférable, et la décote n'est que de 30 à 40% — soit une économie réelle limitée pour un risque accru. Une exception est acceptable pour les machines de moins de 2 ans avec garantie transférable, à vérifier avec PackshotCreator.",
+    answer: "Un achat d'occasion demande de vérifier l'état de la machine, la garantie éventuellement restante et la version de son logiciel. Consultez PackshotCreator avant de vous engager.",
   },
   {
     question: "Quel modèle Orbitvu convient le mieux pour la majorité des e-commerçants ?",
-    answer: "L'AlphaShot G2 est recommandé pour 90% des cas : il couvre les produits jusqu'à 100 cm, offre une polyvalence maximale pour la mode, la chaussure et l'électronique, et son retour sur investissement se situe généralement entre 6 et 12 mois selon le volume, sans garantie. Les modules 360° et vidéo sont ajoutables à tout moment.",
+    answer: "L'AlphaShot G2 convient à de nombreux e-commerçants : il couvre les produits jusqu'à 100 cm et s'adapte à la mode, à la chaussure et à l'électronique. Son retour sur investissement se situe généralement entre 6 et 12 mois selon le volume, sans garantie.",
   },
   {
     question: "Comment financer l'achat d'un studio photo automatisé ?",
-    answer: "Plusieurs options existent : le leasing professionnel (mensualités lissées sur 36 à 60 mois), le crédit-bail, ou les aides à l'investissement (BPI France, crédit impôt innovation selon secteur). Pour les PME industrielles, des dispositifs régionaux peuvent couvrir jusqu'à 30% de l'investissement.",
+    answer: "Le leasing professionnel ou un crédit équipement sont possibles ; leurs conditions dépendent de l'organisme financeur. Pour la formation, facturée séparément, Sysnext est certifiée Qualiopi : un financement OPCO est possible selon votre situation.",
   },
   {
     question: "Un studio Orbitvu peut-il évoluer avec les besoins futurs ?",
-    answer: "Oui, c'est l'un des points forts d'Orbitvu : des modules additionnels (360°, vidéo, 3D scan) sont disponibles après achat, les mises à jour logicielles sont gratuites (2 à 3 par an), et les pièces détachées sont disponibles pendant 7 à 10 ans. La compatibilité ascendante garantit que les anciens modèles restent compatibles avec les nouveaux logiciels.",
+    answer: "Des modules additionnels (360°, vidéo) existent selon les modèles, sur devis. Vérifiez avec nous les options d'évolution de votre modèle avant l'achat.",
   },
 ];
 
@@ -126,7 +126,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
           colorClass: 'bg-very-peri-500/15 text-very-peri-300',
         }}
         title="Guide d'Achat Complet : Choisir Votre Studio Photo Automatisé en 2026"
-        subtitle="7 critères objectifs, comparatif Micro / G2 / 360 / XXL, erreurs à éviter, financement. La méthode éprouvée pour faire le bon choix."
+        subtitle="7 critères objectifs, comparatif Micro / G2 / 360 / XXL, erreurs à éviter, financement. Une méthode pour faire le bon choix."
       >
         <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-future-dusk-300">
           <span className="px-3 py-1 rounded-full bg-very-peri-500/20 text-very-peri-300 font-medium text-xs uppercase tracking-wide">
@@ -166,10 +166,10 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 {/* Introduction */}
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Le marché des studios photo automatisés a considérablement évolué ces dernières années. Avec plus de 20 modèles disponibles en 2026, aux budgets très variables selon la taille des produits et le niveau d'automatisation, choisir le bon équipement peut rapidement devenir complexe. Une décision mal informée peut vous coûter des dizaines de milliers d'euros en sur-investissement ou, pire encore, en sous-performance chronique.
+                  Le marché des studios photo automatisés a considérablement évolué ces dernières années. Avec de nombreux modèles disponibles en 2026, aux budgets très variables selon la taille des produits et le niveau d'automatisation, choisir le bon équipement peut rapidement devenir complexe. Une décision mal informée peut vous coûter des dizaines de milliers d'euros en sur-investissement ou, pire encore, en sous-performance chronique.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Ce guide d'achat complet vous présente une <strong>méthodologie en 7 critères objectifs</strong> pour sélectionner le studio photo automatisé parfaitement adapté à vos besoins actuels et futurs. Que vous photographiiez des bijoux, des chaussures ou des meubles, que vous gériez 500 ou 10 000 références par an, ce guide vous donnera les clés pour faire le bon choix et maximiser votre retour sur investissement.
+                  Ce guide d'achat complet vous présente une <strong>méthodologie en 7 critères objectifs</strong> pour sélectionner le studio photo automatisé adapté à vos besoins actuels et futurs. Que vous photographiiez des bijoux, des chaussures ou des meubles, que vous gériez 500 ou 10 000 références par an, ce guide vous donnera les clés pour faire le bon choix et maximiser votre retour sur investissement.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -198,10 +198,9 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 30×30×30 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Précision extrême (macro intégré)</li>
+                  <li className="text-future-dusk-600">Adapté aux petits objets</li>
                   <li className="text-future-dusk-600">Compact (80×80 cm au sol)</li>
                   <li className="text-future-dusk-600">Éclairage optimisé petits objets</li>
-                  <li className="text-future-dusk-600">Prix d'entrée accessible</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
@@ -223,10 +222,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Polyvalence maximale</li>
-                  <li className="text-future-dusk-600">80% des produits e-commerce compatibles</li>
+                  <li className="text-future-dusk-600">Polyvalence</li>
                   <li className="text-future-dusk-600">Évolutivité (modules 360°, vidéo)</li>
-                  <li className="text-future-dusk-600">Rapport qualité/prix optimal</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
@@ -235,9 +232,6 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>Pour qui ?</strong> E-commerce généralistes, pure players mode/lifestyle, retailers multi-catégories.
-                </p>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Machine la plus vendue en France (2024-2025)</strong> : 60% des studios automatisés installés sont des AlphaShot G2.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -259,9 +253,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Prix élevé</li>
+                  <li className="text-future-dusk-600">Prix sur devis</li>
                   <li className="text-future-dusk-600">Encombrement important (300×300 cm minimum)</li>
-                  <li className="text-future-dusk-600">Consommation électrique importante</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Pour qui ?</strong> Enseignes ameublement, électroménager, équipementiers industriels.</p>
 
@@ -271,30 +264,26 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Produits concernés</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600">Tous secteurs nécessitant vues interactives</li>
-                  <li className="text-future-dusk-600">E-commerce AR/VR ready</li>
                   <li className="text-future-dusk-600">Catalogues interactifs premium</li>
-                  <li className="text-future-dusk-600">Marketplaces (Amazon 360, Cdiscount 360)</li>
+                  <li className="text-future-dusk-600">Marketplaces acceptant les vues 360°</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Dimensions utiles</strong> : 100×80×80 cm — <strong>Prix</strong> : sur devis</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Vues 360° natives (24, 36 ou 72 images)</li>
+                  <li className="text-future-dusk-600">Vues 360°</li>
                   <li className="text-future-dusk-600">Vidéos produit automatisées</li>
-                  <li className="text-future-dusk-600">Export 3D/CGI (modélisation)</li>
-                  <li className="text-future-dusk-600">Compatible réalité augmentée</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Prix 2× supérieur G2</li>
                   <li className="text-future-dusk-600">Temps capture plus long (2-5 min vs 1-2 min)</li>
-                  <li className="text-future-dusk-600">Fichiers volumineux (20-50 MB par produit 360°)</li>
+                  <li className="text-future-dusk-600">Fichiers volumineux</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Pour qui ?</strong> Marques premium, e-commerce AR/VR, catalogues interactifs, formation technique (manuels 3D).
+                  <strong>Pour qui ?</strong> Marques premium, catalogues interactifs.
                 </p>
 
                 <Callout type="info" title="Évolutivité G2 → 360">
-                  Si vous hésitez entre G2 et 360, privilégiez le <strong>G2 + module 360° ultérieur</strong> (économie immédiate substantielle, upgrade possible dans 1-2 ans selon besoins).
+                  Si vous hésitez entre G2 et 360, envisagez le <strong>G2</strong>, avec un module 360° ajouté plus tard si le besoin se confirme (sur devis).
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -304,7 +293,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   2. Volume Production : Dimensionner la Capacité
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Le volume annuel de produits à photographier détermine la <strong>rentabilité</strong> de votre investissement et le <strong>modèle optimal</strong>.
+                  Le volume annuel de produits à photographier détermine la <strong>rentabilité</strong> de votre investissement et le <strong>modèle adapté</strong>.
                 </p>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">&lt; 500 Produits/An : Studio Manuel Recommandé</h4>
@@ -312,17 +301,16 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
                   <div>Coût studio automatisé : sur devis</div>
                   <div>Économie vs externe : variable selon votre volume (estimation avec le calculateur ROI)</div>
-                  <div>Délai retour : 12-18 mois</div>
                 </div>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Alternative</strong> : Studio manuel (fond, éclairage, appareil) + IA BlendAI pour automatiser détourage/retouche. <strong>Budget</strong> : 3 000 - 5 000€ (équipement) + 50€/mois (BlendAI). <strong>Pour qui ?</strong> Créateurs, TPE e-commerce &lt; 500 références.
+                  <strong>Alternative</strong> : studio manuel (fond, éclairage, appareil), complété par un outil d'IA pour le détourage et la retouche. <strong>Pour qui ?</strong> Créateurs, TPE e-commerce &lt; 500 références.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">500-2 000 Produits/An : AlphaShot Micro ou G2</h4>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
-                  <div>1 000 produits/an : économies substantielles sur la sous-traitance photo</div>
+                  <div>1 000 produits/an : économie à estimer avec le calculateur ROI</div>
                   <div>Investissement G2 : sur devis</div>
                   <div>Délai retour : généralement 6 à 12 mois selon le volume, sans garantie</div>
                 </div>
@@ -339,17 +327,17 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">2 000-10 000 Produits/An : AlphaShot G2 ou 360</h4>
                 <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-4 font-mono text-sm text-future-dusk-700">
-                  <div>5 000 produits/an : économies substantielles sur la sous-traitance photo</div>
+                  <div>5 000 produits/an : économie à estimer avec le calculateur ROI</div>
                   <div>Investissement G2 ou 360 : sur devis</div>
                   <div>Délai retour : généralement 6 à 12 mois selon le volume, sans garantie</div>
                 </div>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Machine recommandée</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>G2</strong> si packshots simples suffisent</li>
-                  <li className="text-future-dusk-600"><strong>360</strong> si vues interactives requises (marketplace, AR/VR)</li>
+                  <li className="text-future-dusk-600"><strong>360</strong> si vues interactives requises</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Organisation</strong> : 1 opérateur dédié + workflows automatisés (intégration PIM/DAM).
+                  <strong>Organisation</strong> : 1 opérateur dédié ; intégration PIM/DAM à étudier selon vos outils.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -389,7 +377,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages G2</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
                   <li className="text-future-dusk-600">Rapidité (1-2 min par produit)</li>
-                  <li className="text-future-dusk-600">Coût optimal (sur devis)</li>
+                  <li className="text-future-dusk-600">Prix sur devis</li>
                   <li className="text-future-dusk-600">Détourage automatique intégré</li>
                 </ul>
 
@@ -399,17 +387,10 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Catalogues interactifs premium</li>
-                  <li className="text-future-dusk-600">E-commerce AR/VR ready</li>
-                  <li className="text-future-dusk-600">Marketplaces premium (Amazon 360 Spin)</li>
+                  <li className="text-future-dusk-600">Marketplaces acceptant les vues 360°</li>
                   <li className="text-future-dusk-600">Applications mobiles (rotation tactile)</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Output</strong> : 24, 36 ou 72 images par rotation, HTML5 viewer intégré, export GIF animé ou vidéo MP4.</p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages 360</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Engagement utilisateur +40%</li>
-                  <li className="text-future-dusk-600">Taux conversion +15-25% (études secteur)</li>
-                  <li className="text-future-dusk-600">Réduction retours produits (-30%)</li>
-                </ul>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Output</strong> : séquences d'images à 360°.</p>
 
                 <hr className="my-6 border-neutral-200" />
 
@@ -420,45 +401,29 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">Landing pages publicitaires</li>
                   <li className="text-future-dusk-600">Réseaux sociaux (Instagram, TikTok, YouTube Shorts)</li>
                 </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Output</strong> : Vidéos MP4 Full HD (1920×1080), rotations fluides 30-60 fps, zooms progressifs automatisés.</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Output</strong> : vidéos produit (rotation, zoom).</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages vidéo</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Format 2026 dominant (70% trafic web = vidéo)</li>
                   <li className="text-future-dusk-600">SEO YouTube (référencement Google)</li>
                   <li className="text-future-dusk-600">Viralité réseaux sociaux</li>
                 </ul>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Animations 3D/CGI : AlphaShot 360 + Export 3D</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Configurateurs produits 3D</li>
-                  <li className="text-future-dusk-600">Réalité augmentée (essai virtuel)</li>
-                  <li className="text-future-dusk-600">Manuels techniques interactifs</li>
-                  <li className="text-future-dusk-600">Modélisation 3D pour marketing</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600">
-                  <strong>Output</strong> : Modèles 3D (OBJ, FBX, GLTF), textures haute résolution, compatible moteurs 3D (Unity, Unreal).
-                </p>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Investissement</strong> : AlphaShot 360 (sur devis) + logiciels 3D (500 - 2 000€/an)
-                </p>
-
                 <ComparisonTable
-                  headers={['Packshot Simple', 'Vue 360°', 'Vidéo', 'Animation 3D']}
+                  headers={['Packshot Simple', 'Vue 360°', 'Vidéo']}
                   rows={[
-                    { label: 'Machine', values: ['G2', '360', '360 + Module', '360 + 3D'] },
-                    { label: 'Prix', values: ['Sur devis', 'Sur devis', 'Sur devis', 'Sur devis'] },
-                    { label: 'Temps/produit', values: ['1-2 min', '3-5 min', '4-6 min', '5-10 min'] },
-                    { label: 'Use case principal', values: ['E-commerce', 'Premium', 'Social Media', 'AR/VR'] },
+                    { label: 'Machine', values: ['G2', '360', '360 + Module'] },
+                    { label: 'Prix', values: ['Sur devis', 'Sur devis', 'Sur devis'] },
+                    { label: 'Temps/produit', values: ['1-2 min', '3-5 min', '4-6 min'] },
+                    { label: 'Use case principal', values: ['E-commerce', 'Premium', 'Social Media'] },
                   ]}
                 />
 
                 <hr className="my-8 border-neutral-200" />
 
                 <Callout type="info" title="Calculez Votre ROI Personnalisé">
-                  Avant d'investir, estimez précisément le retour sur investissement selon vos volumes et besoins. Notre calculateur vous recommande la machine adaptée.{' '}
+                  Avant d'investir, estimez le retour sur investissement selon vos volumes et besoins. Notre calculateur établit une étude par machine.{' '}
                   <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
                     Lancer le calculateur gratuit →
                   </Link>
@@ -476,25 +441,23 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Machine complète opérationnelle</li>
-                  <li className="text-future-dusk-600">Logiciel Orbitvu inclus (vie)</li>
-                  <li className="text-future-dusk-600">Support technique 1 an</li>
+                  <li className="text-future-dusk-600">Logiciel de pilotage Orbitvu</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce qui n'est PAS inclus</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Livraison et installation on-site (facturées en supplément)</li>
                   <li className="text-future-dusk-600">Formation (Essential ou Master, facturée séparément)</li>
-                  <li className="text-future-dusk-600">Maintenance année 2+ (sur devis)</li>
+                  <li className="text-future-dusk-600">Maintenance (sur devis)</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Financement</strong> : Leasing 36 mois : sur devis | Crédit équipement : Selon banque</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Financement</strong> : leasing ou crédit équipement, sur devis</p>
 
                 <hr className="my-6 border-neutral-200" />
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Mid-Range : AlphaShot G2</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Machine polyvalente (80% use cases)</li>
+                  <li className="text-future-dusk-600">Machine polyvalente</li>
                   <li className="text-future-dusk-600">Évolutivité (modules 360°, vidéo)</li>
-                  <li className="text-future-dusk-600">Support 1 an</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
@@ -504,7 +467,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Financement</strong> : Leasing 48 mois : sur devis | Amortissement comptable : 5 ans<br />
+                  <strong>Financement</strong> : leasing ou crédit équipement, sur devis<br />
                   <strong>ROI</strong> : généralement 6 à 12 mois selon le volume, sans garantie
                 </p>
 
@@ -513,9 +476,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Premium : AlphaShot 360 ou XXL</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous obtenez</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Machines haute performance</li>
-                  <li className="text-future-dusk-600">Capacités avancées (360°, vidéo, 3D)</li>
-                  <li className="text-future-dusk-600">Support prioritaire 2 ans</li>
+                  <li className="text-future-dusk-600">Machines pour produits volumineux et vues 360°</li>
+                  <li className="text-future-dusk-600">Capacités 360° et vidéo</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Budget complet recommandé</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
@@ -525,12 +487,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600"><strong>Total : sur devis</strong></li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Financement</strong> : Leasing 60 mois : sur devis | Crédit professionnel : Taux 2-3%<br />
-                  <strong>ROI</strong> : généralement 6 à 12 mois selon le volume, 12 à 18 mois pour les plus grands Alphastudio, sans garantie
+                  <strong>Financement</strong> : leasing ou crédit équipement, sur devis<br />
+                  <strong>ROI</strong> : généralement 6 à 12 mois selon le volume, sans garantie. Pour les plus grands Alphastudio, le retour observé peut plutôt se situer entre 12 et 18 mois.
                 </p>
 
                 <Callout type="warning" title="Attention au sous-dimensionnement">
-                  Économiser sur une machine sous-dimensionnée peut vous coûter <strong>très cher en opportunités perdues</strong> (produits non shootables, workflows limités, réinvestissement nécessaire dans 2 ans).
+                  Économiser sur une machine sous-dimensionnée peut vous coûter <strong>très cher en opportunités perdues</strong> (produits non shootables, workflows limités, réinvestissement anticipé).
                 </Callout>
 
                 <hr className="my-8 border-neutral-200" />
@@ -540,54 +502,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   5. Intégration IA : Préparer le Workflow 2026
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  En 2026, l'intégration de l'IA photo produit n'est plus une option mais un <strong>standard de l'industrie</strong>. Tous les studios Orbitvu sont <strong>IA Ready</strong>, avec compatibilité native BlendAI.
+                  Les packshots produits par un studio automatisé peuvent ensuite être traités par des outils d'IA : détourage, arrière-plans, mises en scène. Avant l'achat, vérifiez avec nous les formats d'export et les intégrations possibles avec vos outils (IA, PIM, DAM).
                 </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Qu'est-ce qu'un Studio "IA Ready" ?</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Définition</strong> : Studio capable d'exporter automatiquement les packshots vers une plateforme IA pour traitement automatisé.
-                </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow IA intégré</strong> :</p>
-                <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Capture studio Orbitvu</strong> (1-2 min) : Packshot fond blanc haute qualité</li>
-                  <li className="text-future-dusk-600"><strong>Export automatique BlendAI</strong> (10 sec) : API directe, aucune manipulation</li>
-                  <li className="text-future-dusk-600"><strong>Traitement IA</strong> (30-60 sec) : Détourage, backgrounds, lifestyle, retouche</li>
-                  <li className="text-future-dusk-600"><strong>Import automatique PIM/DAM</strong> (10 sec) : Visuels prêts e-commerce</li>
-                </ol>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Gain de productivité total</strong> : <strong>92-95%</strong> vs workflow traditionnel (studio + retouche manuelle).
-                </p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Use Cases IA Photo Produit</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>1. Détourage Automatique</strong></p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Précision 99%+ (mieux que détourage Photoshop manuel)</li>
-                  <li className="text-future-dusk-600">Gestion produits complexes (cheveux, verre, transparence)</li>
-                  <li className="text-future-dusk-600">Batch 1 000+ images en 1h</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2. Backgrounds Contextuels</strong></p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Remplacer fond blanc par décors lifestyle</li>
-                  <li className="text-future-dusk-600">Cohérence marque (style guide personnalisable)</li>
-                  <li className="text-future-dusk-600">Génération IA custom (texte → arrière-plan)</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>3. Lifestyle Generator</strong></p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Transformer packshot en mise en scène réaliste</li>
-                  <li className="text-future-dusk-600">Économie 95% vs shooting mannequin traditionnel</li>
-                  <li className="text-future-dusk-600">Use case mode, bijoux, cosmétiques</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>4. Retouche Automatisée</strong></p>
-                <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Suppression défauts (poussière, rayures)</li>
-                  <li className="text-future-dusk-600">Ajustement couleurs (balance, saturation)</li>
-                  <li className="text-future-dusk-600">Ombres et reflets automatiques</li>
-                </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                    Découvrir l'intégration complète Hardware + IA
+                    Découvrir l'approche studio + IA
                   </Link>
                 </p>
 
@@ -598,7 +518,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   6. Évolutivité : Anticiper Vos Besoins Futurs
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Un studio photo représente un investissement 5-7 ans. L'évolutivité est un critère majeur pour éviter un réinvestissement prématuré.
+                  Un studio photo est un investissement de long terme. L'évolutivité est un critère majeur pour éviter un réinvestissement prématuré.
                 </p>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Modules Additionnels Disponibles</h4>
@@ -611,26 +531,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>AlphaShot 360 évolutif</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Module 3D/CGI</strong> (sur devis) : Export modèles 3D</li>
                   <li className="text-future-dusk-600"><strong>Plateau motorisé multi-axes</strong> (sur devis) : Rotations complexes</li>
-                  <li className="text-future-dusk-600"><strong>Éclairage premium</strong> (sur devis) : Rendu studio photographe</li>
+                  <li className="text-future-dusk-600"><strong>Éclairage additionnel</strong> (sur devis)</li>
                 </ul>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Upgrades Software Gratuits</h4>
-                <p className="mb-2 leading-relaxed text-future-dusk-600">Orbitvu met à jour gratuitement ses logiciels :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Nouvelles fonctionnalités (2-3 updates/an)</li>
-                  <li className="text-future-dusk-600">Optimisations performances</li>
-                  <li className="text-future-dusk-600">Compatibilité OS récents (Windows, macOS)</li>
-                  <li className="text-future-dusk-600">Intégrations API (nouvelles plateformes)</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Valeur</strong> : Économie de 500-1 000€/an vs logiciels concurrents (upgrades payants).
-                </p>
-
-                <hr className="my-6 border-neutral-200" />
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Scalabilité : Ajout de Machines</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
@@ -640,10 +546,9 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600">Formation identique (opérateurs interchangeables)</li>
                   <li className="text-future-dusk-600">Workflows dupliqués (aucune adaptation)</li>
-                  <li className="text-future-dusk-600">Pièces détachées communes (maintenance simplifiée)</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Coût</strong> : sur devis (machine seule, pas d'installation complexe)
+                  <strong>Coût</strong> : sur devis
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -653,12 +558,12 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   7. Support & Formation : Le Facteur Humain
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Un studio photo automatisé n'est performant que si vos équipes le maîtrisent. Le support technique et la formation sont des critères différenciants majeurs.
+                  Un studio photo automatisé n'est performant que si vos équipes le maîtrisent. Le support technique et la formation comptent donc dans le choix.
                 </p>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation : deux formats, facturés séparément</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  La formation n&apos;est pas incluse dans l&apos;achat du studio. Sysnext (PackshotCreator), organisme de formation certifié Qualiopi, propose deux formations aux studios Orbitvu : <strong>Essential Training</strong> (à distance) pour la prise en main, et <strong>Master Training</strong> (en présentiel) pour la maîtrise du studio. Programmes, durées, tarifs et prérequis sont détaillés dans notre catalogue de formation.
+                  La formation n&apos;est pas incluse dans l&apos;achat du studio : elle est facturée séparément. Deux formations aux studios Orbitvu sont proposées : <strong>Essential Training</strong> (4 h, à distance) pour la prise en main, et <strong>Master Training</strong> (7 h, en présentiel) pour la maîtrise du studio. Sysnext est certifiée Qualiopi : un financement OPCO est possible selon votre situation.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">
@@ -672,18 +577,6 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>PackshotCreator = Distributeur officiel Orbitvu France/Suisse</strong>
                 </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages support FR</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Hotline française</strong> : Réponse &lt; 2h ouvrées</li>
-                  <li className="text-future-dusk-600"><strong>Techniciens sur site</strong> : Intervention 24-48h (France métropolitaine)</li>
-                  <li className="text-future-dusk-600"><strong>Pièces détachées</strong> : Stock FR, livraison 24h</li>
-                  <li className="text-future-dusk-600"><strong>Mises à jour logicielles</strong> : Assistance installation gratuite</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Contrat maintenance</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Standard</strong> (sur devis) : Hotline, interventions à distance</li>
-                  <li className="text-future-dusk-600"><strong>Premium</strong> (sur devis) : + interventions on-site illimitées</li>
-                </ul>
 
                 <Callout type="success" title="Garantie">
                   Toutes les machines Orbitvu bénéficient d'une <strong>garantie standard d'un an</strong>. Une extension est possible.
@@ -708,7 +601,6 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                     { label: 'Temps/produit', values: ['1-2 min', '1-2 min', '3-5 min', '3-5 min'] },
                     { label: '360° natif', values: ['Non (option)', 'Non (option)', 'Oui', 'Non (option)'] },
                     { label: 'Vidéo', values: ['Non', 'Module', 'Module', 'Module'] },
-                    { label: 'IA Ready', values: ['Oui', 'Oui', 'Oui', 'Oui'] },
                     { label: 'Idéal pour', values: ['Bijoux, Montres', 'Mode, Chaussures', '360°, Vidéos', 'Meubles, Électro'] },
                   ]}
                 />
@@ -718,25 +610,23 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">AlphaShot Micro : Le Spécialiste Précision</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points forts</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Précision extrême (macro intégré, netteté parfaite)</li>
+                  <li className="text-future-dusk-600">Adapté aux petits objets</li>
                   <li className="text-future-dusk-600">Compact (gain de place showroom/atelier)</li>
-                  <li className="text-future-dusk-600">Prix accessible (ROI 6-10 mois)</li>
-                  <li className="text-future-dusk-600">Parfait bijoux/horlogerie (reflets contrôlés)</li>
+                  <li className="text-future-dusk-600">Adapté aux bijoux et à l'horlogerie</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points faibles</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Taille limitée 30 cm (bloquant pour certains secteurs)</li>
-                  <li className="text-future-dusk-600">360° nécessite module additionnel coûteux</li>
+                  <li className="text-future-dusk-600">360° : module additionnel (sur devis)</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : Bijouterie haute horlogerie, Cosmétiques premium, Électronique petite taille, Optique et lunetterie.</p>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">AlphaShot G2 : Le Polyvalent Best-Seller</h4>
+                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">AlphaShot G2 : Le Polyvalent</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points forts</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Polyvalence maximale (80% produits e-commerce)</li>
-                  <li className="text-future-dusk-600">Rapport qualité/prix imbattable</li>
+                  <li className="text-future-dusk-600">Polyvalence (mode, chaussures, électronique)</li>
                   <li className="text-future-dusk-600">Évolutif (modules 360°, vidéo)</li>
                   <li className="text-future-dusk-600">Rapidité (200-500 produits/jour)</li>
                 </ul>
@@ -745,25 +635,22 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <li className="text-future-dusk-600">360° non natif (module en option)</li>
                   <li className="text-future-dusk-600">Encombrement 150×150 cm minimum</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : E-commerce mode et lifestyle, Chaussures et maroquinerie, Équipement sportif, Électronique grand public. <strong>Machine recommandée 90% des cas.</strong></p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : E-commerce mode et lifestyle, Chaussures et maroquinerie, Équipement sportif, Électronique grand public.</p>
 
                 <hr className="my-6 border-neutral-200" />
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">AlphaShot 360 : Le Premium Interactif</h4>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points forts</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Vues 360° natives (24-72 images)</li>
+                  <li className="text-future-dusk-600">Vues 360°</li>
                   <li className="text-future-dusk-600">Vidéos produits automatisées</li>
-                  <li className="text-future-dusk-600">Export 3D/CGI (modélisation)</li>
-                  <li className="text-future-dusk-600">Compatible AR/VR (réalité augmentée)</li>
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points faibles</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Prix élevé (2× G2)</li>
                   <li className="text-future-dusk-600">Temps capture plus long</li>
                   <li className="text-future-dusk-600">Fichiers volumineux (gestion stockage)</li>
                 </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : Catalogues interactifs premium, E-commerce AR/VR ready, Marketplaces exigeantes (Amazon 360), Formation technique (manuels 3D).</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : Catalogues interactifs, marketplaces acceptant les vues 360°.</p>
 
                 <hr className="my-6 border-neutral-200" />
 
@@ -776,9 +663,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 </ul>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Points faibles</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Prix élevé (sur devis)</li>
+                  <li className="text-future-dusk-600">Prix sur devis</li>
                   <li className="text-future-dusk-600">Encombrement majeur (300×300 cm)</li>
-                  <li className="text-future-dusk-600">Consommation électrique importante</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Cas d'usage</strong> : Ameublement et décoration, Électroménager gros volume, Équipement industriel, Vélos et mobilité.</p>
 
@@ -789,10 +675,10 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   Processus d'Achat en 5 Étapes
                 </h2>
                 <p className="mb-6 leading-relaxed text-future-dusk-600">
-                  Suivez cette méthodologie éprouvée pour sécuriser votre achat et maximiser votre ROI.
+                  Suivez ces étapes pour sécuriser votre achat.
                 </p>
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 1 : Audit de Vos Besoins (1-2 Semaines)</h3>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 1 : Audit de Vos Besoins</h3>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Questions clés à vous poser :</strong></p>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Volume</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
@@ -822,32 +708,31 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                     Calculateur ROI gratuit
                   </Link>{' '}
-                  — résultats instantanés, recommandation machine personnalisée, export PDF pour présentation direction.
+                  — étude de retour sur investissement selon vos volumes.
                 </p>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 2 : Sélection Short-List (3-5 Jours)</h3>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 2 : Sélection Short-List</h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Réduisez à 2-3 machines candidates</strong> selon votre audit.</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Exemple short-list e-commerce mode</strong> :</p>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>AlphaShot G2</strong> (choix principal) : Polyvalence, prix optimal</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot G2</strong> (choix principal) : polyvalence</li>
                   <li className="text-future-dusk-600"><strong>AlphaShot 360</strong> (alternative premium) : Si vues 360° prioritaires</li>
                   <li className="text-future-dusk-600"><strong>AlphaShot Micro</strong> (fallback) : Si 90%+ produits &lt; 30 cm</li>
                 </ol>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 3 : Démonstration Gratuite (1 Journée)</h3>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 3 : Démonstration</h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Ne JAMAIS acheter sans tester.</strong> PackshotCreator propose des <strong>démos gratuites en conditions réelles</strong>.
+                  <strong>Testez avant d'acheter.</strong> PackshotCreator propose des <strong>démonstrations sur vos produits</strong>.
                 </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2 options</strong> :</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Où</strong> :</p>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Démo on-site chez vous</strong> : Nous venons avec la machine, test vos produits réels</li>
-                  <li className="text-future-dusk-600"><strong>Démo au showroom près de Lyon</strong> : Visite showroom + test 5-10 produits</li>
+                  <li className="text-future-dusk-600"><strong>Démo au showroom près de Lyon</strong> : visite et test de vos produits ; autres modalités à convenir avec nous</li>
                 </ol>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Durée</strong> : 2-4h | <strong>Apportez</strong> : 5-10 produits représentatifs (faciles + complexes)</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Apportez</strong> : des produits représentatifs (faciles et complexes)</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Ce que vous validez</strong> :</p>
                 <ul className="list-disc pl-6 mb-6 space-y-1">
                   <li className="text-future-dusk-600">Qualité rendu (netteté, couleurs, détourage)</li>
@@ -861,61 +746,36 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                     href="/contact"
                     className="inline-block bg-very-peri-600 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-very-peri-700 transition-colors shadow-lg"
                   >
-                    Demander une Démo Gratuite →
+                    Demander une démonstration →
                   </Link>
                 </div>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 4 : Négociation & Commande (1 Semaine)</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Éléments à négocier :</strong></p>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Prix machine</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Prix public vs prix PackshotCreator distributeur officiel (-10-15%)</li>
-                  <li className="text-future-dusk-600">Remises volume (si achat multiple machines)</li>
-                </ul>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Services inclus</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Installation on-site (négociable selon distance)</li>
-                  <li className="text-future-dusk-600">Maintenance année 1 étendue</li>
-                </ul>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 4 : Commande</h3>
                 <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Financement</strong> :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600"><strong>Leasing professionnel</strong> : 36-60 mois, taux 1,5-3%</li>
+                  <li className="text-future-dusk-600"><strong>Leasing professionnel</strong> : conditions selon l'organisme financeur</li>
                   <li className="text-future-dusk-600"><strong>Crédit équipement</strong> : Selon banque et profil entreprise</li>
-                  <li className="text-future-dusk-600"><strong>Paiement comptant</strong> : Remise négociable -3-5%</li>
-                  <li className="text-future-dusk-600"><strong>Financement formation OPCO</strong> : possible selon votre situation (organisme certifié Qualiopi)</li>
+                  <li className="text-future-dusk-600"><strong>Financement de la formation</strong> : Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Délai de livraison</strong> : environ 12 jours actuellement, à titre indicatif et sans garantie</p>
 
                 <hr className="my-6 border-neutral-200" />
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 5 : Déploiement & Formation (1-2 Semaines)</h3>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Installation on-site (Jour 1-2)</strong> :</p>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Étape 5 : Déploiement & Formation</h3>
+                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Installation sur site (facturée en supplément)</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Livraison et déballage</li>
                   <li className="text-future-dusk-600">Installation et calibration</li>
                   <li className="text-future-dusk-600">Tests produits réels</li>
                   <li className="text-future-dusk-600">Validation workflow</li>
                 </ul>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Formation équipes (en option)</strong> :</p>
+                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Formation des équipes (facturée séparément)</strong> :</p>
                 <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Essential Training (à distance) ou Master Training (en présentiel), facturés séparément</li>
-                  <li className="text-future-dusk-600">Workflows par type de produits</li>
-                  <li className="text-future-dusk-600">Best practices secteur</li>
-                  <li className="text-future-dusk-600">Troubleshooting courant</li>
+                  <li className="text-future-dusk-600">Essential Training (4 h, à distance) ou Master Training (7 h, en présentiel)</li>
                 </ul>
-                <p className="mb-1 leading-relaxed text-future-dusk-600"><strong>Suivi post-formation</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-1">
-                  <li className="text-future-dusk-600">Support technique hotline (illimité pendant 3 mois)</li>
-                  <li className="text-future-dusk-600">Session de suivi à distance (1 mois après installation)</li>
-                  <li className="text-future-dusk-600">Accès formateur email (3 mois)</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Go-Live</strong> : Début production réelle (Semaine 3)</p>
 
-                <Callout type="success" title="Accompagnement garanti">
-                  PackshotCreator vous accompagne jusqu'à l'autonomie complète de vos équipes. <strong>Satisfaction client 98%</strong> (enquête 2025 sur 150+ installations).
-                </Callout>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -933,9 +793,9 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <hr className="my-6 border-neutral-200" />
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Erreur 2 : Ignorer l'Intégration IA</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Symptôme</strong> : Acheter un studio sans vérifier la compatibilité IA (certains concurrents Orbitvu ne sont PAS IA Ready).</p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conséquence</strong> : Workflows manuels en 2026-2027, perte compétitivité, réinvestissement forcé.</p>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : Exiger explicitement la <strong>compatibilité IA native</strong> (API BlendAI, exports automatisés).</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Symptôme</strong> : acheter un studio sans vérifier comment ses images s'intègrent à vos outils (IA, PIM, DAM).</p>
+                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conséquence</strong> : transferts et retouches manuels.</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : vérifier avant l'achat les <strong>formats d'export et les intégrations</strong> disponibles avec vos outils.</p>
 
                 <hr className="my-6 border-neutral-200" />
 
@@ -944,8 +804,8 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-3 space-y-1">
                   <li className="text-future-dusk-600">Maintenance annuelle (sur devis)</li>
                   <li className="text-future-dusk-600">Formation des nouveaux opérateurs (facturée séparément)</li>
-                  <li className="text-future-dusk-600">Évolutions logicielles (gratuit Orbitvu, payant concurrents)</li>
-                  <li className="text-future-dusk-600">Consommables et backgrounds (200€/an)</li>
+                  <li className="text-future-dusk-600">Évolutions logicielles</li>
+                  <li className="text-future-dusk-600">Consommables et fonds</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : Calculer le <strong>TCO (Total Cost of Ownership) sur 5 ans</strong>, pas seulement le prix d'achat.</p>
 
@@ -954,7 +814,7 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Erreur 4 : Ne Pas Tester Avant Achat</h3>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Symptôme</strong> : Acheter sur catalogue sans démo, découvrir que le rendu ne correspond pas à vos attentes.</p>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conséquence</strong> : Déception, sous-utilisation, ROI dégradé.</p>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : <strong>TOUJOURS demander une démo gratuite</strong> avec vos produits réels.</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Solution</strong> : <strong>demander une démonstration</strong> avec vos produits réels.</p>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -963,54 +823,15 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   Financement et Aides
                 </h2>
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Leasing Professionnel</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Pas de sortie de trésorerie immédiate</li>
-                  <li className="text-future-dusk-600">Loyers déductibles fiscalement</li>
-                  <li className="text-future-dusk-600">Option rachat en fin de contrat (valeur symbolique)</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Conditions</strong> : Durée 36-60 mois | Taux 1,5-3% | Apport 0-10%</p>
-                <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-6 font-mono text-sm text-future-dusk-700">
-                  <div>Machine : sur devis</div>
-                  <div>Leasing 48 mois à 2% : mensualités lissées selon le montant financé</div>
-                  <div>Économie photo : à estimer selon votre volume</div>
-                  <div>Gain net : estimable avec le calculateur ROI</div>
-                </div>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Crédit Équipement Bancaire</h3>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages</strong> :</p>
-                <ul className="list-disc pl-6 mb-3 space-y-1">
-                  <li className="text-future-dusk-600">Propriété immédiate machine</li>
-                  <li className="text-future-dusk-600">Amortissement comptable sur 3-5 ans</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Inconvénients</strong> : Sortie trésorerie initiale (apport 20-30%) | Taux variables selon banque (2-5%)</p>
-
-                <hr className="my-6 border-neutral-200" />
-
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Aides OPCO pour Formation</h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Les formations dispensées par un <strong>organisme certifié Qualiopi</strong> sont éligibles au financement OPCO (Opérateurs de Compétences). <strong>Prise en charge</strong> : selon votre OPCO et votre situation.
+                  L'achat du studio peut être financé par un leasing professionnel ou par un crédit équipement. Durée, taux et apport dépendent de l'organisme financeur.
                 </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Démarches</strong> :</p>
-                <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Identifier votre OPCO (selon secteur activité)</li>
-                  <li className="text-future-dusk-600">Monter dossier (nous vous accompagnons)</li>
-                  <li className="text-future-dusk-600">Validation OPCO (4-8 semaines)</li>
-                  <li className="text-future-dusk-600">Formation réglée directement par OPCO</li>
-                </ol>
 
-                <hr className="my-6 border-neutral-200" />
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Financement de la Formation</h3>
+                <p className="mb-4 leading-relaxed text-future-dusk-600">
+                  La formation est facturée séparément. Sysnext est certifiée Qualiopi : un financement OPCO est possible selon votre situation.
+                </p>
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Amortissement Comptable</h3>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Durée recommandée</strong> : 3-5 ans (selon usage intensif ou modéré)</p>
-                <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 mb-6 font-mono text-sm text-future-dusk-700">
-                  <div>Machine : sur devis</div>
-                  <div>Amortissement 5 ans : montant annuel proportionnel au prix d'achat</div>
-                  <div>Économie fiscale (IS 25%) : à calculer selon votre investissement</div>
-                </div>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -1041,24 +862,23 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                   Conclusion : Choisir en Connaissance de Cause
                 </h2>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Le choix d'un studio photo automatisé est une décision stratégique qui impactera votre production photo pendant 5-7 ans. Une méthodologie rigoureuse en 7 critères (taille, volume, visuels, budget, IA, évolutivité, support) vous permet de sélectionner la machine optimale et d'éviter les erreurs coûteuses.
+                  Le choix d'un studio photo automatisé est une décision stratégique qui engage votre production photo sur plusieurs années. Une méthodologie rigoureuse en 7 critères (taille, volume, visuels, budget, IA, évolutivité, support) vous aide à sélectionner la machine adaptée et à éviter les erreurs coûteuses.
                 </p>
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Les 5 Clés de Décision</h3>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>Anticipez 3 ans minimum</strong> : Dimensionnez selon vos besoins futurs, pas actuels</li>
                   <li className="text-future-dusk-600"><strong>Privilégiez l'évolutivité</strong> : Modules additionnels &gt; réinvestissement complet</li>
-                  <li className="text-future-dusk-600"><strong>Exigez IA Ready</strong> : Workflow 2026 = Hardware + IA intégré</li>
-                  <li className="text-future-dusk-600"><strong>TESTEZ avant achat</strong> : Démo gratuite avec vos produits réels obligatoire</li>
-                  <li className="text-future-dusk-600"><strong>Calculez le TCO 5 ans</strong> : Coûts cachés (maintenance, formation) = 20-30% du budget</li>
+                  <li className="text-future-dusk-600"><strong>Vérifiez les intégrations</strong> : formats d'export et outils (IA, PIM, DAM)</li>
+                  <li className="text-future-dusk-600"><strong>Testez avant l'achat</strong> : démonstration avec vos produits réels</li>
+                  <li className="text-future-dusk-600"><strong>Calculez le TCO sur 5 ans</strong> : intégrez maintenance, formation et consommables</li>
                 </ol>
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Machine Recommandée 90% des Cas : AlphaShot G2</h3>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Machine Polyvalente : AlphaShot G2</h3>
                 <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Pourquoi ?</strong></p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Polyvalence 80% produits e-commerce</li>
-                  <li className="text-future-dusk-600">Rapport qualité/prix imbattable</li>
-                  <li className="text-future-dusk-600">Évolutivité maximale (modules 360°, vidéo)</li>
+                  <li className="text-future-dusk-600">Polyvalence (mode, chaussures, électronique)</li>
+                  <li className="text-future-dusk-600">Évolutivité (modules 360°, vidéo, sur devis)</li>
                   <li className="text-future-dusk-600">ROI généralement de 6 à 12 mois selon le volume, sans garantie</li>
                 </ul>
 
@@ -1090,11 +910,11 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600">
                     <strong>Calculateur ROI</strong> :{' '}
-                    <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies en 5 min</Link>
+                    <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Intégration IA</strong> :{' '}
-                    <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link>
+                    <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Approche studio + IA</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Formations</strong> :{' '}

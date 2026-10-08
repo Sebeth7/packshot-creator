@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
-import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
@@ -11,7 +11,7 @@ import { buildLanguages } from '@/lib/hreflang';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const title = 'BlendAI vs Photoroom : Quel Outil IA pour Vos Visuels Produits en 2026 ?';
-  const description = 'Comparatif complet BlendAI vs Photoroom. Détourage, backgrounds, retouche, batch processing. Cas d\'usage, pricing, workflow e-commerce. Guide objectif 2026.';
+  const description = "BlendAI ou Photoroom : les critères pour choisir un outil d'IA de visuels produits (détourage, arrière-plans, retouche, volume, intégration) en 2026.";
 
   return {
     title,
@@ -48,21 +48,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 /* ─────────────────────────── TOC ─────────────────────────── */
 
 const headings = [
-  { id: '1-blendai-vs-photoroom-vue-densemble', text: '1. BlendAI vs Photoroom : Vue d\'Ensemble', level: 2 },
-  { id: 'blendai-lia-specialisee-e-commerce-haute-qualite', text: 'BlendAI : L\'IA Spécialisée E-commerce Haute Qualité', level: 3 },
-  { id: 'photoroom-lapp-mobile-simple-et-accessible', text: 'Photoroom : L\'App Mobile Simple et Accessible', level: 3 },
-  { id: '2-comparaison-fonctionnalites-4-criteres-decisifs', text: '2. Comparaison Fonctionnalités : 4 Critères Décisifs', level: 2 },
-  { id: '21-detourage-background-removal', text: '2.1 Détourage (Background Removal)', level: 3 },
-  { id: '22-backgrounds-creation-arriere-plans', text: '2.2 Backgrounds (Création Arrière-Plans)', level: 3 },
-  { id: '23-retouche-produit-automatisee', text: '2.3 Retouche Produit Automatisée', level: 3 },
-  { id: '24-integration-workflow-e-commerce', text: '2.4 Intégration Workflow E-commerce', level: 3 },
-  { id: '3-tableau-comparatif-complet', text: '3. Tableau Comparatif Complet', level: 2 },
-  { id: '4-cas-dusage-quand-choisir-blendai-vs-photoroom', text: '4. Cas d\'Usage : Quand Choisir BlendAI vs Photoroom ?', level: 2 },
-  { id: 'quand-choisir-blendai', text: 'Quand Choisir BlendAI ?', level: 3 },
-  { id: 'quand-choisir-photoroom', text: 'Quand Choisir Photoroom ?', level: 3 },
+  { id: '1-blendai-vs-photoroom-vue-densemble', text: '1. BlendAI et Photoroom : Vue d\'Ensemble', level: 2 },
+  { id: 'blendai-lia-specialisee-e-commerce-haute-qualite', text: 'BlendAI', level: 3 },
+  { id: 'photoroom-lapp-mobile-simple-et-accessible', text: 'Photoroom', level: 3 },
+  { id: '2-comparaison-fonctionnalites-4-criteres-decisifs', text: '2. Les Critères à Comparer', level: 2 },
+  { id: '4-cas-dusage-quand-choisir-blendai-vs-photoroom', text: '3. Cas d\'Usage', level: 2 },
+  { id: 'quand-choisir-blendai', text: 'Production Régulière de Visuels Catalogue', level: 3 },
+  { id: 'quand-choisir-photoroom', text: 'Usage Ponctuel ou Petits Volumes', level: 3 },
   { id: 'approche-hybride-photoroom-prototyping-blendai-production', text: 'Approche Hybride', level: 3 },
-  { id: '5-approche-hybride-packshotcreator-hardware-ia-workflow-optimal', text: '5. Approche Hybride PackshotCreator', level: 2 },
-  { id: '6-faq-comparatif-blendai-vs-photoroom', text: '6. FAQ Comparatif BlendAI vs Photoroom', level: 2 },
+  { id: '5-approche-hybride-packshotcreator-hardware-ia-workflow-optimal', text: '4. Approche PackshotCreator', level: 2 },
+  { id: '6-faq-comparatif-blendai-vs-photoroom', text: '5. FAQ BlendAI et Photoroom', level: 2 },
   { id: 'conclusion-choisir-en-fonction-de-votre-realite', text: 'Conclusion', level: 2 },
 ];
 
@@ -71,23 +66,23 @@ const headings = [
 const faqItems = [
   {
     question: 'BlendAI et Photoroom sont-ils compatibles ?',
-    answer: 'Non, ce sont deux outils distincts qui ne communiquent pas. Vous devez choisir l\'un ou l\'autre selon votre besoin.',
+    answer: 'Ce sont deux outils distincts. Leurs possibilités d\'échange de fichiers se vérifient auprès de chaque éditeur ; vous pouvez aussi les utiliser pour des usages différents.',
   },
   {
     question: 'Puis-je migrer de Photoroom vers BlendAI ?',
-    answer: 'Oui, la migration est facile. BlendAI accepte tous types d\'images en entrée. Vous perdez simplement l\'historique Photoroom (templates, projets).',
+    answer: 'Les formats d\'images acceptés par BlendAI et la reprise de vos visuels existants se vérifient avec nous, sur un échantillon de vos fichiers.',
   },
   {
     question: 'Quel est le prix exact de BlendAI ?',
-    answer: 'BlendAI propose des forfaits entreprise sur devis adaptés à votre volume et besoin. Contactez-nous pour un devis personnalisé (généralement 150-500€/mois selon usage).',
+    answer: 'BlendAI est proposé sur devis, selon votre volume et votre besoin. Contactez-nous pour un devis personnalisé.',
   },
   {
     question: 'Photoroom peut-il traiter 1 000 produits ?',
-    answer: 'Techniquement oui, mais le workflow manuel (traitement 1 par 1) rend l\'opération impraticable. BlendAI est conçu pour ces volumes (batch processing automatisé).',
+    answer: 'Nous ne détaillons pas les capacités de Photoroom, faute de source vérifiée : reportez-vous à l\'éditeur. Pour BlendAI, le traitement de votre volume se vérifie avec nous.',
   },
   {
     question: 'Quelle solution pour débutant e-commerce ?',
-    answer: 'Si vous débutez (<50 produits), Photoroom suffit largement. Une fois que vous dépassez 100-200 produits/an, BlendAI devient rapidement rentable.',
+    answer: 'Le choix dépend de votre volume, de vos produits et de votre budget. Testez les outils sur un échantillon de vos produits avant de vous engager.',
   },
 ];
 
@@ -117,7 +112,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
           colorClass: 'bg-very-peri-500/15 text-very-peri-300',
         }}
         title="BlendAI vs Photoroom : Quel Outil IA pour Vos Visuels Produits en 2026 ?"
-        subtitle="Comparatif complet BlendAI vs Photoroom. Détourage, backgrounds, retouche, batch processing. Cas d'usage, pricing, workflow e-commerce. Guide objectif 2026."
+        subtitle="BlendAI ou Photoroom : les critères pour choisir un outil d'IA de visuels produits (détourage, arrière-plans, retouche, volume, intégration) en 2026."
       >
         <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-future-dusk-300">
           <span className="px-3 py-1 rounded-full bg-very-peri-500/20 text-very-peri-300 font-medium text-xs uppercase tracking-wide">
@@ -163,46 +158,26 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
 
               {/* Intro */}
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Le marché de l'IA photo produit a explosé entre 2024 et 2026, avec l'émergence de dizaines d'outils promettant d'automatiser la production de visuels e-commerce. Parmi les solutions les plus populaires, <strong>Photoroom</strong> et <strong>BlendAI</strong> se distinguent, mais répondent à des besoins radicalement différents. Photoroom séduit les créateurs de contenu et TPE avec sa simplicité et son prix abordable, tandis que BlendAI vise les e-commerçants professionnels avec des exigences strictes de qualité et de volume.
+                <strong>BlendAI</strong> et <strong>Photoroom</strong> sont deux outils d'IA appliqués aux visuels produits : détourage, arrière-plans, retouche. Le choix entre eux dépend de votre volume, de vos produits et de vos outils.
               </p>
               <p className="mb-8 leading-relaxed text-future-dusk-600">
-                Dans ce comparatif détaillé, nous analysons objectivement les forces et faiblesses de chaque solution selon 4 critères critiques : détourage, génération de backgrounds, retouche produit et intégration workflow. Que vous gériez 50 ou 5 000 produits, ce guide vous aidera à choisir l'outil adapté à votre besoin réel.
+                Ce guide ne publie ni caractéristique, ni tarif, ni performance de Photoroom sans source vérifiée, et ne reprend pour BlendAI aucun chiffre de performance non vérifié. Il propose les critères à examiner et la méthode pour comparer les deux outils sur vos propres produits.
               </p>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 1 */}
               <h2 id="1-blendai-vs-photoroom-vue-densemble" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                1. BlendAI vs Photoroom : Vue d'Ensemble
+                1. BlendAI et Photoroom : Vue d'Ensemble
               </h2>
 
               <h3 id="blendai-lia-specialisee-e-commerce-haute-qualite" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                BlendAI : L'IA Spécialisée E-commerce Haute Qualité
+                BlendAI
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI</strong> est une solution d'intelligence artificielle spécialisée dans la production de visuels e-commerce professionnels. Lancée en 2024, elle se positionne comme l'alternative premium aux outils généralistes.
+                Sur ce site, <strong>BlendAI</strong> est présenté pour la déclinaison de packshots en visuels e-commerce (détourage, arrière-plans, mises en scène) destinés aux fiches produits. Ses capacités, ses intégrations et son tarif, sur devis, se vérifient avec nous sur vos propres produits.
               </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cible principale :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">E-commerce professionnels (catalogues 500+ produits)</li>
-                <li className="text-future-dusk-600">Marques avec exigences qualité strictes</li>
-                <li className="text-future-dusk-600">Industriels et distributeurs</li>
-                <li className="text-future-dusk-600">Studios photo gérant de gros volumes</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces principales :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Qualité premium :</strong> Détourage précision 99%+, respect absolu des couleurs</li>
-                <li className="text-future-dusk-600"><strong>Batch processing industriel :</strong> Traitement de 1 000+ images par session</li>
-                <li className="text-future-dusk-600"><strong>Cohérence marque :</strong> Style guide personnalisable, mêmes standards sur 10 000 produits</li>
-                <li className="text-future-dusk-600"><strong>Intégration workflow :</strong> API REST, plugins Adobe, connexion native studios Orbitvu</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Tarification :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Forfaits entreprise sur devis (à partir de 150€/mois)</li>
-                <li className="text-future-dusk-600">Modèle d'usage : crédits ou abonnement illimité selon volume</li>
-                <li className="text-future-dusk-600">Accompagnement technique inclus</li>
-              </ul>
-              <p className="mb-6">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Découvrir BlendAI et l'IA photo produit
                 </Link>
@@ -211,425 +186,84 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
               <hr className="my-8 border-neutral-200" />
 
               <h3 id="photoroom-lapp-mobile-simple-et-accessible" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Photoroom : L'App Mobile Simple et Accessible
+                Photoroom
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Photoroom</strong> est une application mobile (également disponible en version web) lancée en 2020, devenue extrêmement populaire auprès des créateurs de contenu et petites entreprises.
+                Nous ne détaillons pas ici les fonctionnalités, les limites ni les tarifs de <strong>Photoroom</strong> : faute de source vérifiée, reportez-vous directement à l'éditeur.
               </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cible principale :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">TPE et solopreneurs (e-commerces &lt;100 produits)</li>
-                <li className="text-future-dusk-600">Créateurs de contenu (Instagram, TikTok, Etsy)</li>
-                <li className="text-future-dusk-600">Marketeurs créant des visuels ponctuels</li>
-                <li className="text-future-dusk-600">Utilisateurs occasionnels</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces principales :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Simplicité d'usage :</strong> Interface intuitive, résultats immédiats</li>
-                <li className="text-future-dusk-600"><strong>Prix imbattable</strong></li>
-                <li className="text-future-dusk-600"><strong>App mobile :</strong> Édition sur smartphone, pratique pour contenus réseaux sociaux</li>
-                <li className="text-future-dusk-600"><strong>Templates riches :</strong> 100+ backgrounds prédéfinis, styles variés</li>
-              </ul>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 2 */}
               <h2 id="2-comparaison-fonctionnalites-4-criteres-decisifs" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                2. Comparaison Fonctionnalités : 4 Critères Décisifs
+                2. Les Critères à Comparer
               </h2>
-
-              {/* 2.1 */}
-              <h3 id="21-detourage-background-removal" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.1 Détourage (Background Removal)
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Le <strong>détourage automatique</strong> (suppression de l'arrière-plan) est la fonctionnalité de base de toute IA photo produit. La qualité du détourage détermine la crédibilité du visuel final.
-              </p>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Précision Chirurgicale pour Produits Complexes</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI utilise des modèles d'IA entraînés spécifiquement sur des <strong>produits e-commerce</strong>, ce qui lui confère une précision supérieure sur les matières complexes :
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces :</strong></p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Précision bords :</strong> 99%+ même sur cheveux, verre, textile, transparence</li>
-                <li className="text-future-dusk-600"><strong>Matières difficiles :</strong> Excelle sur bijoux (pierres brillantes), verre (reflets), textile (fibres), liquides (transparence)</li>
-                <li className="text-future-dusk-600"><strong>Détourage intelligent :</strong> Préserve ombres portées intentionnelles, supprime défauts de fond</li>
-                <li className="text-future-dusk-600"><strong>Batch :</strong> Traitement de 1 000+ images en une session avec qualité constante</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage idéal :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Bijouterie : Bagues avec pierres transparentes, colliers multi-matières</li>
-                <li className="text-future-dusk-600">Mode luxe : Textiles délicats, dentelles, fourrures</li>
-                <li className="text-future-dusk-600">Cosmétiques : Flacons verre avec reflets complexes</li>
-                <li className="text-future-dusk-600">Alimentaire : Produits liquides, transparence (huiles, jus)</li>
+                <li className="text-future-dusk-600"><strong>Détourage :</strong> netteté des bords et tenue sur les matières difficiles (verre, bijoux, textile, transparence)</li>
+                <li className="text-future-dusk-600"><strong>Arrière-plans :</strong> fonds prédéfinis ou générés, cohérence d'un produit à l'autre</li>
+                <li className="text-future-dusk-600"><strong>Retouche :</strong> corrections disponibles et respect des couleurs du produit</li>
+                <li className="text-future-dusk-600"><strong>Volume :</strong> nombre d'images à traiter et possibilité de traitement par lots</li>
+                <li className="text-future-dusk-600"><strong>Intégration :</strong> export et connexion à vos outils (PIM, DAM, CMS)</li>
+                <li className="text-future-dusk-600"><strong>Coût :</strong> selon votre volume et la formule retenue</li>
               </ul>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps de traitement :</strong> 30-60 secondes par image (haute résolution 4000×4000px)
+                Les présentations d'éditeurs et les comparatifs ne remplacent pas un test. Préparez un échantillon représentatif de votre catalogue, soumettez-le aux outils envisagés et comparez les résultats selon ces critères.
               </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Photoroom : Détourage Généraliste Efficace</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Photoroom utilise une IA généraliste (modèles entraînés sur personnes ET produits), ce qui donne de bons résultats sur la majorité des cas, mais avec des limites sur produits complexes.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Vitesse :</strong> Détourage instantané (&lt;5 secondes sur mobile)</li>
-                <li className="text-future-dusk-600"><strong>Produits simples :</strong> Excellent sur objets opaques, formes nettes (chaussures, livres, électronique)</li>
-                <li className="text-future-dusk-600"><strong>Mode personne :</strong> Très performant sur portraits et mannequins (use case fréquent réseaux sociaux)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Précision bords :</strong> 95% (artefacts fréquents sur contours complexes)</li>
-                <li className="text-future-dusk-600"><strong>Matières difficiles :</strong> Peine sur verre (reflets confus), cheveux fins, transparence</li>
-                <li className="text-future-dusk-600"><strong>Batch limité :</strong> Maximum 50 images par batch (vs 1 000+ BlendAI)</li>
-                <li className="text-future-dusk-600"><strong>Cohérence :</strong> Variations qualité entre images d'une même série</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps de traitement :</strong> &lt;5 secondes par image (résolution mobile 1080×1080px)
-              </p>
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Verdict Détourage :</strong></p>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Photoroom']}
-                rows={[
-                  { label: 'Précision bords', values: ['99%+', '95%'] },
-                  { label: 'Produits complexes (verre, textile)', values: ['Excellent', 'Limité'] },
-                  { label: 'Batch processing', values: ['1 000+ images', '50 images max'] },
-                  { label: 'Résolution max', values: ['Illimitée (8K+)', '4K'] },
-                  { label: 'Temps/image', values: ['30-60s', '<5s'] },
-                  { label: 'Cohérence série', values: ['100%', 'Variable'] },
-                ]}
-              />
-
-              <p className="mt-4 mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> sur la précision et les volumes importants. <strong>Photoroom gagne</strong> sur la vitesse et l'usage ponctuel.
-              </p>
-
-              <Callout type="success" title="Recommandation détourage">
-                Si vous vendez des produits avec matières complexes (bijoux, verre, textile), <strong>BlendAI est indispensable</strong>. Pour des produits simples (objets opaques, formes nettes), Photoroom suffit largement.
-              </Callout>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.2 */}
-              <h3 id="22-backgrounds-creation-arriere-plans" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.2 Backgrounds (Création Arrière-Plans)
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                La génération de <strong>backgrounds contextuels</strong> transforme un packshot fond blanc en visuel lifestyle ou publicitaire. Cette fonctionnalité booste les conversions de 40-60% sur landing pages et ads.
-              </p>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Backgrounds Custom IA Générative</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI intègre une IA générative permettant de créer des arrière-plans sur-mesure à partir de descriptions textuelles.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Génération custom :</strong> Prompt texte → Background unique ("bijou sur marbre noir avec lumière dorée")</li>
-                <li className="text-future-dusk-600"><strong>Templates e-commerce :</strong> Bibliothèque de backgrounds optimisés conversion (blanc, lifestyle, studio)</li>
-                <li className="text-future-dusk-600"><strong>Cohérence marque :</strong> Style guide enregistré, appliqué automatiquement à tous les produits</li>
-                <li className="text-future-dusk-600"><strong>Variantes :</strong> Génération de 5-10 variantes d'un même background pour A/B testing</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Campagnes publicitaires :</strong> Backgrounds adaptés à chaque canal (Meta, Google, TikTok)</li>
-                <li className="text-future-dusk-600"><strong>Catalogues saisonniers :</strong> Noël (décor hivernal), été (plage), rentrée (bureau)</li>
-                <li className="text-future-dusk-600"><strong>Tests A/B :</strong> 5 backgrounds différents pour optimiser conversion</li>
-                <li className="text-future-dusk-600"><strong>Cohérence catalogue :</strong> Même background lifestyle sur 1 000 produits (même lumière, même décor)</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Qualité rendu :</strong> Photoréaliste, intégration seamless (ombres, reflets cohérents) — <strong>Temps :</strong> 30-60 secondes par image
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Photoroom : Templates Prédéfinis Riches</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Photoroom propose une bibliothèque de 100+ templates de backgrounds prédéfinis, optimisés pour réseaux sociaux et marketplaces.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>100+ templates :</strong> Backgrounds abstraits, lifestyle, studio, festifs</li>
-                <li className="text-future-dusk-600"><strong>Génération AI basique :</strong> Prompt texte simple (limité vs BlendAI)</li>
-                <li className="text-future-dusk-600"><strong>Édition manuelle :</strong> Ajustement couleurs, flou, luminosité</li>
-                <li className="text-future-dusk-600"><strong>Mode Magic Retouch :</strong> Suppression éléments indésirables du background</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage :</strong></p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600"><strong>Réseaux sociaux :</strong> Stories Instagram, posts TikTok, visuels Pinterest</li>
-                <li className="text-future-dusk-600"><strong>Marketplaces :</strong> Etsy, Amazon (backgrounds standards acceptés)</li>
-                <li className="text-future-dusk-600"><strong>Contenus ponctuels :</strong> Promotions flash, annonces limitées</li>
-              </ul>
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Verdict Backgrounds :</strong></p>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Photoroom']}
-                rows={[
-                  { label: 'Génération custom IA', values: ['Oui (avancée)', 'Basique'] },
-                  { label: 'Templates prédéfinis', values: ['Oui (e-commerce)', 'Oui (100+)'] },
-                  { label: 'Cohérence marque', values: ['Style guide', 'Non'] },
-                  { label: 'Variantes A/B testing', values: ['5-10 par produit', 'Non'] },
-                  { label: 'Qualité photoréalisme', values: ['Excellent', 'Bon'] },
-                  { label: 'Temps génération', values: ['30-60s', '<10s'] },
-                ]}
-              />
-
-              <p className="mt-4 mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> sur la personnalisation et la cohérence marque. <strong>Photoroom gagne</strong> sur la simplicité et la rapidité.
-              </p>
-
-              <Callout type="info" title="Astuce background">
-                Pour des catalogues e-commerce cohérents (même style sur tous les produits), BlendAI est essentiel. Pour des contenus ponctuels réseaux sociaux, les templates Photoroom suffisent.
-              </Callout>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.3 */}
-              <h3 id="23-retouche-produit-automatisee" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.3 Retouche Produit Automatisée
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                La <strong>retouche automatisée</strong> supprime les défauts, ajuste les couleurs et harmonise les visuels sans intervention manuelle.
-              </p>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Retouche Professionnelle Avancée</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI intègre des fonctionnalités de retouche photo automatisées inspirées des workflows professionnels.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Suppression défauts :</strong> Rayures, poussières, reflets parasites, taches</li>
-                <li className="text-future-dusk-600"><strong>Ajustement couleurs :</strong> Balance des blancs, saturation, contraste (profils ICC personnalisés)</li>
-                <li className="text-future-dusk-600"><strong>Shadow/Reflection :</strong> Génération ombres portées et reflets réalistes automatiques</li>
-                <li className="text-future-dusk-600"><strong>Harmonisation :</strong> Application d'un même profil colorimétrique à 10 000 photos</li>
-                <li className="text-future-dusk-600"><strong>Corrections matières :</strong> Accentuation brillance bijoux, lissage textile, nettoyage verre</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Catalogues anciens :</strong> Harmonisation de 5 000 photos prises sur 5 ans (qualité hétérogène)</li>
-                <li className="text-future-dusk-600"><strong>Production haute qualité :</strong> Bijouterie, haute couture (exigences strictes)</li>
-                <li className="text-future-dusk-600"><strong>Post-production batch :</strong> Appliquer 10 retouches à 1 000 images simultanément</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>ROI :</strong> Économie de 80-95% vs retouche manuelle (15-30€ par photo) — <strong>Temps :</strong> 20-30 secondes par retouche
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Photoroom : Retouche Basique</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Photoroom propose des outils de retouche grand public, suffisants pour des besoins simples.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Filtres automatiques :</strong> Luminosité, contraste, saturation (curseurs)</li>
-                <li className="text-future-dusk-600"><strong>Magic Retouch :</strong> Suppression éléments simples (outil pinceau)</li>
-                <li className="text-future-dusk-600"><strong>Ajustement basique :</strong> Recadrage, rotation, redimensionnement</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Pas de retouche avancée (profils colorimétriques, corrections matières)</li>
-                <li className="text-future-dusk-600">Pas de batch processing pour retouche (1 image à la fois)</li>
-                <li className="text-future-dusk-600">Qualité limitée pour produits premium (bijoux, luxe)</li>
-              </ul>
-
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> largement : retouche professionnelle avancée vs outils basiques Photoroom.
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.4 */}
-              <h3 id="24-integration-workflow-e-commerce" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.4 Intégration Workflow E-commerce
-              </h3>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                L'<strong>intégration dans les workflows existants</strong> (PIM, DAM, CMS e-commerce) détermine la productivité réelle d'un outil IA.
-              </p>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Écosystème Professionnel Complet</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI est conçu pour s'intégrer dans des chaînes de production industrielles.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Intégrations :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>API REST :</strong> Automatisation complète (intégration PIM, DAM, CMS)</li>
-                <li className="text-future-dusk-600"><strong>Plugins Adobe :</strong> Photoshop, Lightroom (traitement direct depuis logiciels pros)</li>
-                <li className="text-future-dusk-600"><strong>Studios Orbitvu :</strong> Intégration native (AlphaShot → BlendAI → DAM automatique)</li>
-                <li className="text-future-dusk-600"><strong>Webhooks :</strong> Notifications temps réel (traitement terminé, erreurs)</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Temps total :</strong> 2-3 minutes par produit (vs 30-60 min workflow manuel)
-              </p>
-              <p className="mb-6">
-                <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                  Découvrir les studios Orbitvu IA Ready
-                </Link>
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Photoroom : App Standalone</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Photoroom est une application autonome, conçue pour l'usage individuel.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites intégration :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Pas d'API professionnelle :</strong> Impossible d'automatiser (traitement manuel 1 par 1)</li>
-                <li className="text-future-dusk-600"><strong>Pas de plugins :</strong> Édition uniquement dans l'app (pas d'intégration Photoshop/Lightroom)</li>
-                <li className="text-future-dusk-600"><strong>Export manuel :</strong> Téléchargement individuel des résultats</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps total :</strong> 2-5 minutes par produit (acceptable pour petits volumes)
-              </p>
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> : automatisation complète vs workflow manuel Photoroom.
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <Callout type="info" title="Découvrez BlendAI en Action">
-                <p className="mb-2">L'IA spécialisée pour vos visuels produits e-commerce. Détourage professionnel, génération backgrounds, retouche automatique. Compatible studios Orbitvu.</p>
-                <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline font-medium">
-                  En savoir plus sur BlendAI →
-                </Link>
-              </Callout>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* Section 3 */}
-              <h2 id="3-tableau-comparatif-complet" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                3. Tableau Comparatif Complet
-              </h2>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Photoroom']}
-                rows={[
-                  { label: 'CIBLE', values: ['E-commerce Pro (500+ prod)', 'TPE, Créateurs (<100 prod)'] },
-                  { label: 'Détourage précision', values: ['99%+', '95%'] },
-                  { label: 'Produits complexes', values: ['Excellent', 'Limité'] },
-                  { label: 'Batch processing', values: ['1 000+ images', '50 images max'] },
-                  { label: 'Backgrounds custom IA', values: ['Oui (avancée)', 'Basique'] },
-                  { label: 'Cohérence marque', values: ['Style guide', 'Non'] },
-                  { label: 'Retouche avancée', values: ['Oui (pro)', 'Basique'] },
-                  { label: 'API/Intégration', values: ['Oui (REST, plugins)', 'Non'] },
-                  { label: 'Intégration Orbitvu', values: ['Native', 'Non'] },
-                  { label: 'Support', values: ['Dédié (accompagnement)', 'Self-service (FAQs)'] },
-                  { label: 'Courbe apprentissage', values: ['1-2 jours (prise en main)', '<1h (intuitif)'] },
-                ]}
-              />
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 4 */}
               <h2 id="4-cas-dusage-quand-choisir-blendai-vs-photoroom" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                4. Cas d'Usage : Quand Choisir BlendAI vs Photoroom ?
+                3. Cas d'Usage
               </h2>
 
               <h3 id="quand-choisir-blendai" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Quand Choisir BlendAI ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Profils :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">E-commerce &gt;1 000 produits/an</li>
-                <li className="text-future-dusk-600">Marques avec exigences qualité strictes (bijoux, luxe, cosmétiques)</li>
-                <li className="text-future-dusk-600">Industriels et distributeurs (catalogues 5 000+ produits)</li>
-                <li className="text-future-dusk-600">Studios photo gérant des volumes importants</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases critiques :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Catalogues cohérents :</strong> 5 000 produits avec même background lifestyle (cohérence marque 100%)</li>
-                <li className="text-future-dusk-600"><strong>Produits complexes :</strong> Bijoux (pierres transparentes), verre (reflets), textile (fibres)</li>
-                <li className="text-future-dusk-600"><strong>Workflow automatisé :</strong> Intégration PIM/DAM/CMS (API REST)</li>
-                <li className="text-future-dusk-600"><strong>ROI calculé :</strong> Budget photo actuel &gt;10 000€/an (breakeven en 6-12 mois)</li>
-              </ul>
-              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
-                <p className="text-future-dusk-600 leading-relaxed italic">
-                  Maison de joaillerie parisienne, 2 000 références (bagues, colliers, montres). Budget photo annuel : 50 000€ (prestataires externes + retouche). <strong>Après BlendAI :</strong> Production internalisée, budget réduit à 12 000€/an (abonnement + opérateur). <strong>ROI : 38 000€ économisés/an.</strong>
-                </p>
-              </div>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 id="quand-choisir-photoroom" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Quand Choisir Photoroom ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Profils :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">TPE/solopreneurs (&lt;100 produits/an)</li>
-                <li className="text-future-dusk-600">Créateurs de contenu (Instagram, TikTok, Etsy)</li>
-                <li className="text-future-dusk-600">Marketeurs créant des visuels ponctuels</li>
-                <li className="text-future-dusk-600">Budget photo &lt;500€/mois</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases critiques :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Réseaux sociaux :</strong> Stories Instagram, posts TikTok (visuels rapides, qualité acceptable)</li>
-                <li className="text-future-dusk-600"><strong>Marketplaces :</strong> Etsy, Amazon (produits simples, volumes faibles)</li>
-                <li className="text-future-dusk-600"><strong>Prototyping :</strong> Tests visuels avant investissement studio photo</li>
-                <li className="text-future-dusk-600"><strong>Usage ponctuel :</strong> Promotions flash, annonces limitées</li>
-              </ul>
-              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
-                <p className="text-future-dusk-600 leading-relaxed italic">
-                  Créatrice Etsy (bijoux artisanaux), 30 nouveaux produits/mois. Outils : photos smartphone + Photoroom Pro. <strong>Résultat :</strong> Visuels professionnels à coût minimal, suffisant pour marketplace artisanale.
-                </p>
-              </div>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 id="approche-hybride-photoroom-prototyping-blendai-production" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Approche Hybride : Photoroom Prototyping + BlendAI Production
+                Production Régulière de Visuels Catalogue
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Certaines entreprises combinent les deux outils :
+                Si vous produisez régulièrement des visuels pour un catalogue, ou si vos produits comportent des matières difficiles, privilégiez les critères de détourage, de cohérence, de volume et d'intégration à vos outils.
               </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Prototyping :</strong> Photoroom pour tests rapides (validations internes, mockups clients)</li>
-                <li className="text-future-dusk-600"><strong>Production :</strong> BlendAI pour catalogues finaux (qualité max, volumes importants)</li>
-              </ul>
+
+              <h3 id="quand-choisir-photoroom" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
+                Usage Ponctuel ou Petits Volumes
+              </h3>
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
+                Si vous traitez peu d'images, de façon ponctuelle, la simplicité d'usage et le coût d'entrée pèsent davantage.
+              </p>
+
+              <h3 id="approche-hybride-photoroom-prototyping-blendai-production" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
+                Approche Hybride
+              </h3>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Avantage :</strong> Vitesse prototyping + Qualité production
+                Les deux outils peuvent servir des usages distincts, par exemple des essais rapides d'un côté et la production du catalogue de l'autre. Vérifiez alors les coûts cumulés et les conditions d'usage de chaque outil.
               </p>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 5 */}
               <h2 id="5-approche-hybride-packshotcreator-hardware-ia-workflow-optimal" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                5. Approche Hybride PackshotCreator : Hardware + IA = Workflow Optimal
+                4. Approche PackshotCreator : Studio + IA + Formation
               </h2>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                L'IA photo produit ne remplace pas la capture studio : elle la <strong>prolonge et la multiplie</strong>. L'approche <strong>PackshotCreator</strong> combine 3 piliers pour un ROI maximal.
+                L'IA photo produit part d'une capture : un packshot de qualité constante facilite son traitement par IA. L'approche <strong>PackshotCreator</strong> associe trois piliers.
               </p>
 
-              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Les 3 Piliers PackshotCreator</h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">1. Hardware : Studios Orbitvu (Capture Haute Qualité)</h4>
+              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">1. Hardware : Studios Orbitvu</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600">Studios automatisés Orbitvu (AlphaShot G2, 360, XXL)</li>
-                <li className="text-future-dusk-600">Éclairage LED contrôlé (lumière diffuse, sans reflets parasites)</li>
-                <li className="text-future-dusk-600">Résolution 4000×4000px minimum (détails préservés)</li>
-                <li className="text-future-dusk-600">Colorimétrie précise (profils ICC)</li>
-                <li className="text-future-dusk-600"><strong>Temps :</strong> 30 secondes par packshot (vs 5-10 min manuel)</li>
+                <li className="text-future-dusk-600"><strong>Temps :</strong> 30 secondes par packshot</li>
               </ul>
-              <p className="mb-4">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Explorer la gamme studios Orbitvu
                 </Link>
               </p>
 
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">2. IA : BlendAI (Transformation et Multiplication)</h4>
+              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">2. IA : BlendAI</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">1 packshot fond blanc → 5-10 déclinaisons (lifestyle, backgrounds, retouche)</li>
-                <li className="text-future-dusk-600">Batch processing : 1 000 produits traités en 3-5h</li>
-                <li className="text-future-dusk-600">Cohérence garantie : même style sur 100% du catalogue</li>
-                <li className="text-future-dusk-600"><strong>Temps :</strong> 30-60 secondes par déclinaison</li>
+                <li className="text-future-dusk-600">Déclinaison des packshots par IA (détourage, arrière-plans, mises en scène)</li>
               </ul>
-              <p className="mb-4">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Découvrir BlendAI et l'IA photo produit
                 </Link>
@@ -637,72 +271,27 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
 
               <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">3. Formation : Academy (studios Orbitvu)</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Essential Training : prise en main de votre studio Orbitvu, à distance</li>
-                <li className="text-future-dusk-600">Master Training : maîtrise de votre studio Orbitvu, en présentiel</li>
-                <li className="text-future-dusk-600"><strong>Financement OPCO :</strong> possible selon votre situation</li>
+                <li className="text-future-dusk-600">Essential Training (4 h, à distance) : prise en main de votre studio Orbitvu</li>
+                <li className="text-future-dusk-600">Master Training (7 h, en présentiel) : maîtrise de votre studio Orbitvu</li>
+                <li className="text-future-dusk-600">Formation facturée séparément ; Sysnext est certifiée Qualiopi : un financement OPCO est possible selon votre situation</li>
               </ul>
-              <p className="mb-6">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Voir catalogue formations
                 </Link>
               </p>
 
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Workflow Complet PackshotCreator</h3>
-              <div className="p-5 rounded-xl bg-neutral-50 border border-neutral-200 mb-6 font-mono text-sm text-future-dusk-600 space-y-1">
-                <p>[Studio Orbitvu] → Packshot fond blanc 4K (30s)</p>
-                <p className="pl-8">↓</p>
-                <p>[Export auto] → Upload BlendAI API</p>
-                <p className="pl-8">↓</p>
-                <p>[BlendAI] → Détourage + 5 backgrounds + Retouche (2 min)</p>
-                <p className="pl-8">↓</p>
-                <p>[QA humain] → Validation visuelle (5s par image)</p>
-                <p className="pl-8">↓</p>
-                <p>[DAM/Shopify] → Publication automatique</p>
-              </div>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Temps total :</strong> 3-4 minutes par produit (pour 6 visuels finaux)
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Workflow traditionnel :</strong> 30-60 minutes par produit (shooting + retouche manuelle)
-              </p>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Gain : 90% du temps économisé</strong>
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">ROI Approche Complète</h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Scénario :</strong> E-commerce 1 000 produits/an, 3 déclinaisons par produit</p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts traditionnels :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Shooting externe : 25 000€</li>
-                <li className="text-future-dusk-600">Retouche freelance : 45 000€</li>
-                <li className="text-future-dusk-600"><strong>Total : 70 000€/an</strong></li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts PackshotCreator :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Studio Orbitvu AlphaShot G2 : investissement initial sur devis</li>
-                <li className="text-future-dusk-600">Abonnement BlendAI : 3 600€/an (300€/mois)</li>
-                <li className="text-future-dusk-600">Formation : selon le format choisi, facturée séparément (financement OPCO possible)</li>
-                <li className="text-future-dusk-600">Opérateur interne : 5 000€/an (temps partiel)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>ROI :</strong></p>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                Sur 3 ans, l'écart avec les coûts traditionnels reste très significatif — utilisez le calculateur ROI pour estimer l'économie sur votre volume.
-              </p>
-              <p className="mb-6">
+                Notre calculateur établit une étude de retour sur investissement par machine, selon vos volumes.{' '}
                 <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Calculer votre ROI personnalisé
                 </Link>
               </p>
 
               <hr className="my-8 border-neutral-200" />
-
               {/* Section 6 — FAQ */}
               <h2 id="6-faq-comparatif-blendai-vs-photoroom" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                6. FAQ Comparatif BlendAI vs Photoroom
+                5. FAQ BlendAI et Photoroom
               </h2>
 
               <div className="space-y-4 mb-8">
@@ -725,39 +314,32 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
                 Conclusion : Choisir en Fonction de Votre Réalité
               </h2>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI</strong> et <strong>Photoroom</strong> sont deux excellents outils, mais répondent à des besoins <strong>fondamentalement différents</strong>. Photoroom excelle sur la simplicité et le prix pour des usages ponctuels ou petits volumes. BlendAI se distingue sur la qualité, la cohérence et l'automatisation pour des productions industrielles.
+                Le choix entre <strong>BlendAI</strong> et <strong>Photoroom</strong> dépend de votre volume, de vos produits et de vos outils. Comparez-les sur vos propres produits, selon les critères de ce guide.
               </p>
 
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Les 3 Questions à Se Poser</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600"><strong>Volume :</strong> &lt;100 produits/an → Photoroom | &gt;500 produits/an → BlendAI</li>
-                <li className="text-future-dusk-600"><strong>Qualité :</strong> Produits simples → Photoroom | Produits complexes (bijoux, verre) → BlendAI</li>
-                <li className="text-future-dusk-600"><strong>Workflow :</strong> Usage ponctuel → Photoroom | Production industrielle automatisée → BlendAI</li>
+                <li className="text-future-dusk-600"><strong>Volume :</strong> combien d'images à traiter, et à quelle fréquence ?</li>
+                <li className="text-future-dusk-600"><strong>Produits :</strong> vos produits comportent-ils des matières difficiles (verre, bijoux, textile) ?</li>
+                <li className="text-future-dusk-600"><strong>Workflow :</strong> usage ponctuel, ou production à intégrer à vos outils ?</li>
               </ul>
-
-              <Callout type="success" title="Recommandation finale">
-                <p className="mb-2"><strong>Vous êtes TPE/créateur</strong> → <strong>Photoroom</strong> (simplicité maximale)</p>
-                <p className="mb-2"><strong>Vous êtes e-commerce professionnel</strong> → <strong>BlendAI</strong> (qualité, automatisation, ROI)</p>
-                <p><strong>Vous voulez l'approche optimale</strong> → <strong>PackshotCreator complet</strong> (Hardware Orbitvu + IA BlendAI + Formation)</p>
-              </Callout>
 
               <hr className="my-8 border-neutral-200" />
 
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Prochaines Étapes</h3>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600">
-                  <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Tester BlendAI</Link> — Demandez une démonstration personnalisée BlendAI avec vos propres produits (test gratuit sur 10-20 images)
+                  <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Tester BlendAI</Link> — Demandez une démonstration de BlendAI avec vos propres produits
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Utilisez notre calculateur ROI gratuit pour estimer vos économies réelles avec l'approche Hardware + IA
+                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Étude de retour sur investissement par machine, selon vos volumes
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Formations Qualiopi aux studios Orbitvu, financement OPCO possible
+                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Essential Training (4 h, à distance) et Master Training (7 h, en présentiel), facturées séparément ; Sysnext est certifiée Qualiopi : financement OPCO possible selon votre situation
                 </li>
               </ul>
 
               <hr className="my-8 border-neutral-200" />
-
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Ressources Complémentaires</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
                 <li className="text-future-dusk-600">
@@ -766,11 +348,11 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>BlendAI vs Flair.ai :</strong>{' '}
-                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Comparatif détaillé</Link>
+                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Lire l'article</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>Hub IA Photo Produit :</strong>{' '}
-                  <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link>
+                  <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">L'IA photo produit</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>Studios Photo Orbitvu :</strong>{' '}
@@ -803,7 +385,7 @@ export default async function BlendaiVsPhotoroomPage({ params }: { params: Promi
         breadcrumbSchema(breadcrumbs),
         articleSchema({
           title: 'BlendAI vs Photoroom : Quel Outil IA pour Vos Visuels Produits en 2026 ?',
-          description: 'Comparatif complet BlendAI vs Photoroom. Détourage, backgrounds, retouche, batch processing. Cas d\'usage, pricing, workflow e-commerce. Guide objectif 2026.',
+          description: "BlendAI ou Photoroom : les critères pour choisir un outil d'IA de visuels produits (détourage, arrière-plans, retouche, volume, intégration) en 2026.",
           url: `https://www.packshot-creator.com/${lang}/blog/blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026`,
           datePublished: '2026-01-22',
           author: 'Sébastien Jourdan',

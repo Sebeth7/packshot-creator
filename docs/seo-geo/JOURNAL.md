@@ -34,6 +34,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Intégrité factuelle — PR #109, seconde passe sur les 19 fichiers · Claude de Laurent
+
+**Chantier** : intégrité factuelle, mission « dernier passage » de Laurent du 08/10 | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base de la passe** : tête `0860462` | **Commit** : le commit de cette entrée, « fix: remove residual unsupported factual claims »
+
+**Quoi** — Relecture complète des 19 fichiers déjà touchés par #109. Chaque claim est classé : fait vérifié, fait métier établi, Q20_HOLD, D29_HOLD, hors périmètre, retiré ou neutralisé. Un claim présent sur `main` n'est pas tenu pour valide pour cette seule raison. Registre de la passe : 832 entrées, dont 339 retraits et 393 neutralisations ; 7 faits vérifiés ; 28 faits métier établis ; 25 Q20_HOLD ; 5 D29_HOLD ; 35 hors périmètre conservés.
+- Guide d'achat : location, occasion (décote, garantie transférable), BPI, CII, aides régionales, durées et taux de leasing, remise comptant, négociation, mises à jour gratuites (2 à 3 par an), pièces 7 à 10 ans, compatibilité ascendante, support prioritaire 2 ans, démo de 2 à 4 h sur 5 à 10 produits, « standard de l'industrie », « tous IA Ready », compatibilité native BlendAI, « 90 % des cas », « 80 % », AR/VR, export 3D, « économies substantielles » : retirés ou neutralisés. Bloc Premium : 6 à 12 mois, puis « Pour les plus grands Alphastudio, le retour observé peut plutôt se situer entre 12 et 18 mois », sans garantie.
+- Article ROI : 80 % de temps réalloué, 500 → 5 000 produits sans embauche, mises à jour gratuites, « bijoux → meubles, même workflow », intégration native BlendAI, « Qualité +30 % », « productivité ×20 » : retirés. Le contenu « 12-18 mois » du chantier ROI reste en dehors de la passe.
+- Comparatif Orbitvu : réécrit sans comparaison non sourcée. Il ne publie aucune caractéristique de StyleShoots ni de Photomatics, ne contient ni tableau concurrent ni gamme historique PackshotStudio R3, PackshotMacro ou PackshotRotator (noms et fin « 2018 » sans source), et ne cite ni « experts Orbitvu » ni volumes, temps, mégapixels ou systèmes d'exploitation. « Marque lancée en 2004 par la société française Sysnext » et « depuis 2023 » sont conservés (faits établis le 08/10).
+- Articles BlendAI vs Flair, BlendAI vs Photoroom et guide IA photo produit : réécrits en guides de critères. Plus aucune donnée Flair, Photoroom ou Claid, plus aucun pourcentage de fidélité, temps automatique, batch chiffré, API ou intégration native, ni cas client chiffré. Le calcul de rentabilité du guide IA (BlendAI Pro 530 €/mois, ROI 463 %) et l'essai « 14 jours » sont retirés.
+- Page Suisse : distance « moins de 2 h de Genève » retirée (le showroom est désormais situé à Beynost, près de Lyon), démonstrations en visioconférence retirées, formation « sur site » remplacée par les formats établis (4 h à distance, 7 h en présentiel), « de référence », JSON-LD local « formations certifiées Qualiopi » → « Sysnext est certifiée Qualiopi ».
+- Articles JSON : « évolution e-commerce » FR et EN (gratuité, « jusqu'à 70 % », « +15-20 % de conversion », « -15 % de retours », mises à jour sans frais pendant 3 ans, superlatifs ; lien EN `updateyourpackshot.com` corrigé en `upgradeyourpackshot.com`, le programme de reprise étant vérifié sur `www.upgradeyourpackshot.com/fr/` le 08/10) ; comparatif de solutions FR et EN (huissier, « premier studio », « 142 secondes » contradictoire, superlatifs, FAQ Orbitvu « leader », 30 personnes en R&D, 180 salariés).
+- `messages` (FR, EN, de-ch) : 258 clés par langue, dans les seuls namespaces touchés par #109 (`contact`, `legal`, `besoinsPhoto`, `studiosHardware`, `blogBudget`, `blogComparatif`, `blogStudioIa`). Corrigés : « 24 h », « 48 h », « garantie », démo et diagnostic « gratuits », « 5000+ entreprises », ROI moyen de 9 mois remplacé par 6 à 12 mois sans garantie, « Hotline dédiée », formations « certifiées » ou « Qualiopi », « 0 €/an » de maintenance, consommables, « plus de 500 entreprises », données concurrentes de `blogComparatif` (cellules « Non vérifié », listes devenues « Points à vérifier auprès du fabricant »), étude « indépendante » remplacée par « réalisée en 2023 à la demande de PackshotCreator », marché et juridique de `blogStudioIa` (34 millions d'images, 8,9 milliards de dollars, FTC, Californie, FDA, ITAR, « zéro hallucination », « solution propriétaire », « Plus de 100 marques », 75 €/mois). de-ch : Qualiopi et OPCO présentés comme français (D38).
+- Qualiopi : 16 formulations corrigées vers « Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation ».
+
+**Pourquoi** — Mission du 08/10 : aucun claim conservé par défaut sans source ou fait métier explicite ; comparaisons concurrentes limitées aux faits sourcés ; Qualiopi rattaché à Sysnext ; ROI usuel de 6 à 12 mois, de 12 à 18 mois pour les plus grands Alphastudio, jamais garanti.
+
+**Fichiers** — `app/[lang]/blog/{guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, orbitvu-vs-concurrents, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `content/blog/{fr/evolution-e-commerce-packshot, en/e-commerce-packshot-evolution, fr/comparatif-de-solutions-de-photographie-automatisee, en/comparison-of-automated-photography-solutions}.json`, `messages/{fr,en,de-ch}.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Relus sans modification : `app/[lang]/contact/page.tsx`, `components/seo/SchemaOrg.tsx`, `data/navigation/pages-longues.ts`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : URL, canonical, `robots` et hreflang inchangés ; articles réécrits plus courts (temps de lecture affiché inchangé, aligné sur `lib/blog.ts`, hors périmètre) ; sommaires réalignés sur les titres. Réduction du risque factuel et juridique, pas de gain de trafic attendu.
+
+**Restes, non corrigés dans cette passe**
+- Q20_HOLD (cadences, dimensions, charges, versions) : 500+ photos/jour, 200 à 500 produits/jour, 30 s par packshot, 3 s, 90 s, 150 photos/heure, 16 et 20 systèmes, jusqu'à 100 cm (G2) contre 35 cm et 40 cm, 18 cm, 2,5 m, 3 m, 1 tonne, 1 000 kg, 50 et 150 kg, MultiStation, modules 360° et vidéo, « Station M ».
+- D29_HOLD : résultats de l'étude 2023 (Alphashot XL PRO V2 contre R3 Mark II) : 78 contre 33 contenus par jour, temps des quatre tests, 19 734 et 8 457 visuels par an, 50,6 jours.
+- D30 (aucun prix modifié) : `studiosHardware.faqStudios.q1` « 12 000 € à 150 000 € HT » et `blogBudget` « 56 450 à 150 000 € HT », alors que le catalogue indique 12 450 € et 130 000 € HT (E-Comm Studio+, confirmé par Sébastien le 04/09/2026) ; fourchette « Polyvalent » à confronter au catalogue ; « quelques milliers d'euros » (`besoinsPhoto`) ; prix Alphashot 360 dans `blogStudioIa`, à arbitrer entre D30 et D25.
+- Zones interdites : `organizationSchema()` (rendu sur l'accueil, F5 et Mode) porte encore « formations certifiées Qualiopi », `numberOfEmployees` 10 à 50 sans source et `foundingDate` 2004.
+- Hors des 19 fichiers : nombres 5 000+, 25 ans et 50+ codés en dur dans `studios-photo-automatises/page.tsx` ; « diagnostic gratuit » codé en dur dans `besoins-photographie-produit/page.tsx` ; descriptions de `lib/blog.ts` (« Comparatif complet… pricing ») ; `availability: InStock` du JSON-LD `Offer` (D30).
+- Clés non rendues, laissées en l'état : `studiosHardware.threePillars` (« Formation certifiée », « zéro hallucination, fidélité 100% »), `photoTypes` (« Réduit les retours de 25% »), `socialProof`, `roiCalculator`, `sectors`, `contact.trustBadge*`.
+- Dossier Ortery et interview Sysnext 2003 : FAQ « Ortery est-il toujours présent en France ? » conservée.
+
+**Vérifié**
+- Fresh-check : #109 ouverte, brouillon, tête `0860462` ; `main` `06b18e2`.
+- `messages/*.json` et articles JSON : sérialisation d'origine vérifiée octet pour octet avant écriture ; `verifier-json` : 195 fichiers valides.
+- `tsc` vert. Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- ESLint sur les fichiers modifiés : aucune règle nouvelle ; `react/no-unescaped-entities` déjà présent sur `main` dans ces fichiers (étape de lint non bloquante en CI).
+- Ancres : chaque entrée des sommaires réécrits pointe vers un `id` présent une seule fois.
+- `next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, 25 URL touchées par la passe (FR, EN, de-ch), Chromium 390, 768 et 1440 px : statut 200, aucun débordement horizontal, aucune réponse 4xx locale, aucune ancre de sommaire orpheline ; formulations retirées absentes, nouvelles formulations présentes. Erreurs console : CORS du CDN 360 d'Orbitvu sur les deux articles « évolution », contenu embarqué non modifié par la passe.
+
+**Supposé** — [Inférence] `updateyourpackshot.com` est une faute de frappe : le domaine ne répond pas via le proxy, `upgradeyourpackshot.com` répond en FR et en EN. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; contrôle humain D42 ; namespaces de `messages` non touchés par #109 (accueil compris) ; dates « Dernière mise à jour » des articles.
+
+**Suite** — Arbitrages demandés : prix (D30 contre catalogue, D25 dans `blogStudioIa`) ; Qualiopi de `organizationSchema()` après le 28/10 ; nombres codés en dur de Studios ; Q20 et D29. Contrôle de la Preview par Laurent, puis validation D42 ; fusion et publication sur GO distincts.
+
+---
+
 ## 2026-10-08 · Intégrité factuelle — PR #109, successeur de #64 recréé depuis `main` · Claude de Laurent
 
 **Chantier** : faits métier établis, D33, D25, comparatif Orbitvu | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base** : `main` `06b18e2` | **Commits** : `9d66eaa` (faits métier), `927e7cf` (D25), puis le commit de cette entrée (comparatif Orbitvu, registre des pages longues, documentation)
