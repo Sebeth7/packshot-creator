@@ -96,7 +96,7 @@ Aucun de ces 8 fichiers n'est modifié par #109 ou #111 : aucune classe COLLISIO
 **Supposé** — [Inférence] `www` servira le même HTML que `sysnext.vercel.app`. Cela repose sur des schémas observés.
 **Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). GSC : aucune nouvelle lecture ; seul chiffre disponible, celui de #70 pour l'article 2D (5 impressions, 0 clic sur 90 jours au 27/09). Liste source des 170 URL : hors dépôt, non réconciliée ligne à ligne. Les 70 titles de 66 à 79 caractères (IGNORE) et les classes DEFER et KEEP : non touchés. Contenu de l'article 2D : mêmes affirmations de la gamme PackshotCreator/Ortery que son jumeau EN en HOLD (D9-01) ; non modifié, backlog factuel.
 
-**Suite** — Laurent : arbitrer le point de gouvernance de #70 (title et D13), puis GO de fusion distinct ; #70 se ferme séparément sur GO. Après fusion : `smoke.mjs`, puis Chrome sur `www`. Lot C : décisions de contenu séparées, après #112 et #113 pour les 3 fichiers qu'elles touchent.
+**Suite** — Laurent : arbitrer le point de gouvernance de #70 (title et D13), puis GO de fusion distinct ; #70 se ferme séparément sur GO. Chevauchement apparu après ouverture : #120 (autre session, 16:23 UTC ; #119 ouverte à 16:20 UTC) modifie les 2 mêmes titles EN avec les mêmes valeurs, et un 3e article EN (`how-shotflow-improves-real-time-task-tracking`, « | -50% delay » retiré du title) que sa description ne cite pas ; les candidats 7 et 10 ne doivent être fusionnés qu'une fois : choix de Laurent. Après fusion : `smoke.mjs`, puis Chrome sur `www`. Lot C : décisions de contenu séparées, après #112 et #113 pour les 3 fichiers qu'elles touchent.
 
 ---
 
