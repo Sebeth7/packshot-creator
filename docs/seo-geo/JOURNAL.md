@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Repair Factory, PR-C — Service.url des hubs de-ch et métadonnées sociales des articles (G-011 partiel, BL-43-1) · Claude de Laurent
 
-**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-tech-seo` | **Base** : `main` `06b18e2`
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #114, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-tech-seo` | **Base** : `main` `06b18e2`
 
 **Quoi** — Deux commits :
 1. G-011 (backlog de #55), partie hubs : `Service.url` des 8 hubs de-ch visait `/de-ch/industrie/<slug>` (redirigée) ; il reprend l'URL servie, calculée comme le fil d'Ariane. Partie fiches (`Product.url`, `Offer.url`) : retirée de cette PR après l'ouverture de #110 (sprint parallèle, 14:36 UTC), qui la traite dans `app/[lang]/studio-photo/[slug]/page.tsx` (COLLISION_OTHER_SPRINT).
