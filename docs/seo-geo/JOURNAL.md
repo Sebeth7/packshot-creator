@@ -63,7 +63,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Repair Factory, PR-A — maillage : ancres, liens et cocons (résiduel V4.3 exécutable) · Claude de Laurent
 
-**Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
+**Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` ; PR liées : #113 (empilée), #114, #115 | **Base** : `main` `06b18e2`
 
 **Quoi** — Quatre commits, chacun retirable seul :
 1. Ancres mal dirigées : A-005 (« horlogerie », ia-lumieres-virtuelles FR) et A-006 (« réussir la photographie de vos montres », guide montre FR) vers le hub horlogerie au lieu du hub bijoux ; jumeau de-ch « Fotografie Ihrer Uhren » vers `/de-ch/branchen/uhren` ; « photographie commerciale horlogère » (guide bracelet FR) vers le hub horlogerie ; libellés EN A-008 (« theoptics And ») et « modus » → « fashion ». Deux fichiers identiques octet pour octet à ceux de #104.
@@ -78,7 +78,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Effet attendu** — Après fusion : 4 liens de contenu de plus vers des owners (Studios +2, hub vin +2), 8 ancres redirigées vers la page qui correspond à leur texte (horlogerie +3, Studios +3 au détriment du guide de décision, et leurs jumeaux), aucun lien externe mort ni mal attribué sur les lignes traitées. [Inférence] Effet de classement non chiffrable ; lecture GSC par page à J+28. Cela repose sur des schémas observés.
 
 **Vérifié**
-- Fresh-check : `main` `06b18e2` ; PR ouvertes #109 (sprint parallèle, 19 fichiers), #104, #105, #107, #108 (HOLD), #82, #70, #64, #27. Aucun fichier de #109 modifié (fichiers communs exclus ligne par ligne). Fichiers de #27 (non fusionnable, CA2 en attente) modifiés là où le résiduel l'exige.
+- Fresh-check : `main` `06b18e2` ; PR ouvertes #109 (sprint parallèle, 19 fichiers), #104, #105, #107, #108 (HOLD), #82, #70, #64, #27 ; #110 et #111 (sprint parallèle) ouvertes pendant la mission, aucun fichier commun avec cette PR. Aucun fichier de #109 modifié (fichiers communs exclus ligne par ligne). Fichiers de #27 (non fusionnable, CA2 en attente) modifiés là où le résiduel l'exige.
 - Chaque remplacement appliqué par chaîne exacte avec nombre d'occurrences contrôlé ; sérialisation JSON d'origine conservée ; `verifier-json` : 195 fichiers valides.
 - URL externes cibles relevées en 200, sans redirection, le 08/10 (curl depuis le conteneur) ; pixcap.com sans résolution DNS ; l'article goaland redirige vers l'index du blog, la ressource wpengine vers un autre article.
 - `tsc` vert ; `next build` vert (386 pages, avec PR-B empilée) ; Vitest 483/483.
