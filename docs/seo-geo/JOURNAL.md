@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Ubersuggest résiduel, PR-B — 2 titles EN raccourcis mécaniquement · Claude de Laurent
 
-**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : à ouvrir, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
+**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #120, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
 
 **Quoi** — Champ `metaTitle` de 2 articles EN, chacun remplacé par un texte qui existe déjà :
 - `/en/blog/how-to-avoid-blurry-product-photographs` : « How to avoid blurry photos in product photography: causes, solutions, and best practices » (88) devient le H1 de l'article, « How to avoid blurry photos in product photography » (49) ;
