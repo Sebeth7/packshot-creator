@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
 
-**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : #111, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
 
 **Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
 - `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
@@ -55,7 +55,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - `npx next build` vert (variables factices de la CI), 386 pages.
 - `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
 - Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
-- Fusion simulée (`git merge-tree`) avec la tête de #109 : voir l'entrée de la PR.
+- Fusion simulée (`git merge-tree`) avec #109 (`0860462`), #110, #108 et #105 : fichiers du site sans conflit ; `JOURNAL.md` en conflit (entrées en tête, union) ; `ETAT.md` en conflit avec #105 seulement.
 
 **Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
 **Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
