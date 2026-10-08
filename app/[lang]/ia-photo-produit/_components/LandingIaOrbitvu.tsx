@@ -142,7 +142,7 @@ export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
     { name: tx(lang, 'IA Photo Produit', 'AI Product Photography', 'KI-Produktfotografie'), url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
   ];
 
-  const faqItems = [1, 2, 3, 4, 5, 6].map((i) => ({
+  const faqItems = [1, 2, 3, 4, 5, 6, 7, 8].map((i) => ({
     question: t(`faq.q${i}.question`),
     answer: t(`faq.q${i}.answer`),
   }));
