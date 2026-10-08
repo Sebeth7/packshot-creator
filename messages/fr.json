@@ -351,213 +351,210 @@
   },
   "iaPhotoProduit": {
     "meta": {
-      "title": "Photo produit IA : packshots en déclinaisons lifestyle — BlendAI",
-      "description": "Générez des déclinaisons lifestyle depuis vos photos produit avec l'IA. Fond, ambiance, mise en scène : 100% automatique en quelques clics. Essai gratuit.",
-      "keywords": "ia photo produit, blendai, alternative photoroom, ia packshot, lifestyle generator, photo produit ia, blendai vs photoroom",
-      "ogDescription": "Décuplez vos visuels produit à partir d'un seul packshot professionnel. IA spécialisée, fidélité 100%, zéro hallucination."
+      "title": "IA photo produit : l’IA intégrée au studio Orbitvu — PackshotCreator",
+      "description": "IA photo produit avec Orbitvu Station : éclairage assisté, détourage IA, retouche photo produit, lecture d’étiquettes. Démo avec PackshotCreator.",
+      "keywords": "ia photo produit, photo produit ia, packshot ia, orbitvu, orbitvu station, détourage ia, retouche photo produit, ai photo assistant, ai masking, ai retoucher, ai ocr",
+      "ogDescription": "Orbitvu Station : l’IA propose l’éclairage avant la prise de vue, puis détoure, retouche et lit les étiquettes avant la publication."
     },
     "hero": {
-      "title": "Créez des déclinaisons lifestyle depuis vos photos produit",
-      "subtitle": "BlendAI part de votre packshot professionnel pour créer des mises en scène lifestyle <bold>fidèles à 100%</bold>. Pas de produit réinventé, pas d'approximation.",
-      "ctaPrimary": "Tester BlendAI gratuitement",
-      "ctaSecondary": "Voir les résultats"
+      "surtitre": "IA photo produit · Orbitvu Station",
+      "title": "La photo produit réelle, assistée par l’IA",
+      "p1": "Le produit réel est le point de départ. Dans Orbitvu Station, l’IA aide ensuite à plusieurs étapes : elle propose un éclairage, détoure l’image, la retouche et lit les étiquettes.",
+      "cta": "Demander une démonstration",
+      "note": "PackshotCreator, distributeur officiel Orbitvu en France et en Suisse.",
+      "imageAlt": "Illustration : un pot cosmétique sur le plateau tournant d’un studio, entre appareil photo et éclairages, entouré de vignettes de l’image (détail, fond retiré, déclinaisons)",
+      "etapeIa": "Où intervient l’IA dans Orbitvu Station",
+      "actions": {
+        "eclairage": "Éclairage proposé",
+        "detourage": "Fond retiré",
+        "retouche": "Retouche",
+        "lecture": "Étiquette lue"
+      },
+      "etapeResultat": "Des images et des données prêtes à être utilisées",
+      "legende": "Illustration générée par IA, représentation conceptuelle du workflow. Produit fictif."
     },
-    "gallery": {
-      "heading": "Des déclinaisons créées en 2 minutes",
-      "subtitle": "Un packshot professionnel entre, des <bold>dizaines de visuels lifestyle</bold> en sortent."
+    "captureEntiere": "Afficher la capture entière",
+    "workflow": {
+      "heading": "Où l’IA intervient, de la prise de vue aux images prêtes à être utilisées",
+      "intro": "Un générateur d’images crée un visuel à partir d’une consigne ou d’une image existante. Ici, chaque traitement part de la photo du produit prise au studio.",
+      "sansIa": "Sans IA",
+      "phases": {
+        "capture": "Capture",
+        "workflow": "Workflow",
+        "ia": "IA",
+        "diffusion": "Diffusion"
+      },
+      "e1": {
+        "titre": "Éclairage",
+        "texte": "Configurations proposées selon le type de produit.",
+        "outil": "AI Photo Assistant"
+      },
+      "e2": {
+        "titre": "Prise de vue",
+        "texte": "Photos, 360° ou vidéo, jusqu’à cinq appareils Canon.",
+        "outil": ""
+      },
+      "e3": {
+        "titre": "Modèles et séries",
+        "texte": "Réglages de prise de vue et de post-production enregistrés en modèles ; une correction s’applique à toute la série.",
+        "outil": ""
+      },
+      "e4": {
+        "titre": "Détourage IA",
+        "texte": "Fond retiré pendant la capture.",
+        "outil": "AI Masking"
+      },
+      "e5": {
+        "titre": "Retouche photo produit",
+        "texte": "Reflets, imperfections, couleurs, ombre.",
+        "outil": "AI Retoucher"
+      },
+      "e6": {
+        "titre": "Lecture d’étiquettes",
+        "texte": "Textes de l’étiquette lus et rangés dans des champs.",
+        "outil": "AI OCR"
+      },
+      "e7": {
+        "titre": "Publication",
+        "texte": "Fichiers recadrés au format attendu, envoyés vers la boutique en ligne, le PIM, le DAM ou un stockage.",
+        "outil": ""
+      },
+      "captureAlt": "Capture d’écran d’Orbitvu Station pendant la prise de vue d’un sachet de café : vue principale et quatre angles en vignettes",
+      "captureLegende": "Prise de vue réelle : un sachet de café photographié sur Alphashot XL G2, dans Orbitvu Station."
     },
-    "stats": {
-      "costLabel": "coûts de production visuelle",
-      "conversionLabel": "taux de conversion",
-      "ctrLabel": "taux de clic publicitaire",
-      "source": "Performances mesurées sur nos clients actifs"
+    "photoAssistant": {
+      "heading": "Avant le déclenchement : préparer l’éclairage",
+      "lead": "Première intervention de l’IA, avant même la prise de vue.",
+      "entree": "Le produit posé dans le studio.",
+      "action": "AI Photo Assistant reconnaît le type de produit et propose plusieurs configurations d’éclairage.",
+      "resultat": "L’éclairage choisi par l’opérateur, enregistré dans un modèle de prise de vue.",
+      "utilite": "Trouver un éclairage adapté au type de produit avant de photographier.",
+      "compatibles": "Disponible sur",
+      "carteLien": "Voir la fiche",
+      "exemple": "Le même produit, deux propositions d’éclairage",
+      "option1": "Proposition d’éclairage 1",
+      "option2": "Proposition d’éclairage 2",
+      "option1Alt": "Bouteille de vin rouge sur fond blanc, photographiée avec la première configuration d’éclairage proposée",
+      "option2Alt": "La même bouteille avec la deuxième configuration d’éclairage proposée : reflets différents sur le verre et l’étiquette",
+      "legende": "Exemples officiels Orbitvu pour AI Photo Assistant."
     },
-    "testimonials": {
-      "t1": {
-        "quote": "BlendAI nous a permis de réduire nos coûts de shooting de 60% tout en multipliant par 4 le nombre de visuels produits.",
-        "name": "Sophie Laurent",
-        "title": "Directrice E-commerce",
-        "company": "Maison de luxe parisienne"
-      },
-      "t2": {
-        "quote": "Simple, rapide et super efficace. Un vrai gain de temps au quotidien pour toute l'équipe marketing.",
-        "name": "Team Marketing",
-        "title": "Équipe Marketing",
-        "company": "Grosfilley — Accessoires premium"
-      },
-      "t3": {
-        "quote": "La fidélité des rendus est impressionnante. Nos clients ne font pas la différence avec un vrai shooting lifestyle.",
-        "name": "Marc Dubois",
-        "title": "Chef de produit",
-        "company": "Marque horlogerie suisse"
-      },
-      "t4": {
-        "quote": "On a intégré BlendAI dans notre workflow e-commerce. 500 fiches produit mises à jour en une semaine au lieu de deux mois.",
-        "name": "Camille Renard",
-        "title": "Responsable Contenu",
-        "company": "Marketplace mode"
-      },
-      "t5": {
-        "quote": "Le traitement par lots est un game-changer. On applique un style à toute une collection en quelques minutes.",
-        "name": "Jean-Pierre Morel",
-        "title": "Directeur Artistique",
-        "company": "Maison de joaillerie"
-      },
-      "t6": {
-        "quote": "Enfin une solution IA qui respecte l'intégrité de nos produits. Zéro hallucination, zéro surprise.",
-        "name": "Isabelle Dumont",
-        "title": "Brand Manager",
-        "company": "Groupe cosmétiques international"
-      }
+    "masking": {
+      "heading": "Détourer l’image dans Orbitvu Station",
+      "lead": "Le fond est retiré pendant la capture, sans étape de détourage séparée.",
+      "entree": "La photo du produit, au moment de la capture.",
+      "action": "AI Masking retire le fond, sur l’image en haute définition.",
+      "resultat": "Le produit détouré, avec des contours homogènes sur toute la série.",
+      "utilite": "Pas de détourage à la main après la séance.",
+      "avantLibelle": "Photo issue de la capture",
+      "apresLibelle": "Produit détouré, fond transparent",
+      "avantAlt": "Oscilloscope photographié sur fond gris, avant détourage",
+      "apresAlt": "Le même oscilloscope détouré par AI Masking, sur un damier qui figure la transparence",
+      "legende": "Exemple officiel Orbitvu pour AI Masking. Le damier figure la transparence du fichier détouré."
     },
-    "manifeste": {
-      "heading": "L'IA ne remplace pas la photo, elle la prolonge",
-      "subtitle": "La qualité de vos déclinaisons dépend de la qualité de votre <bold>photo d'origine</bold>. BlendAI garantit la <bold>fidélité</bold> de chaque visuel.",
-      "principle1": {
-        "title": "Packshot pro = la base incontournable",
-        "description": "Un packshot de <bold>qualité studio</bold> (idéalement Orbitvu) comme fondation. Éclairage calibré, détourage parfait, couleurs fidèles. C'est cette qualité que l'IA va <bold>multiplier</bold>."
-      },
-      "principle2": {
-        "title": "IA = multiplication",
-        "description": "À partir de ce packshot, BlendAI crée des <bold>mises en scène lifestyle</bold>, des arrière-plans contextuels, des variations créatives. Un produit, <bold>des dizaines de visuels</bold>."
-      },
-      "principle3": {
-        "title": "Fidélité 100% garantie",
-        "description": "L'IA ne touche <bold>jamais au produit</bold>. Elle l’intègre dans une scène. Textures, couleurs, proportions, logos : tout reste <bold>identique à la photo originale</bold>."
-      }
+    "retoucher": {
+      "heading": "Corriger une image déjà photographiée",
+      "lead": "La retouche peut être générative : elle part ici de la photographie du produit.",
+      "entree": "La photo prise au studio.",
+      "action": "AI Retoucher retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et ajoute une ombre, selon une consigne écrite.",
+      "resultat": "Une image retouchée, à contrôler avant usage.",
+      "utilite": "La consigne s’enregistre en préréglage et se réutilise sur les séries suivantes.",
+      "avantLibelle": "Photo prise au studio",
+      "apresLibelle": "Image retouchée",
+      "avantAlt": "Bague en or à pierre bleue taillée en poire, avant retouche, avec des reflets sur la pierre",
+      "apresAlt": "La même bague après AI Retoucher, reflets réduits",
+      "legende": "Exemple officiel Orbitvu pour AI Retoucher : reflets réduits.",
+      "detailLibelle": "Détail agrandi",
+      "detailAvantAlt": "Détail agrandi de la pierre bleue avant retouche",
+      "detailApresAlt": "Le même détail après AI Retoucher",
+      "detailLegende": "Exemple officiel Orbitvu — détail agrandi pour rendre la différence visible."
     },
-    "whyBase": {
-      "heading": "Pourquoi la qualité de la photo d'origine change tout",
-      "pureIA": {
-        "label": "IA générative pure",
-        "examples": "Photoroom, Claid, Flair, Pebblely",
-        "description": "Génère le produit de zéro à partir d'une description ou d'une photo quelconque.",
-        "point1": "Rapide, aucun matériel requis",
-        "point2": "Approximations sur formes et textures",
-        "point3": "Hallucinations sur les détails",
-        "point4": "Vérification humaine nécessaire à chaque visuel",
-        "point5": "Templates créatifs basiques utilisés par tous vos concurrents",
-        "verdict": "Adapté aux prototypes et au autoentreprises"
-      },
-      "blendai": {
-        "label": "Packshot pro + IA",
-        "examples": "BlendAI.studio",
-        "description": "Part d'un packshot de <bold>qualité studio</bold> pour créer des déclinaisons <bold>fidèles</bold>.",
-        "point1": "Fidélité produit 100% - zéro hallucination",
-        "point2": "Textures, couleurs et proportions garanties",
-        "point3": "Conforme aux exigences luxe, lunetterie, bijouterie",
-        "point4": "Retouche experte humaine incluse si nécessaire",
-        "point5": "Contrôle complet de votre direction artistique",
-        "verdict": "Conçu pour les fabricants et marques produisant >500 visuels/an"
-      }
+    "ocr": {
+      "heading": "Lire les informations présentes sur le produit",
+      "lead": "Le même sachet de café : l’étiquette photographiée devient des données.",
+      "entree": "L’étiquette photographiée, sur le produit ou l’emballage.",
+      "action": "AI OCR lit les références, la composition et la description.",
+      "resultat": "Les champs de la séance remplis, modifiables avant l’enregistrement.",
+      "utilite": "Des données qui accompagnent les images, sans ressaisie.",
+      "etiquetteAlt": "Étiquette du sachet de café, agrandie : textes de description et mentions imprimées",
+      "etiquetteLegende": "L’étiquette du sachet",
+      "champsAlt": "Fenêtre « (Beta) AI OCR » d’Orbitvu Station : SKU, description et ingrédients lus sur l’emballage",
+      "champsLegende": "Les champs lus par AI OCR (fenêtre marquée bêta)",
+      "legende": "Visuel Orbitvu : l’étiquette du sachet, puis les textes lus et rangés dans les champs de la séance."
     },
-    "platform": {
-      "heading": "BlendAI.studio : notre plateforme, votre avantage",
-      "subtitle": "BlendAI.studio est la <bold>solution propriétaire</bold> de PackshotCreator. Pas un outil générique - une plateforme que nous <bold>développons et améliorons en continu</bold>.",
-      "feature1": {
-        "title": "Zéro complexité",
-        "description": "Upload, choix de style, génération. <bold>Pas de prompts</bold>, pas de compétences IA requises."
-      },
-      "feature2": {
-        "title": "100+ styles professionnels",
-        "description": "Bibliothèque de <bold>100+ styles</bold> prêts à l'emploi. Créez vos propres styles et réutilisez-les <bold>à l'infini</bold>."
-      },
-      "feature3": {
-        "title": "Zéro prompt",
-        "description": "Génération de vidéos à partir de vos créations"
-      },
-      "feature4": {
-        "title": "Développement sur mesure",
-        "description": "Solution propriétaire = on développe les fonctions dont <bold>vous avez besoin</bold>. Workflows post-prod, traitements par lots, retouche auto, intégrations API."
-      },
-      "feature5": {
-        "title": "Intégration native Orbitvu",
-        "description": "Workflow <bold>packshot → lifestyle</bold> intégré. Export haute qualité, détails produit préservés, compatible avec <bold>tous les systèmes Orbitvu</bold>."
-      },
-      "pricing": "À partir de 75 €/mois — 3 crédits offerts pour tester",
-      "cta": "Découvrir BlendAI.studio"
-    },
-    "features": {
-      "heading": "Ce que BlendAI fait pour vous",
-      "subtitle": "<bold>5 outils spécialisés</bold> pour transformer vos packshots en mises en scène produit lifestyle.",
-      "lifestyle": {
-        "name": "Mises en scène lifestyle",
-        "description": "Transformez vos packshots en visuels lifestyle contextualisés. Intérieur, extérieur, ambiance - le <bold>produit reste intact</bold>."
-      },
-      "mannequin": {
-        "name": "Photos produits portés sur mannequin",
-        "description": "Présentez vos produits portés sur des <bold>mannequins virtuels</bold> vraiment réalistes. Mode, accessoires, lunettes - sans séance photo."
-      },
-      "background": {
-        "name": "Arrière-plans sur mesure",
-        "description": "Générez des fonds professionnels <bold>adaptés à votre marque</bold> et à chaque canal de diffusion."
-      },
-      "retouche": {
-        "name": "Retouche IA + experte",
-        "description": "Corrections automatiques (couleurs, défauts) + <bold>retouche humaine</bold> pour les cas complexes. Garantie qualité."
-      },
-      "batch": {
-        "name": "Traitement par lots",
-        "description": "Appliquez un style à <bold>des centaines de produits</bold> en quelques minutes. Même rendu, même qualité, <bold>à l'échelle</bold>."
-      }
-    },
-    "casUsage": {
-      "heading": "Résultats concrets, secteur par secteur",
-      "subtitle": "Un packshot professionnel entre, des visuels <bold>prêts à publier</bold> sortent."
-    },
-    "socialProof": {
-      "heading": "Ils créent leurs visuels avec BlendAI",
-      "stat1": "100+",
-      "stat1Label": "marques utilisatrices",
-      "stat2": "5 000+",
-      "stat2Label": "visuels créés",
-      "quote": "Simple, rapide et super efficace, un vrai gain de temps au quotidien.",
-      "quoteName": "Team Marketing - Grosfilley",
-      "quoteCompany": "Marque accessoires premium"
-    },
-    "compatible": {
-      "heading": "Compatible avec tous les systèmes Orbitvu",
-      "subtitle": "BlendAI.studio s'intègre <bold>parfaitement</bold> dans votre workflow de <bold>production photo</bold>.",
-      "feature1": "Export haute qualité automatique",
-      "feature2": "Détails produit préservés",
-      "feature3": "Workflow packshot → lifestyle intégré",
-      "offer": "Offre spéciale : système Orbitvu + 1 mois BlendAI offert",
-      "cta": "Découvrir nos systèmes"
+    "demo": {
+      "usages": "Des images prêtes à être utilisées : e-commerce, catalogues, documentation, besoins internes.",
+      "heading": "Testez l’IA sur les produits que vous photographiez",
+      "p1": "Venez avec vos produits, votre façon de travailler et vos besoins d’images.",
+      "p2": "La démonstration permet de voir à quelles étapes l’IA d’Orbitvu Station peut être utile, et pour quels usages de vos images.",
+      "cta": "Tester mon workflow",
+      "imageAlt": "Illustration : un même pot cosmétique décliné en image principale, détail, fond isolé, vignettes et mises en situation",
+      "legende": "Illustration générée par IA : une prise de vue, plusieurs images et plusieurs usages. Les déclinaisons représentées sont conceptuelles, ce ne sont pas des résultats Orbitvu. Produit fictif."
     },
     "faq": {
-      "heading": "Questions fréquentes sur l'IA photo produit",
+      "heading": "Questions fréquentes sur l’IA photo produit",
       "q1": {
-        "question": "Faut-il un système Orbitvu pour utiliser BlendAI ?",
-        "answer": "Non, BlendAI fonctionne avec n'importe quel packshot de qualité professionnelle. Mais l'intégration avec un système Orbitvu offre le meilleur workflow : capture → IA → diffusion, sans friction."
+        "question": "Quelle IA produit des images ?",
+        "answer": "Un générateur d’images crée un nouveau visuel à partir d’une consigne écrite ou d’une image existante, sans prise de vue. Orbitvu Station part de la photo du produit prise au studio : l’IA y propose l’éclairage, puis détoure, retouche et lit les étiquettes. Sa retouche automatique utilise l’IA générative, appliquée à cette photo."
       },
       "q2": {
-        "question": "Quelle est la différence entre BlendAI et Photoroom ?",
-        "answer": "Photoroom et les outils d'IA générative pure créent des visuels à partir de zéro. BlendAI part de votre packshot professionnel et l’intègre à la scène, sans jamais modifier le produit. Résultat : fidélité 100%, zéro hallucination, conforme aux exigences des marques."
+        "question": "L’IA modifie-t-elle le produit photographié ?",
+        "answer": "AI Masking agit sur le fond. AI Retoucher retouche la photo prise au studio : reflets, imperfections, couleurs, ombre. Chaque résultat se contrôle avant la publication, et les textes lus par AI OCR restent modifiables avant l’enregistrement."
       },
       "q3": {
-        "question": "Combien de temps pour générer un visuel ?",
-        "answer": "Environ 30 secondes par image. En traitement par lots, BlendAI traite des centaines de produits en autonomie. La retouche experte (pour les cas complexes) est livrée en 24-72h."
+        "question": "Comment retoucher une photo avec l’IA ?",
+        "answer": "Dans Orbitvu Station, la retouche par IA passe par AI Retoucher, sur la photo prise au studio. Une consigne écrite oriente le résultat ; enregistrée en préréglage, elle se réutilise sur les séries suivantes. Chaque image retouchée se contrôle avant la publication."
       },
       "q4": {
-        "question": "Peut-on créer des styles personnalisés ?",
-        "answer": "Oui. Vous pouvez créer vos propres styles/directions artistiques et les appliquer à tous vos produits. C'est un avantage majeur pour les marques qui veulent une identité visuelle cohérente."
+        "question": "Faut-il un studio Orbitvu ?",
+        "answer": "Pas pour Orbitvu Station, qui fonctionne aussi seul avec un appareil photo Canon. AI Photo Assistant demande un studio Alphashot Pro G2 ou Alphashot XL G2."
       },
       "q5": {
-        "question": "BlendAI peut-il être adapté à nos besoins spécifiques ?",
-        "answer": "Oui. BlendAI.studio est notre solution propriétaire. Nous pouvons développer des fonctions sur mesure : workflows post-prod, traitements par lots personnalisés, intégrations API, retouche automatisée selon vos critères."
+        "question": "Comment accéder aux fonctions IA ?",
+        "answer": "Les outils IA d’Orbitvu Station sont réservés aux abonnements. L’offre Enterprise comprend AI Masking, AI Retoucher et AI OCR, 4 500 crédits par mois, l’API, un mode hors ligne et un support prioritaire. Nous vous indiquons l’offre adaptée lors de la démonstration."
+      },
+      "q6": {
+        "question": "Combien de crédits consomme un détourage ?",
+        "answer": "Un détourage avec AI Masking consomme 5 crédits par image depuis la version 26.2 d’Orbitvu Station."
+      },
+      "q7": {
+        "question": "Peut-on essayer Orbitvu Station ?",
+        "answer": "Oui : l’essai dure 30 jours, en accès complet et sans carte bancaire. Il demande un compte Orbitvu Cloud, gratuit, et un appareil photo Canon."
+      },
+      "q8": {
+        "question": "Où partent les images validées ?",
+        "answer": "Les profils de publication d’Orbitvu Station envoient les fichiers, au format attendu par chaque destination, vers une boutique Shopify, Magento, Shopware, PrestaShop ou WooCommerce, vers un PIM ou un DAM, ou vers un stockage local ou cloud (Amazon S3, Azure, Google Cloud Storage)."
       }
     },
-    "finalCta": {
-      "test": {
-        "heading": "Testez BlendAI gratuitement",
-        "description": "3 crédits offerts, sans engagement. Uploadez vos packshots et découvrez le résultat en quelques secondes.",
-        "cta": "Créer mon compte gratuit"
+    "liens": {
+      "heading": "Voir aussi",
+      "studios": {
+        "title": "Studios photo automatisés Orbitvu",
+        "desc": "Les studios pilotés par Orbitvu Station, du bijou au mobilier."
       },
-      "demo": {
-        "heading": "Système + IA : la solution complète",
-        "description": "Réservez une démo pour voir comment un système Orbitvu + BlendAI transforme votre production photo.",
-        "cta": "Réserver une démo"
+      "donnees": {
+        "title": "Alphashot XL G2 : photos, dimensions, poids et données produit",
+        "desc": "Le même cycle de prise de vue pour l’image, les mesures et les données de l’étiquette."
+      },
+      "aiAct": {
+        "title": "AI Act et images produit",
+        "desc": "Ce qu’une marque doit signaler sur une image retouchée ou générée par IA."
       }
+    },
+    "paire": {
+      "avant": "Avant",
+      "apres": "Après"
+    },
+    "deroule": {
+      "entree": "Entrée",
+      "action": "Ce que fait l’IA",
+      "resultat": "Résultat",
+      "utilite": "À quoi ça sert"
+    },
+    "controle": {
+      "accroche": "L’IA propose et traite ; l’opérateur garde la main.",
+      "texte": "Il choisit l’éclairage, contrôle le détourage et la retouche, corrige si besoin les textes lus, puis valide les images avant leur utilisation.",
+      "imageAlt": "Illustration : une opératrice examine sur un écran la photo d’un pot cosmétique avant de la valider",
+      "legende": "Illustration générée par IA. Personne et produit fictifs."
     }
   },
   "blog": {

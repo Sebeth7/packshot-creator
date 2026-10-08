@@ -83,8 +83,15 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     forme: 'barre',
     statut: 'ADAPT',
     portee: 'toutes',
-    exceptions: [],
-    note: 'Cinq sections à titre dont la FAQ ; 11 026 à 12 149 px. Ancre existante #resultats réutilisée. Hors pilote Studios ; deuxième vague commerciale (addendum marché du 02/10, conditionnée par #77 et la validation des claims) : la barre est à reprendre dans la restructuration éditoriale.',
+    exceptions: [
+      {
+        slug: 'ia-photo-produit',
+        langue: 'fr',
+        motif: 'Refonte #105 (07/10/2026) : barre numérotée retirée à la demande de Laurent ; navigation statique par le schéma du workflow, liens vers les sections (forme C)',
+        jusqua: 'réévaluation à la traduction EN et de-ch de la page refondue',
+      },
+    ],
+    note: 'FR refondue le 07/10/2026 (#105) : forme C, le schéma du workflow sert de navigation statique ; aucune barre collante. EN et de-ch : ancienne page jusqu’à leur traduction depuis la version FR validée (D42, étape 7) ; cinq sections à titre dont la FAQ, 11 026 à 12 149 px au 03/10, ancre #resultats réutilisée.',
   },
   {
     famille: 'landing-gamme',

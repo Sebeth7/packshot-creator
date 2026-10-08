@@ -68,7 +68,8 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     for (const l of LANGUES) {
       expect(barreActive('guide', l, 'guide-futur')).toBe(true);
       expect(barreActive('fiche-machine', l, 'machine-future')).toBe(true);
-      expect(barreActive('landing-ia', l, 'ia-photo-produit')).toBe(true);
+      // FR refondue (#105) : forme C, exception motivée ; EN et de-ch gardent la barre.
+      expect(barreActive('landing-ia', l, 'ia-photo-produit')).toBe(l !== 'fr');
       expect(barreActive('solution', l, 'solution-future')).toBe(true);
       expect(barreActive('blog-dedie-sans-sommaire', l, 'comparatif-orbitvu-ortery-styleshoots-2026')).toBe(true);
       expect(barreActive('blog-dedie-sans-sommaire', l, 'prestataire-packshot-vs-studio-interne')).toBe(false);
