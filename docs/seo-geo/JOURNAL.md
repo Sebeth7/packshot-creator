@@ -34,6 +34,72 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Ubersuggest résiduel, PR-B — titles : title trop court (ex-#70) et 10 SHORTEN_SAFE, sans texte nouveau · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lots A, B et C) | **PR** : #119 (PR-B), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-titles-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — 11 titles modifiés (12 pages servies), aucun texte nouveau :
+- lot A : `/fr/blog/photographie-2d-de-produits`, `metaTitle` `null` devenu le candidat historique de #70, « Photographie 2D de produits : studios photo automatisés » (27 → 55 caractères), reconstruit depuis `main`. #70 n'est ni rebasée, ni modifiée, ni fermée ;
+- lot B : 10 des 12 SHORTEN_SAFE. Le `metaTitle` des articles, ou le `titre` de `data/solutions.ts`, reprend le H1 existant (6), le `title` existant du même fichier (1) ou le même texte sans son suffixe de marque (3). 2 candidats en collision ne sont pas touchés.
+
+Slug, H1, corps, description, canonical, hreflang, robots et JSON-LD inchangés. Changent `<title>`, `og:title` et, sur les 2 pages sans image, l'URL de l'image OG générée. `twitter:title` des articles reste celui du gabarit (titre générique du site, BL-43-1, dans #114).
+
+| # | Page | Avant | Après | Source | Collision | D13 |
+|---|---|---|---|---|---|---|
+| A | `/fr/blog/photographie-2d-de-produits` | 27 | 55 « Photographie 2D de produits : studios photo automatisés » | candidat historique (#70) | aucune (#70 remplacée) | oui |
+| 1 | `/fr/blog/comment-shotflow-permet-optimiser-production-contenu` | 102 | 47 « ShotFlow : Révolution de la Production Visuelle » | H1 | aucune | oui |
+| 2 | `/fr/blog/comment-maitriser-le-flou-dans-la-photographie-de-produits` | 97 | 56 « Comment éviter les photos floues en photographie produit » | H1 | aucune | oui |
+| 3 | `/fr/blog/la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator` | 95 | 55 « Photographie de chaussures pour l’e-commerce en interne » | H1 | aucune | oui |
+| 4 | `/fr/blog/joailliers-nos-conseils-pour-reussir-vos-visuels-produits` | 95 | 57 « Photographier des Bijoux : Techniques Pro pour Joailliers » | H1 (sans suffixe : 77) | aucune | oui |
+| 5 | `/fr/blog/comment-ia-revolutionne-production-visuelle` | 94 | 48 « Comment l'IA révolutionne la production visuelle » | H1 | aucune | oui |
+| 6 | `/fr/blog/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques` | 94 | 64 « Taux de conversion : boostez-le grâce aux visuels en 6 pratiques » | `title` (garde « 6 pratiques », présent dans le title actuel et le slug ; H1 : 49) | aucune | oui |
+| 7 | `/en/blog/how-to-avoid-blurry-product-photographs` | 88 | 49 « How to avoid blurry photos in product photography » | H1 | aucune | non (EN) |
+| 8 | `/fr/blog/meubles-decorations-comment-etre-plus-visibles-sur-le-web` | 83 | inchangé | — | #112 | — |
+| 9 | `/fr/blog/e-commerce-comment-mettre-en-place-votre-studio-photo` | 82 | 54 « Comment organiser un studio photo e-commerce interne ? » | suffixe « \| Orbitvu & PackshotCreator » retiré | aucune | oui |
+| 10 | `/en/blog/technique-photograph-jewelry-tutorial` | 81 | 63 « How to Photograph Jewelry: Professional Techniques for Jewelers » | suffixe « \| PackshotCreator » retiré | aucune | non (EN) |
+| 11 | `/en/blog/e-commerce-set-up-internal-packshots` | 80 | inchangé | — | #113 | — |
+| 12 | `/fr/solutions/documentation-qualite-produit` (et `/en`, `noindex`, même donnée) | 80 | 62 « Documentation Photo Qualité Produit : Traçabilité & Conformité » | suffixe « \| PackshotCreator » retiré | aucune | oui |
+
+Lot C, 8 REVIEW_CONTENT, fresh-check seul, aucune modification ; 0 ALREADY_RESOLVED :
+
+| Page | Title actuel | Classe | Motif |
+|---|---|---|---|
+| `/fr/blog/acheter-studio-photo-packshot-occasion` | 100 | HOLD_CONTENT, fichier aussi dans #112 et #113 | « 2025 » dans le title et le H1 ; « Le Bon Coin » nommé |
+| `/fr/blog/interview-visuels-ecommerce-wizishop` | 96 | HOLD_CONTENT, fichier aussi dans #112 | bénéfices attribués à un client interviewé ; H1 portant lui-même « \| PackshotCreator » : aucun texte existant réutilisable |
+| `/en/blog/interview-visuals-ecommerce-wizishop` | 95 | HOLD_CONTENT, fichier aussi dans #112 et #113 | idem en EN |
+| `/fr/solutions/documentation-probatoire` | 89 | HOLD_CONTENT | « à Valeur de Preuve » : qualification juridique non établie ; sans suffixe, 72 caractères, même affirmation |
+| `/fr/blog/e-commerce-quel-est-le-reel-impact-des-visuels` | 88 | HOLD_CONTENT | promesse « Boostez Vos Ventes » non sourcée ; H1 à barre verticale, autre promesse |
+| `/en/blog/impact-photographs-product-sheet` | 81 | HOLD_CONTENT | idem en EN (« Boost Your Sales ») |
+| `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` | 84 | HOLD_CONTENT | résultat client non établi par le dépôt ; title = H1 = `title`, aucun texte plus court |
+| `/fr/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` | 83 | HOLD_CONTENT | title = H1 = `title`, aucun texte plus court ; gamme PackshotCreator/Ortery (D9-02 en HOLD le 07/10) |
+
+Aucun de ces 8 fichiers n'est modifié par #109 ou #111 : aucune classe COLLISION_109_111.
+
+**Pourquoi** — Triage Ubersuggest du 30/09 (6 CSV, 253 lignes, 170 URL) : 1 title trop court, 12 titles longs classés SHORTEN_SAFE, 8 REVIEW_CONTENT. Fresh-check du 08/10 sur `main` `06b18e2` : les 13 longueurs historiques des lots A et B correspondent aux titles servis ; les 8 REVIEW_CONTENT servent toujours un title de 81 à 100 caractères.
+
+**Gouvernance** — D13 réserve à Sébastien le copywriting français client-facing ; le point ouvert par #70 (« un `<title>` en relève-t-il ? ») n'est tranché par aucune décision au 08/10 (DECISIONS, ETAT C, BOITE-AUX-LETTRES relus). Les 9 titles FR (lot A et 8 du lot B) sont donc préparés sous **SEBASTIEN_COPY_GATE = YES** : aucun n'est présenté comme validé. Les 2 titles EN sont hors du champ de D13.
+
+**Fichiers** — `content/blog/fr/photographie-2d-de-produits.json`, `content/blog/fr/comment-shotflow-permet-optimiser-production-contenu.json`, `content/blog/fr/comment-maitriser-le-flou-dans-la-photographie-de-produits.json`, `content/blog/fr/la-chaussure-un-secteur-incontournable-du-e-commerce-dynamise-avec-packshotcreator.json`, `content/blog/fr/joailliers-nos-conseils-pour-reussir-vos-visuels-produits.json`, `content/blog/fr/comment-ia-revolutionne-production-visuelle.json`, `content/blog/fr/taux-de-conversion-boostez-le-grace-aux-visuels-en-6-pratiques.json`, `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json`, `content/blog/en/how-to-avoid-blurry-product-photographs.json`, `content/blog/en/technique-photograph-jewelry-tutorial.json`, `data/solutions.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Titles moins tronqués dans les résultats, donc possible gain de clarté et de taux de clic ; Google peut réécrire le title affiché ; signaux « title too long / too short » retirés sur ces pages au prochain audit. Aucun gain de position annoncé. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Propriété des fichiers : 15 PR ouvertes au 08/10 relues ; `meubles-decorations…` est dans #112, `e-commerce-set-up-internal-packshots` dans #113 : non touchés. Les 11 fichiers modifiés n'appartiennent à aucune PR active ; `photographie-2d-de-produits.json` n'est que dans #70, que cette PR remplace.
+- Chaque fichier JSON : seul `metaTitle` change, valeur égale au champ source (contrôle automatique) ; `data/solutions.ts` : 1 ligne, `titre` lu seulement par `generateMetadata` de `app/[lang]/solutions/[slug]/page.tsx` (les cartes des hubs affichent `hero.badge`).
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices de la CI) ; CSS compilée identique à `main`.
+- HTML prérendu, `main` `06b18e2` contre branche, identifiant de build neutralisé, scripts retirés : 374 pages, 362 identiques, 12 différentes, les 12 visées. Écart limité à `<title>`, `og:title` et, sur 2 pages, l'URL `og:image` ; `<body>` identique.
+- Chromium, `next start`, 12 pages, 1440 et 390 px : title attendu ; H1, description, canonical, hreflang, robots, `twitter:title` et `BreadcrumbList` identiques à `main` ; capture de la zone d'en-tête identique ; 0 erreur de page. `/api/og` avec les 2 nouveaux titles : 200, `image/png`.
+- Playwright, Chromium, `e2e/seo.spec.ts` : 227 réussis et 9 échecs sur `main` comme sur la branche, **liste d'échecs identique** ; aucun ne porte sur une page modifiée (`/en`, `/en/studios-photo-automatises`, `/en/ia-photo-produit`, `/fr/industrie`, `/en/industrie`, `/fr/industrie-defense`, `/fr/academy`, `/fr/packshot-bijoux`).
+- Hauteur de document : identique à `main` sur 10 pages dès la première passe. Sur 2 articles EN, l'écart de la première passe tenait au chargement des ressources : `main` et la branche donnent les mêmes valeurs sur deux rejeux successifs.
+- Lot LOW_WORD_COUNT résiduel : `/fr/academy/elearning-autonome-niveau-1` répond 301 vers `/fr/academy` (`next.config.ts`, règle `/fr/academy/:path+` de #71) : OBSOLETE, aucun contenu recréé.
+
+**Supposé** — [Inférence] `www` servira le même HTML que `sysnext.vercel.app`. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). GSC : aucune nouvelle lecture ; seul chiffre disponible, celui de #70 pour l'article 2D (5 impressions, 0 clic sur 90 jours au 27/09). Liste source des 170 URL : hors dépôt, non réconciliée ligne à ligne. Les 70 titles de 66 à 79 caractères (IGNORE) et les classes DEFER et KEEP : non touchés. Contenu de l'article 2D : mêmes affirmations de la gamme PackshotCreator/Ortery que son jumeau EN en HOLD (D9-01) ; non modifié, backlog factuel.
+
+**Suite** — Laurent : arbitrer le point de gouvernance de #70 (title et D13), puis GO de fusion distinct ; #70 se ferme séparément sur GO. Chevauchement apparu après ouverture : #120 (autre session, 16:23 UTC ; #119 ouverte à 16:20 UTC) modifie les 2 mêmes titles EN avec les mêmes valeurs, et un 3e article EN (`how-shotflow-improves-real-time-task-tracking`, « | -50% delay » retiré du title) que sa description ne cite pas ; les candidats 7 et 10 ne doivent être fusionnés qu'une fois : choix de Laurent. Après fusion : `smoke.mjs`, puis Chrome sur `www`. Lot C : décisions de contenu séparées, après #112 et #113 pour les 3 fichiers qu'elles touchent.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
