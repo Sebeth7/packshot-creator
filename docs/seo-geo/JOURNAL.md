@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (4 pages) · Claude de Laurent
 
-**Chantier** : audit Ubersuggest, résidu de UB-04 (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : à ouvrir, brouillon, branche `seo/ubersuggest-residuels-2026-10-08` | **Base** : `main` `06b18e2`
+**Chantier** : audit Ubersuggest, résidu de UB-04 (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #118, brouillon, branche `seo/ubersuggest-residuels-2026-10-08` | **Base** : `main` `06b18e2`
 
 **Quoi** — Les gabarits `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient le fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Il passe désormais par le prop `breadcrumb` apporté par #74, rendu juste avant le `<h1>` :
 - `<nav>` étiqueté par langue (« Fil d'Ariane », « Breadcrumb ») ; séparateurs « / » masqués aux lecteurs d'écran ;
