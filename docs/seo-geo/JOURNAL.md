@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — intégration des illustrations V104-1 et V104-2 (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Intégration des visuels finaux #104 » ; source : archive `PSC_104_BIJOUX_VISUELS_FINAUX_2026-10-08.zip` fournie par Laurent | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `e67d711`
+
+**Quoi** — Deux illustrations éditoriales intégrées ; ni copie, ni structure, ni appel final modifiés.
+- V104-1 (`public/images/secteurs/bijoux/v104-1-macro-joaillerie.avif`, AVIF 1 536 × 1 024, 122 129 octets) : bandeau large en tête de la section « Sur un bijou, la lumière se voit », avant le texte et les deux captures de mise au point. Recadrage 2:1 du fond seulement à partir de 1 024 px (bague entre 20 et 75 % de la hauteur source, `object-position` 50 % 45 %) ; image entière en 3:2 en dessous.
+- V104-2 (`public/images/secteurs/bijoux/v104-2-collection-coherence.avif`, AVIF 1 536 × 1 024, 133 872 octets) : section « Quand la collection s’agrandit », sur 7 colonnes au lieu de 6, image entière en 3:2 à toutes les largeurs. Remplace la photo de main gantée (`/images/guides/67d991805e0a0980101b8a98.avif`), retirée de la page, conservée dans le dépôt : les guides FR et EN de focus stacking pour bague l’utilisent.
+- Section lumière : le texte passe à gauche et la preuve technique à droite (plus d’inversion d’ordre sur desktop).
+- Alt descriptifs, sans mention d’Orbitvu, de Superfocus ni d’IA. Légendes selon la convention du cluster AI Act (`cluster-ai-act-2026-10-06/CLUSTER.md`, §5) : « Illustration générée par IA, bijou fictif. » et « Illustration générée par IA, collection fictive. »
+
+**Provenance** — V104-1 et V104-2 : ChatGPT native image generation, EDITORIAL_ILLUSTRATION (README de l’archive). Jamais PRODUCT_PROOF : aucune preuve de résultat Orbitvu, Superfocus, 360°, AI Masking, AI Retoucher, ni de reproductibilité. Fichiers web AVIF de l’archive intégrés tels quels (SHA-256 identiques), sans réencodage ; PNG d’origine, WebP, planche contact, README et archive non commités.
+
+**Pourquoi** — QA humaine : section collection sans sensation de collection avec la main gantée (`COLLECTION_FEEL = NON`) ; matière bijou peu présente face aux captures d’interface ; quatre sections 50/50 consécutives.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `public/images/secteurs/bijoux/v104-1-macro-joaillerie.avif` (nouveau), `public/images/secteurs/bijoux/v104-2-collection-coherence.avif` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action (R8)** — Composant dédié seulement. HTML prérendu contre `e67d711` : 372 pages sur 374 identiques, 2 différentes (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens, FAQ identiques ; 3 lignes de texte (2 légendes ajoutées, 1 retirée).
+
+**Effet attendu** — [Inférence] Page plus désirable et plus « bijou » ; hauteur à 1 440 px : 7 597 → 8 202 px (bandeau). Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2`, tête `e67d711`, PR ouverte, brouillon, `clean`, CI verte (4 contrôles). PR ouvertes : #105 (nouvelle tête `02aee10`, 11 fichiers, aucun commun hors `JOURNAL.md` et `ETAT.md`), #82, #70, #65, #64, #27.
+- Archive : 8 fichiers ; PNG, AVIF et WebP en 1 536 × 1 024, sRVB. AVIF contre PNG d’origine : PSNR 43,4 dB (V104-1) et 41,7 dB (V104-2), sans différence visible à 100 % sur la pierre et le métal.
+- `npx tsc --noEmit` vert ; `npx eslint` du composant : 0 problème ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices).
+- HTML prérendu contre `main` : 370 identiques, 4 différentes (hub FR, hub EN, M30, M32).
+- Rendu local (`next start`, Chromium), FR et EN, 1 440, 1 024, 768, 390 px : 1 H1 ; 0 débordement ; 0 erreur de page ; 7 images chargées, 7 alt ; 0 contraste inférieur à 3:1 ; `#tester` atteint ; formulaire non soumis ; hero mobile inchangé (bague 321-589 px, CTA 914 px à 390 × 844).
+- Images (optimiseur Next, qualité 75 par défaut) : V104-1 affichée 1 232 × 616 à 1 440 px (58 Ko transférés), 976 × 488 à 1 024 px (34 Ko), 720 × 480 à 768 px, 358 × 239 à 390 px (34 Ko en DPR 3) ; V104-2 affichée 692 × 461 à 1 440 px (21 Ko en DPR 1, 65 Ko en DPR 2), 358 × 239 à 390 px (37 Ko). CLS mesuré : 0 aux 5 configurations.
+- 14 liens internes et les 2 nouvelles images en 200.
+- Specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`), configuration locale supprimée après usage : 81/81.
+- Bague détourée de la section retouche (`67d991839ee10799cae56458`) : provenance établie par le guide « Comment prendre une photo nette d’un bijou sans fond ? » (Superfocus et détourage IQ Mask d’Orbitvu Station) ; ce n’est pas un résultat AI Masking.
+
+**Supposé** — Droits d’utilisation des deux illustrations : non établis par le dépôt (archive transmise par Laurent).
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4), Firefox, Safari, appareils réels.
+
+**Suite** — HOLD : la bague détourée (IQ Mask) reste placée à côté du texte sur AI Masking et AI Retoucher ; proposition de légende pour une passe ultérieure : « La même bague, détourée avec l’IQ Mask d’Orbitvu Station. ». Preuves réelles toujours manquantes : vrai résultat Superfocus, vraie vue 360°. QA humaine finale de la Preview ; appel final soumis à Sébastien ; GO de fusion distinct.
+
+---
+
 ## 2026-10-08 · Hub bijoux — dernière passe éditoriale avant visuels (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Dernière passe éditoriale #104 bijoux » (contre-audit humain de la Preview : READY_FOR_FINAL_VISUALS après passe légère) ; arbitrage directeur du 08/10 sur le positionnement (production visuelle produit de bout en bout : capture, workflow, IA, diffusion), appliqué en arrière-plan, sans numéro de décision ni écriture dans `DECISIONS.md` | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant passe `48ccc03`

@@ -22,11 +22,13 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * `components/calculators/ROICalculator/lib/machines.ts`, guides FR de focus stacking
  * (bague, bracelet, animation 360°) et infobulles d'Orbitvu Station visibles sur leurs captures.
  *
- * Visuels affichés : uniquement des images réelles déjà publiées sur le site.
- * - /images/guides/* : guides PackshotCreator (Alphashot Micro Pro v2 et Orbitvu Station,
- *   d'après les guides eux-mêmes).
- * - /images/secteurs/bijoux/superfocus-* : recadrages, sans retouche, de captures de ces guides.
- * - /images/machines/alphashot-micro-v2.avif : visuel produit déjà utilisé sur la fiche.
+ * Visuels affichés :
+ * - images réelles déjà publiées sur le site : /images/guides/* (guides PackshotCreator, Alphashot
+ *   Micro Pro v2 et Orbitvu Station d'après les guides eux-mêmes) ; /images/secteurs/bijoux/superfocus-*
+ *   (recadrages, sans retouche, de captures de ces guides) ; /images/machines/alphashot-micro-v2.avif
+ *   (visuel produit déjà utilisé sur la fiche) ;
+ * - deux illustrations éditoriales générées par IA (V104-1, V104-2, ci-dessous), signalées comme telles
+ *   en légende selon la convention du cluster AI Act (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5).
  */
 
 type Sector = (typeof DEFAULT_SECTORS)[number];
@@ -39,22 +41,42 @@ interface HubBijouxProps {
   autresSecteurs: Sector[];
 }
 
-/** Visuel à venir. `illustration: true` (EDITORIAL_ILLUSTRATION) : jamais présenté comme une preuve produit. */
+/**
+ * Visuel de la page. `illustration: true` (EDITORIAL_ILLUSTRATION) : image générée, jamais présentée comme
+ * une preuve produit ; la légende commence alors par « Illustration générée par IA ».
+ */
 type Visuel = { src: string; alt: string; width: number; height: number; legende: string; illustration: boolean };
 
 /*
- * Emplacements des visuels à venir (registre ASSET_REQUIRED). Rien n'est rendu tant qu'ils sont vides.
- * - V104-1 : macro joaillerie, métal, pierre et sertissage. EDITORIAL_ILLUSTRATION (passe ChatGPT après QA),
- *   jamais PRODUCT_PROOF. Section lumière.
- * - V104-2 : plusieurs bijoux d'une même collection, cohérents visuellement. EDITORIAL_ILLUSTRATION, jamais
- *   PRODUCT_PROOF. Section collection (remplace alors la photo de mise en place).
- * - REEL_SUPERFOCUS : vrai résultat Superfocus. Réel obligatoire. Candidat à examiner :
+ * Illustrations éditoriales (EDITORIAL_ILLUSTRATION, jamais PRODUCT_PROOF). Provenance : ChatGPT native image
+ * generation ; archive PSC_104_BIJOUX_VISUELS_FINAUX_2026-10-08 fournie par Laurent le 08/10/2026 (fichiers
+ * web AVIF 1536 × 1024 intégrés tels quels). Elles ne prouvent aucun résultat Orbitvu, Superfocus, 360°,
+ * AI Masking ou AI Retoucher, ni la reproductibilité d'une collection.
+ */
+const V104_1_MACRO: Visuel = {
+  src: '/images/secteurs/bijoux/v104-1-macro-joaillerie.avif',
+  alt: 'Gros plan d’une bague en or jaune poli sertie d’une pierre claire facettée, tenue par quatre griffes',
+  width: 1536,
+  height: 1024,
+  legende: 'bijou fictif.',
+  illustration: true,
+};
+const V104_2_COLLECTION: Visuel = {
+  src: '/images/secteurs/bijoux/v104-2-collection-coherence.avif',
+  alt: 'Bague, pendentif et paire de boucles d’oreilles en or jaune, sertis de pierres claires de même forme, présentés ensemble sous la même lumière sur un fond crème',
+  width: 1536,
+  height: 1024,
+  legende: 'collection fictive.',
+  illustration: true,
+};
+
+/*
+ * Preuves techniques réelles encore manquantes (ASSET_REQUIRED). Rien n'est rendu tant qu'elles sont vides.
+ * - REEL_SUPERFOCUS : vrai résultat Superfocus. Candidat à examiner :
  *   /images/guides/67d9917f406090f303cb4429.avif (bracelet, guide focus stacking), ordre avant / après à confirmer.
- * - REEL_BAGUE_360 : vraie vue 360° d'une bague (Orbitvu Sun ou vidéo). Réel obligatoire. La vue du guide
+ * - REEL_BAGUE_360 : vraie vue 360° d'une bague (Orbitvu Sun ou vidéo). La vue du guide
  *   « animation 360° » renvoie 404 chez Orbitvu (constat du 07/10/2026).
  */
-const V104_1_MACRO: Visuel | null = null;
-const V104_2_COLLECTION: Visuel | null = null;
 const REEL_SUPERFOCUS: Visuel | null = null;
 const REEL_BAGUE_360: { src: string; title: string } | null = null;
 
@@ -95,12 +117,22 @@ const typo = (texte: string) => texte.replace(/ ([:;!?])/g, '\u00a0$1');
 
 const paragraphes = (texte: string) => texte.split('\n\n').map(typo);
 
-function FigureVisuel({ visuel, sizes, className = '' }: { visuel: Visuel; sizes: string; className?: string }) {
+function FigureVisuel({
+  visuel,
+  sizes,
+  className = '',
+  imageClassName = 'w-full h-auto rounded-md',
+}: {
+  visuel: Visuel;
+  sizes: string;
+  className?: string;
+  imageClassName?: string;
+}) {
   return (
     <figure className={className}>
-      <Image src={visuel.src} alt={visuel.alt} width={visuel.width} height={visuel.height} sizes={sizes} className="w-full h-auto rounded-md" />
+      <Image src={visuel.src} alt={visuel.alt} width={visuel.width} height={visuel.height} sizes={sizes} className={imageClassName} />
       <figcaption className="mt-2 text-sm text-neutral-medium">
-        {visuel.illustration ? `Illustration. ${visuel.legende}` : visuel.legende}
+        {visuel.illustration ? `Illustration générée par IA, ${visuel.legende}` : visuel.legende}
       </figcaption>
     </figure>
   );
@@ -164,60 +196,69 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
       </section>
 
       {/* ── B. La lumière, le métal, la pierre, la profondeur de champ.
+          Matière (V104-1, bandeau large), puis explication, puis preuve technique réelle (deux mises au point).
           Seule explication détaillée du Superfocus de la page (légende de la figure). ── */}
       <section aria-labelledby="lumiere" className="bg-bg-warm-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5 lg:order-2">
-            <h2 id="lumiere" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
-              {secteur.problematiques.titre}
-            </h2>
-            <p className="text-lg text-neutral-medium leading-relaxed mb-10">
-              Le métal poli renvoie ce qui l’entoure. Une pierre multiplie les points lumineux. En macro, une poussière ou une micro-rayure devient immédiatement visible, tandis que la faible profondeur de champ peut laisser une partie du bijou hors de la zone de netteté.
-            </p>
-            <dl className="divide-y divide-future-dusk-100 border-y border-future-dusk-100">
-              {secteur.problematiques.items.map((item) => {
-                const { terme, texte } = scinder(item);
-                return (
-                  <div key={item} className="py-5">
-                    <dt className="font-semibold text-heading-dark mb-1">{terme}</dt>
-                    <dd className="text-neutral-medium leading-relaxed">{texte}</dd>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Desktop : recadrage 2:1 du fond seulement (bague entre 20 et 75 % de la hauteur source). */}
+          <FigureVisuel
+            visuel={V104_1_MACRO}
+            sizes="(min-width: 1280px) 1232px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            className="mb-12 lg:mb-16"
+            imageClassName="w-full h-auto aspect-[3/2] lg:aspect-[2/1] object-cover object-[50%_45%] rounded-md"
+          />
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <h2 id="lumiere" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
+                {secteur.problematiques.titre}
+              </h2>
+              <p className="text-lg text-neutral-medium leading-relaxed mb-10">
+                Le métal poli renvoie ce qui l’entoure. Une pierre multiplie les points lumineux. En macro, une poussière ou une micro-rayure devient immédiatement visible, tandis que la faible profondeur de champ peut laisser une partie du bijou hors de la zone de netteté.
+              </p>
+              <dl className="divide-y divide-future-dusk-100 border-y border-future-dusk-100">
+                {secteur.problematiques.items.map((item) => {
+                  const { terme, texte } = scinder(item);
+                  return (
+                    <div key={item} className="py-5">
+                      <dt className="font-semibold text-heading-dark mb-1">{terme}</dt>
+                      <dd className="text-neutral-medium leading-relaxed">{texte}</dd>
+                    </div>
+                  );
+                })}
+              </dl>
+            </div>
+            <div className="lg:col-span-7 space-y-8">
+              <figure>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <div>
+                    <Image
+                      src="/images/secteurs/bijoux/superfocus-mise-au-point-avant.avif"
+                      alt="Bague en or vue en macro : la pierre est nette, le pavé de diamants à l’arrière est flou"
+                      width={745}
+                      height={695}
+                      sizes="(min-width: 1024px) 340px, 46vw"
+                      className="w-full h-auto rounded-md"
+                    />
+                    <p className="mt-2 text-sm text-neutral-medium">Mise au point sur la pierre.</p>
                   </div>
-                );
-              })}
-            </dl>
-          </div>
-          <div className="lg:col-span-7 lg:order-1 space-y-8">
-            {V104_1_MACRO && <FigureVisuel visuel={V104_1_MACRO} sizes="(min-width: 1024px) 700px, 92vw" />}
-            <figure>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div>
-                  <Image
-                    src="/images/secteurs/bijoux/superfocus-mise-au-point-avant.avif"
-                    alt="Bague en or vue en macro : la pierre est nette, le pavé de diamants à l’arrière est flou"
-                    width={745}
-                    height={695}
-                    sizes="(min-width: 1024px) 340px, 46vw"
-                    className="w-full h-auto rounded-md"
-                  />
-                  <p className="mt-2 text-sm text-neutral-medium">Mise au point sur la pierre.</p>
+                  <div>
+                    <Image
+                      src="/images/secteurs/bijoux/superfocus-mise-au-point-arriere.avif"
+                      alt="Même bague : seul l’arrière de l’anneau est net, le premier plan est flou"
+                      width={745}
+                      height={695}
+                      sizes="(min-width: 1024px) 340px, 46vw"
+                      className="w-full h-auto rounded-md"
+                    />
+                    <p className="mt-2 text-sm text-neutral-medium">Mise au point sur l’arrière de l’anneau.</p>
+                  </div>
                 </div>
-                <div>
-                  <Image
-                    src="/images/secteurs/bijoux/superfocus-mise-au-point-arriere.avif"
-                    alt="Même bague : seul l’arrière de l’anneau est net, le premier plan est flou"
-                    width={745}
-                    height={695}
-                    sizes="(min-width: 1024px) 340px, 46vw"
-                    className="w-full h-auto rounded-md"
-                  />
-                  <p className="mt-2 text-sm text-neutral-medium">Mise au point sur l’arrière de l’anneau.</p>
-                </div>
-              </div>
-              <figcaption className="mt-4 text-sm text-neutral-medium">
-                Le Superfocus d’Orbitvu Station enchaîne ces mises au point et les fusionne en une seule image, nette de l’avant à l’arrière de la bague.
-              </figcaption>
-            </figure>
-            {REEL_SUPERFOCUS && <FigureVisuel visuel={REEL_SUPERFOCUS} sizes="(min-width: 1024px) 700px, 92vw" />}
+                <figcaption className="mt-4 text-sm text-neutral-medium">
+                  Le Superfocus d’Orbitvu Station enchaîne ces mises au point et les fusionne en une seule image, nette de l’avant à l’arrière de la bague.
+                </figcaption>
+              </figure>
+              {REEL_SUPERFOCUS && <FigureVisuel visuel={REEL_SUPERFOCUS} sizes="(min-width: 1024px) 700px, 92vw" />}
+            </div>
           </div>
         </div>
       </section>
@@ -225,7 +266,7 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
       {/* ── C. Reprendre une collection : modèles et paramètres enregistrés ── */}
       <section aria-labelledby="collection" className="bg-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5">
             <h2 id="collection" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
               {COLLECTION.titre}
             </h2>
@@ -235,23 +276,11 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               </p>
             ))}
           </div>
-          <div className="lg:col-span-6">
-            {V104_2_COLLECTION ? (
-              <FigureVisuel visuel={V104_2_COLLECTION} sizes="(min-width: 1024px) 580px, 92vw" />
-            ) : (
-              <figure>
-                <Image
-                  src="/images/guides/67d991805e0a0980101b8a98.avif"
-                  alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
-                  width={1200}
-                  height={1200}
-                  sizes="(min-width: 1024px) 580px, 92vw"
-                  className="w-full h-auto rounded-md"
-                />
-                <figcaption className="mt-2 text-sm text-neutral-medium">Mise en place d’une bague avant la prise de vue.</figcaption>
-              </figure>
-            )}
-          </div>
+          <FigureVisuel
+            visuel={V104_2_COLLECTION}
+            sizes="(min-width: 1280px) 700px, (min-width: 1024px) 56vw, 92vw"
+            className="lg:col-span-7"
+          />
         </div>
       </section>
 
