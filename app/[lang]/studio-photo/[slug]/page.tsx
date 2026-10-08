@@ -1487,9 +1487,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           name: machine.nom,
           description: `${machine.nom}: ${casUsage.join(', ')}`,
           image: `https://www.packshot-creator.com${machineImage}`,
-          // URL servie (de-ch : /de-ch/fotostudio/<slug>), comme le fil d'Ariane ;
-          // Product.url et Offer.url visaient /de-ch/studio-photo/<slug>, redirigée.
-          url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}`,
+          url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
           // Identifiant produit du vendeur : l'`id` de la machine, déjà le slug
           // de l'URL. Même valeur sur les trois locales, comme l'attend Google.
           sku: machine.id,
