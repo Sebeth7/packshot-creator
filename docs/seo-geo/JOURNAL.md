@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Ubersuggest résiduel — suppressions factuelles minimales (ShotFlow, Oscaro, photographie 3D) · Claude de Laurent
 
-**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : à ouvrir, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
+**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
 
 **Quoi** — Suppressions seules, sans mot ajouté, dans 4 fichiers qu'aucune PR ouverte ne touche :
 - `/fr/blog/comment-shotflow-ameliore-suivi-taches-en-temps-reel` : « | -50% de délais » retiré du title (77 → 60 caractères) ; « Réduisez vos délais de 50%, » retiré de la description, majuscule reportée sur « Améliorez » ;
