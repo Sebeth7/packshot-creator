@@ -1251,93 +1251,72 @@ export const secteurs: Secteur[] = [
   },
 
   // 16. VIN & SPIRITUEUX
+  // Rendu fr et en par app/[lang]/industrie/[slug]/_components/HubVin.tsx (de-ch : gabarit commun,
+  // données de data/secteurs-de-ch.ts). Sources de chaque affirmation : registre de claims de la PR
+  // (docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md). Retirés le 08/10/2026 : Alphashot XL Wine
+  // (délistée le 07/07, absente du catalogue Orbitvu), « éclairage polarisé », « étalonnage 74 points »,
+  // cadences, « −85 % », carte et FAQ BlendAI, cas d'usage non sourcés.
   {
     slug: 'vin-spiritueux',
-    titre: 'Photo Produit Vin & Spiritueux : Packshot Bouteilles & Lifestyle IA',
+    titre: 'Packshot bouteille de vin et spiritueux : studio photo automatisé',
     description:
-      'Studios photo automatisés pour bouteilles de vin et spiritueux : gestion des reflets verre, fidélité étiquettes et mises en scène IA cave, bar, table.',
+      'Photographiez vos bouteilles de vin et de spiritueux en interne : lumière réglée pour le verre et l’étiquette, rendu cohérent d’une référence à l’autre.',
     hero: {
-      titre: 'Photo Bouteilles Vin & Spiritueux : Packshot & Lifestyle IA',
-      sousTitre: 'Sublimez vos cuvées avec des visuels dignes des plus grands domaines',
+      titre: 'Packshot bouteille : photographier vins et spiritueux avec précision et cohérence',
+      sousTitre: 'Vin et spiritueux',
       description:
-        'Capturez chaque bouteille avec une fidélité parfaite — étiquettes lisibles, reflets maîtrisés, couleurs du vin préservées — puis créez des mises en scène cave, bar ou table gastronomique par IA.',
+        'Une bouteille réunit ce qui complique une prise de vue : un verre qui reflète son environnement, un liquide dont la couleur change avec la lumière, une étiquette qui doit rester lisible. Dans un studio photo automatisé Orbitvu, la lumière, le cadrage et le traitement s’enregistrent dans des modèles : chaque nouvelle référence repart d’une base de capture cohérente, ajustée selon la bouteille.\n\nPackshotCreator, distributeur officiel d’Orbitvu en France et en Suisse, vous conseille sur le choix du studio et l’installe. La formation de vos équipes est proposée séparément.',
     },
     problematiques: {
-      titre: 'Défis Photo Vin & Spiritueux',
+      titre: 'Verre, liquide, étiquette : ce qu’une bouteille impose à la prise de vue',
       items: [
-        'Reflets parasites sur le verre (bouteilles, flacons, carafes)',
-        'Lisibilité et fidélité colorimétrique des étiquettes (dorures, reliefs, papier texturé)',
-        'Formes variées de bouteilles (bordelaise, bourguignonne, alsacienne, champagne, flûte, pot)',
-        'Capsules et muselet métalliques créant des reflets incontrôlés',
-        'Shootings lifestyle cave ou bar coûteux et logistiquement complexes',
-        'Suppression des contre-étiquettes complexe en post-production (codes-barres, mentions légales au dos)',
-        'Volumes saisonniers importants (foires aux vins, primeurs, fêtes de fin d\'année)',
+        'Verre clair et liquide : le contre-jour fait apparaître la transparence et la couleur du liquide. Le verre renvoie aussi les sources de lumière et son environnement ; une poussière ou une trace de doigt se voit sur une photo en haute définition.',
+        'Verre sombre : sur une bouteille de vin rouge, un plateau clair se reflète dans le bas du verre. Les reflets dessinent l’épaule et les bords de la bouteille.',
+        'Étiquette : éclairée par l’arrière seulement, elle ressort plus sombre que le verre qui l’entoure. Papier texturé, dorure, gaufrage : chaque finition prend la lumière différemment.',
+        'Capsule et col : capsule métallique, muselet ou bouchon renvoient la lumière sous d’autres angles que le corps de la bouteille.',
       ],
     },
     solutions: {
-      titre: 'Nos Solutions Vin & Spiritueux',
+      titre: 'Deux studios pour photographier vos bouteilles',
       items: [
         {
           type: 'hardware',
-          titre: 'Alphashot XL Wine v2 — Studio dédié bouteilles',
+          titre: 'Alphashot XL Pro v2',
           description:
-            'Conçu spécifiquement pour la photographie de bouteilles, avec un éclairage optimisé verre et étiquettes',
+            'Studio de la gamme XL que nous recommandons pour les bouteilles. Orbitvu l’a mis en œuvre sur des bouteilles en verre avec des accessoires dédiés.',
           avantages: [
-            'Éclairage polarisé anti-reflets verre : suppression des reflets parasites dès la capture',
-            'Zone d\'éclairage calibrée étiquettes : lisibilité parfaite, dorures et reliefs préservés',
-            'Compatibilité toutes formes : bordelaise, bourguignonne, champagne, magnum, flacon spiritueux',
-            '360° bouteille : rotation interactive montrant l\'étiquette, la contre-étiquette et la capsule',
-            'Détourage automatique fond blanc pour catalogues et e-commerce',
-            'Workflow rapide : 20-40 bouteilles/heure photographiées',
+            'Support bouteille, kit antireflet et cache textile noir',
+            'Réglages enregistrés dans des modèles Orbitvu Station',
+            'Photos, rotations à 360° et vidéos',
           ],
         },
         {
-          type: 'ia',
-          titre: 'BlendAI Studio — Mises en scène IA',
+          type: 'hardware',
+          titre: 'Alphashot XL G2',
           description:
-            'Transformez vos packshots en visuels lifestyle cave, bar, table gastronomique',
+            'Studio fermé de la gamme XL, conçu pour capturer les images et les données du produit dans le même cycle.',
           avantages: [
-            'Ambiances cave : voûtes en pierre, barriques, lumière tamisée',
-            'Ambiances bar & restaurant : comptoir bois, cocktails, ambiance lounge',
-            'Accords mets-vins : table dressée, fromages, charcuterie, plats gastronomiques',
-            'Ambiances saisonnières : vendanges, fêtes, terrasse estivale',
-            'Production série : 30-100 visuels lifestyle en quelques heures',
-            'ROI : -85% coûts vs shootings lifestyle sur site (cave, château, restaurant)',
+            '170 panneaux LED pilotés, chambre fermée à paroi courbe',
+            'Support bouteille en accessoire',
+            'AI Photo Assistant propose un éclairage adapté au produit ; le choix final reste à l’opérateur',
+            'Objet jusqu’à 60 × 40 × 70 cm (l × p × h)',
+            'Variante MDC : dimensions et poids mesurés dans le même cycle',
           ],
         },
       ],
     },
-    useCases: [
-      {
-        titre: 'Catalogue domaine viticole',
-        processus: 'Photographier l\'intégralité de la gamme (cuvées, millésimes, formats) avec un rendu cohérent pour le site web, les fiches techniques et les salons professionnels.',
-        fonctionsOrbitvu: ['Templates bouteille', '360°', 'Multi-export PDF/Web'],
-        valeur: 'Catalogue visuel complet prêt pour le web et l\'impression en quelques jours',
-      },
-      {
-        titre: 'E-commerce CHR & cavistes',
-        processus: 'Production de visuels packshot et lifestyle pour les plateformes B2B (cafés, hôtels, restaurants) et les cavistes en ligne nécessitant des visuels homogènes sur des catalogues de plusieurs centaines de références.',
-        fonctionsOrbitvu: ['Détourage auto', 'Export multi-format', 'Workflow batch'],
-        valeur: 'Intégration rapide dans les plateformes e-commerce CHR',
-      },
-      {
-        titre: 'Communication importateur / distributeur',
-        processus: 'Fournir aux importateurs et distributeurs des visuels professionnels prêts à l\'emploi pour leurs propres supports de vente (catalogues, fiches, réseaux sociaux).',
-        fonctionsOrbitvu: ['Templates', 'Export HD', 'Métadonnées'],
-        valeur: 'Visuels standardisés pour tout le réseau de distribution',
-      },
-    ],
     cta: {
-      titre: 'Sublimez vos bouteilles',
+      titre: 'Parler de votre projet de photographie de bouteilles',
       description:
-        'Réservez une démo avec vos propres bouteilles. 30 minutes pour voir la différence Alphashot XL Wine.',
+        'Décrivez vos références : formats, teintes de verre, finitions d’étiquette, nombre de bouteilles à photographier, vues souhaitées.\n\nUne première démonstration peut se faire en visioconférence. Pour juger sur vos propres bouteilles, une visite du showroom se prévoit sur rendez-vous.',
     },
     faq: [
-      { question: 'Comment éliminer les reflets sur les bouteilles en verre ?', answer: 'L\'Alphashot XL Wine v2 utilise un éclairage LED polarisé spécifiquement calibré pour le verre. Les reflets parasites sont supprimés dès la capture, sans retouche. Le protocole fonctionne sur le verre clair, teinté et les flacons de spiritueux.' },
-      { question: 'Les étiquettes avec dorures ou reliefs sont-elles bien rendues ?', answer: 'Oui, la zone d\'éclairage dédiée étiquettes préserve les dorures à chaud, les gaufrages et les textures papier. La fidélité colorimétrique est assurée par un étalonnage LED 74 points.' },
-      { question: 'Peut-on photographier toutes les formes de bouteilles ?', answer: 'Le studio accepte toutes les formes courantes : bordelaise, bourguignonne, alsacienne, champagne, magnum, demi-bouteille et flacons de spiritueux. Un système de calage ajustable maintient chaque bouteille parfaitement droite.' },
-      { question: 'Comment gérer les volumes importants en période de foire aux vins ?', answer: 'Le workflow automatisé permet de photographier 20 à 40 bouteilles par heure. Sur une journée, vous pouvez traiter 150 à 300 références avec packshot fond blanc, détourage et export multi-format.' },
-      { question: 'Les visuels lifestyle IA sont-ils réalistes pour le vin ?', answer: 'BlendAI génère des mises en scène réalistes : cave en pierre, table de dégustation, comptoir bar. Les bouteilles sont intégrées avec gestion des ombres, reflets et éclairage ambiant cohérent.' },
+      { question: 'Comment photographier une bouteille de vin sans reflets parasites ?', answer: 'En privilégiant une lumière diffuse plutôt qu’une lumière directe de face. Le contre-jour révèle la transparence du liquide, des lumières latérales dessinent le verre, une lumière dirigée éclaire l’étiquette. Un support surélevé et des surfaces sombres limitent les reflets du plateau et de l’environnement. Le réglage s’enregistre et se réutilise ; certains reflets forts demandent encore une retouche.' },
+      { question: 'Peut-on photographier des bouteilles de formats différents avec un rendu homogène ?', answer: 'Oui, en partant d’une base commune. Orbitvu Station conserve un modèle par type de produit : vous pouvez en créer un par format, avec la même lumière et le même cadrage, puis l’ajuster selon la bouteille. Le studio se choisit selon la plus grande bouteille de la gamme.' },
+      { question: 'Comment montrer la contre-étiquette et la capsule ?', answer: 'Le plateau tournant enregistre les angles : face, dos et profil dans le même passage. Une vue de dessus de la capsule demande un support d’appareil photo supérieur. Pour montrer toute la bouteille, une rotation à 360° de 6 à 180 images s’exporte en HTML5 ou en vidéo.' },
+      { question: 'Le détourage d’une bouteille transparente est-il automatique ?', answer: 'Orbitvu Station retire le fond pendant la prise de vue, par une seconde exposition (IQ Mask) ou par l’IA (AI Masking), y compris en mode transparent. Les supports transparents sont détectés et retirés. L’opérateur contrôle le résultat à l’écran avant l’export.' },
+      { question: 'Faut-il un photographe pour utiliser le studio ?', answer: 'Pas nécessairement. Orbitvu indique que l’Alphashot XL G2 se prend en main après une courte formation, et les réglages enregistrés dans des modèles se réutilisent d’une séance à l’autre. La formation de vos équipes est proposée séparément du studio.' },
+      { question: 'L’IA peut-elle lire les informations de l’étiquette ?', answer: 'Avec AI OCR, Orbitvu Station lit le texte imprimé sur plusieurs vues d’une même bouteille et le range dans les champs que vous définissez. L’opérateur vérifie les données avant de les enregistrer. La fonction est réservée aux abonnements ; elle a été annoncée en bêta en juin 2026.' },
     ],
   },
 

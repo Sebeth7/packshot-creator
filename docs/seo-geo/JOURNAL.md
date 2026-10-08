@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub vin-spiritueux — landing Wave 2 : copie finale, 8 visuels, 2 schémas · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux`, mission d'exécution de Laurent du 08/10 (`GO_CODE` landing vin seule, `GO_PR_DRAFT` ; `GO_MERGE`, `GO_PUBLICATION`, `GO_TRADUCTIONS`, `GO_PAID_CALL` : NO) | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `06b18e2`
+
+**Quoi** — Page dédiée `HubVin.tsx` pour fr et en (EN servi en français, `noindex, follow`) ; de-ch garde le gabarit commun. Entrée `vin-spiritueux` de `data/secteurs.ts` réécrite. Schéma D1 (`SchemaEclairageBouteille.tsx`), parcours D2 en liste ordonnée, 8 illustrations IA en AVIF. Registre des claims (S1 à S19, HOLD H1 à H10) et manifeste visuel : `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — La page de `main` rend l'Alphashot XL Wine (absente du catalogue Orbitvu), « éclairage polarisé », « étalonnage 74 points », des cadences et « −85 % » non sourcés, une carte et une FAQ BlendAI. Copie L3 du 08/10 avec les corrections A à G de la mission (modèles, éclairage, machines, IA, formation, démonstration, ton).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx` (1 import, 1 retour anticipé), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` et `SchemaEclairageBouteille.tsx` (nouveaux), `data/secteurs.ts` (entrée vin seule), `public/images/secteurs/vin/*.avif` (8), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : nouveaux `<title>`, meta description, H1 et FAQ (6 questions) sur `/fr/industrie/vin-spiritueux` ; URL, canonical, hreflang, `noindex, follow` de la version EN et page de-ch inchangés. Effet sur les positions non estimé : aucune donnée GSC consultée dans cette mission.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; #104 ouverte, brouillon, tête `16e106f`, base `06b18e2` ; #105 ouverte, tête `8135bb7`.
+- Assets : 8 PNG du ZIP de la mission, noms, dimensions et SHA-256 conformes à `manifest.json` ; AVIF sans agrandissement, PSNR 41,1 à 48,2 dB.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; ESLint : rien dans les fichiers nouveaux, 1 erreur et 2 avertissements de `page.tsx` déjà présents sur `main` (l. 793 et 198) ; `npx next build` vert (variables factices de la CI).
+- HTML prérendu, branche contre `main` `06b18e2`, identifiant de build neutralisé : 374 pages, 372 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. `de-ch/branchen/wein`, hubs bijoux et mode, autres hubs FR : identiques.
+- En-têtes fr et en : canonical et hreflang identiques à `main` ; EN `noindex, follow` conservé ; 1 H1 ; JSON-LD Organization, BreadcrumbList, Service, FAQPage ; FAQ JSON-LD 6 = FAQ visible 6 ; 11 images, 0 sans `alt`. Liens internes : 13/13 en 200 par langue ; liens F5 (2) et ROI identiques à `main` (D37).
+- Rendu local (`next start`), fr et en, à 1440, 1024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, H1 au-dessus du visuel en mobile, appel « Demander une démonstration » dans le premier écran aux quatre largeurs, bouton « Comparer tous les modèles » lisible (texte sombre sur blanc). Aucun formulaire envoyé.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81 ; `seo`, `mobile-overflow`, `internal-links` 237/237.
+- `verifier-consequences.mjs` : effet local. Fusion simulée (`git merge-tree`) du commit de code avec #104 (`16e106f`) et avec #105 (`8135bb7`) : sans conflit ; `tsc` vert sur l'arbre fusionné avec #104 (deux retours anticipés distincts, bijoux puis vin). Avec cette entrée : conflit sur `docs/seo-geo/JOURNAL.md` seul, au point d'insertion commun du haut du journal (même conflit entre #104 et #105) ; résolution : conserver les deux blocs d'entrées. `ETAT.md` fusionne sans conflit.
+
+**Supposé** — [Inférence] Le rendu de la Preview Vercel suivra le rendu local du même commit. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel au moment de l'entrée ; `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari et appareils réels ; envoi réel du formulaire (interdit par la mission) ; P0-B (bouton illisible et visuels manquants du gabarit commun) et P0-C (`/industrie/bouteilles`) : recommandations seules, dans `LANDING.md` ; traductions en et de-ch ; preuves réelles (photos de bouteilles prises en studio) : aucune disponible.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). Fusion et publication sur GO distincts. Si #104 fusionne avant, reprendre `main` et relancer le build.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
