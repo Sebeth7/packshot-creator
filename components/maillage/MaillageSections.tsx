@@ -172,6 +172,16 @@ export function SectorResources({ slug, lang }: { slug: string; lang: string }) 
   );
 }
 
+/** Mêmes liens que `SectorResources`, titres seuls : pour une page qui les rend sous forme compacte. */
+export function sectorResourceLinks(slug: string, lang: string): { href: ResourceHref; title: string }[] {
+  const map = SECTOR_RESOURCES_MAP[slug];
+  if (!map) return [];
+  return [
+    ...resolveGuides(map.guides, lang as Lang),
+    ...resolveArticles(map.articles, lang as Lang),
+  ].map(({ href, title }) => ({ href, title }));
+}
+
 /* ─────────────────────────────────────────────────────────────
    2026-09 — Ressources sur les money pages
    Les 4 landings packshot-*, /studios-photo-automatises et

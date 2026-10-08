@@ -114,71 +114,56 @@ export const secteurs: Secteur[] = [
   // 2. BIJOUX / JOAILLERIE
   {
     slug: 'bijoux-joaillerie',
-    titre: 'Photo Produit Bijoux & Joaillerie Haute Précision',
+    titre: 'Packshot bijoux : équiper votre production photo en interne',
     description:
-      'Studios photo automatisés pour bijoux : capture pierres précieuses, reflets or et argent. IA lifestyle luxe.',
+      'Packshot bijoux en interne : pierres, métaux polis, petites pièces, focus stacking et 360° de bague. Studios Orbitvu adaptés, démonstration avec vos bijoux.',
+    // Page rendue par un composant dédié (app/[lang]/industrie/[slug]/_components/HubBijoux.tsx).
+    // Les champs ci-dessous restent la source du texte du hero, de la section lumière,
+    // du studio, de la retouche et de l’export, de l’appel final et de la FAQ (FAQPage = FAQ visible).
+    // Sources des faits : en-tête de HubBijoux.tsx et description de la PR #104.
     hero: {
-      titre: 'Photo Bijoux Professionnelle : Précision & Luxe',
-      sousTitre: 'Capturez chaque détail : pierres, reflets métaux, sertissages',
+      titre: 'Packshot bijoux : révéler chaque détail, retrouver le même rendu',
+      sousTitre: 'Bijoux & joaillerie',
       description:
-        'Solutions packshot haute résolution pour bijoux et joaillerie + IA lifestyle mises en scène luxe (portés, ambiances haut de gamme).',
+        'En quelques centimètres, une pièce de joaillerie réunit tout ce qui complique une prise de vue : métal poli, pierres facettées, serti, profondeur de champ, poussière.\n\nEt chaque nouvelle référence doit garder le cadrage, le fond et la lumière du reste de la collection.',
     },
     problematiques: {
-      titre: 'Défis Photo Bijoux',
+      titre: 'Sur un bijou, la lumière se voit',
       items: [
-        'Capturer reflets métaux (or, argent, platine) sans surexposition',
-        'Photographier pierres précieuses avec brillance et feux réalistes',
-        'Profondeur de champ extrême (focus stacking bijoux 3D)',
-        'Taille produits minuscule nécessitant macrophotographie',
-        'Visuels portés lifestyle (mannequins, mains) coûteux et longs à produire',
+        'Pierres, facettes, serti : chaque facette renvoie sa propre lumière. Sur un pavage, des dizaines de petites pierres doivent briller sans se fondre ; entre les griffes, le serti doit rester lisible.',
+        'Métal, surfaces : sur un métal poli, la forme du reflet dessine le volume et le profil. Une texture martelée, un satiné ou une gravure n’apparaissent que si la lumière les accroche.',
+        'Macro, profondeur de champ : à cette échelle, la pierre centrale peut être nette pendant que l’arrière de l’anneau ou le fermoir d’une chaîne reste flou.',
       ],
     },
     solutions: {
-      titre: 'Nos Solutions Bijoux',
+      titre: 'Photographier les petites pièces avec l’Alphashot Micro Pro v2',
       items: [
         {
           type: 'hardware',
-          titre: 'Studios Orbitvu Joaillerie',
-          description: 'Packshot haute résolution avec focus stacking automatique',
+          titre: 'Alphashot Micro Pro v2',
+          description: 'Un studio photo Orbitvu pour des objets jusqu’à 18 cm de long et 1 kg.',
           avantages: [
-            'Focus stacking : netteté absolue sur toute la profondeur bijou 3D',
-            'Éclairage polarisé : contrôle reflets métaux, sublimation pierres',
-            'Macrophotographie : capture détails microscopiques (sertissages, poinçons)',
-            '360° bijoux : rotation interactive pour vente en ligne',
-            'Cohérence colorimétrique : or 18k rendu identique sur tout le catalogue',
+            'Macro et Superfocus, pour lire un poinçon, une gravure ou le détail d’un serti.',
+            'Photo, 360° et vidéo, sur plateau tournant.',
           ],
         },
         {
-          type: 'ia',
-          titre: 'BlendAI Lifestyle Luxe',
-          description: 'Visuels portés et mises en scène haut de gamme via IA',
-          avantages: [
-            'Portés IA : bagues sur mains élégantes, colliers sur mannequins',
-            'Ambiances luxe : décors marbre, velours, écrin joaillerie',
-            'Styles personnalisés : ADN visuel marque (Cartier-like, Tiffany-like...)',
-            'Production rapide : 20-50 visuels lifestyle en 1h',
-            'ROI : -90% coûts vs shooting mannequin joaillerie',
-          ],
+          titre: 'Retouche et export',
+          description:
+            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nLe détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du produit réel.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes.',
+          avantages: [],
         },
       ],
     },
-    casClients: [
-      {
-        titre: 'Joaillier 150 créations/an',
-        description:
-          'Packshot focus stacking + 3 visuels lifestyle IA/bijou. Délais -75%. Qualité image 300% supérieure vs photographe manuel.',
-      },
-    ],
     cta: {
-      titre: 'Sublimez vos bijoux',
+      titre: 'Essayez le studio sur vos propres pièces',
       description:
-        'Devis studio Orbitvu joaillerie + démo BlendAI lifestyle luxe gratuite.',
+        'Choisissez quelques références représentatives de votre production : du métal poli, un serti délicat, une pierre difficile à éclairer, une petite série déclinée en plusieurs variantes.\n\nNous pourrons regarder ensemble la prise de vue, la lumière et la profondeur de champ, la cohérence de la série, le traitement des images, les étapes où l’IA peut aider et les fichiers adaptés à vos usages.',
     },
     faq: [
-      { question: 'Comment photographier les pierres précieuses avec leur brillance réelle ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé et le focus stacking automatique pour capturer les feux des pierres précieuses (diamants, saphirs, rubis) avec une netteté et une brillance fidèles.' },
-      { question: 'Qu\'est-ce que le focus stacking pour la photo bijoux ?', answer: 'Le focus stacking combine automatiquement plusieurs prises de vue à différentes profondeurs de champ pour obtenir une netteté absolue sur l\'ensemble du bijou 3D, des sertissages aux détails microscopiques.' },
-      { question: 'Peut-on créer des visuels portés bijoux sans mannequin ?', answer: 'Oui, BlendAI génère des visuels portés réalistes : bagues sur mains élégantes, colliers sur mannequins, dans des ambiances luxe (marbre, velours, écrin). Production de 20 à 50 visuels par heure.' },
-      { question: 'La photo packshot bijoux est-elle adaptée à la vente en ligne ?', answer: 'Les studios Orbitvu produisent des packshots HD fond blanc avec rotation 360° interactive, idéaux pour les fiches produit e-commerce joaillerie. Le détourage est automatique.' },
+      { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Au-delà, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },
+      { question: 'Comment retrouver le même rendu plusieurs semaines plus tard ?', answer: 'En rappelant le modèle enregistré lors de la première série dans Orbitvu Station. Il contient les réglages de la lumière, de l’appareil photo et de la position du plateau tournant, ainsi que les paramètres d’édition.' },
+      { question: 'Peut-on faire des vues 360° d’une bague ?', answer: 'Oui. Le plateau tournant fait pivoter la bague pendant la prise de vue, sur 6 à 180 images, et chaque angle peut être net de l’avant à l’arrière. La rotation s’exporte en HTML5 ou en vidéo pour la fiche produit.' },
     ],
   },
 
