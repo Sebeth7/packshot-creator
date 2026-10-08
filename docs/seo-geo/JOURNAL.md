@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Hub vin-spiritueux — landing Wave 2 : copie finale, 8 visuels, 2 schémas · Claude de Laurent
 
-**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux`, mission d'exécution de Laurent du 08/10 (`GO_CODE` landing vin seule, `GO_PR_DRAFT` ; `GO_MERGE`, `GO_PUBLICATION`, `GO_TRADUCTIONS`, `GO_PAID_CALL` : NO) | **PR** : brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `06b18e2`
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux`, mission d'exécution de Laurent du 08/10 (`GO_CODE` landing vin seule, `GO_PR_DRAFT` ; `GO_MERGE`, `GO_PUBLICATION`, `GO_TRADUCTIONS`, `GO_PAID_CALL` : NO) | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `06b18e2`
 
 **Quoi** — Page dédiée `HubVin.tsx` pour fr et en (EN servi en français, `noindex, follow`) ; de-ch garde le gabarit commun. Entrée `vin-spiritueux` de `data/secteurs.ts` réécrite. Schéma D1 (`SchemaEclairageBouteille.tsx`), parcours D2 en liste ordonnée, 8 illustrations IA en AVIF. Registre des claims (S1 à S19, HOLD H1 à H10) et manifeste visuel : `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
 
