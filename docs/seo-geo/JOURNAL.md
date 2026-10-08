@@ -34,6 +34,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Intégrité factuelle — PR #109, successeur de #64 recréé depuis `main` · Claude de Laurent
+
+**Chantier** : faits métier établis, D33, D25, comparatif Orbitvu | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base** : `main` `06b18e2` | **Commits** : `9d66eaa` (faits métier), `927e7cf` (D25), puis le commit de cette entrée (comparatif Orbitvu, registre des pages longues, documentation)
+
+**Quoi** — GO code de Laurent du 08/10. Patch recréé depuis `main` : la branche de #64 n'est ni reprise ni rebasée ; #64 reste ouverte, sa fermeture est un geste séparé, après préservation. Corrections classées A dans la revue READ ONLY du 08/10 :
+- showroom : 198 allée de la Tour, 01700 Beynost, distinct du siège : `contact.showroomAddress` et `legal.article2.showroomValue` (FR, EN, de-ch), `localBusinessSchema()` (adresse et coordonnées BAN 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés), carte de `/contact`, « showroom Paris » et « Paris 11e » du comparatif Orbitvu et du guide d'achat → « showroom près de Lyon » ;
+- conditions commerciales : livraison et installation facturées en supplément, formation facturée séparément (`studiosHardware.support.step2description`, `besoinsPhoto.solution.step3.description`, `blogBudget.included` en FR, EN, de-ch ; guide d'achat ; FAQ 2 des articles « évolution e-commerce » FR et EN) ;
+- délai : environ 12 jours, indicatif et sans garantie (`studiosHardware.faqStudios.q6.answer` en FR, EN, de-ch ; guide d'achat, FAQ et ligne « Délai de livraison ») ;
+- garantie : standard d'un an, extension possible, sans plafond (guide d'achat, FAQ et encadré ; « garanties 5-7 ans » retiré de `comment-calculer-le-roi-…`) ; « interventions technicien on-site » retiré de la couverture décrite dans la FAQ du guide ;
+- Orbitvu : distribué depuis 2023 (`blogBudget.intro.p2` en FR, EN, de-ch ; `distributeur-orbitvu-suisse` ; comparatif, ×2) ;
+- allemand : accompagnement commercial possible en allemand pour la Suisse (FAQ 1 de `distributeur-orbitvu-suisse`) ;
+- ROI du guide d'achat : « généralement 6 à 12 mois selon le volume, sans garantie » à la place de « 4 à 8 mois » (FAQ, bloc « Financement », liste finale), de « 5-6 mois » et « 1-2 mois » (délais de retour) ; « 12 à 18 mois pour les plus grands Alphastudio » ajouté au seul bloc Premium (360 ou XXL), qui annonçait « 2-4 mois » ;
+- comparatif Orbitvu : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, marque lancée en 2004 par la société française Sysnext » ; `foundingDate` non modifié ;
+- D25 : prix concurrents et prix comparés retirés de `blogComparatif` (13 clés) et `blogStudioIa` (5 clés) en FR, EN, de-ch, de `blendai-vs-flair-ai-…`, `blendai-vs-photoroom-…`, `ia-photo-produit-guide-2026` et du comparatif de solutions FR et EN (économie annuelle chiffrée) ;
+- comparatif Orbitvu : parts de marché, années de fondation des concurrents, prix, sous-sections « Prix compétitif » et « Rapport qualité/prix imbattable », témoignages Marie D., Thomas L., Camille R., engagements de service (hotline < 2 h, interventions 24–48 h, pièces 24 h), satisfaction 98 %, « ×20 », « ×3 », « 90 % », « 15 000 machines » et « 45 % », ROI « 4–8 mois vs 8–12 mois », superlatifs (« leader européen », « seul fabricant », « unique », « excellence », « premium » du support), verdict « l'emporte », comparaisons dépréciatives envers StyleShoots, lignes « IA Ready », « Support France », « Évolutivité » et « Garantie » des tableaux comparatifs, FAQ « Pourquoi Orbitvu est-il moins cher… » (FAQPage 6 → 5) : contenu final de #64 (`63e1e92`), sauf « (2004–2018) », conservé ;
+- `data/navigation/pages-longues.ts` : les six exceptions « PR #64 ouverte » de la famille `blog-dedie-avec-sommaire` renvoient à #109 (successeur de #64), mêmes pages, même gel ; aucun autre changement de registre.
+
+**Pourquoi** — Revue READ ONLY du 08/10 : les 28 clés de `messages` et les 6 pages de blog corrigées par #64 portaient encore sur `main` leur valeur du 01/10, et les formulations fautives étaient servies en production (`sysnext.vercel.app`, relevé du 08/10). Faits établis rappelés par Laurent le 08/10 : SHOWROOM, LIVRAISON, INSTALLATION, FORMATION, DÉLAI, GARANTIE, ALLEMAND, ORBITVU (officiel, jamais exclusif), RELATION_ORBITVU 2023, SYSNEXT 2001, PACKSHOTCREATOR_LAUNCH 2004, ROI (6 à 12 mois usuel, 12 à 18 mois pour les très gros Alphastudio, jamais présenté comme une garantie). D25, D33, D42.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx`, `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/{orbitvu-vs-concurrents, guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `data/navigation/pages-longues.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : canonical, `robots`, hreflang et URL inchangés ; `Store` du showroom à Beynost ; FAQPage du comparatif Orbitvu à 5 questions (6 sur `main`). Réduction d'un risque factuel et juridique, pas de gain de trafic attendu.
+
+**Correction de la revue du 08/10** — Le rapport READ ONLY ne relevait dans le guide d'achat que deux « ROI 4–8 mois ». Il y en a trois (FAQ, bloc « Financement », liste finale), plus « 2-4 mois » (bloc Premium), « 5-6 mois » et « 1-2 mois » (délais de retour), contraires au même fait métier : traités dans le même lot, extension signalée à Laurent.
+
+**Exclus** — `home.faq.q7` (accueil gelé jusqu'au 28/10 : M5, D44) ; `foundingDate` (2004, inchangé) ; `hasMap` et intitulés « Showroom Lyon » ; dimensions, charges, cadences et versions (D45, Q20 ouverte) ; redirections XL (D29) ; F5 (« environ 10 jours ») ; Mode ; `/industrie` (D10) ; Academy et Qualiopi au-delà de #71 ; « (2004–2018) » (lancement de 2004 établi) ; ROI « 12-18 mois » de `comment-calculer-le-roi-…` (chantier ROI distinct) et « Délai retour : 12-18 mois » du guide (moins de 500 produits par an) ; interview « Créée en 2003, la société Sysnext » ; « distributeur exclusif d'Ortery » ; prix BlendAI seuls de `ia-photo-produit-guide-2026` (530 €/mois dans un calcul de rentabilité, sans prix concurrent) ; dans le guide d'achat, « Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ».
+
+**#108 (HOLD)** — modifie les mêmes clés `studiosHardware.support.step2description` et `studiosHardware.faqStudios.q6.answer` (FR supprimées, EN et de-ch réécrites avec les mêmes faits). PR108_FUTURE_REBASE_REQUIRED = YES : à sa resynchronisation, garder sa version. #108 n'est pas modifiée. #104, #105, #107 : HOLD, non touchées.
+
+**Vérifié**
+- Préconditions, avant écriture : `main` = `06b18e2` ; #64 ouverte, brouillon, non fusionnée ; #104, #105, #107, #108 ouvertes en brouillon ; branche créée depuis `origin/main`.
+- `messages/*.json` : 27 clés par langue, éditées par chemin JSON avec la sérialisation d'origine ; 81 lignes modifiées au total, aucune autre (aucun reformatage). Articles JSON : sérialisation d'origine conservée. `verifier-json` : 195 fichiers valides.
+- `tsc` vert. `next build` vert, 386 pages : sur `927e7cf` avant le premier push, puis sur l'état final.
+- Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- `next start` local, 26 URL : formulations retirées absentes du HTML, nouvelles formulations présentes ; canonical, hreflang et `robots` identiques à la production ; `Store` : 198 allée de la Tour, 01700 Beynost, 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés ; `Organization` : `foundingDate` 2004 et siège 254 rue Vendôme inchangés ; nombre de questions FAQPage identique à la production, sauf le comparatif Orbitvu (5 au lieu de 6).
+- Rendu Chromium 390, 768 et 1440 px, 20 pages : 0 erreur, 0 réponse 4xx. Mesures identiques à un build local de `main` `06b18e2`, dont un débordement de 4 px préexistant sur `/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026` en 768 px.
+- `e2e/contact-form.spec.ts` (Desktop Chrome, Pixel 5 ; affichage seul, aucun envoi) : 21 réussis, 1 échec (« should expand FAQ accordion », Pixel 5), identique sur `main`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; Firefox, WebKit ; contrôle humain D42, étapes 4 et 5.
+
+**Suite** — Contrôle de la Preview de #109 par Laurent (desktop, tablette, mobile) ; validation selon D42 ; fusion uniquement sur GO distinct ; fermeture de #64 sur GO distinct, branche conservée (ses entrées JOURNAL du 30/09 et du 01/10 n'existent que sur elle) ; micro-patch `home.faq.q7` après le 28/10 ; mise à jour de D32 (« 10 jours »), D1 et `00-BRIEFING.md` (Saint-Bonnet) par leur auteur.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
