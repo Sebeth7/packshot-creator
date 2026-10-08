@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — révision ciblée : hero produit et studio, IA, appel final (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Révision ciblée #104 » ; fait métier de Laurent : le prospect vient avec les produits qu’il photographie au quotidien, simples ou complexes, et les images servent l’e-commerce, les catalogues, la documentation et des besoins internes | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant révision `77b90d2`
+
+**Quoi** — H1, structure, FAQ, V104-1 et V104-2 inchangés.
+- Hero : diptyque d’images réelles, sans montage. Bague du guide de focus stacking (recadrage 4:5 du fond seulement) et visuel produit de l’Alphashot Micro Pro v2 (celui de la fiche). Légende : « La bague et le studio où elle a été photographiée, un Alphashot Micro Pro v2, pour nos guides de focus stacking. »
+- Section studio : la photo de mise en place d’une bague (guide bague) remplace le visuel de la machine, désormais dans le hero.
+- Retouche et export : « Le détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du bijou réel. » Export : « prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes » (au lieu de « prêtes pour la fiche produit »).
+- Appel final : « Apportez vos pièces difficiles » → « Testez le workflow avec les bijoux que vous photographiez » ; texte : pièces représentatives de ce qui est photographié au quotidien, simples ou complexes ; prise de vue, lumière, profondeur de champ, cohérence d’une série, traitement, étapes où l’IA peut aider, fichiers adaptés aux usages.
+
+**Sources** — orbitvu.com, lu le 08/10/2026 : page « AI Product Photography » (`/software/ai` : « AI Masking removes the background right in the capture process », « Clean cutouts, no extra step », AI Retoucher « remove reflections, clean up imperfections, adjust color grading », « Every AI step is grounded in a real product », AI Photo Assistant réservé aux Alphashot Pro G2 et XL G2) ; note de version Orbitvu Station 26.2 du 23/06/2026 (AI Masking « built directly into the capture process », choix « AI Mask » ou « IQ Mask » ; AI Retoucher « (Beta) » ; « All AI features are available exclusively to users on subscription plans »). Aucune de ces pages ne précise les appareils compatibles avec AI Masking et AI Retoucher : la page dit « Orbitvu Station propose », pas « la Micro Pro v2 fait ». Usages des images : fait métier de Laurent du 08/10.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `main`, 370 identiques, 4 différentes ; contre `77b90d2`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens, FAQ (structurée et visible) identiques. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, formulaire non soumis ; à 390 × 844, bague et machine côte à côte de 321 à 580 px. Specs de la CI : 81/81. 14 liens internes en 200.
+
+**Supposé** — Engagement de l’appel final (« Nous pourrons regarder ensemble… ») : toujours soumis à la validation de Sébastien.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). La FAQ garde une mention « pour la fiche produit » (FAQ hors périmètre de la révision).
+
+**Suite** — QA humaine finale de la Preview ; validation de Sébastien sur l’appel final ; GO de fusion distinct.
+
+---
+
 ## 2026-10-08 · Hub bijoux — bague détourée : IQ Mask, pas AI Masking (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Micro-fix final #104 » | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant correctif `a20908a`

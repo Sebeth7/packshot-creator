@@ -13,7 +13,7 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  *
  * Cadre de fond (arbitrage du 08/10/2026, non affiché comme tel) : capture (lumière, macro,
  * profondeur, 360°), workflow (modèles, reprise d'une collection), IA seulement quand elle
- * sert (AI Masking, AI Retoucher), export vers la fiche produit. Ordre des sections inchangé.
+ * sert (AI Masking, AI Retoucher), export vers les usages de l’entreprise (e-commerce, catalogues, documentation, besoins internes). Ordre des sections inchangé.
  *
  * Texte : entrée `bijoux-joaillerie` de `data/secteurs.ts` (hero, lumière, studio,
  * retouche et export, appel final, FAQ) et constantes ci-dessous (360°, collection).
@@ -26,7 +26,7 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * - images réelles déjà publiées sur le site : /images/guides/* (guides PackshotCreator, Alphashot
  *   Micro Pro v2 et Orbitvu Station d'après les guides eux-mêmes) ; /images/secteurs/bijoux/superfocus-*
  *   (recadrages, sans retouche, de captures de ces guides) ; /images/machines/alphashot-micro-v2.avif
- *   (visuel produit déjà utilisé sur la fiche) ;
+ *   (visuel produit déjà utilisé sur la fiche, ici dans le hero) ;
  * - deux illustrations éditoriales générées par IA (V104-1, V104-2, ci-dessous), signalées comme telles
  *   en légende selon la convention du cluster AI Act (docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md, §5).
  */
@@ -157,18 +157,32 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               {typo(secteur.hero.titre)}
             </h1>
           </div>
+          {/* Diptyque d'images réelles, sans montage : le produit (photo du guide de focus stacking, prise
+              dans un Alphashot Micro Pro v2 d'après le guide) et le studio (visuel produit de la fiche).
+              Bague : recadrage 4:5 du fond seulement (bague entre 16 et 83 % de la largeur source). */}
           <figure className="mt-6 lg:mt-0 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-4 lg:self-center">
-            <Image
-              src="/images/guides/67d9917f5e0a0980101b8a65.avif"
-              alt="Bague en or ajourée photographiée sur fond blanc"
-              width={2000}
-              height={2000}
-              priority
-              sizes="(min-width: 1024px) 600px, 92vw"
-              className="w-full aspect-[4/3] object-cover lg:aspect-square lg:max-w-[600px] mx-auto"
-            />
-            <figcaption className="mt-2 text-sm text-neutral-medium lg:text-center">
-              Bague ajourée photographiée dans un Alphashot Micro Pro v2 pour nos guides de focus stacking.
+            <div className="grid grid-cols-[3fr_2fr] items-center gap-3 lg:gap-4">
+              <Image
+                src="/images/guides/67d9917f5e0a0980101b8a65.avif"
+                alt="Bague en or ajourée photographiée sur fond blanc"
+                width={2000}
+                height={2000}
+                priority
+                sizes="(min-width: 1280px) 350px, (min-width: 1024px) 28vw, 56vw"
+                className="w-full h-auto aspect-[4/5] object-cover rounded-md"
+              />
+              <Image
+                src="/images/machines/alphashot-micro-v2.avif"
+                alt="Studio photo Orbitvu Alphashot Micro Pro v2"
+                width={1000}
+                height={1000}
+                priority
+                sizes="(min-width: 1280px) 235px, (min-width: 1024px) 19vw, 37vw"
+                className="w-full h-auto rounded-md"
+              />
+            </div>
+            <figcaption className="mt-2 text-sm text-neutral-medium">
+              La bague et le studio où elle a été photographiée, un Alphashot Micro Pro v2, pour nos guides de focus stacking.
             </figcaption>
           </figure>
           <div className="mt-6 lg:mt-8 lg:col-span-6 lg:col-start-1 lg:row-start-3">
@@ -287,15 +301,17 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
       {/* ── D. Le studio ── */}
       <section aria-labelledby="studio" className="bg-bg-warm-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Le visuel de la machine est dans le hero ; ici, la mise en place réelle d'une bague (guide bague). */}
           <figure className="lg:col-span-6">
             <Image
-              src="/images/machines/alphashot-micro-v2.avif"
-              alt="Studio photo Orbitvu Alphashot Micro Pro v2"
-              width={1000}
-              height={1000}
-              sizes="(min-width: 1024px) 520px, 80vw"
-              className="w-full max-w-[520px] h-auto mx-auto"
+              src="/images/guides/67d991805e0a0980101b8a98.avif"
+              alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
+              width={1200}
+              height={1200}
+              sizes="(min-width: 1024px) 520px, 92vw"
+              className="w-full max-w-[520px] h-auto mx-auto rounded-md"
             />
+            <figcaption className="mt-2 text-sm text-neutral-medium max-w-[520px] mx-auto">Mise en place d’une bague avant la prise de vue.</figcaption>
           </figure>
           <div className="lg:col-span-6">
             <h2 id="studio" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">

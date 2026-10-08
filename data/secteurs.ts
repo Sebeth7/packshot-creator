@@ -150,15 +150,15 @@ export const secteurs: Secteur[] = [
         {
           titre: 'Retouche et export',
           description:
-            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nLe détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose également AI Masking et AI Retoucher pour d’autres traitements.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes pour la fiche produit.',
+            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nLe détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du bijou réel.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes.',
           avantages: [],
         },
       ],
     },
     cta: {
-      titre: 'Apportez vos pièces difficiles',
+      titre: 'Testez le workflow avec les bijoux que vous photographiez',
       description:
-        'Choisissez quelques pièces représentatives de votre production : une pièce polie, un serti fin, une pierre claire, ou simplement la référence qui vous pose problème aujourd’hui.\n\nNous pourrons regarder ensemble, sur vos pièces, la lumière, la profondeur de champ et les vues dont votre catalogue a réellement besoin.',
+        'Choisissez quelques pièces représentatives de ce que vous photographiez au quotidien, simples ou complexes.\n\nNous pourrons regarder ensemble la prise de vue, la lumière et la profondeur de champ, puis la cohérence d’une série, le traitement des images, les étapes où l’IA peut aider et les fichiers adaptés à vos usages.',
     },
     faq: [
       { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Au-delà, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },
