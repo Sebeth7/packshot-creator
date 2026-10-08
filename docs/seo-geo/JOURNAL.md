@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Repair Factory, PR-C — JSON-LD de-ch et métadonnées sociales des articles (G-011, BL-43-1) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-tech-seo` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux commits :
+1. G-011 (backlog de #55) : `Product.url` et `Offer.url` des fiches de-ch visaient `/de-ch/studio-photo/<slug>` (redirigée), `Service.url` des hubs de-ch `/de-ch/industrie/<slug>` (redirigée) ; les deux reprennent l'URL servie, calculée comme leur fil d'Ariane.
+2. BL-43-1 : l'openGraph de l'article remplace en bloc celui du layout ; `og:url`, `og:site_name` et `og:locale` manquaient sur les 140 articles du gabarit commun, et la carte twitter héritée affichait le titre, la description et l'image du site. Le gabarit pose désormais ces champs à l'image de l'article.
+
+**Pourquoi** — URL de données structurées en redirection (audit C, AC-14 ; registre 582, G-011) ; métadonnées sociales génériques sur tous les articles (backlog AI Act BL-43-1, ouvert depuis #43).
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx` ; `docs/seo-geo/JOURNAL.md`. `components/seo/SchemaOrg.tsx` non modifié (fichier de #109) : `author.url` `/fr/a-propos` des articles de-ch reste à traiter.
+
+**Effet attendu** — JSON-LD de 25 pages de-ch sans URL redirigée ; aperçus sociaux des articles à leur titre et à leur image. `<title>`, description, canonical, hreflang et robots inchangés. Aucun effet de classement attendu en propre.
+
+**Vérifié**
+- `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` : 140 pages modifiées, toutes des articles du gabarit commun (têtes `og:*` et `twitter:*` seules) ; 140 articles conformes (`og:url` = canonique, `og:locale` selon la langue, `twitter:title` = `og:title`).
+- JSON-LD : 25 pages de-ch avec `Product` ou `Service`, 0 URL redirigée ; JSON-LD identique à `main` sur les 70 fiches et hubs FR et EN.
+- Fichiers de PR ouvertes : `industrie/[slug]/page.tsx` est aussi modifié par #104 et #107 (HOLD), à une autre ligne.
+
+**Supposé** — Aucun.
+**Non regardé** — Test des résultats enrichis de Google ; aperçus réels sur les réseaux sociaux ; Preview (SSO) ; `www` (R4).
+
+**Suite** — **Événement concomitant à consigner à la fusion** : les 15 URL du cluster AI Act (#96) changent de métadonnées sociales (`AI_ACT_CONCURRENT_EVENT = YES`, mesure J+7 du 13 ou 14/10) ; fusion de préférence hors de la fenêtre J+7. GO de fusion distinct ; GSC « Données structurées » à J+7-21.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
