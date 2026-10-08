@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
 
-**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
 
 **Quoi** — Les 17 fiches `/de-ch/fotostudio/<slug>` déclaraient `Product.url` et `Offer.url` en `/de-ch/studio-photo/<slug>`, qui répond 307 vers la fiche. Ces deux champs prennent l'URL canonique de la fiche, déjà calculée par `getPathname` pour le fil d'Ariane (#55) ; FR et EN inchangés.
 
