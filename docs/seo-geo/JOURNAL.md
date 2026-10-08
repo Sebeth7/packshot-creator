@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Hub bijoux — bague détourée : IQ Mask, pas AI Masking (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Micro-fix final #104 » | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant correctif `a20908a`
+
+**Quoi** — Section « Retouche et export » seulement.
+- Légende de la bague détourée : « La même bague, détourée sur fond transparent. » → « La même bague, détourée avec l’IQ Mask d’Orbitvu Station. »
+- Phrase voisine : « Pour détourer une bague ou atténuer un reflet parasite sur le métal, AI Masking et AI Retoucher s’en chargent dans le même logiciel. Ils sont réservés aux abonnés d’Orbitvu Station. » → « Le détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose également AI Masking et AI Retoucher pour d’autres traitements. » La réservation aux abonnés n’est plus affirmée (non revérifiée sur une source primaire).
+
+**Pourquoi** — L’image, issue du guide « Comment prendre une photo nette d’un bijou sans fond ? » (Superfocus et IQ Mask), était lue comme un résultat AI Masking.
+
+**Fichiers** — `data/secteurs.ts`, `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `npx next build` verts ; HTML prérendu contre `a20908a` : 372 pages sur 374 identiques (hub bijoux FR et EN) ; rendu local à 1 440 et 390 px ; V104-1 et V104-2 inchangées ; formulaire non soumis.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4).
+
+**Suite** — HOLD « bague détourée » levé. QA humaine finale de la Preview ; appel final soumis à Sébastien ; GO de fusion distinct.
+
+---
+
 ## 2026-10-08 · Hub bijoux — intégration des illustrations V104-1 et V104-2 (#104) · Claude de Laurent
 
 **Chantier** : mission de Laurent du 08/10, « Intégration des visuels finaux #104 » ; source : archive `PSC_104_BIJOUX_VISUELS_FINAUX_2026-10-08.zip` fournie par Laurent | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `e67d711`

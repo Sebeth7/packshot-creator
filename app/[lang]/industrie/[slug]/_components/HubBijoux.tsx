@@ -388,7 +388,9 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               sizes="(min-width: 1024px) 560px, 92vw"
               className="w-full h-auto max-w-[560px] mx-auto rounded-md"
             />
-            <figcaption className="mt-2 text-sm text-neutral-medium text-center">La même bague, détourée sur fond transparent.</figcaption>
+            {/* Provenance : guide « Comment prendre une photo nette d'un bijou sans fond ? » (Superfocus et IQ Mask).
+                Ce n'est pas un résultat AI Masking. */}
+            <figcaption className="mt-2 text-sm text-neutral-medium text-center">La même bague, détourée avec l’IQ Mask d’Orbitvu Station.</figcaption>
           </figure>
         </div>
       </section>
