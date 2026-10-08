@@ -689,12 +689,14 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
     cycling: { fr: 'Cycles', en: 'Cycling', 'de-ch': 'Zweiräder' },
     appliances: { fr: 'Électroménager', en: 'Appliances', 'de-ch': 'Haushaltsgeräte' },
     automotive: { fr: 'Automobile', en: 'Automotive', 'de-ch': 'Automobil' },
-    // Rendus sous leur clé brute en FR et en EN jusqu'au 08/10 : libellés FR et EN
-    // repris du filtre du sélecteur (FilterBar.tsx), libellés de-ch inchangés.
-    optics: { fr: 'Lunetterie & Optique', en: 'Eyewear & Optics', 'de-ch': 'Brillen & Optik' },
-    health: { fr: 'Santé & Médical', en: 'Health & Medical', 'de-ch': 'Gesundheit & Medizin' },
-    industrial: { fr: 'Industrie & pièces techniques', en: 'Industry & technical parts', 'de-ch': 'Industrie' },
-    watchmaking: { fr: 'Horlogerie', en: 'Watchmaking', 'de-ch': 'Uhrmacherei' },
+  };
+  // Secteurs absents de la table ci-dessus : rendus sous leur clé brute en FR et en EN
+  // (constat hors périmètre de cette correction, FR et EN inchangés) ; libellé de-ch seul.
+  const sectorLabelsDeChSeul: Record<string, string> = {
+    optics: 'Brillen & Optik',
+    health: 'Gesundheit & Medizin',
+    industrial: 'Industrie',
+    watchmaking: 'Uhrmacherei',
   };
 
   return (
@@ -1130,7 +1132,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <div className="flex flex-wrap gap-2">
                   {machine.idealSectors.map((sector) => (
                     <span key={sector} className="bg-very-peri-500/20 text-very-peri-200 px-3 py-1.5 rounded-full text-sm font-medium">
-                      {pickL(lang, sectorLabels[sector] ?? { fr: sector, en: sector, 'de-ch': sector })}
+                      {pickL(lang, sectorLabels[sector] ?? { fr: sector, en: sector, 'de-ch': sectorLabelsDeChSeul[sector] })}
                     </span>
                   ))}
                 </div>
