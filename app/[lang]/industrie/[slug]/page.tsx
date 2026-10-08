@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { secteurs } from '@/data/secteurs';
 import { secteursDeCh } from '@/data/secteurs-de-ch';
+import HubVin from './_components/HubVin';
 import { tx } from '@/lib/locale-text';
 import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
@@ -207,6 +208,12 @@ export default async function SecteurPage({ params }: PageProps) {
   const relevantSolutions = solutions.filter((sol) =>
     sol.secteurs.items.some((s) => s.slug === dataSlug)
   );
+
+  // Hub vin-spiritueux : page dédiée, fr et en (EN servi en FR, noindex).
+  // de-ch (/de-ch/branchen/wein) garde le gabarit commun.
+  if (dataSlug === 'vin-spiritueux' && lang !== 'de-ch') {
+    return <HubVin secteur={secteur} lang={lang} slug={slug} breadcrumbs={breadcrumbs} autresSecteurs={otherSectors} />;
+  }
 
   const solutionIcons: Record<string, React.ReactNode> = {
     'documentation-technique-visuelle': <FileText className="h-5 w-5" />,
