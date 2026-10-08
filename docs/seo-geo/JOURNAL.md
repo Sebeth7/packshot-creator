@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-08 · Repair Factory, PR-D — Worker : BL-042 et BL-018 vers leur équivalent exact (code seul, non déployé) · Claude de Laurent
 
-**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
+**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : #115, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
 
 **Quoi** — `cloudflare-worker/src/index.js` : BL-042, `/ecommerce-jewelry-photography-tutorial` sort de `GONE_PATHS` et redirige en 301 vers `/en/blog/technique-photograph-jewelry-tutorial` (cible déjà utilisée par la variante `/en/blog/…`) ; BL-018, l'ancien article « boostez … 4 erreurs à éviter » redirige vers l'article exact au lieu de l'article voisin « 6 pratiques ». Test `cloudflare-worker/test/e-bl-pack-w.test.ts`.
 
