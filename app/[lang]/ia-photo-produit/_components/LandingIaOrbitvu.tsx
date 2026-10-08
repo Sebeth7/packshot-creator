@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import Image, { getImageProps } from 'next/image';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, CSSProperties, ReactNode } from 'react';
 import {
   ArrowDown, ArrowRight, Brush, Camera, ChevronDown, Images, Lightbulb, Scale, ScanText, Scissors,
 } from 'lucide-react';
@@ -22,13 +22,16 @@ import { tx } from '@/lib/locale-text';
  * barre collante ; exception `landing-ia` / fr dans data/navigation/pages-longues.ts.
  *
  * Visuels, deux statuts à ne jamais confondre :
- * - preuves réelles : images officielles Orbitvu déjà publiées sur le site (fiche Alphashot
- *   XL G2) et leurs découpes (public/images/ia-photo-produit/station-*, recadrage seul) ;
- * - illustrations éditoriales V105-E1 à E4 (public/images/ia-photo-produit/v105-*) : générées
+ * - preuves réelles : images officielles Orbitvu, recadrées et converties en AVIF sans autre
+ *   traitement. Capture et AI OCR : fiche Alphashot XL G2 déjà publiée sur le site
+ *   (public/images/ia-photo-produit/station-*). AI Photo Assistant, AI Masking, AI Retoucher :
+ *   exemples de orbitvu.com/software/ai, téléchargés le 08/10/2026
+ *   (public/images/ia-photo-produit/orbitvu-*), autorisation de réutilisation à confirmer avant
+ *   publication (voir JOURNAL) ;
+ * - illustrations éditoriales V105-E1 à E3 (public/images/ia-photo-produit/v105-*) : générées
  *   par ChatGPT (pack de Laurent du 08/10/2026), produit et personne fictifs, légendées
  *   « Illustration générée par IA ». Elles ne prouvent aucun résultat Orbitvu.
- * Aucune interface reconstituée, aucun avant/après fabriqué : les preuves manquantes sont
- * signalées par `VisuelRequis` et `AvantApres`, rendus sur les Previews Vercel seulement.
+ * Aucune interface reconstituée, aucun avant/après fabriqué.
  */
 
 type Href = ComponentProps<typeof Link>['href'];
@@ -48,7 +51,17 @@ const VISUELS = {
   },
   controle: { src: '/images/ia-photo-produit/v105-e2-controle-operateur.avif', w: 591, h: 394 },
   usages: { src: '/images/ia-photo-produit/v105-e3-produit-usages.avif', w: 693, h: 462 },
-  retoucheContexte: { src: '/images/ia-photo-produit/v105-e4-retouche-contexte.avif', w: 693, h: 462 },
+  // Exemples officiels de orbitvu.com/software/ai (08/10/2026) : ai-photo-assistant-option-1/2-v2
+  // (même recadrage 900 × 1800), ai-background-removal-before-v7 / after-v5 (fond transparent),
+  // ai-retouching-before / after et leur détail aux mêmes coordonnées (480 × 360 depuis x 460, y 170).
+  eclairage1: { src: '/images/ia-photo-produit/orbitvu-ai-photo-assistant-eclairage-1.avif', w: 900, h: 1800 },
+  eclairage2: { src: '/images/ia-photo-produit/orbitvu-ai-photo-assistant-eclairage-2.avif', w: 900, h: 1800 },
+  maskingAvant: { src: '/images/ia-photo-produit/orbitvu-ai-masking-avant.avif', w: 1200, h: 900 },
+  maskingApres: { src: '/images/ia-photo-produit/orbitvu-ai-masking-apres.avif', w: 1200, h: 900 },
+  retoucheAvant: { src: '/images/ia-photo-produit/orbitvu-ai-retoucher-avant.avif', w: 1200, h: 900 },
+  retoucheApres: { src: '/images/ia-photo-produit/orbitvu-ai-retoucher-apres.avif', w: 1200, h: 900 },
+  retoucheDetailAvant: { src: '/images/ia-photo-produit/orbitvu-ai-retoucher-detail-avant.avif', w: 480, h: 360 },
+  retoucheDetailApres: { src: '/images/ia-photo-produit/orbitvu-ai-retoucher-detail-apres.avif', w: 480, h: 360 },
   // Capture Orbitvu Station de la fiche Alphashot XL G2 (Sébastien, 07/07/2026), identique à
   // orbitvu.com/products/alphashot-xl-g2/images/station.webp ; sous 768 px, le sachet dans le cadre de visée.
   capture: {
@@ -89,8 +102,12 @@ const NUMEROS: Record<string, number> = Object.fromEntries(
   PHASES.flatMap((p) => p.etapes).map((e, i) => [e.cle, i + 1]),
 );
 
-/** Les marqueurs de visuels manquants n'apparaissent que sur les Previews et en développement. */
-const REVUE = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development';
+/** Damier qui figure la transparence d'un fichier détouré : rendu en CSS, jamais incrusté dans l'image. */
+const DAMIER: CSSProperties = {
+  backgroundColor: '#ffffff',
+  backgroundImage: 'conic-gradient(#e5e7eb 25%, transparent 0 50%, #e5e7eb 0 75%, transparent 0)',
+  backgroundSize: '20px 20px',
+};
 
 const CONTENEUR = 'max-w-7xl mx-auto px-4 sm:px-6';
 const TITRE_2 = 'text-3xl lg:text-4xl font-heading font-bold text-future-dusk-900 leading-tight mb-4';
@@ -141,35 +158,46 @@ function Figure({ visuel, alt, legende, lienEntier, priorite = false, sizes, cad
   );
 }
 
-/** Emplacement d'un visuel réel à fournir (ASSET_REQUIRED) ; jamais rendu en production. */
-function VisuelRequis({ texte }: { texte: string }) {
-  if (!REVUE) return null;
-  return (
-    <div data-asset-required className="mt-6 rounded-2xl border-2 border-dashed border-amber-400 bg-amber-50 p-5 text-sm text-amber-900">
-      <p className="font-mono font-semibold">ASSET_REQUIRED_REAL</p>
-      <p className="mt-1">{texte}</p>
-    </div>
-  );
-}
+type Etat = { visuel: Fichier; alt: string; libelle: string };
 
 /**
- * Emplacement d'un avant/après réel (même produit, même cadrage). Sans visuels fournis, rien n'est
- * rendu en production ; sur les Previews, deux cadres vides signalent la preuve attendue.
+ * Preuve en deux temps, sur le modèle d'AI OCR : entrée → outil IA → sortie. Deux images de même
+ * taille côte à côte à partir de 768 px, empilées en dessous ; états et nom de l'outil en texte.
  */
-function AvantApres({ texte }: { texte: string }) {
-  if (!REVUE) return null;
-  return (
-    <div data-asset-required className="mt-6 rounded-2xl border-2 border-dashed border-amber-400 bg-amber-50 p-4 text-sm text-amber-900">
-      <div className="grid grid-cols-2 gap-3" aria-hidden="true">
-        {['Avant', 'Après'].map((l) => (
-          <div key={l} className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-amber-400 bg-white/60 font-mono text-xs">
-            {l}
-          </div>
-        ))}
+function Paire({ avant, apres, cotes, outil, legende, damier = false, className, sizes }: {
+  avant: Etat;
+  apres: Etat;
+  cotes: { avant: string; apres: string };
+  outil: string;
+  legende: string;
+  /** Sortie à fond transparent, posée sur le damier. */
+  damier?: boolean;
+  className: string;
+  sizes: string;
+}) {
+  const etat = (cote: string, e: Etat, fond?: CSSProperties) => (
+    <div>
+      <div className={`overflow-hidden rounded-2xl border border-neutral-200 ${fond ? '' : 'bg-white'}`} style={fond}>
+        <Image src={e.visuel.src} alt={e.alt} width={e.visuel.w} height={e.visuel.h} sizes={sizes} loading="lazy" className="block w-full h-auto" />
       </div>
-      <p className="mt-3 font-mono font-semibold">ASSET_REQUIRED_REAL</p>
-      <p className="mt-1">{texte}</p>
+      <p className="mt-2 text-sm text-future-dusk-600">
+        <span className="font-semibold text-future-dusk-900">{cote}</span> · {e.libelle}
+      </p>
     </div>
+  );
+  return (
+    <figure className={className}>
+      <div className="grid items-center gap-3 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-5">
+        {etat(cotes.avant, avant)}
+        <p className="flex flex-col items-center gap-1 text-very-peri-700">
+          <span className="whitespace-nowrap rounded-full border border-very-peri-200 bg-very-peri-50 px-3 py-1 text-xs font-semibold">{outil}</span>
+          <ArrowDown className="h-5 w-5 md:hidden" aria-hidden="true" />
+          <ArrowRight className="hidden h-5 w-5 md:block" aria-hidden="true" />
+        </p>
+        {etat(cotes.apres, apres, damier ? DAMIER : undefined)}
+      </div>
+      <figcaption className="mt-4 text-sm text-future-dusk-500 leading-relaxed">{legende}</figcaption>
+    </figure>
   );
 }
 
@@ -241,6 +269,7 @@ export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
     resultat: t(`${ns}.resultat`),
     utilite: t(`${ns}.utilite`),
   });
+  const cotes = { avant: t('paire.avant'), apres: t('paire.apres') };
 
   return (
     <>
@@ -346,47 +375,91 @@ export default async function LandingIaOrbitvu({ lang }: { lang: string }) {
             <p className={PARAGRAPHE}>{t('photoAssistant.lead')}</p>
           </div>
           <Deroule libelles={libelles} items={items('photoAssistant')} ligne />
-          <div className="mt-8 max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-future-dusk-500 mb-3">{t('photoAssistant.compatibles')}</p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {MACHINES_ASSISTANT.map((m) => (
-                <li key={m.slug}>
-                  <Link href={fiche(m.slug)} className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 hover:border-very-peri-300 transition-colors">
-                    <span className="relative h-14 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100">
-                      <Image src={m.src} alt={m.nom} width={m.w} height={m.h} sizes="64px" className="h-full w-full object-contain" loading="lazy" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-heading font-semibold text-future-dusk-900">{m.nom}</span>
-                      <span className="inline-flex items-center text-sm text-very-peri-700">
-                        {t('photoAssistant.carteLien')} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+            {/* Exemples officiels Orbitvu : deux résultats sur le même produit, pas une capture de l'interface. */}
+            <figure className="max-w-md">
+              <p className="mb-3 font-heading font-semibold text-future-dusk-900">{t('photoAssistant.exemple')}</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {([[VISUELS.eclairage1, 1], [VISUELS.eclairage2, 2]] as const).map(([v, n]) => (
+                  <div key={n}>
+                    <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+                      <Image src={v.src} alt={t(`photoAssistant.option${n}Alt`)} width={v.w} height={v.h} sizes="(max-width: 767px) 50vw, 224px" loading="lazy" className="block w-full h-auto" />
+                    </div>
+                    <p className="mt-2 text-sm font-semibold text-future-dusk-900">{t(`photoAssistant.option${n}`)}</p>
+                  </div>
+                ))}
+              </div>
+              <figcaption className="mt-3 text-sm text-future-dusk-500 leading-relaxed">{t('photoAssistant.legende')}</figcaption>
+            </figure>
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-wider text-future-dusk-500 mb-3">{t('photoAssistant.compatibles')}</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {MACHINES_ASSISTANT.map((m) => (
+                  <li key={m.slug}>
+                    <Link href={fiche(m.slug)} className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 hover:border-very-peri-300 transition-colors">
+                      <span className="relative h-14 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+                        <Image src={m.src} alt={m.nom} width={m.w} height={m.h} sizes="64px" className="h-full w-full object-contain" loading="lazy" />
                       </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                      <span className="min-w-0">
+                        <span className="block font-heading font-semibold text-future-dusk-900">{m.nom}</span>
+                        <span className="inline-flex items-center text-sm text-very-peri-700">
+                          {t('photoAssistant.carteLien')} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <VisuelRequis texte="Capture réelle d'AI Photo Assistant proposant plusieurs configurations d'éclairage, de préférence sur le sachet de café. La capture « AI Templates » n'est plus utilisée : son rattachement à AI Photo Assistant n'est pas établi." />
         </div>
       </Section>
 
-      {/* 3 et 4. Après la capture : détourage et retouche */}
+      {/* 3 et 4. Après la capture : détourage et retouche, chacun suivi de sa preuve officielle Orbitvu en pleine largeur */}
       <Section fond="blanc">
-        <div className={`${CONTENEUR} grid lg:grid-cols-2 gap-14 lg:gap-16`}>
+        <div className={CONTENEUR}>
           <div id="masking">
-            <h2 className={TITRE_2}>{t('masking.heading')}</h2>
-            <p className={`${PARAGRAPHE} mb-6`}>{t('masking.lead')}</p>
-            <Deroule libelles={libelles} items={items('masking')} />
-            <AvantApres texte="Avant/après AI Masking du même produit (idéalement le sachet de café), même cadrage, images réelles issues d'Orbitvu Station. Un visuel IQ Mask ne convient pas." />
-          </div>
-          <div id="retoucher">
-            <h2 className={TITRE_2}>{t('retoucher.heading')}</h2>
-            <p className={`${PARAGRAPHE} mb-6`}>{t('retoucher.lead')}</p>
-            <div className="mb-6 max-w-[693px]">
-              <Figure visuel={VISUELS.retoucheContexte} alt={t('retoucher.contexteAlt')} legende={t('retoucher.contexteLegende')} sizes="(max-width: 1024px) 100vw, 600px" />
+            <div className="max-w-3xl mb-8">
+              <h2 className={TITRE_2}>{t('masking.heading')}</h2>
+              <p className={PARAGRAPHE}>{t('masking.lead')}</p>
             </div>
-            <Deroule libelles={libelles} items={items('retoucher')} />
-            <AvantApres texte="Avant/après AI Retoucher du même produit, même cadrage, images réelles issues d'Orbitvu Station, avec la consigne utilisée." />
+            <Deroule libelles={libelles} items={items('masking')} ligne />
+            <Paire
+              avant={{ visuel: VISUELS.maskingAvant, alt: t('masking.avantAlt'), libelle: t('masking.avantLibelle') }}
+              apres={{ visuel: VISUELS.maskingApres, alt: t('masking.apresAlt'), libelle: t('masking.apresLibelle') }}
+              cotes={cotes}
+              outil={t('workflow.e4.outil')}
+              legende={t('masking.legende')}
+              damier
+              className="mt-10 max-w-5xl"
+              sizes="(max-width: 767px) 100vw, 480px"
+            />
+          </div>
+          <div id="retoucher" className="mt-16 border-t border-neutral-200 pt-16 lg:mt-24 lg:pt-24">
+            <div className="max-w-3xl mb-8">
+              <h2 className={TITRE_2}>{t('retoucher.heading')}</h2>
+              <p className={PARAGRAPHE}>{t('retoucher.lead')}</p>
+            </div>
+            <Deroule libelles={libelles} items={items('retoucher')} ligne />
+            <Paire
+              avant={{ visuel: VISUELS.retoucheAvant, alt: t('retoucher.avantAlt'), libelle: t('retoucher.avantLibelle') }}
+              apres={{ visuel: VISUELS.retoucheApres, alt: t('retoucher.apresAlt'), libelle: t('retoucher.apresLibelle') }}
+              cotes={cotes}
+              outil={t('workflow.e5.outil')}
+              legende={t('retoucher.legende')}
+              className="mt-10 max-w-5xl"
+              sizes="(max-width: 767px) 100vw, 480px"
+            />
+            {/* La différence est fine à cette taille : même zone, aux mêmes coordonnées, dans les deux images. */}
+            <Paire
+              avant={{ visuel: VISUELS.retoucheDetailAvant, alt: t('retoucher.detailAvantAlt'), libelle: t('retoucher.detailLibelle') }}
+              apres={{ visuel: VISUELS.retoucheDetailApres, alt: t('retoucher.detailApresAlt'), libelle: t('retoucher.detailLibelle') }}
+              cotes={cotes}
+              outil={t('workflow.e5.outil')}
+              legende={t('retoucher.detailLegende')}
+              className="mt-10 max-w-3xl"
+              sizes="(max-width: 767px) 100vw, 360px"
+            />
           </div>
         </div>
       </Section>

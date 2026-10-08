@@ -430,7 +430,13 @@
       "resultat": "L’éclairage choisi par l’opérateur, enregistré dans un modèle de prise de vue.",
       "utilite": "Trouver un éclairage adapté au type de produit avant de photographier.",
       "compatibles": "Disponible sur",
-      "carteLien": "Voir la fiche"
+      "carteLien": "Voir la fiche",
+      "exemple": "Le même produit, deux propositions d’éclairage",
+      "option1": "Proposition d’éclairage 1",
+      "option2": "Proposition d’éclairage 2",
+      "option1Alt": "Bouteille de vin rouge sur fond blanc, photographiée avec la première configuration d’éclairage proposée",
+      "option2Alt": "La même bouteille avec la deuxième configuration d’éclairage proposée : reflets différents sur le verre et l’étiquette",
+      "legende": "Exemples officiels Orbitvu pour AI Photo Assistant."
     },
     "masking": {
       "heading": "Détourer l’image dans Orbitvu Station",
@@ -438,7 +444,12 @@
       "entree": "La photo du produit, au moment de la capture.",
       "action": "AI Masking retire le fond, sur l’image en haute définition.",
       "resultat": "Le produit détouré, avec des contours homogènes sur toute la série.",
-      "utilite": "Pas de détourage à la main après la séance."
+      "utilite": "Pas de détourage à la main après la séance.",
+      "avantLibelle": "Photo issue de la capture",
+      "apresLibelle": "Produit détouré, fond transparent",
+      "avantAlt": "Oscilloscope photographié sur fond gris, avant détourage",
+      "apresAlt": "Le même oscilloscope détouré par AI Masking, sur un damier qui figure la transparence",
+      "legende": "Exemple officiel Orbitvu pour AI Masking. Le damier figure la transparence du fichier détouré."
     },
     "retoucher": {
       "heading": "Corriger une image déjà photographiée",
@@ -447,8 +458,15 @@
       "action": "AI Retoucher retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et ajoute une ombre, selon une consigne écrite.",
       "resultat": "Une image retouchée, à contrôler avant usage.",
       "utilite": "La consigne s’enregistre en préréglage et se réutilise sur les séries suivantes.",
-      "contexteAlt": "Illustration : gros plan sur le couvercle métallique d’un pot cosmétique, avec poussières et micro-irrégularités visibles",
-      "contexteLegende": "Illustration générée par IA : une image produit avant traitement, avec matière, reflets et poussières. Produit fictif."
+      "avantLibelle": "Photo prise au studio",
+      "apresLibelle": "Image retouchée",
+      "avantAlt": "Bague en or à pierre bleue taillée en poire, avant retouche, avec des reflets sur la pierre",
+      "apresAlt": "La même bague après AI Retoucher, reflets réduits",
+      "legende": "Exemple officiel Orbitvu pour AI Retoucher : reflets réduits.",
+      "detailLibelle": "Détail agrandi",
+      "detailAvantAlt": "Détail agrandi de la pierre bleue avant retouche",
+      "detailApresAlt": "Le même détail après AI Retoucher",
+      "detailLegende": "Exemple officiel Orbitvu — détail agrandi pour rendre la différence visible."
     },
     "ocr": {
       "heading": "Lire les informations présentes sur le produit",
@@ -521,6 +539,10 @@
         "title": "AI Act et images produit",
         "desc": "Ce qu’une marque doit signaler sur une image retouchée ou générée par IA."
       }
+    },
+    "paire": {
+      "avant": "Avant",
+      "apres": "Après"
     },
     "deroule": {
       "entree": "Entrée",
