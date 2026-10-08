@@ -11,13 +11,21 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * Hub /fr/industrie/bijoux-joaillerie (PR #104) : page narrative dédiée, rendue à la
  * place du gabarit commun des hubs pour ce seul secteur (fr et en ; de-ch inchangé).
  *
- * Texte : entrée `bijoux-joaillerie` de `data/secteurs.ts` (hero, matière, studio,
- * retouche, appel final, FAQ) et constantes ci-dessous (cohérence, 360°, légendes).
+ * Cadre de fond (arbitrage du 08/10/2026, non affiché comme tel) : capture (lumière, macro,
+ * profondeur, 360°), workflow (modèles, reprise d'une collection), IA seulement quand elle
+ * sert (AI Masking, AI Retoucher), export vers la fiche produit. Ordre des sections inchangé.
  *
- * Visuels : uniquement des images réelles déjà publiées sur le site.
- * - /images/guides/* : guides PackshotCreator de focus stacking et de détourage
- *   (Alphashot Micro Pro v2 et Orbitvu Station, d'après les guides eux-mêmes).
- * - /images/secteurs/bijoux/* : recadrages, sans retouche, de captures de ces guides.
+ * Texte : entrée `bijoux-joaillerie` de `data/secteurs.ts` (hero, lumière, studio,
+ * retouche et export, appel final, FAQ) et constantes ci-dessous (360°, collection).
+ * Sources des faits : référentiel D45 (`data/produits/fiches-techniques.ts` : Micro Pro v2
+ * « small objects up to 18 cm long », 1 kg ; Pro G2 10 kg), catalogue
+ * `components/calculators/ROICalculator/lib/machines.ts`, guides FR de focus stacking
+ * (bague, bracelet, animation 360°) et infobulles d'Orbitvu Station visibles sur leurs captures.
+ *
+ * Visuels affichés : uniquement des images réelles déjà publiées sur le site.
+ * - /images/guides/* : guides PackshotCreator (Alphashot Micro Pro v2 et Orbitvu Station,
+ *   d'après les guides eux-mêmes).
+ * - /images/secteurs/bijoux/superfocus-* : recadrages, sans retouche, de captures de ces guides.
  * - /images/machines/alphashot-micro-v2.avif : visuel produit déjà utilisé sur la fiche.
  */
 
@@ -31,35 +39,44 @@ interface HubBijouxProps {
   autresSecteurs: Sector[];
 }
 
-/**
- * Vue 360° réelle d'une bague (Orbitvu SUN ou vidéo). Aucune n'est disponible au
- * 07/10/2026 : la vue du guide « animation 360° » renvoie 404 chez Orbitvu.
- * ASSET_REQUIRED — à renseigner avant tout affichage ; rien n'est rendu tant que vide.
- */
-const BAGUE_360: { src: string; title: string } | null = null;
+/** Visuel à venir. `illustration: true` (EDITORIAL_ILLUSTRATION) : jamais présenté comme une preuve produit. */
+type Visuel = { src: string; alt: string; width: number; height: number; legende: string; illustration: boolean };
 
-const COHERENCE = {
-  titre: 'La vraie difficulté commence à la deuxième pièce',
+/*
+ * Emplacements des visuels à venir (registre ASSET_REQUIRED). Rien n'est rendu tant qu'ils sont vides.
+ * - V104-1 : macro joaillerie, métal, pierre et sertissage. EDITORIAL_ILLUSTRATION (passe ChatGPT après QA),
+ *   jamais PRODUCT_PROOF. Section lumière.
+ * - V104-2 : plusieurs bijoux d'une même collection, cohérents visuellement. EDITORIAL_ILLUSTRATION, jamais
+ *   PRODUCT_PROOF. Section collection (remplace alors la photo de mise en place).
+ * - REEL_SUPERFOCUS : vrai résultat Superfocus. Réel obligatoire. Candidat à examiner :
+ *   /images/guides/67d9917f406090f303cb4429.avif (bracelet, guide focus stacking), ordre avant / après à confirmer.
+ * - REEL_BAGUE_360 : vraie vue 360° d'une bague (Orbitvu Sun ou vidéo). Réel obligatoire. La vue du guide
+ *   « animation 360° » renvoie 404 chez Orbitvu (constat du 07/10/2026).
+ */
+const V104_1_MACRO: Visuel | null = null;
+const V104_2_COLLECTION: Visuel | null = null;
+const REEL_SUPERFOCUS: Visuel | null = null;
+const REEL_BAGUE_360: { src: string; title: string } | null = null;
+
+const ROTATION = {
+  titre: 'Voir la bague sous tous ses angles',
   paragraphes: [
-    'Une belle photo isolée ne fait pas encore un catalogue.',
-    'Une nouvelle taille arrive. Puis une variante en or blanc. Une nouvelle pierre. Une référence est remise en production quelques semaines plus tard. Quelqu’un d’autre prend place devant le studio.',
-    'Le cadrage, la lumière, le fond et la post-production doivent pourtant rester cohérents.',
-  ],
-  station: [
-    'Un modèle enregistre dans un seul fichier les réglages de la lumière, de l’appareil photo et de la position du plateau tournant, ainsi que les paramètres d’édition.',
-    'Pour la pièce suivante, on la positionne et on choisit le modèle : la prise de vue repart des mêmes réglages.',
-    'Une correction faite en édition sur une image peut être appliquée aux autres images de la série.',
+    'Sur une bague, le profil du serti, la galerie, le corps de bague ou l’arrière de la pierre peuvent compter autant que la vue principale.',
+    'Pendant la prise de vue, le plateau tournant fait pivoter la bague. On règle le nombre d’images de la rotation, de 6 à 180, et chaque angle peut être net de l’avant à l’arrière.',
   ],
 };
 
-const ROTATION = {
-  titre: 'Une photo montre une face. Le 360° montre la pièce.',
+/* Paramètres d'un modèle : infobulle « Modèles » d'Orbitvu Station (capture du guide bague,
+   /images/guides/67d991805e0a0980101b8aa4.avif). Le zoom motorisé, cité par l'infobulle, n'est pas
+   établi pour l'Alphashot Micro Pro v2 : non mentionné. Correction appliquée aux autres images :
+   infobulle « Image » (/images/guides/67d991805e0a0980101b8aa1.avif). */
+const COLLECTION = {
+  titre: 'Quand la collection s’agrandit',
   paragraphes: [
-    'Sur une bague, le profil du serti, la galerie, le corps de bague ou l’arrière de la pierre peuvent compter autant que la vue principale.',
-    'Une rotation complète permet de regarder la pièce sous ses autres angles sans transformer la fiche produit en succession de vues fixes.',
+    'Une nouvelle taille arrive. Puis une variante en or blanc. Une nouvelle pierre. Une référence est remise en production quelques semaines plus tard. Quelqu’un d’autre prend place devant le studio.',
+    'Chaque fois, il faut retrouver la configuration de la première série. Dans Orbitvu Station, elle est enregistrée dans un modèle : réglages de la lumière, de l’appareil photo et de la position du plateau tournant, paramètres d’édition. On rappelle le modèle, on pose la pièce, et la prise de vue repart de là.',
+    'Une correction faite sur une image peut ensuite être reportée sur le reste de la série.',
   ],
-  station:
-    'Dans Orbitvu Station, on règle le plateau tournant et le nombre d’images de la rotation, de 6 à 180. Le studio enchaîne ensuite les prises de vue, et le Superfocus peut s’appliquer à chaque angle avant l’export pour la fiche produit.',
 };
 
 const PRO_G2 =
@@ -70,28 +87,59 @@ function scinder(item: string) {
   const i = item.indexOf(' : ');
   if (i === -1) return { terme: '', texte: item };
   const texte = item.slice(i + 3);
-  return { terme: item.slice(0, i), texte: texte.charAt(0).toUpperCase() + texte.slice(1) };
+  return { terme: item.slice(0, i), texte: typo(texte.charAt(0).toUpperCase() + texte.slice(1)) };
 }
 
-const paragraphes = (texte: string) => texte.split('\n\n');
+/** Espace insécable avant « : ; ! ? » : la ponctuation ne part jamais seule en début de ligne. */
+const typo = (texte: string) => texte.replace(/ ([:;!?])/g, '\u00a0$1');
+
+const paragraphes = (texte: string) => texte.split('\n\n').map(typo);
+
+function FigureVisuel({ visuel, sizes, className = '' }: { visuel: Visuel; sizes: string; className?: string }) {
+  return (
+    <figure className={className}>
+      <Image src={visuel.src} alt={visuel.alt} width={visuel.width} height={visuel.height} sizes={sizes} className="w-full h-auto rounded-md" />
+      <figcaption className="mt-2 text-sm text-neutral-medium">
+        {visuel.illustration ? `Illustration. ${visuel.legende}` : visuel.legende}
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSecteurs }: HubBijouxProps) {
   const [studio, retouche] = secteur.solutions.items;
   const ressources = sectorResourceLinks('bijoux-joaillerie', lang);
-  const faq = secteur.faq ?? [];
+  const faq = (secteur.faq ?? []).map((q) => ({ question: typo(q.question), answer: typo(q.answer) }));
 
   return (
     <>
-      {/* ── A. Hero : texte et appel avant l'image sur mobile ── */}
+      {/* ── A. Hero. Mobile : surtitre et H1, puis le bijou, puis le texte et l'appel.
+          Desktop : texte à gauche, bijou à droite sur toute la hauteur. ── */}
       <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-16 lg:pt-20 lg:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          <div className="lg:col-span-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-orbitvu mb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-16 lg:pt-20 lg:pb-24 grid lg:grid-cols-12 lg:grid-rows-[1fr_auto_auto_1fr] gap-x-16">
+          <div className="lg:col-span-6 lg:col-start-1 lg:row-start-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-orbitvu mb-5 lg:mb-6">
               {secteur.hero.sousTitre}
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-heading font-bold text-heading-dark leading-[1.08] tracking-tight mb-8">
-              {secteur.hero.titre}
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-heading font-bold text-heading-dark leading-[1.08] tracking-tight">
+              {typo(secteur.hero.titre)}
             </h1>
+          </div>
+          <figure className="mt-6 lg:mt-0 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-4 lg:self-center">
+            <Image
+              src="/images/guides/67d9917f5e0a0980101b8a65.avif"
+              alt="Bague en or ajourée photographiée sur fond blanc"
+              width={2000}
+              height={2000}
+              priority
+              sizes="(min-width: 1024px) 600px, 92vw"
+              className="w-full aspect-[4/3] object-cover lg:aspect-square lg:max-w-[600px] mx-auto"
+            />
+            <figcaption className="mt-2 text-sm text-neutral-medium lg:text-center">
+              Bague ajourée photographiée dans un Alphashot Micro Pro v2 pour nos guides de focus stacking.
+            </figcaption>
+          </figure>
+          <div className="mt-6 lg:mt-8 lg:col-span-6 lg:col-start-1 lg:row-start-3">
             {paragraphes(secteur.hero.description).map((p) => (
               <p key={p} className="text-lg text-neutral-medium leading-relaxed mb-4 max-w-xl">
                 {p}
@@ -112,35 +160,19 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               </Link>
             </div>
           </div>
-          <figure className="lg:col-span-6">
-            <Image
-              src="/images/guides/67d9917f5e0a0980101b8a65.avif"
-              alt="Bague en or ajourée photographiée sur fond blanc"
-              width={2000}
-              height={2000}
-              priority
-              sizes="(min-width: 1024px) 600px, 92vw"
-              className="w-full h-auto max-w-[600px] mx-auto"
-            />
-            <figcaption className="mt-3 text-sm text-neutral-medium text-center">
-              Bague ajourée photographiée dans un Alphashot Micro Pro v2 pour nos guides de focus stacking.
-            </figcaption>
-          </figure>
         </div>
       </section>
 
-      {/* ── B. Matière ── */}
-      <section aria-labelledby="matiere" className="bg-bg-warm-white py-20 lg:py-28">
+      {/* ── B. La lumière, le métal, la pierre, la profondeur de champ.
+          Seule explication détaillée du Superfocus de la page (légende de la figure). ── */}
+      <section aria-labelledby="lumiere" className="bg-bg-warm-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 lg:order-2">
-            <h2 id="matiere" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
+            <h2 id="lumiere" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
               {secteur.problematiques.titre}
             </h2>
-            <p className="text-lg text-neutral-medium leading-relaxed mb-4">
-              Le métal poli renvoie ce qui l’entoure. Une pierre multiplie les points lumineux. En macro, une poussière ou une micro-rayure devient immédiatement visible, tandis que la faible profondeur de champ peut laisser une partie du bijou hors de la zone de netteté.
-            </p>
             <p className="text-lg text-neutral-medium leading-relaxed mb-10">
-              C’est ici que se joue l’image : construire les reflets, garder le détail du serti et obtenir une pièce lisible dans son ensemble.
+              Le métal poli renvoie ce qui l’entoure. Une pierre multiplie les points lumineux. En macro, une poussière ou une micro-rayure devient immédiatement visible, tandis que la faible profondeur de champ peut laisser une partie du bijou hors de la zone de netteté.
             </p>
             <dl className="divide-y divide-future-dusk-100 border-y border-future-dusk-100">
               {secteur.problematiques.items.map((item) => {
@@ -154,193 +186,169 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               })}
             </dl>
           </div>
-          <figure className="lg:col-span-7 lg:order-1">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div>
-                <Image
-                  src="/images/secteurs/bijoux/superfocus-mise-au-point-avant.avif"
-                  alt="Bague en or vue en macro : la pierre est nette, le pavé de diamants à l’arrière est flou"
-                  width={745}
-                  height={695}
-                  sizes="(min-width: 1024px) 340px, 46vw"
-                  className="w-full h-auto rounded-md"
-                />
-                <p className="mt-2 text-sm text-neutral-medium">Mise au point sur la pierre.</p>
+          <div className="lg:col-span-7 lg:order-1 space-y-8">
+            {V104_1_MACRO && <FigureVisuel visuel={V104_1_MACRO} sizes="(min-width: 1024px) 700px, 92vw" />}
+            <figure>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <Image
+                    src="/images/secteurs/bijoux/superfocus-mise-au-point-avant.avif"
+                    alt="Bague en or vue en macro : la pierre est nette, le pavé de diamants à l’arrière est flou"
+                    width={745}
+                    height={695}
+                    sizes="(min-width: 1024px) 340px, 46vw"
+                    className="w-full h-auto rounded-md"
+                  />
+                  <p className="mt-2 text-sm text-neutral-medium">Mise au point sur la pierre.</p>
+                </div>
+                <div>
+                  <Image
+                    src="/images/secteurs/bijoux/superfocus-mise-au-point-arriere.avif"
+                    alt="Même bague : seul l’arrière de l’anneau est net, le premier plan est flou"
+                    width={745}
+                    height={695}
+                    sizes="(min-width: 1024px) 340px, 46vw"
+                    className="w-full h-auto rounded-md"
+                  />
+                  <p className="mt-2 text-sm text-neutral-medium">Mise au point sur l’arrière de l’anneau.</p>
+                </div>
               </div>
-              <div>
-                <Image
-                  src="/images/secteurs/bijoux/superfocus-mise-au-point-arriere.avif"
-                  alt="Même bague : seul l’arrière de l’anneau est net, le premier plan est flou"
-                  width={745}
-                  height={695}
-                  sizes="(min-width: 1024px) 340px, 46vw"
-                  className="w-full h-auto rounded-md"
-                />
-                <p className="mt-2 text-sm text-neutral-medium">Mise au point sur l’arrière de l’anneau.</p>
-              </div>
-            </div>
-            <figcaption className="mt-4 text-sm text-neutral-medium">
-              La même bague dans Orbitvu Station, avec deux mises au point différentes. Le Superfocus fusionne ces plans en une seule image nette.
-            </figcaption>
-          </figure>
+              <figcaption className="mt-4 text-sm text-neutral-medium">
+                Le Superfocus d’Orbitvu Station enchaîne ces mises au point et les fusionne en une seule image, nette de l’avant à l’arrière de la bague.
+              </figcaption>
+            </figure>
+            {REEL_SUPERFOCUS && <FigureVisuel visuel={REEL_SUPERFOCUS} sizes="(min-width: 1024px) 700px, 92vw" />}
+          </div>
         </div>
       </section>
 
-      {/* ── C. Cohérence de collection ── */}
+      {/* ── C. Reprendre une collection : modèles et paramètres enregistrés ── */}
       <section aria-labelledby="collection" className="bg-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6">
             <h2 id="collection" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
-              {COHERENCE.titre}
+              {COLLECTION.titre}
             </h2>
-            {COHERENCE.paragraphes.map((p) => (
-              <p key={p} className="text-lg text-neutral-medium leading-relaxed mb-4">
+            {COLLECTION.paragraphes.map(typo).map((p) => (
+              <p key={p} className="text-lg text-neutral-medium leading-relaxed mb-4 last:mb-0">
                 {p}
               </p>
             ))}
           </div>
           <div className="lg:col-span-6">
-            <figure className="mb-8">
-              <Image
-                src="/images/secteurs/bijoux/station-modeles.avif"
-                alt="Bibliothèque de modèles dans Orbitvu Station, avec trois modèles enregistrés pour des bracelets"
-                width={800}
-                height={280}
-                sizes="(min-width: 1024px) 580px, 92vw"
-                className="w-full h-auto rounded-md"
-              />
-              <figcaption className="mt-2 text-sm text-neutral-medium">Modèles enregistrés dans Orbitvu Station, ici pour une série de bracelets.</figcaption>
-            </figure>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary-orbitvu mb-4">Dans Orbitvu Station</p>
-            <ul className="space-y-4">
-              {COHERENCE.station.map((ligne) => (
-                <li key={ligne} className="pl-5 border-l-2 border-very-peri-100 text-heading-dark leading-relaxed">
-                  {ligne}
+            {V104_2_COLLECTION ? (
+              <FigureVisuel visuel={V104_2_COLLECTION} sizes="(min-width: 1024px) 580px, 92vw" />
+            ) : (
+              <figure>
+                <Image
+                  src="/images/guides/67d991805e0a0980101b8a98.avif"
+                  alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
+                  width={1200}
+                  height={1200}
+                  sizes="(min-width: 1024px) 580px, 92vw"
+                  className="w-full h-auto rounded-md"
+                />
+                <figcaption className="mt-2 text-sm text-neutral-medium">Mise en place d’une bague avant la prise de vue.</figcaption>
+              </figure>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── D. Le studio ── */}
+      <section aria-labelledby="studio" className="bg-bg-warm-white py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <figure className="lg:col-span-6">
+            <Image
+              src="/images/machines/alphashot-micro-v2.avif"
+              alt="Studio photo Orbitvu Alphashot Micro Pro v2"
+              width={1000}
+              height={1000}
+              sizes="(min-width: 1024px) 520px, 80vw"
+              className="w-full max-w-[520px] h-auto mx-auto"
+            />
+          </figure>
+          <div className="lg:col-span-6">
+            <h2 id="studio" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-8">
+              {secteur.solutions.titre}
+            </h2>
+            <p className="text-lg text-neutral-medium leading-relaxed mb-6">{studio.description}</p>
+            <ul className="space-y-3 mb-8">
+              {studio.avantages.map((a) => (
+                <li key={a} className="pl-5 border-l-2 border-very-peri-100 text-heading-dark leading-relaxed">
+                  {a}
                 </li>
               ))}
             </ul>
+            <Link
+              href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-micro-v2' } }}
+              className="inline-flex items-center gap-2 font-semibold text-primary-orbitvu hover:text-very-peri-700 transition-colors"
+            >
+              Voir l’Alphashot Micro Pro v2 <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <p className="mt-10 pt-6 border-t border-future-dusk-100 text-neutral-medium leading-relaxed">
+              {PRO_G2}{' '}
+              <Link
+                href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }}
+                className="font-semibold text-heading-dark underline underline-offset-4 decoration-very-peri-200 hover:text-primary-orbitvu"
+              >
+                Voir l’Alphashot Pro G2
+              </Link>
+            </p>
+            <Link
+              href="/studio-photo/selecteur-machines"
+              className="mt-4 inline-flex items-center gap-2 text-neutral-medium underline underline-offset-4 decoration-very-peri-200 hover:text-primary-orbitvu"
+            >
+              Comparer tous les modèles <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── D. Studio ── */}
-      <section aria-labelledby="studio" className="bg-bg-warm-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 id="studio" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-heading-dark leading-[1.12] mb-12 max-w-3xl">
-            {secteur.solutions.titre}
-          </h2>
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <figure className="lg:col-span-7">
-              <Image
-                src="/images/guides/67d991805e0a0980101b8a98.avif"
-                alt="Main gantée posant une bague ajourée sur le plateau blanc du studio"
-                width={1200}
-                height={1200}
-                sizes="(min-width: 1024px) 680px, 92vw"
-                className="w-full h-auto rounded-md"
-              />
-              <figcaption className="mt-2 text-sm text-neutral-medium">Mise en place d’une bague avant la prise de vue.</figcaption>
-            </figure>
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-5 mb-6">
-                <Image
-                  src="/images/machines/alphashot-micro-v2.avif"
-                  alt="Studio photo Orbitvu Alphashot Micro Pro v2"
-                  width={1000}
-                  height={1000}
-                  sizes="112px"
-                  className="w-28 h-28 object-contain rounded-md bg-white"
-                />
-                <h3 className="text-2xl font-heading font-bold text-heading-dark">{studio.titre}</h3>
-              </div>
-              <p className="text-lg text-neutral-medium leading-relaxed mb-6">{studio.description}</p>
-              <ul className="space-y-3 mb-8">
-                {studio.avantages.map((a) => (
-                  <li key={a} className="pl-5 border-l-2 border-very-peri-100 text-heading-dark leading-relaxed">
-                    {a}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-micro-v2' } }}
-                className="inline-flex items-center gap-2 font-semibold text-primary-orbitvu hover:text-very-peri-700 transition-colors"
-              >
-                Voir l’Alphashot Micro Pro v2 <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-              <p className="mt-10 pt-6 border-t border-future-dusk-100 text-neutral-medium leading-relaxed">
-                {PRO_G2}{' '}
-                <Link
-                  href={{ pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-pro-g2' } }}
-                  className="font-semibold text-heading-dark underline underline-offset-4 decoration-very-peri-200 hover:text-primary-orbitvu"
-                >
-                  Voir l’Alphashot Pro G2
-                </Link>
-              </p>
-              <Link
-                href="/studio-photo/selecteur-machines"
-                className="mt-4 inline-flex items-center gap-2 text-neutral-medium underline underline-offset-4 decoration-very-peri-200 hover:text-primary-orbitvu"
-              >
-                Comparer tous les modèles <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── E. 360° (séquence sombre 1/2) ── */}
-      <section aria-labelledby="rotation" className="bg-future-dusk-950 py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5">
+      {/* ── E. 360° (séquence sombre 1/2). Texte seul tant que REEL_BAGUE_360 est vide. ── */}
+      <section aria-labelledby="rotation" className="bg-future-dusk-950 py-20 lg:py-24">
+        <div
+          className={
+            REEL_BAGUE_360
+              ? 'max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center'
+              : 'max-w-3xl mx-auto px-4 sm:px-6'
+          }
+        >
+          <div className={REEL_BAGUE_360 ? 'lg:col-span-5' : ''}>
             <h2 id="rotation" className="text-3xl lg:text-[2.6rem] font-heading font-bold text-white leading-[1.12] mb-8">
               {ROTATION.titre}
             </h2>
             {ROTATION.paragraphes.map((p) => (
-              <p key={p} className="text-lg text-future-dusk-100 leading-relaxed mb-4">
+              <p key={p} className="text-lg text-future-dusk-100 leading-relaxed mb-4 last:mb-0">
                 {p}
               </p>
             ))}
-            <p className="mt-8 text-future-dusk-200 leading-relaxed">{ROTATION.station}</p>
           </div>
-          <figure className="lg:col-span-7">
-            {BAGUE_360 ? (
+          {REEL_BAGUE_360 && (
+            <figure className="lg:col-span-7">
               <iframe
-                src={BAGUE_360.src}
-                title={BAGUE_360.title}
+                src={REEL_BAGUE_360.src}
+                title={REEL_BAGUE_360.title}
                 loading="lazy"
                 className="w-full aspect-square rounded-md bg-white"
               />
-            ) : (
-              <Image
-                src="/images/secteurs/bijoux/station-plateau-360.avif"
-                alt="Réglage du plateau tournant dans Orbitvu Station : choix du nombre d’images de la rotation, de 6 à 180"
-                width={1000}
-                height={850}
-                sizes="(min-width: 1024px) 680px, 92vw"
-                className="w-full h-auto rounded-md"
-              />
-            )}
-            <figcaption className="mt-3 text-sm text-future-dusk-200">
-              Réglage de la rotation dans Orbitvu Station, pendant une session sur une bague.
-            </figcaption>
-          </figure>
+            </figure>
+          )}
         </div>
       </section>
 
-      {/* ── F. Retouche ── */}
+      {/* ── F. Retouche, IA quand elle sert (AI Masking, AI Retoucher), export ── */}
       <section aria-labelledby="retouche" className="bg-white py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6">
             <h2 id="retouche" className="text-3xl lg:text-[2.2rem] font-heading font-bold text-heading-dark leading-[1.15] mb-6">
               {retouche.titre}
             </h2>
-            <p className="text-lg text-neutral-medium leading-relaxed mb-6">{retouche.description}</p>
-            <ul className="space-y-3">
-              {retouche.avantages.map((a) => (
-                <li key={a} className="pl-5 border-l-2 border-very-peri-100 text-heading-dark leading-relaxed">
-                  {a}
-                </li>
-              ))}
-            </ul>
+            {paragraphes(retouche.description).map((p) => (
+              <p key={p} className="text-lg text-neutral-medium leading-relaxed mb-4 last:mb-0">
+                {p}
+              </p>
+            ))}
           </div>
           <figure className="lg:col-span-6">
             <Image
@@ -356,7 +364,8 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
         </div>
       </section>
 
-      {/* ── G. Appel final (séquence sombre 2/2) ── */}
+      {/* ── G. Appel final (séquence sombre 2/2).
+          PROPOSITION À VALIDER PAR SÉBASTIEN : la démonstration avec les pièces du client. ── */}
       <section id="tester" aria-labelledby="tester-titre" className="bg-future-dusk-950 py-20 lg:py-28 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
@@ -381,6 +390,7 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
               locale={lang as 'fr' | 'en' | 'de-ch'}
               compact
               defaultRequestType="demo"
+              hideRequestType
               defaultSector={lang === 'en' ? 'Watches, jewelry' : 'Horlogerie, bijouterie, joaillerie'}
             />
           </div>
@@ -423,7 +433,7 @@ export default function HubBijoux({ secteur, lang, slug, breadcrumbs, autresSect
                 {ressources.map((r) => (
                   <li key={r.title}>
                     <Link href={r.href} className="text-heading-dark hover:text-primary-orbitvu underline-offset-4 hover:underline">
-                      {r.title}
+                      {typo(r.title)}
                     </Link>
                   </li>
                 ))}

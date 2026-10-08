@@ -118,60 +118,52 @@ export const secteurs: Secteur[] = [
     description:
       'Packshot bijoux en interne : pierres, métaux polis, petites pièces, focus stacking et 360° de bague. Studios Orbitvu adaptés, démonstration avec vos bijoux.',
     // Page rendue par un composant dédié (app/[lang]/industrie/[slug]/_components/HubBijoux.tsx).
-    // Les champs ci-dessous restent la source du texte du hero, de la section matière,
-    // du studio, de la retouche, de l’appel final et de la FAQ (FAQPage = FAQ visible).
+    // Les champs ci-dessous restent la source du texte du hero, de la section lumière,
+    // du studio, de la retouche et de l’export, de l’appel final et de la FAQ (FAQPage = FAQ visible).
+    // Sources des faits : en-tête de HubBijoux.tsx et description de la PR #104.
     hero: {
       titre: 'Packshot bijoux : révéler chaque détail, retrouver le même rendu',
       sousTitre: 'Bijoux & joaillerie',
       description:
-        'Un bijou concentre en quelques centimètres tout ce qui complique une prise de vue : métal poli, facettes, serti, profondeur de champ, poussière.\n\nRéussir une image ne suffit pas. Il faut pouvoir réussir la suivante avec la même lumière, le même cadrage et la même précision.',
+        'Un bijou concentre en quelques centimètres tout ce qui complique une prise de vue : métal poli, facettes, serti, profondeur de champ, poussière.\n\nUne nouvelle référence doit ensuite garder le cadrage, le fond et la lumière des images déjà produites.',
     },
     problematiques: {
-      titre: 'Le bijou ne pardonne rien à la prise de vue',
+      titre: 'Sur un bijou, la lumière se voit',
       items: [
         'Pierre, facettes, serti : chaque facette renvoie sa propre lumière. Entre les griffes, le serti doit rester lisible.',
-        'Métal poli, reflets : le métal reflète le studio et l’objectif. Un bon reflet se construit au moment de la prise de vue.',
-        'Petite pièce, profondeur de champ : à cette échelle, une mise au point ne couvre qu’une tranche du bijou.',
+        'Métal, reflets : sur un métal poli, la forme du reflet décrit aussi le volume.',
+        'Petite pièce, profondeur de champ : en macro, la pierre peut être nette pendant que l’arrière de l’anneau reste flou.',
       ],
     },
     solutions: {
-      titre: 'Un studio conçu pour les petites pièces réfléchissantes',
+      titre: 'Photographier les petites pièces avec l’Alphashot Micro Pro v2',
       items: [
         {
           type: 'hardware',
           titre: 'Alphashot Micro Pro v2',
-          description:
-            'Le studio photo Orbitvu pour les très petits objets : jusqu’à 18 cm de long et 1 kg, selon Orbitvu.',
+          description: 'Un studio photo Orbitvu pour des objets jusqu’à 18 cm de long et 1 kg.',
           avantages: [
-            'Prise de vue macro, pour lire un poinçon, une gravure ou le détail d’un serti.',
-            'Superfocus : plusieurs mises au point fusionnées en une seule image, nette sur toute la profondeur de la pièce.',
-            'Plateau tournant pour les vues à 360°.',
-            'Packshot, 360° et vidéo.',
+            'Macro et Superfocus, pour lire un poinçon, une gravure ou le détail d’un serti.',
+            'Photo, 360° et vidéo, sur plateau tournant.',
           ],
         },
         {
-          titre: 'La retouche reste dans Orbitvu Station',
-          description: 'Détourage, retouche et réglages d’image se font dans le logiciel de prise de vue.',
-          avantages: [
-            'Couleur, netteté et contraste, réglés sur toute l’image ou sur une seule couleur.',
-            'AI Masking : détourage et suppression du fond.',
-            'AI Retoucher : retouche des reflets indésirables, des imperfections et des couleurs.',
-            'AI Masking et AI Retoucher sont réservés aux abonnés d’Orbitvu Station.',
-          ],
+          titre: 'Retouche et export',
+          description:
+            'Dans Orbitvu Station, un or qui sort un peu froid se corrige sur toute l’image ou seulement sur les zones de cette couleur ; netteté et contraste se règlent au même endroit.\n\nPour détourer une bague ou atténuer un reflet parasite sur le métal, AI Masking et AI Retoucher s’en chargent dans le même logiciel. Ils sont réservés aux abonnés d’Orbitvu Station.\n\nÀ l’export, les photos sortent en JPEG, PNG ou TIFF et les rotations en HTML5 ou en vidéo, prêtes pour la fiche produit.',
+          avantages: [],
         },
       ],
     },
     cta: {
       titre: 'Apportez vos pièces difficiles',
       description:
-        'Une démonstration n’a d’intérêt que si elle se fait avec les bijoux que vous devez réellement produire.\n\nApportez une pièce polie, un serti fin, une pierre claire ou simplement la référence qui vous pose problème aujourd’hui. Nous la photographions et nous regardons ensemble ce que le studio permet d’obtenir.',
+        'Choisissez quelques pièces représentatives de votre production : une pièce polie, un serti fin, une pierre claire, ou simplement la référence qui vous pose problème aujourd’hui.\n\nNous pourrons regarder ensemble, sur vos pièces, la lumière, la profondeur de champ et les vues dont votre catalogue a réellement besoin.',
     },
     faq: [
-      { question: 'Peut-on obtenir une bague nette de l’avant à l’arrière en macro ?', answer: 'Oui, avec le Superfocus d’Orbitvu Station. Le studio prend plusieurs photos à des mises au point différentes, puis les fusionne en une seule image nette sur toute la profondeur de la bague. Un assistant guide la procédure : mise au point sur l’avant de la bague, puis sur l’arrière, puis nombre d’étapes.' },
-      { question: 'Comment garder le même rendu sur toute une collection ?', answer: 'En enregistrant la configuration dans un modèle Orbitvu Station : lumière, appareil photo, position du plateau tournant et paramètres d’édition. Chaque nouvelle pièce repart de ces réglages, et les corrections d’édition peuvent être appliquées aux autres images de la série.' },
-      { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Orbitvu indique des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Pour des pièces plus grandes, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },
-      { question: 'Peut-on faire des vues 360° d’une bague ?', answer: 'Oui. Le plateau tournant fait pivoter la bague pendant la prise de vue. On choisit dans Orbitvu Station le nombre d’images de la rotation, et le Superfocus peut s’appliquer à chaque angle. La rotation est ensuite exportée pour la fiche produit.' },
-      { question: 'Comment se passe une démonstration ?', answer: 'Vous venez avec quelques pièces représentatives, en particulier celles qui posent problème aujourd’hui. Nous les photographions dans le studio et regardons ensemble les images obtenues. Pour convenir d’une date, remplissez le formulaire de cette page.' },
+      { question: 'Quelle taille de bijou l’Alphashot Micro Pro v2 accepte-t-il ?', answer: 'Des objets jusqu’à 18 cm de long et 1 kg. Nos guides montrent des bagues et des bracelets photographiés dans ce studio. Au-delà, l’Alphashot Pro G2 accepte des objets jusqu’à 10 kg.' },
+      { question: 'Comment retrouver le même rendu plusieurs semaines plus tard ?', answer: 'En rappelant le modèle enregistré lors de la première série dans Orbitvu Station. Il contient les réglages de la lumière, de l’appareil photo et de la position du plateau tournant, ainsi que les paramètres d’édition.' },
+      { question: 'Peut-on faire des vues 360° d’une bague ?', answer: 'Oui. Le plateau tournant fait pivoter la bague pendant la prise de vue, sur 6 à 180 images, et chaque angle peut être net de l’avant à l’arrière. La rotation s’exporte en HTML5 ou en vidéo pour la fiche produit.' },
     ],
   },
 
