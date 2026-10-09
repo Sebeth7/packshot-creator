@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Campagne globale de maillage — 34 liens contextuels (D48 b), correction EN de l'article « lens » (D15) et liens des guides rendus visibles · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne unique (missions de Laurent du 09/10 : R1 « objectifs photographiques », campagne globale, complément « densité par page », réconciliation V4.3, puis « finition finale » avec GO_CODE ponctuel ; GO_PR_SUPPLÉMENTAIRE, GO_MERGE, GO_PUBLICATION, appels payants = NO) | **PR** : #123, brouillon, « DO NOT MERGE », branche `claude/gracious-cerf-rbj12m` | **Base** : `main` `3c0909b` intégré (fusion de #109)
+
+**Quoi** —
+- Liens ajoutés : 34, posés sur des mots existants (D48 b) ; 28 pages sources, 23 cibles ; FR 20, EN 14, de-ch 0 ; 14 P1, 20 P2. Objectif 7 (dont E1, L1, E2 du lot R1), format d'image 5, bijoux 4, netteté 4, cadrage et lunettes 4, horlogerie 2, studio interne et investissement 7, production visuelle 1.
+- Retirés après la réconciliation V4.3 (décision de Laurent du 09/10) : F-27-1 et F-27-2 (hub chaussures : lignes D-367 et D-369 du registre, différées après le 26/11, D39, et soumises à CA2), E-ECO-2 (cible jumelle EN d'un article Amazon en mesure, HOLD jusqu'au 23/11), F-ECO-1 (ancre de l'intention I11 vers un article concurrent de F5, gel jusqu'au 23/11). Les 3 fichiers qui ne portaient que ces liens sont identiques à `main`.
+- Contrôle des réserves éditoriales : F-BIJ-3 retiré (la phrase d'introduction du guide équipement bijoux annonce le contenu de la page elle-même, « dans ce tutoriel complet », et le lien renvoyait ailleurs) ; E-FLOU-2 : ancre ramenée à « Blurry » (la cible ne traite que du flou, pas du cadrage ; aucun mot modifié) ; F-BIJ-2, F-PROD-1, F-OBJ-2 et F-FLOU-2 conservés (ancre conforme au sujet de la cible ; au plus 2 liens par paragraphe).
+- Liens corrigés : 0. Liens existants supprimés : 0. Liens conservés : tous les autres.
+- Densité : au plus 3 ajouts par page (une seule page à 3 : bague 8 étapes FR, 2 182 mots, 3 sections, 3 destinations) ; au plus 2 liens par paragraphe ; aucun ajout P2 au-delà de 15 liens de corps pour 1 000 mots. 9 ajouts retirés avant la première livraison pour ces motifs (F-CHA-1, E-CHA-1, E-STU-2, E-STU-3, F-STU-3, E-ECO-1, F-ECO-2, E-OBJ-2, E-PROD-1).
+- Article EN `how-to-choose-best-lens-for-product-photography` : `metaTitle`, `h1` et `title`, « packshot(s) » remplacé par « product photography » (D15, D42). Slug, description, texte, FAQ, liens : inchangés.
+- Gabarit des guides : classe `guide-content` sur l'introduction et le contenu des étapes (`app/[lang]/guide/[slug]/page.tsx`) et règle de liens dans `app/globals.css` (couche `components`) : couleur `--very-peri-6`, soulignement, survol `--very-peri-7`, contour de focus clavier de 2 px. Cause du défaut : `@tailwindcss/typography` n'est pas chargé, les classes `prose-a:*` ne produisent rien. Plugin non activé ; aucune règle de mise en page des articles reprise.
+
+**Pourquoi** — Recovery Pareto du 09/10 : les cibles retenues cumulaient peu de liens contextuels entrants (format d'image EN : 5 957 impressions sur 90 jours, aucun lien ; bague 8 étapes EN : 3 039, aucun lien). Paire « objectif » : recul de classement daté de mai 2026, aucun lien contextuel ; « product photography » absent de l'article EN alors que les requêtes perdues le contiennent (7 419 impressions d'octobre 2025 à janvier 2026, contre 4 pour « packshot »). Guides : liens indiscernables du texte, défaut préexistant sur `main` (deux guides en échec à la QA Chrome, mission de Laurent du 09/10).
+
+**Fichiers** — 29 JSON `content/{blog,guides}/{fr,en}/**` ; `app/[lang]/guide/[slug]/page.tsx`, `app/globals.css` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après publication autorisée : lecture informative à J+28, verdict à J+56, sur les 23 cibles contre 5 témoins inchangés (baseline 08/09 → 05/10 : cibles 78 clics, 10 812 impressions, position 11,5 ; témoins 25 clics, 1 370 impressions, position 10,7). Liens contextuels entrants des 23 cibles : 16 → 50. Aucun gain chiffré annoncé.
+
+**Vérifié** (tête finale, build local de la branche) —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 499/499 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu contre `main` `3c0909b` (actifs CSS neutralisés) : 344 pages identiques au contenu près ; 30 différentes = 28 pages sources (texte identique, liens ajoutés seulement), l'article EN lens (title, H1) et `/en/blog` (titre de la carte) ; en plus, les 47 guides ne diffèrent que par la classe `guide-content`. Canonique, robots, hreflang et `lang` inchangés partout.
+- Contre la tête précédente `49ac5c2` : 5 pages différentes, chacune par un lien retiré seulement (les 5 retraits), texte identique.
+- Par lien : 34/34 ancres rendues exactes et uniques, cible en 200 direct, canonique auto-référente, même langue, sans `noindex` ; 5/5 retraits absents du rendu, texte conservé.
+- Liens de tout le site rejoués (Worker du dépôt devant `next start`) : 366 chemins, statuts identiques à la tête précédente ; hors 200 direct, seulement 3 chemins `alphashot-g2` (D29) et 5 chemins liés depuis des pages EN servies en 410.
+- Playwright, Chromium du conteneur : `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `internal-links` et `mobile-overflow` : 91/92 ; le seul échec, `mobile-overflow` sur `/fr` à 375 px, se reproduit à l'identique sur le build de `main` `3c0909b` (préexistant, accueil non modifié).
+- Guides, 7 pages FR, EN et de-ch, 1440 et 390 px : liens `rgb(82, 82, 185)`, soulignés, survol `rgb(77, 94, 167)`, focus clavier `2px solid`, aucun débordement, aucune erreur de page ; contraste du lien sur fond blanc 6,43:1, du survol 6,04:1 ; sur `main`, liens de la couleur du texte, sans soulignement.
+- PR ouvertes : aucun fichier commun, sauf avec #27 (branche du 23/09, non fusionnable).
+**Supposé** — [Inférence] Chaque ancre décrit le sujet de sa cible : choix éditorial, non mesurable avant publication. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; Firefox et WebKit ; relecture humaine de l'anglais.
+
+**Suite** — CI verte sur la tête finale ; information de Sébastien publiée le 09/10 à 14:16:03 UTC (aucune nouvelle information demandée par Laurent) ; QA Chrome ; délai D15 de 5 jours ouvrés à compter de la dernière condition remplie sur la tête finale ; GO_MERGE distinct ; J0 = publication constatée sur `www`.
+
+---
+
 ## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
 
 **Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
