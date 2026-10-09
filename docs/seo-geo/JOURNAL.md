@@ -34,6 +34,39 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Landing catalogue All-in-One (#82) : test réel de l'envoi e-mail depuis la Preview, verrous remis · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `4a800f0` (ouverture), `971d0bc` (fermeture)
+
+**Quoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue ») exécutée : deux demandes réelles depuis la Preview de #82, sans CRM, puis `SERVICES_REELS_AUTORISES` remis à `false` et le déploiement de test supprimé.
+
+**Pourquoi** — Vérifier en réel que, sur la Preview, le prospect reçoit l'e-mail du lien et que l'équipe reçoit la notification, consultant compris, avant toute publication.
+
+**Fichiers** — `lib/catalogue/activation.ts` (interrupteur ouvert par `4a800f0`, refermé par `971d0bc`). Vercel : déploiement de test `sysnext-l4az19x4t` (`4a800f0`) supprimé après le test.
+
+**Effet attendu** — Aucun pour le visiteur : production inchangée, page en 404 et API fermée en production ; Preview de nouveau fermée (503).
+
+**Vérifié** —
+- Preview `4a800f0` construite (READY) ; formulaire rempli dans Chrome (session Vercel) le 09/10 :
+  - A — `TEST PR82 A - a ignorer`, France, sans consultant, prospect `sebastien.jourdan+test-pr82-a@sysnext.com` : écran « Votre catalogue est prêt », « Le lien de téléchargement vous a également été envoyé par e-mail » ;
+  - B — `TEST PR82 B - a ignorer`, Suisse, consultant coché, prospect `sebastien.jourdan+test-pr82-b@sysnext.com` : même écran, plus « Votre demande d'échange avec un consultant PackshotCreator a été prise en compte ».
+- Resend : exactement 4 envois de test (10:29:47 et 10:30:52 UTC), tous `delivered`, expéditeur `PackshotCreator <sebastien.jourdan@sysnext.com>` ; aucun envoi après la fermeture.
+- Boîte `sebastien.jourdan@sysnext.com` (lue par le connecteur Gmail) : les 4 messages en boîte de réception.
+  - E-mail prospect : objet « Votre catalogue Orbitvu All-in-One » ; lien `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf` ; +33 (0)1 47 42 66 66 et +41 44 580 43 84 ; « Demander une démo » → `/fr/contact`, « Calculer mon ROI » → `/fr/calculateur-roi` ; aucune pièce jointe (6,7 Ko).
+  - Notification A : objet `[Brochure] TEST PR82 A - a ignorer`, en-tête « Nouveau lead brochure », fiche complète, « Lien du catalogue envoyé au prospect : confirmé par Resend. »
+  - Notification B : objet `[Brochure] TEST PR82 B - a ignorer - DEMANDE À ÊTRE RECONTACTÉ`, en-tête « LE PROSPECT DEMANDE À ÊTRE RECONTACTÉ », « Demande de consultant : OUI ».
+- Liens : PDF 200, `application/pdf`, 15 380 434 octets ; `/fr/contact` et `/fr/calculateur-roi` 200 sur `sysnext.vercel.app` et ouverts dans Chrome sur `www` (titres attendus).
+- Après fermeture (`971d0bc`, READY, alias de branche) : `POST /api/catalogue` valide → 503 `catalogue_unavailable` ; ancien déploiement `sysnext-l4az19x4t` → 404 `DEPLOYMENT_NOT_FOUND`.
+- Aucun appel Pipedrive (code retiré), aucune affaire, aucun lead commercial ; production, Cloudflare, R2, formulaires Contact et ROI non touchés.
+
+**Supposé** — Que le premier clic sur « Recevoir le catalogue » de la demande A, bloqué côté navigateur par « Sélectionnez France ou Suisse » (pays saisi par l'outil sans événement de changement), n'ait rien envoyé : aucune requête n'atteint l'API quand la validation du navigateur échoue, et Resend ne montre aucun envoi supplémentaire.
+
+**Non regardé** — Bandeau « Aperçu de travail, parcours non activé… aucune demande enregistrée ni envoyée » (`CatalogueAllInOne.tsx`, `apercuInterne`) : affiché sur la Preview pendant le test alors que les envois étaient ouverts ; texte à revoir avant la publication. GA4 non testé (cookies non acceptés). Rendu des e-mails sur mobile et dans d'autres messageries que Gmail.
+
+**Suite** — Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production, bandeau d'aperçu, GO de publication et de fusion de Laurent (D42).
+
+---
+
 ## 2026-10-09 · Landing catalogue All-in-One (#82) : Pipedrive retiré du parcours brochure, notification à Sébastien · Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : voir l'historique de #82 (09/10)
