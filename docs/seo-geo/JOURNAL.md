@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
+
+**Quoi** — Suppressions seules, sans texte nouveau, sous D50 (exception D13/D42 de Laurent du 09/10) :
+- ShotFlow FR (`comment-shotflow-ameliore-suivi-taches-en-temps-reel`) : déjà dans #121, « | -50% de délais » du `metaTitle` et « Réduisez vos délais de 50%, » de la description ; ajoutés : les puces « Les délais d'approbation ont été réduits de 50 %… » et « 40 % du temps de travail économisé… », et dans la FAQ les phrases chiffrées des questions 1 à 5 (étude 2024, 83 %, 47 % ; 3 à 4 semaines, 90 %, 200 déploiements ; enquête 2024, 28 %, Printemps 32 %, 4,2 à 7,8/10 ; 100 000 assets, 1,2 s, 200 utilisateurs, client mode 25 000 assets et 18 % ; 180 clients, 35 %, 15-22 %, 20-25 %, 60 %) et la phrase qui renvoyait à « ces KPIs ».
+- ShotFlow EN (`how-shotflow-improves-real-time-task-tracking`) : « Reduce your deadlines by 50%, improve collaboration, and reduce costs. » devient « Improve collaboration and reduce costs. » dans la description, donc dans `og:description` et les cartes du blog (seul accord grammatical : majuscule, virgule) ; « Approval times have been reduced by 50%, speeding up all production. » et « 40% of working time saved thanks to the automation of updates. » retirés ; mêmes suppressions que le FR dans la FAQ.
+- Oscaro FR : « , n°1 des pièces auto neuves et d'origine sur internet, » retiré du corps (déjà dans #121).
+- Photographie 3D, FR et EN : modifications de #121 retirées, fichiers rendus identiques à `main` (HOLD PACK-D9 intact).
+
+**HOLD — non supprimés, localisation** :
+- ShotFlow EN : intertitre H3 « 50% reduction in approval times » (section « ShotFlow: real-time visibility… ») ; section « Case study: a successful transformation » (acteur non nommé, « the results are impressive: », 4 puces 65 %, 50 %, 20 %, 98 %, citation d'un « creative director ») ; FAQ 5, témoignage final ; description, « Supporting testimonies and case studies ». Motif : suppression impossible sans réécriture (intertitre, liste introduite par une phrase) ou témoignage, hors du champ de D50.
+- ShotFlow FR : intertitre H3 « 50 % de réduction des délais d'approbation » ; étude de cas (« Après ShotFlow, les résultats sont impressionnants : », 4 puces, citation du directeur créatif) ; FAQ 5, témoignage final ; description, « Témoignages et études de cas à l'appui. ».
+- Oscaro FR : description, « le leader des pièces auto en ligne » (suppression impossible sans substituer un sujet) ; title et H1 (résultat client, lot C) ; corps : « plus de 4000 LEDs », « jusqu'à 120 kg », « plus de 7000 références », citation sur la baisse des retours et la hausse des ventes, non identifiés comme non sourcés à ce jour.
+
+**Fichiers** — `content/blog/fr/comment-shotflow-ameliore-suivi-taches-en-temps-reel.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `content/blog/fr/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg.json`, `docs/seo-geo/DECISIONS.md` (D50), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Moins d'affirmations chiffrées non sourcées exposées sur 3 articles, leurs cartes de blog et leurs données structurées. Aucun effet de position annoncé.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 486/486 ; `npx next build` vert (386 pages) ; CSS identique à `main`.
+- HTML prérendu contre `main` `0ca0ba4` (identifiant de build neutralisé, scripts retirés) : 363 pages identiques sur 374 ; 11 différentes : les 3 articles, `/fr/blog` et `/en/blog` (carte ShotFlow), 6 articles dont la carte « articles liés » affiche la description ShotFlow. Écarts limités aux suppressions listées.
+- JSON-LD : 374 pages, 0 bloc invalide ; 2 pages différentes (ShotFlow FR et EN), champs `Article.description` et réponses de `FAQPage` seulement ; FAQ visible égale à `FAQPage`.
+- Rendu local (`next start`, Chromium) des 3 articles et des 2 index, 1440 et 390 px : HTTP 200, un seul H1, 0 débordement, 0 erreur de page ; questions de FAQ ouvertes sans erreur.
+
+**Supposé** — Rien.
+**Non regardé** — Preview Vercel (SSO, inaccessible depuis cette session) ; `sysnext.vercel.app` (bloqué par le proxy de la session) ; `www` (R4).
+
+**Suite** — Contrôle Chrome de la Preview (D42, étape 4). Le passage de brouillon à prête pour revue déclenchera une demande de revue automatique `CODEOWNERS` : l'autorisation de Laurent du 09/10 ne vaut que pour #116 et #120. Fusion ensuite, sur le GO conditionnel de Laurent du 09/10. #119 reste en HOLD (D13).
+
+---
+
 ## 2026-10-09 · #113 — resynchronisation sur `main` (après #112), retrait D35, fusion ; consignation de la fusion de #112 · Claude de Laurent
 
 **Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #113 distinct et conditionnel) | **PR** : #113, branche `claude/focused-hypatia-ygys0g-alt-aria` | **Base** : `main` `67ec946` (fusion de #112)
@@ -263,6 +295,37 @@ Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, s
 **Non regardé** — `Service.url` des 8 hubs `/de-ch/branchen/*` (`/de-ch/industrie/<slug>`, 301) : laissé en l'état, le gabarit `industrie/[slug]` est touché par #104 et #107 (HOLD) et sert `/de-ch/branchen/mode` (gel Mode jusqu'au 26/11) ; `Service` n'ouvre aucun résultat enrichi. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). Test des résultats enrichis de Google : à faire sur la Preview ou après fusion. Aucun appel payant.
 
 **Suite** — Contrôle de la Preview de-ch (source JSON-LD de 2 fiches) ; fusion sur GO distinct de Laurent ; après fusion, test des résultats enrichis sur `/de-ch/fotostudio/alphashot-pro-g2` et lecture GSC à J+14/J+28. `Service.url` des `branchen` : après la sortie de HOLD de #104 et #107 et le 26/11.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel — suppressions factuelles minimales (ShotFlow, Oscaro, photographie 3D) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Suppressions seules, sans mot ajouté, dans 4 fichiers qu'aucune PR ouverte ne touche :
+- `/fr/blog/comment-shotflow-ameliore-suivi-taches-en-temps-reel` : « | -50% de délais » retiré du title (77 → 60 caractères) ; « Réduisez vos délais de 50%, » retiré de la description, majuscule reportée sur « Améliorez » ;
+- `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` : apposition « n°1 des pièces auto neuves et d’origine sur internet » retirée du corps ;
+- `/fr` et `/en/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : « brevetés » retiré de « Nos plateaux tournants brevetés » ; phrase « Nos solutions de photos de produits en 3D et nos logiciels dynamiques garantissent le flux de travail le plus rapide et le plus productif possible. » retirée.
+
+**Pourquoi** — Entrées 4 (risque élevé), 6 (risque élevé) et 2 (risque moyen) du backlog factuel du triage : affirmations sans source dans le dépôt. La mission autorise une suppression factuelle minimale dans un fichier qu'aucune PR ne possède, sans claim de remplacement.
+
+**Fichiers** — les 4 JSON ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Ces affirmations ne s'affichent plus : ni dans le résultat de recherche (ShotFlow), ni dans le corps des pages. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** — voir la PR : carte des fichiers des 20 PR ouvertes ; HTML prérendu comparé à `main` ; title, description, canonical, hreflang, robots, Open Graph et Twitter rendus ; CSS compilée comparée à `main`.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4).
+- Non traité, à arbitrer :
+  - la FAQ du même article ShotFlow, rendue aussi en `FAQPage` JSON-LD, porte une quinzaine de chiffres sans source (83 %, 47 %, 200 déploiements, 28 %, 100 000 assets, 180 clients…) et un client nommé (« Printemps ») ; idem pour l'intertitre « 50 % de réduction des délais d'approbation ». C'est un chantier éditorial, hors de toute suppression minimale ;
+  - description Oscaro, « le leader des pièces auto en ligne » : la retirer impose une reformulation (D13) ;
+  - page 2D : le JSON FR est touché par #70 et #119 ; le JSON EN, en `noindex` (D9), n'est pas traité seul pour ne pas faire diverger les deux versions ;
+  - description EN de l'article ShotFlow : fichier touché par #120.
+- Doublons entre PR ouvertes le 08/10 : #118 et #116 font la même correction (fil d'Ariane des 2 articles dédiés) ; #120 et #119 modifient les 2 mêmes titles EN.
+
+**Suite** — Validation ciblée de Sébastien (D42, arbitrage final 3 : un claim modifié), puis GO de fusion de Laurent ; après fusion, `smoke.mjs` et contrôle Chrome sur `www` des 4 pages.
 
 ---
 

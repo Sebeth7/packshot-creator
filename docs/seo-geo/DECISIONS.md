@@ -25,6 +25,21 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D50 · 2026-10-09 · Exception D13/D42 ciblée : suppressions d'affirmations chiffrées ou de superlatifs non sourcés dans ShotFlow FR, ShotFlow EN et Oscaro FR (PR #121)
+
+**Décidé par** : Laurent — mission « V8 — reprise immédiate Ubersuggest » du 09/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous (PR #121) ; épuisée par sa fusion. D13 et D42 restent inchangées pour tout le reste.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> J'autorise exceptionnellement les suppressions ciblées d'affirmations chiffrées ou de superlatifs NON SOURCÉS déjà identifiés concernant ShotFlow FR, ShotFlow EN et Oscaro FR, à condition de ne créer aucun nouveau claim, témoignage ou fait métier. Cette exception D13/D42 ne couvre aucune réécriture générale, aucun autre article et aucun contenu PACK-D9.
+
+**Le contexte** — #121 préparait le 08/10 des retraits sous réserve d'une validation ciblée de Sébastien (D42, arbitrage final 3). Une exception de même nature, limitée au retrait de « -50% delay » du `metaTitle` EN de ShotFlow, avait été décidée par Laurent le 09/10 pour #120 (JOURNAL du 09/10). La présente décision ne vaut pas validation de Sébastien.
+
+**Ce qu'elle interdit** — Toute réécriture au titre de cette exception (ajout, substitution ou reformulation au-delà de l'accord grammatical rendu nécessaire par une suppression) ; son application à un autre article ou aux articles PACK-D9 (photographie 2D, photographie 3D, photographie à 360 degrés) ; la création d'un claim, d'un témoignage ou d'un fait métier ; la présentation des contenus restants comme validés.
+
+---
+
 ## D49 · 2026-10-09 · Exception ponctuelle pour la PR #112 : publication sans attendre D15 ni l'information préalable de Sébastien prévues par D48
 
 **Décidé par** : Laurent — mission « V8 — finir Repair Factory #112 + #113 » du 09/10/2026
