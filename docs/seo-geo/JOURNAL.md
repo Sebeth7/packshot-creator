@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #112 — exception D49, intégration de `main` et fusion · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #112 conditionnel) | **PR** : #112, branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `330c022` (fusion de #120)
+
+**Quoi** — `main` `330c022` (#110, #116, #120) intégré par commit de fusion `b41d433` : conflits de `ETAT.md` et `JOURNAL.md` résolus par union. D49 inscrite dans `DECISIONS.md` : exception ponctuelle de Laurent pour #112 (D15 et information préalable de Sébastien non appliquées à cette seule PR). Ligne #112 d'`ETAT.md` mise à jour.
+
+**Pourquoi** — Décision expresse de Laurent du 09/10 (texte intégral en D49). Traçabilité des corrections de régime (a), qui remplace ici l'information préalable de Sébastien : M01, M02, M03 (3 ancres « studio photo automatisé » vers `/fr/studios-photo-automatises`), M30, M31, M32 (ancres horlogerie vers le hub horlogerie, dont 1 de-ch), liens externes (A05, AA5 a, A17, F-098, F-070). Liens de régime (b) publiés au titre de D49 : M04, M05 (Studios), M21, D-044 (hub vin).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` ; commit de fusion `b41d433`.
+
+**Effet attendu** — Aucun effet nouveau sur le site par ces commits. Diff de site de #112 identique à la tête `c4c20db` contrôlée (même `patch-id` avant et après l'intégration de `main`).
+
+**Vérifié** — `main` `330c022` ; fichiers de `main` depuis `06b18e2` : aucun fichier du site commun avec #112 ; D49 libre sur `main` ; CODEOWNERS : « la protection de branche n'exige pas de revue ».
+**Supposé** — La QA Chrome réelle de #113 (10/10) est reprise de la mission de Laurent ; elle n'a pas été refaite par cette session.
+**Non regardé** — `www` (R4).
+
+**Suite** — CI sur la nouvelle tête, puis fusion de #112 ; `STUDIOS_INTERNAL_LINKING_EVENT` = date de cette fusion, à consigner par #113 ; `smoke.mjs` sur `sysnext.vercel.app` après déploiement.
+
+---
+
 ## 2026-10-09 · D48 — inscription de CA10 (a) + (b) dans DECISIONS.md, par #112 · Claude de Laurent
 
 **Chantier** : mission de Laurent « V8 — exécution ciblée #112 » du 09/10 (GO_CODE limité à cette inscription ; GO_MERGE, GO_PUBLICATION, GO_CLOUDFLARE_DEPLOY = NO) | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
