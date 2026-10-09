@@ -34,27 +34,61 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-10-09 · #109 — resynchronisation sur `main` `f03f8ca` et finalisation (mission V8) · Claude de Laurent
+## 2026-10-09 · #109 — derniers engagements non démontrés retirés (gratuité, « 24h »), descriptions du blog alignées · Claude de Laurent
 
-**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées ») | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par le commit de fusion `04b7823` (JOURNAL et ETAT fusionnés par union ; aucun fichier du site en conflit)
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `a4ce4f9` intégrée par fusion. Une seconde session, distincte de celle qui a ouvert #109, a exécuté la même mission en parallèle ; sa fusion de `main` `f03f8ca` (`04b7823`) recouvrait celle de `d7d1811`, sans écart sur les fichiers du site.
 
-**Quoi** — Retrait des derniers engagements non démontrés hors des 19 fichiers de la seconde passe : « diagnostic gratuit » de `besoins-photographie-produit`, « Diagnostic gratuit et sans engagement » de `questionsCles` (FR, EN, de-ch), clés inutilisées `contact.trustBadge1` à `3` (« Réponse sous 24h », « 5000+ entreprises équipées », « Démo gratuite sans engagement ») ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
+**Quoi** — Complément de l'entrée suivante, hors des 19 fichiers de la seconde passe : « pour un diagnostic gratuit » retiré de `besoins-photographie-produit` ; « Diagnostic gratuit et sans engagement » retiré des deux descriptions de `questionsCles` (FR, EN, de-ch) ; clés inutilisées `contact.trustBadge1` (« Réponse sous 24h ») et `trustBadge3` (« Démo gratuite sans engagement ») supprimées ; `trustBadge2` (« 5000+ entreprises équipées », fait retenu le 08/10) conservée ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
 
-**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page FR sérialise tout `fr.json`, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »).
+**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page sérialise tout le fichier de messages de la langue, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »). Démo et diagnostic « gratuits » et « 24 h » avaient déjà été retirés des autres clés par la seconde passe du 08/10.
 
-**Faits métier appliqués, sans nouvelle question** — Sysnext fondée en 2001, marque PackshotCreator lancée en 2004 ; showroom de Beynost, 198 allée de la Tour (cité seulement sur la page contact, les mentions légales et le schema ; « près de Lyon » ailleurs, D1) ; Orbitvu depuis 2023 ; livraison et installation en supplément ; formations Essential et Master facturées séparément ; garantie standard d'un an, extension possible ; ROI de 6 à 12 mois, indicatif, sans garantie ; délai de livraison d'environ 12 jours (mission #64 du 30/09, rappel du 08/10). D32 (environ 10 jours) vise l'offre de leasing B2B livrée et installée : périmètre distinct, non assimilé.
+**Faits métier** — Ceux consolidés dans l'entrée suivante ; aucun n'est repris ni modifié ici.
 
 **Fichiers** — `app/[lang]/besoins-photographie-produit/page.tsx`, `lib/blog.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespaces `questionsCles` et `contact` seulement), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
 
-**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, présents sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
+**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
 
-**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit », « Réponse sous 24h » ou « 5000+ entreprises » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
+**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit » ni de « Réponse sous 24h » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
 
-**Vérifié** — `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 25 fichiers, 495 tests verts ; `npx next build` (variables factices) vert, 386 pages ; serveur local `next start` : 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog et 11 articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « 5000+ », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI (`3 crédits offerts`).
+**Vérifié** — Après fusion de `a4ce4f9` : voir le message du commit de fusion (tsc, `verifier-json`, Vitest, `next build`, contrôle local `next start`). Avant fusion, sur `04b7823` + ce complément : `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 25 fichiers, 495 tests ; `npx next build` (variables factices) : 386 pages ; 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog, articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI.
 **Supposé** — Que le rendu de la Preview soit identique au rendu local ; la Preview est derrière le SSO Vercel.
 **Non regardé** — Preview et production (R4) ; restes déclarés le 08/10, inchangés : Q20/D45, D29, F5, Mode, `home.faq.q7` et `home.hero` (gel jusqu'au 28/10), `foundingDate` et Qualiopi de `organizationSchema()` (accueil, F5, Mode), prix D30 et D25 de `blogStudioIa`, nombres codés en dur de `studios-photo-automatises` (landing #108 en HOLD), `readingTime` de `lib/blog.ts`, `blogPrestataire`, `/industrie` « 2 à 4 semaines » (D10).
 
 **Suite** — #111 empilée sur #109 (fusionner #109 d'abord). Validation D42 : contrôle de la Preview par Laurent (étape 4), puis validation du copywriting FR par Sébastien (étape 5, D13). Aucun GO de fusion.
+
+---
+
+## 2026-10-09 · #109 — `main` `f03f8ca` intégré, « 5000+ » rétabli (erreur de la seconde passe), faits métier consolidés · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par fusion (`d7d1811`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seuls `JOURNAL.md` et `ETAT.md` en conflit, fusionnés par union (167 + 12 + 2 = 181 entrées) ; aucun fichier du site en conflit.
+- **Correction de l'entrée du 08/10 « seconde passe »** : le retrait de « 5000+ » était une erreur. Valeurs de `main` rétablies à l'identique : `contact.trustStat2Value` et `trustStat2Label` (FR « 5000+ » / « entreprises équipées », EN « 5000+ » / « companies equipped », de-ch « 5'000+ » / « ausgerüstete Unternehmen ») ; `studiosHardware.meta.description` FR et de-ch : « 5 000+ entreprises équipées. » / « 5000+ ausgerüstete Unternehmen. » réinséré à sa place d'origine, sans « ROI moyen 9 mois » ni « Démo gratuite ». La meta EN ne le contenait pas. Les registres de la seconde passe (entrées 554 et 586, hors dépôt) sont à lire avec cette correction.
+
+**Pourquoi** — « 5_000_PLUS = fait métier Sébastien retenu » (Laurent, 08/10, 13:24 UTC). Le seul point ouvert sur ce chiffre était, au JOURNAL du 30/09 (#71), « l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget) » ; « plus de 500 entreprises » disparaît avec la réécriture de `blogBudget.intro.p2` par #109. Libellé : celui de `main` et de l'accueil, sans portée géographique ni rattachement à Orbitvu ajoutés.
+
+**Faits métier consolidés** (consignés une fois ; formulation et provenance) —
+- Sysnext 2001, lancement de PackshotCreator 2004, « PackshotCreator est une marque de Sysnext » : missions de Laurent du 30/09 et du 08/10 ; D33 (25/09, « date de création : 2001 »). `foundingDate` : « FOUNDINGDATE_PATCH = OUT_OF_SCOPE » (30/09), modèle d'entité non tranché.
+- Showroom « 198 allée de la Tour, 01700 Beynost », distinct du siège : « fait métier Laurent + Sébastien » (30/09), rappelé le 08/10. Même point que D1 (commune du showroom, Sébastien) : la commune change, la règle éditoriale de D1 (« près de Lyon » hors contact, schema, mentions légales) reste appliquée.
+- Orbitvu : distributeur officiel, jamais exclusif (D6) ; « depuis 2023 » (30/09, 08/10).
+- Livraison et installation facturées en supplément : D32 (25/09, offre de leasing B2B livrée et installée, France et Suisse), 30/09, 08/10.
+- Délai : D32 (25/09) « environ 10 jours » ; le 30/09, Laurent : « délai actuel ≈ 12 jours », « Le chiffre ancien « environ 10 jours » est dépassé par la confirmation du 30/09 », « OLD_D32 = environ 10 jours », « GOVERNANCE_AMENDMENT_REQUIRED = YES » ; le 08/10 : « environ 12 jours, indicatif, NON GARANTI ». Même offre et même point selon Laurent : 12 jours dans le contenu de #109 ; texte de D32 non amendé ; F5 gelée à 10 jours (D37) ; `shippingDetails` de D32 non implémenté.
+- Formation facturée séparément ; Essential 4 h à distance, Master 7 h en présentiel (01/10, #71 ; 08/10) ; Qualiopi : « ENTITÉ QUALIOPI = SYSNEXT » (08/10).
+- Garantie standard d'un an, extension possible, sans plafond publié (30/09, 08/10).
+- ROI « 6–12 mois usuel ; 12–18 mois pour très gros Alphastudio ; jamais comme garantie » (08/10).
+- Allemand : accompagnement commercial possible en Suisse, équipe ni bilingue ni native (D33 ; 30/09 ; 08/10) ; espagnol non parlé (D33).
+- 5 000+ : ci-dessus.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (8 lignes), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bandeau de `/contact` et meta de Studios (FR, de-ch) conformes au fait retenu. Aucun effet de position annoncé.
+
+**Vérifié** — `verifier-json` : 195 JSON valides ; `npx tsc --noEmit` vert ; Vitest 495/495 ; `npx next build` vert (386 pages) ; HTML prérendu : `/fr/contact`, `/en/contact`, `/de-ch/contact` affichent « 5000+ » / « 5'000+ » et leur libellé ; `<meta name="description">` de `/fr` et `/de-ch/studios-photo-automatises` contient la mention rétablie, celle de `/en` est inchangée ; diff du commit limité aux 8 lignes de `messages`, les autres corrections de #109 sont inchangées.
+**Supposé** — [Inférence] Le fait retenu le 08/10 répond au point ouvert le 30/09 (même chiffre, même libellé « entreprises »). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4). Portées divergentes du même chiffre hors #109 : accueil « en France et en Suisse » (gelé jusqu'au 28/10), `studiosHardware.socialProof.label` « en France et dans le monde » (clé non rendue), page Studios « Clients équipés » (`studios-photo-automatises/page.tsx`, hors des 19 fichiers).
+
+**Suite** — D42 étape 4 (Preview, Laurent) et étape 5 (Sébastien : copywriting FR client-facing, D13) ; fusion sur GO distinct de Laurent ; #111 réconciliée sur les mêmes valeurs (entrée suivante de sa branche).
 
 ---
 

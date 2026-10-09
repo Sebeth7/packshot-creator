@@ -556,10 +556,11 @@
     "faq2Answer": "Ja. PackshotCreator, offizieller Orbitvu-Distributor, stellt den technischen Support in Frankreich und in der Schweiz sicher.",
     "faq3Question": "Kann ich den Showroom besuchen?",
     "faq3Answer": "Ja, nach Vereinbarung. Kontaktieren Sie uns, um Ihren Besuch zu planen und unsere Studios zu testen.",
+    "trustBadge2": "5'000+ ausgerüstete Unternehmen",
     "trustStat1Value": "25 Jahre",
     "trustStat1Label": "Erfahrung in der Produktfotografie",
-    "trustStat2Value": "CH + FR",
-    "trustStat2Label": "offizieller Orbitvu-Distributor",
+    "trustStat2Value": "5'000+",
+    "trustStat2Label": "ausgerüstete Unternehmen",
     "trustStat3Value": "Beynost",
     "trustStat3Label": "Showroom, nach Vereinbarung",
     "requestTypeLabel": "Worum geht es bei Ihrer Anfrage?",
@@ -578,7 +579,7 @@
   "studiosHardware": {
     "meta": {
       "title": "Automatisiertes Fotostudio für E-Commerce — PackshotCreator",
-      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots. 20 Orbitvu-Systeme, 500+ Fotos/Tag. Offizieller Distributor Schweiz und Frankreich: Demo nach Vereinbarung.",
+      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots. 20 Orbitvu-Systeme, 500+ Fotos/Tag. 5000+ ausgerüstete Unternehmen. Offizieller Distributor Schweiz und Frankreich: Demo nach Vereinbarung.",
       "keywords": "automatisiertes Fotostudio, Orbitvu Schweiz, Produktfotosystem, automatische Produktfotografie, ROI Fotostudio, automatisierter Packshot"
     },
     "hero": {
