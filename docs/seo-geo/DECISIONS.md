@@ -25,6 +25,43 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D49 · 2026-10-09 · Exception ponctuelle pour la PR #112 : publication sans attendre D15 ni l'information préalable de Sébastien prévues par D48
+
+**Décidé par** : Laurent — mission « V8 — finir Repair Factory #112 + #113 » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #112 ; épuisée par sa fusion. D15 et D48 restent inchangées pour toutes les autres PR.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> J'autorise exceptionnellement la publication des quatre ajouts de liens CA10(b) M04, M05, M21 et D-044 sans attendre les cinq jours ouvrés de D15, les libellés restant strictement inchangés et les destinations ayant déjà été vérifiées.
+> Pour les corrections déterministes CA10(a), la traçabilité dans la PR et le JOURNAL est autorisée en remplacement de l'information préalable à Sébastien, sur cette PR uniquement.
+> Cette décision ne constitue ni validation tacite acquise ni validation de Sébastien. Elle ne modifie pas D15/D48 pour les autres PR.
+
+**Le contexte** — D48 (CA10) prévoit l'information de Sébastien pour les corrections de régime (a) et le délai de D15 pour les liens de régime (b). Au 09/10, Sébastien n'avait reçu aucune information sur #112 (aucun message dans le dépôt ni sur la PR) : le délai de D15 n'avait pas commencé. Liens concernés dans #112 : régime (a) M01, M02, M03, M30, M31, M32, l'ancre « photographie commerciale horlogère » du guide FR `comment-faire-focus-stacking-pour-photographier-bracelet` (audit E, sans numéro M) et les corrections de liens externes ; régime (b) M04, M05, M21 et D-044. Contrôles disponibles : QA locale sur build, 30 passages sur 30 (09/10) ; QA Chrome réelle de #113, 10/10, selon la mission de Laurent du 09/10.
+
+**Ce qu'elle interdit** — Appliquer cette exception à une autre PR ; présenter les quatre liens de régime (b) comme validés tacitement ou par Sébastien ; modifier le libellé ou la destination de ces liens au titre de cette exception.
+
+---
+
+## D48 · 2026-10-07 · CA10 : corriger un `href` existant (a) ou poser un lien sur un texte existant (b), deux circuits distincts
+
+**Décidé par** : Laurent — arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, rendu le 07/10/2026, hors dépôt), qui complète le régime (a) décidé le 03/10 ; inscription demandée par Laurent le 09/10/2026
+**Statut** : en vigueur depuis le 07/10/2026. Inscrite le 09/10/2026 par la PR #112, première PR qui l'applique, comme le prévoit A3.
+
+**La décision** — Deux régimes pour les liens posés dans un texte existant :
+
+| Régime | Portée | Circuit |
+|---|---|---|
+| (a) | Correction déterministe d'un `href` existant, **ancre inchangée** | Information de Sébastien |
+| (b) | Ajout d'un lien sur un texte existant, **sans modification d'un seul mot** | D15 : validation tacite après 5 jours ouvrés |
+
+Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisions restent séparées et appartiennent à Laurent (D12, D42 arbitrage final 3).
+
+**Le contexte** — Le programme directeur V4.3 (03/10) posait CA10 : le périmètre du droit de corriger un `href` dans la prose sans changer le texte, face à la pose de liens nouveaux. Le régime (a) est appliqué depuis la décision de Laurent du 03/10, citée par les entrées du JOURNAL des lots A02, A03 et A04b (03/10), sans avoir été inscrit ici. A3 a ajouté le régime (b) le 07/10 et prévu cette inscription. Lignes du dossier V2 visées : (a) M01, M02, M03, M20, M30, M31, M32 ; (b) M04, M05, M21, M39.
+
+**Ce qu'elle interdit** — Modifier l'ancre d'un lien au titre du régime (a) ; modifier un seul mot du texte au titre du régime (b) ; fusionner un lien du régime (b) avant l'échéance de D15 ; tenir l'information de Sébastien, ou l'échéance de D15, pour un GO de fusion ou de publication.
+
+---
+
 ## Note d'exécution · 2026-10-07 · État de mise en œuvre de D36, D44, D45, D46 et D47 après les fusions du 03/10 au 06/10 — pas une décision
 
 **Rédigée par** : Claude de Laurent, sur GO documentaire de Laurent du 07/10/2026 (« PR documentaire consolidée »)
