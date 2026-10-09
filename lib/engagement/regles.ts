@@ -22,8 +22,29 @@ export const PROFONDEUR_MINIMALE = 0.7;
  */
 export const REQUETE_DESKTOP = '(min-width: 1024px) and (hover: hover) and (pointer: fine)';
 
-/** Bande haute de la fenêtre où une sortie de souris vaut intention de sortie, en px. */
-export const BANDE_HAUTE_PX = 20;
+/**
+ * Pointeur capable de survol : condition pour écouter la souris. La largeur
+ * de 1 024 px est vérifiée au moment du geste, pas au chargement : une fenêtre
+ * élargie après coup (outils de développement refermés, zoom) reste couverte.
+ */
+export const REQUETE_POINTEUR = '(hover: hover) and (pointer: fine)';
+
+/**
+ * Sortie effective du document : bande haute où la position rapportée vaut
+ * sortie par le haut. Chrome rapporte selon le système une coordonnée
+ * extérieure (négative) ou la dernière position intérieure, qu'un geste
+ * rapide peut laisser à plusieurs dizaines de pixels du bord.
+ */
+export const BANDE_SORTIE_HAUT_PX = 80;
+
+/** Repli sans sortie effective : bande extrême du haut de la fenêtre, en px. */
+export const BANDE_REPLI_PX = 8;
+
+/** Repli : montée minimale, dans la fenêtre de trajectoire, pour atteindre la bande extrême. */
+export const MONTEE_REPLI_PX = 40;
+
+/** Durée sur laquelle la trajectoire de la souris est lue, en ms. */
+export const FENETRE_TRAJECTOIRE_MS = 600;
 
 /** Origine portée par le lien vers la landing catalogue (lien interne : aucun UTM). */
 export const ORIGINE_CATALOGUE = 'brochure_exit_sitewide';
@@ -124,22 +145,83 @@ export function pretePourSortie(e: EtatEligibilite): boolean {
   );
 }
 
-export type SortieSouris = {
-  /** Ordonnée de la souris à la sortie, en px depuis le haut de la fenêtre. */
+/** Position de la souris à un instant donné (ms, horloge de la page). */
+export type Point = { x: number; y: number; t: number };
+
+/**
+ * Pas de souris « montant » : vers le haut (ou immobile), avec au plus un
+ * léger écart latéral (tremblement de la main). Un balayage horizontal, par
+ * exemple dans l'en-tête, interrompt la montée.
+ */
+function pasMontant(a: Point, b: Point): boolean {
+  const dx = Math.abs(b.x - a.x);
+  const dy = b.y - a.y;
+  return dy <= 0 && dx <= 2 * -dy + 4;
+}
+
+/**
+ * Dernière montée continue de la souris, dans la fenêtre de trajectoire : du
+ * début de la suite ininterrompue de pas montants jusqu'au dernier point. Si
+ * le dernier pas ne monte pas, c'est ce pas qui est renvoyé (il ne vaut pas
+ * montée). Nul s'il y a moins de deux points récents.
+ */
+export function trajectoire(points: readonly Point[], maintenant: number): { dx: number; dy: number } | null {
+  const recents = points.filter((p) => maintenant - p.t <= FENETRE_TRAJECTOIRE_MS && p.t <= maintenant);
+  if (recents.length < 2) return null;
+  const fin = recents.length - 1;
+  let debut = fin;
+  while (debut > 0 && pasMontant(recents[debut - 1], recents[debut])) debut--;
+  if (debut === fin) debut = fin - 1;
+  return { dx: recents[fin].x - recents[debut].x, dy: recents[fin].y - recents[debut].y };
+}
+
+/** La souris remonte, et la montée l'emporte sur le déplacement latéral. */
+function monteeDominante(t: { dx: number; dy: number }): boolean {
+  return t.dy < 0 && -t.dy >= Math.abs(t.dx);
+}
+
+export type SortieDocument = {
+  /** Coordonnées rapportées par `mouseleave` / `mouseout` à la sortie du document. */
+  clientX: number;
   clientY: number;
-  /** Élément atteint par la souris ; nul quand elle quitte le document. */
-  relatedTarget: unknown;
-  /** Ordonnée du dernier mouvement connu, nulle si aucun mouvement n'a été vu. */
-  dernierY: number | null;
+  /** Dimensions de la fenêtre (zone visible), en px. */
+  largeur: number;
+  hauteur: number;
+  points: readonly Point[];
+  maintenant: number;
 };
 
 /**
- * Intention de sortie : la souris quitte le document par le haut de la
- * fenêtre, en remontant. Une sortie latérale ou par le bas n'en est pas une.
+ * Signal principal : la souris a quitté le document, par le haut. Une
+ * coordonnée négative vaut sortie par le haut. Sinon, la position rapportée
+ * doit être dans la bande haute, plus proche du bord haut que des côtés, et
+ * la trajectoire récente doit monter. Sorties latérales et basses écartées.
  */
-export function estIntentionDeSortie(s: SortieSouris): boolean {
-  if (s.relatedTarget) return false;
-  if (s.clientY > BANDE_HAUTE_PX) return false;
-  if (s.dernierY !== null && s.clientY > s.dernierY) return false;
-  return true;
+export function estSortieParLeHaut(s: SortieDocument): boolean {
+  const { clientX: x, clientY: y, largeur, hauteur } = s;
+  if (y < 0) return true;
+  if (x < 0 || x >= largeur || y >= hauteur) return false;
+  if (y > BANDE_SORTIE_HAUT_PX) return false;
+  if (Math.min(x, largeur - 1 - x) < y) return false;
+  const t = trajectoire(s.points, s.maintenant);
+  return t === null || monteeDominante(t);
+}
+
+export type ApprocheHaut = {
+  clientY: number;
+  /** Boutons de souris enfoncés (0 : aucun) : un glisser ou une sélection n'est pas une sortie. */
+  boutons: number;
+  points: readonly Point[];
+  maintenant: number;
+};
+
+/**
+ * Repli : la souris atteint la bande extrême du haut en remontant d'au moins
+ * 40 px, sans bouton enfoncé, sans avoir encore quitté le document. Être dans
+ * l'en-tête ou y cliquer ne suffit pas.
+ */
+export function estApprocheDuHaut(s: ApprocheHaut): boolean {
+  if (s.boutons !== 0 || s.clientY > BANDE_REPLI_PX) return false;
+  const t = trajectoire(s.points, s.maintenant);
+  return t !== null && monteeDominante(t) && -t.dy >= MONTEE_REPLI_PX;
 }

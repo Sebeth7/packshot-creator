@@ -7,6 +7,12 @@ import { test, expect, type BrowserContext, type Page } from '@playwright/test';
  * l'horloge de Playwright ; GA4 est remplacé par un relevé local des appels
  * `gtag` (aucun envoi réseau). Aucun formulaire, e-mail ni service tiers.
  *
+ * Souris : uniquement des mouvements réels injectés par le navigateur
+ * (`page.mouse`, événements `isTrusted`), jamais d'événement construit par
+ * `dispatchEvent`. Chromium émet alors lui-même `mouseout` et `mouseleave` à
+ * la sortie de la fenêtre. Ce n'est pas un geste humain vers les onglets :
+ * le contrôle dans Chrome réel reste à faire sur la Preview.
+ *
  * Cible : un build de production local (`next start`) ou une Preview ; jamais
  * la production, où la pop-in n'est pas montée sans GO de publication.
  */
@@ -49,20 +55,25 @@ async function ouvrir(page: Page, chemin = PAGE_ELIGIBLE) {
 }
 
 async function lire(page: Page, part = 1) {
-  await page.evaluate((p) => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    window.scrollTo(0, Math.round(max * p));
-    window.dispatchEvent(new Event('scroll'));
+  const cible = await page.evaluate((p) => {
+    const y = Math.round((document.documentElement.scrollHeight - window.innerHeight) * p);
+    window.scrollTo(0, y);
+    return y;
   }, part);
+  await page.waitForFunction((y) => Math.abs(window.scrollY - y) < 2, cible);
+  await page.clock.runFor(100);
 }
 
-/** Souris qui remonte puis quitte la fenêtre par le haut. */
+/** Souris qui remonte du milieu de la page et quitte la fenêtre par le haut (signal principal). */
 async function sortirParLeHaut(page: Page) {
-  await page.mouse.move(700, 300);
-  await page.mouse.move(700, 6);
-  await page.evaluate(() => {
-    document.dispatchEvent(new MouseEvent('mouseout', { clientX: 700, clientY: -1, relatedTarget: null, bubbles: true }));
-  });
+  await page.mouse.move(700, 450);
+  await page.mouse.move(700, -12, { steps: 8 });
+}
+
+/** Souris qui remonte jusqu'aux 4 px du haut sans quitter la fenêtre (repli). */
+async function approcherDuHaut(page: Page) {
+  await page.mouse.move(700, 450);
+  await page.mouse.move(700, 4, { steps: 6 });
 }
 
 const fenetre = (page: Page) => page.locator('dialog[data-popin-engagement]');
@@ -72,6 +83,23 @@ const PAGE_SUIVANTE = '/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026';
 /** État de session de la pop-in, tel que stocké dans le sessionStorage de l'onglet. */
 async function etatSession(page: Page) {
   return page.evaluate(() => JSON.parse(sessionStorage.getItem('pkc_popin_engagement') || 'null'));
+}
+
+/**
+ * Messages `[popin]` du mode diagnostic (`?popin-debug=1`). Attendre l'un
+ * d'eux prouve que le surveillant a tourné sur la page : un test « aucune
+ * apparition » ne passe pas à vide avant l'hydratation.
+ */
+function journalPopin(page: Page) {
+  const messages: string[] = [];
+  page.on('console', (m) => {
+    if (m.text().startsWith('[popin]')) messages.push(m.text());
+  });
+  return messages;
+}
+
+async function attendreMessage(messages: string[], debut: string) {
+  await expect.poll(() => messages.some((m) => m.startsWith(debut)), { timeout: 15_000 }).toBe(true);
 }
 
 /** Conditions réunies sur la page courante (temps déjà cumulé ou non), puis sortie par le haut. */
@@ -139,16 +167,75 @@ test.describe('Pop-in d’engagement — desktop', () => {
     await expect(fenetre(page)).toHaveCount(0);
   });
 
-  test('aucune apparition sans intention de sortie, ni sur une sortie latérale', async ({ page }) => {
+  test('aucune apparition sans intention de sortie, ni sur une sortie latérale ou basse', async ({ page }) => {
     await ouvrir(page);
     await lire(page, 1);
     await page.clock.fastForward(61_000);
     await page.mouse.move(700, 400);
-    await page.mouse.move(10, 400);
-    await page.evaluate(() => {
-      document.dispatchEvent(new MouseEvent('mouseout', { clientX: -1, clientY: 400, relatedTarget: null, bubbles: true }));
-    });
+    await page.mouse.move(900, 500, { steps: 5 });
     await page.clock.fastForward(5_000);
+    await expect(fenetre(page)).toHaveCount(0);
+    // Sortie à gauche, à mi-hauteur puis près du haut, et à droite.
+    await page.mouse.move(300, 400);
+    await page.mouse.move(-25, 400, { steps: 8 });
+    await page.mouse.move(300, 50);
+    await page.mouse.move(-25, 50, { steps: 8 });
+    await page.mouse.move(1100, 400);
+    await page.mouse.move(1465, 400, { steps: 8 });
+    // Sortie par le bas.
+    await page.mouse.move(700, 450);
+    await page.mouse.move(700, 930, { steps: 8 });
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+    // La même session reste ouverte à une vraie sortie par le haut.
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toBeVisible();
+  });
+
+  test('repli : remontée jusqu’au bord haut sans quitter la fenêtre', async ({ page }) => {
+    await ouvrir(page);
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await approcherDuHaut(page);
+    await expect(fenetre(page)).toBeVisible();
+  });
+
+  test('en-tête : survol, déplacement horizontal et clic ne suffisent pas', async ({ page }) => {
+    await ouvrir(page);
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await page.mouse.move(700, 450);
+    await page.mouse.move(700, 32, { steps: 6 });
+    await page.mouse.move(300, 30, { steps: 6 });
+    await page.mouse.move(300, 5, { steps: 3 });
+    await page.mouse.move(900, 5, { steps: 6 });
+    const solutions = page.locator('header button', { hasText: 'Solutions' }).first();
+    await solutions.click();
+    await page.keyboard.press('Escape');
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
+
+  test('une seule ouverture : repli puis sortie effective', async ({ page }) => {
+    await releverGA(page);
+    await ouvrir(page);
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await approcherDuHaut(page);
+    await page.mouse.move(700, -20, { steps: 2 });
+    await expect(fenetre(page)).toHaveCount(1);
+    const vues = (await evenementsGA(page)).filter((e) => e[1] === 'exit_modal_view');
+    expect(vues).toHaveLength(1);
+  });
+
+  test('diagnostic ?popin-debug=1 : chaque signal de sortie et l’état des conditions en console', async ({ page }) => {
+    const messages = journalPopin(page);
+    await ouvrir(page, `${PAGE_ELIGIBLE}?popin-debug=1`);
+    await attendreMessage(messages, '[popin] actif');
+    await lire(page, 1);
+    await page.clock.fastForward(20_000);
+    await sortirParLeHaut(page);
+    await attendreMessage(messages, '[popin] sortie');
     await expect(fenetre(page)).toHaveCount(0);
   });
 
@@ -376,7 +463,9 @@ test.describe('Pop-in d’engagement — session (sessionStorage)', () => {
   });
 
   test('fermée par X : après rechargement, 70 % et sortie, aucune nouvelle apparition', async ({ page }) => {
-    await ouvrir(page);
+    const messages = journalPopin(page);
+    await ouvrir(page, `${PAGE_ELIGIBLE}?popin-debug=1`);
+    await attendreMessage(messages, '[popin] actif');
     await reunirEtSortir(page);
     await expect(fenetre(page)).toBeVisible();
     await fenetre(page).getByRole('button', { name: 'Fermer' }).click();
@@ -384,34 +473,37 @@ test.describe('Pop-in d’engagement — session (sessionStorage)', () => {
     const etat = await etatSession(page);
     expect(Object.keys(etat).sort()).toEqual(['debut', 'etat']);
     expect(etat.etat).toBe('dismissed');
+    messages.length = 0;
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await attendreMessage(messages, '[popin] inactif : déjà affichée dans la session (dismissed)');
     await reunirEtSortir(page);
     await page.clock.fastForward(1_000);
     await expect(fenetre(page)).toHaveCount(0);
   });
 
   test('après un clic Démo : aucune nouvelle apparition dans la session', async ({ page }) => {
+    const messages = journalPopin(page);
     await ouvrir(page);
     await reunirEtSortir(page);
     await fenetre(page).getByRole('link', { name: 'Demander une démo' }).click();
     await expect(page).toHaveURL(/\/fr\/contact$/);
     expect((await etatSession(page)).etat).toBe('converted');
-    await page.goto(PAGE_ELIGIBLE);
-    await page.waitForLoadState('networkidle');
+    await page.goto(`${PAGE_ELIGIBLE}?popin-debug=1`);
+    await attendreMessage(messages, '[popin] inactif : déjà affichée dans la session (converted)');
     await reunirEtSortir(page);
     await page.clock.fastForward(1_000);
     await expect(fenetre(page)).toHaveCount(0);
   });
 
   test('après un clic Catalogue : aucune nouvelle apparition dans la session', async ({ page }) => {
+    const messages = journalPopin(page);
     await ouvrir(page);
     await reunirEtSortir(page);
     await fenetre(page).getByRole('link', { name: 'Recevoir le catalogue' }).click();
     await expect(page).toHaveURL(/origine=brochure_exit_sitewide$/);
     expect((await etatSession(page)).etat).toBe('converted');
-    await page.goto(PAGE_ELIGIBLE);
-    await page.waitForLoadState('networkidle');
+    await page.goto(`${PAGE_ELIGIBLE}?popin-debug=1`);
+    await attendreMessage(messages, '[popin] inactif : déjà affichée dans la session (converted)');
     await reunirEtSortir(page);
     await page.clock.fastForward(1_000);
     await expect(fenetre(page)).toHaveCount(0);

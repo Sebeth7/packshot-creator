@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #122 — intention de sortie fiabilisée (constat de Laurent en Chrome réel) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement, correction ciblée (mission de Laurent du 09/10, « #122 exit intent ne fonctionne pas en Chrome réel » ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b`, inchangé
+
+**Constat** — Laurent, sur la Preview, 60 s et 70 % réunis : la pop-in ne s'affiche pas quand la souris quitte la page par le haut. Les tests Playwright précédents construisaient l'événement de sortie par `dispatchEvent`, taillé pour la règle : ils ne prouvaient rien sur Chrome réel.
+
+**Diagnostic** —
+- Chromium 141 fenêtré (Linux X11, écran virtuel), pointeur système déplacé par XTest jusqu'à la barre d'onglets : l'ancienne version `be503f3` s'ouvre aussi (Chromium y rapporte une coordonnée extérieure, `y = -18`). Le défaut n'est pas reproduit dans cet environnement.
+- [Inférence] Causes couvertes par la correction, faute de reproduction (cela repose sur des schémas observés) :
+  - sortie rapportée à la dernière position intérieure, au-delà des 20 px de l'ancien seuil (comportement prêté à Chrome sous certains systèmes) ;
+  - condition desktop évaluée au chargement seulement : fenêtre étroite à l'ouverture (outils de développement, zoom, mise à l'échelle), aucun écouteur posé ;
+  - une fenêtre `[role="dialog"]` masquée, présente dans le DOM, bloquait la pop-in ;
+  - bord haut atteint sans quitter le document.
+
+**Quoi** — Détection de l'intention de sortie seulement ; design, copy, CTA, `sessionStorage`, 60 s et 70 % inchangés.
+- **Signal principal** : `mouseleave` de `document.documentElement` (et `mouseout` sans cible, équivalent), accepté si la sortie se fait par le haut. Accepté : coordonnée négative ; ou position rapportée dans les 80 px du haut, plus proche du bord haut que des côtés, avec une dernière montée continue. Écartés : côtés, bas, barre de défilement, descente.
+- **Repli** : la souris atteint les 8 px du haut au terme d'une montée continue d'au moins 40 px, sans bouton enfoncé, avant même de quitter le document.
+- **Trajectoire** : dernière suite de pas montants sur 600 ms ; un balayage horizontal (en-tête) l'interrompt ; tremblement latéral léger toléré.
+- **Une seule ouverture** : drapeau et retrait des écouteurs au premier déclenchement.
+- Écouteurs posés dès qu'un pointeur fin capable de survol est présent ; la largeur de 1 024 px est vérifiée au moment du geste. Mobile et tactile : toujours aucun écouteur.
+- Fenêtres bloquantes : seulement celles affichées (`dialog[open]`, `[role="dialog"]` ou `[aria-modal]` visibles, défilement bloqué).
+- **Diagnostic** : `?popin-debug=1` dans l'URL écrit en console l'état du surveillant au montage et chaque signal de sortie avec l'état des conditions. Rien n'est stocké ni envoyé.
+
+**Fichiers** — `lib/engagement/regles.ts`, `components/engagement/PopinEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Surveillant toujours dans le chunk partagé du layout : +6,9 Ko brut et +2,9 Ko gzip par page, FR, EN et de-ch comprises (contre +4,9 et +2,1 Ko ; écart dû aux messages de diagnostic). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. `CookieBanner.tsx`, `pr-checks.yml`, #82 et #117 non modifiés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages.
+- Vitest : 27 fichiers, 532 tests, dont 33 pour la pop-in : sortie haute à coordonnée extérieure, sortie à la dernière position intérieure (0, 30 et 80 px), sorties latérales et basses, barre de défilement, descente, repli, en-tête (horizontal, immobile, clic), petite remontée, trajectoire.
+- Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 38/38 puis 76/76 sur deux répétitions. Souris uniquement par `page.mouse` (événements `isTrusted` émis par Chromium), plus aucun `dispatchEvent`. Les tests « aucune apparition » attendent le message du surveillant, pour ne pas passer avant l'hydratation.
+- Specs de la CI et `youtube-consent` : 89/89.
+- **Chromium 141 fenêtré, pointeur système (XTest), build local de la nouvelle tête** : avant 60 s, rien ; 60 s et 30 % de lecture, rien ; sorties gauche, droite, gauche près du haut et basse, rien ; en-tête (montée sur « Solutions », balayage, deux clics), rien ; montée vers la barre d'onglets, ouverture (par le repli, à `y = 2`) ; X, fermée ; rechargement, 100 % et nouvelle sortie haute, rien (« déjà affichée dans la session (dismissed) »).
+**Supposé** — [Inférence] La correction couvre le défaut observé par Laurent ; non prouvé, faute de l'avoir reproduit. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; Chrome sous Windows et macOS ; plein écran (l'API Fullscreen ne s'est pas appliquée dans l'écran virtuel).
+
+**Suite** — Nouveau contrôle de Laurent sur la Preview, avec `?popin-debug=1` et la console ouverte en cas d'échec : le message indique la condition manquante. Fusion sur GO distinct.
+
+---
+
 ## 2026-10-09 · #122 — `main` `3c0909b` intégré, plafond de session réel (`sessionStorage`), temps cumulé sur le site · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « #122 — remise à niveau main + vrai cap session + finalisation technique » ; code sur #122 seulement ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b` intégré par fusion (`980781c`) ; conflits limités à `JOURNAL.md` et `ETAT.md`, résolus par union (187 entrées de `main` conservées) ; aucun conflit de code

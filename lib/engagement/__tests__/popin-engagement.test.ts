@@ -4,17 +4,23 @@
  */
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
-  BANDE_HAUTE_PX,
+  BANDE_REPLI_PX,
+  BANDE_SORTIE_HAUT_PX,
+  FENETRE_TRAJECTOIRE_MS,
+  MONTEE_REPLI_PX,
   ORIGINE_CATALOGUE,
   PROFONDEUR_MINIMALE,
   ROUTES_GELEES,
   TEMPS_MINIMAL_MS,
   URL_CATALOGUE,
-  estIntentionDeSortie,
+  estApprocheDuHaut,
+  estSortieParLeHaut,
   pretePourSortie,
   profondeurLecture,
   routeCouverte,
+  trajectoire,
   type EtatEligibilite,
+  type Point,
 } from '../regles';
 import { POPIN_PUBLICATION_AUTORISEE, STOCKAGE_SESSION_AUTORISE, popinServie } from '../activation';
 import { CLE_STOCKAGE, creerSession } from '../session';
@@ -65,23 +71,93 @@ describe('profondeur de lecture', () => {
   });
 });
 
-describe('intention de sortie', () => {
-  it('sortie du document par le haut, en remontant', () => {
-    expect(estIntentionDeSortie({ clientY: 0, relatedTarget: null, dernierY: 40 })).toBe(true);
-    expect(estIntentionDeSortie({ clientY: -3, relatedTarget: null, dernierY: null })).toBe(true);
+/** Trajectoire de souris : points espacés de 16 ms (une image), finissant à `t = 1000`. */
+function trace(...coords: [number, number][]): Point[] {
+  return coords.map(([x, y], i) => ({ x, y, t: 1000 - (coords.length - 1 - i) * 16 }));
+}
+
+const FENETRE = { largeur: 1440, hauteur: 900, maintenant: 1000 };
+const MONTEE = trace([700, 400], [700, 260], [700, 120], [700, 30]);
+
+describe('intention de sortie — signal principal (sortie du document)', () => {
+  it('coordonnée extérieure en haut (Chrome rapporte la position hors fenêtre)', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: -8, points: MONTEE })).toBe(true);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: -40, points: [] })).toBe(true);
   });
 
-  it('pas sur une sortie latérale ou basse', () => {
-    expect(estIntentionDeSortie({ clientY: 400, relatedTarget: null, dernierY: 400 })).toBe(false);
-    expect(estIntentionDeSortie({ clientY: BANDE_HAUTE_PX + 1, relatedTarget: null, dernierY: 60 })).toBe(false);
+  it('dernière position intérieure dans la bande haute, en remontant (Chrome rapporte la dernière position)', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 0, points: MONTEE })).toBe(true);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 30, points: MONTEE })).toBe(true);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: BANDE_SORTIE_HAUT_PX, points: MONTEE })).toBe(true);
   });
 
-  it('pas quand la souris passe sur un autre élément de la page', () => {
-    expect(estIntentionDeSortie({ clientY: 0, relatedTarget: {}, dernierY: 40 })).toBe(false);
+  it('sortie dans la bande haute sans mouvement récent connu : acceptée', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 12, points: [] })).toBe(true);
   });
 
-  it('pas quand la souris descend', () => {
-    expect(estIntentionDeSortie({ clientY: 10, relatedTarget: null, dernierY: 2 })).toBe(false);
+  it('pas de sortie latérale (coordonnée extérieure ou dernière position près d’un côté)', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: -20, clientY: 400, points: [] })).toBe(false);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 1440, clientY: 400, points: [] })).toBe(false);
+    const versLaGauche = trace([300, 52], [200, 50], [100, 48], [4, 45]);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 4, clientY: 45, points: versLaGauche })).toBe(false);
+  });
+
+  it('pas de sortie par le bas, ni sur la barre de défilement', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 930, points: [] })).toBe(false);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 899, points: [] })).toBe(false);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 1445, clientY: 300, points: [] })).toBe(false);
+  });
+
+  it('pas au-dessous de la bande haute, ni en descendant', () => {
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: BANDE_SORTIE_HAUT_PX + 1, points: MONTEE })).toBe(false);
+    const descente = trace([700, 5], [700, 20], [700, 40]);
+    expect(estSortieParLeHaut({ ...FENETRE, clientX: 700, clientY: 40, points: descente })).toBe(false);
+  });
+});
+
+describe('intention de sortie — repli (approche du haut)', () => {
+  it('remontée d’au moins 40 px jusqu’aux 8 px du haut, sans bouton enfoncé', () => {
+    const points = trace([700, 300], [700, 150], [700, 40], [700, 4]);
+    expect(estApprocheDuHaut({ clientY: 4, boutons: 0, points, maintenant: 1000 })).toBe(true);
+  });
+
+  it('pas dans l’en-tête : souris immobile ou qui y circule à l’horizontale', () => {
+    const horizontale = trace([300, 6], [500, 5], [700, 5], [900, 6]);
+    expect(estApprocheDuHaut({ clientY: 6, boutons: 0, points: horizontale, maintenant: 1000 })).toBe(false);
+    const immobile = trace([700, 5], [700, 5]);
+    expect(estApprocheDuHaut({ clientY: 5, boutons: 0, points: immobile, maintenant: 1000 })).toBe(false);
+  });
+
+  it('pas sur un clic dans l’en-tête, ni au-dessous de la bande extrême', () => {
+    const points = trace([700, 300], [700, 150], [700, 40], [700, 4]);
+    expect(estApprocheDuHaut({ clientY: 4, boutons: 1, points, maintenant: 1000 })).toBe(false);
+    const versLeMenu = trace([700, 300], [700, 150], [700, 32]);
+    expect(estApprocheDuHaut({ clientY: 32, boutons: 0, points: versLeMenu, maintenant: 1000 })).toBe(false);
+    expect(BANDE_REPLI_PX).toBe(8);
+  });
+
+  it('pas sur une petite remontée (moins de 40 px)', () => {
+    const points = trace([700, MONTEE_REPLI_PX - 1 + 4], [700, 20], [700, 4]);
+    expect(estApprocheDuHaut({ clientY: 4, boutons: 0, points, maintenant: 1000 })).toBe(false);
+  });
+});
+
+describe('trajectoire', () => {
+  it('montée vers l’en-tête puis balayage horizontal : seule la dernière montée compte', () => {
+    const points = trace([700, 450], [700, 240], [700, 32], [500, 31], [300, 30], [300, 18], [300, 5]);
+    expect(trajectoire(points, 1000)).toEqual({ dx: 0, dy: -25 });
+    expect(estApprocheDuHaut({ clientY: 5, boutons: 0, points, maintenant: 1000 })).toBe(false);
+  });
+
+  it('tremblement latéral léger : la montée continue', () => {
+    expect(trajectoire(trace([700, 300], [703, 200], [699, 100], [701, 4]), 1000)).toEqual({ dx: 1, dy: -296 });
+  });
+
+  it('depuis le début de la montée, points anciens ignorés', () => {
+    expect(trajectoire(trace([10, 500], [20, 100]), 1000)).toEqual({ dx: 10, dy: -400 });
+    const ancien = [{ x: 0, y: 800, t: 1000 - FENETRE_TRAJECTOIRE_MS - 1 }, { x: 0, y: 10, t: 1000 }];
+    expect(trajectoire(ancien, 1000)).toBeNull();
+    expect(trajectoire([], 1000)).toBeNull();
   });
 });
 
