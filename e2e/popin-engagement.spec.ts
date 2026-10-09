@@ -67,6 +67,20 @@ async function sortirParLeHaut(page: Page) {
 
 const fenetre = (page: Page) => page.locator('dialog[data-popin-engagement]');
 
+const PAGE_SUIVANTE = '/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026';
+
+/** État de session de la pop-in, tel que stocké dans le sessionStorage de l'onglet. */
+async function etatSession(page: Page) {
+  return page.evaluate(() => JSON.parse(sessionStorage.getItem('pkc_popin_engagement') || 'null'));
+}
+
+/** Conditions réunies sur la page courante (temps déjà cumulé ou non), puis sortie par le haut. */
+async function reunirEtSortir(page: Page, avance = 61_000) {
+  await lire(page, 1);
+  await page.clock.fastForward(avance);
+  await sortirParLeHaut(page);
+}
+
 test.describe('Pop-in d’engagement — desktop', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
 
@@ -276,6 +290,7 @@ test.describe('Pop-in d’engagement — routes et langues hors couverture', () 
     '/fr/packshot-e-commerce',
     '/fr/packshot-mode',
     '/en/studios-photo-automatises',
+    '/de-ch/ia-photo-produit',
   ]) {
     test(`aucune apparition sur ${chemin}`, async ({ page }) => {
       await ouvrir(page, chemin);
@@ -351,4 +366,130 @@ test.describe('Pop-in d’engagement — rendu', () => {
       await page.screenshot({ path: info.outputPath(`popin-${viewport.width}x${viewport.height}.png`) });
     });
   }
+});
+
+test.describe('Pop-in d’engagement — session (sessionStorage)', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+
+  test.beforeEach(async ({ context, baseURL }) => {
+    await choixCookiesFait(context, baseURL!);
+  });
+
+  test('fermée par X : après rechargement, 70 % et sortie, aucune nouvelle apparition', async ({ page }) => {
+    await ouvrir(page);
+    await reunirEtSortir(page);
+    await expect(fenetre(page)).toBeVisible();
+    await fenetre(page).getByRole('button', { name: 'Fermer' }).click();
+    await expect(fenetre(page)).toHaveCount(0);
+    const etat = await etatSession(page);
+    expect(Object.keys(etat).sort()).toEqual(['debut', 'etat']);
+    expect(etat.etat).toBe('dismissed');
+    await page.reload();
+    await page.waitForLoadState('networkidle');
+    await reunirEtSortir(page);
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
+
+  test('après un clic Démo : aucune nouvelle apparition dans la session', async ({ page }) => {
+    await ouvrir(page);
+    await reunirEtSortir(page);
+    await fenetre(page).getByRole('link', { name: 'Demander une démo' }).click();
+    await expect(page).toHaveURL(/\/fr\/contact$/);
+    expect((await etatSession(page)).etat).toBe('converted');
+    await page.goto(PAGE_ELIGIBLE);
+    await page.waitForLoadState('networkidle');
+    await reunirEtSortir(page);
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
+
+  test('après un clic Catalogue : aucune nouvelle apparition dans la session', async ({ page }) => {
+    await ouvrir(page);
+    await reunirEtSortir(page);
+    await fenetre(page).getByRole('link', { name: 'Recevoir le catalogue' }).click();
+    await expect(page).toHaveURL(/origine=brochure_exit_sitewide$/);
+    expect((await etatSession(page)).etat).toBe('converted');
+    await page.goto(PAGE_ELIGIBLE);
+    await page.waitForLoadState('networkidle');
+    await reunirEtSortir(page);
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
+
+  test('fermée par Échap : aucune nouvelle apparition après une navigation interne', async ({ page }) => {
+    await ouvrir(page);
+    await reunirEtSortir(page);
+    await expect(fenetre(page)).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(fenetre(page)).toHaveCount(0);
+    await page.locator(`main a[href="${PAGE_SUIVANTE}"]`).first().click();
+    await page.waitForURL(`**${PAGE_SUIVANTE}`);
+    await page.clock.runFor(500);
+    await reunirEtSortir(page);
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
+
+  test('60 s cumulées sur deux pages : 30 s sur A, puis B', async ({ page }) => {
+    await ouvrir(page);
+    await page.clock.fastForward(30_000);
+    await page.goto(PAGE_SUIVANTE);
+    await page.waitForLoadState('networkidle');
+    await lire(page, 0.8);
+    await page.clock.fastForward(20_000);
+    await sortirParLeHaut(page);
+    // 50 s cumulées : pas encore.
+    await expect(fenetre(page)).toHaveCount(0);
+    await page.clock.fastForward(11_000);
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toBeVisible();
+  });
+
+  test('le temps cumulé survit au rechargement de la page', async ({ page }) => {
+    await ouvrir(page);
+    await page.clock.fastForward(40_000);
+    await page.reload();
+    await page.waitForLoadState('networkidle');
+    await lire(page, 1);
+    await page.clock.fastForward(25_000);
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toBeVisible();
+  });
+
+  test('une nouvelle session repart de zéro', async ({ browser, baseURL }) => {
+    const contexte = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    await choixCookiesFait(contexte, baseURL!);
+    const page = await contexte.newPage();
+    await ouvrir(page);
+    await reunirEtSortir(page, 30_000);
+    await page.clock.fastForward(1_000);
+    await expect(fenetre(page)).toHaveCount(0);
+    await contexte.close();
+  });
+
+  test('70 % d’une page précédente ne comptent pas (navigation interne)', async ({ page }) => {
+    await ouvrir(page);
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await page.locator(`main a[href="${PAGE_SUIVANTE}"]`).first().click();
+    await page.waitForURL(`**${PAGE_SUIVANTE}`);
+    await page.clock.runFor(500);
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toHaveCount(0);
+    await lire(page, 0.75);
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toBeVisible();
+  });
+
+  test('70 % d’une page précédente ne comptent pas (chargement complet)', async ({ page }) => {
+    await ouvrir(page);
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await page.goto(PAGE_SUIVANTE);
+    await page.waitForLoadState('networkidle');
+    await page.clock.runFor(500);
+    await sortirParLeHaut(page);
+    await expect(fenetre(page)).toHaveCount(0);
+  });
 });

@@ -13,13 +13,14 @@
 export const POPIN_PUBLICATION_AUTORISEE = false;
 
 /**
- * Mémoire de session dans `sessionStorage` (heure d'arrivée, apparition déjà
- * faite). Faux : la qualification « vie privée » de ce stockage n'est pas
- * établie par la gouvernance au 09/10/2026 (point P4 ouvert). La pop-in garde
- * alors cet état en mémoire seulement : il survit aux navigations internes,
- * pas à un rechargement complet ni à un nouvel onglet.
+ * État de session dans `sessionStorage` (instant d'arrivée ; apparition faite,
+ * fermée ou convertie). Vrai sur décision de Laurent du 09/10/2026 : une
+ * seule apparition par session, rechargement compris, et 60 s cumulées sur le
+ * site. Usage : état fonctionnel de session seulement. Statut juridique
+ * « vie privée » NON ÉTABLI, à intégrer à P4 avant publication. Faux : repli
+ * sur la mémoire de la page (navigations internes seulement).
  */
-export const STOCKAGE_SESSION_AUTORISE = false;
+export const STOCKAGE_SESSION_AUTORISE = true;
 
 /** La pop-in est-elle montée dans cet environnement ? Évalué au rendu serveur. */
 export function popinServie(env: Record<string, string | undefined> = process.env): boolean {

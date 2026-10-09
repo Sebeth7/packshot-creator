@@ -7,6 +7,7 @@ import { ArrowRight, Download, MapPin, X } from 'lucide-react';
 import { NavLink } from '@/components/layout/NavLink';
 import { URL_CATALOGUE } from '@/lib/engagement/regles';
 import { signalerClic, signalerFermeture, signalerImpression, type ModeFermeture } from '@/lib/engagement/mesure';
+import { sessionPopin } from '@/lib/engagement/session';
 import { COPY } from './contenu';
 import { VISUEL } from './visuel';
 
@@ -28,6 +29,8 @@ export default function FenetreEngagement({ onFermee }: { onFermee: () => void }
     (mode: ModeFermeture | null, rendreFocus: boolean) => {
       if (terminee.current) return;
       terminee.current = true;
+      // Fermeture sans conversion, ou clic Démo / Catalogue : plus d'apparition dans la session.
+      sessionPopin().marquer(mode ? 'dismissed' : 'converted');
       if (mode) signalerFermeture(mode);
       const d = fenetre.current;
       if (d?.open) d.close();

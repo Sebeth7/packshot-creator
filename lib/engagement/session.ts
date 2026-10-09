@@ -1,71 +1,88 @@
 import { STOCKAGE_SESSION_AUTORISE } from './activation';
 
 /**
- * État de session de la pop-in : heure d'arrivée sur le site et apparition
- * déjà faite. En mémoire du module par défaut : il survit aux navigations
- * internes (le layout reste monté), pas à un rechargement complet. Recopié
- * dans `sessionStorage` seulement si `STOCKAGE_SESSION_AUTORISE` le permet.
+ * État de session de la pop-in, dans `sessionStorage` seulement : propre à
+ * l'onglet, conservé par les navigations internes et les rechargements,
+ * effacé à la fin de la session de navigation. Aucun cookie, aucun
+ * `localStorage`, aucun identifiant, aucune URL, aucun historique.
+ *
+ * Contenu, et rien d'autre : `{ "debut": <instant d'arrivée, ms>, "etat":
+ * null | "shown" | "dismissed" | "converted" }`.
+ *
+ * Statut « vie privée » de ce stockage : NON ÉTABLI juridiquement, à
+ * intégrer à P4 avant publication. Stockage indisponible ou interdit par
+ * `STOCKAGE_SESSION_AUTORISE` : repli sur la mémoire de la page.
  */
 
 export const CLE_STOCKAGE = 'pkc_popin_engagement';
 
-type EtatSession = { arriveeMs: number | null; affichee: boolean };
+/** Apparition faite, fermée sans conversion, ou suivie d'un clic Démo ou Catalogue. */
+export type EtatPopin = 'shown' | 'dismissed' | 'converted';
+
+const ETATS: readonly EtatPopin[] = ['shown', 'dismissed', 'converted'];
+
+type EtatSession = { debut: number | null; etat: EtatPopin | null };
 
 type Stockage = Pick<Storage, 'getItem' | 'setItem'>;
 
-export function creerSession(stockage: Stockage | null, autorise: boolean) {
-  const etat: EtatSession = { arriveeMs: null, affichee: false };
-  let lu = false;
+export function creerSession(stockage: Stockage | null) {
+  const memoire: EtatSession = { debut: null, etat: null };
 
-  function lire() {
-    if (lu) return;
-    lu = true;
-    if (!autorise || !stockage) return;
+  function lire(): EtatSession {
+    if (!stockage) return memoire;
     try {
       const brut = stockage.getItem(CLE_STOCKAGE);
-      if (!brut) return;
-      const v = JSON.parse(brut) as Partial<EtatSession>;
-      if (typeof v.arriveeMs === 'number') etat.arriveeMs = v.arriveeMs;
-      if (v.affichee === true) etat.affichee = true;
+      if (!brut) return memoire;
+      const v = JSON.parse(brut) as Partial<Record<keyof EtatSession, unknown>>;
+      return {
+        debut: typeof v.debut === 'number' && Number.isFinite(v.debut) ? v.debut : memoire.debut,
+        etat: ETATS.includes(v.etat as EtatPopin) ? (v.etat as EtatPopin) : memoire.etat,
+      };
     } catch {
-      // Stockage illisible ou indisponible : l'état reste en mémoire.
+      return memoire;
     }
   }
 
-  function ecrire() {
-    if (!autorise || !stockage) return;
+  function ecrire(e: EtatSession): void {
+    memoire.debut = e.debut;
+    memoire.etat = e.etat;
+    if (!stockage) return;
     try {
-      stockage.setItem(CLE_STOCKAGE, JSON.stringify(etat));
+      stockage.setItem(CLE_STOCKAGE, JSON.stringify({ debut: e.debut, etat: e.etat }));
     } catch {
-      // Navigation privée stricte, quota : l'état reste en mémoire.
+      // Navigation privée stricte, quota : l'état reste en mémoire de la page.
     }
   }
 
   return {
-    /** Note l'arrivée sur le site au premier appel ; renvoie l'heure retenue. */
-    arrivee(maintenant: number): number {
-      lire();
-      if (etat.arriveeMs === null) {
-        etat.arriveeMs = maintenant;
-        ecrire();
+    /**
+     * Instant d'arrivée sur le site dans cette session, noté au premier appel.
+     * Un instant futur (horloge du poste reculée) est ramené à maintenant.
+     */
+    debut(maintenant: number): number {
+      const e = lire();
+      if (e.debut === null || e.debut > maintenant) {
+        ecrire({ ...e, debut: maintenant });
+        return maintenant;
       }
-      return etat.arriveeMs;
+      return e.debut;
     },
+    etat(): EtatPopin | null {
+      return lire().etat;
+    },
+    /** Vrai dès qu'une apparition a eu lieu dans la session, quelle qu'en soit l'issue. */
     dejaAffichee(): boolean {
-      lire();
-      return etat.affichee;
+      return lire().etat !== null;
     },
-    marquerAffichee(): void {
-      lire();
-      etat.affichee = true;
-      ecrire();
+    marquer(etat: EtatPopin): void {
+      ecrire({ ...lire(), etat });
     },
   };
 }
 
 let session: ReturnType<typeof creerSession> | null = null;
 
-/** Session du navigateur courant, créée au premier appel côté client. */
+/** Session de l'onglet courant, créée au premier appel côté client. */
 export function sessionPopin() {
   if (!session) {
     let stockage: Stockage | null = null;
@@ -76,7 +93,7 @@ export function sessionPopin() {
         stockage = null;
       }
     }
-    session = creerSession(stockage, STOCKAGE_SESSION_AUTORISE);
+    session = creerSession(stockage);
   }
   return session;
 }

@@ -146,9 +146,9 @@ describe('lien catalogue', () => {
 });
 
 describe('interrupteurs', () => {
-  it('ni publication ni stockage de session sans GO', () => {
+  it('pas de publication sans GO ; état de session en sessionStorage (décision du 09/10)', () => {
     expect(POPIN_PUBLICATION_AUTORISEE).toBe(false);
-    expect(STOCKAGE_SESSION_AUTORISE).toBe(false);
+    expect(STOCKAGE_SESSION_AUTORISE).toBe(true);
   });
 
   it('absente de la production Vercel, présente sur Preview et en local', () => {
@@ -158,8 +158,9 @@ describe('interrupteurs', () => {
   });
 });
 
-describe('mémoire de session', () => {
-  function stockageFactice() {
+describe('état de session', () => {
+  /** sessionStorage factice : une instance = un onglet ; recréer la session = recharger la page. */
+  function onglet() {
     const m = new Map<string, string>();
     return {
       getItem: vi.fn((k: string) => m.get(k) ?? null),
@@ -168,29 +169,54 @@ describe('mémoire de session', () => {
     };
   }
 
-  it('stockage non autorisé : rien n’est lu ni écrit, l’état reste en mémoire', () => {
-    const s = stockageFactice();
-    const session = creerSession(s, false);
-    expect(session.arrivee(1000)).toBe(1000);
-    expect(session.arrivee(5000)).toBe(1000);
-    session.marquerAffichee();
-    expect(session.dejaAffichee()).toBe(true);
-    expect(s.getItem).not.toHaveBeenCalled();
-    expect(s.setItem).not.toHaveBeenCalled();
+  it('l’instant d’arrivée survit au rechargement : le temps se cumule entre pages', () => {
+    const s = onglet();
+    expect(creerSession(s).debut(1_000)).toBe(1_000);
+    // Page suivante ou rechargement, 30 s plus tard : même arrivée.
+    expect(creerSession(s).debut(31_000)).toBe(1_000);
+    expect(creerSession(s).debut(62_000)).toBe(1_000);
   });
 
-  it('stockage autorisé : arrivée et apparition relues dans la session', () => {
-    const s = stockageFactice();
-    const premiere = creerSession(s, true);
-    premiere.arrivee(1000);
-    premiere.marquerAffichee();
-    const suivante = creerSession(s, true);
-    expect(suivante.arrivee(9000)).toBe(1000);
-    expect(suivante.dejaAffichee()).toBe(true);
-    expect(JSON.parse(s.m.get(CLE_STOCKAGE)!)).toEqual({ arriveeMs: 1000, affichee: true });
+  it('une nouvelle session (autre onglet, session close) repart de zéro', () => {
+    creerSession(onglet()).debut(1_000);
+    const neuve = creerSession(onglet());
+    expect(neuve.debut(500_000)).toBe(500_000);
+    expect(neuve.dejaAffichee()).toBe(false);
   });
 
-  it('stockage illisible : aucune erreur, état en mémoire', () => {
+  it('apparition, fermeture ou conversion : plus d’apparition après rechargement', () => {
+    for (const etat of ['shown', 'dismissed', 'converted'] as const) {
+      const s = onglet();
+      creerSession(s).debut(1_000);
+      creerSession(s).marquer(etat);
+      const apres = creerSession(s);
+      expect(apres.dejaAffichee(), etat).toBe(true);
+      expect(apres.etat()).toBe(etat);
+    }
+  });
+
+  it('contenu stocké minimal : instant d’arrivée et état, rien d’autre', () => {
+    const s = onglet();
+    const session = creerSession(s);
+    session.debut(1_000);
+    session.marquer('dismissed');
+    expect([...s.m.keys()]).toEqual([CLE_STOCKAGE]);
+    expect(JSON.parse(s.m.get(CLE_STOCKAGE)!)).toEqual({ debut: 1_000, etat: 'dismissed' });
+  });
+
+  it('valeur stockée invalide ou instant futur : ignorés sans erreur', () => {
+    const s = onglet();
+    s.m.set(CLE_STOCKAGE, '{"debut":"hier","etat":"autre"}');
+    const session = creerSession(s);
+    expect(session.debut(5_000)).toBe(5_000);
+    expect(session.dejaAffichee()).toBe(false);
+    s.m.set(CLE_STOCKAGE, JSON.stringify({ debut: 99_000, etat: null }));
+    expect(creerSession(s).debut(10_000)).toBe(10_000);
+    s.m.set(CLE_STOCKAGE, 'pas du JSON');
+    expect(creerSession(s).dejaAffichee()).toBe(false);
+  });
+
+  it('sessionStorage indisponible : repli en mémoire de la page, sans erreur', () => {
     const casse = {
       getItem: () => {
         throw new Error('bloqué');
@@ -199,9 +225,14 @@ describe('mémoire de session', () => {
         throw new Error('bloqué');
       },
     };
-    const session = creerSession(casse, true);
-    expect(session.arrivee(42)).toBe(42);
-    expect(session.dejaAffichee()).toBe(false);
+    const session = creerSession(casse);
+    expect(session.debut(42)).toBe(42);
+    expect(session.debut(90)).toBe(42);
+    session.marquer('shown');
+    expect(session.dejaAffichee()).toBe(true);
+    const sansStockage = creerSession(null);
+    expect(sansStockage.debut(7)).toBe(7);
+    expect(sansStockage.dejaAffichee()).toBe(false);
   });
 });
 

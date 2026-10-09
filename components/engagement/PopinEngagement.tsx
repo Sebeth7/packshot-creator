@@ -20,6 +20,9 @@ const FenetreEngagement = lazy(chargerFenetre);
 /** Cookie posé par components/cookies/CookieBanner.tsx une fois le choix enregistré. */
 const COOKIE_CONSENTEMENT = /(?:^|;\s*)cookie-consent=/;
 
+/** Délai avant la première mesure de lecture d'une page : le défilement de la page précédente ne compte pas. */
+const DELAI_PREMIERE_MESURE_MS = 250;
+
 /** Une autre fenêtre occupe l'écran : galerie, vidéo, modale machine ou méthodologie ROI. */
 function autreFenetreOuverte(): boolean {
   if (document.querySelector('dialog[open], [role="dialog"], [aria-modal="true"]')) return true;
@@ -31,7 +34,12 @@ function autreFenetreOuverte(): boolean {
  * Léger : ni texte ni image tant que la pop-in n'est pas éligible. La fenêtre
  * est préchargée quand 60 s et 70 % sont atteints, puis ouverte à
  * l'intention de sortie. Sur une route exclue ou gelée, sur mobile ou après
- * une première apparition, il ne pose aucun écouteur.
+ * une première apparition dans la session, il ne pose aucun écouteur.
+ *
+ * Temps : depuis l'arrivée sur le site dans la session (sessionStorage), donc
+ * cumulé entre pages et rechargements. Lecture : propre à la page courante,
+ * remise à zéro à chaque changement de page et mesurée seulement après la
+ * remise en haut de la nouvelle page.
  */
 export default function PopinEngagement() {
   const chemin = usePathname();
@@ -39,7 +47,7 @@ export default function PopinEngagement() {
 
   useEffect(() => {
     const session = sessionPopin();
-    const arrivee = session.arrivee(Date.now());
+    const arrivee = session.debut(Date.now());
     if (!chemin || !routeCouverte(chemin) || session.dejaAffichee()) return;
     const desktop = window.matchMedia(REQUETE_DESKTOP);
     if (!desktop.matches) return;
@@ -48,6 +56,7 @@ export default function PopinEngagement() {
     let dernierY: number | null = null;
     let bandeauRouvert = false;
     let prechargee = false;
+    let mesurable = false;
 
     const etat = (): EtatEligibilite => ({
       desktop: desktop.matches,
@@ -68,6 +77,7 @@ export default function PopinEngagement() {
     };
 
     const mesurer = () => {
+      if (!mesurable) return;
       const p = profondeurLecture(window.scrollY, window.innerHeight, document.documentElement.scrollHeight);
       if (p > profondeurMax) profondeurMax = p;
       precharger();
@@ -80,7 +90,7 @@ export default function PopinEngagement() {
     const surSortie = (e: MouseEvent) => {
       if (!estIntentionDeSortie({ clientY: e.clientY, relatedTarget: e.relatedTarget, dernierY })) return;
       if (document.visibilityState !== 'visible' || !pretePourSortie(etat())) return;
-      session.marquerAffichee();
+      session.marquer('shown');
       nettoyer();
       setOuverte(true);
     };
@@ -98,8 +108,11 @@ export default function PopinEngagement() {
     document.addEventListener('mouseout', surSortie);
     window.addEventListener('open-cookie-banner', surBandeauRouvert);
     window.addEventListener('cookie-consent-update', surChoixCookies);
-    const minuterie = window.setTimeout(mesurer, Math.max(0, TEMPS_MINIMAL_MS - (Date.now() - arrivee)) + 50);
-    mesurer();
+    const premiereMesure = window.setTimeout(() => {
+      mesurable = true;
+      mesurer();
+    }, DELAI_PREMIERE_MESURE_MS);
+    const minuterie = window.setTimeout(mesurer, Math.max(DELAI_PREMIERE_MESURE_MS, TEMPS_MINIMAL_MS - (Date.now() - arrivee)) + 50);
 
     function nettoyer() {
       window.removeEventListener('scroll', mesurer);
@@ -108,6 +121,7 @@ export default function PopinEngagement() {
       document.removeEventListener('mouseout', surSortie);
       window.removeEventListener('open-cookie-banner', surBandeauRouvert);
       window.removeEventListener('cookie-consent-update', surChoixCookies);
+      window.clearTimeout(premiereMesure);
       window.clearTimeout(minuterie);
     }
     return nettoyer;

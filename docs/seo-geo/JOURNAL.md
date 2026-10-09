@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #122 — `main` `3c0909b` intégré, plafond de session réel (`sessionStorage`), temps cumulé sur le site · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « #122 — remise à niveau main + vrai cap session + finalisation technique » ; code sur #122 seulement ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b` intégré par fusion (`980781c`) ; conflits limités à `JOURNAL.md` et `ETAT.md`, résolus par union (187 entrées de `main` conservées) ; aucun conflit de code
+
+**Quoi** —
+- **Une apparition par session**, rechargement et navigation compris : état dans `sessionStorage` seulement, clé `pkc_popin_engagement`, contenu `{ "debut": <instant d'arrivée, ms>, "etat": null | "shown" | "dismissed" | "converted" }`. `shown` à l'apparition ; `dismissed` à la fermeture (X, Échap, fond) ; `converted` au clic Démo ou Catalogue. Tout état non nul empêche une nouvelle apparition.
+- **60 s sur le site** : écart entre maintenant et l'instant d'arrivée de la session (horodatage, aucun compteur actif) ; conservé par les navigations internes et les rechargements dans l'onglet ; nouvelle session ou nouvel onglet : zéro.
+- **70 % de lecture** : propres à la page courante, remis à zéro à chaque page ; première mesure 250 ms après l'affichage de la page, pour que le défilement de la page précédente ne compte pas.
+- `sessionStorage` indisponible (navigation privée stricte, quota) : repli sur la mémoire de la page, sans erreur.
+- Design, copy, exclusions, gels, CTA, mesure GA4 : inchangés.
+
+**Pourquoi** — Décision de Laurent du 09/10 : une seule apparition par session, fermeture, clic Démo et clic Catalogue compris ; 60 s minimum sur le site ; 70 % de la page courante ; intention de sortie ; conditions cumulatives.
+
+**Statut vie privée** — `SESSION_STORAGE_USED = functional session-only state`. `PRIVACY_LEGAL_STATUS = NON ÉTABLI`, à intégrer à P4 avant publication. Aucun cookie, aucun `localStorage`, aucun identifiant, aucune URL ni historique de navigation stockés.
+
+**Fichiers** — `lib/engagement/session.ts`, `lib/engagement/activation.ts` (`STOCKAGE_SESSION_AUTORISE = true`), `components/engagement/PopinEngagement.tsx`, `components/engagement/FenetreEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Inchangé dans sa nature : surveillant dans le chunk partagé du layout, +4,9 Ko brut et +2,1 Ko gzip par page, FR, EN et de-ch comprises (contre +4,4 et +1,9 Ko avant ; comparaison avec un build de `main` à code client identique). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. #117 toujours ouverte : `CookieBanner.tsx` et `pr-checks.yml` non modifiés ; le spec Playwright reste hors de la CI.
+
+**Origine** — `ORIGINE_EMITTED_BY_122 = YES` (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). `ORIGINE_CONSUMED_BY_82 = NO` : dépendance de #82, non modifiée.
+
+**Vérifié** — Gels relus sur `main` `3c0909b` (`R-UX-LONG.md` § 4 inchangé : accueil 28/10, F5 23/11, Mode et mode-textile 26/11) ; `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 523 tests, dont 24 pour la pop-in ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 34/34, dont 9 tests de session (fermeture puis rechargement, clic Démo, clic Catalogue, Échap puis navigation interne, 30 s sur A puis B, temps conservé au rechargement, nouvelle session à zéro, 70 % d'une page précédente ignorés en navigation interne et en chargement complet) ; specs de la CI et `youtube-consent` : 89/89. Contre-épreuve avec `STOCKAGE_SESSION_AUTORISE = false` : les 5 tests qui dépendent du stockage échouent, les 5 autres passent.
+**Supposé** — [Inférence] La Preview se comporte comme le build local ; elle est derrière le SSO Vercel. Cela repose sur des schémas observés.
+**Non regardé** — Preview et production (R4) ; Firefox et Safari (navigateurs absents du conteneur).
+
+**Suite** — Contrôle humain de la Preview par Laurent, rechargement compris (D42, étape 4) ; P4 avant publication ; validation D42 étape 5 ; publication après celle de la landing #82 ; GO de fusion distinct.
+
+---
+
 ## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
 
 **Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
