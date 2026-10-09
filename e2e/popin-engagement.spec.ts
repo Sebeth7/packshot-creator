@@ -235,8 +235,14 @@ test.describe('Pop-in d’engagement — desktop', () => {
     await lire(page, 1);
     await page.clock.fastForward(20_000);
     await sortirParLeHaut(page);
-    await attendreMessage(messages, '[popin] sortie');
+    await attendreMessage(messages, '[popin] sortie {');
     await expect(fenetre(page)).toHaveCount(0);
+    // Détail en texte JSON, lisible par les outils de lecture de console.
+    const ligne = messages.find((m) => m.startsWith('[popin] sortie {'))!;
+    const detail = JSON.parse(ligne.slice('[popin] sortie '.length));
+    expect(detail).toMatchObject({ pret: false, page: 'visible', desktop: true, lecture: 100, cookies: true, autreFenetre: false, dejaAffichee: false });
+    expect(detail.secondes).toBeGreaterThanOrEqual(20);
+    expect(detail.secondes).toBeLessThan(60);
   });
 
   test('fermeture par Échap : focus rendu, puis plus aucune apparition dans la session', async ({ page }) => {

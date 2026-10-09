@@ -62,7 +62,8 @@ function autreFenetreOuverte(): boolean {
  * remise en haut de la nouvelle page.
  *
  * Diagnostic : `?popin-debug=1` dans l'URL écrit dans la console chaque
- * signal de sortie et l'état des conditions. Rien n'est stocké ni envoyé.
+ * signal de sortie et l'état des conditions, en texte JSON lisible par les
+ * outils de lecture de console. Rien n'est stocké ni envoyé.
  */
 export default function PopinEngagement() {
   const chemin = usePathname();
@@ -119,17 +120,18 @@ export default function PopinEngagement() {
       const e0 = etat();
       const pret = document.visibilityState === 'visible' && pretePourSortie(e0);
       if (diagnostic) {
-        console.info('[popin]', signal, {
+        console.info(`[popin] ${signal} ${JSON.stringify({
           x: e.clientX,
           y: e.clientY,
           pret,
+          page: document.visibilityState,
           desktop: e0.desktop,
           secondes: Math.round(e0.ecouleMs / 1000),
           lecture: Math.round(e0.profondeurMax * 100),
           cookies: e0.bandeauCookiesFerme,
           autreFenetre: e0.autreFenetreOuverte,
           dejaAffichee: e0.dejaAffichee,
-        });
+        })}`);
       }
       if (!pret) return;
       declenchee = true;
@@ -158,7 +160,7 @@ export default function PopinEngagement() {
         maintenant: performance.now(),
       });
       if (sortie) tenter('sortie', e);
-      else if (diagnostic) console.info('[popin] sortie ignorée (côté, bas ou descente)', { x: e.clientX, y: e.clientY });
+      else if (diagnostic) console.info(`[popin] sortie ignorée (côté, bas ou descente) ${JSON.stringify({ x: e.clientX, y: e.clientY })}`);
     };
 
     const surBandeauRouvert = () => {

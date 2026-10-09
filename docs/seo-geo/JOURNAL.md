@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #122 — contrôle de Laurent en Chrome réel : ouverture confirmée ; diagnostic en texte JSON · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122, brouillon ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122 | **Base** : `main` `3c0909b`, inchangé
+
+**Contrôle de Laurent** — Chrome réel, Preview de `a214dc0`, `/fr/blog/guide-achat-studio-2026?popin-debug=1`, de 17:33 à 17:37 (heure du poste). Constats rapportés par Laurent :
+- **Onglet** : vierge, `{"debut":…,"etat":null}`, sans remise à zéro.
+- **Fenêtre** : `innerWidth` 1321, requête desktop complète vraie.
+- **Conditions** :
+  - environ 275 s sur le site ;
+  - lecture maximale 92 %, environ 87 % à la sortie ;
+  - cookie `cookie-consent` présent ;
+  - aucune autre fenêtre affichée.
+- **Événements reçus** :
+  - 4 `mouseleave` : 3 sorties par la droite vers le panneau Claude (x = 1322, 1335, 1323), ignorées comme sorties latérales ;
+  - 1 sortie par le haut (x = 1324, y = −6) ;
+  - aucun signal `approche` : la montée finale était en diagonale vers le coin haut droit.
+- **Résultat** : **pop-in ouverte** à la première vraie sortie par le haut ; `etat` passé à `shown` ; `<dialog open>` de 960 × 597.
+- **Bilan** : `CODE_BUG_CONFIRMED = NO`. Causes de variabilité relevées par Laurent : page masquée au départ (fenêtre Chrome réduite ou recouverte) ; sorties latérales vers le panneau Claude ; une seule apparition par onglet ; 60 s de session ; 70 % de la page courante.
+- Fermeture (X, Échap) et absence de réapparition après rechargement : non rapportées dans ce contrôle.
+
+**Quoi** — Mode `?popin-debug=1` seulement : le détail des lignes `[popin]` est écrit en texte JSON (au lieu d'un objet que les outils de lecture de console affichent « Object »), avec en plus la visibilité de la page (`page`). Comportement hors diagnostic inchangé.
+
+**Fichiers** — `components/engagement/PopinEngagement.tsx`, `e2e/popin-engagement.spec.ts`.
+
+**Protocole de test, à partir de ce contrôle** —
+- fenêtre Chrome au premier plan ;
+- sortie verticale vers la barre d'onglets, loin du panneau Claude ;
+- un nouvel onglet par essai (onglet saisi, pas dupliqué), ou effacement de `pkc_popin_engagement` dans le `sessionStorage` de l'onglet, sur accord, avant un nouvel essai. Un onglet où la pop-in est apparue reste consommé jusqu'à sa fermeture.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 532 tests ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; `e2e/popin-engagement.spec.ts` : 38/38, dont la lecture du JSON du diagnostic (`pret`, `page`, `desktop`, `secondes`, `lecture`, `cookies`, `autreFenetre`, `dejaAffichee`).
+**Supposé** — [Inférence] Les observations intermittentes antérieures relèvent des mêmes causes d'environnement ; non vérifiable, le `sessionStorage` des autres onglets n'étant pas accessible. Cela repose sur des schémas observés.
+**Non regardé** — Chrome sous macOS ; plein écran.
+
+**Suite** — Compléter le contrôle de la Preview : fermeture par X puis rechargement, puis Échap dans un nouvel onglet. Puis décisions HOLD (P4, D42 étape 5, publication après #82) ; fusion sur GO distinct.
+
+---
+
 ## 2026-10-09 · #122 — intention de sortie fiabilisée (constat de Laurent en Chrome réel) · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, correction ciblée (mission de Laurent du 09/10, « #122 exit intent ne fonctionne pas en Chrome réel » ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b`, inchangé
