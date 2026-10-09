@@ -25,6 +25,27 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D51 · 2026-10-09 · Exception ponctuelle D15/D42 pour la PR #109 : fusion et publication sans attendre la validation de Sébastien
+
+**Décidé par** : Laurent — mission « Clôture et publication #109 / fermeture #111 » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #109 ; épuisée par sa fusion. D15 et D42 restent inchangées pour tout le reste.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> Laurent accorde une EXCEPTION PONCTUELLE D15/D42 pour la seule PR #109, afin de ne pas prolonger l'attente de validation tacite de Sébastien pour les corrections factuelles et suppressions de promesses non étayées déjà documentées.
+> Cette exception :
+> * ne vaut pas validation de Sébastien ;
+> * ne crée aucun nouveau claim ;
+> * ne permet aucune réécriture supplémentaire ;
+> * ne s'étend pas à une autre PR ;
+> * ne modifie pas durablement D15 ou D42.
+
+**Le contexte** — Contrôle de la Preview de #109 par Laurent dans Chrome (D42, étape 4) : 7 groupes PASS sur la tête `81803ad`, transmis le 09/10. Validation de Sébastien (D42, étape 5) non reçue. Même mission : GO de fusion de #109, GO de publication par le déploiement Vercel déclenché par la fusion, GO de fermeture de #111 sans fusion (apport repris dans #109).
+
+**Ce qu'elle interdit** — Présenter les contenus de #109 comme validés par Sébastien ; appliquer cette exception à une autre PR, #111 comprise ; s'en prévaloir pour une réécriture, un nouveau claim, un prix, un témoignage ou un contenu marketing.
+
+---
+
 ## D50 · 2026-10-09 · Exception D13/D42 ciblée : suppressions d'affirmations chiffrées ou de superlatifs non sourcés dans ShotFlow FR, ShotFlow EN et Oscaro FR (PR #121)
 
 **Décidé par** : Laurent — mission « V8 — reprise immédiate Ubersuggest » du 09/10/2026

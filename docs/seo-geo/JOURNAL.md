@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
+
+**Quoi** — D51 inscrite dans `DECISIONS.md` (texte de Laurent reproduit sans modification). Aucun fichier du site modifié par ce commit : le code fusionné est celui de `81803ad`, contrôlé par Laurent. #109 passe de brouillon à prête et est fusionnée par commit de fusion ; #111 est fermée sans fusion, branche conservée.
+
+**Pourquoi** — QA Chrome de Laurent sur la Preview de `81803ad` : 7 groupes PASS, aucun défaut bloquant (D42, étape 4). Validation de Sébastien (étape 5) non reçue : remplacée pour cette seule PR par l'exception D51, qui ne vaut pas validation de Sébastien. #111 : fusion simulée de `9337135` sur `81803ad` sans effet sur les fichiers du site ; test `claims-roi-sav` repris (en-tête seul différent) ; ses deux entrées JOURNAL présentes mot pour mot ici (08/10, 09/10).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D51), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : déploiement de production (~3 minutes) ; adresse du showroom, conditions commerciales, délai, garantie, ROI et claims non sourcés corrigés sur les pages servies (voir les entrées du 08/10 et du 09/10).
+
+**Vérifié** — Tête de #109 `81803ad` identique à la tête de la QA Chrome ; CI 4/4 verte, Vercel « success », `mergeable_state` : clean ; `main` `f03f8ca` inchangé (09/10, 12:07 UTC).
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de production à faire par Laurent après déploiement.
+
+**Suite** — Après fusion : smoke `sysnext.vercel.app` et contrôle des correctifs servis ; SHA de fusion et résultats consignés dans le commentaire de clôture de #109, puis repris au JOURNAL par la prochaine PR documentaire ; contrôle `www` dans Chrome (Laurent) ; fermeture de #64 sur GO distinct ; #108 à resynchroniser (clés Studios).
+
+---
+
 ## 2026-10-09 · #109 — garde `claims-roi-sav` reprise de #111, entrées JOURNAL de #111 conservées ; #111 sans apport propre · Claude de Laurent
 
 **Chantier** : intégrité factuelle (mission V8 de Laurent du 09/10, « finalisation unique #109/#111 » ; cette session est seule à écrire sur #109 et #111) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `d98c151`
