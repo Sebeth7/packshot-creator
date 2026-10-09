@@ -284,24 +284,27 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
   });
 });
 
-describe('services réels : fermés par défaut', () => {
-  it('par défaut, la route est fermée : 503, aucun succès', async () => {
+describe('services réels : fermés sans configuration complète', () => {
+  it('services désactivés : la route est fermée, 503, aucun succès', async () => {
     const { g } = gestionnaire(SERVICES_DESACTIVES);
     const res = await g(requete(corps));
     expect(res.status).toBe(503);
     expect(await res.json()).toEqual({ ok: false, error: 'catalogue_unavailable' });
   });
 
-  it('des secrets présents en Preview ou en production n’activent aucun service', () => {
+  it('interrupteurs ouverts (GO du 09/10) : sans destinataire de notification ou sans secret, aucun service', () => {
     const secrets = {
       RESEND_API_KEY: 'cle',
       RESEND_FROM_EMAIL: 'catalogue@exemple.test',
       CATALOGUE_NOTIFICATION_EMAIL: 'equipe@exemple.test',
-      CATALOGUE_PDF_URL: PDF,
-      CATALOGUE_SIMULATION: '1',
     };
     for (const VERCEL_ENV of ['preview', 'production']) {
-      expect(servicesCatalogue({ ...secrets, VERCEL: '1', VERCEL_ENV })).toBe(SERVICES_DESACTIVES);
+      const env = { ...secrets, VERCEL: '1', VERCEL_ENV };
+      expect(servicesCatalogue({ ...env, CATALOGUE_NOTIFICATION_EMAIL: undefined })).toBe(SERVICES_DESACTIVES);
+      expect(servicesCatalogue({ ...env, RESEND_API_KEY: undefined })).toBe(SERVICES_DESACTIVES);
+      expect(servicesCatalogue({ ...env, RESEND_FROM_EMAIL: undefined })).toBe(SERVICES_DESACTIVES);
+      // Une simulation demandée sur Vercel n'est jamais accordée.
+      expect(servicesCatalogue({ ...env, CATALOGUE_SIMULATION: '1' }).mode).toBe('reel');
     }
     expect(servicesCatalogue({ RESEND_API_KEY: 'cle', RESEND_FROM_EMAIL: 'catalogue@exemple.test' })).toBe(SERVICES_DESACTIVES);
   });

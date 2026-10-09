@@ -546,7 +546,8 @@ test.describe('Landing catalogue All-in-One', () => {
       await expect(section.locator('[data-page-catalogue="K3"]')).toBeHidden();
       await expect(page.locator('[data-emplacement]')).toHaveCount(0);
       await expect(page.locator('main')).not.toContainText('en attente');
-      await expect(page.getByText(/téléchargement du\s+PDF non activé/)).toBeVisible();
+      // Publication autorisée (09/10) : plus aucun bandeau d'aperçu disant que rien n'est envoyé.
+      await expect(page.getByText(/Aperçu de travail|non activé|ni envoyée/)).toHaveCount(0);
     });
 
     test('mobile : pages seules K3 et K2 côte à côte, aucune double page sauf la vignette K6', async ({ page }) => {

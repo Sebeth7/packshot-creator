@@ -209,22 +209,26 @@ describe('P — aucun CRM (décision de Sébastien du 09/10/2026)', () => {
 });
 
 describe('J — activation : rien de réel sans les interrupteurs du code', () => {
-  it('interrupteurs du code : PDF en ligne (06/10), services réels non autorisés, publication fermée', () => {
+  it('interrupteurs du code : PDF en ligne (06/10), services réels et publication ouverts (GO de Laurent du 09/10)', () => {
     expect(PDF_CATALOGUE.enLigne).toBe(true);
-    expect(SERVICES_REELS_AUTORISES).toBe(false);
-    expect(PUBLICATION_AUTORISEE).toBe(false);
+    expect(SERVICES_REELS_AUTORISES).toBe(true);
+    expect(PUBLICATION_AUTORISEE).toBe(true);
   });
 
-  it('PDF en ligne ne suffit pas : sans services réels, la route reste fermée (503), aucun envoi', async () => {
+  it('interrupteurs du code tels quels, production : services réels assemblés avec les trois variables, aucun envoi à la construction', () => {
     const resend = fauxResend();
     const opts = { clientCourriel: () => resend.client };
-    // Interrupteurs du code tels quels (PDF en ligne, services réels faux), tous les secrets présents.
-    for (const VERCEL_ENV of ['preview', 'production', undefined]) {
-      const env = { ...ENV, VERCEL: '1', ...(VERCEL_ENV ? { VERCEL_ENV } : {}) };
-      expect(servicesCatalogue(env, opts)).toBe(SERVICES_DESACTIVES);
-    }
+    expect(servicesCatalogue({ ...ENV, VERCEL: '1', VERCEL_ENV: 'production' }, opts).mode).toBe('reel');
+    expect(resend.envois).toHaveLength(0);
+  });
+
+  it('interrupteurs du code tels quels : sans CATALOGUE_NOTIFICATION_EMAIL en production, la route reste fermée (503), aucun envoi', async () => {
+    const resend = fauxResend();
+    const opts = { clientCourriel: () => resend.client };
+    const env = { RESEND_API_KEY: ENV.RESEND_API_KEY, RESEND_FROM_EMAIL: ENV.RESEND_FROM_EMAIL, VERCEL: '1', VERCEL_ENV: 'production' };
+    expect(servicesCatalogue(env, opts)).toBe(SERVICES_DESACTIVES);
     const g = creerGestionnaireCatalogue({
-      services: servicesCatalogue({ ...ENV, VERCEL: '1', VERCEL_ENV: 'preview' }, opts),
+      services: servicesCatalogue(env, opts),
       limiter: () => ({ ok: true, resetInSec: 0 }),
       journal: () => {},
     });
@@ -262,6 +266,29 @@ describe('J — activation : rien de réel sans les interrupteurs du code', () =
     expect(PDF_CATALOGUE.sha256).toBe('0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5');
     expect(PDF_CATALOGUE.octets).toBe(15_380_434);
     expect(PDF_CATALOGUE.pages).toBe(28);
+  });
+});
+
+describe('G — état de la route en lecture (GET) : contrôle d’une publication sans envoi', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
+  async function etat(env: Record<string, string>) {
+    vi.resetModules();
+    for (const [cle, valeur] of Object.entries(env)) vi.stubEnv(cle, valeur);
+    const route = await import('@/app/api/catalogue/route');
+    const res = route.GET();
+    expect(res.headers.get('cache-control')).toContain('no-store');
+    return res.json();
+  }
+
+  it('production avec les trois variables : disponible ; sans destinataire ou sans clé : indisponible', async () => {
+    const prod = { ...ENV, VERCEL: '1', VERCEL_ENV: 'production' };
+    expect(await etat(prod)).toEqual({ disponible: true });
+    expect(await etat({ ...prod, CATALOGUE_NOTIFICATION_EMAIL: '' })).toEqual({ disponible: false });
+    expect(await etat({ ...prod, RESEND_API_KEY: '' })).toEqual({ disponible: false });
   });
 });
 

@@ -1,25 +1,30 @@
 /**
  * Interrupteurs de la landing catalogue All-in-One.
  *
- * Tant que Laurent n'a pas donné le GO de publication, la page répond 404 sur
- * l'environnement de production Vercel : une fusion accidentelle ne la rend pas
- * publique. Elle reste servie en local et sur les Preview Vercel, protégées par
- * le SSO de l'équipe.
- *
  * Basculer un interrupteur est un changement de code, relu en PR : une variable
  * d'environnement ne suffit ni à publier la page, ni à déclencher un appel réel.
+ * Retour arrière : remettre l'interrupteur à `false` (page en 404 et route
+ * fermée en production), ou `git revert` du commit de fusion.
  */
-export const PUBLICATION_AUTORISEE = false;
+
+/**
+ * Page servie en production Vercel, donc sur `www`. VRAI depuis le GO de
+ * publication de Laurent du 09/10/2026 (PUBLICATION_AUTHORITY = LAURENT ;
+ * validation de la copy par Sébastien non reçue). Faux : 404 en production,
+ * page servie en local et sur les Preview seulement.
+ */
+export const PUBLICATION_AUTORISEE = true;
 
 /**
  * Appels réels à Resend (e-mail du lien, notification interne) depuis
  * `/api/catalogue` ; aucun CRM depuis le 09/10/2026 (décision de Sébastien).
- * Faux hors test réel autorisé (missions de Laurent des 06/10 : aucun e-mail ni
- * prospect réel sans GO). Même vrai, la route reste fermée sans PDF en ligne
- * (`lib/catalogue/pdf.ts`), sans secrets ni destinataire de notification, et en
- * production sans `PUBLICATION_AUTORISEE` (`lib/catalogue/services.ts`).
+ * VRAI depuis le GO de publication de Laurent du 09/10/2026, après le test réel
+ * depuis la Preview du même jour (deux demandes, quatre e-mails reçus). Même
+ * vrai, la route reste fermée (503) sans PDF en ligne (`lib/catalogue/pdf.ts`),
+ * sans `RESEND_API_KEY`, `RESEND_FROM_EMAIL` ou une adresse valide dans
+ * `CATALOGUE_NOTIFICATION_EMAIL` (`lib/catalogue/services.ts`).
  */
-export const SERVICES_REELS_AUTORISES = false;
+export const SERVICES_REELS_AUTORISES = true;
 
 type Env = Readonly<Record<string, string | undefined>>;
 

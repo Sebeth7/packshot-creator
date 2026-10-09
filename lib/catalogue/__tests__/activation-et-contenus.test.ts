@@ -1,5 +1,5 @@
 /**
- * Landing catalogue All-in-One : page non publiée en production avant GO,
+ * Landing catalogue All-in-One : page publiée en production (GO du 09/10/2026),
  * page FR seule pour le sélecteur de langue, e-mail et fiche de la demande (aucun CRM).
  */
 import { describe, it, expect } from 'vitest';
@@ -12,9 +12,9 @@ import type { DemandeCatalogue } from '@/lib/catalogue/schema';
 const CHEMIN = '/catalogue-orbitvu-all-in-one';
 
 describe('activation de la page', () => {
-  it('pas de publication en production tant que le GO n’est pas donné', () => {
-    expect(PUBLICATION_AUTORISEE).toBe(false);
-    expect(pageCatalogueServie({ VERCEL: '1', VERCEL_ENV: 'production' })).toBe(false);
+  it('publiée en production depuis le GO de Laurent du 09/10/2026', () => {
+    expect(PUBLICATION_AUTORISEE).toBe(true);
+    expect(pageCatalogueServie({ VERCEL: '1', VERCEL_ENV: 'production' })).toBe(true);
   });
 
   it('servie en local et sur les Preview Vercel', () => {
