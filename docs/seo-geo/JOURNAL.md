@@ -34,6 +34,70 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
+
+**Quoi** — D51 inscrite dans `DECISIONS.md` (texte de Laurent reproduit sans modification). Aucun fichier du site modifié par ce commit : le code fusionné est celui de `81803ad`, contrôlé par Laurent. #109 passe de brouillon à prête et est fusionnée par commit de fusion ; #111 est fermée sans fusion, branche conservée.
+
+**Pourquoi** — QA Chrome de Laurent sur la Preview de `81803ad` : 7 groupes PASS, aucun défaut bloquant (D42, étape 4). Validation de Sébastien (étape 5) non reçue : remplacée pour cette seule PR par l'exception D51, qui ne vaut pas validation de Sébastien. #111 : fusion simulée de `9337135` sur `81803ad` sans effet sur les fichiers du site ; test `claims-roi-sav` repris (en-tête seul différent) ; ses deux entrées JOURNAL présentes mot pour mot ici (08/10, 09/10).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D51), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : déploiement de production (~3 minutes) ; adresse du showroom, conditions commerciales, délai, garantie, ROI et claims non sourcés corrigés sur les pages servies (voir les entrées du 08/10 et du 09/10).
+
+**Vérifié** — Tête de #109 `81803ad` identique à la tête de la QA Chrome ; CI 4/4 verte, Vercel « success », `mergeable_state` : clean ; `main` `f03f8ca` inchangé (09/10, 12:07 UTC).
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de production à faire par Laurent après déploiement.
+
+**Suite** — Après fusion : smoke `sysnext.vercel.app` et contrôle des correctifs servis ; SHA de fusion et résultats consignés dans le commentaire de clôture de #109, puis repris au JOURNAL par la prochaine PR documentaire ; contrôle `www` dans Chrome (Laurent) ; fermeture de #64 sur GO distinct ; #108 à resynchroniser (clés Studios).
+
+---
+
+## 2026-10-09 · #109 — garde `claims-roi-sav` reprise de #111, entrées JOURNAL de #111 conservées ; #111 sans apport propre · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission V8 de Laurent du 09/10, « finalisation unique #109/#111 » ; cette session est seule à écrire sur #109 et #111) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `d98c151`
+
+**Quoi** — `lib/__tests__/claims-roi-sav.test.ts` repris tel quel de #111 (`9337135`) ; les deux entrées JOURNAL de #111 (08/10 et 09/10) recopiées sans modification, ci-dessous et à leur date, pour qu'elles survivent à une fermeture de #111 sans fusion.
+
+**Pourquoi** — Fusion simulée de #109 (`d98c151`) et de #111 (`9337135`) : les fichiers du site du résultat sont identiques à ceux de #109 ; seul ce test (et la documentation) distingue #111. Le reporter ici évite une seconde publication des mêmes modifications.
+
+**Fichiers** — `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. La CI garde contre le retour de « ROI dès le 4e mois » (guide budget, FR, EN, de-ch) et des engagements de service retirés du guide d'achat.
+
+**Vérifié** — voir le commit (tsc, Vitest, `next build`).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — #111 : fermeture sans fusion sur GO de Laurent, branche conservée.
+
+---
+
+## 2026-10-09 · #111 — `main` `f03f8ca` intégré, valeurs alignées sur #109, garde de test ajustée · Claude de Laurent
+
+**Chantier** : intégrité factuelle, complément de #109 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #111, brouillon, branche `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `f03f8ca` intégré par fusion (`4a69506`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seul `JOURNAL.md` en conflit, fusionné par union (167 + 12 + 1 = 180 entrées).
+- Constat : la seconde passe de #109 (`b9698c3`, 08/10) corrige les mêmes lignes plus largement (« seuil de rentabilité dès 500 photos par an », « Hotline française », « Assistance installation gratuite », contrat « interventions on-site illimitées »). Deux versions différentes des mêmes lignes auraient produit un conflit et laissé ces claims dans #111.
+- Alignement : `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) reprennent mot pour mot les valeurs de #109 ; dans le guide d'achat, le bloc « Avantages support FR » et « Contrat maintenance » est retiré exactement comme dans #109 (même hunk). Le titre « Support Technique France » et la mention « Distributeur officiel Orbitvu France/Suisse » restent ; la garantie relève de #109.
+- `lib/__tests__/claims-roi-sav.test.ts` : motifs étendus à la formulation anglaise de #109 (« between 6 and 12 », « guarantee ») ; garde ajoutée contre « on-site illimitées ».
+
+**Pourquoi** — Faits métier du 08/10 (ROI de 6 à 12 mois, jamais garanti ; aucun engagement de service établi) et consigne du 08/10 14:48 « si aucune source ou fait métier explicite ne l'établit : NE PAS L'INVENTER. NE PAS LE CONSERVER PAR DÉFAUT. » Les points « à trancher » de la ligne Academy d'`ETAT.md` (« suivi post-formation », « Formateurs experts 10+ ans », Marie D., Camille R., « plus de 500 entreprises ») sont retirés par #109 : aucune réponse de Sébastien n'est nécessaire pour un retrait.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue), `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Fusion de #109 et #111 sans conflit sur les fichiers du site, dans un ordre comme dans l'autre ; après fusion de #109, le diff de #111 se réduit au test et à la documentation. Aucun effet de position annoncé.
+
+**Vérifié** — voir la description de #111 (tests, build, simulation des deux ordres de fusion).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
 ## 2026-10-09 · Pop-in d'engagement — démo prioritaire, catalogue Orbitvu en repli (desktop, FR) · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
@@ -67,6 +131,64 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - **Visuel** : affiche du film de la gamme Orbitvu (`public/images/hero/orbitvu-gamme-2026-poster.avif`, 23 Ko), déjà publiée sur l'accueil ; droits d'usage du film « supposés » (JOURNAL du 04/10), non établis.
 
 **Suite** — Contrôle de la Preview par Laurent (D42, étape 4 ; 1440 et 1280 px) ; validation D42 étape 5 ; décisions P4 et publication ; fusion sur GO distinct.
+
+---
+
+## 2026-10-09 · #109 — derniers engagements non démontrés retirés (gratuité, « 24h »), descriptions du blog alignées · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `a4ce4f9` intégrée par fusion. Une seconde session, distincte de celle qui a ouvert #109, a exécuté la même mission en parallèle ; sa fusion de `main` `f03f8ca` (`04b7823`) recouvrait celle de `d7d1811`, sans écart sur les fichiers du site.
+
+**Quoi** — Complément de l'entrée suivante, hors des 19 fichiers de la seconde passe : « pour un diagnostic gratuit » retiré de `besoins-photographie-produit` ; « Diagnostic gratuit et sans engagement » retiré des deux descriptions de `questionsCles` (FR, EN, de-ch) ; clés inutilisées `contact.trustBadge1` (« Réponse sous 24h ») et `trustBadge3` (« Démo gratuite sans engagement ») supprimées ; `trustBadge2` (« 5000+ entreprises équipées », fait retenu le 08/10) conservée ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
+
+**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page sérialise tout le fichier de messages de la langue, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »). Démo et diagnostic « gratuits » et « 24 h » avaient déjà été retirés des autres clés par la seconde passe du 08/10.
+
+**Faits métier** — Ceux consolidés dans l'entrée suivante ; aucun n'est repris ni modifié ici.
+
+**Fichiers** — `app/[lang]/besoins-photographie-produit/page.tsx`, `lib/blog.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespaces `questionsCles` et `contact` seulement), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
+
+**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit » ni de « Réponse sous 24h » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
+
+**Vérifié** — Après fusion de `a4ce4f9` : voir le message du commit de fusion (tsc, `verifier-json`, Vitest, `next build`, contrôle local `next start`). Avant fusion, sur `04b7823` + ce complément : `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 25 fichiers, 495 tests ; `npx next build` (variables factices) : 386 pages ; 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog, articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI.
+**Supposé** — Que le rendu de la Preview soit identique au rendu local ; la Preview est derrière le SSO Vercel.
+**Non regardé** — Preview et production (R4) ; restes déclarés le 08/10, inchangés : Q20/D45, D29, F5, Mode, `home.faq.q7` et `home.hero` (gel jusqu'au 28/10), `foundingDate` et Qualiopi de `organizationSchema()` (accueil, F5, Mode), prix D30 et D25 de `blogStudioIa`, nombres codés en dur de `studios-photo-automatises` (landing #108 en HOLD), `readingTime` de `lib/blog.ts`, `blogPrestataire`, `/industrie` « 2 à 4 semaines » (D10).
+
+**Suite** — #111 empilée sur #109 (fusionner #109 d'abord). Validation D42 : contrôle de la Preview par Laurent (étape 4), puis validation du copywriting FR par Sébastien (étape 5, D13). Aucun GO de fusion.
+
+---
+
+## 2026-10-09 · #109 — `main` `f03f8ca` intégré, « 5000+ » rétabli (erreur de la seconde passe), faits métier consolidés · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par fusion (`d7d1811`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seuls `JOURNAL.md` et `ETAT.md` en conflit, fusionnés par union (167 + 12 + 2 = 181 entrées) ; aucun fichier du site en conflit.
+- **Correction de l'entrée du 08/10 « seconde passe »** : le retrait de « 5000+ » était une erreur. Valeurs de `main` rétablies à l'identique : `contact.trustStat2Value` et `trustStat2Label` (FR « 5000+ » / « entreprises équipées », EN « 5000+ » / « companies equipped », de-ch « 5'000+ » / « ausgerüstete Unternehmen ») ; `studiosHardware.meta.description` FR et de-ch : « 5 000+ entreprises équipées. » / « 5000+ ausgerüstete Unternehmen. » réinséré à sa place d'origine, sans « ROI moyen 9 mois » ni « Démo gratuite ». La meta EN ne le contenait pas. Les registres de la seconde passe (entrées 554 et 586, hors dépôt) sont à lire avec cette correction.
+
+**Pourquoi** — « 5_000_PLUS = fait métier Sébastien retenu » (Laurent, 08/10, 13:24 UTC). Le seul point ouvert sur ce chiffre était, au JOURNAL du 30/09 (#71), « l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget) » ; « plus de 500 entreprises » disparaît avec la réécriture de `blogBudget.intro.p2` par #109. Libellé : celui de `main` et de l'accueil, sans portée géographique ni rattachement à Orbitvu ajoutés.
+
+**Faits métier consolidés** (consignés une fois ; formulation et provenance) —
+- Sysnext 2001, lancement de PackshotCreator 2004, « PackshotCreator est une marque de Sysnext » : missions de Laurent du 30/09 et du 08/10 ; D33 (25/09, « date de création : 2001 »). `foundingDate` : « FOUNDINGDATE_PATCH = OUT_OF_SCOPE » (30/09), modèle d'entité non tranché.
+- Showroom « 198 allée de la Tour, 01700 Beynost », distinct du siège : « fait métier Laurent + Sébastien » (30/09), rappelé le 08/10. Même point que D1 (commune du showroom, Sébastien) : la commune change, la règle éditoriale de D1 (« près de Lyon » hors contact, schema, mentions légales) reste appliquée.
+- Orbitvu : distributeur officiel, jamais exclusif (D6) ; « depuis 2023 » (30/09, 08/10).
+- Livraison et installation facturées en supplément : D32 (25/09, offre de leasing B2B livrée et installée, France et Suisse), 30/09, 08/10.
+- Délai : D32 (25/09) « environ 10 jours » ; le 30/09, Laurent : « délai actuel ≈ 12 jours », « Le chiffre ancien « environ 10 jours » est dépassé par la confirmation du 30/09 », « OLD_D32 = environ 10 jours », « GOVERNANCE_AMENDMENT_REQUIRED = YES » ; le 08/10 : « environ 12 jours, indicatif, NON GARANTI ». Même offre et même point selon Laurent : 12 jours dans le contenu de #109 ; texte de D32 non amendé ; F5 gelée à 10 jours (D37) ; `shippingDetails` de D32 non implémenté.
+- Formation facturée séparément ; Essential 4 h à distance, Master 7 h en présentiel (01/10, #71 ; 08/10) ; Qualiopi : « ENTITÉ QUALIOPI = SYSNEXT » (08/10).
+- Garantie standard d'un an, extension possible, sans plafond publié (30/09, 08/10).
+- ROI « 6–12 mois usuel ; 12–18 mois pour très gros Alphastudio ; jamais comme garantie » (08/10).
+- Allemand : accompagnement commercial possible en Suisse, équipe ni bilingue ni native (D33 ; 30/09 ; 08/10) ; espagnol non parlé (D33).
+- 5 000+ : ci-dessus.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (8 lignes), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bandeau de `/contact` et meta de Studios (FR, de-ch) conformes au fait retenu. Aucun effet de position annoncé.
+
+**Vérifié** — `verifier-json` : 195 JSON valides ; `npx tsc --noEmit` vert ; Vitest 495/495 ; `npx next build` vert (386 pages) ; HTML prérendu : `/fr/contact`, `/en/contact`, `/de-ch/contact` affichent « 5000+ » / « 5'000+ » et leur libellé ; `<meta name="description">` de `/fr` et `/de-ch/studios-photo-automatises` contient la mention rétablie, celle de `/en` est inchangée ; diff du commit limité aux 8 lignes de `messages`, les autres corrections de #109 sont inchangées.
+**Supposé** — [Inférence] Le fait retenu le 08/10 répond au point ouvert le 30/09 (même chiffre, même libellé « entreprises »). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4). Portées divergentes du même chiffre hors #109 : accueil « en France et en Suisse » (gelé jusqu'au 28/10), `studiosHardware.socialProof.label` « en France et dans le monde » (clé non rendue), page Studios « Clients équipés » (`studios-photo-automatises/page.tsx`, hors des 19 fichiers).
+
+**Suite** — D42 étape 4 (Preview, Laurent) et étape 5 (Sébastien : copywriting FR client-facing, D13) ; fusion sur GO distinct de Laurent ; #111 réconciliée sur les mêmes valeurs (entrée suivante de sa branche).
 
 ---
 
@@ -386,6 +508,128 @@ Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, s
 **Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
 
 **Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : #111, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
+- `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
+- `guide-achat-studio-2026`, bloc « Support Technique France » : « Réponse < 2h ouvrées », « Intervention 24-48h (France métropolitaine) » et « Pièces détachées : Stock FR, livraison 24h » retirés ; « Interventions sur site : selon le contrat de maintenance » renvoie au contrat décrit juste en dessous.
+
+**Pourquoi** — Faits rappelés par Laurent le 08/10 : ROI de 6 à 12 mois en usage courant, jamais garanti ; aucun engagement de service (délai d'intervention, délai de réponse, pièces sous 24 h) établi. #109 retire ces mêmes engagements du comparatif Orbitvu et le ROI de 4 à 8 mois du guide d'achat, mais ces lignes restent sur `main` et sur la tête `0860462` de #109. `/en/blog/budget-studio-photo-automatise` : 363 impressions et 10 clics du 08/09 au 05/10 (`gsc-crawl-seo`, `gsc_metrics_page`, lecture seule).
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue, sérialisation d'origine, 6 lignes), `app/[lang]/blog/guide-achat-studio-2026/page.tsx` (3 lignes → 2), `lib/__tests__/claims-roi-sav.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Routes** — `blogBudget` n'est lu que par `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` : `/fr/…` et `/en/…` (200) ; `/de-ch/…` répond 404, les valeurs de-ch (en français) sont alignées par cohérence. Guide d'achat : `/fr/blog/guide-achat-studio-2026` et `/en/…` (même gabarit FR). Aucune page gelée (F5, Mode, accueil, #104, #105, #107, #108).
+
+**Effet attendu** — Aucun avant fusion. Après fusion : FAQ et `FAQPage` du guide budget alignés sur le fait ROI ; trois engagements de service non établis retirés du guide d'achat. Réduction d'un risque factuel ; aucun gain de trafic attendu.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; `npx vitest run` : 487/487 (25 fichiers), dont `claims-roi-sav.test.ts` 4/4. Les conditions du test échouent sur le contenu de `main` (6 textes ROI, 3 lignes de service).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
+- Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
+- Fusion simulée (`git merge-tree`) avec #109 (`0860462`), #110, #108 et #105 : fichiers du site sans conflit ; `JOURNAL.md` en conflit (entrées en tête, union) ; `ETAT.md` en conflit avec #105 seulement.
+
+**Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
+**Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
+
+**Suite** — D42 : contrôle de la Preview par Laurent (desktop, tablette, mobile), validation ciblée de Sébastien sur les 4 phrases modifiées ; fusion sur GO distinct, de préférence après #109 ou avec elle (mêmes pages, lignes disjointes).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, seconde passe sur les 19 fichiers · Claude de Laurent
+
+**Chantier** : intégrité factuelle, mission « dernier passage » de Laurent du 08/10 | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base de la passe** : tête `0860462` | **Commit** : le commit de cette entrée, « fix: remove residual unsupported factual claims »
+
+**Quoi** — Relecture complète des 19 fichiers déjà touchés par #109. Chaque claim est classé : fait vérifié, fait métier établi, Q20_HOLD, D29_HOLD, hors périmètre, retiré ou neutralisé. Un claim présent sur `main` n'est pas tenu pour valide pour cette seule raison. Registre de la passe : 832 entrées, dont 339 retraits et 393 neutralisations ; 7 faits vérifiés ; 28 faits métier établis ; 25 Q20_HOLD ; 5 D29_HOLD ; 35 hors périmètre conservés.
+- Guide d'achat : location, occasion (décote, garantie transférable), BPI, CII, aides régionales, durées et taux de leasing, remise comptant, négociation, mises à jour gratuites (2 à 3 par an), pièces 7 à 10 ans, compatibilité ascendante, support prioritaire 2 ans, démo de 2 à 4 h sur 5 à 10 produits, « standard de l'industrie », « tous IA Ready », compatibilité native BlendAI, « 90 % des cas », « 80 % », AR/VR, export 3D, « économies substantielles » : retirés ou neutralisés. Bloc Premium : 6 à 12 mois, puis « Pour les plus grands Alphastudio, le retour observé peut plutôt se situer entre 12 et 18 mois », sans garantie.
+- Article ROI : 80 % de temps réalloué, 500 → 5 000 produits sans embauche, mises à jour gratuites, « bijoux → meubles, même workflow », intégration native BlendAI, « Qualité +30 % », « productivité ×20 » : retirés. Le contenu « 12-18 mois » du chantier ROI reste en dehors de la passe.
+- Comparatif Orbitvu : réécrit sans comparaison non sourcée. Il ne publie aucune caractéristique de StyleShoots ni de Photomatics, ne contient ni tableau concurrent ni gamme historique PackshotStudio R3, PackshotMacro ou PackshotRotator (noms et fin « 2018 » sans source), et ne cite ni « experts Orbitvu » ni volumes, temps, mégapixels ou systèmes d'exploitation. « Marque lancée en 2004 par la société française Sysnext » et « depuis 2023 » sont conservés (faits établis le 08/10).
+- Articles BlendAI vs Flair, BlendAI vs Photoroom et guide IA photo produit : réécrits en guides de critères. Plus aucune donnée Flair, Photoroom ou Claid, plus aucun pourcentage de fidélité, temps automatique, batch chiffré, API ou intégration native, ni cas client chiffré. Le calcul de rentabilité du guide IA (BlendAI Pro 530 €/mois, ROI 463 %) et l'essai « 14 jours » sont retirés.
+- Page Suisse : distance « moins de 2 h de Genève » retirée (le showroom est désormais situé à Beynost, près de Lyon), démonstrations en visioconférence retirées, formation « sur site » remplacée par les formats établis (4 h à distance, 7 h en présentiel), « de référence », JSON-LD local « formations certifiées Qualiopi » → « Sysnext est certifiée Qualiopi ».
+- Articles JSON : « évolution e-commerce » FR et EN (gratuité, « jusqu'à 70 % », « +15-20 % de conversion », « -15 % de retours », mises à jour sans frais pendant 3 ans, superlatifs ; lien EN `updateyourpackshot.com` corrigé en `upgradeyourpackshot.com`, le programme de reprise étant vérifié sur `www.upgradeyourpackshot.com/fr/` le 08/10) ; comparatif de solutions FR et EN (huissier, « premier studio », « 142 secondes » contradictoire, superlatifs, FAQ Orbitvu « leader », 30 personnes en R&D, 180 salariés).
+- `messages` (FR, EN, de-ch) : 258 clés par langue, dans les seuls namespaces touchés par #109 (`contact`, `legal`, `besoinsPhoto`, `studiosHardware`, `blogBudget`, `blogComparatif`, `blogStudioIa`). Corrigés : « 24 h », « 48 h », « garantie », démo et diagnostic « gratuits », « 5000+ entreprises », ROI moyen de 9 mois remplacé par 6 à 12 mois sans garantie, « Hotline dédiée », formations « certifiées » ou « Qualiopi », « 0 €/an » de maintenance, consommables, « plus de 500 entreprises », données concurrentes de `blogComparatif` (cellules « Non vérifié », listes devenues « Points à vérifier auprès du fabricant »), étude « indépendante » remplacée par « réalisée en 2023 à la demande de PackshotCreator », marché et juridique de `blogStudioIa` (34 millions d'images, 8,9 milliards de dollars, FTC, Californie, FDA, ITAR, « zéro hallucination », « solution propriétaire », « Plus de 100 marques », 75 €/mois). de-ch : Qualiopi et OPCO présentés comme français (D38).
+- Qualiopi : 16 formulations corrigées vers « Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation ».
+
+**Pourquoi** — Mission du 08/10 : aucun claim conservé par défaut sans source ou fait métier explicite ; comparaisons concurrentes limitées aux faits sourcés ; Qualiopi rattaché à Sysnext ; ROI usuel de 6 à 12 mois, de 12 à 18 mois pour les plus grands Alphastudio, jamais garanti.
+
+**Fichiers** — `app/[lang]/blog/{guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, orbitvu-vs-concurrents, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `content/blog/{fr/evolution-e-commerce-packshot, en/e-commerce-packshot-evolution, fr/comparatif-de-solutions-de-photographie-automatisee, en/comparison-of-automated-photography-solutions}.json`, `messages/{fr,en,de-ch}.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Relus sans modification : `app/[lang]/contact/page.tsx`, `components/seo/SchemaOrg.tsx`, `data/navigation/pages-longues.ts`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : URL, canonical, `robots` et hreflang inchangés ; articles réécrits plus courts (temps de lecture affiché inchangé, aligné sur `lib/blog.ts`, hors périmètre) ; sommaires réalignés sur les titres. Réduction du risque factuel et juridique, pas de gain de trafic attendu.
+
+**Restes, non corrigés dans cette passe**
+- Q20_HOLD (cadences, dimensions, charges, versions) : 500+ photos/jour, 200 à 500 produits/jour, 30 s par packshot, 3 s, 90 s, 150 photos/heure, 16 et 20 systèmes, jusqu'à 100 cm (G2) contre 35 cm et 40 cm, 18 cm, 2,5 m, 3 m, 1 tonne, 1 000 kg, 50 et 150 kg, MultiStation, modules 360° et vidéo, « Station M ».
+- D29_HOLD : résultats de l'étude 2023 (Alphashot XL PRO V2 contre R3 Mark II) : 78 contre 33 contenus par jour, temps des quatre tests, 19 734 et 8 457 visuels par an, 50,6 jours.
+- D30 (aucun prix modifié) : `studiosHardware.faqStudios.q1` « 12 000 € à 150 000 € HT » et `blogBudget` « 56 450 à 150 000 € HT », alors que le catalogue indique 12 450 € et 130 000 € HT (E-Comm Studio+, confirmé par Sébastien le 04/09/2026) ; fourchette « Polyvalent » à confronter au catalogue ; « quelques milliers d'euros » (`besoinsPhoto`) ; prix Alphashot 360 dans `blogStudioIa`, à arbitrer entre D30 et D25.
+- Zones interdites : `organizationSchema()` (rendu sur l'accueil, F5 et Mode) porte encore « formations certifiées Qualiopi », `numberOfEmployees` 10 à 50 sans source et `foundingDate` 2004.
+- Hors des 19 fichiers : nombres 5 000+, 25 ans et 50+ codés en dur dans `studios-photo-automatises/page.tsx` ; « diagnostic gratuit » codé en dur dans `besoins-photographie-produit/page.tsx` ; descriptions de `lib/blog.ts` (« Comparatif complet… pricing ») ; `availability: InStock` du JSON-LD `Offer` (D30).
+- Clés non rendues, laissées en l'état : `studiosHardware.threePillars` (« Formation certifiée », « zéro hallucination, fidélité 100% »), `photoTypes` (« Réduit les retours de 25% »), `socialProof`, `roiCalculator`, `sectors`, `contact.trustBadge*`.
+- Dossier Ortery et interview Sysnext 2003 : FAQ « Ortery est-il toujours présent en France ? » conservée.
+
+**Vérifié**
+- Fresh-check : #109 ouverte, brouillon, tête `0860462` ; `main` `06b18e2`.
+- `messages/*.json` et articles JSON : sérialisation d'origine vérifiée octet pour octet avant écriture ; `verifier-json` : 195 fichiers valides.
+- `tsc` vert. Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- ESLint sur les fichiers modifiés : aucune règle nouvelle ; `react/no-unescaped-entities` déjà présent sur `main` dans ces fichiers (étape de lint non bloquante en CI).
+- Ancres : chaque entrée des sommaires réécrits pointe vers un `id` présent une seule fois.
+- `next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, 25 URL touchées par la passe (FR, EN, de-ch), Chromium 390, 768 et 1440 px : statut 200, aucun débordement horizontal, aucune réponse 4xx locale, aucune ancre de sommaire orpheline ; formulations retirées absentes, nouvelles formulations présentes. Erreurs console : CORS du CDN 360 d'Orbitvu sur les deux articles « évolution », contenu embarqué non modifié par la passe.
+
+**Supposé** — [Inférence] `updateyourpackshot.com` est une faute de frappe : le domaine ne répond pas via le proxy, `upgradeyourpackshot.com` répond en FR et en EN. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; contrôle humain D42 ; namespaces de `messages` non touchés par #109 (accueil compris) ; dates « Dernière mise à jour » des articles.
+
+**Suite** — Arbitrages demandés : prix (D30 contre catalogue, D25 dans `blogStudioIa`) ; Qualiopi de `organizationSchema()` après le 28/10 ; nombres codés en dur de Studios ; Q20 et D29. Contrôle de la Preview par Laurent, puis validation D42 ; fusion et publication sur GO distincts.
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, successeur de #64 recréé depuis `main` · Claude de Laurent
+
+**Chantier** : faits métier établis, D33, D25, comparatif Orbitvu | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base** : `main` `06b18e2` | **Commits** : `9d66eaa` (faits métier), `927e7cf` (D25), puis le commit de cette entrée (comparatif Orbitvu, registre des pages longues, documentation)
+
+**Quoi** — GO code de Laurent du 08/10. Patch recréé depuis `main` : la branche de #64 n'est ni reprise ni rebasée ; #64 reste ouverte, sa fermeture est un geste séparé, après préservation. Corrections classées A dans la revue READ ONLY du 08/10 :
+- showroom : 198 allée de la Tour, 01700 Beynost, distinct du siège : `contact.showroomAddress` et `legal.article2.showroomValue` (FR, EN, de-ch), `localBusinessSchema()` (adresse et coordonnées BAN 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés), carte de `/contact`, « showroom Paris » et « Paris 11e » du comparatif Orbitvu et du guide d'achat → « showroom près de Lyon » ;
+- conditions commerciales : livraison et installation facturées en supplément, formation facturée séparément (`studiosHardware.support.step2description`, `besoinsPhoto.solution.step3.description`, `blogBudget.included` en FR, EN, de-ch ; guide d'achat ; FAQ 2 des articles « évolution e-commerce » FR et EN) ;
+- délai : environ 12 jours, indicatif et sans garantie (`studiosHardware.faqStudios.q6.answer` en FR, EN, de-ch ; guide d'achat, FAQ et ligne « Délai de livraison ») ;
+- garantie : standard d'un an, extension possible, sans plafond (guide d'achat, FAQ et encadré ; « garanties 5-7 ans » retiré de `comment-calculer-le-roi-…`) ; « interventions technicien on-site » retiré de la couverture décrite dans la FAQ du guide ;
+- Orbitvu : distribué depuis 2023 (`blogBudget.intro.p2` en FR, EN, de-ch ; `distributeur-orbitvu-suisse` ; comparatif, ×2) ;
+- allemand : accompagnement commercial possible en allemand pour la Suisse (FAQ 1 de `distributeur-orbitvu-suisse`) ;
+- ROI du guide d'achat : « généralement 6 à 12 mois selon le volume, sans garantie » à la place de « 4 à 8 mois » (FAQ, bloc « Financement », liste finale), de « 5-6 mois » et « 1-2 mois » (délais de retour) ; « 12 à 18 mois pour les plus grands Alphastudio » ajouté au seul bloc Premium (360 ou XXL), qui annonçait « 2-4 mois » ;
+- comparatif Orbitvu : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, marque lancée en 2004 par la société française Sysnext » ; `foundingDate` non modifié ;
+- D25 : prix concurrents et prix comparés retirés de `blogComparatif` (13 clés) et `blogStudioIa` (5 clés) en FR, EN, de-ch, de `blendai-vs-flair-ai-…`, `blendai-vs-photoroom-…`, `ia-photo-produit-guide-2026` et du comparatif de solutions FR et EN (économie annuelle chiffrée) ;
+- comparatif Orbitvu : parts de marché, années de fondation des concurrents, prix, sous-sections « Prix compétitif » et « Rapport qualité/prix imbattable », témoignages Marie D., Thomas L., Camille R., engagements de service (hotline < 2 h, interventions 24–48 h, pièces 24 h), satisfaction 98 %, « ×20 », « ×3 », « 90 % », « 15 000 machines » et « 45 % », ROI « 4–8 mois vs 8–12 mois », superlatifs (« leader européen », « seul fabricant », « unique », « excellence », « premium » du support), verdict « l'emporte », comparaisons dépréciatives envers StyleShoots, lignes « IA Ready », « Support France », « Évolutivité » et « Garantie » des tableaux comparatifs, FAQ « Pourquoi Orbitvu est-il moins cher… » (FAQPage 6 → 5) : contenu final de #64 (`63e1e92`), sauf « (2004–2018) », conservé ;
+- `data/navigation/pages-longues.ts` : les six exceptions « PR #64 ouverte » de la famille `blog-dedie-avec-sommaire` renvoient à #109 (successeur de #64), mêmes pages, même gel ; aucun autre changement de registre.
+
+**Pourquoi** — Revue READ ONLY du 08/10 : les 28 clés de `messages` et les 6 pages de blog corrigées par #64 portaient encore sur `main` leur valeur du 01/10, et les formulations fautives étaient servies en production (`sysnext.vercel.app`, relevé du 08/10). Faits établis rappelés par Laurent le 08/10 : SHOWROOM, LIVRAISON, INSTALLATION, FORMATION, DÉLAI, GARANTIE, ALLEMAND, ORBITVU (officiel, jamais exclusif), RELATION_ORBITVU 2023, SYSNEXT 2001, PACKSHOTCREATOR_LAUNCH 2004, ROI (6 à 12 mois usuel, 12 à 18 mois pour les très gros Alphastudio, jamais présenté comme une garantie). D25, D33, D42.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx`, `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/{orbitvu-vs-concurrents, guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `data/navigation/pages-longues.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : canonical, `robots`, hreflang et URL inchangés ; `Store` du showroom à Beynost ; FAQPage du comparatif Orbitvu à 5 questions (6 sur `main`). Réduction d'un risque factuel et juridique, pas de gain de trafic attendu.
+
+**Correction de la revue du 08/10** — Le rapport READ ONLY ne relevait dans le guide d'achat que deux « ROI 4–8 mois ». Il y en a trois (FAQ, bloc « Financement », liste finale), plus « 2-4 mois » (bloc Premium), « 5-6 mois » et « 1-2 mois » (délais de retour), contraires au même fait métier : traités dans le même lot, extension signalée à Laurent.
+
+**Exclus** — `home.faq.q7` (accueil gelé jusqu'au 28/10 : M5, D44) ; `foundingDate` (2004, inchangé) ; `hasMap` et intitulés « Showroom Lyon » ; dimensions, charges, cadences et versions (D45, Q20 ouverte) ; redirections XL (D29) ; F5 (« environ 10 jours ») ; Mode ; `/industrie` (D10) ; Academy et Qualiopi au-delà de #71 ; « (2004–2018) » (lancement de 2004 établi) ; ROI « 12-18 mois » de `comment-calculer-le-roi-…` (chantier ROI distinct) et « Délai retour : 12-18 mois » du guide (moins de 500 produits par an) ; interview « Créée en 2003, la société Sysnext » ; « distributeur exclusif d'Ortery » ; prix BlendAI seuls de `ia-photo-produit-guide-2026` (530 €/mois dans un calcul de rentabilité, sans prix concurrent) ; dans le guide d'achat, « Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ».
+
+**#108 (HOLD)** — modifie les mêmes clés `studiosHardware.support.step2description` et `studiosHardware.faqStudios.q6.answer` (FR supprimées, EN et de-ch réécrites avec les mêmes faits). PR108_FUTURE_REBASE_REQUIRED = YES : à sa resynchronisation, garder sa version. #108 n'est pas modifiée. #104, #105, #107 : HOLD, non touchées.
+
+**Vérifié**
+- Préconditions, avant écriture : `main` = `06b18e2` ; #64 ouverte, brouillon, non fusionnée ; #104, #105, #107, #108 ouvertes en brouillon ; branche créée depuis `origin/main`.
+- `messages/*.json` : 27 clés par langue, éditées par chemin JSON avec la sérialisation d'origine ; 81 lignes modifiées au total, aucune autre (aucun reformatage). Articles JSON : sérialisation d'origine conservée. `verifier-json` : 195 fichiers valides.
+- `tsc` vert. `next build` vert, 386 pages : sur `927e7cf` avant le premier push, puis sur l'état final.
+- Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- `next start` local, 26 URL : formulations retirées absentes du HTML, nouvelles formulations présentes ; canonical, hreflang et `robots` identiques à la production ; `Store` : 198 allée de la Tour, 01700 Beynost, 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés ; `Organization` : `foundingDate` 2004 et siège 254 rue Vendôme inchangés ; nombre de questions FAQPage identique à la production, sauf le comparatif Orbitvu (5 au lieu de 6).
+- Rendu Chromium 390, 768 et 1440 px, 20 pages : 0 erreur, 0 réponse 4xx. Mesures identiques à un build local de `main` `06b18e2`, dont un débordement de 4 px préexistant sur `/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026` en 768 px.
+- `e2e/contact-form.spec.ts` (Desktop Chrome, Pixel 5 ; affichage seul, aucun envoi) : 21 réussis, 1 échec (« should expand FAQ accordion », Pixel 5), identique sur `main`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; Firefox, WebKit ; contrôle humain D42, étapes 4 et 5.
+
+**Suite** — Contrôle de la Preview de #109 par Laurent (desktop, tablette, mobile) ; validation selon D42 ; fusion uniquement sur GO distinct ; fermeture de #64 sur GO distinct, branche conservée (ses entrées JOURNAL du 30/09 et du 01/10 n'existent que sur elle) ; micro-patch `home.faq.q7` après le 28/10 ; mise à jour de D32 (« 10 jours »), D1 et `00-BRIEFING.md` (Saint-Bonnet) par leur auteur.
 
 ---
 
