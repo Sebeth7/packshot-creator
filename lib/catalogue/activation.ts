@@ -19,7 +19,7 @@ export const PUBLICATION_AUTORISEE = false;
  * (`lib/catalogue/pdf.ts`), sans secrets ni destinataire de notification, et en
  * production sans `PUBLICATION_AUTORISEE` (`lib/catalogue/services.ts`).
  */
-export const SERVICES_REELS_AUTORISES = true;
+export const SERVICES_REELS_AUTORISES = false;
 
 type Env = Readonly<Record<string, string | undefined>>;
 
