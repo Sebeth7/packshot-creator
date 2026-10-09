@@ -12,8 +12,11 @@
  *
  * EN LIGNE depuis le 06/10/2026 : envoyé sur R2 par Laurent, contrôlé depuis son
  * poste (HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 identique,
- * `X-Robots-Tag: noindex`), puis relu depuis la session de Claude (mêmes
- * résultats ; l'en-tête `X-Robots-Tag` y apparaît deux fois, origine non établie).
+ * en-tête d'indexation `noindex` présent), puis relu depuis la session de
+ * Claude (mêmes résultats ; l'en-tête `noindex` y apparaît deux fois, origine non
+ * établie). Relu de nouveau le 09/10 avant publication : identique. L'en-tête
+ * n'est pas nommé ici en toutes lettres : la garde D36
+ * (`lib/seo/__tests__/origine-noindex-d36.test.ts`) réserve ce nom à `next.config.ts`.
  * `enLigne` ne dit que la disponibilité du fichier : la route reste fermée tant
  * que `SERVICES_REELS_AUTORISES` est faux (`services.ts`).
  */

@@ -8,7 +8,9 @@ import {
   champsCatalogueSchema,
   requeteCatalogueSchema,
   MESSAGES_VALIDATION,
+  ORIGINES_CATALOGUE,
   PAYS_CATALOGUE,
+  origineCatalogue,
 } from '@/lib/catalogue/schema';
 
 const saisie = {
@@ -112,5 +114,45 @@ describe('schéma du formulaire catalogue', () => {
   it('la requête exige un requestId au format UUID', () => {
     expect(requeteCatalogueSchema.safeParse(saisie).success).toBe(false);
     expect(requeteCatalogueSchema.safeParse({ ...saisie, requestId: 'abc' }).success).toBe(false);
+  });
+});
+
+describe('origine de la demande (pop-in #122) : liste fermée, jamais recopiée telle quelle', () => {
+  const requeteValide = { ...saisie, requestId: '3f1d2c4b-5a6e-4f70-8a9b-0c1d2e3f4a5b' };
+
+  it('V1 : une seule origine attendue, brochure_exit_sitewide', () => {
+    expect(ORIGINES_CATALOGUE).toEqual(['brochure_exit_sitewide']);
+    expect(origineCatalogue('brochure_exit_sitewide')).toBe('brochure_exit_sitewide');
+  });
+
+  it('valeur attendue conservée par le schéma de la route', () => {
+    const r = requeteCatalogueSchema.parse({ ...requeteValide, origine: 'brochure_exit_sitewide' });
+    expect(r.origine).toBe('brochure_exit_sitewide');
+  });
+
+  it('origine absente : comportement inchangé, demande acceptée sans origine', () => {
+    const r = requeteCatalogueSchema.parse(requeteValide);
+    expect(r.origine).toBeUndefined();
+  });
+
+  it('valeur inconnue, variante de casse, UTM, balise ou valeur non textuelle : ignorée, la demande reste acceptée', () => {
+    for (const origine of [
+      'Brochure_Exit_Sitewide',
+      ' brochure_exit_sitewide',
+      'brochure_exit_sitewide&utm_source=x',
+      'utm_source=newsletter',
+      '<script>alert(1)</script>',
+      'x'.repeat(5000),
+      '',
+      null,
+      42,
+      ['brochure_exit_sitewide'],
+      { valeur: 'brochure_exit_sitewide' },
+    ]) {
+      const r = requeteCatalogueSchema.safeParse({ ...requeteValide, origine });
+      expect(r.success, JSON.stringify(origine).slice(0, 40)).toBe(true);
+      if (r.success) expect(r.data.origine).toBeUndefined();
+      expect(origineCatalogue(origine)).toBeUndefined();
+    }
   });
 });

@@ -89,6 +89,23 @@ describe('POST /api/catalogue — parcours accepté', () => {
     await g(requete({ ...corps, country: 'CH', attribution }));
     expect(d.notifier.mock.calls[0][0]).toMatchObject({ country: 'CH', attribution });
   });
+
+  it('origine attendue (pop-in #122) transmise aux services ; absente ou inconnue : aucune origine', async () => {
+    const d = doublures();
+    const { g } = gestionnaire(d.services);
+    await g(requete({ ...corps, origine: 'brochure_exit_sitewide' }));
+    expect(d.notifier.mock.calls[0][0].origine).toBe('brochure_exit_sitewide');
+    expect(d.envoyerLien.mock.calls[0][0].origine).toBe('brochure_exit_sitewide');
+
+    const sans = doublures();
+    await gestionnaire(sans.services).g(requete(corps));
+    expect(sans.notifier.mock.calls[0][0]).not.toHaveProperty('origine');
+
+    const inconnue = doublures();
+    const res = await gestionnaire(inconnue.services).g(requete({ ...corps, origine: 'utm_source=newsletter' }));
+    expect(res.status).toBe(200);
+    expect(inconnue.notifier.mock.calls[0][0]).not.toHaveProperty('origine');
+  });
 });
 
 describe('POST /api/catalogue — échecs dits tels quels', () => {

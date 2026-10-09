@@ -156,6 +156,34 @@ test.describe('Landing catalogue All-in-One', () => {
     expect(Object.keys(appels[0] as object)).not.toContain('marketingOptIn');
   });
 
+  test('origine de la pop-in (#122) : transmise si attendue, jamais une valeur inconnue ni un UTM', async ({ page }) => {
+    const appels = await simulerApi(page, 200, {
+      ok: true,
+      pdfUrl: PDF_SIMULE,
+      emailSent: true,
+      contactRequestAccepted: false,
+    });
+    for (const recherche of ['?origine=brochure_exit_sitewide', '?origine=utm_source%3Dnewsletter', '?utm_source=x', '']) {
+      await page.goto(`${URL_PAGE}${recherche}`);
+      await remplir(page);
+      await page.getByRole('button', { name: 'Recevoir le catalogue' }).click();
+      await expect(page.getByRole('heading', { name: 'Votre catalogue est prêt.' })).toBeVisible();
+    }
+    expect(appels).toHaveLength(4);
+    expect(appels[0]).toMatchObject({ origine: 'brochure_exit_sitewide' });
+    for (const appel of appels.slice(1)) expect(Object.keys(appel as object)).not.toContain('origine');
+  });
+
+  test('mention du formulaire : formulation P3 de Laurent, lien vers la politique de confidentialité', async ({ page }) => {
+    await page.goto(URL_PAGE);
+    const mention = page.locator('#catalogue').getByText(/Vos coordonnées sont utilisées/);
+    await expect(mention).toContainText(
+      'Vos coordonnées sont utilisées pour vous transmettre le catalogue et assurer le suivi de votre demande. Notre équipe est également à votre disposition pour vous conseiller dans le choix du studio Orbitvu adapté à vos produits.',
+    );
+    await expect(mention).not.toContainText('uniquement si vous en faites la demande');
+    await expect(mention.getByRole('link', { name: 'politique de confidentialité' })).toHaveAttribute('href', '/fr/confidentialite');
+  });
+
   test('e-mail non confirmé, consultant non transmis : rien n’est affirmé', async ({ page }) => {
     await simulerApi(page, 200, { ok: true, pdfUrl: PDF_SIMULE, emailSent: false, contactRequestAccepted: false });
     await page.goto(URL_PAGE);
@@ -562,5 +590,12 @@ test.describe('Landing catalogue All-in-One', () => {
     });
     expect(res.status()).toBe(503);
     expect(await res.json()).toEqual({ ok: false, error: 'catalogue_unavailable' });
+  });
+
+  test('état de la route en lecture seule : sans secrets locaux, indisponible, aucun envoi', async ({ request }) => {
+    const res = await request.get('/api/catalogue');
+    expect(res.status()).toBe(200);
+    expect(res.headers()['cache-control']).toContain('no-store');
+    expect(await res.json()).toEqual({ disponible: false });
   });
 });

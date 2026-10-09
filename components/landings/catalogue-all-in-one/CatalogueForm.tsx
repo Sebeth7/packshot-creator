@@ -8,6 +8,7 @@ import { Link } from '@/i18n/routing';
 import { getAttribution } from '@/lib/attribution';
 import {
   champsCatalogueSchema,
+  origineCatalogue,
   type ChampsCatalogue,
   type ReponseCatalogue,
   type SaisieCatalogue,
@@ -106,6 +107,8 @@ export function CatalogueForm() {
           ...valeurs,
           requestId: requestId.current,
           attribution: getAttribution() ?? undefined,
+          // Liste fermée (schema.ts) : une valeur inconnue n'est pas envoyée.
+          origine: origineCatalogue(new URLSearchParams(window.location.search).get('origine')),
           siteWeb: piege.current?.value || undefined,
         }),
       });

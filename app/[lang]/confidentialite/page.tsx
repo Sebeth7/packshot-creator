@@ -44,6 +44,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
 
   const dataCollected = [
     { key: 'contactForms', title: t('article2.contactForms.title'), description: t('article2.contactForms.description') },
+    { key: 'catalogueForm', title: t('article2.catalogueForm.title'), description: t('article2.catalogueForm.description') },
     { key: 'interactiveTools', title: t('article2.interactiveTools.title'), description: t('article2.interactiveTools.description') },
     { key: 'navigation', title: t('article2.navigation.title'), description: t('article2.navigation.description') },
   ];
@@ -54,6 +55,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
     t('article3.purpose3'),
     t('article3.purpose4'),
     t('article3.purpose5'),
+    t('article3.purpose6'),
   ];
 
   const rights = [
@@ -216,6 +218,16 @@ export default async function ConfidentialitePage({ params }: PageProps) {
               </h2>
               <p className="text-future-dusk-600">
                 {t('article7.content')}
+              </p>
+            </div>
+
+            {/* Article 8 */}
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('article8.heading')}
+              </h2>
+              <p className="text-future-dusk-600">
+                {t('article8.content')}
               </p>
             </div>
 

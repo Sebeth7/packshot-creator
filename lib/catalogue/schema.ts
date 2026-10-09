@@ -22,6 +22,20 @@ export type PaysCatalogue = (typeof PAYS_CATALOGUE)[number];
 /** Identifiant de la landing, conservé avec chaque demande (attribution interne). */
 export const PAGE_SOURCE_CATALOGUE = 'catalogue_all_in_one';
 
+/**
+ * Origine interne d'une demande, lue dans le paramètre `?origine=` de l'URL de
+ * la landing. V1 : seule la pop-in d'engagement du site (#122) en émet une.
+ * Liste fermée : toute autre valeur est ignorée, sans rejeter la demande, et
+ * n'est jamais recopiée dans un e-mail. Ce n'est pas un UTM.
+ */
+export const ORIGINES_CATALOGUE = ['brochure_exit_sitewide'] as const;
+export type OrigineCatalogue = (typeof ORIGINES_CATALOGUE)[number];
+
+/** La valeur reçue si elle figure dans la liste fermée, sinon `undefined`. */
+export function origineCatalogue(valeur: unknown): OrigineCatalogue | undefined {
+  return ORIGINES_CATALOGUE.find((origine) => origine === valeur);
+}
+
 /** Brochure remise (règles brochure de Sébastien, § 4 et § 6 : `brochureId`) ; V1 : FR seule. */
 export const BROCHURE_ID = 'orbitvu_all_in_one_2026_fr';
 export const LANGUE_CATALOGUE = 'fr';
@@ -77,11 +91,14 @@ export const attributionCatalogueSchema = z.object({
  * - `requestId` : identifiant tiré par le navigateur pour une tentative ; la
  *   route l'utilise pour l'idempotence (double clic, nouvel essai) ;
  * - `attribution` : facultative ;
+ * - `origine` : facultative, réduite à la liste fermée `ORIGINES_CATALOGUE`
+ *   (une valeur inconnue devient `undefined`) ;
  * - `siteWeb` : champ piège, invisible pour un visiteur ; rempli = automate.
  */
 export const requeteCatalogueSchema = champsCatalogueSchema.extend({
   requestId: z.uuid(),
   attribution: attributionCatalogueSchema.optional(),
+  origine: z.unknown().transform(origineCatalogue),
   siteWeb: z.string().max(200).optional(),
 });
 
@@ -99,6 +116,7 @@ export interface DemandeCatalogue {
   consultantOptIn: boolean;
   pageSource: typeof PAGE_SOURCE_CATALOGUE;
   attribution?: z.output<typeof attributionCatalogueSchema>;
+  origine?: OrigineCatalogue;
 }
 
 /**

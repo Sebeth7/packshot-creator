@@ -22,11 +22,27 @@ export const maxDuration = 30;
 const LIMITE = 5;
 const FENETRE_MS = 60 * 60 * 1000;
 
+// Jamais prérendue : l'état renvoyé par GET est celui de l'instance en service,
+// pas celui de la construction.
+export const dynamic = 'force-dynamic';
+
+const services = servicesCatalogue();
+
 const gestionnaire = creerGestionnaireCatalogue({
-  services: servicesCatalogue(),
+  services,
   limiter: (cle) => rateLimit(cle, LIMITE, FENETRE_MS),
 });
 
 export async function POST(req: Request) {
   return gestionnaire(req);
+}
+
+/**
+ * État de la route, sans envoi ni donnée personnelle : `disponible` est vrai
+ * seulement si les services réels sont assemblés (interrupteurs du code, PDF en
+ * ligne, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `CATALOGUE_NOTIFICATION_EMAIL`).
+ * Permet de contrôler une publication sans soumettre de vraie demande.
+ */
+export function GET() {
+  return Response.json({ disponible: services.mode === 'reel' }, { headers: { 'Cache-Control': 'no-store' } });
 }

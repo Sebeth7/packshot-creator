@@ -123,6 +123,7 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
       consultantOptIn: requete.consultantOptIn,
       pageSource: PAGE_SOURCE_CATALOGUE,
       ...(requete.attribution ? { attribution: requete.attribution } : {}),
+      ...(requete.origine ? { origine: requete.origine } : {}),
     };
 
     // E-mail du lien d'abord : la notification dit à l'équipe s'il est parti.

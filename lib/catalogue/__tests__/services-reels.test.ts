@@ -111,6 +111,39 @@ describe('A — demande de brochure seule', () => {
   });
 });
 
+describe('O — origine de la demande (pop-in #122)', () => {
+  it('origine attendue : une ligne « Origine » dans la notification interne, rien dans l’e-mail du prospect', async () => {
+    const { g, resend } = banc();
+    const res = await g(requete({ ...corps, origine: 'brochure_exit_sitewide' }));
+    expect(res.status).toBe(200);
+    const interne = interneDe(resend)!;
+    expect(interne.html).toContain('Origine : brochure_exit_sitewide');
+    expect(interne.text).toContain('Origine : brochure_exit_sitewide');
+    expect(interne.subject).toBe('[Brochure] Atelier Exemple');
+    const prospect = resend.envois.find((m) => m.to.includes('claire@gmail.com'))!;
+    expect(`${prospect.subject} ${prospect.html} ${prospect.text ?? ''}`).not.toContain('brochure_exit_sitewide');
+  });
+
+  it('origine absente : notification inchangée, sans ligne « Origine »', async () => {
+    const { g, resend } = banc();
+    await g(requete(corps));
+    expect(`${interneDe(resend)!.html} ${interneDe(resend)!.text}`).not.toContain('Origine');
+  });
+
+  it('valeur inconnue ou forgée : jamais recopiée dans un e-mail, demande traitée normalement', async () => {
+    for (const origine of ['<b>forgee</b>', 'utm_campaign=forgee', 'brochure_exit_sitewide-forgee']) {
+      const { g, resend } = banc();
+      const res = await g(requete({ ...corps, origine }));
+      expect(res.status).toBe(200);
+      expect(resend.envois).toHaveLength(2);
+      for (const m of resend.envois) {
+        expect(`${m.subject} ${m.html} ${m.text ?? ''}`).not.toContain('forgee');
+        expect(`${m.html} ${m.text ?? ''}`).not.toContain('Origine');
+      }
+    }
+  });
+});
+
 describe('B — consultant demandé', () => {
   it('notification « demande à être recontacté » en objet et en tête ; contactRequestAccepted vrai', async () => {
     const { g, resend } = banc();

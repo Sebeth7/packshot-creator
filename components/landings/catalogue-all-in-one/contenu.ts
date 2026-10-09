@@ -12,7 +12,11 @@
  * - Title et meta description : proposition V5.1 de Laurent du 02/10/2026 (META),
  *   à la place de ceux du copydeck V2.
  *
- * STATUT : PROPOSÉ — relecture métier de Sébastien avant publication (D42, étape 5).
+ * - Mention du formulaire (`FORMULAIRE.donnees.avant`) : formulation P3 décidée par
+ *   Laurent le 06/10/2026.
+ *
+ * STATUT : publication autorisée par Laurent le 09/10/2026 (PUBLICATION_AUTHORITY =
+ * LAURENT) ; validation de Sébastien non reçue (D42, étape 5).
  * Page française unique, commune à la France et à la Suisse : ces textes ne sont
  * pas dans messages/*.json, faute de version EN ou de-ch.
  *
@@ -84,7 +88,7 @@ export const FORMULAIRE = typographie({
   reassurance: 'Accès immédiat après validation du formulaire. Aucune démonstration obligatoire.',
   donnees: {
     avant:
-      'Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. Consultez notre ',
+      'Vos coordonnées sont utilisées pour vous transmettre le catalogue et assurer le suivi de votre demande. Notre équipe est également à votre disposition pour vous conseiller dans le choix du studio Orbitvu adapté à vos produits. Consultez notre ',
     lien: 'politique de confidentialité',
     apres: '.',
   },

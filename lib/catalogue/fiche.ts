@@ -49,7 +49,7 @@ export function domaineGrandPublic(email: string): string | null {
   return DOMAINES_GRAND_PUBLIC.has(domaine) ? domaine : null;
 }
 
-/** Lignes de la fiche : type, consultant, brochure, pays, attribution, date, identifiant. */
+/** Lignes de la fiche : type, consultant, brochure, pays, origine, attribution, date, identifiant. */
 export function lignesFicheCatalogue(demande: DemandeCatalogue): string[] {
   const a = demande.attribution;
   const grandPublic = domaineGrandPublic(demande.email);
@@ -65,6 +65,7 @@ export function lignesFicheCatalogue(demande: DemandeCatalogue): string[] {
     grandPublic ? `E-mail : domaine grand public (${grandPublic})` : null,
     demande.products ? `Produits : ${demande.products}` : null,
     `Page : ${demande.pageSource}`,
+    demande.origine ? `Origine : ${demande.origine}` : null,
     a?.utmSource ? `Source : ${a.utmSource}` : null,
     a?.utmMedium ? `Medium : ${a.utmMedium}` : null,
     a?.utmCampaign ? `Campagne : ${a.utmCampaign}` : null,
