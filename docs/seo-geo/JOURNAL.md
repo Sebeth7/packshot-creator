@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Campagne globale de maillage — 48 liens contextuels (D48 b) et correction EN de l'article « lens » (D15) · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne unique (missions de Laurent du 09/10 : R1 « objectifs photographiques », puis campagne globale ; GO_CODE et GO_PR_DRAFT = YES ; GO_MERGE, GO_PUBLICATION, appels payants = NO) | **PR** : brouillon, « DO NOT MERGE », branche `claude/gracious-cerf-rbj12m` | **Base** : `main` `f03f8ca`
+
+**Quoi** —
+- 48 liens posés sur des mots existants (D48 b) : 37 pages sources, 34 cibles, 9 cocons. Objectif 8 (dont E1, L1, E2 du lot R1), format d'image 5, bijoux 5, netteté 4, cadrage et chaussures 6, horlogerie 2, studio interne et investissement 12, e-commerce et conversion 4, reprise de #27 vers `/fr/industrie/chaussures` 2. FR 27, EN 21, de-ch 0. Un commit par cocon.
+- Article EN `how-to-choose-best-lens-for-product-photography` : `metaTitle`, `h1` et `title`, « packshot(s) » remplacé par « product photography » (D15, D42). Slug, description, texte, FAQ, liens : inchangés.
+- Aucune correction D48 (a) : aucun `href` cassé ni redirigé en dehors de D29.
+
+**Pourquoi** — Recovery Pareto du 09/10 : les 34 cibles retenues cumulaient 23 liens contextuels entrants ; 12 n'en avaient aucun, dont l'article format d'image EN (5 957 impressions sur 90 jours) et bague 8 étapes EN (3 039). Paire « objectif » : recul de classement daté de mai 2026, aucun lien contextuel ; « product photography » absent de l'article EN alors que les requêtes perdues le contiennent (7 419 impressions d'octobre 2025 à janvier 2026, contre 4 pour « packshot »).
+
+**Fichiers** — 38 JSON `content/{blog,guides}/{fr,en}/**` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après publication autorisée : lecture informative à J+28, verdict à J+56, sur les 34 cibles contre 5 témoins inchangés (baseline 08/09 → 05/10 : cibles 82 clics, 13 475 impressions, position 12,3 ; témoins 25 clics, 1 370 impressions, position 10,7). Aucun gain chiffré annoncé.
+
+**Vérifié** —
+- Liens existants, 374 pages prérendues, Worker du dépôt rejoué devant `next start` : 366 chemins ; hors 200 direct, seulement 3 chemins `alphashot-g2` (D29) et 5 chemins liés depuis des pages EN servies en 410 ; 37 liens vers une autre langue, tous sans page équivalente dans la langue source (Academy, hubs et guides absents en de-ch).
+- Par lien : ancre présente une seule fois, texte visible identique, aucun lien imbriqué, cible non liée auparavant par la page : 48/48.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 495/495 ; `npx next build` vert (386 pages ; variables factices de la CI).
+- HTML prérendu contre `main` `f03f8ca` (scripts retirés, identifiant de build neutralisé) : 335 pages identiques, 39 différentes : les 37 pages sources (texte identique, liens ajoutés seulement), l'article EN lens (title et H1) et `/en/blog` (titre de la carte). Canonique, robots, hreflang et `lang` inchangés partout. Accueil, F5, Mode, cluster AI Act, article D35, PACK-D9 et fiches `alphashot-g2` identiques.
+- Destinations : 34 cibles en 200 direct, canonique auto-référente, langue conforme, sans `noindex`. Deuxième occurrence de la cible sur 3 pages : carte « articles liés » ou menu global des secteurs, pas un doublon contextuel.
+- Playwright, Chromium du conteneur : `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81 ; QA locale des 38 pages en 1440, 820 et 390 px : 114/114 (HTTP 200, un H1, aucun débordement, aucune erreur de page, chaque nouveau lien présent et visible).
+- PR ouvertes : aucun fichier commun, sauf avec #27 (branche du 23/09, non fusionnable, qui touche presque tout le contenu).
+**Supposé** — [Inférence] Chaque ancre décrit le sujet de sa cible : choix éditorial, non mesurable avant publication. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (protégée) ; `www` (R4) ; Firefox et WebKit ; relecture humaine de l'anglais.
+
+**Exception** — Gabarit des guides : les liens (existants comme nouveaux ; 13 liens de cette campagne) prennent la couleur du texte, sans soulignement ; la classe `prose-a:text-very-peri-600` est sans effet constaté. Défaut préexistant sur `main`, non corrigé ici.
+
+**Suite** — CI verte ; QA Chrome groupée de la Preview par Laurent ; information de Sébastien (D42, arbitrage final 3 ; D48) ; délai D15 de 5 jours ouvrés seulement après ces trois conditions ; GO_MERGE distinct ; J0 = publication constatée sur `www`.
+
+---
+
 ## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
 
 **Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
