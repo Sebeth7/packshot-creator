@@ -34,6 +34,45 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Fusion et publication de #123 puis #124 (exception D53), contrôles de production · Claude de Laurent
+
+**Chantier** : maillage et cocons, clôture (missions de Laurent du 09/10 « GO final — fusion et publication PR #123 puis #124 » et « Reprise autorisée — PR #124 après fusion de #123 ») | **PR** : #123 (`085b005`), #124 (`f143f61`) ; documentation : PR brouillon de la branche `claude/gracious-cerf-rbj12m` | **`main`** : `3c0909b` → `085b005` → `f143f61`
+
+**Quoi**
+- #123 fusionnée le 09/10 à 20:18:55 UTC par commit de fusion (`085b005`), tête `6bc15f4` ; #124 à 20:42:37 UTC (`f143f61`), tête `9a76bc1`. Chaque PR est sortie du brouillon, « DO NOT MERGE » retiré du titre, juste avant sa fusion.
+- D53 inscrite : exception ponctuelle D15/D48 (fusion sans attendre l'échéance de D15 ; pour #124, sans nouvelle information de Sébastien selon D48 a) et fusion par commit de fusion, en dérogation ponctuelle à `02-PROCEDURE.md`.
+- `ETAT.md` : `main` et règle D37/D39/D52 (A) ; #123 et #124 sortis de B ; contrôle Chrome de `www` (C) ; événement D52 daté et mesure de #123 (E) ; livraisons (G).
+
+**Pourquoi** — Décision de Laurent du 09/10 : GO_EXCEPTION_D15_123, GO_EXCEPTION_D15_124, GO_EXCEPTION_INFORMATION_D48A_124, GO_MERGE et GO_PUBLICATION des deux PR, GO_QA_PRODUCTION, GO_DOCUMENTATION_CLOTURE. Sans exception : #123 attendait l'échéance D15 du 16/10 ; pour #124, l'information de Sébastien n'était pas publiée et D15 n'avait pas démarré.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun effet sur le site (documentation). Effets des deux PR : mesures en E (#123 : J+28 et J+56 ; événement D52 pour F5, Mode et Studios ; événement de baseline de M5, la fusion précédant la fenêtre du 14 au 28/10).
+
+**Vérifié**
+- Avant chaque fusion : tête inchangée (`6bc15f4`, puis `9a76bc1`), CI 4/4 verte (14:59:49 et 16:39:50 UTC), aucune revue, aucune objection ; `main` protégée, comme pour les fusions précédentes.
+- Arbres git, relevés en local après les fusions : `085b005` porte l'arbre de `6bc15f4` (`039c999`) ; `f143f61` celui de `9a76bc1` (`dd921d4`) ; parents `3c0909b` + `6bc15f4`, puis `085b005` + `9a76bc1`. Différentiel de `f143f61` contre `085b005` (GitHub) : 85 fichiers, 82 contenus + `DECISIONS.md`, `ETAT.md`, `JOURNAL.md`.
+- `sysnext.vercel.app` après #123 : `smoke.mjs` vert (17 pages, 3 ressources) ; 3 liens de #123 lus sur les pages (L1, E-BIJ-2, F-MON-1) ; liens rendus des 97 pages touchées par les deux PR : 97/97 HTTP 200, état `6bc15f4` (28 pages sources de #123 conformes, 69 pages de #124 encore inchangées).
+- `sysnext.vercel.app` après #124 (20:43:58 UTC) : `smoke.mjs` vert ; 97/97 HTTP 200, état `9a76bc1` (82 pages propres à cet état, 15 identiques en `6bc15f4` et `9a76bc1`) : les 34 liens de #123 et les 126 opérations de #124 sont rendus.
+- Worker déployé `packshot-router` (lu par l'API Cloudflare, sans modification ; dernière modification le 09/10 à 10:33 UTC), rejoué hors ligne avec une origine simulée : 61/61 destinations distinctes des 129 liens ajoutés ou re-ciblés transmises sans redirection ni 410 ; témoins : `/fr/studio-photo/alphashot-g2` et `/fr/studio-photo/alphashot-xl` en 301 vers XL G2.
+- Contrôle négatif du 09/10 vers 19:30 UTC, avant les fusions : 97/97 pages conformes à `main` `3c0909b`.
+
+**Supposé**
+- Le déploiement de production Vercel sert `f143f61` : déduit du contenu rendu sur `sysnext` (97 pages à l'état `9a76bc1`) ; identifiant du déploiement non consulté (dashboard, R3).
+- QA Chrome des Preview (#123 PASS ; #124 15/15 PASS et non-régression de #123) : déclarée par Laurent le 09/10, heure non communiquée.
+
+**Non regardé**
+- `www.packshot-creator.com` : 403 Cloudflare au client de la session (R4) ; surface publique non contrôlée (ETAT, C).
+- Specs Playwright sur la production ; données GSC (lecture à J+28).
+- Outillage : pendant la mission, le mode automatique de Claude Code a refusé 3 commandes Bash de vérification (catégorie « Production Deploy ») ; reprise sur confirmation de Laurent ; aucune permission modifiée.
+
+**Suite**
+- Chrome sur `www` : groupes 2, 3, 5, 9, 11 et 15 de la mission de #124, pages de la QA de #123 et 2 guides ; la date du constat fixe J0 de #123 et complète l'événement D52 (E).
+- Arbitrages G1 à G5 de #124 et pages en reconstruction (#104, #105, #107, #108) : chantiers propriétaires, inchangés.
+- Fusion de cette PR documentaire : GO_MERGE distinct de Laurent.
+
+---
+
 ## 2026-10-09 · Réparation globale des ancres et finalisation des cocons — 99 défauts traités, 22 arbitrages résolus, 25 liens nouveaux, D52 · Claude de Laurent
 
 **Chantier** : maillage et cocons, campagne consolidée (mission de Laurent du 09/10 « Réparation globale des ancres et finalisation des cocons SEO/GEO » ; GO_CODE et GO_PR_DRAFT = YES ; GO_MERGE, GO_PUBLICATION, GO_PAID = NO) | **PR** : #124, brouillon, « DO NOT MERGE », branche `claude/reparation-ancres-cocons` | **Base** : tête de #123 (`6bc15f4`), elle-même sur `main` `3c0909b`. **Dépendance** : la PR contient les commits de #123 tant que #123 n'est pas fusionnée ; aucun de ses 34 liens n'est modifié (contrôle ci-dessous)
