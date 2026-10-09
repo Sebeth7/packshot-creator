@@ -34,6 +34,42 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Pop-in d'engagement — démo prioritaire, catalogue Orbitvu en repli (desktop, FR) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : PR_POPIN, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
+
+**Quoi** — Fenêtre modale desktop, FR, distincte de #82 : « Demander une démo » en CTA principal (`/fr/contact`, cible de tous les CTA démo du site), « Recevoir le catalogue » en CTA secondaire (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). Apparition une seule fois par session, seulement si trois conditions sont réunies : 60 s sur le site, 70 % de la page lus, puis intention de sortie (souris qui remonte et quitte la fenêtre par le haut). Copy et maquette validées par Laurent, reprises mot pour mot.
+
+**Pourquoi** — Décision de Laurent du 09/10 : démo = conversion prioritaire, catalogue = repli, pop-in = moteur de visibilité des deux ; ni pop-up à l'arrivée, ni minuterie seule, ni mobile, ni formulaire embarqué.
+
+**Fichiers** — `lib/engagement/regles.ts` (routes couvertes, exclusions, gels, seuils, intention de sortie), `lib/engagement/activation.ts` (interrupteurs), `lib/engagement/session.ts` (mémoire de session), `lib/engagement/mesure.ts` (GA4), `components/engagement/PopinEngagement.tsx` (surveillant), `components/engagement/FenetreEngagement.tsx` (fenêtre), `components/engagement/contenu.ts`, `components/engagement/visuel.ts`, `app/[lang]/layout.tsx` (montage), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Comportement** —
+- Desktop au sens du dépôt : 1 024 px et plus (seuil D44), pointeur fin capable de survol. Rien n'est monté en EN ni en de-ch ; sur mobile, aucun écouteur et aucun téléchargement du visuel.
+- Exclusions : `/fr/contact`, `/fr/calculateur-roi`, `/fr/calculateur`, `/fr/outil-financement`, `/fr/catalogue-orbitvu-all-in-one`, `/fr/mentions-legales`, `/fr/cgu`, `/fr/confidentialite`, `/fr/academy`, segments de confirmation (`merci`, `confirmation`, `succes`…). Gels (`R-UX-LONG.md`, « aucune modification de la page ») : `/fr` jusqu'au 28/10, `/fr/packshot-e-commerce` jusqu'au 23/11, `/fr/packshot-mode` et `/fr/industrie/mode-textile` jusqu'au 26/11. Aucune levée automatique : une ligne retirée de `ROUTES_GELEES`, sur décision, suffit.
+- Pas d'apparition tant que le bandeau cookies attend un choix ou a été rouvert, ni quand une autre fenêtre occupe l'écran (`dialog[open]`, `role="dialog"`, `aria-modal`, défilement bloqué).
+- `<dialog>` natif en modal : `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, focus initial sur « Fermer », focus piégé, Échap, clic sur le fond, retour du focus. Aucune animation, aucun décalage de mise en page (couche supérieure, défilement non bloqué). Fenêtre, texte et visuel chargés seulement quand 60 s et 70 % sont atteints.
+- GA4, sans donnée personnelle : `exit_modal_view` (dénominateur, aucun événement existant ne le mesurait), `cta_click` `demo` / `brochure` / `close` (+ `close_method`), `cta_location: exit_modal`.
+
+**Rayon d'action** — `app/[lang]/layout.tsx` est commun à toutes les pages : le surveillant rejoint le chunk JS partagé du layout, soit +4,4 Ko brut et +1,9 Ko gzip par page, FR, EN et de-ch comprises (comparaison avec le build de #109, même base de code client). Aucun texte, aucune image, aucune balise ajoutés au HTML prérendu ni au flux RSC d'une page, gelées comprises. `components/cookies/CookieBanner.tsx` et `.github/workflows/pr-checks.yml` non modifiés, car #117 modifie ces deux fichiers : le bandeau est détecté par son cookie `cookie-consent` et ses événements `open-cookie-banner` / `cookie-consent-update`. En conséquence, le spec Playwright n'est pas encore exécuté par la CI ; à ajouter à `ATTENDUS` après #117. Les tests unitaires le sont.
+
+**Effet attendu** — Aucun avant le GO de publication : `POPIN_PUBLICATION_AUTORISEE = false`, la pop-in n'est montée ni sur la production Vercel ni donc sur `www` ; elle l'est sur les Preview et en local. Après publication, mesure de 7 à 14 jours : impressions, fermetures, clics démo et catalogue, envois du catalogue, demandes de consultant, signaux de baisse de la démo.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé (`components/engagement`, `lib/engagement`, `layout`, spec) sans erreur ni avertissement ; Vitest : 26 fichiers, 516 tests (dont 21 de la pop-in) ; `verifier-json` : 195 fichiers ; `npx next build` (variables factices) : 386 pages ; Playwright Chromium sur `next start` local : 24/24 pour `e2e/popin-engagement.spec.ts` (conditions, Échap, X, focus, démo, catalogue avec `origine`, aucune requête non GET ni `/api/`, autre fenêtre, aucun décalage, 8 routes hors couverture, bandeau cookies, mobile sans visuel, rendu 1920 × 1080, 1440 × 900 et 1280 × 720), 81/81 pour les specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`). `cookie-banner.spec.ts` « GA4 après acceptation » : en échec en local car `NEXT_PUBLIC_GA_MEASUREMENT_ID` est absent du build ; aucun fichier analytics ou cookies modifié.
+**Supposé** — [Inférence] `VERCEL_ENV` vaut `production` au build de production Vercel et `preview` sur les Preview (mécanisme identique à `lib/catalogue/activation.ts` de #82). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; production (R4) ; Firefox et Safari (navigateurs absents du conteneur) ; version mobile (hors mission).
+
+**HOLD et décisions ouvertes** —
+- **Stockage de session** : la qualification « vie privée » de `sessionStorage` n'est pas établie par la gouvernance (P4 ouvert) ; `STOCKAGE_SESSION_AUTORISE = false`. La mémoire de session est en mémoire du module : elle couvre les navigations internes, pas un rechargement complet ni un nouvel onglet. `SITE_TIME_CROSS_PAGE` est donc partiel : temps cumulé entre pages en navigation interne, remis à zéro par un rechargement complet.
+- **`origine`** : non lue par la landing de #82 (qui garde le chemin sans paramètre et les UTM) ; lecture et remontée dans la notification interne à prévoir après la fusion de #82, sans modifier #82 maintenant.
+- **Publication** : après la publication de la landing catalogue (#82), sinon le CTA secondaire mène à une 404 ; GO_PUBLICATION distinct.
+- **Copywriting FR** : copy validée par Laurent ; validation de Sébastien selon D13 et D42 (étape 5).
+- **Visuel** : affiche du film de la gamme Orbitvu (`public/images/hero/orbitvu-gamme-2026-poster.avif`, 23 Ko), déjà publiée sur l'accueil ; droits d'usage du film « supposés » (JOURNAL du 04/10), non établis.
+
+**Suite** — Contrôle de la Preview par Laurent (D42, étape 4 ; 1440 et 1280 px) ; validation D42 étape 5 ; décisions P4 et publication ; fusion sur GO distinct.
+
+---
+
 ## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
 
 **Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
