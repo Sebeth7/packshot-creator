@@ -36,7 +36,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-09 · Pop-in d'engagement — démo prioritaire, catalogue Orbitvu en repli (desktop, FR) · Claude de Laurent
 
-**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : PR_POPIN, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
 
 **Quoi** — Fenêtre modale desktop, FR, distincte de #82 : « Demander une démo » en CTA principal (`/fr/contact`, cible de tous les CTA démo du site), « Recevoir le catalogue » en CTA secondaire (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). Apparition une seule fois par session, seulement si trois conditions sont réunies : 60 s sur le site, 70 % de la page lus, puis intention de sortie (souris qui remonte et quitte la fenêtre par le haut). Copy et maquette validées par Laurent, reprises mot pour mot.
 
