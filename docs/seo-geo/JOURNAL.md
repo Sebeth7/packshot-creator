@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #111 — `main` `f03f8ca` intégré, valeurs alignées sur #109, garde de test ajustée · Claude de Laurent
+
+**Chantier** : intégrité factuelle, complément de #109 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #111, brouillon, branche `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `f03f8ca` intégré par fusion (`4a69506`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seul `JOURNAL.md` en conflit, fusionné par union (167 + 12 + 1 = 180 entrées).
+- Constat : la seconde passe de #109 (`b9698c3`, 08/10) corrige les mêmes lignes plus largement (« seuil de rentabilité dès 500 photos par an », « Hotline française », « Assistance installation gratuite », contrat « interventions on-site illimitées »). Deux versions différentes des mêmes lignes auraient produit un conflit et laissé ces claims dans #111.
+- Alignement : `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) reprennent mot pour mot les valeurs de #109 ; dans le guide d'achat, le bloc « Avantages support FR » et « Contrat maintenance » est retiré exactement comme dans #109 (même hunk). Le titre « Support Technique France » et la mention « Distributeur officiel Orbitvu France/Suisse » restent ; la garantie relève de #109.
+- `lib/__tests__/claims-roi-sav.test.ts` : motifs étendus à la formulation anglaise de #109 (« between 6 and 12 », « guarantee ») ; garde ajoutée contre « on-site illimitées ».
+
+**Pourquoi** — Faits métier du 08/10 (ROI de 6 à 12 mois, jamais garanti ; aucun engagement de service établi) et consigne du 08/10 14:48 « si aucune source ou fait métier explicite ne l'établit : NE PAS L'INVENTER. NE PAS LE CONSERVER PAR DÉFAUT. » Les points « à trancher » de la ligne Academy d'`ETAT.md` (« suivi post-formation », « Formateurs experts 10+ ans », Marie D., Camille R., « plus de 500 entreprises ») sont retirés par #109 : aucune réponse de Sébastien n'est nécessaire pour un retrait.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue), `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Fusion de #109 et #111 sans conflit sur les fichiers du site, dans un ordre comme dans l'autre ; après fusion de #109, le diff de #111 se réduit au test et à la documentation. Aucun effet de position annoncé.
+
+**Vérifié** — voir la description de #111 (tests, build, simulation des deux ordres de fusion).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
 ## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
 
 **Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)

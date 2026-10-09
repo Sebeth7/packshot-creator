@@ -672,17 +672,6 @@ export default async function GuideAchatStudio2026Page({ params }: { params: Pro
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>PackshotCreator = Distributeur officiel Orbitvu France/Suisse</strong>
                 </p>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avantages support FR</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Hotline française</strong></li>
-                  <li className="text-future-dusk-600"><strong>Interventions sur site</strong> : selon le contrat de maintenance</li>
-                  <li className="text-future-dusk-600"><strong>Mises à jour logicielles</strong> : Assistance installation gratuite</li>
-                </ul>
-                <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Contrat maintenance</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Standard</strong> (sur devis) : Hotline, interventions à distance</li>
-                  <li className="text-future-dusk-600"><strong>Premium</strong> (sur devis) : + interventions on-site illimitées</li>
-                </ul>
 
                 <Callout type="success" title="Garantie constructeur">
                   Toutes les machines Orbitvu bénéficient d'une <strong>garantie constructeur 2 ans</strong> (pièces et main d'œuvre). Extension possible jusqu'à 5 ans.
