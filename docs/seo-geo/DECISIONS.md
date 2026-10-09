@@ -25,6 +25,153 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D51 · 2026-10-09 · Exception ponctuelle D15/D42 pour la PR #109 : fusion et publication sans attendre la validation de Sébastien
+
+**Décidé par** : Laurent — mission « Clôture et publication #109 / fermeture #111 » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #109 ; épuisée par sa fusion. D15 et D42 restent inchangées pour tout le reste.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> Laurent accorde une EXCEPTION PONCTUELLE D15/D42 pour la seule PR #109, afin de ne pas prolonger l'attente de validation tacite de Sébastien pour les corrections factuelles et suppressions de promesses non étayées déjà documentées.
+> Cette exception :
+> * ne vaut pas validation de Sébastien ;
+> * ne crée aucun nouveau claim ;
+> * ne permet aucune réécriture supplémentaire ;
+> * ne s'étend pas à une autre PR ;
+> * ne modifie pas durablement D15 ou D42.
+
+**Le contexte** — Contrôle de la Preview de #109 par Laurent dans Chrome (D42, étape 4) : 7 groupes PASS sur la tête `81803ad`, transmis le 09/10. Validation de Sébastien (D42, étape 5) non reçue. Même mission : GO de fusion de #109, GO de publication par le déploiement Vercel déclenché par la fusion, GO de fermeture de #111 sans fusion (apport repris dans #109).
+
+**Ce qu'elle interdit** — Présenter les contenus de #109 comme validés par Sébastien ; appliquer cette exception à une autre PR, #111 comprise ; s'en prévaloir pour une réécriture, un nouveau claim, un prix, un témoignage ou un contenu marketing.
+
+---
+
+## D50 · 2026-10-09 · Exception D13/D42 ciblée : suppressions d'affirmations chiffrées ou de superlatifs non sourcés dans ShotFlow FR, ShotFlow EN et Oscaro FR (PR #121)
+
+**Décidé par** : Laurent — mission « V8 — reprise immédiate Ubersuggest » du 09/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous (PR #121) ; épuisée par sa fusion. D13 et D42 restent inchangées pour tout le reste.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> J'autorise exceptionnellement les suppressions ciblées d'affirmations chiffrées ou de superlatifs NON SOURCÉS déjà identifiés concernant ShotFlow FR, ShotFlow EN et Oscaro FR, à condition de ne créer aucun nouveau claim, témoignage ou fait métier. Cette exception D13/D42 ne couvre aucune réécriture générale, aucun autre article et aucun contenu PACK-D9.
+
+**Le contexte** — #121 préparait le 08/10 des retraits sous réserve d'une validation ciblée de Sébastien (D42, arbitrage final 3). Une exception de même nature, limitée au retrait de « -50% delay » du `metaTitle` EN de ShotFlow, avait été décidée par Laurent le 09/10 pour #120 (JOURNAL du 09/10). La présente décision ne vaut pas validation de Sébastien.
+
+**Ce qu'elle interdit** — Toute réécriture au titre de cette exception (ajout, substitution ou reformulation au-delà de l'accord grammatical rendu nécessaire par une suppression) ; son application à un autre article ou aux articles PACK-D9 (photographie 2D, photographie 3D, photographie à 360 degrés) ; la création d'un claim, d'un témoignage ou d'un fait métier ; la présentation des contenus restants comme validés.
+
+---
+
+## D49 · 2026-10-09 · Exception ponctuelle pour la PR #112 : publication sans attendre D15 ni l'information préalable de Sébastien prévues par D48
+
+**Décidé par** : Laurent — mission « V8 — finir Repair Factory #112 + #113 » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #112 ; épuisée par sa fusion. D15 et D48 restent inchangées pour toutes les autres PR.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> J'autorise exceptionnellement la publication des quatre ajouts de liens CA10(b) M04, M05, M21 et D-044 sans attendre les cinq jours ouvrés de D15, les libellés restant strictement inchangés et les destinations ayant déjà été vérifiées.
+> Pour les corrections déterministes CA10(a), la traçabilité dans la PR et le JOURNAL est autorisée en remplacement de l'information préalable à Sébastien, sur cette PR uniquement.
+> Cette décision ne constitue ni validation tacite acquise ni validation de Sébastien. Elle ne modifie pas D15/D48 pour les autres PR.
+
+**Le contexte** — D48 (CA10) prévoit l'information de Sébastien pour les corrections de régime (a) et le délai de D15 pour les liens de régime (b). Au 09/10, Sébastien n'avait reçu aucune information sur #112 (aucun message dans le dépôt ni sur la PR) : le délai de D15 n'avait pas commencé. Liens concernés dans #112 : régime (a) M01, M02, M03, M30, M31, M32, l'ancre « photographie commerciale horlogère » du guide FR `comment-faire-focus-stacking-pour-photographier-bracelet` (audit E, sans numéro M) et les corrections de liens externes ; régime (b) M04, M05, M21 et D-044. Contrôles disponibles : QA locale sur build, 30 passages sur 30 (09/10) ; QA Chrome réelle de #113, 10/10, selon la mission de Laurent du 09/10.
+
+**Ce qu'elle interdit** — Appliquer cette exception à une autre PR ; présenter les quatre liens de régime (b) comme validés tacitement ou par Sébastien ; modifier le libellé ou la destination de ces liens au titre de cette exception.
+
+---
+
+## D48 · 2026-10-07 · CA10 : corriger un `href` existant (a) ou poser un lien sur un texte existant (b), deux circuits distincts
+
+**Décidé par** : Laurent — arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, rendu le 07/10/2026, hors dépôt), qui complète le régime (a) décidé le 03/10 ; inscription demandée par Laurent le 09/10/2026
+**Statut** : en vigueur depuis le 07/10/2026. Inscrite le 09/10/2026 par la PR #112, première PR qui l'applique, comme le prévoit A3.
+
+**La décision** — Deux régimes pour les liens posés dans un texte existant :
+
+| Régime | Portée | Circuit |
+|---|---|---|
+| (a) | Correction déterministe d'un `href` existant, **ancre inchangée** | Information de Sébastien |
+| (b) | Ajout d'un lien sur un texte existant, **sans modification d'un seul mot** | D15 : validation tacite après 5 jours ouvrés |
+
+Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisions restent séparées et appartiennent à Laurent (D12, D42 arbitrage final 3).
+
+**Le contexte** — Le programme directeur V4.3 (03/10) posait CA10 : le périmètre du droit de corriger un `href` dans la prose sans changer le texte, face à la pose de liens nouveaux. Le régime (a) est appliqué depuis la décision de Laurent du 03/10, citée par les entrées du JOURNAL des lots A02, A03 et A04b (03/10), sans avoir été inscrit ici. A3 a ajouté le régime (b) le 07/10 et prévu cette inscription. Lignes du dossier V2 visées : (a) M01, M02, M03, M20, M30, M31, M32 ; (b) M04, M05, M21, M39.
+
+**Ce qu'elle interdit** — Modifier l'ancre d'un lien au titre du régime (a) ; modifier un seul mot du texte au titre du régime (b) ; fusionner un lien du régime (b) avant l'échéance de D15 ; tenir l'information de Sébastien, ou l'échéance de D15, pour un GO de fusion ou de publication.
+
+---
+
+## Note d'exécution · 2026-10-07 · État de mise en œuvre de D36, D44, D45, D46 et D47 après les fusions du 03/10 au 06/10 — pas une décision
+
+**Rédigée par** : Claude de Laurent, sur GO documentaire de Laurent du 07/10/2026 (« PR documentaire consolidée »)
+**Nature** : note d'exécution. **Aucune décision nouvelle, aucun numéro D48.** Les décisions ci-dessous ne sont ni réécrites ni modifiées : leurs lignes « Statut » restent celles de leur date. Cette note dit seulement, au 07/10, ce qui est implémenté, ce qui est contrôlé et ce qui reste ouvert. Sources : GitHub (`merged_at`, commits de fusion sur `main` `30482a0`) ; preuves `www` transmises par la mission de Laurent du 07/10 ; JOURNAL du 07/10.
+
+**D36** (`noindex` de l'origine `sysnext.vercel.app`) — **implémentée et contrôlée.**
+- Partie Worker : #68, fusionnée le 01/10, Worker `107715bc` actif depuis le 01/10 (JOURNAL du 06/10). Partie Next : #99, fusionnée le 06/10 à 16:44 UTC (`e830419`). #67 fermée sans fusion le 06/10 à 16:56 UTC (remplacée par #99).
+- `sysnext.vercel.app` : 9 documents HTML sur 9 portent les en-têtes `noindex` attendus (mission du 07/10 ; liste des 9 URL non reprise ici).
+- `www` : Laurent a contrôlé 4 URL par requête HEAD PowerShell depuis son poste (D23) : HTTP 200, en-têtes D36 absents. Cette preuve vient de ces requêtes HEAD ; elle n'est pas attribuée aux captures Chrome.
+- La ligne « Statut » de D36 (« non exécutée au 25/09 ») est historique. Limite connue, inchangée : `smoke.mjs` lit la balise `robots`, pas l'en-tête.
+
+**D44** (R-UX-LONG) — **appliquée** : règle écrite par #87 (03/10, `17a4248`) ; forme B par #84 (06/10 à 10:26 UTC, `1e0901b`) ; forme A et registre par #85 (06/10 à 17:46 UTC, `30482a0`), **93 pages** équipées ; CI par #86 (04/10, `0ac062b`). Studios en HOLD ; Mode garde sa barre d'origine jusqu'au 26/11.
+- Réserve UX du 07/10 : la surbrillance de la section active est parfois décalée. Diagnostic P2 **proposé**, non arbitré ; aucune correction autorisée. La règle n'est pas modifiée.
+
+**D45** (R-PRODUCT-DIM) — **contrôles présents** : référentiel `data/produits/fiches-techniques.ts`, registre `data/produits/ecarts-connus.ts`, test `lib/produits/__tests__/coherence-dimensions.test.ts` (#83, fusionnée le 03/10 à 19:49 UTC, `1bc7195`), exécutés en CI depuis #86.
+- **Q20 reste ouverte** : aucune valeur contradictoire corrigée ; la PR PRODUCT-DATA attend la réponse de Sébastien.
+
+**D46** (cluster AI Act) — **#96 fusionnée** le 06/10 à 12:41 UTC (`8247217`), sur GO de Laurent.
+- #59, #60 et #77 sont marquées fusionnées par GitHub à 12:41:03 UTC : leurs têtes sont incluses dans #96, sans commit de fusion propre sur `main`.
+- QA `www` **partielle** : 5 pages FR représentatives PASS le 07/10. Les 15 versions linguistiques n'ont pas été contrôlées une à une. Présence sur `www` constatée le 07/10 ; instant du premier déploiement `www` non établi.
+- `SEBASTIEN_VALIDATION = NOT_RECEIVED`, inchangé. #79 reste ouverte, REVIEW ONLY, fermeture sur GO distinct.
+
+**D47** (CTA ROI) — **#93 fusionnée** le 06/10 à 14:18 UTC (`6cbb903`) : CTA ROI des 7 sources vers le calculateur localisé (`/fr/calculateur-roi`, `/en/calculateur-roi`, `/de-ch/roi-rechner`). Contrôle `www` FR/EN PASS le 06/10 (JOURNAL du 06/10).
+- La ligne « Statut » de D47 cite encore « PR #93 (brouillon) » : application effective depuis la fusion.
+- #94 fermée sans fusion le 06/10 à 14:59 UTC. Activation d'`anchors` et de `roi-calculator` en CI : toujours une décision séparée.
+- **AR-01 n'est pas rouvert** : clos le 06/10.
+
+**Ce que cette note n'est pas** — ni une décision (décision ≠ implémentation : chaque ligne ci-dessus constate une mise en œuvre, elle ne tranche rien) ; ni une preuve de publication (une fusion n'établit pas la présence sur `www`, qui se constate à part) ; ni une validation exhaustive (une QA partielle ne vaut pas contrôle de toutes les pages) ; ni une validation de Sébastien.
+
+---
+
+## D47 · 2026-10-06 · Destination canonique des CTA ROI : le calculateur localisé, sans détour par Studios ; option B d'AR-01 remplacée
+
+**Décidé par** : Laurent — mission « ROI / PR #93 — exécution, destination canonique directe vers le vrai calculateur » du 06/10/2026
+**Statut** : en vigueur. Mise en œuvre : PR #93 (brouillon) ; application effective à sa fusion, sur GO distinct de Laurent ; date de fusion à arbitrer avant la fusion.
+
+**La décision** — Les CTA ROI des sept sources qui passaient par Studios visent le calculateur localisé : FR `/fr/calculateur-roi`, EN `/en/calculateur-roi`, de-ch `/de-ch/roi-rechner`. Studios n'est pas transformée en cible : aucun `id="calculateur-roi"` n'y est ajouté. Le témoin du pilote Studios (`studio-photo/selecteur-machines`) reste inchangé. GA4 est traité séparément. `anchors` et `roi-calculator` ne sont pas activés en CI par #93.
+
+**Le contexte** — L'option B d'AR-01, décidée le 03/10 (`ETAT.md`, C ; revue `PSC_REVUE_PRE_FUSION_83_87_ALIGNEMENT_V43_2026-10-03.md`, § 11.4), faisait de la section ROI de Studios la cible des liens « Calculer mon ROI », par un `id` permanent. Elle est remplacée sur ce point. Sur `main` `8247217` : 19 expressions dans 8 fichiers visaient `/studios-photo-automatises#calculateur-roi` (18) ou `#roi` (1, prestataire) ; aucune des deux ancres n'existe sur Studios depuis le 22/03/2026 (`d5a7fea`), le visiteur arrivait en haut de page. #93 corrige 18 expressions dans 7 fichiers (36 liens rendus sur 14 pages, FR et EN) ; l'expression du sélecteur (3 liens rendus, FR, EN, de-ch) est l'exception volontaire du témoin. Le calculateur FR est un conseiller adossé à une API facturée.
+
+**Ce qu'elle interdit** — Ajouter un `id="calculateur-roi"` à Studios pour rétablir l'option B ou pour rendre le témoin fonctionnel ; modifier le lien du témoin sans nouvelle décision ; faire pointer un nouveau CTA ROI vers `/studios-photo-automatises#…` ; appeler réellement l'API du calculateur dans un test sans GO explicite (D43) ; ajouter un événement GA4 au titre de cette décision.
+
+---
+
+## D46 · 2026-10-06 · Cluster AI Act : cinq articles (A, S, B, C, D) préparés en FR, EN et de-ch pour une publication coordonnée ; D41 remplacée sur le principe des satellites
+
+**Décidé par** : Laurent — mission « Finalisation et publication complète du cluster AI Act » du 06/10/2026
+**Statut** : en vigueur pour la préparation. **Remplace D41 sur le seul principe de non-création des satellites B, C et D** ; le reste de D41 est maintenu (voir ci-dessous). La fusion, donc la mise en production, reste subordonnée au GO de publication explicite de Laurent, donné après le checkpoint de la mission. Statut de publication à employer : `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_BY_SEBASTIEN`.
+
+**La décision** — Termes de la mission, reproduits : « Laurent décide de ne plus attendre le retour de Sébastien pour publier le dossier AI Act. » Publier un cluster de cinq articles : A (pilier européen), S (Suisse), B (retouche IA), C (mannequins virtuels, personnes synthétiques), D (métadonnées, marketplaces), en FR, EN et de-ch. Nouvel état : A, S à publier ; B, C, D à créer et publier. Les vrais articles B, C, D sont construits depuis le `main` courant ; #79 sert de matière (textes, visuels, provenance) et n'est pas fusionnée ; les anciennes PR #61, #62 et #63 ne sont pas réutilisées telles quelles.
+
+**Ce qui reste de D41** — #61, #62 et #63 ne se rouvrent pas. Les mesures D16 du 30/09 ne sont pas présentées comme un verdict favorable : critère 2 non rempli pour B et C, critère 3 non rempli pour D, motif de Laurent du 30/09 inchangé. Aucune nouvelle mesure D16 n'a été faite le 06/10 (un volume de recherche exigerait un appel payant, exclu par la mission) ; relevé gratuit du 06/10 dans `gsc-crawl-seo` : 2 impressions en 90 jours sur les requêtes du thème. La création de B, C, D repose sur la décision de Laurent, pas sur D16.
+
+**Articulation, sans réécriture des décisions antérieures**
+- D16 (création : trois critères, validation explicite de Sébastien) et D42, étape 5 (validation de Sébastien) : la mission remplace, pour ce cluster, l'attente de la validation de Sébastien par l'autorisation de publication de Laurent. Aucune validation de Sébastien n'est établie (relevé GitHub du 06/10 : aucun commentaire de `Sebeth7` sur #59, #60, #77 et #79, aucune revue sur #59 et #60).
+- `01-RAYON-ACTION.md` (texte de Sébastien du 16/09) classe le copywriting français client-facing parmi ce qui engage l'entreprise et relève de son arbitrage, et `README.md` rappelle que la prose française est sa voix. D46 ne modifie pas ces documents. Le point est porté au checkpoint de la mission comme contradiction non résolue par D46.
+- D38 (publication trilingue coordonnée, de-ch adapté au périmètre suisse) : appliquée.
+
+**Le contexte** — #59 (A) et #60 (S) prêts depuis le 02/10, transmis à Sébastien selon le pilotage du 02/10, sans retour établi sur GitHub. #79 : previews privées B, C, D finalisées le 02/10.
+
+**Précisions de Laurent du 06/10/2026 (mission de continuation de #96)**, reproduites sans ajout :
+- `PUBLICATION_AUTHORITY = LAURENT` ; `SEBASTIEN_VALIDATION = NOT_RECEIVED`. Laurent décide de ne plus attendre la validation de Sébastien pour publier ce dossier. Cette décision vaut uniquement pour ce cluster ; elle ne supprime ni D42 ni les circuits métier habituels. Ne jamais écrire que les cinq articles ont été validés par Sébastien. Q23 reste une information, sans valeur de blocage. Copywriting sans Sébastien : `AUTHORIZED_FOR_THIS_CLUSTER = YES`.
+- `D16_EXCEPTION = YES` ; `SCOPE = AI Act B/C/D uniquement` ; `AUTHORITY = Laurent` ; `DATE = 06/10/2026`. L'exception ne modifie pas D16 pour les futurs articles ; aucun appel DataForSEO pour la justifier rétroactivement.
+- Auteur affiché : « PackshotCreator » ; aucun profil personnel en `author.sameAs` ; aucune attribution à Laurent.
+- `datePublished` = date réelle de publication ; `dateModified` = date réelle du dernier changement significatif ; cohérentes dans les trois langues d'un article.
+- Visuels B, C, D : utilisation autorisée après la QA finale ; ce n'est pas une validation de Sébastien.
+- Fusion de #96 : uniquement sur « GO MERGE #96 » explicite de Laurent.
+
+`01-RAYON-ACTION.md` et `README.md` ne sont pas modifiés par ces précisions.
+
+**Ce qu'elle interdit** — Publier les pages `/revue-interne/` de #79 ; fusionner #79 ; présenter la publication comme validée par Sébastien ; fusionner sans le GO de publication explicite de Laurent.
+
+---
+
 ## D45 · 2026-10-03 · R-PRODUCT-DIM : caractéristiques dimensionnelles des produits, référentiel obligatoire et contradictions conservées
 
 **Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
@@ -249,7 +396,7 @@ Arbitrage final 4 — corrections typographiques ponctuelles :
 ## D41 · 2026-09-30 · Cluster AI Act : satellites B, C et D non créés, matière indispensable réintégrée dans le pilier A
 
 **Décidé par** : Laurent — consignée le 2026-10-01
-**Statut** : en vigueur — application de D16 et D27, qu'elle n'amende pas
+**Statut** : **remplacée par D46 (06/10/2026) sur le seul principe de non-création des satellites B, C et D** ; le reste est maintenu (#61, #62 et #63 ne se rouvrent pas ; mesures du 30/09 non présentées comme un verdict favorable). Texte d'origine ci-dessous, inchangé — application de D16 et D27, qu'elle n'amende pas
 
 **La décision** — Ne pas créer les satellites B (retouche IA, #61), C (mannequins virtuels et personnes synthétiques, #62) et D (métadonnées et marketplaces, #63) : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Réintégrer dans le pilier A (#59) la seule matière indispensable au lecteur. Fermer #61, #62 et #63 sans fusion.
 

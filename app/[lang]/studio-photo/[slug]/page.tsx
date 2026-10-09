@@ -18,8 +18,10 @@ import { VideoPlayer } from '@/components/video/VideoPlayer';
 import { OrbitvuViewer } from '@/components/video/OrbitvuViewer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
-import { tx, pickL } from '@/lib/locale-text';
+import { tx, pickL, pickListL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 
 // Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
 // Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
@@ -47,31 +49,151 @@ const VIDEO_META: Record<string, { uploadDate: string; duration: string }> = {
   'Ejg8nOp9x-0': { uploadDate: '2024-01-02', duration: 'PT2M20S' }, // furniture-studio
 };
 
+type TexteGalerie = { fr: string; en: string; 'de-ch'?: string };
+
 interface ProductGallery {
   /** Bento grid — large packshot result (row1 left, 7/12) */
-  bentoPackshot?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
+  bentoPackshot?: { src: string; alt: TexteGalerie; w: number; h: number };
   /** Bento grid — Orbitvu SUN 360° viewer (row1 right, 5/12) */
   orbitvu360?: { shareId: string; scriptId: string };
   /** Full-width YouTube video section */
   video?: { youtubeId: string; poster?: string };
   /** Bento grid — row2 images (360°, reflective, etc.) */
-  bentoRow2?: Array<{ src: string; alt: { fr: string; en: string }; w: number; h: number }>;
+  bentoRow2?: Array<{ src: string; alt: TexteGalerie; w: number; h: number }>;
   /** Key advantage featured image */
-  advantageHero?: { src: string; alt: { fr: string; en: string }; w: number; h: number };
+  advantageHero?: { src: string; alt: TexteGalerie; w: number; h: number };
   /** Hardware component images */
-  hardware?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+  hardware?: Array<{ src: string; alt: TexteGalerie; label: TexteGalerie; w: number; h: number }>;
   /** Software feature screenshots */
-  software?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+  software?: Array<{ src: string; alt: TexteGalerie; label: TexteGalerie; w: number; h: number }>;
   /** Accessory images */
-  accessories?: Array<{ src: string; alt: { fr: string; en: string }; label: { fr: string; en: string }; w: number; h: number }>;
+  accessories?: Array<{ src: string; alt: TexteGalerie; label: TexteGalerie; w: number; h: number }>;
 }
+
+// Galerie des fiches en allemand suisse : libellés et ALT, indexés par le texte FR
+// des appels img() / labeled() ci-dessous. Sans entrée, pickL retombe sur l'anglais.
+const GALERIE_DE_CH: Record<string, string> = {
+  'Alphashot XL G2, vue studio': 'Alphashot XL G2, Studioansicht',
+  'Alphashot XL G2, vue studio de trois quarts': 'Alphashot XL G2, Studio in Dreiviertelansicht',
+  'Exemple de photographie industrielle réalisable avec l\'Alphashot XL G2': 'Beispiel für Industriefotografie mit dem Alphashot XL G2',
+  'Opérateur utilisant l\'Alphashot XL G2 pour une prise de vue': 'Bediener bei einer Aufnahme mit dem Alphashot XL G2',
+  'Chambre ouverte de l\'Alphashot XL G2, éclairage LED et bras caméra': 'Geöffnete Kammer des Alphashot XL G2, LED-Beleuchtung und Kameraarm',
+  '170 panneaux LED pilotés par IA': '170 KI-gesteuerte LED-Panels',
+  'Éclairage virtuel': 'Virtuelle Beleuchtung',
+  'Plateau tournant motorisé avec balance intégrée (MDC)': 'Motorisierter Drehteller mit integrierter Waage (MDC)',
+  'Plateau + mesure': 'Drehteller + Messung',
+  'Double support caméra Canon EOS R': 'Doppelte Canon-EOS-R-Kamerahalterung',
+  'Support caméra': 'Kamerahalterung',
+  'Interface de capture Orbitvu Station sur Alphashot XL MDC G2': 'Aufnahmeoberfläche von Orbitvu Station auf dem Alphashot XL MDC G2',
+  'Capture': 'Aufnahme',
+  'Lecture IA des étiquettes et structuration des données produit': 'KI-Etikettenerkennung und Strukturierung der Produktdaten',
+  'OCR IA': 'KI-OCR',
+  'Packshot mascara NARS': 'Packshot einer NARS-Mascara',
+  'Packshot palette maquillage': 'Packshot einer Make-up-Palette',
+  'Packshot machine à popcorn': 'Packshot einer Popcornmaschine',
+  'Packshot lunettes de soleil': 'Packshot einer Sonnenbrille',
+  'Détourage automatique IA': 'Automatisches KI-Freistellen',
+  'Panneau éclairage LED virtuel': 'Virtuelles LED-Beleuchtungspanel',
+  'Plateau tournant motorisé': 'Motorisierter Drehteller',
+  'Plateau motorisé': 'Motorisierter Drehteller',
+  'Contrôle éclairage Orbitvu Station': 'Lichtsteuerung in Orbitvu Station',
+  'Contrôle éclairage': 'Lichtsteuerung',
+  'Post-production automatique': 'Automatische Nachbearbeitung',
+  'Post-production': 'Nachbearbeitung',
+  'Export multi-canal': 'Multi-Channel-Export',
+  'Détourage IA automatique': 'Automatisches KI-Freistellen',
+  'Détourage IA': 'KI-Freistellen',
+  'Packshot bague sur fond blanc': 'Packshot eines Rings auf weissem Hintergrund',
+  'Packshot collier': 'Packshot einer Halskette',
+  'Packshot montre 360°': '360°-Packshot einer Uhr',
+  'Packshot bague or': 'Packshot eines Goldrings',
+  'Détourage automatique': 'Automatisches Freistellen',
+  'Système anti-reflets': 'Antireflexsystem',
+  'Anti-reflets': 'Antireflex',
+  'Éclairage LED intégré': 'Integrierte LED-Beleuchtung',
+  'Éclairage LED': 'LED-Beleuchtung',
+  'Système d\'éclairage': 'Beleuchtungssystem',
+  'Éclairage': 'Beleuchtung',
+  'Détourage auto': 'Auto-Freistellen',
+  'Super Focus macro': 'Super Focus Makro',
+  'Super Focus': 'Super Focus',
+  'Retouche automatique': 'Automatische Retusche',
+  'Retouche': 'Retusche',
+  'Templates personnalisés': 'Individuelle Templates',
+  'Templates': 'Templates',
+  'Packshot portefeuille': 'Packshot eines Portemonnaies',
+  'Packshot appareil photo': 'Packshot einer Kamera',
+  'Packshot parfum': 'Packshot eines Parfums',
+  'Packshot jouet': 'Packshot eines Spielzeugs',
+  'Vue 360° intégrée': 'Integrierte 360°-Ansicht',
+  'Vue 360°': '360°-Ansicht',
+  'Zoom motorisé': 'Motorisierter Zoom',
+  'LED': 'LED',
+  'Détourage': 'Freistellen',
+  'Export': 'Export',
+  'Packshot clavier': 'Packshot einer Tastatur',
+  'Packshot enceinte': 'Packshot eines Lautsprechers',
+  'Packshot chaussure 360°': '360°-Packshot eines Schuhs',
+  'Packshot sac': 'Packshot einer Tasche',
+  'Vue d\'ensemble studio': 'Gesamtansicht des Studios',
+  'Studio': 'Studio',
+  'Plateau tournant': 'Drehteller',
+  'Plateau': 'Drehteller',
+  'Packshot chaise': 'Packshot eines Stuhls',
+  'Packshot nettoyeur haute pression': 'Packshot eines Hochdruckreinigers',
+  'Diffuseurs latéraux': 'Seitliche Diffusoren',
+  'Diffuseurs': 'Diffusoren',
+  'Intégration e-commerce': 'E-Commerce-Integration',
+  'E-commerce': 'E-Commerce',
+  'Packshot veste': 'Packshot einer Jacke',
+  'Packshot jupe': 'Packshot eines Rocks',
+  'Packshot valise 360°': '360°-Packshot eines Koffers',
+  'Vidéo mannequin': 'Video mit Model',
+  'Studio XXL': 'XXL-Studio',
+  'Colonne motorisée': 'Motorisierte Säule',
+  'Colonne': 'Säule',
+  'Packshot flat-lay manteau': 'Flat-Lay-Packshot eines Mantels',
+  'Packshot blouse enfant': 'Packshot einer Kinderbluse',
+  'Packshot salopette': 'Packshot einer Latzhose',
+  'Packshot robe enfant': 'Packshot eines Kinderkleids',
+  'Bouton de commande': 'Bedientaste',
+  'Commande': 'Bedienung',
+  'Photo mode sport': 'Sportmode-Foto',
+  'Photo mode sport 2': 'Sportmode-Foto 2',
+  'Photo mode sport 4': 'Sportmode-Foto 4',
+  'Éclairage contrôlé par logiciel': 'Softwaregesteuerte Beleuchtung',
+  'Fashion Studio': 'Fashion Studio',
+  'Fusion de clips': 'Zusammenführen von Clips',
+  'Fusion clips': 'Clips zusammenführen',
+  'Publication directe': 'Direkte Veröffentlichung',
+  'Publication': 'Veröffentlichung',
+  'Packshot vélo angle': 'Packshot eines Fahrrads (schräg)',
+  'Packshot vélo face': 'Packshot eines Fahrrads (Vorderansicht)',
+  'Packshot pneu vélo': 'Packshot eines Fahrradreifens',
+  'Vue 360° vélo': '360°-Ansicht eines Fahrrads',
+  'Session photo vélo': 'Fahrrad-Fotosession',
+  'Session': 'Session',
+  'Système de suspension': 'Aufhängungssystem',
+  'Suspension': 'Aufhängung',
+  'Éclairage studio': 'Studiobeleuchtung',
+  'Templates Orbitvu Station': 'Templates in Orbitvu Station',
+  'Packshot meuble rouge': 'Packshot eines roten Möbels',
+  'Packshot réfrigérateur': 'Packshot eines Kühlschranks',
+  'Canapé 360°': 'Sofa 360°',
+  'Packshot quad': 'Packshot eines Quads',
+  'Vue d\'ensemble E-Comm Studio': 'Gesamtansicht E-Comm Studio',
+  'Packshot chaise rouge': 'Packshot eines roten Stuhls',
+  'Packshot lampe jaune': 'Packshot einer gelben Lampe',
+  'Packshot étagère rouge': 'Packshot eines roten Regals',
+  'Vue d\'ensemble Furniture Studio': 'Gesamtansicht Furniture Studio',
+};
 
 function getProductGallery(id: string): ProductGallery {
   const b = (machineId: string) => `/images/machines/${machineId}`;
   const img = (machineId: string, file: string, fr: string, en: string, w: number, h: number) =>
-    ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, w, h });
+    ({ src: `${b(machineId)}/${file}`, alt: { fr, en, 'de-ch': GALERIE_DE_CH[fr] }, w, h });
   const labeled = (machineId: string, file: string, fr: string, en: string, labelFr: string, labelEn: string, w: number, h: number) =>
-    ({ src: `${b(machineId)}/${file}`, alt: { fr, en }, label: { fr: labelFr, en: labelEn }, w, h });
+    ({ src: `${b(machineId)}/${file}`, alt: { fr, en, 'de-ch': GALERIE_DE_CH[fr] }, label: { fr: labelFr, en: labelEn, 'de-ch': GALERIE_DE_CH[labelFr] }, w, h });
 
   const galleries: Record<string, ProductGallery> = {
     // ── ALPHASHOT XL G2 ── (visuels officiels Orbitvu, auto-hébergés — pas de shoot PSC dédié pour le moment)
@@ -470,8 +592,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? pickL(lang, { fr: override.fr.description, en: override.en.description, 'de-ch': override['de-ch']?.description })
     : tx(lang,
         `${machine.nom} — Distributeur officiel Orbitvu. Studio photo automatisé pour ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].fr}`,
-        `${machine.nom} — Official Orbitvu distributor. Automated photo studio for ${machine.useCases.join(', ')}. ${machine.keyAdvantages[0].en}`,
-        `${machine.nom} — Offizieller Orbitvu-Distributor. Automatisiertes Fotostudio für ${machine.useCases.join(', ')}. ${pickL('de-ch', machine.keyAdvantages[0])}`);
+        `${machine.nom} — Official Orbitvu distributor. Automated photo studio for ${pickListL('en', machine.useCases, machine.useCasesI18n).join(', ')}. ${machine.keyAdvantages[0].en}`,
+        `${machine.nom} — Offizieller Orbitvu-Distributor. Automatisiertes Fotostudio für ${pickListL('de-ch', machine.useCases, machine.useCasesI18n).join(', ')}. ${pickL('de-ch', machine.keyAdvantages[0])}`);
 
   return {
     title,
@@ -515,43 +637,82 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   const monthly = leasingMonthly(machine.prix, priceCurrency);
 
   const similarMachines = getSimilarMachines(machine);
+  // Cas d'usage dans la langue de la page (FR inchangé ; liste FR si pas de traduction).
+  const casUsage = pickListL(lang, machine.useCases, machine.useCasesI18n);
   const faqItems = machine.faqItems || [];
   const keyStats = machine.keyStats || [];
+
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active pour cette fiche.
+  const barre = barreActive('fiche-machine', lang as Langue, machine.id);
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        ...(gallery.video ? [{ id: 'en-action', libelle: tx(lang, `Le ${machine.nom} en action`, `The ${machine.nom} in action`, `Der ${machine.nom} in Aktion`) }] : []),
+        { id: 'avantages', libelle: tx(lang, 'Avantages clés', 'Key advantages', 'Wichtige Vorteile') },
+        { id: 'caracteristiques', libelle: tx(lang, 'Caractéristiques', 'Specifications', 'Technische Daten') },
+        ...(gallery.software && gallery.software.length > 0 ? [{ id: 'logiciel', libelle: tx(lang, 'Logiciel tout-en-un', 'All-in-one software', 'All-in-one-Software') }] : []),
+        ...(gallery.accessories && gallery.accessories.length > 0 ? [{ id: 'accessoires', libelle: tx(lang, 'Complétez votre système', 'Complete your system', 'Ergänzen Sie Ihr System') }] : []),
+        ...(similarMachines.length > 0 ? [{ id: 'systemes-similaires', libelle: tx(lang, 'Systèmes similaires', 'Similar systems', 'Ähnliche Systeme') }] : []),
+        { id: 'formation', libelle: tx(lang, `Maîtrisez votre ${machine.nom}`, `Master your ${machine.nom}`, `Meistern Sie Ihren ${machine.nom}`) },
+        ...(faqItems.length > 0 ? [{ id: 'faq', libelle: tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen') }] : []),
+      ]
+    : [];
+
+  // URL canonique de la fiche, chemin localisé (de-ch : /fotostudio/…) : l'URL
+  // /de-ch/studio-photo/… répond 307. Partagée par le fil d'Ariane et par
+  // Product.url / Offer.url.
+  const urlFiche = `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}`;
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
-    // Chemin localisé (de-ch : /fotostudio/…) : l'URL /de-ch/studio-photo/… répond 307.
-    { name: machine.nom, url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}` },
+    { name: machine.nom, url: urlFiche },
   ];
 
-  const featureLabels: Record<string, { fr: string; en: string }> = {
-    packshot: { fr: 'Packshot', en: 'Packshot' },
-    '360': { fr: 'Vue 360°', en: '360° View' },
-    video: { fr: 'Vidéo', en: 'Video' },
-    'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin' },
-    'flat-lay': { fr: 'Flat-Lay', en: 'Flat-Lay' },
-    lifestyle: { fr: 'Lifestyle', en: 'Lifestyle' },
+  const featureLabels: Record<string, { fr: string; en: string; 'de-ch': string }> = {
+    packshot: { fr: 'Packshot', en: 'Packshot', 'de-ch': 'Packshot' },
+    '360': { fr: 'Vue 360°', en: '360° View', 'de-ch': '360°-Ansicht' },
+    video: { fr: 'Vidéo', en: 'Video', 'de-ch': 'Video' },
+    'ghost-mannequin': { fr: 'Ghost Mannequin', en: 'Ghost Mannequin', 'de-ch': 'Ghost Mannequin' },
+    'flat-lay': { fr: 'Flat-Lay', en: 'Flat-Lay', 'de-ch': 'Flat-Lay' },
+    lifestyle: { fr: 'Lifestyle', en: 'Lifestyle', 'de-ch': 'Lifestyle' },
   };
 
-  const sectorLabels: Record<string, { fr: string; en: string }> = {
-    jewelry: { fr: 'Bijouterie', en: 'Jewelry' },
-    cosmetics: { fr: 'Cosmétiques', en: 'Cosmetics' },
-    electronics: { fr: 'Électronique', en: 'Electronics' },
-    general: { fr: 'Général', en: 'General' },
-    footwear: { fr: 'Chaussures', en: 'Footwear' },
-    bags: { fr: 'Maroquinerie', en: 'Bags' },
-    wine: { fr: 'Vins & Spiritueux', en: 'Wine & Spirits' },
-    fashion: { fr: 'Mode', en: 'Fashion' },
-    furniture: { fr: 'Mobilier', en: 'Furniture' },
-    sports: { fr: 'Sport', en: 'Sports' },
-    cycling: { fr: 'Cycles', en: 'Cycling' },
-    appliances: { fr: 'Électroménager', en: 'Appliances' },
-    automotive: { fr: 'Automobile', en: 'Automotive' },
+  const sectorLabels: Record<string, { fr: string; en: string; 'de-ch': string }> = {
+    jewelry: { fr: 'Bijouterie', en: 'Jewelry', 'de-ch': 'Schmuck' },
+    cosmetics: { fr: 'Cosmétiques', en: 'Cosmetics', 'de-ch': 'Kosmetik' },
+    electronics: { fr: 'Électronique', en: 'Electronics', 'de-ch': 'Elektronik' },
+    general: { fr: 'Général', en: 'General', 'de-ch': 'Allgemein' },
+    footwear: { fr: 'Chaussures', en: 'Footwear', 'de-ch': 'Schuhe' },
+    bags: { fr: 'Maroquinerie', en: 'Bags', 'de-ch': 'Lederwaren' },
+    wine: { fr: 'Vins & Spiritueux', en: 'Wine & Spirits', 'de-ch': 'Wein & Spirituosen' },
+    fashion: { fr: 'Mode', en: 'Fashion', 'de-ch': 'Mode' },
+    furniture: { fr: 'Mobilier', en: 'Furniture', 'de-ch': 'Möbel' },
+    sports: { fr: 'Sport', en: 'Sports', 'de-ch': 'Sport' },
+    cycling: { fr: 'Cycles', en: 'Cycling', 'de-ch': 'Zweiräder' },
+    appliances: { fr: 'Électroménager', en: 'Appliances', 'de-ch': 'Haushaltsgeräte' },
+    automotive: { fr: 'Automobile', en: 'Automotive', 'de-ch': 'Automobil' },
+  };
+  // Secteurs absents de la table ci-dessus : rendus sous leur clé brute en FR et en EN
+  // (constat hors périmètre de cette correction, FR et EN inchangés) ; libellé de-ch seul.
+  const sectorLabelsDeChSeul: Record<string, string> = {
+    optics: 'Brillen & Optik',
+    health: 'Gesundheit & Medizin',
+    industrial: 'Industrie',
+    watchmaking: 'Uhrmacherei',
   };
 
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
+
       {/* Hero Product */}
       <HeroSection
         layout="split"
@@ -561,7 +722,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           colorClass: 'text-very-peri-300',
         }}
         title={machine.nom}
-        subtitle={machine.useCases.join(' \u2022 ')}
+        subtitle={casUsage.join(' \u2022 ')}
         ctas={[
           { label: tx(lang, 'Demander un devis', 'Request a quote', 'Offerte anfordern'), href: '/contact', variant: 'primary' },
           { label: tx(lang, 'Demander une démo', 'Request a demo', 'Demo anfordern'), href: '/contact', variant: 'secondary' },
@@ -570,7 +731,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           <div className="bg-white rounded-2xl shadow-2xl p-8">
             <Image
               src={machineImage}
-              alt={`Studio photo ${machine.nom}`}
+              alt={tx(lang, `Studio photo ${machine.nom}`, `${machine.nom} photo studio`, `Fotostudio ${machine.nom}`)}
               width={640}
               height={480}
               className="object-contain w-full h-auto"
@@ -767,7 +928,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Full-width Video Demo */}
       {gallery.video && (
-        <section className="py-20 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
+        <section id={ancre('en-action')} className="py-20 lg:py-28 bg-future-dusk-900 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-future-dusk-800 to-future-dusk-900" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
             <FadeInView>
@@ -785,6 +946,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 src={`${R2_VIDEO_BASE}/${gallery.video.youtubeId}.mp4`}
                 poster={gallery.video.poster}
                 title={tx(lang, `${machine.nom} en action`, `${machine.nom} in action`, `${machine.nom} in Aktion`)}
+                playLabel={tx(lang, 'Lire la vidéo :', 'Play video:', 'Video abspielen:')}
                 className="aspect-video w-full rounded-2xl shadow-2xl shadow-black/30"
               />
             </ScrollReveal>
@@ -830,7 +992,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       )}
 
       {/* Key Advantages — Featured first + 2-col grid */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id={ancre('avantages')} className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeInView>
             <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -904,7 +1066,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       </section>
 
       {/* Specs & Use Cases — Merged split layout */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
+      <section id={ancre('caracteristiques')} className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-900/40" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -957,7 +1119,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                   {tx(lang, 'Cas d\'usage idéaux', 'Ideal use cases', 'Ideale Anwendungsfälle')}
                 </h3>
                 <ul className="space-y-3">
-                  {machine.useCases.map((useCase, index) => (
+                  {casUsage.map((useCase, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
                       <span className="text-white/80">{useCase}</span>
@@ -974,7 +1136,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                 <div className="flex flex-wrap gap-2">
                   {machine.idealSectors.map((sector) => (
                     <span key={sector} className="bg-very-peri-500/20 text-very-peri-200 px-3 py-1.5 rounded-full text-sm font-medium">
-                      {pickL(lang, sectorLabels[sector] ?? { fr: sector, en: sector })}
+                      {pickL(lang, sectorLabels[sector] ?? { fr: sector, en: sector, 'de-ch': sectorLabelsDeChSeul[sector] })}
                     </span>
                   ))}
                 </div>
@@ -1003,7 +1165,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Software Features */}
       {gallery.software && gallery.software.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('logiciel')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -1045,7 +1207,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* Accessories */}
       {gallery.accessories && gallery.accessories.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('accessoires')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
               <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-20">
@@ -1087,7 +1249,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #D Similar Machines */}
       {similarMachines.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('systemes-similaires')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeInView>
             <div className="text-center mb-12 lg:mb-16">
@@ -1121,7 +1283,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                           {similar.nom}
                         </h3>
                         <p className="text-sm text-future-dusk-500 mb-3 line-clamp-2">
-                          {similar.useCases.slice(0, 3).join(', ')}
+                          {pickListL(lang, similar.useCases, similar.useCasesI18n).slice(0, 3).join(', ')}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           <span className="text-xs bg-very-peri-50 text-very-peri-700 px-2 py-1 rounded-full">
@@ -1142,7 +1304,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       )}
 
       {/* Training Recommendation — Inverted split: content left, gradient right */}
-      <section className="py-16 lg:py-28 bg-white">
+      <section id={ancre('formation')} className="py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             <FadeInView direction="left" className="lg:col-span-7">
@@ -1212,7 +1374,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
 
       {/* #C FAQ — Split: sticky heading left + accordion right */}
       {faqItems.length > 0 && (
-        <section className="py-20 lg:py-32 bg-neutral-50">
+        <section id={ancre('faq')} className="py-20 lg:py-32 bg-neutral-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32">
@@ -1327,9 +1489,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
         breadcrumbSchema(breadcrumbs),
         productSchema({
           name: machine.nom,
-          description: `${machine.nom}: ${machine.useCases.join(', ')}`,
+          description: `${machine.nom}: ${casUsage.join(', ')}`,
           image: `https://www.packshot-creator.com${machineImage}`,
-          url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
+          url: urlFiche,
           // Identifiant produit du vendeur : l'`id` de la machine, déjà le slug
           // de l'URL. Même valeur sur les trois locales, comme l'attend Google.
           sku: machine.id,
@@ -1350,8 +1512,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
               name: tx(lang, `${machine.nom} en action — démo vidéo`, `${machine.nom} in action — demo video`, `${machine.nom} in Aktion — Demo-Video`),
               description: tx(lang,
                 `Démonstration du studio photo automatisé ${machine.nom} (Orbitvu) : ${machine.useCases.join(', ')}.`,
-                `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${machine.useCases.join(', ')}.`,
-                `Demonstration des automatisierten Fotostudios ${machine.nom} (Orbitvu): ${machine.useCases.join(', ')}.`),
+                `Demo of the ${machine.nom} automated photo studio (Orbitvu): ${pickListL('en', machine.useCases, machine.useCasesI18n).join(', ')}.`,
+                `Demonstration des automatisierten Fotostudios ${machine.nom} (Orbitvu): ${pickListL('de-ch', machine.useCases, machine.useCasesI18n).join(', ')}.`),
               // Miniature JPEG auto-hébergée sur R2 (l'AVIF poster n'est pas un format supporté par Google)
               thumbnailUrl: `${R2_VIDEO_BASE}/${gallery.video.youtubeId}.jpg`,
               uploadDate: VIDEO_META[gallery.video.youtubeId].uploadDate,

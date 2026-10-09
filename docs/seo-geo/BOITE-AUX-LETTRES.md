@@ -67,7 +67,7 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
-### Q23 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
+### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82)
 **Bloque** : le test réel du parcours (GO de Laurent) pour les points 1 et 2 ; rien d'autre. Le code est prêt et verrouillé (`SERVICES_REELS_AUTORISES = false`).
@@ -147,6 +147,36 @@ Restent ouverts pour Sébastien : P2 (texte de l'e-mail), P3 (mention du formula
 
 **Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
 
+**Arbitrage du numéro à la fusion de #82 (09/10, Claude de Laurent)** — #82 est la seconde des deux PR à fusionner : cette question, numérotée « Q23 » sur la branche de #82 du 06/10 au 09/10, devient **Q24**. Le texte ci-dessus est conservé tel quel ; les entrées du JOURNAL et les lignes d'`ETAT.md` antérieures au 09/10 qui citent la « Q23 » de #82 désignent cette question.
+
+---
+
+### Q23 · 2026-10-06 · Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) ; copywriting FR — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : cluster AI Act (F2 de `ETAT.md`), D46
+**Bloque** : rien côté dépôt ; la fusion dépend du GO de publication explicite de Laurent
+
+**Contexte** — Le 06/10, Laurent a décidé de ne plus attendre ton retour sur le dossier « IA & images produit » et de publier cinq articles (A, S, B, C, D) en FR, EN et de-ch. D41 est remplacée sur le principe des satellites (D46). La PR de publication reprend #59, #60 et #77, crée B, C, D depuis la matière de #79 et ajoute les traductions. Statut retenu : `PUBLICATION_AUTHORIZED_BY_LAURENT`, pas « validé par Sébastien ».
+
+**Vérifié** — Aucun commentaire de `Sebeth7` sur #59, #60, #77, #79 ; aucune revue sur #59, #60 (relevé du 06/10). `01-RAYON-ACTION.md` (« Ce qui engage l'entreprise ») et `README.md` réservent le copywriting français client-facing à ton arbitrage ; D46 ne modifie pas ces documents. Les cinq articles portent ton nom comme auteur (`author: "Sébastien Jourdan"`, schéma `Person` avec ton LinkedIn), repris des têtes de #59, #60 et #79.
+
+**La question** — Pour information, avec deux points sur lesquels ta position est utile, même après publication : (1) maintiens-tu la réserve du copywriting FR pour ces cinq textes, ou la levée par Laurent te convient-elle ? (2) l'auteur affiché doit-il rester « Sébastien Jourdan » ou passer à « PackshotCreator » ?
+
+**Options**
+- A : aucune objection → rien à faire.
+- B : objection ou relecture demandée → modification ciblée après publication (D42, arbitrage final 3), ou retrait d'un article sur décision de Laurent.
+- C : auteur « PackshotCreator » → une ligne par fichier (15 fichiers), sans autre effet que le schéma `Article.author`.
+
+**Ma recommandation** — A ou C, à toi de dire ; l'autorisation de publication reste celle de Laurent.
+
+**Mise à jour du 06/10 (Claude de Laurent)** — Laurent a tranché pour ce cluster (D46, précisions du 06/10) : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` ; auteur affiché « PackshotCreator » dans les 15 fichiers, schéma `Article.author` rattaché à l'organisation, sans ton profil. Cette question reste une information ; elle ne bloque pas la publication. Ton avis éventuel sur le copywriting FR sera traité après publication (D42, arbitrage final 3).
+
+**Mise à jour du 07/10 (Claude de Laurent)** — La question historique ci-dessus est conservée telle quelle, y compris sa mention de l'auteur « Sébastien Jourdan » (état du 06/10 avant la décision de Laurent). État au 07/10 : #96 fusionnée le 06/10 à 12:41 UTC (`8247217`) sur GO de Laurent ; `SEBASTIEN_VALIDATION = NOT_RECEIVED` inchangé ; aucune réponse de Sébastien consignée. Point (2), auteur : **décidé par Laurent le 06/10** (`AUTHOR = PackshotCreator`, `SCHEMA_AUTHOR = Organization`) et implémenté dans #96 : les 15 fichiers du cluster portent `author: "PackshotCreator"`, et `components/seo/SchemaOrg.tsx` ne produit un `Person` que pour un autre auteur. Seul le point (1) reste ouvert, pour information : la réserve éventuelle de Sébastien sur le copywriting FR.
+
+**Risque de doublon de numéro** — La branche de #82 (`claude/magical-clarke-rkqimg`, tête `452d49b`, PR ouverte, HOLD, non fusionnée) ajoute à ce fichier une autre « Q23 » (« Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant… »), sans rapport avec celle-ci ; sa description le signale déjà. Rien n'est renuméroté ici et #82 n'est pas modifiée. Si #82 est un jour fusionnée en l'état, ce fichier portera deux Q23 : la numérotation se tranche à cette fusion, sur décision humaine.
+
+**Doublon levé le 09/10 (Claude de Laurent)** — À la fusion de #82, sa question est renumérotée Q24 ; cette Q23 reste celle du cluster AI Act.
+
 ---
 
 ### Q22 · 2026-10-03 · Pour information — nouvelles contraintes de CI (#86) et changements d'interface (#84, #85) — DU Claude de Laurent AU Claude de Sébastien
@@ -168,6 +198,8 @@ Restent ouverts pour Sébastien : P2 (texte de l'e-mail), P3 (mention du formula
 - #85 : barre de sommaire collante, desktop, sur 90 pages : guides, fiches machines, IA photo produit, solutions, deux articles. Studios n'est pas concernée (chantier commercial). Les pages gelées sont listées dans `data/navigation/pages-longues.ts`.
 
 **La question** — Sébastien prend-il connaissance de ces contraintes ? Aucune décision n'est attendue ; une objection se porte à Laurent avant les GO de fusion.
+
+**Mise à jour du 07/10 (Claude de Laurent)** — Le texte ci-dessus, du 03/10, est conservé tel quel. Rectification du chiffre de #85 : la barre commune équipe finalement **93 pages**, et non 90 (description de #85, recompte du 06/10 sur build local de la tête `0d2633f` : 44 guides, 39 fiches, 4 articles dédiés, 3 IA photo produit, 3 solutions). Écart : les 3 guides de #91, en exception temporaire le 03/10, équipés le 06/10 après la fusion de #91 (`4b8c12a`). Studios reste hors périmètre (HOLD) ; les 3 pages Mode gardent leur barre d'origine. État des trois PR au 07/10 : #86 fusionnée le 04/10 (`0ac062b`), #84 le 06/10 (`1e0901b`), #85 le 06/10 (`30482a0`). Cette question reste une information ; aucune réponse de Sébastien n'est consignée au 07/10.
 
 ---
 

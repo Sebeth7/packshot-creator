@@ -34,6 +34,128 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
+
+**Quoi** — D51 inscrite dans `DECISIONS.md` (texte de Laurent reproduit sans modification). Aucun fichier du site modifié par ce commit : le code fusionné est celui de `81803ad`, contrôlé par Laurent. #109 passe de brouillon à prête et est fusionnée par commit de fusion ; #111 est fermée sans fusion, branche conservée.
+
+**Pourquoi** — QA Chrome de Laurent sur la Preview de `81803ad` : 7 groupes PASS, aucun défaut bloquant (D42, étape 4). Validation de Sébastien (étape 5) non reçue : remplacée pour cette seule PR par l'exception D51, qui ne vaut pas validation de Sébastien. #111 : fusion simulée de `9337135` sur `81803ad` sans effet sur les fichiers du site ; test `claims-roi-sav` repris (en-tête seul différent) ; ses deux entrées JOURNAL présentes mot pour mot ici (08/10, 09/10).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D51), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : déploiement de production (~3 minutes) ; adresse du showroom, conditions commerciales, délai, garantie, ROI et claims non sourcés corrigés sur les pages servies (voir les entrées du 08/10 et du 09/10).
+
+**Vérifié** — Tête de #109 `81803ad` identique à la tête de la QA Chrome ; CI 4/4 verte, Vercel « success », `mergeable_state` : clean ; `main` `f03f8ca` inchangé (09/10, 12:07 UTC).
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de production à faire par Laurent après déploiement.
+
+**Suite** — Après fusion : smoke `sysnext.vercel.app` et contrôle des correctifs servis ; SHA de fusion et résultats consignés dans le commentaire de clôture de #109, puis repris au JOURNAL par la prochaine PR documentaire ; contrôle `www` dans Chrome (Laurent) ; fermeture de #64 sur GO distinct ; #108 à resynchroniser (clés Studios).
+
+---
+
+## 2026-10-09 · #109 — garde `claims-roi-sav` reprise de #111, entrées JOURNAL de #111 conservées ; #111 sans apport propre · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission V8 de Laurent du 09/10, « finalisation unique #109/#111 » ; cette session est seule à écrire sur #109 et #111) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `d98c151`
+
+**Quoi** — `lib/__tests__/claims-roi-sav.test.ts` repris tel quel de #111 (`9337135`) ; les deux entrées JOURNAL de #111 (08/10 et 09/10) recopiées sans modification, ci-dessous et à leur date, pour qu'elles survivent à une fermeture de #111 sans fusion.
+
+**Pourquoi** — Fusion simulée de #109 (`d98c151`) et de #111 (`9337135`) : les fichiers du site du résultat sont identiques à ceux de #109 ; seul ce test (et la documentation) distingue #111. Le reporter ici évite une seconde publication des mêmes modifications.
+
+**Fichiers** — `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. La CI garde contre le retour de « ROI dès le 4e mois » (guide budget, FR, EN, de-ch) et des engagements de service retirés du guide d'achat.
+
+**Vérifié** — voir le commit (tsc, Vitest, `next build`).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — #111 : fermeture sans fusion sur GO de Laurent, branche conservée.
+
+---
+
+## 2026-10-09 · #111 — `main` `f03f8ca` intégré, valeurs alignées sur #109, garde de test ajustée · Claude de Laurent
+
+**Chantier** : intégrité factuelle, complément de #109 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #111, brouillon, branche `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `f03f8ca` intégré par fusion (`4a69506`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seul `JOURNAL.md` en conflit, fusionné par union (167 + 12 + 1 = 180 entrées).
+- Constat : la seconde passe de #109 (`b9698c3`, 08/10) corrige les mêmes lignes plus largement (« seuil de rentabilité dès 500 photos par an », « Hotline française », « Assistance installation gratuite », contrat « interventions on-site illimitées »). Deux versions différentes des mêmes lignes auraient produit un conflit et laissé ces claims dans #111.
+- Alignement : `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) reprennent mot pour mot les valeurs de #109 ; dans le guide d'achat, le bloc « Avantages support FR » et « Contrat maintenance » est retiré exactement comme dans #109 (même hunk). Le titre « Support Technique France » et la mention « Distributeur officiel Orbitvu France/Suisse » restent ; la garantie relève de #109.
+- `lib/__tests__/claims-roi-sav.test.ts` : motifs étendus à la formulation anglaise de #109 (« between 6 and 12 », « guarantee ») ; garde ajoutée contre « on-site illimitées ».
+
+**Pourquoi** — Faits métier du 08/10 (ROI de 6 à 12 mois, jamais garanti ; aucun engagement de service établi) et consigne du 08/10 14:48 « si aucune source ou fait métier explicite ne l'établit : NE PAS L'INVENTER. NE PAS LE CONSERVER PAR DÉFAUT. » Les points « à trancher » de la ligne Academy d'`ETAT.md` (« suivi post-formation », « Formateurs experts 10+ ans », Marie D., Camille R., « plus de 500 entreprises ») sont retirés par #109 : aucune réponse de Sébastien n'est nécessaire pour un retrait.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue), `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Fusion de #109 et #111 sans conflit sur les fichiers du site, dans un ordre comme dans l'autre ; après fusion de #109, le diff de #111 se réduit au test et à la documentation. Aucun effet de position annoncé.
+
+**Vérifié** — voir la description de #111 (tests, build, simulation des deux ordres de fusion).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
+## 2026-10-09 · #109 — derniers engagements non démontrés retirés (gratuité, « 24h »), descriptions du blog alignées · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `a4ce4f9` intégrée par fusion. Une seconde session, distincte de celle qui a ouvert #109, a exécuté la même mission en parallèle ; sa fusion de `main` `f03f8ca` (`04b7823`) recouvrait celle de `d7d1811`, sans écart sur les fichiers du site.
+
+**Quoi** — Complément de l'entrée suivante, hors des 19 fichiers de la seconde passe : « pour un diagnostic gratuit » retiré de `besoins-photographie-produit` ; « Diagnostic gratuit et sans engagement » retiré des deux descriptions de `questionsCles` (FR, EN, de-ch) ; clés inutilisées `contact.trustBadge1` (« Réponse sous 24h ») et `trustBadge3` (« Démo gratuite sans engagement ») supprimées ; `trustBadge2` (« 5000+ entreprises équipées », fait retenu le 08/10) conservée ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
+
+**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page sérialise tout le fichier de messages de la langue, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »). Démo et diagnostic « gratuits » et « 24 h » avaient déjà été retirés des autres clés par la seconde passe du 08/10.
+
+**Faits métier** — Ceux consolidés dans l'entrée suivante ; aucun n'est repris ni modifié ici.
+
+**Fichiers** — `app/[lang]/besoins-photographie-produit/page.tsx`, `lib/blog.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespaces `questionsCles` et `contact` seulement), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
+
+**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit » ni de « Réponse sous 24h » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
+
+**Vérifié** — Après fusion de `a4ce4f9` : voir le message du commit de fusion (tsc, `verifier-json`, Vitest, `next build`, contrôle local `next start`). Avant fusion, sur `04b7823` + ce complément : `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 25 fichiers, 495 tests ; `npx next build` (variables factices) : 386 pages ; 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog, articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI.
+**Supposé** — Que le rendu de la Preview soit identique au rendu local ; la Preview est derrière le SSO Vercel.
+**Non regardé** — Preview et production (R4) ; restes déclarés le 08/10, inchangés : Q20/D45, D29, F5, Mode, `home.faq.q7` et `home.hero` (gel jusqu'au 28/10), `foundingDate` et Qualiopi de `organizationSchema()` (accueil, F5, Mode), prix D30 et D25 de `blogStudioIa`, nombres codés en dur de `studios-photo-automatises` (landing #108 en HOLD), `readingTime` de `lib/blog.ts`, `blogPrestataire`, `/industrie` « 2 à 4 semaines » (D10).
+
+**Suite** — #111 empilée sur #109 (fusionner #109 d'abord). Validation D42 : contrôle de la Preview par Laurent (étape 4), puis validation du copywriting FR par Sébastien (étape 5, D13). Aucun GO de fusion.
+
+---
+
+## 2026-10-09 · #109 — `main` `f03f8ca` intégré, « 5000+ » rétabli (erreur de la seconde passe), faits métier consolidés · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par fusion (`d7d1811`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seuls `JOURNAL.md` et `ETAT.md` en conflit, fusionnés par union (167 + 12 + 2 = 181 entrées) ; aucun fichier du site en conflit.
+- **Correction de l'entrée du 08/10 « seconde passe »** : le retrait de « 5000+ » était une erreur. Valeurs de `main` rétablies à l'identique : `contact.trustStat2Value` et `trustStat2Label` (FR « 5000+ » / « entreprises équipées », EN « 5000+ » / « companies equipped », de-ch « 5'000+ » / « ausgerüstete Unternehmen ») ; `studiosHardware.meta.description` FR et de-ch : « 5 000+ entreprises équipées. » / « 5000+ ausgerüstete Unternehmen. » réinséré à sa place d'origine, sans « ROI moyen 9 mois » ni « Démo gratuite ». La meta EN ne le contenait pas. Les registres de la seconde passe (entrées 554 et 586, hors dépôt) sont à lire avec cette correction.
+
+**Pourquoi** — « 5_000_PLUS = fait métier Sébastien retenu » (Laurent, 08/10, 13:24 UTC). Le seul point ouvert sur ce chiffre était, au JOURNAL du 30/09 (#71), « l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget) » ; « plus de 500 entreprises » disparaît avec la réécriture de `blogBudget.intro.p2` par #109. Libellé : celui de `main` et de l'accueil, sans portée géographique ni rattachement à Orbitvu ajoutés.
+
+**Faits métier consolidés** (consignés une fois ; formulation et provenance) —
+- Sysnext 2001, lancement de PackshotCreator 2004, « PackshotCreator est une marque de Sysnext » : missions de Laurent du 30/09 et du 08/10 ; D33 (25/09, « date de création : 2001 »). `foundingDate` : « FOUNDINGDATE_PATCH = OUT_OF_SCOPE » (30/09), modèle d'entité non tranché.
+- Showroom « 198 allée de la Tour, 01700 Beynost », distinct du siège : « fait métier Laurent + Sébastien » (30/09), rappelé le 08/10. Même point que D1 (commune du showroom, Sébastien) : la commune change, la règle éditoriale de D1 (« près de Lyon » hors contact, schema, mentions légales) reste appliquée.
+- Orbitvu : distributeur officiel, jamais exclusif (D6) ; « depuis 2023 » (30/09, 08/10).
+- Livraison et installation facturées en supplément : D32 (25/09, offre de leasing B2B livrée et installée, France et Suisse), 30/09, 08/10.
+- Délai : D32 (25/09) « environ 10 jours » ; le 30/09, Laurent : « délai actuel ≈ 12 jours », « Le chiffre ancien « environ 10 jours » est dépassé par la confirmation du 30/09 », « OLD_D32 = environ 10 jours », « GOVERNANCE_AMENDMENT_REQUIRED = YES » ; le 08/10 : « environ 12 jours, indicatif, NON GARANTI ». Même offre et même point selon Laurent : 12 jours dans le contenu de #109 ; texte de D32 non amendé ; F5 gelée à 10 jours (D37) ; `shippingDetails` de D32 non implémenté.
+- Formation facturée séparément ; Essential 4 h à distance, Master 7 h en présentiel (01/10, #71 ; 08/10) ; Qualiopi : « ENTITÉ QUALIOPI = SYSNEXT » (08/10).
+- Garantie standard d'un an, extension possible, sans plafond publié (30/09, 08/10).
+- ROI « 6–12 mois usuel ; 12–18 mois pour très gros Alphastudio ; jamais comme garantie » (08/10).
+- Allemand : accompagnement commercial possible en Suisse, équipe ni bilingue ni native (D33 ; 30/09 ; 08/10) ; espagnol non parlé (D33).
+- 5 000+ : ci-dessus.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (8 lignes), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bandeau de `/contact` et meta de Studios (FR, de-ch) conformes au fait retenu. Aucun effet de position annoncé.
+
+**Vérifié** — `verifier-json` : 195 JSON valides ; `npx tsc --noEmit` vert ; Vitest 495/495 ; `npx next build` vert (386 pages) ; HTML prérendu : `/fr/contact`, `/en/contact`, `/de-ch/contact` affichent « 5000+ » / « 5'000+ » et leur libellé ; `<meta name="description">` de `/fr` et `/de-ch/studios-photo-automatises` contient la mention rétablie, celle de `/en` est inchangée ; diff du commit limité aux 8 lignes de `messages`, les autres corrections de #109 sont inchangées.
+**Supposé** — [Inférence] Le fait retenu le 08/10 répond au point ouvert le 30/09 (même chiffre, même libellé « entreprises »). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4). Portées divergentes du même chiffre hors #109 : accueil « en France et en Suisse » (gelé jusqu'au 28/10), `studiosHardware.socialProof.label` « en France et dans le monde » (clé non rendue), page Studios « Clients équipés » (`studios-photo-automatises/page.tsx`, hors des 19 fichiers).
+
+**Suite** — D42 étape 4 (Preview, Laurent) et étape 5 (Sébastien : copywriting FR client-facing, D13) ; fusion sur GO distinct de Laurent ; #111 réconciliée sur les mêmes valeurs (entrée suivante de sa branche).
+
+---
+
 ## 2026-10-09 · Landing catalogue All-in-One (#82) : test réel de l'envoi e-mail depuis la Preview, verrous remis · Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `4a800f0` (ouverture), `971d0bc` (fermeture)
@@ -101,6 +223,997 @@ Règles du parcours sans CRM :
 
 ---
 
+## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
+
+**Quoi** — Suppressions seules, sans texte nouveau, sous D50 (exception D13/D42 de Laurent du 09/10) :
+- ShotFlow FR (`comment-shotflow-ameliore-suivi-taches-en-temps-reel`) : déjà dans #121, « | -50% de délais » du `metaTitle` et « Réduisez vos délais de 50%, » de la description ; ajoutés : les puces « Les délais d'approbation ont été réduits de 50 %… » et « 40 % du temps de travail économisé… », et dans la FAQ les phrases chiffrées des questions 1 à 5 (étude 2024, 83 %, 47 % ; 3 à 4 semaines, 90 %, 200 déploiements ; enquête 2024, 28 %, Printemps 32 %, 4,2 à 7,8/10 ; 100 000 assets, 1,2 s, 200 utilisateurs, client mode 25 000 assets et 18 % ; 180 clients, 35 %, 15-22 %, 20-25 %, 60 %) et la phrase qui renvoyait à « ces KPIs ».
+- ShotFlow EN (`how-shotflow-improves-real-time-task-tracking`) : « Reduce your deadlines by 50%, improve collaboration, and reduce costs. » devient « Improve collaboration and reduce costs. » dans la description, donc dans `og:description` et les cartes du blog (seul accord grammatical : majuscule, virgule) ; « Approval times have been reduced by 50%, speeding up all production. » et « 40% of working time saved thanks to the automation of updates. » retirés ; mêmes suppressions que le FR dans la FAQ.
+- Oscaro FR : « , n°1 des pièces auto neuves et d'origine sur internet, » retiré du corps (déjà dans #121).
+- Photographie 3D, FR et EN : modifications de #121 retirées, fichiers rendus identiques à `main` (HOLD PACK-D9 intact).
+
+**HOLD — non supprimés, localisation** :
+- ShotFlow EN : intertitre H3 « 50% reduction in approval times » (section « ShotFlow: real-time visibility… ») ; section « Case study: a successful transformation » (acteur non nommé, « the results are impressive: », 4 puces 65 %, 50 %, 20 %, 98 %, citation d'un « creative director ») ; FAQ 5, témoignage final ; description, « Supporting testimonies and case studies ». Motif : suppression impossible sans réécriture (intertitre, liste introduite par une phrase) ou témoignage, hors du champ de D50.
+- ShotFlow FR : intertitre H3 « 50 % de réduction des délais d'approbation » ; étude de cas (« Après ShotFlow, les résultats sont impressionnants : », 4 puces, citation du directeur créatif) ; FAQ 5, témoignage final ; description, « Témoignages et études de cas à l'appui. ».
+- Oscaro FR : description, « le leader des pièces auto en ligne » (suppression impossible sans substituer un sujet) ; title et H1 (résultat client, lot C) ; corps : « plus de 4000 LEDs », « jusqu'à 120 kg », « plus de 7000 références », citation sur la baisse des retours et la hausse des ventes, non identifiés comme non sourcés à ce jour.
+
+**Fichiers** — `content/blog/fr/comment-shotflow-ameliore-suivi-taches-en-temps-reel.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `content/blog/fr/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg.json`, `docs/seo-geo/DECISIONS.md` (D50), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Moins d'affirmations chiffrées non sourcées exposées sur 3 articles, leurs cartes de blog et leurs données structurées. Aucun effet de position annoncé.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 486/486 ; `npx next build` vert (386 pages) ; CSS identique à `main`.
+- HTML prérendu contre `main` `0ca0ba4` (identifiant de build neutralisé, scripts retirés) : 363 pages identiques sur 374 ; 11 différentes : les 3 articles, `/fr/blog` et `/en/blog` (carte ShotFlow), 6 articles dont la carte « articles liés » affiche la description ShotFlow. Écarts limités aux suppressions listées.
+- JSON-LD : 374 pages, 0 bloc invalide ; 2 pages différentes (ShotFlow FR et EN), champs `Article.description` et réponses de `FAQPage` seulement ; FAQ visible égale à `FAQPage`.
+- Rendu local (`next start`, Chromium) des 3 articles et des 2 index, 1440 et 390 px : HTTP 200, un seul H1, 0 débordement, 0 erreur de page ; questions de FAQ ouvertes sans erreur.
+
+**Supposé** — Rien.
+**Non regardé** — Preview Vercel (SSO, inaccessible depuis cette session) ; `sysnext.vercel.app` (bloqué par le proxy de la session) ; `www` (R4).
+
+**Suite** — Contrôle Chrome de la Preview (D42, étape 4). Le passage de brouillon à prête pour revue déclenchera une demande de revue automatique `CODEOWNERS` : l'autorisation de Laurent du 09/10 ne vaut que pour #116 et #120. Fusion ensuite, sur le GO conditionnel de Laurent du 09/10. #119 reste en HOLD (D13).
+
+---
+
+## 2026-10-09 · #113 — resynchronisation sur `main` (après #112), retrait D35, fusion ; consignation de la fusion de #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #113 distinct et conditionnel) | **PR** : #113, branche `claude/focused-hypatia-ygys0g-alt-aria` | **Base** : `main` `67ec946` (fusion de #112)
+
+**Quoi**
+1. #112 fusionnée le 09/10 à 08:13:42 UTC, commit de fusion `67ec946` : date consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E) ; #112 passe de B à G.
+2. #113 : base passée de la branche de #112 à `main` ; `main` `67ec946` fusionnée dans la branche (conflit sur `JOURNAL.md` seulement, résolu par union).
+3. D35 : les 7 ALT traduits de l'article EN protégé `/en/blog/packshot-photography-guide-why-make-product-packshots` sont retirés (commit `f6276a4`) ; le fichier est identique octet pour octet à `main`. Conservés : 7 ALT de-ch, 112 autres ALT EN (45 fichiers), 21 ALT décoratifs vidés, `title` de l'iframe Vimeo, ARIA du sélecteur.
+
+**Pourquoi** — D35 : l'article EN du comparateur F5 reste en l'état jusqu'à la fin de la mesure F5 (J+56 le 23/11). Les 7 ALT y avaient été modifiés le 08/10 par erreur de périmètre ; aucune revue antérieure ne l'avait relevé.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Delta de #113 contre `main` : 55 JSON (112 ALT EN sur 45 fichiers, 7 ALT de-ch, 21 ALT décoratifs, 1 `title` d'iframe ; aucun changement hors attributs `alt` / `title`), `MachineCard.tsx`, `MachineModal.tsx`.
+
+**Vérifié** — `main` `67ec946` (09/10, après fusion de #112) ; tête de #113 resynchronisée `e642a68` + ce commit. Delta contre `main` recompté : 55 JSON, 112 ALT EN (45 fichiers), 7 ALT de-ch, 21 décoratifs, 1 `title`, 0 changement hors attributs ; `MachineCard.tsx` et `MachineModal.tsx` identiques à la tête `ab7a0bf` contrôlée le 09/10. `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 486/486. HTML prérendu contre un build de `main` `67ec946` : 47 pages modifiées (41 articles, exactement ceux des JSON de blog touchés ; sélecteur et Studios FR, EN, de-ch) ; identiques à `main` : accueil FR, EN, de-ch, F5 ×3, Mode ×3, hub mode, article D35, 15 URL du cluster AI Act (#96) et les pages sources de sa baseline (`migrer-ancien-packshotcreator` et équivalents). Les 14 guides EN portent leurs ALT dans `introMedia`, champ non rendu par le gabarit : aucune page de guide modifiée. QA Playwright sur build local, 10 URL × 3 viewports : 30/30 PASS (URL 8 et 9 : erreurs de console des intégrations externes seulement, présentes sur `main`). `sysnext` après fusion de #112 (09/10 vers 08:15 UTC) : `smoke.mjs` vert (17 pages, 3 ressources), 6 URL de #112 servies avec le lien attendu.
+
+**Supposé** — QA Chrome réelle de #113 (10/10, 09/10) reprise de la mission de Laurent, non refaite ; la page D35 en était exclue (URL 1 à 10 hors article protégé).
+**Non regardé** — `www` (R4) ; relecture EN/DE humaine des ALT (D42).
+
+**Suite** — `smoke.mjs` sur `sysnext` après fusion de #113 ; contrôle Chrome de `www` par Laurent ; fenêtre C11 au plus tard le 15/10 respectée par la fusion.
+
+---
+
+## 2026-10-09 · #112 — exception D49, intégration de `main` et fusion · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #112 conditionnel) | **PR** : #112, branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `330c022` (fusion de #120)
+
+**Quoi** — `main` `330c022` (#110, #116, #120) intégré par commit de fusion `b41d433` : conflits de `ETAT.md` et `JOURNAL.md` résolus par union. D49 inscrite dans `DECISIONS.md` : exception ponctuelle de Laurent pour #112 (D15 et information préalable de Sébastien non appliquées à cette seule PR). Ligne #112 d'`ETAT.md` mise à jour.
+
+**Pourquoi** — Décision expresse de Laurent du 09/10 (texte intégral en D49). Traçabilité des corrections de régime (a), qui remplace ici l'information préalable de Sébastien : M01, M02, M03 (3 ancres « studio photo automatisé » vers `/fr/studios-photo-automatises`), M30, M31, M32 (ancres horlogerie vers le hub horlogerie, dont 1 de-ch), « photographie commerciale horlogère » (guide bracelet FR, audit E, sans numéro M) vers le hub horlogerie, liens externes (A05, AA5 a, A17, F-098, F-070). Liens de régime (b) publiés au titre de D49 : M04, M05 (Studios), M21, D-044 (hub vin).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` ; commit de fusion `b41d433`.
+
+**Effet attendu** — Aucun effet nouveau sur le site par ces commits. Diff de site de #112 identique à la tête `c4c20db` contrôlée (même `patch-id` avant et après l'intégration de `main`).
+
+**Vérifié** — `main` `330c022` ; fichiers de `main` depuis `06b18e2` : aucun fichier du site commun avec #112 ; D49 libre sur `main` ; CODEOWNERS : « la protection de branche n'exige pas de revue ».
+**Supposé** — La QA Chrome réelle de #113 (10/10) est reprise de la mission de Laurent ; elle n'a pas été refaite par cette session.
+**Non regardé** — `www` (R4).
+
+**Suite** — CI sur la nouvelle tête, puis fusion de #112 ; `STUDIOS_INTERNAL_LINKING_EVENT` = date de cette fusion, à consigner par #113 ; `smoke.mjs` sur `sysnext.vercel.app` après déploiement.
+
+---
+
+## 2026-10-09 · D48 — inscription de CA10 (a) + (b) dans DECISIONS.md, par #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — exécution ciblée #112 » du 09/10 (GO_CODE limité à cette inscription ; GO_MERGE, GO_PUBLICATION, GO_CLOUDFLARE_DEPLOY = NO) | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
+
+**Quoi** — D48 inscrite en tête de `DECISIONS.md` : CA10 (a) correction d'un `href` existant, ancre inchangée, information de Sébastien ; CA10 (b) lien posé sur un texte existant sans modifier un mot, D15. Datée du 07/10/2026, attribuée à Laurent. Ligne #112 d'`ETAT.md` mise à jour. Aucun fichier du site modifié.
+
+**Pourquoi** — Arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, ZIP hors dépôt, SHA-256 `ef94c420…6024`) : la première PR de vague 1 qui applique CA10 l'inscrit. #112 l'applique : (a) M01, M02, M03, M30, M31, M32 ; (b) M04, M05, M21, et D-044, lien du même type hors du dossier V2. Arbitrages de Laurent du 09/10 : M31 conservé dans #112, #27 non fusionnable en l'état et non fermée ; protocole Studios conservé, son J0 ne bloque pas #112, aucun témoin D47 modifié ; M39 attend une landing IA validée, #105 reste HOLD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site. CA10 devient une règle écrite opposable aux PR suivantes.
+
+**Vérifié** — `main` `06b18e2` et tête de #112 `0788f23` avant écriture ; numéro D48 absent de `main`, de la branche et des PR ouvertes ; aucune PR ouverte ne touche `DECISIONS.md` ; texte des deux régimes repris du tableau A3 sans modification.
+**Supposé** — Rien.
+**Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
+
+**Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-B — ALT, ARIA et mécanique de langue (B4_1, B4_2, LANG A36/A38, C11) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #113, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-alt-aria`, **empilée sur PR-A (#112)** (mêmes JSON de contenu, champ `content` sur une ligne : se fusionne après PR-A) | **Base** : branche de PR-A
+
+**Quoi** — Deux commits :
+1. ALT : 119 ALT en français servis sur 46 articles et guides EN traduits en anglais ; 7 ALT en français de l'article de-ch `leitfaden-packshot-fotografie-warum-packshots-machen` traduits en allemand ; 21 `alt="__wf_reserved_decorative"` (15 fichiers) remplacés par `alt=""` ; `title` de l'iframe Vimeo EN repris de la version FR (F10). Coquille « massacra » (B4-0322) rendue par « mascara » dans l'ALT EN.
+2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch. Libellés des secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches (clés brutes en FR et en EN) : retirés de cette PR après l'ouverture de #110 (sprint parallèle, même fichier `app/[lang]/studio-photo/[slug]/page.tsx`), COLLISION_OTHER_SPRINT.
+
+**Pourquoi** — B4 (716 occurrences) et LANG (A01–A38) comptent les mêmes ALT en mauvaise langue (ponts PONT-01, PONT-02 de la réconciliation du 07/10) : une seule correction par occurrence. Registre B4 original absent (`B4_RAW_REGISTER = MISSING`) : seuls les cas prouvés par observation du fichier sont corrigés.
+
+**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios). Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` (PR-A + PR-B, après retrait du fichier des fiches) : seules les pages des JSON touchés, le sélecteur et Studios changent ; fiches identiques à `main` ; accueil, F5, Mode, cluster AI Act identiques.
+- ALT en français restants sur pages EN : uniquement les 3 pages EN servies en français (décision B1/D9) et les 2 fichiers EN de #109.
+- e2e : voir l'entrée PR-A (même build) ; `machine-selector` vert (le spec lit le texte visible, inchangé).
+
+**Supposé** — [Inférence] Les ALT traduits décrivent correctement leur image : la traduction reprend l'ALT français sans vérification visuelle image par image. Cela repose sur des schémas observés.
+**Non regardé** — 167 `alt="__wf_reserved_inherit"` (description image par image nécessaire) ; ALT FR jugés trompeurs ou bourrés de mots-clés (B4_3 : réécritures, validation de Sébastien) ; relecture EN et DE humaine (D42).
+
+**Suite** — Fusion après PR-A ; fenêtre C11 (MachineCard sur la cible et le témoin du pilote Studios) : au plus tard le 15/10, sinon après J+56 ; relecture EN/DE.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-A — maillage : ancres, liens et cocons (résiduel V4.3 exécutable) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` ; PR liées : #113 (empilée), #114, #115 | **Base** : `main` `06b18e2`
+
+**Quoi** — Quatre commits, chacun retirable seul :
+1. Ancres mal dirigées : A-005 (« horlogerie », ia-lumieres-virtuelles FR) et A-006 (« réussir la photographie de vos montres », guide montre FR) vers le hub horlogerie au lieu du hub bijoux ; jumeau de-ch « Fotografie Ihrer Uhren » vers `/de-ch/branchen/uhren` ; « photographie commerciale horlogère » (guide bracelet FR) vers le hub horlogerie ; libellés EN A-008 (« theoptics And ») et « modus » → « fashion ». Deux fichiers identiques octet pour octet à ceux de #104.
+2. Pilote Studios (EPL) : A-001, A-002, A-003 (« studio photo automatisé » qui menait au guide de décision) et N-001, N-002 (liens posés sur une mention existante) vers `/fr/studios-photo-automatises`. Commit isolé : sa fusion fixe le J0 du pilote.
+3. Hub vin-spiritueux : D-044 (« bouteilles en verre ») et D-045 (« bouteilles de vin »).
+4. Liens externes : retrait du lien, texte conservé (règle AA5 a) pour pixcap FR (F-041, F-042), la balise `<a id="">` sans href (F-043), goaland et wpengine FR et EN (D-020 à D-023) ; « Cloudinary » (FR, EN, de-ch) vers cloudinary.com, « BrightRiver » (EN) vers bright-river.com ; normalisation des URL externes redirigées (A17 : 23 lignes, 78 occurrences, 42 fichiers) ; coquille d'ancre « Alphasmhot » (F-098) ; « Retour au site » du questionnaire (F-070).
+
+**Pourquoi** — Mission du 08/10 : exécuter le résiduel sûr des audits déjà faits, sans nouvel audit. Les quatre landings actuelles (bijoux, IA, vin, Studios) ne sont plus exclues du fait des brouillons #104, #105, #107 et #108. Lignes du registre 582 : E06, A-008, EPL, D-044, D-045, A05, D-020 à D-023, A17 ; constats complémentaires des audits B et E.
+
+**Fichiers** — 52 fichiers `content/{blog,guides}/**` (FR, EN, de-ch) et `app/etude-clients-2026/SurveyForm.tsx` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après fusion : 4 liens de contenu de plus vers des owners (Studios +2, hub vin +2), 8 ancres redirigées vers la page qui correspond à leur texte (horlogerie +3, Studios +3 au détriment du guide de décision, et leurs jumeaux), aucun lien externe mort ni mal attribué sur les lignes traitées. [Inférence] Effet de classement non chiffrable ; lecture GSC par page à J+28. Cela repose sur des schémas observés.
+
+**Vérifié**
+- Fresh-check : `main` `06b18e2` ; PR ouvertes #109 (sprint parallèle, 19 fichiers), #104, #105, #107, #108 (HOLD), #82, #70, #64, #27 ; #110 et #111 (sprint parallèle) ouvertes pendant la mission, aucun fichier commun avec cette PR. Aucun fichier de #109 modifié (fichiers communs exclus ligne par ligne). Fichiers de #27 (non fusionnable, CA2 en attente) modifiés là où le résiduel l'exige.
+- Chaque remplacement appliqué par chaîne exacte avec nombre d'occurrences contrôlé ; sérialisation JSON d'origine conservée ; `verifier-json` : 195 fichiers valides.
+- URL externes cibles relevées en 200, sans redirection, le 08/10 (curl depuis le conteneur) ; pixcap.com sans résolution DNS ; l'article goaland redirige vers l'index du blog, la ressource wpengine vers un autre article.
+- `tsc` vert ; `next build` vert (386 pages, avec PR-B empilée) ; Vitest 483/483.
+- HTML prérendu contre `main` (scripts retirés, identifiant de build neutralisé) : seules les pages des fichiers touchés changent ; accueil, F5, Mode et les 15 articles du cluster AI Act identiques.
+- Liens rendus, Worker du dépôt rejoué devant `next start` : 0 balise `<a>` sans href (1 sur `main`) ; liens non 200 inchangés (16 vers `alphashot-g2`, D29 ; 2 à double saut, D29 ; 7 depuis des pages EN en 410) ; 3 fragments absents, ceux du témoin du pilote (D47).
+- e2e Chromium (machine-selector, sommaire-blog, navigation-pages-longues, internal-links, cta-destinations) : 96 réussis, 1 échec préexistant (`cta-destinations`, CTA « Découvrir nos studios » de l'accueil, relevé par l'audit A le 01/10 ; accueil identique à `main`).
+
+**Supposé** — [Inférence] « bouteilles en verre » (D-044) relève du cocon vin : la page cible traite des bouteilles en verre. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; Firefox, WebKit ; contenus non traités : liste HOLD de la PR.
+
+**Suite** — Information de Sébastien (CA10 a ; D42, arbitrage final 3 : maillage et liens) ; décision du J0 du pilote Studios (fusion du commit EPL, ou retrait du commit) ; 25 liens vers Studios différés « après lecture du pilote » (D-081 à D-104, D-116) ; GO de fusion distinct.
+
+**Mise à jour du 08/10, finalisation (décision de Laurent)** — Aucune landing nouvelle ni refonte publiée ; #104, #105, #107 et #108 restent HOLD, les pages actuelles bijoux, IA, vin et Studios servent d'owners et de destinations. Un lien vers la page Studios actuelle n'est pas le lancement de la refonte Studios : le J0 du pilote n'est plus une décision préalable à la fusion de cette PR. Sa fusion est consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E), sans baseline payante. Revue finale du diff : 4 liens internes nouveaux (Studios ×2, vin ×2), 7 ancres re-ciblées (Studios ×3, horlogerie ×4 dont 1 de-ch ; correction de l'effet attendu ci-dessus, qui en annonçait 8), 2 libellés EN corrigés sur des cibles inchangées, 0 lien vers `/fr/packshot-e-commerce`, `/fr/packshot-mode` ou l'accueil ; texte visible inchangé hors libellés EN et coquille « Alphasmhot ». Sébastien : information (D42, arbitrage final 3), pas de validation.
+
+---
+
+## 2026-10-09 · Ubersuggest résiduel : #116 fusionnée, #120 intégrée à `main`, décisions de Laurent du 09/10 · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission V8 de Laurent du 09/10, « finalisation #116 et #120 ») | **PR** : #116 fusionnée ; #120 (cette branche) | **Commit de fusion de #116** : `7501f38` (`main`), le 09/10/2026 à 07:14:16 UTC, tête `7841991`
+
+**Quoi** —
+- #116 sortie du brouillon puis fusionnée par commit de fusion, tête `7841991` verrouillée. Code des 2 fichiers identique à la tête `13ba3ad`, contrôlée dans Chrome sur la Preview le 09/10 (QA de Laurent : PASS, 4 pages FR/EN, 1440 et 390 px) ; CI 4/4 verte sur `7841991`.
+- #120 : `main` `7501f38` intégré dans sa branche ; conflits de `ETAT.md` et `JOURNAL.md` résolus par union ; fichiers du site inchangés (3 `metaTitle` EN, rien d'autre).
+- #118 : fermeture sans fusion, son correctif étant fusionné par #116 (HTML identique sur les 374 pages prérendues, mesuré le 09/10).
+
+**Décisions de Laurent du 09/10, consignées sans modification de sens** —
+1. Demandes de revue **automatiques** de `CODEOWNERS` autorisées lors du passage de #116 et #120 de brouillon à prêtes pour revue, pour ces deux PR uniquement. Aucune demande manuelle, aucun message direct, aucune relance, aucune attente de validation de Sébastien. Une notification automatique n'est pas une validation métier.
+2. **Exception D42 ciblée, #120** : suppression du claim chiffré non sourcé « -50% delay » du `metaTitle` EN de `/en/blog/how-shotflow-improves-real-time-task-tracking`, sans attendre de validation métier complémentaire. Cette exception ne vaut que pour cette suppression : aucun autre claim, aucune prose FR, aucune proposition commerciale. Aucune validation n'est attribuée à Sébastien.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (intégration de `main` et consignation) ; fichiers du site de #120 inchangés.
+
+**Vérifié** — Voir l'entrée de contrôle de #120 ci-dessous et la description de la PR.
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de Laurent après déploiement. Statut de déploiement Vercel : constaté par le contenu servi seulement.
+
+**Suite** — #119 et #121 restent en HOLD (point D13 des titles FR ; HOLD PACK-D9 ; D42). Après fusion de #120 : `smoke.mjs` sur `sysnext.vercel.app`, puis les 7 pages dans Chrome sur `www`.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-B — 3 titles EN raccourcis mécaniquement · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #120, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Champ `metaTitle` de 3 articles EN, chacun remplacé par un texte qui existe déjà :
+- `/en/blog/how-to-avoid-blurry-product-photographs` : « How to avoid blurry photos in product photography: causes, solutions, and best practices » (88) devient le H1 de l'article, « How to avoid blurry photos in product photography » (49) ;
+- `/en/blog/technique-photograph-jewelry-tutorial` : « How to Photograph Jewelry: Professional Techniques for Jewelers | PackshotCreator » (81) perd son suffixe de marque et devient « How to Photograph Jewelry: Professional Techniques for Jewelers » (63) ;
+- `/en/blog/how-shotflow-improves-real-time-task-tracking` : « ShotFlow: Optimize your production monitoring in real time | -50% delay » (71) perd « | -50% delay », chiffre non établi (backlog factuel du triage, n° 4), et devient « ShotFlow: Optimize your production monitoring in real time » (58).
+
+Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, slug et canonical inchangés.
+
+**Pourquoi** — Les 2 seuls titles EN classés SHORTEN_SAFE au triage du 30/09 qui restent mécaniques et hors de toute PR ouverte au 08/10, et le seul claim EN du backlog factuel retirable d'un title par simple suppression, dans un fichier libre. Les titles FR ne sont pas modifiés : la question « un `<title>` relève-t-il du copywriting réservé à Sébastien (D13) ? » reste ouverte (ligne #70 de `ETAT.md`). D13 vise le copywriting français. GSC sur 90 jours au 30/09 (triage) : 5 clics, 1 645 impressions, position 9,3 pour le premier ; 1 clic, 564 impressions, position 30,5 pour le second.
+
+**Fichiers** — `content/blog/en/how-to-avoid-blurry-product-photographs.json`, `content/blog/en/technique-photograph-jewelry-tutorial.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Titles affichés en entier dans les résultats de recherche. Aucun gain de clics ni de position n'est mesuré ou annoncé ; lecture possible dans GSC à J+28.
+
+**Vérifié** — voir la PR : title, `og:title`, `twitter:title`, canonical et hreflang rendus ; HTML prérendu comparé à `main` ; CSS compilée comparée à `main`.
+
+**Supposé** — [Inférence] Google reprend le title tel quel, sans le réécrire. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; CTR avant et après, faute de recul.
+
+**Suite** — GO de Laurent, puis fusion ; information à Sébastien (métadonnées seules, D42, arbitrage final 3). Titles FR : lot de 10 lignes préparé pour Sébastien, hors dépôt, dont le pendant FR du title ShotFlow (« | -50% de délais »).
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (FR et EN, 4 pages) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lot D), suite de UB-04 (#74) | **PR** : #116 (PR-A), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-tech-h1-dedies-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient leur fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Le fil passe dans le prop `breadcrumb` introduit par #74 : `<nav>` étiqueté par langue, séparateurs masqués aux lecteurs d'écran, `font-heading` à la place de `font-sans` comme dans #74. Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés ; `BreadcrumbList` inchangé.
+
+**Pourquoi** — Défaut laissé hors périmètre par #74 (JOURNAL du 01/10) et inscrit en F4 de `ETAT.md`. Fresh-check du 08/10 sur `main` `06b18e2` : sur les 4 pages, le texte du H1 commence par « Accueil/Blog/Comparatif », « Home/Blog/Comparison », « Accueil/Blog/Guide », « Home/Blog/Guide », avec un `<div>` enfant du `<h1>`.
+
+**Fichiers** — `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 des 4 pages ne porte plus que leur titre. Hygiène technique et structure d'accessibilité ; aucun gain de trafic ni de position annoncé.
+
+**Vérifié** —
+- Propriété des fichiers : aucune des 15 PR ouvertes au 08/10 (#27, #64, #70, #82, #104, #105, #107 à #115) ne touche les 2 fichiers ni `components/hero/`. `messages/*.json`, modifiés par 6 PR ouvertes, ne sont pas touchés : le libellé du repère reste dans chaque page, comme dans le gabarit d'article.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu, build de `main` `06b18e2` contre build de la branche, identifiant de build neutralisé, scripts retirés : 374 pages, 370 identiques, 4 différentes, les 4 pages visées. Écart limité au déplacement du fil : `div` dans le `<h1>` devenu `nav` étiqueté juste avant, séparateurs `aria-hidden`, classe de police.
+- CSS compilée : 3 feuilles, identiques octet pour octet à celles de `main`.
+- Chromium, `next start`, 4 pages, 1440 et 390 px, animations neutralisées : captures de la zone d'en-tête, 0 pixel différent sur les 8 ; police, taille, graisse, interligne, couleur et position du fil identiques ; hauteur de document identique ; 0 débordement, 0 erreur de page.
+- `<head>` des 4 pages identique à `main` : title, description, canonical, hreflang, robots, `og:*`, `twitter:*` ; `BreadcrumbList` identique.
+- Arbre d'accessibilité (comparatif FR, prestataire EN) : un seul titre de niveau 1, au nom égal au titre de l'article ; repère de navigation « Fil d'Ariane » ou « Breadcrumb », 2 liens, catégorie en texte ; séparateurs absents de l'arbre.
+- Playwright, Chromium, `navigation-pages-longues` et `sommaire-blog` sur le build de la branche : 68 sur 69 ; l'échec porte sur `/de-ch/ia-photo-produit` à 1024 px, page non modifiée au HTML identique à `main`, et passe 3 fois sur 3 au rejeu isolé.
+
+**Supposé** — [Inférence] Firefox et Safari suivent le rendu de Chromium : même structure de bloc, mêmes règles CSS. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels.
+- Détecté pendant le fresh-check, non modifié : `/{fr,en,de-ch}/studio-photo/selecteur-machines` place un lien de retour « Studios Photo » suivi d'un `<br>` dans son `<h1>`. Hors liste historique de l'audit ; structure différente (lien seul, mise en page centrée) : décision séparée.
+- Libellé du repère à migrer vers `messages/*.json`, avec celui du gabarit d'article, quand ces fichiers seront libres.
+
+**Suite** — GO de fusion distinct de Laurent (mission du 08/10 : GO_MERGE = NO). Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis les 4 pages dans Chrome sur `www`.
+- Doublon : #118, ouverte à 16:17 UTC par une autre session (branche `seo/ubersuggest-residuels-2026-10-08`), porte le même correctif sur les 2 mêmes fichiers, avec un module partagé `lib/blog-fil-ariane.ts` ; #116 a été ouverte à 16:06 UTC, avant elle. Une seule des deux doit être fusionnée : choix de Laurent ; aucune fermeture sans GO.
+
+---
+
+## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
+
+**Quoi** — Les 17 fiches `/de-ch/fotostudio/<slug>` déclaraient `Product.url` et `Offer.url` en `/de-ch/studio-photo/<slug>`, qui répond 307 vers la fiche. Ces deux champs prennent l'URL canonique de la fiche, déjà calculée par `getPathname` pour le fil d'Ariane (#55) ; FR et EN inchangés.
+
+**Pourquoi** — Défaut listé au backlog F5 depuis #55 (29/09), confirmé le 08/10 sur un build local de `main` `06b18e2` : relevé des URL internes déclarées dans les JSON-LD des 323 pages du sitemap, statut sans suivre les redirections ; 34 valeurs non 200 : 13 `Product.url` et 13 `Offer.url` (307) sur les fiches du sitemap, 8 `Service.url` (301) sur les hubs `branchen`. Les 4 fiches `delisted`, hors sitemap mais prérendues en de-ch, portaient le même défaut. Les fiches de-ch sont des fiches marchand (`Offer` en CHF) : l'URL de l'offre doit être celle de la page.
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx` (une constante `urlFiche`, partagée par le fil d'Ariane et `productSchema`), `lib/seo/__tests__/json-ld-url-canonique.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : `Product.url` et `Offer.url` des 17 fiches de-ch égaux à leur canonique ; aucun autre champ ne change. Lecture : GSC, « Fiches marchand » et « Extraits de produits », filtre `/de-ch/fotostudio/`, J+14 à J+28 après la mise en production. Aucun gain de position ni de clics n'est attendu ni promis.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 486/486 (24 fichiers), dont le nouveau test (3/3). Sa règle sur les sources détecte le motif de `main` (URL `/${lang}/studio-photo/…` écrite en dur dans `productSchema`) ; elle exclut nommément `app/[lang]/industrie/[slug]/page.tsx` (voir Non regardé).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, avant (`main` `06b18e2`) et après : 56 pages comparées (17 fiches × 3 langues, sélecteur FR et de-ch, `/fr`, `/de-ch`, `/de-ch/branchen/uhren`). 39 identiques ; 17 fiches de-ch différentes sur `Product.url` et `Offer.url` seulement ; statut, `<title>`, canonical, hreflang, `robots`, `BreadcrumbList` et autres blocs JSON-LD identiques.
+- Relevé JSON-LD sur le build de la branche : 323 pages, 0 `Product.url` ni `Offer.url` non 200 ; restent les 8 `Service.url`.
+
+**Supposé** — [Inférence] Le comportement 307 de `/de-ch/studio-photo/<slug>` vient du middleware `next-intl` ; le Worker laisse passer les chemins à préfixe de langue, donc la production répond comme le build local. Cela repose sur des schémas observés.
+**Non regardé** — `Service.url` des 8 hubs `/de-ch/branchen/*` (`/de-ch/industrie/<slug>`, 301) : laissé en l'état, le gabarit `industrie/[slug]` est touché par #104 et #107 (HOLD) et sert `/de-ch/branchen/mode` (gel Mode jusqu'au 26/11) ; `Service` n'ouvre aucun résultat enrichi. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). Test des résultats enrichis de Google : à faire sur la Preview ou après fusion. Aucun appel payant.
+
+**Suite** — Contrôle de la Preview de-ch (source JSON-LD de 2 fiches) ; fusion sur GO distinct de Laurent ; après fusion, test des résultats enrichis sur `/de-ch/fotostudio/alphashot-pro-g2` et lecture GSC à J+14/J+28. `Service.url` des `branchen` : après la sortie de HOLD de #104 et #107 et le 26/11.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel — suppressions factuelles minimales (ShotFlow, Oscaro, photographie 3D) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Suppressions seules, sans mot ajouté, dans 4 fichiers qu'aucune PR ouverte ne touche :
+- `/fr/blog/comment-shotflow-ameliore-suivi-taches-en-temps-reel` : « | -50% de délais » retiré du title (77 → 60 caractères) ; « Réduisez vos délais de 50%, » retiré de la description, majuscule reportée sur « Améliorez » ;
+- `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` : apposition « n°1 des pièces auto neuves et d’origine sur internet » retirée du corps ;
+- `/fr` et `/en/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : « brevetés » retiré de « Nos plateaux tournants brevetés » ; phrase « Nos solutions de photos de produits en 3D et nos logiciels dynamiques garantissent le flux de travail le plus rapide et le plus productif possible. » retirée.
+
+**Pourquoi** — Entrées 4 (risque élevé), 6 (risque élevé) et 2 (risque moyen) du backlog factuel du triage : affirmations sans source dans le dépôt. La mission autorise une suppression factuelle minimale dans un fichier qu'aucune PR ne possède, sans claim de remplacement.
+
+**Fichiers** — les 4 JSON ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Ces affirmations ne s'affichent plus : ni dans le résultat de recherche (ShotFlow), ni dans le corps des pages. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** — voir la PR : carte des fichiers des 20 PR ouvertes ; HTML prérendu comparé à `main` ; title, description, canonical, hreflang, robots, Open Graph et Twitter rendus ; CSS compilée comparée à `main`.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4).
+- Non traité, à arbitrer :
+  - la FAQ du même article ShotFlow, rendue aussi en `FAQPage` JSON-LD, porte une quinzaine de chiffres sans source (83 %, 47 %, 200 déploiements, 28 %, 100 000 assets, 180 clients…) et un client nommé (« Printemps ») ; idem pour l'intertitre « 50 % de réduction des délais d'approbation ». C'est un chantier éditorial, hors de toute suppression minimale ;
+  - description Oscaro, « le leader des pièces auto en ligne » : la retirer impose une reformulation (D13) ;
+  - page 2D : le JSON FR est touché par #70 et #119 ; le JSON EN, en `noindex` (D9), n'est pas traité seul pour ne pas faire diverger les deux versions ;
+  - description EN de l'article ShotFlow : fichier touché par #120.
+- Doublons entre PR ouvertes le 08/10 : #118 et #116 font la même correction (fil d'Ariane des 2 articles dédiés) ; #120 et #119 modifient les 2 mêmes titles EN.
+
+**Suite** — Validation ciblée de Sébastien (D42, arbitrage final 3 : un claim modifié), puis GO de fusion de Laurent ; après fusion, `smoke.mjs` et contrôle Chrome sur `www` des 4 pages.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-D — Worker : BL-042 et BL-018 vers leur équivalent exact (code seul, non déployé) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : #115, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
+
+**Quoi** — `cloudflare-worker/src/index.js` : BL-042, `/ecommerce-jewelry-photography-tutorial` sort de `GONE_PATHS` et redirige en 301 vers `/en/blog/technique-photograph-jewelry-tutorial` (cible déjà utilisée par la variante `/en/blog/…`) ; BL-018, l'ancien article « boostez … 4 erreurs à éviter » redirige vers l'article exact au lieu de l'article voisin « 6 pratiques ». Test `cloudflare-worker/test/e-bl-pack-w.test.ts`.
+
+**Pourquoi** — Rapport E-BL (simulation sur 112 URL à backlinks) : BL-042 en 410 avec équivalent existant (correspondance HIGH), BL-018 vers une cible voisine. Simulation ≠ erreur live : comportement `www` non contrôlé (R4).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/test/e-bl-pack-w.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement (non autorisé par cette mission) : les backlinks de ces deux anciennes URL atteignent l'article correspondant. Les variantes `/amp/` de BL-042 passent de 410 à 404.
+
+**Vérifié**
+- R5 : Worker déployé `packshot-router` (modifié le 01/10 à 06:59:54 UTC) lu en lecture seule le 08/10 par l'API Cloudflare ; écart avec le dépôt limité aux commentaires retirés par l'empaquetage et aux enveloppes du bundler : aucune divergence de règle.
+- Cibles servies en 200 par `next start`, canonique auto-référente, sans `noindex`, présentes au sitemap.
+- Vitest Worker : 6 fichiers, 165 tests verts (`unicite-tables`, `legacy-redirects`, `lot-f`, nouveau test sur les hôtes www, en. et fr.) ; `tsc` vert. Arbre de l'application identique à `main` (build vert de `main` `06b18e2` le 08/10).
+
+**Supposé** — Aucun.
+**Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
+
+**Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : #111, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
+- `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
+- `guide-achat-studio-2026`, bloc « Support Technique France » : « Réponse < 2h ouvrées », « Intervention 24-48h (France métropolitaine) » et « Pièces détachées : Stock FR, livraison 24h » retirés ; « Interventions sur site : selon le contrat de maintenance » renvoie au contrat décrit juste en dessous.
+
+**Pourquoi** — Faits rappelés par Laurent le 08/10 : ROI de 6 à 12 mois en usage courant, jamais garanti ; aucun engagement de service (délai d'intervention, délai de réponse, pièces sous 24 h) établi. #109 retire ces mêmes engagements du comparatif Orbitvu et le ROI de 4 à 8 mois du guide d'achat, mais ces lignes restent sur `main` et sur la tête `0860462` de #109. `/en/blog/budget-studio-photo-automatise` : 363 impressions et 10 clics du 08/09 au 05/10 (`gsc-crawl-seo`, `gsc_metrics_page`, lecture seule).
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue, sérialisation d'origine, 6 lignes), `app/[lang]/blog/guide-achat-studio-2026/page.tsx` (3 lignes → 2), `lib/__tests__/claims-roi-sav.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Routes** — `blogBudget` n'est lu que par `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` : `/fr/…` et `/en/…` (200) ; `/de-ch/…` répond 404, les valeurs de-ch (en français) sont alignées par cohérence. Guide d'achat : `/fr/blog/guide-achat-studio-2026` et `/en/…` (même gabarit FR). Aucune page gelée (F5, Mode, accueil, #104, #105, #107, #108).
+
+**Effet attendu** — Aucun avant fusion. Après fusion : FAQ et `FAQPage` du guide budget alignés sur le fait ROI ; trois engagements de service non établis retirés du guide d'achat. Réduction d'un risque factuel ; aucun gain de trafic attendu.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; `npx vitest run` : 487/487 (25 fichiers), dont `claims-roi-sav.test.ts` 4/4. Les conditions du test échouent sur le contenu de `main` (6 textes ROI, 3 lignes de service).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
+- Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
+- Fusion simulée (`git merge-tree`) avec #109 (`0860462`), #110, #108 et #105 : fichiers du site sans conflit ; `JOURNAL.md` en conflit (entrées en tête, union) ; `ETAT.md` en conflit avec #105 seulement.
+
+**Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
+**Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
+
+**Suite** — D42 : contrôle de la Preview par Laurent (desktop, tablette, mobile), validation ciblée de Sébastien sur les 4 phrases modifiées ; fusion sur GO distinct, de préférence après #109 ou avec elle (mêmes pages, lignes disjointes).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, seconde passe sur les 19 fichiers · Claude de Laurent
+
+**Chantier** : intégrité factuelle, mission « dernier passage » de Laurent du 08/10 | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base de la passe** : tête `0860462` | **Commit** : le commit de cette entrée, « fix: remove residual unsupported factual claims »
+
+**Quoi** — Relecture complète des 19 fichiers déjà touchés par #109. Chaque claim est classé : fait vérifié, fait métier établi, Q20_HOLD, D29_HOLD, hors périmètre, retiré ou neutralisé. Un claim présent sur `main` n'est pas tenu pour valide pour cette seule raison. Registre de la passe : 832 entrées, dont 339 retraits et 393 neutralisations ; 7 faits vérifiés ; 28 faits métier établis ; 25 Q20_HOLD ; 5 D29_HOLD ; 35 hors périmètre conservés.
+- Guide d'achat : location, occasion (décote, garantie transférable), BPI, CII, aides régionales, durées et taux de leasing, remise comptant, négociation, mises à jour gratuites (2 à 3 par an), pièces 7 à 10 ans, compatibilité ascendante, support prioritaire 2 ans, démo de 2 à 4 h sur 5 à 10 produits, « standard de l'industrie », « tous IA Ready », compatibilité native BlendAI, « 90 % des cas », « 80 % », AR/VR, export 3D, « économies substantielles » : retirés ou neutralisés. Bloc Premium : 6 à 12 mois, puis « Pour les plus grands Alphastudio, le retour observé peut plutôt se situer entre 12 et 18 mois », sans garantie.
+- Article ROI : 80 % de temps réalloué, 500 → 5 000 produits sans embauche, mises à jour gratuites, « bijoux → meubles, même workflow », intégration native BlendAI, « Qualité +30 % », « productivité ×20 » : retirés. Le contenu « 12-18 mois » du chantier ROI reste en dehors de la passe.
+- Comparatif Orbitvu : réécrit sans comparaison non sourcée. Il ne publie aucune caractéristique de StyleShoots ni de Photomatics, ne contient ni tableau concurrent ni gamme historique PackshotStudio R3, PackshotMacro ou PackshotRotator (noms et fin « 2018 » sans source), et ne cite ni « experts Orbitvu » ni volumes, temps, mégapixels ou systèmes d'exploitation. « Marque lancée en 2004 par la société française Sysnext » et « depuis 2023 » sont conservés (faits établis le 08/10).
+- Articles BlendAI vs Flair, BlendAI vs Photoroom et guide IA photo produit : réécrits en guides de critères. Plus aucune donnée Flair, Photoroom ou Claid, plus aucun pourcentage de fidélité, temps automatique, batch chiffré, API ou intégration native, ni cas client chiffré. Le calcul de rentabilité du guide IA (BlendAI Pro 530 €/mois, ROI 463 %) et l'essai « 14 jours » sont retirés.
+- Page Suisse : distance « moins de 2 h de Genève » retirée (le showroom est désormais situé à Beynost, près de Lyon), démonstrations en visioconférence retirées, formation « sur site » remplacée par les formats établis (4 h à distance, 7 h en présentiel), « de référence », JSON-LD local « formations certifiées Qualiopi » → « Sysnext est certifiée Qualiopi ».
+- Articles JSON : « évolution e-commerce » FR et EN (gratuité, « jusqu'à 70 % », « +15-20 % de conversion », « -15 % de retours », mises à jour sans frais pendant 3 ans, superlatifs ; lien EN `updateyourpackshot.com` corrigé en `upgradeyourpackshot.com`, le programme de reprise étant vérifié sur `www.upgradeyourpackshot.com/fr/` le 08/10) ; comparatif de solutions FR et EN (huissier, « premier studio », « 142 secondes » contradictoire, superlatifs, FAQ Orbitvu « leader », 30 personnes en R&D, 180 salariés).
+- `messages` (FR, EN, de-ch) : 258 clés par langue, dans les seuls namespaces touchés par #109 (`contact`, `legal`, `besoinsPhoto`, `studiosHardware`, `blogBudget`, `blogComparatif`, `blogStudioIa`). Corrigés : « 24 h », « 48 h », « garantie », démo et diagnostic « gratuits », « 5000+ entreprises », ROI moyen de 9 mois remplacé par 6 à 12 mois sans garantie, « Hotline dédiée », formations « certifiées » ou « Qualiopi », « 0 €/an » de maintenance, consommables, « plus de 500 entreprises », données concurrentes de `blogComparatif` (cellules « Non vérifié », listes devenues « Points à vérifier auprès du fabricant »), étude « indépendante » remplacée par « réalisée en 2023 à la demande de PackshotCreator », marché et juridique de `blogStudioIa` (34 millions d'images, 8,9 milliards de dollars, FTC, Californie, FDA, ITAR, « zéro hallucination », « solution propriétaire », « Plus de 100 marques », 75 €/mois). de-ch : Qualiopi et OPCO présentés comme français (D38).
+- Qualiopi : 16 formulations corrigées vers « Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation ».
+
+**Pourquoi** — Mission du 08/10 : aucun claim conservé par défaut sans source ou fait métier explicite ; comparaisons concurrentes limitées aux faits sourcés ; Qualiopi rattaché à Sysnext ; ROI usuel de 6 à 12 mois, de 12 à 18 mois pour les plus grands Alphastudio, jamais garanti.
+
+**Fichiers** — `app/[lang]/blog/{guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, orbitvu-vs-concurrents, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `content/blog/{fr/evolution-e-commerce-packshot, en/e-commerce-packshot-evolution, fr/comparatif-de-solutions-de-photographie-automatisee, en/comparison-of-automated-photography-solutions}.json`, `messages/{fr,en,de-ch}.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Relus sans modification : `app/[lang]/contact/page.tsx`, `components/seo/SchemaOrg.tsx`, `data/navigation/pages-longues.ts`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : URL, canonical, `robots` et hreflang inchangés ; articles réécrits plus courts (temps de lecture affiché inchangé, aligné sur `lib/blog.ts`, hors périmètre) ; sommaires réalignés sur les titres. Réduction du risque factuel et juridique, pas de gain de trafic attendu.
+
+**Restes, non corrigés dans cette passe**
+- Q20_HOLD (cadences, dimensions, charges, versions) : 500+ photos/jour, 200 à 500 produits/jour, 30 s par packshot, 3 s, 90 s, 150 photos/heure, 16 et 20 systèmes, jusqu'à 100 cm (G2) contre 35 cm et 40 cm, 18 cm, 2,5 m, 3 m, 1 tonne, 1 000 kg, 50 et 150 kg, MultiStation, modules 360° et vidéo, « Station M ».
+- D29_HOLD : résultats de l'étude 2023 (Alphashot XL PRO V2 contre R3 Mark II) : 78 contre 33 contenus par jour, temps des quatre tests, 19 734 et 8 457 visuels par an, 50,6 jours.
+- D30 (aucun prix modifié) : `studiosHardware.faqStudios.q1` « 12 000 € à 150 000 € HT » et `blogBudget` « 56 450 à 150 000 € HT », alors que le catalogue indique 12 450 € et 130 000 € HT (E-Comm Studio+, confirmé par Sébastien le 04/09/2026) ; fourchette « Polyvalent » à confronter au catalogue ; « quelques milliers d'euros » (`besoinsPhoto`) ; prix Alphashot 360 dans `blogStudioIa`, à arbitrer entre D30 et D25.
+- Zones interdites : `organizationSchema()` (rendu sur l'accueil, F5 et Mode) porte encore « formations certifiées Qualiopi », `numberOfEmployees` 10 à 50 sans source et `foundingDate` 2004.
+- Hors des 19 fichiers : nombres 5 000+, 25 ans et 50+ codés en dur dans `studios-photo-automatises/page.tsx` ; « diagnostic gratuit » codé en dur dans `besoins-photographie-produit/page.tsx` ; descriptions de `lib/blog.ts` (« Comparatif complet… pricing ») ; `availability: InStock` du JSON-LD `Offer` (D30).
+- Clés non rendues, laissées en l'état : `studiosHardware.threePillars` (« Formation certifiée », « zéro hallucination, fidélité 100% »), `photoTypes` (« Réduit les retours de 25% »), `socialProof`, `roiCalculator`, `sectors`, `contact.trustBadge*`.
+- Dossier Ortery et interview Sysnext 2003 : FAQ « Ortery est-il toujours présent en France ? » conservée.
+
+**Vérifié**
+- Fresh-check : #109 ouverte, brouillon, tête `0860462` ; `main` `06b18e2`.
+- `messages/*.json` et articles JSON : sérialisation d'origine vérifiée octet pour octet avant écriture ; `verifier-json` : 195 fichiers valides.
+- `tsc` vert. Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- ESLint sur les fichiers modifiés : aucune règle nouvelle ; `react/no-unescaped-entities` déjà présent sur `main` dans ces fichiers (étape de lint non bloquante en CI).
+- Ancres : chaque entrée des sommaires réécrits pointe vers un `id` présent une seule fois.
+- `next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, 25 URL touchées par la passe (FR, EN, de-ch), Chromium 390, 768 et 1440 px : statut 200, aucun débordement horizontal, aucune réponse 4xx locale, aucune ancre de sommaire orpheline ; formulations retirées absentes, nouvelles formulations présentes. Erreurs console : CORS du CDN 360 d'Orbitvu sur les deux articles « évolution », contenu embarqué non modifié par la passe.
+
+**Supposé** — [Inférence] `updateyourpackshot.com` est une faute de frappe : le domaine ne répond pas via le proxy, `upgradeyourpackshot.com` répond en FR et en EN. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; contrôle humain D42 ; namespaces de `messages` non touchés par #109 (accueil compris) ; dates « Dernière mise à jour » des articles.
+
+**Suite** — Arbitrages demandés : prix (D30 contre catalogue, D25 dans `blogStudioIa`) ; Qualiopi de `organizationSchema()` après le 28/10 ; nombres codés en dur de Studios ; Q20 et D29. Contrôle de la Preview par Laurent, puis validation D42 ; fusion et publication sur GO distincts.
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, successeur de #64 recréé depuis `main` · Claude de Laurent
+
+**Chantier** : faits métier établis, D33, D25, comparatif Orbitvu | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base** : `main` `06b18e2` | **Commits** : `9d66eaa` (faits métier), `927e7cf` (D25), puis le commit de cette entrée (comparatif Orbitvu, registre des pages longues, documentation)
+
+**Quoi** — GO code de Laurent du 08/10. Patch recréé depuis `main` : la branche de #64 n'est ni reprise ni rebasée ; #64 reste ouverte, sa fermeture est un geste séparé, après préservation. Corrections classées A dans la revue READ ONLY du 08/10 :
+- showroom : 198 allée de la Tour, 01700 Beynost, distinct du siège : `contact.showroomAddress` et `legal.article2.showroomValue` (FR, EN, de-ch), `localBusinessSchema()` (adresse et coordonnées BAN 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés), carte de `/contact`, « showroom Paris » et « Paris 11e » du comparatif Orbitvu et du guide d'achat → « showroom près de Lyon » ;
+- conditions commerciales : livraison et installation facturées en supplément, formation facturée séparément (`studiosHardware.support.step2description`, `besoinsPhoto.solution.step3.description`, `blogBudget.included` en FR, EN, de-ch ; guide d'achat ; FAQ 2 des articles « évolution e-commerce » FR et EN) ;
+- délai : environ 12 jours, indicatif et sans garantie (`studiosHardware.faqStudios.q6.answer` en FR, EN, de-ch ; guide d'achat, FAQ et ligne « Délai de livraison ») ;
+- garantie : standard d'un an, extension possible, sans plafond (guide d'achat, FAQ et encadré ; « garanties 5-7 ans » retiré de `comment-calculer-le-roi-…`) ; « interventions technicien on-site » retiré de la couverture décrite dans la FAQ du guide ;
+- Orbitvu : distribué depuis 2023 (`blogBudget.intro.p2` en FR, EN, de-ch ; `distributeur-orbitvu-suisse` ; comparatif, ×2) ;
+- allemand : accompagnement commercial possible en allemand pour la Suisse (FAQ 1 de `distributeur-orbitvu-suisse`) ;
+- ROI du guide d'achat : « généralement 6 à 12 mois selon le volume, sans garantie » à la place de « 4 à 8 mois » (FAQ, bloc « Financement », liste finale), de « 5-6 mois » et « 1-2 mois » (délais de retour) ; « 12 à 18 mois pour les plus grands Alphastudio » ajouté au seul bloc Premium (360 ou XXL), qui annonçait « 2-4 mois » ;
+- comparatif Orbitvu : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, marque lancée en 2004 par la société française Sysnext » ; `foundingDate` non modifié ;
+- D25 : prix concurrents et prix comparés retirés de `blogComparatif` (13 clés) et `blogStudioIa` (5 clés) en FR, EN, de-ch, de `blendai-vs-flair-ai-…`, `blendai-vs-photoroom-…`, `ia-photo-produit-guide-2026` et du comparatif de solutions FR et EN (économie annuelle chiffrée) ;
+- comparatif Orbitvu : parts de marché, années de fondation des concurrents, prix, sous-sections « Prix compétitif » et « Rapport qualité/prix imbattable », témoignages Marie D., Thomas L., Camille R., engagements de service (hotline < 2 h, interventions 24–48 h, pièces 24 h), satisfaction 98 %, « ×20 », « ×3 », « 90 % », « 15 000 machines » et « 45 % », ROI « 4–8 mois vs 8–12 mois », superlatifs (« leader européen », « seul fabricant », « unique », « excellence », « premium » du support), verdict « l'emporte », comparaisons dépréciatives envers StyleShoots, lignes « IA Ready », « Support France », « Évolutivité » et « Garantie » des tableaux comparatifs, FAQ « Pourquoi Orbitvu est-il moins cher… » (FAQPage 6 → 5) : contenu final de #64 (`63e1e92`), sauf « (2004–2018) », conservé ;
+- `data/navigation/pages-longues.ts` : les six exceptions « PR #64 ouverte » de la famille `blog-dedie-avec-sommaire` renvoient à #109 (successeur de #64), mêmes pages, même gel ; aucun autre changement de registre.
+
+**Pourquoi** — Revue READ ONLY du 08/10 : les 28 clés de `messages` et les 6 pages de blog corrigées par #64 portaient encore sur `main` leur valeur du 01/10, et les formulations fautives étaient servies en production (`sysnext.vercel.app`, relevé du 08/10). Faits établis rappelés par Laurent le 08/10 : SHOWROOM, LIVRAISON, INSTALLATION, FORMATION, DÉLAI, GARANTIE, ALLEMAND, ORBITVU (officiel, jamais exclusif), RELATION_ORBITVU 2023, SYSNEXT 2001, PACKSHOTCREATOR_LAUNCH 2004, ROI (6 à 12 mois usuel, 12 à 18 mois pour les très gros Alphastudio, jamais présenté comme une garantie). D25, D33, D42.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx`, `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/{orbitvu-vs-concurrents, guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `data/navigation/pages-longues.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : canonical, `robots`, hreflang et URL inchangés ; `Store` du showroom à Beynost ; FAQPage du comparatif Orbitvu à 5 questions (6 sur `main`). Réduction d'un risque factuel et juridique, pas de gain de trafic attendu.
+
+**Correction de la revue du 08/10** — Le rapport READ ONLY ne relevait dans le guide d'achat que deux « ROI 4–8 mois ». Il y en a trois (FAQ, bloc « Financement », liste finale), plus « 2-4 mois » (bloc Premium), « 5-6 mois » et « 1-2 mois » (délais de retour), contraires au même fait métier : traités dans le même lot, extension signalée à Laurent.
+
+**Exclus** — `home.faq.q7` (accueil gelé jusqu'au 28/10 : M5, D44) ; `foundingDate` (2004, inchangé) ; `hasMap` et intitulés « Showroom Lyon » ; dimensions, charges, cadences et versions (D45, Q20 ouverte) ; redirections XL (D29) ; F5 (« environ 10 jours ») ; Mode ; `/industrie` (D10) ; Academy et Qualiopi au-delà de #71 ; « (2004–2018) » (lancement de 2004 établi) ; ROI « 12-18 mois » de `comment-calculer-le-roi-…` (chantier ROI distinct) et « Délai retour : 12-18 mois » du guide (moins de 500 produits par an) ; interview « Créée en 2003, la société Sysnext » ; « distributeur exclusif d'Ortery » ; prix BlendAI seuls de `ia-photo-produit-guide-2026` (530 €/mois dans un calcul de rentabilité, sans prix concurrent) ; dans le guide d'achat, « Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ».
+
+**#108 (HOLD)** — modifie les mêmes clés `studiosHardware.support.step2description` et `studiosHardware.faqStudios.q6.answer` (FR supprimées, EN et de-ch réécrites avec les mêmes faits). PR108_FUTURE_REBASE_REQUIRED = YES : à sa resynchronisation, garder sa version. #108 n'est pas modifiée. #104, #105, #107 : HOLD, non touchées.
+
+**Vérifié**
+- Préconditions, avant écriture : `main` = `06b18e2` ; #64 ouverte, brouillon, non fusionnée ; #104, #105, #107, #108 ouvertes en brouillon ; branche créée depuis `origin/main`.
+- `messages/*.json` : 27 clés par langue, éditées par chemin JSON avec la sérialisation d'origine ; 81 lignes modifiées au total, aucune autre (aucun reformatage). Articles JSON : sérialisation d'origine conservée. `verifier-json` : 195 fichiers valides.
+- `tsc` vert. `next build` vert, 386 pages : sur `927e7cf` avant le premier push, puis sur l'état final.
+- Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- `next start` local, 26 URL : formulations retirées absentes du HTML, nouvelles formulations présentes ; canonical, hreflang et `robots` identiques à la production ; `Store` : 198 allée de la Tour, 01700 Beynost, 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés ; `Organization` : `foundingDate` 2004 et siège 254 rue Vendôme inchangés ; nombre de questions FAQPage identique à la production, sauf le comparatif Orbitvu (5 au lieu de 6).
+- Rendu Chromium 390, 768 et 1440 px, 20 pages : 0 erreur, 0 réponse 4xx. Mesures identiques à un build local de `main` `06b18e2`, dont un débordement de 4 px préexistant sur `/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026` en 768 px.
+- `e2e/contact-form.spec.ts` (Desktop Chrome, Pixel 5 ; affichage seul, aucun envoi) : 21 réussis, 1 échec (« should expand FAQ accordion », Pixel 5), identique sur `main`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; Firefox, WebKit ; contrôle humain D42, étapes 4 et 5.
+
+**Suite** — Contrôle de la Preview de #109 par Laurent (desktop, tablette, mobile) ; validation selon D42 ; fusion uniquement sur GO distinct ; fermeture de #64 sur GO distinct, branche conservée (ses entrées JOURNAL du 30/09 et du 01/10 n'existent que sur elle) ; micro-patch `home.faq.q7` après le 28/10 ; mise à jour de D32 (« 10 jours »), D1 et `00-BRIEFING.md` (Saint-Bonnet) par leur auteur.
+
+---
+
+## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
+
+**Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
+
+**Quoi** — Aucune traduction. Gate claims sur les 21 candidates de la transmission et consignation des arbitrages de Laurent du 07/10 dans `docs/seo-geo/PACK-D9-GATE-2026-10-07.md`. Aucun fichier du site modifié.
+
+**Pourquoi** — La mission interdit de publier en anglais une affirmation dont le niveau de preuve n'est pas suffisant (BlendAI, chiffres non sourcés) :
+- 15 hubs : chacun rend au moins un claim litigieux. 11 rendent BlendAI (texte ou badge « BLENDAI.STUDIO » du gabarit sur les cartes `type: 'ia'`). Les 4 autres rendent des chiffres non sourcés : cadences (`automobile-pieces-detachees`, `pieces-techniques-industrie`, `sante-medical`), « Réduction de 70% » (`automobile-pieces-detachees`), « 100% hors ligne » (`defense-securite`). Classement : 15 `UNVERIFIED_RENDERED_CLAIM`, 0 `SAFE_TO_TRANSLATE` ; `casClients` (13 hubs) non rendu, non modifié.
+- 3 solutions : chiffres (« 5-50€ », « 20-30% », « divise le coût par 10 », « environ 1€ »), témoignages anonymes et « Cas client : Pompéi » rendus. Laurent, 07/10 : « HOLD les 3 ».
+- 3 articles : « leader mondial », « plus de 70 brevets », « plus de 20.000 utilisateurs dans 35 pays », « Nous fabriquons », « Depuis 2001 ». Laurent, 07/10 : « Cela concerne PackshotCreator (solutions Ortery) pas les memes infos pour Orbitvu », puis « HOLD les 3 ».
+
+**Fichiers** — `docs/seo-geo/PACK-D9-GATE-2026-10-07.md` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun effet sur le site. Les 31 pages restent servies en français ; `noindex, follow` conservé sur les 25 pages qui le portent.
+
+**Vérifié** —
+- Fresh-check : `main` `b806291` ; 8 PR ouvertes (#105, #104, #82, #79, #70, #65, #64, #27). #104 (tête `33fbf24`) : `data/secteurs.ts`, entrée `bijoux-joaillerie` seule, et 2 JSON ; #105 (tête `a86aa1c`) : aucune page D9. Aucune PR ne touche les fichiers cibles de PACK-D9 hors `data/secteurs.ts` (#104). Jumeaux FR : #70 (D9-01), #27 (D9-03).
+- Champs rendus lus dans les gabarits `app/[lang]/industrie/[slug]/page.tsx` et `app/[lang]/solutions/[slug]/page.tsx` ; `casClients` lu par aucun fichier de `app/`, `components/`, `lib/`, `scripts/`.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 (23 fichiers) ; `npx next build` vert sur `main` `b806291` (variables factices de la CI), 374 pages prérendues.
+- HTML prérendu, build de la branche contre build de `main` `b806291`, identifiant de build neutralisé, scripts exécutables retirés : 374 pages, **374 identiques** ; FR 161/161, de-CH 54/54, EN 155/155. Valeurs numériques du texte visible : 0 page différente. `noindex, follow` présent sur les 25 pages D9 qui le portent.
+- `verifier-consequences.mjs` : effet local, 3 fichiers, rien qui déborde.
+
+**Supposé** — [Inférence] Les fourchettes décrivant la situation du client (taille de catalogue) ne sont pas des claims sur l'offre ; elles ne changent aucun classement. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel, `sysnext.vercel.app` et `www` (R4) : aucun rendu modifié. Qualité linguistique : sans objet. Aucun audit LANG, B4 ni des 582 occurrences ; aucun appel payant ; aucun service externe.
+
+**Suite** — Décisions séparées : claims des hubs (BlendAI, cadences Q20.14, ROI en %, conformités ; D10 pour `defense-securite`) ; chiffres, témoignages et cas Pompéi des solutions ; sort des articles de la gamme PackshotCreator/Ortery. Traduction ensuite, depuis la FR retenue (D42, étape 7). D9-05 après #104 ; D9-16 après le 26/11 ; D9-24 à D9-31 selon la transmission.
+
+---
+
+## 2026-10-07 · #102 fusionnée — PACK-L, contrôles post-fusion · Claude de Laurent
+
+**Chantier** : PACK-L, GO de fusion de Laurent du 07/10 | **PR** : #102, fusionnée | **Commit de fusion** : `bf8c1c7` (`main`), le 07/10/2026 à 10:26:33 UTC, parents `35d250c` et `0f257b2` | **Consigné dans** : PR documentaire brouillon, branche `claude/great-hawking-9jywhk`
+
+**Quoi** — Fusion de #102 par commit de fusion (méthode du dépôt), tête `0f257b2` verrouillée à la fusion. L'arbre de `main` est identique à celui de `0f257b2`. Aucun autre changement de code.
+
+**Pourquoi** — GO de fusion de Laurent du 07/10, après une QA humaine de la Preview authentifiée : PASS avec trois réserves, toutes préexistantes (micro-contrôle ci-dessous).
+
+**Micro-contrôle des réserves de la Preview (avant fusion)** —
+- A, « Kapazität/Tag : 250 photos » : modale du sélecteur, `{machine.capaciteJour} photos`, unité codée en dur en FR. Ligne identique sur `main` `35d250c` et sur `0f257b2` : préexistante.
+- B, « Platzbedarf : Sol/Table robuste » : modale, `{machine.spaceRequired}`, valeur produit en FR (D45, Q20 ; A09 et partie produit de A12, exclues de PACK-L). Ligne identique : préexistante.
+- C, infobulle du visualiseur 360° « Regardez de plus près l'Alphashot 360 G2 » : absente du dépôt. Elle vient de la présentation Orbitvu hébergée `W2VVEnzxvCD8t2A8qqJNBQ/217258` (réponse JSONP de `orbitvu.co`, lue le 07/10). `OrbitvuViewer.tsx` et les identifiants sont inchangés : préexistante, contenu externe.
+
+**Fichiers** — aucun fichier du site dans cette consignation ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Pages EN et de-CH du périmètre dans leur langue ; FR inchangé.
+
+**Vérifié** —
+- Avant fusion : `main` `35d250c` ; tête `0f257b2`, aucun commit depuis ; `mergeable_state = clean` ; CI 4/4 verte ; aucune nouvelle PR ouverte.
+- `sysnext.vercel.app` sert le nouveau build à 10:27:47 UTC : marqueur de-CH d'A07 présent. Avant la fusion : cache `HIT`, ancien build.
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` à 10:28:27 UTC : 17 pages et 3 ressources vertes.
+- QA ciblée sur `sysnext` (Playwright, 8 URL en 1440 et 390 px, modale ouverte sur 2 machines, métadonnées) : 19/19 après un rejeu. Échec initial : `net::ERR_TIMED_OUT` sur `/de-ch/branchen/elektronik` en 1440 px ; la page répond 200 en 0,54 s et le rejeu isolé passe. Spec PACK-L : 9/9.
+- `<head>` de 11 pages identique au build testé de `0f257b2` (title, canonical, hreflang, description, `og:*`, `twitter:*`), dont `/de-ch/blog/ai-act-produktbilder`, `/fr/packshot-e-commerce` et `/fr/studio-photo/alphastudio-compact-v2`.
+- Rendu FR de production identique au build de `main` d'avant fusion sur 5 pages témoins : `/fr`, `/fr/packshot-e-commerce`, `/fr/studio-photo/alphastudio-compact-v2`, `/fr/studio-photo/alphashot-xl-g2`, `/fr/industrie`.
+- `www` dans Chrome, le 07/10 (rapport transmis par Laurent) : PASS. 9 pages en HTTP 200 : `/de-ch/fotostudio/alphashot-pro-g2`, `/de-ch/fotostudio/alphashot-xl-g2`, `/en/studio-photo/alphashot-pro-g2`, `/de-ch/produktfotografie-bedarf`, `/de-ch/wichtige-fragen-produktfotografie`, `/de-ch/fotostudio/maschinen-finder`, `/de-ch/ia-photo-produit`, `/de-ch/branchen/schmuck`, `/de-ch/branchen/uhren`.
+  - `lang` correct ; aucun débordement à 1280 px ni à 390 px (iframe) ; aucune image cassée ; aucun texte FR détecté par script (contrôle heuristique).
+  - Modale du sélecteur ouverte sur Alphashot Pro G2 : libellés, avantages et limites en allemand ; 390 px de large à 390 px, sans débordement.
+  - Title relevé sur chaque page ; canonical auto-référent ; hreflang : 5 entrées (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), 4 sur les deux secteurs (pas d'`en`).
+  - Aucune anomalie introduite par #102 ; réserves A, B, C visibles à l'identique. Aucune mutation.
+
+**Supposé** — [Inférence] L'échec `ERR_TIMED_OUT` est un délai réseau ponctuel du conteneur. Cela repose sur des schémas observés.
+**Non regardé** — Statut de déploiement Vercel du commit de fusion : non lu, aucun outil disponible ; la mise en production est constatée par le contenu servi. Relecture EN et DE (15 groupes) : non rendue.
+
+**Événement concomitant** — Fusion du 07/10 à 10:26 UTC, à ne pas attribuer à une mesure. A30 change `og:*` et `twitter:*` de 17 pages de-CH, dont `/de-ch/blog/ai-act-produktbilder` (J+7 AI Act le 13 ou 14/10). `<title>`, canonical et hreflang inchangés : métadonnées sociales seulement, aucune cause SEO démontrée.
+
+**Suite** — Dettes séparées : A (unité « photos » de la modale), B (valeurs `spaceRequired` en FR, Q20), C (texte de la présentation Orbitvu en FR, hors dépôt ; elle nomme la machine « Alphashot 360 G2 », le catalogue « Alphashot 360 »). PACK-D9 débloqué ; mission menée dans sa propre session.
+
+---
+
+## 2026-10-07 · PACK-L — corrections i18n groupées EN/de-CH des gabarits (A07, A29 et reliquats compatibles) · Claude de Laurent
+
+**Chantier** : PACK-L (LANG_2 partiel et LANG_3 de l'audit LANG), GO de codage de Laurent du 07/10 (« GO CODAGE PACK-L = YES », une seule PR brouillon) | **PR** : brouillon, « DO NOT MERGE », branche `claude/great-hawking-9jywhk` | **Base** : `main` `35d250c` (fusion de #100)
+
+**Quoi** — Traduction EN et de-CH de chaînes que les gabarits servaient en français ou en anglais, sans aucun changement de rendu FR :
+- P1 : A07 (cas d'usage des fiches machines, traduction seule) ; A29 (deux guides `besoins-photographie-produit` et `questions-cles-photographie-produit`, libellés à trois langues).
+- P2/P3 : A08, A10, A11 (liste, meta description et JSON-LD construits depuis les cas d'usage traduits) ; A13, A15, A16 (ALT du hero, `aria-label` vidéo, galerie de-CH des fiches) ; A17, A18 (`SectorGrid`, secteurs connexes de-CH) ; A19 (`data/solutions.ts`, badges et cas d'usage de-CH) ; A25, A26 (libellés ARIA et ALT de la page IA) ; A27, A28 (ALT) ; A30 (métadonnées de `app/[lang]/layout.tsx`) ; A32 (format de date du blog de-CH) ; A34 (badge de `packshot-industriel`) ; A35 et la seule partie modale de A12 (`MachineModal.tsx`).
+- Données : champ parallèle optionnel `useCasesI18n` dans les deux `machines.ts` (16 entrées côté ROI, 15 côté sélecteur) et textes `'de-ch'` des avantages et limites du sélecteur (63 repris tels quels du catalogue ROI, 4 nouveaux). Aucune valeur FR ou EN existante modifiée ; aucune dimension, charge, prix, nom, version ni mapping (D45, Q20).
+- Helper `pickListL` dans `lib/locale-text.ts` ; test `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Pourquoi** — Registre LANG A01–A38 : 34 fiches et 2 guides de-CH affichaient du français ou de l'anglais (P1 A07, A29) ; reliquats P2/P3 dans les mêmes gabarits.
+
+**Fichiers** — `app/[lang]/{a-propos,besoins-photographie-produit,blog,ia-photo-produit,industrie,industrie/[slug],packshot-industriel,questions-cles-photographie-produit,studio-photo/[slug]}/page.tsx`, `app/[lang]/layout.tsx`, `app/[lang]/ia-photo-produit/_components/{FeaturesTabs,TestimonialCarousel}.tsx`, `components/calculators/ROICalculator/lib/{machines,types}.ts`, `components/machine-selector/lib/{machines,types}.ts`, `components/machine-selector/components/MachineModal.tsx`, `components/media/BeforeAfterSlider.tsx`, `components/shared/SectorGrid.tsx`, `components/video/VideoPlayer.tsx`, `data/solutions.ts`, `lib/locale-text.ts`, `lib/__tests__/use-cases-i18n.test.ts`.
+
+**Exclus** — LANG_1 (A01 à A06) ; A09 et parties produit de A12 ; A14 (« IA Ready ») ; A20, A21 (`SchemaOrg.tsx`, #64) ; A22 à A24 (accueil gelé jusqu'au 28/10) ; A31, A36 à A38 ; A33 (`Header.tsx` : l'en-tête global modifiait l'accueil de-CH et les landings F5 et Mode de-CH ; fichier rétabli à l'identique de `main`). Entrée `alphastudio-compact-v2` des deux catalogues non touchée (gel F5) ; `PackshotEcommerce.tsx`, `SECTOR_PACKSHOT_MAP`, Worker, redirections, `next.config`, middleware absents du diff. Secteur connexe `mode-textile` laissé tel quel (gel Mode).
+
+**Effet attendu** — Pages EN et de-CH concernées entièrement dans leur langue dès le déploiement ; FR identique. [Inférence] Effet de classement non mesurable séparément des mesures en cours (M5, F5, Mode, AI Act). Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest complet 483/483 (23 fichiers) ; `npx next build` vert, variables factices de la CI.
+- HTML prérendu `main` / branche, scripts exécutables retirés, identifiant de build neutralisé : 374 pages, 304 identiques, 70 différentes (48 de-CH, 22 EN). **FR : 161/161 identiques.** Identiques aussi : accueil `fr`, `en`, `de-ch` ; `packshot-e-commerce` et `packshot-mode` en EN et de-CH ; `de-ch/industrie/mode` ; hubs Studios EN et de-CH.
+- Lignes retirées des deux `machines.ts` : 67/67 reprises à l'identique, avec seulement un champ `'de-ch'` en plus.
+- A30 : le repli de `app/[lang]/layout.tsx` change `twitter:title` et `twitter:description` (et `og:*` de `/de-ch/roi-rechner`) sur 17 pages de-CH sans métadonnées propres, dont l'article AI Act `/de-ch/blog/ai-act-produktbilder` (mesure J+7 du 13 ou 14/10) : à inscrire comme événement concomitant (ETAT E) si la PR est fusionnée avant. `<title>`, meta description, canonical et hreflang de ces pages inchangés.
+- Chromium sur `next start` de la branche : spec ad hoc hors dépôt 9/9 (fiches EN et de-CH, gel F5, fiche FR, deux guides de-CH, modale de-CH/EN/FR, métadonnées de-CH, secteurs, page IA, blog, badge) ; specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81.
+- Specs `seo`, `language-switch`, `youtube-consent` : 242 réussies, 10 échecs, tous sur des pages dont le HTML est identique à `main` (`/en`, pages FR, `/fr/packshot-bijoux` → 301 vers une page FR identique) ou dont `<title>` et meta description sont identiques à `main` (`/en/ia-photo-produit`, `/en/industrie`).
+- Fichiers des PR ouvertes (#27, #64, #65, #70, #79, #82) : aucun fichier de code commun ; seuls `JOURNAL.md` et `ETAT.md` sont partagés.
+
+**Supposé** — [Inférence] Les 10 échecs `seo` / `language-switch` sont préexistants : non rejoués sur `main`, déduits de l'identité du HTML. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel et `www` (R4). Qualité linguistique : relecture EN et DE humaine requise (D42), liste des chaînes nouvelles remise hors dépôt. Clés brutes `health` et `watchmaking` affichées en FR et EN sur les fiches (hors périmètre, FR et EN inchangés). `ETAT.md` A et B périmés depuis la fusion de #100 et #101 (B liste encore #100 ouverte) : signalé, non corrigé.
+
+**Suite** — Relecture EN et DE ; confirmation de Laurent sur la fiche `alphastudio-compact-v2` EN et de-CH, qui reçoit les corrections du gabarit commun (ALT du hero, `aria-label` vidéo, galerie et libellés de-CH) alors que ses propres cas d'usage restent en FR ; GO de fusion distinct ; après fusion : `smoke.mjs` sur `sysnext.vercel.app`, Chrome sur `www`.
+
+---
+
+## 2026-10-07 · #101 — trois micro-corrections documentaires avant revue de fusion · Claude de Laurent
+
+**Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« Finalisation PR #101 ») | **PR** : #101, brouillon, « DO NOT MERGE » | **Tête de départ** : `b0bf16f` | **Base** : `main` `30482a0`
+
+**Quoi** — Trois corrections dans les fichiers de #101, sans autre changement :
+- `docs/standards/R-UX-LONG.md`, tableau de la forme A : « deux articles dédiés » devient « quatre articles dédiés », c'est-à-dire `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` en FR et en EN. Le tableau s'aligne ainsi sur l'en-tête et sur le recompte de #85 (44 + 39 + 4 + 3 + 3 = 93).
+- `BOITE-AUX-LETTRES.md`, note du 07/10 sous Q23 : elle présentait à tort l'auteur comme encore à décider. Laurent l'a décidé le 06/10 (`AUTHOR = PackshotCreator`, `SCHEMA_AUTHOR = Organization`) et #96 l'a implémenté. Seule la réserve éventuelle de Sébastien sur le copywriting FR reste ouverte, pour information. La question historique est inchangée.
+- `ETAT.md`, A et B : le nombre de PR ouvertes distingue désormais trois états. Il y en avait 7 au relevé de préparation, avant la création de #101 ; il y en a 8 avec #101 ; il y en aura 7 après une fusion éventuelle de #101, seulement si aucune autre PR ne change. Le relevé historique des 7 PR est conservé. Ligne Q23 de A alignée sur la note rectifiée.
+
+**Vérifié** — `main` `30482a0` ; tête de #101 `b0bf16f`, CI 4/4 verte avant correction ; 8 PR ouvertes (GitHub, 07/10). Les 15 fichiers du cluster AI Act portent `author: "PackshotCreator"` sur `main`. `components/seo/SchemaOrg.tsx` (l. 231) ne produit un `Person` que pour un autre auteur.
+
+**Supposé** — Aucun.
+**Non regardé** — Aucun nouvel audit. Documents non reconstruits ; aucune autre ligne de #101 modifiée.
+
+**Suite** — CI sur la nouvelle tête ; revue de fusion par Laurent ; GO de fusion distinct.
+
+---
+
+## 2026-10-07 · Resynchronisation documentaire post-fusions (03/10 → 06/10) et QA `www` du 07/10 · Claude de Laurent
+
+**Chantier** : gouvernance documentaire, GO de Laurent du 07/10 (« PR documentaire consolidée ») | **PR** : brouillon, « DO NOT MERGE », branche `claude/admiring-euler-njxp9x` | **Base** : `main` `30482a0`
+
+**Quoi** — Documentation seule, cinq fichiers : `ETAT.md` (A à H actualisées), `DECISIONS.md` (note d'exécution datée, sans D48), `BOITE-AUX-LETTRES.md` (notes datées sous Q22 et Q23), `docs/standards/R-UX-LONG.md` (statut, 93 pages, exceptions, réserve UX) et ce journal. Aucun code applicatif, aucun contenu éditorial, aucune redirection, aucun Worker, aucun service externe touché ; aucun nouvel audit SEO/GEO ; aucun appel payant.
+
+**Pourquoi** — `ETAT.md` décrivait encore `main` à `1e0901b` et 19 PR ouvertes ; #85, #88 à #92, #96 et #99 y figuraient en brouillon ; D44 et D45 y étaient « non encore applicables » ; Q22 et `R-UX-LONG.md` portaient 90 pages et l'exception #91.
+
+**Fresh-check (07/10, GitHub et `git`)** —
+- `main` = `30482a08fd4a6329d26eeed3e6ff2a87523e06b4` (fusion de #85), conforme au dernier état connu.
+- 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #100 ; tête de #100 : `78c5e364df6945bdbdd544d6d934c70bf7ea081e`, base `30482a0`, CI 4/4 verte sur la tête.
+- Les workflows de CI (`pr-checks`, `garde-journal`, `garde-consequences`) ne se déclenchent que sur `pull_request` : aucun contrôle de CI ne tourne sur `main` lui-même. Dernière CI de #85, sur `0d2633f` : 4/4 verte.
+
+**Fusions vérifiées sur GitHub** (`merged_at`, UTC ; commit de fusion sur `main`) —
+
+| PR | Objet | Commit | Fusion |
+|---|---|---|---|
+| #87 | UX-GOV : D44, D45, `docs/standards/` | `17a4248` | 03/10 17:51:00 |
+| #83 | D45 : référentiel des dimensions | `1bc7195` | 03/10 19:49:00 |
+| #86 | CI : Vitest et parcours Playwright | `0ac062b` | 04/10 06:23:59 |
+| #95 | Hero de l'accueil, film Orbitvu (Claude de Sébastien) | `9b19e6d` | 04/10 09:10:40 |
+| #84 | D44 : sommaire du blog | `1e0901b` | 06/10 10:26:23 |
+| #96 | Cluster AI Act (D46) | `8247217` | 06/10 12:41:01 |
+| #59, #60, #77 | Incluses dans #96 (têtes `2a36322`, `74ae921`, `a207fe3`, ancêtres de `main`), sans commit de fusion propre | — | 06/10 12:41:03 |
+| #89 | A04a : liens Skeelbox | `a168b33` | 06/10 13:29:15 |
+| #97 | Note BlendAI non sourcée retirée | `df01b04` | 06/10 14:09:37 |
+| #93 | D47 : CTA ROI directs | `6cbb903` | 06/10 14:18:56 |
+| #90 | A02 : liens ROI interne | `be8cbea` | 06/10 14:24:55 |
+| #98 | Documentation : clôture #97, #93, #90 | `c236705` | 06/10 14:56:50 |
+| #92 | A04b : liens morts, MacroSphère | `2a53727` | 06/10 15:17:30 |
+| #91 | A03 : quatre liens de guides | `3b427d7` | 06/10 15:52:23 |
+| #88 | C08 : `hreflang` de l'article IA | `62b3b8d` | 06/10 16:03:55 |
+| #99 | D36 : `noindex` de l'origine, partie Next | `e830419` | 06/10 16:44:29 |
+| #85 | D44 : barre collante, 93 pages | `30482a0` | 06/10 17:46:14 |
+
+Fermées sans fusion : #94 (06/10 14:59:03), #67 (06/10 16:56:07). Le commit de fusion porte parfois une seconde de moins que `merged_at` (#90, #92, #88, #99, #85) ; l'entrée du 06/10 sur #97, #93 et #90 cite l'heure du commit.
+
+**Contrôles `sysnext.vercel.app`** —
+- D36 / #99 : 9 documents HTML sur 9 portent les en-têtes `noindex` attendus (source : mission de Laurent du 07/10 ; liste des 9 URL non reprise).
+- #97, #93, #90 : contrôlés le 06/10 (entrée « Clôture fast-forward » ci-dessous).
+- #84, #85, #88, #89, #91, #92, #95, #96 : aucun contrôle `sysnext` post-fusion consigné au JOURNAL (relevé du 07/10). `smoke.mjs` post-fusion : non consigné.
+
+**Contrôles `www` du 07/10** (source : mission de Laurent du 07/10 ; QA représentative, pas exhaustive) —
+- #85 : PASS représentatif sur six familles ; Studios sans barre commune ; Mode avec une seule barre ; 768 px contrôlé via une iframe de même origine ; viewport principal limité à 1 321 px. Réserve : surbrillance de la section active parfois décalée ; diagnostic P2 **proposé**, aucune correction autorisée ici.
+- #88 : PASS sur l'URL exacte `/fr/blog/generer-images-produit-ia` ; canonical auto-référent ; `hreflang` fr, fr-CH, x-default ; ni en ni de-CH.
+- #89 : aucun lien Skeelbox dans le scan des 323 URL du sitemap ; mention éditoriale conservée.
+- #91 : `www` déjà PASS ; non retesté (consigne de Laurent).
+- #92 : MacroSphère retirée comme lien ; ancienne URL observée dans Chrome : destination finale HTTP 404 ; nombre de redirections intermédiaires **non établi**.
+- #95 : hero de l'accueil et vidéo Orbitvu PASS.
+- #96 : 5 pages FR représentatives PASS. Les 15 versions linguistiques n'ont pas été contrôlées une à une. Fusion le 06/10 ; présence sur `www` constatée le 07/10 ; instant du premier déploiement `www` **non établi**.
+- D36 / #99 : Laurent a contrôlé 4 URL par requête HEAD PowerShell depuis son poste (D23) : HTTP 200, en-têtes D36 absents. Cette preuve vient des requêtes HEAD, pas des captures Chrome.
+
+**Vérifié dans le dépôt, sans requête vers le site (R7)** —
+- 93 pages : description de #85 (recompte du 06/10 sur build local de `0d2633f` : 44 guides, 39 fiches, 4 articles dédiés, 3 IA photo produit, 3 solutions). Registre `data/navigation/pages-longues.ts` sur `main` : exceptions #27 et #64 présentes, aucune exception #91.
+- #88 : `content/blog/alternates.json` sur `main`, groupe de `generer-images-produit-ia` : `fr` seul, `en: null`.
+- #89 : 0 `href` vers Skeelbox dans `content/`, `messages/`, `app/`, `components/` ; mention textuelle présente dans 2 fichiers (`content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `content/blog/en/impact-photographs-product-sheet.json`).
+- #92 : 0 `href` vers MacroSphère et 0 `packshot-studio.com` dans `content/`.
+- Anomalie distincte, **hors périmètre de #92** : `content/blog/fr/eclairage-photos-produits.json` porte `<a id=""><strong id="">intelligence artificielle dédiée</strong></a>`, sans `href`, sur `main` `30482a0` ; ce fichier n'est pas dans le diff de #92 (10 articles). Non corrigée.
+- D45 : `data/produits/fiches-techniques.ts`, `data/produits/ecarts-connus.ts`, `lib/produits/__tests__/coherence-dimensions.test.ts` présents sur `main`.
+
+**Événements de mesure** —
+- #95 : hero de l'accueil modifié le 04/10 (fusion à 09:10 UTC). Modification antérieure à la fenêtre M5 (14/10 au 28/10) : consignée comme **événement de baseline**. Aucun gain SEO ne lui est attribué.
+- #96 : J0 = mise en production effective (`CLUSTER.md` § 6) ; fusion le 06/10, présence `www` constatée le 07/10 ; J0 tombe donc le 06/10 ou le 07/10 ; l'heure réelle du déploiement n'est pas établie.
+- Autres événements concomitants du 04/10 au 06/10, à ne pas attribuer à une mesure : #84, #85, #88 à #93, #97 (`ETAT.md`, E).
+- D36 : sortie progressive de l'origine des index, sans date de lecture fixée.
+- Lectures échues (canonique des 3 landings, `sku`, fils d'Ariane, lot F) : aucune consignée depuis le 04/10 ; aucune faite ici.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`, `docs/standards/R-UX-LONG.md`.
+
+Détail des changements de `ETAT.md` :
+- B réduite aux 7 PR ouvertes ; #59, #60, #77, #67, #83, #85, #86, #87, #96, #99 sorties.
+- Lignes de C retirées, car exécutées : « Cluster AI Act — GO MERGE #96 » (remplacée par la QA restante), « D36 / #99 — fusion » (remplacée par le reliquat), « D44, D45 — ordre de fusion et GO », « AR-01 — CTA ROI » (clos ; reliquat : activation CI d'`anchors` et `roi-calculator`), « D44 — guides de #91 », « D44 — libellé actif ». Leur texte reste dans l'historique git de `ETAT.md` et dans les entrées du 03/10 et du 06/10 de ce journal.
+- Questions métier ouvertes conservées : #65, #27, lot F, CTA de fin d'article, Zalando, #64 (date, autres points), #70, D29, Q10, fiche Google, P0-J, D42, Studios, branches.
+- F4 : sommaire mobile marqué traité par #84 (non rouvert).
+
+**Effet attendu** — Aucun sur le site.
+
+**Supposé** —
+- Les preuves `www` du 07/10 et le résultat `sysnext` 9/9 sont repris de la mission de Laurent du 07/10, sans contre-contrôle dans cette session (aucun nouvel audit demandé ; #91 explicitement non retesté).
+- Registres V4.3 : le refresh de 36 lots et 582 occurrences a été effectué en lecture seule (mission du 07/10). Ses annexes ne sont pas mises à jour dans le dépôt ; ses classifications restent provisoires et ne sont pas des décisions ; chantier documentaire distinct.
+
+**Non regardé** — `www` et `sysnext` par script (R4, et consigne « aucun nouvel audit ») ; Preview Vercel ; Cloudflare, Supabase, n8n, Vercel ; contenu des branches des PR ouvertes au-delà des fichiers de gouvernance ; `06-CHANTIERS.md`, `REVUE-PR-BRANCHES-2026-10-02.md` et les autres documents de `docs/seo-geo/` (hors périmètre autorisé).
+
+**Collisions avec les PR ouvertes** (diff depuis la base de chaque branche) —
+- `JOURNAL.md` : les 7 (#27, #64, #65, #70, #79, #82, #100). #100 a la même base (`30482a0`) et insère en tête : conflit d'insertion certain à la fusion de la seconde des deux, à résoudre par union.
+- `ETAT.md` : #27, #64, #65, #70, #82. `DECISIONS.md` : #65. `BOITE-AUX-LETTRES.md` : #82, qui ajoute une seconde « Q23 » (catalogue All-in-One) ; non renumérotée ici, #82 non modifiée. `docs/standards/R-UX-LONG.md` : aucune.
+
+**Contradictions signalées, non résolues** —
+- Accueil : D44 (« Ce qu'elle interdit ») et `R-UX-LONG.md` § 4 gèlent l'accueil jusqu'au 28/10 ; #95 a modifié son hero le 04/10 à la demande de Sébastien. [Inférence] Le gel D44 vise la navigation ; son texte est plus large. Non arbitré.
+- Q23 en double (main et branche de #82), en attente d'une fusion de #82.
+- Lignes « Statut » historiques de D36 (« non exécutée au 25/09 ») et de D47 (« PR #93 (brouillon) ») : laissées telles quelles (append-only) ; la note d'exécution du 07/10 dit l'état réel.
+
+**Suite** — CI sur la PR ; relecture du diff par Laurent ; **GO de fusion distinct de Laurent** (aucune fusion par cette session). #79 : fermeture sur GO distinct. #100 : ne pas fusionner sans GO. #82 : HOLD. Réserve D44 et balise `<a>` sans `href` : deux anomalies distinctes, aucune correction décidée.
+
+---
+
+## 2026-10-06 · Micro-fix de casse de marque Orbitvu : 1 occurrence visible FR + 5 JSON-LD EN · Claude de Laurent
+
+**Chantier** : typographie, hors 06-CHANTIERS | **PR** : #100, brouillon, branche `claude/trusting-mccarthy-km2erk` | **Base** : `main` `30482a0`, puis `main` `262da03` (#101) intégré le 07/10 par commit de fusion
+
+**Quoi** — Micro-fix de casse de marque, 6 corrections : `orbitvu` → `Orbitvu` dans le champ `tool` du guide lunettes FR (1 occurrence visible : badge du hero, repris dans le JSON-LD `HowToTool`) ; `OrbitVu` → `Orbitvu` dans 5 champs `structuredText` de 4 guides EN (5 occurrences JSON-LD `HowToStep.text`, non affichées). Aucune URL, metadata keyword, slug ou logique modifiée ; aucun autre contenu touché.
+
+**Pourquoi** — Source : audit ciblé de casse du 06/10 sur `main` `e830419`. Seule occurrence minuscule visible du périmètre rendu, et seules occurrences `OrbitVu` du dépôt.
+
+**Fichiers** — `content/guides/fr/comment-photographier-lunettes-e-commerce.json`, `content/guides/en/consistent-product-image-collection.json`, `content/guides/en/enhance-lipstick-texture-photo-ai.json`, `content/guides/en/how-to-get-accurate-colors-in-product-photography.json`, `content/guides/en/how-to-take-multi-angle-photos-of-shoes.json`
+
+**Effet attendu** — Après fusion, marque en casse éditoriale sur `/fr/guide/comment-photographier-lunettes-e-commerce` et dans le JSON-LD des 4 guides EN. Aucun effet de classement attendu.
+
+**Vérifié** — Aucune des 6 PR ouvertes au 06/10 (#27, #64, #65, #70, #79, #82) ne touche les 5 fichiers. `verifier-json` 195 ; `tsc` vert ; Vitest 476/476 ; `next build` vert (386 pages). HTML du build : guide FR « le logiciel Orbitvu » (badge et `HowToTool`), 0 « le logiciel orbitvu » ; 4 guides EN, 0 `OrbitVu`. 0 `OrbitVu` dans le dépôt.
+**Supposé** — Aucun.
+**Non regardé** — Meta keywords en minuscules (14), URLs, slugs, classes CSS, identifiants, `STUDIO ORBITVU` de `app/[lang]/industrie/[slug]/page.tsx` : laissés volontairement. Preview : protégée par le SSO Vercel (302), non contrôlée ; contrôle navigateur fait sur le build local seulement (desktop 1 440 px, mobile 390 px). `www` non contrôlé.
+
+**Synchronisation 07/10** — Conflit d'insertion avec #101 résolu par union : entrées de #101 conservées intégralement, au-dessus de celle-ci (ordre chronologique). Six corrections inchangées.
+
+**Suite** — CI ; contrôle de la Preview ; GO de fusion de Laurent.
+
+---
+
+## 2026-10-06 · #85 actualisée depuis `main` `3b427d7` (fusion de #91) : exceptions temporaires de #91 retirées · Claude de Laurent
+
+**Chantier** : D44 | **PR** : #85, brouillon | **Base intégrée** : `main` `3b427d7`, par commit de fusion `f49a437` (pas de rebase)
+
+**Quoi** —
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union (entrées de `main` dans leur ordre, les 2 entrées de #85 du 03/10 à leur place). `app/[lang]/ia-photo-produit/page.tsx` fusionné automatiquement : barre de #85 et retrait de la note BlendAI de #97 tous deux présents.
+- `data/navigation/pages-longues.ts` : retrait des 3 exceptions temporaires de #91 (`comment-creer-vues-multi-angles-automatique-objet` FR, `how-to-create-automatic-multi-angle-views-of-an-object` EN, `comment-photographier-lunettes-e-commerce` FR) et des constantes `PR91`, `FIN_PR91`. Condition de sortie inscrite le 03/10 remplie : #91 fusionnée le 06/10 (`3b427d7`).
+- Tests : `registre-pages-longues.test.ts`, les 3 guides attendus équipés (et non plus gelés) ; `navigation-pages-longues.spec.ts`, guide lunettes FR retiré de `GELEES`.
+- Aucune autre règle D44 modifiée : exceptions #27, Mode, F5, Studios, pages de #64, HOLD et EXCLUDE inchangés.
+
+**Vérifié** —
+- Aucune autre raison de gel du guide lunettes FR : absent des exceptions #27 et des gels ; aucune PR ouverte ne touche les 3 guides (relevé GitHub du 06/10).
+- `verifier-json` 195 ; `tsc` vert ; Vitest 409/409 (dont 9 du registre) ; eslint vert sur les fichiers touchés ; `next build` vert (386 pages).
+- Build local : `navigation-pages-longues` 44/44 ; `sommaire-blog` et `machine-selector` 37/37 ; contrôle ciblé des 3 guides (spec temporaire hors dépôt) 12/12 : barre, section active, ancres, une seule navigation collante, masquage en fin de page à 1 024 et 1 440 px ; aucune barre ni débordement à 390 et 768 px.
+
+**Supposé** — Aucun.
+**Non regardé** — Preview et `www` ; `docs/standards/R-UX-LONG.md` cite encore #91 en exemple d'exception (ligne 86), non modifié (documentation sur `main`, hors périmètre).
+
+**Suite** — CI sur la nouvelle tête ; contrôle de la Preview par Laurent ; GO de fusion individuel.
+
+---
+
+## 2026-10-06 · D36 reconstruite depuis `main` `2a53727` : `noindex` de l'origine `sysnext.vercel.app`, partie Next seule, remplace #67 · Claude de Laurent
+
+**Chantier** : D36 | **PR** : #99, brouillon, non fusionnée, branche `claude/busy-feynman-0vnf1j` | **Base** : `main` `2a53727` (#92) | **Remplace** : #67, non modifiée, fermeture sur GO de Laurent
+
+**Quoi** — Règle `headers()` de `next.config.ts` : `X-Robots-Tag: noindex` et `X-Packshot-Origin-Noindex: 1` sur les documents HTML de `sysnext.vercel.app` en accès direct. Reprise de la partie Next de #67 (`43e14b3`, `02c093c`), sans sa partie Worker ; test `lib/seo/__tests__/origine-noindex-d36.test.ts` (67 cas) repris de #67 sans modification.
+
+**Pourquoi** — D36 (25/09). Au 06/10, l'origine reste indexable : `https://sysnext.vercel.app/fr`, `/en` et `/de-ch` sans `X-Robots-Tag`, `/fr` sans balise `robots` (`curl`, 06/10 à 15:09 UTC). La protection de `www`, le retrait par le Worker, est active depuis le 01/10 : seule la partie Next de #67 restait à livrer. #67 (base `7ad0ca3`) est en conflit : test Worker ajouté des deux côtés, JOURNAL, ETAT. Son bloc Worker est déjà dans `main` (#68, `92c3c58`), à l'identique.
+
+**Worker au 06/10, lecture seule (API Cloudflare)** —
+- version active `107715bc-be59-43c2-a465-15cefd03f516` (n° 93), à 100 %, déployée le 01/10 à 06:59:53 UTC par `wrangler`, 82 s après la fusion de #68 ; version précédente `27b0153c` (25/09). Ce déploiement n'était pas consigné ici ;
+- bloc D36 présent. Script actif identique à `cloudflare-worker/src/index.js` de `main` après retrait des commentaires, des lignes vides, de 3 lignes d'assistant `__name22` ajoutées par wrangler et de 2 commentaires du bundler ;
+- routes `www.packshot-creator.com/*`, `packshot-creator.com/*`, `*.packshot-creator.com/*` vers `packshot-router`, conformes à `wrangler.toml` ;
+- `WEBFLOW_ORIGIN` figure dans la configuration du Worker actif, alors qu'elle a été retirée de `wrangler.toml` le 28/09. Le code ne la lit pas. Hors périmètre, non traité.
+
+**`www` au 06/10** —
+- Contrôle de Laurent dans Chrome, rapporté : `/fr`, `/en` et `/de-ch` sont des pages réelles et indexables. `X-Robots-Tag` lu par un `fetch` de même origine, **pas sur la requête document initiale** de l'onglet Réseau : l'absence de l'en-tête sur le document initial n'est pas vérifiée directement.
+- Par script : `robots.txt` et `llms.txt` en 200, `x-served-by: nextjs`, sans `X-Robots-Tag`. HTML en 403 de challenge Cloudflare (R4), sans valeur de preuve.
+
+**Fichiers** — `next.config.ts` (constante `ORIGINE_VERCEL_NOINDEX` et `headers()` ; `images` et `redirects()` inchangés), `lib/seo/__tests__/origine-noindex-d36.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier du Worker.
+
+**Effet attendu** — Après fusion :
+- origine en accès direct : `X-Robots-Tag: noindex` et le marqueur sur le HTML. Sortie progressive de l'origine des index qui respectent l'en-tête, au rythme de leurs recrawls ; d'anciennes citations peuvent persister ;
+- `www` : aucun changement. La règle Next est écartée si la requête porte un en-tête `cf-*` ; sinon, le Worker retire en-tête et marqueur.
+
+**Vérifié** —
+- Fraîcheur : `main` `2a53727` ; #67 ouverte, brouillon, tête `62ebfae`, `mergeable_state: dirty`, non modifiée.
+- Patch `next.config.ts` de #67 appliqué sans conflit sur `main`. Seul changement de texte : le commentaire indique que le Worker porte le retrait depuis le 01/10 (#68).
+- Vitest : 467/467 sur la branche, 400/400 sur `main` ; test D36 : 67/67.
+- Mutations :
+  - le test D36 échoue sur la configuration de `main` (aucune règle `headers()`) ;
+  - avec un Worker privé du bloc D36 : 9 échecs, tous dans la chaîne « en-têtes Cloudflare retirés par Vercel ».
+- `tsc` vert. ESLint : 0 message sur les 2 fichiers. `verifier-json` : 195 JSON valides. `npx next build` vert (valeurs factices) ; `routes-manifest.json` porte la règle, regex `^(?:/((?!_next/|_vercel/|api/)[^.]*))(?:/)?$`.
+- Build de la branche contre build de `main` :
+  - `routes-manifest.json` ne diffère que par `headers` ;
+  - 374 HTML, 378 `.meta` et 3 293 `.rsc` identiques, identifiant de build neutralisé ; aucun `.meta` ne porte `X-Robots-Tag` ni le marqueur ;
+  - `sitemap.xml` ne diffère que par `lastmod`, heure du build (`app/sitemap.ts`, préexistant).
+- `next start` du build de la branche, 21 chemins × 6 profils d'en-têtes :
+  - hôte `sysnext.vercel.app` sans en-tête `cf-*` : `noindex` et marqueur sur les 11 documents HTML (`/` en 307, `/fr`, `/en`, `/de-ch`, `/fr/contact`, `/de-ch/kontakt`, `/calculateur-roi`, `/etude-clients-2026`, `/roi-pro`, `/fr/outil-financement`, `/fr/blog`) ; rien sur `robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.ico`, `icon.png`, une image, un chunk JS, `/_next/image`, `/_vercel/*` (404) et `/api/og` ;
+  - même hôte avec `cf-worker`, `cf-ray` ou `cf-connecting-ip` ; hôte `www.packshot-creator.com` ; `localhost` : 0 en-tête sur les 21 chemins.
+- Chaîne `www` → Worker du dépôt → `next start` servi sous l'hôte `sysnext.vercel.app`, 12 chemins, en-têtes `cf-*` transmis puis retirés :
+  - 24 réponses `www`, 0 `X-Robots-Tag`, 0 marqueur ; statut, balise `robots` et canonical identiques à la référence ;
+  - contrôle négatif, Worker privé du bloc D36 et en-têtes retirés : 9 écarts, `noindex` sur le HTML de `www`.
+- `smoke.mjs` vert sur ce build servi sous l'hôte `sysnext.vercel.app`, en-tête présent : 17 pages, 3 ressources.
+
+**Supposé** —
+- [Non vérifié] Vercel transmet `cf-worker`, `cf-ray` ou `cf-connecting-ip` à son routage pour les requêtes relayées par le Worker. La protection de `www` n'en dépend pas : le retrait par le Worker suffit, chaîne rejouée dans le pire cas.
+- [Inférence] Vercel applique les règles `headers()` à chaque requête, à la couche de routage, y compris pour une réponse servie depuis son cache. Aucun `.meta` de prérendu ne porte l'en-tête ; le retrait par le Worker couvre le cas contraire.
+- [Inférence] Le Worker actif se comporte comme celui du dépôt testé ici : code identique après normalisation.
+
+**Non regardé** — Preview Vercel : sous SSO, hôte `sysnext-git-…` hors règle par construction, et hors Worker : elle ne prouve rien sur D36. Cloudflare, Worker, dashboards : non touchés, aucun déploiement. Balise `robots`, canonical, hreflang, sitemap, `robots.txt`, `llms.txt` : non modifiés. `WEBFLOW_ORIGIN` : hors périmètre. Formulaires : aucun fichier concerné, non testés. Playwright : non lancé.
+
+**Suite** — GO de fusion de Laurent. Immédiatement après la fusion, sur GO séparé :
+1. `curl -sI https://sysnext.vercel.app/fr`, `/en`, `/de-ch`, un article : `x-robots-tag: noindex` et `x-packshot-origin-noindex: 1` ; `/robots.txt` : ni l'un ni l'autre ;
+2. Chrome sur `https://www.packshot-creator.com/fr?v=<horodatage>`, `/en`, `/de-ch` : ni l'un ni l'autre, **sur la requête document de l'onglet Réseau** ; présent : `git revert` du commit de fusion ;
+3. `node scripts/seo/smoke.mjs https://sysnext.vercel.app` ;
+4. JOURNAL.
+
+Après la fusion, aucun retour arrière du Worker vers une version sans le retrait tant que cette PR n'est pas révertée. #67 : fermeture « remplacée », sur GO de Laurent.
+
+---
+
+## 2026-10-06 · A04b (#92) actualisée depuis `main` `c236705` : patch des 10 articles inchangé, MacroSphère morte, retrait conservé · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b | **PR** : #92, brouillon | **Base intégrée** : `main` `c236705`, par commit de fusion `ad807a5` (pas de rebase, pas de force-push)
+
+**Quoi** — Mission V4.3 lot 1 du 06/10 (#92 → #91 → #88) : actualisation de #92, 124 commits de retard. Un seul conflit, d'insertion en tête de `JOURNAL.md`, résolu par union (entrées de `main` puis entrée A04b ; 0 ligne perdue de part et d'autre). Aucun contenu métier modifié.
+
+**MacroSphère (F-033, F-039)** — Contrôle unique de la destination : `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` → 301 → `fr.packshot-creator.com/…`. Chromium du conteneur : défi Cloudflare « Just a moment… », 403 (R4, non probant). Worker déployé `packshot-router` (lecture seule, modifié le 01/10) : identique au dépôt aux commentaires près, aucune règle pour ce chemin, renvoi vers `www` chemin conservé. Application (`sysnext.vercel.app`, hors Cloudflare) : 307 vers `/fr/collections/3d/products/macrosphere-3d-jewelry-animation`, puis **404**. Retrait préparé (`8793731`) conservé.
+
+**Vérifié** — Les 10 JSON de `content/blog/` ont exactement le blob de `5a74aba` ; diff `main` → branche sur `content/` identique au patch validé. `verifier-json` : 195 JSON valides ; `tsc` vert ; Vitest 400/400 ; `next build` vert (386 pages). HTML prérendu des 10 articles : 0 occurrence de `pixcap.com`, `<a id="">`, `wiki/Sensorama/`, `capturingreality.com`, `packshot-studio.com` ; cibles Sensorama et RealityScan présentes.
+
+**Supposé** — Qu'un visiteur dans Chrome obtient la même 404 : déduit du Worker déployé et de l'application ; non observé dans un Chrome réel (aucun accès Chrome dans cette session).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` dans Chrome ; les autres liens (audit acquis, non rejoué).
+
+**Suite** — CI sur la nouvelle tête ; GO de fusion distinct de Laurent (`GO MERGE #92`) ; puis #91, puis #88.
+
+---
+
+## 2026-10-06 · Clôture fast-forward #97 / #93 / #90 : trois fusions, `main` final `be8cbea`, `www` contrôlé · Claude de Laurent
+
+**Chantier** : P0 intégrité (#97) ; D47, AR-01 (#93) ; V4.3 lot 1, A02 (#90) | **PR** : documentation seule, branche `claude/stoic-goodall-nrerhy` | **Base** : `main` `be8cbea`
+
+**Quoi** — Clôture des trois fusions du 06/10, faites dans cet ordre sur GO distincts de Laurent, en mode merge :
+- #97 fusionnée (`df01b04`, 14:09:37 UTC) : suppression de la note BlendAI non sourcée 4,9/5 × 100 ; contrôle `www` PASS.
+- #93 fusionnée (`6cbb903`, 14:18:56 UTC) : D47, CTA ROI directs vers les calculateurs localisés ; contrôle `www` FR/EN PASS, aucun détour par Studios.
+- #90 fusionnée (`be8cbea`, 14:24:54 UTC) : liens des articles ROI interne corrigés ; contrôle `www` FR/EN PASS.
+- `main` final vérifié : `be8cbea`.
+- NEW_P0 = 0 ; NEW_P1 = 0.
+- FAST_FORWARD_97_93_90_WWW_VERIFIED = YES.
+
+**Pourquoi** — Rituel de fin d'intervention. `ETAT.md` décrivait encore #93 en brouillon et AR-01 en attente d'une date de fusion.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` ; `docs/seo-geo/ETAT.md` (B : ligne #93 retirée, PR fusionnée ; C : ligne AR-01 close ; F4 : observation P3 ; G : ligne #97, #93, #90). Aucun fichier applicatif, aucun test.
+
+**Effet attendu** — Aucun sur le site.
+
+**Vérifié** —
+- Avant chaque fusion : fresh-check, PR `clean`, CI 4/4 verte. Après reprise de `main`, patch hors `docs/seo-geo/` identique au patch validé (#93 : `58c585e` ; #90 : `703bf69`) ; `JOURNAL.md` résolu par union, 0 ligne retirée.
+- `sysnext.vercel.app` après chaque déploiement (hors Cloudflare, R4) :
+  - #97 : 0 « 4,9/5 » et 0 `AggregateRating` sur `/fr` et `/en/ia-photo-produit` et FR/EN `studio-ia-vs-ia-generative` ; 4,7/5 × 83 visible sur `/fr`, `/en` et Studios FR/EN ;
+  - #93 : 7 sources FR et EN en 200, 0 lien vers `/studios-photo-automatises#…` ; `/fr/calculateur-roi`, `/en/calculateur-roi`, `/de-ch/roi-rechner` en 200 ; témoin du sélecteur inchangé ; aucun `id="calculateur-roi"` sur Studios ; aucun formulaire envoyé, aucun appel d'API ;
+  - #90 : 2 articles en 200, 0 lien `http://gs-new…`, 2 liens Orbitvu par article, ancre lunetterie vers `/{fr,en}/industrie/lunetterie` (200), « Photoshop » non lié en EN.
+- `www` : contrôle Chrome de Laurent, PASS pour les trois PR (déclaré par Laurent le 06/10).
+- D47 présente dans `DECISIONS.md`, non modifiée. Sa ligne « Statut » cite encore « PR #93 (brouillon) » : application effective depuis la fusion `6cbb903`.
+- P3 : ancre EN « Packshot for the`<strong>`optics`</strong>` And eyewear » (rendu « theoptics »). Texte identique dans `f529bd5` (20/09) et `6cbb903` (avant #90) : antériorité à #90 établie par git ; #90 n'a modifié que le `href`.
+
+**Supposé** — Le contrôle `www` de Laurent couvre les pages de la checklist consolidée du 06/10 : FR `/ia-photo-produit`, FR `studio-ia-vs-ia-generative`, prestataire FR/EN, articles ROI interne FR/EN.
+
+**Non regardé** — `www` par script (R4) ; Firefox, Safari, appareils réels ; GA4 ; Search Console.
+
+**Suite** —
+- #94 : `PR94_STATUS = SUPERSEDED_BY_D47_AND_CURRENT_MAIN`, `PR94_MERGE = FORBIDDEN`. Sa réservation de Studios pour `id="calculateur-roi"` est caduque depuis D47. Ni reprise ni réparation ; fermeture sur GO explicite de Laurent seulement.
+- P3 de l'ancre EN inscrit en `ETAT.md`, F4 ; non corrigé ici.
+- Fusion de cette PR documentaire : GO distinct de Laurent.
+
+---
+
+## 2026-10-06 · A02 (#90) actualisée depuis `main` `a168b33` (fusion de #89) : patch inchangé, conflit de journal résolu par union · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `a168b33` ; tête précédente `3309244`
+
+**Quoi** — `main` `a168b33` (fusion de #89) fusionnée dans la branche, sans rebase. Seul conflit : `JOURNAL.md`, deux insertions (06/10 et 03/10), résolues par union, ordre chronologique conservé. Aucune modification de contenu : les 2 JSON sont identiques octet pour octet au patch d'origine `a829c50`.
+
+**Pourquoi** — La fusion de #89 rendait #90 de nouveau conflictuelle (6 commits de retard).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`. Diff contre `main` : `content/blog/en/what-return-on-investment-with-an-internal-photo-studio.json`, `content/blog/fr/quel-retour-sur-investissement-avec-un-studio-photo-en-interne.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Inchangé par rapport à l'entrée A02 du 03/10.
+
+**Vérifié** —
+- Texte visible des 2 articles identique à `main` ; 0 ligne de `main` ni de `3309244` retirée de `JOURNAL.md`.
+- `tsc` vert ; `verifier-json` : 195 JSON valides ; Vitest 400/400 ; `next build` vert (386 pages).
+- `next start` local, desktop 1280 et mobile 390 : les 2 articles en 200 ; 0 lien `http://gs-new…` ; 2 liens Orbitvu par article ; ancre lunetterie vers `/{fr,en}/industrie/lunetterie` ; « Photoshop » non lié en EN ; 0 lien vide ; aucun débordement horizontal ; 0 erreur de page.
+- Parcours de la CI `machine-selector` et `sommaire-blog` : 37/37.
+- Cibles Orbitvu et lunetterie : relevé du 06/10 non refait (aucun changement détecté). Appels payants : aucun.
+
+**Supposé** — Que l'URL Orbitvu vue par un visiteur est celle relevée depuis le conteneur (R4).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante) ; `ETAT.md`, non modifié.
+
+**Suite** — CI et Preview sur la nouvelle tête ; QA de Laurent ; GO de fusion distinct.
+
+---
+
+## 2026-10-06 · A02 (#90) actualisée depuis `main` `8247217` (#96) : URL Orbitvu, lien Photoshop, ancres lunetterie inchangés · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 | **PR** : #90, brouillon | **Branche** : `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `a829c50`
+
+**Quoi** — `main` `8247217` fusionnée dans la branche, sans rebase ni force-push. Seul conflit : `JOURNAL.md` (insertion en tête), résolu par union : toutes les entrées de `main` conservées, entrée A02 du 03/10 placée à sa date. Aucune modification de contenu ajoutée.
+
+**Pourquoi** — #90 était en conflit avec `main` et sa CI du 03/10 précédait #86 (ni Vitest ni parcours Playwright). Consigne de Laurent du 06/10 : actualiser #90 après #89.
+
+**Vérifié** (06/10, conteneur) — hôte `gs-new-features-and-accelerated-content-creation` : NXDOMAIN (DNS public Cloudflare) ; URL Orbitvu cible : 200 ; `sysnext.vercel.app/fr/industrie/lunetterie` : 200, indexable ; `/en/industrie/lunetterie` : 200, `noindex, follow` (état attendu, inchangé) ; aucune PR ouverte ne touche les deux JSON de #90. Diff métier contre `main` identique à celui du 03/10 (2 JSON, 7 modifications d'attributs).
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante de la CI).
+
+**Suite** — QA express de #90 après le sort de #89 ; GO de fusion distinct de Laurent.
+
+---
+
+## 2026-10-06 · ROI (#93) — CTA directs vers le calculateur réel, option B d'AR-01 abandonnée (D47) · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A01 = AR-01, révisé | **PR** : #93 (brouillon, ne pas fusionner) | **Base** : `main` `8247217` (#96)
+
+**Quoi** —
+- Décision de Laurent du 06/10 (D47) : les CTA ROI de 7 sources visent le calculateur localisé (FR `/fr/calculateur-roi`, EN `/en/calculateur-roi`, de-ch `/de-ch/roi-rechner`), sans détour par `/studios-photo-automatises#…`. Elle remplace l'option B du 03/10 (ancre permanente sur la section ROI de Studios), décrite dans l'entrée AR-01 du 03/10 ci-dessous, qui n'est plus la décision courante.
+- 18 expressions dans 7 fichiers : `blendai-vs-flair` (2), `blendai-vs-photoroom` (2), `comment-calculer-le-roi-…` (6), `guide-achat-studio-2026` (5), `ia-photo-produit-guide-2026` (1, balise `<a>` brute devenue `<Link>`), `orbitvu-vs-concurrents` (1, idem), `prestataire-packshot-vs-studio-interne` (1, ancien `hash: 'roi'`). Seuls les `href` changent ; l'id interne `calculateur-roi-gratuit` est inchangé.
+- Studios : retour à l'état de `main` ; l'`id="calculateur-roi"` et le commentaire ajoutés par la branche le 03/10 sont retirés. Studios n'est pas transformée en cible.
+- Témoin du pilote Studios (`studio-photo/selecteur-machines`, FR, EN, de-ch) : volontairement inchangé. Son lien vise toujours `/studios-photo-automatises#calculateur-roi`, ancre absente : le visiteur arrive en haut de Studios, comme sur `main`.
+- `e2e/anchors.spec.ts` : retour à `main`, plus 16 tests ciblés (7 sources × FR, EN : aucun lien `/studios-photo-automatises#…`, au moins le nombre de liens corrigés vers le calculateur ; destinations FR et EN en 200). Les 7 tests de l'option B sont retirés. Témoin exclu, exclusion écrite dans le spec.
+- `e2e/roi-calculator.spec.ts` (réécriture du 03/10 conservée) : les 3 tests de Studios vérifient le bouton de la section ROI vers le calculateur, présent sur `main`, sans supposer d'`id`. Toute requête `/api/**` est simulée.
+- CI : `pr-checks.yml` inchangé ; `anchors` reste différé, `roi-calculator` n'est pas ajouté.
+
+**Pourquoi** — Les 19 liens du code visaient une ancre absente de Studios depuis le 22/03 (`d5a7fea`). Laurent retient la destination directe vers l'outil réel plutôt que la réparation de l'ancre.
+
+**Unités de comptage** —
+- Sur `main` `8247217` : 19 expressions dans 8 fichiers, 39 liens rendus sur 17 pages.
+- Corrigées : 18 expressions dans 7 fichiers ; 36 liens rendus sur 14 pages (7 articles × FR, EN).
+- Restant volontairement : 1 expression (sélecteur), 3 liens rendus (FR, EN, de-ch).
+
+**Fichiers** — 7 pages d'articles sous `app/[lang]/blog/`, `e2e/anchors.spec.ts`, `e2e/roi-calculator.spec.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Un clic sur « Calculer mon ROI » depuis ces 14 pages ouvre le calculateur de la langue, au lieu du haut de Studios. [Inférence] Le trafic de Studios, les sessions du calculateur et l'usage de l'API du conseiller FR peuvent bouger ; aucune causalité n'est affirmée. Le Header et le Footer lient Studios sur toutes les pages : l'ensemble des pages qui lient Studios ne change pas.
+
+**Vérifié** (local, build de production, variables d'environnement factices, sans clé d'API) —
+- `tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest 400/400 ; `next build` vert, 386 pages.
+- HTML et RSC prérendus contre `main` `8247217`, identifiant de build et chemins `/_next/static` normalisés : 56 fichiers différents, soit les 14 pages sources (HTML, RSC et 2 segments chacune). Studios, sélecteur et toutes les autres pages : identiques. Sur les 14 pages : 36 `href` changés, texte visible identique, JSON-LD identique ; pour les 2 balises devenues `<Link>`, seul l'ordre des attributs `href` et `class` diffère.
+- Playwright, Chromium (`anchors`, `roi-calculator`, `cta-destinations`, `internal-links`, `internal-links-all`, `language-switch`, `machine-selector`, `sommaire-blog`) : branche 112/115, `main` 73/98. Les 3 échecs de la branche existent à l'identique sur `main` : `anchors` « #calculateur-roi exists » (témoin), `cta-destinations` « Découvrir nos studios », `language-switch` « header and footer ». Sur `main`, les 22 autres échecs sont l'ancienne spec ROI. Aucun échec nouveau.
+- `anchors` : 22/23 sur la branche ; les 16 nouveaux tests passent. `roi-calculator` : 23/23.
+- Contre-épreuve, specs de la branche sur le build de `main` : les 14 tests des sources échouent (détour détecté), les 2 destinations passent ; `roi-calculator` 23/23.
+- Appels réels à `/api/roi-chat`, `/api/roi-pdf`, `/api/roi-lead` : 0 ; aucun lead, aucun coût.
+
+**Supposé** — Aucun effet d'indexation propre aux 36 `href` au-delà du transfert de ces liens internes de Studios vers le calculateur [Inférence, cela repose sur des schémas observés].
+
+**Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; GA4 (hors périmètre, D47) ; Firefox, WebKit, mobile ; CI de la nouvelle tête au moment de l'écriture.
+
+**Suite** — Contrôle de la Preview par Laurent (clic sur « Calculer mon ROI » depuis prestataire et un guide, FR et EN) ; arbitrage de la date de fusion ; GO de fusion distinct ; réconciliation de #94 (GO séparé) ; décision séparée sur `anchors` et `roi-calculator` en CI.
+
+---
+
+## 2026-10-06 · P0 intégrité : note BlendAI 4,9/5 sur 100 avis, sans source, retirée (JSON-LD, FAQ, chaînes mortes) · Claude de Laurent
+
+**Chantier** : P0 intégrité, hors 06-CHANTIERS ; ne lance pas le nettoyage BlendAI global | **PR** : #97, brouillon, branche `claude/dazzling-fermi-1qerqb` | **Commit** : `b2199b7` | **Base** : `main` `1e0901b`, puis `8247217` (fusion de #96) fusionné dans la branche, sans rebase
+
+**Quoi** — Retrait de la seule note `4,9/5` / `100 avis` attachée à l'offre IA, et de rien d'autre :
+- `app/[lang]/ia-photo-produit/page.tsx` : bloc `aggregateRating` (4,9 ; 100 ; 5) du JSON-LD `SoftwareApplication` BlendAI, rendu en FR et EN (déjà absent en de-ch, D31). Le reste du bloc est inchangé ;
+- `blogStudioIa.faq.q3.answer` (FR, EN, de-ch) : proposition « , avec une note de satisfaction de 4,9/5 » / « , with a 4.9/5 satisfaction rating » supprimée ; la phrase devient « Plus de 100 marques l'utilisent. » / « Over 100 brands use it. ». Texte visible et `FAQPage` de `/fr` et `/en/blog/studio-ia-vs-ia-generative` ; en de-ch, chaîne morte (article jamais servi en de-ch, `i18n/deChCoverage.ts`) ;
+- `iaPhotoProduit.socialProof.stat3` et `stat3Label` (FR, EN, de-ch) : clés mortes (aucune référence dans le code, la page n'affiche pas ce bloc), retirées.
+
+**Pourquoi** — Aucune source établie pour 4,9/5 ni pour 100 avis. Avant : `AggregateRating` dans le JSON-LD de 2 pages ; note visible et dans `FAQPage` sur 2 pages ; `4.9/5` présent dans le flux RSC du HTML brut de 355 pages sur 359 (`NextIntlClientProvider` reçoit tout `messages/<langue>.json`, constat déjà relevé dans ce journal). Agrégat Google légitime (`data/testimonials.ts`, `GMB_AGGREGATE` 4,7 / 83) non touché.
+
+**Fichiers** — `app/[lang]/ia-photo-produit/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Au déploiement : plus aucun `AggregateRating` dans le JSON-LD du site (l'agrégat Google n'est rendu qu'en texte ; les 32 `Review` restent) ; Google retire l'éventuel extrait d'étoiles de `/fr` et `/en/ia-photo-produit` au recrawl (J+3 à J+14). Aucun effet attendu sur les autres pages hors disparition des chaînes du flux RSC.
+
+**Vérifié** —
+- Clés de messages, `main` contre branche, par langue : 2 clés supprimées (`stat3`, `stat3Label`), 1 modifiée (`q3.answer`), aucune autre ; édition par lignes, sans reformatage ; `verifier-json` 180 fichiers valides.
+- `npx tsc --noEmit` vert ; eslint vert sur la page ; Vitest 400/400 ; `npx next build` vert (371 pages), valeurs factices de la CI, aucun `MISSING_MESSAGE`.
+- 359 HTML prérendus, build de `main` contre build de la branche : JSON-LD parsé différent sur 4 pages exactement (`/fr` et `/en/ia-photo-produit` : `aggregateRating` retiré ; `/fr` et `/en/blog/studio-ia-vs-ia-generative` : texte de la réponse 3) ; texte visible différent sur 2 pages (les deux articles, réponse 3) ; `<title>`, description, robots, canonique, hreflang et OG identiques sur 359 pages.
+- Après : `4.9/5`, `4,9/5`, `AggregateRating`, `"reviewCount":100`, « note de satisfaction », « satisfaction rating », `Kundenzufriedenheit` : 0 occurrence dans le JSON-LD, le texte visible et le flux RSC des 359 pages.
+- Agrégat Google préservé : « 4,7/5 sur 83 avis » visible sur `/fr` et `/fr/studios-photo-automatises`, « 4.7/5 over 83 reviews » sur `/en` et `/en/studios-photo-automatises`, avant comme après ; 32 blocs JSON-LD `Review`, avant comme après.
+- `e2e/seo.spec.ts` (Chromium préinstallé, `next start`) : 227/236 sur la branche ; les 9 mêmes échecs sur `main` `1e0901b` (titres de plus de 70 caractères, descriptions, hreflang de `/fr/packshot-bijoux`), aucun lié à ce diff.
+- Après fusion de `main` `8247217` (#96) dans la branche, mêmes contrôles refaits contre un build de `8247217` : `verifier-json` 195 fichiers ; `tsc` vert ; Vitest 400/400 ; `next build` vert (386 pages) ; 374 HTML : JSON-LD différent sur les 4 mêmes pages, texte visible sur les 2 mêmes, `<head>` identique sur 374 ; `4.9/5` dans le flux RSC de 370 pages avant, 0 après ; agrégat Google et 32 `Review` inchangés ; `seo.spec` 227/236, les 9 mêmes échecs sur `8247217`. #96 n'apporte aucune occurrence nouvelle de la note.
+- Collisions, 19 PR ouvertes : seule #85 touche `app/[lang]/ia-photo-produit/page.tsx` (barre D44, hunks avant la ligne 590 ; ce diff à la ligne 701) ; #64 et #27 touchent `messages/*.json` sans toucher ces clés ; fusion simulée (`git merge-tree`) de la branche avec chacune des 19 : résultat dans la PR.
+
+**Supposé** — Qu'aucune source de la note n'existe hors du dépôt : l'audit la donne NON ÉTABLIE ; aucune trace dans `docs/`, `data/` ni `content/`.
+**Non regardé** — Preview Vercel et `www` dans Chrome (R4) ; Test des résultats enrichis de Google ; « Plus de 100 marques », `stat1` (100+ marques) et `stat2` (5 000+ visuels) : autres affirmations, non sourcées elles aussi, hors périmètre (nettoyage BlendAI) ; « fidèles à 100 % » de la description `SoftwareApplication` (RV28-E12) ; `ETAT.md`, non modifié : #96 le réécrivait (fusionnée pendant ce chantier), #94 le réécrit encore, une modification créerait une collision ; documents non servis (`sessions/`, `livrables/`, `PLAN_PROD.md`) qui citent encore 4,9/5.
+
+**Suite** — CI et Preview ; contrôle Chrome de la Preview par Laurent ; GO de fusion de Laurent, distinct. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, contrôle Chrome de `/fr/ia-photo-produit` sur `www`.
+
+---
+
+## 2026-10-06 · A04a (#89) actualisée depuis `main` `8247217` (#96) : liens Skeelbox retirés, conflit de journal résolu · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04a | **PR** : #89, brouillon | **Branche** : `seo/a04a-liens-skeelbox-2026-10-03` | **Base** : `main` `8247217` ; tête précédente `43dd0eb`
+
+**Quoi** — `main` `8247217` fusionnée dans la branche, sans rebase. Seul conflit : `JOURNAL.md` (insertion en tête) ; toutes les entrées de `main` conservées, entrée A04a du 03/10 placée à sa date. Aucune modification de contenu ajoutée : le diff contre `main` reste le retrait des 2 liens Skeelbox.
+
+**Pourquoi** — #89 avait 90 commits de retard et n'était plus fusionnable ; sa CI du 03/10 précédait #86 (ni Vitest ni parcours Playwright).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md` (résolution et cette entrée). Diff contre `main` : `content/blog/en/impact-photographs-product-sheet.json`, `content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Inchangé par rapport à l'entrée A04a du 03/10 : plus aucun lien sortant vers `skeelbox.com`.
+
+**Vérifié** —
+- Diff des 2 JSON contre `main` : seul le champ `content` change ; une balise `<a>` retirée par fichier (2 liens `skeelbox.com` avant, 0 après) ; texte visible identique ; statistique, liens voisins et métadonnées inchangés.
+- `https://www.skeelbox.com/etude-abandon-panier/`, avec et sans `/` final (06/10, conteneur) : 301 vers `https://cemater.com/`, 200, titre « Ojol333: Content Dispatch Layer untuk Menyampaikan Informasi Game Online… » ; la racine de `skeelbox.com` redirige au même endroit.
+- `tsc` vert ; `verifier-json` : 195 JSON valides ; Vitest 400/400 ; `next build` vert (386 pages).
+- `next start` local, desktop 1280 et mobile 390 : les 2 articles en 200 ; 0 lien `skeelbox` ; paragraphe sans balise ni espace parasite, « (Skeelbox) » présent ; 0 lien vide ; 0 erreur de page.
+- Parcours de la CI `machine-selector` et `sommaire-blog` : 37/37 (Chromium préinstallé du conteneur, révision 1194 ; la CI utilise la sienne).
+- Appels payants : aucun.
+
+**Supposé** — Que la redirection observée depuis le conteneur est celle que voit un visiteur (R4).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; ESLint (étape non bloquante de la CI) ; `ETAT.md`, non modifié pour ne pas étendre les conflits de #90 et #92 ; fond de la statistique citée (AA5 b).
+
+**Suite** — CI et Preview sur la nouvelle tête ; QA humaine de Laurent ; GO de fusion distinct. #90 puis #92 seront actualisées après le sort de #89, une à la fois.
+
+---
+
+## 2026-10-06 · Cluster AI Act (#96) synchronisé avec `main` `1e0901b` (#84) : sommaire de A vérifié, 15 articles intacts, CTA de fin d'article localisés · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 ; D44 (effet de #84 sur A) | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `1e0901b` ; tête précédente `8d5b131`
+
+**Quoi** —
+- `main` `1e0901b` (fusion de #84) fusionné dans #96, sans rebase (`dfa792a`). Un conflit, ce fichier : toutes les entrées conservées, entrée #84 (09:01 UTC) placée au-dessus des deux entrées #96 du 06/10 (06:33 et 07:12 UTC).
+- Aucun article modifié. `ETAT.md` (main, #84 livrée, #96, point CTA) et `CLUSTER.md` (§ 10 renvoyé au § 12, § 11 complété pour le sommaire de A, § 12 nouveau).
+
+**Pourquoi** — Mission de Laurent du 06/10 : #84 fusionnée et vérifiée par Laurent sur `www` ; #96 n'était plus fusionnable (`dirty`, 4 commits de retard) et devait reprendre le sommaire corrigé avant le contrôle Chrome final.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md` ; par la fusion : `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts` (contenu de `main`).
+
+**Effet attendu** — À la fusion de #96 : les 15 articles avec le sommaire de #84 ; le spec `sommaire-blog` couvre A en CI sans modification (25 tests au lieu de 18).
+
+**Vérifié** —
+- Intégrité : `git diff 8d5b131 dfa792a` = les 3 fichiers de #84 ; les 46 fichiers de #96 identiques à l'octet. JOURNAL : 0 ligne retirée par rapport à `main` comme à `8d5b131`.
+- QA 15 URL × 5 formats sur le build local de `dfa792a`, comparée champ par champ à celle de `8d5b131` : 0 écart (meta, canonique, robots, hreflang, JSON-LD, fil d'Ariane, liens, images, tableaux, FAQ) ; 0 débordement ; 0 erreur de console ; liens internes en 200.
+- Sommaire de A (22 entrées), vrais viewports : 1 321 × 727, 1 440 × 900, 1 180 × 727, 1 024 × 768 : colonne collée à 96 px, liste plafonnée (567 à 740 px pour 954 px de contenu) et défilante, « Sources » et première entrée → titre à 96 px avec entrée active juste et visible, 21/21 entrées focalisées visibles au clavier, second clic à 150 ms → second titre, molette pendant le défilement → page laissée où le lecteur l'amène, pied de page non recouvert, 0 débordement. 390, 360, 820 px : « 3. Recolorisation », première, milieu, « Sources » → titre à 96 px, premier titre visible sous l'en-tête (« 4. Produit réel… » plus bas, à 1 246 px ou au-delà), panneau replié avant tout défilement.
+- Spec `sommaire-blog` : 25/25, dont 12 tests sur A. `tsc` vert ; `verifier-json` 195 fichiers valides ; `next build` vert, 386 pages (`main` 371) ; Vitest 400/400 ; ESLint sans erreur sur les deux fichiers de #84 (#96 ne modifie aucun fichier TS ou JS).
+- Suite Playwright complète, Chromium : branche 509 tests, 410 réussis, 99 échecs ; `main` `1e0901b` (même méthode, worktree) 502 tests, 403 réussis, 99 échecs ; listes d'échecs identiques, aucune page du cluster en cause (redirections, ancien calculateur ROI, responsive, seo, anchors AR-01).
+- CTA : « Réservez votre démo » et « Calculez votre ROI » ne sont rendus sur aucune page du blog. Bandeau de fin d'article = `components/blog/ArticleCTA.tsx` (201 pages, articles et guides) ; cartes = section finale de l'accueil et de 6 autres gabarits (114 pages). Détail : `CLUSTER.md` § 12.
+- Date : 15 articles en `2026-10-06`, publication envisagée le 06/10 : aucun changement.
+
+**Supposé** — Vérification de #84 en production : constat de Laurent dans Chrome sur `www` (`WWW_PR84 = VERIFIED`), non refait ici (R4).
+**Non regardé** — Preview de la nouvelle tête dans Chrome (contrôle humain, § 11) ; `www` (R4) ; Firefox, Safari, appareils réels ; sommaire de A en EN et de-ch (couvert par la QA de #84 du 06/10, non refait).
+
+**Suite** — CI et Preview sur la nouvelle tête ; contrôle Chrome final de Laurent (`CLUSTER.md` § 11) ; décision de Laurent sur le bloc CTA visé et sur une PR dédiée ; « GO MERGE #96 ». À la fusion de la seconde de #82 et #96 : numéro de la « Q23 » à arbitrer (collision consignée par #82).
 ## 2026-10-06 · Landing catalogue All-in-One (#82) actualisée depuis `main` `1e0901b` · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `dc7c2e6` (fusion)
@@ -198,6 +1311,76 @@ Une première version de la correction de la molette interrompait aussi sur un a
 
 ---
 
+## 2026-10-06 · Cluster AI Act (#96) — continuation : auteur « PackshotCreator », décisions de Laurent consignées, QA finale · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d` (inchangé depuis la mission initiale, fresh-check du 06/10)
+
+**Quoi**
+- Auteur des 15 articles : « Sébastien Jourdan » → « PackshotCreator ». Le schéma `Article.author` pointe désormais vers l'organisation (`…/#organization`), sans profil LinkedIn personnel.
+- C (FR, EN, de-ch) : la note d'ouverture précise que la personne de l'image d'en-tête est entièrement synthétique.
+- D46 complétée par les précisions de Laurent : `PUBLICATION_AUTHORITY = LAURENT`, `SEBASTIEN_VALIDATION = NOT_RECEIVED` (ce cluster seulement) ; `D16_EXCEPTION = YES` (AI Act B, C, D, Laurent, 06/10, D16 inchangée pour la suite) ; date réelle de publication ; fusion sur « GO MERGE #96 » seulement. Q23 mise à jour (information, sans blocage).
+- `CLUSTER.md` : QA finale des visuels B, C, D ; checkpoint final ; checklist de contrôle humain de la Preview (§ 11).
+- Rien d'autre : ni `TableOfContents.tsx` (#84), ni gabarit SEO (BL-43-1), ni BlendAI, ni ROI / #93, ni Studios, ni `pr-checks.yml`.
+
+**Pourquoi** — Mission de continuation de Laurent du 06/10 : finaliser #96 sans élargir son rayon.
+
+**Fichiers** — 15 articles du cluster (`author`, note de C), `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,BOITE-AUX-LETTRES}.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/CLUSTER.md`
+
+**Effet attendu** — Aucun avant la fusion.
+
+**Vérifié**
+- Fresh-check : `main` `9b19e6d`, tête de #96 `9aaaecc` avant ce commit, identiques à l'état de référence.
+- `verifier-json` 195 valides ; `next build` vert, 386 pages ; schéma `Article.author` = organisation sur les 15 URL.
+- QA 15 URL × 5 formats (1440, 1180, 820, 390, 360) : 0 anomalie (200, 0 débordement de page, images chargées, 0 erreur de console, 0 requête en échec, liens internes en 200, 1 `h1`, FAQ = `FAQPage`, `html lang` conforme, 5 hreflang, aucune balise `robots`, 0 « ß », 0 tiret cadratin) ; tableaux larges de A et D en défilement interne à 390 et 360 px.
+- Largeur de lecture : article de 656 px (`max-w-prose`) sur les 15 URL à 1440 et 1180 px, comme l'article témoin `migrer-ancien-packshotcreator` ; seul le `<code>` de D dépasse, à l'intérieur de son `<pre>`.
+- Sommaire : desktop, 15/15 (entrées = titres ; clic → titre à 96 px du haut). Mobile : après un toucher, le titre visé finit au-dessus de l'écran ; même mesure sur 4 articles existants (`migrer` FR et EN, `generer-images-produit-ia`, `alphashot-xl-g2`) : défaut du gabarit actuel, corrigé par #84, non dupliqué ici.
+- Langue : aucune phrase française accidentelle en EN ou de-ch (seuls des noms officiels français, attendus).
+- Anti-cannibalisation : aucun H2 ni aucune FAQ en double entre A, S, B, C, D (hors « Sources »).
+- Visuels B0, B1, C0, C2, D0 contrôlés à 100 % : aucune marque identifiable, aucun texte lisible ; cadran de la montre de C2 : quelques signes de pseudo-texte illisibles, imperceptibles à la taille d'affichage [Inférence]. Aucun visuel retiré.
+- e2e (7 specs) sur la branche : 299 réussis, 24 échecs, liste identique à `main` (`9b19e6d`, inchangé).
+
+**Supposé** — [Inférence] La personne de C0 ne ressemble à aucune personne réelle identifiable : provenance générée par IA (#79), ressemblance non vérifiable. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO, contrôle humain de Laurent), `www` (R4), Safari, Firefox, appareils réels.
+
+**Suite** — Contrôle humain de la Preview (checklist `CLUSTER.md` § 11) ; date réelle de publication au dernier commit ; « GO MERGE #96 » de Laurent.
+
+---
+
+## 2026-10-06 · Cluster AI Act — cinq articles en FR, EN et de-ch prêts pour une publication coordonnée (D46) · Claude de Laurent
+
+**Chantier** : cluster AI Act (F2), D46 | **PR** : #96, brouillon | **Branche** : `ccr-e0a4796e-2p18xn` | **Base** : `main` `9b19e6d`
+
+**Quoi**
+- #59 (A), #60 (S) et #77 fusionnées dans la branche (historique et entrées de JOURNAL conservés, insertion chronologique, contrôle par comptage de lignes) ; contenus identiques aux têtes `2a36322`, `74ae921`, `a207fe3` avant les modifications ci-dessous.
+- B (`retouche-ia-photo-produit`), C (`mannequin-invisible-modele-virtuel-avatar`), D (`images-ia-metadonnees-marketplaces`) créés comme articles du blog depuis la matière de #79 (textes du 02/10, FAQ, 5 AVIF identiques à l'octet). Non repris : pages `/revue-interne/`, garde Preview, 8 modules SVG, notes de relecture. #79 n'est pas fusionnée.
+- Registre juridique du 06/10 (`docs/seo-geo/cluster-ai-act-2026-10-06/REGISTRE-JURIDIQUE.md`) appliqué : statut des lignes directrices C(2026) 5054 (contenu approuvé le 20/07/2026, adoption formelle annoncée, non constatée au 06/10) ; article 50(5) ; paraphrase de l'exception de l'article 50(2) ; aide Google 6324350 (versions FR et DE : refus du produit ; EN restructurée : sans) ; PFPDT (« messages vocaux », réserve pénale) ; calendrier suisse (Chancellerie « d'ici à la fin 2026 », Portail PME « printemps 2027 »).
+- Zalando, page « Updated October 1, 2026 » relevée le 06/10 : « Invisible marking (required by December 2026) », « We strongly recommend… », « You must embed identifying data… ». Formulation prudente conservée, désormais citée : intitulé et recommandation rapportés tels quels, sans conversion en obligation certaine. **ZALANDO_STATUS = SOURCE RECONTRÔLÉE, AMBIGUË DANS LA SOURCE ; FORMULATION PRUDENTE CITÉE.**
+- EN des cinq articles et de-ch des cinq (adaptation suisse : phrase de cadrage UE / Suisse dans A, B, C, D ; UWG renvoyé à S dans A ; droit français toujours « in Frankreich » ; sources officielles suisses en version allemande ou anglaise vérifiée).
+- Maillage : A → B, C, D, S ; B → A, D ; C → A, B, D ; D → A, C ; S → A, D ; de-ch A, B, C, D → S ; `generer-images-produit-ia` (FR) et articles « migrer » (FR, EN, de-ch) → A ; `llms.txt` → A, S. Aucun lien vers F5, aucun fichier de Mode modifié.
+- `alternates.json` : 5 entrées ; `globals.css` : en-têtes de tableau sur plusieurs lignes et cellules resserrées sous 640 px, blocs `<pre>` du blog en défilement interne.
+- D46 inscrite ; D41 marquée remplacée sur le seul principe des satellites ; Q23 (information de Sébastien).
+
+**Pourquoi** — Mission de Laurent du 06/10 : publier le cluster sans attendre le retour de Sébastien, de façon coordonnée, après checkpoint et GO de publication explicite.
+
+**Fichiers** — `content/blog/{fr,en,de-ch}/` (15 articles du cluster ; `generer-images-produit-ia`, articles « migrer »), `content/blog/alternates.json`, `public/images/blog/{retouche-ia-photo-produit,mannequin-invisible-modele-virtuel-avatar,images-ia-metadonnees-marketplaces}/`, `app/globals.css`, `public/llms.txt`, `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,BOITE-AUX-LETTRES}.md`, `docs/seo-geo/cluster-ai-act-2026-10-06/`
+
+**Effet attendu** — Aucun avant la fusion. Après fusion : 15 URL indexables, hreflang complet (fr, fr-CH, en, de-CH, x-default) ; pilier mis en avant en tête de `/fr/blog`, `/en/blog`, `/de-ch/blog`.
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; Vitest 400/400 ; `next build` vert, 386 pages (371 sur `main`).
+- `next start`, Chromium, 15 URL × 5 formats (1440 × 900, 1180 × 820, 820 × 1180 tactile, 390 × 844 et 360 × 740 mobiles) : 200, 0 débordement de page, toutes les images chargées, 0 erreur de console, 0 requête en échec, un seul `h1`, FAQ visibles = `FAQPage` (A 7, B 5, C 5, D 5, S aucune), 0 ancre cassée, liens internes en 200. Tableaux : aucune colonne hors champ à 820 px et au-delà ; à 390 et 360 px, défilement interne pour les tableaux de A (4) et de D (1), comme pour A sur `main` avant cette PR.
+- Métadonnées : title de 49 à 62 caractères, description de 125 à 155, canonique propre à chaque URL, aucune balise `robots`, hreflang identiques sur les trois langues de chaque article, `og:image` = image d'en-tête, JSON-LD Organization, BreadcrumbList, Article (+ FAQPage) ; 15 URL au sitemap ; sélecteur de langue vers l'article correspondant.
+- e2e `seo`, `language-switch`, `mobile-overflow`, `machine-selector`, `internal-links`, `internal-links-all`, `responsive` : branche et `main` (worktree, même build) : 299 réussis, 24 échecs chacun, listes identiques.
+- `globals.css`, six articles existants à tableau (`alphashot-xl-g2` et « migrer », 3 langues) : à 1440 px inchangés ; à 390 px, colonnes hors champ réduites (ex. `migrer` FR : 570 → 410 px de large), aucune page dégradée.
+- BlendAI : 0 occurrence dans les 15 articles. F5 : 0 lien.
+- Baseline GSC (`gsc-crawl-seo`, site 3, données au 03/10) : `CLUSTER.md`, section 6.
+
+**Supposé** — [Inférence] La césure (`hyphens: auto`) s'applique sur Chrome et Safari grand public ; le Chromium du conteneur ne l'applique pas. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox, appareils réels ; Légifrance et Amazon (inaccessibles par script le 06/10) ; template du blog : `twitter:*` hérité du site, `og:url`, `og:locale` et `inLanguage` de l'`Article` absents sur tous les articles (BL-43-1, PR distincte) ; `og:image` en AVIF, non lu par plusieurs réseaux sociaux (préexistant).
+
+**Suite** — Checkpoint de la mission ; GO de publication explicite de Laurent ; fusion ; contrôle J0 sur `sysnext.vercel.app` puis `www` dans Chrome ; mesure J+7, J+28, J+56 ; [Inférence] GitHub marquera #59, #60 et #77 comme fusionnées à la fusion de cette PR, leurs têtes étant incluses ; #79 reste ouverte (REVIEW ONLY) ou se ferme sur décision de Laurent.
 ## 2026-10-06 · Landing catalogue All-in-One (#82) : Pipedrive en API v2 (personnes, organisations), décisions T1, T2, P3, P5 consignées · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `c0e4b89`
@@ -501,6 +1684,206 @@ Une première version de la correction de la molette interrompait aussi sur un a
 
 ---
 
+## 2026-10-03 · A02 — articles « ROI interne » : URL Orbitvu restaurée, lien Photoshop retiré, ancres lunetterie corrigées · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A02 (Maillage V2 PR-02 : F-002 à F-006, A-004, A-008 ; AR-02, CA10 a) | **PR** : brouillon, branche `seo/a02-roi-interne-liens-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — 7 modifications d'attributs, aucun mot changé :
+- 4 `href` `http://gs-new-features-and-accelerated-content-creation/` (hôte inexistant, chemin tronqué) → `https://orbitvu.com/blog/orbitvu-station-2220-fast-hermes-brings-new-features-and-accelerated-content-creation` (F-002, F-003 en EN ; F-005, F-006 en FR) ;
+- balise du lien « Photoshop » retirée en EN, mot conservé (F-004) ;
+- ancre « Le packshot pour l'optique et la lunetterie » → `/fr/industrie/lunetterie` au lieu de `/fr/industrie/pieces-techniques-industrie` (A-004) ; même correction en EN vers `/en/industrie/lunetterie` (A-008).
+
+**Pourquoi** — Hôte `gs-new-…` sans DNS (audit A, Maillage V2). Décision de Laurent du 03/10 : AR-02 (une URL Orbitvu officielle, 4 occurrences ; retrait de la seule balise Photoshop) et CA10 (a). Lunetterie en HOLD : correction de destination seulement, aucun lien nouveau.
+
+**Fichiers** — `content/blog/fr/quel-retour-sur-investissement-avec-un-studio-photo-en-interne.json`, `content/blog/en/what-return-on-investment-with-an-internal-photo-studio.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus de lien vers un hôte inexistant ; l'ancre lunetterie mène au hub lunetterie.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des deux articles identique avant et après ; 0 occurrence de `http://gs-new` ; URL Orbitvu : 200 depuis le conteneur le 03/10 (titre « Orbitvu Station 22.2.0 “Fast Hermes” brings new features and accelerated content creation »).
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 6 pages sur 359. Les 2 articles : exactement les 7 modifications annoncées. `/fr/blog`, `/en/blog` : DOM servi identique, charge RSC seule (contenu des articles embarqué, préexistant). `/fr` et `/en/studios-photo-automatises` (cible du pilote) : **DOM servi identique** ; la charge RSC ne diffère que par la sérialisation du sélecteur de machines (ligne en ligne ou référencée), contenu identique, sans lien avec ce diff.
+- `next start` local : articles 200, liens conformes ; `/fr/industrie/lunetterie` 200 (indexable) ; `/en/industrie/lunetterie` 200 (`noindex, follow`, comme l'ancienne cible EN).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www`. Hors lot, constaté : en FR, « Photoshop » pointe vers `adobe.com` (lien conservé) ; en EN, il n'est plus lié. Parité FR/EN de ce lien à arbitrer avec B2 si utile.
+
+**Suite** — Information de Sébastien (CA10 a). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10. B2 (prose ROI) viendra après sur les mêmes fichiers.
+
+---
+
+## 2026-10-03 · AR-01 — ancre permanente #calculateur-roi sur Studios, CTA de prestataire, spec ROI sur l'outil réellement servi · Claude de Laurent
+
+> **Remplacée le 06/10 (D47).** Option B abandonnée : les CTA ROI visent le calculateur localisé ; Studios ne reçoit aucun `id`. Entrée conservée comme historique de la branche ; voir l'entrée du 06/10 « ROI (#93) — CTA directs vers le calculateur réel ».
+
+**Chantier** : V4.3, lot 1, A01 = AR-01 (Maillage V2 PR-01 : F-007 à F-029) | **PR** : brouillon autonome, branche `seo/a01-ancre-calculateur-roi-2026-10-03` | **Base** : `main` `de6c4cd` | **Propriétaire** : Claude de Laurent, désigné par Laurent le 03/10 (GO direct)
+
+**Quoi** —
+- Section « Quel est le vrai coût de votre production photo actuelle ? » de `/studios-photo-automatises` : `id="calculateur-roi"` permanent, sans condition ni barre de sommaire. Son bouton garde sa destination, le calculateur autonome.
+- CTA « btnRoi » de `prestataire-packshot-vs-studio-interne` (FR, EN) : `hash: 'roi'` (ancre inexistante) → `hash: 'calculateur-roi'`.
+- `e2e/anchors.spec.ts` : 7 tests ajoutés. Ancre en EN et de-ch, unicité dans les 3 langues, sélecteur → section → calculateur, CTA de prestataire FR et EN, 17 pages sources.
+- `e2e/roi-calculator.spec.ts` réécrit sur l'outil réellement servi :
+  - section de Studios dans les 3 langues ;
+  - assistant à étapes sur `/en/calculateur-roi` et `/de-ch/roi-rechner` ;
+  - conseiller conversationnel sur `/fr/calculateur-roi`.
+  Chaque assertion de l'ancienne spec a un remplaçant. Toute requête vers `/api/` est simulée (`page.route`) et le formulaire e-mail n'est jamais soumis.
+
+**Pourquoi** — Les liens « Calculer mon ROI » des articles et du sélecteur visent la section ROI de Studios, dont l'ancre a disparu le 22/03/2026 (`d5a7fea`) : le visiteur arrive en haut de page. L'ancienne spec ROI attendait l'assistant intégré à Studios, remplacé par un teaser le même jour ; en FR, l'assistant a été remplacé par le conseiller (GO Sébastien 06/08). Décision de Laurent du 03/10 : option B (ancre sur la section existante), propriétaire désigné, PR autonome.
+
+**Unités de comptage** (tenues séparées) —
+- Lignes Maillage V2 : 22 lignes de liens (F-007 à F-028) et 1 ligne de tests (F-029). Une ligne par expression du code, mais 2 lignes pour prestataire (FR, EN) et 3 pour le sélecteur (FR, EN, de-ch).
+- Expressions de liens dans le code : 19, dans 8 fichiers. 18 visaient déjà `#calculateur-roi` ; 1 visait `#roi`, corrigée ici.
+- Liens rendus : 39, sur 17 pages prérendues. 34 sur les articles (17 expressions × FR et EN), 2 sur prestataire, 3 sur le sélecteur (FR, EN, de-ch).
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx` (un attribut et un commentaire), `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx` (un `hash`), `e2e/anchors.spec.ts`, `e2e/roi-calculator.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Les 39 liens rendus arrivent sur la section ROI, titre visible sous l'en-tête. Témoin du pilote et 5 sources inchangés.
+
+**Vérifié** (local, build de production, variables factices) —
+- `verifier-json` : 180 JSON valides. `tsc` vert. Vitest 377/377. `next build` vert. ESLint : 300 problèmes, identiques sur `main` ; 0 sur les deux specs.
+- Diff du HTML prérendu : 5 pages sur 359.
+  - Studios FR, EN et de-ch : identiques à `main` à l'attribut `id` près, DOM et charge RSC compris.
+  - Prestataire FR et EN : identiques au fragment près.
+  - Témoin `studio-photo/selecteur-machines` (FR, EN, de-ch) : identique.
+- `id="calculateur-roi"` : 1 seul par page Studios. 39 liens rendus vers Studios avec fragment, sur 17 pages, tous en `#calculateur-roi`.
+- Arrivée sur `#calculateur-roi` à 390 et 1 440 px, dans les 3 langues : titre à 200 et 280 px du haut, sous l'en-tête (65 px).
+- `anchors` + `roi-calculator` : 37/37, trois passes.
+- Appels payants et leads : aucun ; `/api/roi-pdf`, `/api/roi-lead` et `/api/roi-chat` simulés.
+
+**Supposé** — Aucun effet d'indexation : un attribut `id` et un fragment d'URL interne.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; effet sur les mesures d'audience de Studios ; les liens vers le calculateur hors section ROI (PR-10, PR-12 du Maillage V2, hors lot).
+
+**Suite** — Fichier Studios réservé au seul correctif AR-01 jusqu'à sa clôture ; ensuite, Landings & Hubs reprend la landing. Publication envisagée au J0 Studios du 29/10, si le scénario P2 est validé. Après fusion de #86 : passer `anchors` des specs différés aux specs attendus dans `pr-checks.yml`.
+
+---
+
+## 2026-10-03 · A04a — liens Skeelbox retirés, statistique et texte inchangés · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04a (Maillage V2 PR-04, lignes F-032 et F-038 ; AA5 option a) | **PR** : brouillon, branche `seo/a04a-liens-skeelbox-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Dans deux articles, la balise `<a href="https://www.skeelbox.com/etude-abandon-panier/" id="">Skeelbox</a>` est remplacée par le mot « Skeelbox ». La phrase, la statistique qu'elle cite et la parenthèse restent identiques.
+
+**Pourquoi** — Le 03/10, depuis le conteneur, `https://www.skeelbox.com/etude-abandon-panier/` répond 301 vers `https://cemater.com/`, dont le titre est celui d'un site de jeux en ligne sans rapport (relevés à 08:50 et 10:56 UTC). Le lien envoie le lecteur vers un domaine tiers. Décision de Laurent du 03/10 : retrait des deux liens (AA5 option a), CA10 (a) avec information de Sébastien ; le sort de la statistique (AA5 option b) reste à Sébastien.
+
+**Fichiers** — `content/blog/en/impact-photographs-product-sheet.json`, `content/blog/fr/e-commerce-quel-est-le-reel-impact-des-visuels.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus aucun lien sortant vers ce domaine depuis le site.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des deux articles identique avant et après (balises retirées, comparaison du texte) ; 0 occurrence de `skeelbox.com` dans les deux JSON.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu `main` / branche : 4 pages sur 359. Les 2 articles : lien retiré, mot conservé. `/fr/blog` et `/en/blog` : DOM servi identique ; seule leur charge utile RSC change, car elle embarque le contenu complet des articles (comportement préexistant).
+- `next start` local : les 2 articles répondent 200, 0 lien vers `skeelbox.com` dans le DOM, texte « (Skeelbox) » présent.
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que la redirection observée depuis le conteneur est celle que voit un visiteur : à confirmer dans Chrome (R4 ne s'applique qu'à `www`, mais la redirection est servie par un tiers).
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; le fond de la statistique citée.
+
+**Suite** — Information de Sébastien : lien retiré, statistique à arbitrer (AA5 b). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10, ou plus tôt sur GO exprès.
+
+---
+
+## 2026-10-03 · A04b — liens externes morts et balises sans `href` : 11 corrections démontrées, 2 soumises à contrôle Chrome · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A04b (Maillage V2 PR-04 : F-030, F-031, F-033 à F-037, F-039, F-040, F-048, F-049 ; CA10 a) | **PR** : brouillon, branche `seo/a04b-liens-externes-balises-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — 13 occurrences dans 10 JSON, aucun mot modifié, en deux commits :
+- **Commit 1, corrections démontrées (11)** :
+  - Pixcap, 2 liens (F-030, F-031, EN Amazon) : balises retirées, texte conservé ; `pixcap.com` n'a aucun enregistrement A (DNS public Cloudflare, 03/10) ;
+  - 3 balises `<a id="">` sans `href` (F-034, F-035, F-037) : balises retirées, texte conservé ;
+  - Sensorama, 2 liens (F-036, F-040) : `…/wiki/Sensorama/` (404) → `…/wiki/Sensorama` (200) ;
+  - RealityCapture, 2 liens (F-048, F-049) : `https://www.capturingreality.com/` (301) → URL finale RealityScan (200).
+- **Commit 2, soumis à contrôle Chrome (2)** : MacroSphère (F-033, F-039) : balise retirée, texte conservé. `fr.packshot-studio.com/…/macrosphere-3d-jewelry-animation` redirige (301) vers `fr.packshot-creator.com`, servi par notre Worker : le dépôt n'y a aucune règle (renvoi vers `www`), Next répond 307 puis 404 (vérifié en local) ; audit A : 404. La production étant derrière Cloudflare (403 aux scripts, R4) et le Worker déployé pouvant diverger (R5), la destination réelle se confirme dans Chrome.
+
+**Pourquoi** — Liens morts, malformés ou redirigés relevés par l'audit A et le Maillage V2. Décision de Laurent du 03/10 : CA10 (a), en distinguant les corrections démontrées des liens nécessitant un contrôle Chrome.
+
+**Fichiers** — `content/blog/en/how-to-get-best-amazon-product-photos.json`, `content/blog/en/potential-advantages-e-commerce-businesses.json`, `content/blog/en/product-photo-lighting.json`, `content/blog/fr/avantage-du-e-commerce-pour-les-entreprises.json`, `content/blog/en/use-photo-studio-virtual-reality.json`, `content/blog/fr/utilisez-votre-studio-photo-pour-faire-de-la-realite-virtuelle.json`, `content/blog/en/from-2d-photography-to-3d-models-of-your-products-introduction-to-photogrammetry.json`, `content/blog/fr/de-la-photographie-2d-aux-modeles-3d-de-vos-produits-introduction-a-la-photogrammetrie.json`, `content/blog/{en,fr}/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Plus de liens sortants morts ni de balises de lien inertes dans ces articles.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des 10 articles identique avant et après.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 14 pages sur 359. Les 10 articles : exactement les 13 modifications annoncées. `/fr/blog`, `/en/blog` : DOM servi identique, charge RSC seule (contenu embarqué, préexistant). `/fr` et `/en/studios-photo-automatises` : DOM servi identique, écart RSC limité à la sérialisation du sélecteur de machines, sans lien avec ce diff.
+- `next start` local : 10 articles en 200 ; plus aucune occurrence de `pixcap.com`, `<a id="">`, `Sensorama/`, `capturingreality.com`, `packshot-studio.com` dans leur DOM. Cibles conservées : Wikipédia 200, RealityScan 200 (conteneur, 03/10).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que la production renvoie bien un 404 pour l'ancienne URL MacroSphère : déduit du code du dépôt et de l'audit A, non vérifié en production.
+
+**Non regardé** — Preview Vercel (SSO) ; `www`. Hors lot : l'`alt` « macrosphere pour réaliser des animations 3D… » d'une image des mêmes articles.
+
+**Suite** — Contrôle Chrome par Laurent de l'URL MacroSphère avant le GO de fusion ; si elle mène à une page vivante, le commit 2 est retiré avant fusion. Information de Sébastien (CA10 a). Publication envisagée du 12 au 16/10. A17b viendra après sur 6 de ces fichiers.
+
+---
+
+## 2026-10-03 · A03 — 4 liens de guides vers leur destination finale, sans passer par une redirection · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, A03 (Maillage V2 PR-03 : F-045, F-046, F-047, F-068 ; CA10 a) | **PR** : brouillon, branche `seo/a03-redirections-internes-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Dans le champ `introText` de 3 guides, 4 `href` qui passaient par une redirection du Worker pointent directement vers leur destination finale :
+- `/fr/industrie/pieces-techniques` → `/fr/industrie/pieces-techniques-industrie` (F-045) ;
+- `/fr/industrie/objets-art-antiquite` → `/fr/industrie` (F-046) ;
+- `/fr/industrie/simplifiez-production-de-vos-visuels-optique-lunetterie` → `/fr/industrie/lunetterie` (F-047) ;
+- `/en/industrie/pieces-techniques` → `/en/industrie/pieces-techniques-industrie` (F-068).
+Aucun mot modifié. Worker et `next.config.ts` non touchés.
+
+**Pourquoi** — Redirections internes évitables (audits A, C, E ; Maillage V2). Destinations lues dans `cloudflare-worker/src/index.js` du dépôt (l. 1060, 1211, 1212, 1217). Décision de Laurent du 03/10 : CA10 (a), avec information de Sébastien.
+
+**Fichiers** — `content/guides/fr/comment-creer-vues-multi-angles-automatique-objet.json`, `content/guides/en/how-to-create-automatic-multi-angle-views-of-an-object.json`, `content/guides/fr/comment-photographier-lunettes-e-commerce.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Liens internes directs, sans saut 301 ; plus de dépendance de ces liens au Worker.
+
+**Vérifié** (local, build de production, variables factices) —
+- Texte visible des 3 guides identique ; seul `introText` change.
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 ; `next build` vert ; ESLint : 300 problèmes, identiques sur `main`.
+- Diff du HTML prérendu : 3 pages sur 359 (les 3 guides), exactement les 4 `href` annoncés.
+- `next start` local : guides 200 ; nouvelles cibles 200 (`/en/industrie/pieces-techniques-industrie` en `noindex, follow`, comme avant le saut) ; anciennes URL 404 sans le Worker (piège E5), ce qui confirme qu'elles ne vivaient que par la redirection.
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec identique sur `main`. `redirections.spec.ts` : échecs locaux sans rapport avec ce diff (aucun fichier de redirection modifié), mesurés à part sur `main`.
+- Appels payants : aucun.
+
+**Supposé** — Que le Worker actif en production applique les mêmes sauts que le dépôt (R5) : sans effet sur cette PR, qui ne dépend plus du Worker.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` ; le choix d'une cible plus précise que le hub pour « artisanaux ou de collection » (éditorial, hors lot).
+
+**Suite** — Information de Sébastien (CA10 a). Revue de la Preview, GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10.
+
+---
+
+## 2026-10-03 · C08 = D1-H01 — `hreflang` de l'article IA, une seule correction pour les audits A, C et D · Claude de Laurent
+
+**Chantier** : V4.3, lot 1, C08 (Maillage V2 PR-08, ligne G-001 ; audit D H01) | **PR** : brouillon, branche `seo/c08-hreflang-article-ia-2026-10-03` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Une clé ajoutée à `content/blog/alternates.json` : `native-2026-05-02-generer-images-produit-ia` → `{"fr": "generer-images-produit-ia", "en": null}`. `/fr/blog/generer-images-produit-ia` émet désormais ses balises `alternate` `fr`, `fr-CH` et `x-default`, auto-référentes. Aucun `en`, aucun `de-CH` : l'article n'existe qu'en français (antérieur à D38).
+
+**Pourquoi** — Article natif du 02/05 jamais inscrit dans `alternates.json` : `getBlogAlternates()` renvoyait `{fr: null, en: null}`, donc aucune balise `alternate` (audit D H01, Maillage V2 G-001, Kit A–E C08). V4.3 : une seule correction pour C08 et D1-H01. `"en": null` suit le type `AlternatesEntry` (`lib/content.ts`), qui exige la clé `en`.
+
+**Fichiers** — `content/blog/alternates.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Signal de langue cohérent pour la page FR (France et Suisse romande). Aucun effet attendu sur l'indexation des autres pages.
+
+**Vérifié** (local, build de production, variables factices) —
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 377/377 (dont `locale-switch-de-ch.test.ts`) ; `next build` vert.
+- Diff du HTML prérendu `main` / branche, après neutralisation de l'identifiant de build (deux builds de `main` : 0 écart) : **1 page sur 359** modifiée, `fr/blog/generer-images-produit-ia.html`, + 3 balises `<link rel="alternate">` (`fr`, `fr-CH`, `x-default`) et la même chose dans la charge utile RSC. Aucune autre page.
+- `next start` local : la page répond 200, canonique inchangée, pas de balise `robots`. Sélecteur de langue : EN → `/en/blog`, DE-CH → `/de-ch/blog`, comme avant. `/en/ia-photo-produit` et `/de-ch/ia-photo-produit` ne lient toujours pas l'article (traduction nulle).
+- Specs `internal-links-all`, `external-links`, `language-switch` : 27 réussies, 1 échec **identique sur `main`** (`language-switch` : « should translate header and footer »).
+- ESLint : 300 problèmes, identiques sur `main` (étape CI `continue-on-error`).
+- Appels payants : aucun.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; Search Console.
+
+**Suite** — Revue de la Preview, puis GO de fusion distinct de Laurent ; publication envisagée du 12 au 16/10. Après fusion : `smoke.mjs` sur `sysnext.vercel.app` (contrôle `hreflang` et `x-default`), puis Chrome sur `www`. D1 ne retouche pas H01 ; L11, H08 et L17 restent dans D1.
+
+---
+
 ## 2026-10-03 · PRODUCT-TEST (#83) actualisée depuis `main` `17a4248`, après la fusion de #87 · Claude de Laurent
 
 **Chantier** : D45, préparation du GO de fusion de #83 | **PR** : #83, brouillon | **Base intégrée** : `main` `17a4248`, par commit de fusion `5414e0a` (pas de rebase)
@@ -550,6 +1933,29 @@ Aucun fichier de #83 modifié : `data/produits/`, `lib/produits/`, `scripts/prod
 **Non regardé** — propriétaire Landings & Hubs (non nommé dans le dépôt) ; Programme Directeur V4.3 et addendum marché n° 14 (hors dépôt).
 
 **Suite** — GO de Laurent (Preview de #84 et #85, infrastructure de #86, fusions) ; PR AR-01 du propriétaire Maillage V2 ; réponses de Sébastien à Q20, Q21, Q22.
+
+---
+
+## 2026-10-03 · #85 — Studios retirée de la barre (arbitrage de Laurent), guides de #91 en HOLD, pages IA conservées · Claude de Laurent
+
+**Chantier** : D44, arbitrages du 03/10 après la revue pré-fusion | **PR** : #85 | **Base** : `main` `de6c4cd`
+
+**Quoi** —
+- **Studios** : `app/[lang]/studios-photo-automatises/page.tsx` revient à l'état de `main`. Famille `landing-gamme` en HOLD ; la barre de Studios relève du chantier commercial, sous validation spécifique. L'ancre `#calculateur-roi` part dans le lot AR-01 (Maillage V2) : #85 ne la porte plus.
+- **Guides de #91** (A03, lot 1 V4.3) : `comment-creer-vues-multi-angles-automatique-objet` (FR), `how-to-create-automatic-multi-angle-views-of-an-object` (EN) et `comment-photographier-lunettes-e-commerce` (FR) en exception temporaire jusqu'à la clôture de #91. Si #91 est fusionnée avant #85 : contrôle sur `main`, puis retrait de l'exception.
+- **Pages IA** (`/ia-photo-produit`, FR, EN, de-ch) : barre conservée. Hors pilote Studios ; deuxième vague commerciale selon l'addendum marché du 02/10 (conditionnée par #77 et la validation des claims). **Changement UX à reprendre lors de la restructuration éditoriale** : cinq entrées (titres de section existants), `id` posés par la barre, ancre `#resultats` réutilisée.
+- **Libellé actif** : emplacement fixe à droite des numéros, conservé (décision de Laurent du 03/10).
+- Tests : registre (Studios et guides de #91 gelés) ; spec de navigation (Studios et `comment-photographier-lunettes-e-commerce` passent dans les pages gelées ; `comment-obtenir-couleurs-fideles-photographie-produit` devient la page équipée de référence).
+
+**Pourquoi** — Arbitrages de Laurent du 03/10 : pilote Studios coordonné avec Landings & Hubs et le Maillage V2 (J0 proposé le 29/10) ; formulation actuelle de D44 pour les pages touchées par une PR éditoriale ouverte.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/page.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`
+
+**Vérifié** — voir la description de #85 (build, Vitest, spec, comptage des pages).
+**Supposé** — rien.
+**Non regardé** — barre de Studios dans le chantier commercial (hors de cette PR).
+
+**Suite** — Retrait des exceptions de #91 à sa clôture ; activation de Studios sur validation spécifique.
 
 ---
 
@@ -710,6 +2116,49 @@ Tests retirés parce que la fonction n'existe plus dans l'interface : recherche 
 **Non regardé** — Firefox, WebKit, mobile émulé en CI (seul Chromium y tourne). `e2e/anchors.spec.ts` n'est pas ajouté : son test « #calculateur-roi » échoue sur `main`, défaut corrigé par #85 ; à ajouter après la fusion de #85.
 
 **Suite** — Après fusion de #84 et #85, leurs specs s'exécutent sans modification du workflow. Ajouter `anchors` à la commande après #85.
+
+---
+
+## 2026-10-03 · D44 — barre de sommaire collante mutualisée, trois pilotes puis 96 pages par famille de gabarits · Claude de Laurent
+
+**Chantier** : D44 (R-UX-LONG), PR UX-STICKY | **PR** : brouillon, branche `ccr-79f70eb9-ux-sticky` | **Base** : `main` `de6c4cd` | **Commits** : `9d9de22` (composant, registre, pilotes), puis généralisation
+
+**Quoi** —
+- `components/navigation/SommaireCollant.tsx` : version commune de la barre de Mode. Elle apporte ancres configurables, début et fin, rien sous 1 024 px, décalage des ancres calculé sur l'en-tête. Numéros fixes et libellé actif dans un emplacement unique : CLS de défilement nul.
+- `data/navigation/pages-longues.ts` : registre par famille, avec pages gelées et exceptions motivées.
+- Gabarits équipés, `id` posés seulement si la barre est active, libellés tirés des titres existants :
+  - guides (`guide/[slug]`) ;
+  - fiches (`studio-photo/[slug]`) ;
+  - `studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026` ;
+  - `ia-photo-produit`, `studios-photo-automatises` ;
+  - `solutions/[slug]`.
+- Tests : `lib/navigation/__tests__/registre-pages-longues.test.ts` (7), `e2e/navigation-pages-longues.spec.ts` (47).
+
+**Pourquoi** — GO encadré de Laurent du 03/10 : généraliser par famille de gabarits, en conservant les navigations adaptées. Audit du 03/10 : 47 guides, 39 fiches et plusieurs landings longues sans navigation.
+
+**Fichiers** — `components/navigation/SommaireCollant.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/studio-ia-vs-ia-generative/page.tsx`, `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/ia-photo-produit/page.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `app/[lang]/solutions/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Navigation desktop sur 96 pages indexables. Une nouvelle page d'une famille équipée (guide, fiche, solution) reçoit la barre sans autre geste. Aucun effet sur l'indexation : ni URL, ni canonique, ni hreflang, ni contenu.
+
+**Décision de conception à valider** — La barre de Mode insère le libellé actif après le numéro actif : les numéros suivants se décalent à chaque changement de section. CLS mesuré pendant le défilement sur `main` : 0,036 à 1 024 px, 0,021 à 1 440 px ; 0,080 sur un guide de 12 étapes avec la même mécanique. Le composant commun affiche le libellé dans un emplacement fixe à droite des numéros : CLS 0 sur toutes les pages équipées. Mode reste sur son composant jusqu'au 26/11. Sa bascule changera l'emplacement du libellé : décision de Laurent, après contrôle de parité.
+
+**Vérifié** (build local, `main` `de6c4cd` en référence) —
+- Registre : 116 pages contrôlées, 116 conformes ; 96 équipées (44 guides, 39 fiches, 3 IA photo produit, 3 gamme, 3 solutions, 2 comparatifs, 2 studio-ia) ; 20 gelées ou exclues sans barre (F5, Mode avec sa barre d'origine, hub mode-textile, accueil, 3 guides de #27, budget, prestataire, Amazon).
+- `e2e/navigation-pages-longues.spec.ts` : 94/94 sur deux passages (47 tests). Couvre 17 pages équipées à 1 024 et 1 440 px, 3 pages à 390 et 768 px, 7 pages gelées ou exclues.
+- Comparaison `main` / branche, 116 pages à 390 et 1 440 px (232 combinaisons), puis 16 pages représentatives aux 7 largeurs (360 à 1 920, 112 combinaisons) :
+  - 0 écart de hauteur de page ;
+  - 0 largeur de tableau ou d'illustration modifiée ;
+  - 0 débordement horizontal nouveau (débordement de l'accueil à 390 px, préexistant) ;
+  - 0 régression de CLS. Deux valeurs isolées sous 1 024 px (solutions à 768 px, IA de-ch à 390 px) remesurées cinq fois : 0 sur `main` comme sur la branche.
+- axe-core à 390 et 1 440 px : 0 violation dans la barre. Violations de la page : `color-contrast` (pied de page) et `heading-order`, identiques sur `main`.
+- `tsc`, eslint (5 avertissements préexistants sur la fiche), `next build` (371 pages), Vitest 384/384.
+
+**Défaut préexistant corrigé** — Le CTA « Calculer mon ROI » du sélecteur (`app/[lang]/studio-photo/selecteur-machines/page.tsx:149`) pointe vers `/studios-photo-automatises#calculateur-roi`. Sur `main`, cette ancre n'existe pas : le lien ouvre le haut de la page, et `e2e/anchors.spec.ts` (« #calculateur-roi exists ») échoue sur le build de `main`. La section visée (coût de la production, `roiTeaser`) reçoit désormais l'`id` `calculateur-roi`. `anchors.spec.ts` et le spec navigation : 54/54.
+
+**Supposé** — Les ancres existantes `#resultats` (IA photo produit) et `#studios` (gamme), réutilisées, reçoivent sur desktop le décalage de 129 px : les CTA internes qui y mènent s'arrêtent sous la barre au lieu de 0 px. Effet tenu pour souhaitable ; non validé par Sébastien.
+**Non regardé** — Firefox, Safari, lecteur d'écran réel ; Preview (SSO) et `www` (R4) ; pages EN non indexées ; Mode non modifiée.
+
+**Suite** — Preview contrôlée par Laurent sur une page par famille ; GO de fusion distinct. Après le 26/11 : bascule de Mode (parité, décision). Après le 23/11 : réexamen de F5. Clôture de #27 et #64 : sortie des pages gelées.
 
 ---
 
@@ -1035,6 +2484,566 @@ Spec `e2e/sommaire-blog.spec.ts` (8 tests). Aucun contenu, aucun `id` de titre, 
 **Non regardé** — Envoi réel de bout en bout (il crée un vrai deal et deux emails) : à faire depuis `www` dans Chrome après déploiement, puis suppression de la fiche test. Confirmation en allemand : non écrite, la confirmation anglaise s'applique. `/api/roi-pdf` (calculateur EN et de-ch) : n'a pas de liste de langues fermée, non concerné par ce défaut.
 
 **Suite** — Après fusion : sonde sur `sysnext.vercel.app`, puis envoi réel depuis `/de-ch/kontakt`. Un test e2e qui envoie le formulaire (API simulée) dans les trois langues reste à écrire. Confirmation en allemand à décider.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier A : visuel A2 intégré (panneau 1 remonté par compositing local) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — A2 `detourage-meme-tasse-quatre-etapes.avif`, grille 2 × 2, ajouté à la fin de « Une retouche IA n'est pas forcément une nouvelle image », avant « Le détourage a changé de qualification en juillet 2026 ».
+- Panneaux 2 à 4 : ceux de `A2_detourage_mise_en_forme_standard_V2.png` (paquet `PSC_AI_ACT_A2_S4_REGENERES_2026-10-02`, création ChatGPT), sans modification.
+- Panneau 1 : remonté localement, sans aucune génération, sur consigne de Laurent du 02/10 (« STOP aux nouvelles générations complètes de la tasse »).
+  - Tasse du panneau 2 extraite par masque, posée à l'identique dans un décor de studio construit localement : fond gris neutre, table mate, pied de lumière flou à gauche.
+  - Ombre d'origine transférée, ombre de contact ajoutée.
+  - Le panneau 1 du V2 (autre tasse) est écarté.
+- ALT : « Quatre vues de la même tasse fictive en grès : dans un décor de studio, détourée sur fond gris, posée sur fond blanc avec une ombre douce, puis légèrement corrigée. »
+- Légende de l'inventaire précédée de la mention du montage : « Illustration générée par IA, avec montage. Étapes de préparation… »
+- `readingTime` 21 → 22.
+- Commit local, **non poussé** : un seul push final par PR, sur GO de Laurent.
+
+**Pourquoi** — Contrôle du 02/10 : la tasse du panneau 1 de V2 diffère de celle des panneaux 2 à 4 (angle, anse, proportions). Le panneau 1 devait montrer exactement la même tasse.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/detourage-meme-tasse-quatre-etapes.avif` (ajout), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fidélité :
+  - panneau 1 contre panneau 2, intérieur du masque : 82 999 pixels repris sans aucun écart ; bordure adoucie vers l'intérieur seulement, aucun pixel de l'ancien fond ;
+  - panneaux 3 et 4 contre 2 : écarts limités aux contours ;
+  - contrôle visuel à 100 % : rebord, anse, pied.
+- Image :
+  - PNG source V2 : SHA-256 `13a78934…228931` (manifeste C2PA) ; PNG assemblé : `089e234c…dc8cb1` ;
+  - AVIF : libaom, CRF 10 (mouchetures de l'émail lissées à CRF 24), yuv444p, plage complète, BT.709, 1092 × 920, 50 741 o, SHA-256 `3c7d267e…cad9eb`, SSIM 0,986 ; moyenne RGB identique au PNG.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, 7 formats : 0 débordement, 0 erreur ; 6 figures chargées, soit 7 visuels avec l'en-tête ; FAQ 7 = `FAQPage` 7 ; 0 ponctuation isolée.
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4).
+
+**Suite** — GO de push de Laurent ; contrôle humain de la Preview.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier européen (A) : maillage vers `/fr/packshot-mode`, audit SEO/GEO et contrôles de finalisation · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — Un lien interne ajouté, cas 3 (recolorisation, phrase sur le textile) : ancre « packshot mode » vers `/fr/packshot-mode` (landing Mode, D39, qui porte le même retour métier de Sébastien sur la recolorisation). Aucun autre texte modifié. Commit local, **non poussé** : le push attend le GO de Laurent sur l'inventaire du diff (mission du 02/10).
+
+**Pourquoi** — Mission « Finalisation complète des articles A et S » du 02/10 : maillage interne préparé. Destination vérifiée : 200, indexable, canonique propre, sans affirmation contraire à l'article. Destinations écartées ou conditionnelles (affirmations en tension avec l'article, gel F5, D39, D41) : matrice du livrable `PSC_AI_ACT_A_S_FINALISATION_SEO_MAILLAGE_PREVIEWS_2026-10-02.zip`, hors dépôt. Liens A ↔ S : préparés, non activés (404 dans la Preview de branche), simulés dans une intégration locale A + S sur `main` `9400eaa` : liens en 200.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; ESLint : 300 signalements, identiques à `main` (aucun fichier de code modifié).
+- `next start` local, 7 formats (1440 × 900, 1024 × 768, 1180 × 820, 820 × 1180, 844 × 390, 390 × 844, 360 × 740) : 0 débordement, 0 erreur, 0 requête en échec, toutes les figures chargées, un seul H1 ; FAQ ouverte au clic et au toucher (A).
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+- Liens externes : 26 en 200 ; EUR-Lex (202) et Légifrance (403) non vérifiables par script.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4) ; archives F/F2 et addendum du 02/10, absents du dépôt.
+
+**Suite** — GO de push de Laurent ; A2 et S4 régénérés ; contrôle humain des Previews ; liens A ↔ S au déploiement de publication coordonnée.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier A : quatre visuels, Zalando harmonisé, tableau complémentaire condensé · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi**
+- **Visuels** (paquet `PSC_AI_ACT_A_S_COMPLEMENTS_2026-10-02`, créations ChatGPT, arbitrage de Laurent du 02/10, option 1) :
+  - A7 `marquage-machine-mention-visible.avif` : « Deux obligations, deux acteurs », avant « Qui doit quoi » ;
+  - A4 `correction-recolorisation-variantes.avif` : cas 3, après le paragraphe « couleur inexistante » ;
+  - A5 `poussiere-image-rayure-produit.avif` : cas 6 ;
+  - A6 `chemise-a-plat-mannequin-invisible-portee.avif` : fin du cas 7.
+  
+  Légendes de l'inventaire reprises telles quelles ; textes alternatifs rédigés. A7 montre un flacon fictif distinct de A1 et A3 : ni l'alt ni la légende ne le présentent comme le même produit. Ratio d'origine conservé (1536 × 1024). A2 non intégré : la géométrie de la tasse change entre la photo de studio et la version détourée. À régénérer.
+- **Zalando** : formulation commune de Laurent (« Les consignes Zalando analysées évoquent un marquage invisible des contenus générés par IA à l'horizon décembre 2026. Le statut exact de cette exigence reste à confirmer avant publication. ») sous le tableau des plateformes ; cellule « À faire » ramenée à « marquage invisible évoqué à l'horizon décembre 2026, statut exact à confirmer ». « attendu d'ici décembre 2026 » retiré. **ZALANDO_STATUS = UNRESOLVED / À ARBITRER.**
+- **Tableau « Les autres situations en un coup d’œil »** rétabli sous forme condensée : mêmes onze lignes et mêmes réponses que `84520da`. Les étiquettes de provenance entre parenthèses sont remplacées par le code de lecture de l'article, expliqué sous l'intertitre (« selon la Commission », « probablement », « à notre lecture », réponse sans mention = règlement). Aucune réponse modifiée, « non tranché » conservé partout où il figurait.
+- `readingTime` 19 → 21.
+
+**Pourquoi** — Arbitrages de Laurent du 02/10 : visuels sans défaut, harmonisation Zalando A / S, tableau complémentaire condensé sans perte des nuances réglementaires.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, quatre AVIF ajoutés dans `public/images/blog/ai-act-images-produit/`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024 ; SSIM face au PNG de 0,964 à 0,979 ; moyenne RGB identique au PNG (pas de dérive de plage). Tailles et SHA-256 : A7 69 440 o `d2433b1a…fc5789` ; A4 49 084 o `a9882c30…24a7de` ; A5 61 091 o `3307f1ab…bd5667` ; A6 155 595 o `6e1a8997…c7a44b`. Les PNG source portent un manifeste C2PA, non conservé dans l'AVIF (comme les autres visuels du site).
+- Tableau condensé relu ligne par ligne contre `84520da` : deux précisions de la ligne « Vidéo produit » rétablies avant commit (« hypertrucage », « ou modifié »).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec ; toutes les figures chargées au défilement, ratios 1,500 (nouveaux visuels) et 1,778 (existants) respectés ; 4 tableaux sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; canonical et JSON-LD inchangés ; FAQ 7 = `FAQPage` 7.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Source primaire Zalando (aucune nouvelle recherche, consigne de Laurent) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — A2 régénéré à intégrer ; message à Sébastien préparé, non envoyé (Laurent) ; Zalando à confirmer avant publication.
+
+---
+
+## 2026-10-02 · Cluster AI Act — pilier A : relecture éditoriale du 02/10 intégrée · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `9400eaa` (intégré par fusion, JOURNAL en union)
+
+**Quoi** — Corps et FAQ de l'article réécrits à partir de `01_A_PILIER_FR_PROPOSITION.md` (dossier `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02`, GO de Laurent du 02/10 : « actualiser les Previews »). Texte resserré : ouverture par trois visuels, encadré « L’essentiel en une minute », sept cas numérotés, méthode en sept étapes. Conservés : H1, slug, `title`, `metaTitle`, `description`, `date`, image d'en-tête, figure A3 (alt et légende inchangés), note datée, tableaux « Qui doit quoi », calendrier et plateformes (au 30/09), section Sources complète, 24 liens (liste identique), paragraphe « couleur inexistante » validé le 01/10 (option 1), retour métier de Sébastien sur la recolorisation. Sept FAQ : questions inchangées, réponses raccourcies. `readingTime` 22 → 19.
+
+**Retirés, conformément à la proposition** — Tableau « Les autres situations en un coup d’œil » (onze lignes, dont mannequin invisible, avatar d'essayage, vidéo et 360°, matière réintégrée de B, C et D par D41) ; paragraphe de mesure AVIF/WebP du 30/09 sur notre site (remplacé par une phrase générale sur la conservation des métadonnées) ; marqueurs d'emplacement visuel et notes de travail de la proposition.
+
+**Écarts de sens corrigés (formulation de la PR conservée)** — La proposition, reprise telle quelle, aurait modifié la portée d'une source sur les points suivants :
+- déployeur défini comme « la marque qui publie » : rétabli « qui utilise l'outil sous sa propre autorité » (article 3(4)) ;
+- produit rendu différent ou meilleur « demande une analyse distincte » (encadré) et « la ressemblance trompeuse doit être appréciée » (cas 5) : rétabli « peut en être un » et « la qualification d'hypertrucage est probable » (exemple de la Commission) ;
+- mention « claire et reconnaissable, au plus tard lors de la première exposition » et attribution à la Commission de la perception sans outil : rétablies ;
+- agence : conclusions des points 12 et 14 et cas intermédiaire non tranché rétablis ; marketplace non déployeur (point 16) conservée ;
+- délai du 2 décembre 2026 : « ajouté par le règlement (UE) 2026/1744 » rétabli ; transparence volontaire « sans effort disproportionné » rétablie ;
+- mise en forme standard : liste de la Commission dans ses termes, liste des modifications à marquer rétablie ;
+- cas 4 : marquage probable du décor par l'outil rétabli ; cas 6 : marquage en cas de changement de sens rétabli ;
+- cas 7 : points 113 et 114, et les trois situations voisines (point 92, article L2133-2, loi 2023-451) rétablis en forme courte ;
+- sanctions : règle du montant le plus élevé et règle PME rétablies, note de travail retirée.
+
+**Pourquoi** — Relecture éditoriale du 02/10 : A doit se lire comme un guide ; Sébastien relit cette version.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comptage (texte du corps et FAQ) : 5 486 → 4 757 mots ; 3 tableaux, 1 figure dans le corps, 11 H2, 10 H3 ; aucun marqueur `[…]`, aucun « Niveau : », aucun Markdown brut ; aucun lien vers `/fr/packshot-e-commerce`.
+- Script de liens de publication A ↔ S : essai à blanc vert (phrases de renvoi conservées).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec, A3 chargée au défilement (1600 × 900), 3 tableaux sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; sommaire, FAQ (7) et JSON-LD `FAQPage` (7) rendus ; canonical inchangée.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main` (`6b80e6a`, `9400eaa` ne modifiant que la documentation).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Message rectificatif de Laurent à Sébastien ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : arbitrage « couleur inexistante » (option 1) appliqué · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
+
+**Quoi** — Passage « couleur inexistante » de la section « Recolorisation : variante vendue ou couleur inexistante » remplacé par la formulation validée par Laurent le 01/10 (proposition A06 de `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md`). Aucune autre phrase de l'article modifiée ; article S (#60) non modifié.
+
+**Changement de sens (validé par Laurent)** — Avant : un coloris inexistant présenté comme disponible « relève probablement d'une modification substantielle et, côté marque, d'un hypertrucage ». Après : « les exemples de la Commission invitent à vérifier si la transformation est substantielle et si la présentation pourrait constituer un hypertrucage, selon le rendu et le contexte ». La conclusion AI Act passe d'une interprétation probable à une question à examiner. L'alerte de droit de la consommation est conservée (article L121-2, lien Légifrance inchangé), et reste distincte de la qualification au titre de l'AI Act.
+
+**Pourquoi** — Arbitrage A / S « couleur inexistante », option 1 : aucune source réunie ne tranche le cas sur une fiche produit ; aligner A sur le degré de S (« reste à qualifier selon le cas ») sans renforcer aucune qualification. Arbitrage clos.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Cohérence A / S : plus aucune phrase de A ne qualifie ce cas d'hypertrucage probable ; S, cas 3 : « son application exacte à une fiche produit reste à qualifier selon le cas » ; mentions de droit de la consommation inchangées dans les deux articles.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée, 4 tableaux sans défilement à 1440 et 820 px ; `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à `main` `6b80e6a`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Transmission des deux Previews FR à Sébastien par Laurent ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : nouvelle illustration A3 · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a`
+
+**Quoi** — A3 remplacée, sur validation de Laurent du 01/10 : `produit-reel-decor-genere.avif` (A1 recoupée en deux panneaux) → `produit-net-decor-flou.avif` (même flacon net au premier plan sur une pierre claire, décor méditerranéen généré flou, sans texte). Emplacement inchangé (« Produit réel dans un décor ou une scène générés »). Alt : « Flacon net au premier plan, posé sur une pierre claire, devant un décor généré volontairement flou. » Légende inchangée. Ancien fichier supprimé, plus aucune référence.
+
+**Pourquoi** — Contre-vérification du 01/10 : A3 redondante avec l'image d'en-tête A1. Brief A3 du 01/10 (finalisation graphique).
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/produit-net-decor-flou.avif` (ajout), `public/images/blog/ai-act-images-produit/produit-reel-decor-genere.avif` (suppression), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Source : PNG 1672 × 941 transmis par Laurent (SHA-256 `971c6a7f…f06895`), redimensionné en 1600 × 900, encodé en AVIF yuv444p, plage complète, BT.709 (90 138 o, SHA-256 `c832a720…9910a9`) ; écart moyen AVIF décodé / maître 1,2 niveau sur 255 ; aucun texte ni marque visibles (contrôle à l'œil sur gros plans).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : nouvelle image en 200 `image/avif` (1600 × 900, chargée), ancienne en 404 ; 662 × 372, 662 × 372, 358 × 201 ; légende présente ; 0 débordement ; 0 erreur de console ; 0 ponctuation isolée en début de ligne ; 4 tableaux sans défilement à 1440 et 820 px.
+- SEO inchangé (title 57, description 155, canonical, FAQPage 7, `og:image` = `cover.avif`) ; `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à `main` `6b80e6a`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Le PNG source porte un manifeste C2PA (bloc `caBX`) ; l'encodage AVIF ne le conserve pas, comme pour les autres visuels du site. Le conserver demanderait de re-signer le fichier dérivé. Aucune obligation de la marque n'est en cause : l'illustration est signalée par sa légende. Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Arbitrage « couleur inexistante » A / S ; transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : passe éditoriale finale, `main` `6b80e6a` intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `6b80e6a` (#66, #78), fusionné par `5603fb4`
+
+**Quoi** — Corrections rédactionnelles tirées de la relecture `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md` (GO de Laurent du 01/10), sans réécriture de fond ni réduction de longueur :
+- ouverture : la question du lecteur d'abord, phrase méta « À la fin de cet article, vous saurez… » et tournure « pas X, mais Y » retirées ; note de méthode datée déplacée sous « En bref », inchangée ;
+- « En bref » : deux puces complémentaires fusionnées (décor généré / produit rendu différent) ;
+- tableau « Qui doit quoi » : cellule « Agence » ramenée à une phrase ; la nuance (points 12 et 14, cas intermédiaire non tranché) passe en prose sous le tableau, mot pour mot ;
+- intertitre « Pourquoi le détourage a changé de qualification en juillet 2026 » ; phrase d'annonce redondante retirée ;
+- introduction des sept situations et du tableau des autres situations resserrées ;
+- recolorisation : la généralisation non sourcée « Métal, cuir, textile chatoyant ou verre teinté réagissent mal à une recolorisation » est remplacée par les faits métier de Sébastien déjà publiés sur `/fr/packshot-mode` (#66) : teinte exacte, texture et réaction de la matière à la lumière, en particulier sur le textile ;
+- couleur inexistante : fondement de l'interprétation explicité (exemple de la Commission pour la publicité et l'emballage) ; degré inchangé (« probablement ») ;
+- scène générée : exemples concrets (perspective, accessoire présenté comme inclus, usage suggéré) ; qualification inchangée (non tranché) ;
+- influenceur synthétique traité à un seul endroit : la ligne du tableau rejoint la liste des situations voisines, nuance image fixe / vidéo conservée ;
+- rubrique « Sources officielles » renommée « Sources » (elle contient aussi plateformes et standards) ;
+- typographie : espace insécable entre jour et mois (24 dates).
+
+**Pourquoi** — Standard éditorial de Laurent : article d'expertise naturel, précis, utile ; contre-relecture du 01/10. `main` fusionné : #66 et #78 mettaient le JOURNAL en conflit.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comparaison avant / après des nombres, articles, points et marqueurs : « probablement » inchangé (24) ; « points 12 et 14 » cité une fois de plus (nuance déplacée) ; aucune date ni aucun article modifié ; FAQ inchangée hors typographie.
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union ; aucune ligne perdue ; ETAT et DECISIONS : toutes les lignes de `main` présentes.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; rendu local à 1440, 820 et 390 px (détail dans la PR).
+
+**Supposé** — [Inférence] Les faits métier de Sébastien sur la recolorisation sont ceux transmis par Laurent le 30/09 et publiés dans `/fr/packshot-mode` (#66, fusionnée) ; le fichier de réponses d'origine n'est pas dans le conteneur. Cela repose sur des schémas observés.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; Preview Vercel (SSO) par script ; `www` (R4) ; A3 (fichier régénéré non reçu).
+
+**Suite** — Arbitrage de Laurent sur la cohérence A / S « couleur inexistante » (proposition dans la PR) ; A3 ; liens A ↔ S à activer à la publication (script préparé hors dépôt) ; transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : `main` `f1a3491` (#75) intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `f1a3491`, fusionné par `9f81252`
+
+**Quoi** — `main` `f1a3491` fusionné (#75 : UB-04 consignée en production, documentation seule). Aucun fichier de l'article ni image modifiés. A3 reste en place : sa régénération (brief du 01/10, finalisation graphique) se fait hors dépôt, sans bloquer l'article Suisse.
+
+**Pourquoi** — #75 mettait le haut du JOURNAL en conflit avec la branche.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun.
+
+**Vérifié**
+- Seul conflit : le haut de ce journal, résolu par union ; aucune ligne perdue de part ou d'autre ; ETAT fusionné automatiquement.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 ponctuation isolée en début de ligne, 4 tableaux sans défilement à 1440 et 820 px, 2 images chargées ; `smoke.mjs` vert.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — e2e non rejoués (aucun fichier du site modifié depuis le passage sur `f9e772f`) ; Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Intégration de A3 régénéré : nouveau nom de fichier, `alt` du brief, légende inchangée, ancien fichier supprimé.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : `main` `17fc0b3` (#73) intégré, espaces insécables · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `17fc0b3`, fusionné par `1dc9293`
+
+**Quoi** — `main` `17fc0b3` fusionné (#73 : mesures D16 archivées, D41, PR historiques #43, #53, #61, #62, #63 fermées sans fusion). Typographie seule, dans le corps et les 7 FAQ : 204 espaces remplacées par des espaces insécables (U+00A0) devant « : », « ; », « ? » et « » », après « « », et dans « 1 080 » et « 1 920 » ; deux points de coupure invisibles (`<wbr>`) dans l'identifiant « trainedAlgorithmicMedia » du tableau des plateformes. Aucun mot, aucun lien, aucune qualification modifiés.
+
+**Pourquoi** — Consigne de Laurent du 01/10 : reprise après #73, articles réellement terminés. Mesure sur `next start` local avant correction : signes de ponctuation rejetés seuls en début de ligne, 10 à 1440 px, 10 à 820 px, 7 à 390 px. Les insécables rendaient « « trainedAlgorithmicMedia », » insécable : le tableau des plateformes défilait de nouveau à 1440 px (695 px pour 662) ; les `<wbr>` le ramènent à 662 px.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; résolu par union (entrées de #59, puis entrées de `main`, dont l'archive D16 et D41 de #73) ; aucune ligne perdue de part ou d'autre, contrôle ligne à ligne.
+- Texte : corps et FAQ identiques à `1dc9293` une fois U+00A0 ramenée à l'espace et `<wbr>` retiré ; title, description, H1, slug, date et auteur inchangés.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 signe de ponctuation isolé en début de ligne ; 0 débordement de page ; 0 erreur de console ; 0 réponse en erreur ; 4 tableaux sans défilement à 1440 et 820 px, défilement interne à 390 px ; 2 images chargées (hero 848 × 477, 772 × 434, 358 × 201 ; A3 662 × 372, 662 × 372, 358 × 201), légende de A3 présente ; 0 ancre cassée ; 0 marqueur de travail.
+- Métadonnées : title 57 caractères, description 155, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (auteur Sébastien Jourdan), FAQPage 7 ; URL au sitemap (309 URL) ; `/fr/packshot-e-commerce` présent dans le seul pied de page commun, aucun lien depuis l'article ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `17fc0b3` (0 en plus, 0 en moins).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; Safari et Firefox ; traductions (D38, non démarrées).
+
+**Suite** — Constats non corrigés, faute de consigne de réécriture, listés dans la PR : « probablement » 24 fois et « textes consultés » 9 fois ; H1 coupé « e- / commerce » à 820, 390, 375 et 360 px (gabarit commun, coupure au trait d'union) ; `date` du 28/09 antérieure aux faits du 30/09 cités, à fixer à la publication ; lien vers l'article Suisse sans `href` jusqu'à la publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : image d'en-tête signalée, `main` `8365c73` intégré, contrôles avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `8365c73`, fusionné par `09871fe`
+
+**Quoi** — Note d'ouverture complétée par une phrase : « L’image d’en-tête est une illustration générée par IA. » (A1 n'a pas de légende dans le gabarit commun, non modifié). `main` `8365c73` fusionné, dont #74 : le fil d'Ariane n'est plus rendu dans le `h1` des articles. Aucune autre phrase de l'article modifiée.
+
+**Pourquoi** — Consigne de Laurent du 01/10 (finalisation avant Sébastien) : signaler l'image d'en-tête comme les légendes de A3 (arbitrage Q1), synchroniser la branche avec `main`. Choix éditorial de transparence, non l'affirmation d'une obligation légale.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; toutes les entrées conservées (UB-04 en tête, puis celles de #59) ; aucune ligne perdue de part ou d'autre.
+- `tsc` vert ; `verifier-json` 181 valides ; Vitest 373/373 ; `next build` vert, 372 pages.
+- `next start` local, Chromium, 390, 1024 et 1440 px : 200 ; 0 débordement de page ; 0 erreur de console ; un seul `h1`, égal au titre, sans fil d'Ariane ; 4 tableaux, sans défilement à 1024 et 1440 px, défilement interne à 390 px ; 2 images (`cover.avif` 848 × 477 puis 358 × 201, `produit-reel-decor-genere.avif` 662 × 372 puis 358 × 201), chargées ; 7 FAQ visibles et 7 dans le `FAQPage` ; 0 ancre cassée ; 0 lien vers `/fr/packshot-e-commerce`.
+- Métadonnées : title 57 caractères, description 155, canonical `https://www.packshot-creator.com/fr/blog/ai-act-images-produit`, aucune balise `robots`, `og:image` = `cover.avif`, JSON-LD Organization, BreadcrumbList, Article, FAQPage ; URL présente au sitemap (309 URL) ; `smoke.mjs` local vert (17 pages, 3 ressources).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; suite e2e complète (le dernier passage, sur `ea7d923`, était identique à `main`) ; traductions (D38, non démarrées). Articles liés `generer-images-produit-ia` et `migrer-ancien-packshotcreator` : non modifiés dans cette PR (backlog BL-43-2 et BL-43-3 de #73).
+
+**Suite** — Transmission à Sébastien sur la Preview de la nouvelle tête ; à la publication coordonnée : lien actif vers l'article Suisse, `date` du jour.
+
+---
+
+## 2026-10-02 · Cluster AI Act — article Suisse S : visuel S4 intégré (version recomposée) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — S4 `matiere-finition-gros-plans.avif` ajouté dans le cas 5 « Matière ou finition embellie », après le premier paragraphe.
+- Source : `S4_matiere_finition_details_V2.png` (paquet `PSC_AI_ACT_A2_S4_REGENERES_2026-10-02`, création ChatGPT).
+- Recomposée localement sans génération, sur arbitrage de Laurent du 02/10 : vue d'ensemble du sac, gros plan grain et couture, gros plan doublure et fermeture. Le gros plan du fermoir est retiré : barre horizontale absente du sac.
+- Légende de l'inventaire du 02/10 reprise telle quelle ; ALT rédigé ; ratio 1536 × 1024 conservé.
+- Commit local, **non poussé** : le push attend le GO de Laurent.
+
+**Pourquoi** — Contrôle de fidélité de S4 V2 du 02/10 : le gros plan du fermoir ne correspond pas à la vue d'ensemble (deux blocs verticaux), comme sur la version refusée. Les gros plans grain et couture, doublure et fermeture restent compatibles avec le sac.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/matiere-finition-gros-plans.avif` (ajout), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Image :
+  - PNG source V2 : SHA-256 `595371a6…0abd2a` (manifeste C2PA) ; PNG recomposé : `75cf11bd…acadf33` ;
+  - AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024, 175 037 o, SHA-256 `267dbaf8…b358e4` ; SSIM 0,981 ; moyenne RGB identique au PNG.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, 7 formats : 0 débordement, 0 erreur, 5 figures chargées (ratio 1,500 pour S4) ; 0 ponctuation isolée.
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4).
+
+**Suite** — GO de push de Laurent ; contrôle humain de la Preview.
+
+---
+
+## 2026-10-02 · Cluster AI Act — article Suisse (S) : maillage vers `/fr/packshot-mode`, audit SEO/GEO et contrôles de finalisation · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi** — Un lien interne ajouté, cas 2 (recolorisation, phrase sur le textile) : ancre « packshot mode » vers `/fr/packshot-mode` (landing Mode, D39, qui porte le même retour métier de Sébastien sur la recolorisation). Aucun autre texte modifié. Commit local, **non poussé** : le push attend le GO de Laurent sur l'inventaire du diff (mission du 02/10).
+
+**Pourquoi** — Mission « Finalisation complète des articles A et S » du 02/10 : maillage interne préparé. Destination vérifiée : 200, indexable, canonique propre, sans affirmation contraire à l'article. Destinations écartées ou conditionnelles (affirmations en tension avec l'article, gel F5, D39, D41) : matrice du livrable `PSC_AI_ACT_A_S_FINALISATION_SEO_MAILLAGE_PREVIEWS_2026-10-02.zip`, hors dépôt. Liens A ↔ S : préparés, non activés (404 dans la Preview de branche), simulés dans une intégration locale A + S sur `main` `9400eaa` : liens en 200.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; ESLint : 300 signalements, identiques à `main` (aucun fichier de code modifié).
+- `next start` local, 7 formats (1440 × 900, 1024 × 768, 1180 × 820, 820 × 1180, 844 × 390, 390 × 844, 360 × 740) : 0 débordement, 0 erreur, 0 requête en échec, toutes les figures chargées, un seul H1 ; FAQ ouverte au clic et au toucher (A).
+- `smoke.mjs` vert ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+- Liens externes : 26 en 200 ; EUR-Lex (202) et Légifrance (403) non vérifiables par script.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel réelle (SSO) ; `www` (R4) ; archives F/F2 et addendum du 02/10, absents du dépôt.
+
+**Suite** — GO de push de Laurent ; A2 et S4 régénérés ; contrôle humain des Previews ; liens A ↔ S au déploiement de publication coordonnée.
+
+---
+
+## 2026-10-02 · Cluster AI Act — article Suisse S : deux visuels, Zalando harmonisé, trois intertitres interrogatifs restaurés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa`
+
+**Quoi**
+- **Visuels** (paquet `PSC_AI_ACT_A_S_COMPLEMENTS_2026-10-02`, créations ChatGPT, arbitrage de Laurent du 02/10, option 1) :
+  - S5 `personne-photo-transformation-synthese.avif` : « Quand une personne apparaît », entre le paragraphe du PFPDT et celui sur le mannequin synthétique ;
+  - S6 `meme-article-trois-destinations.avif` : section Google, Amazon et Zalando, avant la liste.
+  
+  Légendes de l'inventaire reprises telles quelles ; textes alternatifs rédigés ; ratio d'origine conservé (1536 × 1024). S4 non intégré : les gros plans ne correspondent pas au sac montré (fermoir, grain). À régénérer.
+- **Intertitres restaurés** : « La Suisse a-t-elle un « AI Act » en 2026 ? » (réponse « Non. », texte de `cc2446c` : « générale et transversale ») ; « Faut-il signaler une image générée ou retouchée par IA en Suisse ? » (réponse courte, puis H3 « Commencez par comparer l’image au produit ») ; « C2PA et IPTC sont-ils obligatoires en Suisse ? » (réponse en gras de `cc2446c`, exigences des plateformes rappelées).
+- **Zalando** : formulation commune de Laurent dans la puce Zalando ; « présenté comme requis d'ici décembre 2026 » retiré ; refus des mentions visibles et contenus exigeant une mention légale conservés. **ZALANDO_STATUS = UNRESOLVED / À ARBITRER.**
+- `readingTime` 15 → 16.
+
+**Pourquoi** — Arbitrages de Laurent du 02/10 : visuels sans défaut, harmonisation Zalando A / S, restauration des trois intertitres interrogatifs utiles (SEO/GEO).
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, deux AVIF ajoutés dans `public/images/blog/images-ia-ecommerce-suisse/`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- AVIF : libaom, CRF 24, yuv444p, plage complète, BT.709, 1536 × 1024 ; S5 84 410 o `826f849b…7d6706`, SSIM 0,960 ; S6 177 797 o `41d0603c…44ed90`, SSIM 0,966. Les PNG source portent un manifeste C2PA, non conservé dans l'AVIF.
+- Aucune occurrence de « requis » dans le texte ; script de liens de publication A ↔ S : essai à blanc vert.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec ; toutes les figures chargées au défilement, ratios 1,500 (nouveaux visuels) et 1,778 (existants) respectés ; tableau sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; canonical et JSON-LD inchangés ; 11 H2 dont les trois intertitres restaurés.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main`.
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Source primaire Zalando (aucune nouvelle recherche, consigne de Laurent) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — S4 régénéré à intégrer ; message à Sébastien préparé, non envoyé (Laurent) ; Zalando à confirmer avant publication.
+
+---
+
+## 2026-10-02 · Cluster AI Act — article Suisse S : relecture éditoriale du 02/10 intégrée · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `9400eaa` (intégré par fusion, JOURNAL en union)
+
+**Quoi** — Corps de l'article réécrit à partir de `02_S_SUISSE_FR_PROPOSITION.md` (dossier `PSC_AI_ACT_RELECTURE_EDITORIALE_FR_2026-10-02`, GO de Laurent du 02/10 : « actualiser les Previews »). Droit suisse, application éventuelle de l'AI Act et règles des plateformes distingués une fois, puis appliqués aux huit situations. Conservés : H1, slug, `title`, `metaTitle`, `description`, `date`, image d'en-tête, figures S3 et S2 (alt et légendes inchangés), note datée, section Sources complète, liens existants (deux liens ajoutés dans le corps, vers la LPD et la page du PFPDT déjà citées en Sources), retour métier de Sébastien sur le textile, aucune FAQ. `readingTime` 20 → 15.
+
+**Remplacés ou retirés, conformément à la proposition** — H2 « La Suisse a-t-elle un « AI Act » en 2026 ? » et « Faut-il signaler une image générée ou retouchée par IA en Suisse ? » fondus dans l'ouverture et dans « En Suisse, commencez par comparer l’image au produit » ; six situations A à F remplacées par un tableau de questions (quatre lignes de la proposition, plus une ligne « outil édité dans l'Union ou hors de l'Union » reprise des situations E et F) suivi des points 12 et 14 ; tableau récapitulatif Suisse / UE / plateformes retiré ; H2 « C2PA et IPTC sont-ils obligatoires en Suisse ? » fondu dans la section plateformes ; marqueurs d'emplacement visuel et notes de travail retirés.
+
+**Écarts de sens corrigés (formulation de la PR conservée)** :
+- cas 2 : « ne tranchent pas tous les aspects » → rétabli « ne tranchent pas la qualification précise » ;
+- cas 3 : rétablis « indication inexacte ou fallacieuse » (LCD) et l'exemple de la Commission « dans une publicité ou sur un emballage », « reste à qualifier selon le cas » (cohérent avec l'arbitrage du 01/10) ;
+- PFPDT : « doit toujours être clairement indiquée » rétabli (le « toujours » de la source était omis), y compris dans l'encadré ;
+- champ territorial : points 10 et 13 dans leurs termes, dont « y compris par la publication d'hypertrucages sur l'internet accessible mondialement » ; exemple du point 14 (célébrité) et règle de l'agence (points 12 et 14) rétablis ; « la simple accessibilité mondiale d'un site ne permet pas, à elle seule… » conservé ;
+- Google (« impose », ne pas supprimer), Amazon (exclusions) et Zalando (marquage invisible « présenté comme requis d'ici décembre 2026 », refus des mentions visibles, pas de contenu exigeant une mention légale) : formulations vérifiées le 29/09 rétablies ;
+- SECO : « avant-projet destiné à la consultation au printemps 2027 », titre « d'ici début 2027 » rétablis.
+
+**Pourquoi** — Relecture éditoriale du 02/10 : S doit rester lisible seul pour un acteur suisse ; Sébastien relit cette version.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comptage (texte du corps) : 4 599 → 3 549 mots ; 1 tableau, 2 figures dans le corps, 9 H2, 8 H3 ; aucun marqueur `[…]`, aucun « Niveau : », aucun Markdown brut ; aucun lien vers `/fr/packshot-e-commerce`.
+- Script de liens de publication A ↔ S : essai à blanc vert (phrases de renvoi conservées).
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 débordement, 0 erreur de console, 0 requête en échec, S3 et S2 chargées au défilement (1600 × 900), tableau sans défilement à 1440 et 820 px, défilement horizontal à 390 px ; 0 ponctuation isolée en début de ligne ; sommaire rendu, aucune FAQ ; canonical et JSON-LD inchangés.
+- `smoke.mjs` vert (17 pages, 3 ressources) ; e2e : 307 tests, 24 échecs, liste identique à la référence `main` (`6b80e6a`, `9400eaa` ne modifiant que la documentation).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Recherche juridique nouvelle (exclue) ; Preview Vercel (SSO) par script ; `www` (R4).
+
+**Suite** — Message rectificatif de Laurent à Sébastien ; après son GO : EN et de-ch (D38), liens A ↔ S, date, publication coordonnée. Questions en H2 retirées (« La Suisse a-t-elle un AI Act », « C2PA et IPTC… ») : à réexaminer à l'étape 6 de D42 (optimisation SEO/GEO).
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : passe éditoriale finale, `main` `6b80e6a` intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `6b80e6a` (#66, #78), fusionné par `31e7faf`
+
+**Quoi** — Corrections rédactionnelles tirées de la relecture `PSC_REVUE_EDITORIALE_AI_ACT_A_S_2026-10-01.md` (GO de Laurent du 01/10), sans réécriture de fond ni réduction de longueur :
+- ouverture : question directe, phrase méta « Après lecture, vous saurez… » retirée ; note de méthode datée déplacée sous « En bref », inchangée ;
+- « La Suisse a-t-elle un AI Act ? » : « Non. » au lieu de « Pas encore. » ; calendrier SECO rapporté tel que la source le donne (texte : « au printemps 2027 » ; titre : « d'ici début 2027 ») ; « Ce qui peut changer en 2027 » : « annoncé pour 2027 » ;
+- redites de la conclusion centrale retirées (« Faut-il signaler… ? », « label IA suisse ») ; tournures « pas X, mais Y » remplacées ;
+- contrôle de fidélité : deux paragraphes fusionnés en une méthode (fichier diffusé, variante réellement vendue, chaîne d'intervenants) ;
+- cas pratiques : quoi vérifier et contre quoi (cas 1, 2, 7, 8) ; cas 2 : fait métier de Sébastien sur le textile (teinte, texture, rendu sous la lumière), déjà publié sur `/fr/packshot-mode` (#66) ;
+- cas 3, couleur inexistante : source précisée (exemple de la Commission, publicité et emballage) ; conclusion inchangée (« à qualifier selon le cas ») ;
+- champ territorial : notation unifiée « 2(1)(c) » / « 2(1)(a) » ; situation A sans troisième explication du point 13 (accessibilité insuffisante à elle seule, rôle, usage, destination, cas par cas conservés) ; situation B reformulée ;
+- « C2PA et IPTC… » : réponse autonome et brève, alignée sur le pilier ;
+- typographie : espace insécable entre jour et mois (13 dates).
+
+**Pourquoi** — Standard éditorial de Laurent ; contre-relecture du 01/10. `main` fusionné : #66 et #78 mettaient le JOURNAL en conflit.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Comparaison avant / après des nombres, articles, points et marqueurs : aucun « à notre lecture » ni « non tranché » transformé en conclusion ; écarts limités à la notation de l'article 2, au calendrier (« 2027 » cité une fois de plus) et à la phrase sur l'article 50 dans « C2PA et IPTC ».
+- Fusion de `main` : seul conflit, le haut de ce journal (deux blocs), résolu par union ; aucune ligne perdue ; ETAT et DECISIONS : toutes les lignes de `main` présentes.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert ; rendu local à 1440, 820 et 390 px (détail dans la PR).
+
+**Supposé** — [Inférence] Faits métier de Sébastien : voir l'entrée du pilier A du même jour. Cela repose sur des schémas observés.
+
+**Non regardé** — Recherche juridique nouvelle (exclue par la consigne) ; page SECO non relue aujourd'hui (formulations reprises de la contre-vérification du 01/10) ; Preview Vercel (SSO) ; `www` (R4).
+
+**Suite** — Arbitrage de Laurent sur la cohérence A / S « couleur inexistante » ; liens A ↔ S à la publication ; transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : S1 corrigé, S3 reconstruit, S2 nettoyé et déplacé, `main` `f1a3491` intégré · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `f1a3491` (#75), fusionné par `a0f6033`
+
+**Quoi** — Trois visuels remplacés, sur GO de Laurent du 01/10 (finalisation graphique) :
+- S1 (image principale) : `cover.avif` → `cover-trois-couches.avif`. Bande droite de la photo prolongée à partir du fond de studio (restes de la transition de A1 retirés : vitres en diagonale, pierres, feuille d'olivier) ; rectangle fantôme de la première carte comblé.
+- S3 : `fidelite-produit.avif` → `fidelite-produit-quatre-rendus.avif`. Un seul flacon de référence, trois rendus dérivés (plus chaud, plus froid, teinte de liquide modifiée par rotation pondérée par la chroma) ; cartes neutres, référence signalée par un liseré et le nœud plein de la frise. Alt et légende nouveaux.
+- S2 : `suisse-ue-plateforme.avif` → `suisse-ue-plateformes-couches.avif`. Coin sombre, pastille et extrémités de barre parasites retirés ; figure déplacée de « Faut-il signaler… » (mot 760) vers « Quand l’AI Act peut concerner une entreprise suisse », après « Cela ne permet pas de conclure automatiquement… » (mot 2 827). Alt et légende inchangés.
+- Anciens fichiers supprimés : plus aucune référence dans le code ni le contenu (recherche dans le dépôt, hors historique du JOURNAL). Texte de l'article inchangé hors figures.
+
+**Pourquoi** — Revue graphique du 01/10 : S3 à aplats rectangulaires décalés et cartes teintées lisibles comme un statut ; raccord de A1 visible sur S1 ; S2 redondant avec S1 à 760 mots du hero et porteur d'artefacts. `main` fusionné : #75 (docs) mettait le JOURNAL en conflit.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/` (3 ajouts, 3 suppressions), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). `og:image` et `image` de l'`Article` suivent le nouveau nom.
+
+**Vérifié**
+- Fichiers : AVIF 1600 × 900, yuv444p, plage complète, BT.709 ; SHA-256 `0a314229…b992d2` (S1, 13 397 o), `23de32e4…59dd11` (S3, 39 962 o), `c892eb2d…4a28` (S2, 11 013 o), identiques au paquet `FINALISATION_GRAPHIQUE_AI_ACT_2026-10-01`. Écart moyen AVIF décodé / maître PNG inférieur à 1 niveau sur 255.
+- Fusion de `main` : seul conflit, le haut de ce journal, résolu par union ; aucune ligne perdue de part ou d'autre ; ETAT fusionné automatiquement.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : nouvelles images en 200 `image/avif`, anciennes en 404 ; 3 images chargées (hero 848 × 477, 772 × 434, 358 × 201 ; S3 et S2 662 × 372, 662 × 372, 358 × 201) ; 2 légendes ; 0 débordement ; 0 erreur de console ; 0 réponse en erreur ; 0 ponctuation isolée en début de ligne ; tableau sans défilement à 1440 et 820 px.
+- SEO : title 53, description 146, canonical inchangé, aucune balise `robots`, `og:image` et `Article.image` = `cover-trois-couches.avif` ; carte de `/fr/blog` sur le nouveau fichier ; sitemap 309 URL ; `smoke.mjs` vert (17 pages, 3 ressources).
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, 2 workers) : 307 tests, 24 échecs, liste identique à `main` `17fc0b3` (`f1a3491` n'en diffère que par la documentation).
+
+**Supposé** — [Inférence] Les corrections partent des AVIF publiés, les PNG maîtres (`AI_ACT_VISUAL_HANDOFF_2026-09-30.zip`) n'étant pas dans le conteneur : perte de génération jugée invisible à l'affichage. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; Safari et Firefox ; A2 et S4 (absents du dépôt).
+
+**Suite** — A3 du pilier à régénérer hors dépôt (brief du 01/10) ; GO de Sébastien sur la Preview ; à la publication : liens A ↔ S et `date`.
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : `main` `17fc0b3` (#73) intégré, espaces insécables · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `17fc0b3`, fusionné par `271580c`
+
+**Quoi** — `main` `17fc0b3` fusionné (#73 : mesures D16 archivées, D41, PR historiques #43, #53, #61, #62, #63 fermées sans fusion). Typographie seule, dans le corps : 136 espaces remplacées par des espaces insécables (U+00A0) devant « : », « ; », « ? » et « » », et après « « ». Aucun mot, aucun lien, aucune qualification modifiés.
+
+**Pourquoi** — Consigne de Laurent du 01/10 : reprise après #73, articles réellement terminés. Mesure sur `next start` local avant correction : signes de ponctuation rejetés seuls en début de ligne, 3 à 1440 px, 3 à 820 px, 9 à 390 px.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; résolu par union (entrées de #60, puis entrées de `main`, dont l'archive D16 et D41 de #73) ; aucune ligne perdue de part ou d'autre, contrôle ligne à ligne.
+- Texte : corps identique à `271580c` une fois U+00A0 ramenée à l'espace ; title, description, H1, slug, date et auteur inchangés.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert.
+- `next start` local, Chromium, 1440, 820 et 390 px : 0 signe de ponctuation isolé en début de ligne ; 0 débordement de page ; 0 erreur de console ; 0 réponse en erreur ; tableau sans défilement à 1440 et 820 px, défilement interne à 390 px ; 3 images chargées (hero 848 × 477, 772 × 434, 358 × 201 ; S2 et S3 662 × 372, 662 × 372, 358 × 201), légendes de S2 et S3 présentes ; 0 ancre cassée ; 0 marqueur de travail.
+- Métadonnées : title 53 caractères, description 146, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (auteur Sébastien Jourdan) ; URL au sitemap (309 URL) ; `/fr/packshot-e-commerce` présent dans le seul pied de page commun, aucun lien depuis l'article ; `smoke.mjs` local vert (17 pages, 3 ressources).
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `17fc0b3` (0 en plus, 0 en moins).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; Safari et Firefox ; adaptation de-ch (non démarrée).
+
+**Suite** — Constats non corrigés, faute de consigne de réécriture, listés dans la PR : « à notre lecture » 9 fois ; renvois au périmètre des sources sous cinq formes, parfois dans la même phrase (« 29 septembre 2026 » 7, « textes consultés » 6, « sources analysées » 5, « sources consultées » 3, « sources étudiées » 1) ; notation « 2(1)(c) » (3) et « article 2, paragraphe 1, lettre c » (1) ; 8 paragraphes de plus de 90 mots, dont la situation A (157 mots) ; H1 coupé « e- / commerce » à 390, 375 et 360 px (gabarit commun) ; lien vers le pilier sans `href` jusqu'à la publication coordonnée.
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : image d'en-tête signalée, `main` `8365c73` intégré, contrôles avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : `main` `8365c73`, fusionné par `8d43b90`
+
+**Quoi** — Note d'ouverture complétée par une phrase : « L’image d’en-tête est une illustration générée par IA. » (S1 n'a pas de légende dans le gabarit commun, non modifié). `main` `8365c73` fusionné, dont #74 : le fil d'Ariane n'est plus rendu dans le `h1` des articles. Aucune autre phrase de l'article modifiée.
+
+**Pourquoi** — Consigne de Laurent du 01/10 (finalisation avant Sébastien) : signaler l'image d'en-tête comme les légendes de S2 et S3 (arbitrage Q1), synchroniser la branche avec `main`. Choix éditorial de transparence, non l'affirmation d'une obligation légale.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Fusion de `main` : seul conflit, le haut de ce journal ; toutes les entrées conservées (UB-04 en tête, puis celles de #60) ; aucune ligne perdue de part ou d'autre.
+- `tsc` vert ; `verifier-json` 181 valides ; Vitest 373/373 ; `next build` vert, 372 pages.
+- `next start` local, Chromium, 390, 1024 et 1440 px : 200 ; 0 débordement de page ; 0 erreur de console ; un seul `h1`, égal au titre, sans fil d'Ariane ; 1 tableau, sans défilement à 1024 et 1440 px, défilement interne à 390 px ; 3 images (`cover.avif` 848 × 477 puis 358 × 201, `suisse-ue-plateforme.avif` et `fidelite-produit.avif` 662 × 372 puis 358 × 201), chargées ; pas de FAQ ni de `FAQPage` (choix maintenu) ; 0 ancre cassée ; 0 lien vers `/fr/packshot-e-commerce`.
+- Métadonnées : title 53 caractères, description 146, canonical `https://www.packshot-creator.com/fr/blog/images-ia-ecommerce-suisse`, aucune balise `robots`, `og:image` = `cover.avif`, JSON-LD Organization, BreadcrumbList, Article ; URL présente au sitemap ; `smoke.mjs` local vert (17 pages, 3 ressources).
+
+**Supposé** — Aucune hypothèse retenue.
+
+**Non regardé** — Preview Vercel (SSO) par script ; `www` (R4) ; suite e2e complète (le dernier passage, sur `997cae4`, était identique à `main`) ; adaptation de-ch (D38, non démarrée). Articles liés `generer-images-produit-ia` et `migrer-ancien-packshotcreator` : non modifiés dans cette PR (backlog BL-43-2 et BL-43-3 de #73).
+
+**Suite** — Transmission à Sébastien sur la Preview de la nouvelle tête ; à la publication coordonnée : lien actif vers le pilier A, `date` du jour.
 
 ---
 
@@ -1505,6 +3514,122 @@ La PR est sortie du brouillon puis fusionnée par commit de fusion ; branche con
 
 ---
 
+## 2026-10-01 · AI Act Q2 — paragraphe AI Act des articles « migrer » : référent, délai transitoire, absolu (FR, EN, de-ch) · Claude de Laurent
+
+**Chantier** : cluster AI Act, BL-43-3 (partiel) | **PR** : #77, brouillon, non fusionnée | **Base** : `main` `17fc0b3` | **Commit** : `576d76b` (tête précédente `a0e27a5`)
+
+**Quoi** — Micro-correction validée par Laurent. Elle porte sur le seul paragraphe AI Act des trois articles « migrer », texte seul. Trois imperfections traitées :
+- référent de l'exception : elle vise désormais le seul marquage par l'outil, sans exemption générale ;
+- délai transitoire : celui de l'article 111(4) est mentionné ;
+- absolu : « Elle n'invente rien » et ses équivalents sont retirés.
+
+**Pourquoi** — Points relevés à la livraison de #77 (entrée suivante, rubrique « Non regardé ») et complément de Laurent du 01/10, contrôlé contre le pilier A (#59, tête `f9e772f`) :
+- 50(2) : marquage par le fournisseur ;
+- 50(4) : mention visible par le déployeur pour les hypertrucages ;
+- 111(4) : délai jusqu'au 2 décembre 2026 pour les systèmes mis sur le marché avant le 2 août 2026 ;
+- les exceptions (mise en forme standard, modification non substantielle) concernent le seul marquage du fournisseur.
+
+**Fichiers** — `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Changements (FR ; EN et de-ch à l'identique, de-ch avec la nuance territoriale)**
+
+| Imperfection | Avant | Après | Source |
+|---|---|---|---|
+| Absolu | « Elle n'invente rien. Ce n'est plus un détail… » | « Partir d'une photo réelle n'est plus un détail… » | Consigne de Laurent : neutraliser, garder le message « photo réelle » |
+| Temporalité | « …doit désormais porter un marquage lisible par machine, apposé par l'outil qui la produit ; » | « …doit porter un marquage lisible par machine, apposé par l'outil qui la produit ; les outils mis sur le marché avant cette date ont jusqu'au 2 décembre 2026 pour s'y conformer. » | A, calendrier : « Fin du délai de mise en conformité au marquage de l'article 50(2) pour les systèmes mis sur le marché avant le 2 août 2026 (article 111(4), ajouté par le règlement (UE) 2026/1744). » |
+| Temporalité, marque | « la marque, elle, ne doit une mention visible que si l'image constitue un hypertrucage. » | « La marque, elle, ne doit une mention visible que si l'image constitue un hypertrucage, et ce délai ne la concerne pas. » | A : « Cette date ne décale pas l'obligation de la marque. » |
+| Référent | « …et la retouche studio classique échappent à cette obligation, comme le détaille… » | « Pour les corrections de couleur ou d'exposition et la retouche studio classique, ce marquage par l'outil n'est pas requis tant qu'elles ne modifient pas substantiellement l'image ou son sens, comme le détaille… » | A, 50(2) : le marquage ne s'applique pas si le système « ne modifie pas substantiellement l'image fournie ou son sens » |
+
+Typographie : espaces insécables entre le jour, le mois et l'année des deux dates, dans ce seul paragraphe (convention de A `f9e772f`). Mesure : 0 signe isolé en début de ligne à 390, 820 et 1440 px.
+
+**Contrôle des sources**
+- Pilier A, tête `f9e772f` (avant : `a499b5e` ; écart limité à la typographie et à une fusion de `main`), lu sans modification.
+- Analyse Orbitvu du 4 septembre 2026, lien du paragraphe, lue le 01/10 :
+  - elle classe parmi les retouches exemptées « Color correction, exposure, and white-balance adjustment » et « Normal studio retouching that does not change what the image shows » ;
+  - elle place la fin du délai au 2 décembre 2026 pour les systèmes déjà sur le marché, sans report de l'obligation du déployeur ;
+  - elle étend l'exemption aux deux obligations : non repris, conformément à la consigne (pas d'exemption générale).
+- « Exposition » : absent des exemples de la Commission cités par A. Seule source : Orbitvu, déjà citée par le paragraphe.
+- Aucune recherche juridique nouvelle.
+
+**Effet attendu** — Aucun effet SEO : seul le champ `content` change ; title, description, canonical, hreflang et JSON-LD sont identiques à la production.
+
+**Vérifié**
+- `verifier-json` 180 valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert, 371 pages ; `verifier-consequences` : effet local.
+- `next start` local, Chromium, 390, 820 et 1440 px, 3 pages :
+  - 200 ;
+  - un seul paragraphe, un `strong`, un lien inchangé (`_blank`, `noopener`) ;
+  - formulations attendues présentes, anciennes absentes ;
+  - 0 signe isolé en début de ligne ;
+  - FAQ visible = `FAQPage` (8, 8, 8) ;
+  - un `h1`, 0 débordement, 0 erreur de console ;
+  - captures relues.
+- En-tête SEO comparé à `sysnext.vercel.app` par `curl` : identique sur les 3 pages (title, description, canonical, 5 hreflang, 4 JSON-LD).
+- `smoke.mjs` local vert (17 pages, 3 ressources).
+- e2e (5 specs, Chromium) : 307 tests, 283 passés, 24 échecs, liste identique au passage précédent de #77, aucun sur ces pages.
+
+**Supposé** — Rien de plus que l'entrée suivante (24 échecs e2e préexistants).
+
+**Non regardé**
+- Preview Vercel (SSO) et `www`.
+- Hors du paragraphe, inchangé :
+  - « sans rien changer à l'exactitude de ses caractéristiques » (corps) ;
+  - FAQ n° 3 : « sans altérer ses caractéristiques » et « Elle ne génère pas de produit fictif » ;
+  - lien Orbitvu à la place des lignes directrices de la Commission.
+  Ces trois points relèvent de E3 à E6.
+- Dans le paragraphe : « Un seul cas limite y est signalé » ; l'analyse Orbitvu cite aussi « other details that were never captured ». Non modifié.
+
+**Suite** — Validation de Sébastien (prose), puis fusion sur GO de Laurent. Lien vers A non ajouté (D38).
+
+---
+
+## 2026-10-01 · AI Act Q2 — deux formulations juridiques corrigées : `generer-images-produit-ia` (FR) et articles « migrer » (FR, EN, de-ch) · Claude de Laurent
+
+**Chantier** : cluster AI Act, BL-43-2 (E1/E2) et BL-43-3 (partiel : phrase « lisible par machine » seule) | **PR** : #77, brouillon, non fusionnée | **Base** : `main` `17fc0b3` (#73 comprise) | **Commit** : `5357bfb`
+
+**Quoi** — Texte seul, deux phrases. `generer-images-produit-ia` : la non-tromperie est rattachée au droit de la consommation, l'AI Act aux obligations de transparence « dans certains cas ». Articles « migrer » : le marquage lisible par machine est attribué à l'outil, la mention visible de la marque limitée aux hypertrucages.
+
+**Pourquoi** — QA finale des articles A (#59) et S (#60) du 01/10 : ces deux phrases divergent du pilier (description de #59, rubrique « Hors périmètre » ; description de #60, question posée à Sébastien). Formulations FR fournies par Laurent le 01/10, appliquées mot pour mot.
+
+**Fichiers** — `content/blog/fr/generer-images-produit-ia.json`, `content/blog/fr/migrer-ancien-packshotcreator.json`, `content/blog/en/migrate-legacy-packshotcreator-studio.json`, `content/blog/de-ch/altes-packshotcreator-studio-migrieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Corrections**
+
+| Article | Langue | Emplacement | Avant | Après |
+|---|---|---|---|---|
+| `generer-images-produit-ia` | FR seul (aucune version EN ni de-ch, absent d'`alternates.json`) | `content`, section FAQ du corps ; `faqs[4]`, FAQ n° 5 (bloc visible et `FAQPage`) | « Le règlement européen sur l'IA impose également que les images ne trompent pas le consommateur sur les caractéristiques réelles du produit. » | « Le droit de la consommation interdit par ailleurs les images qui trompent le consommateur sur les caractéristiques réelles du produit ; le règlement européen sur l'IA ajoute, dans certains cas, des obligations de transparence. » |
+| `migrer-ancien-packshotcreator` | FR | `content`, paragraphe « Retenez surtout ceci » | « …doit désormais porter une mention lisible par machine. » | « …doit désormais porter un marquage lisible par machine, apposé par l'outil qui la produit ; la marque, elle, ne doit une mention visible que si l'image constitue un hypertrucage. » |
+| `migrate-legacy-packshotcreator-studio` | EN | `content`, même paragraphe | « …must now carry a machine-readable label. » | « …must now carry a machine-readable marking, applied by the tool that produces it; the brand, for its part, owes a visible disclosure only if the image constitutes a deep fake. » |
+| `altes-packshotcreator-studio-migrieren` | de-ch | `content`, même paragraphe | « …muss nun eine maschinenlesbare Kennzeichnung tragen. » | « …muss nun eine maschinenlesbare Kennzeichnung tragen, die das erzeugende Werkzeug anbringt; die Marke selbst muss einen sichtbaren Hinweis nur anbringen, wenn das Bild ein Deepfake ist und die Verordnung für sie gilt. » |
+
+**Choix de traduction et d'adaptation**
+- EN : traduit de la version FR corrigée (D38). « label » → « marking » : « label » se lit comme une étiquette visible. « deep fake » et « constitutes » : termes de la version anglaise du règlement (art. 3(60) et 50(4)), relevés de mémoire ; EUR-Lex non consultable par script le 01/10 (page vide) : [Non vérifié].
+- de-ch : D38, périmètre suisse. « und die Verordnung für sie gilt » ne présume pas l'application de l'AI Act à une marque suisse ; S (#60) la fait dépendre du rôle et de la diffusion dans l'Union. Aucune règle suisse ajoutée. « Kennzeichnung » conservé : qualifié de « maschinenlesbar » et opposé à « sichtbarer Hinweis ». « Deepfake » : terme de la version allemande du règlement, relevé de mémoire : [Non vérifié].
+- Base juridique, pilier A (#59, tête `a499b5e`, lecture seule) : « Le marquage lisible par machine de l'article 50(2) incombe au fournisseur de l'outil, pas à la marque qui l'utilise » ; « La marque, en tant que déployeur, doit une mention visible au titre de l'article 50(4) lorsque l'image est un hypertrucage » ; « Il ne remplace pas le droit de la consommation ». Aucune règle absente de A ou de S ajoutée.
+
+**Effet attendu** — Aucun effet SEO mesurable attendu : correction de fond sur des pages existantes, sans changement d'URL, de title, de description ni de structure.
+
+**Vérifié**
+- `main` `17fc0b3` contient la fusion de #73 ; formulations présentes avant modification (2 occurrences FR pour `generer-images-produit-ia`, 1 par langue pour « migrer »).
+- La FAQ des articles « migrer » ne contient pas la phrase corrigée (8 FAQ inchangées dans les 3 langues).
+- `verifier-json` : 180 JSON valides ; `tsc` vert ; Vitest 373/373 ; `next build` vert, 371 pages (variables factices) ; `verifier-consequences` : « Effet local — 4 fichier(s), rien qui déborde ».
+- `next start` local, Chromium, 390 et 1440 px, 4 pages : 200 ; nouveau texte présent (2 fois pour `generer-images-produit-ia`, 1 fois ailleurs), ancien absent du texte et du JSON-LD ; FAQ visible = `FAQPage` à l'identique, question par question (5 et 8, 8, 8) ; un seul `h1` ; 0 débordement ; 0 erreur de console ; capture du paragraphe modifié relue.
+- `smoke.mjs` local : vert, 17 pages, 3 ressources.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local) : 307 tests, 283 passés, 24 échecs, même nombre et mêmes catégories que la liste préexistante relevée par #59 sur `main` `8ec89c1` ; aucun ne porte sur les 4 pages modifiées.
+- #59 (`a499b5e`) et #60 (`a9df51d`) : lues, non modifiées.
+
+**Supposé** — Les 24 échecs e2e sont ceux de `main` : comparaison faite avec la liste publiée par #59, sans build de `main` `17fc0b3` dans cette session.
+
+**Non regardé**
+- Preview Vercel (SSO) et `www`.
+- Champ `dateModified` : absent des 4 articles, non ajouté.
+- Reste de BL-43-3 (E3 à E7 : analyse Orbitvu, « n'invente rien », retoucheur IA) : hors consigne.
+- Phrase suivante du même paragraphe, inchangée dans les 3 langues : « échappent à cette obligation » (« this obligation », « diese Pflicht ») suit désormais deux obligations ; référent ambigu, relève de E3 à E5.
+- « doit désormais porter » : A date au 2 décembre 2026 la fin du délai de marquage pour les systèmes mis sur le marché avant le 2 août 2026 (art. 111(4)) ; formulation de la consigne conservée.
+
+**Suite** — Validation de Sébastien (prose de `content/blog/**`, `01-RAYON-ACTION.md`) et de Laurent (adaptations EN et de-ch), puis fusion sur GO. Renvoi vers A : non ajouté, à n'activer qu'à sa publication (D38).
+
+---
+
 ## 2026-10-01 · UB-04 — fil d'Ariane hors du `<h1>` des articles de blog · Claude de Laurent
 
 **Chantier** : audit Ubersuggest, plan du 01/10, lot 1, action A1 (UB-04) | **PR** : #74, brouillon, branche `seo/ub04-h1-fil-ariane-2026-10-01`, non fusionnée | **Base** : `main` `2ef01b2`
@@ -1548,6 +3673,188 @@ Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni descriptio
 - Le libellé du repère est défini dans le gabarit, et non dans `messages/*.json`, exclus de ce lot et réservés par #64 et #66 : à y migrer ensuite.
 
 **Suite** — GO de Laurent, puis fusion. Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, un article FR, EN et de-ch contrôlé dans Chrome sur `www`. Les 2 articles à page dédiée relèvent d'une PR distincte.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : mention « Illustration générée par IA » (Q1) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `ea7d923`
+
+**Quoi** — Arbitrage Q1 de Laurent du 01/10 : légende de A3 : « Illustration : placer un produit… » devient « Illustration générée par IA. Placer un produit… » ; reste de la légende inchangé. Aucune autre phrase modifiée.
+
+**Pourquoi** — Choix éditorial de transparence sur des illustrations générées par IA, dans des articles consacrés au signalement des images IA. Ce n'est pas l'affirmation d'une obligation légale générale : l'article ne la présente pas comme telle.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** — `verifier-json`, `tsc`, Vitest et `next build` en local avant push ; rendu des légendes contrôlé sur `next start` local.
+
+**Supposé** — Rien.
+
+**Non regardé** — A1 (hero) : le gabarit commun du blog n'affiche pas de légende sous l'image principale. Ajouter un champ optionnel `imageCaption` au gabarit (`app/[lang]/blog/[slug]/page.tsx`, `lib/content.ts`) a été refusé par le contrôle de permissions de la session (modification d'une ressource partagée) : rien n'est modifié, décision à prendre par Laurent. Preview (SSO) ; `www` (R4).
+
+**Suite** — Mention sur l'image principale selon la décision de Laurent ; puis transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — pilier A : contrôle final éditorial avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `80489cf`, `main` `8ec89c1`
+
+**Quoi** — Passe de sortie éditoriale (audit, corrections, tests, Preview) avant envoi à Sébastien. Dans `content/blog/fr/ai-act-images-produit.json` seulement :
+- ouverture : « Vérifié le 28 septembre » devient « Sources vérifiées du 28 au 30 septembre », comme le corps (plateformes et mesure du 30/09) ;
+- tableau « qui doit quoi », ligne agence : point 14 cité en entier (une entreprise reste déployeur lorsque des prestataires opèrent le système pour son compte, sous sa responsabilité et son contrôle), comme dans l'article Suisse (#60) ; le cas d'une marque qui impose ou encadre l'usage de l'IA reste non tranché ;
+- ligne marketplace : renvoi au point 16 ;
+- « la version finale du 20 juillet 2026 » devient « la version publiée le 20 juillet 2026 » ;
+- Google, mention visible : « Google peut en ajouter lui-même dans certains cas » ;
+- mesure WebP : condition de la mesure (navigateur acceptant WebP) ;
+- renvoi vers l'article Suisse : titre réel, toujours sans lien actif ;
+- sources classées par nature (cadre européen, droit français, Suisse, plateformes, standards), sans la trace de production « ajoutés » ; cinq sources déjà utilisées par le texte ajoutées à la liste : Google 6324350 (refus du produit), Google 17231950 (libellé IA), projet de lignes directrices du 8 mai 2026, texte adopté par le Sénat le 18/02/2026 et projet de loi n° 2518 de l'Assemblée nationale (organisation du contrôle en France) ;
+- en-têtes de trois tableaux raccourcis (« Ce que cela change », « Rôle selon l'AI Act », « Marquage par l'outil ? », « Mention visible par la marque ? », « À faire ») : à 1440 px, les en-têtes insécables (`white-space: nowrap`, `app/globals.css`) faisaient déborder 3 tableaux sur 4 et tronquaient leur dernière colonne.
+Aucune qualification de cas modifiée. FAQ, title, meta, H1, slug, canonical, date, visuels, alt et légende inchangés.
+
+**Pourquoi** — Mission « contrôle final éditorial » du 01/10/2026 : Sébastien ne reçoit que ce qui exige son arbitrage. Constats : date d'ouverture contredite par le corps ; ligne agence moins complète que l'article Suisse sur le même point 14 ; deux affirmations Google, le projet du 8 mai et le calendrier parlementaire français sans source listée ; dernière colonne de trois tableaux masquée sur ordinateur.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** —
+- Fresh-check : tête `80489cf` et `main` `8ec89c1` conformes à la mission ; PR ouvertes listées ; aucune autre session n'a écrit dans #59 depuis `80489cf`.
+- Sources relues le 01/10 : lignes directrices C(2026) 5054 (PDF, points 10, 12, 13, 14, 16, 92, 113, 114, 116, 117, 127, 129, 154) ; projet du 8 mai 2026 (PDF, point 86 : suppression ou masquage d'arrière-plans parmi les modifications à marquer) ; Google 14743464, 14572008, 6324350 (conservation des métadonnées IA parmi les conditions minimales, dont le non-respect entraîne le refus du produit), 17231950 (paramètre de libellé IA facultatif ; libellés ajoutés par Google dans certains cas) ; Zalando, mise à jour du 31/08/2026 (mentions visibles refusées, marquage invisible « required by December 2026 ») ; Chancellerie fédérale, page « Intelligence artificielle » ; liste des points de contact de la Commission (France : DGCCRF) ; Sénat, texte adopté le 18/02/2026 (titre « systèmes d'intelligence artificielle », art. 55-1 et suivants) ; Assemblée nationale, projet de loi n° 2518 déposé le 20/02/2026.
+- Mesure WebP : preuve au JOURNAL de #63 (30/09, 06:27 UTC, `sysnext.vercel.app`, `/images/hero/hero-studios-wide.avif` : original servi en `w=640` et `w=1080`, WebP sans XMP ni EXIF en `w=1920` pour un en-tête `Accept` annonçant WebP).
+- Liens externes (22 URL distinctes) : 17 en 200 ; EUR-Lex (2) en 202 et Légifrance (3) en 403, défis anti-robots non concluants.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, variables factices de la CI.
+- `next start` local, Chromium, 1440 et 390 px : 200 ; title 57 car., description 155 car., canonical inchangé, aucune balise `robots` ; JSON-LD Organization, BreadcrumbList, Article, FAQPage 7 ; hero 848 × 477 et 358 × 201, A3 662 × 372 et 358 × 201, ratio 16:9, légende présente ; 4 tableaux sans défilement à 1024, 1280 et 1440 px (avant : 3 sur 4 tronqués), défilement interne à 390 px ; 0 débordement de page ; 0 erreur de console ; 0 ancre cassée ; 0 marqueur ; 0 lien vers `/fr/packshot-e-commerce`.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `8ec89c1` (0 en plus, 0 en moins) : titles et descriptions hors bornes (dont `/fr/academy`), hreflang de `/fr/packshot-bijoux`, débordements de `/fr`, `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, ancre `#calculateur-roi`. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
+- Premier passage e2e de la branche écarté : 82 dépassements de délai sur des pages sans lien avec l'article (`/fr/ia-photo-produit`, `/fr/packshot-amazon`…), serveur local bloqué après des contrôles concurrents (même cause que dans #63) ; relance complète sur un serveur redémarré : 0 dépassement.
+
+- Après fusion de `main` `2ef01b2` (#68, Worker D36, fusionnée pendant la passe ; conflit du JOURNAL seulement) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 (346 + tests D36 de `main`) ; `next build` vert. Contenu de l'article identique avant et après la fusion.
+
+**Supposé** — [Inférence] EUR-Lex et Légifrance servent les mêmes textes que ceux lus les 29 et 30/09 (Cellar, conversion). Cela repose sur des schémas observés.
+
+**Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 30/09 pour #63 seulement.
+Hors périmètre, rien de modifié :
+- gabarit du blog : le fil d'Ariane est rendu dans le `h1` (tous les articles) ;
+- `globals.css` : en-têtes de tableau insécables, risque de colonne masquée sur d'autres articles ;
+- deux articles publiés affichés en « articles liés » sous A, dont la phrase sur l'AI Act diverge du pilier : `generer-images-produit-ia` et `migrer-ancien-packshotcreator`.
+
+**Suite** — Envoi à Sébastien sur la Preview de la nouvelle tête. À la publication coordonnée (D38) : lien actif vers `/fr/blog/images-ia-ecommerce-suisse`, `date` du jour de publication.
+
+---
+
+## 2026-09-30 · Cluster AI Act — pilier A : passe éditoriale (cadre de rédaction de Sébastien) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `de7289f`, puis fusion de `main` `a8c85ca` (#69, conflit du JOURNAL résolu en gardant les deux entrées)
+
+**Quoi** — Réécriture de la prose pour la lisibilité, qualifications juridiques inchangées. Ouverture qui répond puis dit ce que le lecteur saura décider ; les 34 mentions « Niveau : … » intégrées aux phrases (« la Commission cite », « probablement », « à notre lecture », « les textes consultés ne tranchent pas »), avec un paragraphe de lecture unique avant les cas ; titres des cas sans la numérotation héritée des 20 cas de #43 ; tableau des autres cas reconstruit (réponse pour l'outil et pour la marque, puis degré de certitude, repris de #43 et #61) ; tableaux « qui doit quoi », calendrier et plateformes tournés vers l'action ; listes pour la mise en forme standard et les critères de l'hypertrucage ; 14 tirets cadratins retirés ; 2 liens de sources placés près des affirmations (lignes directrices, article L121-2). FAQ, title, meta, slug, canonical et visuels inchangés ; `readingTime` 20 → 22.
+
+**Pourquoi** — Retour de Sébastien du 30/09 (textes « durs à lire ») et kit `TRANSMISSION_REDACTION_BLOG_2026-09-30` (prompt prioritaire, SKILL, règles d'écriture, style maison, repères SEO/GEO), transmis par Laurent.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Sens juridique : chaque niveau (Texte, Exemple direct Commission, Interprétation, Non tranché) retrouvé dans la nouvelle phrase ; points 10 à 16, 113 à 117 des lignes directrices C(2026) 5054 relus sur le PDF de la Commission le 30/09 pour les deux précisions de sens listées dans la PR (agence : critère des points 12 et 14, cas toujours non tranché ; exemple de produit hypertrucage : « dans une publicité ou sur un emballage »).
+- Suisse : « aucune obligation suisse d'étiquetage » devient « aucune obligation suisse générale d'étiquetage », aligné sur l'article Suisse (#60).
+- Mots : corps 4 078 → 4 527, total avec FAQ et H1 4 655 → 5 104 (même méthode que la PR) ; hausse due surtout au tableau des autres cas, qui donne désormais la réponse et plus seulement le niveau.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local, 1440 et 390 px : 200, title et description inchangés, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article, FAQPage 7 = 7 visibles ; hero 848 × 477 et 358 × 201, A3 662 × 372 et 358 × 201, légende présente ; 0 débordement ; 0 erreur de page ; 0 lien interne, 0 lien vers `/fr/packshot-e-commerce` ; aucun « Niveau : » ni tiret cadratin au rendu.
+- `e2e/seo.spec.ts` + `internal-links-all.spec.ts` en local : 243 réussis et 8 échecs avant la fusion de #71. Correction : la comparaison annoncée d'abord avec `https://sysnext.vercel.app` n'était pas valable (erreurs TLS du proxy, puis délais dépassés depuis le conteneur). Comparaison refaite après fusion de `main` `8ec89c1` : 235 réussis, 9 échecs, liste identique à celle d'un build local de `main` `8ec89c1` (titles et descriptions hors bornes, dont `/fr/academy`, et hreflang de `/fr/packshot-bijoux`).
+- Après fusion de `main` `8ec89c1` (#71) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, 372 pages ; rendu de l'article inchangé en 1440 et 390 px.
+**Supposé** — [Inférence] Le retour de Sébastien se limite à ce que cite la mission (« durs à lire », « meilleur des deux mondes », « reprends les quatre articles comme un ensemble éditorial ») : aucun autre écrit de sa part n'a été transmis. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; EN et de-ch (D38) ; relecture par un autre lecteur : aucune ; « quatre articles » : non établi, seuls A et S traités, #61 à #63 non touchées.
+
+**Suite** — Seconde passe de Sébastien sur la Preview ; deux précisions de sens à valider (voir PR #59).
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : mention « Illustration générée par IA » (Q1) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `997cae4`
+
+**Quoi** — Arbitrage Q1 de Laurent du 01/10 : légendes de S2 et S3 : « Illustration générée par IA. » placé en tête ; « Illustration de variations de rendu : » devient « Variations de rendu : » (S3) ; reste des légendes inchangé. Aucune autre phrase modifiée.
+
+**Pourquoi** — Choix éditorial de transparence sur des illustrations générées par IA, dans des articles consacrés au signalement des images IA. Ce n'est pas l'affirmation d'une obligation légale générale : l'article ne la présente pas comme telle.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** — `verifier-json`, `tsc`, Vitest et `next build` en local avant push ; rendu des légendes contrôlé sur `next start` local.
+
+**Supposé** — Rien.
+
+**Non regardé** — S1 (hero) : le gabarit commun du blog n'affiche pas de légende sous l'image principale. Ajouter un champ optionnel `imageCaption` au gabarit (`app/[lang]/blog/[slug]/page.tsx`, `lib/content.ts`) a été refusé par le contrôle de permissions de la session (modification d'une ressource partagée) : rien n'est modifié, décision à prendre par Laurent. Preview (SSO) ; `www` (R4).
+
+**Suite** — Mention sur l'image principale selon la décision de Laurent ; puis transmission à Sébastien.
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : contrôle final éditorial avant Sébastien · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `d5182e7`, `main` `8ec89c1`
+
+**Quoi** — Passe de sortie éditoriale (audit, corrections, tests, Preview) avant envoi à Sébastien. Dans `content/blog/fr/images-ia-ecommerce-suisse.json` seulement :
+- personne réelle identifiable : position du PFPDT ajoutée (« l'utilisation de programmes permettant de falsifier les visages, les images ou les messages vocaux de personnes identifiables doit toujours être clairement indiqué[e] »), dans le corps, l'encadré « En bref » et le tableau ; présentée comme la position de l'autorité, limitée aux personnes identifiables ;
+- Zalando : refus des mentions visibles sur l'image et des contenus qui en exigeraient une, comme dans le pilier ;
+- cas 4 : distinction produit de série / pièce unique, occasion ou reconditionné, reprise du pilier (« à notre lecture ») ;
+- situation A : le point 13, déjà cité deux paragraphes plus haut, n'est plus répété ; restent la simple accessibilité qui ne suffit pas, le renvoi au point 13, le rôle, l'usage du système, la destination des images et le cas par cas ;
+- section C2PA / IPTC : répétition des sections plateformes réduite à une phrase ; la norme est nommée « IPTC Photo Metadata » ;
+- tableau récapitulatif : en-têtes « Si usage dans l'UE » et « Plateformes » ; à 1440 px, l'en-tête insécable « Si l'image est utilisée dans l'Union » masquait presque toute la colonne « Sur les plateformes ».
+Aucune qualification de cas modifiée. Title, meta, H1, slug, canonical, date, visuels, alt et légendes inchangés ; pas de FAQ ajoutée.
+
+**Pourquoi** — Mission « contrôle final éditorial » du 01/10/2026. Constats : la position du PFPDT figurait dans les sources (page « IA et protection des données ») sans être reprise dans la partie « Personnes » qu'elle concerne directement ; Zalando et le cas 4 moins complets que dans le pilier ; point 13 cité deux fois à deux paragraphes d'écart ; colonne du tableau masquée sur ordinateur.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** —
+- Fresh-check : tête `d5182e7` et `main` `8ec89c1` conformes à la mission ; `d5182e7` lu avant toute écriture.
+- Sources relues le 01/10 : PFPDT, « IA et protection des données » (phrase citée) et « Déclaration commune sur les images générées par l'IA » (23/02/2026) ; SECO, Portail PME (23/09/2026 : avant-projet destiné à la consultation élaboré au printemps 2027 ; « Les fournisseurs et déployeurs de pays tiers peuvent aussi l'être si les résultats générés par un système d'IA sont utilisés dans l'UE ») ; Chancellerie fédérale, « Réglementation » ; lignes directrices C(2026) 5054 (PDF, points 10, 12, 13, 14) ; Google 14743464 ; Zalando, mise à jour du 31/08/2026.
+- Situation A : la règle de la mission (« la simple accessibilité d'un site ou compte suisse depuis l'Union ne suffit pas à elle seule ») est conservée ; aucune phrase n'écrit « accessible dans l'UE = AI Act applicable ».
+- Liens externes (16 URL distinctes) : 15 en 200 ; EUR-Lex (1) en 202, défi anti-robots non concluant.
+- `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, variables factices de la CI.
+- `next start` local, Chromium, 1440 et 390 px : 200 ; title 53 car., description 146 car., canonical inchangé, aucune balise `robots` ; JSON-LD Organization, BreadcrumbList, Article ; hero 848 × 477 et 358 × 201, S2 et S3 662 × 372 et 358 × 201, ratio 16:9, légendes présentes ; tableau sans défilement à 1024, 1280 et 1440 px (avant : 662 px visibles sur 821), défilement interne à 390 px ; 0 débordement de page ; 0 erreur de console ; 0 ancre cassée ; 0 marqueur ; 0 lien vers `/fr/packshot-e-commerce`.
+- e2e (`seo`, `internal-links-all`, `anchors`, `responsive`, `mobile-overflow`, Chromium, serveur local, 2 workers) : 307 tests, 24 échecs, liste identique à un build local de `main` `8ec89c1` (0 en plus, 0 en moins) : titles et descriptions hors bornes (dont `/fr/academy`), hreflang de `/fr/packshot-bijoux`, débordements de `/fr`, `/fr/studios-photo-automatises`, `/fr/ia-photo-produit`, `/fr/industrie-defense`, ancre `#calculateur-roi`. Ces specs ne visent pas l'article lui-même : son contrôle est celui de la ligne précédente.
+
+- Après fusion de `main` `2ef01b2` (#68, Worker D36, fusionnée pendant la passe ; conflit du JOURNAL seulement) : `verifier-json` 181 valides ; `tsc` vert ; Vitest 373/373 (346 + tests D36 de `main`) ; `next build` vert. Contenu de l'article identique avant et après la fusion.
+
+**Supposé** — [Inférence] La page du PFPDT exprime une position d'autorité de surveillance, non une règle légale autonome ; l'article la présente ainsi. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview (SSO) par script ; `www` (R4) ; pages Amazon (rendu JavaScript), relues le 29/09 seulement ; tableau des ratifications du traité n° 225 (403). Hors périmètre, rien de modifié : fil d'Ariane dans le `h1` (gabarit, tous les articles) ; en-têtes de tableau insécables (`globals.css`) ; articles liés `generer-images-produit-ia` et `migrer-ancien-packshotcreator`.
+
+**Suite** — Envoi à Sébastien sur la Preview de la nouvelle tête. À la publication coordonnée (D38) : lien actif vers `/fr/blog/ai-act-images-produit`, `date` du jour de publication ; adaptation de-ch (pas une traduction).
+
+---
+
+## 2026-10-01 · Cluster AI Act — article Suisse : situation A corrigée (accessibilité depuis l'Union) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `6bcf962`
+
+**Quoi** — Sur consigne de Laurent du 01/10, un seul paragraphe modifié : la situation A de « Six situations à distinguer ». La version de `e8ce8a3` assimilait une image susceptible d'être un hypertrucage, publiée sur un site ou un compte accessible depuis l'Union, à une diffusion dans l'Union. La nouvelle version :
+- dit que la simple accessibilité depuis l'Union ne suffit pas, à elle seule, à faire basculer la situation (« À notre lecture ») ;
+- reprend la lettre du point 13 telle que l'article la cite déjà plus haut : déployeur qui prévoit lui-même la diffusion dans l'Union, en la dirigeant ou en l'autorisant, y compris par publication sur l'internet accessible mondialement ; exclusion des canaux imprévisibles et hors de son contrôle ;
+- s'aligne sur le pilier (#59) : l'application concrète dépend du rôle de l'entreprise, de l'usage du système et de la destination des images ;
+- laisse les situations intermédiaires à apprécier au cas par cas.
+Aucune autre phrase, aucun visuel, aucune métadonnée modifiés.
+
+**Pourquoi** — Formulation jugée trop large par Laurent : elle pouvait laisser croire que la simple accessibilité d'une publication depuis l'Union suffit à déclencher l'AI Act pour une entreprise suisse.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié** — Un seul paragraphe diffère entre `6bcf962` et la nouvelle tête (comparaison du champ `content` ; autres champs identiques). Paraphrase du point 13 reprise du paragraphe « Les lignes directrices de la Commission précisent ces deux cas », déjà présent dans l'article ; formule du pilier reprise de `80489cf` (#59). `verifier-json`, `tsc` et `next build` : voir la PR.
+
+**Supposé** — [Inférence] La nouvelle formulation ne crée pas de règle nouvelle : elle reste une lecture (« À notre lecture ») des lignes directrices citées. Cela repose sur des schémas observés.
+
+**Non regardé** — Aucune source relue (consigne : pas de nouvelle recherche). Marqueurs terrain et étiquettes éditoriales : non modifiés ici. `e8ce8a3` (autre session) a retiré les 5 marqueurs terrain et intégré les étiquettes à la prose, alors que la consigne de Laurent du 01/10 les supposait encore présents pour la revue de Sébastien : écart signalé à Laurent, rien rétabli. Preview (SSO) ; `www` (R4).
+
+**Suite** — Validation de Laurent sur la formulation, puis passe de Sébastien sur la Preview de la nouvelle tête.
 
 ---
 
@@ -1910,6 +4217,33 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 
 ---
 
+## 2026-09-30 · Cluster AI Act — article Suisse : passe éditoriale (cadre de rédaction de Sébastien) · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `758ad29`, puis fusion de `main` `a8c85ca` (#69, conflit du JOURNAL résolu en gardant les deux entrées ; la PR était en conflit)
+
+**Quoi** — Réécriture de la prose pour la lisibilité, qualifications juridiques inchangées sauf la situation A (f3ebb10), resserrée. Ouverture qui répond et annonce les trois couches (droit suisse, AI Act, plateformes) ; encadré « En bref » ; 22 marqueurs ([Interprétation] 13, [Texte] 5, [Exemple direct Commission] 4) et les « NON TRANCHÉ » intégrés aux phrases ; les 5 marqueurs `[TERRAIN SÉBASTIEN — …]` retirés, aucune réponse terrain n'ayant été transmise ; les 8 cas commencent par le conseil pratique puis donnent la réponse suisse et la réponse UE ; rappel de l'article 50 en deux phrases en tête de la section UE (S reste lisible seul) ; définitions fournisseur/déployeur avant les six situations, doublon du point 12 retiré ; tableau récapitulatif réécrit (réponse d'abord) ; « label » remplacé par « mention », comme dans A ; sigles développés (LCD, LPD, PFPDT, SECO) ; 12 tirets cadratins retirés ; 1 lien de source placé près de l'affirmation (LCD). `readingTime` 18 → 20.
+
+**Pourquoi** — Retour de Sébastien du 30/09 (textes « durs à lire ») et kit `TRANSMISSION_REDACTION_BLOG_2026-09-30`, transmis par Laurent. Situation A : interprétation de f3ebb10 à revoir (mission du 30/09, point 13).
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38).
+
+**Vérifié**
+- Point 13 des lignes directrices C(2026) 5054 relu sur le PDF de la Commission le 30/09 : « including by posting deep fakes on the globally accessible internet » ; « channels that are unforeseeable and outside their control ». La situation A vise désormais une image susceptible d'être un hypertrucage ; le rapprochement reste qualifié d'interprétation.
+- Cas 4, côté UE : « La transposition à chaque retouche reste factuelle » devient « les textes consultés ne tranchent pas l'effacement d'une rayure ou d'une usure », aligné sur le cas 14 de A.
+- Mots : corps éditorial 3 763 → 4 100 (même méthode que la PR) ; hausse due à l'encadré « En bref », au rappel de l'article 50 et au tableau.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages.
+- `next start` local, 1440 et 390 px : 200, title et description inchangés, canonical inchangé, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (pas de FAQ, pas de FAQPage) ; hero 848 × 477 et 358 × 201, S2 et S3 662 × 372 et 358 × 201, légendes présentes ; 0 débordement ; 0 erreur de page ; 0 lien interne, 0 lien vers `/fr/packshot-e-commerce` ; aucun marqueur ni tiret cadratin au rendu.
+- `e2e/seo.spec.ts` + `internal-links-all.spec.ts` en local : 243 réussis et 8 échecs avant la fusion de #71. Correction : la comparaison annoncée d'abord avec `https://sysnext.vercel.app` n'était pas valable (erreurs TLS du proxy, puis délais dépassés depuis le conteneur). Comparaison refaite sur la tête `ed39e81` (fusion de `main` `8ec89c1` poussée par une autre session) : 235 réussis, 9 échecs, liste identique à celle d'un build local de `main` `8ec89c1` (titles et descriptions hors bornes, dont `/fr/academy`, et hreflang de `/fr/packshot-bijoux`).
+- Sur `ed39e81` : `verifier-json` 181 valides ; `tsc` vert ; Vitest 346/346 ; `next build` vert, 372 pages ; rendu de l'article inchangé en 1440 et 390 px.
+**Supposé** — [Inférence] Le retour de Sébastien se limite à ce que cite la mission ; aucune réponse aux 5 marqueurs terrain n'existe dans les pièces transmises. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; adaptation de-ch (D38) ; relecture par un autre lecteur : aucune ; points déjà listés « à arbitrer » dans #60 (PFPDT du 24.09.2025, labels visibles interdits par Zalando) : non ajoutés.
+
+**Suite** — Seconde passe de Sébastien sur la Preview ; validation de la situation A (f3ebb10) ; réponses terrain éventuelles, à intégrer sans inventer.
+
+---
+
 ## 2026-09-30 · Mode — pack visuel V1 à V5 intégré dans `/fr/packshot-mode` · Claude de Laurent
 
 **Chantier** : substitution de page, extension à Mode (D39) | **PR** : #66, brouillon, NE PAS FUSIONNER | **Branche** : `claude/exciting-cannon-x48wud` | **HEAD avant** : `ac5698b`
@@ -1953,6 +4287,154 @@ Un seul fichier préchargé par page (2 sur l'étude, contre 1 sur `main`).
 **Non regardé** — les 12 articles à `page.tsx` dédiée (hors gabarit, mises en page propres) ; le hub `/blog` ; le rendu derrière Cloudflare sur www.
 
 **Suite** — rien.
+
+---
+
+## 2026-09-30 · Cluster AI Act — pilier A : visuels A1 (hero) et A3 intégrés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `be1f8ae`
+
+**Quoi** — A1 devient l'image principale de l'article (champ `image`) ; A3 est inséré dans « Cas 11 + 12 », après le paragraphe sur l'exemple de la Commission (produit réel, environnement généré), avec l'alt et la légende fixés par la mission. A2 n'est pas intégré. Aucune prose modifiée.
+
+**Pourquoi** — Sélection visuelle verrouillée par Laurent le 30/09 (`AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` : A1 et A3 KEEP, A2 REJECT), en vue de la passe de Sébastien sur la Preview.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `public/images/blog/ai-act-images-produit/cover.avif`, `public/images/blog/ai-act-images-produit/produit-reel-decor-genere.avif`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). Sur la Preview : hero, `og:image` et image de l'`Article` JSON-LD renseignés.
+
+**Vérifié**
+- Pack `AI_ACT_VISUAL_HANDOFF_2026-09-30.zip` : SHA-256 et tailles des PNG identiques au rapport (A1 `e5a4cf6d…4437b`, 1 615 385 octets ; A3 `f2f57220…8b7b2`, 1 329 657 octets). PNG sources conservés hors dépôt, non modifiés.
+- Pipeline réel : le hero et les images du corps sont servis tels quels (balise `img`, sans optimiseur) ; le corpus utilise l'AVIF (112 champs `image` sur 126) et la convention `/images/blog/<slug>/cover.avif`. Dérivés AVIF 1600 × 900 sans recadrage, qualité 70, 4:4:4 : A1 78 992 octets (PSNR 43,6 dB), A3 73 246 octets (PSNR 43,9 dB) ; comparaison à 1:1 sans différence visible.
+- `next start` local : les deux images en 200 `image/avif`, ratio 16:9 complet en 1440 px (hero 848 × 477, A3 662 × 372) et en 390 px (358 × 201 chacune), 0 débordement, 0 erreur de page ; 7 FAQ = FAQPage 7 ; 4 tableaux ; canonical et absence de balise `robots` inchangés ; `og:image` = URL absolue de `cover.avif` ; `Article.image` = `/images/blog/ai-act-images-produit/cover.avif`.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages ; `e2e/seo.spec.ts` + `internal-links-all.spec.ts` : 243 réussis, les 8 échecs préexistants de `main`, inchangés.
+
+**Supposé** — [Inférence] Provenance : illustrations générées par IA, enregistrées `model_generated=true` le 30/09/2026 selon le rapport (source fournie, non vérifiable dans les fichiers) ; modèle, identifiant de génération et prompt non embarqués ; aucune métadonnée XMP, IPTC ou C2PA dans les PNG ni dans les AVIF. Cela repose sur des schémas observés.
+
+**Non regardé** — Alt du hero : le gabarit impose le titre de l'article (`app/[lang]/blog/[slug]/page.tsx`) ; l'alt demandé pour A1 n'est pas applicable sans modifier ce gabarit commun, non touché. `twitter:image` : le gabarit du blog n'en émet pas par article (image générique du layout, comme tous les articles). Prise en charge de l'AVIF en `og:image` par les réseaux sociaux : non vérifiée, comportement identique au reste du corpus. Preview (SSO). EN et de-ch (D38).
+
+**Suite** — Preview de la nouvelle tête à transmettre à Sébastien (passe finale) ; S1, S2, S3 sur #60 ; alt de hero configurable : PR de gabarit séparée si Laurent le décide.
+
+---
+
+## 2026-09-30 · Cluster AI Act — satellites B, C, D non créés (D16), matière indispensable réintégrée dans le pilier A · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : tête `91e96a8`
+
+**Quoi** — Décision de pilotage de Laurent du 30/09 : `B_D16_FINAL = NO`, `C_D16_FINAL = NO`, `D_D16_FINAL = NO`. Le pilier A reprend seulement la matière indispensable au lecteur : recolorisation (nouvelle H3 « Cas 8 + 9 », section renommée « Sept situations »), phrase sur la correction de couleur « mineure », rayure et usure (cas 14), personnes réelles et synthétiques (cas 16), plateformes et métadonnées (tableau Google Merchant Center, Amazon, Zalando ; point 117 ; métadonnées perdues au réencodage WebP ; C2PA), 2 questions de FAQ, sources correspondantes. Les trois renvois à des « dossiers » futurs sont retirés ; les lignes 8 et 9 de l'index, désormais traitées en H3, aussi.
+
+**Pourquoi** — D16/D27 appliqués par Laurent : critère 2 non rempli pour B et C (aucune demande mesurée sur l'intention réglementaire, requêtes génériques ou d'outils non assimilées) ; critère 3 non rempli pour D. Objectif : un pilier autonome suffisant, sans revenir à la version longue de #43.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Corps 3 437 → 4 258 mots ; FAQ 5 → 7 questions ; total 4 838 mots ; `readingTime` 17 → 20 (ratio des articles longs du blog).
+- Textes repris des branches de #61, #62 et #63, déjà relus sur sources primaires le 30/09, avec leurs niveaux (Texte, Exemple direct Commission, Interprétation, Non tranché) ; aucune qualification nouvelle.
+- Sérialisation JSON identique à l'original (indentation 2, UTF-8, sans retour final) ; 0 lien interne ; 0 lien vers `/fr/packshot-e-commerce` (D37).
+- Contrôles : voir la PR #59 (verifier-json, tsc, Vitest, `next build`, rendu local).
+**Supposé** — [Inférence] Le constat sur l'optimiseur d'images (AVIF servi avec métadonnées en 640 et 1 080 px, WebP sans métadonnées en 1 920 px) reste valable à la publication ; il date du 30/09 et vaut pour notre configuration seulement. Cela repose sur des schémas observés.
+**Non regardé** — Visuels A1 et A3 : fichiers et rapport `AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` introuvables dans le dépôt, les branches, les artifacts et le stockage Supabase ; article Suisse (#60) inchangé, sans renvoi aux satellites ; EN et de-ch (D38) ; Preview (SSO).
+
+**Suite** — Fermeture sans fusion recommandée pour #61, #62 et #63 ; intégration des visuels A1, A3, S1, S2 et S3 dès transmission des fichiers et du rapport ; passe finale de Sébastien.
+
+---
+
+## 2026-09-29 · Cluster AI Act — pilier A restructuré, PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, pilier européen (A) | **PR** : #59, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/ai-act-images-produit-pilier-2026-09-29` | **Base** : `main` `e2e1027` (post-#55 et #58 ; `37146c2` au début de la mission)
+
+**Quoi** — Création de `content/blog/fr/ai-act-images-produit.json` depuis `main`, à partir du texte restructuré transmis par Laurent le 29/09 (≈ 3 644 mots FAQ comprise, 5 FAQ), qui remplace éditorialement la version longue de #43. Balisage adapté au format du corpus (`tldr`, `table-wrap`, FAQ dans `faqs`). Micro-corrections seulement : 6 renvois au document de travail (« article source », « article actuel ») ; section « Et en Suisse ? » réduite à une passerelle prudente (art. 2(1)(c)), sans lien actif vers l'article Suisse non publié ; 4 précisions exigées par les sources primaires (art. 3(3) « ou en service » ; art. 3(60) liste fermée ; lignes directrices §92, changements extrêmes « qui modifient le sens » ; Code, interopérabilité « des mécanismes de détection »). Liens ajoutés sur les 8 sources officielles déjà nommées.
+
+**Pourquoi** — Mission « cluster AI Act » de Laurent (29/09) : le pilier se recentre sur l'article 50 ; les cas 3-10, 15, 17-20 et les plateformes relèvent des futurs satellites B, C et D.
+
+**Fichiers** — `content/blog/fr/ai-act-images-produit.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée FR, EN et de-ch (D38). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Sources primaires relues le 29/09 : règlement (UE) 2024/1689 et 2026/1744 (texte du JO via le Cellar, EUR-Lex renvoyant 202 aux scripts), lignes directrices C(2026) 5054 et projet du 8 mai 2026 (PDF), FAQ article 50, Code de bonnes pratiques (PDF), liste des autorités de surveillance (7/09/2026), dossiers Sénat et Assemblée nationale, L121-1 et L121-2 (lus par conversion, Légifrance renvoyant 403 aux scripts). A1 à A10 confirmés sur le fond ; qualifications de cas inchangées.
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; ESLint 258 erreurs et 68 avertissements sur tout le projet, identiques à `main` (les fichiers modifiés ne sont pas analysés par ESLint) ; `next build` vert, 384 pages, après rebase sur `e2e1027`.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/ai-act-images-produit`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList, Article (`datePublished` = `dateModified` = 2026-09-28) et FAQPage (5 = 5 visibles), URL présente au sitemap (326 URL), 0 débordement en 1440 et 390 px ; comportement identique à `generer-images-produit-ia` (pas de hreflang sans entrée `alternates.json`, pas d'image).
+- Liens : 0 interne ; 9 externes, 7 en 200, EUR-Lex 202 et Légifrance 403 (défis anti-robots, non concluants depuis le conteneur).
+- `e2e/seo.spec.ts` et `e2e/internal-links-all.spec.ts` sur le serveur local : 243 réussis, 8 échecs préexistants (title ou description hors bornes et hreflang de `/fr/packshot-bijoux`), métadonnées identiques à `sysnext.vercel.app`.
+- Aucun lien vers `/fr/packshot-e-commerce` (D37). #43, #53 et #55 non modifiées.
+**Supposé** — [Inférence] Les lignes directrices restent citables comme « publiées le 20 juillet 2026, non contraignantes » : le communiqué de la Commission parle de publication, alors que la communication C(2026) 5054 annonce une adoption formelle ultérieure, une fois toutes les versions linguistiques disponibles. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; versions EN et de-ch (D38) ; visuels ; relecture de la prose et de la signature par Sébastien (`01-RAYON-ACTION.md`, `content/blog/**`).
+
+**Passe éditoriale du 30/09** (relecture humaine de Laurent, #59) — deux micro-corrections, sans changement de qualification ni de structure : introduction des sources (« Sources utilisées pour cette analyse, vérifiées au 28 septembre 2026. ») ; FAQ « Qu’est-ce qu’un hypertrucage pour une image produit ? », « notamment » retiré au profit de l'énumération fermée de l'art. 3(60) déjà employée dans le corps. `verifier-json`, `tsc` et `next build` rejoués.
+
+**Micro-correction du 30/09, mission « fermeture D16 et micro-corrections A/S »** — section « Quand une image produit devient-elle un hypertrucage ? » : « quatre éléments » devient « quatre critères cumulatifs », avec renvoi au point 113 des lignes directrices C(2026) 5054 (« four cumulative criteria », PDF relu le 30/09). Une phrase ajoutée signale que la FAQ de la Commission (mise à jour le 24/07/2026, relue le 30/09) présente les mêmes exigences en trois critères cumulatifs, en regroupant l’objet représenté avec le critère d’existence. Aucune qualification, aucun cas et aucune structure modifiés. Le verdict D16 de B, C et D reste en attente de mesure : aucune matière n’est réintégrée dans A.
+
+**Suite** — Passe terrain de Sébastien, revue visuelle, maillage final et traductions avant toute publication coordonnée ; liens vers les satellites B, C, D et vers l'article Suisse à activer à leur publication.
+
+---
+
+## 2026-09-30 · Cluster AI Act — article Suisse : visuels S1 (hero), S2 et S3 intégrés · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29` | **Base** : tête `f3ebb10`
+
+**Quoi** — S1 devient l'image principale (champ `image`) ; S2 est inséré à la fin de « Faut-il signaler une image générée ou retouchée par IA en Suisse ? », après les trois questions (produit, personnes, contexte de diffusion) ; S3 dans « Couleur, matière, finition, dimensions, accessoires et défauts », après le paragraphe sur la matière et la finition. Alt et légendes fixés par la mission. S4 n'est pas intégré. Aucune prose modifiée ; les 5 marqueurs `[TERRAIN SÉBASTIEN — …]` restent en place.
+
+**Pourquoi** — Sélection visuelle verrouillée par Laurent le 30/09 (`AI_ACT_VISUAL_FINAL_REVIEW_2026-09-30.md` : S1, S2, S3 KEEP, S4 HOLD), en vue de la passe de Sébastien sur la Preview.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json`, `public/images/blog/images-ia-ecommerce-suisse/cover.avif`, `public/images/blog/images-ia-ecommerce-suisse/suisse-ue-plateforme.avif`, `public/images/blog/images-ia-ecommerce-suisse/fidelite-produit.avif`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38). Sur la Preview : hero, `og:image` et image de l'`Article` JSON-LD renseignés.
+
+**Vérifié**
+- Pack `AI_ACT_VISUAL_HANDOFF_2026-09-30.zip` : SHA-256 et tailles des PNG identiques au rapport (S1 `21b3d9d2…92c66`, 485 533 octets ; S2 `e69c2030…3babd`, 239 899 octets ; S3 `34e8b02d…22461`, 398 342 octets). PNG sources conservés hors dépôt, non modifiés.
+- Dérivés AVIF 1600 × 900 sans recadrage, qualité 70, 4:4:4 (même pipeline que le pilier A, convention `/images/blog/<slug>/`) : S1 18 133 octets (PSNR 48,4 dB), S2 11 043 octets (49,3 dB), S3 37 218 octets (45,9 dB) ; comparaison à 1:1 sans différence visible.
+- `next start` local : les trois images en 200 `image/avif`, ratio 16:9 complet en 1440 px (hero 848 × 477, corps 662 × 372) et en 390 px (358 × 201) ; S3 garde ses quatre variantes, S2 ses trois panneaux ; 0 débordement, 0 erreur de page ; pas de FAQPage (0 FAQ) ; canonical et absence de balise `robots` inchangés ; `og:image` = URL absolue de `cover.avif` ; `Article.image` = `/images/blog/images-ia-ecommerce-suisse/cover.avif`.
+- `verifier-json` 187 valides ; `tsc` vert ; Vitest 342/342 ; `next build` vert, 384 pages ; `e2e/seo.spec.ts` + `internal-links-all.spec.ts` : 243 réussis, les 8 échecs préexistants de `main`, inchangés.
+
+**Supposé** — [Inférence] Provenance : illustrations générées par IA, enregistrées `model_generated=true` le 30/09/2026 selon le rapport (source fournie, non vérifiable dans les fichiers) ; modèle, identifiant de génération et prompt non embarqués ; aucune métadonnée XMP, IPTC ou C2PA. Cela repose sur des schémas observés.
+
+**Non regardé** — Alt du hero : le gabarit impose le titre de l'article ; l'alt demandé pour S1 n'est pas applicable sans modifier ce gabarit commun, non touché. `twitter:image` : image générique du layout, comme tous les articles. AVIF en `og:image` sur les réseaux sociaux : non vérifié. Interprétation ajoutée par `f3ebb10` en situation A (point 13) : non modifiée, à valider avant publication. Preview (SSO). Adaptation de-ch (D38).
+
+**Suite** — Preview de la nouvelle tête à transmettre à Sébastien, avec les 5 marqueurs terrain et la question Suisse / UE ; S4 seulement sur GO de Laurent.
+
+---
+
+## 2026-09-29 · Cluster AI Act — article Suisse (S), PR brouillon · Claude de Laurent
+
+**Chantier** : cluster éditorial AI Act / images produit, article Suisse (S) | **PR** : #60, brouillon, `DO_NOT_MERGE` | **Branche** : `seo/images-ia-ecommerce-suisse-2026-09-29`, indépendante du pilier A | **Base** : `main` `e2e1027`
+
+**Quoi** — Création de `content/blog/fr/images-ia-ecommerce-suisse.json` depuis `main`, à partir du texte transmis par Laurent le 29/09 (3 301 mots de corps éditorial, 8 cas pratiques, 5 marqueurs `[TERRAIN SÉBASTIEN — …]` conservés tels quels, aucune FAQ). Micro-corrections seulement :
+- S1 (chapeau) ; S2 (Zalando) et S3 (Amazon) alignés sur les pages vérifiées ; S4 (« NO EVIDENCE FOUND » remplacé, prose et tableau) ;
+- renvois « dossier » et « corpus » : 20 → 1 (la formulation S4 imposée garde « corpus analysé ») ;
+- Google Merchant Center (« toutes les images créées par IA générative », et non « certaines ») ;
+- titre officiel de la Convention-cadre ; calendrier suisse ramené à la lettre de la source du SECO (avant-projet destiné à la consultation élaboré au printemps 2027) ; définition du déployeur alignée sur l'art. 3(4) ;
+- lien vers le pilier A remplacé par un renvoi sans `href`.
+
+Section « Sources » ajoutée, limitée aux sources utilisées (16 liens : droit suisse, guidance officielle suisse, cadre européen, plateformes, standards).
+
+**Pourquoi** — Mission « cluster AI Act » de Laurent (29/09) : l'article Suisse donne les couches de règles à vérifier, dans l'ordre Suisse → fidélité produit → personnes → UE → plateformes.
+
+**Fichiers** — `content/blog/fr/images-ia-ecommerce-suisse.json` (création), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`
+
+**Effet attendu** — Aucun avant la publication coordonnée (D38 ; version de-ch à adapter juridiquement, pas à traduire). La PR n'est pas à fusionner en l'état.
+
+**Vérifié**
+- Revue juridique ciblée des 7 points sur les sources primaires du 29/09 (Fedlex, SECO/Portail PME, ChF, OFJ, DETEC, PFPDT, règlement (UE) 2024/1689, lignes directrices). Point 3 (CO) : OMIT ; les autres sont confirmés, avec le calendrier ajusté à la lettre de la source.
+- Plateformes et standards : Google Merchant Center (14743464, 6324350, 17231950), Amazon (G1881, GFXHCHYZRGJRBZA5, GGW8U76SSNTRTBX7, lus par l'API du Help Hub), Zalando (image et vidéo, mises à jour le 31/08/2026), IPTC Digital Source Type, C2PA 2.4.
+- `verifier-json` 187 fichiers valides ; `tsc` vert ; Vitest 342/342 ; ESLint sans objet sur le fichier modifié (JSON) ; `next build` vert, 384 pages.
+- `next start` local : article en 200, canonical `https://www.packshot-creator.com/fr/blog/images-ia-ecommerce-suisse`, aucune balise `robots`, JSON-LD Organization, BreadcrumbList et Article (`datePublished` = `dateModified` = 2026-09-29), pas de FAQPage (pas de FAQ), URL présente au sitemap (326 URL), 5 marqueurs visibles, 0 débordement en 1440 et 390 px, aucun lien vers `/fr/blog/ai-act-images-produit` ni vers `/fr/packshot-e-commerce`.
+- Liens : 0 interne ; 16 externes, 15 en 200, EUR-Lex 202 (défi anti-robots, non concluant). `e2e/seo.spec.ts` et `e2e/internal-links-all.spec.ts` en local : 243 réussis, les 8 mêmes échecs préexistants que sur `main`.
+**Supposé** — [Inférence] La page SECO du 23/09/2026 (texte : « au printemps 2027 ») prime sur les pages de la ChF, de l'OFJ et de l'OFCOM, qui disent encore « d'ici à la fin 2026 ». Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) ; `www.packshot-creator.com` (R4) ; version de-ch (DSG, UWG, OR, EDÖB) ; visuels ; tableau des signatures du traité n° 225 (coe.int répond 403) ; relecture de la prose et de la signature par Sébastien.
+
+**Passe éditoriale du 30/09** (relecture humaine de Laurent, #60) — une micro-correction : seconde occurrence, redondante, de « Une politique de plateforme n’est ni une loi suisse ni, par elle-même, une obligation de l’AI Act. » retirée après le tableau ; la première, avant Google, Amazon et Zalando, est conservée. Aucun autre passage modifié ; 5 marqueurs inchangés. `verifier-json`, `tsc` et `next build` rejoués.
+
+**Micro-corrections du 30/09, mission « fermeture D16 et micro-corrections A/S »** — section « Quand l’AI Act peut concerner une entreprise suisse » seulement, d’après les lignes directrices C(2026) 5054 (PDF relu le 30/09) et le règlement (UE) 2024/1689 :
+- fournisseur défini selon l’art. 3(3) (« développe ou fait développer […] à titre onéreux ou gratuit ») ; déployeur rattaché à l’art. 3(4) ;
+- autorité du déployeur : décision d’utiliser le système et de sa manière, sans exigence de contrôle technique (point 12) ; le « contrôle effectif du système et du workflow » n’est plus présenté comme critère ;
+- territorialité : art. 2(1)(a) ajouté ; points 10 (fournisseur de pays tiers, usage aval fortuit insuffisant) et 13 (déployeur de pays tiers qui prévoit la diffusion dans l’Union, y compris par publication sur l’internet accessible mondialement) ; exemple direct du point 14 (situation B ; prestataires et agence, situation D) ;
+- niveaux explicites ajoutés sur chaque phrase nouvelle : [Texte], [Exemple direct Commission], [Interprétation] ; « NON TRANCHÉ » inchangé ;
+- sources : points 10, 12, 13 et 14 ajoutés à la ligne des lignes directrices.
+Aucun cas terrain inventé : le marqueur « workflow Suisse / UE » reste en place en attente de la question à Sébastien, et sera supprimé à défaut de réponse. Les quatre autres marqueurs sont inchangés. Aucune autre section modifiée.
+
+**Suite** — Réponses terrain de Sébastien sur les 5 marqueurs (passe ciblée) ; revue visuelle ; maillage entrant au moment de la publication coordonnée ; lien vers le pilier A à activer à sa publication.
 
 ---
 

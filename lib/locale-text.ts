@@ -29,3 +29,19 @@ export function pickL(
   if (lang === 'en') return obj.en;
   return obj.fr;
 }
+
+/**
+ * Sélecteur pour une liste FR accompagnée de traductions parallèles optionnelles
+ * (ex. `useCases` + `useCasesI18n` des catalogues machines).
+ * Sans traduction pour la langue demandée, ou si la longueur diffère de la liste
+ * FR, renvoie la liste FR d'origine : jamais de liste vide ni tronquée.
+ */
+export function pickListL(
+  lang: string,
+  fr: string[],
+  i18n?: { en: string[]; 'de-ch': string[] },
+): string[] {
+  if (!i18n || lang === 'fr') return fr;
+  const list = lang === 'de-ch' ? i18n['de-ch'] : lang === 'en' ? i18n.en : undefined;
+  return list && list.length === fr.length ? list : fr;
+}

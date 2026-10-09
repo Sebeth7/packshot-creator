@@ -4,12 +4,16 @@ import PackshotLandingTemplate, { type PackshotLandingConfig } from '@/component
 import { Wrench, RotateCw, Lightbulb, Repeat, Plug } from 'lucide-react';
 import { buildLanguages } from '@/lib/hreflang';
 
+// Badge du hero avec sa version de-ch : le gabarit le lit par pickL, qui sait servir
+// 'de-ch' ; objet déclaré à part pour ne pas modifier le type partagé du gabarit.
+const HERO_BADGE = { fr: 'Industrie & Technique', en: 'Industry & Technical', 'de-ch': 'Industrie & Technik' };
+
 const CONFIG: PackshotLandingConfig = {
   namespace: 'packshotIndustriel',
   slug: 'packshot-industriel',
   benefitImageSlug: 'industriel',
   heroIcon: Wrench,
-  heroBadge: { fr: 'Industrie & Technique', en: 'Industry & Technical' },
+  heroBadge: HERO_BADGE,
   benefitIcons: [Wrench, RotateCw, Lightbulb, Repeat, Plug],
   machineIds: ['alphashot-xl-pro-v2', 'alphashot-pro-g2'],
   faqCount: 3,

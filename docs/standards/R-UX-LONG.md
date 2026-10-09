@@ -1,7 +1,8 @@
 # R-UX-LONG — Navigation des pages longues
 
 **Décision** : D44 (`docs/seo-geo/DECISIONS.md`), Laurent, 03/10/2026.
-**Statut** : principe approuvé le 03/10/2026 ; inscrit par #87 (brouillon au 03/10) ; appliqué à la fusion des PR de mise en œuvre : #84 (forme B), #85 (forme A, registre) ; contrôle en CI : #86.
+**Statut** : principe approuvé le 03/10/2026 ; inscrit par #87 (fusionnée le 03/10, `17a4248`) ; appliqué depuis la fusion des PR de mise en œuvre : #84 (forme B, fusionnée le 06/10 à 10:26 UTC, `1e0901b`), #85 (forme A, registre, fusionnée le 06/10 à 17:46 UTC, `30482a0`) ; contrôle en CI : #86 (fusionnée le 04/10 à 06:23 UTC, `0ac062b`). Horodatages : `merged_at` GitHub, relevé du 07/10.
+**Périmètre de la forme A au 06/10** : 93 pages équipées de la barre commune par #85 (44 guides, 39 fiches, 4 articles dédiés, 3 IA photo produit, 3 solutions ; recompte sur build local de la tête `0d2633f`, description de #85). 3 pages Mode gardent leur barre d'origine.
 **Portée** : toutes les pages du site, existantes et futures, FR, EN et de-ch, produites par les deux environnements Claude.
 **Mise en œuvre** : registre `data/navigation/pages-longues.ts` ; composants `components/navigation/SommaireCollant.tsx` (forme A) et `components/blog/TableOfContents.tsx` (forme B).
 **Mesures de référence** : audit du 03/10/2026, 309 URL à 1 440 et 390 px.
@@ -16,7 +17,7 @@ Trois comportements, jamais cumulés sur une page :
 
 | Forme | Quoi | Composant | Où aujourd'hui |
 |---|---|---|---|
-| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, deux articles dédiés ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
+| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, quatre articles dédiés (`studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026`, FR et EN) ; 93 pages au 06/10 (#85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
 | **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` | Articles du blog (gabarit commun) et quatre pages dédiées |
 | **C** | Sommaire statique dans la page, ou pas de navigation persistante | — | F5 (choix délibéré), pages courtes, pages de liste, outils, pages légales |
 
@@ -61,6 +62,8 @@ Classement : **ADOPT** (intégration directe) ; **ADAPT** (gabarit à adapter : 
 | Mouvement réduit | Transition d'opacité désactivée |
 | Tablette paysage (1 024 px tactile) | Barre rendue ; l'appui sur un numéro suit l'ancre ; le libellé actif reste visible |
 
+**Réserve constatée le 07/10/2026 (QA `www` après la fusion de #85)** — La surbrillance de la section active est parfois décalée par rapport à la section lue. Diagnostic P2 **proposé**, non arbitré ; aucune correction autorisée à ce jour. Le comportement attendu ci-dessus (« Section active ») est inchangé : la réserve décrit un écart possible de la mise en œuvre, pas une modification de la règle.
+
 ### 3.2 Forme B — sommaire latéral du blog
 
 | Point | Règle |
@@ -83,7 +86,7 @@ Sommaire de page éventuel, liens « Retour au sommaire » si la page en a. Aucu
 | Cas | Traitement |
 |---|---|
 | Page sous expérience SEO (F5 jusqu'au 23/11/2026 ; Mode et hub mode-textile jusqu'au 26/11/2026 ; accueil et M5 jusqu'au 28/10/2026) | HOLD : aucune modification de la page, navigation comprise |
-| Page touchée par une PR éditoriale ouverte | HOLD jusqu'à la clôture de la PR (registre : #27, #64, #91). Exception temporaire, jamais permanente : à la clôture, contrôle sur `main` et retrait de l'exception si la page reste éligible |
+| Page touchée par une PR éditoriale ouverte | HOLD jusqu'à la clôture de la PR (registre au 07/10 : #27, #64). Exception temporaire, jamais permanente : à la clôture, contrôle sur `main` et retrait de l'exception si la page reste éligible. Exemple appliqué : les 3 exceptions de #91 retirées le 06/10 (`4b8c12a`), après la fusion de #91 (`3b427d7`) |
 | Page d'un pilote commercial coordonné (Studios : Landings & Hubs, Maillage V2) | HOLD jusqu'à la validation spécifique du chantier commercial |
 | Pages légales, de liste, d'outil, formulaires | EXCLUDE |
 | `industrie-defense` | EXCLUDE (D10) |

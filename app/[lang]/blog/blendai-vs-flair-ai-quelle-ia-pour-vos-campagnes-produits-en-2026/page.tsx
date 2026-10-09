@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 import { BookOpen, Clock, User, ArrowRight, Sparkles } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
-import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import { buildLanguages } from '@/lib/hreflang';
 
 /* ─────────────────────────── Metadata ─────────────────────────── */
@@ -11,7 +11,7 @@ import { buildLanguages } from '@/lib/hreflang';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const title = 'BlendAI vs Flair.ai : Quelle IA pour Vos Campagnes Produits en 2026 ?';
-  const description = 'Comparatif complet BlendAI vs Flair.ai. E-commerce catalogues vs campagnes marketing. Use cases, qualité rendu, pricing, workflow. Guide objectif 2026.';
+  const description = "BlendAI ou Flair.ai : les critères pour choisir un outil d'IA de visuels produits selon votre usage, catalogue e-commerce ou campagnes marketing, en 2026.";
 
   return {
     title,
@@ -48,22 +48,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 /* ─────────────────────────── TOC ─────────────────────────── */
 
 const headings = [
-  { id: '1-blendai-vs-flairai-positionnements-radicalement-differents', text: '1. BlendAI vs Flair.ai : Positionnements Radicalement Différents', level: 2 },
-  { id: 'blendai-lia-specialisee-e-commerce-catalogues', text: 'BlendAI : L\'IA Spécialisée E-commerce Catalogues', level: 3 },
-  { id: 'flairai-lia-creative-pour-campagnes-marketing', text: 'Flair.ai : L\'IA Créative pour Campagnes Marketing', level: 3 },
-  { id: 'la-difference-fondamentale', text: 'La Différence Fondamentale', level: 3 },
-  { id: '2-comparaison-fonctionnalites-4-criteres-critiques', text: '2. Comparaison Fonctionnalités : 4 Critères Critiques', level: 2 },
-  { id: '21-use-cases-principaux', text: '2.1 Use Cases Principaux', level: 3 },
-  { id: '22-qualite-rendu-fidelite-vs-creativite', text: '2.2 Qualité Rendu : Fidélité vs Créativité', level: 3 },
-  { id: '23-vitesse-et-volume', text: '2.3 Vitesse et Volume', level: 3 },
-  { id: '24-integration-workflow', text: '2.4 Intégration Workflow', level: 3 },
-  { id: '3-tableau-comparatif-complet', text: '3. Tableau Comparatif Complet', level: 2 },
-  { id: '4-cas-dusage-quand-choisir-blendai-vs-flairai', text: '4. Cas d\'Usage : Quand Choisir BlendAI vs Flair.ai ?', level: 2 },
-  { id: 'quand-choisir-blendai', text: 'Quand Choisir BlendAI ?', level: 3 },
-  { id: 'quand-choisir-flairai', text: 'Quand Choisir Flair.ai ?', level: 3 },
+  { id: '1-blendai-vs-flairai-positionnements-radicalement-differents', text: '1. Deux Usages Différents', level: 2 },
+  { id: 'blendai-lia-specialisee-e-commerce-catalogues', text: 'BlendAI : les Visuels Catalogue', level: 3 },
+  { id: 'flairai-lia-creative-pour-campagnes-marketing', text: 'Flair.ai', level: 3 },
+  { id: 'la-difference-fondamentale', text: 'Les Critères à Comparer', level: 3 },
+  { id: '2-comparaison-fonctionnalites-4-criteres-critiques', text: '2. Tester sur Vos Produits', level: 2 },
+  { id: '4-cas-dusage-quand-choisir-blendai-vs-flairai', text: '3. Cas d\'Usage', level: 2 },
+  { id: 'quand-choisir-blendai', text: 'Production Régulière de Visuels Catalogue', level: 3 },
+  { id: 'quand-choisir-flairai', text: 'Campagnes Ponctuelles', level: 3 },
   { id: 'approche-complementaire-blendai-catalogue-flairai-campagnes', text: 'Approche Complémentaire', level: 3 },
-  { id: '5-approche-hybride-packshotcreator-hardware-ia-roi-maximal', text: '5. Approche Hybride PackshotCreator', level: 2 },
-  { id: '6-faq-comparatif-blendai-vs-flairai', text: '6. FAQ Comparatif BlendAI vs Flair.ai', level: 2 },
+  { id: '5-approche-hybride-packshotcreator-hardware-ia-roi-maximal', text: '4. Approche PackshotCreator', level: 2 },
+  { id: '6-faq-comparatif-blendai-vs-flairai', text: '5. FAQ BlendAI et Flair.ai', level: 2 },
   { id: 'conclusion-choisir-en-fonction-de-votre-besoin-reel', text: 'Conclusion', level: 2 },
 ];
 
@@ -72,23 +67,23 @@ const headings = [
 const faqItems = [
   {
     question: 'Peut-on utiliser BlendAI ET Flair.ai simultanément ?',
-    answer: 'Oui, l\'approche complémentaire est pertinente : BlendAI pour catalogue quotidien (cohérence, volume) + Flair.ai pour campagnes ponctuelles (créativité, storytelling).',
+    answer: 'Les deux outils peuvent servir des usages distincts : l\'un pour le catalogue, l\'autre pour les campagnes. Vérifiez alors les coûts cumulés et les conditions d\'usage de chaque outil.',
   },
   {
     question: 'Flair.ai peut-il remplacer BlendAI pour catalogues ?',
-    answer: 'Non, Flair.ai manque de fonctionnalités critiques pour catalogues : batch processing, cohérence absolue, API automatisation, fidélité couleurs 100%.',
+    answer: 'Cela dépend de vos exigences de fidélité, de cohérence, de volume et d\'intégration. Nous ne détaillons pas les fonctionnalités de Flair.ai, faute de source vérifiée : testez les outils sur un échantillon de vos produits.',
   },
   {
     question: 'BlendAI peut-il faire des visuels créatifs comme Flair ?',
-    answer: 'Oui, mais avec une approche différente : BlendAI privilégie la cohérence et fidélité produit vs Flair qui privilégie la créativité et liberté artistique.',
+    answer: 'Les possibilités de mise en scène de BlendAI se vérifient sur vos propres produits, lors d\'une démonstration.',
   },
   {
     question: 'Quel est le prix exact de BlendAI ?',
-    answer: 'BlendAI propose des forfaits entreprise sur devis adaptés à votre volume (généralement 150-500€/mois). Contactez-nous pour un devis personnalisé.',
+    answer: 'BlendAI est proposé sur devis, selon votre volume. Contactez-nous pour un devis personnalisé.',
   },
   {
     question: 'Flair.ai a-t-il une API pour automatisation ?',
-    answer: 'Non, Flair.ai n\'a pas d\'API (janvier 2026). C\'est une limitation majeure pour production industrielle. BlendAI propose une API REST complète.',
+    answer: 'Nous ne détaillons pas l\'offre de Flair.ai, faute de source vérifiée : reportez-vous à la documentation de l\'éditeur. Pour BlendAI, les possibilités d\'intégration se vérifient avec nous selon vos outils.',
   },
 ];
 
@@ -118,7 +113,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
           colorClass: 'bg-very-peri-500/15 text-very-peri-300',
         }}
         title="BlendAI vs Flair.ai : Quelle IA pour Vos Campagnes Produits en 2026 ?"
-        subtitle="Comparatif complet BlendAI vs Flair.ai. E-commerce catalogues vs campagnes marketing. Use cases, qualité rendu, pricing, workflow. Guide objectif 2026."
+        subtitle="BlendAI ou Flair.ai : les critères pour choisir un outil d'IA de visuels produits selon votre usage, catalogue e-commerce ou campagnes marketing, en 2026."
       >
         <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-future-dusk-300">
           <span className="px-3 py-1 rounded-full bg-very-peri-500/20 text-very-peri-300 font-medium text-xs uppercase tracking-wide">
@@ -164,49 +159,26 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
 
               {/* Intro */}
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Le marché de l'IA photo produit s'est considérablement diversifié en 2025-2026, avec l'émergence d'outils spécialisés répondant à des besoins distincts. <strong>BlendAI</strong> et <strong>Flair.ai</strong> illustrent parfaitement cette diversification : BlendAI se positionne comme la solution de référence pour la production de catalogues e-commerce cohérents et industriels, tandis que Flair.ai cible les équipes marketing cherchant à créer des campagnes visuelles créatives et percutantes.
+                <strong>BlendAI</strong> et <strong>Flair.ai</strong> sont deux outils d'IA appliqués aux visuels produits. Le choix entre eux dépend d'abord de votre usage : production régulière de visuels pour un catalogue e-commerce, ou création ponctuelle de visuels de campagne.
               </p>
               <p className="mb-8 leading-relaxed text-future-dusk-600">
-                Cette distinction fondamentale détermine tout : cas d'usage, qualité de rendu, pricing, workflow. Dans ce comparatif détaillé, nous analysons objectivement les forces et limites de chaque solution pour vous aider à choisir l'outil adapté à votre besoin réel : <strong>production catalogue quotidienne</strong> (BlendAI) ou <strong>campagnes marketing ponctuelles</strong> (Flair.ai) ?
+                Ce guide ne publie ni caractéristique, ni tarif, ni performance de Flair.ai sans source vérifiée, et ne reprend pour BlendAI aucun chiffre de performance non vérifié. Il propose les critères à examiner et la méthode pour comparer les deux outils sur vos propres produits.
               </p>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 1 */}
               <h2 id="1-blendai-vs-flairai-positionnements-radicalement-differents" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                1. BlendAI vs Flair.ai : Positionnements Radicalement Différents
+                1. Deux Usages Différents
               </h2>
 
               <h3 id="blendai-lia-specialisee-e-commerce-catalogues" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                BlendAI : L'IA Spécialisée E-commerce Catalogues
+                BlendAI : les Visuels Catalogue
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI</strong> est une intelligence artificielle conçue spécifiquement pour la <strong>production industrielle de visuels e-commerce</strong>. Son ADN : cohérence, volume, qualité professionnelle.
+                Sur ce site, <strong>BlendAI</strong> est présenté pour la déclinaison de packshots en visuels e-commerce (arrière-plans, mises en scène) destinés aux fiches produits. Ses capacités, ses intégrations et son tarif, sur devis, se vérifient avec nous sur vos propres produits.
               </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Positionnement :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Cible :</strong> E-commerce professionnels, industriels, distributeurs</li>
-                <li className="text-future-dusk-600"><strong>Use case principal :</strong> Production de catalogues produits (packshots, backgrounds, retouche)</li>
-                <li className="text-future-dusk-600"><strong>Philosophie :</strong> Fidélité produit 100%, cohérence marque absolue, volume industriel</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces clés :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Fidélité produit :</strong> Préserve 100% des caractéristiques du produit source (couleurs, textures, proportions)</li>
-                <li className="text-future-dusk-600"><strong>Cohérence catalogue :</strong> Même style lifestyle sur 10 000 produits (lumière, décor, composition identiques)</li>
-                <li className="text-future-dusk-600"><strong>Batch processing :</strong> Traitement de 1 000+ images simultanément avec qualité constante</li>
-                <li className="text-future-dusk-600"><strong>Intégration workflow :</strong> API REST, plugins Adobe, connexion native studios Orbitvu</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage idéal :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Catalogues e-commerce (fiches produits, landing pages)</li>
-                <li className="text-future-dusk-600">Migrations visuelles (refonte complète catalogue 5 000 produits)</li>
-                <li className="text-future-dusk-600">Production quotidienne (50-200 nouveaux produits/semaine)</li>
-                <li className="text-future-dusk-600">Cohérence marque stricte (chartes graphiques rigoureuses)</li>
-              </ul>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Tarification :</strong> Forfaits entreprise sur devis (150-500€/mois selon volume)
-              </p>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
                 <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Découvrir BlendAI et l'IA photo produit
                 </Link>
@@ -215,406 +187,90 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
               <hr className="my-8 border-neutral-200" />
 
               <h3 id="flairai-lia-creative-pour-campagnes-marketing" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Flair.ai : L'IA Créative pour Campagnes Marketing
+                Flair.ai
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Flair.ai</strong> est une plateforme d'IA générative positionnée sur la <strong>création de visuels marketing lifestyle</strong> et campagnes publicitaires. Son ADN : créativité, storytelling, impact visuel.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Positionnement :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Cible :</strong> Équipes marketing, agences créatives, marques lifestyle</li>
-                <li className="text-future-dusk-600"><strong>Use case principal :</strong> Campagnes publicitaires, contenus réseaux sociaux, prototyping créatif</li>
-                <li className="text-future-dusk-600"><strong>Philosophie :</strong> Liberté créative, scènes lifestyle immersives, storytelling produit</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces clés :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Créativité visuelle :</strong> Génération de scènes lifestyle complexes (mannequins, décors, lumières)</li>
-                <li className="text-future-dusk-600"><strong>Prototyping rapide :</strong> Tests créatifs multiples (A/B testing campagnes)</li>
-                <li className="text-future-dusk-600"><strong>Templates lifestyle :</strong> Bibliothèque de 500+ scènes prédéfinies (mode, cosmétiques, food)</li>
-                <li className="text-future-dusk-600"><strong>Simplicité d'usage :</strong> Interface intuitive, résultats en 30-60 secondes</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage idéal :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Campagnes publicitaires Meta/Google Ads</li>
-                <li className="text-future-dusk-600">Contenus réseaux sociaux (Instagram, TikTok, Pinterest)</li>
-                <li className="text-future-dusk-600">Prototyping créatif (validation concepts avant shooting)</li>
-                <li className="text-future-dusk-600">Lancements produits (visuels impactants, storytelling)</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Tarification :</strong> 30-200€/mois selon nombre de générations (plans individuels et équipes)
+                Nous ne détaillons pas ici les fonctionnalités, les limites ni les tarifs de <strong>Flair.ai</strong> : faute de source vérifiée, reportez-vous directement à l'éditeur.
               </p>
 
               <hr className="my-8 border-neutral-200" />
 
               <h3 id="la-difference-fondamentale" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                La Différence Fondamentale
+                Les Critères à Comparer
               </h3>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Flair.ai']}
-                rows={[
-                  { label: 'Use case principal', values: ['Catalogues e-commerce', 'Campagnes marketing'] },
-                  { label: 'Priorité n°1', values: ['Fidélité produit 100%', 'Impact créatif'] },
-                  { label: 'Fréquence usage', values: ['Quotidien (production)', 'Ponctuel (campagnes)'] },
-                  { label: 'Volume', values: ['Industriel (1000+ prod)', 'Ciblé (10-50 visuels)'] },
-                  { label: 'Cohérence', values: ['Absolue (même style 100%)', 'Variable (créativité)'] },
-                ]}
-              />
-
-              <div className="mt-6">
-                <Callout type="info" title="Positionnement clé">
-                  <p className="mb-2"><strong>BlendAI</strong> = Production catalogue quotidienne, cohérence absolue, volumes industriels.</p>
-                  <p><strong>Flair.ai</strong> = Campagnes marketing ponctuelles, créativité maximale, storytelling produit.</p>
-                </Callout>
-              </div>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li className="text-future-dusk-600"><strong>Fidélité au produit source :</strong> couleurs, textures, proportions, à contrôler sur vos propres produits</li>
+                <li className="text-future-dusk-600"><strong>Cohérence d'une série :</strong> même rendu d'un produit à l'autre</li>
+                <li className="text-future-dusk-600"><strong>Volume :</strong> nombre de visuels à produire et possibilité de traitement par lots</li>
+                <li className="text-future-dusk-600"><strong>Intégration :</strong> export et connexion à vos outils (PIM, DAM, CMS)</li>
+                <li className="text-future-dusk-600"><strong>Coût :</strong> selon votre volume et la formule retenue</li>
+                <li className="text-future-dusk-600"><strong>Conditions d'usage :</strong> droits sur les visuels générés</li>
+              </ul>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 2 */}
               <h2 id="2-comparaison-fonctionnalites-4-criteres-critiques" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                2. Comparaison Fonctionnalités : 4 Critères Critiques
+                2. Tester sur Vos Produits
               </h2>
-
-              <h3 id="21-use-cases-principaux" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.1 Use Cases Principaux
-              </h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Production Catalogue E-commerce</h4>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI excelle dans la <strong>production quotidienne de visuels e-commerce standardisés</strong> :
+                Les présentations d'éditeurs et les comparatifs ne remplacent pas un test. Préparez un échantillon représentatif de votre catalogue (matières difficiles, couleurs à respecter, objets réfléchissants), soumettez-le aux outils envisagés et comparez les résultats selon les critères ci-dessus.
               </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités catalogue :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Packshots fond blanc :</strong> Détourage précision 99%+, respect absolu couleurs</li>
-                <li className="text-future-dusk-600"><strong>Backgrounds e-commerce :</strong> Fonds lifestyle cohérents (blanc, studio, contextuels)</li>
-                <li className="text-future-dusk-600"><strong>Retouche automatisée :</strong> Suppression défauts, harmonisation couleurs, ombres/reflets</li>
-                <li className="text-future-dusk-600"><strong>Batch processing :</strong> Traitement de 1 000+ produits en une session (3-5h)</li>
-                <li className="text-future-dusk-600"><strong>Style guide :</strong> Définition d'un style marque appliqué à tous les produits</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Temps :</strong> 2-3 minutes par produit (pour 5 visuels) — <strong>Volume :</strong> 50-200 produits/jour possible
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Flair.ai : Campagnes Marketing Créatives</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Flair.ai excelle dans la <strong>création de visuels marketing lifestyle percutants</strong> :
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Fonctionnalités campagnes :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Scènes lifestyle :</strong> Génération de mises en scène complexes (mannequins, décors, lumières)</li>
-                <li className="text-future-dusk-600"><strong>Storytelling produit :</strong> Contextes narratifs (ex : parfum dans salle de bain luxueuse)</li>
-                <li className="text-future-dusk-600"><strong>Templates créatifs :</strong> 500+ scènes prédéfinies (mode, cosmétiques, food, lifestyle)</li>
-                <li className="text-future-dusk-600"><strong>A/B testing créatif :</strong> Génération de 5-10 variantes pour optimisation</li>
-                <li className="text-future-dusk-600"><strong>Prototyping :</strong> Tests rapides avant shootings coûteux</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Temps :</strong> 5-10 minutes pour générer 10 variantes — <strong>Volume :</strong> 10-50 visuels par campagne (usage ponctuel)
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> pour production catalogue quotidienne (volume, cohérence).<br />
-                <strong>Flair.ai gagne</strong> pour campagnes marketing ponctuelles (créativité, storytelling).
-              </p>
-
-              <Callout type="success" title="Recommandation use cases">
-                <p className="mb-2"><strong>Production catalogue (quotidien)</strong> → <strong>BlendAI</strong> (cohérence, volume, automatisation)</p>
-                <p><strong>Campagnes marketing (ponctuel)</strong> → <strong>Flair.ai</strong> (créativité, impact, storytelling)</p>
-              </Callout>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.2 */}
-              <h3 id="22-qualite-rendu-fidelite-vs-creativite" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.2 Qualité Rendu : Fidélité vs Créativité
-              </h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Fidélité Produit 100%</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                BlendAI utilise une approche <strong>hybride</strong> : le produit source est préservé à 100%, seul l'environnement est généré par IA.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Processus :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Isolation produit :</strong> Détourage précision 99%+ (préservation couleurs, textures, proportions)</li>
-                <li className="text-future-dusk-600"><strong>Génération environnement :</strong> IA crée background, lumières, ombres, reflets</li>
-                <li className="text-future-dusk-600"><strong>Intégration seamless :</strong> Produit intégré dans environnement (perspective, lumière cohérente)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Résultat :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Fidélité produit :</strong> 100% (couleurs, proportions, détails identiques à la source)</li>
-                <li className="text-future-dusk-600"><strong>Photoréalisme :</strong> Excellent (environnement IA indiscernable de photo réelle)</li>
-                <li className="text-future-dusk-600"><strong>Cohérence :</strong> Absolue (même style appliqué à 10 000 produits)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas critiques :</strong></p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600"><strong>Bijoux :</strong> Pierres précieuses (couleur exacte), brillance, reflets</li>
-                <li className="text-future-dusk-600"><strong>Cosmétiques :</strong> Couleur packaging précise (pantone exact), texture matières</li>
-                <li className="text-future-dusk-600"><strong>Mode luxe :</strong> Couleur textile fidèle, tombé du tissu préservé</li>
-              </ul>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Flair.ai : Créativité et Storytelling</h4>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Flair.ai utilise une approche <strong>générative complète</strong> : le produit ET l'environnement sont générés/transformés par IA pour créer une scène lifestyle cohérente.
-              </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Résultat :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Fidélité produit :</strong> 90-95% (couleurs approximatives, proportions légèrement modifiées)</li>
-                <li className="text-future-dusk-600"><strong>Impact créatif :</strong> Excellent (scènes lifestyle immersives, storytelling fort)</li>
-                <li className="text-future-dusk-600"><strong>Cohérence :</strong> Variable (chaque génération unique, créativité prioritaire)</li>
-              </ul>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Verdict Qualité Rendu :</strong></p>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Flair.ai']}
-                rows={[
-                  { label: 'Fidélité produit', values: ['100%', '90-95%'] },
-                  { label: 'Précision couleurs', values: ['Exacte (pantone)', 'Approximative'] },
-                  { label: 'Photoréalisme', values: ['Excellent', 'Bon'] },
-                  { label: 'Impact créatif', values: ['Standard', 'Excellent'] },
-                  { label: 'Storytelling', values: ['Limité', 'Fort'] },
-                  { label: 'Cohérence série', values: ['Absolue', 'Variable'] },
-                ]}
-              />
-
-              <p className="mt-4 mb-6 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> sur fidélité produit et cohérence (critique pour e-commerce).<br />
-                <strong>Flair.ai gagne</strong> sur créativité et storytelling (critique pour campagnes marketing).
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.3 */}
-              <h3 id="23-vitesse-et-volume" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.3 Vitesse et Volume
-              </h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Batch Processing Industriel</h4>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Upload :</strong> Jusqu'à 10 000 images en une session</li>
-                <li className="text-future-dusk-600"><strong>Traitement :</strong> 1 000 produits en 3-5h (30-60s par produit)</li>
-                <li className="text-future-dusk-600"><strong>Parallélisation :</strong> Traitement simultané de multiples produits</li>
-                <li className="text-future-dusk-600"><strong>API :</strong> Automatisation complète (intégration PIM/DAM)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cas d'usage volume :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Migration catalogue : 5 000 produits en 2-3 jours</li>
-                <li className="text-future-dusk-600">Production quotidienne : 50-200 nouveaux produits/jour</li>
-                <li className="text-future-dusk-600">Refonte visuelle : Harmonisation 10 000 visuels anciens</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps moyen :</strong> 30-60 secondes par produit (5 visuels générés)
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Flair.ai : Génération Rapide Ciblée</h4>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Upload :</strong> 1 produit à la fois (pas de batch processing)</li>
-                <li className="text-future-dusk-600"><strong>Traitement :</strong> 10-30 secondes par génération</li>
-                <li className="text-future-dusk-600"><strong>Variantes :</strong> Génération de 5-10 variantes par produit</li>
-                <li className="text-future-dusk-600"><strong>Pas d'API :</strong> Usage manuel (plateforme web uniquement)</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps moyen :</strong> 10-30 secondes par génération (1 visuel)
-              </p>
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> largement : batch processing industriel vs génération manuelle Flair.ai.
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* 2.4 */}
-              <h3 id="24-integration-workflow" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                2.4 Intégration Workflow
-              </h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">BlendAI : Écosystème Professionnel Automatisé</h4>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>API REST :</strong> Automatisation complète (PIM → BlendAI → DAM → CMS)</li>
-                <li className="text-future-dusk-600"><strong>Plugins Adobe :</strong> Photoshop, Lightroom (traitement direct)</li>
-                <li className="text-future-dusk-600"><strong>Studios Orbitvu :</strong> Intégration native (capture → IA automatique)</li>
-                <li className="text-future-dusk-600"><strong>Webhooks :</strong> Notifications temps réel</li>
-              </ul>
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>Temps total :</strong> 2-3 minutes par produit (100% automatisé)
-              </p>
-              <p className="mb-6">
-                <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                  Découvrir les studios Orbitvu IA Ready
-                </Link>
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">Flair.ai : Plateforme Web Standalone</h4>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Limites :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Pas d'API :</strong> Impossible d'automatiser</li>
-                <li className="text-future-dusk-600"><strong>Pas de plugins :</strong> Usage uniquement sur plateforme web</li>
-                <li className="text-future-dusk-600"><strong>Upload manuel :</strong> 1 produit à la fois</li>
-                <li className="text-future-dusk-600"><strong>Export manuel :</strong> Téléchargement individuel des résultats</li>
-              </ul>
-              <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Temps total :</strong> 5-10 minutes par visuel (workflow manuel)
-              </p>
-
-              <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI gagne</strong> : automatisation complète vs workflow manuel Flair.ai.
-              </p>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <Callout type="info" title="BlendAI : IA Catalogue vs Flair : IA Marketing">
-                <p className="mb-2">Approche complémentaire : BlendAI pour la production quotidienne e-commerce (packshots, catalogues) + Flair pour les campagnes créatives ponctuelles.</p>
-                <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline font-medium">
-                  Découvrir BlendAI →
-                </Link>
-              </Callout>
-
-              <hr className="my-8 border-neutral-200" />
-
-              {/* Section 3 */}
-              <h2 id="3-tableau-comparatif-complet" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                3. Tableau Comparatif Complet
-              </h2>
-
-              <ComparisonTable
-                headers={['BlendAI', 'Flair.ai']}
-                rows={[
-                  { label: 'POSITIONNEMENT', values: ['Production catalogue', 'Campagnes marketing'] },
-                  { label: 'Cible', values: ['E-commerce (>500 prod)', 'Marques lifestyle, agences'] },
-                  { label: 'Fidélité produit', values: ['100%', '90-95%'] },
-                  { label: 'Créativité lifestyle', values: ['Standard', 'Excellente'] },
-                  { label: 'Batch processing', values: ['1 000+ images', 'Non (1 par 1)'] },
-                  { label: 'Templates lifestyle', values: ['E-commerce', '500+ créatifs'] },
-                  { label: 'Cohérence marque', values: ['Style guide', 'Variable'] },
-                  { label: 'API/Automatisation', values: ['Oui (REST)', 'Non'] },
-                  { label: 'Intégration Orbitvu', values: ['Native', 'Non'] },
-                  { label: 'Prix mensuel', values: ['150-500€', '30-200€'] },
-                  { label: 'Support', values: ['Dédié', 'Self-service'] },
-                ]}
-              />
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 4 */}
               <h2 id="4-cas-dusage-quand-choisir-blendai-vs-flairai" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                4. Cas d'Usage : Quand Choisir BlendAI vs Flair.ai ?
+                3. Cas d'Usage
               </h2>
 
               <h3 id="quand-choisir-blendai" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Quand Choisir BlendAI ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Profils :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">E-commerce &gt;500 produits/an (catalogues importants)</li>
-                <li className="text-future-dusk-600">Marques avec exigences qualité strictes (fidélité couleurs 100%)</li>
-                <li className="text-future-dusk-600">Production quotidienne (50-200 nouveaux produits/semaine)</li>
-                <li className="text-future-dusk-600">Workflow automatisé (intégration PIM/DAM/CMS)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases critiques :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Catalogues cohérents :</strong> 5 000 produits avec même style lifestyle</li>
-                <li className="text-future-dusk-600"><strong>Fiches produits :</strong> Visuels e-commerce standardisés (fond blanc + lifestyle)</li>
-                <li className="text-future-dusk-600"><strong>Migrations :</strong> Refonte complète catalogue (harmonisation 10 000 visuels)</li>
-                <li className="text-future-dusk-600"><strong>ROI calculé :</strong> Budget photo &gt;10 000€/an (breakeven 6-12 mois)</li>
-              </ul>
-              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
-                <p className="text-future-dusk-600 leading-relaxed italic">
-                  Distributeur équipement sportif, 3 000 références (chaussures, vêtements, accessoires). Production : 100 nouveaux produits/semaine. <strong>Avant BlendAI :</strong> 3 photographes à temps plein (90 000€/an). <strong>Après BlendAI :</strong> 1 opérateur + studio Orbitvu + BlendAI (35 000€/an). <strong>ROI : 55 000€ économisés/an.</strong>
-                </p>
-              </div>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 id="quand-choisir-flairai" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Quand Choisir Flair.ai ?
-              </h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Profils :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Marques lifestyle (cosmétiques, mode, food)</li>
-                <li className="text-future-dusk-600">Équipes marketing créant des campagnes ponctuelles</li>
-                <li className="text-future-dusk-600">Agences créatives (prototyping rapide pour clients)</li>
-                <li className="text-future-dusk-600">Budgets serrés (30-200€/mois vs 150-500€ BlendAI)</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Use cases critiques :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Campagnes publicitaires :</strong> Visuels Meta/Google Ads percutants</li>
-                <li className="text-future-dusk-600"><strong>Réseaux sociaux :</strong> Contenus Instagram/TikTok créatifs</li>
-                <li className="text-future-dusk-600"><strong>Prototyping créatif :</strong> Tests rapides avant shootings coûteux</li>
-                <li className="text-future-dusk-600"><strong>Lancements produits :</strong> Visuels impactants, storytelling fort</li>
-              </ul>
-              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 mb-6">
-                <p className="text-future-dusk-600 leading-relaxed italic">
-                  Marque cosmétiques indépendante, 20 produits (crèmes, sérums). Campagne lancement nouveau sérum anti-âge. <strong>Flair.ai :</strong> Génération de 20 visuels lifestyle (femmes 35-45 ans, décors luxueux, storytelling beauté). <strong>Budget :</strong> 100€/mois Flair.ai vs 5 000-10 000€ shooting professionnel. <strong>ROI : 4 900-9 900€ économisés.</strong>
-                </p>
-              </div>
-
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 id="approche-complementaire-blendai-catalogue-flairai-campagnes" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Approche Complémentaire : BlendAI (Catalogue) + Flair.ai (Campagnes)
+                Production Régulière de Visuels Catalogue
               </h3>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                Certaines entreprises combinent les deux outils pour couvrir <strong>production quotidienne ET campagnes créatives</strong> :
+                Si votre besoin principal est de produire régulièrement des visuels homogènes pour vos fiches produits, privilégiez les critères de fidélité, de cohérence, de volume et d'intégration à vos outils.
               </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600"><strong>Production catalogue (quotidien) — BlendAI :</strong> Fiches produits e-commerce (fond blanc + lifestyle standard), cohérence absolue sur 100% du catalogue, automatisation complète</li>
-                <li className="text-future-dusk-600"><strong>Campagnes marketing (ponctuel) — Flair.ai :</strong> Visuels publicitaires créatifs (Meta/Google Ads), storytelling fort, impact maximal, tests A/B créatifs</li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Avantage :</strong> Efficacité quotidienne + Créativité ponctuellement
+
+              <h3 id="quand-choisir-flairai" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
+                Campagnes Ponctuelles
+              </h3>
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
+                Si votre besoin principal est de créer ponctuellement des visuels de campagne (réseaux sociaux, publicité), la liberté créative et la variété des mises en scène pèsent davantage.
               </p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600">
-                <strong>Coût total :</strong> 150-500€/mois (BlendAI) + 30-200€/mois (Flair.ai) = 180-700€/mois
-              </p>
+
+              <h3 id="approche-complementaire-blendai-catalogue-flairai-campagnes" className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
+                Approche Complémentaire
+              </h3>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Budget économisé :</strong> 90-95% vs shootings traditionnels (prestataires + retouche)
+                Les deux usages peuvent coexister, avec un outil pour le catalogue et un autre pour les campagnes. Vérifiez alors les coûts cumulés et les conditions d'usage de chaque outil.
               </p>
 
               <hr className="my-8 border-neutral-200" />
 
               {/* Section 5 */}
               <h2 id="5-approche-hybride-packshotcreator-hardware-ia-roi-maximal" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                5. Approche Hybride PackshotCreator : Hardware + IA = ROI Maximal
+                4. Approche PackshotCreator : Studio + IA + Formation
               </h2>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                L'IA photo produit ne remplace pas la capture studio : elle la <strong>prolonge et la multiplie</strong>. L'approche <strong>PackshotCreator</strong> combine 3 piliers pour un ROI optimal.
+                L'IA photo produit part d'une capture : un packshot de qualité constante facilite son traitement par IA. L'approche <strong>PackshotCreator</strong> associe trois piliers.
               </p>
 
-              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">
-                Les 3 Piliers PackshotCreator
-              </h3>
-
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">1. Hardware : Studios Orbitvu (Capture Haute Qualité)</h4>
+              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">1. Hardware : Studios Orbitvu</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600">Studios automatisés Orbitvu (AlphaShot G2, 360, XXL)</li>
-                <li className="text-future-dusk-600">Résolution 4000×4000px minimum</li>
-                <li className="text-future-dusk-600">Colorimétrie précise (profils ICC)</li>
                 <li className="text-future-dusk-600">Temps : 30 secondes par packshot</li>
               </ul>
-              <p className="mb-4">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Explorer la gamme studios Orbitvu
                 </Link>
               </p>
 
-              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">2. IA : BlendAI (Transformation Catalogue)</h4>
+              <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">2. IA : BlendAI</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">1 packshot → 5 déclinaisons (fond blanc + 4 backgrounds)</li>
-                <li className="text-future-dusk-600">Batch : 1 000 produits en 3-5h</li>
-                <li className="text-future-dusk-600">Cohérence garantie : même style 100% catalogue</li>
+                <li className="text-future-dusk-600">Déclinaison des packshots par IA (arrière-plans, mises en scène)</li>
               </ul>
-              <p className="mb-4">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Découvrir BlendAI
                 </Link>
@@ -622,47 +278,27 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
 
               <h4 className="text-lg font-heading font-semibold text-future-dusk-900 mt-6 mb-3">3. Formation : Academy (studios Orbitvu)</h4>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Essential Training : prise en main de votre studio Orbitvu, à distance</li>
-                <li className="text-future-dusk-600">Master Training : maîtrise de votre studio Orbitvu, en présentiel</li>
-                <li className="text-future-dusk-600"><strong>Financement OPCO :</strong> possible selon votre situation</li>
+                <li className="text-future-dusk-600">Essential Training (4 h, à distance) : prise en main de votre studio Orbitvu</li>
+                <li className="text-future-dusk-600">Master Training (7 h, en présentiel) : maîtrise de votre studio Orbitvu</li>
+                <li className="text-future-dusk-600">Formation facturée séparément ; Sysnext est certifiée Qualiopi : un financement OPCO est possible selon votre situation</li>
               </ul>
-              <p className="mb-6">
+              <p className="mb-4 leading-relaxed text-future-dusk-600">
                 <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Voir catalogue formations
                 </Link>
               </p>
 
-              <hr className="my-8 border-neutral-200" />
-
-              <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">ROI Approche Complète (3 ans)</h3>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Scénario :</strong> E-commerce 1 000 produits/an</p>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts traditionnels :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Shooting externe : 25 000€/an</li>
-                <li className="text-future-dusk-600">Retouche freelance : 45 000€/an</li>
-                <li className="text-future-dusk-600"><strong>Total : 70 000€/an × 3 ans = 210 000€</strong></li>
-              </ul>
-              <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts PackshotCreator :</strong></p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li className="text-future-dusk-600">Studio Orbitvu : investissement initial sur devis</li>
-                <li className="text-future-dusk-600">BlendAI : 3 600€/an (300€/mois)</li>
-                <li className="text-future-dusk-600">Formation : selon le format choisi, facturée séparément (financement OPCO possible)</li>
-                <li className="text-future-dusk-600">Opérateur : 5 000€/an</li>
-              </ul>
               <p className="mb-6 leading-relaxed text-future-dusk-600">
-                <strong>Sur 3 ans, l'écart avec les coûts traditionnels reste très significatif</strong> — utilisez le calculateur ROI pour estimer l'économie sur votre volume.
-              </p>
-              <p className="mb-6">
-                <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">
+                Notre calculateur établit une étude de retour sur investissement par machine, selon vos volumes.{' '}
+                <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
                   Calculer votre ROI personnalisé
                 </Link>
               </p>
 
               <hr className="my-8 border-neutral-200" />
-
               {/* Section 6 — FAQ */}
               <h2 id="6-faq-comparatif-blendai-vs-flairai" className="text-2xl sm:text-3xl font-heading font-bold text-future-dusk-900 mt-10 mb-6">
-                6. FAQ Comparatif BlendAI vs Flair.ai
+                5. FAQ BlendAI et Flair.ai
               </h2>
 
               <div className="space-y-4 mb-8">
@@ -685,39 +321,32 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 Conclusion : Choisir en Fonction de Votre Besoin Réel
               </h2>
               <p className="mb-4 leading-relaxed text-future-dusk-600">
-                <strong>BlendAI</strong> et <strong>Flair.ai</strong> sont deux excellents outils, mais répondent à des besoins <strong>fondamentalement différents</strong>. BlendAI excelle sur la production quotidienne de catalogues cohérents et industriels. Flair.ai se distingue sur la création ponctuelle de campagnes marketing créatives et storytelling.
+                Le choix entre <strong>BlendAI</strong> et <strong>Flair.ai</strong> dépend de votre usage : production régulière de visuels catalogue ou campagnes ponctuelles. Comparez les outils sur vos propres produits, selon les critères de ce guide.
               </p>
 
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Les 3 Questions Décisives</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="text-future-dusk-600"><strong>Fréquence :</strong> Production quotidienne → BlendAI | Campagnes ponctuelles → Flair.ai</li>
-                <li className="text-future-dusk-600"><strong>Priorité :</strong> Fidélité produit 100% → BlendAI | Impact créatif → Flair.ai</li>
-                <li className="text-future-dusk-600"><strong>Volume :</strong> &gt;500 produits/an → BlendAI | &lt;100 visuels/an → Flair.ai</li>
+                <li className="text-future-dusk-600"><strong>Fréquence :</strong> production régulière ou campagnes ponctuelles ?</li>
+                <li className="text-future-dusk-600"><strong>Priorité :</strong> fidélité au produit ou liberté créative ?</li>
+                <li className="text-future-dusk-600"><strong>Volume :</strong> combien de visuels à produire, et avec quelle intégration à vos outils ?</li>
               </ul>
-
-              <Callout type="success" title="Recommandation finale">
-                <p className="mb-2"><strong>Production catalogue e-commerce</strong> → <strong>BlendAI</strong> (cohérence, fidélité, automatisation)</p>
-                <p className="mb-2"><strong>Campagnes marketing créatives</strong> → <strong>Flair.ai</strong> (storytelling, impact, créativité)</p>
-                <p><strong>Approche optimale</strong> → <strong>BlendAI (quotidien) + Flair.ai (ponctuel)</strong> (complémentarité maximale)</p>
-              </Callout>
 
               <hr className="my-8 border-neutral-200" />
 
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Prochaines Étapes</h3>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li className="text-future-dusk-600">
-                  <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Demander une démo BlendAI</Link> — Testez BlendAI gratuitement sur vos propres produits (10-20 images)
+                  <Link href="/contact" className="text-very-peri-600 hover:text-very-peri-700 underline">Demander une démo BlendAI</Link> — Testez BlendAI sur vos propres produits
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href={{ pathname: '/studios-photo-automatises', hash: 'calculateur-roi' }} className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Estimez vos économies réelles avec l'approche Hardware Orbitvu + IA BlendAI
+                  <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Calculer votre ROI</Link> — Étude de retour sur investissement par machine, selon vos volumes
                 </li>
                 <li className="text-future-dusk-600">
-                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Maîtrisez votre studio Orbitvu avec nos formations Qualiopi (financement OPCO possible)
+                  <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les Formations</Link> — Essential Training (4 h, à distance) et Master Training (7 h, en présentiel), facturées séparément ; Sysnext est certifiée Qualiopi : financement OPCO possible selon votre situation
                 </li>
               </ul>
 
               <hr className="my-8 border-neutral-200" />
-
               <h3 className="text-xl font-heading font-bold text-future-dusk-900 mt-8 mb-4">Ressources Complémentaires</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
                 <li className="text-future-dusk-600">
@@ -726,11 +355,11 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>BlendAI vs Photoroom :</strong>{' '}
-                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Comparatif détaillé</Link>
+                  <Link href={{ pathname: '/blog/[slug]', params: { slug: 'blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026' } }} className="text-very-peri-600 hover:text-very-peri-700 underline">Lire l'article</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>Hub IA Photo Produit :</strong>{' '}
-                  <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link>
+                  <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">L'IA photo produit</Link>
                 </li>
                 <li className="text-future-dusk-600">
                   <strong>Studios Photo Orbitvu :</strong>{' '}
@@ -763,7 +392,7 @@ export default async function BlendaiVsFlairPage({ params }: { params: Promise<{
         breadcrumbSchema(breadcrumbs),
         articleSchema({
           title: 'BlendAI vs Flair.ai : Quelle IA pour Vos Campagnes Produits en 2026 ?',
-          description: 'Comparatif complet BlendAI vs Flair.ai. E-commerce catalogues vs campagnes marketing. Use cases, qualité rendu, pricing, workflow. Guide objectif 2026.',
+          description: "BlendAI ou Flair.ai : les critères pour choisir un outil d'IA de visuels produits selon votre usage, catalogue e-commerce ou campagnes marketing, en 2026.",
           url: `https://www.packshot-creator.com/${lang}/blog/blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026`,
           datePublished: '2026-01-22',
           author: 'Sébastien Jourdan',

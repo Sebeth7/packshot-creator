@@ -32,9 +32,11 @@ type Feature = FeatureBeforeAfter | FeatureImage;
 
 interface FeaturesTabsProps {
   features: Feature[];
+  /** Nom accessible du curseur avant/après (défaut FR) */
+  sliderLabel?: string;
 }
 
-export default function FeaturesTabs({ features }: FeaturesTabsProps) {
+export default function FeaturesTabs({ features, sliderLabel }: FeaturesTabsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = features[activeIndex];
 
@@ -98,6 +100,7 @@ export default function FeaturesTabs({ features }: FeaturesTabsProps) {
                   after={active.after}
                   width={800}
                   height={500}
+                  handleLabel={sliderLabel}
                 />
               )}
             </div>

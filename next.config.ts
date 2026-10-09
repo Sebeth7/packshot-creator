@@ -17,6 +17,40 @@ const DE_CH_BRANCHEN_PAR_SLUG_FR: Record<string, string> = {
   'vin-spiritueux': 'wein',
 };
 
+// D36 (docs/seo-geo/DECISIONS.md) : `X-Robots-Tag: noindex` sur l'origine
+// Vercel `sysnext.vercel.app`, sans toucher `www.packshot-creator.com`.
+//
+// L'hôte seul ne suffit pas : le Worker Cloudflare relaie `www` vers cette
+// même origine (NEXTJS_ORIGIN, cloudflare-worker/wrangler.toml), et
+// l'application y lit alors l'hôte `sysnext.vercel.app` (commit 6646787).
+// Deux protections indépendantes pour www :
+// 1. ici, la règle est écartée si la requête porte un en-tête Cloudflare
+//    (`cf-worker`, ajouté à toute sous-requête d'un Worker ; `cf-ray` et
+//    `cf-connecting-ip`, recopiés par le Worker). Que Vercel les transmette
+//    jusqu'à ce routage n'est pas établi ;
+// 2. le Worker retire `X-Robots-Tag` de toute réponse qui porte le marqueur
+//    `X-Packshot-Origin-Noindex` (cloudflare-worker/src/index.js). Cette
+//    protection ne dépend que du Worker, déployé avec ce retrait depuis le
+//    01/10/2026 (#68). Aucun retour arrière du Worker vers une version sans ce
+//    retrait ne doit précéder le retrait de cette règle.
+//
+// Portée : documents HTML, soit les chemins sans extension hors /_next, /_vercel
+// et /api. Fichiers statiques, assets et API ne reçoivent rien. La balise
+// `<meta name="robots">`, lue par scripts/seo/smoke.mjs, n'est pas modifiée.
+const ORIGINE_VERCEL_NOINDEX = {
+  source: '/:chemin((?!_next/|_vercel/|api/)[^.]*)',
+  has: [{ type: 'host' as const, value: 'sysnext\\.vercel\\.app' }],
+  missing: [
+    { type: 'header' as const, key: 'cf-worker' },
+    { type: 'header' as const, key: 'cf-ray' },
+    { type: 'header' as const, key: 'cf-connecting-ip' },
+  ],
+  headers: [
+    { key: 'X-Robots-Tag', value: 'noindex' },
+    { key: 'X-Packshot-Origin-Noindex', value: '1' },
+  ],
+};
+
 const nextConfig: NextConfig = {
   images: {
     // Nos assets locaux sont immuables (un changement de visuel = un nouveau
@@ -30,6 +64,10 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
+  },
+
+  async headers() {
+    return [ORIGINE_VERCEL_NOINDEX];
   },
 
   async redirects() {

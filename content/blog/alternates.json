@@ -1,4 +1,29 @@
 {
+  "native-2026-09-28-ai-act-images-produit": {
+    "fr": "ai-act-images-produit",
+    "en": "ai-act-product-images",
+    "de-ch": "ai-act-produktbilder"
+  },
+  "native-2026-09-29-images-ia-ecommerce-suisse": {
+    "fr": "images-ia-ecommerce-suisse",
+    "en": "ai-images-ecommerce-switzerland",
+    "de-ch": "ki-bilder-e-commerce-schweiz"
+  },
+  "native-2026-10-06-retouche-ia-photo-produit": {
+    "fr": "retouche-ia-photo-produit",
+    "en": "ai-retouching-product-photos",
+    "de-ch": "ki-retusche-produktfoto"
+  },
+  "native-2026-10-06-mannequin-invisible-modele-virtuel-avatar": {
+    "fr": "mannequin-invisible-modele-virtuel-avatar",
+    "en": "invisible-mannequin-virtual-model-avatar",
+    "de-ch": "ghost-mannequin-virtuelles-model-avatar"
+  },
+  "native-2026-10-06-images-ia-metadonnees-marketplaces": {
+    "fr": "images-ia-metadonnees-marketplaces",
+    "en": "ai-product-images-metadata-marketplaces",
+    "de-ch": "ki-produktbilder-metadaten-marktplaetze"
+  },
   "native-2026-09-25-migration-packshotcreator": {
     "fr": "migrer-ancien-packshotcreator",
     "en": "migrate-legacy-packshotcreator-studio",
@@ -8,6 +33,10 @@
     "fr": "alphashot-xl-g2-photo-mesures-donnees-produit",
     "en": "alphashot-xl-g2-product-photos-measurements-data",
     "de-ch": "alphashot-xl-g2-produktfotos-masse-gewicht-daten"
+  },
+  "native-2026-05-02-generer-images-produit-ia": {
+    "fr": "generer-images-produit-ia",
+    "en": null
   },
   "685ab5b7a6edbccf485aeb63": {
     "fr": "ia-lumieres-virtuelles-revolution-packshot",

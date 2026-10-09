@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema } from '@/components/seo/SchemaOrg';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import TextReveal from '@/components/animations/TextReveal';
@@ -18,7 +20,7 @@ import SpringCard from '@/components/animations/SpringCard';
 import FeaturesTabs from './_components/FeaturesTabs';
 import TestimonialCarousel from './_components/TestimonialCarousel';
 import { buildLanguages } from '@/lib/hreflang';
-import { tx } from '@/lib/locale-text';
+import { tx, pickL } from '@/lib/locale-text';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 
 /* ──────── Static data ──────── */
@@ -33,20 +35,20 @@ const PLATFORM_FEATURES = [
 ];
 
 const GALLERY_ITEMS: Array<
-  | { type: 'image'; src: string; alt: string }
-  | { type: 'video'; src: string; poster: string; alt: string }
+  | { type: 'image'; src: string; alt: { fr: string; en: string; 'de-ch': string } }
+  | { type: 'video'; src: string; poster: string; alt: { fr: string; en: string; 'de-ch': string } }
 > = [
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-01.avif', alt: 'BlendAI — Cosmétiques lifestyle' },
-  { type: 'video', src: '/images/gallery-ia/gallery-ia-02.mp4', poster: '/images/gallery-ia/gallery-ia-02-poster.avif', alt: 'BlendAI — Mode accessoires vidéo' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-03.avif', alt: 'BlendAI — Bijoux mise en scène' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-04.avif', alt: 'BlendAI — Décoration intérieure' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-05.avif', alt: 'BlendAI — Lifestyle produit' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-06.avif', alt: 'BlendAI — Mise en ambiance' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-07.avif', alt: 'BlendAI — Scène créative' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-08.avif', alt: 'BlendAI — Spiritueux lifestyle' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-09.avif', alt: 'BlendAI — Visuel e-commerce' },
-  { type: 'video', src: '/images/gallery-ia/gallery-ia-10.mp4', poster: '/images/gallery-ia/gallery-ia-10-poster.avif', alt: 'BlendAI — Mannequin IA vidéo' },
-  { type: 'image', src: '/images/gallery-ia/gallery-ia-11.avif', alt: 'BlendAI — Déclinaison lifestyle' },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-01.avif', alt: { fr: 'BlendAI — Cosmétiques lifestyle', en: 'BlendAI — Lifestyle cosmetics', 'de-ch': 'BlendAI — Kosmetik im Lifestyle-Look' } },
+  { type: 'video', src: '/images/gallery-ia/gallery-ia-02.mp4', poster: '/images/gallery-ia/gallery-ia-02-poster.avif', alt: { fr: 'BlendAI — Mode accessoires vidéo', en: 'BlendAI — Fashion accessories video', 'de-ch': 'BlendAI — Video Mode-Accessoires' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-03.avif', alt: { fr: 'BlendAI — Bijoux mise en scène', en: 'BlendAI — Staged jewelry', 'de-ch': 'BlendAI — Inszenierter Schmuck' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-04.avif', alt: { fr: 'BlendAI — Décoration intérieure', en: 'BlendAI — Interior decoration', 'de-ch': 'BlendAI — Inneneinrichtung' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-05.avif', alt: { fr: 'BlendAI — Lifestyle produit', en: 'BlendAI — Product lifestyle', 'de-ch': 'BlendAI — Produkt-Lifestyle' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-06.avif', alt: { fr: 'BlendAI — Mise en ambiance', en: 'BlendAI — Ambient staging', 'de-ch': 'BlendAI — Stimmungsvolle Inszenierung' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-07.avif', alt: { fr: 'BlendAI — Scène créative', en: 'BlendAI — Creative scene', 'de-ch': 'BlendAI — Kreative Szene' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-08.avif', alt: { fr: 'BlendAI — Spiritueux lifestyle', en: 'BlendAI — Lifestyle spirits', 'de-ch': 'BlendAI — Spirituosen im Lifestyle-Look' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-09.avif', alt: { fr: 'BlendAI — Visuel e-commerce', en: 'BlendAI — E-commerce visual', 'de-ch': 'BlendAI — E-Commerce-Visual' } },
+  { type: 'video', src: '/images/gallery-ia/gallery-ia-10.mp4', poster: '/images/gallery-ia/gallery-ia-10-poster.avif', alt: { fr: 'BlendAI — Mannequin IA vidéo', en: 'BlendAI — AI model video', 'de-ch': 'BlendAI — Video mit KI-Model' } },
+  { type: 'image', src: '/images/gallery-ia/gallery-ia-11.avif', alt: { fr: 'BlendAI — Déclinaison lifestyle', en: 'BlendAI — Lifestyle variation', 'de-ch': 'BlendAI — Lifestyle-Variante' } },
 ];
 
 const CLIENT_LOGOS = [
@@ -104,7 +106,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
-    { name: 'IA Photo Produit', url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
+    { name: tx(lang, 'IA Photo Produit', 'AI Product Photography', 'KI-Produktfotografie'), url: `https://www.packshot-creator.com/${lang}/ia-photo-produit` },
   ];
 
   const faqItems = [1, 2, 3, 4, 5].map((i) => ({
@@ -117,18 +119,18 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
   const afterLabel = tx(lang, 'Après BlendAI', 'After BlendAI', 'Nach BlendAI');
   const featuresData = [
     { id: 'lifestyle', label: t('features.lifestyle.name'), description: t.rich('features.lifestyle.description', { bold: boldOrange }), icon: <ImageIcon className="h-5 w-5" />, color: 'bg-pink-100 text-pink-700', activeColor: 'bg-pink-100 text-pink-700',
-      before: { src: '/images/before-after/ia-before-after-furniture-1-before.avif', alt: 'Packshot mobilier', label: beforeLabel },
-      after: { src: '/images/before-after/ia-before-after-furniture-1-after.avif', alt: 'Lifestyle mobilier BlendAI', label: afterLabel } },
+      before: { src: '/images/before-after/ia-before-after-furniture-1-before.avif', alt: tx(lang, 'Packshot mobilier', 'Furniture packshot', 'Möbel-Packshot'), label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-furniture-1-after.avif', alt: tx(lang, 'Lifestyle mobilier BlendAI', 'BlendAI furniture lifestyle', 'Möbel-Lifestyle mit BlendAI'), label: afterLabel } },
     { id: 'mannequin', label: t('features.mannequin.name'), description: t.rich('features.mannequin.description', { bold: boldOrange }), icon: <User className="h-5 w-5" />, color: 'bg-violet-100 text-violet-700', activeColor: 'bg-violet-100 text-violet-700',
-      mode: 'image' as const, image: { src: '/images/before-after/ia-before-after-mode-1-before.avif', alt: 'Mannequin IA BlendAI' } },
+      mode: 'image' as const, image: { src: '/images/before-after/ia-before-after-mode-1-before.avif', alt: tx(lang, 'Mannequin IA BlendAI', 'BlendAI AI model', 'KI-Model mit BlendAI') } },
     { id: 'background', label: t('features.background.name'), description: t.rich('features.background.description', { bold: boldOrange }), icon: <Wand2 className="h-5 w-5" />, color: 'bg-blue-100 text-blue-700', activeColor: 'bg-blue-100 text-blue-700',
-      before: { src: '/images/before-after/ia-before-after-decoration-1-before.avif', alt: 'Packshot décoration', label: beforeLabel },
-      after: { src: '/images/before-after/ia-before-after-decoration-1-after.avif', alt: 'Arrière-plan BlendAI', label: afterLabel } },
+      before: { src: '/images/before-after/ia-before-after-decoration-1-before.avif', alt: tx(lang, 'Packshot décoration', 'Decoration packshot', 'Deko-Packshot'), label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-decoration-1-after.avif', alt: tx(lang, 'Arrière-plan BlendAI', 'BlendAI background', 'Hintergrund mit BlendAI'), label: afterLabel } },
     { id: 'retouche', label: t('features.retouche.name'), description: t.rich('features.retouche.description', { bold: boldOrange }), icon: <Paintbrush className="h-5 w-5" />, color: 'bg-amber-100 text-amber-700', activeColor: 'bg-amber-100 text-amber-700',
-      before: { src: '/images/before-after/ia-before-after-bijoux-1-before.avif', alt: 'Packshot bijoux', label: beforeLabel },
-      after: { src: '/images/before-after/ia-before-after-bijoux-1-after.avif', alt: 'Retouche bijoux BlendAI', label: afterLabel } },
+      before: { src: '/images/before-after/ia-before-after-bijoux-1-before.avif', alt: tx(lang, 'Packshot bijoux', 'Jewelry packshot', 'Schmuck-Packshot'), label: beforeLabel },
+      after: { src: '/images/before-after/ia-before-after-bijoux-1-after.avif', alt: tx(lang, 'Retouche bijoux BlendAI', 'BlendAI jewelry retouching', 'Schmuck-Retusche mit BlendAI'), label: afterLabel } },
     { id: 'batch', label: t('features.batch.name'), description: t.rich('features.batch.description', { bold: boldOrange }), icon: <Layers className="h-5 w-5" />, color: 'bg-emerald-100 text-emerald-700', activeColor: 'bg-emerald-100 text-emerald-700',
-      mode: 'image' as const, image: { src: '/images/before-after/ia-before-after-batch.avif', alt: 'BlendAI — Traitement par lots' } },
+      mode: 'image' as const, image: { src: '/images/before-after/ia-before-after-batch.avif', alt: tx(lang, 'BlendAI — Traitement par lots', 'BlendAI — Batch processing', 'BlendAI — Stapelverarbeitung') } },
   ];
 
   /* Testimonials data for TestimonialCarousel */
@@ -140,8 +142,29 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
     company: t(`testimonials.t${i}.company`),
   }));
 
+  // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
+  // Les id ne sont posés que si la barre est active (data/navigation/pages-longues.ts).
+  const barre = barreActive('landing-ia', lang as Langue, 'ia-photo-produit');
+  const ancre = (id: string) => (barre ? id : undefined);
+  const entreesSommaire = barre
+    ? [
+        { id: 'fonctionnalites', libelle: t('features.heading') },
+        { id: 'resultats', libelle: t('gallery.heading') },
+        { id: 'manifeste', libelle: t('manifeste.heading') },
+        { id: 'plateforme', libelle: t('platform.heading') },
+        { id: 'faq', libelle: t('faq.heading') },
+      ]
+    : [];
+
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang as Langue].titre}
+          libelle={LIBELLES_BARRE[lang as Langue].libelle}
+          entrees={entreesSommaire}
+        />
+      )}
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. HERO — Full-bleed background image, same pattern as Home
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -203,7 +226,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           2. FEATURES TABS — Tabbed video demos
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
+      <section id={ancre('fonctionnalites')} className="py-20 lg:py-32 bg-neutral-50 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[150px]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <ScrollReveal>
@@ -220,7 +243,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
             </div>
           </ScrollReveal>
           <FadeInView delay={0.15}>
-            <FeaturesTabs features={featuresData} />
+            <FeaturesTabs features={featuresData} sliderLabel={tx(lang, 'Curseur avant/après', 'Before/after slider', 'Vorher-Nachher-Regler')} />
           </FadeInView>
         </div>
       </section>
@@ -272,7 +295,14 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
           {/* Testimonial carousel — D31 : masqué sur /de-ch */}
           {lang !== 'de-ch' && (
             <FadeInView delay={0.2}>
-              <TestimonialCarousel testimonials={testimonials} />
+              <TestimonialCarousel
+                testimonials={testimonials}
+                labels={{
+                  previous: tx(lang, 'Témoignage précédent', 'Previous testimonial', 'Vorheriges Testimonial'),
+                  next: tx(lang, 'Témoignage suivant', 'Next testimonial', 'Nächstes Testimonial'),
+                  item: tx(lang, 'Témoignage', 'Testimonial', 'Testimonial'),
+                }}
+              />
             </FadeInView>
           )}
         </div>
@@ -316,7 +346,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   ) : (
                     <Image
                       src={item.src}
-                      alt={item.alt}
+                      alt={pickL(lang, item.alt)}
                       width={400}
                       height={idx % 2 === 0 ? 400 : 500}
                       className="w-full h-auto object-cover"
@@ -334,7 +364,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. COMPARATIF — Philosophie intro + Bento asymmetric
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section id={ancre('manifeste')} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-white" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-very-peri-200/15 rounded-full blur-[150px]" />
 
@@ -414,7 +444,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   <div className="w-full rounded-xl overflow-hidden mb-6 mt-2">
                     <Image
                       src="/images/illustrations/comparatif-blendai-result.avif"
-                      alt="Résultat BlendAI - fidèle au produit"
+                      alt={tx(lang, 'Résultat BlendAI - fidèle au produit', 'BlendAI result - true to the product', 'BlendAI-Ergebnis - produktgetreu')}
                       width={600}
                       height={400}
                       className="w-full h-auto rounded-xl"
@@ -454,7 +484,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
                   <div className="w-full rounded-xl overflow-hidden mb-5">
                     <Image
                       src="/images/illustrations/comparatif-ia-pure-result.avif"
-                      alt="Résultat IA générative pure"
+                      alt={tx(lang, 'Résultat IA générative pure', 'Pure generative AI result', 'Ergebnis rein generativer KI')}
                       width={400}
                       height={300}
                       className="w-full h-auto rounded-xl"
@@ -494,7 +524,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           7. PLATEFORME BLENDAI — Dark bg, floating card
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
+      <section id={ancre('plateforme')} className="py-20 lg:py-32 bg-future-dusk-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-future-dusk-900 via-[#2d1b4e]/40 to-future-dusk-900" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} aria-hidden="true" />
 
@@ -557,7 +587,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           8. FAQ — Two-column: heading left, accordion right
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-neutral-50">
+      <section id={ancre('faq')} className="py-20 lg:py-32 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left: sticky heading */}
@@ -698,17 +728,7 @@ export default async function IAPhotoProduitPage({ params }: { params: Promise<{
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
             },
-            // D31 : aucune note agrégée d'avis clients sur /de-ch.
-            ...(lang !== 'de-ch'
-              ? {
-                  aggregateRating: {
-                    '@type': 'AggregateRating',
-                    ratingValue: 4.9,
-                    reviewCount: 100,
-                    bestRating: 5,
-                  },
-                }
-              : {}),
+            // Aucune note agrégée : 4,9/5 sur 100 avis, sans source établie, retirée le 06/10/2026.
             provider: {
               '@type': 'Organization',
               name: 'PackshotCreator',
