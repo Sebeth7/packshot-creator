@@ -327,7 +327,7 @@ export default function SurveyForm({ initialEmail, initialName, initialCompany, 
         </p>
         <div className="mt-8">
           <Button asChild variant="outline">
-            <a href="https://packshot-creator.com">Retour au site</a>
+            <a href="https://www.packshot-creator.com/fr">Retour au site</a>
           </Button>
         </div>
       </div>
