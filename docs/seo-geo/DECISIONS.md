@@ -25,6 +25,29 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D52 · 2026-10-09 · Maillage vers Mode, Packshot e-commerce et Amazon : les fenêtres d'observation ne diffèrent plus les liens éditoriaux ; D37 et le gel Mode amendés sur ce seul point
+
+**Décidé par** : Laurent — mission « Réparation globale des ancres et finalisation des cocons SEO/GEO » du 09/10/2026, § 6 : « Il ne souhaite plus différer systématiquement les améliorations du maillage sur Mode, Amazon et Packshot e-commerce simplement pour préserver des tests SEO. La priorité est l'amélioration du site et l'obtention de résultats. »
+**Statut** : en vigueur. **Amende D37** sur un point (« aucun lien entrant vers F5 avant J+56 ») et la règle de gel de la surface Mode tirée de D39 (`09_GELS_COLLISIONS_DEPENDENCIES.md` du 07/10 : aucun lien entrant nouveau vers la landing Mode, le hub `mode-textile` et l'article vêtements avant le 26/11). Le reste de D35, D37 et D39 est inchangé.
+
+**Restrictions antérieures identifiées**
+
+| Source | Restriction | Après D52 |
+|---|---|---|
+| D37 | « Aucun lien entrant vers F5 avant J+56 » (23/11) | Levée pour les liens éditoriaux posés dans le contenu (articles, guides) |
+| `09_GELS` (07/10), au titre de D39 et D44 | Surface Mode (landing FR, EN, de-ch, hub `/fr/industrie/mode-textile`, article vêtements) : rien ne modifie la surface ni ses liens entrants avant le 26/11 | Levée pour les liens éditoriaux posés dans le contenu, y compris la destination des liens existants de l'article vêtements (texte inchangé) ; landings et hub non modifiés |
+| `09_GELS` (07/10), au titre de D37 | Articles Amazon (I12) « en mesure » jusqu'au 23/11 | Levée pour les liens éditoriaux entre contenus |
+| D39 | Lier la landing Mode à F5 avant le 23/11 | **Inchangée** : ce lien supposerait de modifier la landing Mode ; aucune PR de D52 ne le pose |
+| D35 | Article EN `packshot-photography-guide-why-make-product-packshots` laissé en l'état ; page cible FR sur requête française | **Inchangée** : l'article EN n'est pas modifié et ne reçoit aucun lien entrant nouveau |
+
+**La décision** — Les liens éditoriaux utiles vers les pages propriétaires Mode (`/xx/packshot-mode`, hub `mode-textile`), Packshot e-commerce (`/xx/packshot-e-commerce`) et vers les articles Amazon sont posés sans attendre la fin des fenêtres de mesure. Les URL, canoniques, hreflang et rôles de ces pages sont conservés. Chaque intervention est consignée comme événement concomitant dans `ETAT.md` § E, avec sa date de fusion.
+
+**Le contexte** — Au 09/10, `/fr/packshot-e-commerce` (propriétaire de l'intention I11) ne recevait aucun lien depuis les articles et guides ; `/fr/packshot-mode` (I05) en recevait 2, tous du cluster AI Act ; le hub `/fr/industrie/mode-textile` aucun ; 15 ancres « mode », « vêtements » ou « textiles » menaient à l'index des secteurs. Inventaire des ancres du 09/10 et PR de réparation consolidée #124 du même jour.
+
+**Ce qu'elle interdit** — Modifier, au titre de D52, une URL, une canonique, un hreflang ou le rôle d'une page Mode, F5 ou Amazon ; modifier les fichiers réservés des landings (`PackshotEcommerce.tsx`, `PackshotMode.tsx`, namespaces `packshotEcommerce` et `packshotMode`) ; tenir D52 pour une autorisation de modifier une landing en reconstruction (#104, #105, #107, #108) ; poser un lien vers la landing `/xx/packshot-amazon` tant que son rôle (I12, décision prévue le 23/11) et ses chiffres non sourcés (« 500+ », « -80 % », « 100 % conforme ») ne sont pas tranchés ; attribuer à une landing seule une évolution GSC postérieure à la fusion sans citer l'événement D52.
+
+---
+
 ## D51 · 2026-10-09 · Exception ponctuelle D15/D42 pour la PR #109 : fusion et publication sans attendre la validation de Sébastien
 
 **Décidé par** : Laurent — mission « Clôture et publication #109 / fermeture #111 » du 09/10/2026

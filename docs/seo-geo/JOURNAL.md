@@ -34,6 +34,98 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #122 — `main` `f143f61` intégré (#123, #124), sans changement de code · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `f143f61` (voir l'historique de #122)
+
+**Quoi** — `main` `f143f61` (fusions de #123 et #124) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (lignes #122, #123 et #124 conservées). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : `main` intégré, `origine` désormais lue par #82 sur sa branche.
+
+**Pourquoi** — Point de contrôle de 20:49 UTC : `main` avancé, #122 en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun. #122 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION toujours non donnés.
+
+**Vérifié** — Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné ; contrôles de la tête : description de #122.
+
+**Supposé** — Aucun.
+
+**Non regardé** — La D52 de `main` (#124 : liens éditoriaux vers Mode et F5 sans attendre les fenêtres de mesure) ne vise pas la pop-in ; les gels de `ROUTES_GELEES` (F5 jusqu'au 23/11, Mode jusqu'au 26/11) restent ceux de la mission de Laurent du 09/10, non modifiés.
+
+**Suite** — Inchangée : dépendance à #82 (publication de la landing), P4 `sessionStorage`, QA de Laurent (X puis rechargement, Échap).
+
+---
+
+## 2026-10-09 · Réparation globale des ancres et finalisation des cocons — 99 défauts traités, 22 arbitrages résolus, 25 liens nouveaux, D52 · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne consolidée (mission de Laurent du 09/10 « Réparation globale des ancres et finalisation des cocons SEO/GEO » ; GO_CODE et GO_PR_DRAFT = YES ; GO_MERGE, GO_PUBLICATION, GO_PAID = NO) | **PR** : #124, brouillon, « DO NOT MERGE », branche `claude/reparation-ancres-cocons` | **Base** : tête de #123 (`6bc15f4`), elle-même sur `main` `3c0909b`. **Dépendance** : la PR contient les commits de #123 tant que #123 n'est pas fusionnée ; aucun de ses 34 liens n'est modifié (contrôle ci-dessous)
+
+**Quoi**
+- Les 99 corrections de l'inventaire du 09/10 (1 611 ancres, `ANCRES_CORRECTIONS_2026-10-09.csv`, hors dépôt) reprises ligne à ligne contre le code : 71 appliquées, 28 conservées en l'état avec motif.
+- 22 des 54 lignes « à arbitrer » résolues par une preuve déjà disponible ; 32 regroupées en 5 décisions (description de la PR).
+- 25 liens nouveaux sur un texte existant (D48 b) pour les relations manquantes des cocons ; 8 ancres mode EN re-ciblées du hub EN `noindex` (contenu FR, D9) vers la landing Mode EN indexable.
+- D52 inscrite (décision de Laurent du 09/10 sur Mode, Packshot e-commerce et Amazon).
+
+| Famille | Lignes | Opération | Régime |
+|---|---|---|---|
+| Destinations fausses | ANC-001 à ANC-010 | href corrigé : guide packshot EN partie 4, contact pour la démonstration (FR, EN), photogrammétrie au lieu de l'éclairage (FR, EN), horlogerie EN au lieu du hub bijoux (3), santé au lieu des cosmétiques (FR, EN) | D48 (a) |
+| `alphashot-g2` nommant l'Alphashot Pro G2 | ANC-120, ANC-123, ANC-124, ANC-127 | href vers la fiche `alphashot-pro-g2` : la phrase nomme ce studio ; `alphashot-g2` est un autre produit (`machines.ts`, sans IA, retiré) redirigé par le Worker vers l'XL G2. EN : « Premiers » traduit « the first » | D48 (a) ; D15 pour le mot EN |
+| Ancres incohérentes | ANC-011, 012, 013 à 017, 018, 019, 020 à 022, 034, 038 | ancre-phrase réduite à « mal éclairée » ; phrase altérée réparée (« les … et nos offres d'accompagnement ») et Studios au lieu de l'accueil ; 5 liens sectoriels retirés de la puce « Alphashot 360 » ; « modus » → « fashion » (EN, 2) ; 3 liens retirés de la conclusion surchargée (FR, EN) ; « consulter notre article dédié » déplacé sur « les avantages d'une toplight » (FR, EN) | D15 ; D48 (b) pour les déplacements sans mot changé |
+| Studios (I02A) | ANC-040 à 043, 045, 046, 048 à 053, 150, 151 | href de la page de qualification ou du hub bijoux vers `/xx/studios-photo-automatises` quand l'ancre nomme les studios | D48 (a) ; `STUDIOS_INTERNAL_LINKING_EVENT` |
+| Mode (I05, D52) | ANC-055 à 071 | 9 mentions sectorielles FR → hub `mode-textile` ; 6 ancres « vêtements » FR → `/fr/packshot-mode` ; EN « Fashion » et de-ch « Kleidung » → landing Mode de leur langue | D48 (a) + D52 |
+| Secteurs | ANC-072, ANC-073 | « vins et spiritueux » : accueil → hub vin (A-007) ; « Shoe » : index EN → article EN chaussures indexable (hub EN `noindex`, contenu FR) | D48 (a) |
+| Doublons | 16 des 26 | lien redondant retiré, texte conservé ; guides chaussures FR/EN : retrait du lien de l'astuce de l'étape 2, conservation de celui de l'étape 5 (Multi-Camera Rig, qui identifie l'XL Pro v2) | retrait |
+| ShotFlow, workflows | ANC-100 à 111 | 6 ancres de marque ou auto-liens retirés (« ptimizing » corrigé en « optimizing ») ; 5 ancres « workflow » vers le propriétaire I17 | retrait ; D48 (a) |
+| 360°, legacy | ANC-119, 147 à 149 | fiche `alphashot-360` (propriétaire I04) ; article logiciel PackshotCreator perdu | D48 (a) |
+
+Conservées en l'état (28) : 10 doublons utiles (AI Act EN, gel J+7 ; « And many other e-commerce sectors », unique après ANC-073 ; sections distinctes des articles « mise en valeur » FR et EN ; listes ROI FR et EN, uniques après ANC-009 et ANC-010) ; 7 libellés français des gabarits EN (PACK-L, pages `noindex`) ; 8 ancres d'appel ou de chapitre (« immersion totale », « passer à la vitesse supérieure », « Notre guide dédié », « Commencez dès aujourd'hui ! » et leurs jumeaux EN) : P2 sans changement d'intention ; 3 améliorations Studios non appliquées (ANC-044 : la page lie déjà Studios ; ANC-047 et ANC-054 : seconde mention de la même page, qui lie désormais Studios par ANC-046 et ANC-053, laissée vers la page de qualification).
+
+Liens nouveaux (D48 b), par cocon : CC11 F5, 7 (pilier FR, 8 défis, photo produit e-commerce, studio e-commerce, Amazon FR, EN, de-ch) ; CC01, 5 (série → pilier, 4 FR et 1 de-ch) ; CC02-R, 6 (pilier internalisation ↔ ROI, prestataire ; 3 articles → pilier) ; CC13, 1 (migration → distributeur Suisse) ; CC06H, CC06J, CC08, 1 chacun (guide montre → hub horlogerie, guide bijoux → hub bijoux, article → hub vin) ; CC11-MKP, 2 (articles Amazon entre eux) ; de-ch, 1 (migration → format d'image).
+
+**Pourquoi** — Inventaire du 09/10 : 99 défauts confirmés ; propriétaires sans lien éditorial entrant : F5 (0 en FR, EN, de-ch), hub `mode-textile` (0), page distributeur (0), satellites CC02-R (0) ; landing IA cible de 11 ancres hors sujet (ShotFlow, workflows). Principe de la mission : réparer les liens qui racontent une mauvaise histoire, puis relier les bonnes pages.
+
+**Fichiers** — 82 fichiers `content/{blog,guides}/{fr,en,de-ch}/*.json` (champ `content` ou `introText`, un seul champ par fichier) ; `docs/seo-geo/DECISIONS.md` (D52), `docs/seo-geo/ETAT.md` (B, E), `docs/seo-geo/JOURNAL.md`. Aucun fichier de code, de gabarit, de landing, de Worker ni de `messages/*.json`.
+
+**Effet attendu** — [Inférence] Meilleure lisibilité des propriétaires d'intention par les moteurs (F5, Mode, Studios, fiche 360, article workflow) et parcours article → offre explicites ; aucun gain de position ou de trafic n'est promis. Lecture : GSC page × requête à J+28 et J+56 de la fusion, contre la baseline ci-dessous, en citant l'événement D52. Cela repose sur des schémas observés.
+
+Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metrics_page`, site 3, lecture seule ; conversions non disponibles dans cette source) :
+
+| Groupe de pages | Impressions | Clics | Position moyenne pondérée |
+|---|---|---|---|
+| CC01 pilier + 4 volets de la série FR | 30 147 | 107 | 18,9 |
+| CC11 satellites qui lient F5 (FR 3, EN 1) | 8 914 | 8 | 33,1 |
+| Accueil `/fr` (M5) | 6 980 | 68 | 25,2 |
+| Contenus de-ch modifiés (4) | 3 670 | 7 | 11,0 |
+| CC05 hub `mode-textile` + articles vêtements FR et EN | 3 300 | 13 | 15,2 |
+| CC11-MKP articles Amazon FR (2) | 2 992 | 8 | 5,9 |
+| CC02 Studios FR + EN + de-ch | 2 751 | 21 | 26,5 |
+| CC02-360 fiche 360 FR + EN + de-ch | 2 378 | 19 | 21,4 |
+| Hubs horlogerie, vin, bijoux FR | 2 039 | 9 | 19,7 |
+| CC10 landing IA FR + EN | 1 601 | 13 | 22,9 |
+| CC10 article workflow I17 FR + EN | 1 295 | 1 | 12,7 |
+| CC11 F5 FR + EN + de-ch | 1 204 | 1 | 42,5 |
+| CC05 landing Mode FR + EN + de-ch | 789 | 7 | 15,7 |
+| CC02-R internalisation FR (4) | 457 | 6 | 11,4 |
+| CC13 distributeur Suisse | 8 | 0 | 8,1 |
+
+**Vérifié**
+- `git branch --show-current` = `claude/reparation-ancres-cocons` avant chaque commit.
+- Moteur d'opérations : chaque changement localisé par ancre et destination exactes, texte visible comparé avant et après, nombre de liens du champ contrôlé ; 126 opérations, 0 échec. Delta des liens contre `6bc15f4` identique au journal des opérations (aucun retrait ni ajout inattendu) : les 34 liens de #123 sont intacts.
+- `npx next build` vert (variables factices de la CI) ; `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 499/499.
+- HTML prérendu contre la tête de #123 (identifiant de build neutralisé) : 374 pages, 292 identiques, 82 différentes = exactement les 82 pages du journal ; `<title>`, canonique, robots, hreflang, H1 et `lang` inchangés partout ; texte visible modifié sur 5 pages seulement, celles des réécritures prévues (ANC-012, 018, 019, 104, 123).
+- Rejeu des 366 chemins internes par le Worker du dépôt devant `next start` : mêmes chemins et mêmes statuts que sur #123. Les 40 destinations nouvelles ou re-ciblées : 200 direct, canonique auto-référente, langue de la source ; 2 en `noindex, follow` (hubs EN horlogerie et santé, même statut que la destination fausse remplacée).
+- Densité : au plus 3 liens nouveaux par page, #123 compris ; aucune cible liée deux fois sur une page touchée.
+- Playwright (Chromium local) : `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 81/81 ; `internal-links`, `internal-links-all`, `cta-destinations` : 23 réussis, 1 échec préexistant (CTA « Découvrir nos studios » absent de l'accueil, déjà absent du build de `main`).
+- Collisions de fichiers avec les PR ouvertes : #119 (`metaTitle`, ligne 7) contre `content` (ligne 16) dans 4 fichiers : pas de recouvrement ; #104 (`ia-lumieres-virtuelles` FR, même correctif horlogerie que `main`) et #64 (évolution e-commerce FR et EN, comparatif FR) modifient la même ligne `content` que cette PR : conflit textuel à résoudre au profit de `main` à leur actualisation.
+
+**Supposé** — [Inférence] `www` servira le même HTML que le build local. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) : mission Chrome préparée dans la PR, non exécutée ; CI GitHub au moment de l'écriture ; conversions (GA4 non consulté) ; sources hors dépôt inaccessibles : `PSC_LANDINGS_COCONS_FINAL_2026-10-07_V2.zip` complet, `08_PSC_ORBITVU_OWNER_MAP.md`, rapport Pareto du 09/10, audits A, C, E, F et F2 d'origine (le ZIP V4.3 en contient les synthèses 00 à 11, sans 08).
+
+**Suite** — Fusion de #123, puis mise à jour de la base de cette PR ; contrôle Chrome de la Preview ; circuit D15 pour les réécritures et les liens D48 (b) ; à la fusion, dater l'événement D52 dans `ETAT.md` § E. Décisions demandées à Laurent ou Sébastien : 5 groupes listés dans la PR (gamme ancienne, XL v2 / XL G2 et `alphashot-g2`, BlendAI, ancres IA et landing IA, rôle et chiffres de la landing Amazon).
+
+---
+
 ## 2026-10-09 · #122 — contrôle de Laurent en Chrome réel : ouverture confirmée ; diagnostic en texte JSON · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (#122, brouillon ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122 | **Base** : `main` `3c0909b`, inchangé
@@ -111,6 +203,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Campagne globale de maillage — 34 liens contextuels (D48 b), correction EN de l'article « lens » (D15) et liens des guides rendus visibles · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne unique (missions de Laurent du 09/10 : R1 « objectifs photographiques », campagne globale, complément « densité par page », réconciliation V4.3, puis « finition finale » avec GO_CODE ponctuel ; GO_PR_SUPPLÉMENTAIRE, GO_MERGE, GO_PUBLICATION, appels payants = NO) | **PR** : #123, brouillon, « DO NOT MERGE », branche `claude/gracious-cerf-rbj12m` | **Base** : `main` `3c0909b` intégré (fusion de #109)
+
+**Quoi** —
+- Liens ajoutés : 34, posés sur des mots existants (D48 b) ; 28 pages sources, 23 cibles ; FR 20, EN 14, de-ch 0 ; 14 P1, 20 P2. Objectif 7 (dont E1, L1, E2 du lot R1), format d'image 5, bijoux 4, netteté 4, cadrage et lunettes 4, horlogerie 2, studio interne et investissement 7, production visuelle 1.
+- Retirés après la réconciliation V4.3 (décision de Laurent du 09/10) : F-27-1 et F-27-2 (hub chaussures : lignes D-367 et D-369 du registre, différées après le 26/11, D39, et soumises à CA2), E-ECO-2 (cible jumelle EN d'un article Amazon en mesure, HOLD jusqu'au 23/11), F-ECO-1 (ancre de l'intention I11 vers un article concurrent de F5, gel jusqu'au 23/11). Les 3 fichiers qui ne portaient que ces liens sont identiques à `main`.
+- Contrôle des réserves éditoriales : F-BIJ-3 retiré (la phrase d'introduction du guide équipement bijoux annonce le contenu de la page elle-même, « dans ce tutoriel complet », et le lien renvoyait ailleurs) ; E-FLOU-2 : ancre ramenée à « Blurry » (la cible ne traite que du flou, pas du cadrage ; aucun mot modifié) ; F-BIJ-2, F-PROD-1, F-OBJ-2 et F-FLOU-2 conservés (ancre conforme au sujet de la cible ; au plus 2 liens par paragraphe).
+- Liens corrigés : 0. Liens existants supprimés : 0. Liens conservés : tous les autres.
+- Densité : au plus 3 ajouts par page (une seule page à 3 : bague 8 étapes FR, 2 182 mots, 3 sections, 3 destinations) ; au plus 2 liens par paragraphe ; aucun ajout P2 au-delà de 15 liens de corps pour 1 000 mots. 9 ajouts retirés avant la première livraison pour ces motifs (F-CHA-1, E-CHA-1, E-STU-2, E-STU-3, F-STU-3, E-ECO-1, F-ECO-2, E-OBJ-2, E-PROD-1).
+- Article EN `how-to-choose-best-lens-for-product-photography` : `metaTitle`, `h1` et `title`, « packshot(s) » remplacé par « product photography » (D15, D42). Slug, description, texte, FAQ, liens : inchangés.
+- Gabarit des guides : classe `guide-content` sur l'introduction et le contenu des étapes (`app/[lang]/guide/[slug]/page.tsx`) et règle de liens dans `app/globals.css` (couche `components`) : couleur `--very-peri-6`, soulignement, survol `--very-peri-7`, contour de focus clavier de 2 px. Cause du défaut : `@tailwindcss/typography` n'est pas chargé, les classes `prose-a:*` ne produisent rien. Plugin non activé ; aucune règle de mise en page des articles reprise.
+
+**Pourquoi** — Recovery Pareto du 09/10 : les cibles retenues cumulaient peu de liens contextuels entrants (format d'image EN : 5 957 impressions sur 90 jours, aucun lien ; bague 8 étapes EN : 3 039, aucun lien). Paire « objectif » : recul de classement daté de mai 2026, aucun lien contextuel ; « product photography » absent de l'article EN alors que les requêtes perdues le contiennent (7 419 impressions d'octobre 2025 à janvier 2026, contre 4 pour « packshot »). Guides : liens indiscernables du texte, défaut préexistant sur `main` (deux guides en échec à la QA Chrome, mission de Laurent du 09/10).
+
+**Fichiers** — 29 JSON `content/{blog,guides}/{fr,en}/**` ; `app/[lang]/guide/[slug]/page.tsx`, `app/globals.css` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après publication autorisée : lecture informative à J+28, verdict à J+56, sur les 23 cibles contre 5 témoins inchangés (baseline 08/09 → 05/10 : cibles 78 clics, 10 812 impressions, position 11,5 ; témoins 25 clics, 1 370 impressions, position 10,7). Liens contextuels entrants des 23 cibles : 16 → 50. Aucun gain chiffré annoncé.
+
+**Vérifié** (tête finale, build local de la branche) —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 499/499 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu contre `main` `3c0909b` (actifs CSS neutralisés) : 344 pages identiques au contenu près ; 30 différentes = 28 pages sources (texte identique, liens ajoutés seulement), l'article EN lens (title, H1) et `/en/blog` (titre de la carte) ; en plus, les 47 guides ne diffèrent que par la classe `guide-content`. Canonique, robots, hreflang et `lang` inchangés partout.
+- Contre la tête précédente `49ac5c2` : 5 pages différentes, chacune par un lien retiré seulement (les 5 retraits), texte identique.
+- Par lien : 34/34 ancres rendues exactes et uniques, cible en 200 direct, canonique auto-référente, même langue, sans `noindex` ; 5/5 retraits absents du rendu, texte conservé.
+- Liens de tout le site rejoués (Worker du dépôt devant `next start`) : 366 chemins, statuts identiques à la tête précédente ; hors 200 direct, seulement 3 chemins `alphashot-g2` (D29) et 5 chemins liés depuis des pages EN servies en 410.
+- Playwright, Chromium du conteneur : `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `internal-links` et `mobile-overflow` : 91/92 ; le seul échec, `mobile-overflow` sur `/fr` à 375 px, se reproduit à l'identique sur le build de `main` `3c0909b` (préexistant, accueil non modifié).
+- Guides, 7 pages FR, EN et de-ch, 1440 et 390 px : liens `rgb(82, 82, 185)`, soulignés, survol `rgb(77, 94, 167)`, focus clavier `2px solid`, aucun débordement, aucune erreur de page ; contraste du lien sur fond blanc 6,43:1, du survol 6,04:1 ; sur `main`, liens de la couleur du texte, sans soulignement.
+- PR ouvertes : aucun fichier commun, sauf avec #27 (branche du 23/09, non fusionnable).
+**Supposé** — [Inférence] Chaque ancre décrit le sujet de sa cible : choix éditorial, non mesurable avant publication. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; Firefox et WebKit ; relecture humaine de l'anglais.
+
+**Suite** — CI verte sur la tête finale ; information de Sébastien publiée le 09/10 à 14:16:03 UTC (aucune nouvelle information demandée par Laurent) ; QA Chrome ; délai D15 de 5 jours ouvrés à compter de la dernière condition remplie sur la tête finale ; GO_MERGE distinct ; J0 = publication constatée sur `www`.
 ## 2026-10-09 · #122 — `main` `3c0909b` intégré, plafond de session réel (`sessionStorage`), temps cumulé sur le site · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « #122 — remise à niveau main + vrai cap session + finalisation technique » ; code sur #122 seulement ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b` intégré par fusion (`980781c`) ; conflits limités à `JOURNAL.md` et `ETAT.md`, résolus par union (187 entrées de `main` conservées) ; aucun conflit de code
