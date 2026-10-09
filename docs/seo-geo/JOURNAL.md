@@ -34,6 +34,325 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
+
+**Quoi** — Suppressions seules, sans texte nouveau, sous D50 (exception D13/D42 de Laurent du 09/10) :
+- ShotFlow FR (`comment-shotflow-ameliore-suivi-taches-en-temps-reel`) : déjà dans #121, « | -50% de délais » du `metaTitle` et « Réduisez vos délais de 50%, » de la description ; ajoutés : les puces « Les délais d'approbation ont été réduits de 50 %… » et « 40 % du temps de travail économisé… », et dans la FAQ les phrases chiffrées des questions 1 à 5 (étude 2024, 83 %, 47 % ; 3 à 4 semaines, 90 %, 200 déploiements ; enquête 2024, 28 %, Printemps 32 %, 4,2 à 7,8/10 ; 100 000 assets, 1,2 s, 200 utilisateurs, client mode 25 000 assets et 18 % ; 180 clients, 35 %, 15-22 %, 20-25 %, 60 %) et la phrase qui renvoyait à « ces KPIs ».
+- ShotFlow EN (`how-shotflow-improves-real-time-task-tracking`) : « Reduce your deadlines by 50%, improve collaboration, and reduce costs. » devient « Improve collaboration and reduce costs. » dans la description, donc dans `og:description` et les cartes du blog (seul accord grammatical : majuscule, virgule) ; « Approval times have been reduced by 50%, speeding up all production. » et « 40% of working time saved thanks to the automation of updates. » retirés ; mêmes suppressions que le FR dans la FAQ.
+- Oscaro FR : « , n°1 des pièces auto neuves et d'origine sur internet, » retiré du corps (déjà dans #121).
+- Photographie 3D, FR et EN : modifications de #121 retirées, fichiers rendus identiques à `main` (HOLD PACK-D9 intact).
+
+**HOLD — non supprimés, localisation** :
+- ShotFlow EN : intertitre H3 « 50% reduction in approval times » (section « ShotFlow: real-time visibility… ») ; section « Case study: a successful transformation » (acteur non nommé, « the results are impressive: », 4 puces 65 %, 50 %, 20 %, 98 %, citation d'un « creative director ») ; FAQ 5, témoignage final ; description, « Supporting testimonies and case studies ». Motif : suppression impossible sans réécriture (intertitre, liste introduite par une phrase) ou témoignage, hors du champ de D50.
+- ShotFlow FR : intertitre H3 « 50 % de réduction des délais d'approbation » ; étude de cas (« Après ShotFlow, les résultats sont impressionnants : », 4 puces, citation du directeur créatif) ; FAQ 5, témoignage final ; description, « Témoignages et études de cas à l'appui. ».
+- Oscaro FR : description, « le leader des pièces auto en ligne » (suppression impossible sans substituer un sujet) ; title et H1 (résultat client, lot C) ; corps : « plus de 4000 LEDs », « jusqu'à 120 kg », « plus de 7000 références », citation sur la baisse des retours et la hausse des ventes, non identifiés comme non sourcés à ce jour.
+
+**Fichiers** — `content/blog/fr/comment-shotflow-ameliore-suivi-taches-en-temps-reel.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `content/blog/fr/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg.json`, `docs/seo-geo/DECISIONS.md` (D50), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Moins d'affirmations chiffrées non sourcées exposées sur 3 articles, leurs cartes de blog et leurs données structurées. Aucun effet de position annoncé.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 486/486 ; `npx next build` vert (386 pages) ; CSS identique à `main`.
+- HTML prérendu contre `main` `0ca0ba4` (identifiant de build neutralisé, scripts retirés) : 363 pages identiques sur 374 ; 11 différentes : les 3 articles, `/fr/blog` et `/en/blog` (carte ShotFlow), 6 articles dont la carte « articles liés » affiche la description ShotFlow. Écarts limités aux suppressions listées.
+- JSON-LD : 374 pages, 0 bloc invalide ; 2 pages différentes (ShotFlow FR et EN), champs `Article.description` et réponses de `FAQPage` seulement ; FAQ visible égale à `FAQPage`.
+- Rendu local (`next start`, Chromium) des 3 articles et des 2 index, 1440 et 390 px : HTTP 200, un seul H1, 0 débordement, 0 erreur de page ; questions de FAQ ouvertes sans erreur.
+
+**Supposé** — Rien.
+**Non regardé** — Preview Vercel (SSO, inaccessible depuis cette session) ; `sysnext.vercel.app` (bloqué par le proxy de la session) ; `www` (R4).
+
+**Suite** — Contrôle Chrome de la Preview (D42, étape 4). Le passage de brouillon à prête pour revue déclenchera une demande de revue automatique `CODEOWNERS` : l'autorisation de Laurent du 09/10 ne vaut que pour #116 et #120. Fusion ensuite, sur le GO conditionnel de Laurent du 09/10. #119 reste en HOLD (D13).
+
+---
+
+## 2026-10-09 · #113 — resynchronisation sur `main` (après #112), retrait D35, fusion ; consignation de la fusion de #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #113 distinct et conditionnel) | **PR** : #113, branche `claude/focused-hypatia-ygys0g-alt-aria` | **Base** : `main` `67ec946` (fusion de #112)
+
+**Quoi**
+1. #112 fusionnée le 09/10 à 08:13:42 UTC, commit de fusion `67ec946` : date consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E) ; #112 passe de B à G.
+2. #113 : base passée de la branche de #112 à `main` ; `main` `67ec946` fusionnée dans la branche (conflit sur `JOURNAL.md` seulement, résolu par union).
+3. D35 : les 7 ALT traduits de l'article EN protégé `/en/blog/packshot-photography-guide-why-make-product-packshots` sont retirés (commit `f6276a4`) ; le fichier est identique octet pour octet à `main`. Conservés : 7 ALT de-ch, 112 autres ALT EN (45 fichiers), 21 ALT décoratifs vidés, `title` de l'iframe Vimeo, ARIA du sélecteur.
+
+**Pourquoi** — D35 : l'article EN du comparateur F5 reste en l'état jusqu'à la fin de la mesure F5 (J+56 le 23/11). Les 7 ALT y avaient été modifiés le 08/10 par erreur de périmètre ; aucune revue antérieure ne l'avait relevé.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Delta de #113 contre `main` : 55 JSON (112 ALT EN sur 45 fichiers, 7 ALT de-ch, 21 ALT décoratifs, 1 `title` d'iframe ; aucun changement hors attributs `alt` / `title`), `MachineCard.tsx`, `MachineModal.tsx`.
+
+**Vérifié** — `main` `67ec946` (09/10, après fusion de #112) ; tête de #113 resynchronisée `e642a68` + ce commit. Delta contre `main` recompté : 55 JSON, 112 ALT EN (45 fichiers), 7 ALT de-ch, 21 décoratifs, 1 `title`, 0 changement hors attributs ; `MachineCard.tsx` et `MachineModal.tsx` identiques à la tête `ab7a0bf` contrôlée le 09/10. `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 486/486. HTML prérendu contre un build de `main` `67ec946` : 47 pages modifiées (41 articles, exactement ceux des JSON de blog touchés ; sélecteur et Studios FR, EN, de-ch) ; identiques à `main` : accueil FR, EN, de-ch, F5 ×3, Mode ×3, hub mode, article D35, 15 URL du cluster AI Act (#96) et les pages sources de sa baseline (`migrer-ancien-packshotcreator` et équivalents). Les 14 guides EN portent leurs ALT dans `introMedia`, champ non rendu par le gabarit : aucune page de guide modifiée. QA Playwright sur build local, 10 URL × 3 viewports : 30/30 PASS (URL 8 et 9 : erreurs de console des intégrations externes seulement, présentes sur `main`). `sysnext` après fusion de #112 (09/10 vers 08:15 UTC) : `smoke.mjs` vert (17 pages, 3 ressources), 6 URL de #112 servies avec le lien attendu.
+
+**Supposé** — QA Chrome réelle de #113 (10/10, 09/10) reprise de la mission de Laurent, non refaite ; la page D35 en était exclue (URL 1 à 10 hors article protégé).
+**Non regardé** — `www` (R4) ; relecture EN/DE humaine des ALT (D42).
+
+**Suite** — `smoke.mjs` sur `sysnext` après fusion de #113 ; contrôle Chrome de `www` par Laurent ; fenêtre C11 au plus tard le 15/10 respectée par la fusion.
+
+---
+
+## 2026-10-09 · #112 — exception D49, intégration de `main` et fusion · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #112 conditionnel) | **PR** : #112, branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `330c022` (fusion de #120)
+
+**Quoi** — `main` `330c022` (#110, #116, #120) intégré par commit de fusion `b41d433` : conflits de `ETAT.md` et `JOURNAL.md` résolus par union. D49 inscrite dans `DECISIONS.md` : exception ponctuelle de Laurent pour #112 (D15 et information préalable de Sébastien non appliquées à cette seule PR). Ligne #112 d'`ETAT.md` mise à jour.
+
+**Pourquoi** — Décision expresse de Laurent du 09/10 (texte intégral en D49). Traçabilité des corrections de régime (a), qui remplace ici l'information préalable de Sébastien : M01, M02, M03 (3 ancres « studio photo automatisé » vers `/fr/studios-photo-automatises`), M30, M31, M32 (ancres horlogerie vers le hub horlogerie, dont 1 de-ch), « photographie commerciale horlogère » (guide bracelet FR, audit E, sans numéro M) vers le hub horlogerie, liens externes (A05, AA5 a, A17, F-098, F-070). Liens de régime (b) publiés au titre de D49 : M04, M05 (Studios), M21, D-044 (hub vin).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` ; commit de fusion `b41d433`.
+
+**Effet attendu** — Aucun effet nouveau sur le site par ces commits. Diff de site de #112 identique à la tête `c4c20db` contrôlée (même `patch-id` avant et après l'intégration de `main`).
+
+**Vérifié** — `main` `330c022` ; fichiers de `main` depuis `06b18e2` : aucun fichier du site commun avec #112 ; D49 libre sur `main` ; CODEOWNERS : « la protection de branche n'exige pas de revue ».
+**Supposé** — La QA Chrome réelle de #113 (10/10) est reprise de la mission de Laurent ; elle n'a pas été refaite par cette session.
+**Non regardé** — `www` (R4).
+
+**Suite** — CI sur la nouvelle tête, puis fusion de #112 ; `STUDIOS_INTERNAL_LINKING_EVENT` = date de cette fusion, à consigner par #113 ; `smoke.mjs` sur `sysnext.vercel.app` après déploiement.
+
+---
+
+## 2026-10-09 · D48 — inscription de CA10 (a) + (b) dans DECISIONS.md, par #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — exécution ciblée #112 » du 09/10 (GO_CODE limité à cette inscription ; GO_MERGE, GO_PUBLICATION, GO_CLOUDFLARE_DEPLOY = NO) | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
+
+**Quoi** — D48 inscrite en tête de `DECISIONS.md` : CA10 (a) correction d'un `href` existant, ancre inchangée, information de Sébastien ; CA10 (b) lien posé sur un texte existant sans modifier un mot, D15. Datée du 07/10/2026, attribuée à Laurent. Ligne #112 d'`ETAT.md` mise à jour. Aucun fichier du site modifié.
+
+**Pourquoi** — Arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, ZIP hors dépôt, SHA-256 `ef94c420…6024`) : la première PR de vague 1 qui applique CA10 l'inscrit. #112 l'applique : (a) M01, M02, M03, M30, M31, M32 ; (b) M04, M05, M21, et D-044, lien du même type hors du dossier V2. Arbitrages de Laurent du 09/10 : M31 conservé dans #112, #27 non fusionnable en l'état et non fermée ; protocole Studios conservé, son J0 ne bloque pas #112, aucun témoin D47 modifié ; M39 attend une landing IA validée, #105 reste HOLD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site. CA10 devient une règle écrite opposable aux PR suivantes.
+
+**Vérifié** — `main` `06b18e2` et tête de #112 `0788f23` avant écriture ; numéro D48 absent de `main`, de la branche et des PR ouvertes ; aucune PR ouverte ne touche `DECISIONS.md` ; texte des deux régimes repris du tableau A3 sans modification.
+**Supposé** — Rien.
+**Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
+
+**Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-B — ALT, ARIA et mécanique de langue (B4_1, B4_2, LANG A36/A38, C11) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #113, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-alt-aria`, **empilée sur PR-A (#112)** (mêmes JSON de contenu, champ `content` sur une ligne : se fusionne après PR-A) | **Base** : branche de PR-A
+
+**Quoi** — Deux commits :
+1. ALT : 119 ALT en français servis sur 46 articles et guides EN traduits en anglais ; 7 ALT en français de l'article de-ch `leitfaden-packshot-fotografie-warum-packshots-machen` traduits en allemand ; 21 `alt="__wf_reserved_decorative"` (15 fichiers) remplacés par `alt=""` ; `title` de l'iframe Vimeo EN repris de la version FR (F10). Coquille « massacra » (B4-0322) rendue par « mascara » dans l'ALT EN.
+2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch. Libellés des secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches (clés brutes en FR et en EN) : retirés de cette PR après l'ouverture de #110 (sprint parallèle, même fichier `app/[lang]/studio-photo/[slug]/page.tsx`), COLLISION_OTHER_SPRINT.
+
+**Pourquoi** — B4 (716 occurrences) et LANG (A01–A38) comptent les mêmes ALT en mauvaise langue (ponts PONT-01, PONT-02 de la réconciliation du 07/10) : une seule correction par occurrence. Registre B4 original absent (`B4_RAW_REGISTER = MISSING`) : seuls les cas prouvés par observation du fichier sont corrigés.
+
+**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios). Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` (PR-A + PR-B, après retrait du fichier des fiches) : seules les pages des JSON touchés, le sélecteur et Studios changent ; fiches identiques à `main` ; accueil, F5, Mode, cluster AI Act identiques.
+- ALT en français restants sur pages EN : uniquement les 3 pages EN servies en français (décision B1/D9) et les 2 fichiers EN de #109.
+- e2e : voir l'entrée PR-A (même build) ; `machine-selector` vert (le spec lit le texte visible, inchangé).
+
+**Supposé** — [Inférence] Les ALT traduits décrivent correctement leur image : la traduction reprend l'ALT français sans vérification visuelle image par image. Cela repose sur des schémas observés.
+**Non regardé** — 167 `alt="__wf_reserved_inherit"` (description image par image nécessaire) ; ALT FR jugés trompeurs ou bourrés de mots-clés (B4_3 : réécritures, validation de Sébastien) ; relecture EN et DE humaine (D42).
+
+**Suite** — Fusion après PR-A ; fenêtre C11 (MachineCard sur la cible et le témoin du pilote Studios) : au plus tard le 15/10, sinon après J+56 ; relecture EN/DE.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-A — maillage : ancres, liens et cocons (résiduel V4.3 exécutable) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` ; PR liées : #113 (empilée), #114, #115 | **Base** : `main` `06b18e2`
+
+**Quoi** — Quatre commits, chacun retirable seul :
+1. Ancres mal dirigées : A-005 (« horlogerie », ia-lumieres-virtuelles FR) et A-006 (« réussir la photographie de vos montres », guide montre FR) vers le hub horlogerie au lieu du hub bijoux ; jumeau de-ch « Fotografie Ihrer Uhren » vers `/de-ch/branchen/uhren` ; « photographie commerciale horlogère » (guide bracelet FR) vers le hub horlogerie ; libellés EN A-008 (« theoptics And ») et « modus » → « fashion ». Deux fichiers identiques octet pour octet à ceux de #104.
+2. Pilote Studios (EPL) : A-001, A-002, A-003 (« studio photo automatisé » qui menait au guide de décision) et N-001, N-002 (liens posés sur une mention existante) vers `/fr/studios-photo-automatises`. Commit isolé : sa fusion fixe le J0 du pilote.
+3. Hub vin-spiritueux : D-044 (« bouteilles en verre ») et D-045 (« bouteilles de vin »).
+4. Liens externes : retrait du lien, texte conservé (règle AA5 a) pour pixcap FR (F-041, F-042), la balise `<a id="">` sans href (F-043), goaland et wpengine FR et EN (D-020 à D-023) ; « Cloudinary » (FR, EN, de-ch) vers cloudinary.com, « BrightRiver » (EN) vers bright-river.com ; normalisation des URL externes redirigées (A17 : 23 lignes, 78 occurrences, 42 fichiers) ; coquille d'ancre « Alphasmhot » (F-098) ; « Retour au site » du questionnaire (F-070).
+
+**Pourquoi** — Mission du 08/10 : exécuter le résiduel sûr des audits déjà faits, sans nouvel audit. Les quatre landings actuelles (bijoux, IA, vin, Studios) ne sont plus exclues du fait des brouillons #104, #105, #107 et #108. Lignes du registre 582 : E06, A-008, EPL, D-044, D-045, A05, D-020 à D-023, A17 ; constats complémentaires des audits B et E.
+
+**Fichiers** — 52 fichiers `content/{blog,guides}/**` (FR, EN, de-ch) et `app/etude-clients-2026/SurveyForm.tsx` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après fusion : 4 liens de contenu de plus vers des owners (Studios +2, hub vin +2), 8 ancres redirigées vers la page qui correspond à leur texte (horlogerie +3, Studios +3 au détriment du guide de décision, et leurs jumeaux), aucun lien externe mort ni mal attribué sur les lignes traitées. [Inférence] Effet de classement non chiffrable ; lecture GSC par page à J+28. Cela repose sur des schémas observés.
+
+**Vérifié**
+- Fresh-check : `main` `06b18e2` ; PR ouvertes #109 (sprint parallèle, 19 fichiers), #104, #105, #107, #108 (HOLD), #82, #70, #64, #27 ; #110 et #111 (sprint parallèle) ouvertes pendant la mission, aucun fichier commun avec cette PR. Aucun fichier de #109 modifié (fichiers communs exclus ligne par ligne). Fichiers de #27 (non fusionnable, CA2 en attente) modifiés là où le résiduel l'exige.
+- Chaque remplacement appliqué par chaîne exacte avec nombre d'occurrences contrôlé ; sérialisation JSON d'origine conservée ; `verifier-json` : 195 fichiers valides.
+- URL externes cibles relevées en 200, sans redirection, le 08/10 (curl depuis le conteneur) ; pixcap.com sans résolution DNS ; l'article goaland redirige vers l'index du blog, la ressource wpengine vers un autre article.
+- `tsc` vert ; `next build` vert (386 pages, avec PR-B empilée) ; Vitest 483/483.
+- HTML prérendu contre `main` (scripts retirés, identifiant de build neutralisé) : seules les pages des fichiers touchés changent ; accueil, F5, Mode et les 15 articles du cluster AI Act identiques.
+- Liens rendus, Worker du dépôt rejoué devant `next start` : 0 balise `<a>` sans href (1 sur `main`) ; liens non 200 inchangés (16 vers `alphashot-g2`, D29 ; 2 à double saut, D29 ; 7 depuis des pages EN en 410) ; 3 fragments absents, ceux du témoin du pilote (D47).
+- e2e Chromium (machine-selector, sommaire-blog, navigation-pages-longues, internal-links, cta-destinations) : 96 réussis, 1 échec préexistant (`cta-destinations`, CTA « Découvrir nos studios » de l'accueil, relevé par l'audit A le 01/10 ; accueil identique à `main`).
+
+**Supposé** — [Inférence] « bouteilles en verre » (D-044) relève du cocon vin : la page cible traite des bouteilles en verre. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; Firefox, WebKit ; contenus non traités : liste HOLD de la PR.
+
+**Suite** — Information de Sébastien (CA10 a ; D42, arbitrage final 3 : maillage et liens) ; décision du J0 du pilote Studios (fusion du commit EPL, ou retrait du commit) ; 25 liens vers Studios différés « après lecture du pilote » (D-081 à D-104, D-116) ; GO de fusion distinct.
+
+**Mise à jour du 08/10, finalisation (décision de Laurent)** — Aucune landing nouvelle ni refonte publiée ; #104, #105, #107 et #108 restent HOLD, les pages actuelles bijoux, IA, vin et Studios servent d'owners et de destinations. Un lien vers la page Studios actuelle n'est pas le lancement de la refonte Studios : le J0 du pilote n'est plus une décision préalable à la fusion de cette PR. Sa fusion est consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E), sans baseline payante. Revue finale du diff : 4 liens internes nouveaux (Studios ×2, vin ×2), 7 ancres re-ciblées (Studios ×3, horlogerie ×4 dont 1 de-ch ; correction de l'effet attendu ci-dessus, qui en annonçait 8), 2 libellés EN corrigés sur des cibles inchangées, 0 lien vers `/fr/packshot-e-commerce`, `/fr/packshot-mode` ou l'accueil ; texte visible inchangé hors libellés EN et coquille « Alphasmhot ». Sébastien : information (D42, arbitrage final 3), pas de validation.
+
+---
+
+## 2026-10-09 · Ubersuggest résiduel : #116 fusionnée, #120 intégrée à `main`, décisions de Laurent du 09/10 · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission V8 de Laurent du 09/10, « finalisation #116 et #120 ») | **PR** : #116 fusionnée ; #120 (cette branche) | **Commit de fusion de #116** : `7501f38` (`main`), le 09/10/2026 à 07:14:16 UTC, tête `7841991`
+
+**Quoi** —
+- #116 sortie du brouillon puis fusionnée par commit de fusion, tête `7841991` verrouillée. Code des 2 fichiers identique à la tête `13ba3ad`, contrôlée dans Chrome sur la Preview le 09/10 (QA de Laurent : PASS, 4 pages FR/EN, 1440 et 390 px) ; CI 4/4 verte sur `7841991`.
+- #120 : `main` `7501f38` intégré dans sa branche ; conflits de `ETAT.md` et `JOURNAL.md` résolus par union ; fichiers du site inchangés (3 `metaTitle` EN, rien d'autre).
+- #118 : fermeture sans fusion, son correctif étant fusionné par #116 (HTML identique sur les 374 pages prérendues, mesuré le 09/10).
+
+**Décisions de Laurent du 09/10, consignées sans modification de sens** —
+1. Demandes de revue **automatiques** de `CODEOWNERS` autorisées lors du passage de #116 et #120 de brouillon à prêtes pour revue, pour ces deux PR uniquement. Aucune demande manuelle, aucun message direct, aucune relance, aucune attente de validation de Sébastien. Une notification automatique n'est pas une validation métier.
+2. **Exception D42 ciblée, #120** : suppression du claim chiffré non sourcé « -50% delay » du `metaTitle` EN de `/en/blog/how-shotflow-improves-real-time-task-tracking`, sans attendre de validation métier complémentaire. Cette exception ne vaut que pour cette suppression : aucun autre claim, aucune prose FR, aucune proposition commerciale. Aucune validation n'est attribuée à Sébastien.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (intégration de `main` et consignation) ; fichiers du site de #120 inchangés.
+
+**Vérifié** — Voir l'entrée de contrôle de #120 ci-dessous et la description de la PR.
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de Laurent après déploiement. Statut de déploiement Vercel : constaté par le contenu servi seulement.
+
+**Suite** — #119 et #121 restent en HOLD (point D13 des titles FR ; HOLD PACK-D9 ; D42). Après fusion de #120 : `smoke.mjs` sur `sysnext.vercel.app`, puis les 7 pages dans Chrome sur `www`.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-B — 3 titles EN raccourcis mécaniquement · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #120, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Champ `metaTitle` de 3 articles EN, chacun remplacé par un texte qui existe déjà :
+- `/en/blog/how-to-avoid-blurry-product-photographs` : « How to avoid blurry photos in product photography: causes, solutions, and best practices » (88) devient le H1 de l'article, « How to avoid blurry photos in product photography » (49) ;
+- `/en/blog/technique-photograph-jewelry-tutorial` : « How to Photograph Jewelry: Professional Techniques for Jewelers | PackshotCreator » (81) perd son suffixe de marque et devient « How to Photograph Jewelry: Professional Techniques for Jewelers » (63) ;
+- `/en/blog/how-shotflow-improves-real-time-task-tracking` : « ShotFlow: Optimize your production monitoring in real time | -50% delay » (71) perd « | -50% delay », chiffre non établi (backlog factuel du triage, n° 4), et devient « ShotFlow: Optimize your production monitoring in real time » (58).
+
+Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, slug et canonical inchangés.
+
+**Pourquoi** — Les 2 seuls titles EN classés SHORTEN_SAFE au triage du 30/09 qui restent mécaniques et hors de toute PR ouverte au 08/10, et le seul claim EN du backlog factuel retirable d'un title par simple suppression, dans un fichier libre. Les titles FR ne sont pas modifiés : la question « un `<title>` relève-t-il du copywriting réservé à Sébastien (D13) ? » reste ouverte (ligne #70 de `ETAT.md`). D13 vise le copywriting français. GSC sur 90 jours au 30/09 (triage) : 5 clics, 1 645 impressions, position 9,3 pour le premier ; 1 clic, 564 impressions, position 30,5 pour le second.
+
+**Fichiers** — `content/blog/en/how-to-avoid-blurry-product-photographs.json`, `content/blog/en/technique-photograph-jewelry-tutorial.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Titles affichés en entier dans les résultats de recherche. Aucun gain de clics ni de position n'est mesuré ou annoncé ; lecture possible dans GSC à J+28.
+
+**Vérifié** — voir la PR : title, `og:title`, `twitter:title`, canonical et hreflang rendus ; HTML prérendu comparé à `main` ; CSS compilée comparée à `main`.
+
+**Supposé** — [Inférence] Google reprend le title tel quel, sans le réécrire. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; CTR avant et après, faute de recul.
+
+**Suite** — GO de Laurent, puis fusion ; information à Sébastien (métadonnées seules, D42, arbitrage final 3). Titles FR : lot de 10 lignes préparé pour Sébastien, hors dépôt, dont le pendant FR du title ShotFlow (« | -50% de délais »).
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (FR et EN, 4 pages) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lot D), suite de UB-04 (#74) | **PR** : #116 (PR-A), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-tech-h1-dedies-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient leur fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Le fil passe dans le prop `breadcrumb` introduit par #74 : `<nav>` étiqueté par langue, séparateurs masqués aux lecteurs d'écran, `font-heading` à la place de `font-sans` comme dans #74. Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés ; `BreadcrumbList` inchangé.
+
+**Pourquoi** — Défaut laissé hors périmètre par #74 (JOURNAL du 01/10) et inscrit en F4 de `ETAT.md`. Fresh-check du 08/10 sur `main` `06b18e2` : sur les 4 pages, le texte du H1 commence par « Accueil/Blog/Comparatif », « Home/Blog/Comparison », « Accueil/Blog/Guide », « Home/Blog/Guide », avec un `<div>` enfant du `<h1>`.
+
+**Fichiers** — `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 des 4 pages ne porte plus que leur titre. Hygiène technique et structure d'accessibilité ; aucun gain de trafic ni de position annoncé.
+
+**Vérifié** —
+- Propriété des fichiers : aucune des 15 PR ouvertes au 08/10 (#27, #64, #70, #82, #104, #105, #107 à #115) ne touche les 2 fichiers ni `components/hero/`. `messages/*.json`, modifiés par 6 PR ouvertes, ne sont pas touchés : le libellé du repère reste dans chaque page, comme dans le gabarit d'article.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu, build de `main` `06b18e2` contre build de la branche, identifiant de build neutralisé, scripts retirés : 374 pages, 370 identiques, 4 différentes, les 4 pages visées. Écart limité au déplacement du fil : `div` dans le `<h1>` devenu `nav` étiqueté juste avant, séparateurs `aria-hidden`, classe de police.
+- CSS compilée : 3 feuilles, identiques octet pour octet à celles de `main`.
+- Chromium, `next start`, 4 pages, 1440 et 390 px, animations neutralisées : captures de la zone d'en-tête, 0 pixel différent sur les 8 ; police, taille, graisse, interligne, couleur et position du fil identiques ; hauteur de document identique ; 0 débordement, 0 erreur de page.
+- `<head>` des 4 pages identique à `main` : title, description, canonical, hreflang, robots, `og:*`, `twitter:*` ; `BreadcrumbList` identique.
+- Arbre d'accessibilité (comparatif FR, prestataire EN) : un seul titre de niveau 1, au nom égal au titre de l'article ; repère de navigation « Fil d'Ariane » ou « Breadcrumb », 2 liens, catégorie en texte ; séparateurs absents de l'arbre.
+- Playwright, Chromium, `navigation-pages-longues` et `sommaire-blog` sur le build de la branche : 68 sur 69 ; l'échec porte sur `/de-ch/ia-photo-produit` à 1024 px, page non modifiée au HTML identique à `main`, et passe 3 fois sur 3 au rejeu isolé.
+
+**Supposé** — [Inférence] Firefox et Safari suivent le rendu de Chromium : même structure de bloc, mêmes règles CSS. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels.
+- Détecté pendant le fresh-check, non modifié : `/{fr,en,de-ch}/studio-photo/selecteur-machines` place un lien de retour « Studios Photo » suivi d'un `<br>` dans son `<h1>`. Hors liste historique de l'audit ; structure différente (lien seul, mise en page centrée) : décision séparée.
+- Libellé du repère à migrer vers `messages/*.json`, avec celui du gabarit d'article, quand ces fichiers seront libres.
+
+**Suite** — GO de fusion distinct de Laurent (mission du 08/10 : GO_MERGE = NO). Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis les 4 pages dans Chrome sur `www`.
+- Doublon : #118, ouverte à 16:17 UTC par une autre session (branche `seo/ubersuggest-residuels-2026-10-08`), porte le même correctif sur les 2 mêmes fichiers, avec un module partagé `lib/blog-fil-ariane.ts` ; #116 a été ouverte à 16:06 UTC, avant elle. Une seule des deux doit être fusionnée : choix de Laurent ; aucune fermeture sans GO.
+
+---
+
+## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
+
+**Quoi** — Les 17 fiches `/de-ch/fotostudio/<slug>` déclaraient `Product.url` et `Offer.url` en `/de-ch/studio-photo/<slug>`, qui répond 307 vers la fiche. Ces deux champs prennent l'URL canonique de la fiche, déjà calculée par `getPathname` pour le fil d'Ariane (#55) ; FR et EN inchangés.
+
+**Pourquoi** — Défaut listé au backlog F5 depuis #55 (29/09), confirmé le 08/10 sur un build local de `main` `06b18e2` : relevé des URL internes déclarées dans les JSON-LD des 323 pages du sitemap, statut sans suivre les redirections ; 34 valeurs non 200 : 13 `Product.url` et 13 `Offer.url` (307) sur les fiches du sitemap, 8 `Service.url` (301) sur les hubs `branchen`. Les 4 fiches `delisted`, hors sitemap mais prérendues en de-ch, portaient le même défaut. Les fiches de-ch sont des fiches marchand (`Offer` en CHF) : l'URL de l'offre doit être celle de la page.
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx` (une constante `urlFiche`, partagée par le fil d'Ariane et `productSchema`), `lib/seo/__tests__/json-ld-url-canonique.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : `Product.url` et `Offer.url` des 17 fiches de-ch égaux à leur canonique ; aucun autre champ ne change. Lecture : GSC, « Fiches marchand » et « Extraits de produits », filtre `/de-ch/fotostudio/`, J+14 à J+28 après la mise en production. Aucun gain de position ni de clics n'est attendu ni promis.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 486/486 (24 fichiers), dont le nouveau test (3/3). Sa règle sur les sources détecte le motif de `main` (URL `/${lang}/studio-photo/…` écrite en dur dans `productSchema`) ; elle exclut nommément `app/[lang]/industrie/[slug]/page.tsx` (voir Non regardé).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, avant (`main` `06b18e2`) et après : 56 pages comparées (17 fiches × 3 langues, sélecteur FR et de-ch, `/fr`, `/de-ch`, `/de-ch/branchen/uhren`). 39 identiques ; 17 fiches de-ch différentes sur `Product.url` et `Offer.url` seulement ; statut, `<title>`, canonical, hreflang, `robots`, `BreadcrumbList` et autres blocs JSON-LD identiques.
+- Relevé JSON-LD sur le build de la branche : 323 pages, 0 `Product.url` ni `Offer.url` non 200 ; restent les 8 `Service.url`.
+
+**Supposé** — [Inférence] Le comportement 307 de `/de-ch/studio-photo/<slug>` vient du middleware `next-intl` ; le Worker laisse passer les chemins à préfixe de langue, donc la production répond comme le build local. Cela repose sur des schémas observés.
+**Non regardé** — `Service.url` des 8 hubs `/de-ch/branchen/*` (`/de-ch/industrie/<slug>`, 301) : laissé en l'état, le gabarit `industrie/[slug]` est touché par #104 et #107 (HOLD) et sert `/de-ch/branchen/mode` (gel Mode jusqu'au 26/11) ; `Service` n'ouvre aucun résultat enrichi. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). Test des résultats enrichis de Google : à faire sur la Preview ou après fusion. Aucun appel payant.
+
+**Suite** — Contrôle de la Preview de-ch (source JSON-LD de 2 fiches) ; fusion sur GO distinct de Laurent ; après fusion, test des résultats enrichis sur `/de-ch/fotostudio/alphashot-pro-g2` et lecture GSC à J+14/J+28. `Service.url` des `branchen` : après la sortie de HOLD de #104 et #107 et le 26/11.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel — suppressions factuelles minimales (ShotFlow, Oscaro, photographie 3D) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Suppressions seules, sans mot ajouté, dans 4 fichiers qu'aucune PR ouverte ne touche :
+- `/fr/blog/comment-shotflow-ameliore-suivi-taches-en-temps-reel` : « | -50% de délais » retiré du title (77 → 60 caractères) ; « Réduisez vos délais de 50%, » retiré de la description, majuscule reportée sur « Améliorez » ;
+- `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` : apposition « n°1 des pièces auto neuves et d’origine sur internet » retirée du corps ;
+- `/fr` et `/en/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : « brevetés » retiré de « Nos plateaux tournants brevetés » ; phrase « Nos solutions de photos de produits en 3D et nos logiciels dynamiques garantissent le flux de travail le plus rapide et le plus productif possible. » retirée.
+
+**Pourquoi** — Entrées 4 (risque élevé), 6 (risque élevé) et 2 (risque moyen) du backlog factuel du triage : affirmations sans source dans le dépôt. La mission autorise une suppression factuelle minimale dans un fichier qu'aucune PR ne possède, sans claim de remplacement.
+
+**Fichiers** — les 4 JSON ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Ces affirmations ne s'affichent plus : ni dans le résultat de recherche (ShotFlow), ni dans le corps des pages. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** — voir la PR : carte des fichiers des 20 PR ouvertes ; HTML prérendu comparé à `main` ; title, description, canonical, hreflang, robots, Open Graph et Twitter rendus ; CSS compilée comparée à `main`.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4).
+- Non traité, à arbitrer :
+  - la FAQ du même article ShotFlow, rendue aussi en `FAQPage` JSON-LD, porte une quinzaine de chiffres sans source (83 %, 47 %, 200 déploiements, 28 %, 100 000 assets, 180 clients…) et un client nommé (« Printemps ») ; idem pour l'intertitre « 50 % de réduction des délais d'approbation ». C'est un chantier éditorial, hors de toute suppression minimale ;
+  - description Oscaro, « le leader des pièces auto en ligne » : la retirer impose une reformulation (D13) ;
+  - page 2D : le JSON FR est touché par #70 et #119 ; le JSON EN, en `noindex` (D9), n'est pas traité seul pour ne pas faire diverger les deux versions ;
+  - description EN de l'article ShotFlow : fichier touché par #120.
+- Doublons entre PR ouvertes le 08/10 : #118 et #116 font la même correction (fil d'Ariane des 2 articles dédiés) ; #120 et #119 modifient les 2 mêmes titles EN.
+
+**Suite** — Validation ciblée de Sébastien (D42, arbitrage final 3 : un claim modifié), puis GO de fusion de Laurent ; après fusion, `smoke.mjs` et contrôle Chrome sur `www` des 4 pages.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-D — Worker : BL-042 et BL-018 vers leur équivalent exact (code seul, non déployé) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : #115, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
+
+**Quoi** — `cloudflare-worker/src/index.js` : BL-042, `/ecommerce-jewelry-photography-tutorial` sort de `GONE_PATHS` et redirige en 301 vers `/en/blog/technique-photograph-jewelry-tutorial` (cible déjà utilisée par la variante `/en/blog/…`) ; BL-018, l'ancien article « boostez … 4 erreurs à éviter » redirige vers l'article exact au lieu de l'article voisin « 6 pratiques ». Test `cloudflare-worker/test/e-bl-pack-w.test.ts`.
+
+**Pourquoi** — Rapport E-BL (simulation sur 112 URL à backlinks) : BL-042 en 410 avec équivalent existant (correspondance HIGH), BL-018 vers une cible voisine. Simulation ≠ erreur live : comportement `www` non contrôlé (R4).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/test/e-bl-pack-w.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement (non autorisé par cette mission) : les backlinks de ces deux anciennes URL atteignent l'article correspondant. Les variantes `/amp/` de BL-042 passent de 410 à 404.
+
+**Vérifié**
+- R5 : Worker déployé `packshot-router` (modifié le 01/10 à 06:59:54 UTC) lu en lecture seule le 08/10 par l'API Cloudflare ; écart avec le dépôt limité aux commentaires retirés par l'empaquetage et aux enveloppes du bundler : aucune divergence de règle.
+- Cibles servies en 200 par `next start`, canonique auto-référente, sans `noindex`, présentes au sitemap.
+- Vitest Worker : 6 fichiers, 165 tests verts (`unicite-tables`, `legacy-redirects`, `lot-f`, nouveau test sur les hôtes www, en. et fr.) ; `tsc` vert. Arbre de l'application identique à `main` (build vert de `main` `06b18e2` le 08/10).
+
+**Supposé** — Aucun.
+**Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
+
+**Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
 ## 2026-10-08 · Intégrité factuelle — PR #109, seconde passe sur les 19 fichiers · Claude de Laurent
 
 **Chantier** : intégrité factuelle, mission « dernier passage » de Laurent du 08/10 | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base de la passe** : tête `0860462` | **Commit** : le commit de cette entrée, « fix: remove residual unsupported factual claims »
