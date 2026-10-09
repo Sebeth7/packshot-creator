@@ -49,7 +49,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'comparatif-orbitvu-ortery-styleshoots-2026',
     title: 'Comparatif Orbitvu vs Ortery vs Styleshoots 2026',
-    description: 'Comparaison factuelle des 3 leaders du studio photo automatisé : Orbitvu, Ortery et Styleshoots/Profoto. Prix, productivité, fonctionnalités et support en France.',
+    description: "Orbitvu, Ortery, StyleShoots : ce que nous pouvons établir sur chaque studio photo automatisé et les points à vérifier. Comparatif rédigé par PackshotCreator, distributeur officiel d'Orbitvu.",
     author: 'PackshotCreator',
     date: '2026-03-22',
     category: 'Hardware & Studios',
@@ -59,7 +59,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'studio-ia-vs-ia-generative',
     title: 'Studio photo + IA vs IA générative pure | Comparatif 2026',
-    description: 'Photo produit IA : faut-il choisir Photoroom ou un studio automatisé ? Comparatif complet fidélité, 360°, cohérence catalogue et réglementation.',
+    description: "Photo produit IA : outil d'IA générative ou studio automatisé couplé à l'IA ? Les critères à examiner : fidélité, 360°, cohérence catalogue, réglementation.",
     author: 'PackshotCreator',
     date: '2026-03-22',
     category: 'IA & Technologie',
@@ -70,7 +70,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'ia-photo-produit-guide-2026',
     title: 'IA Photo Produit 2026 : Guide Complet BlendAI pour E-commerce',
-    description: 'Guide complet IA photo produit 2026. BlendAI : détourage, backgrounds, retouche automatique. Intégration studios Orbitvu. ROI, workflow, cas d\'usage.',
+    description: "Guide IA photo produit 2026 : principes, fonctionnalités (détourage, arrière-plans, retouche), workflow studio + IA et critères de choix pour l'e-commerce.",
     author: 'Sébastien Jourdan',
     date: '2026-01-22',
     category: 'IA & Technologie',
@@ -81,7 +81,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026',
     title: 'BlendAI vs Flair.ai : Quelle IA pour Vos Campagnes Produits en 2026 ?',
-    description: 'Comparatif complet BlendAI vs Flair.ai. E-commerce catalogues vs campagnes marketing. Use cases, qualité rendu, pricing, workflow. Guide objectif 2026.',
+    description: "BlendAI ou Flair.ai : les critères pour choisir un outil d'IA de visuels produits selon votre usage, catalogue e-commerce ou campagnes marketing, en 2026.",
     author: 'Sébastien Jourdan',
     date: '2026-01-22',
     category: 'IA & Technologie',
@@ -92,7 +92,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026',
     title: 'BlendAI vs Photoroom : Quel Outil IA pour Vos Visuels Produits en 2026 ?',
-    description: 'Comparatif complet BlendAI vs Photoroom. Détourage, backgrounds, retouche, batch processing. Cas d\'usage, pricing, workflow e-commerce. Guide objectif 2026.',
+    description: "BlendAI ou Photoroom : les critères pour choisir un outil d'IA de visuels produits (détourage, arrière-plans, retouche, volume, intégration) en 2026.",
     author: 'Sébastien Jourdan',
     date: '2026-01-22',
     category: 'IA & Technologie',
@@ -103,7 +103,7 @@ const STATIC_ARTICLES: StaticArticle[] = [
   {
     slug: 'orbitvu-vs-concurrents',
     title: 'Orbitvu vs Concurrents : Comparatif Studios Photo Automatisés 2026',
-    description: 'Comparatif complet Orbitvu vs concurrents (PackshotCreator, StyleShoots, Photorobot). Qualité, prix, fonctionnalités, intégration IA. Guide objectif 2026.',
+    description: "Orbitvu, StyleShoots, Photomatics : les points à examiner pour choisir un studio photo automatisé en 2026. Guide rédigé par PackshotCreator, distributeur officiel d'Orbitvu.",
     author: 'Sébastien Jourdan',
     date: '2026-01-22',
     category: 'Hardware & Studios',
