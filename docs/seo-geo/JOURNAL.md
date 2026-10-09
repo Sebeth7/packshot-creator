@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · D48 — inscription de CA10 (a) + (b) dans DECISIONS.md, par #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — exécution ciblée #112 » du 09/10 (GO_CODE limité à cette inscription ; GO_MERGE, GO_PUBLICATION, GO_CLOUDFLARE_DEPLOY = NO) | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
+
+**Quoi** — D48 inscrite en tête de `DECISIONS.md` : CA10 (a) correction d'un `href` existant, ancre inchangée, information de Sébastien ; CA10 (b) lien posé sur un texte existant sans modifier un mot, D15. Datée du 07/10/2026, attribuée à Laurent. Ligne #112 d'`ETAT.md` mise à jour. Aucun fichier du site modifié.
+
+**Pourquoi** — Arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, ZIP hors dépôt, SHA-256 `ef94c420…6024`) : la première PR de vague 1 qui applique CA10 l'inscrit. #112 l'applique : (a) M01, M02, M03, M30, M31, M32 ; (b) M04, M05, M21, et D-044, lien du même type hors du dossier V2. Arbitrages de Laurent du 09/10 : M31 conservé dans #112, #27 non fusionnable en l'état et non fermée ; protocole Studios conservé, son J0 ne bloque pas #112, aucun témoin D47 modifié ; M39 attend une landing IA validée, #105 reste HOLD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site. CA10 devient une règle écrite opposable aux PR suivantes.
+
+**Vérifié** — `main` `06b18e2` et tête de #112 `0788f23` avant écriture ; numéro D48 absent de `main`, de la branche et des PR ouvertes ; aucune PR ouverte ne touche `DECISIONS.md` ; texte des deux régimes repris du tableau A3 sans modification.
+**Supposé** — Rien.
+**Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
+
+**Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
 ## 2026-10-08 · Repair Factory, PR-A — maillage : ancres, liens et cocons (résiduel V4.3 exécutable) · Claude de Laurent
 
 **Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` ; PR liées : #113 (empilée), #114, #115 | **Base** : `main` `06b18e2`

@@ -25,6 +25,26 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D48 · 2026-10-07 · CA10 : corriger un `href` existant (a) ou poser un lien sur un texte existant (b), deux circuits distincts
+
+**Décidé par** : Laurent — arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, rendu le 07/10/2026, hors dépôt), qui complète le régime (a) décidé le 03/10 ; inscription demandée par Laurent le 09/10/2026
+**Statut** : en vigueur depuis le 07/10/2026. Inscrite le 09/10/2026 par la PR #112, première PR qui l'applique, comme le prévoit A3.
+
+**La décision** — Deux régimes pour les liens posés dans un texte existant :
+
+| Régime | Portée | Circuit |
+|---|---|---|
+| (a) | Correction déterministe d'un `href` existant, **ancre inchangée** | Information de Sébastien |
+| (b) | Ajout d'un lien sur un texte existant, **sans modification d'un seul mot** | D15 : validation tacite après 5 jours ouvrés |
+
+Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisions restent séparées et appartiennent à Laurent (D12, D42 arbitrage final 3).
+
+**Le contexte** — Le programme directeur V4.3 (03/10) posait CA10 : le périmètre du droit de corriger un `href` dans la prose sans changer le texte, face à la pose de liens nouveaux. Le régime (a) est appliqué depuis la décision de Laurent du 03/10, citée par les entrées du JOURNAL des lots A02, A03 et A04b (03/10), sans avoir été inscrit ici. A3 a ajouté le régime (b) le 07/10 et prévu cette inscription. Lignes du dossier V2 visées : (a) M01, M02, M03, M20, M30, M31, M32 ; (b) M04, M05, M21, M39.
+
+**Ce qu'elle interdit** — Modifier l'ancre d'un lien au titre du régime (a) ; modifier un seul mot du texte au titre du régime (b) ; fusionner un lien du régime (b) avant l'échéance de D15 ; tenir l'information de Sébastien, ou l'échéance de D15, pour un GO de fusion ou de publication.
+
+---
+
 ## Note d'exécution · 2026-10-07 · État de mise en œuvre de D36, D44, D45, D46 et D47 après les fusions du 03/10 au 06/10 — pas une décision
 
 **Rédigée par** : Claude de Laurent, sur GO documentaire de Laurent du 07/10/2026 (« PR documentaire consolidée »)
