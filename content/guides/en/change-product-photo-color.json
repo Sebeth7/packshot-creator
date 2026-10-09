@@ -19,7 +19,7 @@
     {
       "position": 1,
       "title": "Place the object in the photo studio",
-      "content": "<p id=\"\">📍 Place your item in the <strong id=\"\">Center of the plateau</strong> rotate and choose a default or custom template. </p><p id=\"\">For more details on this stage, we invite you to discover our <strong id=\"\">tutorial on positioning a watch, for example.</strong></p>",
+      "content": "<p id=\"\">📍 Place your item in the <strong id=\"\">Center of the plateau</strong> rotate and choose a default or custom template. </p><p id=\"\">For more details on this stage, we invite you to discover our <strong id=\"\"><a href=\"/en/guide/how-to-position-watch-before-shooting-photo\">tutorial on positioning a watch</a>, for example.</strong></p>",
       "image": "/images/guides/67d99183faaec781646a8479.avif",
       "imageSource": "/images/guides/67d99183faaec781646a8479.avif",
       "structuredText": "Place your object in the center of the turntable and choose a default or custom template. For more details on this step, we invite you to discover our tutorial on positioning a watch, for example."
