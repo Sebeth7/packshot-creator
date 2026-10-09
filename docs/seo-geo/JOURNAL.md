@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #113 — resynchronisation sur `main` (après #112), retrait D35, fusion ; consignation de la fusion de #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #113 distinct et conditionnel) | **PR** : #113, branche `claude/focused-hypatia-ygys0g-alt-aria` | **Base** : `main` `67ec946` (fusion de #112)
+
+**Quoi**
+1. #112 fusionnée le 09/10 à 08:13:42 UTC, commit de fusion `67ec946` : date consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E) ; #112 passe de B à G.
+2. #113 : base passée de la branche de #112 à `main` ; `main` `67ec946` fusionnée dans la branche (conflit sur `JOURNAL.md` seulement, résolu par union).
+3. D35 : les 7 ALT traduits de l'article EN protégé `/en/blog/packshot-photography-guide-why-make-product-packshots` sont retirés (commit `f6276a4`) ; le fichier est identique octet pour octet à `main`. Conservés : 7 ALT de-ch, 112 autres ALT EN (45 fichiers), 21 ALT décoratifs vidés, `title` de l'iframe Vimeo, ARIA du sélecteur.
+
+**Pourquoi** — D35 : l'article EN du comparateur F5 reste en l'état jusqu'à la fin de la mesure F5 (J+56 le 23/11). Les 7 ALT y avaient été modifiés le 08/10 par erreur de périmètre ; aucune revue antérieure ne l'avait relevé.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Delta de #113 contre `main` : 55 JSON (112 ALT EN sur 45 fichiers, 7 ALT de-ch, 21 ALT décoratifs, 1 `title` d'iframe ; aucun changement hors attributs `alt` / `title`), `MachineCard.tsx`, `MachineModal.tsx`.
+
+**Vérifié** — `main` `67ec946` (09/10, après fusion de #112) ; tête de #113 resynchronisée `e642a68` + ce commit. Delta contre `main` recompté : 55 JSON, 112 ALT EN (45 fichiers), 7 ALT de-ch, 21 décoratifs, 1 `title`, 0 changement hors attributs ; `MachineCard.tsx` et `MachineModal.tsx` identiques à la tête `ab7a0bf` contrôlée le 09/10. `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 486/486. HTML prérendu contre un build de `main` `67ec946` : 47 pages modifiées (41 articles, exactement ceux des JSON de blog touchés ; sélecteur et Studios FR, EN, de-ch) ; identiques à `main` : accueil FR, EN, de-ch, F5 ×3, Mode ×3, hub mode, article D35, 15 URL du cluster AI Act (#96) et les pages sources de sa baseline (`migrer-ancien-packshotcreator` et équivalents). Les 14 guides EN portent leurs ALT dans `introMedia`, champ non rendu par le gabarit : aucune page de guide modifiée. QA Playwright sur build local, 10 URL × 3 viewports : 30/30 PASS (URL 8 et 9 : erreurs de console des intégrations externes seulement, présentes sur `main`). `sysnext` après fusion de #112 (09/10 vers 08:15 UTC) : `smoke.mjs` vert (17 pages, 3 ressources), 6 URL de #112 servies avec le lien attendu.
+
+**Supposé** — QA Chrome réelle de #113 (10/10, 09/10) reprise de la mission de Laurent, non refaite ; la page D35 en était exclue (URL 1 à 10 hors article protégé).
+**Non regardé** — `www` (R4) ; relecture EN/DE humaine des ALT (D42).
+
+**Suite** — `smoke.mjs` sur `sysnext` après fusion de #113 ; contrôle Chrome de `www` par Laurent ; fenêtre C11 au plus tard le 15/10 respectée par la fusion.
+
+---
+
 ## 2026-10-09 · #112 — exception D49, intégration de `main` et fusion · Claude de Laurent
 
 **Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #112 conditionnel) | **PR** : #112, branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `330c022` (fusion de #120)
@@ -71,6 +95,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
 
 **Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-B — ALT, ARIA et mécanique de langue (B4_1, B4_2, LANG A36/A38, C11) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #113, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-alt-aria`, **empilée sur PR-A (#112)** (mêmes JSON de contenu, champ `content` sur une ligne : se fusionne après PR-A) | **Base** : branche de PR-A
+
+**Quoi** — Deux commits :
+1. ALT : 119 ALT en français servis sur 46 articles et guides EN traduits en anglais ; 7 ALT en français de l'article de-ch `leitfaden-packshot-fotografie-warum-packshots-machen` traduits en allemand ; 21 `alt="__wf_reserved_decorative"` (15 fichiers) remplacés par `alt=""` ; `title` de l'iframe Vimeo EN repris de la version FR (F10). Coquille « massacra » (B4-0322) rendue par « mascara » dans l'ALT EN.
+2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch. Libellés des secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches (clés brutes en FR et en EN) : retirés de cette PR après l'ouverture de #110 (sprint parallèle, même fichier `app/[lang]/studio-photo/[slug]/page.tsx`), COLLISION_OTHER_SPRINT.
+
+**Pourquoi** — B4 (716 occurrences) et LANG (A01–A38) comptent les mêmes ALT en mauvaise langue (ponts PONT-01, PONT-02 de la réconciliation du 07/10) : une seule correction par occurrence. Registre B4 original absent (`B4_RAW_REGISTER = MISSING`) : seuls les cas prouvés par observation du fichier sont corrigés.
+
+**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios). Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` (PR-A + PR-B, après retrait du fichier des fiches) : seules les pages des JSON touchés, le sélecteur et Studios changent ; fiches identiques à `main` ; accueil, F5, Mode, cluster AI Act identiques.
+- ALT en français restants sur pages EN : uniquement les 3 pages EN servies en français (décision B1/D9) et les 2 fichiers EN de #109.
+- e2e : voir l'entrée PR-A (même build) ; `machine-selector` vert (le spec lit le texte visible, inchangé).
+
+**Supposé** — [Inférence] Les ALT traduits décrivent correctement leur image : la traduction reprend l'ALT français sans vérification visuelle image par image. Cela repose sur des schémas observés.
+**Non regardé** — 167 `alt="__wf_reserved_inherit"` (description image par image nécessaire) ; ALT FR jugés trompeurs ou bourrés de mots-clés (B4_3 : réécritures, validation de Sébastien) ; relecture EN et DE humaine (D42).
+
+**Suite** — Fusion après PR-A ; fenêtre C11 (MachineCard sur la cible et le témoin du pilote Studios) : au plus tard le 15/10, sinon après J+56 ; relecture EN/DE.
 
 ---
 
