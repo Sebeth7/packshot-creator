@@ -856,7 +856,9 @@ export default async function SecteurPage({ params }: PageProps) {
           name: secteur.titre,
           description: secteur.description,
           serviceType: tx(lang, 'Photographie produit automatisée', 'Automated product photography', 'Automatisierte Produktfotografie'),
-          url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
+          // URL servie (de-ch : /de-ch/branchen/<slug>), comme le fil d'Ariane ;
+          // Service.url visait /de-ch/industrie/<slug>, redirigée.
+          url: `${industrieBase}/${slug}`,
           category: secteur.titre.split(':')[0].trim(),
         }),
         ...(secteur.faq ? [faqSchema(secteur.faq)] : []),

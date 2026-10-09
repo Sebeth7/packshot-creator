@@ -61,23 +61,39 @@ export async function generateMetadata({ params }: PageProps) {
     if (languages.fr) languages['x-default'] = languages.fr;
 
     const isNoindex = lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug);
+    const canonical = `https://www.packshot-creator.com/${lang}/blog/${slug}`;
+    // Un .mp4 n'est pas une og:image valide → fallback image OG générée
+    const imageUrl = article.image && !article.image.endsWith('.mp4')
+      ? article.image
+      : `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`;
 
     return {
       title: pageTitle,
       description: article.description,
       ...(isNoindex && { robots: { index: false, follow: true } }),
       alternates: {
-        canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
+        canonical,
         languages,
       },
+      // openGraph et twitter remplacent en bloc ceux du layout : url, siteName et
+      // locale sont repris ici (BL-43-1), et la carte twitter porte le titre, la
+      // description et l'image de l'article au lieu de ceux du site.
       openGraph: {
         title: pageTitle,
         description: article.description,
-        // Un .mp4 n'est pas une og:image valide → fallback image OG générée
-        images: article.image && !article.image.endsWith('.mp4')
-          ? [article.image]
-          : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
+        url: canonical,
+        siteName: 'PackshotCreator',
+        locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
+        images: imageUrl === article.image
+          ? [imageUrl]
+          : [{ url: imageUrl, width: 1200, height: 630 }],
         type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: pageTitle,
+        description: article.description,
+        images: [imageUrl],
       },
     };
   }
