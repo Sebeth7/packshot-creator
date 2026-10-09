@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #109 — garde `claims-roi-sav` reprise de #111, entrées JOURNAL de #111 conservées ; #111 sans apport propre · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission V8 de Laurent du 09/10, « finalisation unique #109/#111 » ; cette session est seule à écrire sur #109 et #111) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `d98c151`
+
+**Quoi** — `lib/__tests__/claims-roi-sav.test.ts` repris tel quel de #111 (`9337135`) ; les deux entrées JOURNAL de #111 (08/10 et 09/10) recopiées sans modification, ci-dessous et à leur date, pour qu'elles survivent à une fermeture de #111 sans fusion.
+
+**Pourquoi** — Fusion simulée de #109 (`d98c151`) et de #111 (`9337135`) : les fichiers du site du résultat sont identiques à ceux de #109 ; seul ce test (et la documentation) distingue #111. Le reporter ici évite une seconde publication des mêmes modifications.
+
+**Fichiers** — `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. La CI garde contre le retour de « ROI dès le 4e mois » (guide budget, FR, EN, de-ch) et des engagements de service retirés du guide d'achat.
+
+**Vérifié** — voir le commit (tsc, Vitest, `next build`).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — #111 : fermeture sans fusion sur GO de Laurent, branche conservée.
+
+---
+
+## 2026-10-09 · #111 — `main` `f03f8ca` intégré, valeurs alignées sur #109, garde de test ajustée · Claude de Laurent
+
+**Chantier** : intégrité factuelle, complément de #109 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #111, brouillon, branche `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `f03f8ca` intégré par fusion (`4a69506`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seul `JOURNAL.md` en conflit, fusionné par union (167 + 12 + 1 = 180 entrées).
+- Constat : la seconde passe de #109 (`b9698c3`, 08/10) corrige les mêmes lignes plus largement (« seuil de rentabilité dès 500 photos par an », « Hotline française », « Assistance installation gratuite », contrat « interventions on-site illimitées »). Deux versions différentes des mêmes lignes auraient produit un conflit et laissé ces claims dans #111.
+- Alignement : `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) reprennent mot pour mot les valeurs de #109 ; dans le guide d'achat, le bloc « Avantages support FR » et « Contrat maintenance » est retiré exactement comme dans #109 (même hunk). Le titre « Support Technique France » et la mention « Distributeur officiel Orbitvu France/Suisse » restent ; la garantie relève de #109.
+- `lib/__tests__/claims-roi-sav.test.ts` : motifs étendus à la formulation anglaise de #109 (« between 6 and 12 », « guarantee ») ; garde ajoutée contre « on-site illimitées ».
+
+**Pourquoi** — Faits métier du 08/10 (ROI de 6 à 12 mois, jamais garanti ; aucun engagement de service établi) et consigne du 08/10 14:48 « si aucune source ou fait métier explicite ne l'établit : NE PAS L'INVENTER. NE PAS LE CONSERVER PAR DÉFAUT. » Les points « à trancher » de la ligne Academy d'`ETAT.md` (« suivi post-formation », « Formateurs experts 10+ ans », Marie D., Camille R., « plus de 500 entreprises ») sont retirés par #109 : aucune réponse de Sébastien n'est nécessaire pour un retrait.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue), `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Fusion de #109 et #111 sans conflit sur les fichiers du site, dans un ordre comme dans l'autre ; après fusion de #109, le diff de #111 se réduit au test et à la documentation. Aucun effet de position annoncé.
+
+**Vérifié** — voir la description de #111 (tests, build, simulation des deux ordres de fusion).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
 ## 2026-10-09 · #109 — derniers engagements non démontrés retirés (gratuité, « 24h »), descriptions du blog alignées · Claude de Laurent
 
 **Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `a4ce4f9` intégrée par fusion. Une seconde session, distincte de celle qui a ouvert #109, a exécuté la même mission en parallèle ; sa fusion de `main` `f03f8ca` (`04b7823`) recouvrait celle de `d7d1811`, sans écart sur les fichiers du site.
@@ -408,6 +452,36 @@ Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, s
 **Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
 
 **Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : #111, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
+- `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
+- `guide-achat-studio-2026`, bloc « Support Technique France » : « Réponse < 2h ouvrées », « Intervention 24-48h (France métropolitaine) » et « Pièces détachées : Stock FR, livraison 24h » retirés ; « Interventions sur site : selon le contrat de maintenance » renvoie au contrat décrit juste en dessous.
+
+**Pourquoi** — Faits rappelés par Laurent le 08/10 : ROI de 6 à 12 mois en usage courant, jamais garanti ; aucun engagement de service (délai d'intervention, délai de réponse, pièces sous 24 h) établi. #109 retire ces mêmes engagements du comparatif Orbitvu et le ROI de 4 à 8 mois du guide d'achat, mais ces lignes restent sur `main` et sur la tête `0860462` de #109. `/en/blog/budget-studio-photo-automatise` : 363 impressions et 10 clics du 08/09 au 05/10 (`gsc-crawl-seo`, `gsc_metrics_page`, lecture seule).
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue, sérialisation d'origine, 6 lignes), `app/[lang]/blog/guide-achat-studio-2026/page.tsx` (3 lignes → 2), `lib/__tests__/claims-roi-sav.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Routes** — `blogBudget` n'est lu que par `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` : `/fr/…` et `/en/…` (200) ; `/de-ch/…` répond 404, les valeurs de-ch (en français) sont alignées par cohérence. Guide d'achat : `/fr/blog/guide-achat-studio-2026` et `/en/…` (même gabarit FR). Aucune page gelée (F5, Mode, accueil, #104, #105, #107, #108).
+
+**Effet attendu** — Aucun avant fusion. Après fusion : FAQ et `FAQPage` du guide budget alignés sur le fait ROI ; trois engagements de service non établis retirés du guide d'achat. Réduction d'un risque factuel ; aucun gain de trafic attendu.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; `npx vitest run` : 487/487 (25 fichiers), dont `claims-roi-sav.test.ts` 4/4. Les conditions du test échouent sur le contenu de `main` (6 textes ROI, 3 lignes de service).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
+- Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
+- Fusion simulée (`git merge-tree`) avec #109 (`0860462`), #110, #108 et #105 : fichiers du site sans conflit ; `JOURNAL.md` en conflit (entrées en tête, union) ; `ETAT.md` en conflit avec #105 seulement.
+
+**Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
+**Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
+
+**Suite** — D42 : contrôle de la Preview par Laurent (desktop, tablette, mobile), validation ciblée de Sébastien sur les 4 phrases modifiées ; fusion sur GO distinct, de préférence après #109 ou avec elle (mêmes pages, lignes disjointes).
 
 ---
 
