@@ -13,8 +13,8 @@ import { BROCHURE_ID, LANGUE_CATALOGUE, PAGE_SOURCE_CATALOGUE, type ReponseCatal
  * - `form_error` (`form_name: 'brochure_form'`, `reason`) : échec, sur le modèle
  *   de `form_submit` (aucun événement d'échec n'existait sur le site).
  * `trackEvent` n'émet rien sans consentement analytique (gtag absent tant que le
- * visiteur n'a pas accepté). Pipedrive compte les leads brochure ; GA4 en
- * explique l'origine.
+ * visiteur n'a pas accepté). La notification interne recense les leads
+ * brochure ; GA4 en explique l'origine.
  *
  * Aucune donnée personnelle : ni e-mail, ni prénom, ni entreprise, ni produits.
  * Seulement le pays choisi, l'emplacement du formulaire et l'attribution de la

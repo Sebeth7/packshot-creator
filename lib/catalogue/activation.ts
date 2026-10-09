@@ -12,12 +12,12 @@
 export const PUBLICATION_AUTORISEE = false;
 
 /**
- * Appels réels à Pipedrive (trace de la demande) et à Resend (e-mail du lien,
- * notification interne) depuis `/api/catalogue`. Faux tant que Laurent n'a pas
- * donné le GO d'un test réel (mission du 06/10/2026 : aucun e-mail ni prospect
- * réel). Même vrai, la route reste fermée sans PDF en ligne
- * (`lib/catalogue/pdf.ts`), sans secrets, et en production sans
- * `PUBLICATION_AUTORISEE` (`lib/catalogue/services.ts`).
+ * Appels réels à Resend (e-mail du lien, notification interne) depuis
+ * `/api/catalogue` ; aucun CRM depuis le 09/10/2026 (décision de Sébastien).
+ * Faux hors test réel autorisé (missions de Laurent des 06/10 : aucun e-mail ni
+ * prospect réel sans GO). Même vrai, la route reste fermée sans PDF en ligne
+ * (`lib/catalogue/pdf.ts`), sans secrets ni destinataire de notification, et en
+ * production sans `PUBLICATION_AUTORISEE` (`lib/catalogue/services.ts`).
  */
 export const SERVICES_REELS_AUTORISES = false;
 

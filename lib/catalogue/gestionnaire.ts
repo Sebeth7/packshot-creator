@@ -8,25 +8,28 @@ import {
   type RequeteCatalogue,
   type ReponseCatalogue,
 } from './schema';
-import type { EnregistrementCatalogue, ServicesCatalogue } from './services';
-import type { SuiviCatalogue } from './crm';
+import type { ServicesCatalogue } from './services';
 
 /**
  * Traitement de `POST /api/catalogue`, séparé de la route pour être testé avec
  * des services simulés (`lib/catalogue/__tests__/gestionnaire.test.ts`).
  *
  * Ordre : limitation → validation → champ piège → idempotence de l'instance →
- * disponibilité (PDF et stockage) → trace durable (dédoublonnée par requestId)
- * → e-mail du lien et notification interne (demande de consultant comprise) →
- * suivi consigné dans la trace.
- * Aucun succès n'est renvoyé sans trace durable et URL de PDF. Une demande
- * reconnue par la trace comme déjà enregistrée ne rejoue aucun effet.
+ * disponibilité (PDF, e-mail et notification configurés) → e-mail du lien au
+ * prospect → notification interne (demande de consultant comprise, sort de
+ * l'e-mail du lien indiqué).
+ *
+ * Aucun CRM (décision de Sébastien du 09/10/2026) : la trace de la demande est
+ * la notification interne, et à défaut l'e-mail du lien, conservé dans le
+ * journal d'envoi Resend. Aucun succès n'est renvoyé si Resend ne confirme ni
+ * l'un ni l'autre : la demande n'a laissé aucune trace, le visiteur peut
+ * réessayer.
  *
  * Limites connues :
  * - la limitation (`lib/rate-limit.ts`) et le registre d'idempotence vivent en
  *   mémoire de l'instance : sur Vercel, plusieurs instances ne partagent pas
- *   leurs compteurs. C'est un frein, pas un anti-abus distribué. Entre
- *   instances, c'est la trace durable qui reconnaît un requestId déjà vu.
+ *   leurs compteurs. C'est un frein, pas un anti-abus distribué ; un même
+ *   requestId reçu par deux instances est traité deux fois.
  * - le journal ne contient aucune donnée personnelle (ni e-mail, ni prénom, ni
  *   entreprise) : seulement `requestId`, tiré au hasard par le navigateur, et le pays.
  */
@@ -87,18 +90,26 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
     const { services } = deps;
     const contexte = { requestId: requete.requestId, country: requete.country };
 
-    // Fermé par défaut : sans stockage durable ni PDF autorisé, rien n'est accepté.
+    // Fermé par défaut : sans services ni PDF autorisé, rien n'est accepté.
     let pdfUrl: string | null = null;
-    if (services.stockage) {
+    if (services.mode !== 'desactive') {
       try {
         pdfUrl = await services.pdfUrl();
       } catch {
         pdfUrl = null;
       }
     }
-    if (!services.stockage || !pdfUrl) {
+    if (!pdfUrl) {
       journal('catalogue.indisponible', { ...contexte, mode: services.mode });
       return { status: 503, body: { ok: false, error: 'catalogue_unavailable' } };
+    }
+
+    // Simulation locale : rien n'est envoyé ni transmis, rien n'est déclaré fait.
+    if (services.mode !== 'reel') {
+      return {
+        status: 200,
+        body: { ok: true, pdfUrl, emailSent: false, contactRequestAccepted: false, simulated: true },
+      };
     }
 
     const demande: DemandeCatalogue = {
@@ -114,61 +125,29 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
       ...(requete.attribution ? { attribution: requete.attribution } : {}),
     };
 
-    let enregistrement: EnregistrementCatalogue;
+    // E-mail du lien d'abord : la notification dit à l'équipe s'il est parti.
+    let emailSent = false;
     try {
-      enregistrement = await services.stockage.enregistrer(demande);
+      emailSent = (await services.courriel.envoyerLien(demande, pdfUrl)).envoye === true;
     } catch {
-      journal('catalogue.stockage.echec', contexte);
-      return { status: 500, body: { ok: false, error: 'technical' } };
+      emailSent = false;
     }
-    for (const anomalie of enregistrement.anomalies ?? []) journal(anomalie, contexte);
+    if (!emailSent) journal('catalogue.courriel.echec', contexte);
 
-    // Demande déjà tracée (nouvel essai, autre instance) : aucun effet rejoué ;
-    // la réponse reprend le suivi consigné, sinon ne présume rien.
-    if (enregistrement.dejaEnregistree) {
-      journal('catalogue.demande.rejouee', contexte);
-      return {
-        status: 200,
-        body: {
-          ok: true,
-          pdfUrl,
-          emailSent: enregistrement.suivi?.emailSent === true,
-          contactRequestAccepted: enregistrement.suivi?.consultant === 'transmis',
-        },
-      };
-    }
-
-    // La demande est acceptée : les effets suivants ne la remettent pas en cause,
-    // mais leur échec est dit tel quel au visiteur (emailSent, contactRequestAccepted).
     // Chaque nouveau lead brochure est notifié à l'équipe ; la notification porte
     // aussi la demande de consultant, qui n'est déclarée prise en compte que si
     // elle a été transmise.
-    const { courriel, notification } = services;
-    if (!notification) journal('catalogue.notification.non_configuree', contexte);
-    const envoiLien = courriel ? courriel.envoyerLien(demande, pdfUrl) : null;
-    const envoiNotification = notification ? notification.notifier(demande, enregistrement) : null;
-    const [envoi, notifie] = await Promise.allSettled([envoiLien, envoiNotification]);
+    let notificationTransmise = false;
+    try {
+      await services.notification.notifier(demande, { emailSent });
+      notificationTransmise = true;
+    } catch {
+      journal('catalogue.notification.echec', contexte);
+    }
 
-    if (envoi.status === 'rejected') journal('catalogue.courriel.echec', contexte);
-    if (notifie.status === 'rejected') journal('catalogue.notification.echec', contexte);
-
-    const emailSent = envoiLien !== null && envoi.status === 'fulfilled' && envoi.value?.envoye === true;
-    const notificationTransmise = envoiNotification !== null && notifie.status === 'fulfilled';
-    const contactRequestAccepted = demande.consultantOptIn && notificationTransmise;
-
-    // Ce qui a réellement été fait est consigné dans la trace ; un échec ici ne
-    // change rien pour le visiteur, il est seulement signalé.
-    if (services.stockage.consignerSuivi) {
-      const suivi: SuiviCatalogue = {
-        emailSent,
-        notification: !notification ? 'non_configuree' : notificationTransmise ? 'transmise' : 'non_transmise',
-        consultant: !demande.consultantOptIn ? 'non_demande' : contactRequestAccepted ? 'transmis' : 'non_transmis',
-      };
-      try {
-        await services.stockage.consignerSuivi(enregistrement.reference, demande, suivi);
-      } catch {
-        journal('catalogue.crm.suivi.echec', contexte);
-      }
+    if (!emailSent && !notificationTransmise) {
+      journal('catalogue.aucune_trace', contexte);
+      return { status: 500, body: { ok: false, error: 'technical' } };
     }
 
     return {
@@ -177,8 +156,7 @@ export function creerGestionnaireCatalogue(deps: DependancesCatalogue): (req: Re
         ok: true,
         pdfUrl,
         emailSent,
-        contactRequestAccepted,
-        ...(services.mode === 'simulation' ? { simulated: true as const } : {}),
+        contactRequestAccepted: demande.consultantOptIn && notificationTransmise,
       },
     };
   }

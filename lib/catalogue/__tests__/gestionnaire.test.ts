@@ -1,17 +1,11 @@
 /**
- * Route /api/catalogue, avec des services simulés : aucun appel externe.
+ * Route /api/catalogue, avec des services simulés : aucun appel externe, aucun CRM.
  * Chaque branche d'échec est testée pour qu'aucun faux succès ne soit renvoyé.
  */
 import { describe, it, expect, vi } from 'vitest';
 import { creerGestionnaireCatalogue, type DependancesCatalogue } from '@/lib/catalogue/gestionnaire';
-import {
-  SERVICES_DESACTIVES,
-  servicesCatalogue,
-  type EnregistrementCatalogue,
-  type ServicesCatalogue,
-} from '@/lib/catalogue/services';
+import { SERVICES_DESACTIVES, servicesCatalogue, type ServicesCatalogue } from '@/lib/catalogue/services';
 import type { DemandeCatalogue } from '@/lib/catalogue/schema';
-import type { SuiviCatalogue } from '@/lib/catalogue/crm';
 
 const PDF = 'https://exemple.test/catalogue.pdf';
 
@@ -33,24 +27,16 @@ function requete(body: unknown, ip = '203.0.113.7') {
   });
 }
 
-function doublures(surcharge: Partial<ServicesCatalogue> = {}) {
-  const enregistrer = vi.fn<(d: DemandeCatalogue) => Promise<EnregistrementCatalogue>>(async () => ({
-    reference: 'note-1',
-    personId: 7,
-    dejaEnregistree: false,
-  }));
-  const consignerSuivi = vi.fn<(r: string, d: DemandeCatalogue, s: SuiviCatalogue) => Promise<void>>(async () => {});
+function doublures(pdfUrl: () => Promise<string | null> = async () => PDF) {
   const envoyerLien = vi.fn<(d: DemandeCatalogue, u: string) => Promise<{ envoye: boolean }>>(async () => ({ envoye: true }));
-  const notifier = vi.fn<(d: DemandeCatalogue, e: EnregistrementCatalogue) => Promise<void>>(async () => {});
+  const notifier = vi.fn<(d: DemandeCatalogue, s: { emailSent: boolean }) => Promise<void>>(async () => {});
   const services: ServicesCatalogue = {
-    mode: 'desactive',
-    pdfUrl: async () => PDF,
-    stockage: { enregistrer, consignerSuivi },
+    mode: 'reel',
+    pdfUrl,
     courriel: { envoyerLien },
     notification: { notifier },
-    ...surcharge,
   };
-  return { services, enregistrer, consignerSuivi, envoyerLien, notifier };
+  return { services, envoyerLien, notifier };
 }
 
 function gestionnaire(services: ServicesCatalogue, autres: Partial<DependancesCatalogue> = {}) {
@@ -66,14 +52,14 @@ function gestionnaire(services: ServicesCatalogue, autres: Partial<DependancesCa
 }
 
 describe('POST /api/catalogue — parcours accepté', () => {
-  it('enregistre, envoie le lien et répond avec l’URL du PDF', async () => {
+  it('envoie le lien, puis notifie l’équipe en disant que le lien est parti, et répond avec l’URL du PDF', async () => {
     const d = doublures();
     const { g } = gestionnaire(d.services);
     const res = await g(requete(corps));
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
-    expect(d.enregistrer).toHaveBeenCalledTimes(1);
-    const demande = d.enregistrer.mock.calls[0][0];
+    expect(d.envoyerLien).toHaveBeenCalledTimes(1);
+    const demande = d.envoyerLien.mock.calls[0][0];
     expect(demande).toMatchObject({
       country: 'FR',
       pageSource: 'catalogue_all_in_one',
@@ -81,15 +67,10 @@ describe('POST /api/catalogue — parcours accepté', () => {
       recueLe: '2026-10-02T12:00:00.000Z',
     });
     expect(d.envoyerLien).toHaveBeenCalledWith(demande, PDF);
-    // Lead brochure : l'équipe est notifiée, sans demande de consultant.
+    // Lead brochure : l'équipe est notifiée après l'envoi du lien, sans demande de consultant.
     expect(d.notifier).toHaveBeenCalledTimes(1);
-    expect(d.notifier.mock.calls[0][0].consultantOptIn).toBe(false);
-    // Ce qui a été fait est consigné dans la trace.
-    expect(d.consignerSuivi).toHaveBeenCalledWith('note-1', demande, {
-      emailSent: true,
-      notification: 'transmise',
-      consultant: 'non_demande',
-    });
+    expect(d.notifier).toHaveBeenCalledWith(demande, { emailSent: true });
+    expect(d.envoyerLien.mock.invocationCallOrder[0]).toBeLessThan(d.notifier.mock.invocationCallOrder[0]);
   });
 
   it('consultant demandé et transmis : contactRequestAccepted vrai', async () => {
@@ -98,8 +79,7 @@ describe('POST /api/catalogue — parcours accepté', () => {
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toMatchObject({ ok: true, contactRequestAccepted: true });
     expect(d.notifier).toHaveBeenCalledTimes(1);
-    expect(d.notifier.mock.calls[0][1]).toMatchObject({ reference: 'note-1', personId: 7 });
-    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({ emailSent: true, notification: 'transmise', consultant: 'transmis' });
+    expect(d.notifier.mock.calls[0][0].consultantOptIn).toBe(true);
   });
 
   it('conserve le pays et l’attribution first-touch', async () => {
@@ -107,12 +87,12 @@ describe('POST /api/catalogue — parcours accepté', () => {
     const { g } = gestionnaire(d.services);
     const attribution = { utmSource: 'chatgpt.com', landingPage: '/fr/catalogue-orbitvu-all-in-one' };
     await g(requete({ ...corps, country: 'CH', attribution }));
-    expect(d.enregistrer.mock.calls[0][0]).toMatchObject({ country: 'CH', attribution });
+    expect(d.notifier.mock.calls[0][0]).toMatchObject({ country: 'CH', attribution });
   });
 });
 
 describe('POST /api/catalogue — échecs dits tels quels', () => {
-  it('e-mail en échec : PDF accessible, emailSent faux', async () => {
+  it('e-mail en échec : PDF accessible, emailSent faux, l’équipe est prévenue que le lien n’est pas parti', async () => {
     const d = doublures();
     d.envoyerLien.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
@@ -120,109 +100,60 @@ describe('POST /api/catalogue — échecs dits tels quels', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: false, contactRequestAccepted: false });
     expect(journal).toHaveBeenCalledWith('catalogue.courriel.echec', expect.any(Object));
+    expect(d.notifier.mock.calls[0][1]).toEqual({ emailSent: false });
   });
 
-  it('e-mail non confirmé par le service : emailSent faux', async () => {
+  it('e-mail non confirmé par le service : emailSent faux, jamais présumé', async () => {
     const d = doublures();
     d.envoyerLien.mockResolvedValueOnce({ envoye: false });
     const { g } = gestionnaire(d.services);
     expect(await (await g(requete(corps))).json()).toMatchObject({ ok: true, emailSent: false });
+    expect(d.notifier.mock.calls[0][1]).toEqual({ emailSent: false });
   });
 
-  it('aucun service d’e-mail : emailSent faux, jamais présumé', async () => {
-    const d = doublures({ courriel: null });
-    const { g } = gestionnaire(d.services);
-    expect(await (await g(requete(corps))).json()).toMatchObject({ ok: true, emailSent: false });
-  });
-
-  it('notification en échec avec consultant demandé : contactRequestAccepted faux, consigné tel quel', async () => {
+  it('notification en échec avec consultant demandé : contactRequestAccepted faux, échec au journal', async () => {
     const d = doublures();
     d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
     expect(journal).toHaveBeenCalledWith('catalogue.notification.echec', expect.any(Object));
-    expect(d.consignerSuivi.mock.calls[0][2]).toEqual({
-      emailSent: true,
-      notification: 'non_transmise',
-      consultant: 'non_transmis',
-    });
   });
 
-  it('notification en échec sur une brochure seule : la brochure reste remise, l’échec est consigné', async () => {
+  it('notification en échec sur une brochure seule : la brochure reste remise (e-mail tracé chez Resend)', async () => {
     const d = doublures();
     d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
     const res = await g(requete(corps));
     expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
     expect(journal).toHaveBeenCalledWith('catalogue.notification.echec', expect.any(Object));
-    expect(d.consignerSuivi.mock.calls[0][2]).toMatchObject({ notification: 'non_transmise', consultant: 'non_demande' });
   });
 
-  it('notification non configurée : jamais présumée, une demande de consultant n’est pas déclarée prise en compte', async () => {
-    const d = doublures({ notification: null });
-    const { g, journal } = gestionnaire(d.services);
-    expect(await (await g(requete({ ...corps, consultantOptIn: true }))).json()).toMatchObject({
-      ok: true,
-      contactRequestAccepted: false,
-    });
-    expect(journal).toHaveBeenCalledWith('catalogue.notification.non_configuree', expect.any(Object));
-    expect(d.consignerSuivi.mock.calls[0][2]).toMatchObject({ notification: 'non_configuree', consultant: 'non_transmis' });
-  });
-
-  it('écart secondaire du CRM signalé par la trace : demande acceptée, écart au journal', async () => {
+  it('ni e-mail ni notification confirmés : aucune trace, erreur technique, aucun faux succès', async () => {
     const d = doublures();
-    d.enregistrer.mockResolvedValueOnce({
-      reference: 'note-1',
-      dejaEnregistree: false,
-      anomalies: ['catalogue.crm.organisation.echec'],
-    });
+    d.envoyerLien.mockRejectedValueOnce(new Error('resend indisponible'));
+    d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
-    const res = await g(requete(corps));
-    expect(res.status).toBe(200);
-    expect(journal).toHaveBeenCalledWith('catalogue.crm.organisation.echec', expect.any(Object));
-  });
-
-  it('suivi non consigné : la réponse ne change pas, l’échec est signalé', async () => {
-    const d = doublures();
-    d.consignerSuivi.mockRejectedValueOnce(new Error('pipedrive 500'));
-    const { g, journal } = gestionnaire(d.services);
-    const res = await g(requete(corps));
-    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: false });
-    expect(journal).toHaveBeenCalledWith('catalogue.crm.suivi.echec', expect.any(Object));
-  });
-
-  it('stockage en échec : erreur technique, aucun e-mail ni CRM', async () => {
-    const d = doublures();
-    d.enregistrer.mockRejectedValueOnce(new Error('base indisponible'));
-    const { g } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, consultantOptIn: true }));
     expect(res.status).toBe(500);
     expect(await res.json()).toEqual({ ok: false, error: 'technical' });
-    expect(d.envoyerLien).not.toHaveBeenCalled();
-    expect(d.notifier).not.toHaveBeenCalled();
-    expect(d.consignerSuivi).not.toHaveBeenCalled();
+    expect(journal).toHaveBeenCalledWith('catalogue.aucune_trace', expect.any(Object));
   });
 
-  it('PDF absent : catalogue indisponible, rien n’est enregistré', async () => {
-    const d = doublures({ pdfUrl: async () => null });
+  it('PDF absent : catalogue indisponible, rien n’est envoyé', async () => {
+    const d = doublures(async () => null);
     const { g } = gestionnaire(d.services);
     const res = await g(requete(corps));
     expect(res.status).toBe(503);
     expect(await res.json()).toEqual({ ok: false, error: 'catalogue_unavailable' });
-    expect(d.enregistrer).not.toHaveBeenCalled();
     expect(d.envoyerLien).not.toHaveBeenCalled();
+    expect(d.notifier).not.toHaveBeenCalled();
   });
 
   it('PDF en erreur : catalogue indisponible', async () => {
-    const d = doublures({ pdfUrl: async () => { throw new Error('stockage du PDF injoignable'); } });
-    const { g } = gestionnaire(d.services);
-    expect((await g(requete(corps))).status).toBe(503);
-    expect(d.enregistrer).not.toHaveBeenCalled();
-  });
-
-  it('stockage absent : catalogue indisponible même avec un PDF', async () => {
-    const d = doublures({ stockage: null });
+    const d = doublures(async () => {
+      throw new Error('stockage du PDF injoignable');
+    });
     const { g } = gestionnaire(d.services);
     expect((await g(requete(corps))).status).toBe(503);
     expect(d.envoyerLien).not.toHaveBeenCalled();
@@ -242,7 +173,7 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
       error: 'invalid',
       fieldErrors: { country: 'Sélectionnez France ou Suisse.' },
     });
-    expect(d.enregistrer).not.toHaveBeenCalled();
+    expect(d.envoyerLien).not.toHaveBeenCalled();
   });
 
   it('pays hors France et Suisse refusé côté serveur', async () => {
@@ -263,14 +194,14 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     const { g } = gestionnaire(d.services);
     const res = await g(requete({ ...corps, siteWeb: 'https://spam.example' }));
     expect(res.status).toBe(400);
-    expect(d.enregistrer).not.toHaveBeenCalled();
+    expect(d.envoyerLien).not.toHaveBeenCalled();
   });
 
-  it('double clic : deux requêtes simultanées, un seul enregistrement, même réponse', async () => {
+  it('double clic : deux requêtes simultanées, un seul envoi, même réponse', async () => {
     const d = doublures();
     let liberer: () => void = () => {};
-    d.enregistrer.mockImplementationOnce(
-      () => new Promise<EnregistrementCatalogue>((r) => { liberer = () => r({ reference: 'note-1', dejaEnregistree: false }); }),
+    d.envoyerLien.mockImplementationOnce(
+      () => new Promise<{ envoye: boolean }>((r) => { liberer = () => r({ envoye: true }); }),
     );
     const { g } = gestionnaire(d.services);
     const p1 = g(requete({ ...corps, consultantOptIn: true }));
@@ -279,38 +210,8 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     liberer();
     const [r1, r2] = await Promise.all([p1, p2]);
     expect(await r1.json()).toEqual(await r2.json());
-    expect(d.enregistrer).toHaveBeenCalledTimes(1);
     expect(d.envoyerLien).toHaveBeenCalledTimes(1);
     expect(d.notifier).toHaveBeenCalledTimes(1);
-  });
-
-  it('demande déjà tracée (autre instance) : aucun effet rejoué, suivi consigné repris', async () => {
-    const d = doublures();
-    d.enregistrer.mockResolvedValueOnce({
-      reference: 'note-1',
-      dejaEnregistree: true,
-      suivi: { emailSent: true, notification: 'transmise', consultant: 'transmis' },
-    });
-    const { g, journal } = gestionnaire(d.services);
-    const res = await g(requete({ ...corps, consultantOptIn: true }));
-    expect(await res.json()).toEqual({ ok: true, pdfUrl: PDF, emailSent: true, contactRequestAccepted: true });
-    expect(d.envoyerLien).not.toHaveBeenCalled();
-    expect(d.notifier).not.toHaveBeenCalled();
-    expect(d.consignerSuivi).not.toHaveBeenCalled();
-    expect(journal).toHaveBeenCalledWith('catalogue.demande.rejouee', expect.any(Object));
-  });
-
-  it('demande déjà tracée sans suivi lisible : rien n’est présumé', async () => {
-    const d = doublures();
-    d.enregistrer.mockResolvedValueOnce({ reference: 'note-1', dejaEnregistree: true, suivi: null });
-    const { g } = gestionnaire(d.services);
-    expect(await (await g(requete(corps))).json()).toEqual({
-      ok: true,
-      pdfUrl: PDF,
-      emailSent: false,
-      contactRequestAccepted: false,
-    });
-    expect(d.envoyerLien).not.toHaveBeenCalled();
   });
 
   it('nouvel essai après acceptation, même requestId : aucun effet rejoué', async () => {
@@ -319,17 +220,18 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     await g(requete(corps));
     const res = await g(requete(corps));
     expect(res.status).toBe(200);
-    expect(d.enregistrer).toHaveBeenCalledTimes(1);
     expect(d.envoyerLien).toHaveBeenCalledTimes(1);
+    expect(d.notifier).toHaveBeenCalledTimes(1);
   });
 
   it('nouvel essai après un échec technique, même requestId : la demande est retraitée', async () => {
     const d = doublures();
-    d.enregistrer.mockRejectedValueOnce(new Error('base indisponible'));
+    d.envoyerLien.mockRejectedValueOnce(new Error('resend indisponible'));
+    d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g } = gestionnaire(d.services);
     expect((await g(requete(corps))).status).toBe(500);
     expect((await g(requete(corps))).status).toBe(200);
-    expect(d.enregistrer).toHaveBeenCalledTimes(2);
+    expect(d.envoyerLien).toHaveBeenCalledTimes(2);
   });
 
   it('limitation atteinte : 429 avec Retry-After, aucun service appelé', async () => {
@@ -348,13 +250,14 @@ describe('POST /api/catalogue — validation et anti-abus', () => {
     expect(res.status).toBe(429);
     expect(res.headers.get('Retry-After')).toBe('120');
     expect(await res.json()).toEqual({ ok: false, error: 'rate_limited', retryAfterSec: 120 });
-    expect(d.enregistrer).toHaveBeenCalledTimes(2);
+    expect(d.envoyerLien).toHaveBeenCalledTimes(2);
     expect([...vus.keys()]).toEqual(['catalogue:203.0.113.7']);
   });
 
   it('le journal ne contient ni e-mail, ni prénom, ni entreprise', async () => {
     const d = doublures();
-    d.enregistrer.mockRejectedValueOnce(new Error('base indisponible'));
+    d.envoyerLien.mockRejectedValueOnce(new Error('resend indisponible'));
+    d.notifier.mockRejectedValueOnce(new Error('resend indisponible'));
     const { g, journal } = gestionnaire(d.services);
     await g(requete({ ...corps, consultantOptIn: true }));
     const trace = JSON.stringify(journal.mock.calls);
@@ -374,15 +277,16 @@ describe('services réels : fermés par défaut', () => {
 
   it('des secrets présents en Preview ou en production n’activent aucun service', () => {
     const secrets = {
-      PIPEDRIVE_API_TOKEN: 'jeton',
       RESEND_API_KEY: 'cle',
+      RESEND_FROM_EMAIL: 'catalogue@exemple.test',
+      CATALOGUE_NOTIFICATION_EMAIL: 'equipe@exemple.test',
       CATALOGUE_PDF_URL: PDF,
       CATALOGUE_SIMULATION: '1',
     };
     for (const VERCEL_ENV of ['preview', 'production']) {
       expect(servicesCatalogue({ ...secrets, VERCEL: '1', VERCEL_ENV })).toBe(SERVICES_DESACTIVES);
     }
-    expect(servicesCatalogue({ PIPEDRIVE_API_TOKEN: 'jeton', RESEND_API_KEY: 'cle' })).toBe(SERVICES_DESACTIVES);
+    expect(servicesCatalogue({ RESEND_API_KEY: 'cle', RESEND_FROM_EMAIL: 'catalogue@exemple.test' })).toBe(SERVICES_DESACTIVES);
   });
 
   it('simulation locale : réponse marquée simulated, ni e-mail ni consultant déclarés', async () => {

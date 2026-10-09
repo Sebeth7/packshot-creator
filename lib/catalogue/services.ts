@@ -1,53 +1,31 @@
 import { Resend } from 'resend';
 import type { DemandeCatalogue } from './schema';
-import type { SuiviCatalogue } from './crm';
 import { PUBLICATION_AUTORISEE, SERVICES_REELS_AUTORISES, simulationAutorisee } from './activation';
 import { PDF_CATALOGUE } from './pdf';
-import { stockagePipedrive } from './pipedrive';
 import { courrielResend, destinatairesNotification, notificationInterneResend, type ClientCourriel } from './resend';
 
 /**
  * Services de la route `/api/catalogue`, injectés pour être remplacés par des
  * doublures dans les tests.
  *
- * ÉTAT AU 06/10/2026 — ADAPTATEURS ÉCRITS, AUCUN APPEL RÉEL.
- * - trace durable du lead brochure : Pipedrive, personne + organisation + note
- *   « [Brochure] », dédoublonnée par requestId (`pipedrive.ts`, règle dans
- *   `crm.ts`) ; aucune affaire ;
+ * Décision de Sébastien du 09/10/2026 : AUCUN CRM dans ce parcours (Pipedrive
+ * retiré). Le tri des leads brochure se fait hors du site, par l'assistant IA de
+ * Sébastien, à partir de la notification interne.
  * - e-mail du lien au prospect : Resend (`resend.ts`, texte de `courriel.ts`) ;
  * - notification interne de chaque nouvelle demande, consultant demandé mis en
- *   tête : Resend aux adresses de `CATALOGUE_NOTIFICATION_EMAIL` (variable
- *   propre au catalogue, décision de Laurent du 06/10 ; destinataire métier
- *   prévu : leads@sysnext.com). `NOTIFICATION_EMAIL`, lue par le questionnaire,
- *   n'est jamais utilisée en repli ;
+ *   tête, avec la fiche de la demande (`fiche.ts`) : Resend aux adresses de
+ *   `CATALOGUE_NOTIFICATION_EMAIL` (variable propre au catalogue, sans repli sur
+ *   `NOTIFICATION_EMAIL`, lue par le questionnaire). C'est la trace de la
+ *   demande : sans destinataire, la route reste fermée ;
  * - PDF : URL R2 de `pdf.ts`.
  *
  * Les services réels ne sont assemblés que si TOUT est réuni :
  * `SERVICES_REELS_AUTORISES` (code), PDF en ligne (`pdf.ts`, code),
- * `PUBLICATION_AUTORISEE` en production (code), et les secrets
- * `PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`. Sinon la route
- * répond 503 `catalogue_unavailable` : aucun succès n'est annoncé.
+ * `PUBLICATION_AUTORISEE` en production (code), les secrets `RESEND_API_KEY` et
+ * `RESEND_FROM_EMAIL`, et au moins une adresse valide dans
+ * `CATALOGUE_NOTIFICATION_EMAIL`. Sinon la route répond 503
+ * `catalogue_unavailable` : aucun succès n'est annoncé.
  */
-
-export interface EnregistrementCatalogue {
-  /** Identifiant de la trace durable (note Pipedrive), sans donnée personnelle. */
-  reference: string;
-  /** Personne CRM rattachée, si connue. */
-  personId?: number;
-  /** Vrai si une trace portant le même requestId existait déjà : aucun effet n'est rejoué. */
-  dejaEnregistree: boolean;
-  /** Suivi consigné lors du premier traitement, relu pour une demande rejouée. */
-  suivi?: SuiviCatalogue | null;
-  /** Écarts secondaires (noms d'événements, sans donnée personnelle), portés au journal. */
-  anomalies?: string[];
-}
-
-export interface StockageCatalogue {
-  /** Trace durable, dédoublonnée par requestId. Doit lever si la demande n'est pas enregistrée. */
-  enregistrer(demande: DemandeCatalogue): Promise<EnregistrementCatalogue>;
-  /** Consigne dans la trace ce qui a réellement été fait (e-mail, consultant). */
-  consignerSuivi?(reference: string, demande: DemandeCatalogue, suivi: SuiviCatalogue): Promise<void>;
-}
 
 export interface CourrielCatalogue {
   /** `envoye: true` uniquement sur confirmation du service d'envoi. */
@@ -57,41 +35,40 @@ export interface CourrielCatalogue {
 export interface NotificationCatalogue {
   /**
    * Notification interne d'une nouvelle demande (lead brochure), qui porte aussi
-   * la demande de consultant. Lève en cas d'échec : une demande de consultant
-   * n'est déclarée prise en compte que si elle a été transmise.
+   * la demande de consultant et le sort de l'e-mail du lien. Lève en cas
+   * d'échec : une demande de consultant n'est déclarée prise en compte que si
+   * elle a été transmise.
    */
-  notifier(demande: DemandeCatalogue, enregistrement: EnregistrementCatalogue): Promise<void>;
+  notifier(demande: DemandeCatalogue, suivi: { emailSent: boolean }): Promise<void>;
 }
 
-export interface ServicesCatalogue {
-  mode: 'desactive' | 'simulation' | 'reel';
-  /** URL du PDF autorisé, ou null si aucune n'est disponible. */
-  pdfUrl(): Promise<string | null>;
-  stockage: StockageCatalogue | null;
-  courriel: CourrielCatalogue | null;
-  notification: NotificationCatalogue | null;
-}
+export type ServicesCatalogue =
+  | {
+      mode: 'desactive' | 'simulation';
+      /** URL du PDF autorisé, ou null si aucune n'est disponible. */
+      pdfUrl(): Promise<string | null>;
+    }
+  | {
+      mode: 'reel';
+      pdfUrl(): Promise<string | null>;
+      courriel: CourrielCatalogue;
+      notification: NotificationCatalogue;
+    };
 
 export const SERVICES_DESACTIVES: ServicesCatalogue = {
   mode: 'desactive',
   pdfUrl: async () => null,
-  stockage: null,
-  courriel: null,
-  notification: null,
 };
 
 /**
- * Simulation locale : la demande n'est ni enregistrée, ni envoyée, ni transmise.
- * Aucun e-mail ni aucune demande de consultant n'est donc déclaré accepté, et la
- * réponse porte `simulated: true`. Le lien « Ouvrir le catalogue » mène à une
- * page vide : aucun PDF n'est servi.
+ * Simulation locale : rien n'est envoyé ni transmis. Aucun e-mail ni aucune
+ * demande de consultant n'est donc déclaré accepté, et la réponse porte
+ * `simulated: true`. Le lien « Ouvrir le catalogue » mène à une page vide :
+ * aucun PDF n'est servi.
  */
 export const SERVICES_SIMULATION: ServicesCatalogue = {
   mode: 'simulation',
   pdfUrl: async () => 'about:blank',
-  stockage: { enregistrer: async () => ({ reference: 'simulation', dejaEnregistree: false }) },
-  courriel: null,
-  notification: null,
 };
 
 export interface InterrupteursCatalogue {
@@ -109,7 +86,6 @@ const INTERRUPTEURS: InterrupteursCatalogue = {
 export interface OptionsServices {
   /** Pour les tests seulement : les interrupteurs du code font foi sinon. */
   interrupteurs?: InterrupteursCatalogue;
-  fetch?: typeof fetch;
   clientCourriel?: (cle: string) => ClientCourriel;
 }
 
@@ -124,24 +100,18 @@ export function servicesCatalogue(
   // La page est en 404 en production avant le GO : son API l'est aussi.
   if (env.VERCEL_ENV === 'production' && !i.publication) return SERVICES_DESACTIVES;
 
-  const jeton = env.PIPEDRIVE_API_TOKEN;
   const cle = env.RESEND_API_KEY;
   const expediteur = env.RESEND_FROM_EMAIL;
-  if (!jeton || !cle || !expediteur) return SERVICES_DESACTIVES;
+  // Variable propre au catalogue, sans repli : la notification est la trace de
+  // la demande ; sans destinataire, rien ne serait tracé, la route reste fermée.
+  const destinataires = destinatairesNotification(env.CATALOGUE_NOTIFICATION_EMAIL);
+  if (!cle || !expediteur || destinataires.length === 0) return SERVICES_DESACTIVES;
 
   const client = (options.clientCourriel ?? ((k: string) => new Resend(k)))(cle);
-  // Variable propre au catalogue, sans repli : absente, la notification n'existe
-  // pas, l'absence est journalisée à chaque demande et aucune demande de
-  // consultant n'est déclarée transmise (`gestionnaire.ts`).
-  const destinataires = destinatairesNotification(env.CATALOGUE_NOTIFICATION_EMAIL);
-  const domainePipedrive = env.PIPEDRIVE_DOMAIN || 'packshotcreator.pipedrive.com';
-
   return {
     mode: 'reel',
     pdfUrl: async () => PDF_CATALOGUE.url,
-    stockage: stockagePipedrive({ jeton, fetch: options.fetch }),
     courriel: courrielResend(client, expediteur),
-    notification:
-      destinataires.length > 0 ? notificationInterneResend(client, expediteur, destinataires, domainePipedrive) : null,
+    notification: notificationInterneResend(client, expediteur, destinataires),
   };
 }

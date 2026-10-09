@@ -87,7 +87,7 @@ export const requeteCatalogueSchema = champsCatalogueSchema.extend({
 
 export type RequeteCatalogue = z.output<typeof requeteCatalogueSchema>;
 
-/** Demande telle qu'elle est transmise aux services (stockage, e-mail, CRM). */
+/** Demande telle qu'elle est transmise aux services (e-mail du lien, notification interne). */
 export interface DemandeCatalogue {
   requestId: string;
   recueLe: string; // ISO 8601
@@ -102,8 +102,9 @@ export interface DemandeCatalogue {
 }
 
 /**
- * Réponses de la route. `ok: true` n'est renvoyé que lorsque la demande a été
- * durablement enregistrée et qu'une URL de PDF autorisée est disponible.
+ * Réponses de la route. `ok: true` n'est renvoyé que lorsqu'une URL de PDF
+ * autorisée est disponible et que la demande a laissé une trace : notification
+ * interne ou e-mail du lien confirmé par Resend.
  * `emailSent` et `contactRequestAccepted` reflètent le retour réel des services :
  * ils valent `false` dès que l'envoi ou la transmission n'est pas confirmé.
  */

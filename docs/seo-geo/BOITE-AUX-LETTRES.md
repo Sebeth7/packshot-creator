@@ -134,6 +134,17 @@ Restent ouverts :
 - R2, décidé et implémenté sur #82 (`a02f293`) : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag`), à l'image de la note épinglée sur l'affaire de `/api/contact`. Aucune affaire, aucun Lead.
 - Formulaire : ni nom ni téléphone ajoutés (landing à faible friction, décision de Laurent). La mention P3 attend toujours ta validation et n'est pas modifiée.
 
+**Réponse de Sébastien du 09/10 (consignée par le Claude de Sébastien)** —
+
+| Point | Décision | Effet sur #82 |
+|---|---|---|
+| P1 — objet CRM | **Aucun CRM dans le parcours brochure.** Le tri des leads brochure vers le CRM se fait hors du site, par l'assistant IA de Sébastien, à partir de la notification interne | Pipedrive retiré (`pipedrive.ts` supprimé, `crm.ts` devenu `fiche.ts`) ; ni personne, ni organisation, ni note, ni étiquette |
+| T1 — écritures de test Pipedrive | Sans objet | Le test réel ne touche plus Pipedrive |
+| T2 — destinataire de la notification | `sebastien.jourdan@sysnext.com` au lieu de `leads@sysnext.com` | Variable Vercel `CATALOGUE_NOTIFICATION_EMAIL` modifiée (Preview de #82) ; à créer en Production à la publication |
+| P5 — API Pipedrive v2 | Sans objet pour #82 | Le point 6 (v1 dans `/api/contact` et ailleurs) reste un chantier séparé |
+
+Restent ouverts pour Sébastien : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité ; Pipedrive n'est plus sous-traitant de ce formulaire).
+
 **Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
 
 ---

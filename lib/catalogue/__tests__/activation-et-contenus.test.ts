@@ -1,18 +1,11 @@
 /**
  * Landing catalogue All-in-One : page non publiée en production avant GO,
- * page FR seule pour le sélecteur de langue, e-mail et règle CRM (aucune affaire).
+ * page FR seule pour le sélecteur de langue, e-mail et fiche de la demande (aucun CRM).
  */
 import { describe, it, expect } from 'vitest';
 import { PUBLICATION_AUTORISEE, pageCatalogueServie, simulationAutorisee } from '@/lib/catalogue/activation';
 import { composerCourrielCatalogue, LIENS_RETOUR } from '@/lib/catalogue/courriel';
-import {
-  regleCrmCatalogue,
-  noteCrmCatalogue,
-  noteCrmCatalogueHtml,
-  lireSuiviNote,
-  domaineGrandPublic,
-  ETAPE_PIPEDRIVE_CATALOGUE,
-} from '@/lib/catalogue/crm';
+import { domaineGrandPublic, ligneEnvoiLien, lignesFicheCatalogue } from '@/lib/catalogue/fiche';
 import { localeSwitchHref, navPinLocale } from '@/i18n/deChCoverage';
 import type { DemandeCatalogue } from '@/lib/catalogue/schema';
 
@@ -113,57 +106,40 @@ describe('e-mail de transmission du lien (composé, non envoyé)', () => {
   });
 });
 
-describe('règle CRM V1 (06/10/2026) : lead brochure tracé, sans affaire', () => {
-  it('aucune affaire, ni pour une brochure seule, ni pour une demande de consultant', () => {
-    expect(regleCrmCatalogue(demande)).toEqual({ synchroniserContact: true, creerAffaire: false, signalerConsultant: false });
-    expect(regleCrmCatalogue({ ...demande, consultantOptIn: true })).toEqual({
-      synchroniserContact: true,
-      creerAffaire: false,
-      signalerConsultant: true,
-    });
-  });
+describe('fiche de la demande (notification interne, aucun CRM depuis le 09/10/2026)', () => {
+  const fiche = (d: DemandeCatalogue) => lignesFicheCatalogue(d).join('\n');
 
-  it('étape Pipedrive non fixée : aucune étape existante réutilisée par défaut', () => {
-    expect(ETAPE_PIPEDRIVE_CATALOGUE).toBeNull();
-  });
-
-  it('la note porte l’intention, le pays, la demande de consultant et l’attribution', () => {
-    const note = noteCrmCatalogue(demande);
-    expect(note).toContain('[Brochure]');
-    expect(note).toContain('Type : lead brochure. Ni une demande de démonstration, ni une affaire qualifiée.');
-    expect(note).toContain('Pays : Suisse');
-    expect(note).toContain('Demande de consultant : non.');
-    expect(note).toContain('Brochure : orbitvu_all_in_one_2026_fr (langue : fr)');
-    expect(note).toContain('Source : perplexity.ai');
-    expect(note.toLowerCase()).not.toContain('marketing');
+  it('la fiche porte l’intention, le pays, la demande de consultant et l’attribution', () => {
+    const texte = fiche(demande);
+    expect(texte).toContain('[Brochure]');
+    expect(texte).toContain('Type : lead brochure. Ni une demande de démonstration, ni une affaire qualifiée.');
+    expect(texte).toContain('Pays : Suisse');
+    expect(texte).toContain('Demande de consultant : non.');
+    expect(texte).toContain('Brochure : orbitvu_all_in_one_2026_fr (langue : fr)');
+    expect(texte).toContain('Source : perplexity.ai');
+    expect(texte.toLowerCase()).not.toContain('marketing');
     // Aucune interdiction ni consigne d'appel codée (fait métier de Laurent du 06/10).
-    expect(note).not.toMatch(/ne pas appeler|pas d.appel/i);
-    expect(noteCrmCatalogue({ ...demande, consultantOptIn: true })).toContain(
+    expect(texte).not.toMatch(/ne pas appeler|pas d.appel/i);
+    expect(fiche({ ...demande, consultantOptIn: true })).toContain(
       'Demande de consultant : OUI, le prospect demande à être recontacté.',
     );
   });
 
-  it('adresse grand public acceptée et seulement signalée dans la note', () => {
+  it('une ligne « Clé : valeur » par information, lisible par un programme', () => {
+    for (const ligne of lignesFicheCatalogue(demande).slice(1)) expect(ligne).toMatch(/^[^:]+ : .+/);
+  });
+
+  it('adresse grand public acceptée et seulement signalée dans la fiche', () => {
     expect(domaineGrandPublic('claire@Gmail.com')).toBe('gmail.com');
     expect(domaineGrandPublic('anna@bluewin.ch')).toBe('bluewin.ch');
     expect(domaineGrandPublic('a@hotmail.fr')).toBe('hotmail.fr');
     expect(domaineGrandPublic('claire@atelier-exemple.fr')).toBeNull();
-    expect(noteCrmCatalogue(demande)).not.toContain('domaine grand public');
-    expect(noteCrmCatalogue({ ...demande, email: 'claire@outlook.com' })).toContain('E-mail : domaine grand public (outlook.com)');
+    expect(fiche(demande)).not.toContain('domaine grand public');
+    expect(fiche({ ...demande, email: 'claire@outlook.com' })).toContain('E-mail : domaine grand public (outlook.com)');
   });
 
-  it('version Pipedrive : champs saisis échappés, suivi relu à l’identique', () => {
-    const suivi = { emailSent: true, notification: 'transmise', consultant: 'transmis' } as const;
-    const html = noteCrmCatalogueHtml({ ...demande, company: 'A <script>' }, suivi);
-    expect(html).toContain('Entreprise : A &lt;script&gt;');
-    expect(html).not.toContain('<script>');
-    expect(lireSuiviNote(html)).toEqual(suivi);
-    for (const s of [
-      { emailSent: false, notification: 'non_transmise', consultant: 'non_transmis' },
-      { emailSent: true, notification: 'non_configuree', consultant: 'non_demande' },
-    ] as const) {
-      expect(lireSuiviNote(noteCrmCatalogueHtml(demande, s))).toEqual(s);
-    }
-    expect(lireSuiviNote(noteCrmCatalogueHtml(demande))).toBeNull();
+  it('sort de l’e-mail du lien : confirmé, ou à renvoyer', () => {
+    expect(ligneEnvoiLien(true)).toBe('Lien du catalogue envoyé au prospect : confirmé par Resend.');
+    expect(ligneEnvoiLien(false)).toBe('Lien du catalogue envoyé au prospect : NON confirmé, à renvoyer.');
   });
 });

@@ -7,13 +7,14 @@ import { rateLimit } from '@/lib/rate-limit';
  * Route distincte de /api/contact : une demande de catalogue n'est ni une demande
  * de démonstration ni une demande de devis, et elle ne crée aucune affaire.
  *
- * Au 06/10/2026, le PDF est en ligne sur R2 et les adaptateurs Pipedrive et
- * Resend sont écrits, mais aucun appel réel n'est possible
- * (lib/catalogue/services.ts : `SERVICES_REELS_AUTORISES` faux). La route
- * valide, limite et répond 503 `catalogue_unavailable`.
+ * Le PDF est en ligne sur R2 (06/10/2026) et les envois Resend sont écrits ;
+ * aucun CRM (décision de Sébastien du 09/10/2026). Tant que
+ * `SERVICES_REELS_AUTORISES` est faux (lib/catalogue/services.ts), aucun appel
+ * réel n'est possible : la route valide, limite et répond 503
+ * `catalogue_unavailable`.
  */
 
-// Recherche et écritures Pipedrive successives, puis Resend.
+// Deux envois Resend successifs (lien au prospect, puis notification interne).
 export const maxDuration = 30;
 
 // 5 demandes par adresse IP et par heure, comme /api/roi-lead (règles brochure de

@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Landing catalogue All-in-One (#82) : Pipedrive retiré du parcours brochure, notification à Sébastien · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : voir l'historique de #82 (09/10)
+
+**Quoi** — Décision de Sébastien du 09/10 : aucun CRM dans le parcours brochure. Plus aucun appel Pipedrive : `lib/catalogue/pipedrive.ts` supprimé, `crm.ts` devenu `fiche.ts` (contenu de la demande). Parcours : e-mail du lien au prospect, puis notification interne portant la fiche de la demande et le sort de l'e-mail du lien. `CATALOGUE_NOTIFICATION_EMAIL` vaut `sebastien.jourdan@sysnext.com` (Preview de #82) au lieu de `leads@sysnext.com`.
+
+**Pourquoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue », relancée le 07/10) : le code écrivait dans Pipedrive avant tout e-mail, ce qui déclenchait son STOP (« si une écriture Pipedrive est indispensable »). Sébastien a tranché P1 et T1 de Q23 : pas de Pipedrive ; le tri des leads brochure vers le CRM se fait hors du site, par son assistant IA, à partir de la notification. Destinataire changé par Sébastien (T2).
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/gestionnaire.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/fiche.ts` (ex-`crm.ts`), `lib/catalogue/pipedrive.ts` (supprimé), `lib/catalogue/activation.ts`, `lib/catalogue/schema.ts` et `app/api/catalogue/route.ts` (commentaires), `components/landings/catalogue-all-in-one/mesure.ts` (commentaire), `lib/catalogue/__tests__/` (doublure Pipedrive supprimée, scénarios réécrits). Variable Vercel `CATALOGUE_NOTIFICATION_EMAIL` (Preview, branche de #82) modifiée par le tableau de bord le 09/10.
+
+**Effet attendu** — Aucun pour le visiteur tant que `SERVICES_REELS_AUTORISES` est faux. Une fois ouverte, la route n'exige plus `PIPEDRIVE_API_TOKEN` ; elle reste fermée (503) sans `RESEND_API_KEY`, `RESEND_FROM_EMAIL` ou une adresse valide dans `CATALOGUE_NOTIFICATION_EMAIL`, la notification étant désormais la trace de la demande. Contrat de réponse inchangé (`ok`, `pdfUrl`, `emailSent`, `contactRequestAccepted`).
+
+Règles du parcours sans CRM :
+- e-mail du lien d'abord, puis notification ; la notification dit si le lien est parti (« confirmé par Resend » ou « NON confirmé, à renvoyer ») ;
+- un seul des deux envois confirmé suffit au succès : l'e-mail du lien reste tracé dans le journal d'envoi Resend ;
+- aucun des deux confirmé : 500 `technical`, journal `catalogue.aucune_trace`, nouvel essai possible (même `requestId` retraité) ;
+- consultant : `contactRequestAccepted` vrai seulement si la notification est transmise ; objet `[Brochure] entreprise - DEMANDE À ÊTRE RECONTACTÉ` et mention en tête, inchangés ;
+- fiche : une ligne « Clé : valeur » par information (type, consultant, brochure, pays, entreprise, domaine grand public, produits, page, attribution, date, identifiant), lisible par un programme.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue`, `app/api/catalogue`, `components/landings/catalogue-all-in-one` : 0 avertissement ; `npx vitest run` : 484/484 (518 avant : tests du contrat Pipedrive retirés, scénarios sans CRM ajoutés).
+- Test P : aucun appel `fetch` pendant une demande complète, même avec `PIPEDRIVE_API_TOKEN` présent ; aucune mention de Pipedrive dans les e-mails.
+- Contre-épreuves (code remis à l'identique, `cmp`) : succès accepté sans aucune trace → 3 échecs ; sort de l'e-mail présumé dans la notification → 3 échecs.
+- Variables de la Preview (lecture par le tableau de bord Vercel le 09/10) : `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `PIPEDRIVE_API_TOKEN` sur Development, Preview et Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule, relue après modification.
+- Resend : domaine `sysnext.com` vérifié (depuis le 14/03), expéditeur de production `sebastien.jourdan@sysnext.com`, envois de production « delivered » le 09/10.
+
+**Supposé** — Que le tri par l'assistant IA de Sébastien lise la notification telle qu'elle est structurée (non vu).
+
+**Non regardé** — Plafond d'envoi du plan Resend : 5 demandes par heure et par adresse IP × 24 h × 2 e-mails = jusqu'à 240 e-mails par jour depuis une seule IP, sur le compte qui sert aussi Contact et ROI. Idempotence : un même `requestId` reçu par deux instances Vercel est traité deux fois (la note Pipedrive assurait ce dédoublonnage ; perte assumée). `/api/contact` et ses écritures Pipedrive : hors périmètre, inchangés.
+
+**Suite** — Test réel contrôlé depuis la Preview (entrée suivante), interrupteurs remis à faux. Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité ; Pipedrive n'est plus sous-traitant de ce formulaire), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production.
+
+---
+
 ## 2026-10-06 · Landing catalogue All-in-One (#82) actualisée depuis `main` `1e0901b` · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `dc7c2e6` (fusion)
