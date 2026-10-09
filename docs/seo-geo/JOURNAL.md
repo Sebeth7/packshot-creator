@@ -34,6 +34,56 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Ubersuggest résiduel : #116 fusionnée, #120 intégrée à `main`, décisions de Laurent du 09/10 · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission V8 de Laurent du 09/10, « finalisation #116 et #120 ») | **PR** : #116 fusionnée ; #120 (cette branche) | **Commit de fusion de #116** : `7501f38` (`main`), le 09/10/2026 à 07:14:16 UTC, tête `7841991`
+
+**Quoi** —
+- #116 sortie du brouillon puis fusionnée par commit de fusion, tête `7841991` verrouillée. Code des 2 fichiers identique à la tête `13ba3ad`, contrôlée dans Chrome sur la Preview le 09/10 (QA de Laurent : PASS, 4 pages FR/EN, 1440 et 390 px) ; CI 4/4 verte sur `7841991`.
+- #120 : `main` `7501f38` intégré dans sa branche ; conflits de `ETAT.md` et `JOURNAL.md` résolus par union ; fichiers du site inchangés (3 `metaTitle` EN, rien d'autre).
+- #118 : fermeture sans fusion, son correctif étant fusionné par #116 (HTML identique sur les 374 pages prérendues, mesuré le 09/10).
+
+**Décisions de Laurent du 09/10, consignées sans modification de sens** —
+1. Demandes de revue **automatiques** de `CODEOWNERS` autorisées lors du passage de #116 et #120 de brouillon à prêtes pour revue, pour ces deux PR uniquement. Aucune demande manuelle, aucun message direct, aucune relance, aucune attente de validation de Sébastien. Une notification automatique n'est pas une validation métier.
+2. **Exception D42 ciblée, #120** : suppression du claim chiffré non sourcé « -50% delay » du `metaTitle` EN de `/en/blog/how-shotflow-improves-real-time-task-tracking`, sans attendre de validation métier complémentaire. Cette exception ne vaut que pour cette suppression : aucun autre claim, aucune prose FR, aucune proposition commerciale. Aucune validation n'est attribuée à Sébastien.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (intégration de `main` et consignation) ; fichiers du site de #120 inchangés.
+
+**Vérifié** — Voir l'entrée de contrôle de #120 ci-dessous et la description de la PR.
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de Laurent après déploiement. Statut de déploiement Vercel : constaté par le contenu servi seulement.
+
+**Suite** — #119 et #121 restent en HOLD (point D13 des titles FR ; HOLD PACK-D9 ; D42). Après fusion de #120 : `smoke.mjs` sur `sysnext.vercel.app`, puis les 7 pages dans Chrome sur `www`.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-B — 3 titles EN raccourcis mécaniquement · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #120, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Champ `metaTitle` de 3 articles EN, chacun remplacé par un texte qui existe déjà :
+- `/en/blog/how-to-avoid-blurry-product-photographs` : « How to avoid blurry photos in product photography: causes, solutions, and best practices » (88) devient le H1 de l'article, « How to avoid blurry photos in product photography » (49) ;
+- `/en/blog/technique-photograph-jewelry-tutorial` : « How to Photograph Jewelry: Professional Techniques for Jewelers | PackshotCreator » (81) perd son suffixe de marque et devient « How to Photograph Jewelry: Professional Techniques for Jewelers » (63) ;
+- `/en/blog/how-shotflow-improves-real-time-task-tracking` : « ShotFlow: Optimize your production monitoring in real time | -50% delay » (71) perd « | -50% delay », chiffre non établi (backlog factuel du triage, n° 4), et devient « ShotFlow: Optimize your production monitoring in real time » (58).
+
+Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, slug et canonical inchangés.
+
+**Pourquoi** — Les 2 seuls titles EN classés SHORTEN_SAFE au triage du 30/09 qui restent mécaniques et hors de toute PR ouverte au 08/10, et le seul claim EN du backlog factuel retirable d'un title par simple suppression, dans un fichier libre. Les titles FR ne sont pas modifiés : la question « un `<title>` relève-t-il du copywriting réservé à Sébastien (D13) ? » reste ouverte (ligne #70 de `ETAT.md`). D13 vise le copywriting français. GSC sur 90 jours au 30/09 (triage) : 5 clics, 1 645 impressions, position 9,3 pour le premier ; 1 clic, 564 impressions, position 30,5 pour le second.
+
+**Fichiers** — `content/blog/en/how-to-avoid-blurry-product-photographs.json`, `content/blog/en/technique-photograph-jewelry-tutorial.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Titles affichés en entier dans les résultats de recherche. Aucun gain de clics ni de position n'est mesuré ou annoncé ; lecture possible dans GSC à J+28.
+
+**Vérifié** — voir la PR : title, `og:title`, `twitter:title`, canonical et hreflang rendus ; HTML prérendu comparé à `main` ; CSS compilée comparée à `main`.
+
+**Supposé** — [Inférence] Google reprend le title tel quel, sans le réécrire. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; CTR avant et après, faute de recul.
+
+**Suite** — GO de Laurent, puis fusion ; information à Sébastien (métadonnées seules, D42, arbitrage final 3). Titles FR : lot de 10 lignes préparé pour Sébastien, hors dépôt, dont le pendant FR du title ShotFlow (« | -50% de délais »).
+
+---
+
 ## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (FR et EN, 4 pages) · Claude de Laurent
 
 **Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lot D), suite de UB-04 (#74) | **PR** : #116 (PR-A), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-tech-h1-dedies-2026-10-08` | **Base** : `main` `06b18e2`
