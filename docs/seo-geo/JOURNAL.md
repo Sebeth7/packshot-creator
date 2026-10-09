@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
+
+**Quoi** — Les 17 fiches `/de-ch/fotostudio/<slug>` déclaraient `Product.url` et `Offer.url` en `/de-ch/studio-photo/<slug>`, qui répond 307 vers la fiche. Ces deux champs prennent l'URL canonique de la fiche, déjà calculée par `getPathname` pour le fil d'Ariane (#55) ; FR et EN inchangés.
+
+**Pourquoi** — Défaut listé au backlog F5 depuis #55 (29/09), confirmé le 08/10 sur un build local de `main` `06b18e2` : relevé des URL internes déclarées dans les JSON-LD des 323 pages du sitemap, statut sans suivre les redirections ; 34 valeurs non 200 : 13 `Product.url` et 13 `Offer.url` (307) sur les fiches du sitemap, 8 `Service.url` (301) sur les hubs `branchen`. Les 4 fiches `delisted`, hors sitemap mais prérendues en de-ch, portaient le même défaut. Les fiches de-ch sont des fiches marchand (`Offer` en CHF) : l'URL de l'offre doit être celle de la page.
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx` (une constante `urlFiche`, partagée par le fil d'Ariane et `productSchema`), `lib/seo/__tests__/json-ld-url-canonique.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : `Product.url` et `Offer.url` des 17 fiches de-ch égaux à leur canonique ; aucun autre champ ne change. Lecture : GSC, « Fiches marchand » et « Extraits de produits », filtre `/de-ch/fotostudio/`, J+14 à J+28 après la mise en production. Aucun gain de position ni de clics n'est attendu ni promis.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 486/486 (24 fichiers), dont le nouveau test (3/3). Sa règle sur les sources détecte le motif de `main` (URL `/${lang}/studio-photo/…` écrite en dur dans `productSchema`) ; elle exclut nommément `app/[lang]/industrie/[slug]/page.tsx` (voir Non regardé).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, avant (`main` `06b18e2`) et après : 56 pages comparées (17 fiches × 3 langues, sélecteur FR et de-ch, `/fr`, `/de-ch`, `/de-ch/branchen/uhren`). 39 identiques ; 17 fiches de-ch différentes sur `Product.url` et `Offer.url` seulement ; statut, `<title>`, canonical, hreflang, `robots`, `BreadcrumbList` et autres blocs JSON-LD identiques.
+- Relevé JSON-LD sur le build de la branche : 323 pages, 0 `Product.url` ni `Offer.url` non 200 ; restent les 8 `Service.url`.
+
+**Supposé** — [Inférence] Le comportement 307 de `/de-ch/studio-photo/<slug>` vient du middleware `next-intl` ; le Worker laisse passer les chemins à préfixe de langue, donc la production répond comme le build local. Cela repose sur des schémas observés.
+**Non regardé** — `Service.url` des 8 hubs `/de-ch/branchen/*` (`/de-ch/industrie/<slug>`, 301) : laissé en l'état, le gabarit `industrie/[slug]` est touché par #104 et #107 (HOLD) et sert `/de-ch/branchen/mode` (gel Mode jusqu'au 26/11) ; `Service` n'ouvre aucun résultat enrichi. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). Test des résultats enrichis de Google : à faire sur la Preview ou après fusion. Aucun appel payant.
+
+**Suite** — Contrôle de la Preview de-ch (source JSON-LD de 2 fiches) ; fusion sur GO distinct de Laurent ; après fusion, test des résultats enrichis sur `/de-ch/fotostudio/alphashot-pro-g2` et lecture GSC à J+14/J+28. `Service.url` des `branchen` : après la sortie de HOLD de #104 et #107 et le 26/11.
+
+---
+
 ## 2026-10-07 · PACK-D9 — pages EN servies en français : gate claims, 0 page traduite, 31 pages en HOLD · Claude de Laurent
 
 **Chantier** : PACK-D9 (D9, LANG_1 de l'audit LANG), mission de Laurent du 07/10 ; source désignée : `PACK_D9_TRANSMISSION_2026-10-07.md` (hors dépôt) | **PR** : #106, brouillon, « DO NOT MERGE », branche `claude/charming-bohr-6tu0j5` | **Base** : `main` `b806291`
