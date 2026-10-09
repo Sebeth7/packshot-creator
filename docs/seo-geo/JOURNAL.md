@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` intégré, P3, P4, origine de la pop-in, interrupteurs ouverts (D52) · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commits** : `783b55e` (fusion de `main` `3c0909b`), `34b8a5f` (P3, P4, origine, état GET), `1846fd5` (interrupteurs)
+
+**Quoi** — Mission de Laurent du 09/10 (« #82 finalisation et publication ») : `main` fusionné sans rebase ; mention P3 du formulaire ; P4 dans la politique de confidentialité (Resend) ; `?origine=brochure_exit_sitewide` lu et remonté dans la notification interne ; `GET /api/catalogue` (état seul) ; `PUBLICATION_AUTORISEE` et `SERVICES_REELS_AUTORISES` passés à `true`. D52 inscrite.
+
+**Pourquoi** — GO de finalisation, de fusion et de publication de Laurent du 09/10 (D52), après la décision de Sébastien « aucun CRM » et le test réel depuis la Preview du même jour (entrées précédentes du Claude de Sébastien).
+
+**Fichiers** —
+- Fusion : `docs/seo-geo/JOURNAL.md` (union, entrées de #82 du 09/10 placées par heure), `ETAT.md` (état de `main` conservé, ligne #82 du 09/10 reportée), `BOITE-AUX-LETTRES.md` (question de #82 renumérotée **Q24** : #82 est la seconde des deux PR porteuses d'une « Q23 » ; texte conservé). Aucun fichier du site en conflit.
+- P3 : `components/landings/catalogue-all-in-one/contenu.ts` (`FORMULAIRE.donnees.avant`, formulation de Laurent du 06/10, reprise mot pour mot).
+- P4 : `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (`privacy` : `article2.catalogueForm`, `article3.purpose6`, `article8`), `app/[lang]/confidentialite/page.tsx`.
+- Origine : `lib/catalogue/schema.ts` (`ORIGINES_CATALOGUE`, `origineCatalogue`), `gestionnaire.ts`, `fiche.ts` (ligne « Origine : brochure_exit_sitewide »), `CatalogueForm.tsx`.
+- `app/api/catalogue/route.ts` (`GET` → `{ disponible }`), `lib/catalogue/activation.ts`, `lib/catalogue/pdf.ts` (commentaire, garde D36 de `main`), tests `lib/catalogue/__tests__/`, `e2e/catalogue-all-in-one.spec.ts`. `docs/seo-geo/DECISIONS.md` (D52).
+
+**Effet attendu** — Après fusion : `/fr/catalogue-orbitvu-all-in-one` servie en production (`noindex, nofollow`, ni canonique ni sitemap), formulaire ouvert si les trois variables Resend du catalogue sont présentes en Production ; sinon 503 `catalogue_unavailable` et message de repli avec les téléphones. #122 peut quitter son HOLD « catalogue 404 » après contrôle de la publication.
+
+**Vérifié** —
+- P4, sources Resend relues le 09/10 : https://resend.com/security/gdpr (mise à jour du 21/09/2026) : « Resend's primary processing operations take place in the United States » ; « Transfers out of the EEA are made under the EU Standard Contractual Clauses, which are incorporated into the DPA » ; participation au EU-U.S. Data Privacy Framework (« additional transfer mechanism ») ; transferts suisses : SCC de l'UE avec les modifications prévues au DPA ; DPA « GDPR Article 28 » en vigueur pour chaque compte. https://www.resend.com/security : données stockées aux États-Unis ; SOC 2 Type II. Texte publié : sous-traitant, traitement principal aux États-Unis, SCC du DPA, DPF, Suisse ; ni « conforme RGPD », ni hébergement en Europe, ni durée. Pipedrive non cité.
+- Origine : liste fermée côté navigateur et serveur ; valeur inconnue, casse différente, UTM, balise, nombre ou tableau ignorés sans rejet de la demande ; rien dans l'e-mail du prospect. Contre-épreuves (code remis à l'identique, `cmp`) : origine recopiée sans liste fermée → 3 échecs ; ligne « Origine » retirée → 1 échec.
+- PDF relu le 09/10 depuis la session : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b207…6730e5` identique, 28 pages (`pdfinfo`), en-tête `noindex` présent (deux fois, comme le 06/10).
+- Worker (`cloudflare-worker/src/index.js`, dépôt) : aucune règle ne capte `/fr/catalogue-orbitvu-all-in-one` ni `/api/catalogue` ; relais vers l'origine Next, méthode et corps transmis.
+- `npx tsc --noEmit` vert ; ESLint ciblé : 0 erreur ; `verifier-json` : 195 fichiers ; Vitest : 33 fichiers, 593 tests ; `npx next build` vert (valeurs factices, 387 pages) ; Playwright sur `next start` local : `catalogue-all-in-one.spec.ts` 72/72 (Chromium et Mobile Chrome), specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) 81/81.
+- Rendu local, 1440 et 390 px : hero, film, formulaire, mention P3, article 8 ; aucun bandeau d'aperçu ; `noindex, nofollow` ; aucune réponse 4xx ou 5xx interne. `GET /api/catalogue` local : `{"disponible":false}` (aucun secret local).
+- Preview de la branche : 302 vers le SSO Vercel ; non contrôlable par script depuis la session (jeton `VERCEL_AUTOMATION_BYPASS_SECRET` absent).
+
+**Supposé** — Que les variables de Production lues par Sébastien dans le tableau de bord le 09/10 (`RESEND_API_KEY`, `RESEND_FROM_EMAIL` présentes en Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule) n'aient pas changé : aucun accès Vercel depuis la session (R3, pas de jeton).
+
+**Non regardé** — Variables Vercel de Production (aucun accès) ; Preview dans Chrome (SSO) ; `www` (R4) ; formulaire réel en production (aucun envoi sans autorisation) ; limitation de débit derrière le Worker : [Inférence] l'adresse lue par `getClientIp` peut être celle de Cloudflare et non celle du visiteur, comme pour `/api/roi-lead`, cela repose sur des schémas observés ; `/api/contact` utilise aussi Resend et Pipedrive sans que la politique les nomme (chantier séparé, signalé en Q24 le 06/10).
+
+**Suite** — Avant la fusion : `CATALOGUE_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` à créer en Production dans le tableau de bord Vercel (projet `sysnext`), présence de `RESEND_API_KEY` et `RESEND_FROM_EMAIL` en Production à confirmer ; CI verte sur la tête. Après la fusion : déploiement de production, `GET /api/catalogue` sur `sysnext.vercel.app` (`disponible: true` attendu), page et politique sur `sysnext.vercel.app`, contrôle Chrome de `www` (R4). #122 : dépendance à lever après ce contrôle, sans fusion automatique.
+
+---
+
 ## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
 
 **Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`

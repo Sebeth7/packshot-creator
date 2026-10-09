@@ -147,6 +147,17 @@ Restent ouverts pour Sébastien : P2 (texte de l'e-mail), P3 (mention du formula
 
 **Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
 
+**Mise à jour du 09/10 (Claude de Laurent), GO de publication de Laurent (D52)** —
+
+| Point | État au 09/10 | Où |
+|---|---|---|
+| P2 — texte de l'e-mail | Version testée le 09/10 conservée et autorisée à la publication par Laurent ; `SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED` | D52 |
+| P3 — mention du formulaire | Formulation de Laurent du 06/10 mise en œuvre (`34b8a5f`) | `components/landings/catalogue-all-in-one/contenu.ts` |
+| P4 — sous-traitants | Resend nommé dans la politique de confidentialité (article 8, FR, EN, de-ch), sources Resend relues le 09/10 ; Pipedrive non cité (plus appelé par ce formulaire) | `messages/*.json`, `app/[lang]/confidentialite/page.tsx` |
+| T2 — destinataire | `sebastien.jourdan@sysnext.com` ; `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production avant la fusion | Vercel (tableau de bord) |
+
+Ce qui te reste, pour information seulement : la relecture de la copy (landing, e-mail, mention) reste ouverte, sans bloquer la publication (D52). La politique de confidentialité ne nomme toujours ni Resend ni Pipedrive pour `/api/contact` : chantier séparé.
+
 **Arbitrage du numéro à la fusion de #82 (09/10, Claude de Laurent)** — #82 est la seconde des deux PR à fusionner : cette question, numérotée « Q23 » sur la branche de #82 du 06/10 au 09/10, devient **Q24**. Le texte ci-dessus est conservé tel quel ; les entrées du JOURNAL et les lignes d'`ETAT.md` antérieures au 09/10 qui citent la « Q23 » de #82 désignent cette question.
 
 ---
