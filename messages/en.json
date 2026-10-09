@@ -617,9 +617,6 @@
     "faq2Answer": "Yes. PackshotCreator, the official Orbitvu distributor, provides technical support in France and Switzerland.",
     "faq3Question": "Can I visit the showroom?",
     "faq3Answer": "Yes, by appointment. Contact us to schedule your visit and test our studios.",
-    "trustBadge1": "Response within 24h",
-    "trustBadge2": "5000+ companies equipped",
-    "trustBadge3": "Free demo, no commitment",
     "trustStat1Value": "25 yrs",
     "trustStat1Label": "of product photo expertise",
     "trustStat2Value": "FR + CH",
@@ -2122,7 +2119,7 @@
     },
     "cta": {
       "heading": "Questions? Let's talk.",
-      "description": "Our experts analyze your needs and recommend the optimal solution. Free and no-obligation assessment.",
+      "description": "Our experts analyze your needs and recommend the optimal solution.",
       "ctaPrimary": "Talk to an expert",
       "ctaSecondary": "View studios"
     },
@@ -2131,7 +2128,7 @@
       "subtitle": "Our experts analyze your needs and recommend the optimal solution.",
       "card1": {
         "heading": "Talk to an expert",
-        "description": "Our experts analyze your needs and recommend the optimal solution. Free diagnostic, no commitment."
+        "description": "Our experts analyze your needs and recommend the optimal solution."
       },
       "card2": {
         "heading": "Calculate your ROI",

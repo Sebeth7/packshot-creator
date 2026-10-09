@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · #109 — resynchronisation sur `main` `f03f8ca` et finalisation (mission V8) · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées ») | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par le commit de fusion `04b7823` (JOURNAL et ETAT fusionnés par union ; aucun fichier du site en conflit)
+
+**Quoi** — Retrait des derniers engagements non démontrés hors des 19 fichiers de la seconde passe : « diagnostic gratuit » de `besoins-photographie-produit`, « Diagnostic gratuit et sans engagement » de `questionsCles` (FR, EN, de-ch), clés inutilisées `contact.trustBadge1` à `3` (« Réponse sous 24h », « 5000+ entreprises équipées », « Démo gratuite sans engagement ») ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
+
+**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page FR sérialise tout `fr.json`, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »).
+
+**Faits métier appliqués, sans nouvelle question** — Sysnext fondée en 2001, marque PackshotCreator lancée en 2004 ; showroom de Beynost, 198 allée de la Tour (cité seulement sur la page contact, les mentions légales et le schema ; « près de Lyon » ailleurs, D1) ; Orbitvu depuis 2023 ; livraison et installation en supplément ; formations Essential et Master facturées séparément ; garantie standard d'un an, extension possible ; ROI de 6 à 12 mois, indicatif, sans garantie ; délai de livraison d'environ 12 jours (mission #64 du 30/09, rappel du 08/10). D32 (environ 10 jours) vise l'offre de leasing B2B livrée et installée : périmètre distinct, non assimilé.
+
+**Fichiers** — `app/[lang]/besoins-photographie-produit/page.tsx`, `lib/blog.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespaces `questionsCles` et `contact` seulement), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, présents sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
+
+**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit », « Réponse sous 24h » ou « 5000+ entreprises » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 25 fichiers, 495 tests verts ; `npx next build` (variables factices) vert, 386 pages ; serveur local `next start` : 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog et 11 articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « 5000+ », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI (`3 crédits offerts`).
+**Supposé** — Que le rendu de la Preview soit identique au rendu local ; la Preview est derrière le SSO Vercel.
+**Non regardé** — Preview et production (R4) ; restes déclarés le 08/10, inchangés : Q20/D45, D29, F5, Mode, `home.faq.q7` et `home.hero` (gel jusqu'au 28/10), `foundingDate` et Qualiopi de `organizationSchema()` (accueil, F5, Mode), prix D30 et D25 de `blogStudioIa`, nombres codés en dur de `studios-photo-automatises` (landing #108 en HOLD), `readingTime` de `lib/blog.ts`, `blogPrestataire`, `/industrie` « 2 à 4 semaines » (D10).
+
+**Suite** — #111 empilée sur #109 (fusionner #109 d'abord). Validation D42 : contrôle de la Preview par Laurent (étape 4), puis validation du copywriting FR par Sébastien (étape 5, D13). Aucun GO de fusion.
+
+---
+
 ## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
 
 **Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
